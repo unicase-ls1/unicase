@@ -18,7 +18,7 @@ import org.unicase.model.classes.Class;
 /**
  * @generated
  */
-public class ClassSubClassesReorientCommand extends EditElementCommand {
+public class ClassSuperClassesReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -43,7 +43,8 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ClassSubClassesReorientCommand(ReorientReferenceRelationshipRequest request) {
+	public ClassSuperClassesReorientCommand(
+			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -54,6 +55,7 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean canExecute() {
 		if (false == referenceOwner instanceof Class) {
 			return false;
@@ -75,7 +77,7 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canExistClassSubClasses_4005(getNewSource(), getOldTarget());
+				.canExistClassSuperClasses_4007(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -86,15 +88,18 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canExistClassSubClasses_4005(getOldSource(), getNewTarget());
+				.canExistClassSuperClasses_4007(getOldSource(), getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	@Override
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -109,8 +114,8 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getSubClasses().remove(getOldTarget());
-		getNewSource().getSubClasses().add(getOldTarget());
+		getOldSource().getSuperClasses().remove(getOldTarget());
+		getNewSource().getSuperClasses().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -118,8 +123,8 @@ public class ClassSubClassesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getSubClasses().remove(getOldTarget());
-		getOldSource().getSubClasses().add(getNewTarget());
+		getOldSource().getSuperClasses().remove(getOldTarget());
+		getOldSource().getSuperClasses().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 

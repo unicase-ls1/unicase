@@ -20,7 +20,8 @@ import org.eclipse.osgi.util.NLS;
 /**
  * @generated
  */
-public class MessageFormatParser extends org.unicase.model.classDiagram.parsers.AbstractParser {
+public class MessageFormatParser extends
+		org.unicase.model.classDiagram.parsers.AbstractParser {
 
 	/**
 	 * @generated
@@ -172,7 +173,8 @@ public class MessageFormatParser extends org.unicase.model.classDiagram.parsers.
 	 */
 	public String getPrintString(IAdaptable adapter, int flags) {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
+		return getViewProcessor().format(getValues(element),
+				new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 	/**
@@ -180,20 +182,25 @@ public class MessageFormatParser extends org.unicase.model.classDiagram.parsers.
 	 */
 	public String getEditString(IAdaptable adapter, int flags) {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
-		return getEditorProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
+		return getEditorProcessor().format(getValues(element),
+				new StringBuffer(), new FieldPosition(0)).toString();
 	}
 
 	/**
 	 * @generated
 	 */
-	public IParserEditStatus isValidEditString(IAdaptable adapter, String editString) {
+	public IParserEditStatus isValidEditString(IAdaptable adapter,
+			String editString) {
 		ParsePosition pos = new ParsePosition(0);
 		Object[] values = getEditProcessor().parse(editString, pos);
 		if (values == null) {
-			return new ParserEditStatus(org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.ID,
-				IParserEditStatus.UNEDITABLE, NLS.bind(
-					org.unicase.model.classDiagram.part.Messages.MessageFormatParser_InvalidInputError, new Integer(pos
-						.getErrorIndex())));
+			return new ParserEditStatus(
+					org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.ID,
+					IParserEditStatus.UNEDITABLE,
+					NLS
+							.bind(
+									org.unicase.model.classDiagram.part.Messages.MessageFormatParser_InvalidInputError,
+									new Integer(pos.getErrorIndex())));
 		}
 		return validateNewValues(values);
 	}
@@ -201,8 +208,10 @@ public class MessageFormatParser extends org.unicase.model.classDiagram.parsers.
 	/**
 	 * @generated
 	 */
-	public ICommand getParseCommand(IAdaptable adapter, String newString, int flags) {
-		Object[] values = getEditProcessor().parse(newString, new ParsePosition(0));
+	public ICommand getParseCommand(IAdaptable adapter, String newString,
+			int flags) {
+		Object[] values = getEditProcessor().parse(newString,
+				new ParsePosition(0));
 		return getParseCommand(adapter, values, flags);
 	}
 }

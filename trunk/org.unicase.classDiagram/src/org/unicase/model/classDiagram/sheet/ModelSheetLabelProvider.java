@@ -22,8 +22,9 @@ public class ModelSheetLabelProvider extends DecoratingLabelProvider {
 	 * @generated
 	 */
 	public ModelSheetLabelProvider() {
-		super(new AdapterFactoryLabelProvider(org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
-			.getInstance().getItemProvidersAdapterFactory()), null);
+		super(new AdapterFactoryLabelProvider(
+				org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().getItemProvidersAdapterFactory()), null);
 	}
 
 	/**
@@ -32,7 +33,8 @@ public class ModelSheetLabelProvider extends DecoratingLabelProvider {
 	public String getText(Object element) {
 		Object selected = unwrap(element);
 		if (selected instanceof org.unicase.model.classDiagram.navigator.ModelNavigatorGroup) {
-			return ((org.unicase.model.classDiagram.navigator.ModelNavigatorGroup) selected).getGroupName();
+			return ((org.unicase.model.classDiagram.navigator.ModelNavigatorGroup) selected)
+					.getGroupName();
 		}
 		return super.getText(selected);
 	}

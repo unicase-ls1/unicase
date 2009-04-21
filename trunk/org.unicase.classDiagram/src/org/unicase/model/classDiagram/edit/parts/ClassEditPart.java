@@ -69,7 +69,6 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
 				new CreationEditPolicy() {
-					@Override
 					public Command getCommand(Request request) {
 						if (understandsRequest(request)) {
 							if (request instanceof CreateViewAndElementRequest) {
@@ -114,7 +113,6 @@ public class ClassEditPart extends ShapeNodeEditPart {
 
 		ConstrainedToolbarLayoutEditPolicy lep = new ConstrainedToolbarLayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				if (child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE) == null) {
 					if (child instanceof ITextAwareEditPart) {

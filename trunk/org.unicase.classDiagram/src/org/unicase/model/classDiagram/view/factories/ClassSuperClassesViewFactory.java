@@ -16,11 +16,12 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ClassSubClassesViewFactory extends ConnectionViewFactory {
+public class ClassSuperClassesViewFactory extends ConnectionViewFactory {
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List createStyles(View view) {
 		List styles = new ArrayList();
 		styles.add(NotationFactory.eINSTANCE.createConnectorStyle());
@@ -31,13 +32,16 @@ public class ClassSubClassesViewFactory extends ConnectionViewFactory {
 	/**
 	 * @generated
 	 */
-	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint,
-		int index, boolean persisted) {
+	@Override
+	protected void decorateView(View containerView, View view,
+			IAdaptable semanticAdapter, String semanticHint, int index,
+			boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-				.getType(org.unicase.model.classDiagram.edit.parts.ClassSubClassesEditPart.VISUAL_ID);
+					.getType(org.unicase.model.classDiagram.edit.parts.ClassSuperClassesEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
+		super.decorateView(containerView, view, semanticAdapter, semanticHint,
+				index, persisted);
 	}
 }

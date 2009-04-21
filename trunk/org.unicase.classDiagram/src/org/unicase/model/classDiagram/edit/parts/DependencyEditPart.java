@@ -17,7 +17,8 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class DependencyEditPart extends ConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -36,8 +37,9 @@ public class DependencyEditPart extends ConnectionNodeEditPart implements ITreeB
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.model.classDiagram.edit.policies.DependencyItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.model.classDiagram.edit.policies.DependencyItemSemanticEditPolicy());
 	}
 
 	/**

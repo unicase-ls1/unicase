@@ -10,7 +10,8 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor;
 /**
  * @generated
  */
-public class ModelDiagramActionBarContributor extends DiagramActionBarContributor {
+public class ModelDiagramActionBarContributor extends
+		DiagramActionBarContributor {
 
 	/**
 	 * @generated

@@ -47,8 +47,9 @@ import org.eclipse.ui.part.ShowInContext;
 
 /**
  * @generated
- * @extends org.unicase.ui.common.diagram.ModelDiagramEditor public class ModelDiagramEditor extends
- *          org.unicase.ui.common.diagram.ModelDiagramEditor implements IGotoMarker {
+ * @extends org.unicase.ui.common.diagram.ModelDiagramEditor
+ * 
+ * @ilovegmf public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagramEditor implements IGotoMarker {
  */
 public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagramEditor implements IGotoMarker {
 
@@ -83,7 +84,8 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	@Override
 	protected PaletteRoot createPaletteRoot(PaletteRoot existingPaletteRoot) {
 		PaletteRoot root = super.createPaletteRoot(existingPaletteRoot);
-		new org.unicase.model.classDiagram.part.ModelPaletteFactory().fillPalette(root);
+		new org.unicase.model.classDiagram.part.ModelPaletteFactory()
+				.fillPalette(root);
 		return root;
 	}
 
@@ -123,8 +125,10 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	 */
 	@Override
 	protected IDocumentProvider getDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			return org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.getInstance().getDocumentProvider();
+		if (input instanceof IFileEditorInput
+				|| input instanceof URIEditorInput) {
+			return org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+					.getInstance().getDocumentProvider();
 		}
 		return super.getDocumentProvider(input);
 	}
@@ -134,7 +138,8 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	 */
 	@Override
 	public TransactionalEditingDomain getEditingDomain() {
-		IDocument document = getEditorInput() != null ? getDocumentProvider().getDocument(getEditorInput()) : null;
+		IDocument document = getEditorInput() != null ? getDocumentProvider()
+				.getDocument(getEditorInput()) : null;
 		if (document instanceof IDiagramDocument) {
 			return ((IDiagramDocument) document).getEditingDomain();
 		}
@@ -146,9 +151,10 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	 */
 	@Override
 	protected void setDocumentProvider(IEditorInput input) {
-		if (input instanceof IFileEditorInput || input instanceof URIEditorInput) {
-			setDocumentProvider(org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.getInstance()
-				.getDocumentProvider());
+		if (input instanceof IFileEditorInput
+				|| input instanceof URIEditorInput) {
+			setDocumentProvider(org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+					.getInstance().getDocumentProvider());
 		} else {
 			super.setDocumentProvider(input);
 		}
@@ -186,7 +192,9 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 		Shell shell = getSite().getShell();
 		IEditorInput input = getEditorInput();
 		SaveAsDialog dialog = new SaveAsDialog(shell);
-		IFile original = input instanceof IFileEditorInput ? ((IFileEditorInput) input).getFile() : null;
+		IFile original = input instanceof IFileEditorInput ? ((IFileEditorInput) input)
+				.getFile()
+				: null;
 		if (original != null) {
 			dialog.setOriginalFile(original);
 		}
@@ -197,8 +205,10 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 			return;
 		}
 		if (provider.isDeleted(input) && original != null) {
-			String message = NLS.bind(
-				org.unicase.model.classDiagram.part.Messages.ModelDiagramEditor_SavingDeletedFile, original.getName());
+			String message = NLS
+					.bind(
+							org.unicase.model.classDiagram.part.Messages.ModelDiagramEditor_SavingDeletedFile,
+							original.getName());
 			dialog.setErrorMessage(null);
 			dialog.setMessage(message, IMessageProvider.WARNING);
 		}
@@ -219,29 +229,37 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 		IFile file = workspaceRoot.getFile(filePath);
 		final IEditorInput newInput = new FileEditorInput(file);
 		// Check if the editor is already open
-		IEditorMatchingStrategy matchingStrategy = getEditorDescriptor().getEditorMatchingStrategy();
-		IEditorReference[] editorRefs = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-			.getEditorReferences();
+		IEditorMatchingStrategy matchingStrategy = getEditorDescriptor()
+				.getEditorMatchingStrategy();
+		IEditorReference[] editorRefs = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage()
+				.getEditorReferences();
 		for (int i = 0; i < editorRefs.length; i++) {
 			if (matchingStrategy.matches(editorRefs[i], newInput)) {
-				MessageDialog.openWarning(shell,
-					org.unicase.model.classDiagram.part.Messages.ModelDiagramEditor_SaveAsErrorTitle,
-					org.unicase.model.classDiagram.part.Messages.ModelDiagramEditor_SaveAsErrorMessage);
+				MessageDialog
+						.openWarning(
+								shell,
+								org.unicase.model.classDiagram.part.Messages.ModelDiagramEditor_SaveAsErrorTitle,
+								org.unicase.model.classDiagram.part.Messages.ModelDiagramEditor_SaveAsErrorMessage);
 				return;
 			}
 		}
 		boolean success = false;
 		try {
 			provider.aboutToChange(newInput);
-			getDocumentProvider(newInput).saveDocument(progressMonitor, newInput,
-				getDocumentProvider().getDocument(getEditorInput()), true);
+			getDocumentProvider(newInput).saveDocument(progressMonitor,
+					newInput,
+					getDocumentProvider().getDocument(getEditorInput()), true);
 			success = true;
 		} catch (CoreException x) {
 			IStatus status = x.getStatus();
 			if (status == null || status.getSeverity() != IStatus.CANCEL) {
-				ErrorDialog.openError(shell,
-					org.unicase.model.classDiagram.part.Messages.ModelDiagramEditor_SaveErrorTitle,
-					org.unicase.model.classDiagram.part.Messages.ModelDiagramEditor_SaveErrorMessage, x.getStatus());
+				ErrorDialog
+						.openError(
+								shell,
+								org.unicase.model.classDiagram.part.Messages.ModelDiagramEditor_SaveErrorTitle,
+								org.unicase.model.classDiagram.part.Messages.ModelDiagramEditor_SaveErrorMessage,
+								x.getStatus());
 			}
 		} finally {
 			provider.changed(newInput);
@@ -274,7 +292,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
 		if (file != null) {
 			org.unicase.model.classDiagram.navigator.ModelNavigatorItem item = new org.unicase.model.classDiagram.navigator.ModelNavigatorItem(
-				diagram, file, false);
+					diagram, file, false);
 			return new StructuredSelection(item);
 		}
 		return StructuredSelection.EMPTY;
@@ -287,9 +305,10 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.ModelDiagr
 	protected void configureGraphicalViewer() {
 		super.configureGraphicalViewer();
 		org.unicase.model.classDiagram.part.DiagramEditorContextMenuProvider provider = new org.unicase.model.classDiagram.part.DiagramEditorContextMenuProvider(
-			this, getDiagramGraphicalViewer());
+				this, getDiagramGraphicalViewer());
 		getDiagramGraphicalViewer().setContextMenu(provider);
-		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU, provider, getDiagramGraphicalViewer());
+		getSite().registerContextMenu(ActionIds.DIAGRAM_EDITOR_CONTEXT_MENU,
+				provider, getDiagramGraphicalViewer());
 	}
 
 }

@@ -48,13 +48,15 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	public void init() {
 		super.init();
 		setId(ActionIds.ACTION_DELETE_FROM_MODEL);
 		setText(DiagramUIMessages.DiagramEditor_Delete_from_Model);
 		setToolTipText(DiagramUIMessages.DiagramEditor_Delete_from_ModelToolTip);
 		String path = "icons/delete.gif";
-		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(path), null);
+		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"),
+				new Path(path), null);
 		ImageDescriptor id = ImageDescriptor.createFromURL(url);
 		setHoverImageDescriptor(id);
 		setImageDescriptor(id);
@@ -64,6 +66,7 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected String getCommandLabel() {
 		return DiagramUIMessages.DiagramEditor_Delete_from_Model;
 	}
@@ -71,13 +74,15 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getCommand(Request request) {
 		List operationSet = getOperationSet();
 		if (operationSet.isEmpty()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		Iterator editParts = operationSet.iterator();
-		CompositeTransactionalCommand command = new CompositeTransactionalCommand(getEditingDomain(), getCommandLabel());
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(
+				getEditingDomain(), getCommandLabel());
 		while (editParts.hasNext()) {
 			EditPart editPart = (EditPart) editParts.next();
 			Command curCommand = editPart.getCommand(request);

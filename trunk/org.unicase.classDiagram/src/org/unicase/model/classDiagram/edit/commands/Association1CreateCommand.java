@@ -49,7 +49,8 @@ public class Association1CreateCommand extends CreateElementCommand {
 	 * @param target The target element of the connection to be created
 	 * @generated NOT
 	 */
-	public Association1CreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public Association1CreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target) {
 		super(request);
 		throw new UnsupportedOperationException();
 	}
@@ -61,19 +62,21 @@ public class Association1CreateCommand extends CreateElementCommand {
 	 * @param eContainer The container element which will contain the connection
 	 * @generated NOT
 	 */
-	public Association1CreateCommand(CreateRelationshipRequest request, EObject source, EObject target,
-		EObject eContainer) {
+	public Association1CreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target, EObject eContainer) {
 		super(request);
 		this.source = source;
 		this.target = target;
 		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
+			setContainmentFeature(DiagramPackage.eINSTANCE
+					.getMEDiagram_NewElements());
 		}
 
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = eContainer; element != null; element = element.eContainer()) {
+		for (EObject element = eContainer; element != null; element = element
+				.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
 				super.setElementToEdit(container);
@@ -104,7 +107,8 @@ public class Association1CreateCommand extends CreateElementCommand {
 			return false;
 		}
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canCreateAssociation_4001(getContainer(), getSource(), getTarget());
+				.canCreateAssociation_4001(getContainer(), getSource(),
+						getTarget());
 	}
 
 	/**
@@ -119,7 +123,8 @@ public class Association1CreateCommand extends CreateElementCommand {
 		getContainer().getElements().add(newElement);
 		newElement.setSource(getSource());
 		newElement.setTarget(getTarget());
-		org.unicase.model.classDiagram.providers.ModelElementTypes.init_Association_4001(newElement);
+		org.unicase.model.classDiagram.providers.ModelElementTypes
+				.init_Association_4001(newElement);
 		return newElement;
 	}
 
@@ -137,7 +142,8 @@ public class Association1CreateCommand extends CreateElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		return super.doExecuteWithResult(monitor, info);
 	}

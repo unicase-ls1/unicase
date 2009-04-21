@@ -44,7 +44,7 @@
             qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.unicase.model.classDiagram.unicase.CenterLayout"/>
+              qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
           <children
               xsi:type="gmfgraph:Label"
               name="ClassFigure_name"
@@ -142,7 +142,7 @@
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
           name="GeneralizationPolyline"
-          sourceDecoration="//@figures.0/@figures.2"/>
+          targetDecoration="//@figures.0/@figures.2"/>
     </descriptors>
     <descriptors
         name="PackageFigure">
@@ -230,7 +230,7 @@
               fill="false">
             <layout
                 xsi:type="gmfgraph:CustomLayout"
-                qualifiedClassName="org.unicase.model.classDiagram.unicase.CenterLayout"/>
+                qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
             <minimumSize
                 dy="20"/>
             <insets

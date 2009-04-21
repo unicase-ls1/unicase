@@ -75,7 +75,7 @@ public class DependencyReorientCommand extends EditElementCommand {
 		}
 		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canExistDependency_4006(container, getNewSource(), target);
+				.canExistDependency_4006(container, getNewSource(), target);
 	}
 
 	/**
@@ -91,15 +91,17 @@ public class DependencyReorientCommand extends EditElementCommand {
 		}
 		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canExistDependency_4006(container, source, getNewTarget());
+				.canExistDependency_4006(container, source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
