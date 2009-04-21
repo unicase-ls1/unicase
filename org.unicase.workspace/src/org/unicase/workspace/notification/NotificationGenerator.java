@@ -58,9 +58,6 @@ public final class NotificationGenerator {
 
 		result.addNotificationProvider(new PushedNotificationProvider());
 
-		// result.addNotificationProvider(new TaskChangeNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
-		// result.addNotificationProvider(new TaskChangeNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
-		// result.addNotificationProvider(new TaskChangeNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
 		return result;
 	}
 
