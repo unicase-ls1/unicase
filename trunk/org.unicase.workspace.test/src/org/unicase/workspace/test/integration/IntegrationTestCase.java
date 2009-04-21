@@ -19,7 +19,9 @@ import org.junit.BeforeClass;
 import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -33,7 +35,6 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
-import org.unicase.workspace.impl.WorkspaceImpl;
 import org.unicase.workspace.test.Activator;
 
 /**
@@ -43,6 +44,7 @@ public abstract class IntegrationTestCase {
 
 	private ProjectSpace testSpace;
 	private Project testProject;
+	private Project compareProject;
 
 	private static Usersession usersession;
 	private static TransactionalEditingDomain domain;
@@ -95,29 +97,28 @@ public abstract class IntegrationTestCase {
 
 		try {
 			String path;
-			
-			//use a random generated project (with about 6000 elements) with these parameter(10, 12345, 5, 3, 15, 20)
-			//path = "TestProjects/randomProject6";
-			
-			//use a random generated project (with about 8000 elements) with these parameter(15, 12345, 5, 3, 15, 20)
-			//path = "TestProjects/randomProject8";
-			
-			//use a random generated project (with about 12000 elements) with these parameter(20, 12345, 5, 5, 10, 20)
-			//path = "TestProjects/randomProject12";
-			
-			//use a random generated project (with about 14000 elements) with these parameter(30, 123, 5, 5, 10, 20)
-			//path = "TestProjects/randomProject14";
-			
-			//use a random generated project (with about 25000 elements) with these parameter(70, 123, 5, 5, 10, 20)
-			//path = "TestProjects/randomProject25";
-			
-			//use dolli2 project
-			//path = "TestProjects/dolli2.ucp";
-			
-			//use unicase project
+
+			// use a random generated project (with about 6000 elements) with these parameter(10, 12345, 5, 3, 15, 20)
+			// path = "TestProjects/randomProject6";
+
+			// use a random generated project (with about 8000 elements) with these parameter(15, 12345, 5, 3, 15, 20)
+			// path = "TestProjects/randomProject8";
+
+			// use a random generated project (with about 12000 elements) with these parameter(20, 12345, 5, 5, 10, 20)
+			// path = "TestProjects/randomProject12";
+
+			// use a random generated project (with about 14000 elements) with these parameter(30, 123, 5, 5, 10, 20)
+			// path = "TestProjects/randomProject14";
+
+			// use a random generated project (with about 25000 elements) with these parameter(70, 123, 5, 5, 10, 20)
+			// path = "TestProjects/randomProject25";
+
+			// use dolli2 project
+			// path = "TestProjects/dolli2.ucp";
+
+			// use unicase project
 			path = "TestProjects/unicase.ucp";
 
-			
 			String uriString = Activator.getDefault().getBundle().getLocation() + path;
 			if (File.separator.equals("/")) {
 				uriString = uriString.replace("reference:file:", "");
@@ -230,9 +231,29 @@ public abstract class IntegrationTestCase {
 	 */
 	public Project getCompareProject() throws EmfStoreException {
 
-		Project comparePrject = ((WorkspaceImpl) WorkspaceManager.getInstance().getCurrentWorkspace()).checkout(
-			usersession, projectId);
-		return comparePrject;
+		// Project compareProject = ((WorkspaceImpl)
+		// WorkspaceManager.getInstance().getCurrentWorkspace()).checkout(usersession, projectId);
+
+		final ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
+		projectInfo.setName("CompareProject");
+		projectInfo.setDescription("compare project description");
+		projectInfo.setProjectId(projectId);
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				try {
+					compareProject = WorkspaceManager.getInstance().getCurrentWorkspace().checkout(usersession,
+						projectInfo).getProject();
+				} catch (EmfStoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			}
+
+		});
+		return compareProject;
 	}
 
 	/**
@@ -259,7 +280,7 @@ public abstract class IntegrationTestCase {
 			}
 		}
 
-		//new File(serverPath + "storage.uss").delete();
+		new File(serverPath + "storage.uss").delete();
 
 		String workspacePath = Configuration.getWorkspaceDirectory();
 		File workspaceDirectory = new File(workspacePath);
@@ -280,7 +301,7 @@ public abstract class IntegrationTestCase {
 			}
 		}
 
-		//new File(workspacePath + "workspace.ucw").delete();
+		new File(workspacePath + "workspace.ucw").delete();
 	}
 
 }
