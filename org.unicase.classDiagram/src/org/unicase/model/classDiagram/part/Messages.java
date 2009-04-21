@@ -393,12 +393,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ClassSubClasses_4005_target;
+	public static String NavigatorGroupName_ClassSuperClasses_4007_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ClassSubClasses_4005_source;
+	public static String NavigatorGroupName_ClassSuperClasses_4007_source;
 
 	/**
 	 * @generated

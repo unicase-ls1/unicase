@@ -22,7 +22,8 @@ Export-Package: org.unicase.model.attachment.provider,
  org.unicase.model.rationale.provider,
  org.unicase.model.requirement.provider,
  org.unicase.model.state.provider,
- org.unicase.model.task.provider
+ org.unicase.model.task.provider,
+ org.unicase.model.util.provider
 Require-Bundle: org.eclipse.gmf.runtime.diagram.core,
  org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.unicase.model;bundle-version="0.3.18.qualifier";visibility:=reexport

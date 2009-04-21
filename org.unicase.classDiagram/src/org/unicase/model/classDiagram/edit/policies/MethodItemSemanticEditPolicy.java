@@ -13,8 +13,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 /**
  * @generated
  */
-public class MethodItemSemanticEditPolicy extends
-	org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class MethodItemSemanticEditPolicy
+		extends
+		org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated

@@ -12,8 +12,8 @@ import org.unicase.model.classDiagram.edit.policies.MEDiagramShowElementsEditPol
 /**
  * @generated
  * @extends org.unicase.ui.common.diagram.MEDiagramEditPart
- * @implements org.unicase.ui.common.diagram.MEDiagramEditPart public class MEDiagramEditPart extends
- *             org.unicase.ui.common.diagram.MEDiagramEditPart {
+ * @implements org.unicase.ui.common.diagram.MEDiagramEditPart
+ * @ilovegmf public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart {
  */
 public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart {
 
@@ -40,11 +40,14 @@ public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEd
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SHOW_ELEMENTS_ROLE, new MEDiagramShowElementsEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.model.classDiagram.edit.policies.MEDiagramItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-			new org.unicase.model.classDiagram.edit.policies.MEDiagramCanonicalEditPolicy());
+		installEditPolicy(EditPolicyRoles.SHOW_ELEMENTS_ROLE,
+				new MEDiagramShowElementsEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.model.classDiagram.edit.policies.MEDiagramItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.CANONICAL_ROLE,
+				new org.unicase.model.classDiagram.edit.policies.MEDiagramCanonicalEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

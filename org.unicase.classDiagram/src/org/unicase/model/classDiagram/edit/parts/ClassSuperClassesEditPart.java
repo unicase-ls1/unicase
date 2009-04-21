@@ -16,36 +16,42 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ClassSubClassesEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ClassSuperClassesEditPart extends ConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4005;
+	public static final int VISUAL_ID = 4007;
 
 	/**
 	 * @generated
 	 */
-	public ClassSubClassesEditPart(View view) {
+	public ClassSuperClassesEditPart(View view) {
 		super(view);
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.model.classDiagram.edit.policies.ClassSubClassesItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.model.classDiagram.edit.policies.ClassSuperClassesItemSemanticEditPolicy());
 	}
 
 	/**
-	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model so you may
-	 * safely remove <i>generated</i> tag and modify it.
+	 * Creates figure for this edit part.
+	 * 
+	 * Body of this method does not depend on settings in generation model
+	 * so you may safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
 
+	@Override
 	protected Connection createConnectionFigure() {
 		return new GeneralizationFigure();
 	}
@@ -67,13 +73,13 @@ public class ClassSubClassesEditPart extends ConnectionNodeEditPart implements I
 		 */
 		public GeneralizationFigure() {
 
-			setSourceDecoration(createSourceDecoration());
+			setTargetDecoration(createTargetDecoration());
 		}
 
 		/**
 		 * @generated
 		 */
-		private RotatableDecoration createSourceDecoration() {
+		private RotatableDecoration createTargetDecoration() {
 			org.unicase.model.classDiagram.unicase.GeneralizationDecoration df = new org.unicase.model.classDiagram.unicase.GeneralizationDecoration();
 
 			return df;

@@ -97,7 +97,7 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ClassSubClasses_4005 = getElementType("org.unicase.classDiagram.ClassSubClasses_4005"); //$NON-NLS-1$
+	public static final IElementType ClassSuperClasses_4007 = getElementType("org.unicase.classDiagram.ClassSuperClasses_4007"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -124,22 +124,26 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(
+			ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass
+					&& !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.getInstance()
-					.getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
+				return org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().getItemImageDescriptor(
+								eClass.getEPackage().getEFactoryInstance()
+										.create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -217,21 +221,28 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(Package_2002, ClassesPackage.eINSTANCE.getPackage());
 
-			elements.put(Attribute_3001, ClassesPackage.eINSTANCE.getAttribute());
+			elements.put(Attribute_3001, ClassesPackage.eINSTANCE
+					.getAttribute());
 
 			elements.put(Method_3002, ClassesPackage.eINSTANCE.getMethod());
 
-			elements.put(Association_4001, ClassesPackage.eINSTANCE.getAssociation());
+			elements.put(Association_4001, ClassesPackage.eINSTANCE
+					.getAssociation());
 
-			elements.put(Association_4002, ClassesPackage.eINSTANCE.getAssociation());
+			elements.put(Association_4002, ClassesPackage.eINSTANCE
+					.getAssociation());
 
-			elements.put(Association_4003, ClassesPackage.eINSTANCE.getAssociation());
+			elements.put(Association_4003, ClassesPackage.eINSTANCE
+					.getAssociation());
 
-			elements.put(Association_4004, ClassesPackage.eINSTANCE.getAssociation());
+			elements.put(Association_4004, ClassesPackage.eINSTANCE
+					.getAssociation());
 
-			elements.put(ClassSubClasses_4005, ClassesPackage.eINSTANCE.getClass_SubClasses());
+			elements.put(ClassSuperClasses_4007, ClassesPackage.eINSTANCE
+					.getClass_SuperClasses());
 
-			elements.put(Dependency_4006, ClassesPackage.eINSTANCE.getDependency());
+			elements.put(Dependency_4006, ClassesPackage.eINSTANCE
+					.getDependency());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -258,7 +269,7 @@ public class ModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Association_4002);
 			KNOWN_ELEMENT_TYPES.add(Association_4003);
 			KNOWN_ELEMENT_TYPES.add(Association_4004);
-			KNOWN_ELEMENT_TYPES.add(ClassSubClasses_4005);
+			KNOWN_ELEMENT_TYPES.add(ClassSuperClasses_4007);
 			KNOWN_ELEMENT_TYPES.add(Dependency_4006);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);

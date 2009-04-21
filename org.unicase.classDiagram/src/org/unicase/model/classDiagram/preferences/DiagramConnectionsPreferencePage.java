@@ -16,7 +16,7 @@ public class DiagramConnectionsPreferencePage extends ConnectionsPreferencePage 
 	 * @generated
 	 */
 	public DiagramConnectionsPreferencePage() {
-		setPreferenceStore(org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.getInstance()
-			.getPreferenceStore());
+		setPreferenceStore(org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
+				.getInstance().getPreferenceStore());
 	}
 }

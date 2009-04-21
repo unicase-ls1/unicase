@@ -25,20 +25,23 @@ public abstract class ModelAbstractNavigatorItem extends PlatformObject {
 				return "org.unicase.classDiagram"; //$NON-NLS-1$
 			}
 		};
-		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
+		Platform.getAdapterManager().registerAdapters(
+				new IAdapterFactory() {
 
-			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.unicase.model.classDiagram.navigator.ModelAbstractNavigatorItem
-					&& adapterType == ITabbedPropertySheetPageContributor.class) {
-					return propertySheetPageContributor;
-				}
-				return null;
-			}
+					public Object getAdapter(Object adaptableObject,
+							Class adapterType) {
+						if (adaptableObject instanceof org.unicase.model.classDiagram.navigator.ModelAbstractNavigatorItem
+								&& adapterType == ITabbedPropertySheetPageContributor.class) {
+							return propertySheetPageContributor;
+						}
+						return null;
+					}
 
-			public Class[] getAdapterList() {
-				return supportedTypes;
-			}
-		}, org.unicase.model.classDiagram.navigator.ModelAbstractNavigatorItem.class);
+					public Class[] getAdapterList() {
+						return supportedTypes;
+					}
+				},
+				org.unicase.model.classDiagram.navigator.ModelAbstractNavigatorItem.class);
 	}
 
 	/**

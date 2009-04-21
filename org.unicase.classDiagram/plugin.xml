@@ -363,11 +363,11 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">
          <specializationType
-               id="org.unicase.classDiagram.ClassSubClasses_4005"
-               name="%metatype.name.ClassSubClasses_4005"
+               id="org.unicase.classDiagram.ClassSuperClasses_4007"
+               name="%metatype.name.ClassSuperClasses_4007"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4005"/>
+            <param name="semanticHint" value="4007"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/classes">

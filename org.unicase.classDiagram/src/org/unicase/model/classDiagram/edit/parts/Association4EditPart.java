@@ -20,7 +20,8 @@ import org.unicase.model.classes.Association;
 /**
  * @generated
  */
-public class Association4EditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class Association4EditPart extends ConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -40,8 +41,9 @@ public class Association4EditPart extends ConnectionNodeEditPart implements ITre
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.model.classDiagram.edit.policies.Association4ItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.model.classDiagram.edit.policies.Association4ItemSemanticEditPolicy());
 	}
 
 	/**
@@ -50,17 +52,20 @@ public class Association4EditPart extends ConnectionNodeEditPart implements ITre
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart) {
 			((org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart) childEditPart)
-				.setLabel(getPrimaryShape().getFigureAssociationFigure_name());
+					.setLabel(getPrimaryShape()
+							.getFigureAssociationFigure_name());
 			return true;
 		}
 		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart) {
 			((org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart) childEditPart)
-				.setLabel(getPrimaryShape().getFigureAssociationFigure_sourceMultiplicity());
+					.setLabel(getPrimaryShape()
+							.getFigureAssociationFigure_sourceMultiplicity());
 			return true;
 		}
 		if (childEditPart instanceof org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart) {
 			((org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart) childEditPart)
-				.setLabel(getPrimaryShape().getFigureAssociationFigure_targetMultiplicity());
+					.setLabel(getPrimaryShape()
+							.getFigureAssociationFigure_targetMultiplicity());
 			return true;
 		}
 		return false;
@@ -160,7 +165,8 @@ public class Association4EditPart extends ConnectionNodeEditPart implements ITre
 			}
 			if (object instanceof Association) {
 				Association association = (Association) object;
-				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(association, true);
+				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(
+						association, true);
 			} else {
 				throw new IllegalArgumentException();
 			}
@@ -181,7 +187,8 @@ public class Association4EditPart extends ConnectionNodeEditPart implements ITre
 			}
 			if (object instanceof Association) {
 				Association association = (Association) object;
-				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(association, false);
+				df = new org.unicase.model.classDiagram.unicase.AssociationDecoration(
+						association, false);
 			} else {
 				throw new IllegalArgumentException();
 			}

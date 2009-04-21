@@ -12,12 +12,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 /**
  * @generated
  */
-public class ClassSubClassesItemSemanticEditPolicy extends
-	org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class ClassSuperClassesItemSemanticEditPolicy
+		extends
+		org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return getGEFWrapper(new DestroyReferenceCommand(req));
 	}

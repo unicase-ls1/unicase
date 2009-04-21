@@ -326,7 +326,7 @@
         href="model.gmfgraph#Generalization"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="../model.ecore#//classes/Class/subClasses"/>
+        href="../model.ecore#//classes/Class/superClasses"/>
   </links>
   <links>
     <domainMetaElement

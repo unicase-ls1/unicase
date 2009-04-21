@@ -17,7 +17,7 @@ import org.unicase.model.classes.Class;
 /**
  * @generated
  */
-public class ClassSubClassesCreateCommand extends EditElementCommand {
+public class ClassSuperClassesCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -32,7 +32,8 @@ public class ClassSubClassesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ClassSubClassesCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public ClassSuperClassesCreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -41,6 +42,7 @@ public class ClassSubClassesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
@@ -56,18 +58,21 @@ public class ClassSubClassesCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return org.unicase.model.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canCreateClassSubClasses_4005(getSource(), getTarget());
+				.canCreateClassSuperClasses_4007(getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	@Override
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
-			getSource().getSubClasses().add(getTarget());
+			getSource().getSuperClasses().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 	}

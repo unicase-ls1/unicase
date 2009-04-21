@@ -22,28 +22,34 @@ public class ModelDomainNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
-		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
+		final Class[] supportedTypes = new Class[] { EObject.class,
+				IPropertySource.class };
+		Platform.getAdapterManager().registerAdapters(
+				new IAdapterFactory() {
 
-			public Object getAdapter(Object adaptableObject, Class adapterType) {
-				if (adaptableObject instanceof org.unicase.model.classDiagram.navigator.ModelDomainNavigatorItem) {
-					org.unicase.model.classDiagram.navigator.ModelDomainNavigatorItem domainNavigatorItem = (org.unicase.model.classDiagram.navigator.ModelDomainNavigatorItem) adaptableObject;
-					EObject eObject = domainNavigatorItem.getEObject();
-					if (adapterType == EObject.class) {
-						return eObject;
+					public Object getAdapter(Object adaptableObject,
+							Class adapterType) {
+						if (adaptableObject instanceof org.unicase.model.classDiagram.navigator.ModelDomainNavigatorItem) {
+							org.unicase.model.classDiagram.navigator.ModelDomainNavigatorItem domainNavigatorItem = (org.unicase.model.classDiagram.navigator.ModelDomainNavigatorItem) adaptableObject;
+							EObject eObject = domainNavigatorItem.getEObject();
+							if (adapterType == EObject.class) {
+								return eObject;
+							}
+							if (adapterType == IPropertySource.class) {
+								return domainNavigatorItem
+										.getPropertySourceProvider()
+										.getPropertySource(eObject);
+							}
+						}
+
+						return null;
 					}
-					if (adapterType == IPropertySource.class) {
-						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
+
+					public Class[] getAdapterList() {
+						return supportedTypes;
 					}
-				}
-
-				return null;
-			}
-
-			public Class[] getAdapterList() {
-				return supportedTypes;
-			}
-		}, org.unicase.model.classDiagram.navigator.ModelDomainNavigatorItem.class);
+				},
+				org.unicase.model.classDiagram.navigator.ModelDomainNavigatorItem.class);
 	}
 
 	/**
@@ -64,7 +70,8 @@ public class ModelDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
-	public ModelDomainNavigatorItem(EObject eObject, Object parent, IPropertySourceProvider propertySourceProvider) {
+	public ModelDomainNavigatorItem(EObject eObject, Object parent,
+			IPropertySourceProvider propertySourceProvider) {
 		myParent = parent;
 		myEObject = eObject;
 		myPropertySourceProvider = propertySourceProvider;
@@ -96,9 +103,12 @@ public class ModelDomainNavigatorItem extends PlatformObject {
 	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof org.unicase.model.classDiagram.navigator.ModelDomainNavigatorItem) {
-			return EcoreUtil.getURI(getEObject()).equals(
-				EcoreUtil
-					.getURI(((org.unicase.model.classDiagram.navigator.ModelDomainNavigatorItem) obj).getEObject()));
+			return EcoreUtil
+					.getURI(getEObject())
+					.equals(
+							EcoreUtil
+									.getURI(((org.unicase.model.classDiagram.navigator.ModelDomainNavigatorItem) obj)
+											.getEObject()));
 		}
 		return super.equals(obj);
 	}
