@@ -6,6 +6,7 @@
 package org.unicase.workspace.edit.dialogs;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 import org.eclipse.emf.common.util.EList;
@@ -93,7 +94,10 @@ public class CommitDialog extends TitleAreaDialog {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).grab(true, false).applyTo(oldMsg);
 		oldLogMessages = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
 			.getOldLogMessages();
-		oldMsg.setItems((String[]) oldLogMessages.toArray());
+		ArrayList<String> oldLogMessagesCopy = new ArrayList<String>();
+		oldLogMessagesCopy.addAll(oldLogMessages);
+		Collections.reverse(oldLogMessagesCopy);
+		oldMsg.setItems(oldLogMessagesCopy.toArray(new String[0]));
 		oldMsg.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
