@@ -994,7 +994,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		generateNotifications(changes);
 
-		observer.updateCompleted();
+		if (observer != null) {
+			observer.updateCompleted();
+		}
 
 		return resolvedVersion;
 	}
