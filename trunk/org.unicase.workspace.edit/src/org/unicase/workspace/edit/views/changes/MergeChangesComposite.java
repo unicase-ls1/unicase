@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -139,41 +140,6 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 
 	}
 
-	// unused for a reason ;)
-	@SuppressWarnings("unused")
-	private void createCompactTab() {
-		SashForm compactTab = new SashForm(folder, SWT.HORIZONTAL);
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(true).applyTo(compactTab);
-		TabItem compactTabItem = new TabItem(folder, SWT.NONE);
-		compactTabItem.setText("Compact");
-		compactTabItem.setControl(compactTab);
-
-		CompactChangesComposite myCompactComposite = new CompactChangesComposite(compactTab, SWT.BORDER,
-			AbstractChangesComposite.VERTICAL, myChangePackages, true);
-		CompactChangesComposite theirCompactComposite = new CompactChangesComposite(compactTab, SWT.BORDER,
-			AbstractChangesComposite.VERTICAL, theirChangePackages, true);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(myCompactComposite);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(theirCompactComposite);
-		compactTab.setWeights(new int[] { 50, 50 });
-
-		// override the labelprovider
-		MENameLabelProvider labelProvider1 = new MENameLabelProvider(emfLabelProvider, visualizationHelper,
-			new OperationColorLabelProvider(operationStates));
-		myCompactComposite.getMeColumn().setLabelProvider(labelProvider1);
-		theirCompactComposite.getMeColumn().setLabelProvider(labelProvider1);
-
-		// expand the trees and add listeners
-		myCompactComposite.getTreeViewer().expandAll();
-		myCompactTreeViewer = (CheckboxTreeViewer) myCompactComposite.getTreeViewer();
-		myCompactTreeViewer.addCheckStateListener(this);
-		myCompactTreeViewer.addSelectionChangedListener(this);
-
-		theirCompactComposite.getTreeViewer().expandAll();
-		theirCompactTreeViewer = (CheckboxTreeViewer) theirCompactComposite.getTreeViewer();
-		theirCompactTreeViewer.addCheckStateListener(this);
-		theirCompactTreeViewer.addSelectionChangedListener(this);
-	}
-
 	private void initOperationStateMap(List<ChangePackage> cps) {
 		for (ChangePackage p : cps) {
 			for (AbstractOperation op : p.getOperations()) {
@@ -187,16 +153,48 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 	 */
 	public void checkStateChanged(CheckStateChangedEvent event) {
 		Object element = event.getElement();
-		CheckboxTreeViewer viewer = (CheckboxTreeViewer) event.getSource();
+		CheckboxTreeViewer checkBoxViewer = (CheckboxTreeViewer) event.getSource();
+
+		// check/uncheck the parent acc. to its children's state
+		if (element instanceof ChangePackage) {
+			Object[] elements = ((DetailedChangesContentProvider) checkBoxViewer.getContentProvider())
+				.getChildren(element);
+			for (Object op : elements) {
+				checkBoxViewer.setChecked(op, event.getChecked());
+			}
+		}
+		if (element instanceof AbstractOperation) {
+			EObject container = ((AbstractOperation) element).eContainer();
+			Object[] elements = ((DetailedChangesContentProvider) checkBoxViewer.getContentProvider())
+				.getChildren(container);
+			int checked = 0;
+			for (Object o : elements) {
+				if (checkBoxViewer.getChecked(o)) {
+					checked++;
+				}
+			}
+			if (checked == elements.length) {
+				checkBoxViewer.setGrayChecked(container, false);
+				checkBoxViewer.setChecked(container, true);
+			} else if (checked > 0) {
+				checkBoxViewer.setChecked(container, false);
+				checkBoxViewer.setGrayChecked(container, true);
+			} else {
+				checkBoxViewer.setGrayChecked(container, false);
+				checkBoxViewer.setChecked(container, false);
+			}
+		}
+
+		// check all required && uncheck all conflicting
 		if (event.getChecked()) {
 			if (element instanceof ChangePackage) {
 				ChangePackage p = (ChangePackage) element;
 				for (AbstractOperation op : p.getOperations()) {
-					checkOperation(viewer, op);
+					checkOperation(checkBoxViewer, op);
 				}
 			} else if (element instanceof AbstractOperation) {
 				AbstractOperation op = (AbstractOperation) element;
-				checkOperation(viewer, op);
+				checkOperation(checkBoxViewer, op);
 			}
 		}
 	}
@@ -214,11 +212,14 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 		List<AbstractOperation> required = conflictDetector.getRequired(from, selected);
 		for (AbstractOperation op : required) {
 			viewer.setChecked(op, true);
+			checkStateChanged(new CheckStateChangedEvent(viewer, op, true));
 		}
 		required.add(selected);
 		Set<AbstractOperation> conflicting = conflictDetector.getConflicting(required, to);
 		for (AbstractOperation op : conflicting) {
-			treeMap.get(viewer).setChecked(op, false);
+			final CheckboxTreeViewer checkboxTreeViewer = treeMap.get(viewer);
+			checkboxTreeViewer.setChecked(op, false);
+			checkStateChanged(new CheckStateChangedEvent(checkboxTreeViewer, op, false));
 		}
 	}
 
