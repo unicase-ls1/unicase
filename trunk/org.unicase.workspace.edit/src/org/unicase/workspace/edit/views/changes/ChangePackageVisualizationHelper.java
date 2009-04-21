@@ -26,6 +26,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsDescriptionProvider;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
@@ -42,6 +43,7 @@ public class ChangePackageVisualizationHelper {
 	private Map<ModelElementId, ModelElement> modelElementMap;
 	private Map<ChangePackage, Set<ModelElementId>> touchedModelElements;
 	private List<ChangePackage> changePackages;
+	private OperationsDescriptionProvider operationDescriptionProvider;
 
 	/**
 	 * Constructor.
@@ -50,6 +52,7 @@ public class ChangePackageVisualizationHelper {
 	 * @param project a project
 	 */
 	public ChangePackageVisualizationHelper(List<ChangePackage> changePackages, Project project) {
+		this.operationDescriptionProvider = new OperationsDescriptionProvider(project);
 		this.modelElementMap = new HashMap<ModelElementId, ModelElement>();
 		this.touchedModelElements = new HashMap<ChangePackage, Set<ModelElementId>>();
 		for (ChangePackage changePackage : changePackages) {
@@ -210,6 +213,9 @@ public class ChangePackageVisualizationHelper {
 			if (op.getReferencedModelElements().size() > 0) {
 				image = emfProvider.getImage(op.getReferencedModelElements().get(0));
 			}
+		} else if (operation instanceof MultiReferenceMoveOperation) {
+			MultiReferenceMoveOperation op = (MultiReferenceMoveOperation) operation;
+			image = emfProvider.getImage(op.getReferencedModelElementId());
 		}
 		return image;
 	}
@@ -256,5 +262,15 @@ public class ChangePackageVisualizationHelper {
 			}
 		}
 		return set;
+	}
+
+	/**
+	 * Returns a verbose description for an operation.
+	 * 
+	 * @param op the operation to provide description for
+	 * @return the description
+	 */
+	public String getDescription(AbstractOperation op) {
+		return operationDescriptionProvider.getDescription(op);
 	}
 }
