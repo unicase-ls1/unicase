@@ -593,26 +593,18 @@ public class EmfStoreController implements IApplication, Runnable {
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
-		try {
-			init();
-		} catch (FatalEmfStoreException e) {
-			System.err.print("Server terminated unexpectedly!");
-			System.err.print(e);
-			System.out.print("Server terminated unexpectedly!");
-			System.out.print(e);
-		} catch (EmfStoreException e) {
-			System.err.print("Server terminated unexpectedly!");
-			System.err.print(e);
-			System.out.print("Server terminated unexpectedly!");
-			System.out.print(e);
-		}
+		waitForTermination();
 	}
 
 	/**
 	 * Start the EmfStore controller in a seperate thread.
+	 * 
+	 * @throws EmfStoreException if startup fails
+	 * @throws FatalEmfStoreException if startup fails fatally
 	 */
-	public static void startAsThread() {
+	public static void startAsThread() throws FatalEmfStoreException, EmfStoreException {
 		EmfStoreController emfStoreController = new EmfStoreController();
+		emfStoreController.init();
 		Thread thread = new Thread(emfStoreController);
 		thread.start();
 	}
