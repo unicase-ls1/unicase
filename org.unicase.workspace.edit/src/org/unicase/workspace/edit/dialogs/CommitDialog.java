@@ -5,10 +5,6 @@
  */
 package org.unicase.workspace.edit.dialogs;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -37,6 +33,10 @@ import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.edit.views.changes.DetailedChangesComposite;
 import org.unicase.workspace.edit.views.changes.PushedNotificationEditingSupport;
 import org.unicase.workspace.edit.views.changes.TabbedChangesComposite;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
 
 /**
  * This class shows a ChangesTreeComposite and a Text control to enter commit message.
@@ -69,6 +69,10 @@ public class CommitDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
+
+		oldLogMessages = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
+			.getOldLogMessages();
+
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		contents.setLayout(new GridLayout(2, false));
@@ -85,15 +89,19 @@ public class CommitDialog extends TitleAreaDialog {
 		txtLogMsg = new Text(contents, SWT.MULTI | SWT.LEAD | SWT.BORDER);
 		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).align(SWT.FILL, SWT.TOP).hint(1, 150).applyTo(
 			txtLogMsg);
-		txtLogMsg.setText("");
+		String logMsg = "";
+		if (oldLogMessages != null && oldLogMessages.size() > 0) {
+			logMsg = oldLogMessages.get(oldLogMessages.size() - 1);
+		}
+		txtLogMsg.setText(logMsg);
+		txtLogMsg.selectAll();
 
 		// previous log messages
 		Label oldLabel = new Label(contents, SWT.NONE);
 		oldLabel.setText("Previous messages:");
 		final Combo oldMsg = new Combo(contents, SWT.READ_ONLY);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).grab(true, false).applyTo(oldMsg);
-		oldLogMessages = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-			.getOldLogMessages();
+
 		ArrayList<String> oldLogMessagesCopy = new ArrayList<String>();
 		oldLogMessagesCopy.addAll(oldLogMessages);
 		Collections.reverse(oldLogMessagesCopy);
