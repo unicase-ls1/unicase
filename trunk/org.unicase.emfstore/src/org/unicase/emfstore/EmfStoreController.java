@@ -81,8 +81,7 @@ public class EmfStoreController implements IApplication, Runnable {
 	 */
 	public Object start(IApplicationContext context) throws EmfStoreException, FatalEmfStoreException {
 
-		init();
-		waitForTermination();
+		run(true);
 		instance = null;
 		logger.info("Server is STOPPED.");
 		return IApplication.EXIT_OK;
@@ -92,10 +91,11 @@ public class EmfStoreController implements IApplication, Runnable {
 	/**
 	 * Run the server.
 	 * 
+	 * @param waitForTermination true if the server should force the calling thread to wait for its termination
 	 * @throws FatalEmfStoreException if the server fails fatally
 	 * @throws EmfStoreException if the server init fails
 	 */
-	public void init() throws FatalEmfStoreException, EmfStoreException {
+	public void run(boolean waitForTermination) throws FatalEmfStoreException, EmfStoreException {
 		if (instance != null) {
 			throw new FatalEmfStoreException("Another EmfStore Controller seems to be running already!");
 		}
@@ -129,6 +129,9 @@ public class EmfStoreController implements IApplication, Runnable {
 		logger.info("Initialitation COMPLETE.");
 		logger.info("Server is RUNNING...");
 
+		if (waitForTermination) {
+			waitForTermination();
+		}
 	}
 
 	private HistoryCache initHistoryCache() {
@@ -592,19 +595,18 @@ public class EmfStoreController implements IApplication, Runnable {
 	 * @see java.lang.Runnable#run()
 	 */
 	public void run() {
-		waitForTermination();
+		try {
+			run(true);
+		} catch (FatalEmfStoreException e) {
+		} catch (EmfStoreException e) {
+		}
 	}
 
 	/**
-	 * Start the EmfStore controller in a seperate thread.
-	 * 
-	 * @throws EmfStoreException if startup fails
-	 * @throws FatalEmfStoreException if startup fails fatally
+	 * starts the server a new thread.
 	 */
-	public static void startAsThread() throws FatalEmfStoreException, EmfStoreException {
-		EmfStoreController emfStoreController = new EmfStoreController();
-		emfStoreController.init();
-		Thread thread = new Thread(emfStoreController);
-		thread.start();
+	public static void runAsNewThread() {
+		// TODO: implement
 	}
+
 }
