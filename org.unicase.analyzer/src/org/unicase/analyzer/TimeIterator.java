@@ -90,7 +90,7 @@ public class TimeIterator extends VersionIterator {
 
 		if (isForward) {
 			if (getSourceSpec().getIdentifier() < 0) {
-				getSourceSpec().setIdentifier(0);
+				getSourceSpec().setIdentifier(this.getStart().getIdentifier());
 			}
 		} else {
 			if (getSourceSpec().compareTo(this.getEnd()) > 0) {
@@ -107,23 +107,24 @@ public class TimeIterator extends VersionIterator {
 	@Override
 	protected void updateSpecifier(PrimaryVersionSpec specifier, int stepLength, boolean isForward) {
 
-		Calendar calendar = Calendar.getInstance();
-		calendar.setTime(dateSpec.getDate());
-
-		if (isForward) {
-			calendar.add(stepLengthUnit, stepLength);
-		} else {
-			calendar.add(stepLengthUnit, -stepLength);
+		if(dateSpec!=null){
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(dateSpec.getDate());
+	
+			if (isForward) {
+				calendar.add(stepLengthUnit, stepLength);
+			} else {
+				calendar.add(stepLengthUnit, -stepLength);
+			}
+			dateSpec.setDate(calendar.getTime());
+			try {
+				PrimaryVersionSpec temp = this.getConnectionManager().resolveVersionSpec(getUsersession().getSessionId(),
+					getProjectId(), dateSpec);
+				specifier.setIdentifier(temp.getIdentifier());
+			} catch (EmfStoreException e) {
+				WorkspaceUtil.logException("Couldn't be resolved", e);
+			}
 		}
-		dateSpec.setDate(calendar.getTime());
-		try {
-			PrimaryVersionSpec temp = this.getConnectionManager().resolveVersionSpec(getUsersession().getSessionId(),
-				getProjectId(), dateSpec);
-			specifier.setIdentifier(temp.getIdentifier());
-		} catch (EmfStoreException e) {
-			WorkspaceUtil.logException("Couldn't be resolved", e);
-		}
-
 	}
 
 }
