@@ -14,13 +14,14 @@ import org.unicase.analyzer.ProjectAnalysisData;
  */
 public class ModelElementAnalyser implements DataAnalyzer {
 
-	private final static String MECOUNT = "ModelElement #";
+	private static final String MECOUNT = "ModelElement #";
 
 	//private final static String DMECOUNT = "Domain ModelElement #";
-	/* (non-Javadoc)
+	/**
+	 * (non-Javadoc).
 	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
+	 * @return return
 	 */
-	@Override
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
 		names.add(MECOUNT);
@@ -28,10 +29,11 @@ public class ModelElementAnalyser implements DataAnalyzer {
 		return names;
 	}
 
-	/* (non-Javadoc)
+	/** (non-Javadoc).
 	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
+	 * @param data data
+	 *@return return 
 	 */
-	@Override
 	public List<Object> getValue(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
 		
