@@ -139,8 +139,8 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 		updateSpecifier(sourceSpec, stepLength, !isForward);
 
 		if (isForward) {
-			if (sourceSpec.getIdentifier() < 0) {
-				sourceSpec.setIdentifier(0);
+			if (sourceSpec.compareTo(this.start) < 0) {
+				sourceSpec.setIdentifier(this.start.getIdentifier());
 			}
 		} else {
 			if (sourceSpec.compareTo(this.end) > 0) {
@@ -223,6 +223,7 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 			specifier.setIdentifier(currentIdentifier + stepLength);
 		} else {
 			specifier.setIdentifier(currentIdentifier - stepLength);
+			
 		}
 	}
 
