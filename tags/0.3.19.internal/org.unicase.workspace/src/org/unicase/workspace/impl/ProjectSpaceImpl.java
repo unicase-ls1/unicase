@@ -994,7 +994,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		generateNotifications(changes);
 
-		observer.updateCompleted();
+		if (observer != null) {
+			observer.updateCompleted();
+		}
 
 		return resolvedVersion;
 	}
@@ -1784,5 +1786,22 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			throw new IllegalAccessError("Project Space cannot be set to transient after init.");
 		}
 		isTransient = true;
+	}
+
+	/**
+	 * @see org.unicase.workspace.ProjectSpace#applyMergeResult(java.util.List)
+	 */
+	public void applyMergeResult(List<AbstractOperation> mergeResult, VersionSpec mergeTargetSpec)
+		throws EmfStoreException {
+		revert();
+		update(mergeTargetSpec);
+
+		stopChangeRecording();
+		for (AbstractOperation operation : mergeResult) {
+			operation.apply(getProject());
+		}
+		startChangeRecording();
+		getOperations().addAll(mergeResult);
+		saveResourceSet();
 	}
 } // ProjectContainerImpl
