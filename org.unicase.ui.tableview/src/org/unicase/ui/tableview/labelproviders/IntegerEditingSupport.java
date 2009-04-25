@@ -15,6 +15,7 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
+import org.eclipse.jface.viewers.TreeViewer;
 
 /**
  * This is editing support for columns showing integeral values.
@@ -36,6 +37,18 @@ public class IntegerEditingSupport extends EditingSupport {
 		super(viewer);
 		this.feature = feature;
 		this.textCellEditor = new TextCellEditor(viewer.getTable());
+	}
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param viewer viewer
+	 * @param feature structural feature being edited
+	 */
+	public IntegerEditingSupport(TreeViewer viewer, EStructuralFeature feature) {
+		super(viewer);
+		this.feature = feature;
+		this.textCellEditor = new TextCellEditor(viewer.getTree());
 	}
 
 	/**
@@ -74,7 +87,6 @@ public class IntegerEditingSupport extends EditingSupport {
 			Object value = eObject.eGet(feature);
 			if (value != null && value instanceof Integer) {
 				return value.toString();
-				// return ((Integer)value).intValue();
 			}
 		}
 		return null;

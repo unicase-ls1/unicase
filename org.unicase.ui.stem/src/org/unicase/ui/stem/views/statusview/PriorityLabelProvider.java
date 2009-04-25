@@ -28,7 +28,7 @@ public class PriorityLabelProvider extends ColumnLabelProvider implements IColor
 		if (element instanceof FunctionalRequirement) {
 			return ((FunctionalRequirement) element).getPriority() + "";
 		}
-		return null;
+		return "";
 	}
 
 }
