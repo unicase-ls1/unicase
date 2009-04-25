@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.unicase.analyzer;
+package org.unicase.analyzer.exporter;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -12,8 +12,9 @@ import java.util.List;
  * @author liya
  *
  */
-public class CSVExporter {
-	private static String COLUMN_SEPERATOR = ";";
+public class CSVExporter implements Exporter {
+
+	private static String COLUMN_SEPERATOR = ",";
 
 	private boolean OVERWRITE;
 
@@ -23,7 +24,7 @@ public class CSVExporter {
 
 	/**
 	 * This constructor sets the targetFile, in which the data shall be saved.
-	 * The OVERWRITE flag is set to false.
+	 * The OVERWRITE flag is set to false by default.
 	 * 
 	 * @param targetFile
 	 *            the target file
@@ -52,48 +53,16 @@ public class CSVExporter {
 			closeFileWriter();
 		}
 	}
-
-	/**
-	 * Writes data into the target file. The inner list represents the columns,
-	 * the outer list the lines.
-	 * 
-	 * @param lines
-	 *            the list of list of objects
-	 * @throws IOException
-	 *             io exception
-	 */
-	public void export(List<List<Object>> lines) throws IOException {
-		initFileWriter();
-		for (List<Object> columns : lines) {
-			for (Object column : columns) {
-				fileWriter.write(getColumnValue(column) + COLUMN_SEPERATOR);
-			}
-			fileWriter.write(System.getProperty("line.separator"));
-		}
-		closeFileWriter();
-	}
-	
-	public void writeLine(List<Object> columns) throws IOException {
-		initFileWriter(false);
-			for (Object column : columns) {
-				fileWriter.write(getColumnValue(column) + COLUMN_SEPERATOR);
-			}
-			fileWriter.write(System.getProperty("line.separator"));
-		closeFileWriter();
-	}
 	
 	private void initFileWriter() throws IOException {
-		if (!targetFile.exists()) {
-			targetFile.createNewFile();
-		}
-		fileWriter = new FileWriter(targetFile, !OVERWRITE);
+		initFileWriter(OVERWRITE);
 	}
 	
-	private void initFileWriter(boolean overwrite) throws IOException {
+	private void initFileWriter(boolean isOverwrite) throws IOException {
 		if (!targetFile.exists()) {
 			targetFile.createNewFile();
 		}
-		fileWriter = new FileWriter(targetFile, !overwrite);
+		fileWriter = new FileWriter(targetFile, !isOverwrite);
 	}
 
 	private void closeFileWriter() throws IOException {
@@ -103,4 +72,35 @@ public class CSVExporter {
 	private String getColumnValue(Object column) {
 		return column.toString();
 	}
+	
+	/* (non-Javadoc)
+	 * @see org.unicase.analyzer.exporter.Exporter#export(java.util.List)
+	 */
+	@Override
+	public void export(List<List<Object>> lines) throws IOException {
+		initFileWriter();
+		for (List<Object> columns : lines) {
+			for (Object column : columns) {
+				fileWriter.write(getColumnValue(column) + COLUMN_SEPERATOR);
+			}
+			fileWriter.write(System.getProperty("line.separator"));
+		}
+		closeFileWriter();
+
+	}
+
+	/* (non-Javadoc)
+	 * @see org.unicase.analyzer.exporter.Exporter#writeLine(java.util.List)
+	 */
+	@Override
+	public void writeLine(List<Object> columns) throws IOException {
+		initFileWriter(false);
+		for (Object column : columns) {
+			fileWriter.write(getColumnValue(column) + COLUMN_SEPERATOR);
+		}
+		fileWriter.write(System.getProperty("line.separator"));
+		closeFileWriter();
+
+	}
+
 }

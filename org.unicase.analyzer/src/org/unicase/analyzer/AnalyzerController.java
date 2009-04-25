@@ -9,6 +9,7 @@ import java.util.ArrayList;
 
 import org.unicase.analyzer.dataanalyzer.DataAnalyzer;
 import org.unicase.analyzer.dataanalyzer.ModelElementAnalyser;
+import org.unicase.analyzer.exporter.CSVExporter;
 
 /**
  * @author liya
