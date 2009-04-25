@@ -23,9 +23,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
-import org.eclipse.swt.widgets.TableColumn;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
@@ -36,6 +36,7 @@ import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 import org.unicase.ui.stem.views.statusview.dnd.FlatTabDropAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
+import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -183,12 +184,15 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 
 		// priority column
 		createPriorityColumn();
+
+		// estimate column();
+		createEstimateColumn();
 	}
 
 	private void createTodoColumn() {
 		TableViewerColumn tclmTodo = new TableViewerColumn(tableViewer, SWT.LEAD);
 		tclmTodo.getColumn().setText("Todo");
-		tclmTodo.getColumn().setWidth(80);
+		tclmTodo.getColumn().setWidth(200);
 		FlatTabColumnLabelProvider columnLabelProvider = new FlatTabColumnLabelProvider() {
 			@Override
 			public Image getImage(Object element) {
@@ -220,7 +224,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 		StatusLabelProvider columnLabelProvider;
 		TableViewerColumn tclmState = new TableViewerColumn(tableViewer, SWT.LEAD);
 		tclmState.getColumn().setText("State");
-		tclmState.getColumn().setWidth(80);
+		tclmState.getColumn().setWidth(40);
 		columnLabelProvider = new StatusLabelProvider();
 		tclmState.setLabelProvider(columnLabelProvider);
 		new StatusSorter(tableViewer, tclmState, columnLabelProvider);
@@ -231,7 +235,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 		AssignedToLabelProvider columnLabelProvider;
 		TableViewerColumn tclmAsignedTo = new TableViewerColumn(tableViewer, SWT.LEAD);
 		tclmAsignedTo.getColumn().setText("Assigned to");
-		tclmAsignedTo.getColumn().setWidth(80);
+		tclmAsignedTo.getColumn().setWidth(100);
 		columnLabelProvider = new AssignedToLabelProvider();
 		tclmAsignedTo.setLabelProvider(columnLabelProvider);
 		new TableViewerColumnSorter(tableViewer, tclmAsignedTo, columnLabelProvider);
@@ -240,7 +244,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	private void createModelElementColumn() {
 		TableViewerColumn tclmModelElement = new TableViewerColumn(tableViewer, SWT.LEAD);
 		tclmModelElement.getColumn().setText("Annotated");
-		tclmModelElement.getColumn().setWidth(80);
+		tclmModelElement.getColumn().setWidth(150);
 		TaskObjectLabelProvider labelProvider = new TaskObjectLabelProvider();
 		tclmModelElement.setLabelProvider(labelProvider);
 		new TableViewerColumnSorter(tableViewer, tclmModelElement, labelProvider);
@@ -249,7 +253,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	private void createPriorityColumn() {
 		TableViewerColumn tclmPriority = new TableViewerColumn(tableViewer, SWT.LEAD);
 		tclmPriority.getColumn().setText("Priority");
-		tclmPriority.getColumn().setWidth(80);
+		tclmPriority.getColumn().setWidth(30);
 		ColumnLabelProvider labelProvider = new ColumnLabelProvider() {
 
 			@Override
@@ -264,7 +268,32 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 
 		};
 		tclmPriority.setLabelProvider(labelProvider);
+		tclmPriority.setEditingSupport(new IntegerEditingSupport(tableViewer, TaskPackage.eINSTANCE
+			.getWorkItem_Priority()));
 		new TableViewerColumnSorter(tableViewer, tclmPriority, labelProvider);
+	}
+
+	private void createEstimateColumn() {
+		TableViewerColumn tclmEstimate = new TableViewerColumn(tableViewer, SWT.LEAD);
+		tclmEstimate.getColumn().setText("Estiamte");
+		tclmEstimate.getColumn().setWidth(30);
+		ColumnLabelProvider labelProvider = new ColumnLabelProvider() {
+
+			@Override
+			public String getText(Object element) {
+				if (element instanceof WorkItem) {
+					return ((WorkItem) element).getEstimate() + "";
+				} else {
+					return super.getText(element);
+				}
+
+			}
+
+		};
+		tclmEstimate.setLabelProvider(labelProvider);
+		tclmEstimate.setEditingSupport(new IntegerEditingSupport(tableViewer, TaskPackage.eINSTANCE
+			.getWorkItem_Estimate()));
+		new TableViewerColumnSorter(tableViewer, tclmEstimate, labelProvider);
 	}
 
 	// on double click open the selection
@@ -288,9 +317,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 		// this.input = me;
 		flatTabDropAdapter.setCurrentOpenME(me);
 		tableViewer.setInput(me);
-		for (TableColumn column : tableViewer.getTable().getColumns()) {
-			column.pack();
-		}
+
 	}
 
 	/**

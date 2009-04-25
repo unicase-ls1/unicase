@@ -8,6 +8,7 @@ package org.unicase.ui.stem.views.statusview;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -23,6 +24,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
@@ -33,6 +36,7 @@ import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.UserTabDropAdapter;
+import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -151,7 +155,7 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 		// annotated model element
 		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmAnnotatedME.getColumn().setText("Annotated");
-		tclmAnnotatedME.getColumn().setWidth(100);
+		tclmAnnotatedME.getColumn().setWidth(150);
 		TaskObjectLabelProvider taskObjectLabelProvider = new TaskObjectLabelProvider();
 		tclmAnnotatedME.setLabelProvider(taskObjectLabelProvider);
 		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(treeViewer));
@@ -166,12 +170,33 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 		tclmAssignedTo.setEditingSupport(new AssignedToEditingSupport(treeViewer));
 		new TreeViewerColumnSorter(treeViewer, tclmAssignedTo, assignedToLabelProvider);
 
+		// Priority
+		TreeViewerColumn priority = new TreeViewerColumn(treeViewer, SWT.NONE);
+		priority.getColumn().setText("Priority");
+		priority.getColumn().setWidth(50);
+		ColumnLabelProvider priorityLableProvider = new ColumnLabelProvider() {
+
+			@Override
+			public String getText(Object element) {
+
+				if (element instanceof WorkItem) {
+					return ((WorkItem) element).getPriority() + "";
+				}
+				return "";
+			}
+
+		};
+		priority.setLabelProvider(priorityLableProvider);
+		priority.setEditingSupport(new IntegerEditingSupport(treeViewer, TaskPackage.eINSTANCE.getWorkItem_Priority()));
+		new TreeViewerColumnSorter(treeViewer, priority, priorityLableProvider);
+
 		// Estimate
 		TreeViewerColumn estimate = new TreeViewerColumn(treeViewer, SWT.NONE);
 		estimate.getColumn().setText("Estimate");
-		estimate.getColumn().setWidth(100);
+		estimate.getColumn().setWidth(50);
 		UserEstimateLabelProvider userEstimateLabelProvider = new UserEstimateLabelProvider(contentProvider);
 		estimate.setLabelProvider(userEstimateLabelProvider);
+		estimate.setEditingSupport(new IntegerEditingSupport(treeViewer, TaskPackage.eINSTANCE.getWorkItem_Estimate()));
 		new TreeViewerColumnSorter(treeViewer, estimate, userEstimateLabelProvider);
 
 	}
