@@ -8,6 +8,7 @@ package org.unicase.ui.stem.views.statusview;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -21,6 +22,7 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
@@ -65,11 +67,12 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 	 * 
 	 * @param parent parent
 	 * @param style style
+	 * @param statusView status view. Used to register context menu on user tab.
 	 */
-	public UserTabComposite(Composite parent, int style) {
+	public UserTabComposite(Composite parent, int style, StatusView statusView) {
 		super(parent, style);
 		this.setLayout(new GridLayout());
-		createTree();
+		createTree(statusView);
 
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		if (workspace.getActiveProjectSpace() != null) {
@@ -95,7 +98,7 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 		workspace.eAdapters().add(adapterImpl);
 	}
 
-	private void createTree() {
+	private void createTree(StatusView statusView) {
 		treeViewer = new TreeViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
 		treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
@@ -118,7 +121,16 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 		});
 
 		addDnDSupport();
+		registerContextMenu(statusView);
 
+	}
+
+	private void registerContextMenu(StatusView statusView) {
+		statusView.getSite().setSelectionProvider(treeViewer);
+		MenuManager menuManager = new MenuManager();
+		statusView.getSite().registerContextMenu("org.unicase.ui.stem.StatusView.UserTab", menuManager, treeViewer);
+		Menu menu = menuManager.createContextMenu(treeViewer.getTree());
+		treeViewer.getTree().setMenu(menu);
 	}
 
 	private void addDnDSupport() {

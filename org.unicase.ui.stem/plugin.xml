@@ -46,13 +46,15 @@
             id="org.unicase.ui.stem.ShowInStatusView"
             name="ShowInStatusView">
       </command>
-   </extension>
-   <extension
-         point="org.eclipse.ui.commands">
       <command
             defaultHandler="org.unicase.ui.stem.commands.ShowSprintStatusHandler"
             id="org.unicase.ui.stem.ShowSprintStatusView"
             name="ShowSprintStatusView">
+      </command>
+      <command
+            defaultHandler="org.unicase.ui.stem.commands.AssignWorkItemHandler"
+            id="org.unicase.ui.stem.AssignWorkItem"
+            name="AssignWorkItem">
       </command>
    </extension>
    <extension
@@ -75,9 +77,6 @@
             </visibleWhen>
          </command>
       </menuContribution>
-   </extension>  
-   <extension
-         point="org.eclipse.ui.menus">
       <menuContribution
             locationURI="popup:org.unicase.ui.navigator.viewer?before=org.unicase.ui.stem.ShowInStatusView">
          <command
@@ -92,6 +91,24 @@
                   <reference
                         definitionId="org.unicase.ui.common.commands.workPackage">
                   </reference>
+               </iterate>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+      <menuContribution
+            locationURI="popup:org.unicase.ui.stem.StatusView.UserTab?after=additions">
+         <command
+               commandId="org.unicase.ui.stem.AssignWorkItem"
+               icon="icons/Bug_feature.png"
+               label="Assign work item..."
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <instanceof
+                        value="org.unicase.model.organization.OrgUnit">
+                  </instanceof>
                </iterate>
             </visibleWhen>
          </command>

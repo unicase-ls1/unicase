@@ -5,14 +5,6 @@
  */
 package org.unicase.ui.stem.views.statusview;
 
-import java.net.URL;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -58,6 +50,14 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.util.EventUtil;
+
+import java.net.URL;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * This view summarizes the the progress status of a model element according to its Openers, Annotations, and
@@ -493,7 +493,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		TabItem userTab = new TabItem(tabFolder, SWT.None);
 		userTab.setText("Users view");
 		userTab.setImage(images.get(USER_TAB_IMAGE));
-		userTabComposite = new UserTabComposite(tabFolder, SWT.NONE);
+		userTabComposite = new UserTabComposite(tabFolder, SWT.NONE, this);
 		userTab.setControl(userTabComposite);
 
 		// activity tab
