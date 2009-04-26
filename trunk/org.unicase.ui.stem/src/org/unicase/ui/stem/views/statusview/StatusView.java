@@ -558,6 +558,15 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	}
 
 	/**
+	 * This returns model element currently opened in status view.
+	 * 
+	 * @return model element currently opened in status view.
+	 */
+	public ModelElement getCurrentInput() {
+		return this.input;
+	}
+
+	/**
 	 * . {@inheritDoc}
 	 */
 	@Override

@@ -12,14 +12,20 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.UnicaseUiUtil;
+import org.unicase.ui.stem.views.statusview.StatusView;
 import org.unicase.workspace.WorkspaceManager;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * This is handler for assign work item to users on user tab of status view.
@@ -41,10 +47,20 @@ public class AssignWorkItemHandler extends AbstractHandler {
 		}
 
 		final OrgUnit user = (OrgUnit) me;
+		StatusView statusView = (StatusView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+			.getActivePart();
+		final ModelElement currentOpenME = statusView.getCurrentInput();
+
 		Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject();
 		EClass workItemEClass = TaskPackage.eINSTANCE.getWorkItem();
-		final WorkItem[] workItems = (WorkItem[]) UnicaseUiUtil.showMESelectionDialog(Display.getCurrent()
-			.getActiveShell(), workItemEClass, project, true);
+		Object[] objs = UnicaseUiUtil.showMESelectionDialog(Display.getCurrent().getActiveShell(), workItemEClass,
+			project, true);
+		final List<WorkItem> workItems = new ArrayList<WorkItem>();
+		for (int i = 0; i < objs.length; i++) {
+			if (objs[i] instanceof WorkItem) {
+				workItems.add((WorkItem) objs[i]);
+			}
+		}
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
@@ -53,6 +69,9 @@ public class AssignWorkItemHandler extends AbstractHandler {
 			@Override
 			protected void doExecute() {
 				for (WorkItem workItem : workItems) {
+					if (currentOpenME instanceof WorkPackage) {
+						((WorkPackage) currentOpenME).getContainedWorkItems().add(workItem);
+					}
 					workItem.setAssignee(user);
 				}
 
