@@ -5,11 +5,6 @@
  */
 package org.unicase.ui.stem.views.statusview;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
@@ -19,6 +14,11 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.TaxonomyAccess;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * This is the ContentProvider for TreeViewer on Hierarchy tab.
@@ -140,15 +140,14 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 
 			return relativeWorkItems.toArray(new Object[ret.size()]);
 
+		} else {
+
+			Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
+			ret.addAll(openers);
+
+			return ret.toArray(new Object[ret.size()]);
 		}
 
-		// List<Annotation> annotations = ((ModelElement) object).getAnnotations();
-		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
-		// ret.addAll(annotations);
-		ret.addAll(openers);
-
-		// ret.addAll(TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(modelElement));
-		return ret.toArray(new Object[ret.size()]);
 	}
 
 	/**
