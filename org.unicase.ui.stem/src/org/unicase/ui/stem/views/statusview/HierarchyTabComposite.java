@@ -8,6 +8,7 @@ package org.unicase.ui.stem.views.statusview;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -23,6 +24,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
@@ -33,6 +37,7 @@ import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 import org.unicase.ui.stem.views.statusview.dnd.HierarchyTabDropAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
+import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -100,7 +105,6 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 		treeViewer = new TreeViewer(this, SWT.BORDER | SWT.FULL_SELECTION);
 		treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
-		treeViewer.setLabelProvider(new HierarchyTabLabelProvider());
 		treeViewer.setContentProvider(new HierarchyTabContentProvider());
 		// sort contents
 		treeViewer.setComparator(new ViewerComparator());
@@ -163,20 +167,33 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 		TreeViewerColumn tclmPriority = new TreeViewerColumn(viewer, SWT.NONE);
 		tclmPriority.getColumn().setText("Priority");
 		tclmPriority.getColumn().setWidth(100);
-		PriorityLabelProvider priorityToLabelProvider = new PriorityLabelProvider();
+		ColumnLabelProvider priorityToLabelProvider = new ColumnLabelProvider() {
+
+			@Override
+			public String getText(Object element) {
+				if (element instanceof WorkItem) {
+					return ((WorkItem) element).getPriority() + "";
+				}
+				if (element instanceof FunctionalRequirement) {
+					return ((FunctionalRequirement) element).getPriority() + "";
+				}
+				return "";
+			}
+
+		};
 		tclmPriority.setLabelProvider(priorityToLabelProvider);
-		tclmPriority.setEditingSupport(new PriorityEditingSupport(viewer));
+		tclmPriority.setEditingSupport(new HierarchyTabPriorityEditingSupport(viewer));
 		new TreeViewerColumnSorter(viewer, tclmPriority, priorityToLabelProvider);
 
 		// Estimate
 		TreeViewerColumn tclmEstimate = new TreeViewerColumn(viewer, SWT.NONE);
 		tclmEstimate.getColumn().setText("Estimate");
 		tclmEstimate.getColumn().setWidth(100);
-		HierarchyTabEstimateLabelProvider estimateToLabelProvider = new HierarchyTabEstimateLabelProvider(
+		HierarchyTabEstimateLabelProvider estimateLabelProvider = new HierarchyTabEstimateLabelProvider(
 			(HierarchyTabContentProvider) viewer.getContentProvider());
-		tclmEstimate.setLabelProvider(estimateToLabelProvider);
-		tclmEstimate.setEditingSupport(new PriorityEditingSupport(viewer));
-		new TreeViewerColumnSorter(viewer, tclmEstimate, estimateToLabelProvider);
+		tclmEstimate.setLabelProvider(estimateLabelProvider);
+		tclmEstimate.setEditingSupport(new IntegerEditingSupport(viewer, TaskPackage.eINSTANCE.getWorkItem_Estimate()));
+		new TreeViewerColumnSorter(viewer, tclmEstimate, estimateLabelProvider);
 
 	}
 
@@ -218,7 +235,7 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
-		// nothing to do;
+		treeViewer.refresh();
 
 	}
 
@@ -239,7 +256,7 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
-		treeViewer.refresh();
+		treeViewer.update(modelElement, null);
 	}
 
 	/**
