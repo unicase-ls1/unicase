@@ -85,7 +85,10 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 		initOperationStateMap(theirChangePackages);
 		emfLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		visualizationHelper = new ChangePackageVisualizationHelper(myChangePackages, WorkspaceManager.getInstance()
+		ArrayList<ChangePackage> allChangePackages = new ArrayList<ChangePackage>();
+		allChangePackages.addAll(myChangePackages);
+		allChangePackages.addAll(theirChangePackages);
+		visualizationHelper = new ChangePackageVisualizationHelper(allChangePackages, WorkspaceManager.getInstance()
 			.getCurrentWorkspace().getActiveProjectSpace().getProject());
 
 		setLayout(new GridLayout());
