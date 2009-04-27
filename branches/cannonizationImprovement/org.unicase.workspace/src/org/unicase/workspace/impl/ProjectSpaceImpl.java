@@ -67,6 +67,10 @@ import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.changeTracking.OperationParser;
+import org.unicase.workspace.changeTracking.notification.filter.FilterStack;
+import org.unicase.workspace.changeTracking.notification.filter.NotificationFilter;
+import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
+import org.unicase.workspace.changeTracking.notification.recording.NotificationRecordingHint;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
@@ -287,6 +291,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected EList<ESNotification> notifications;
 
 	private boolean isRecording;
+
+	private NotificationRecorder notificationRecorder;
 
 	private CreateDeleteOperation deleteOperation;
 
@@ -1050,6 +1056,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	public void startChangeRecording() {
+
+		if (notificationRecorder == null) {
+			notificationRecorder = new NotificationRecorder();
+		}
+		// notificationRecorder;
 		isRecording = true;
 		updateDirtyState();
 	}
@@ -1535,6 +1546,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (isRecording) {
+
+			notificationRecorder.record(notification);
+
+			if (notificationRecorder.isRecordingComplete()) {
+				recordingFinished();
+			}
+
 			List<AbstractOperation> createdOperations;
 			try {
 				createdOperations = OperationParser.parseOperations(notification, modelElement);
@@ -1544,6 +1562,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				save(modelElement);
 				return;
 			}
+
 			if (this.deleteOperation == null) {
 				getOperations().addAll(createdOperations);
 				OperationsCannonizer.cannonize(getOperations());
@@ -1567,6 +1586,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			save(modelElement);
 			updateDirtyState();
 		}
+	}
+
+	private void recordingFinished() {
+
+		notificationRecorder.getRecording().debugLog();
+
+		NotificationFilter f = FilterStack.DEFAULT;
+		f.filter(notificationRecorder.getRecording());
+
+		notificationRecorder.getRecording().debugLog(" -- filtered notification recording follows --");
+
 	}
 
 	private void save(ModelElement modelElement) {
@@ -1678,6 +1708,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		if (isRecording) {
+
+			notificationRecorder.stopRecording();
+			recordingFinished();
+
 			if (deleteOperation == null) {
 				throw new IllegalStateException("DeleteCompleted called without previous delete start call");
 			}
@@ -1712,6 +1746,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		if (isRecording) {
 			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 			deleteOperation.setClientDate(new Date());
+
+			notificationRecorder.newRecording(NotificationRecordingHint.DELETE);
 		}
 	}
 
@@ -1734,6 +1770,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		addToResource(modelElement);
 		if (isRecording) {
 			appendCreator(modelElement);
+			notificationRecorder.newRecording(NotificationRecordingHint.ADD);
 			this.getOperations().add(createCreateDeleteOperation(modelElement, false));
 			saveProjectSpaceOnly();
 		}

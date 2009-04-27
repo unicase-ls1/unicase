@@ -67,6 +67,7 @@ public final class OperationParser {
 		if (notification.isTouch()) {
 			return new ArrayList<AbstractOperation>();
 		}
+
 		// parse attribute or reference from feature
 		if (feature instanceof EAttribute) {
 			attribute = (EAttribute) feature;
