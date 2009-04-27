@@ -360,7 +360,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 				EList<ModelElement> list = (EList<ModelElement>) object;
 				if (getNewIndex() >= list.size() || getNewIndex() < 0 || referencedModelElement == null
 					|| !list.contains(referencedModelElement)) {
-					// do nothing if index out of bound or element.
+					// do nothing if index out of bound or element not in list.
 					return;
 				}
 				list.move(getNewIndex(), referencedModelElement);
