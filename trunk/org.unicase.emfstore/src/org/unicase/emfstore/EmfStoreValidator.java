@@ -65,9 +65,10 @@ public class EmfStoreValidator {
 	 * {@link #MODELELEMENTID} and {@link #PROJECTGENERATION}.
 	 * 
 	 * @param options options
+	 * @param throwException allows you to prevent that an exception is thrown if validation failes
 	 * @throws FatalEmfStoreException in case of failure
 	 */
-	public void validate(int options) throws FatalEmfStoreException {
+	public void validate(int options, boolean throwException) throws FatalEmfStoreException {
 		boolean errors = true;
 		if ((options & RESOLVEALL) == RESOLVEALL) {
 			errors = errors && validateResolveAll();
@@ -79,9 +80,20 @@ public class EmfStoreValidator {
 			errors = errors && validateProjectGeneration();
 		}
 
-		if (errors) {
+		if (errors && throwException) {
 			throw new FatalEmfStoreException("Validation failed.");
 		}
+	}
+
+	/**
+	 * Runs the validation. You can configure the validation by a bitmask, therefore use the value: {@link #RESOLVEALL},
+	 * {@link #MODELELEMENTID} and {@link #PROJECTGENERATION}.
+	 * 
+	 * @param options options
+	 * @throws FatalEmfStoreException in case of failure
+	 */
+	public void validate(int options) throws FatalEmfStoreException {
+		validate(options, true);
 	}
 
 	private boolean validateResolveAll() {
@@ -131,6 +143,7 @@ public class EmfStoreValidator {
 		start("Project generation compare ...");
 		List<String> errors = new ArrayList<String>();
 		for (ProjectHistory history : serverSpace.getProjects()) {
+			history = (ProjectHistory) EcoreUtil.copy(history);
 			Project state = null;
 
 			for (Version version : history.getVersions()) {
