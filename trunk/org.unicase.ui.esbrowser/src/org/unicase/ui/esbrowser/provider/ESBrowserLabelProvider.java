@@ -8,8 +8,6 @@ package org.unicase.ui.esbrowser.provider;
 import org.eclipse.jface.viewers.StyledCellLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.ViewerCell;
-import org.eclipse.ui.ISharedImages;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.ui.esbrowser.Activator;
 import org.unicase.workspace.ServerInfo;
@@ -25,7 +23,6 @@ public class ESBrowserLabelProvider extends StyledCellLabelProvider {
 	 * {@inheritDoc}
 	 */
 	@Override
-	@SuppressWarnings("deprecation")
 	public void update(ViewerCell cell) {
 		Object element = cell.getElement();
 		if (element instanceof ServerInfo) {
@@ -44,7 +41,7 @@ public class ESBrowserLabelProvider extends StyledCellLabelProvider {
 			cell.setText(styledString.toString());
 			cell.setStyleRanges(styledString.getStyleRanges());
 
-			cell.setImage(PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_PROJECT));
+			cell.setImage(Activator.getImageDescriptor("icons/prj_obj.gif").createImage());
 		}
 		super.update(cell);
 	}
