@@ -25,7 +25,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.editors.TemplateEditor;
@@ -55,7 +55,7 @@ public class LayoutOptionsLogoTabItem extends TemplateEditorTabItem {
 
 		((GridLayout) getContainer().getLayout()).numColumns = 2;
 		Button selectImage = new Button(getContainer(), SWT.PUSH);
-		selectImage.setText("select logo");
+		selectImage.setText("Select logo");
 
 		final Browser browser = new Browser(getContainer(), SWT.NONE);
 		GridLayout layout2 = new GridLayout();
@@ -70,28 +70,28 @@ public class LayoutOptionsLogoTabItem extends TemplateEditorTabItem {
 
 		selectImage.addSelectionListener(new ImageSelectionListener(template, browser));
 
-		new Label(getContainer(), SWT.NONE).setText("width");
-		Text width = new Text(getContainer(), SWT.BORDER);
+		new Label(getContainer(), SWT.NONE).setText("Width");
+		Spinner width = new Spinner(getContainer(), SWT.NONE);
 		width.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		new Label(getContainer(), SWT.None).setText("height");
-		Text height = new Text(getContainer(), SWT.BORDER);
+		new Label(getContainer(), SWT.None).setText("Height");
+		Spinner height = new Spinner(getContainer(), SWT.NONE);
 		height.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		width.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
-				template.getLayoutOptions().setLogoWidth(Integer.valueOf(((Text) e.widget).getText()));
+				template.getLayoutOptions().setLogoWidth(Integer.valueOf(((Spinner) e.widget).getText()));
 				editor.testDirty();
 			}
 		});
 
 		height.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
-				template.getLayoutOptions().setLogoHeight(Integer.parseInt(((Text) e.widget).getText()));
+				template.getLayoutOptions().setLogoHeight(Integer.parseInt(((Spinner) e.widget).getText()));
 				editor.testDirty();
 			}
 		});
-		width.setText(String.valueOf(template.getLayoutOptions().getLogoWidth()));
-		height.setText(String.valueOf(template.getLayoutOptions().getLogoHeight()));
+		width.setValues(template.getLayoutOptions().getLogoWidth(), 0, 400, 0, 10, 10);
+		height.setValues(template.getLayoutOptions().getLogoHeight(), 0, 300, 0, 10, 10);
 		width.setSize(width.computeSize(100, SWT.DEFAULT));
 		width.getParent().pack(true);
 		width.getParent().layout(true, true);

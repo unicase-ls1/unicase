@@ -176,22 +176,23 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 			((Group) attributeOptionsContainer).setText(" Attributes ");
 			((Group) rendererOptionsContainer).setText(" Renderer options ");
 
-			final ArrayList<EStructuralFeature> attributes = getAttributes(eClass);
+			final ArrayList<IItemPropertyDescriptor> attributes = getPropertyDescriptors(eClass);
+			final ModelElement modelElement = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+
 			attributeOptionsSelector = new Combo(attributeOptionsContainer, SWT.READ_ONLY);
 			for (int i = 0; i < attributes.size(); i++) {
-				attributeOptionsSelector.add(attributes.get(i).getName(), i);
+				attributeOptionsSelector.add(attributes.get(i).getDisplayName(modelElement), i);
 			}
 
 			attributeOptionsSelector.addModifyListener(new ModifyListener() {
 				public void modifyText(ModifyEvent e) {
+					EStructuralFeature feature = (EStructuralFeature) attributes.get(
+						((Combo) e.widget).getSelectionIndex()).getFeature(modelElement);
 					if (currentRenderer == null || !currentRenderer.eClass().equals(renderer.eClass())) {
-						createAttributeRendererSelector(attributes.get(((Combo) e.widget).getSelectionIndex()),
-							renderer);
+						createAttributeRendererSelector(feature, renderer);
 					} else {
-						createAttributeRendererSelector(attributes.get(((Combo) e.widget).getSelectionIndex()),
-							currentRenderer);
+						createAttributeRendererSelector(feature, currentRenderer);
 					}
-
 				}
 			});
 			attributeOptionsSelector.select(0);
@@ -279,19 +280,10 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 		}
 	}
 
-	private void rebuildAttributeOptionsContainer() {
-		if (attributeOptionsSubContainer != null) {
-			attributeOptionsSubContainer.dispose();
-		}
-		attributeOptionsSubContainer = new Composite(attributeOptionsContainer, SWT.FILL);
-		attributeOptionsSubContainer.setLayout(new GridLayout());
-		attributeOptionsSubContainer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-	}
+	private ArrayList<IItemPropertyDescriptor> getPropertyDescriptors(EClass eClass) {
+		final ArrayList<IItemPropertyDescriptor> attributes = new ArrayList<IItemPropertyDescriptor>();
 
-	private ArrayList<EStructuralFeature> getAttributes(EClass eClass) {
-		ArrayList<EStructuralFeature> ret = new ArrayList<EStructuralFeature>();
-
-		ModelElement modelElement = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		final ModelElement modelElement = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
 
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -300,11 +292,20 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 			.getPropertyDescriptors(modelElement);
 		if (propertyDescriptors != null) {
 			for (IItemPropertyDescriptor itemPropertyDescriptor : propertyDescriptors) {
-				ret.add((EStructuralFeature) itemPropertyDescriptor.getFeature(modelElement));
+				attributes.add(itemPropertyDescriptor);
 			}
 		}
 
-		return ret;
+		return attributes;
+	}
+
+	private void rebuildAttributeOptionsContainer() {
+		if (attributeOptionsSubContainer != null) {
+			attributeOptionsSubContainer.dispose();
+		}
+		attributeOptionsSubContainer = new Composite(attributeOptionsContainer, SWT.FILL);
+		attributeOptionsSubContainer.setLayout(new GridLayout());
+		attributeOptionsSubContainer.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 	}
 
 	/**

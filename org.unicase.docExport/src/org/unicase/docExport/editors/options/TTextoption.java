@@ -66,7 +66,7 @@ public class TTextoption extends Composite {
 		}
 
 		// bold
-		new Label(group, SWT.LEFT).setText("bold");
+		new Label(group, SWT.LEFT).setText("Bold");
 		Button bold = new Button(group, SWT.CHECK);
 		bold.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -80,7 +80,7 @@ public class TTextoption extends Composite {
 		bold.setSelection(textOption.isBold());
 
 		// underline
-		new Label(group, SWT.LEFT).setText("underline");
+		new Label(group, SWT.LEFT).setText("Underline");
 		Button underline = new Button(group, SWT.CHECK);
 		underline.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -94,7 +94,7 @@ public class TTextoption extends Composite {
 		underline.setSelection(textOption.isUnderline());
 
 		// italics
-		new Label(group, SWT.LEFT).setText("italics");
+		new Label(group, SWT.LEFT).setText("Italics");
 		Button italics = new Button(group, SWT.CHECK);
 		bold.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
