@@ -50,7 +50,7 @@ public class CheckChanges extends AbstractFix {
 						System.out.println("project compare not equal in version "
 							+ version.getPrimarySpec().getIdentifier());
 
-						printProjectStates(state, version);
+						// printProjectStates(state, version);
 
 					} else {
 						System.out.println("project compare is equal(!) in version "

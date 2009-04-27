@@ -23,14 +23,20 @@ public abstract class AbstractFix {
 
 	public void runFix(ProjectHistory projectHistory) {
 		this.projectHistory = projectHistory;
-		fix();
+		try {
+			fix();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
-	abstract void fix();
+	abstract void fix() throws Exception;
 
 	protected void save(EObject object) {
 		try {
-			object.eResource().save(null);
+			if (object != null) {
+				object.eResource().save(null);
+			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
 			System.out.println(StorageException.NOSAVE);
