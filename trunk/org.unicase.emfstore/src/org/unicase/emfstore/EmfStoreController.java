@@ -47,6 +47,7 @@ import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.ModelVersion;
+import org.unicase.model.util.FileUtil;
 
 import edu.tum.cs.cope.migration.execution.MigrationException;
 import edu.tum.cs.cope.migration.execution.Migrator;
@@ -120,6 +121,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
 		adminEmfStore = new AdminEmfStoreImpl(serverSpace, accessControl);
 
+		setupKeyStore();
 		connectionHandlers = initConnectionHandlers();
 
 		TaskManager taskManager = TaskManager.getInstance();
@@ -134,9 +136,22 @@ public class EmfStoreController implements IApplication, Runnable {
 		}
 	}
 
+	private void setupKeyStore() {
+		File keyStore = new File(ServerConfiguration.getServerKeyStorePath());
+		if (!keyStore.exists()) {
+			try {
+				FileUtil.copyFile(getClass().getResourceAsStream("unicaseServer.keystore"), keyStore);
+			} catch (IOException e) {
+				logger.warn("Failed to copy keystore.");
+			}
+			logger.info("keystore was copied to server workspace.");
+		}
+	}
+
 	private HistoryCache initHistoryCache() {
 		HistoryCache cache = new HistoryCache();
 		cache.initCache(serverSpace.getProjects());
+		logger.info("History cache has been initialized.");
 		return cache;
 	}
 
