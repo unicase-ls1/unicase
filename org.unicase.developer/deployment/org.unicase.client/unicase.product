@@ -31,7 +31,6 @@
       </win>
    </launcher>
 
-
    <vm>
    </vm>
 
@@ -201,8 +200,6 @@
       <plugin id="org.eclipse.update.core.win32" fragment="true"/>
       <plugin id="org.eclipse.update.ui"/>
       <plugin id="org.junit"/>
-      <plugin id="org.unicase.analyzer"/>
-      <plugin id="org.unicase.analyzer.edit"/>
       <plugin id="org.unicase.classDiagram"/>
       <plugin id="org.unicase.client"/>
       <plugin id="org.unicase.docExport"/>
@@ -212,7 +209,6 @@
       <plugin id="org.unicase.model"/>
       <plugin id="org.unicase.model.edit"/>
       <plugin id="org.unicase.model.migrator"/>
-      <plugin id="org.unicase.test"/>
       <plugin id="org.unicase.ui.common"/>
       <plugin id="org.unicase.ui.componentDiagram"/>
       <plugin id="org.unicase.ui.esbrowser"/>
@@ -220,7 +216,6 @@
       <plugin id="org.unicase.ui.navigator"/>
       <plugin id="org.unicase.ui.stem"/>
       <plugin id="org.unicase.ui.tableview"/>
-      <plugin id="org.unicase.ui.test"/>
       <plugin id="org.unicase.ui.usecaseDiagram"/>
       <plugin id="org.unicase.workspace"/>
       <plugin id="org.unicase.workspace.edit"/>
