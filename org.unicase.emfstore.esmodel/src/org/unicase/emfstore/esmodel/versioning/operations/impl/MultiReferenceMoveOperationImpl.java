@@ -357,6 +357,10 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 				Object object = modelElement.eGet(reference);
 				@SuppressWarnings("unchecked")
 				EList<ModelElement> list = (EList<ModelElement>) object;
+				if (getNewIndex() >= list.size() || getNewIndex() < 0) {
+					// do nothing if index out of bound.
+					return;
+				}
 				list.move(getNewIndex(), project.getModelElement(getReferencedModelElementId()));
 				return;
 			}

@@ -11,8 +11,10 @@ import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
+import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
@@ -148,5 +150,57 @@ public class MultiReferenceMoveOperationTest extends OperationTest {
 		assertEquals(useCase2, initiatedUseCases.get(1));
 		assertEquals(useCase3, initiatedUseCases.get(2));
 
+	}
+	
+	/**
+	 * Tests a false index while moving.
+	 */
+	@Test
+	public void makeOutOfBoundMove() {
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		getProject().addModelElement(actor);
+		UseCase useCase1 = RequirementFactory.eINSTANCE.createUseCase();
+		useCase1.setIdentifier("usecase1");
+		getProject().addModelElement(useCase1);
+		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		useCase2.setIdentifier("usecase2");
+		getProject().addModelElement(useCase2);
+		UseCase useCase3 = RequirementFactory.eINSTANCE.createUseCase();
+		useCase3.setIdentifier("usecase3");
+		getProject().addModelElement(useCase3);
+		
+		actor.getInitiatedUseCases().add(useCase1);
+		actor.getInitiatedUseCases().add(useCase2);
+		actor.getInitiatedUseCases().add(useCase3);
+
+		assertEquals(actor, useCase1.getInitiatingActor());
+		assertEquals(actor, useCase2.getInitiatingActor());
+		assertEquals(actor, useCase3.getInitiatingActor());
+		EList<UseCase> initiatedUseCases = actor.getInitiatedUseCases();
+		assertEquals(3, initiatedUseCases.size());
+		assertEquals(useCase1, initiatedUseCases.get(0));
+		assertEquals(useCase2, initiatedUseCases.get(1));
+		assertEquals(useCase3, initiatedUseCases.get(2));
+		
+		clearOperations();
+		
+		MultiReferenceMoveOperation multiReferenceMoveOperation = OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation();
+		multiReferenceMoveOperation.setModelElementId(actor.getModelElementId());
+		multiReferenceMoveOperation.setFeatureName(RequirementPackage.eINSTANCE.getActor_InitiatedUseCases().getName());
+		multiReferenceMoveOperation.setReferencedModelElementId(useCase1.getModelElementId());
+		multiReferenceMoveOperation.setOldIndex(0);
+		multiReferenceMoveOperation.setNewIndex(42);
+		
+		multiReferenceMoveOperation.apply(getProject());
+		
+		initiatedUseCases = null;
+		assertEquals(actor, useCase1.getInitiatingActor());
+		assertEquals(actor, useCase2.getInitiatingActor());
+		assertEquals(actor, useCase3.getInitiatingActor());
+		initiatedUseCases = actor.getInitiatedUseCases();
+		assertEquals(3, initiatedUseCases.size());
+		assertEquals(useCase1, initiatedUseCases.get(0));
+		assertEquals(useCase2, initiatedUseCases.get(1));
+		assertEquals(useCase3, initiatedUseCases.get(2));	
 	}
 }
