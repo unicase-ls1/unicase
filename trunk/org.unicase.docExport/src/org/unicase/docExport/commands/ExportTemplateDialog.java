@@ -12,6 +12,7 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -50,6 +51,17 @@ public class ExportTemplateDialog extends TitleAreaDialog {
 
 		this.template = (Template) EcoreUtil.copy(template);
 	}
+
+	// /**
+	// * {@inheritDoc}
+	// *
+	// * @see org.eclipse.jface.dialogs.TitleAreaDialog#getInitialSize()
+	// */
+	// @Override
+	// protected Point getInitialSize() {
+	// return new Point(500, 250);
+	//
+	// }
 
 	/**
 	 * {@inheritDoc}
@@ -91,10 +103,6 @@ public class ExportTemplateDialog extends TitleAreaDialog {
 		fileChooser.layout();
 		fileChooser.pack();
 
-		Button saveButton = new Button(container, SWT.PUSH);
-		saveButton.setText("Export");
-		saveButton.addSelectionListener(new SaveSelectionListener());
-
 		return parent;
 	}
 
@@ -113,7 +121,22 @@ public class ExportTemplateDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected void createButtonsForButtonBar(Composite parent) {
+		((GridLayout) parent.getLayout()).numColumns = 2;
+		Button saveButton = new Button(parent, SWT.PUSH);
+		saveButton.setText("Export");
+		saveButton.addSelectionListener(new SaveSelectionListener());
 
+		Button close = new Button(parent, SWT.PUSH);
+		close.setText("cancel");
+		close.addSelectionListener(new SelectionListener() {
+			public void widgetDefaultSelected(SelectionEvent arg0) {
+			}
+
+			public void widgetSelected(SelectionEvent arg0) {
+				close();
+			}
+
+		});
 	}
 
 	/**

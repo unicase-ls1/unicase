@@ -26,6 +26,7 @@ public class AddModelElementRenderer extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		TemplateEditor editor = (TemplateEditor) HandlerUtil.getActiveEditor(event);
+
 		METypeTreeSelectionDialog dialog = new METypeTreeSelectionDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell(), false);
 

@@ -26,6 +26,7 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.EditorPart;
@@ -82,6 +83,21 @@ public class TemplateEditor extends EditorPart {
 			MessageBox messageBox = new MessageBox(PlatformUI.getWorkbench().getDisplay().getActiveShell());
 			messageBox.setMessage("you can't save a default template. Use save as instead");
 			messageBox.open();
+
+			Template newTemplate = (Template) EcoreUtil.copy(template);
+
+			TemplateSaveAsDialog dialog = new TemplateSaveAsDialog(PlatformUI.getWorkbench().getDisplay()
+				.getActiveShell(), newTemplate);
+
+			dialog.open();
+
+			try {
+				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+				page.openEditor(new TemplateEditorInput(newTemplate), TemplateEditor.ID);
+			} catch (PartInitException e) {
+				WorkspaceUtil.log("Template editor failure", e, IStatus.ERROR);
+			}
+
 		} else {
 			try {
 				TemplateRegistry.saveTemplate(getTemplate());

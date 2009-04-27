@@ -38,7 +38,7 @@ public class LayoutOptionsCoverpageTabItem extends TemplateEditorTabItem {
 
 		Composite container = createTwoColumnComposite();
 
-		Button hideTOC = TOptionHelper.createBooleanCheckbox(container, "hide table of contents", layoutOptions
+		Button hideTOC = TOptionHelper.createBooleanCheckbox(container, "Hide table of contents", layoutOptions
 			.isHideTableOfContents());
 		hideTOC.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -50,7 +50,7 @@ public class LayoutOptionsCoverpageTabItem extends TemplateEditorTabItem {
 			}
 		});
 
-		Button hideHeaderAndFooter = TOptionHelper.createBooleanCheckbox(container, "hide header and footer",
+		Button hideHeaderAndFooter = TOptionHelper.createBooleanCheckbox(container, "Hide header and footer",
 			layoutOptions.isHideHeaderAndFooterOnCoverPage());
 		hideHeaderAndFooter.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -63,7 +63,7 @@ public class LayoutOptionsCoverpageTabItem extends TemplateEditorTabItem {
 		});
 
 		Button showLogo = TOptionHelper
-			.createBooleanCheckbox(container, "show logo", layoutOptions.isLogoOnCoverPage());
+			.createBooleanCheckbox(container, "Show logo", layoutOptions.isLogoOnCoverPage());
 		showLogo.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}

@@ -70,8 +70,8 @@ public class LayoutOptionsHeaderAndFooterTabItem extends TemplateEditorTabItem {
 
 		Composite container = createTwoColumnComposite();
 
-		Button button = TOptionHelper.createBooleanCheckbox(container, "footer: show document title", layoutOptions
-			.isFooterShowDocumentTitle());
+		Button button = TOptionHelper.createBooleanCheckbox(container, "Show document title in the footer",
+			layoutOptions.isFooterShowDocumentTitle());
 		button.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}

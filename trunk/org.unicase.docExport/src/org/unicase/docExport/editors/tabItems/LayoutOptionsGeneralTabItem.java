@@ -51,7 +51,7 @@ public class LayoutOptionsGeneralTabItem extends TemplateEditorTabItem {
 			}
 		});
 
-		Button hideAnnotations = TOptionHelper.createBooleanCheckbox(container, "hide annotations", layoutOptions
+		Button hideAnnotations = TOptionHelper.createBooleanCheckbox(container, "Hide annotations", layoutOptions
 			.isHideAnnotations());
 		hideAnnotations.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -63,7 +63,7 @@ public class LayoutOptionsGeneralTabItem extends TemplateEditorTabItem {
 			}
 		});
 
-		Button hideAttachments = TOptionHelper.createBooleanCheckbox(container, "hide attachments", layoutOptions
+		Button hideAttachments = TOptionHelper.createBooleanCheckbox(container, "Hide attachments", layoutOptions
 			.isHideAttachments());
 		hideAttachments.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -75,7 +75,7 @@ public class LayoutOptionsGeneralTabItem extends TemplateEditorTabItem {
 			}
 		});
 
-		Button hideReferences = TOptionHelper.createBooleanCheckbox(container, "hide incoming document references",
+		Button hideReferences = TOptionHelper.createBooleanCheckbox(container, "Hide incoming document references",
 			layoutOptions.isHideIncomingDocumentReferences());
 		hideReferences.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {
@@ -87,7 +87,7 @@ public class LayoutOptionsGeneralTabItem extends TemplateEditorTabItem {
 			}
 		});
 
-		Button showModelElementType = TOptionHelper.createBooleanCheckbox(container, "show Model Element type",
+		Button showModelElementType = TOptionHelper.createBooleanCheckbox(container, "Show Model Element type",
 			layoutOptions.isHideIncomingDocumentReferences());
 		showModelElementType.addSelectionListener(new SelectionListener() {
 			public void widgetDefaultSelected(SelectionEvent e) {

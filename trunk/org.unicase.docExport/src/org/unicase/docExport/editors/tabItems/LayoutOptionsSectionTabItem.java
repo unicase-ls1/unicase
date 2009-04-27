@@ -41,7 +41,7 @@ public class LayoutOptionsSectionTabItem extends TemplateEditorTabItem {
 
 		Composite container = createTwoColumnComposite();
 
-		Combo sectionStyle = TOptionHelper.createComboBox(container, "section style", SectionNumberingStyle.VALUES,
+		Combo sectionStyle = TOptionHelper.createComboBox(container, "Section style", SectionNumberingStyle.VALUES,
 			layoutOptions.getSectionOption().getSectionNumberingStyle().getValue());
 
 		sectionStyle.addModifyListener(new ModifyListener() {
@@ -52,7 +52,7 @@ public class LayoutOptionsSectionTabItem extends TemplateEditorTabItem {
 			}
 		});
 
-		new Label(container, SWT.NONE).setText("font size step");
+		new Label(container, SWT.NONE).setText("Font size step");
 		Combo fontSizeStep = new Combo(container, SWT.READ_ONLY);
 		for (int i = 0; i < 5; i++) {
 			fontSizeStep.add(String.valueOf(i), i);

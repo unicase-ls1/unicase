@@ -12,6 +12,8 @@ import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Point;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -48,11 +50,21 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
-		GridLayout layout = new GridLayout();
-		layout.numColumns = 1;
-		parent.setLayout(layout);
 		templateName = new Text(parent, SWT.BORDER);
+		templateName.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
+
 		return parent;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.dialogs.TitleAreaDialog#getInitialSize()
+	 */
+	@Override
+	protected Point getInitialSize() {
+		return new Point(400, 170);
+
 	}
 
 	/**
@@ -87,7 +99,7 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 	protected void createButtonsForButtonBar(Composite parent) {
 		((GridLayout) parent.getLayout()).numColumns = 3;
 		Button button = new Button(parent, SWT.PUSH);
-		button.setText("OK");
+		button.setText("Save");
 		button.setFont(JFaceResources.getDialogFont());
 		button.addSelectionListener(new SelectionAdapter() {
 
