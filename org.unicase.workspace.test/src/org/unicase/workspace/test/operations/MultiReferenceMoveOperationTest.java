@@ -189,7 +189,7 @@ public class MultiReferenceMoveOperationTest extends OperationTest {
 		multiReferenceMoveOperation.setFeatureName(RequirementPackage.eINSTANCE.getActor_InitiatedUseCases().getName());
 		multiReferenceMoveOperation.setReferencedModelElementId(useCase1.getModelElementId());
 		multiReferenceMoveOperation.setOldIndex(0);
-		multiReferenceMoveOperation.setNewIndex(42);
+		multiReferenceMoveOperation.setNewIndex(3);
 		
 		multiReferenceMoveOperation.apply(getProject());
 		
@@ -201,6 +201,52 @@ public class MultiReferenceMoveOperationTest extends OperationTest {
 		assertEquals(3, initiatedUseCases.size());
 		assertEquals(useCase1, initiatedUseCases.get(0));
 		assertEquals(useCase2, initiatedUseCases.get(1));
-		assertEquals(useCase3, initiatedUseCases.get(2));	
+		assertEquals(useCase3, initiatedUseCases.get(2));
+		
+		clearOperations();
+		
+		multiReferenceMoveOperation = OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation();
+		multiReferenceMoveOperation.setModelElementId(actor.getModelElementId());
+		multiReferenceMoveOperation.setFeatureName(RequirementPackage.eINSTANCE.getActor_InitiatedUseCases().getName());
+		multiReferenceMoveOperation.setReferencedModelElementId(useCase1.getModelElementId());
+		multiReferenceMoveOperation.setOldIndex(0);
+		multiReferenceMoveOperation.setNewIndex(-1);
+		
+		multiReferenceMoveOperation.apply(getProject());
+		
+		initiatedUseCases = null;
+		assertEquals(actor, useCase1.getInitiatingActor());
+		assertEquals(actor, useCase2.getInitiatingActor());
+		assertEquals(actor, useCase3.getInitiatingActor());
+		initiatedUseCases = actor.getInitiatedUseCases();
+		assertEquals(3, initiatedUseCases.size());
+		assertEquals(useCase1, initiatedUseCases.get(0));
+		assertEquals(useCase2, initiatedUseCases.get(1));
+		assertEquals(useCase3, initiatedUseCases.get(2));
+		
+		UseCase useCase4 = RequirementFactory.eINSTANCE.createUseCase();
+		useCase4.setIdentifier("usecase4");
+		getProject().addModelElement(useCase4);
+		
+		clearOperations();
+		
+		multiReferenceMoveOperation = OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation();
+		multiReferenceMoveOperation.setModelElementId(actor.getModelElementId());
+		multiReferenceMoveOperation.setFeatureName(RequirementPackage.eINSTANCE.getActor_InitiatedUseCases().getName());
+		multiReferenceMoveOperation.setReferencedModelElementId(useCase4.getModelElementId());
+		multiReferenceMoveOperation.setOldIndex(0);
+		multiReferenceMoveOperation.setNewIndex(2);
+		
+		multiReferenceMoveOperation.apply(getProject());
+	
+		assertEquals(actor, useCase1.getInitiatingActor());
+		assertEquals(actor, useCase2.getInitiatingActor());
+		assertEquals(actor, useCase3.getInitiatingActor());
+		assertEquals(null, useCase4.getInitiatingActor());
+		initiatedUseCases = actor.getInitiatedUseCases();
+		assertEquals(3, initiatedUseCases.size());
+		assertEquals(useCase1, initiatedUseCases.get(0));
+		assertEquals(useCase2, initiatedUseCases.get(1));
+		assertEquals(useCase3, initiatedUseCases.get(2));
 	}
 }
