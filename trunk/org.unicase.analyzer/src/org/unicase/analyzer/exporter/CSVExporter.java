@@ -76,7 +76,6 @@ public class CSVExporter implements Exporter {
 	/* (non-Javadoc)
 	 * @see org.unicase.analyzer.exporter.Exporter#export(java.util.List)
 	 */
-	@Override
 	public void export(List<List<Object>> lines) throws IOException {
 		initFileWriter();
 		for (List<Object> columns : lines) {
@@ -92,7 +91,6 @@ public class CSVExporter implements Exporter {
 	/* (non-Javadoc)
 	 * @see org.unicase.analyzer.exporter.Exporter#writeLine(java.util.List)
 	 */
-	@Override
 	public void writeLine(List<Object> columns) throws IOException {
 		initFileWriter(false);
 		for (Object column : columns) {
