@@ -78,7 +78,7 @@ public final class ModelElementRendererRegistry {
 		/**
 		 * Compare two EClasses by EClass name
 		 * 
-		 * @author Sebastian Höcht
+		 * @author Sebastian Hoecht
 		 */
 		class EClassComparator implements Comparator<EClass> {
 
