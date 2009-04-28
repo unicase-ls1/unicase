@@ -6,6 +6,8 @@
 package org.unicase.workspace.notification;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.List;
 
@@ -140,5 +142,12 @@ public final class NotificationGenerator {
 	 */
 	public void addNotificationProvider(NotificationProvider provider) {
 		this.providers.add(provider);
+	}
+
+	/**
+	 * @return the list of providers.
+	 */
+	public Collection<NotificationProvider> getProviders() {
+		return Collections.unmodifiableCollection(providers);
 	}
 }
