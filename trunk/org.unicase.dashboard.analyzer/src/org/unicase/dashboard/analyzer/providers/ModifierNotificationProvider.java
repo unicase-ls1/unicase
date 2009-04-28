@@ -53,7 +53,7 @@ public class ModifierNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#getName()
 	 */
 	public String getName() {
-		return "Creator Notification Provider";
+		return "Modifier Notification Provider";
 	}
 
 	/**
