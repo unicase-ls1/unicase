@@ -211,7 +211,7 @@ public class TaskNotificationProvider implements NotificationProvider {
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(user.getName());
 		notification.setSeen(false);
-		notification.setSender("unicase assignment notification generator");
+		notification.setSender(getName());
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("You have been assigned ");
 			stringBuilder.append("a");
