@@ -102,6 +102,7 @@ public class HistoryCache {
 				if (oldValue != null) {
 					addModelElement(hashMap, version, oldValue);
 				}
+				addModelElement(hashMap, version, singleReferenceOperation.getModelElementId());
 			} else if (abstractOperation instanceof MultiReferenceOperation) {
 				MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) abstractOperation;
 				addModelElement(hashMap, version, multiReferenceOperation.getModelElementId());
