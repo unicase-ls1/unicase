@@ -10,6 +10,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -56,6 +58,7 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.edit.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.notification.NotificationGenerator;
+import org.unicase.workspace.notification.NotificationProvider;
 
 /**
  * Exports the esnotifications that were generated/used in the dashboard.
@@ -97,10 +100,11 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 				progressDialog.close();
 				return null;
 			}
-			delimeter = "%%";
+			delimeter = "§";
 			FileWriter modifierFileWriter = new FileWriter(path + "/modifierEvents.csv");
 			FileWriter creatorFileWriter = new FileWriter(path + "/creatorEvents.csv");
 			HashMap<String, BufferedWriter> writers = new HashMap<String, BufferedWriter>();
+			HashMap<String, BufferedWriter> KWwriters = new HashMap<String, BufferedWriter>();
 			modifierReadEventsWriter = new BufferedWriter(modifierFileWriter);
 			creatorReadEventsWriter = new BufferedWriter(creatorFileWriter);
 
@@ -113,7 +117,22 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 			EList<User> userList = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
 				.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
 					new BasicEList<User>());
+			HashMap<String, HashMap<NotificationProvider, HashMap<Integer, Integer>>> db = new HashMap<String, HashMap<NotificationProvider,HashMap<Integer,Integer>>>();
+
+			NotificationGenerator generator = new NotificationGenerator();
+			TaskPackage taskPackage = TaskPackage.eINSTANCE;
+			generator.addNotificationProvider(new TaskNotificationProvider(taskPackage.getActionItem()));
+			generator.addNotificationProvider(new TaskNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
+			generator.addNotificationProvider(new TaskNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
+			generator.addNotificationProvider(new TaskNotificationProvider(taskPackage.getWorkPackage()));
+			generator.addNotificationProvider(new TaskTraceNotificationProvider());
+			generator.addNotificationProvider(new CreatorNotificationProvider());
+			ModifierNotificationProvider modifierProvider = new ModifierNotificationProvider();
+			generator.addNotificationProvider(modifierProvider);
+
+			final Collection<NotificationProvider> providersList = generator.getProviders();
 			for(User user : userList){
+				
 				final BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/" + user.getName() + ".csv"));
 				writers.put(user.getName(), writer);
 				writer.write("Version");
@@ -134,18 +153,23 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 				writer.write(delimeter);
 				writer.write("ME Desc");
 				writer.write("\n");
-			}
 
-			NotificationGenerator generator = new NotificationGenerator();
-			TaskPackage taskPackage = TaskPackage.eINSTANCE;
-			generator.addNotificationProvider(new TaskNotificationProvider(taskPackage.getActionItem()));
-			generator.addNotificationProvider(new TaskNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
-			generator.addNotificationProvider(new TaskNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
-			generator.addNotificationProvider(new TaskNotificationProvider(taskPackage.getWorkPackage()));
-			generator.addNotificationProvider(new TaskTraceNotificationProvider());
-			generator.addNotificationProvider(new CreatorNotificationProvider());
-			ModifierNotificationProvider modifierProvider = new ModifierNotificationProvider();
-			generator.addNotificationProvider(modifierProvider);
+				final BufferedWriter KWwriter = new BufferedWriter(new FileWriter(path + "/" + user.getName() + "_KW.csv"));
+				KWwriters.put(user.getName(), KWwriter);
+//				KWwriter.write("KW");
+//				KWwriter.write(delimeter);
+//				for(NotificationProvider p : providersList){
+//					KWwriter.write(p.getName());
+//					KWwriter.write(delimeter);
+//				}
+//				KWwriter.write("\n");
+				
+				HashMap<NotificationProvider, HashMap<Integer,Integer>> providersMap = new HashMap<NotificationProvider, HashMap<Integer,Integer>>();
+				db.put(user.getName(), providersMap);
+				for(NotificationProvider provider : providersList){
+					providersMap.put(provider, new HashMap<Integer, Integer>());
+				}
+			}
 
 			while (iterator.hasNext()) {
 				try {
@@ -170,9 +194,22 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 						List<ESNotification> notifications = generator.generateNotifications(changePackages,
 							userString, projectSpace, false);
 						for (ESNotification n : notifications) {
+							Date crDate = n.getCreationDate();
+							if(crDate==null && changePackages.get(0).getLogMessage()!=null){
+								crDate = changePackages.get(0).getLogMessage().getClientDate();
+							}else if(crDate==null){
+								crDate = new Date();
+							}
+							Integer kw = getKW(crDate);
+							for(NotificationProvider p : providersList){
+								Integer count = db.get(userString).get(p).get(kw);
+								if(count == null){
+									count = new Integer(0);
+								}
+								count = new Integer(count.intValue()+1);
+							}
+							
 							writers.get(userString).write(analysisData.getPrimaryVersionSpec().getIdentifier() + "");
-							writers.get(userString).write(delimeter);
-							writers.get(userString).write(n.getIdentifier());
 							writers.get(userString).write(delimeter);
 							writers.get(userString).write(n.getSender());
 							writers.get(userString).write(delimeter);
@@ -180,7 +217,8 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 							writers.get(userString).write(delimeter);
 							writers.get(userString).write(userString);
 							writers.get(userString).write(delimeter);
-							writers.get(userString).write(getCreationDate(n));
+							
+							writers.get(userString).write(dateFormat.format(crDate));
 
 							writers.get(userString).write(delimeter);
 							final ModelElementId modelElementId = n.getRelatedModelElements().get(0);
@@ -199,7 +237,11 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 									writers.get(userString).write(delimeter);
 									writers.get(userString).write(modelElement.eClass().getName());
 									writers.get(userString).write(delimeter);
-									writers.get(userString).write(modelElement.getDescription().replaceAll("\n", " "));
+									String description = modelElement.getDescription();
+									if(description==null){
+										description = "";
+									}
+									writers.get(userString).write(description.replaceAll("\n", " "));
 								}
 							} else {
 								writers.get(userString).write(delimeter);
@@ -211,6 +253,23 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 
 						exportEvents(readEvents, readEventFeaturesList, dateFormat, modifierProvider, userString, changePackages,
 							visualizationHelper);
+					}
+					for(User user : userList){
+						for(NotificationProvider p : providersList){
+							String userString = user.getName();
+							KWwriters.get(userString).write(p.getName());
+							KWwriters.get(userString).write(delimeter);
+							HashMap<Integer, Integer> providerMap = db.get(userString).get(p);
+							for(Integer kw : providerMap.keySet()){
+								KWwriters.get(userString).write(providerMap.get(kw).toString());
+								KWwriters.get(userString).write("(");
+								KWwriters.get(userString).write(kw.toString());
+								KWwriters.get(userString).write(")");
+								KWwriters.get(userString).write(delimeter);
+								
+							}
+							KWwriters.get(userString).write("\n");
+						}
 					}
 					// BEGIN SUPRESS CATCH EXCEPTION
 				} catch (RuntimeException e) {
@@ -316,5 +375,12 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 				}
 			}
 		}
+	}
+	
+	private Integer getKW(Date date){
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(date);
+		cal.setFirstDayOfWeek(Calendar.MONDAY);
+		return cal.get(Calendar.WEEK_OF_YEAR);	
 	}
 }
