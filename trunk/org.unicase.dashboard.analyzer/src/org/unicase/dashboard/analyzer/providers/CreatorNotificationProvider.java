@@ -117,7 +117,6 @@ public class CreatorNotificationProvider implements NotificationProvider {
 			notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
 			notification.setRecipient(user);
 			notification.setSeen(false);
-			notification.setSender("unicase creator notification generator");
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append("A");
 			String className = modelElement.eClass().getName();

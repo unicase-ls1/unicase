@@ -85,9 +85,9 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		ProjectId pid = (ProjectId) EcoreUtil.copy(projectSpace.getProjectId());
 		ProgressMonitorDialog progressDialog = null;
 		PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		start.setIdentifier(1);
+		start.setIdentifier(80);
 		PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		end.setIdentifier(622);
+		end.setIdentifier(100);
 		try {
 			VersionIterator iterator = new VersionIterator(session, pid, 1, start, end, false, true, true);
 
@@ -117,7 +117,7 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 			EList<User> userList = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
 				.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
 					new BasicEList<User>());
-			HashMap<String, HashMap<NotificationProvider, HashMap<Integer, Integer>>> db = new HashMap<String, HashMap<NotificationProvider,HashMap<Integer,Integer>>>();
+			HashMap<String, HashMap<Integer, HashMap<String, Integer>>> db = new HashMap<String, HashMap<Integer, HashMap<String, Integer>>>();
 
 			NotificationGenerator generator = new NotificationGenerator();
 			TaskPackage taskPackage = TaskPackage.eINSTANCE;
@@ -131,8 +131,8 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 			generator.addNotificationProvider(modifierProvider);
 
 			final Collection<NotificationProvider> providersList = generator.getProviders();
-			for(User user : userList){
-				
+			for (User user : userList) {
+
 				final BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/" + user.getName() + ".csv"));
 				writers.put(user.getName(), writer);
 				writer.write("Version");
@@ -154,21 +154,19 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 				writer.write("ME Desc");
 				writer.write("\n");
 
-				final BufferedWriter KWwriter = new BufferedWriter(new FileWriter(path + "/" + user.getName() + "_KW.csv"));
+				final BufferedWriter KWwriter = new BufferedWriter(new FileWriter(path + "/" + user.getName()
+					+ "_KW.csv"));
 				KWwriters.put(user.getName(), KWwriter);
-//				KWwriter.write("KW");
-//				KWwriter.write(delimeter);
-//				for(NotificationProvider p : providersList){
-//					KWwriter.write(p.getName());
-//					KWwriter.write(delimeter);
-//				}
-//				KWwriter.write("\n");
-				
-				HashMap<NotificationProvider, HashMap<Integer,Integer>> providersMap = new HashMap<NotificationProvider, HashMap<Integer,Integer>>();
-				db.put(user.getName(), providersMap);
-				for(NotificationProvider provider : providersList){
-					providersMap.put(provider, new HashMap<Integer, Integer>());
+				KWwriter.write("KW");
+				KWwriter.write(delimeter);
+				for (NotificationProvider p : providersList) {
+					KWwriter.write(p.getName());
+					KWwriter.write(delimeter);
 				}
+				KWwriter.write("\n");
+
+				HashMap<Integer, HashMap<String, Integer>> providersMap = new HashMap<Integer, HashMap<String, Integer>>();
+				db.put(user.getName(), providersMap);
 			}
 
 			while (iterator.hasNext()) {
@@ -195,20 +193,27 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 							userString, projectSpace, false);
 						for (ESNotification n : notifications) {
 							Date crDate = n.getCreationDate();
-							if(crDate==null && changePackages.get(0).getLogMessage()!=null){
+							if (crDate == null && changePackages.get(0).getLogMessage() != null) {
 								crDate = changePackages.get(0).getLogMessage().getClientDate();
-							}else if(crDate==null){
+							}
+							if (crDate == null) {
 								crDate = new Date();
 							}
 							Integer kw = getKW(crDate);
-							for(NotificationProvider p : providersList){
-								Integer count = db.get(userString).get(p).get(kw);
-								if(count == null){
-									count = new Integer(0);
-								}
-								count = new Integer(count.intValue()+1);
+							HashMap<String, Integer> kw2prov = db.get(userString).get(kw);
+							if (kw2prov == null) {
+								kw2prov = new HashMap<String, Integer>();
 							}
-							
+							db.get(userString).put(kw, kw2prov);
+							String p = n.getSender();
+							Integer count = kw2prov.get(p);
+							if (count == null) {
+								count = new Integer(0);
+//								System.out.println("Null " + userString + " " + p);
+							}
+							kw2prov.put(p, new Integer(count.intValue() + 1));
+//							System.out.println("Writing " + userString + " " + p + " " + kw2prov.get(p).toString());
+
 							writers.get(userString).write(analysisData.getPrimaryVersionSpec().getIdentifier() + "");
 							writers.get(userString).write(delimeter);
 							writers.get(userString).write(n.getSender());
@@ -217,7 +222,7 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 							writers.get(userString).write(delimeter);
 							writers.get(userString).write(userString);
 							writers.get(userString).write(delimeter);
-							
+
 							writers.get(userString).write(dateFormat.format(crDate));
 
 							writers.get(userString).write(delimeter);
@@ -238,7 +243,7 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 									writers.get(userString).write(modelElement.eClass().getName());
 									writers.get(userString).write(delimeter);
 									String description = modelElement.getDescription();
-									if(description==null){
+									if (description == null) {
 										description = "";
 									}
 									writers.get(userString).write(description.replaceAll("\n", " "));
@@ -251,39 +256,44 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 							writers.get(userString).write("\n");
 						}
 
-						exportEvents(readEvents, readEventFeaturesList, dateFormat, modifierProvider, userString, changePackages,
-							visualizationHelper);
-					}
-					for(User user : userList){
-						for(NotificationProvider p : providersList){
-							String userString = user.getName();
-							KWwriters.get(userString).write(p.getName());
-							KWwriters.get(userString).write(delimeter);
-							HashMap<Integer, Integer> providerMap = db.get(userString).get(p);
-							for(Integer kw : providerMap.keySet()){
-								KWwriters.get(userString).write(providerMap.get(kw).toString());
-								KWwriters.get(userString).write("(");
-								KWwriters.get(userString).write(kw.toString());
-								KWwriters.get(userString).write(")");
-								KWwriters.get(userString).write(delimeter);
-								
-							}
-							KWwriters.get(userString).write("\n");
-						}
+						exportEvents(readEvents, readEventFeaturesList, dateFormat, modifierProvider, userString,
+							changePackages, visualizationHelper);
 					}
 					// BEGIN SUPRESS CATCH EXCEPTION
 				} catch (RuntimeException e) {
 					e.printStackTrace();
 					// END SUPRESS CATCH EXCEPTION
 				} finally {
-					for(BufferedWriter writer : writers.values()){
+					for (BufferedWriter writer : writers.values()) {
 						writer.flush();
 					}
 					modifierReadEventsWriter.flush();
 					creatorReadEventsWriter.flush();
 				}
 			}
-			for(BufferedWriter writer : writers.values()){
+			for (User user : userList) {
+				String userString = user.getName();
+				final BufferedWriter writer = KWwriters.get(userString);
+				HashMap<Integer, HashMap<String, Integer>> kw2provider = db.get(userString);
+				for (Integer kw : kw2provider.keySet()) {
+					writer.write(kw.toString());
+					writer.write(delimeter);
+					for (NotificationProvider p : providersList) {
+						Integer value = kw2provider.get(kw).get(p.getName());
+						if (value == null){
+							value = new Integer(0);
+						}
+						writer.write(value.toString());
+						writer.write(delimeter);
+					}
+					writer.write("\n");
+					writer.flush();
+				}
+			}
+			for (BufferedWriter writer : KWwriters.values()) {
+				writer.close();
+			}
+			for (BufferedWriter writer : writers.values()) {
 				writer.close();
 			}
 			modifierReadEventsWriter.close();
@@ -297,19 +307,19 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		return null;
 	}
 
-	private void initWriter(BufferedWriter writer, EList<EStructuralFeature> readEventFeaturesList) throws IOException{
-		writer.write("User"+delimeter);
+	private void initWriter(BufferedWriter writer, EList<EStructuralFeature> readEventFeaturesList) throws IOException {
+		writer.write("User" + delimeter);
 		for (EStructuralFeature feature : readEventFeaturesList) {
 			writer.write(feature.getName() + delimeter);
 		}
-		writer.write("\n");		
+		writer.write("\n");
 	}
 
 	private String getCreationDate(ESNotification n) {
 		final Date creationDate = n.getCreationDate();
 		if (creationDate != null) {
 			return dateFormat.format(creationDate);
-		} 
+		}
 		return "null";
 	}
 
@@ -325,15 +335,17 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 						readEvents.put(userString, readEvent);
 						ModelElementId mid = readEvent.getModelElement();
 						ModelElement modelElement = visualizationHelper.getModelElement(mid);
-						
-						if (modelElement==null){
-							//cannot procede
+
+						if (modelElement == null) {
+							// cannot procede
 							continue;
 						}
-						if(modelElement.getCreator()!=null && modelElement.getCreator().equals(userString)) {
-							writeReadEvent(readEventFeaturesList, dateFormat, userString, readEvent, creatorReadEventsWriter);
-						}else if (modifierProvider.getWatchList().contains(mid)) {
-							writeReadEvent(readEventFeaturesList, dateFormat, userString, readEvent, modifierReadEventsWriter);
+						if (modelElement.getCreator() != null && modelElement.getCreator().equals(userString)) {
+							writeReadEvent(readEventFeaturesList, dateFormat, userString, readEvent,
+								creatorReadEventsWriter);
+						} else if (modifierProvider.getWatchList().contains(mid)) {
+							writeReadEvent(readEventFeaturesList, dateFormat, userString, readEvent,
+								modifierReadEventsWriter);
 						}
 					}
 				}
@@ -346,7 +358,7 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		writer.write(userString + ",");
 		for (EStructuralFeature f : readEventFeaturesList) {
 			final Object featureData = readEvent.eGet(f);
-			String stringValue = featureData+"";
+			String stringValue = featureData + "";
 			if (featureData instanceof Date) {
 				stringValue = dateFormat.format((Date) featureData);
 			}
@@ -376,11 +388,11 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 			}
 		}
 	}
-	
-	private Integer getKW(Date date){
+
+	private Integer getKW(Date date) {
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
 		cal.setFirstDayOfWeek(Calendar.MONDAY);
-		return cal.get(Calendar.WEEK_OF_YEAR);	
+		return cal.get(Calendar.WEEK_OF_YEAR);
 	}
 }

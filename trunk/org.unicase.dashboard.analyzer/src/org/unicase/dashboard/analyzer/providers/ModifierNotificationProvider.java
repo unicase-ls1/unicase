@@ -120,7 +120,6 @@ public class ModifierNotificationProvider implements NotificationProvider {
 			notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
 			notification.setRecipient(user);
 			notification.setSeen(false);
-			notification.setSender("unicase modifier notification generator");
 			StringBuilder stringBuilder = new StringBuilder();
 			stringBuilder.append("A");
 			String className = modelElement.eClass().getName();
