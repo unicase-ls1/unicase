@@ -90,10 +90,11 @@ public class TaskTraceNotificationProvider implements NotificationProvider {
 	private boolean filter(AbstractOperation operation) {
 		if (OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
 			ReferenceOperation referenceOperation = (ReferenceOperation) operation;
-			String featureName = TaskPackage.eINSTANCE.getWorkPackage_ContainedWorkItems().getName();
-			if (referenceOperation.getFeatureName().equals(featureName)
-				|| (referenceOperation.getOppositeFeatureName() != null && referenceOperation.getOppositeFeatureName()
-					.equals(featureName))) {
+			ArrayList<String> features = new ArrayList<String>();
+			features.add(TaskPackage.eINSTANCE.getWorkPackage_ContainedWorkItems().getName());
+			features.add(TaskPackage.eINSTANCE.getWorkItem_ContainingWorkpackage().getName());
+			if (features.contains(referenceOperation.getFeatureName())
+				|| (referenceOperation.getOppositeFeatureName() != null && features.contains(referenceOperation.getOppositeFeatureName()))) {
 				return true;
 			}
 		}

@@ -62,97 +62,81 @@ import org.unicase.workspace.notification.NotificationGenerator;
  */
 public class DashboardAnalyzerHandler extends AbstractHandler {
 
+	private BufferedWriter modifierReadEventsWriter;
+	private BufferedWriter creatorReadEventsWriter;
+	private SimpleDateFormat dateFormat;
+	private String delimeter;
+
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent executionEvent) throws ExecutionException {
 
-		HashMap<String, ReadEvent> readEvents = new HashMap<String, ReadEvent>();
-
 		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-
 		Usersession session = projectSpace.getUsersession();
-
 		if (!session.isLoggedIn()) {
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Login required", "Log in first!");
 			return null;
 		}
+		HashMap<String, ReadEvent> readEvents = new HashMap<String, ReadEvent>();
 		ProjectId pid = (ProjectId) EcoreUtil.copy(projectSpace.getProjectId());
-		int step = 1;
-
+		ProgressMonitorDialog progressDialog = null;
 		PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		start.setIdentifier(1);
 		PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		end.setIdentifier(622);
-		VersionIterator iterator;
-		ProgressMonitorDialog progressDialog = null;
 		try {
+			VersionIterator iterator = new VersionIterator(session, pid, 1, start, end, false, true, true);
 
 			progressDialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
 			progressDialog.open();
 			progressDialog.getProgressMonitor().beginTask("Exporting notifications", IProgressMonitor.UNKNOWN);
-
-			iterator = new VersionIterator(session, pid, step, start, end, false, true, true);
-
-			FileWriter notificationsFileWriter = null;
 			DirectoryDialog dialog = new DirectoryDialog(Display.getCurrent().getActiveShell(), SWT.SINGLE);
 			String path = dialog.open();
 			if (path == null) {
 				progressDialog.close();
 				return null;
 			}
-
-			notificationsFileWriter = new FileWriter(path + "/notifications.csv");
-			FileWriter eventsFileWriter = new FileWriter(path + "/allReadEvents.csv");
+			delimeter = "%%";
 			FileWriter modifierFileWriter = new FileWriter(path + "/modifierEvents.csv");
 			FileWriter creatorFileWriter = new FileWriter(path + "/creatorEvents.csv");
-			BufferedWriter notificationsWriter = new BufferedWriter(notificationsFileWriter);
-			BufferedWriter readEventsWriter = new BufferedWriter(eventsFileWriter);
-			BufferedWriter modifierReadEventsWriter = new BufferedWriter(modifierFileWriter);
-			BufferedWriter creatorReadEventsWriter = new BufferedWriter(creatorFileWriter);
+			HashMap<String, BufferedWriter> writers = new HashMap<String, BufferedWriter>();
+			modifierReadEventsWriter = new BufferedWriter(modifierFileWriter);
+			creatorReadEventsWriter = new BufferedWriter(creatorFileWriter);
 
-			// HEADERS
-			// //////////////////
-			notificationsWriter.write("Version,");
-			notificationsWriter.write("NotificationId,");
-			notificationsWriter.write("Provider,");
-			notificationsWriter.write("Message,");
-			notificationsWriter.write("User,");
-			notificationsWriter.write("Date,");
-			notificationsWriter.write("ME Id,");
-			notificationsWriter.write("ME Name,");
-			notificationsWriter.write("ME Class");
-			notificationsWriter.write("\n");
-			// //////////////////
 			EList<EStructuralFeature> readEventFeaturesList = EventsPackage.eINSTANCE.getReadEvent()
 				.getEAllStructuralFeatures();
-			readEventsWriter.write("User,");
-			for (EStructuralFeature feature : readEventFeaturesList) {
-				readEventsWriter.write(feature.getName() + ",");
-			}
-			readEventsWriter.write("\n");
-			// //////////////////
-			modifierReadEventsWriter.write("User,");
-			for (EStructuralFeature feature : readEventFeaturesList) {
-				modifierReadEventsWriter.write(feature.getName() + ",");
-			}
-			modifierReadEventsWriter.write("\n");
-			// //////////////////
-			creatorReadEventsWriter.write("User,");
-			for (EStructuralFeature feature : readEventFeaturesList) {
-				creatorReadEventsWriter.write(feature.getName() + ",");
-			}
-			creatorReadEventsWriter.write("\n");
-			// //////////////////
+			initWriter(modifierReadEventsWriter, readEventFeaturesList);
+			initWriter(creatorReadEventsWriter, readEventFeaturesList);
 
-			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+			dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
 			EList<User> userList = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
 				.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
 					new BasicEList<User>());
-			// String[] users = { "kaserf", "pfaehlem" };
+			for(User user : userList){
+				final BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/" + user.getName() + ".csv"));
+				writers.put(user.getName(), writer);
+				writer.write("Version");
+				writer.write(delimeter);
+				writer.write("Provider");
+				writer.write(delimeter);
+				writer.write("Message");
+				writer.write(delimeter);
+				writer.write("User");
+				writer.write(delimeter);
+				writer.write("Date");
+				writer.write(delimeter);
+				writer.write("ME Id");
+				writer.write(delimeter);
+				writer.write("ME Name");
+				writer.write(delimeter);
+				writer.write("ME Class");
+				writer.write(delimeter);
+				writer.write("ME Desc");
+				writer.write("\n");
+			}
 
 			NotificationGenerator generator = new NotificationGenerator();
-
 			TaskPackage taskPackage = TaskPackage.eINSTANCE;
 			generator.addNotificationProvider(new TaskNotificationProvider(taskPackage.getActionItem()));
 			generator.addNotificationProvider(new TaskNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
@@ -174,13 +158,10 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 						IProgressMonitor.UNKNOWN);
 
 					for (User user : userList) {
-
 						String userString = user.getName();
-
 						EList<ChangePackage> changePackages = analysisData.getChangePackages();
-
 						ChangePackageVisualizationHelper visualizationHelper = new ChangePackageVisualizationHelper(
-							changePackages, projectSpace.getProject());
+							changePackages, analysisData.getProjectState());
 
 						// update the list of modifies elements for the modifier provider.
 						updateModifiedElements(projectSpace, modifierProvider, userString, changePackages,
@@ -189,117 +170,130 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 						List<ESNotification> notifications = generator.generateNotifications(changePackages,
 							userString, projectSpace, false);
 						for (ESNotification n : notifications) {
-							notificationsWriter.write(analysisData.getPrimaryVersionSpec().getIdentifier() + "");
-							notificationsWriter.write(",");
-							notificationsWriter.write(n.getIdentifier());
-							notificationsWriter.write(",");
-							notificationsWriter.write(n.getSender());
-							notificationsWriter.write(",");
-							notificationsWriter.write(n.getMessage().replaceAll("\n", " "));
-							notificationsWriter.write(",");
-							notificationsWriter.write(userString);
-							notificationsWriter.write(",");
-							final Date creationDate = n.getCreationDate();
-							if (creationDate != null) {
-								notificationsWriter.write(dateFormat.format(creationDate));
-							} else {
-								notificationsWriter.write("null");
-							}
-							notificationsWriter.write(",");
+							writers.get(userString).write(analysisData.getPrimaryVersionSpec().getIdentifier() + "");
+							writers.get(userString).write(delimeter);
+							writers.get(userString).write(n.getIdentifier());
+							writers.get(userString).write(delimeter);
+							writers.get(userString).write(n.getSender());
+							writers.get(userString).write(delimeter);
+							writers.get(userString).write(n.getMessage().replaceAll("\n", " "));
+							writers.get(userString).write(delimeter);
+							writers.get(userString).write(userString);
+							writers.get(userString).write(delimeter);
+							writers.get(userString).write(getCreationDate(n));
+
+							writers.get(userString).write(delimeter);
 							final ModelElementId modelElementId = n.getRelatedModelElements().get(0);
 							if (modelElementId != null) {
 								ModelElement modelElement = projectSpace.getProject().getModelElement(modelElementId);
-								notificationsWriter.write(modelElementId.getId());
-								notificationsWriter.write(",");
+								writers.get(userString).write(modelElementId.getId());
+								writers.get(userString).write(delimeter);
 								if (modelElement == null) {
-									notificationsWriter.write("deleted");
-									notificationsWriter.write(",");
-									notificationsWriter.write("deleted");
+									writers.get(userString).write("deleted");
+									writers.get(userString).write(delimeter);
+									writers.get(userString).write("deleted");
+									writers.get(userString).write(delimeter);
+									writers.get(userString).write("deleted");
 								} else {
-									notificationsWriter.write(modelElement.getName() + "");
-									notificationsWriter.write(",");
-									notificationsWriter.write(modelElement.eClass().getName());
+									writers.get(userString).write(modelElement.getName() + "");
+									writers.get(userString).write(delimeter);
+									writers.get(userString).write(modelElement.eClass().getName());
+									writers.get(userString).write(delimeter);
+									writers.get(userString).write(modelElement.getDescription().replaceAll("\n", " "));
 								}
 							} else {
-								notificationsWriter.write(",,");
+								writers.get(userString).write(delimeter);
+								writers.get(userString).write(delimeter);
+								writers.get(userString).write(delimeter);
 							}
-							notificationsWriter.write("\n");
+							writers.get(userString).write("\n");
 						}
 
-						for (ChangePackage cp : changePackages) {
-							if (cp.getLogMessage() != null && cp.getLogMessage().getAuthor() != null
-								&& cp.getLogMessage().getAuthor().equals(userString)) {
-								for (Event event : cp.getEvents()) {
-									if (event instanceof ReadEvent) {
-										ReadEvent readEvent = (ReadEvent) event;
-										readEvents.put(userString, readEvent);
-										readEventsWriter.write(userString + ",");
-										for (EStructuralFeature f : readEventFeaturesList) {
-											final Object featureData = readEvent.eGet(f);
-											String stringValue = featureData+"";
-											if (featureData instanceof Date) {
-												stringValue = dateFormat.format((Date) featureData);
-											}
-											readEventsWriter.write(stringValue + ",");
-										}
-										readEventsWriter.write("\n");
-
-										ModelElementId mid = readEvent.getModelElement();
-										ModelElement modelElement = visualizationHelper.getModelElement(mid);
-										
-										if (modelElement!=null && modelElement.getCreator()!=null && modelElement.getCreator().equals(userString)) {
-											creatorReadEventsWriter.write(userString + ",");
-											for (EStructuralFeature f : readEventFeaturesList) {
-												final Object featureData = readEvent.eGet(f);
-												String stringValue = featureData+"";
-												if (featureData instanceof Date) {
-													stringValue = dateFormat.format((Date) featureData);
-												}
-												creatorReadEventsWriter.write(stringValue + ",");
-											}
-											creatorReadEventsWriter.write("\n");
-										}
-										if (modifierProvider.getWatchList().contains(mid)) {
-											if(modelElement!=null && modelElement.getCreator()!=null && modelElement.getCreator().equals(userString)){
-												continue;
-											}
-											modifierReadEventsWriter.write(userString + ",");
-											for (EStructuralFeature f : readEventFeaturesList) {
-												final Object featureData = readEvent.eGet(f);
-												String stringValue = featureData+"";
-												if (featureData instanceof Date) {
-													stringValue = dateFormat.format((Date) featureData);
-												}
-												modifierReadEventsWriter.write(stringValue + ",");
-											}
-											modifierReadEventsWriter.write("\n");
-
-										}
-									}
-								}
-							}
-						}
-
+						exportEvents(readEvents, readEventFeaturesList, dateFormat, modifierProvider, userString, changePackages,
+							visualizationHelper);
 					}
 					// BEGIN SUPRESS CATCH EXCEPTION
 				} catch (RuntimeException e) {
 					e.printStackTrace();
 					// END SUPRESS CATCH EXCEPTION
 				} finally {
-					notificationsWriter.flush();
-					readEventsWriter.flush();
+					for(BufferedWriter writer : writers.values()){
+						writer.flush();
+					}
+					modifierReadEventsWriter.flush();
+					creatorReadEventsWriter.flush();
 				}
 			}
-			notificationsWriter.close();
-			readEventsWriter.close();
+			for(BufferedWriter writer : writers.values()){
+				writer.close();
+			}
+			modifierReadEventsWriter.close();
+			creatorReadEventsWriter.close();
 		} catch (IteratorException e2) {
 			e2.printStackTrace();
 		} catch (IOException e1) {
 			e1.printStackTrace();
 		}
 		progressDialog.close();
-
 		return null;
+	}
+
+	private void initWriter(BufferedWriter writer, EList<EStructuralFeature> readEventFeaturesList) throws IOException{
+		writer.write("User"+delimeter);
+		for (EStructuralFeature feature : readEventFeaturesList) {
+			writer.write(feature.getName() + delimeter);
+		}
+		writer.write("\n");		
+	}
+
+	private String getCreationDate(ESNotification n) {
+		final Date creationDate = n.getCreationDate();
+		if (creationDate != null) {
+			return dateFormat.format(creationDate);
+		} 
+		return "null";
+	}
+
+	private void exportEvents(HashMap<String, ReadEvent> readEvents, EList<EStructuralFeature> readEventFeaturesList,
+		SimpleDateFormat dateFormat, ModifierNotificationProvider modifierProvider, String userString,
+		EList<ChangePackage> changePackages, ChangePackageVisualizationHelper visualizationHelper) throws IOException {
+		for (ChangePackage cp : changePackages) {
+			if (cp.getLogMessage() != null && cp.getLogMessage().getAuthor() != null
+				&& cp.getLogMessage().getAuthor().equals(userString)) {
+				for (Event event : cp.getEvents()) {
+					if (event instanceof ReadEvent) {
+						ReadEvent readEvent = (ReadEvent) event;
+						readEvents.put(userString, readEvent);
+						ModelElementId mid = readEvent.getModelElement();
+						ModelElement modelElement = visualizationHelper.getModelElement(mid);
+						
+						if (modelElement==null){
+							//cannot procede
+							continue;
+						}
+						if(modelElement.getCreator()!=null && modelElement.getCreator().equals(userString)) {
+							writeReadEvent(readEventFeaturesList, dateFormat, userString, readEvent, creatorReadEventsWriter);
+						}else if (modifierProvider.getWatchList().contains(mid)) {
+							writeReadEvent(readEventFeaturesList, dateFormat, userString, readEvent, modifierReadEventsWriter);
+						}
+					}
+				}
+			}
+		}
+	}
+
+	private void writeReadEvent(EList<EStructuralFeature> readEventFeaturesList, SimpleDateFormat dateFormat,
+		String userString, ReadEvent readEvent, BufferedWriter writer) throws IOException {
+		writer.write(userString + ",");
+		for (EStructuralFeature f : readEventFeaturesList) {
+			final Object featureData = readEvent.eGet(f);
+			String stringValue = featureData+"";
+			if (featureData instanceof Date) {
+				stringValue = dateFormat.format((Date) featureData);
+			}
+			writer.write(stringValue + ",");
+		}
+		writer.write("\n");
 	}
 
 	private void updateModifiedElements(ProjectSpace projectSpace, ModifierNotificationProvider modifierProvider,
