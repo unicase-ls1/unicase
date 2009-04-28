@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
@@ -130,7 +131,7 @@ public class CreatorNotificationProvider implements NotificationProvider {
 			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(mid, projectSpace, false));
 			String message = stringBuilder.toString();
 			notification.setMessage(message);
-			notification.getRelatedModelElements().add(mid);
+			notification.getRelatedModelElements().add((ModelElementId)EcoreUtil.copy(mid));
 			result.add(notification);
 		}
 	}
