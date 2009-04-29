@@ -1803,5 +1803,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		startChangeRecording();
 		getOperations().addAll(mergeResult);
 		saveResourceSet();
+		updateDirtyState();
 	}
 } // ProjectContainerImpl
