@@ -58,7 +58,7 @@ public class MeetingNameDescriptionPage extends WizardPage {
 		descriptionLabel.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
 
 		descriptionText = new Text(composite, SWT.MULTI);
-		descriptionText.setText("DOLLI2 weekly team meeting");
+		descriptionText.setText("Team meeting");
 		descriptionText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		setControl(composite);
