@@ -9,6 +9,9 @@ import org.eclipse.emf.common.notify.Notification;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
+ * A Notification recorder is meant to generate a NotificationRecording. To create the recording just repeatedly call
+ * record() with incoming EMF notifications.
+ * 
  * @author chodnick
  */
 public class NotificationRecorder {
@@ -17,7 +20,9 @@ public class NotificationRecorder {
 	private NotificationRecording recording;
 
 	/**
+	 * Records a new EMF Notification.
 	 * 
+	 * @param n the notification to record
 	 */
 	public void record(Notification n) {
 
@@ -30,6 +35,12 @@ public class NotificationRecorder {
 
 	}
 
+	/**
+	 * Returns a completed notification recording, may throw IllegalStateException in case the recording is requested
+	 * while recording still takes place, i.e. the EMF notification chain is not completed yet.
+	 * 
+	 * @return a completed notification recording if one is ready
+	 */
 	public NotificationRecording getRecording() {
 		if (isRecordingComplete()) {
 			return recording;
@@ -38,6 +49,10 @@ public class NotificationRecorder {
 		}
 	}
 
+	/**
+	 * Tries to stop an ongoing recording, useful only in context of delete operations, in which multiple EMF
+	 * notification chains are recorded as a single sequence.
+	 */
 	public void stopRecording() {
 		if (recording == null || recording.empty()) {
 			throw new IllegalStateException("trying to close an empty recording");
@@ -62,20 +77,20 @@ public class NotificationRecorder {
 	}
 
 	private boolean notificationHasFollowUps(NotificationInfo n) {
-
 		return n.hasNext();
-
 	}
 
 	/**
-	 * 
+	 * Starts a new recording.
 	 */
 	public void newRecording() {
 		newRecording(NotificationRecordingHint.DEFAULT);
 	}
 
 	/**
-	 * @param aHint
+	 * Starts a new recording.
+	 * 
+	 * @param aHint the hint to use when creating the new recording.
 	 */
 	public void newRecording(NotificationRecordingHint aHint) {
 
@@ -91,7 +106,7 @@ public class NotificationRecorder {
 	}
 
 	/**
-	 * @return
+	 * @return true if current recording is completed and closed, false otherwise
 	 */
 	public boolean isRecordingComplete() {
 		return recordingComplete;
