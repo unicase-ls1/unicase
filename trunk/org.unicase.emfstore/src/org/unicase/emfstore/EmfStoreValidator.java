@@ -71,16 +71,16 @@ public class EmfStoreValidator {
 	public void validate(int options, boolean throwException) throws FatalEmfStoreException {
 		boolean errors = true;
 		if ((options & RESOLVEALL) == RESOLVEALL) {
-			errors = errors && validateResolveAll();
+			errors = validateResolveAll() && errors;
 		}
 		if ((options & MODELELEMENTID) == MODELELEMENTID) {
-			errors = errors && validateModelelementId();
+			errors = validateModelelementId() && errors;
 		}
 		if ((options & PROJECTGENERATION) == PROJECTGENERATION) {
-			errors = errors && validateProjectGeneration();
+			errors = validateProjectGeneration() && errors;
 		}
 
-		if (errors && throwException) {
+		if (!errors && throwException) {
 			throw new FatalEmfStoreException("Validation failed.");
 		}
 	}
