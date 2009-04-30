@@ -102,7 +102,7 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 	}
 
 	private void addMeetingSections(Meeting meeting) {
-		meeting.setName("Dolli meeting");
+		meeting.setName("Team meeting");
 
 		CompositeMeetingSection objectiveSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
 		CompositeMeetingSection informationExchangeSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
