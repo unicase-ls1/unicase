@@ -181,7 +181,7 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.provid
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected EObject selectExistingElement(IAdaptable host, Collection types) {
