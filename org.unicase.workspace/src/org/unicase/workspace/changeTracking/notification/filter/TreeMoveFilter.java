@@ -28,20 +28,51 @@ public class TreeMoveFilter implements NotificationFilter {
 
 		List<NotificationInfo> rec = recording.asMutableList();
 
-		if (rec.size() != 3) {
-			return;
+		if (rec.size() == 3) {
+			filterSameContainmentFeature(recording);
 		}
+
+		if (rec.size() == 4) {
+			filterDifferentContainmentFeature(recording);
+		}
+
+	}
+
+	private void filterSameContainmentFeature(NotificationRecording recording) {
+
+		List<NotificationInfo> rec = recording.asMutableList();
 
 		NotificationInfo n1 = rec.get(0);
 		NotificationInfo n2 = rec.get(1);
 		NotificationInfo n3 = rec.get(2);
 		// TODO: check for IDs instead of identity
 		// TODO: check for containmentfeature
-		// TODO: check for movement to different containmentfeature (4 ops)
 		if (n1.isRemoveEvent() && n2.isSetEvent() && n3.isAddEvent()) {
 			if (n1.getOldValue() == n2.getNotifier() && n2.getNotifier() == n3.getNewValue()) {
 				rec.remove(n1);
 				rec.remove(n3);
+			}
+		}
+
+	}
+
+	private void filterDifferentContainmentFeature(NotificationRecording recording) {
+
+		List<NotificationInfo> rec = recording.asMutableList();
+
+		NotificationInfo n1 = rec.get(0);
+		NotificationInfo n2 = rec.get(1);
+		NotificationInfo n3 = rec.get(2);
+		NotificationInfo n4 = rec.get(3);
+
+		// TODO: check for IDs instead of identity
+		// TODO: check for containmentfeature
+
+		if (n1.isRemoveEvent() && n2.isSetEvent() && n3.isSetEvent() && n4.isAddEvent()) {
+			if (n1.getOldValue() == n2.getNotifier() && n2.getNotifier() == n3.getNotifier()
+				&& n2.getNotifier() == n4.getNewValue() && n2.getNewValue() == null && n3.getOldValue() == null) {
+				rec.remove(n1);
+				rec.remove(n4);
 			}
 		}
 
