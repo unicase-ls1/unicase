@@ -5,6 +5,8 @@
  */
 package org.unicase.workspace.changeTracking.notification.recording;
 
+import java.util.Date;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
@@ -101,6 +103,7 @@ public class NotificationRecorder {
 
 		recording = new NotificationRecording();
 		recording.setHint(aHint);
+		recording.setDate(new Date());
 
 		recordingComplete = false;
 	}

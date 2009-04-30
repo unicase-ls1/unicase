@@ -11,7 +11,9 @@ import java.lang.reflect.Field;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.NotificationImpl;
 import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -363,4 +365,65 @@ public class NotificationInfo implements Notification {
 		return notification.toString();
 	}
 
+	/**
+	 * @return a string useful for debugging only
+	 */
+	public String getDebugString() {
+		StringBuilder sb = new StringBuilder();
+		// handle type
+
+		if (isAddEvent()) {
+			sb.append("ADD");
+		} else if (isSetEvent()) {
+			sb.append("SET");
+		} else if (isAddManyEvent()) {
+			sb.append("ADD_MANY");
+		} else if (isRemoveEvent()) {
+			sb.append("REMOVE");
+		} else if (isRemoveManyEvent()) {
+			sb.append("REMOVE_MANY");
+		} else {
+			sb.append(getEventType());
+		}
+
+		EObject n = (EObject) notification.getNotifier();
+
+		sb.append(" / on: " + extractName(n));
+		sb.append(".");
+		if (isAttributeNotification()) {
+			sb.append(getAttribute().getName());
+		} else if (isReferenceNotification()) {
+			sb.append(getReference().getName());
+		}
+		sb.append(" / old: ");
+		if (getOldValue() instanceof EObject) {
+			sb.append(extractName((EObject) getOldValue()));
+		} else {
+			sb.append(getOldValue());
+		}
+		sb.append(" / new: ");
+		if (getNewValue() instanceof EObject) {
+			sb.append(extractName((EObject) getNewValue()));
+		} else {
+			sb.append(getNewValue());
+		}
+
+		return sb.toString();
+
+	}
+
+	private String extractName(EObject o) {
+
+		if (o == null) {
+			return null;
+		}
+
+		EStructuralFeature f = o.eClass().getEStructuralFeature("name");
+		if (f != null && o.eGet(f) != null) {
+			return "'" + (String) o.eGet(f) + "'";
+		} else {
+			return o.eClass().getName();
+		}
+
+	}
 }

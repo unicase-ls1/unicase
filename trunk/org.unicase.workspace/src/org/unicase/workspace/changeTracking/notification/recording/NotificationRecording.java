@@ -5,12 +5,17 @@
  */
 package org.unicase.workspace.changeTracking.notification.recording;
 
+import java.util.Collections;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.MultiStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
+import org.unicase.workspace.Activator;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A NotificationRecording is basically a list of EMF Notifications.
@@ -21,6 +26,7 @@ public class NotificationRecording {
 
 	private List<NotificationInfo> chain = new LinkedList<NotificationInfo>();
 	private NotificationRecordingHint hint;
+	private Date date;
 
 	/**
 	 * @return currently set hint
@@ -34,6 +40,20 @@ public class NotificationRecording {
 	 */
 	public void setHint(NotificationRecordingHint hint) {
 		this.hint = hint;
+	}
+
+	/**
+	 * @param date the date to set
+	 */
+	public void setDate(Date date) {
+		this.date = date;
+	}
+
+	/**
+	 * @return the date
+	 */
+	public Date getDate() {
+		return date;
 	}
 
 	/**
@@ -67,11 +87,22 @@ public class NotificationRecording {
 	 */
 	public void debugLog(String msg) {
 
-		WorkspaceUtil.log(msg, null, 0);
-		for (Notification n : chain) {
-			WorkspaceUtil.log(n.toString(), null, 0);
+		Activator activator = Activator.getDefault();
+		MultiStatus status = new MultiStatus(activator.getBundle().getSymbolicName(), IStatus.OK, msg, null);
+
+		LinkedList<Status> temp = new LinkedList<Status>();
+		for (NotificationInfo n : chain) {
+			temp.add(new Status(IStatus.OK, activator.getBundle().getSymbolicName(), n.getDebugString()
+				+ " ----------------------- " + n.toString()));
 		}
-		WorkspaceUtil.log("end ------------------------------------------------", null, 0);
+
+		// make sure the list is reversed, so the events appear in the order they arrived
+		Collections.reverse(temp);
+		for (Status s : temp) {
+			status.add(s);
+		}
+
+		activator.getLog().log(status);
 
 	}
 
@@ -90,7 +121,7 @@ public class NotificationRecording {
 			hintType = "DELETE";
 		}
 
-		debugLog("notification recording log - captured notifications follow - this is a " + hintType + " operation");
+		debugLog("captured notification chain: " + hintType + " operation");
 	}
 
 	/**
