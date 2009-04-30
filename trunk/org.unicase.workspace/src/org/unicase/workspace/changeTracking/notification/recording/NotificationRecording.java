@@ -13,6 +13,8 @@ import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
+ * A NotificationRecording is basically a list of EMF Notifications.
+ * 
  * @author chodnick
  */
 public class NotificationRecording {
@@ -59,7 +61,9 @@ public class NotificationRecording {
 	}
 
 	/**
+	 * For debugging purposes. Will output to Eclipse Error Log.
 	 * 
+	 * @param msg first line message of the debug output
 	 */
 	public void debugLog(String msg) {
 
@@ -71,11 +75,15 @@ public class NotificationRecording {
 
 	}
 
+	/**
+	 * For debugging purposes. Will output to Eclipse Error Log.
+	 */
+
 	public void debugLog() {
 
 		String hintType = "DEFAULT";
 
-		if (getHint().equals(NotificationRecordingHint.ADD)) {
+		if (getHint().equals(NotificationRecordingHint.CREATE)) {
 			hintType = "CREATE";
 		}
 		if (getHint().equals(NotificationRecordingHint.DELETE)) {
@@ -85,6 +93,11 @@ public class NotificationRecording {
 		debugLog("notification recording log - captured notifications follow - this is a " + hintType + " operation");
 	}
 
+	/**
+	 * Use to change the contents of the recording dynamically. For example in filters.
+	 * 
+	 * @return a mutable internal representation of the notifcations
+	 */
 	public List<NotificationInfo> asMutableList() {
 		return chain;
 	}
