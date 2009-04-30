@@ -119,7 +119,7 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
 	// FIXME: added DOLLI meeting structure as default - needs flexible approach.
 	private void setupMeetingSections(Meeting meeting) {
-		meeting.setName("Dolli meeting");
+		meeting.setName("Team meeting");
 
 		// create all DOLLI sections
 		CompositeMeetingSection objectiveSection = MeetingFactory.eINSTANCE.createCompositeMeetingSection();
