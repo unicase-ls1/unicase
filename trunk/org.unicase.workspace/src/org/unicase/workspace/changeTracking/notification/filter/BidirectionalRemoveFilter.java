@@ -25,16 +25,26 @@ public class BidirectionalRemoveFilter implements NotificationFilter {
 
 		List<NotificationInfo> rec = recording.asMutableList();
 
-		// bidirectional remove has 2 messages only remove on parent (usually second) and remove on child (usually
-		// first)
 		if (rec.size() != 2) {
 			return;
 		}
 
+		// TODO: check for IDs instead of object identity
 		NotificationInfo n1 = rec.get(0);
 		NotificationInfo n2 = rec.get(1);
-		// TODO: check for IDs instead of object identity
+
+		// n:n operation, both are remove events
 		if (n1.isRemoveEvent() && n2.isRemoveEvent() && (n2.getOldValue() == n1.getNotifier())) {
+			rec.remove(n1);
+		}
+
+		// 1:n operation, one set one remove
+		if (n1.isSetEvent() && n2.isRemoveEvent() && (n2.getOldValue() == n1.getNotifier())) {
+			rec.remove(n1);
+		}
+
+		// n:1 operation, one remove one set
+		if (n1.isRemoveEvent() && n2.isSetEvent() && (n2.getOldValue() == n1.getNotifier())) {
 			rec.remove(n1);
 		}
 

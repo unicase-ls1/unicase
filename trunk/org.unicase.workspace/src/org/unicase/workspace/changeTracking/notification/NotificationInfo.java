@@ -118,6 +118,13 @@ public class NotificationInfo implements Notification {
 	}
 
 	/**
+	 * @return true if the event is of type Notification.MOVE, false otherwise
+	 */
+	public boolean isMoveEvent() {
+		return this.getEventType() == Notification.MOVE;
+	}
+
+	/**
 	 * @return true if this notification is followed by more notifications in a chain, false if this is the last
 	 *         notification of a chain
 	 */
@@ -426,4 +433,5 @@ public class NotificationInfo implements Notification {
 		}
 
 	}
+
 }

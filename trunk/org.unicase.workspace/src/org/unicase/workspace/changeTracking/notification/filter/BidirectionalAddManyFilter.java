@@ -36,16 +36,30 @@ public class BidirectionalAddManyFilter implements NotificationFilter {
 			return;
 		}
 		// TODO: check for IDs instead of identity
-		// make sure each of the preceding messages is an add message referencing the notifier from nLast
-		for (int i = 0; i < rec.size() - 1; i++) {
-			NotificationInfo n = rec.get(i);
-			if (!(n.isAddEvent() && n.getNewValue() == nLast.getNotifier())) {
-				return;
+
+		// n:n case make sure each of the preceding messages is an add message referencing the notifier from nLast
+		if (rec.get(0).isAddEvent()) {
+			for (int i = 0; i < rec.size() - 1; i++) {
+				NotificationInfo n = rec.get(i);
+				if (!(n.isAddEvent() && n.getNewValue() == nLast.getNotifier())) {
+					return;
+				}
 			}
+
+		}
+		// n:1 case make sure each of the preceding messages is a set message referencing the notifier from nLast
+		else if (rec.get(0).isSetEvent()) {
+			for (int i = 0; i < rec.size() - 1; i++) {
+				NotificationInfo n = rec.get(i);
+				if (!(n.isSetEvent() && n.getNewValue() == nLast.getNotifier())) {
+					return;
+				}
+			}
+
 		}
 
 		// here we know each preceding message was an opposite of the last add_many message,
-		// it is safe to remove the add messages
+		// it is safe to remove the add/set messages
 		while (rec.size() > 1) {
 			rec.remove(0);
 		}

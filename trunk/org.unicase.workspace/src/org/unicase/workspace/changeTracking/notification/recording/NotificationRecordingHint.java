@@ -13,20 +13,12 @@ public final class NotificationRecordingHint {
 	private static final int HINT_NONE = 0;
 	private static final int HINT_MANUAL_STOP_OF_RECORDING = 1;
 	private static final int HINT_DELETE = HINT_MANUAL_STOP_OF_RECORDING;
-	private static final int HINT_CREATE = 2;
 
 	/**
 	 * Hints, that the recording is representing a delete operation.
 	 */
 	public static final NotificationRecordingHint DELETE = new NotificationRecordingHint(
 		NotificationRecordingHint.HINT_DELETE);
-
-	/**
-	 * Hints, that the recording is representing a create operation.
-	 */
-
-	public static final NotificationRecordingHint CREATE = new NotificationRecordingHint(
-		NotificationRecordingHint.HINT_CREATE);
 
 	/**
 	 * Hints, that the recording is representing a default operation. Which is the usual case.
@@ -49,6 +41,15 @@ public final class NotificationRecordingHint {
 	 */
 	public boolean needsManualStopOfRecording() {
 		return (hint & HINT_MANUAL_STOP_OF_RECORDING) > 0;
+	}
+
+	/**
+	 * Returns whether the notification recording represents a delete chain.
+	 * 
+	 * @return true if recording is a delete chain, false otherwise.
+	 */
+	public boolean isDelete() {
+		return (hint & HINT_DELETE) > 0;
 	}
 
 }

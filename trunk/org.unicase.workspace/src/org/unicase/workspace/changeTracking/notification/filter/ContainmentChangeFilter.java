@@ -18,7 +18,7 @@ import org.unicase.workspace.changeTracking.notification.recording.NotificationR
  * 
  * @author chodnick
  */
-public class TreeMoveFilter implements NotificationFilter {
+public class ContainmentChangeFilter implements NotificationFilter {
 
 	/**
 	 * @param recording the recording to filter

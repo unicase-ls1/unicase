@@ -26,17 +26,29 @@ public class BidirectionalAddFilter implements NotificationFilter {
 
 		List<NotificationInfo> rec = recording.asMutableList();
 
-		// bidirectional remove has 2 messages only remove on parent (usually second) and remove on child (usually
-		// first)
+		// bidirectional add has 2 messages only add on o1 and add on o2
 		if (rec.size() != 2) {
 			return;
 		}
 
+		// TODO: check for IDs instead of identity
 		NotificationInfo n1 = rec.get(0);
 		NotificationInfo n2 = rec.get(1);
-		// TODO: check for IDs instead of identity
+
+		// n:n add operation test, both are adds
 		if (n1.isAddEvent() && n2.isAddEvent() && (n1.getNewValue() == n2.getNotifier())) {
 			rec.remove(n1);
+			return;
+		}
+		// 1:n add operation test, an add and a set are going on
+		if (n1.isAddEvent() && n2.isSetEvent() && (n1.getNewValue() == n2.getNotifier())) {
+			rec.remove(n1);
+			return;
+		}
+		// n:1 add operation test, a set and an add are going on
+		if (n1.isSetEvent() && n2.isAddEvent() && (n1.getNewValue() == n2.getNotifier())) {
+			rec.remove(n1);
+			return;
 		}
 
 	}

@@ -114,9 +114,6 @@ public class NotificationRecording {
 
 		String hintType = "DEFAULT";
 
-		if (getHint().equals(NotificationRecordingHint.CREATE)) {
-			hintType = "CREATE";
-		}
 		if (getHint().equals(NotificationRecordingHint.DELETE)) {
 			hintType = "DELETE";
 		}
