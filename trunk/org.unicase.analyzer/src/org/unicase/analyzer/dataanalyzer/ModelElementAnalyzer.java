@@ -12,7 +12,7 @@ import org.unicase.analyzer.ProjectAnalysisData;
  * @author liya
  *
  */
-public class ModelElementAnalyser implements DataAnalyzer {
+public class ModelElementAnalyzer implements DataAnalyzer {
 
 	private static final String MECOUNT = "ModelElement #";
 

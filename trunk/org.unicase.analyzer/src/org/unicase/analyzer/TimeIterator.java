@@ -26,6 +26,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class TimeIterator extends VersionIterator {
 
 	private DateVersionSpec dateSpec;
+
 	private int stepLengthUnit;
 
 	/**
@@ -125,6 +126,10 @@ public class TimeIterator extends VersionIterator {
 				WorkspaceUtil.logException("Couldn't be resolved", e);
 			}
 		}
+	}
+	
+	public DateVersionSpec getDateSpec() {
+		return dateSpec;
 	}
 
 }
