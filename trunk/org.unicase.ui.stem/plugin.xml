@@ -52,9 +52,19 @@
             name="ShowSprintStatusView">
       </command>
       <command
-            defaultHandler="org.unicase.ui.stem.commands.AssignWorkItemHandler"
-            id="org.unicase.ui.stem.AssignWorkItem"
-            name="AssignWorkItem">
+            defaultHandler="org.unicase.ui.stem.commands.AssignNewBugReportHandler"
+            id="org.unicase.ui.stem.AssignNewBugReport"
+            name="AssignNewBugReport">
+      </command>
+      <command
+            defaultHandler="org.unicase.ui.stem.commands.AssignNewActionItemHandler"
+            id="org.unicase.ui.stem.AssignNewActionItem"
+            name="AssignNewActionItem">
+      </command>
+      <command
+            defaultHandler="org.unicase.ui.stem.commands.AssignNewIssue"
+            id="org.unicase.ui.stem.AssignNewIssue"
+            name="AssignNewIssue">
       </command>
    </extension>
    <extension
@@ -98,9 +108,39 @@
       <menuContribution
             locationURI="popup:org.unicase.ui.stem.StatusView.UserTab?after=additions">
          <command
-               commandId="org.unicase.ui.stem.AssignWorkItem"
-               icon="icons/Bug_feature.png"
-               label="Assign work item..."
+               commandId="org.unicase.ui.stem.AssignNewBugReport"
+               icon="icons/Bug_closed.png"
+               label="Assign new bug report..."
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <instanceof
+                        value="org.unicase.model.organization.OrgUnit">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.ui.stem.AssignNewActionItem"
+               icon="icons/ActionItem.png"
+               label="Assign new action item..."
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <instanceof
+                        value="org.unicase.model.organization.OrgUnit">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.ui.stem.AssignNewIssue"
+               icon="icons/Issue.gif"
+               label="Assign new issue..."
                style="push">
             <visibleWhen
                   checkEnabled="false">
