@@ -12,11 +12,11 @@ import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
 
 /**
- * This class filters bidirectional add operations from a NotificationRecording.
+ * This class filters bidirectional set operations from a NotificationRecording.
  * 
  * @author chodnick
  */
-public class BidirectionalAddFilter implements NotificationFilter {
+public class BidirectionalSetFilter implements NotificationFilter {
 
 	/**
 	 * @param recording the recording to filter
@@ -26,31 +26,32 @@ public class BidirectionalAddFilter implements NotificationFilter {
 
 		List<NotificationInfo> rec = recording.asMutableList();
 
-		// bidirectional add has 2 messages only add on o1 and add on o2
-		if (rec.size() != 2) {
+		// bidirectional SET has 3 messages, REMOVE from old, ADD to new, SET on child
+		if (rec.size() != 3) {
 			return;
 		}
 
 		// TODO: check for IDs instead of identity
 		NotificationInfo n1 = rec.get(0);
 		NotificationInfo n2 = rec.get(1);
+		NotificationInfo n3 = rec.get(2);
 
-		// n:n add operation test, both are adds
-		if (n1.isAddEvent() && n2.isAddEvent() && (n1.getNewValue() == n2.getNotifier())) {
-			rec.remove(n1);
+		// 1:n set operation test, an remove an add and a set are going on
+		// make sure sequence is remove from old, add to new, reset child pointer
+		if (!(n1.isRemoveEvent() && n2.isAddEvent() && n3.isSetEvent())) {
 			return;
 		}
-		// 1:n add operation test, an add and a set are going on
-		if (n1.isAddEvent() && n2.isSetEvent() && (n1.getNewValue() == n2.getNotifier())) {
-			rec.remove(n1);
-			return;
-		}
-		// n:1 add operation test, a set and an add are going on
-		if (n1.isSetEvent() && n2.isAddEvent() && (n1.getNewValue() == n2.getNotifier())) {
-			rec.remove(n1);
+		// make sure the remove and add actually refer to the child
+		if (n1.getOldValue() != n3.getNotifier() || n2.getNewValue() != n3.getNotifier()) {
 			return;
 		}
 
+		// make sure the child is setting from old to new
+		if (n3.getOldValue() == n1.getNotifier() && n3.getNewValue() == n2.getNotifier()) {
+			// all prerequisites met
+			rec.remove(n1);
+			rec.remove(n2);
+		}
 	}
 
 }

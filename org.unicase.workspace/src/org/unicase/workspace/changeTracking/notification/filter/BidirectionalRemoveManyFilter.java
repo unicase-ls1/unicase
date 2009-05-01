@@ -16,7 +16,7 @@ import org.unicase.workspace.changeTracking.notification.recording.NotificationR
  * 
  * @author chodnick
  */
-public class BidirectionalAddManyFilter implements NotificationFilter {
+public class BidirectionalRemoveManyFilter implements NotificationFilter {
 	/**
 	 * @param recording the recording to Filter
 	 * @see org.unicase.workspace.changeTracking.notification.filter.NotificationFilter#filter(org.unicase.workspace.changeTracking.notification.recording.NotificationRecording)
@@ -25,23 +25,23 @@ public class BidirectionalAddManyFilter implements NotificationFilter {
 
 		List<NotificationInfo> rec = recording.asMutableList();
 
-		// we look for 2 or more add messages followed by an add_many message
+		// we look for 2 or more set/remove messages followed by an REMOVE_MANY message
 		if (rec.size() < 3) {
 			return;
 		}
 
 		NotificationInfo nLast = rec.get(rec.size() - 1);
 
-		if (!nLast.isAddManyEvent()) {
+		if (!nLast.isRemoveManyEvent()) {
 			return;
 		}
 		// TODO: check for IDs instead of identity
 
-		// n:n case make sure each of the preceding messages is an add message referencing the notifier from nLast
-		if (rec.get(0).isAddEvent()) {
+		// n:n case make sure each of the preceding messages is an remove message referencing the notifier from nLast
+		if (rec.get(0).isRemoveEvent()) {
 			for (int i = 0; i < rec.size() - 1; i++) {
 				NotificationInfo n = rec.get(i);
-				if (!(n.isAddEvent() && n.getNewValue() == nLast.getNotifier())) {
+				if (!(n.isRemoveEvent() && n.getOldValue() == nLast.getNotifier())) {
 					return;
 				}
 			}
@@ -51,7 +51,7 @@ public class BidirectionalAddManyFilter implements NotificationFilter {
 		else if (rec.get(0).isSetEvent()) {
 			for (int i = 0; i < rec.size() - 1; i++) {
 				NotificationInfo n = rec.get(i);
-				if (!(n.isSetEvent() && n.getNewValue() == nLast.getNotifier())) {
+				if (!(n.isSetEvent() && n.getOldValue() == nLast.getNotifier())) {
 					return;
 				}
 			}
@@ -59,7 +59,7 @@ public class BidirectionalAddManyFilter implements NotificationFilter {
 		}
 
 		// here we know each preceding message was an opposite of the last add_many message,
-		// it is safe to remove the add/set messages
+		// it is safe to remove the remove/set messages
 		while (rec.size() > 1) {
 			rec.remove(0);
 		}
