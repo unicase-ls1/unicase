@@ -129,8 +129,8 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 		statusView.getSite().setSelectionProvider(treeViewer);
 		MenuManager menuManager = new MenuManager();
 		statusView.getSite().registerContextMenu("org.unicase.ui.stem.StatusView.UserTab", menuManager, treeViewer);
-		Menu menu = menuManager.createContextMenu(treeViewer.getTree());
-		treeViewer.getTree().setMenu(menu);
+		Menu contextMenu = menuManager.createContextMenu(treeViewer.getTree());
+		treeViewer.getTree().setMenu(contextMenu);
 	}
 
 	private void addDnDSupport() {

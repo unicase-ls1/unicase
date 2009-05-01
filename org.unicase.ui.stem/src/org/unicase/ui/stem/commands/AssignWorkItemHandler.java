@@ -8,31 +8,23 @@ package org.unicase.ui.stem.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
-import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.ui.stem.views.statusview.StatusView;
 import org.unicase.workspace.WorkspaceManager;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * This is handler for assign work item to users on user tab of status view.
  * 
  * @author Hodaie
  */
-public class AssignWorkItemHandler extends AbstractHandler {
+public abstract class AssignWorkItemHandler extends AbstractHandler {
 
 	/**
 	 * {@inheritDoc}
@@ -47,20 +39,12 @@ public class AssignWorkItemHandler extends AbstractHandler {
 		}
 
 		final OrgUnit user = (OrgUnit) me;
-		StatusView statusView = (StatusView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+		final StatusView statusView = (StatusView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 			.getActivePart();
 		final ModelElement currentOpenME = statusView.getCurrentInput();
 
-		Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject();
-		EClass workItemEClass = TaskPackage.eINSTANCE.getWorkItem();
-		Object[] objs = UnicaseUiUtil.showMESelectionDialog(Display.getCurrent().getActiveShell(), workItemEClass,
-			project, true);
-		final List<WorkItem> workItems = new ArrayList<WorkItem>();
-		for (int i = 0; i < objs.length; i++) {
-			if (objs[i] instanceof WorkItem) {
-				workItems.add((WorkItem) objs[i]);
-			}
-		}
+		final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
+			.getProject();
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
@@ -68,17 +52,22 @@ public class AssignWorkItemHandler extends AbstractHandler {
 
 			@Override
 			protected void doExecute() {
-				for (WorkItem workItem : workItems) {
-					if (currentOpenME instanceof WorkPackage) {
-						((WorkPackage) currentOpenME).getContainedWorkItems().add(workItem);
-					}
-					workItem.setAssignee(user);
-				}
-
+				WorkItem workItem = assignWorkItem(currentOpenME, user, project);
+				ActionHelper.openModelElement(workItem, statusView.getSite().getId());
 			}
 
 		});
 
 		return null;
 	}
+
+	/**
+	 * This will be implemented by sub-classes.
+	 * 
+	 * @param project current project
+	 * @param user assignee
+	 * @param currentOpenME model element currently open in status view
+	 * @return newly created work item
+	 */
+	protected abstract WorkItem assignWorkItem(ModelElement currentOpenME, OrgUnit user, Project project);
 }
