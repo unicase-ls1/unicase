@@ -179,6 +179,17 @@ public interface EmfStore extends EmfStoreInterface {
 		Project project) throws EmfStoreException;
 
 	/**
+	 * Deletes a project on the server. It's possible to delete the project from the containment tree and if wanted to
+	 * deleted the related files too.
+	 * 
+	 * @param sessionId the session id
+	 * @param projectId the project id
+	 * @param deleteFiles if true, the project files will be deleted too
+	 * @throws EmfStoreException in case of failure
+	 */
+	void deleteProject(SessionId sessionId, ProjectId projectId, boolean deleteFiles) throws EmfStoreException;
+
+	/**
 	 * Resolves a user by id and returns an ACUser with all roles on the server. Also roles from groups are aggregated
 	 * and added to the user. To resolve other user than the requesting user himself, the user has to have admin access
 	 * rights. If id is null, the requesting user will be resolved.

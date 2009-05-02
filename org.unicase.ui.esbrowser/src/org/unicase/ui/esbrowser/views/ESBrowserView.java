@@ -413,9 +413,13 @@ public class ESBrowserView extends ViewPart {
 					"Are you sure you want to delete \'" + projectInfo.getName() + "\'",
 					"Delete project contents (cannot be undone)", false, null, null);
 				if (dialog.getReturnCode() == MessageDialog.OK) {
-					// Usersession session =
-					// contentProvider.getProjectServerMap().get(projectInfo).getLastUsersession();
-					// viewer.refresh(obj);
+					Usersession session = contentProvider.getProjectServerMap().get(projectInfo).getLastUsersession();
+					try {
+						session.deleteProject(projectInfo.getProjectId(), dialog.getToggleState());
+					} catch (EmfStoreException e) {
+						DialogHandler.showExceptionDialog(e);
+					}
+					viewer.refresh();
 				}
 			}
 		};

@@ -137,7 +137,7 @@ public abstract class AbstractEmfstoreInterface {
 		if (accessControlDisabled) {
 			return;
 		}
-		authorizationControl.checkReadAccess(sessionId, projectId, modelElements);
+		getAuthorizationControl().checkReadAccess(sessionId, projectId, modelElements);
 	}
 
 	/**
@@ -154,7 +154,7 @@ public abstract class AbstractEmfstoreInterface {
 		if (accessControlDisabled) {
 			return;
 		}
-		authorizationControl.checkWriteAccess(sessionId, projectId, modelElements);
+		getAuthorizationControl().checkWriteAccess(sessionId, projectId, modelElements);
 	}
 
 	/**
@@ -170,7 +170,7 @@ public abstract class AbstractEmfstoreInterface {
 		if (accessControlDisabled) {
 			return;
 		}
-		authorizationControl.checkProjectAdminAccess(sessionId, projectId);
+		getAuthorizationControl().checkProjectAdminAccess(sessionId, projectId);
 	}
 
 	/**
@@ -184,7 +184,7 @@ public abstract class AbstractEmfstoreInterface {
 		if (accessControlDisabled) {
 			return;
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 	}
 
 	/**

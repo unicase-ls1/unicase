@@ -226,6 +226,16 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 	/**
 	 * {@inheritDoc}
 	 */
+	public void deleteProject(String sessionId, String projectId, boolean deleteFiles) throws EmfStoreException,
+		RemoteException {
+		LOGGER.debug("Client call on deleteProject RECEIVED.");
+		emfStore.deleteProject((SessionId) SerializationUtil.stringToEObject(sessionId), (ProjectId) SerializationUtil
+			.stringToEObject(projectId), deleteFiles);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public String resolveUser(String sessionId, String orgUnitId) throws EmfStoreException, RemoteException {
 		LOGGER.debug("Client call on resolveUser RECEIVED.");
 		return SerializationUtil.eObjectToString(emfStore.resolveUser((SessionId) SerializationUtil

@@ -179,6 +179,18 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
+	 * @param sessionId sessionid
+	 * @param projectId projectid
+	 * @param deleteFiles delete files too
+	 * @throws RemoteException if RMI remote invocation fails
+	 * @throws EmfStoreException if a problem in the element store occurs
+	 */
+	void deleteProject(String sessionId, String projectId, boolean deleteFiles) throws EmfStoreException,
+		RemoteException;
+
+	/**
+	 * String typed implementation of method in {@link EmfStore}.
+	 * 
 	 * @see org.unicase.emfstore.accesscontrol.AuthenticationControl#logIn(String, String)
 	 * @param username the user name
 	 * @param password the password

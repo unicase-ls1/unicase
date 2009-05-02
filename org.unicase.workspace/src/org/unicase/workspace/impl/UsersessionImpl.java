@@ -744,6 +744,11 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	}
 
+	public void deleteProject(ProjectId projectId, boolean deleteFiles) throws EmfStoreException {
+		ConnectionManager connectionManager = getWorkspaceManager().getConnectionManager();
+		connectionManager.deleteProject(getSessionId(), projectId, deleteFiles);
+	}
+
 	public SessionId getSessionId() {
 		SessionId sessionIdGen = getSessionIdGen();
 		if (sessionIdGen == null) {
