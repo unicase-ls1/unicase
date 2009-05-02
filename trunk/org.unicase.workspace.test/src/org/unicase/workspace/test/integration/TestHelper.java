@@ -56,11 +56,12 @@ import java.util.Random;
 public final class TestHelper {
 
 	/**
-	 * Numbers of different integration tests. Each integration test case must have a corresponding method in this class which actually implements the test and will be called from test case.
-	 * Knowing the number of available methods is required in composite test. 
+	 * Numbers of different integration tests. Each integration test case must have a corresponding method in this class
+	 * which actually implements the test and will be called from test case. Knowing the number of available methods is
+	 * required in composite test.
 	 */
 	public static final int NUM_OF_TESTS = 14;
-	
+
 	private static TransactionalEditingDomain domain;
 	private static final String TEMP_PATH = Configuration.getWorkspaceDirectory() + "tmp";
 	private Random random;
@@ -942,7 +943,7 @@ public final class TestHelper {
 		EReference refToChange = getRandomReference(me);
 
 		while (refToChange == null || !refToChange.isMany()) {
-			me = createRandomME();
+			me = getRandomME(getTestProject());
 			refToChange = getRandomReference(me);
 		}
 
@@ -1018,6 +1019,70 @@ public final class TestHelper {
 	}
 
 	/**
+	 * This takes a random model element (meA). Takes one of its containments (meToMove). Takes containing reference of
+	 * meToMove. Finds another ME of type meA (meB). Moves meToMove to meB. Finds yet another ME of type meA (meC) .
+	 * Moves meToMove to meC.
+	 */
+	public void doContainmentRefTransitiveChange() {
+		ModelElement meA = null;
+		ModelElement meB = null;
+		ModelElement meC = null;
+		ModelElement meToMove = null;
+		EReference refToChange = null;
+
+		while (refToChange == null || meB == null || meC == null) {
+			while (meToMove == null) {
+				// get a random ME and one of its containment references (refToChange)
+				meA = getRandomME(testProject);
+				int contentsSize = meA.eContents().size();
+				if(contentsSize != 0){
+					meToMove = (ModelElement) meA.eContents().get(getRandomPosition(contentsSize));	
+				}
+				
+			}
+			refToChange = meToMove.eContainmentFeature();
+			meB = getRandomMEofType(testProject, meA.eClass());
+			meC = getRandomMEofType(testProject, meA.eClass());
+			if (meA.equals(meB) || meA.equals(meC) || meB.equals(meC)) {
+				refToChange = null;
+			}
+			if (!sanityCheck(meB, meC, meToMove, refToChange)) {
+				refToChange = null;
+			}
+
+		}
+
+		changeReference(meB, refToChange, meToMove);
+		changeReference(meC, refToChange, meToMove);
+	}
+
+	/**
+	 * @param meA
+	 * @param meB
+	 * @param meC
+	 * @param meToMove
+	 * @param refToChange
+	 * @return
+	 */
+	private boolean sanityCheck(ModelElement meB, ModelElement meC, EObject meToMove,
+		EReference refToChange) {
+
+		if (meToMove == null) {
+			return false;
+		}
+
+		if (meToMove.equals(meB) || EcoreUtil.isAncestor(meToMove, meB)) {
+			return false;
+		}
+		
+		if (meToMove.equals(meC) || EcoreUtil.isAncestor(meToMove, meC)) {
+			return false;
+		}
+		
+		return true;
+	}
+
+	/**
 	 * Create a random ME. Change one of its non-containment references. Delete ME.
 	 */
 	public void doCreateChangeRefDelete() {
@@ -1041,13 +1106,12 @@ public final class TestHelper {
 		me.delete();
 
 	}
-	
+
 	/**
 	 * Create a random ME. Delete ME.
 	 */
 	public void doCreateDelete() {
 
-		
 		ModelElement me = createRandomME();
 		getTestProject().getModelElements().add(me);
 		me.delete();

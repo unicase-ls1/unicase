@@ -119,6 +119,7 @@ public class CompositeTest extends IntegrationTestCase {
 
 	}
 
+	// end of custom code
 	private void runTestCase(Integer testToRun, int timesToRun) {
 
 		for (int i = 0; i < timesToRun; i++) {
@@ -200,7 +201,13 @@ public class CompositeTest extends IntegrationTestCase {
 				System.out.println("ContainmentReferenceAddNew");
 				testHelper.doContainemntReferenceAddNew();
 				break;
-
+				
+			case 13:
+				// ContainmentRefTransitiveChange
+				System.out.println("ContainmentRefTransitiveChange");
+				testHelper.doContainmentRefTransitiveChange();
+				break;
+				
 			default:
 				break;
 
@@ -208,7 +215,8 @@ public class CompositeTest extends IntegrationTestCase {
 		}
 
 	}
-
+	//begin of custom code
+	
 	/**
 	 * @param testAll the testAll to set
 	 */
