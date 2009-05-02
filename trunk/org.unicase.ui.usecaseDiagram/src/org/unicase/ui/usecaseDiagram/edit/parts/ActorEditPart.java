@@ -261,7 +261,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 			org.unicase.ui.usecaseDiagram.unicase.StickMan actorFigure0 = new org.unicase.ui.usecaseDiagram.unicase.StickMan();
 
 			GridData constraintActorFigure0 = new GridData();
-			constraintActorFigure0.verticalAlignment = GridData.VERTICAL_ALIGN_BEGINNING;
+			constraintActorFigure0.verticalAlignment = GridData.FILL;
 			constraintActorFigure0.horizontalAlignment = GridData.FILL;
 			constraintActorFigure0.horizontalIndent = 0;
 			constraintActorFigure0.horizontalSpan = 1;
@@ -275,7 +275,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 			fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);
 
 			GridData constraintFFigureActorFigure_name = new GridData();
-			constraintFFigureActorFigure_name.verticalAlignment = GridData.VERTICAL_ALIGN_END;
+			constraintFFigureActorFigure_name.verticalAlignment = GridData.CENTER;
 			constraintFFigureActorFigure_name.horizontalAlignment = GridData.CENTER;
 			constraintFFigureActorFigure_name.horizontalIndent = 0;
 			constraintFFigureActorFigure_name.horizontalSpan = 1;
