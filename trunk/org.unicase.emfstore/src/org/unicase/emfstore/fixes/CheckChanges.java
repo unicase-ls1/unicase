@@ -18,8 +18,8 @@ public class CheckChanges extends AbstractFix {
 
 	@Override
 	void fix() {
-		ProjectHistory history = (ProjectHistory) EcoreUtil.copy(projectHistory);
-
+		// ProjectHistory history = (ProjectHistory) EcoreUtil.copy(projectHistory);
+		ProjectHistory history = projectHistory;
 		Project state = null;
 
 		for (Version version : history.getVersions()) {
@@ -50,7 +50,7 @@ public class CheckChanges extends AbstractFix {
 						System.out.println("project compare not equal in version "
 							+ version.getPrimarySpec().getIdentifier());
 
-						// printProjectStates(state, version);
+						printProjectStates(state, version);
 
 					} else {
 						System.out.println("project compare is equal(!) in version "

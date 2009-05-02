@@ -5,7 +5,6 @@
  */
 package org.unicase.emfstore.exceptions;
 
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 
 /**
  * Is thrown if the client's version is not compatible to the server.

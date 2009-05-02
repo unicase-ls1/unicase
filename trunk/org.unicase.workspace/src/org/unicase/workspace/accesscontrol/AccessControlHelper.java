@@ -5,11 +5,11 @@
  */
 package org.unicase.workspace.accesscontrol;
 
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.workspace.Usersession;
 
 /**

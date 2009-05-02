@@ -11,7 +11,6 @@ import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.core.subinterfaces.HistorySubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.ProjectSubInterfaceImpl;
-import org.unicase.emfstore.core.subinterfaces.ResourceHelper;
 import org.unicase.emfstore.core.subinterfaces.UserSubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.VersionSubInterfaceImpl;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -33,7 +32,9 @@ import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.model.Project;
 
 /**
- * todo.
+ * This is the main implementation of EmfStore.
+ * 
+ * @see EmfStore
  */
 public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore {
 
@@ -58,7 +59,6 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 		addSubInterface(new ProjectSubInterfaceImpl(this));
 		addSubInterface(new UserSubInterfaceImpl(this));
 		addSubInterface(new VersionSubInterfaceImpl(this));
-		addSubInterface(new ResourceHelper(this));
 	}
 
 	/**
@@ -157,8 +157,6 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public List<ProjectInfo> getProjectList(SessionId sessionId) throws EmfStoreException {
 		sanityCheckObject(sessionId);
-		// TODO look at usersubinterfaceimpl
-		// checkReadAccess(sessionId, projectId, null);
 		return getSubInterface(ProjectSubInterfaceImpl.class).getProjectList(sessionId);
 	}
 
@@ -167,8 +165,6 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException {
 		sanityCheckObject(sessionId);
-		// TODO look at usersubinterfaceimpl
-		// checkReadAccess(sessionId, projectId, null);
 		return getSubInterface(UserSubInterfaceImpl.class).resolveUser(sessionId, id);
 	}
 

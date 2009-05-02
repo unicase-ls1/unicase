@@ -7,9 +7,9 @@ package org.unicase.emfstore.core;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
+import org.unicase.emfstore.core.helper.ResourceHelper;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
-import org.unicase.emfstore.exceptions.StorageException;
 
 /**
  * This is the super class for all subinterfaces of emfstore. Main interfaces, such as {@link EmfStoreImpl}, check and
@@ -23,6 +23,7 @@ import org.unicase.emfstore.exceptions.StorageException;
 public abstract class AbstractSubEmfstoreInterface {
 
 	private final AbstractEmfstoreInterface parentInterface;
+	private ResourceHelper resourceHelper;
 
 	/**
 	 * Default constructor.
@@ -38,19 +39,31 @@ public abstract class AbstractSubEmfstoreInterface {
 	}
 
 	/**
+	 * This method is called after the initialisation of the parent interface.
+	 * 
+	 * @throws FatalEmfStoreException exception
+	 */
+	protected void initSubInterface() throws FatalEmfStoreException {
+		resourceHelper = new ResourceHelper(parentInterface.getServerSpace());
+	}
+
+	/**
+	 * Returns the ResourceHelper.
+	 * 
+	 * @return resourceHelper
+	 */
+	public ResourceHelper getResourceHelper() {
+		return resourceHelper;
+	}
+
+	/**
 	 * Saves an eObject.
 	 * 
 	 * @param object the object
 	 * @throws FatalEmfStoreException in case of failure
 	 */
 	protected void save(EObject object) throws FatalEmfStoreException {
-		try {
-			object.eResource().save(null);
-			// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (Exception e) {
-			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
-		}
-		// END SUPRESS CATCH EXCEPTION
+		resourceHelper.save(object);
 	}
 
 	/**

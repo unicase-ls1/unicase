@@ -6,9 +6,9 @@
 package org.unicase.workspace.connectionmanager;
 
 import org.unicase.emfstore.EmfStore;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.workspace.ServerInfo;
 

@@ -8,11 +8,11 @@ package org.unicase.emfstore.core;
 import java.util.HashMap;
 import java.util.Set;
 
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.model.ModelElement;
@@ -50,6 +50,9 @@ public abstract class AbstractEmfstoreInterface {
 		accessControlDisabled = false;
 		subInterfaces = new HashMap<Class<? extends AbstractSubEmfstoreInterface>, AbstractSubEmfstoreInterface>();
 		initSubInterfaces();
+		for (AbstractSubEmfstoreInterface subInterface : subInterfaces.values()) {
+			subInterface.initSubInterface();
+		}
 	}
 
 	/**
@@ -219,36 +222,5 @@ public abstract class AbstractEmfstoreInterface {
 		command.setInterface(this);
 		command.doExecute();
 		accessControlDisabled = false;
-	}
-
-	/**
-	 * Internal command, in order to avoid accesscontrol.
-	 * 
-	 * @param <T> the emfstore interface
-	 */
-	public abstract class InternalCommand<T extends AbstractEmfstoreInterface> {
-		private T theInterface;
-
-		/**
-		 * Sets the interface which runs the command.
-		 * 
-		 * @param theInterface the emfstore interface
-		 */
-		@SuppressWarnings("unchecked")
-		public void setInterface(AbstractEmfstoreInterface theInterface) {
-			this.theInterface = (T) theInterface;
-		}
-
-		/**
-		 * @return the theInterface
-		 */
-		public T getInterface() {
-			return theInterface;
-		}
-
-		/**
-		 * Runs the internal command.
-		 */
-		public abstract void doExecute();
 	}
 }

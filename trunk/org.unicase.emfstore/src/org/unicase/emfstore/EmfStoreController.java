@@ -33,6 +33,9 @@ import org.unicase.emfstore.accesscontrol.AccessControlImpl;
 import org.unicase.emfstore.connection.ConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIAdminConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
+import org.unicase.emfstore.core.AdminEmfStoreImpl;
+import org.unicase.emfstore.core.EmfStoreImpl;
+import org.unicase.emfstore.core.helper.HistoryCache;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
@@ -41,6 +44,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
+import org.unicase.emfstore.startup.EmfStoreValidator;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.taskmanager.TaskManager;
 import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
@@ -125,7 +129,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		connectionHandlers = initConnectionHandlers();
 
 		TaskManager taskManager = TaskManager.getInstance();
-		taskManager.addTask(new CleanMemoryTask(new EmfStoreImpl(serverSpace, accessControl)));
+		taskManager.addTask(new CleanMemoryTask(serverSpace));
 		taskManager.start();
 
 		logger.info("Initialitation COMPLETE.");

@@ -25,11 +25,11 @@ import org.apache.commons.codec.binary.Base64;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.ServerConfiguration;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.ClientVersionOutOfDateException;
 import org.unicase.emfstore.exceptions.DecryptException;
 

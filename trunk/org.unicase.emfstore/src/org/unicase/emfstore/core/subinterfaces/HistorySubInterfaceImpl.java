@@ -13,9 +13,9 @@ import java.util.TreeSet;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.EmfStoreController;
-import org.unicase.emfstore.HistoryCache;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
+import org.unicase.emfstore.core.helper.HistoryCache;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;

@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.emfstore;
+package org.unicase.emfstore.core;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.emfstore.AdminEmfStore;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectHistory;
@@ -29,6 +30,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.emfstore.exceptions.StorageException;
 
@@ -37,20 +39,19 @@ import org.unicase.emfstore.exceptions.StorageException;
  * 
  * @author Wesendonk
  */
-public class AdminEmfStoreImpl implements AdminEmfStore {
-
-	private ServerSpace serverSpace;
-	private AuthorizationControl authorizationControl;
+// TODO: bring this interface in new subinterface structure
+public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements AdminEmfStore {
 
 	/**
 	 * Default constructor.
 	 * 
 	 * @param serverSpace the serverspace
 	 * @param authorizationControl the authoriazationcontrol
+	 * @throws FatalEmfStoreException in case of failure
 	 */
-	public AdminEmfStoreImpl(ServerSpace serverSpace, AuthorizationControl authorizationControl) {
-		this.serverSpace = serverSpace;
-		this.authorizationControl = authorizationControl;
+	public AdminEmfStoreImpl(ServerSpace serverSpace, AuthorizationControl authorizationControl)
+		throws FatalEmfStoreException {
+		super(serverSpace, authorizationControl);
 	}
 
 	/**
@@ -60,7 +61,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		List<ACGroup> result = new ArrayList<ACGroup>();
 		for (ACGroup group : getServerSpace().getGroups()) {
 			result.add((ACGroup) EcoreUtil.copy(group));
@@ -75,7 +76,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || orgUnitId == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		List<ACGroup> result = new ArrayList<ACGroup>();
 		ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
 		for (ACGroup group : getServerSpace().getGroups()) {
@@ -93,7 +94,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || name == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		ACGroup acGroup = AccesscontrolFactory.eINSTANCE.createACGroup();
 		acGroup.setName(name);
 		acGroup.setDescription("");
@@ -108,7 +109,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || user == null || group == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		getGroup(group).getMembers().remove(getOrgUnit(user));
 		save();
 	}
@@ -120,7 +121,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || group == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		for (Iterator<ACGroup> iter = getServerSpace().getGroups().iterator(); iter.hasNext();) {
 			ACGroup next = iter.next();
 			if (next.getId().equals(group)) {
@@ -138,7 +139,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || groupId == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		return getGroup(groupId).getMembers();
 	}
 
@@ -149,7 +150,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || group == null || member == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		ACGroup acGroup = getGroup(group);
 		ACOrgUnit acMember = getOrgUnit(member);
 		acGroup.getMembers().add(acMember);
@@ -164,7 +165,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || group == null || member == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		ACGroup acGroup = getGroup(group);
 		ACOrgUnit acMember = getOrgUnit(member);
 		if (acGroup.getMembers().contains(acMember)) {
@@ -181,7 +182,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || projectId == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkProjectAdminAccess(sessionId, projectId);
+		getAuthorizationControl().checkProjectAdminAccess(sessionId, projectId);
 		List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 		for (ACOrgUnit orgUnit : getServerSpace().getUsers()) {
 			for (Role role : orgUnit.getRoles()) {
@@ -208,7 +209,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || projectId == null || participant == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		projectId = getProjectId(projectId);
 		ACOrgUnit orgUnit = getOrgUnit(participant);
 		for (Role role : orgUnit.getRoles()) {
@@ -248,7 +249,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || projectId == null || participant == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		projectId = getProjectId(projectId);
 		ACOrgUnit orgUnit = getOrgUnit(participant);
 		for (Role role : orgUnit.getRoles()) {
@@ -267,7 +268,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || projectId == null || orgUnitId == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		projectId = getProjectId(projectId);
 		ACOrgUnit oUnit = getOrgUnit(orgUnitId);
 		for (Role role : oUnit.getRoles()) {
@@ -286,7 +287,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || projectId == null || orgUnitId == null || roleClass == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		projectId = getProjectId(projectId);
 		ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
 		// delete old role first
@@ -326,7 +327,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		List<ACUser> result = new ArrayList<ACUser>();
 		for (ACUser user : getServerSpace().getUsers()) {
 			result.add(user);
@@ -341,7 +342,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 		for (ACOrgUnit user : getServerSpace().getUsers()) {
 			result.add(user);
@@ -359,7 +360,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 		for (ProjectHistory ph : getServerSpace().getProjects()) {
 			result.add(getProjectInfo(ph));
@@ -374,7 +375,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || name == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		ACUser acUser = AccesscontrolFactory.eINSTANCE.createACUser();
 		// acUser.setId(AccesscontrolFactory.eINSTANCE.createACOrgUnitId());
 		acUser.setName(name);
@@ -390,7 +391,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || user == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		for (Iterator<ACUser> iter = getServerSpace().getUsers().iterator(); iter.hasNext();) {
 			ACUser next = iter.next();
 			if (next.getId().equals(user)) {
@@ -409,7 +410,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || orgUnitId == null || name == null || description == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		ACOrgUnit ou = getOrgUnit(orgUnitId);
 		ou.setName(name);
 		ou.setDescription(description);
@@ -424,7 +425,7 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		if (sessionId == null || orgUnitId == null) {
 			throw new InvalidInputException();
 		}
-		authorizationControl.checkServerAdminAccess(sessionId);
+		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		return getOrgUnit(orgUnitId);
 	}
 
@@ -434,10 +435,6 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 
 	private boolean isReader(Role role) {
 		return role.eClass().getName().equals(RolesPackage.Literals.READER_ROLE.getName());
-	}
-
-	private ServerSpace getServerSpace() {
-		return serverSpace;
 	}
 
 	private ProjectInfo getProjectInfo(ProjectHistory project) {
@@ -490,5 +487,14 @@ public class AdminEmfStoreImpl implements AdminEmfStore {
 		} catch (NullPointerException e) {
 			throw new StorageException(StorageException.NOSAVE, e);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}.
+	 * 
+	 * @see org.unicase.emfstore.core.AbstractEmfstoreInterface#initSubInterfaces()
+	 */
+	@Override
+	protected void initSubInterfaces() throws FatalEmfStoreException {
 	}
 }
