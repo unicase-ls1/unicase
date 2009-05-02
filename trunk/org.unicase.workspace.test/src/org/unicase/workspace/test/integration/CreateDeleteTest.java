@@ -86,21 +86,47 @@ public class CreateDeleteTest extends IntegrationTestCase {
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void createAndDeleteTest() throws SerializationException, EmfStoreException {
-		System.out.println("CreateAndDeleteTest");
+	public void createChangeRefDeleteTest() throws SerializationException, EmfStoreException {
+		System.out.println("CreateChangeRefDeleteTest");
 		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = TestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
-				testHelper.doCreateAndDelete();
+				testHelper.doCreateChangeRefDelete();
 			}
 
 		});
 
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndDeleteTest"));
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateChangeRefDeleteTest"));
+
+	}
+	
+	
+	/**
+	 * Create a random ME. Delete ME.
+	 * 
+	 * @throws EmfStoreException EmfStoreException
+	 * @throws SerializationException SerializationException
+	 */
+	@Test
+	public void createDeleteTest() throws SerializationException, EmfStoreException {
+		System.out.println("CreateDeleteTest");
+		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
+		TransactionalEditingDomain domain = TestHelper.getDomain();
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				testHelper.doCreateDelete();
+			}
+
+		});
+
+		commitChanges();
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateDeleteTest"));
 
 	}
 	

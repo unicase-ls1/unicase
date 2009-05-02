@@ -25,7 +25,7 @@ import java.util.List;
 public class CompositeTest extends IntegrationTestCase {
 
 	private long randomSeed = 1;
-	private int numOfTests = 13;
+
 
 	private boolean testAll = true;
 	private int maxTimesToRunATestCase = 3;
@@ -82,7 +82,7 @@ public class CompositeTest extends IntegrationTestCase {
 
 	private void randomSelectTest() {
 		List<Integer> testsToRun = new ArrayList<Integer>();
-		for (int i = 0; i < numOfTests; i++) {
+		for (int i = 0; i < TestHelper.NUM_OF_TESTS; i++) {
 			testsToRun.add(new Integer(i));
 		}
 
@@ -100,11 +100,11 @@ public class CompositeTest extends IntegrationTestCase {
 
 	private void testAll() {
 		List<Integer> testsToRun = new ArrayList<Integer>();
-		for (int i = 0; i < numOfTests; i++) {
+		for (int i = 0; i < TestHelper.NUM_OF_TESTS; i++) {
 			testsToRun.add(new Integer(i));
 		}
 
-		for (int j = 0; j < numOfTests; j++) {
+		for (int j = 0; j < TestHelper.NUM_OF_TESTS; j++) {
 			int index = testHelper.getRandomPosition(testsToRun.size());
 			Integer testToRun = testsToRun.get(index);
 			
@@ -132,7 +132,7 @@ public class CompositeTest extends IntegrationTestCase {
 			case 1:
 				// CreateAndDelete 
 				System.out.println("CreateAndDelete");
-				testHelper.doCreateAndDelete();
+				testHelper.doCreateChangeRefDelete();
 				break;
 
 			case 2:
