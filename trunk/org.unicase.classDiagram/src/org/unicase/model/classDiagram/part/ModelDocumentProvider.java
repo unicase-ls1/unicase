@@ -57,7 +57,7 @@ import org.eclipse.ui.part.FileEditorInput;
  * @ilovegmf public class ModelDocumentProvider extends org.unicase.ui.common.diagram.ModelDocumentProvider implements
  IDiagramDocumentProvider {
  */
-public class ModelDocumentProvider extends org.unicase.ui.common.diagram.ModelDocumentProvider implements
+public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.ModelDocumentProvider implements
 IDiagramDocumentProvider {
 
 	/**
@@ -183,7 +183,7 @@ IDiagramDocumentProvider {
 	/**
 	 * @generated NOT
 
-	 * @see org.unicase.ui.common.diagram.ModelDocumentProvider#setDocumentContent(org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument, org.eclipse.ui.IEditorInput)
+	 * @see org.unicase.ui.common.diagram.part.ModelDocumentProvider#setDocumentContent(org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument, org.eclipse.ui.IEditorInput)
 	 * 
 	 * @param document The document whose content should be set
 	 * @param element The new content element
