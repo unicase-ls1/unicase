@@ -14,7 +14,7 @@ import org.eclipse.gmf.runtime.notation.View;
  * @implements org.unicase.ui.common.diagram.MEDiagramEditPart public class MEDiagramEditPart extends
  *             org.unicase.ui.common.diagram.MEDiagramEditPart {
  */
-public class MEDiagramEditPart extends org.unicase.ui.common.diagram.MEDiagramEditPart {
+public class MEDiagramEditPart extends org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart {
 
 	/**
 	 * @generated
