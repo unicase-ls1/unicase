@@ -5,12 +5,6 @@
  */
 package org.unicase.workspace.test.integration;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Calendar;
-
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.After;
@@ -36,6 +30,12 @@ import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.test.Activator;
+
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Calendar;
 
 /**
  * @author Hodaie
@@ -89,6 +89,56 @@ public abstract class IntegrationTestCase {
 		shareProject();
 		projectId = getTestProjectSpace().getProjectId();
 	}
+	
+	
+	/**
+	 * cleans server and workspace after tests are run.
+	 */
+	@After
+	public void cleanUp() {
+		String serverPath = ServerConfiguration.getServerHome();
+		File serverDirectory = new File(serverPath);
+		FileFilter serverFileFilter = new FileFilter() {
+
+			public boolean accept(File pathname) {
+				return pathname.getName().startsWith("project-");
+			}
+
+		};
+		File[] filesToDeleteOnServer = serverDirectory.listFiles(serverFileFilter);
+		for (int i = 0; i < filesToDeleteOnServer.length; i++) {
+			try {
+				FileUtil.deleteFolder(filesToDeleteOnServer[i]);
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+		}
+
+		new File(serverPath + "storage.uss").delete();
+
+		String workspacePath = Configuration.getWorkspaceDirectory();
+		File workspaceDirectory = new File(workspacePath);
+		FileFilter workspaceFileFilter = new FileFilter() {
+
+			public boolean accept(File pathname) {
+				return pathname.getName().startsWith("ps-");
+			}
+
+		};
+		File[] filesToDelete2 = workspaceDirectory.listFiles(workspaceFileFilter);
+		for (int i = 0; i < filesToDelete2.length; i++) {
+			try {
+				FileUtil.deleteFolder(filesToDelete2[i]);
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+		}
+
+		new File(workspacePath + "workspace.ucw").delete();
+	}
+
 
 	/**
 	 * Create test project space.
@@ -256,52 +306,5 @@ public abstract class IntegrationTestCase {
 		return compareProject;
 	}
 
-	/**
-	 * cleans server and workspace after tests are run.
-	 */
-	@After
-	public void cleanUp() {
-		String serverPath = ServerConfiguration.getServerHome();
-		File serverDirectory = new File(serverPath);
-		FileFilter serverFileFilter = new FileFilter() {
-
-			public boolean accept(File pathname) {
-				return pathname.getName().startsWith("project-");
-			}
-
-		};
-		File[] filesToDeleteOnServer = serverDirectory.listFiles(serverFileFilter);
-		for (int i = 0; i < filesToDeleteOnServer.length; i++) {
-			try {
-				FileUtil.deleteFolder(filesToDeleteOnServer[i]);
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-		}
-
-		new File(serverPath + "storage.uss").delete();
-
-		String workspacePath = Configuration.getWorkspaceDirectory();
-		File workspaceDirectory = new File(workspacePath);
-		FileFilter workspaceFileFilter = new FileFilter() {
-
-			public boolean accept(File pathname) {
-				return pathname.getName().startsWith("ps-");
-			}
-
-		};
-		File[] filesToDelete2 = workspaceDirectory.listFiles(workspaceFileFilter);
-		for (int i = 0; i < filesToDelete2.length; i++) {
-			try {
-				FileUtil.deleteFolder(filesToDelete2[i]);
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-		}
-
-		new File(workspacePath + "workspace.ucw").delete();
-	}
-
+	
 }
