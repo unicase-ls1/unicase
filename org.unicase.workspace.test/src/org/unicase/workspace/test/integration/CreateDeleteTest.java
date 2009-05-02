@@ -48,8 +48,36 @@ public class CreateDeleteTest extends IntegrationTestCase {
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeAttributeTest"));
 
 	}
-	
-	
+
+	/**
+	 * Create a random ME and change one of its attributes, then changes one of its references, then changes one of its
+	 * attributes, and again changes one of its references.
+	 * 
+	 * @throws EmfStoreException EmfStoreException
+	 * @throws SerializationException SerializationException
+	 */
+	@Test
+	public void createAndMultipleChangeTest() throws SerializationException, EmfStoreException {
+		System.out.println("CreateAndMultipleChangeTest");
+
+		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
+		TransactionalEditingDomain domain = TestHelper.getDomain();
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+
+				testHelper.doCreateAndMultipleChange();
+
+			}
+
+		});
+
+		commitChanges();
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndMultipleChangeTest"));
+
+	}
+
 	/**
 	 * Create a random ME and change one of its references.
 	 * 
@@ -77,8 +105,7 @@ public class CreateDeleteTest extends IntegrationTestCase {
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeRefTest"));
 
 	}
-	
-	
+
 	/**
 	 * Create a random ME. Change one of its non-containment references. Delete ME.
 	 * 
@@ -103,8 +130,7 @@ public class CreateDeleteTest extends IntegrationTestCase {
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateChangeRefDeleteTest"));
 
 	}
-	
-	
+
 	/**
 	 * Create a random ME. Delete ME.
 	 * 
@@ -129,7 +155,7 @@ public class CreateDeleteTest extends IntegrationTestCase {
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CreateDeleteTest"));
 
 	}
-	
+
 	/**
 	 * Delete a random ME. Revert delete.
 	 * 
@@ -152,8 +178,7 @@ public class CreateDeleteTest extends IntegrationTestCase {
 		commitChanges();
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteAndRevertDeleteTest"));
 	}
-	
-	
+
 	/**
 	 * Delete a random ME.
 	 * 
@@ -180,9 +205,5 @@ public class CreateDeleteTest extends IntegrationTestCase {
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteTest"));
 
 	}
-
-
-
-	
 
 }

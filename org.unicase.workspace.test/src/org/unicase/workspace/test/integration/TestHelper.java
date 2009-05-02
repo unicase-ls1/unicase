@@ -60,7 +60,7 @@ public final class TestHelper {
 	 * which actually implements the test and will be called from test case. Knowing the number of available methods is
 	 * required in composite test.
 	 */
-	public static final int NUM_OF_TESTS = 14;
+	public static final int NUM_OF_TESTS = 15;
 
 	private static TransactionalEditingDomain domain;
 	private static final String TEMP_PATH = Configuration.getWorkspaceDirectory() + "tmp";
@@ -603,7 +603,7 @@ public final class TestHelper {
 
 	/**
 	 * Returns randomly one of attributes of this ME. The returned attribute is changeable, is not
-	 * MODEL_ELEMENT_IDENTIFIER, and is not transient.
+	 * MODEL_ELEMENT_IDENTIFIER, and is not transient. Returns null if this ME does not have any attributes.
 	 * 
 	 * @param me ME
 	 * @return a random selected attribute
@@ -629,7 +629,7 @@ public final class TestHelper {
 	}
 
 	/**
-	 * returns a random reference of this ME.
+	 * returns a random reference of this ME. Returns null if this ME does not have any references.
 	 * 
 	 * @param me model element
 	 * @return random reference of this ME
@@ -637,12 +637,17 @@ public final class TestHelper {
 	public EReference getRandomReference(ModelElement me) {
 		int size = me.eClass().getEAllReferences().size();
 		int position = getRandomPosition(size);
-		EReference ref = me.eClass().getEAllReferences().get(position);
+		EReference ref = null;
+		if (size != 0) {
+			ref = me.eClass().getEAllReferences().get(position);
+		}
+
 		return ref;
 	}
 
 	/**
-	 * Returns a randomly selected non-containment reference of this ME. It is changeable, and not transient.
+	 * Returns a randomly selected non-containment reference of this ME. It is changeable, and not transient. Returns
+	 * null if this ME does not have any matching references.
 	 * 
 	 * @param me ME
 	 * @return randomly selected changeable non-transient non-containment reference of this ME
@@ -666,7 +671,8 @@ public final class TestHelper {
 	}
 
 	/**
-	 * Returns a randomly selected containment reference of this ME. It is changeable and not transient.
+	 * Returns a randomly selected containment reference of this ME. It is changeable and not transient. Returns null if
+	 * this ME does not have any matching references.
 	 * 
 	 * @param me ME
 	 * @return a randomly selected containment reference of this ME. It is changeable and not transient
@@ -877,23 +883,6 @@ public final class TestHelper {
 	}
 
 	/**
-	 * create a random ME and change one of its attributes.
-	 */
-	public void doCreateAndChangeAttribute() {
-		ModelElement me = createRandomME();
-		EAttribute attributeToChange = getRandomAttribute(me);
-
-		while (attributeToChange == null) {
-			me = createRandomME();
-			attributeToChange = getRandomAttribute(me);
-		}
-
-		testProject.getModelElements().add(me);
-		changeAttribute(me, attributeToChange);
-
-	}
-
-	/**
 	 * Select a random ME (meA). Select one of its non-containment references. Find an ME matching reference type (meB).
 	 * Add meB to meA.
 	 */
@@ -962,32 +951,6 @@ public final class TestHelper {
 	}
 
 	/**
-	 * Create a random ME and change one of its non-containment references.
-	 */
-	public void doCreateAndChangeRef() {
-
-		ModelElement meToReference = null;
-		ModelElement me = null;
-		EReference refToChange = null;
-
-		while (meToReference == null) {
-			me = createRandomME();
-			refToChange = getRandomNonContainmentRef(me);
-
-			while (refToChange == null) {
-				me = createRandomME();
-				refToChange = getRandomNonContainmentRef(me);
-			}
-
-			meToReference = getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
-		}
-
-		testProject.getModelElements().add(me);
-		changeReference(me, refToChange, meToReference);
-
-	}
-
-	/**
 	 * 
 	 */
 	public void doContainmentReferenceMove() {
@@ -1035,10 +998,10 @@ public final class TestHelper {
 				// get a random ME and one of its containment references (refToChange)
 				meA = getRandomME(testProject);
 				int contentsSize = meA.eContents().size();
-				if(contentsSize != 0){
-					meToMove = (ModelElement) meA.eContents().get(getRandomPosition(contentsSize));	
+				if (contentsSize != 0) {
+					meToMove = (ModelElement) meA.eContents().get(getRandomPosition(contentsSize));
 				}
-				
+
 			}
 			refToChange = meToMove.eContainmentFeature();
 			meB = getRandomMEofType(testProject, meA.eClass());
@@ -1046,7 +1009,7 @@ public final class TestHelper {
 			if (meA.equals(meB) || meA.equals(meC) || meB.equals(meC)) {
 				refToChange = null;
 			}
-			if (!sanityCheck(meB, meC, meToMove, refToChange)) {
+			if (!sanityCheckContainmentRefTransitiveChange(meB, meC, meToMove, refToChange)) {
 				refToChange = null;
 			}
 
@@ -1064,7 +1027,7 @@ public final class TestHelper {
 	 * @param refToChange
 	 * @return
 	 */
-	private boolean sanityCheck(ModelElement meB, ModelElement meC, EObject meToMove,
+	private boolean sanityCheckContainmentRefTransitiveChange(ModelElement meB, ModelElement meC, EObject meToMove,
 		EReference refToChange) {
 
 		if (meToMove == null) {
@@ -1074,8 +1037,119 @@ public final class TestHelper {
 		if (meToMove.equals(meB) || EcoreUtil.isAncestor(meToMove, meB)) {
 			return false;
 		}
-		
+
 		if (meToMove.equals(meC) || EcoreUtil.isAncestor(meToMove, meC)) {
+			return false;
+		}
+
+		return true;
+	}
+
+	/**
+	 * create a random ME and change one of its attributes.
+	 */
+	public void doCreateAndChangeAttribute() {
+		ModelElement me = createRandomME();
+		EAttribute attributeToChange = getRandomAttribute(me);
+
+		while (attributeToChange == null) {
+			me = createRandomME();
+			attributeToChange = getRandomAttribute(me);
+		}
+
+		testProject.getModelElements().add(me);
+		changeAttribute(me, attributeToChange);
+
+	}
+
+	/**
+	 * Create a random ME and change one of its non-containment references.
+	 */
+	public void doCreateAndChangeRef() {
+
+		ModelElement meToReference = null;
+		ModelElement me = null;
+		EReference refToChange = null;
+
+		while (meToReference == null) {
+			me = createRandomME();
+			refToChange = getRandomNonContainmentRef(me);
+
+			while (refToChange == null) {
+				me = createRandomME();
+				refToChange = getRandomNonContainmentRef(me);
+			}
+
+			meToReference = getRandomMEofType(getTestProject(), refToChange.getEReferenceType());
+		}
+
+		testProject.getModelElements().add(me);
+		changeReference(me, refToChange, meToReference);
+
+	}
+
+	/**
+	 * Create a random ME and change one of its attributes, then changes one of its references, then changes one of its
+	 * attributes, and again changes one of its references.
+	 */
+	public void doCreateAndMultipleChange() {
+		ModelElement me = null;
+		EAttribute attr1 = null;
+		EAttribute attr2 = null;
+		EReference ref1 = null;
+		EReference ref2 = null;
+		ModelElement meToRef1 = null;
+		ModelElement meToRef2 = null;
+
+		while (!sanityCheckCreateAndMultipleChange(me, ref1, meToRef1, ref2, meToRef2)) {
+			meToRef1 = null;
+			meToRef2 = null;
+			me = createRandomME();
+			ref1 = getRandomReference(me);
+			ref2 = getRandomReference(me);
+			attr1 = getRandomAttribute(me);
+			attr2 = getRandomAttribute(me);
+
+			if (ref1 == null || ref2 == null || attr1 == null || attr2 == null) {
+				continue;
+			}
+			meToRef1 = getRandomMEofType(getTestProject(), ref1.getEReferenceType());
+			meToRef2 = getRandomMEofType(getTestProject(), ref2.getEReferenceType());
+
+		}
+
+		getTestProject().getModelElements().add(me);
+		changeAttribute(me, attr1);
+		changeReference(me, ref1, meToRef1);
+		changeAttribute(me, attr2);
+		changeReference(me, ref2, meToRef2);
+
+	}
+
+	/**
+	 * @param me
+	 * @param ref1
+	 * @param meToRef1
+	 * @param ref2
+	 * @param meToRef2
+	 * @return
+	 */
+	private boolean sanityCheckCreateAndMultipleChange(ModelElement me, EReference ref1, ModelElement meToRef1,
+		EReference ref2, ModelElement meToRef2) {
+		
+		if(ref1 == null || ref2 == null){
+			return false;
+		}
+		
+		if(meToRef1 == null || meToRef2 == null){
+			return false;
+		}
+		
+		if(ref1.isContainment() && (meToRef1.equals(me) || EcoreUtil.isAncestor(meToRef1, me))){
+			return false;
+		}
+		
+		if(ref2.isContainment() && (meToRef2.equals(me) || EcoreUtil.isAncestor(meToRef2, me))){
 			return false;
 		}
 		
