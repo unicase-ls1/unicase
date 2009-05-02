@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.jface.action.Action;
 import org.unicase.ui.common.diagram.commands.CommandFactory;
 import org.unicase.ui.common.diagram.commands.DeleteFromDiagramCommand;
+import org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
