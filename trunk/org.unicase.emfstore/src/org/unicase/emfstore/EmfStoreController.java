@@ -406,36 +406,9 @@ public class EmfStoreController implements IApplication, Runnable {
 			if (object instanceof ServerSpace) {
 				EmfStoreValidator emfStoreValidator = new EmfStoreValidator((ServerSpace) object);
 				emfStoreValidator.validate(EmfStoreValidator.RESOLVEALL | EmfStoreValidator.MODELELEMENTID
-					| EmfStoreValidator.PROJECTGENERATION);
+					| EmfStoreValidator.PROJECTGENERATION, true);
 			}
 		}
-
-		// EList<EObject> contents = resource.getContents();
-		// for (EObject object : contents) {
-		// if (object instanceof ServerSpace) {
-		// EList<ProjectHistory> projects = ((ServerSpace) object).getProjects();
-		// for (ProjectHistory projectHistory : projects) {
-		// EList<Version> versions = projectHistory.getVersions();
-		// for (Version version : versions) {
-		// TreeIterator<EObject> allContents = version.eResource().getAllContents();
-		// while (allContents.hasNext()) {
-		// allContents.next();
-		//
-		// }
-		// }
-		// }
-		// }
-		// }
-		//
-		// EList<Diagnostic> errors = new BasicEList<Diagnostic>();
-		// EList<Resource> resources = resource.getResourceSet().getResources();
-		// for (Resource currentResource : resources) {
-		// errors.addAll(currentResource.getErrors());
-		// }
-		//
-		// if (errors.size() > 0) {
-		// throw new FatalEmfStoreException(StorageException.NOLOAD + " : " + errors.get(0).getMessage());
-		// }
 	}
 
 	/**
