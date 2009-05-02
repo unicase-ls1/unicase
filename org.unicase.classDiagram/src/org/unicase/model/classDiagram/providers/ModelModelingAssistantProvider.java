@@ -29,11 +29,12 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 /**
  * @generated
  */
-public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
+public class ModelModelingAssistantProvider extends org.unicase.ui.common.providers.ModelingAssistantProvider {
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getTypesForPopupBar(IAdaptable host) {
 		IGraphicalEditPart editPart = (IGraphicalEditPart) host
 				.getAdapter(IGraphicalEditPart.class);
@@ -59,6 +60,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getRelTypesOnSource(IAdaptable source) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
 				.getAdapter(IGraphicalEditPart.class);
@@ -82,6 +84,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
@@ -105,6 +108,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getRelTypesOnSourceAndTarget(IAdaptable source,
 			IAdaptable target) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
@@ -141,6 +145,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getTypesForSource(IAdaptable target,
 			IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
@@ -175,6 +180,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public List getTypesForTarget(IAdaptable source,
 			IElementType relationshipType) {
 		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
@@ -209,6 +215,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EObject selectExistingElementForSource(IAdaptable target,
 			IElementType relationshipType) {
 		return selectExistingElement(target, getTypesForSource(target,
@@ -218,6 +225,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EObject selectExistingElementForTarget(IAdaptable source,
 			IElementType relationshipType) {
 		return selectExistingElement(source, getTypesForTarget(source,
@@ -225,35 +233,17 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
+	@Override
 	protected EObject selectExistingElement(IAdaptable host, Collection types) {
-		if (types.isEmpty()) {
-			return null;
-		}
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host
-				.getAdapter(IGraphicalEditPart.class);
-		if (editPart == null) {
-			return null;
-		}
-		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
-		Collection elements = new HashSet();
-		for (Iterator it = diagram.getElement().eAllContents(); it.hasNext();) {
-			EObject element = (EObject) it.next();
-			if (isApplicableElement(element, types)) {
-				elements.add(element);
-			}
-		}
-		if (elements.isEmpty()) {
-			return null;
-		}
-		return selectElement((EObject[]) elements.toArray(new EObject[elements
-				.size()]));
+		return super.selectExistingElement(host, types);
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean isApplicableElement(EObject element, Collection types) {
 		IElementType type = ElementTypeRegistry.getInstance().getElementType(
 				element);
@@ -263,6 +253,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
