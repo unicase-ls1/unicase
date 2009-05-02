@@ -417,8 +417,13 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		if (containerModelElement == null) {
 			this.getModelElements().remove(modelElement);
 		} else {
-			EList<?> containmentList = (EList<?>) containerModelElement.eGet(modelElement.eContainmentFeature());
-			containmentList.remove(modelElement);
+			EReference containmentFeature = modelElement.eContainmentFeature();
+			if (containmentFeature.isMany()) {
+				EList<?> containmentList = (EList<?>) containerModelElement.eGet(containmentFeature);
+				containmentList.remove(modelElement);
+			} else {
+				containerModelElement.eSet(containmentFeature, null);
+			}
 		}
 
 		handleModelElementDeleted(modelElement);
