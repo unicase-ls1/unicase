@@ -57,6 +57,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
@@ -73,6 +74,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -81,10 +83,12 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -130,6 +134,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -140,6 +145,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -150,6 +156,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
 		return super.getContentPaneFor(editPart);
@@ -169,6 +176,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -197,6 +205,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -207,6 +216,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
 			.getType(org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID));
@@ -220,7 +230,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private org.unicase.ui.usecaseDiagram.unicase.Label fUseCaseFigure_name;
+		private org.unicase.ui.common.diagram.figures.Label fUseCaseFigure_name;
 
 		/**
 		 * @generated
@@ -240,7 +250,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fUseCaseFigure_name = new org.unicase.ui.usecaseDiagram.unicase.Label();
+			fUseCaseFigure_name = new org.unicase.ui.common.diagram.figures.Label();
 
 			fUseCaseFigure_name.setFont(FUSECASEFIGURE_NAME_FONT);
 
@@ -256,6 +266,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean useLocalCoordinates() {
 			return myUseLocalCoordinates;
 		}
@@ -270,7 +281,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public org.unicase.ui.usecaseDiagram.unicase.Label getUseCaseFigure_name() {
+		public org.unicase.ui.common.diagram.figures.Label getUseCaseFigure_name() {
 			return fUseCaseFigure_name;
 		}
 

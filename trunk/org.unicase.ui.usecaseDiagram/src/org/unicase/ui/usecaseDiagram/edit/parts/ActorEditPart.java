@@ -59,6 +59,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
@@ -75,6 +76,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -83,10 +85,12 @@ public class ActorEditPart extends ShapeNodeEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -132,6 +136,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -142,6 +147,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -152,6 +158,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
 		return super.getContentPaneFor(editPart);
@@ -171,6 +178,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -199,6 +207,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -209,6 +218,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
 			.getType(org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID));
@@ -222,7 +232,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private org.unicase.ui.usecaseDiagram.unicase.Label fFigureActorFigure_name;
+		private org.unicase.ui.common.diagram.figures.Label fFigureActorFigure_name;
 
 		/**
 		 * @generated
@@ -251,7 +261,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 			org.unicase.ui.usecaseDiagram.unicase.StickMan actorFigure0 = new org.unicase.ui.usecaseDiagram.unicase.StickMan();
 
 			GridData constraintActorFigure0 = new GridData();
-			constraintActorFigure0.verticalAlignment = GridData.FILL;
+			constraintActorFigure0.verticalAlignment = GridData.VERTICAL_ALIGN_BEGINNING;
 			constraintActorFigure0.horizontalAlignment = GridData.FILL;
 			constraintActorFigure0.horizontalIndent = 0;
 			constraintActorFigure0.horizontalSpan = 1;
@@ -260,12 +270,12 @@ public class ActorEditPart extends ShapeNodeEditPart {
 			constraintActorFigure0.grabExcessVerticalSpace = true;
 			this.add(actorFigure0, constraintActorFigure0);
 
-			fFigureActorFigure_name = new org.unicase.ui.usecaseDiagram.unicase.Label();
+			fFigureActorFigure_name = new org.unicase.ui.common.diagram.figures.Label();
 
 			fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);
 
 			GridData constraintFFigureActorFigure_name = new GridData();
-			constraintFFigureActorFigure_name.verticalAlignment = GridData.CENTER;
+			constraintFFigureActorFigure_name.verticalAlignment = GridData.VERTICAL_ALIGN_END;
 			constraintFFigureActorFigure_name.horizontalAlignment = GridData.CENTER;
 			constraintFFigureActorFigure_name.horizontalIndent = 0;
 			constraintFFigureActorFigure_name.horizontalSpan = 1;
@@ -284,6 +294,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean useLocalCoordinates() {
 			return myUseLocalCoordinates;
 		}
@@ -298,7 +309,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public org.unicase.ui.usecaseDiagram.unicase.Label getFigureActorFigure_name() {
+		public org.unicase.ui.common.diagram.figures.Label getFigureActorFigure_name() {
 			return fFigureActorFigure_name;
 		}
 
