@@ -55,6 +55,12 @@ import java.util.Random;
  */
 public final class TestHelper {
 
+	/**
+	 * Numbers of different integration tests. Each integration test case must have a corresponding method in this class which actually implements the test and will be called from test case.
+	 * Knowing the number of available methods is required in composite test. 
+	 */
+	public static final int NUM_OF_TESTS = 14;
+	
 	private static TransactionalEditingDomain domain;
 	private static final String TEMP_PATH = Configuration.getWorkspaceDirectory() + "tmp";
 	private Random random;
@@ -1014,7 +1020,7 @@ public final class TestHelper {
 	/**
 	 * Create a random ME. Change one of its non-containment references. Delete ME.
 	 */
-	public void doCreateAndDelete() {
+	public void doCreateChangeRefDelete() {
 
 		ModelElement meToReference = null;
 		ModelElement me = null;
@@ -1032,6 +1038,18 @@ public final class TestHelper {
 
 		getTestProject().getModelElements().add(me);
 		changeReference(me, refToChange, meToReference);
+		me.delete();
+
+	}
+	
+	/**
+	 * Create a random ME. Delete ME.
+	 */
+	public void doCreateDelete() {
+
+		
+		ModelElement me = createRandomME();
+		getTestProject().getModelElements().add(me);
 		me.delete();
 
 	}
