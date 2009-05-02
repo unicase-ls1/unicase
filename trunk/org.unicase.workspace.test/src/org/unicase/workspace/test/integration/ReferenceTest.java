@@ -49,8 +49,9 @@ public class ReferenceTest extends IntegrationTestCase {
 	
 	
 	/**
-	 * Takes a random ME (meA). Takes randomly one of its containment references. Creates a new ME matching containment
-	 * reference type (meB). Adds created meB to meA's containment reference.
+	 * This takes a random model element (meA). Takes one of its containments (meToMove). Takes containing reference of
+	 * meToMove. Finds another ME of type meA (meB). Moves meToMove to meB. Finds yet another ME of type meA (meC) .
+	 * Moves meToMove to meC.
 	 * 
 	 * @throws EmfStoreException EmfStoreException
 	 * @throws SerializationException SerializationException

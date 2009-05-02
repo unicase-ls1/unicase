@@ -208,6 +208,12 @@ public class CompositeTest extends IntegrationTestCase {
 				testHelper.doContainmentRefTransitiveChange();
 				break;
 				
+			case 14:
+				// CreateAndMultipleChangeTest
+				System.out.println("CreateAndMultipleChangeTest");
+				testHelper.doCreateAndMultipleChange();
+				break;
+				
 			default:
 				break;
 
