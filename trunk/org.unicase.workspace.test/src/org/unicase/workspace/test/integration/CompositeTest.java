@@ -60,6 +60,7 @@ public class CompositeTest extends IntegrationTestCase {
 		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CompositeTest"));
 
 	}
+	
 
 	private void doTest() {
 		testHelper = new TestHelper(randomSeed, getTestProject());

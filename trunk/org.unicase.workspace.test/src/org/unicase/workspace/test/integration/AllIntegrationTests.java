@@ -20,20 +20,10 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	AttributeChangeTest.class,
-	AttributeTransitiveChangeTest.class, 
-	ContainmentReferenceAddNewTest.class,
-	ContainmentReferenceMoveTest.class,
-	CreateAndChangeAttributeTest.class,
-	CreateAndChangeRefTest.class,
-	CreateAndDeleteTest.class, 
-	DeleteAndRevertDeleteTest.class,
-	DeleteTest.class,
-	MultiAttributeMoveTest.class,
-	MultiReferenceMoveTest.class,
-	NonContainmentReferenceAddTest.class,
-	NonContainmentReferenceRemoveTest.class
-})
+	AttributeTest.class,
+	ReferenceTest.class,
+	CreateDeleteTest.class, 
+	})
 public class AllIntegrationTests {
 
 }
