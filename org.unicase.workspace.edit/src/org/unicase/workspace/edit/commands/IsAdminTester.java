@@ -7,7 +7,7 @@ package org.unicase.workspace.edit.commands;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;

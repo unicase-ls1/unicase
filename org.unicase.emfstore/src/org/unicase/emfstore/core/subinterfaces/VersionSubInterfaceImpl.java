@@ -16,10 +16,10 @@ import org.apache.commons.logging.LogFactory;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.EmfStoreController;
-import org.unicase.emfstore.HistoryCache;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
+import org.unicase.emfstore.core.helper.HistoryCache;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -46,6 +46,7 @@ import org.unicase.model.Project;
 public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 
 	private Log logger;
+	private HistoryCache historyCache;
 
 	/**
 	 * Default constructor.
@@ -56,6 +57,18 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	public VersionSubInterfaceImpl(AbstractEmfstoreInterface parentInterface) throws FatalEmfStoreException {
 		super(parentInterface);
 		logger = LogFactory.getLog(VersionSubInterfaceImpl.class);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @throws FatalEmfStoreException in case of failure
+	 * @see org.unicase.emfstore.core.AbstractSubEmfstoreInterface#initSubInterface()
+	 */
+	@Override
+	public void initSubInterface() throws FatalEmfStoreException {
+		super.initSubInterface();
+		historyCache = EmfStoreController.getInstance().getHistoryCache();
 	}
 
 	/**
@@ -151,12 +164,11 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			// try to save
 			try {
 				try {
-					getSubInterface(ResourceHelper.class).createResourceForProject(newProjectState,
-						newVersion.getPrimarySpec(), projectHistory.getProjectId());
-					getSubInterface(ResourceHelper.class).createResourceForChangePackage(changePackage,
-						newVersion.getPrimarySpec(), projectId);
-					getSubInterface(ResourceHelper.class).createResourceForVersion(newVersion,
+					getResourceHelper().createResourceForProject(newProjectState, newVersion.getPrimarySpec(),
 						projectHistory.getProjectId());
+					getResourceHelper().createResourceForChangePackage(changePackage, newVersion.getPrimarySpec(),
+						projectId);
+					getResourceHelper().createResourceForVersion(newVersion, projectHistory.getProjectId());
 				} catch (FatalEmfStoreException e) {
 					// try to roll back
 					previousHeadVersion.setNextVersion(null);
@@ -175,7 +187,6 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				save(projectHistory);
 
 				// update history cache
-				HistoryCache historyCache = EmfStoreController.getInstance().getHistoryCache();
 				historyCache.addVersionToCache(projectId, newVersion);
 			} catch (FatalEmfStoreException e) {
 				// roll back failed
@@ -201,18 +212,18 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 
 		if (property.equals(ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS)) {
 
-			int x = getSubInterface(ResourceHelper.class).getXFromPolicy(
+			int x = getResourceHelper().getXFromPolicy(
 				ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X,
 				ServerConfiguration.PROJECTSTATE_VERSION_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT, false);
 
 			// always save projecstate of first version
 			int lastVersion = previousHeadVersion.getPrimarySpec().getIdentifier();
 			if (lastVersion != 0 && lastVersion % x != 0) {
-				getSubInterface(ResourceHelper.class).deleteProjectState(projectId, previousHeadVersion);
+				getResourceHelper().deleteProjectState(projectId, previousHeadVersion);
 			}
 
 		} else {
-			getSubInterface(ResourceHelper.class).deleteProjectState(projectId, previousHeadVersion);
+			getResourceHelper().deleteProjectState(projectId, previousHeadVersion);
 		}
 	}
 

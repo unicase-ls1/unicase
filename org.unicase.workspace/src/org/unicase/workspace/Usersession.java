@@ -8,7 +8,6 @@ package org.unicase.workspace;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -17,6 +16,7 @@ import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**

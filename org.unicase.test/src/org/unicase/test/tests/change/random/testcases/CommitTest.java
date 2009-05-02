@@ -4,9 +4,9 @@ import java.util.Calendar;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.test.tests.change.random.RandomChangeTestCase;

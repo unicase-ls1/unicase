@@ -14,7 +14,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade;
 import org.unicase.emfstore.connection.rmi.SerializationUtil;
@@ -31,6 +30,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.ClientVersionOutOfDateException;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;

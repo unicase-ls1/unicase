@@ -6,7 +6,6 @@
 
 package org.unicase.emfstore.exceptions;
 
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 
 /**
  * This exception is throw if there is a problem with the decryption.

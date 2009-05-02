@@ -3,11 +3,10 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.emfstore.accesscontrol;
+package org.unicase.emfstore.exceptions;
 
 import javax.naming.NamingException;
 
-import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
  * Represents a access control violation. Access to a server resource may not be allowed for current user or user name

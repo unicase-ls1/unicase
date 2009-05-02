@@ -14,7 +14,8 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
 /**
- * This subinterfaces implements all user related functionality for the {@link EmfStoreImpl} interface.
+ * This subinterfaces implements all user related functionality for the {@link org.unicase.emfstore.core.EmfStoreImpl}
+ * interface.
  * 
  * @author wesendon
  */
@@ -30,7 +31,6 @@ public class UserSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		super(parentInterface);
 	}
 
-	// TODO: THIS METHOD ISN'T REFACTORED YET AND WILL CHANGE
 	/**
 	 * {@inheritDoc}
 	 */

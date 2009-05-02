@@ -18,7 +18,7 @@ import javax.naming.directory.SearchResult;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.ServerConfiguration;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.exceptions.AccessControlException;
 
 /**
  * Verifies username/password using LDAP.

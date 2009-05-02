@@ -22,6 +22,7 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
@@ -30,7 +31,8 @@ import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 
 /**
- * This subinterfaces implements all project related functionality for the {@link EmfStoreImpl} interface.
+ * This subinterfaces implements all project related functionality for the
+ * {@link org.unicase.emfstore.core.EmfStoreImpl} interface.
  * 
  * @author wesendon
  */
@@ -95,16 +97,20 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 
 	/**
 	 * {@inheritDoc}
+	 * 
+	 * @throws EmfStoreException
+	 * @throws AccessControlException
 	 */
-	public List<ProjectInfo> getProjectList(SessionId sessionId) {
+	public List<ProjectInfo> getProjectList(SessionId sessionId) throws EmfStoreException {
 		synchronized (getMonitor()) {
 			List<ProjectInfo> result = new ArrayList<ProjectInfo>();
-			for (ProjectHistory project : getServerSpace().getProjects()) {
-				// try {
-				result.add(createProjectInfo(project));
-				// } catch (AccessControlException e) {
-				// // do nothing and continue
-				// }
+			for (ProjectHistory projectHistory : getServerSpace().getProjects()) {
+				try {
+					getAuthorizationControl().checkReadAccess(sessionId, projectHistory.getProjectId(), null);
+					result.add(createProjectInfo(projectHistory));
+				} catch (AccessControlException e) {
+					// if this exception occurs, project won't be added to list
+				}
 			}
 			return result;
 		}
@@ -138,7 +144,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				projectHistory = createEmptyProject(name, description, logMessage);
 				Version lastVersion = projectHistory.getLastVersion();
 				lastVersion.setProjectState(project);
-				getSubInterface(ResourceHelper.class).createResourceForProject(project, lastVersion.getPrimarySpec(),
+				getResourceHelper().createResourceForProject(project, lastVersion.getPrimarySpec(),
 					projectHistory.getProjectId());
 				save(lastVersion);
 			} catch (FatalEmfStoreException e) {
@@ -168,13 +174,13 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		// create initial project
 		Project project = ModelFactory.eINSTANCE.createProject();
 		firstVersion.setProjectState(project);
-		getSubInterface(ResourceHelper.class).createResourceForProject(project, firstVersion.getPrimarySpec(),
+		getResourceHelper().createResourceForProject(project, firstVersion.getPrimarySpec(),
 			projectHistory.getProjectId());
 		projectHistory.getVersions().add(firstVersion);
 
 		// add to serverspace and saved
-		getSubInterface(ResourceHelper.class).createResourceForVersion(firstVersion, projectHistory.getProjectId());
-		getSubInterface(ResourceHelper.class).createResourceForProjectHistory(projectHistory);
+		getResourceHelper().createResourceForVersion(firstVersion, projectHistory.getProjectId());
+		getResourceHelper().createResourceForProjectHistory(projectHistory);
 		getServerSpace().getProjects().add(projectHistory);
 		save(getServerSpace());
 		return projectHistory;

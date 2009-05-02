@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.emfstore.core.subinterfaces;
+package org.unicase.emfstore.core.helper;
 
 import java.io.File;
 
@@ -13,14 +13,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.unicase.emfstore.ServerConfiguration;
-import org.unicase.emfstore.core.AbstractEmfstoreInterface;
-import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.model.Project;
 
 /**
@@ -28,18 +28,19 @@ import org.unicase.model.Project;
  * 
  * @author wesendon
  */
-public class ResourceHelper extends AbstractSubEmfstoreInterface {
+public class ResourceHelper {
 
 	private Log logger;
+	private final ServerSpace serverSpace;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parentInterface parent interface
+	 * @param serverSpace serverspace
 	 * @throws FatalEmfStoreException in case of failure
 	 */
-	public ResourceHelper(AbstractEmfstoreInterface parentInterface) throws FatalEmfStoreException {
-		super(parentInterface);
+	public ResourceHelper(ServerSpace serverSpace) throws FatalEmfStoreException {
+		this.serverSpace = serverSpace;
 		logger = LogFactory.getLog(ResourceHelper.class);
 	}
 
@@ -49,7 +50,7 @@ public class ResourceHelper extends AbstractSubEmfstoreInterface {
 	 * @param projectHistory project history
 	 * @throws FatalEmfStoreException if saving fails
 	 */
-	protected void createResourceForProjectHistory(ProjectHistory projectHistory) throws FatalEmfStoreException {
+	public void createResourceForProjectHistory(ProjectHistory projectHistory) throws FatalEmfStoreException {
 		String fileName = getProjectFolder(projectHistory.getProjectId()) + "projectHistory"
 			+ ServerConfiguration.FILE_EXTENSION_PROJECTHISTORY;
 		saveInResource(projectHistory, fileName);
@@ -62,7 +63,7 @@ public class ResourceHelper extends AbstractSubEmfstoreInterface {
 	 * @param projectId project id
 	 * @throws FatalEmfStoreException if saving fails
 	 */
-	protected void createResourceForVersion(Version version, ProjectId projectId) throws FatalEmfStoreException {
+	public void createResourceForVersion(Version version, ProjectId projectId) throws FatalEmfStoreException {
 		String fileName = getProjectFolder(projectId) + ServerConfiguration.getVersionFilePrefix()
 			+ version.getPrimarySpec().getIdentifier() + ServerConfiguration.FILE_EXTENSION_VERSION;
 		saveInResource(version, fileName);
@@ -76,7 +77,7 @@ public class ResourceHelper extends AbstractSubEmfstoreInterface {
 	 * @param versionId versionid
 	 * @throws FatalEmfStoreException if saving fails
 	 */
-	protected void createResourceForProject(Project project, PrimaryVersionSpec versionId, ProjectId projectId)
+	public void createResourceForProject(Project project, PrimaryVersionSpec versionId, ProjectId projectId)
 		throws FatalEmfStoreException {
 		String filename = getProjectFolder(projectId) + getProjectFile(versionId.getIdentifier());
 		saveInResource(project, filename);
@@ -90,7 +91,7 @@ public class ResourceHelper extends AbstractSubEmfstoreInterface {
 	 * @param projectId projectId
 	 * @throws FatalEmfStoreException if saving fails
 	 */
-	protected void createResourceForChangePackage(ChangePackage changePackage, PrimaryVersionSpec versionId,
+	public void createResourceForChangePackage(ChangePackage changePackage, PrimaryVersionSpec versionId,
 		ProjectId projectId) throws FatalEmfStoreException {
 		String filename = getProjectFolder(projectId) + getChangePackageFile(versionId.getIdentifier());
 		saveInResource(changePackage, filename);
@@ -103,7 +104,7 @@ public class ResourceHelper extends AbstractSubEmfstoreInterface {
 	 * @param projectId project id
 	 * @param previousHeadVersion last version
 	 */
-	protected void deleteProjectState(ProjectId projectId, Version previousHeadVersion) {
+	public void deleteProjectState(ProjectId projectId, Version previousHeadVersion) {
 		previousHeadVersion.setProjectState(null);
 
 		// the projectstate is set null in the containment tree. Then the
@@ -133,7 +134,7 @@ public class ResourceHelper extends AbstractSubEmfstoreInterface {
 	 * @param allowZero allow zero for x
 	 * @return x
 	 */
-	protected int getXFromPolicy(String policy, String defaultPolicy, boolean allowZero) {
+	public int getXFromPolicy(String policy, String defaultPolicy, boolean allowZero) {
 		int x;
 		try {
 			x = Integer.parseInt(ServerConfiguration.getProperties().getProperty(policy, defaultPolicy));
@@ -168,8 +169,24 @@ public class ResourceHelper extends AbstractSubEmfstoreInterface {
 	}
 
 	private void saveInResource(EObject obj, String fileName) throws FatalEmfStoreException {
-		Resource resource = getServerSpace().eResource().getResourceSet().createResource(URI.createFileURI(fileName));
+		Resource resource = serverSpace.eResource().getResourceSet().createResource(URI.createFileURI(fileName));
 		resource.getContents().add(obj);
 		save(obj);
+	}
+
+	/**
+	 * Saves an eObject.
+	 * 
+	 * @param object the object
+	 * @throws FatalEmfStoreException in case of failure
+	 */
+	public void save(EObject object) throws FatalEmfStoreException {
+		try {
+			object.eResource().save(null);
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (Exception e) {
+			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+		}
+		// END SUPRESS CATCH EXCEPTION
 	}
 }

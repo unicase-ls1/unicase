@@ -24,7 +24,7 @@ public class FixSuite {
 		// fixes.add(new AddChangeOperationFix());
 		// fixes.add(new ConvertNewOperation());
 		// fixes.add(new FindChanges());
-		fixes.add(new CopyProjectTest());
+		// fixes.add(new CopyProjectTest());
 		fixes.add(new CheckChanges());
 	}
 

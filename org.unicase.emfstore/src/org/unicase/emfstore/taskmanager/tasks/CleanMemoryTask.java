@@ -9,9 +9,15 @@ import java.util.Date;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.unicase.emfstore.EmfStore;
-import org.unicase.emfstore.EmfStoreImpl;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.unicase.emfstore.core.MonitorProvider;
+import org.unicase.emfstore.esmodel.ServerSpace;
+import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.taskmanager.Task;
+import org.unicase.model.Project;
 
 /**
  * This task is used to clean the memory by proxifying the projectstates.
@@ -25,18 +31,18 @@ public class CleanMemoryTask extends Task {
 	// for debugging
 	// private static final long PERIOD = 10000;
 
-	private EmfStoreImpl emfStoreImpl;
-
 	private static final Log LOGGER = LogFactory.getLog(CleanMemoryTask.class);
+
+	private final ServerSpace serverSpace;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param emfStore emfstore interface
+	 * @param serverSpace serverSpace
 	 */
-	public CleanMemoryTask(EmfStore emfStore) {
+	public CleanMemoryTask(ServerSpace serverSpace) {
 		super(new Date(System.currentTimeMillis() + PERIOD), PERIOD);
-		this.emfStoreImpl = (EmfStoreImpl) emfStore;
+		this.serverSpace = serverSpace;
 	}
 
 	/**
@@ -44,8 +50,26 @@ public class CleanMemoryTask extends Task {
 	 */
 	@Override
 	public void executeTask() {
-		LOGGER.info("checking whether projectstates have to be unloaded.");
-		emfStoreImpl.unloadProjectStates();
+		synchronized (MonitorProvider.getInstance().getMonitor()) {
+			LOGGER.info("checking whether projectstates have to be unloaded.");
+			ResourceSet resourceSet = serverSpace.eResource().getResourceSet();
+			EList<Resource> resources = resourceSet.getResources();
+			for (int i = 0; i < resources.size(); i++) {
+				Resource res = resources.get(i);
+				if (res.isLoaded()) {
+					EList<EObject> contents = res.getContents();
+					if (contents.size() == 1 && contents.get(0) instanceof Project) {
+						Project project = (Project) contents.get(0);
+						if (project.eContainer() instanceof Version
+							&& ((Version) project.eContainer()).getNextVersion() != null) {
+							LOGGER.info("unloading: " + project);
+							res.unload();
+						}
+					}
+				}
+			}
+			System.gc();
+		}
 	}
 
 }

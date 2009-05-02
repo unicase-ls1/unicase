@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.accesscontrol.authentication.LDAPVerifier;
 import org.unicase.emfstore.accesscontrol.authentication.SimplePropertyFileVerifyer;
+import org.unicase.emfstore.core.MonitorProvider;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ServerSpace;
@@ -25,6 +26,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidPropertyException;
@@ -87,12 +89,14 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 * @throws AccessControlException if there is no such user
 	 */
 	private ACUser resolveUser(String username) throws AccessControlException {
-		for (ACUser user : serverSpace.getUsers()) {
-			if (user.getName().equals(username)) {
-				return user;
+		synchronized (MonitorProvider.getInstance().getMonitor()) {
+			for (ACUser user : serverSpace.getUsers()) {
+				if (user.getName().equals(username)) {
+					return user;
+				}
 			}
+			throw new AccessControlException();
 		}
-		throw new AccessControlException();
 	}
 
 	/**
@@ -177,23 +181,27 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	}
 
 	private List<ACGroup> getGroups(ACOrgUnit orgUnit) {
-		ArrayList<ACGroup> groups = new ArrayList<ACGroup>();
-		for (ACGroup group : serverSpace.getGroups()) {
-			if (group.getMembers().contains(orgUnit)) {
-				groups.add(group);
-				groups.addAll(getGroups(group));
+		synchronized (MonitorProvider.getInstance().getMonitor()) {
+			ArrayList<ACGroup> groups = new ArrayList<ACGroup>();
+			for (ACGroup group : serverSpace.getGroups()) {
+				if (group.getMembers().contains(orgUnit)) {
+					groups.add(group);
+					groups.addAll(getGroups(group));
+				}
 			}
+			return groups;
 		}
-		return groups;
 	}
 
 	private ACUser getUser(ACOrgUnitId orgUnitId) throws AccessControlException {
-		for (ACUser user : serverSpace.getUsers()) {
-			if (user.getId().equals(orgUnitId)) {
-				return user;
+		synchronized (MonitorProvider.getInstance().getMonitor()) {
+			for (ACUser user : serverSpace.getUsers()) {
+				if (user.getId().equals(orgUnitId)) {
+					return user;
+				}
 			}
+			throw new AccessControlException("Given User doesn't exist.");
 		}
-		throw new AccessControlException("Given User doesn't exist.");
 	}
 
 	/**

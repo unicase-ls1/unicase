@@ -12,7 +12,7 @@ import java.util.Properties;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.exceptions.AccessControlException;
 
 /**
  * This verifyer can be used to store user and passwords in a property file. Entries in the property file look should

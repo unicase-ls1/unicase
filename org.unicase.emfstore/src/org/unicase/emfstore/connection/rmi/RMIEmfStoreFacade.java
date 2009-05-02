@@ -11,7 +11,7 @@ import java.rmi.RemoteException;
 import java.util.List;
 
 import org.unicase.emfstore.EmfStore;
-import org.unicase.emfstore.accesscontrol.AccessControlException;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
 // END IGNORE UNNECCESSARY IMPORT

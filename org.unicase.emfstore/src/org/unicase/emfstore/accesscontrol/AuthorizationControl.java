@@ -11,6 +11,7 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.model.ModelElement;
 
 /**

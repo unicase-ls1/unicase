@@ -1,7 +1,7 @@
 package org.unicase.test.servertests;
 
-import org.unicase.emfstore.accesscontrol.AccessControlException;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.test.TestSuite;
 import org.unicase.workspace.WorkspaceManager;
