@@ -304,5 +304,14 @@ public interface Usersession extends EObject {
 	 */
 	boolean isLoggedIn();
 
+	/**
+	 * Deletes a project on the server.
+	 * 
+	 * @param projectId projectId
+	 * @param deleteFiles deletes files too
+	 * @throws EmfStoreException in case of failure
+	 */
+	void deleteProject(ProjectId projectId, boolean deleteFiles) throws EmfStoreException;
+
 	// end of custom code
 } // Usersession

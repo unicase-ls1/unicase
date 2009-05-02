@@ -5,6 +5,8 @@
  */
 package org.unicase.emfstore.core.subinterfaces;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -29,6 +31,7 @@ import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
+import org.unicase.model.util.FileUtil;
 
 /**
  * This subinterfaces implements all project related functionality for the
@@ -152,6 +155,30 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			}
 
 			return createProjectInfo(projectHistory);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void deleteProject(ProjectId projectId, boolean deleteFiles) throws EmfStoreException {
+		synchronized (getMonitor()) {
+			try {
+				ProjectHistory project = getProject(projectId);
+				getServerSpace().getProjects().remove(project);
+				save(getServerSpace());
+				if (deleteFiles) {
+					File projectFolder = new File(getResourceHelper().getProjectFolder(projectId));
+					try {
+						FileUtil.deleteFolder(projectFolder);
+					} catch (IOException e) {
+						throw new StorageException(
+							"Project files couldn't be deleted, but it was deleted from containment tree.", e);
+					}
+				}
+			} catch (FatalEmfStoreException e) {
+				throw new StorageException(StorageException.NOSAVE);
+			}
 		}
 	}
 

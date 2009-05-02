@@ -114,6 +114,15 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	/**
 	 * {@inheritDoc}
 	 */
+	public void deleteProject(SessionId sessionId, ProjectId projectId, boolean deleteFiles) throws EmfStoreException {
+		sanityCheckObjects(new Object[] { sessionId, projectId });
+		checkServerAdminAccess(sessionId);
+		getSubInterface(ProjectSubInterfaceImpl.class).deleteProject(projectId, deleteFiles);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public PrimaryVersionSpec createVersion(SessionId sessionId, ProjectId projectId,
 		PrimaryVersionSpec baseVersionSpec, ChangePackage changePackage, LogMessage logMessage)
 		throws EmfStoreException, InvalidVersionSpecException {

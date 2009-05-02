@@ -222,6 +222,18 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	/**
 	 * {@inheritDoc}
 	 */
+	public void deleteProject(SessionId sessionId, ProjectId projectId, boolean deleteFiles) throws EmfStoreException {
+		try {
+			getFacade(sessionId).deleteProject(SerializationUtil.eObjectToString(sessionId),
+				SerializationUtil.eObjectToString(projectId), deleteFiles);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
 	public ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException {
 		try {
 			return (ACUser) SerializationUtil.stringToEObject(getFacade(sessionId).resolveUser(

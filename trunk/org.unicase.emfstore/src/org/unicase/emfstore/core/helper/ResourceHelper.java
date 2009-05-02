@@ -153,6 +153,17 @@ public class ResourceHelper {
 		return x;
 	}
 
+	/**
+	 * Returns the file path to a given project.
+	 * 
+	 * @param projectId the project id
+	 * @return file path
+	 */
+	public String getProjectFolder(ProjectId projectId) {
+		return ServerConfiguration.getServerHome() + ServerConfiguration.getProjectDirectoryPrefix()
+			+ projectId.getId() + File.separatorChar;
+	}
+
 	private String getProjectFile(int versionNumber) {
 		return ServerConfiguration.getProjectStatePrefix() + versionNumber
 			+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
@@ -161,11 +172,6 @@ public class ResourceHelper {
 	private String getChangePackageFile(int versionNumber) {
 		return ServerConfiguration.getChangePackageFilePrefix() + versionNumber
 			+ ServerConfiguration.FILE_EXTENSION_CHANGEPACKAGE;
-	}
-
-	private String getProjectFolder(ProjectId projectId) {
-		return ServerConfiguration.getServerHome() + ServerConfiguration.getProjectDirectoryPrefix()
-			+ projectId.getId() + File.separatorChar;
 	}
 
 	private void saveInResource(EObject obj, String fileName) throws FatalEmfStoreException {
