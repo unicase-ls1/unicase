@@ -47,6 +47,35 @@ public class ReferenceTest extends IntegrationTestCase {
 
 	}
 	
+	
+	/**
+	 * Takes a random ME (meA). Takes randomly one of its containment references. Creates a new ME matching containment
+	 * reference type (meB). Adds created meB to meA's containment reference.
+	 * 
+	 * @throws EmfStoreException EmfStoreException
+	 * @throws SerializationException SerializationException
+	 */
+	@Test
+	public void containmentRefTransitiveChange() throws SerializationException, EmfStoreException {
+		System.out.println("ContainmentRefTransitiveChange");
+
+		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
+		TransactionalEditingDomain domain = TestHelper.getDomain();
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				testHelper.doContainmentRefTransitiveChange();
+			}
+
+		});
+
+		commitChanges();
+		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentRefTransitiveChange"));
+
+	}
+	
+	
 	/**
 	 * This move an element in a many reference list to another position.
 	 * 
