@@ -24,7 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.diagram.MEDiagramEditPart;
+import org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 
 /**
