@@ -24,7 +24,7 @@ import org.eclipse.ui.IPageListener;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.common.diagram.ModelDiagramEditor;
+import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
 import org.unicase.ui.tom.notifications.TouchAdapterImpl;
 import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;

@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.ui.IEditorPart;
-import org.unicase.ui.common.diagram.ModelDiagramEditor;
+import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
 import org.unicase.ui.tom.gestures.CreateNodeAndConnectionGesture;
 import org.unicase.ui.tom.gestures.CreateNodeGesture;
 import org.unicase.ui.tom.gestures.Gesture;
