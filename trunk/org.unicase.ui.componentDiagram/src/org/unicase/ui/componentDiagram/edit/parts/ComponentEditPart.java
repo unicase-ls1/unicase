@@ -55,6 +55,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
@@ -71,6 +72,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -79,10 +81,12 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -128,6 +132,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -138,6 +143,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -148,6 +154,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
 		return super.getContentPaneFor(editPart);
@@ -167,6 +174,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -195,6 +203,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -205,6 +214,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
 			.getType(org.unicase.ui.componentDiagram.edit.parts.ComponentNameEditPart.VISUAL_ID));
@@ -218,7 +228,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private org.unicase.ui.componentDiagram.unicase.Label fFigureComponentFigure_name;
+		private org.unicase.ui.common.diagram.figures.Label fFigureComponentFigure_name;
 
 		/**
 		 * @generated
@@ -244,7 +254,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 			this.add(header0, BorderLayout.TOP);
 			header0.setLayoutManager(new StackLayout());
 
-			org.unicase.ui.componentDiagram.unicase.Label componentText1 = new org.unicase.ui.componentDiagram.unicase.Label();
+			org.unicase.ui.common.diagram.figures.Label componentText1 = new org.unicase.ui.common.diagram.figures.Label();
 
 			componentText1.setText("\u00ABcomponent\u00BB");
 
@@ -271,7 +281,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 
 			fig0.setLayoutManager(layoutFig0);
 
-			fFigureComponentFigure_name = new org.unicase.ui.componentDiagram.unicase.Label();
+			fFigureComponentFigure_name = new org.unicase.ui.common.diagram.figures.Label();
 
 			fFigureComponentFigure_name.setFont(FFIGURECOMPONENTFIGURE_NAME_FONT);
 
@@ -287,6 +297,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean useLocalCoordinates() {
 			return myUseLocalCoordinates;
 		}
@@ -301,7 +312,7 @@ public class ComponentEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public org.unicase.ui.componentDiagram.unicase.Label getFigureComponentFigure_name() {
+		public org.unicase.ui.common.diagram.figures.Label getFigureComponentFigure_name() {
 			return fFigureComponentFigure_name;
 		}
 
