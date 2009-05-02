@@ -7,6 +7,9 @@ package org.unicase.workspace.test.operations;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.List;
+import java.util.Set;
+
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -19,15 +22,15 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.rationale.Solution;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
-
-import java.util.List;
-import java.util.Set;
 
 /**
  * Tests the MultiReferenceOperation.
@@ -320,5 +323,42 @@ public class CreateDeleteOperationTest extends OperationTest {
 			}
 		}
 		assertEquals(2030, getProjectSpace().getOperations().size());
+	}
+	
+	/**
+	 * Delete a parent with a child contained in a single reference.
+	 */
+	@Test
+	public void deleteWithSingleReferenceChildTest() {
+		Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		Solution solution = RationaleFactory.eINSTANCE.createSolution();
+		issue.setSolution(solution);
+		getProject().addModelElement(issue);
+		
+		assertEquals(true, getProject().contains(issue));
+		assertEquals(true, getProject().contains(solution));
+		assertEquals(solution, issue.getSolution());
+		assertEquals(issue, solution.getIssue());
+		
+		clearOperations();
+		
+		getProject().deleteModelElement(solution);
+		
+		assertEquals(true, getProject().contains(issue));
+		assertEquals(false, getProject().contains(solution));
+		assertEquals(null, issue.getSolution());
+		assertEquals(null, solution.getIssue());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		assertEquals(1, operations.size());
+		AbstractOperation operation = operations.get(0);
+		assertEquals(true, operation instanceof CreateDeleteOperation);
+		CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
+		assertEquals(true, createDeleteOperation.isDelete());
+		assertEquals(solution.getModelElementId(), createDeleteOperation.getModelElementId());
+		assertEquals(solution.getModelElementId(), createDeleteOperation.getModelElement().getModelElementId());
+		EList<ReferenceOperation> subOperations = createDeleteOperation.getSubOperations();
+		assertEquals(1, subOperations.size());
+		
 	}
 }
