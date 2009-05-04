@@ -19,14 +19,24 @@ public abstract class Task {
 	private long period;
 
 	/**
-	 * Default constructor.
+	 * Default constructor. Allows to set first execution date and a period, after which it will be repeated.
 	 * 
-	 * @param executionTime date
-	 * @param period in ms, has to bigger than 0 to be cyclic
+	 * @param executionTime date of first run
+	 * @param period time in ms after which the task will be executed again. If the period is 0, the task will only be
+	 *            executed once.
 	 */
 	public Task(Date executionTime, long period) {
 		this.executionTime = executionTime;
 		this.period = period;
+	}
+
+	/**
+	 * This constructor is used for tasks, which are supposed to run once only.
+	 * 
+	 * @param executionTime time execution
+	 */
+	public Task(Date executionTime) {
+		this(executionTime, 0);
 	}
 
 	/**
