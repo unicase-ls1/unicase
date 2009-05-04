@@ -16,15 +16,15 @@ public interface DataAnalyzer {
 	/**
 	 * Returns the specified values of the given {@link ProjectAnalysisData} 
 	 * 
-	 * @param data the ProjectAnalysisData
+	 * @param data ProjectAnalysisData
 	 * @return values per column
 	 */
-	public List<Object> getValue(ProjectAnalysisData data);
+	List<Object> getValue(ProjectAnalysisData data);
 
 	/**
 	 * Returns the names of the columns.
 	 * 
 	 * @return the names of the columns
 	 */
-	public List<String> getName();
+	List<String> getName();
 }
