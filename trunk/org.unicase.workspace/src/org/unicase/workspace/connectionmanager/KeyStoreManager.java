@@ -48,7 +48,9 @@ public final class KeyStoreManager {
 
 	private static final String KEYSTORENAME = "unicaseClient.keystore";
 
-	private static final String DEFAULT_CERTIFICATE = "unicase.org test test(!!!) certificate";
+	private static final String DEFAULT_UNICASE_CERTIFICATE = "unicase.org 2009#1";
+
+	private static final String DEFAULT_DEV_CERTIFICATE = "unicase.org test test(!!!) certificate";
 
 	private KeyStore keyStore;
 
@@ -128,9 +130,8 @@ public final class KeyStoreManager {
 	 *             operations.
 	 */
 	public void deleteCertificate(String alias) throws CertificateStoreException {
-		if (alias.equals(DEFAULT_CERTIFICATE)) {
-			String message = "Cannot delete default certificate!";
-			throw new CertificateStoreException(message);
+		if (isDefaultCertificate(alias)) {
+			throw new CertificateStoreException("Cannot delete default certificate!");
 		} else {
 			loadKeyStore();
 			try {
@@ -154,7 +155,7 @@ public final class KeyStoreManager {
 	 *             operations.
 	 */
 	public void addCertificate(String alias, String path) throws InvalidCertificateException, CertificateStoreException {
-		if (!alias.equals(DEFAULT_CERTIFICATE)) {
+		if (!isDefaultCertificate(alias)) {
 			loadKeyStore();
 			try {
 				CertificateFactory factory = CertificateFactory.getInstance("X.509");
@@ -253,28 +254,22 @@ public final class KeyStoreManager {
 	/**
 	 * Encrypts a password.
 	 * 
-	 * @param inp String
+	 * @param password String
 	 * @param serverInfo ServerInfo
 	 * @return String
 	 */
-	public static String encrypt(String inp, ServerInfo serverInfo) {
-		KeyStoreManager keyStoreManager = KeyStoreManager.getInstance();
-		String alias = (serverInfo.getCertificateAlias() == null) ? DEFAULT_CERTIFICATE : serverInfo
-			.getCertificateAlias();
+	public String encrypt(String password, ServerInfo serverInfo) {
 		try {
-			Certificate publicKey = keyStoreManager.getCertificate(alias);
-			if (publicKey == null) {
-				publicKey = KeyStoreManager.getInstance().getCertificate(DEFAULT_CERTIFICATE);
-			}
+			Certificate publicKey = getCertificateForEncryption(serverInfo);
 			PublicKey key = publicKey.getPublicKey();
 			byte[] inpBytes;
-			inpBytes = inp.getBytes();
+			inpBytes = password.getBytes();
 			Cipher cipher = Cipher.getInstance("RSA");
 			cipher.init(Cipher.ENCRYPT_MODE, key);
 			byte[] encryptededByteAr = cipher.doFinal(inpBytes);
 			byte[] base64EncodedByteAr = Base64.encodeBase64(encryptededByteAr);
 			return new String(base64EncodedByteAr);
-
+			// TODO: OW When new login proxy object with encryption handler is implemented, handle exceptions
 		} catch (NoSuchAlgorithmException e) {
 			// nothing to do
 			e.printStackTrace();
@@ -294,7 +289,35 @@ public final class KeyStoreManager {
 			// Auto-generated catch block
 			e.printStackTrace();
 		}
-		return inp;
+		WorkspaceUtil.logException("Couldn't encrypt password.", new CertificateStoreException(
+			"Couldn't encrypt password."));
+		return "";
+	}
+
+	private Certificate getCertificateForEncryption(ServerInfo serverInfo) throws CertificateStoreException {
+		String alias = "";
+		if (serverInfo.getCertificateAlias() == null) {
+			alias = getDefaultCertificate();
+		} else {
+			alias = serverInfo.getCertificateAlias();
+		}
+		Certificate publicKey = getCertificate(alias);
+		if (publicKey == null) {
+			publicKey = getCertificate(getDefaultCertificate());
+		}
+		return publicKey;
+	}
+
+	private boolean isDefaultCertificate(String alias) {
+		return alias.equals(DEFAULT_DEV_CERTIFICATE) || alias.equals(DEFAULT_UNICASE_CERTIFICATE);
+	}
+
+	private String getDefaultCertificate() {
+		if (Configuration.isDeveloperVersion()) {
+			return DEFAULT_DEV_CERTIFICATE;
+		} else {
+			return DEFAULT_UNICASE_CERTIFICATE;
+		}
 	}
 
 	/**
