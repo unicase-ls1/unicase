@@ -696,6 +696,29 @@
           figure="//@figures.3/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
+  <figures
+      name="ActivityDiagram">
+    <descriptors
+        name="ActivityFigure">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="ActivityFigure">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="ActivityFigure_name"
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.Label"/>
+      </actualFigure>
+      <accessors
+          accessor="getActivityFigureName"
+          figure="//@figures.4/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
+  </figures>
   <nodes
       name="Class"
       figure="ClassFigure"/>
@@ -738,6 +761,9 @@
   <nodes
       name="State"
       figure="StateFigure"/>
+  <nodes
+      name="Activity"
+      figure="ActivityFigure"/>
   <connections
       name="Association"
       figure="AssociationFigure"/>
@@ -913,4 +939,8 @@
       figure="StateFigure"
       elementIcon="false"
       accessor="//@figures.3/@descriptors.0/@accessors.2"/>
+  <labels
+      name="ActivityNode_name"
+      figure="ActivityFigure"
+      accessor="//@figures.4/@descriptors.0/@accessors.0"/>
 </gmfgraph:Canvas>
