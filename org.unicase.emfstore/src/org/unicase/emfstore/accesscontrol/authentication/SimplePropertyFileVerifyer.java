@@ -30,9 +30,8 @@ public class SimplePropertyFileVerifyer extends AbstractAuthenticationControl {
 	 * Default constructor.
 	 * 
 	 * @param filePath path to password file
-	 * @throws AccessControlException an exception
 	 */
-	public SimplePropertyFileVerifyer(String filePath) throws AccessControlException {
+	public SimplePropertyFileVerifyer(String filePath) {
 		super();
 		logger = LogFactory.getLog(SimplePropertyFileVerifyer.class);
 		passwordFile = new Properties();

@@ -27,7 +27,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidPropertyException;
 import org.unicase.model.ModelElement;
@@ -49,9 +48,8 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 * 
 	 * @param serverSpace the server space to work on
 	 * @throws FatalEmfStoreException an exception
-	 * @throws EmfStoreException an exception
 	 */
-	public AccessControlImpl(ServerSpace serverSpace) throws FatalEmfStoreException, EmfStoreException {
+	public AccessControlImpl(ServerSpace serverSpace) throws FatalEmfStoreException {
 		this.sessionUserMap = new HashMap<SessionId, ACUserContainer>();
 		this.serverSpace = serverSpace;
 
