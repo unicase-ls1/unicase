@@ -31,7 +31,6 @@ import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
-import org.unicase.ui.common.diagram.Messages;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
