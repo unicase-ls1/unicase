@@ -1338,4 +1338,25 @@
           eType="#//ModelElementId" containment="true"/>
     </eClassifiers>
   </eSubpackages>
+  <eSubpackages name="activity" nsURI="http://unicase.org/model/activity" nsPrefix="org.unicase.model.activity">
+    <eClassifiers xsi:type="ecore:EClass" name="ActivityObject" abstract="true" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="incomingTransitions"
+          upperBound="-1" eType="#//activity/Transition" eOpposite="#//activity/Transition/target"
+          eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingTransitions"
+          upperBound="-1" eType="#//activity/Transition" eOpposite="#//activity/Transition/source"
+          eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//activity/ActivityObject"
+          eOpposite="#//activity/ActivityObject/outgoingTransitions" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//activity/ActivityObject"
+          eOpposite="#//activity/ActivityObject/incomingTransitions" eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Activity" eSuperTypes="#//activity/ActivityObject"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Fork" eSuperTypes="#//activity/ActivityObject">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="entryConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exitConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
 </ecore:EPackage>
