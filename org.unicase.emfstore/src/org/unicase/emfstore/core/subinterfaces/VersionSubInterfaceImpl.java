@@ -19,6 +19,7 @@ import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
+import org.unicase.emfstore.core.EmfStoreImpl;
 import org.unicase.emfstore.core.helper.HistoryCache;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -219,11 +220,13 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			// always save projecstate of first version
 			int lastVersion = previousHeadVersion.getPrimarySpec().getIdentifier();
 			if (lastVersion != 0 && lastVersion % x != 0) {
-				getResourceHelper().deleteProjectState(projectId, previousHeadVersion);
+				previousHeadVersion.setProjectState(null);
+				getResourceHelper().deleteProjectState(projectId, previousHeadVersion.getPrimarySpec().getIdentifier());
 			}
 
 		} else {
-			getResourceHelper().deleteProjectState(projectId, previousHeadVersion);
+			previousHeadVersion.setProjectState(null);
+			getResourceHelper().deleteProjectState(projectId, previousHeadVersion.getPrimarySpec().getIdentifier());
 		}
 	}
 

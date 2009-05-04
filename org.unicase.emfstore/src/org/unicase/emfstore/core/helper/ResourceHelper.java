@@ -98,20 +98,12 @@ public class ResourceHelper {
 	}
 
 	/**
-	 * Deletes a projectstate from the containment tree, depending on the policy the file is deleted to or renamed for
-	 * backup reasons.
+	 * Deletes a projectstate, depending on the policy, the file is deleted or renamed for backup reasons.
 	 * 
 	 * @param projectId project id
-	 * @param previousHeadVersion last version
+	 * @param lastVersion the version
 	 */
-	public void deleteProjectState(ProjectId projectId, Version previousHeadVersion) {
-		previousHeadVersion.setProjectState(null);
-
-		// the projectstate is set null in the containment tree. Then the
-		// emfstore checks whether he should the containing file, or if it
-		// should be backuped.
-
-		int lastVersion = previousHeadVersion.getPrimarySpec().getIdentifier();
+	public void deleteProjectState(ProjectId projectId, int lastVersion) {
 		int x = getXFromPolicy(ServerConfiguration.PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X,
 			ServerConfiguration.PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT, true);
 		File file = new File(getProjectFolder(projectId) + getProjectFile(lastVersion));
