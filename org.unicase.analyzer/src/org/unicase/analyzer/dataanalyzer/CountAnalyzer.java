@@ -7,7 +7,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.model.ModelElement;
@@ -20,6 +19,11 @@ public class CountAnalyzer implements DataAnalyzer {
 
 	private EClass eclass;
 	
+	/**
+	 * Constructor of CountAnalyzer. A analyzer which can count
+	 * the number of modelElements of a given EClass.
+	 * @param eclass EClass
+	 */
 	public CountAnalyzer(EClass eclass){
 		this.eclass = eclass;
 	}

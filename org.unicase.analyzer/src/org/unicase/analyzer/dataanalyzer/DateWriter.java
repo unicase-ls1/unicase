@@ -24,12 +24,16 @@ public class DateWriter implements DataAnalyzer {
 	private VersionIterator projectIterator;
 	private Date date;
 	private DateFormat format;
-	private Calendar calendar = Calendar.getInstance();
-	
+	private Calendar calendar;
+	/**
+	 * Constructor of DateWriter
+	 * @param projectIterator VersionIterator
+	 */
 	public DateWriter(VersionIterator projectIterator){
 		this.projectIterator = projectIterator;
 		this.date = new Date();
 		this.format = new SimpleDateFormat("EEE d MMM yyyy HH:mm:ss Z");
+		this.calendar = Calendar.getInstance();
 	}
 	
 	
