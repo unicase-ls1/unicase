@@ -32,7 +32,7 @@ public class CountAnalyzer implements DataAnalyzer {
 	 */
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
-		names.add(eclass.getName());
+		names.add(eclass.getName()+'#');
 		return names;
 	}
 

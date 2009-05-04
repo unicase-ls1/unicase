@@ -16,7 +16,6 @@ public class ModelElementAnalyzer implements DataAnalyzer {
 
 	private static final String MECOUNT = "ModelElement #";
 
-	//private final static String DMECOUNT = "Domain ModelElement #";
 	/**
 	 * (non-Javadoc).
 	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
@@ -25,13 +24,12 @@ public class ModelElementAnalyzer implements DataAnalyzer {
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
 		names.add(MECOUNT);
-	//names.add(DMECOUNT);
 		return names;
 	}
 
 	/** (non-Javadoc).
 	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
-	 * @param data data
+	 * @param data {@link ProjectAnalysisData}
 	 *@return return 
 	 */
 	public List<Object> getValue(ProjectAnalysisData data) {
@@ -39,11 +37,6 @@ public class ModelElementAnalyzer implements DataAnalyzer {
 		
 		// Number of all ModelElements
 		values.add(data.getProjectState().getModelElements().size());
-		
-		// Number of all Domain ModelElements
-//		ProjectDescriptor descriptor = DescriptorAccess.getInstance()
-//				.getProjectDescriptor(data.getProjectId());
-//		values.add(descriptor.getDomainElements().length);
 		return values;
 	}
 

@@ -90,7 +90,7 @@ public class TimeIterator extends VersionIterator {
 		updateSpecifier(getSourceSpec(), stepLength, !isForward);
 
 		if (isForward) {
-			if (getSourceSpec().getIdentifier() < 0) {
+			if (getSourceSpec().compareTo(this.getStart()) < 0) {
 				getSourceSpec().setIdentifier(this.getStart().getIdentifier());
 			}
 		} else {
