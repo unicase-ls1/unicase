@@ -19,7 +19,6 @@ import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
-import org.unicase.emfstore.core.EmfStoreImpl;
 import org.unicase.emfstore.core.helper.HistoryCache;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -40,7 +39,8 @@ import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.model.Project;
 
 /**
- * This subinterfaces implements all version related functionality for the {@link EmfStoreImpl} interface.
+ * This subinterfaces implements all version related functionality for the
+ * {@link org.unicase.emfstore.core.EmfStoreImpl} interface.
  * 
  * @author wesendon
  */
