@@ -41,7 +41,6 @@ import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.startup.EmfStoreValidator;
@@ -84,7 +83,7 @@ public class EmfStoreController implements IApplication, Runnable {
 	 * 
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
-	public Object start(IApplicationContext context) throws EmfStoreException, FatalEmfStoreException {
+	public Object start(IApplicationContext context) throws FatalEmfStoreException {
 
 		run(true);
 		instance = null;
@@ -98,9 +97,8 @@ public class EmfStoreController implements IApplication, Runnable {
 	 * 
 	 * @param waitForTermination true if the server should force the calling thread to wait for its termination
 	 * @throws FatalEmfStoreException if the server fails fatally
-	 * @throws EmfStoreException if the server init fails
 	 */
-	public void run(boolean waitForTermination) throws FatalEmfStoreException, EmfStoreException {
+	public void run(boolean waitForTermination) throws FatalEmfStoreException {
 		if (instance != null) {
 			throw new FatalEmfStoreException("Another EmfStore Controller seems to be running already!");
 		}
@@ -159,8 +157,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		return cache;
 	}
 
-	private Set<ConnectionHandler<? extends EmfStoreInterface>> initConnectionHandlers() throws FatalEmfStoreException,
-		EmfStoreException {
+	private Set<ConnectionHandler<? extends EmfStoreInterface>> initConnectionHandlers() throws FatalEmfStoreException {
 		Set<ConnectionHandler<? extends EmfStoreInterface>> connectionHandlers = new HashSet<ConnectionHandler<? extends EmfStoreInterface>>();
 
 		// create RMI connection handler for emfstore
@@ -477,13 +474,12 @@ public class EmfStoreController implements IApplication, Runnable {
 		}
 	}
 
-	private AccessControlImpl initAccessControl(ServerSpace serverSpace) throws EmfStoreException,
-		FatalEmfStoreException {
+	private AccessControlImpl initAccessControl(ServerSpace serverSpace) throws FatalEmfStoreException {
 		setSuperUser(serverSpace);
 		return new AccessControlImpl(serverSpace);
 	}
 
-	private void setSuperUser(ServerSpace serverSpace) throws StorageException {
+	private void setSuperUser(ServerSpace serverSpace) throws FatalEmfStoreException {
 		String superuser = ServerConfiguration.getProperties().getProperty(ServerConfiguration.SUPER_USER,
 			ServerConfiguration.SUPER_USER_DEFAULT);
 		for (ACUser user : serverSpace.getUsers()) {
@@ -501,7 +497,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		try {
 			serverSpace.save();
 		} catch (IOException e) {
-			throw new StorageException(StorageException.NOSAVE, e);
+			throw new FatalEmfStoreException(StorageException.NOSAVE, e);
 		}
 		logger.info("added superuser " + superuser);
 	}
@@ -590,7 +586,6 @@ public class EmfStoreController implements IApplication, Runnable {
 		try {
 			run(true);
 		} catch (FatalEmfStoreException e) {
-		} catch (EmfStoreException e) {
 		}
 	}
 
