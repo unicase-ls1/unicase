@@ -21,12 +21,13 @@ import org.unicase.model.rationale.Solution;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static RationaleFactory init() {
@@ -43,8 +44,8 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RationaleFactoryImpl() {
@@ -53,6 +54,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,6 +79,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Issue createIssue() {
@@ -86,6 +89,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Proposal createProposal() {
@@ -95,6 +99,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Solution createSolution() {
@@ -104,6 +109,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Criterion createCriterion() {
@@ -113,6 +119,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Assessment createAssessment() {
@@ -122,6 +129,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Comment createComment() {
@@ -131,6 +139,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RationalePackage getRationalePackage() {
@@ -139,6 +148,7 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

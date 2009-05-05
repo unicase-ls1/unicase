@@ -20,10 +20,15 @@ import org.unicase.model.rationale.impl.ProposalImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Merging Proposal</b></em>'. <!-- end-user-doc
- * --> <p> The following features are implemented: <ul> <li>{@link
- * org.unicase.model.change.impl.MergingProposalImpl#getConflictingProposals <em>Conflicting Proposals</em>}</li>
- * <li>{@link org.unicase.model.change.impl.MergingProposalImpl#getPendingChanges <em>Pending Changes</em>}</li> </ul>
+ * -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.change.impl.MergingProposalImpl#getConflictingProposals <em>Conflicting Proposals</em>}</li>
+ * <li>{@link org.unicase.model.change.impl.MergingProposalImpl#getPendingChanges <em>Pending Changes</em>}</li>
+ * </ul>
  * </p>
+ * 
  * @generated
  */
 public class MergingProposalImpl extends ProposalImpl implements MergingProposal {
@@ -38,9 +43,9 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 	protected EList<MergingProposal> conflictingProposals;
 
 	/**
-	 * The cached value of the '{@link #getPendingChanges() <em>Pending Changes</em>}' reference.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getPendingChanges() <em>Pending Changes</em>}' reference. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getPendingChanges()
 	 * @generated
 	 * @ordered
@@ -49,6 +54,7 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MergingProposalImpl() {
@@ -57,6 +63,7 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,6 +73,7 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<MergingProposal> getConflictingProposals() {
@@ -78,6 +86,7 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelChangePackage getPendingChanges() {
@@ -95,6 +104,7 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ModelChangePackage basicGetPendingChanges() {
@@ -103,6 +113,7 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setPendingChanges(ModelChangePackage newPendingChanges) {
@@ -115,6 +126,7 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,6 +144,7 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -151,6 +164,7 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,6 +182,7 @@ public class MergingProposalImpl extends ProposalImpl implements MergingProposal
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

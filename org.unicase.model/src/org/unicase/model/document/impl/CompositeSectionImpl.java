@@ -23,9 +23,15 @@ import org.unicase.model.impl.ModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Composite Section</b></em>'. <!-- end-user-doc
- * --> <p> The following features are implemented: <ul> <li>{@link
- * org.unicase.model.document.impl.CompositeSectionImpl#getParent <em>Parent</em>}</li> <li>{@link
- * org.unicase.model.document.impl.CompositeSectionImpl#getSubsections <em>Subsections</em>}</li> </ul> </p>
+ * -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.document.impl.CompositeSectionImpl#getParent <em>Parent</em>}</li>
+ * <li>{@link org.unicase.model.document.impl.CompositeSectionImpl#getSubsections <em>Subsections</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class CompositeSectionImpl extends ModelElementImpl implements CompositeSection {
@@ -42,6 +48,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected CompositeSectionImpl() {
@@ -50,6 +57,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,6 +67,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CompositeSection getParent() {
@@ -69,6 +78,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CompositeSection basicGetParent() {
@@ -79,6 +89,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParent(CompositeSection newParent, NotificationChain msgs) {
@@ -88,6 +99,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParent(CompositeSection newParent) {
@@ -111,6 +123,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Section> getSubsections() {
@@ -123,6 +136,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -141,6 +155,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -156,6 +171,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -170,6 +186,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -187,6 +204,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -206,6 +224,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -223,6 +242,7 @@ public class CompositeSectionImpl extends ModelElementImpl implements CompositeS
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

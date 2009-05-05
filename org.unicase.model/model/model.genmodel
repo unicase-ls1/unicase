@@ -523,8 +523,8 @@
       </genClasses>
       <genClasses ecoreClass="model.ecore#//attachment/FileAttachment">
         <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileName"/>
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileHash"/>
-        <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileID"/>
+        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileHash"/>
+        <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileID"/>
         <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileSize"/>
       </genClasses>
     </nestedGenPackages>

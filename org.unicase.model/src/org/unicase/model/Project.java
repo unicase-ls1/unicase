@@ -13,8 +13,14 @@ import org.unicase.model.util.ProjectChangeObserver;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project</b></em>'.
- * @implements IAdaptable <!-- end-user-doc --> <p> The following features are supported: <ul> <li>{@link
- * org.unicase.model.Project#getModelElements <em>Model Elements</em>}</li> </ul> </p>
+ * 
+ * @implements IAdaptable <!-- end-user-doc -->
+ *             <p>
+ *             The following features are supported:
+ *             <ul>
+ *             <li>{@link org.unicase.model.Project#getModelElements <em>Model Elements</em>}</li>
+ *             </ul>
+ *             </p>
  * @see org.unicase.model.ModelPackage#getProject()
  * @model
  * @generated
@@ -22,14 +28,14 @@ import org.unicase.model.util.ProjectChangeObserver;
 public interface Project extends EObject, IAdaptable {
 
 	/**
-	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.ModelElement}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list. The list contents are of
+	 * type {@link org.unicase.model.ModelElement}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Model Elements</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getProject_ModelElements()
 	 * @model containment="true" resolveProxies="true" keys="identifier" ordered="false"

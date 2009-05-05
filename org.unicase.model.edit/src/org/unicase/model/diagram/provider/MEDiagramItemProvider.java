@@ -22,6 +22,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.activity.ActivityFactory;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.change.ChangeFactory;
@@ -350,6 +351,15 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			ProfileFactory.eINSTANCE.createStereotypeAttributeInstanceString()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ActivityFactory.eINSTANCE.createTransition()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ActivityFactory.eINSTANCE.createActivity()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ActivityFactory.eINSTANCE.createFork()));
 	}
 
 	/**
