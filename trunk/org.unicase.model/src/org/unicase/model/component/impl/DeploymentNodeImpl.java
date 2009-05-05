@@ -16,16 +16,21 @@ import org.unicase.model.component.DeploymentNode;
 import org.unicase.model.impl.ModelElementImpl;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Node</b></em>'. <!-- end-user-doc --> <p> The
- * following features are implemented: <ul> <li>{@link org.unicase.model.component.impl.DeploymentNodeImpl#getComponents
- * <em>Components</em>}</li> </ul> </p>
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Node</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.component.impl.DeploymentNodeImpl#getComponents <em>Components</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNode {
 	/**
-	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getComponents()
 	 * @generated
 	 * @ordered
@@ -34,6 +39,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected DeploymentNodeImpl() {
@@ -42,6 +48,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -51,6 +58,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Component> getComponents() {
@@ -63,6 +71,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,6 +85,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -92,6 +102,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -106,6 +117,7 @@ public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNo
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

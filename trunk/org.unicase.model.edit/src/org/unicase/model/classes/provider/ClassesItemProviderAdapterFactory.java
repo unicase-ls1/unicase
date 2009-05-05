@@ -29,22 +29,23 @@ import org.unicase.model.classes.util.ClassesAdapterFactory;
  * factory convert EMF adapter notifications into calls to {@link #fireNotifyChanged fireNotifyChanged}. The adapters
  * also support Eclipse property sheets. Note that most of the adapters are shared among multiple instances. <!--
  * begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory implements ComposeableAdapterFactory,
 	IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory.
-	 * <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
-	 * <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -58,8 +59,8 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ClassesItemProviderAdapterFactory() {
@@ -102,9 +103,9 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	protected PackageItemProvider packageItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.classes.Package}.
-	 * <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.classes.Package}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,9 +126,9 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	protected AssociationItemProvider associationItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.classes.Association}.
-	 * <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.classes.Association}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,9 +149,9 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	protected AttributeItemProvider attributeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.classes.Attribute}.
-	 * <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.classes.Attribute}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -194,9 +195,9 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	protected MethodArgumentItemProvider methodArgumentItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.classes.MethodArgument}.
-	 * <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.classes.MethodArgument}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -217,9 +218,9 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	protected DependencyItemProvider dependencyItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.classes.Dependency}.
-	 * <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.classes.Dependency}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -232,8 +233,8 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -241,8 +242,8 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -251,6 +252,7 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -259,9 +261,9 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter.
-	 * <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -271,6 +273,7 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -286,8 +289,8 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	}
 
 	/**
-	 * This adds a listener.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -295,8 +298,8 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	}
 
 	/**
-	 * This removes a listener.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -304,9 +307,9 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
-	 * <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -318,8 +321,8 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void dispose() {

@@ -8,6 +8,9 @@ Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: org.unicase.model,
+ org.unicase.model.activity,
+ org.unicase.model.activity.impl,
+ org.unicase.model.activity.util,
  org.unicase.model.attachment,
  org.unicase.model.attachment.impl,
  org.unicase.model.attachment.util,

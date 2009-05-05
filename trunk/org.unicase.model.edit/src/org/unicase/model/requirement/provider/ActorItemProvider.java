@@ -23,16 +23,16 @@ import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.requirement.RequirementPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.requirement.Actor} object.
- * <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.Actor} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ActorItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActorItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +40,8 @@ public class ActorItemProvider extends ModelElementItemProvider implements IEdit
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -84,8 +84,8 @@ public class ActorItemProvider extends ModelElementItemProvider implements IEdit
 	}
 
 	/**
-	 * This adds a property descriptor for the Instances feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Instances feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addInstancesPropertyDescriptor(Object object) {
@@ -96,8 +96,8 @@ public class ActorItemProvider extends ModelElementItemProvider implements IEdit
 	}
 
 	/**
-	 * This returns Actor.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Actor.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -129,9 +129,9 @@ public class ActorItemProvider extends ModelElementItemProvider implements IEdit
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -140,8 +140,8 @@ public class ActorItemProvider extends ModelElementItemProvider implements IEdit
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

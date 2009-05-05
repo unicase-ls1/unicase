@@ -34,8 +34,8 @@ import org.unicase.model.provider.ModelEditPlugin;
 public class FileAttachmentItemProvider extends AttachmentItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FileAttachmentItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -53,16 +53,14 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 			super.getPropertyDescriptors(object);
 
 			addFileNamePropertyDescriptor(object);
-			addFileHashPropertyDescriptor(object);
-			addFileIDPropertyDescriptor(object);
 			addFileSizePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the File Name feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the File Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addFileNamePropertyDescriptor(Object object) {
@@ -74,34 +72,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This adds a property descriptor for the File Hash feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFileHashPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_fileHash_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_fileHash_feature",
-				"_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_HASH, false, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the File ID feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addFileIDPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_fileID_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_FileAttachment_fileID_feature", "_UI_FileAttachment_type"),
-			AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_ID, false, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the File Size feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the File Size feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addFileSizePropertyDescriptor(Object object) {
@@ -113,8 +85,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This returns FileAttachment.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns FileAttachment.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -123,8 +95,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -157,9 +129,9 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,8 +140,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

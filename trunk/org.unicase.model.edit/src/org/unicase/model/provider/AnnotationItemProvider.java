@@ -20,16 +20,16 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.ModelPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.Annotation} object.
- * <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.Annotation} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
+ * 
  * @generated
  */
 public class AnnotationItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AnnotationItemProvider(AdapterFactory adapterFactory) {
@@ -37,8 +37,8 @@ public class AnnotationItemProvider extends ModelElementItemProvider implements 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -52,9 +52,9 @@ public class AnnotationItemProvider extends ModelElementItemProvider implements 
 	}
 
 	/**
-	 * This adds a property descriptor for the Annotated Model Elements feature.
-	 * <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Annotated Model Elements feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addAnnotatedModelElementsPropertyDescriptor(Object object) {
@@ -66,8 +66,8 @@ public class AnnotationItemProvider extends ModelElementItemProvider implements 
 	}
 
 	/**
-	 * This returns Annotation.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Annotation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -99,9 +99,9 @@ public class AnnotationItemProvider extends ModelElementItemProvider implements 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
