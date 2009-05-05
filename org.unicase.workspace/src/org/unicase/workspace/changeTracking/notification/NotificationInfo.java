@@ -26,6 +26,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class NotificationInfo implements Notification {
 
 	private Notification notification;
+	private boolean valid;
+	private String validationMessage;
 
 	/**
 	 * The constructor needs the notification to wrap.
@@ -34,6 +36,35 @@ public class NotificationInfo implements Notification {
 	 */
 	public NotificationInfo(Notification n) {
 		this.notification = n;
+		NotificationValidator.getInstance().validate(this);
+	}
+
+	/**
+	 * @return the valid
+	 */
+	public boolean isValid() {
+		return valid;
+	}
+
+	/**
+	 * @param valid the valid to set
+	 */
+	protected void setValid(boolean valid) {
+		this.valid = valid;
+	}
+
+	/**
+	 * @return the validationMessage
+	 */
+	public String getValidationMessage() {
+		return validationMessage;
+	}
+
+	/**
+	 * @param validationMessage the validationMessage to set
+	 */
+	protected void setValidationMessage(String validationMessage) {
+		this.validationMessage = validationMessage;
 	}
 
 	/**
@@ -389,10 +420,13 @@ public class NotificationInfo implements Notification {
 			sb.append("REMOVE");
 		} else if (isRemoveManyEvent()) {
 			sb.append("REMOVE_MANY");
+		} else if (isMoveEvent()) {
+			sb.append("MOVE");
 		} else {
 			sb.append(getEventType());
 		}
 
+		sb.append(" val: " + getValidationMessage());
 		EObject n = (EObject) notification.getNotifier();
 
 		sb.append(" / on: " + extractName(n));
