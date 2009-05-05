@@ -5,20 +5,18 @@
  */
 package org.unicase.ui.tableview.labelproviders;
 
-import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.core.runtime.FileLocator;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
+import org.unicase.ui.tableview.Activator;
 
 /**
  * This label provider shows the status of a modelelement represented as an image.
@@ -31,6 +29,7 @@ public class StatusLabelProvider extends ColumnLabelProvider implements IColorPr
 	private static final String OPEN = "open";
 	private static final String CLOSED = "closed";
 	private static final String BLOCKED = "blocked";
+	private static final String OPEN_RESOLVED = "open_resolved";
 
 	/**
 	 * Constructor.
@@ -38,20 +37,17 @@ public class StatusLabelProvider extends ColumnLabelProvider implements IColorPr
 	public StatusLabelProvider() {
 		images = new HashMap<String, Image>();
 
-		String path = "icons/open.gif";
-		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path(path), null);
-		ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(url);
+		ImageDescriptor imageDescriptor = Activator.getImageDescriptor("icons/open.gif");
 		images.put(OPEN, imageDescriptor.createImage());
 
-		path = "icons/closed.gif";
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path(path), null);
-		imageDescriptor = ImageDescriptor.createFromURL(url);
+		imageDescriptor = Activator.getImageDescriptor("icons/closed.gif");
 		images.put(CLOSED, imageDescriptor.createImage());
 
-		path = "icons/blocked.gif";
-		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path(path), null);
-		imageDescriptor = ImageDescriptor.createFromURL(url);
+		imageDescriptor = Activator.getImageDescriptor("icons/blocked.gif");
 		images.put(BLOCKED, imageDescriptor.createImage());
+
+		imageDescriptor = Activator.getImageDescriptor("icons/open_resolved.gif");
+		images.put(OPEN_RESOLVED, imageDescriptor.createImage());
 	}
 
 	/**
@@ -65,6 +61,7 @@ public class StatusLabelProvider extends ColumnLabelProvider implements IColorPr
 		images.get(OPEN).dispose();
 		images.get(CLOSED).dispose();
 		images.get(BLOCKED).dispose();
+		images.get(OPEN_RESOLVED).dispose();
 
 		images.clear();
 
@@ -87,6 +84,9 @@ public class StatusLabelProvider extends ColumnLabelProvider implements IColorPr
 			}
 
 			if (status.equals(MEState.OPEN)) {
+				if (me instanceof WorkItem && ((WorkItem) me).isResolved()) {
+					return images.get(OPEN_RESOLVED);
+				}
 				return images.get(OPEN);
 
 			} else if (status.equals(MEState.CLOSED)) {
