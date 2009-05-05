@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.unicase.ui.tom.classDiagram; singleton:=true
-Bundle-Version: 0.3.19
+Bundle-Version: 0.3.21
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.ui.tom.classDiagram.part.ModelDiagramEditorPlugin
 Bundle-Vendor: %providerName
@@ -41,8 +41,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.draw2d;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
- org.unicase.workspace;bundle-version="0.3.19",
- org.unicase.workspace.edit;bundle-version="0.3.19",
- org.unicase.ui.tom;bundle-version="0.3.19"
+ org.unicase.workspace;bundle-version="0.3.21",
+ org.unicase.workspace.edit;bundle-version="0.3.21",
+ org.unicase.ui.tom;bundle-version="0.3.21"
 Eclipse-LazyStart: true
 Import-Package: org.unicase.ui.common.diagram
