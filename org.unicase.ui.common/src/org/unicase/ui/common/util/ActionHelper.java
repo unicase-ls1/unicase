@@ -31,18 +31,14 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.ISelectionService;
-import org.eclipse.ui.IViewPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.WorkbenchException;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.MEEditorInput;
 import org.unicase.ui.common.commands.AltKeyDoubleClickAction;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
@@ -314,9 +310,10 @@ public final class ActionHelper {
 			id = "org.unicase.ui.componentDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
 			id = "org.unicase.ui.stateDiagram.part.ModelDiagramEditorID";
-		}else if (diagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
-			id = "org.unicase.ui.activityDiagram.part.ModelDiagramEditorID";
-		}		
+		}
+//			else if (diagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
+//			id = "org.unicase.ui.activityDiagram.part.ModelDiagramEditorID";
+//		}		
 
 		if (id == null) {
 			throw new RuntimeException("Unsupported diagram type");
