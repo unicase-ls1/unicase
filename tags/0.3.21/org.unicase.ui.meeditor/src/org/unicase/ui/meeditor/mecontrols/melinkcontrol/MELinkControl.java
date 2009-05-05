@@ -80,7 +80,8 @@ public class MELinkControl extends AbstractMEControl {
 		imageHyperlink.setData(getModelElement().eClass());
 		ModelElementClassTooltip.enableFor(imageHyperlink);
 		hyperlink = getToolkit().createHyperlink(linkComposite, labelProvider.getText(getModelElement()), style);
-		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) getModelElement());
+		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) getModelElement(),
+			(ModelElement) contextModelElement, reference.getName());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
 		ImageHyperlink deleteLink = getToolkit().createImageHyperlink(linkComposite, style);
