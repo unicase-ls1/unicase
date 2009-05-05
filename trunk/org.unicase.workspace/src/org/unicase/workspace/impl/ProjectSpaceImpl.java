@@ -1510,12 +1510,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) {
 					String newfileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier()
 						+ File.separatorChar + getResourceCount() + ".ucf";
+					setResourceCount(getResourceCount() + 1);
 					checkIfFileExists(newfileName);
 					URI fileURI = URI.createFileURI(newfileName);
 					Resource newResource = oldResource.getResourceSet().createResource(fileURI);
-					setResourceCount(getResourceCount() + 1);
 					newResource.getContents().add(modelElement);
-
 				}
 			}
 
