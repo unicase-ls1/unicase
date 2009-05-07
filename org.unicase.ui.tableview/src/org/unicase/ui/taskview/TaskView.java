@@ -16,6 +16,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.IDialogSettings;
@@ -147,6 +148,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	private void createActions() {
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager toolbarManager = bars.getToolBarManager();
+		IMenuManager menuManager = bars.getMenuManager();
 
 		createFilters();
 
@@ -175,9 +177,10 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 				}
 			}
 		};
+		filterToSelectedUser.setText("Filter to user...");
 		filterToSelectedUser.setToolTipText("Select a user to filter to his/her tasks.");
 		filterToSelectedUser.setImageDescriptor(Activator.getImageDescriptor("/icons/User.gif"));
-		toolbarManager.add(filterToSelectedUser);
+		menuManager.add(filterToSelectedUser);
 		ControlContribution userTextToolbarContribution = new ControlContribution("userTextl") {
 
 			@Override
@@ -204,12 +207,17 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 		Separator seperator = new Separator(TASKVIEW_USER_GROUP);
 		toolbarManager.add(seperator);
-		toolbarManager.add(filterToTeam);
-		toolbarManager.add(filterResolvedBugReports);
+		filterToTeam.setText("Show team");
+		menuManager.add(filterToTeam);
 
-		toolbarManager.add(filterToUnchecked);
+		filterResolvedBugReports.setText("Show resolved");
+		menuManager.add(filterResolvedBugReports);
 
-		toolbarManager.add(filterToBlocked);
+		filterToUnchecked.setText("Show done");
+		menuManager.add(filterToUnchecked);
+
+		filterToBlocked.setText("Show blocked");
+		menuManager.add(filterToBlocked);
 
 		Separator taskviewFiltersSeperator = new Separator(TASKVIEW_FILTERS_GROUP);
 		toolbarManager.add(taskviewFiltersSeperator);
