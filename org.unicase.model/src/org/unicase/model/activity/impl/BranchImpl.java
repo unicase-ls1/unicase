@@ -4,25 +4,25 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.model.activity.impl;
-
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.model.activity.ActivityPackage;
-import org.unicase.model.activity.Fork;
+import org.unicase.model.activity.Branch;
+
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Fork</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Branch</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  * 
  * @generated
  */
-public class ForkImpl extends ActivityObjectImpl implements Fork {
+public class BranchImpl extends ActivityObjectImpl implements Branch {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected ForkImpl() {
+	protected BranchImpl() {
 		super();
 	}
 
@@ -33,7 +33,7 @@ public class ForkImpl extends ActivityObjectImpl implements Fork {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ActivityPackage.Literals.FORK;
+		return ActivityPackage.Literals.BRANCH;
 	}
 
-} // ForkImpl
+} // BranchImpl

@@ -16,22 +16,22 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.model.activity.Fork;
+import org.unicase.model.activity.ActivityInitial;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.activity.Fork} object. <!-- begin-user-doc --> <!--
- * end-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.activity.ActivityInitial} object. <!--
+ * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class ForkItemProvider extends ActivityObjectItemProvider implements IEditingDomainItemProvider,
+public class ActivityInitialItemProvider extends ActivityObjectItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	public ForkItemProvider(AdapterFactory adapterFactory) {
+	public ActivityInitialItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,13 +50,13 @@ public class ForkItemProvider extends ActivityObjectItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns Fork.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns ActivityInitial.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Fork"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ActivityInitial"));
 	}
 
 	/**
@@ -66,9 +66,9 @@ public class ForkItemProvider extends ActivityObjectItemProvider implements IEdi
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Fork) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Fork_type") : getString("_UI_Fork_type") + " "
-			+ label;
+		String label = ((ActivityInitial) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_ActivityInitial_type")
+			: getString("_UI_ActivityInitial_type") + " " + label;
 	}
 
 	/**

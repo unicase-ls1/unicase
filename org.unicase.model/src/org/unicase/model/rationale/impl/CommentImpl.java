@@ -26,6 +26,7 @@ import org.unicase.model.rationale.RationalePackage;
  * The following features are implemented:
  * <ul>
  * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getReplies <em>Replies</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getRecipient <em>Recipient</em>}</li>
  * </ul>
  * </p>
  * 

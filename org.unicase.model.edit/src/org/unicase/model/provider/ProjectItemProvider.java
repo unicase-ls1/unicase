@@ -313,6 +313,15 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createFork()));
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ActivityFactory.eINSTANCE.createBranch()));
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ActivityFactory.eINSTANCE.createActivityInitial()));
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ActivityFactory.eINSTANCE.createActivityEnd()));
 	}
 
 	/**

@@ -15,6 +15,7 @@ import org.unicase.model.organization.OrgUnit;
  * The following features are supported:
  * <ul>
  * <li>{@link org.unicase.model.rationale.Comment#getReplies <em>Replies</em>}</li>
+ * <li>{@link org.unicase.model.rationale.Comment#getRecipient <em>Recipient</em>}</li>
  * </ul>
  * </p>
  * 

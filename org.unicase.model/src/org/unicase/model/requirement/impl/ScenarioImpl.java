@@ -42,6 +42,8 @@ import org.unicase.model.requirement.UseCase;
  * </em>}</li>
  * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getNonFunctionalRequirements <em>Non Functional
  * Requirements</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getParticipatingMethods <em>Participating Methods</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.ScenarioImpl#getParticipatingClasses <em>Participating Classes</em>}</li>
  * </ul>
  * </p>
  * 

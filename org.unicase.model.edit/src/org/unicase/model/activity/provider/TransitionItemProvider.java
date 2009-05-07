@@ -18,6 +18,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
+import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.Transition;
 import org.unicase.model.provider.ModelEditPlugin;
@@ -52,6 +54,7 @@ public class TransitionItemProvider extends ModelElementItemProvider implements 
 
 			addSourcePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
+			addConditionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -78,6 +81,19 @@ public class TransitionItemProvider extends ModelElementItemProvider implements 
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Transition_target_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_Transition_target_feature", "_UI_Transition_type"),
 			ActivityPackage.Literals.TRANSITION__TARGET, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Condition feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addConditionPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Transition_condition_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Transition_condition_feature", "_UI_Transition_type"),
+			ActivityPackage.Literals.TRANSITION__CONDITION, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -112,6 +128,12 @@ public class TransitionItemProvider extends ModelElementItemProvider implements 
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
+
+		switch (notification.getFeatureID(Transition.class)) {
+		case ActivityPackage.TRANSITION__CONDITION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		}
 		super.notifyChanged(notification);
 	}
 

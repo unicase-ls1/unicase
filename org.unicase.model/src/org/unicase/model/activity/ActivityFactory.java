@@ -47,6 +47,30 @@ public interface ActivityFactory extends EFactory {
 	Fork createFork();
 
 	/**
+	 * Returns a new object of class '<em>Branch</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Branch</em>'.
+	 * @generated
+	 */
+	Branch createBranch();
+
+	/**
+	 * Returns a new object of class '<em>Initial</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Initial</em>'.
+	 * @generated
+	 */
+	ActivityInitial createActivityInitial();
+
+	/**
+	 * Returns a new object of class '<em>End</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>End</em>'.
+	 * @generated
+	 */
+	ActivityEnd createActivityEnd();
+
+	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

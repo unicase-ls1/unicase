@@ -6,23 +6,23 @@
 package org.unicase.model.activity.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.unicase.model.activity.ActivityInitial;
 import org.unicase.model.activity.ActivityPackage;
-import org.unicase.model.activity.Fork;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Fork</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Initial</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  * 
  * @generated
  */
-public class ForkImpl extends ActivityObjectImpl implements Fork {
+public class ActivityInitialImpl extends ActivityObjectImpl implements ActivityInitial {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected ForkImpl() {
+	protected ActivityInitialImpl() {
 		super();
 	}
 
@@ -33,7 +33,7 @@ public class ForkImpl extends ActivityObjectImpl implements Fork {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ActivityPackage.Literals.FORK;
+		return ActivityPackage.Literals.ACTIVITY_INITIAL;
 	}
 
-} // ForkImpl
+} // ActivityInitialImpl

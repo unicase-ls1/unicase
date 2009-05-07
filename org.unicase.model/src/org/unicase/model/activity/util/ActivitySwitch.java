@@ -12,8 +12,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.activity.Activity;
+import org.unicase.model.activity.ActivityEnd;
+import org.unicase.model.activity.ActivityInitial;
 import org.unicase.model.activity.ActivityObject;
 import org.unicase.model.activity.ActivityPackage;
+import org.unicase.model.activity.Branch;
 import org.unicase.model.activity.Fork;
 import org.unicase.model.activity.Transition;
 
@@ -129,6 +132,45 @@ public class ActivitySwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case ActivityPackage.BRANCH: {
+			Branch branch = (Branch) theEObject;
+			T result = caseBranch(branch);
+			if (result == null)
+				result = caseActivityObject(branch);
+			if (result == null)
+				result = caseModelElement(branch);
+			if (result == null)
+				result = caseIdentifiableElement(branch);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ActivityPackage.ACTIVITY_INITIAL: {
+			ActivityInitial activityInitial = (ActivityInitial) theEObject;
+			T result = caseActivityInitial(activityInitial);
+			if (result == null)
+				result = caseActivityObject(activityInitial);
+			if (result == null)
+				result = caseModelElement(activityInitial);
+			if (result == null)
+				result = caseIdentifiableElement(activityInitial);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case ActivityPackage.ACTIVITY_END: {
+			ActivityEnd activityEnd = (ActivityEnd) theEObject;
+			T result = caseActivityEnd(activityEnd);
+			if (result == null)
+				result = caseActivityObject(activityEnd);
+			if (result == null)
+				result = caseModelElement(activityEnd);
+			if (result == null)
+				result = caseIdentifiableElement(activityEnd);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -183,6 +225,45 @@ public class ActivitySwitch<T> {
 	 * @generated
 	 */
 	public T caseFork(Fork object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Branch</em>'. <!-- begin-user-doc --> This
+	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Branch</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseBranch(Branch object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Initial</em>'. <!-- begin-user-doc --> This
+	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Initial</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActivityInitial(ActivityInitial object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>End</em>'. <!-- begin-user-doc --> This
+	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>End</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseActivityEnd(ActivityEnd object) {
 		return null;
 	}
 

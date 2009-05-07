@@ -382,6 +382,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		addEEnumLiteral(diagramTypeEEnum, DiagramType.USECASE_DIAGRAM);
 		addEEnumLiteral(diagramTypeEEnum, DiagramType.COMPONENT_DIAGRAM);
 		addEEnumLiteral(diagramTypeEEnum, DiagramType.STATE_DIAGRAM);
+		addEEnumLiteral(diagramTypeEEnum, DiagramType.ACTIVITY_DIAGRAM);
 	}
 
 } // DiagramPackageImpl

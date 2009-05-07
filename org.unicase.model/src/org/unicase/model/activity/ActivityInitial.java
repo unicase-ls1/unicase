@@ -6,12 +6,11 @@
 package org.unicase.model.activity;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Fork</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Initial</b></em>'. <!-- end-user-doc -->
  * 
- * @see org.unicase.model.activity.ActivityPackage#getFork()
+ * @see org.unicase.model.activity.ActivityPackage#getActivityInitial()
  * @model
  * @generated
  */
-public interface Fork extends ActivityObject {
-
-} // Fork
+public interface ActivityInitial extends ActivityObject {
+} // ActivityInitial

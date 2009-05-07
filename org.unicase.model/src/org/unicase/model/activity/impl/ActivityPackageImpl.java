@@ -13,9 +13,12 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.Activity;
+import org.unicase.model.activity.ActivityEnd;
 import org.unicase.model.activity.ActivityFactory;
+import org.unicase.model.activity.ActivityInitial;
 import org.unicase.model.activity.ActivityObject;
 import org.unicase.model.activity.ActivityPackage;
+import org.unicase.model.activity.Branch;
 import org.unicase.model.activity.Fork;
 import org.unicase.model.activity.Transition;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -83,6 +86,27 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 	 * @generated
 	 */
 	private EClass forkEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass branchEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass activityInitialEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass activityEndEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -293,6 +317,15 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 	 * 
 	 * @generated
 	 */
+	public EAttribute getTransition_Condition() {
+		return (EAttribute) transitionEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getActivity() {
 		return activityEClass;
 	}
@@ -311,8 +344,8 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 	 * 
 	 * @generated
 	 */
-	public EAttribute getFork_EntryConditions() {
-		return (EAttribute) forkEClass.getEStructuralFeatures().get(0);
+	public EClass getBranch() {
+		return branchEClass;
 	}
 
 	/**
@@ -320,8 +353,17 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 	 * 
 	 * @generated
 	 */
-	public EAttribute getFork_ExitConditions() {
-		return (EAttribute) forkEClass.getEStructuralFeatures().get(1);
+	public EClass getActivityInitial() {
+		return activityInitialEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getActivityEnd() {
+		return activityEndEClass;
 	}
 
 	/**
@@ -359,12 +401,17 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 		transitionEClass = createEClass(TRANSITION);
 		createEReference(transitionEClass, TRANSITION__SOURCE);
 		createEReference(transitionEClass, TRANSITION__TARGET);
+		createEAttribute(transitionEClass, TRANSITION__CONDITION);
 
 		activityEClass = createEClass(ACTIVITY);
 
 		forkEClass = createEClass(FORK);
-		createEAttribute(forkEClass, FORK__ENTRY_CONDITIONS);
-		createEAttribute(forkEClass, FORK__EXIT_CONDITIONS);
+
+		branchEClass = createEClass(BRANCH);
+
+		activityInitialEClass = createEClass(ACTIVITY_INITIAL);
+
+		activityEndEClass = createEClass(ACTIVITY_END);
 	}
 
 	/**
@@ -402,6 +449,9 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 		transitionEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		activityEClass.getESuperTypes().add(this.getActivityObject());
 		forkEClass.getESuperTypes().add(this.getActivityObject());
+		branchEClass.getESuperTypes().add(this.getActivityObject());
+		activityInitialEClass.getESuperTypes().add(this.getActivityObject());
+		activityEndEClass.getESuperTypes().add(this.getActivityObject());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(activityObjectEClass, ActivityObject.class, "ActivityObject", IS_ABSTRACT, !IS_INTERFACE,
@@ -425,14 +475,20 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 			"target", null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getTransition_Target().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getTransition_Condition(), ecorePackage.getEString(), "condition", null, 0, 1, Transition.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(activityEClass, Activity.class, "Activity", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(forkEClass, Fork.class, "Fork", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getFork_EntryConditions(), ecorePackage.getEString(), "entryConditions", null, 0, 1, Fork.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFork_ExitConditions(), ecorePackage.getEString(), "exitConditions", null, 0, 1, Fork.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(branchEClass, Branch.class, "Branch", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(activityInitialEClass, ActivityInitial.class, "ActivityInitial", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(activityEndEClass, ActivityEnd.class, "ActivityEnd", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } // ActivityPackageImpl

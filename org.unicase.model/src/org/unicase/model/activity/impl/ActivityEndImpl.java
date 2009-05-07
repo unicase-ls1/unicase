@@ -6,23 +6,23 @@
 package org.unicase.model.activity.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.unicase.model.activity.ActivityEnd;
 import org.unicase.model.activity.ActivityPackage;
-import org.unicase.model.activity.Fork;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Fork</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>End</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  * 
  * @generated
  */
-public class ForkImpl extends ActivityObjectImpl implements Fork {
+public class ActivityEndImpl extends ActivityObjectImpl implements ActivityEnd {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected ForkImpl() {
+	protected ActivityEndImpl() {
 		super();
 	}
 
@@ -33,7 +33,7 @@ public class ForkImpl extends ActivityObjectImpl implements Fork {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ActivityPackage.Literals.FORK;
+		return ActivityPackage.Literals.ACTIVITY_END;
 	}
 
-} // ForkImpl
+} // ActivityEndImpl

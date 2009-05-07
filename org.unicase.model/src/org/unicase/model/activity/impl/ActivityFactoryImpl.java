@@ -11,8 +11,11 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.activity.Activity;
+import org.unicase.model.activity.ActivityEnd;
 import org.unicase.model.activity.ActivityFactory;
+import org.unicase.model.activity.ActivityInitial;
 import org.unicase.model.activity.ActivityPackage;
+import org.unicase.model.activity.Branch;
 import org.unicase.model.activity.Fork;
 import org.unicase.model.activity.Transition;
 
@@ -63,6 +66,12 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 			return createActivity();
 		case ActivityPackage.FORK:
 			return createFork();
+		case ActivityPackage.BRANCH:
+			return createBranch();
+		case ActivityPackage.ACTIVITY_INITIAL:
+			return createActivityInitial();
+		case ActivityPackage.ACTIVITY_END:
+			return createActivityEnd();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -96,6 +105,36 @@ public class ActivityFactoryImpl extends EFactoryImpl implements ActivityFactory
 	public Fork createFork() {
 		ForkImpl fork = new ForkImpl();
 		return fork;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Branch createBranch() {
+		BranchImpl branch = new BranchImpl();
+		return branch;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ActivityInitial createActivityInitial() {
+		ActivityInitialImpl activityInitial = new ActivityInitialImpl();
+		return activityInitial;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ActivityEnd createActivityEnd() {
+		ActivityEndImpl activityEnd = new ActivityEndImpl();
+		return activityEnd;
 	}
 
 	/**
