@@ -561,4 +561,12 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @throws EmfStoreException if exception occurs on the server
 	 */
 	void applyMergeResult(List<AbstractOperation> mergeResult, VersionSpec mergeTargetSpec) throws EmfStoreException;
+
+	/**
+	 * Begin a composite operation on the projectSpace.
+	 * 
+	 * @return a handle to abort or complete the operation
+	 */
+	CompositeOperationHandle beginCompositeOperation();
+
 } // ProjectContainer
