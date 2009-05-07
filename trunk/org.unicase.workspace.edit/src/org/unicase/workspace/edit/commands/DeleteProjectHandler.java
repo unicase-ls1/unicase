@@ -5,7 +5,6 @@
  */
 package org.unicase.workspace.edit.commands;
 
-import java.io.File;
 import java.io.IOException;
 
 import org.eclipse.core.commands.ExecutionEvent;
@@ -17,10 +16,8 @@ import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.util.FileUtil;
 import org.unicase.ui.common.MEEditorInput;
 import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -94,16 +91,8 @@ public class DeleteProjectHandler extends ProjectActionHandler {
 				}
 			}
 
-			currentWorkspace.getProjectSpaces().remove(projectSpace);
-			if (currentWorkspace.getActiveProjectSpace() == projectSpace) {
-				currentWorkspace.setActiveProjectSpace(null);
-			}
-
-			currentWorkspace.save();
-
 			try {
-				String pathToProject = Configuration.getWorkspaceDirectory() + "ps-" + projectSpace.getIdentifier();
-				FileUtil.deleteFolder(new File(pathToProject));
+				currentWorkspace.deleteProjectSpace(projectSpace);
 			} catch (IOException e) {
 				DialogHandler.showExceptionDialog("Couldn't delete project files in file system.", e);
 			}
