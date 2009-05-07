@@ -59,74 +59,6 @@
      </command>
    
   </extension>
-   <extension
-        point="org.eclipse.ui.menus">
-     <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.navigator.createModelElementCommands">
-        <command
-              commandId="org.unicase.ui.common.openDiagramWithMEEditor"
-              label="Open with MEEditor"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <reference
-                       definitionId="org.unicase.ui.common.commands.MEDiagram">
-                 </reference>
-              </iterate>
-           </visibleWhen>
-        </command>
-      
-        <command
-              commandId="org.unicase.ui.common.deleteModelelement"
-              icon="icons/delete.gif"
-              label="Delete"
-              style="push">
-                <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.model.ModelElement">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <command
-              commandId="org.unicase.ui.common.newDocument"
-              icon="icons/Document.gif"
-              label="New Document"
-              style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <iterate
-                    ifEmpty="false">
-                 <instanceof
-                       value="org.unicase.workspace.ProjectSpace">
-                 </instanceof>
-              </iterate>
-           </visibleWhen>
-        </command>
-        <separator
-              name="org.unicase.ui.common.commands.modifyCommands">
-        </separator>
-        
-     </menuContribution>
-     <menuContribution
-           locationURI="toolbar:org.eclipse.ui.main.toolbar">
-        <toolbar
-              id="org.unicase.ui.common.UnicaseToolbar">
-           <command
-                 commandId="org.unicase.ui.common.handlers.open_me_ID"
-                 icon="icons/open_model_element.gif"
-                 style="push"
-                 tooltip="Shows open model element dialog">
-           </command>
-        </toolbar>
-     </menuContribution>
-    
-  </extension>
   <extension
         point="org.eclipse.ui.commands">
      <command
@@ -154,6 +86,56 @@
   </extension>
   <extension
         point="org.eclipse.ui.menus">
+     <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.navigator.createModelElementCommands">
+        <command
+              commandId="org.unicase.ui.common.openDiagramWithMEEditor"
+              label="Open with MEEditor"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false">
+                 <reference
+                       definitionId="org.unicase.ui.common.commands.MEDiagram">
+                 </reference>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.deleteModelelement"
+              icon="icons/delete.gif"
+              label="Delete"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false">
+                 <instanceof
+                       value="org.unicase.model.ModelElement">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.newDocument"
+              icon="icons/Document.gif"
+              label="New Document"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false">
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <separator
+              name="org.unicase.ui.common.commands.modifyCommands">
+        </separator>
+     </menuContribution>
      <menuContribution
            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.modifyCommands">
         <menu
@@ -244,6 +226,27 @@
               icon="icons/delete.gif"
               label="Delete"
               style="push">
+        </command>
+     </menuContribution>
+     <menuContribution
+           locationURI="toolbar:org.eclipse.ui.main.toolbar">
+        <toolbar
+              id="org.unicase.ui.common.UnicaseToolbar">
+           <command
+                 commandId="org.unicase.ui.common.handlers.open_me_ID"
+                 icon="icons/open_model_element.gif"
+                 style="push"
+                 tooltip="Shows open model element dialog">
+           </command>
+        </toolbar>
+     </menuContribution>
+     <menuContribution
+           locationURI="toolbar:org.unicase.ui.navigator.viewer?after=additions">
+        <command
+              commandId="org.unicase.ui.common.handlers.open_me_ID"
+              icon="icons/open_model_element.gif"
+              style="push"
+              tooltip="Shows open model element dialog">
         </command>
      </menuContribution> 
   </extension>
