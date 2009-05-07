@@ -61,6 +61,7 @@
          </commandParameter>
       </command>
       <command
+            defaultHandler="org.unicase.ui.navigator.commands.NewModelElementWizardHandler"
             id="org.unicase.ui.navigator.newMEWizard"
             name="New ModelElement Wizard">
       </command>
@@ -96,7 +97,7 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-         locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
+         locationURI="popup:org.unicase.ui.navigator.viewer?after=additions">
          <command
                commandId="org.unicase.ui.navigator.newMEWizard"
                label="New model element..."
@@ -111,6 +112,31 @@
                </iterate>
             </visibleWhen> 
          </command>
+         <dynamic
+               class="org.unicase.ui.navigator.commands.DynamicMECreationCommands"
+               id="org.unicase.ui.navigator.dynamicMECreationCommands">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <instanceof
+                        value="org.unicase.model.document.LeafSection">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </dynamic>
+         <dynamic
+               class="org.unicase.ui.navigator.commands.DynamicContainmentCommands"
+               id="org.unicase.ui.navigator.dynamicContainmentCommands">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <reference
+                        definitionId="org.unicase.ui.common.commands.modelElementNotSection">
+                  </reference>
+               </iterate>
+            </visibleWhen>
+         </dynamic>
          <command
                commandId="org.unicase.ui.navigator.newCompositeSection"
                icon="icons/CompositeSection.gif"
@@ -155,45 +181,14 @@
                </iterate>
             </visibleWhen>
          </command>
-      </menuContribution>
-      <menuContribution
-         locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
-         <dynamic
-               class="org.unicase.ui.navigator.commands.DynamicMECreationCommands"
-               id="org.unicase.ui.navigator.dynamicMECreationCommands">
-        <visibleWhen
-              checkEnabled="false">
-           <iterate
-                 ifEmpty="false">
-              <instanceof
-                    value="org.unicase.model.document.LeafSection">
-              </instanceof>
-           </iterate>
-        </visibleWhen>
-         </dynamic>
-      </menuContribution>
-      <menuContribution
-            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
-         <dynamic
-               class="org.unicase.ui.navigator.commands.DynamicContainmentCommands"
-               id="org.unicase.ui.navigator.dynamicContainmentCommands">
-            <visibleWhen
-                  checkEnabled="false">
-               <iterate>
-                  <reference
-                        definitionId="org.unicase.ui.common.commands.modelElementNotSection">
-                  </reference>
-               </iterate>
-            </visibleWhen>
-         </dynamic>
+         <separator
+               name="org.unicase.ui.navigator.createModelElementCommands"
+               visible="true">
+         </separator>
       </menuContribution>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
-      <handler
-            class="org.unicase.ui.navigator.commands.NewModelElementWizardHandler"
-            commandId="org.unicase.ui.navigator.newMEWizard">
-      </handler>
       <handler
             class="org.unicase.ui.navigator.commands.NewLeafSection"
             commandId="org.unicase.ui.navigator.newLeafSection">
