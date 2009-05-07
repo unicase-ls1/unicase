@@ -299,6 +299,7 @@
       <eLiterals name="USECASE_DIAGRAM" value="1" literal="USECASE_DIAGRAM"/>
       <eLiterals name="COMPONENT_DIAGRAM" value="2" literal="COMPONENT_DIAGRAM"/>
       <eLiterals name="STATE_DIAGRAM" value="3" literal="STATE_DIAGRAM"/>
+      <eLiterals name="ACTIVITY_DIAGRAM" value="4" literal="ACTIVITY_DIAGRAM"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="classes" nsURI="http://unicase.org/model/classes" nsPrefix="org.unicase.model.classes">
@@ -1372,11 +1373,12 @@
           eOpposite="#//activity/ActivityObject/outgoingTransitions" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//activity/ActivityObject"
           eOpposite="#//activity/ActivityObject/incomingTransitions" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Activity" eSuperTypes="#//activity/ActivityObject"/>
-    <eClassifiers xsi:type="ecore:EClass" name="Fork" eSuperTypes="#//activity/ActivityObject">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="entryConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="exitConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Fork" eSuperTypes="#//activity/ActivityObject"/>
+    <eClassifiers xsi:type="ecore:EClass" name="Branch" eSuperTypes="#//activity/ActivityObject"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ActivityInitial" eSuperTypes="#//activity/ActivityObject"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ActivityEnd" eSuperTypes="#//activity/ActivityObject"/>
   </eSubpackages>
 </ecore:EPackage>
