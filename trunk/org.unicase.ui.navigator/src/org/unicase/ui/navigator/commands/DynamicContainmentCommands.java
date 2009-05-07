@@ -12,7 +12,11 @@ import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.IContributionItem;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
@@ -30,6 +34,9 @@ import org.unicase.ui.common.util.ActionHelper;
  * @author Hodaie
  */
 public class DynamicContainmentCommands extends CompoundContributionItem {
+
+	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
+		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	private static final String COMMAND_ID = "org.unicase.ui.navigator.createContaiment";
 	private ModelElement selectedME;
@@ -92,17 +99,18 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 				continue;
 			}
 
-			CommandContributionItemParameter p = new CommandContributionItemParameter(PlatformUI.getWorkbench(), null,
-				COMMAND_ID, CommandContributionItem.STYLE_PUSH);
+			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI
+				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
 
 			Map<Object, Object> commandParams = new HashMap<Object, Object>();
 
 			commandParams.put(CreateMEHandler.COMMAND_ECLASS_PARAM, containment.getEReferenceType());
-			p.label = "New " + containment.getEReferenceType().getName();
+			commandParam.label = "New " + containment.getEReferenceType().getName();
+			commandParam.icon = getImage(containment.getEReferenceType());
 
 			// create command
-			p.parameters = commandParams;
-			CommandContributionItem command = new CommandContributionItem(p);
+			commandParam.parameters = commandParams;
+			CommandContributionItem command = new CommandContributionItem(commandParam);
 			commands.add(command);
 		}
 
@@ -110,8 +118,15 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 
 	}
 
+	private ImageDescriptor getImage(EClass eClass) {
+		ModelElement instance = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		Image image = labelProvider.getImage(instance);
+		ImageDescriptor imageDescriptor = ImageDescriptor.createFromImage(image);
+		return imageDescriptor;
+	}
+
 	/**
-	 * . If reference type is abstract create commands for its subclasses
+	 * If reference type is abstract create commands for its subclasses.
 	 * 
 	 * @param refClass
 	 * @param commands
@@ -125,16 +140,17 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 
 		List<EClass> eClazz = ModelUtil.getSubclasses(refClass);
 		for (EClass eClass : eClazz) {
-			CommandContributionItemParameter p = new CommandContributionItemParameter(PlatformUI.getWorkbench(), null,
-				COMMAND_ID, CommandContributionItem.STYLE_PUSH);
+			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI
+				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
 
 			Map<Object, Object> commandParams = new HashMap<Object, Object>();
 			commandParams.put(CreateMEHandler.COMMAND_ECLASS_PARAM, eClass);
-			p.label = "New " + eClass.getName();
+			commandParam.label = "New " + eClass.getName();
+			commandParam.icon = getImage(eClass);
 
 			// create command
-			p.parameters = commandParams;
-			CommandContributionItem command = new CommandContributionItem(p);
+			commandParam.parameters = commandParams;
+			CommandContributionItem command = new CommandContributionItem(commandParam);
 			commands.add(command);
 		}
 
