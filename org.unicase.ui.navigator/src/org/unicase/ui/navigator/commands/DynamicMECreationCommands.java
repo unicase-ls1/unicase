@@ -13,7 +13,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.IContributionItem;
+import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
@@ -33,6 +37,9 @@ import org.unicase.ui.common.util.ActionHelper;
  *         handler class {@link CreateMEHandler}.
  */
 public class DynamicMECreationCommands extends CompoundContributionItem {
+
+	private static AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
+		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	private static final String COMMAND_ID = "org.unicase.ui.navigator.createME";
 
@@ -65,15 +72,16 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// every command takes its corresponding EClass type as parameter
 		// create command for contents of this leaf section
 		for (int i = 0; i < contentTypes.length; i++) {
-			CommandContributionItemParameter p = new CommandContributionItemParameter(PlatformUI.getWorkbench(), null,
-				COMMAND_ID, CommandContributionItem.STYLE_PUSH);
+			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI
+				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);
 
 			Map<Object, Object> map = new HashMap<Object, Object>();
 
 			// set the EClass parameter
 			if (contentTypes[i] instanceof EClass) {
 				map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, contentTypes[i]);
-				p.label = "New " + ((EClass) contentTypes[i]).getName();
+				commandParam.label = "New " + ((EClass) contentTypes[i]).getName();
+				commandParam.icon = getImage((EClass) contentTypes[i]);
 			}
 			// set the DiagramType Parameter if the object is a MEiagram
 			if (contentTypes[i] instanceof DiagramType) {
@@ -81,15 +89,22 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 				DiagramType type = (DiagramType) contentTypes[i];
 				map.put(CreateMEHandler.COMMAND_ECLASS_PARAM, createMEDiagram.eClass());
 				map.put(CreateMEHandler.COMMAND_DIAGRAMTYPE_PARAM, type);
-				p.label = "New " + type.getLiteral();
+				commandParam.label = "New " + type.getLiteral();
 			}
 			// create command
-			p.parameters = map;
-			CommandContributionItem command = new CommandContributionItem(p);
+			commandParam.parameters = map;
+			CommandContributionItem command = new CommandContributionItem(commandParam);
 			commands[i] = command;
 		}
 
 		return commands;
+	}
+
+	private ImageDescriptor getImage(EClass eClass) {
+		ModelElement instance = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		Image image = labelProvider.getImage(instance);
+		ImageDescriptor imageDescriptor = ImageDescriptor.createFromImage(image);
+		return imageDescriptor;
 	}
 
 	/**
