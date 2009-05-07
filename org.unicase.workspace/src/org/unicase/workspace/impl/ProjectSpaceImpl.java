@@ -45,6 +45,7 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
@@ -59,6 +60,7 @@ import org.unicase.model.impl.IdentifiableElementImpl;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ModelValidationHelper;
 import org.unicase.model.util.ProjectChangeObserver;
+import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.OperationComposite;
 import org.unicase.workspace.ProjectSpace;
@@ -293,6 +295,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	private boolean initCompleted;
 
 	private boolean isTransient;
+
+	private CompositeOperation compositeOperation;
 
 	// begin of custom code
 	/**
@@ -1546,8 +1550,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				return;
 			}
 			if (this.deleteOperation == null) {
-				getOperations().addAll(createdOperations);
-				OperationsCannonizer.cannonize(getOperations());
+				if (this.compositeOperation != null) {
+					this.compositeOperation.getSubOperations().addAll(createdOperations);
+				} else {
+					getOperations().addAll(createdOperations);
+					OperationsCannonizer.cannonize(getOperations());
+				}
 			} else {
 				EList<ReferenceOperation> subOperations = this.deleteOperation.getSubOperations();
 				// check if all recorded ops are reference operations
@@ -1565,9 +1573,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 			// MK: maybe skip save if we are within a delete operation
 			saveProjectSpaceOnly();
-			save(modelElement);
 			updateDirtyState();
 		}
+		save(modelElement);
 	}
 
 	private void save(ModelElement modelElement) {
@@ -1685,11 +1693,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			deleteOperation.setDelete(true);
 			deleteOperation.setModelElement(ModelUtil.clone(modelElement));
 			deleteOperation.setModelElementId(modelElement.getModelElementId());
-			this.getOperations().add(deleteOperation);
+
+			if (this.compositeOperation != null) {
+				this.compositeOperation.getSubOperations().add(deleteOperation);
+			} else {
+				this.getOperations().add(deleteOperation);
+				OperationsCannonizer.cannonize(getOperations());
+			}
 
 			deleteOperation = null;
-
-			OperationsCannonizer.cannonize(getOperations());
 
 			saveProjectSpaceOnly();
 			updateDirtyState();
@@ -1735,7 +1747,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		addToResource(modelElement);
 		if (isRecording) {
 			appendCreator(modelElement);
-			this.getOperations().add(createCreateDeleteOperation(modelElement, false));
+			CreateDeleteOperation createCreateDeleteOperation = createCreateDeleteOperation(modelElement, false);
+			if (this.compositeOperation != null) {
+				this.compositeOperation.getSubOperations().add(createCreateDeleteOperation);
+			} else {
+
+				this.getOperations().add(createCreateDeleteOperation);
+			}
 			saveProjectSpaceOnly();
 		}
 	}
@@ -1802,6 +1820,31 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		startChangeRecording();
 		getOperations().addAll(mergeResult);
 		saveResourceSet();
+		updateDirtyState();
+	}
+
+	public CompositeOperationHandle beginCompositeOperation() {
+		if (this.compositeOperation != null) {
+			throw new IllegalStateException("Can only have one composite at once!");
+		}
+		this.compositeOperation = OperationsFactory.eINSTANCE.createCompositeOperation();
+		CompositeOperationHandle handle = new CompositeOperationHandle(this, compositeOperation);
+		return handle;
+	}
+
+	public void endCompositeOperation() {
+		this.getOperations().add(this.compositeOperation);
+		this.compositeOperation = null;
+		OperationsCannonizer.cannonize(getOperations());
+		saveProjectSpaceOnly();
+		updateDirtyState();
+	}
+
+	public void abortCompositeOperation() {
+		stopChangeRecording();
+		this.compositeOperation.reverse().apply(getProject());
+		startChangeRecording();
+		this.compositeOperation = null;
 		updateDirtyState();
 	}
 } // ProjectContainerImpl
