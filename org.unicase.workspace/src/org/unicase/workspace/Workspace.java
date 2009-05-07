@@ -18,9 +18,11 @@ import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
 import org.unicase.emfstore.esmodel.url.ServerUrl;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.Project;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
 import org.unicase.workspace.exceptions.ServerUrlResolutionException;
+import org.unicase.workspace.exceptions.UnkownProjectException;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Workspace</b></em>'.
@@ -239,5 +241,22 @@ public interface Workspace extends EObject, IAdaptable {
 	 */
 	ProjectSpace checkout(Usersession usersession, ProjectInfo projectInfo, PrimaryVersionSpec targetSpec)
 		throws EmfStoreException;
+
+	/**
+	 * Get the project space for the given project.
+	 * 
+	 * @param project the project
+	 * @return the project space the project is stored in
+	 * @throws UnkownProjectException if the project is not known to the workspace
+	 */
+	ProjectSpace getProjectSpace(Project project) throws UnkownProjectException;
+
+	/**
+	 * Delete the given project space.
+	 * 
+	 * @param projectSpace the project space
+	 * @throws IOException if deleting the obsolete project space files fails
+	 */
+	void deleteProjectSpace(ProjectSpace projectSpace) throws IOException;
 
 } // Workspace

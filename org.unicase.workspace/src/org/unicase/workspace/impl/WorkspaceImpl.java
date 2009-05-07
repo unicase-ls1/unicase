@@ -5,6 +5,17 @@
  */
 package org.unicase.workspace.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -36,6 +47,7 @@ import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.model.Project;
+import org.unicase.model.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -47,17 +59,9 @@ import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
 import org.unicase.workspace.exceptions.ServerUrlResolutionException;
+import org.unicase.workspace.exceptions.UnkownProjectException;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.util.WorkspaceUtil;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Workspace</b></em>'. <!-- end-user-doc -->
@@ -128,6 +132,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	private ConnectionManager connectionManager;
 	private TransactionalEditingDomain transactionalEditingDomain;
+
+	private Map<Project, ProjectSpace> projectToProjectSpaceMap;
 
 	// end of custom code
 
@@ -302,7 +308,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			WorkspaceUtil.logException("Creating notifications failed!", e);
 		}
 
-		getProjectSpaces().add(projectSpace);
+		addProjectSpace(projectSpace);
 		this.save();
 
 		return projectSpace;
@@ -488,9 +494,11 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 */
 	public void init(TransactionalEditingDomain editingDomain) {
 		this.transactionalEditingDomain = editingDomain;
+		projectToProjectSpaceMap = new HashMap<Project, ProjectSpace>();
 		// initialize all projectSpaces
 		for (ProjectSpace projectSpace : getProjectSpaces()) {
 			projectSpace.init();
+			projectToProjectSpaceMap.put(projectSpace.getProject(), projectSpace);
 			// add plugin start event
 			PluginStartEvent event = EventsFactory.eINSTANCE.createPluginStartEvent();
 			event.setPluginId("org.unicase.workspace");
@@ -535,10 +543,15 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 		projectSpace.initResources(this.workspaceResourceSet);
 
-		getProjectSpaces().add(projectSpace);
+		addProjectSpace(projectSpace);
 		this.save();
 
 		return projectSpace;
+	}
+
+	private void addProjectSpace(ProjectSpace projectSpace) {
+		getProjectSpaces().add(projectSpace);
+		projectToProjectSpaceMap.put(projectSpace.getProject(), projectSpace);
 	}
 
 	/**
@@ -604,7 +617,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 
 		projectSpace.initResources(this.workspaceResourceSet);
 
-		getProjectSpaces().add(projectSpace);
+		addProjectSpace(projectSpace);
 		this.save();
 		return projectSpace;
 	}
@@ -659,6 +672,28 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			throw new ServerUrlResolutionException();
 		}
 		return result;
+	}
+
+	public ProjectSpace getProjectSpace(Project project) throws UnkownProjectException {
+		ProjectSpace projectSpace = projectToProjectSpaceMap.get(project);
+		if (projectSpace == null) {
+			throw new UnkownProjectException();
+		}
+		return projectSpace;
+	}
+
+	public void deleteProjectSpace(ProjectSpace projectSpace) throws IOException {
+		getProjectSpaces().remove(projectSpace);
+		if (getActiveProjectSpace() == projectSpace) {
+			setActiveProjectSpace(null);
+		}
+		save();
+		projectToProjectSpaceMap.remove(projectSpace).getProject();
+
+		// delete folder of projectSPace
+		String pathToProject = Configuration.getWorkspaceDirectory() + "ps-" + projectSpace.getIdentifier();
+		FileUtil.deleteFolder(new File(pathToProject));
+
 	}
 
 } // WorkspaceImpl
