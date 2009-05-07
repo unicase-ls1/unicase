@@ -19,7 +19,8 @@ import org.junit.runners.Suite;
   SingleReferenceOperationTest.class,
   MultiReferenceOperationTest.class,
   CreateDeleteOperationTest.class,
-  MultiReferenceMoveOperationTest.class
+  MultiReferenceMoveOperationTest.class,
+  CompositeOperationTest.class
 })
 public class AllOperationTests {
 
