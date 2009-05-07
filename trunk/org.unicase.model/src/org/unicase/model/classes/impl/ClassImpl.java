@@ -34,6 +34,7 @@ import org.unicase.model.requirement.UseCase;
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getMethods <em>Methods</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.ClassImpl#getDemoParticipations <em>Demo Participations</em>}</li>
  * </ul>
  * </p>
  * 

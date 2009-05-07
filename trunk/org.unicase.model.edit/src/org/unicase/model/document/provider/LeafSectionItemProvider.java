@@ -342,6 +342,15 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createFork()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ActivityFactory.eINSTANCE.createBranch()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ActivityFactory.eINSTANCE.createActivityInitial()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ActivityFactory.eINSTANCE.createActivityEnd()));
 	}
 
 	/**

@@ -10,16 +10,12 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.Fork;
 
 /**
@@ -49,36 +45,8 @@ public class ForkItemProvider extends ActivityObjectItemProvider implements IEdi
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addEntryConditionsPropertyDescriptor(object);
-			addExitConditionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Entry Conditions feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addEntryConditionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Fork_entryConditions_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Fork_entryConditions_feature", "_UI_Fork_type"),
-			ActivityPackage.Literals.FORK__ENTRY_CONDITIONS, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Exit Conditions feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addExitConditionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Fork_exitConditions_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Fork_exitConditions_feature", "_UI_Fork_type"),
-			ActivityPackage.Literals.FORK__EXIT_CONDITIONS, true, false, false,
-			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -113,13 +81,6 @@ public class ForkItemProvider extends ActivityObjectItemProvider implements IEdi
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-
-		switch (notification.getFeatureID(Fork.class)) {
-		case ActivityPackage.FORK__ENTRY_CONDITIONS:
-		case ActivityPackage.FORK__EXIT_CONDITIONS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		}
 		super.notifyChanged(notification);
 	}
 

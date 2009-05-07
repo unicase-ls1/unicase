@@ -28,6 +28,7 @@ import org.unicase.model.task.WorkItem;
  * <li>{@link org.unicase.model.organization.impl.UserImpl#getEmail <em>Email</em>}</li>
  * <li>{@link org.unicase.model.organization.impl.UserImpl#getFirstName <em>First Name</em>}</li>
  * <li>{@link org.unicase.model.organization.impl.UserImpl#getLastName <em>Last Name</em>}</li>
+ * <li>{@link org.unicase.model.organization.impl.UserImpl#getWorkItemsToReview <em>Work Items To Review</em>}</li>
  * </ul>
  * </p>
  * 

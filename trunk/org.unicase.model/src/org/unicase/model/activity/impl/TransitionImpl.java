@@ -22,6 +22,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * <ul>
  * <li>{@link org.unicase.model.activity.impl.TransitionImpl#getSource <em>Source</em>}</li>
  * <li>{@link org.unicase.model.activity.impl.TransitionImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.unicase.model.activity.impl.TransitionImpl#getCondition <em>Condition</em>}</li>
  * </ul>
  * </p>
  * 
@@ -47,6 +48,26 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * @ordered
 	 */
 	protected ActivityObject target;
+
+	/**
+	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getCondition()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String CONDITION_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getCondition()
+	 * @generated
+	 * @ordered
+	 */
+	protected String condition = CONDITION_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -208,6 +229,28 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * 
 	 * @generated
 	 */
+	public String getCondition() {
+		return condition;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setCondition(String newCondition) {
+		String oldCondition = condition;
+		condition = newCondition;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ActivityPackage.TRANSITION__CONDITION, oldCondition,
+				condition));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -257,6 +300,8 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 			if (resolve)
 				return getTarget();
 			return basicGetTarget();
+		case ActivityPackage.TRANSITION__CONDITION:
+			return getCondition();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -274,6 +319,9 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 			return;
 		case ActivityPackage.TRANSITION__TARGET:
 			setTarget((ActivityObject) newValue);
+			return;
+		case ActivityPackage.TRANSITION__CONDITION:
+			setCondition((String) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -293,6 +341,9 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 		case ActivityPackage.TRANSITION__TARGET:
 			setTarget((ActivityObject) null);
 			return;
+		case ActivityPackage.TRANSITION__CONDITION:
+			setCondition(CONDITION_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -309,8 +360,27 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 			return source != null;
 		case ActivityPackage.TRANSITION__TARGET:
 			return target != null;
+		case ActivityPackage.TRANSITION__CONDITION:
+			return CONDITION_EDEFAULT == null ? condition != null : !CONDITION_EDEFAULT.equals(condition);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (condition: ");
+		result.append(condition);
+		result.append(')');
+		return result.toString();
 	}
 
 } // TransitionImpl

@@ -23,10 +23,13 @@ import org.unicase.model.organization.User;
  * <li>{@link org.unicase.model.task.WorkItem#getPredecessors <em>Predecessors</em>}</li>
  * <li>{@link org.unicase.model.task.WorkItem#getSuccessors <em>Successors</em>}</li>
  * <li>{@link org.unicase.model.task.WorkItem#getAssignee <em>Assignee</em>}</li>
+ * <li>{@link org.unicase.model.task.WorkItem#getReviewer <em>Reviewer</em>}</li>
  * <li>{@link org.unicase.model.task.WorkItem#getParticipants <em>Participants</em>}</li>
  * <li>{@link org.unicase.model.task.WorkItem#getDueDate <em>Due Date</em>}</li>
  * <li>{@link org.unicase.model.task.WorkItem#getEstimate <em>Estimate</em>}</li>
  * <li>{@link org.unicase.model.task.WorkItem#getEffort <em>Effort</em>}</li>
+ * <li>{@link org.unicase.model.task.WorkItem#getPriority <em>Priority</em>}</li>
+ * <li>{@link org.unicase.model.task.WorkItem#isResolved <em>Resolved</em>}</li>
  * </ul>
  * </p>
  * 

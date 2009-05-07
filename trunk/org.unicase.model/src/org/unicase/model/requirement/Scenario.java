@@ -21,6 +21,8 @@ import org.unicase.model.classes.Method;
  * <li>{@link org.unicase.model.requirement.Scenario#getInstantiatedUseCases <em>Instantiated Use Cases</em>}</li>
  * <li>{@link org.unicase.model.requirement.Scenario#getFunctionalRequirements <em>Functional Requirements</em>}</li>
  * <li>{@link org.unicase.model.requirement.Scenario#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
+ * <li>{@link org.unicase.model.requirement.Scenario#getParticipatingMethods <em>Participating Methods</em>}</li>
+ * <li>{@link org.unicase.model.requirement.Scenario#getParticipatingClasses <em>Participating Classes</em>}</li>
  * </ul>
  * </p>
  * 

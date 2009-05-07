@@ -12,8 +12,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.activity.Activity;
+import org.unicase.model.activity.ActivityEnd;
+import org.unicase.model.activity.ActivityInitial;
 import org.unicase.model.activity.ActivityObject;
 import org.unicase.model.activity.ActivityPackage;
+import org.unicase.model.activity.Branch;
 import org.unicase.model.activity.Fork;
 import org.unicase.model.activity.Transition;
 
@@ -86,6 +89,21 @@ public class ActivityAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseFork(Fork object) {
 			return createForkAdapter();
+		}
+
+		@Override
+		public Adapter caseBranch(Branch object) {
+			return createBranchAdapter();
+		}
+
+		@Override
+		public Adapter caseActivityInitial(ActivityInitial object) {
+			return createActivityInitialAdapter();
+		}
+
+		@Override
+		public Adapter caseActivityEnd(ActivityEnd object) {
+			return createActivityEndAdapter();
 		}
 
 		@Override
@@ -165,6 +183,45 @@ public class ActivityAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createForkAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.activity.Branch <em>Branch</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.activity.Branch
+	 * @generated
+	 */
+	public Adapter createBranchAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.activity.ActivityInitial <em>Initial</em>}
+	 * '. <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's
+	 * useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.activity.ActivityInitial
+	 * @generated
+	 */
+	public Adapter createActivityInitialAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.activity.ActivityEnd <em>End</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.activity.ActivityEnd
+	 * @generated
+	 */
+	public Adapter createActivityEndAdapter() {
 		return null;
 	}
 

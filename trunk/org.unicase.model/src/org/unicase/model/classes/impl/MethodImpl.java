@@ -42,6 +42,10 @@ import org.unicase.model.requirement.Scenario;
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#getArguments <em>Arguments</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#getProperties <em>Properties</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#getLabel <em>Label</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#isStubbed <em>Stubbed</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getCalledMethods <em>Called Methods</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getCallingMethods <em>Calling Methods</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getDemoParticipations <em>Demo Participations</em>}</li>
  * </ul>
  * </p>
  * 

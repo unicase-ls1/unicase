@@ -47,10 +47,13 @@ import org.unicase.model.task.WorkPackage;
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getPredecessors <em>Predecessors</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSuccessors <em>Successors</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssignee <em>Assignee</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getReviewer <em>Reviewer</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getParticipants <em>Participants</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getDueDate <em>Due Date</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getEstimate <em>Estimate</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getEffort <em>Effort</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getPriority <em>Priority</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#isResolved <em>Resolved</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>Proposals</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li>
  * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>

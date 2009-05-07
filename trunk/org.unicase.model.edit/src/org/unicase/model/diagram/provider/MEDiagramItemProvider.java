@@ -360,6 +360,15 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			ActivityFactory.eINSTANCE.createFork()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ActivityFactory.eINSTANCE.createBranch()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ActivityFactory.eINSTANCE.createActivityInitial()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ActivityFactory.eINSTANCE.createActivityEnd()));
 	}
 
 	/**

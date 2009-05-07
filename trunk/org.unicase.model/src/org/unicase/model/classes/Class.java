@@ -21,6 +21,7 @@ import org.unicase.model.requirement.UseCase;
  * <li>{@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
  * <li>{@link org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}</li>
  * <li>{@link org.unicase.model.classes.Class#getMethods <em>Methods</em>}</li>
+ * <li>{@link org.unicase.model.classes.Class#getDemoParticipations <em>Demo Participations</em>}</li>
  * </ul>
  * </p>
  * 

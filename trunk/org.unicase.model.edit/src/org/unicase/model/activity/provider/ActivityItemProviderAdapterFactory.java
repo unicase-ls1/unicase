@@ -141,6 +141,75 @@ public class ActivityItemProviderAdapterFactory extends ActivityAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.activity.Branch} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected BranchItemProvider branchItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.activity.Branch}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createBranchAdapter() {
+		if (branchItemProvider == null) {
+			branchItemProvider = new BranchItemProvider(this);
+		}
+
+		return branchItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.activity.ActivityInitial} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ActivityInitialItemProvider activityInitialItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.activity.ActivityInitial}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityInitialAdapter() {
+		if (activityInitialItemProvider == null) {
+			activityInitialItemProvider = new ActivityInitialItemProvider(this);
+		}
+
+		return activityInitialItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.activity.ActivityEnd} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ActivityEndItemProvider activityEndItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.activity.ActivityEnd}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityEndAdapter() {
+		if (activityEndItemProvider == null) {
+			activityEndItemProvider = new ActivityEndItemProvider(this);
+		}
+
+		return activityEndItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -240,6 +309,12 @@ public class ActivityItemProviderAdapterFactory extends ActivityAdapterFactory i
 			activityItemProvider.dispose();
 		if (forkItemProvider != null)
 			forkItemProvider.dispose();
+		if (branchItemProvider != null)
+			branchItemProvider.dispose();
+		if (activityInitialItemProvider != null)
+			activityInitialItemProvider.dispose();
+		if (activityEndItemProvider != null)
+			activityEndItemProvider.dispose();
 	}
 
 }

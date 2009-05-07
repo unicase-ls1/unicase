@@ -40,10 +40,13 @@ import org.unicase.model.task.WorkPackage;
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPredecessors <em>Predecessors</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getSuccessors <em>Successors</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getAssignee <em>Assignee</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getReviewer <em>Reviewer</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getParticipants <em>Participants</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getDueDate <em>Due Date</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEstimate <em>Estimate</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEffort <em>Effort</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPriority <em>Priority</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#isResolved <em>Resolved</em>}</li>
  * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainedModelElements <em>Contained Model Elements</em>}</li>
  * </ul>
  * </p>

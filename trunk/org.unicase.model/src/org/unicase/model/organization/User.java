@@ -16,6 +16,7 @@ import org.unicase.model.task.WorkItem;
  * <li>{@link org.unicase.model.organization.User#getEmail <em>Email</em>}</li>
  * <li>{@link org.unicase.model.organization.User#getFirstName <em>First Name</em>}</li>
  * <li>{@link org.unicase.model.organization.User#getLastName <em>Last Name</em>}</li>
+ * <li>{@link org.unicase.model.organization.User#getWorkItemsToReview <em>Work Items To Review</em>}</li>
  * </ul>
  * </p>
  * 

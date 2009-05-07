@@ -120,6 +120,7 @@
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/USECASE_DIAGRAM"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/COMPONENT_DIAGRAM"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/STATE_DIAGRAM"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/ACTIVITY_DIAGRAM"/>
       </genEnums>
       <genClasses ecoreClass="model.ecore#//diagram/MEDiagram">
         <genFeatures children="true" createChild="true" propertyDescription="" propertySortChoices="true"
@@ -586,12 +587,13 @@
             ecoreFeature="ecore:EReference model.ecore#//activity/Transition/source"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//activity/Transition/target"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//activity/Transition/condition"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//activity/Activity"/>
-      <genClasses ecoreClass="model.ecore#//activity/Fork">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//activity/Fork/entryConditions"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//activity/Fork/exitConditions"/>
-      </genClasses>
+      <genClasses ecoreClass="model.ecore#//activity/Fork"/>
+      <genClasses ecoreClass="model.ecore#//activity/Branch"/>
+      <genClasses ecoreClass="model.ecore#//activity/ActivityInitial"/>
+      <genClasses ecoreClass="model.ecore#//activity/ActivityEnd"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>
