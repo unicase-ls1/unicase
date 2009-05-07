@@ -152,14 +152,14 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 		// root nodes (WorkPackage) and their contained WorkItems
 		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmWorkItem.getColumn().setText("WorkItem");
-		tclmWorkItem.getColumn().setWidth(400);
+		tclmWorkItem.getColumn().setWidth(300);
 		EMFColumnLabelProvider emfColumnLabelProvider = new EMFColumnLabelProvider();
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
 		new TreeViewerColumnSorter(treeViewer, tclmWorkItem, emfColumnLabelProvider);
 
 		// status column
 		TreeViewerColumn status = new TreeViewerColumn(treeViewer, SWT.NONE);
-		status.getColumn().setWidth(20);
+		status.getColumn().setWidth(40);
 		statusColumnLabelProvider = new UserTabStatusColumnLabelProvider();
 		status.setLabelProvider(statusColumnLabelProvider);
 		status.getColumn().setText("State");
@@ -167,7 +167,7 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 		// annotated model element
 		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmAnnotatedME.getColumn().setText("Annotated");
-		tclmAnnotatedME.getColumn().setWidth(150);
+		tclmAnnotatedME.getColumn().setWidth(200);
 		TaskObjectLabelProvider taskObjectLabelProvider = new TaskObjectLabelProvider();
 		tclmAnnotatedME.setLabelProvider(taskObjectLabelProvider);
 		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(treeViewer));
@@ -185,7 +185,7 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 		// Priority
 		TreeViewerColumn priority = new TreeViewerColumn(treeViewer, SWT.NONE);
 		priority.getColumn().setText("Priority");
-		priority.getColumn().setWidth(50);
+		priority.getColumn().setWidth(100);
 		ColumnLabelProvider priorityLableProvider = new ColumnLabelProvider() {
 
 			@Override
@@ -205,7 +205,7 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 		// Estimate
 		TreeViewerColumn estimate = new TreeViewerColumn(treeViewer, SWT.NONE);
 		estimate.getColumn().setText("Estimate");
-		estimate.getColumn().setWidth(50);
+		estimate.getColumn().setWidth(100);
 		UserEstimateLabelProvider userEstimateLabelProvider = new UserEstimateLabelProvider(contentProvider);
 		estimate.setLabelProvider(userEstimateLabelProvider);
 		estimate.setEditingSupport(new IntegerEditingSupport(treeViewer, TaskPackage.eINSTANCE.getWorkItem_Estimate()));

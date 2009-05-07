@@ -40,20 +40,20 @@ public abstract class TaskTableUtil {
 		// root nodes (WorkPackage) and their contained WorkItems
 		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmWorkItem.getColumn().setText("WorkItem");
-		tclmWorkItem.getColumn().setWidth(400);
+		tclmWorkItem.getColumn().setWidth(300);
 		EMFColumnLabelProvider emfColumnLabelProvider = new EMFColumnLabelProvider();
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
 		new TreeViewerColumnSorter(treeViewer, tclmWorkItem, emfColumnLabelProvider);
 
 		TreeViewerColumn status = new TreeViewerColumn(treeViewer, SWT.NONE);
-		status.getColumn().setWidth(20);
+		status.getColumn().setWidth(40);
 		status.setLabelProvider(new StatusLabelProvider());
 		status.getColumn().setText("State");
 
 		// annotated model element
 		TreeViewerColumn tclmAnnotatedME = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmAnnotatedME.getColumn().setText("Annotated");
-		tclmAnnotatedME.getColumn().setWidth(100);
+		tclmAnnotatedME.getColumn().setWidth(200);
 		TaskObjectLabelProvider taskObjectLabelProvider = new TaskObjectLabelProvider();
 		tclmAnnotatedME.setLabelProvider(taskObjectLabelProvider);
 		tclmAnnotatedME.setEditingSupport(new TaskObjectEditingSupport(treeViewer));

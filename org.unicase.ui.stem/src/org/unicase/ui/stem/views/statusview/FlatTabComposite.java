@@ -192,7 +192,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	private void createTodoColumn() {
 		TableViewerColumn tclmTodo = new TableViewerColumn(tableViewer, SWT.LEAD);
 		tclmTodo.getColumn().setText("Todo");
-		tclmTodo.getColumn().setWidth(200);
+		tclmTodo.getColumn().setWidth(250);
 		FlatTabColumnLabelProvider columnLabelProvider = new FlatTabColumnLabelProvider() {
 			@Override
 			public Image getImage(Object element) {
@@ -244,7 +244,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	private void createModelElementColumn() {
 		TableViewerColumn tclmModelElement = new TableViewerColumn(tableViewer, SWT.LEAD);
 		tclmModelElement.getColumn().setText("Annotated");
-		tclmModelElement.getColumn().setWidth(150);
+		tclmModelElement.getColumn().setWidth(200);
 		TaskObjectLabelProvider labelProvider = new TaskObjectLabelProvider();
 		tclmModelElement.setLabelProvider(labelProvider);
 		new TableViewerColumnSorter(tableViewer, tclmModelElement, labelProvider);
@@ -253,7 +253,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	private void createPriorityColumn() {
 		TableViewerColumn tclmPriority = new TableViewerColumn(tableViewer, SWT.LEAD);
 		tclmPriority.getColumn().setText("Priority");
-		tclmPriority.getColumn().setWidth(30);
+		tclmPriority.getColumn().setWidth(70);
 		ColumnLabelProvider labelProvider = new ColumnLabelProvider() {
 
 			@Override
@@ -275,8 +275,8 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 
 	private void createEstimateColumn() {
 		TableViewerColumn tclmEstimate = new TableViewerColumn(tableViewer, SWT.LEAD);
-		tclmEstimate.getColumn().setText("Estiamte");
-		tclmEstimate.getColumn().setWidth(30);
+		tclmEstimate.getColumn().setText("Estimate");
+		tclmEstimate.getColumn().setWidth(70);
 		ColumnLabelProvider labelProvider = new ColumnLabelProvider() {
 
 			@Override
