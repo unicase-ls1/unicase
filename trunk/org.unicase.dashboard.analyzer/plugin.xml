@@ -9,6 +9,14 @@
                commandId="org.unicase.dashboard.analyzer"
                label="Dashboard Analyzer"
                style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate>
+                  <instanceof
+                        value="org.unicase.workspace.ProjectSpace">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>

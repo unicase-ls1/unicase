@@ -15,10 +15,6 @@
            commandId="org.unicase.ui.common.deleteModelelement">
      </handler>
          <handler
-               class="org.unicase.ui.common.handlers.NewDocumentHandler"
-               commandId="org.unicase.ui.common.newDocument">
-         </handler>
-         <handler
                class="org.unicase.ui.common.handlers.OpenDiagramWithMEEditorHandler"
                commandId="org.unicase.ui.common.openDiagramWithMEEditor">
          </handler>
@@ -37,6 +33,7 @@
      </command>
      <command
            categoryId="org.unicase.ui.common.modifyModelelement"
+           defaultHandler="org.unicase.ui.common.handlers.NewDocumentHandler"
            id="org.unicase.ui.common.newDocument"
            name="New Document">
      </command>
@@ -65,7 +62,7 @@
    <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.edit.scmCommands">
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.navigator.createModelElementCommands">
         <command
               commandId="org.unicase.ui.common.openDiagramWithMEEditor"
               label="Open with MEEditor"
@@ -158,7 +155,7 @@
   <extension
         point="org.eclipse.ui.menus">
      <menuContribution
-           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.edit.scmCommands">
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.modifyCommands">
         <menu
               label="Add Annotations">
            <visibleWhen
