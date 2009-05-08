@@ -310,10 +310,9 @@ public final class ActionHelper {
 			id = "org.unicase.ui.componentDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
 			id = "org.unicase.ui.stateDiagram.part.ModelDiagramEditorID";
-		}
-//			else if (diagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
-//			id = "org.unicase.ui.activityDiagram.part.ModelDiagramEditorID";
-//		}		
+		} else if (diagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
+			id = "org.unicase.ui.activityDiagram.part.ModelDiagramEditorID";
+		}		
 
 		if (id == null) {
 			throw new RuntimeException("Unsupported diagram type");
