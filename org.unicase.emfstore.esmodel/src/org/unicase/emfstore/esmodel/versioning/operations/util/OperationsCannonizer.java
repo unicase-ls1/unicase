@@ -56,7 +56,7 @@ public final class OperationsCannonizer {
 			if (operation instanceof CompositeOperation) {
 				// FIXME MK: check if composite will be empty after cannonize:
 				// FIXME MK: check if composite in context of cp
-				((CompositeOperation) operation).cannonize();
+				// ((CompositeOperation) operation).cannonize();
 				continue;
 			}
 
