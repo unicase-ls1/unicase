@@ -40,7 +40,8 @@ public class WorkPackageDropAdapter extends MEDropAdapter {
 	}
 
 	/**
-	 * {@inheritDoc}
+	 * {@inheritDoc} Note: if we drop a model element with a bidirectional reference, we set the parent for drop source,
+	 * instead of just adding drop source to target (container). This is because of change recording.
 	 */
 	@Override
 	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
@@ -49,7 +50,10 @@ public class WorkPackageDropAdapter extends MEDropAdapter {
 		if (dropee instanceof WorkItem) {
 			for (ModelElement me : source) {
 				if (me instanceof WorkItem) {
-					((WorkPackage) target).getContainedWorkItems().add((WorkItem) me);
+					// ((WorkPackage) target).getContainedWorkItems().add((WorkItem) me);
+
+					// bidirectional reference
+					((WorkItem) me).setContainingWorkpackage((WorkPackage) target);
 				}
 			}
 
@@ -91,7 +95,9 @@ public class WorkPackageDropAdapter extends MEDropAdapter {
 			ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
 			ai.setName("New Action Item relating " + me.getName());
 			ai.getAnnotatedModelElements().add(me);
-			((WorkPackage) target).getContainedWorkItems().add(ai);
+			// bidirectional reference
+			// ((WorkPackage) target).getContainedWorkItems().add(ai);
+			ai.setContainingWorkpackage((WorkPackage) target);
 			ActionHelper.openModelElement(ai, viewId);
 		}
 	}

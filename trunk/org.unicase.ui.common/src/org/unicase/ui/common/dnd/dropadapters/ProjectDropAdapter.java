@@ -16,7 +16,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.document.DocumentPackage;
 
 /**
- * This is the drop adapter for Projects.
+ * This is the drop adapter for Projects. Used to change order of first level composite sections.
  * 
  * @author Hodaie
  */
@@ -32,11 +32,7 @@ public class ProjectDropAdapter extends MEDropAdapter {
 		super(domain, viewer);
 	}
 
-	// @Override
-	// public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source, ModelElement target,
-	// ModelElement dropee) {
-	// return
-	// }
+	
 
 	/**
 	 * {@inheritDoc}
