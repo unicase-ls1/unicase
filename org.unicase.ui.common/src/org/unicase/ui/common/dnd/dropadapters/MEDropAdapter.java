@@ -170,6 +170,8 @@ public class MEDropAdapter {
 		}
 
 		if (haveSameEContainer(target, source.get(0))) {
+			// We are just changing the order of elements inside the same container.
+			// In this case the change recording handles a move notification and creates MultiReferenceMoveOperation.
 			int sourceIndex = eList.indexOf(source.get(0));
 			if (sourceIndex >= 0 && sourceIndex < targetIndex) {
 				targetIndex--;
@@ -179,6 +181,7 @@ public class MEDropAdapter {
 			}
 
 		} else {
+			// we are moving an element from its old container to new container and dropping before target.
 			eList.addAll(targetIndex, source);
 		}
 
@@ -195,7 +198,8 @@ public class MEDropAdapter {
 	}
 
 	/**
-	 * Drop containment.
+	 * Drop containment. Note: if we drop a model element with a bidirectional reference, we set the parent for drop
+	 * source, instead of just adding drop source to target (container). This is because of change recording.
 	 * 
 	 * @param target target
 	 * @param source source
@@ -208,9 +212,27 @@ public class MEDropAdapter {
 			return;
 		}
 
-		Object object = target.eGet(theRef);
-		EList<EObject> eList = (EList<EObject>) object;
-		eList.addAll(source);
+		if (theRef.getEOpposite() != null) {
+			// if it is a bidirectional reference, instead of adding source to target, set target to the opposite
+			// reference.
+			EReference oppositeRef = theRef.getEOpposite();
+			for (ModelElement me : source) {
+				Object object = me.eGet(oppositeRef);
+				if (oppositeRef.isMany()) {
+					EList<EObject> eList = (EList<EObject>) object;
+					eList.add(target);
+				} else {
+					me.eSet(oppositeRef, target);
+				}
+			}
+
+		} else {
+
+			Object object = target.eGet(theRef);
+			EList<EObject> eList = (EList<EObject>) object;
+			eList.addAll(source);
+
+		}
 
 	}
 
@@ -338,6 +360,7 @@ public class MEDropAdapter {
 	public void dropMove(final EObject targetContainer, final ModelElement target, final List<ModelElement> source,
 		final boolean after) {
 
+		// target is the model element after/before which we drop.
 		if (!getTargetRef(targetContainer, target).equals(getTargetRef(targetContainer, source.get(0)))) {
 
 			return;

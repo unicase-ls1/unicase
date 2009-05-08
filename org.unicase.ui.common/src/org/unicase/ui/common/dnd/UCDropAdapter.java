@@ -65,8 +65,8 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 	/**
 	 * Actually I should be able to get event feedback from event.feedback But the problem is, the event feedback is
-	 * correctly set in helper() method, but in drop() method it is set to 1 (only selection). That's why I save event
-	 * feedback at the end of helper() in a variable, and check this variable in drop() instead of event.feedback
+	 * correctly set in dragOver() method, but in drop() method it is set to 1 (only selection). That's why I save event
+	 * feedback at the end of dragOver() in a variable, and check this variable in drop() instead of event.feedback
 	 */
 	private int eventFeedback;
 
