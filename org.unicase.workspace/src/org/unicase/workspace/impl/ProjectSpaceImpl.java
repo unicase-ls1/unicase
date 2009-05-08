@@ -69,6 +69,7 @@ import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.changeTracking.OperationParser;
+import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
@@ -1846,5 +1847,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		startChangeRecording();
 		this.compositeOperation = null;
 		updateDirtyState();
+	}
+
+	public NotificationRecorder getNotificationRecorder() {
+		// SC: FIXME
+		// dummy method
+		return null;
 	}
 } // ProjectContainerImpl
