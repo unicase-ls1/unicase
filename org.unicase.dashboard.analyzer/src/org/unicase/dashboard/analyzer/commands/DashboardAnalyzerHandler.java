@@ -10,11 +10,14 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -85,9 +88,9 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		ProjectId pid = (ProjectId) EcoreUtil.copy(projectSpace.getProjectId());
 		ProgressMonitorDialog progressDialog = null;
 		PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		start.setIdentifier(80);
+		start.setIdentifier(1);
 		PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		end.setIdentifier(100);
+		end.setIdentifier(622);
 		try {
 			VersionIterator iterator = new VersionIterator(session, pid, 1, start, end, false, true, true);
 
@@ -108,6 +111,8 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 			modifierReadEventsWriter = new BufferedWriter(modifierFileWriter);
 			creatorReadEventsWriter = new BufferedWriter(creatorFileWriter);
 
+			HashMap<String, HashMap<String,ArrayList<String>>> users = new HashMap<String,HashMap<String, ArrayList<String>>>();
+			
 			EList<EStructuralFeature> readEventFeaturesList = EventsPackage.eINSTANCE.getReadEvent()
 				.getEAllStructuralFeatures();
 			initWriter(modifierReadEventsWriter, readEventFeaturesList);
@@ -167,6 +172,8 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 
 				HashMap<Integer, HashMap<String, Integer>> providersMap = new HashMap<Integer, HashMap<String, Integer>>();
 				db.put(user.getName(), providersMap);
+				
+				users.put(user.getName(), new HashMap<String, ArrayList<String>>());
 			}
 
 			while (iterator.hasNext()) {
@@ -214,46 +221,57 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 							kw2prov.put(p, new Integer(count.intValue() + 1));
 //							System.out.println("Writing " + userString + " " + p + " " + kw2prov.get(p).toString());
 
-							writers.get(userString).write(analysisData.getPrimaryVersionSpec().getIdentifier() + "");
-							writers.get(userString).write(delimeter);
-							writers.get(userString).write(n.getSender());
-							writers.get(userString).write(delimeter);
-							writers.get(userString).write(n.getMessage().replaceAll("\n", " "));
-							writers.get(userString).write(delimeter);
-							writers.get(userString).write(userString);
-							writers.get(userString).write(delimeter);
+							StringBuilder output = new StringBuilder();
+							
+							output.append(analysisData.getPrimaryVersionSpec().getIdentifier() + "");
+							output.append(delimeter);
+							output.append(n.getSender());
+							output.append(delimeter);
+							output.append(n.getMessage().replaceAll("\n", " "));
+							output.append(delimeter);
+							output.append(userString);
+							output.append(delimeter);
 
-							writers.get(userString).write(dateFormat.format(crDate));
+							output.append(dateFormat.format(crDate));
 
-							writers.get(userString).write(delimeter);
+							output.append(delimeter);
 							final ModelElementId modelElementId = n.getRelatedModelElements().get(0);
 							if (modelElementId != null) {
 								ModelElement modelElement = projectSpace.getProject().getModelElement(modelElementId);
-								writers.get(userString).write(modelElementId.getId());
-								writers.get(userString).write(delimeter);
+								output.append(modelElementId.getId());
+								output.append(delimeter);
 								if (modelElement == null) {
-									writers.get(userString).write("deleted");
-									writers.get(userString).write(delimeter);
-									writers.get(userString).write("deleted");
-									writers.get(userString).write(delimeter);
-									writers.get(userString).write("deleted");
+									output.append("deleted");
+									output.append(delimeter);
+									output.append("deleted");
+									output.append(delimeter);
+									output.append("deleted");
 								} else {
-									writers.get(userString).write(modelElement.getName() + "");
-									writers.get(userString).write(delimeter);
-									writers.get(userString).write(modelElement.eClass().getName());
-									writers.get(userString).write(delimeter);
+									output.append(modelElement.getName() + "");
+									output.append(delimeter);
+									output.append(modelElement.eClass().getName());
+									output.append(delimeter);
 									String description = modelElement.getDescription();
 									if (description == null) {
 										description = "";
 									}
-									writers.get(userString).write(description.replaceAll("\n", " "));
+									output.append(description.replaceAll("\n", " "));
 								}
 							} else {
-								writers.get(userString).write(delimeter);
-								writers.get(userString).write(delimeter);
-								writers.get(userString).write(delimeter);
+								output.append(delimeter);
+								output.append(delimeter);
+								output.append(delimeter);
 							}
-							writers.get(userString).write("\n");
+							output.append("\n");
+							final String outputString = output.toString();
+							writers.get(userString).write(outputString);
+							
+							ArrayList<String> arrayList = users.get(userString).get(n.getSender());
+							if(arrayList == null) {
+								arrayList = new ArrayList<String>();
+								users.get(userString).put(n.getSender(),arrayList);
+							}
+							arrayList.add(outputString);
 						}
 
 						exportEvents(readEvents, readEventFeaturesList, dateFormat, modifierProvider, userString,
@@ -271,6 +289,8 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 					creatorReadEventsWriter.flush();
 				}
 			}
+			
+			Random random = new Random();
 			for (User user : userList) {
 				String userString = user.getName();
 				final BufferedWriter writer = KWwriters.get(userString);
@@ -289,6 +309,30 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 					writer.write("\n");
 					writer.flush();
 				}
+				
+				
+				BufferedWriter randomized = new BufferedWriter(new FileWriter(path + "/" + userString + "_randomized.csv"));
+				HashMap<String, ArrayList<String>> userNotifications = users.get(userString);
+				for(String provider : userNotifications.keySet()){
+					ArrayList<String> arrayList = userNotifications.get(provider);
+					Collections.shuffle(arrayList, random);
+					for(int i=0; i<12; i++){
+						if(arrayList.size() > i){
+							randomized.write(arrayList.get(i));
+						}else{
+							System.out.println(userString + " does not apply ("+provider+")");
+						}
+					}
+				}
+				for (NotificationProvider p : generator.getProviders()){
+					if(userNotifications.get(p.getName())==null){
+						System.out.println(userString + " does not apply ("+p.getName()+")");
+					}
+				}
+				randomized.flush();
+				randomized.close();
+				
+				
 			}
 			for (BufferedWriter writer : KWwriters.values()) {
 				writer.close();
@@ -313,14 +357,6 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 			writer.write(feature.getName() + delimeter);
 		}
 		writer.write("\n");
-	}
-
-	private String getCreationDate(ESNotification n) {
-		final Date creationDate = n.getCreationDate();
-		if (creationDate != null) {
-			return dateFormat.format(creationDate);
-		}
-		return "null";
 	}
 
 	private void exportEvents(HashMap<String, ReadEvent> readEvents, EList<EStructuralFeature> readEventFeaturesList,

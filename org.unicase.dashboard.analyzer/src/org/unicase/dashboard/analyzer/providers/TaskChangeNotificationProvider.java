@@ -67,7 +67,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#getName()
 	 */
 	public String getName() {
-		return "Task Change Notification Provider";
+		return "Assignement Notification Provider";
 	}
 
 	/**

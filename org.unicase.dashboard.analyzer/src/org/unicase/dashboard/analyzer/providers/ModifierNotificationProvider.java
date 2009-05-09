@@ -24,6 +24,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.ModelPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.NotificationProvider;
 import org.unicase.workspace.notification.provider.NotificationHelper;
@@ -112,7 +113,7 @@ public class ModifierNotificationProvider implements NotificationProvider {
 	private void createNotification(ModelElementId mid, Date date) {
 
 		ModelElement modelElement = projectSpace.getProject().getModelElement(mid);
-		if (modelElement != null && watchList.contains(mid)) {
+		if (modelElement != null && watchList.contains(mid) && !ModelPackage.eINSTANCE.getNonDomainElement().isInstance(modelElement)) {
 			ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 			notification.setCreationDate(date);
 			notification.setSender(getName());
