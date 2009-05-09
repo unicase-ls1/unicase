@@ -214,7 +214,7 @@
             class="org.unicase.docExport.views.TemplatesView"
             icon="icons/export.gif"
             id="org.unicase.templatesView"
-            name="DocExport templates"
+            name="Document export template"
             restorable="true">
       </view>
    </extension>
