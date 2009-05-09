@@ -21,6 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
@@ -81,7 +82,10 @@ public class TaskTraceNotificationProvider implements NotificationProvider {
 			createNotification.setName("Task Object Change");
 			createNotification.setRecipient(currentUsername);
 			createNotification.setSender(getName());
-			result.add(createNotification);
+			ModelElement me = projectSpace.getProject().getModelElement(createNotification.getRelatedModelElements().get(0));
+			if(!(TaskPackage.eINSTANCE.getWorkPackage().isInstance(me) || ModelPackage.eINSTANCE.getNonDomainElement().isInstance(me))){
+				result.add(createNotification);
+			}
 		}
 
 		return result;
@@ -92,7 +96,6 @@ public class TaskTraceNotificationProvider implements NotificationProvider {
 			ReferenceOperation referenceOperation = (ReferenceOperation) operation;
 			ArrayList<String> features = new ArrayList<String>();
 			features.add(TaskPackage.eINSTANCE.getWorkPackage_ContainedWorkItems().getName());
-			features.add(TaskPackage.eINSTANCE.getWorkItem_ContainingWorkpackage().getName());
 			if (features.contains(referenceOperation.getFeatureName())
 				|| (referenceOperation.getOppositeFeatureName() != null && features.contains(referenceOperation.getOppositeFeatureName()))) {
 				return true;
