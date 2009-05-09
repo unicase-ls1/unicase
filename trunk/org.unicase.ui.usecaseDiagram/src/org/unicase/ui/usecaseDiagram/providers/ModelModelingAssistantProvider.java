@@ -25,7 +25,7 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 /**
  * @generated
  */
-public class ModelModelingAssistantProvider extends org.unicase.ui.common.providers.ModelingAssistantProvider {
+public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagram.providers.ModelingAssistantProvider {
 
 	/**
 	 * @generated
