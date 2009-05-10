@@ -9,11 +9,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyReferenceCommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
@@ -21,11 +17,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.EdgeImpl;
 import org.eclipse.jface.action.Action;
 import org.unicase.ui.common.diagram.commands.CommandFactory;
-import org.unicase.ui.common.diagram.commands.DeleteFromDiagramCommand;
 import org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @author denglerm This class implements the DeleteFromDiagram Action.
