@@ -500,6 +500,18 @@
       </objectContribution>
        <objectContribution
             adaptable="false"
+            id="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
+            objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart">
+         <action
+               class="org.unicase.ui.common.diagram.DeleteFromDiagramContextMenuAction"
+               enablesFor="1"
+               icon="icons/delete_edit.gif"
+               id="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
+               label="Delete From Diagram">
+         </action>
+      </objectContribution>
+       <objectContribution
+            adaptable="false"
             id="OpenMEEComponentID"
             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
          <action
