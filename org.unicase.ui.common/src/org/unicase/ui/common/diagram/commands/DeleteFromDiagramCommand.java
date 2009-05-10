@@ -26,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart;
+import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 
 /**
@@ -65,7 +66,7 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 
 		// only destroy attached elements
 		if ((destructee != null) && (destructee.eResource() != null)) {
-			MEDiagramEditPart me = (MEDiagramEditPart) getDiagramEditPart();
+			MEDiagramEditPart me = (MEDiagramEditPart) EditPartUtility.getDiagramEditPart(this.editPart);
 			MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
 			diag.getElements().remove(this.elementToDestroy);
 			// tear down incoming references
@@ -87,7 +88,7 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 	 * @param destructee the object being destroyed
 	 */
 	protected void tearDownReferences(EObject destructee) {
-		MEDiagramEditPart me = (MEDiagramEditPart) getDiagramEditPart();
+		MEDiagramEditPart me = (MEDiagramEditPart) EditPartUtility.getDiagramEditPart(this.editPart);
 		MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
 		Collection<EObject> diagramNodeReferences = UnicaseUiUtil.getDiagramNodeReferences((ModelElement) destructee);
 		for (EObject object : diagramNodeReferences) {
@@ -95,16 +96,5 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 				diag.getElements().remove(object);
 			}
 		}
-	}
-
-	/**
-	 * @return the diagram editpart of our editpart
-	 */
-	DiagramEditPart getDiagramEditPart() {
-		EditPart diagramEditPart = this.editPart;
-		while (diagramEditPart != null && !(diagramEditPart instanceof DiagramEditPart)) {
-			diagramEditPart = diagramEditPart.getParent();
-		}
-		return (DiagramEditPart) diagramEditPart;
 	}
 }

@@ -31,12 +31,14 @@ import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
 import org.unicase.ui.common.diagram.util.DynamicEObjectAdapter;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Factory class for GMF {@link Command}s.
@@ -151,6 +153,20 @@ public class CommandFactory {
 		View viewToDestroy = EditPartUtility.getView(editPart);
 		DeleteCommand deleteCommand = new DeleteCommand(viewToDestroy);
 		return new ICommandProxy(deleteCommand);
+	}
+	
+	/**
+	 * @param editPart The {@link EditPart} whose {@link View} should be deleted
+	 * @return A {@link DeleteCommand} wrapped in an {@link ICommandProxy}
+	 */
+	public static Command createDeleteFromDiagramCommand(EditPart editPart) {
+		DestroyElementRequest request = new DestroyElementRequest(WorkspaceManager.getInstance()
+			.getCurrentWorkspace().getEditingDomain(), EditPartUtility.getElement(editPart), false);
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(request.getEditHelperContext());
+		if(type!=null){
+			return new ICommandProxy(new DeleteFromDiagramCommand(request, editPart));
+		}
+		return null;
 	}
 
 	/**
