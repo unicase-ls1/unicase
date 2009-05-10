@@ -26,6 +26,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class TimeIterator extends VersionIterator {
 
 	private DateVersionSpec dateSpec;
+	
+	private DateVersionSpec endDateSpec;
 
 	private int stepLengthUnit;
 
@@ -68,8 +70,10 @@ public class TimeIterator extends VersionIterator {
 		this.stepLengthUnit = stepLengthUnit;
 
 		this.dateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
-		if (start instanceof DateVersionSpec) {
+		this.endDateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
+		if (start instanceof DateVersionSpec && end instanceof DateVersionSpec) {
 			this.dateSpec = (DateVersionSpec) start;
+			this.endDateSpec = (DateVersionSpec) end;
 		} else {
 			HistoryQuery historyQuery = VersioningFactory.eINSTANCE.createHistoryQuery();
 			historyQuery.setSource(this.getStart());
@@ -83,8 +87,16 @@ public class TimeIterator extends VersionIterator {
 			} catch (EmfStoreException e) {
 				throw new IteratorException("Cannot connect to server.", e);
 			}
-			Date dateStart = projectHistory.get(0).getLogMessage().getDate();
+			Date dateStart = projectHistory.get(projectHistory.size()-1).getLogMessage().getDate();
+			if(dateStart == null){
+				dateStart = projectHistory.get(projectHistory.size()-1).getLogMessage().getClientDate();
+			}
+			Date dateEnd = projectHistory.get(0).getLogMessage().getDate();
+			if(dateEnd == null){
+				dateEnd = projectHistory.get(0).getLogMessage().getClientDate();
+			}
 			this.dateSpec.setDate(dateStart);
+			this.endDateSpec.setDate(dateEnd);
 		}
 
 		updateSpecifier(getSourceSpec(), stepLength, !isForward);
@@ -99,6 +111,19 @@ public class TimeIterator extends VersionIterator {
 			}
 		}
 
+	}
+	
+	
+
+	/* (non-Javadoc)
+	 * @see org.unicase.analyzer.VersionIterator#hasNext()
+	 */
+	@Override
+	public boolean hasNext() {
+		if(super.hasNext()){
+			return dateSpec.getDate().before(endDateSpec.getDate());
+		}
+		else return false;		
 	}
 
 	/** 

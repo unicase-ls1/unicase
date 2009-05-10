@@ -79,7 +79,7 @@ public class AnalyzerController {
 			for(DataAnalyzer analyzer : analyzers) {
 				if(analyzer instanceof DetectionAnalyzer){
 					DetectionAnalyzer detectionAnalyzer = (DetectionAnalyzer)analyzer;
-					detectionAnalyzer.analyzeData(data);
+					detectionAnalyzer.analyzeData(data, projectIterator);
 				}
 			}
 		}
