@@ -42,28 +42,27 @@ public class DeleteFromDiagramAction extends Action {
 		EditPart selectedElement = (EditPart) ActionHelper.getSelection();
 		CompoundCommand ccommand = new CompoundCommand("delete existing view");
 		View view = EditPartUtility.getView(selectedElement);
-		DiagramEditPart rootEditPart = null;
-		if (view instanceof Node){
-			DestroyElementRequest request = new DestroyElementRequest(WorkspaceManager.getInstance()
-				.getCurrentWorkspace().getEditingDomain(), EditPartUtility.getElement(selectedElement), false);
-			IElementType type = ElementTypeRegistry.getInstance().getElementType(request.getEditHelperContext());
-			if(type!=null){
-				ccommand.add(new ICommandProxy(new DeleteFromDiagramCommand(request, selectedElement)));
-			}
+		DiagramEditPart rootEditPart = EditPartUtility.getDiagramEditPart(selectedElement);
+		if (view instanceof Node) {
+			ccommand.add(CommandFactory.createDeleteFromDiagramCommand(selectedElement));
 			ccommand.add(CommandFactory.createDeleteFromViewCommand(selectedElement));
-			rootEditPart= (DiagramEditPart)selectedElement.getParent();
+
 		} else if (view instanceof Edge) {
 
 			DestroyReferenceRequest req = new DestroyReferenceRequest(((Edge) view).getSource().getElement(), null,
 				((Edge) view).getTarget().getElement(), false);
 			ccommand.add(new ICommandProxy(new DestroyReferenceCommand(req)));
-			rootEditPart= (DiagramEditPart) ((DiagramRootEditPart) selectedElement.getParent()).getContents();
- 		}
+			// in case of a transition in state or activity diagram
+			if (view.getElement() != null) {
+				ccommand.add(CommandFactory.createDeleteFromDiagramCommand(selectedElement));
+			}
+
+		}
 		rootEditPart.getDiagramEditDomain().getDiagramCommandStack().execute(ccommand);
-	
-		/// Until I find out, while the Editpart is not notified in this case, the following serves as a workaround
+
+		// / Until I find out, while the Editpart is not notified in this case, the following serves as a workaround
 		if (view instanceof EdgeImpl) {
-			((MEDiagramEditPart)rootEditPart).updateView();
+			((MEDiagramEditPart) rootEditPart).updateView();
 		}
 	}
 }
