@@ -150,6 +150,8 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 			imgStr = "full/obj16/ComponentDiagram.gif";
 		} else if (type == DiagramType.STATE_DIAGRAM) {
 			imgStr = "full/obj16/StateDiagram.gif";
+		} else if (type == DiagramType.ACTIVITY_DIAGRAM) {
+			imgStr = "full/obj16/Activity.gif";
 		}
 
 		return overlayImage(object, getResourceLocator().getImage(imgStr));
