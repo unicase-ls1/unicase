@@ -14,7 +14,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.NodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
@@ -119,6 +123,23 @@ public final class EditPartUtility {
 			return element;
 		}
 		return null;
+	}
+
+	/**
+	 * Finds the DiagramEditPart (normally MEDiagramEditpart) with the help of a diagram element.
+	 * 
+	 * @param editPart The {@link EditPart}
+	 * @return The element of the {@link EditPart}s model
+	 */
+	public static DiagramEditPart getDiagramEditPart(EditPart editPart) {
+		DiagramEditPart rootEditPart = null;
+		View view = getView(editPart);
+		if (view instanceof Node) {
+			rootEditPart = (DiagramEditPart) editPart.getParent();
+		} else if (view instanceof Edge) {
+			rootEditPart = (DiagramEditPart) ((DiagramRootEditPart) editPart.getParent()).getContents();
+		}
+		return rootEditPart;
 	}
 
 	/**
