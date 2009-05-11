@@ -121,7 +121,12 @@ public class TimeIterator extends VersionIterator {
 	@Override
 	public boolean hasNext() {
 		if(super.hasNext()){
-			return dateSpec.getDate().before(endDateSpec.getDate());
+			if(isForward()){
+				return dateSpec.getDate().before(endDateSpec.getDate());
+			}
+			else{
+				return dateSpec.getDate().after(endDateSpec.getDate());
+			}
 		}
 		else return false;		
 	}
