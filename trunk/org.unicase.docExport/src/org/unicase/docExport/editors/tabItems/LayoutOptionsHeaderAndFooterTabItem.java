@@ -51,11 +51,11 @@ public class LayoutOptionsHeaderAndFooterTabItem extends TemplateEditorTabItem {
 		header.setLayoutData((new GridData(GridData.FILL_HORIZONTAL)));
 		header.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
-				layoutOptions.setFooterText((((Text) e.widget).getText()));
+				layoutOptions.setHeaderText((((Text) e.widget).getText()));
 				editor.testDirty();
 			}
 		});
-		header.setText(layoutOptions.getFooterText());
+		header.setText(layoutOptions.getHeaderText());
 
 		new Label(getContainer(), SWT.NONE).setText("Footer text");
 		Text footer = new Text(getContainer(), SWT.MULTI | SWT.BORDER);
