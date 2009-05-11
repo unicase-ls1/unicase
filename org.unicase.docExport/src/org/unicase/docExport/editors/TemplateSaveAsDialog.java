@@ -20,6 +20,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.Template;
@@ -109,6 +112,13 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 					template.setName(templateName.getText());
 					try {
 						TemplateRegistry.saveTemplate(template);
+						try {
+							System.out.println(template.getName());
+							IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+							page.openEditor(new TemplateEditorInput(template), TemplateEditor.ID);
+						} catch (PartInitException e2) {
+							WorkspaceUtil.log("Template editor failure", e2, IStatus.ERROR);
+						}
 					} catch (TemplatesFileNotFoundException e1) {
 						WorkspaceUtil.log("could not save the Template", e1, IStatus.ERROR);
 					}
