@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.edit.commands;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -24,7 +25,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * 
  * @author Shterev
  */
-public class ShowDashboardHandler extends ProjectActionHandler {
+public class ShowDashboardHandler extends AbstractHandler {
 
 	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.workspace.edit.dashboardInput";
 	private static final String DASHBOARD_ID = "org.unicase.workspace.edit.dashboard";

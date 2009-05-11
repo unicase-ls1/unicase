@@ -42,18 +42,8 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
-	/**
-	 * indicates that the login has been successful.
-	 */
-	public static final int SUCCESSFUL = 1;
-	/**
-	 * indicates that the login has failed.
-	 */
-	public static final int FAILED = 2;
-	/**
-	 * indicates that the login has been canceled.
-	 */
-	public static final int CANCELED = 3;
+	// FIXME: maybe another placeholder - e.g. unicase?
+	// or no placeholder at all
 	/**
 	 * Constant placeholder for the password field.
 	 */
@@ -82,7 +72,6 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		this.session = session;
 		this.server = server;
 		setBlockOnOpen(true);
-
 	}
 
 	/**
@@ -201,6 +190,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	/**
 	 * {@inheritDoc}
 	 */
+	// regards the SAT animation code.
 	@SuppressWarnings("deprecation")
 	@Override
 	public void okPressed() {
@@ -220,7 +210,6 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			session.setPassword(txtPassword.getText());
 		}
 
-		setReturnCode(FAILED);
 		try {
 			session.logIn();
 			server.setLastUsersession(session);
@@ -230,10 +219,9 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 
 			}
 			WorkspaceManager.getInstance().getCurrentWorkspace().save();
-			setReturnCode(SUCCESSFUL);
+			setReturnCode(OK);
 			close();
 		} catch (EmfStoreException e) {
-			// e.printStackTrace(); //is shown for debugging purposes only, proper handling is being done.
 			new SATRunner().shake(this.getShell(), 300, new SinusVariation(10, 1), null, null);
 
 			setErrorMessage(e.getMessage());
@@ -242,7 +230,6 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			keyTest = false;
 
 			chkSavePassword.setSelection(false);
-			setReturnCode(FAILED);
 		}
 	}
 
@@ -251,8 +238,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 	 */
 	@Override
 	public void cancelPressed() {
-		// session = null;
-		setReturnCode(CANCELED);
+		setReturnCode(CANCEL);
 		close();
 	}
 
@@ -316,12 +302,20 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			try {
 				session.logIn();
 				close();
-				return SUCCESSFUL;
+				setReturnCode(OK);
+				return OK;
 			} catch (EmfStoreException e) {
 				exception = e.getMessage();
 			}
 		}
-		return super.open();
+		int ret = super.open();
+		// getShell().addShellListener(new ShellAdapter() {
+		// @Override
+		// public void shellClosed(ShellEvent e) {
+		// setReturnCode(CANCEL);
+		// }
+		// });
+		return ret;
 	}
 
 }

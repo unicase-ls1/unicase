@@ -7,11 +7,7 @@ package org.unicase.workspace.edit.commands;
 
 import java.util.List;
 
-import org.eclipse.core.commands.ExecutionEvent;
-import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
@@ -19,19 +15,15 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
-import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.edit.dialogs.LoginDialog;
 import org.unicase.workspace.edit.dialogs.MergeDialog;
 import org.unicase.workspace.edit.dialogs.UpdateDialog;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
-import org.unicase.workspace.util.RecordingCommandWithResult;
 import org.unicase.workspace.util.UpdateObserver;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -41,16 +33,24 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author Hodaie
  * @author Shterev
  */
-public class UpdateProjectHandler extends ProjectActionHandler implements UpdateObserver {
+public class UpdateProjectHandler extends ServerRequestCommandHandler implements UpdateObserver {
 
 	private Shell shell;
 	private Usersession usersession;
 
 	/**
+	 * Default constructor.
+	 */
+	public UpdateProjectHandler() {
+		setTaskTitle("Update project...");
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ProjectSpace projectSpace = getProjectSpace(event);
+	@Override
+	protected Object run() throws EmfStoreException {
+		ProjectSpace projectSpace = ActionHelper.getProjectSpace(getEvent());
 		if (projectSpace == null) {
 			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getActiveProjectSpace();
@@ -67,23 +67,12 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 	}
 
 	/**
-	 * Updates the given projectSpace to the current head revision.
+	 * Updates the projectspace.
 	 * 
-	 * @param projectSpace the project space
+	 * @param projectSpace the target project space
+	 * @throws EmfStoreException if any.
 	 */
-	public void update(final ProjectSpace projectSpace) {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		RecordingCommandWithResult<Integer> command = new RecordingCommandWithResult<Integer>(domain) {
-			@Override
-			protected void doExecute() {
-				updateWithoutCommand(projectSpace);
-			}
-		};
-		domain.getCommandStack().execute(command);
-	}
-
-	private void updateWithoutCommand(final ProjectSpace projectSpace) {
+	protected void update(final ProjectSpace projectSpace) throws EmfStoreException {
 		usersession = projectSpace.getUsersession();
 		if (usersession == null) {
 			MessageDialog.openInformation(shell, null,
@@ -92,62 +81,7 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 		}
 
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow().getShell());
-		progressDialog.open();
-		progressDialog.getProgressMonitor().beginTask("Update project...", 100);
-		progressDialog.getProgressMonitor().worked(10);
-		// initially setting the status as successful in case the user
-		// is already logged in
 		try {
-			update(projectSpace, progressDialog);
-		} catch (ChangeConflictException e1) {
-			handleChangeConflictException(e1);
-		} catch (NoChangesOnServerException e) {
-			MessageDialog.openInformation(shell, "No need to update",
-				"Your project is up to date, you do not need to update.");
-		} catch (ConnectionException e) {
-			try {
-				// try to reconnect once.
-				usersession.logIn();
-				update(projectSpace, progressDialog);
-			} catch (ChangeConflictException e1) {
-				handleChangeConflictException(e1);
-			} catch (EmfStoreException e1) {
-				DialogHandler.showExceptionDialog(e1);
-			} // BEGIN SUPRESS CATCH EXCEPTION
-			catch (Exception e1) {
-				DialogHandler.showExceptionDialog(e1);
-			}
-			// END SUPRESS CATCH EXCEPTION
-		} catch (EmfStoreException e2) {
-			DialogHandler.showExceptionDialog(e2);
-		}
-		// BEGIN SUPRESS CATCH EXCEPTION
-		catch (Exception e) {
-			DialogHandler.showExceptionDialog(e);
-		}
-		// END SUPRESS CATCH EXCEPTION
-		finally {
-			progressDialog.getProgressMonitor().done();
-			progressDialog.close();
-		}
-	}
-
-	private void handleChangeConflictException(ChangeConflictException e1) {
-		List<ChangePackage> changePackages = e1.getNewPackages();
-		MergeDialog mergeDialog = new MergeDialog(shell, changePackages);
-		mergeDialog.open();
-	}
-
-	private void update(final ProjectSpace projectSpace, ProgressMonitorDialog progressDialog)
-		throws EmfStoreException, ChangeConflictException {
-		int loginStatus = LoginDialog.SUCCESSFUL;
-		if (!usersession.isLoggedIn()) {
-			LoginDialog login = new LoginDialog(shell, usersession, usersession.getServerInfo());
-			loginStatus = login.open();
-		}
-		if (loginStatus == LoginDialog.SUCCESSFUL) {
 			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
 			PrimaryVersionSpec targetVersion = projectSpace.update(VersionSpec.HEAD_VERSION, UpdateProjectHandler.this);
 			WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
@@ -160,7 +94,18 @@ public class UpdateProjectHandler extends ProjectActionHandler implements Update
 						"org.unicase.ui.common.decorators.VersionDecorator");
 				}
 			});
+		} catch (ChangeConflictException e1) {
+			handleChangeConflictException(e1);
+		} catch (NoChangesOnServerException e) {
+			MessageDialog.openInformation(shell, "No need to update",
+				"Your project is up to date, you do not need to update.");
 		}
+	}
+
+	private void handleChangeConflictException(ChangeConflictException e1) {
+		List<ChangePackage> changePackages = e1.getNewPackages();
+		MergeDialog mergeDialog = new MergeDialog(shell, changePackages);
+		mergeDialog.open();
 	}
 
 	/**
