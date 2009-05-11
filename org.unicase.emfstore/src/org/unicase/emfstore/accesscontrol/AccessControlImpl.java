@@ -29,6 +29,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidPropertyException;
+import org.unicase.emfstore.exceptions.SessionTimedOutException;
 import org.unicase.model.ModelElement;
 
 /**
@@ -111,13 +112,14 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkWriteAccess(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
+	 * @see 
+	 *      org.unicase.emfstore.accesscontrol.AuthorizationControl#checkWriteAccess(org.unicase.emfstore.esmodel.SessionId
+	 *      , Ê Ê Êorg.unicase.emfstore.esmodel.ProjectId, java.util.Set)
 	 */
 	public void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
 		throws AccessControlException {
 		checkSession(sessionId);
-		ACUser user = sessionUserMap.get(sessionId).getUser();
+		ACUser user = getUser(sessionId);
 		List<Role> roles = new ArrayList<Role>();
 		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
@@ -205,13 +207,14 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkReadAccess(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
+	 * @see 
+	 *      org.unicase.emfstore.accesscontrol.AuthorizationControl#checkReadAccess(org.unicase.emfstore.esmodel.SessionId
+	 *      , Ê Ê Êorg.unicase.emfstore.esmodel.ProjectId, java.util.Set)
 	 */
 	public void checkReadAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
 		throws AccessControlException {
 		checkSession(sessionId);
-		ACUser user = sessionUserMap.get(sessionId).getUser();
+		ACUser user = getUser(sessionId);
 		List<Role> roles = new ArrayList<Role>();
 		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
@@ -228,12 +231,13 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.accesscontrol.AuthorizationControl#checkProjectAdminAccess(org.unicase.emfstore.esmodel.SessionId,
-	 *      org.unicase.emfstore.esmodel.ProjectId)
+	 * @see 
+	 *      org.unicase.emfstore.accesscontrol.AuthorizationControl#checkProjectAdminAccess(org.unicase.emfstore.esmodel.
+	 *      SessionId, Ê Ê Êorg.unicase.emfstore.esmodel.ProjectId)
 	 */
 	public void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId) throws AccessControlException {
 		checkSession(sessionId);
-		ACUser user = sessionUserMap.get(sessionId).getUser();
+		ACUser user = getUser(sessionId);
 		List<Role> roles = new ArrayList<Role>();
 		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
@@ -252,7 +256,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 */
 	public void checkServerAdminAccess(SessionId sessionId) throws AccessControlException {
 		checkSession(sessionId);
-		ACUser user = sessionUserMap.get(sessionId).getUser();
+		ACUser user = getUser(sessionId);
 		List<Role> roles = new ArrayList<Role>();
 		roles.addAll(user.getRoles());
 		roles.addAll(getRolesFromGroups(user));
@@ -290,18 +294,27 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 		return user;
 	}
 
+	private ACUser getUser(SessionId sessionId) throws AccessControlException {
+		try {
+			return sessionUserMap.get(sessionId).getUser();
+		} catch (AccessControlException e) {
+			sessionUserMap.remove(sessionId);
+			throw e;
+		}
+	}
+
 	// extract to normal class
 	/**
 	 * @author wesendonk
 	 */
 	private class ACUserContainer {
 		private ACUser acUser;
-		private long firstActive;
+		// private long firstActive;
 		private long lastActive;
 
 		public ACUserContainer(ACUser acUser) {
 			this.acUser = acUser;
-			firstActive = System.currentTimeMillis();
+			// firstActive = System.currentTimeMillis();
 			active();
 		}
 
@@ -313,7 +326,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 		 */
 		public ACUser getUser() throws AccessControlException {
 			// OW: timeout behaviour does not work as expected
-			// checkLastActive();
+			checkLastActive();
 			active();
 			return getRawUser();
 		}
@@ -327,9 +340,9 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 			String property = ServerConfiguration.getProperties().getProperty(ServerConfiguration.SESSION_TIMEOUT,
 				ServerConfiguration.SESSION_TIMEOUT_DEFAULT);
 			if (System.currentTimeMillis() - lastActive > Integer.parseInt(property)
-				|| System.currentTimeMillis() - firstActive > Integer.parseInt(property)) {
+			/* || System.currentTimeMillis() - firstActive > Integer.parseInt(property) */) {
 				// OW: delete from map
-				throw new AccessControlException("Usersession timed out.");
+				throw new SessionTimedOutException("Usersession timed out.");
 			}
 		}
 
