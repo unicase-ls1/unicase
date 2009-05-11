@@ -50,21 +50,25 @@ public class MEEditorInput implements IEditorInput {
 				.openQuestion(
 					activeShell,
 					"Missing title",
-					"The element you are trying to open does not have a proper name and cannot be opened.\nDo you want to set a name for it now?");
+					"The element you are trying to open does not have a proper name and cannot be opened.\nDo you want to set a custom name for it or use a default one?");
+			String newName = "new " + modelElement.eClass().getName();
 			if (doSetName) {
 				final InputDialog inputDialog = new InputDialog(activeShell, "New title",
-					"Please enter the new name for this element", "new " + modelElement.eClass().getName(), null);
+					"Please enter the new name for this element", newName, null);
 				inputDialog.setBlockOnOpen(true);
-				if (inputDialog.open() == IDialogConstants.OK_ID) {
-					TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						@Override
-						protected void doExecute() {
-							modelElement.setName(inputDialog.getValue());
-						}
-					});
+				if (inputDialog.open() == IDialogConstants.OK_ID && inputDialog.getValue() != "") {
+					newName = inputDialog.getValue();
 				}
+
 			}
+			final String finalName = newName;
+			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					modelElement.setName(finalName);
+				}
+			});
 		}
 	}
 
