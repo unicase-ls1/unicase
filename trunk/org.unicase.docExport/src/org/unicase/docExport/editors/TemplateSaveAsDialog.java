@@ -110,6 +110,7 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 			public void widgetSelected(SelectionEvent e) {
 				if (templateName.getText().length() != 0) {
 					template.setName(templateName.getText());
+					template.setDefaultTemplate(false);
 					try {
 						TemplateRegistry.saveTemplate(template);
 						try {
