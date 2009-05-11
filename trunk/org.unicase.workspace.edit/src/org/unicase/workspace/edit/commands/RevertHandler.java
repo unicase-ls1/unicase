@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.edit.commands;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -13,13 +14,14 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 
 // MK: document whats this exactly does
 /**
  * @author helming
  */
-public class RevertHandler extends ProjectActionHandler {
+public class RevertHandler extends AbstractHandler {
 	/**
 	 * Command to revert a project.
 	 * 
@@ -65,7 +67,7 @@ public class RevertHandler extends ProjectActionHandler {
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 
 		final ProjectSpace projectSpace;
-		projectSpace = getProjectSpace(event);
+		projectSpace = ActionHelper.getProjectSpace(event);
 
 		if (projectSpace == null) {
 			DialogHandler.showErrorDialog("No Project selected.");

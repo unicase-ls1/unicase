@@ -8,6 +8,7 @@ package org.unicase.workspace.edit.commands;
 import java.io.File;
 import java.io.IOException;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -25,7 +26,7 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author helming
  */
-public class ExportWorkSpaceHandler extends ProjectActionHandler {
+public class ExportWorkSpaceHandler extends AbstractHandler {
 
 	/**
 	 * {@inheritDoc}

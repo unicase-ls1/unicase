@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.edit.commands;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IMarker;
@@ -19,6 +20,7 @@ import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
 import org.unicase.model.validation.ValidationClientSelector;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -26,7 +28,7 @@ import org.unicase.workspace.ProjectSpace;
  * 
  * @author unicase
  */
-public class ValidateHandler extends ProjectActionHandler {
+public class ValidateHandler extends AbstractHandler {
 
 	private static String markerType = "org.unicase.model.validation.marker";
 
@@ -35,7 +37,7 @@ public class ValidateHandler extends ProjectActionHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		final ProjectSpace projectSpace = getProjectSpace(event);
+		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
 
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");

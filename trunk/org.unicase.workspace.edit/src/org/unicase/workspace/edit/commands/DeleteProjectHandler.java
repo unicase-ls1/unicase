@@ -7,6 +7,7 @@ package org.unicase.workspace.edit.commands;
 
 import java.io.IOException;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -18,6 +19,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.MEEditorInput;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -28,7 +30,7 @@ import org.unicase.workspace.edit.dashboard.DashboardEditorInput;
  * 
  * @author koegel
  */
-public class DeleteProjectHandler extends ProjectActionHandler {
+public class DeleteProjectHandler extends AbstractHandler {
 
 	/**
 	 * {@inheritDoc}
@@ -36,7 +38,7 @@ public class DeleteProjectHandler extends ProjectActionHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = getProjectSpace(event);
+		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {

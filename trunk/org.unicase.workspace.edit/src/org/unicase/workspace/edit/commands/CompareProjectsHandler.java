@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.edit.commands;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.jface.viewers.ISelection;
@@ -18,7 +19,7 @@ import org.unicase.workspace.edit.dialogs.CompareProjectsDialog;
  * 
  * @author Hodaie
  */
-public class CompareProjectsHandler extends ProjectActionHandler {
+public class CompareProjectsHandler extends AbstractHandler {
 
 	/**
 	 * . {@inheritDoc}

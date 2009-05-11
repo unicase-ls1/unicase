@@ -8,6 +8,7 @@ package org.unicase.workspace.edit.commands;
 import java.io.File;
 import java.io.IOException;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -18,6 +19,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -26,7 +28,7 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author helming
  */
-public class ExportProjectSpaceHandler extends ProjectActionHandler {
+public class ExportProjectSpaceHandler extends AbstractHandler {
 
 	/**
 	 * {@inheritDoc}
@@ -34,7 +36,7 @@ public class ExportProjectSpaceHandler extends ProjectActionHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		final ProjectSpace projectSpace = getProjectSpace(event);
+		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);

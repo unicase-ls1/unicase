@@ -8,6 +8,7 @@ package org.unicase.workspace.edit.commands;
 import java.io.File;
 import java.io.IOException;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -18,6 +19,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -25,7 +27,7 @@ import org.unicase.workspace.ProjectSpace;
  * 
  * @author Hodaie
  */
-public class ExportChangesHandler extends ProjectActionHandler {
+public class ExportChangesHandler extends AbstractHandler {
 
 	/**
 	 * These filter names are used to filter which files are displayed.
@@ -59,7 +61,7 @@ public class ExportChangesHandler extends ProjectActionHandler {
 		}
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
-		final ProjectSpace projectSpace = this.getProjectSpace(event);
+		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
 
