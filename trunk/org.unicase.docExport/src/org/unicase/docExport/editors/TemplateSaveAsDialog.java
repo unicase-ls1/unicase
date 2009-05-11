@@ -113,7 +113,6 @@ public class TemplateSaveAsDialog extends TitleAreaDialog {
 					try {
 						TemplateRegistry.saveTemplate(template);
 						try {
-							System.out.println(template.getName());
 							IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 							page.openEditor(new TemplateEditorInput(template), TemplateEditor.ID);
 						} catch (PartInitException e2) {
