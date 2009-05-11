@@ -313,5 +313,12 @@ public interface Usersession extends EObject {
 	 */
 	void deleteProject(ProjectId projectId, boolean deleteFiles) throws EmfStoreException;
 
+	/**
+	 * Updates the ACUser and it roles.
+	 * 
+	 * @throws EmfStoreException forwards any exception.
+	 */
+	void updateACUser() throws EmfStoreException;
+
 	// end of custom code
 } // Usersession
