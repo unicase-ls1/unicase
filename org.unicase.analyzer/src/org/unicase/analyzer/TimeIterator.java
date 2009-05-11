@@ -66,7 +66,7 @@ public class TimeIterator extends VersionIterator {
 	public TimeIterator(Usersession usersession, ProjectId projectId, int stepLength, int stepLengthUnit,
 		VersionSpec start, VersionSpec end, boolean isForward, boolean returnProjectDataCopy) throws IteratorException {
 
-		super(usersession, projectId, stepLength, start, end, true, isForward, returnProjectDataCopy);
+		super(usersession, projectId, stepLength, start, end, isForward, returnProjectDataCopy);
 		this.stepLengthUnit = stepLengthUnit;
 
 		this.dateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
