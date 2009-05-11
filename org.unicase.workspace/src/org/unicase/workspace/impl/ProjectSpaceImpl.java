@@ -109,6 +109,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, ProjectChangeObserver {
 
+	private static final String UNKOWN_CREATOR = "unkown";
+
 	/**
 	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1771,7 +1773,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			// used when the project has not been shared yet
 			// and there is practically no possible way of
 			// knowing who the creator was...
-			String creator = "unicase";
+			String creator = UNKOWN_CREATOR;
 			if (usersession != null) {
 				creator = usersession.getACUser().getName();
 			}
