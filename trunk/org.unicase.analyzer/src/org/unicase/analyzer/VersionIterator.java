@@ -64,7 +64,7 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 			int stepLength) throws IteratorException {
 		this(usersession, projectId, stepLength, VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE
-				.createHeadVersionSpec(), false, true, true);
+				.createHeadVersionSpec(), true, true);
 	}
 
 	/**
@@ -92,7 +92,7 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 
 	public VersionIterator(Usersession usersession, ProjectId projectId,
 			int stepLength, VersionSpec start, VersionSpec end,
-			boolean useUnit, boolean isForward, boolean returnProjectDataCopy)
+			boolean isForward, boolean returnProjectDataCopy)
 			throws IteratorException {
 		// LY: remove this if backward iterator is implemented
 		if (!isForward) {
