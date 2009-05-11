@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -390,7 +391,10 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	@Override
 	public AbstractOperation reverse() {
 		CompositeOperation compositeOperation = OperationsFactory.eINSTANCE.createCompositeOperation();
-		super.reverse(compositeOperation);
+		// MK: do not call super class reverse since it requires a model element id that is NOT null
+		// super.reverse(compositeOperation);
+		compositeOperation.setClientDate(new Date());
+
 		compositeOperation.setCompositeName(getCompositeName());
 		compositeOperation.setCompositeDescription(getCompositeDescription());
 		compositeOperation.setReversed(!isReversed());
