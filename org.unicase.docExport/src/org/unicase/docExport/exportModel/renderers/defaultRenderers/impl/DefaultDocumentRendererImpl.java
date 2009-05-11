@@ -268,7 +268,7 @@ public class DefaultDocumentRendererImpl extends DocumentRendererImpl implements
 		String date = "";
 		Calendar now = Calendar.getInstance();
 		date += now.get(Calendar.DAY_OF_MONTH);
-		date += "." + now.get(Calendar.MONTH) + 1;
+		date += "." + (now.get(Calendar.MONTH) + 1);
 		date += "." + now.get(Calendar.YEAR);
 
 		UTable documentInfo = new UTable(2);
