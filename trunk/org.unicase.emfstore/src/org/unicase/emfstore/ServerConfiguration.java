@@ -5,11 +5,11 @@
  */
 package org.unicase.emfstore;
 
-import org.eclipse.core.runtime.Platform;
-import org.osgi.framework.Bundle;
-
 import java.io.File;
 import java.util.Properties;
+
+import org.eclipse.core.runtime.Platform;
+import org.osgi.framework.Bundle;
 
 /**
  * Represents the current server configuration.
@@ -119,9 +119,9 @@ public final class ServerConfiguration {
 	public static final String SESSION_TIMEOUT = "emfstore.accesscontrol.session.timeout";
 
 	/**
-	 * Default timeout.
+	 * Default timeout (=30 min).
 	 */
-	public static final String SESSION_TIMEOUT_DEFAULT = "7200";
+	public static final String SESSION_TIMEOUT_DEFAULT = "1800000";
 
 	/**
 	 * Property for the super user.

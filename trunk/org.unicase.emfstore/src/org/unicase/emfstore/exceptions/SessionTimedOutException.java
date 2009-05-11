@@ -11,7 +11,7 @@ package org.unicase.emfstore.exceptions;
  * @author koegel
  */
 @SuppressWarnings("serial")
-public class SessionTimedOutException extends EmfStoreException {
+public class SessionTimedOutException extends AccessControlException {
 
 	/**
 	 * Default constructor.

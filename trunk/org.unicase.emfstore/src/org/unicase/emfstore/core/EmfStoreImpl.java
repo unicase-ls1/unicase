@@ -148,6 +148,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
 		throws EmfStoreException {
 		sanityCheckObjects(new Object[] { sessionId, projectId, versionSpec });
+		checkReadAccess(sessionId, projectId, null);
 		return getSubInterface(VersionSubInterfaceImpl.class).resolveVersionSpec(projectId, versionSpec);
 	}
 
