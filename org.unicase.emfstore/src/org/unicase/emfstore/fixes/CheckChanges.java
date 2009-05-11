@@ -31,13 +31,12 @@ public class CheckChanges extends AbstractFix {
 
 				version.getChanges().apply(state);
 
-				// if (between(version, 244, 250)) {
-				// ModelElement modelElement = state.getModelElement(createMEID("_AxpfgLy3Ed2XF4y-xW__9g"));
+				// if (between(version, 1299, 1400)) {
+				// ModelElement modelElement = state
+				// .getModelElement(createMEID("c858a0dc-59cd-4ded-8bd2-68d02387cdd1"));
 				// if (modelElement instanceof UseCase) {
-				// System.out.println("Version: " + version(version));
-				// for (UseCase use : ((UseCase) modelElement).getIncludedUseCases()) {
-				// System.out.println(use);
-				// }
+				// System.out.println("Version: " + version(version) + " size: "
+				// + ((UseCase) modelElement).getIncludedUseCases().size());
 				// }
 				// }
 
@@ -50,7 +49,9 @@ public class CheckChanges extends AbstractFix {
 						System.out.println("project compare not equal in version "
 							+ version.getPrimarySpec().getIdentifier());
 
+						// if (version(version) >= 1300) {
 						printProjectStates(state, version);
+						// }
 
 					} else {
 						System.out.println("project compare is equal(!) in version "

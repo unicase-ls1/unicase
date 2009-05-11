@@ -16,25 +16,23 @@ public class DuplicateUseCaseFix extends AbstractFix {
 	@Override
 	void fix() {
 		for (Version version : projectHistory.getVersions()) {
-			if (version.getProjectState() != null) {
+			if (version.getProjectState() != null && version(version) >= 1300) {
 				for (ModelElement modelElement : version.getProjectState().getAllModelElements()) {
 					if (modelElement instanceof UseCase) {
 						Iterator<UseCase> iterator = ((UseCase) modelElement).getIncludedUseCases().iterator();
-						HashSet<String> ids = new HashSet<String>();
+						HashSet<String> result = new HashSet<String>();
 						while (iterator.hasNext()) {
 							UseCase useCase = iterator.next();
-							if (ids.contains(useCase.getIdentifier())) {
-								iterator.remove();
-								System.out.println("deleted use case in version "
-									+ version.getPrimarySpec().getIdentifier() + " : " + useCase.getName());
+							if (!result.contains(useCase.getIdentifier())) {
+								result.add(useCase.getIdentifier());
 							} else {
-								ids.add(useCase.getIdentifier());
+								iterator.remove();
 							}
 						}
 					}
 
 				}
-				save(version);
+				save(version.getProjectState());
 			}
 		}
 	}
