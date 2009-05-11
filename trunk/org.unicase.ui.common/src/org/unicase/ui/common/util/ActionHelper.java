@@ -397,7 +397,7 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * . Extract the selected ModelElement in navigator or other StructuredViewer. This method uses the general
+	 * Extract the selected ModelElement in navigator or other StructuredViewer. This method uses the general
 	 * ISelectionService of Workbench to extract the selection. Beware that the part providing the selection should have
 	 * registered its SelectionProvider.
 	 * 
@@ -426,6 +426,31 @@ public final class ActionHelper {
 	 */
 	public static AltKeyDoubleClickAction createKeyHookDCAction(ColumnViewer viewer, String classname) {
 		return new AltKeyDoubleClickAction(viewer, classname);
+	}
+	
+	/**
+	 * Get the project space from the event.
+	 * 
+	 * @param event the event
+	 * @return the project space
+	 */
+	public static ProjectSpace getProjectSpace(ExecutionEvent event) {
+
+		ISelection sel = HandlerUtil.getCurrentSelection(event);
+		if (!(sel instanceof IStructuredSelection)) {
+			return null;
+		}
+
+		IStructuredSelection structuredSelection = (IStructuredSelection) sel;
+		if (structuredSelection.isEmpty()) {
+			return null;
+		}
+
+		Object selectedElement = structuredSelection.getFirstElement();
+		if (!(selectedElement instanceof ProjectSpace)) {
+			return null;
+		}
+		return (ProjectSpace) selectedElement;
 	}
 
 }
