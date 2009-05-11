@@ -19,11 +19,13 @@ import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
+import org.unicase.model.bug.BugReport;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.ui.common.MEEditorInput;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -35,6 +37,50 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author naughton
  */
 public class MEEditor extends SharedHeaderFormEditor {
+
+	/**
+	 * Updates necessary UI elements on model changes.
+	 * 
+	 * @author Shterev
+	 */
+	private final class MEEditorAdapter extends AdapterImpl {
+		private final IEditorInput input;
+
+		private MEEditorAdapter(IEditorInput input) {
+			this.input = input;
+		}
+
+		@Override
+		public void notifyChanged(final Notification msg) {
+			if (msg.isTouch()) {
+				return;
+			}
+			if (msg.getFeature() instanceof EAttribute && ((EAttribute) msg.getFeature()).getName().equals("name")) {
+				Display.getDefault().asyncExec(new Runnable() {
+					public void run() {
+						setPartName(getLimitedTitle(msg.getNewStringValue()));
+						if (mePage != null) {
+							mePage.updateSectionTitle();
+						}
+					}
+				});
+			}
+			if (modelElement instanceof BugReport) {
+				// update the icon for bugreports - when changing severity, resolution, etc.
+				Display.getDefault().asyncExec(new Runnable() {
+					public void run() {
+						Image titleImage = input.getImageDescriptor().createImage();
+						setTitleImage(titleImage);
+						// TODO AS: Debug why sometimes the page is null - not disposed Adapter?
+						if (mePage != null) {
+							// TODO AS: Replace with a SeverityDecorator.
+							mePage.getManagedForm().getForm().setImage(titleImage);
+						}
+					}
+				});
+			}
+		}
+	}
 
 	/**
 	 * The Id for MEEditor. We need this to open a model element.
@@ -129,29 +175,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 			modelElement = meInput.getModelElement();
 			initializeEditingDomain();
-			eAdapter = new AdapterImpl() {
-				@Override
-				public void notifyChanged(Notification msg) {
-					if (msg.isTouch()) {
-						return;
-					}
-					if (msg.getFeature() instanceof EAttribute
-						&& ((EAttribute) msg.getFeature()).getName().equals("name")) {
-						setPartName(getLimitedTitle(msg.getNewStringValue()));
-						if (mePage != null) {
-							mePage.updateSectionTitle();
-						}
-					}
-					Image titleImage = input.getImageDescriptor().createImage();
-					setTitleImage(titleImage);
-					// TODO AS: Debug why sometimes the page is null - not disposed Adapter?
-					if (mePage != null) {
-						// TODO AS: Replace with a SeverityDecorator.
-						mePage.getManagedForm().getForm().setImage(titleImage);
-					}
-				}
-
-			};
+			eAdapter = new MEEditorAdapter(input);
 			this.modelElement.eAdapters().add(eAdapter);
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
