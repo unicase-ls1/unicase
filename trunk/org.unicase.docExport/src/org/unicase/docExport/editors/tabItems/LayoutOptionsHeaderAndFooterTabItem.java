@@ -45,8 +45,8 @@ public class LayoutOptionsHeaderAndFooterTabItem extends TemplateEditorTabItem {
 
 		final LayoutOptions layoutOptions = template.getLayoutOptions();
 
-		new Label(parent, SWT.NONE).setText("Header text");
-		Text header = new Text(parent, SWT.MULTI | SWT.BORDER);
+		new Label(getContainer(), SWT.NONE).setText("Header text");
+		Text header = new Text(getContainer(), SWT.MULTI | SWT.BORDER);
 		header.setLayoutData((new GridData(GridData.FILL_HORIZONTAL)));
 		header.setLayoutData((new GridData(GridData.FILL_HORIZONTAL)));
 		header.addModifyListener(new ModifyListener() {
@@ -57,8 +57,8 @@ public class LayoutOptionsHeaderAndFooterTabItem extends TemplateEditorTabItem {
 		});
 		header.setText(layoutOptions.getFooterText());
 
-		new Label(parent, SWT.NONE).setText("Footer text");
-		Text footer = new Text(parent, SWT.MULTI | SWT.BORDER);
+		new Label(getContainer(), SWT.NONE).setText("Footer text");
+		Text footer = new Text(getContainer(), SWT.MULTI | SWT.BORDER);
 		footer.setLayoutData((new GridData(GridData.FILL_HORIZONTAL)));
 		footer.addModifyListener(new ModifyListener() {
 			public void modifyText(ModifyEvent e) {
