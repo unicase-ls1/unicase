@@ -191,7 +191,12 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 			List<ChangePackage> changePackages = projectdata
 					.getChangePackages();
 			for (ChangePackage changePackage : changes) {
-				changePackage.apply(currentState);
+				if(isForward){
+					changePackage.apply(currentState);
+				}else{
+					changePackage.reverse().apply(currentState);
+				}
+				
 				changePackages.add(changePackage);
 			}
 		}
