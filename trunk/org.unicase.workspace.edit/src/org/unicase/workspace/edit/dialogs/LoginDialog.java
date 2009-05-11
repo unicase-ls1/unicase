@@ -309,12 +309,6 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 			}
 		}
 		int ret = super.open();
-		// getShell().addShellListener(new ShellAdapter() {
-		// @Override
-		// public void shellClosed(ShellEvent e) {
-		// setReturnCode(CANCEL);
-		// }
-		// });
 		return ret;
 	}
 
