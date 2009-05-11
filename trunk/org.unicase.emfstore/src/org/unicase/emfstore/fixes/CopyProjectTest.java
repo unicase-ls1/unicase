@@ -30,13 +30,14 @@ public class CopyProjectTest extends AbstractFix {
 			String filename = getProjectFolder(this.projectHistory.getProjectId())
 				+ getChangePackageFile(version(version));
 			File file = new File(filename);
-			if (!file.exists() && version.getChanges() != null) {
+			// if (!file.exists() && version.getChanges() != null) {
+			if (between(version, 0, 2)) {
 				ChangePackage changes = version.getChanges();
 				version.setChanges(null);
 				save(version);
-				createResourceForChangePackage(changes, version.getPrimarySpec(), projectHistory.getProjectId());
-				version.setChanges(changes);
-				save(version);
+				// createResourceForChangePackage(changes, version.getPrimarySpec(), projectHistory.getProjectId());
+				// version.setChanges(changes);
+				// save(version);
 			}
 
 			// createResourceForVersion(version, projectHistory.getProjectId());
