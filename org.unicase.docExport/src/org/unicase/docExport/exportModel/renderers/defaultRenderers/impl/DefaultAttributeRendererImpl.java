@@ -141,8 +141,9 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 
 		if (option.getBooleanStyle().equals(BooleanStyle.IMAGE)) {
 			try {
-				URL templateFolder = FileLocator.find(Activator.getDefault().getBundle(), new Path("docExportImages/"),
-					Collections.EMPTY_MAP);
+				URL templateImageFolder = FileLocator.find(Activator.getDefault().getBundle(), new Path(
+					TemplateRegistry.DOCEXPORT_IMAGES + File.separatorChar), Collections.EMPTY_MAP);
+
 				String fileName = "";
 
 				if (content.toString().equals("true")) {
@@ -151,7 +152,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 					fileName = "false.svg";
 				}
 
-				File imageFile = new File(FileLocator.resolve(templateFolder).getPath() + fileName);
+				File imageFile = new File(FileLocator.resolve(templateImageFolder).getPath() + fileName);
 
 				UImage booleanImage = new UImage(new Path(imageFile.getAbsolutePath()));
 				booleanImage.setWidth(template.getLayoutOptions().getDefaultTextOption().getFontSize());

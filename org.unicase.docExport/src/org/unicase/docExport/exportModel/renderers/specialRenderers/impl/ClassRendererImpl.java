@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.docExport.Activator;
+import org.unicase.docExport.TemplateRegistry;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.elements.UCompositeSection;
 import org.unicase.docExport.exportModel.renderers.elements.UImage;
@@ -37,7 +38,6 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @generated
  */
 public class ClassRendererImpl extends ModelElementRendererImpl implements ClassRenderer {
-	private static final String DOCEXPORT_IMAGES = "docExportImages";
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -122,8 +122,8 @@ public class ClassRendererImpl extends ModelElementRendererImpl implements Class
 
 	private void renderAssociationImage(UCompositeSection parent, Association association, boolean incoming) {
 
-		URL templateImageFolder = FileLocator.find(Activator.getDefault().getBundle(), new Path(DOCEXPORT_IMAGES
-			+ File.separatorChar), Collections.EMPTY_MAP);
+		URL templateImageFolder = FileLocator.find(Activator.getDefault().getBundle(), new Path(
+			TemplateRegistry.DOCEXPORT_IMAGES + File.separatorChar), Collections.EMPTY_MAP);
 
 		UImage image;
 
@@ -132,9 +132,12 @@ public class ClassRendererImpl extends ModelElementRendererImpl implements Class
 			inv = "_INV";
 		}
 
+		File imageFile;
+
 		try {
-			image = new UImage(new Path(FileLocator.resolve(templateImageFolder).getPath()
-				+ association.getType().getName() + inv + ".gif"));
+			imageFile = new File(FileLocator.resolve(templateImageFolder).getPath() + association.getType().getName()
+				+ inv + ".gif");
+			image = new UImage(new Path(imageFile.getAbsolutePath()));
 			image.setWidth(40);
 			parent.add(image);
 		} catch (IOException e) {
