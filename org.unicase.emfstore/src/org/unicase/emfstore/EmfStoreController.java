@@ -43,6 +43,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesFactory;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
+import org.unicase.emfstore.startup.ConsoleProgressMonitor;
 import org.unicase.emfstore.startup.EmfStoreValidator;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.taskmanager.TaskManager;
@@ -117,7 +118,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		historyCache = initHistoryCache();
 
 		// FixSuite fixSuite = new FixSuite(serverSpace);
-		// fixSuite.fix("_vJNjlI-jEd2NxKsJ-WbHVA");
+		// fixSuite.fix("_LnSQYIrzEd25VYUNYBK0Mw");
 
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
@@ -203,7 +204,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		File serverSpaceDirectory = new File(ServerConfiguration.getServerHome());
 		// for all projects
 		for (File projectDirectory : serverSpaceDirectory.listFiles()) {
-			if (projectDirectory.getName().startsWith(ServerConfiguration.getProjectDirectoryPrefix())) {
+			if (projectDirectory.getName().startsWith(ServerConfiguration.FILE_PREFIX_PROJECTFOLDER)) {
 
 				System.out.println("Migrating project at " + projectDirectory + "...");
 
@@ -222,7 +223,7 @@ public class EmfStoreController implements IApplication, Runnable {
 	private void convertInitialProjectState(ModelVersion modelVersion, File projectDirectory)
 		throws FatalEmfStoreException {
 		URI version0StateURI = URI.createFileURI(projectDirectory.getAbsolutePath() + File.separatorChar
-			+ ServerConfiguration.getProjectStatePrefix() + "0" + ServerConfiguration.FILE_EXTENSION_PROJECTSTATE);
+			+ ServerConfiguration.FILE_PREFIX_PROJECTSTATE + "0" + ServerConfiguration.FILE_EXTENSION_PROJECTSTATE);
 		try {
 			System.out.println("Migrating version 0...");
 			migrate(version0StateURI, new ArrayList<URI>(), modelVersion.getReleaseNumber());
@@ -235,7 +236,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		throws FatalEmfStoreException {
 		System.out.println("Migrating backup states...");
 		for (File backUpState : listFiles) {
-			if (backUpState.getName().startsWith(ServerConfiguration.getBackupStatePrefix())) {
+			if (backUpState.getName().startsWith(ServerConfiguration.FILE_PREFIX_BACKUPPROJECTSTATE)) {
 				URI projectURI = URI.createFileURI(backUpState.getAbsolutePath());
 				try {
 					migrate(projectURI, new ArrayList<URI>(), modelVersion.getReleaseNumber());
@@ -252,12 +253,12 @@ public class EmfStoreController implements IApplication, Runnable {
 		List<URI> changePackageURIs = new ArrayList<URI>();
 		for (File changePackageFile : listFiles) {
 			String changePackageName = changePackageFile.getName();
-			if (changePackageName.startsWith(ServerConfiguration.getChangePackageFilePrefix())) {
+			if (changePackageName.startsWith(ServerConfiguration.FILE_PREFIX_CHANGEPACKAGE)) {
 				int versionSpec = parseVersionSpecFromFileName(changePackageName);
 				URI changePackageURI = URI.createFileURI(changePackageFile.getAbsolutePath());
 				changePackageURIs.add(changePackageURI);
 				String projectStateFilename = projectDirectory.getAbsolutePath() + File.separatorChar
-					+ ServerConfiguration.getProjectStatePrefix() + versionSpec
+					+ ServerConfiguration.FILE_PREFIX_PROJECTSTATE + versionSpec
 					+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
 				File projectStateFile = new File(projectStateFilename);
 				if (projectStateFile.exists()) {
@@ -279,7 +280,7 @@ public class EmfStoreController implements IApplication, Runnable {
 
 	private int parseVersionSpecFromFileName(String versionName) {
 		int startOfFileExtension = versionName.lastIndexOf(".");
-		int prefixLength = ServerConfiguration.getChangePackageFilePrefix().length();
+		int prefixLength = ServerConfiguration.FILE_PREFIX_CHANGEPACKAGE.length();
 		String versionSpecString = versionName.substring(prefixLength, startOfFileExtension);
 		int versionSpec = Integer.parseInt(versionSpecString);
 		return versionSpec;
@@ -585,15 +586,21 @@ public class EmfStoreController implements IApplication, Runnable {
 	public void run() {
 		try {
 			run(true);
+			// this.notify();
+			// waitForTermination();
 		} catch (FatalEmfStoreException e) {
 		}
 	}
 
 	/**
 	 * starts the server a new thread.
+	 * 
+	 * @throws FatalEmfStoreException in case of failure
 	 */
-	public static void runAsNewThread() {
-		// TODO: implement
+	public static void runAsNewThread() throws FatalEmfStoreException {
+		EmfStoreController controller = new EmfStoreController();
+		// controller.run(false);
+		(new Thread(controller)).start();
 	}
 
 }

@@ -5,9 +5,6 @@
  */
 package org.unicase.emfstore.exceptions;
 
-import javax.naming.NamingException;
-
-
 /**
  * Represents a access control violation. Access to a server resource may not be allowed for current user or user name
  * or password might be wrong.
@@ -39,7 +36,7 @@ public class AccessControlException extends EmfStoreException {
 	 * @param string message
 	 * @param e cause
 	 */
-	public AccessControlException(String string, NamingException e) {
+	public AccessControlException(String string, Exception e) {
 		super(string, e);
 	}
 

@@ -6,13 +6,21 @@
 
 package org.unicase.emfstore.exceptions;
 
-
 /**
  * This exception is throw if there is a problem with the decryption.
  * 
  * @author hamidmomeny
  */
 @SuppressWarnings("serial")
-public class DecryptException extends AccessControlException {
+public class ServerKeyStoreException extends AccessControlException {
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param e exception
+	 */
+	public ServerKeyStoreException(Exception e) {
+		super("A server keystore related problem occured.", e);
+	}
 
 }

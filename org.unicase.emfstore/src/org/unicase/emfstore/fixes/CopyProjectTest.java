@@ -62,7 +62,7 @@ public class CopyProjectTest extends AbstractFix {
 	}
 
 	private void createResourceForVersion(Version version, ProjectId projectId) throws FatalEmfStoreException {
-		String fileName = getProjectFolder(projectId) + ServerConfiguration.getVersionFilePrefix()
+		String fileName = getProjectFolder(projectId) + ServerConfiguration.FILE_PREFIX_VERSION
 			+ version.getPrimarySpec().getIdentifier() + ServerConfiguration.FILE_EXTENSION_VERSION;
 		saveInResource(version, fileName);
 	}
@@ -80,18 +80,18 @@ public class CopyProjectTest extends AbstractFix {
 	}
 
 	private String getProjectFile(int versionNumber) {
-		return ServerConfiguration.getProjectStatePrefix() + versionNumber
+		return ServerConfiguration.FILE_PREFIX_PROJECTSTATE + versionNumber
 			+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
 	}
 
 	private String getChangePackageFile(int versionNumber) {
-		return ServerConfiguration.getChangePackageFilePrefix() + versionNumber
+		return ServerConfiguration.FILE_PREFIX_CHANGEPACKAGE + versionNumber
 			+ ServerConfiguration.FILE_EXTENSION_CHANGEPACKAGE;
 	}
 
 	private String getProjectFolder(ProjectId projectId) {
-		return ServerConfiguration.getServerHome() + ServerConfiguration.getProjectDirectoryPrefix()
-			+ projectId.getId() + File.separatorChar;
+		return ServerConfiguration.getServerHome() + ServerConfiguration.FILE_PREFIX_PROJECTFOLDER + projectId.getId()
+			+ File.separatorChar;
 	}
 
 	private void saveInResource(EObject obj, String fileName) throws FatalEmfStoreException {
