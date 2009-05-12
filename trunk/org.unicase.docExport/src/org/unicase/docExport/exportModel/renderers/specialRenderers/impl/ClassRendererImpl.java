@@ -5,6 +5,7 @@
  */
 package org.unicase.docExport.exportModel.renderers.specialRenderers.impl;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
@@ -36,6 +37,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @generated
  */
 public class ClassRendererImpl extends ModelElementRendererImpl implements ClassRenderer {
+	private static final String DOCEXPORT_IMAGES = "docExportImages";
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -118,8 +121,10 @@ public class ClassRendererImpl extends ModelElementRendererImpl implements Class
 	}
 
 	private void renderAssociationImage(UCompositeSection parent, Association association, boolean incoming) {
-		URL templateImageFolder = FileLocator.find(Activator.getDefault().getBundle(), new Path("docExportImages/"),
-			Collections.EMPTY_MAP);
+
+		URL templateImageFolder = FileLocator.find(Activator.getDefault().getBundle(), new Path(DOCEXPORT_IMAGES
+			+ File.separatorChar), Collections.EMPTY_MAP);
+
 		UImage image;
 
 		String inv = "";
