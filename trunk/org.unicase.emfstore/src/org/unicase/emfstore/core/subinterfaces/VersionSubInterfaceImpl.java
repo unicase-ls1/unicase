@@ -95,7 +95,7 @@ public class VersionSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			} else if (versionSpec instanceof DateVersionSpec) {
 				for (Version version : projectHistory.getVersions()) {
 					LogMessage logMessage = version.getLogMessage();
-					if (logMessage == null) {
+					if (logMessage == null || logMessage.getDate() == null) {
 						continue;
 					}
 					if (((DateVersionSpec) versionSpec).getDate().before(logMessage.getDate())) {
