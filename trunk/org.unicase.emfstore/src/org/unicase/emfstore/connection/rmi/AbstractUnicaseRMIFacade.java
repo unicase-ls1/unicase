@@ -36,7 +36,7 @@ public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 
 	private static RMIServerSocketFactory getServerFactory() throws InvalidPropertyException {
 		String property = ServerConfiguration.getProperties().getProperty(ServerConfiguration.RMI_ENCRYPTION,
-			ServerConfiguration.RMI_ENCRYTION_DEFAULT);
+			ServerConfiguration.RMI_ENCRYPTION_DEFAULT);
 		if (property.equals(ServerConfiguration.TRUE)) {
 			return new RMISSLServerSocketFactory();
 		} else if (property.equals(ServerConfiguration.FALSE)) {
@@ -48,7 +48,7 @@ public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 
 	private static RMIClientSocketFactory getClientFactory() throws InvalidPropertyException {
 		String property = ServerConfiguration.getProperties().getProperty(ServerConfiguration.RMI_ENCRYPTION,
-			ServerConfiguration.RMI_ENCRYTION_DEFAULT);
+			ServerConfiguration.RMI_ENCRYPTION_DEFAULT);
 		if (property.equals(ServerConfiguration.TRUE)) {
 			return new RMISSLClientSocketFactory();
 		} else if (property.equals(ServerConfiguration.FALSE)) {

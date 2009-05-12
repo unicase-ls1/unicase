@@ -64,7 +64,7 @@ public class ResourceHelper {
 	 * @throws FatalEmfStoreException if saving fails
 	 */
 	public void createResourceForVersion(Version version, ProjectId projectId) throws FatalEmfStoreException {
-		String fileName = getProjectFolder(projectId) + ServerConfiguration.getVersionFilePrefix()
+		String fileName = getProjectFolder(projectId) + ServerConfiguration.FILE_PREFIX_VERSION
 			+ version.getPrimarySpec().getIdentifier() + ServerConfiguration.FILE_EXTENSION_VERSION;
 		saveInResource(version, fileName);
 	}
@@ -110,7 +110,7 @@ public class ResourceHelper {
 		if (lastVersion != 0 && lastVersion % x != 0) {
 			file.delete();
 		} else {
-			file.renameTo(new File(getProjectFolder(projectId) + ServerConfiguration.getBackupStatePrefix()
+			file.renameTo(new File(getProjectFolder(projectId) + ServerConfiguration.FILE_PREFIX_BACKUPPROJECTSTATE
 				+ getProjectFile(lastVersion)));
 		}
 	}
@@ -152,17 +152,17 @@ public class ResourceHelper {
 	 * @return file path
 	 */
 	public String getProjectFolder(ProjectId projectId) {
-		return ServerConfiguration.getServerHome() + ServerConfiguration.getProjectDirectoryPrefix()
-			+ projectId.getId() + File.separatorChar;
+		return ServerConfiguration.getServerHome() + ServerConfiguration.FILE_PREFIX_PROJECTFOLDER + projectId.getId()
+			+ File.separatorChar;
 	}
 
 	private String getProjectFile(int versionNumber) {
-		return ServerConfiguration.getProjectStatePrefix() + versionNumber
+		return ServerConfiguration.FILE_PREFIX_PROJECTSTATE + versionNumber
 			+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
 	}
 
 	private String getChangePackageFile(int versionNumber) {
-		return ServerConfiguration.getChangePackageFilePrefix() + versionNumber
+		return ServerConfiguration.FILE_PREFIX_CHANGEPACKAGE + versionNumber
 			+ ServerConfiguration.FILE_EXTENSION_CHANGEPACKAGE;
 	}
 

@@ -6,6 +6,7 @@
 package org.unicase.emfstore;
 
 import java.io.File;
+import java.util.ArrayList;
 import java.util.Properties;
 
 import org.eclipse.core.runtime.Platform;
@@ -18,18 +19,6 @@ import org.osgi.framework.Bundle;
  * @author wesendonk
  */
 public final class ServerConfiguration {
-
-	private static final String BACKUPPROJECTSTATE_FILE_PREFIX = "backup_";
-
-	private static final String CHANGEPACKAGE_FILE_PREFIX = "changepackage-";
-
-	private static final String PROJECTSTATE_FILE_PREFIX = "projectstate-";
-
-	private static final String VERSION_FILE_PREFIX = "version-";
-
-	private static final String MODEL_VERSION_FILENAME = "modelReleaseNumber";
-
-	private static final String PROJECT_PREFIX = "project-";
 
 	/**
 	 * Constant for boolean true string.
@@ -59,17 +48,31 @@ public final class ServerConfiguration {
 	/**
 	 * Default RMI encryption property value.
 	 */
-	public static final String RMI_ENCRYTION_DEFAULT = "true";
+	public static final String RMI_ENCRYPTION_DEFAULT = "true";
 
 	/**
-	 * SSL password property, used for RMI encryption.
+	 * Password of keystore, in which the certificate for rmi encryption and password decryption is saved.
+	 * 
+	 * @see #KEYSTORE_ALIAS
 	 */
-	public static final String SSL_PASSWORD = "emfstore.connection.rmi.encryption.ssl.password";
+	public static final String KEYSTORE_PASSWORD = "emfstore.keystore.password";
 
 	/**
-	 * Default SSL password.
+	 * Default keystore password.
 	 */
-	public static final String SSL_PASSWORD_DEFAULT = "av374tb$VBGGtrgwa7tosdfa";
+	public static final String KEYSTORE_PASSWORD_DEFAULT = "av374tb$VBGGtrgwa7tosdfa";
+
+	/**
+	 * Alias for certificate in keystore.
+	 * 
+	 * @see #KEYSTORE_PASSWORD
+	 */
+	public static final String KEYSTORE_ALIAS = "emfstore.keystore.alias";
+
+	/**
+	 * Default alias, intentioned for developers.
+	 */
+	public static final String KEYSTORE_ALIAS_DEFAULT = "testkeygeneratedbyotto";
 
 	/**
 	 * Property for projectstate persistence policy in versions. Possible values are <b>lastVersionOnly</b> and
@@ -216,7 +219,7 @@ public final class ServerConfiguration {
 	 */
 	public static final String MULTI_PROPERTY_SEPERATOR = ",";
 
-	/**
+	/*
 	 * FILE EXTENSIONS
 	 */
 
@@ -244,6 +247,40 @@ public final class ServerConfiguration {
 	 * File extension for main file: unicase change package.
 	 */
 	public static final String FILE_EXTENSION_CHANGEPACKAGE = ".ucp";
+
+	/*
+	 * FILE PREFIXES
+	 */
+
+	/**
+	 * File prefix for file: backup projectstate.
+	 */
+	public static final String FILE_PREFIX_BACKUPPROJECTSTATE = "backup_";
+
+	/**
+	 * File prefix for file: changepackage.
+	 */
+	public static final String FILE_PREFIX_CHANGEPACKAGE = "changepackage-";
+
+	/**
+	 * File prefix for file: projectstate.
+	 */
+	public static final String FILE_PREFIX_PROJECTSTATE = "projectstate-";
+
+	/**
+	 * File prefix for file: version.
+	 */
+	public static final String FILE_PREFIX_VERSION = "version-";
+
+	/**
+	 * File prefix for folder: project.
+	 */
+	public static final String FILE_PREFIX_PROJECTFOLDER = "project-";
+
+	/**
+	 * File name for model release number.
+	 */
+	public static final String MODEL_VERSION_FILENAME = "modelReleaseNumber";
 
 	private static boolean testing;
 
@@ -324,6 +361,39 @@ public final class ServerConfiguration {
 	}
 
 	/**
+	 * This method calls {@link Properties#getProperty(String)} and splits the resulting string, using
+	 * {@link #MULTI_PROPERTY_SEPERATOR}.
+	 * 
+	 * @param property property key
+	 * @return String array or null
+	 */
+	public static String[] getSplittedProperty(String property) {
+		String result = getProperties().getProperty(property);
+		return (result == null) ? null : splitProperty(result);
+	}
+
+	/**
+	 * This method calls {@link Properties#getProperty(String, String)} and splits the resulting string, using
+	 * {@link #MULTI_PROPERTY_SEPERATOR}.
+	 * 
+	 * @param property property key
+	 * @param defaultValue default value
+	 * @return String array or null
+	 */
+	public static String[] getSplittedProperty(String property, String defaultValue) {
+		String result = getProperties().getProperty(property, defaultValue);
+		return (result == null) ? null : splitProperty(result);
+	}
+
+	private static String[] splitProperty(String property) {
+		ArrayList<String> result = new ArrayList<String>();
+		for (String str : property.split(ServerConfiguration.MULTI_PROPERTY_SEPERATOR)) {
+			result.add(str.trim());
+		}
+		return result.toArray(new String[result.size()]);
+	}
+
+	/**
 	 * Sets the server's properties.
 	 * 
 	 * @param prop properties
@@ -389,51 +459,6 @@ public final class ServerConfiguration {
 	 */
 	public static String getModelReleaseNumberFileName() {
 		return getServerHome() + MODEL_VERSION_FILENAME;
-	}
-
-	/**
-	 * Return prefix for project directory name.
-	 * 
-	 * @return the prefix string
-	 */
-	public static String getProjectDirectoryPrefix() {
-		return PROJECT_PREFIX;
-	}
-
-	/**
-	 * Return prefix for version file name.
-	 * 
-	 * @return the prefix string
-	 */
-	public static String getVersionFilePrefix() {
-		return VERSION_FILE_PREFIX;
-	}
-
-	/**
-	 * Return prefix for projectstate file name.
-	 * 
-	 * @return the prefix string
-	 */
-	public static String getProjectStatePrefix() {
-		return PROJECTSTATE_FILE_PREFIX;
-	}
-
-	/**
-	 * Return prefix for change package file name.
-	 * 
-	 * @return the prefix string
-	 */
-	public static String getChangePackageFilePrefix() {
-		return CHANGEPACKAGE_FILE_PREFIX;
-	}
-
-	/**
-	 * Return prefix for the backup project state file name.
-	 * 
-	 * @return the prefix string
-	 */
-	public static String getBackupStatePrefix() {
-		return BACKUPPROJECTSTATE_FILE_PREFIX;
 	}
 
 	/**
