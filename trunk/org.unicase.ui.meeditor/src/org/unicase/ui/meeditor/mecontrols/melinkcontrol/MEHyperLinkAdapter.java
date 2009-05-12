@@ -5,13 +5,16 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.unicase.model.ModelElement;
-import org.unicase.ui.common.MEEditorInput;
+import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A {@link HyperlinkAdapter} to the model elements.
@@ -20,16 +23,22 @@ import org.unicase.ui.common.MEEditorInput;
  */
 public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkListener {
 
-	private ModelElement me;
+	private ModelElement target;
+	private final ModelElement source;
+	private final String featureName;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param me the model element
+	 * @param source the source of the model link
+	 * @param target the target of the model link
+	 * @param featureName the feature of the model link
 	 */
-	public MEHyperLinkAdapter(ModelElement me) {
+	public MEHyperLinkAdapter(ModelElement target, ModelElement source, String featureName) {
 		super();
-		this.me = me;
+		this.target = target;
+		this.source = source;
+		this.featureName = featureName;
 	}
 
 	/**
@@ -37,15 +46,18 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	 */
 	@Override
 	public void linkActivated(HyperlinkEvent event) {
-		MEEditorInput input = new MEEditorInput(me);
-		try {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input,
-				"org.unicase.ui.meeditor", true);
-		} catch (PartInitException e) {
-			// JH Auto-generated catch block
-			e.printStackTrace();
-		}
+		ActionHelper.openModelElement(target, "org.unicase.ui.meeditor");
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getActiveProjectSpace();
+				WorkspaceUtil.logTraceEvent(activeProjectSpace, source.getModelElementId(), target.getModelElementId(),
+					featureName);
+			}
+		});
 		super.linkActivated(event);
 	}
-
 }
