@@ -55,6 +55,11 @@ public final class TemplateRegistry {
 	private static final String DEFAULT_TEMPLATES_FOLDER = "defaultTemplates";
 
 	/**
+	 * The folder where all images related to the renderers, are stored.
+	 */
+	public static final String DOCEXPORT_IMAGES = "docExportImages";
+
+	/**
 	 * The resource set for the EMF XML file. This is a singleton since it should only be loaded once.
 	 */
 	private static ResourceSet resourceSet;
