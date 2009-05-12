@@ -330,6 +330,11 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		ModelElement modelElement = getProjectSpace().getProject().getModelElement(
 			getNotification().getRelatedModelElements().get(0));
 
+		// TODO Add the changepackage to the notification OR add the modelelement itself on create/deletes.
+		if (modelElement == null) {
+			return;
+		}
+
 		// the composite that wraps the whole notification
 		Composite notificationEntry = new Composite(notificationComposite, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(notificationEntry);
