@@ -83,7 +83,7 @@ public class ESBrowserView extends ViewPart {
 				revision = session.resolveVersionSpec(VersioningFactory.eINSTANCE.createHeadVersionSpec(),
 					projectInfo.getProjectId()).getIdentifier();
 				MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Project information",
-					"Current revision: " + revision);
+					"Current revision: " + revision + "\nProjectId: " + projectInfo.getProjectId().getId());
 			} catch (EmfStoreException e) {
 				DialogHandler.showExceptionDialog(e);
 			}
