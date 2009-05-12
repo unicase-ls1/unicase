@@ -32,8 +32,9 @@ import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.model.Project;
 
 /**
- * This is the main implementation of EmfStore.
+ * This is the main implementation of {@link EmfStore}.
  * 
+ * @author wesedon
  * @see EmfStore
  */
 public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore {
