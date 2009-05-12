@@ -34,6 +34,8 @@ public class EmfStoreValidator {
 
 	private final ServerSpace serverSpace;
 
+	private List<String> excludedProjects;
+
 	/**
 	 * Default constructor.
 	 * 
@@ -41,20 +43,24 @@ public class EmfStoreValidator {
 	 */
 	public EmfStoreValidator(ServerSpace serverSpace) {
 		this.serverSpace = serverSpace;
+		excludedProjects = new ArrayList<String>();
 	}
 
 	/**
-	 * Option for resolving all proxies.
+	 * Option for resolving all proxies. The validation therefore uses
+	 * {@link EcoreUtil#resolveAll(org.eclipse.emf.ecore.EObject)}
 	 */
 	public static final int RESOLVEALL = 1;
 
 	/**
-	 * Option for checking all modelelementids in projecstate and changes.
+	 * Option for checking all modelelement ids in projecstate and changes. Every modelelement and changeoperation has
+	 * to have a modelelement id.
 	 */
 	public static final int MODELELEMENTID = 2;
 
 	/**
-	 * Option for the change test. All changes will be applied and then compared with the actual projecstate.
+	 * Option for the change test. The initial projecstate is loaded and all changes are applied, until the next
+	 * projecstate is reached. Then the calculated state and the saved state are comparesd.
 	 */
 	public static final int PROJECTGENERATION = 4;
 
@@ -96,6 +102,9 @@ public class EmfStoreValidator {
 		validate(options, true);
 	}
 
+	/**
+	 * {@link #RESOLVEALL}.
+	 */
 	private boolean validateResolveAll() {
 		start("Resolving all elements...");
 		EcoreUtil.resolveAll(serverSpace.eResource().getResourceSet());
@@ -109,10 +118,17 @@ public class EmfStoreValidator {
 		return errors.size() == 0;
 	}
 
+	/**
+	 * {@link #MODELELEMENTID}.
+	 */
 	private boolean validateModelelementId() {
 		start("Checking ModelElementIds...");
 		List<String> errors = new ArrayList<String>();
 		for (ProjectHistory projectHistory : serverSpace.getProjects()) {
+			if (isExcluded(projectHistory)) {
+				continue;
+			}
+			System.out.println("Checking project: " + projectHistory.getProjectId().getId());
 			for (Version version : projectHistory.getVersions()) {
 				if (version.getChanges() != null) {
 					for (AbstractOperation ao : version.getChanges().getOperations()) {
@@ -139,10 +155,17 @@ public class EmfStoreValidator {
 		return errors.size() == 0;
 	}
 
+	/**
+	 * {@value #PROJECTGENERATION}.
+	 */
 	private boolean validateProjectGeneration() {
 		start("Project generation compare ...");
 		List<String> errors = new ArrayList<String>();
 		for (ProjectHistory history : serverSpace.getProjects()) {
+			if (isExcluded(history)) {
+				continue;
+			}
+			System.out.println("Checking project: " + history.getProjectId().getId());
 			history = (ProjectHistory) EcoreUtil.copy(history);
 			Project state = null;
 
@@ -167,6 +190,21 @@ public class EmfStoreValidator {
 		errors(errors);
 		stop();
 		return errors.size() == 0;
+	}
+
+	/**
+	 * Allows to exclude projects from validation aside from {@link #RESOLVEALL}.
+	 * 
+	 * @param excludedProjects list of project id as string
+	 */
+	public void setExcludedProjects(List<String> excludedProjects) {
+		if (excludedProjects != null) {
+			this.excludedProjects = excludedProjects;
+		}
+	}
+
+	private boolean isExcluded(ProjectHistory projectHistory) {
+		return excludedProjects.contains(projectHistory.getProjectId().getId());
 	}
 
 	private void start(String str) {
