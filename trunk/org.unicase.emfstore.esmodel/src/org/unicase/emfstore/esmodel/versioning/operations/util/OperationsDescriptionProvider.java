@@ -143,11 +143,17 @@ public class OperationsDescriptionProvider {
 
 		StringBuilder sb = new StringBuilder();
 		for (ModelElementId id : idList) {
-			sb.append(project.getModelElement(id).eClass().getName() + " '" + project.getModelElement(id).getName()
-				+ "'");
-			sb.append(", ");
+
+			if (project.getModelElement(id) != null) {
+				sb.append(project.getModelElement(id).eClass().getName() + " '" + project.getModelElement(id).getName()
+					+ "'");
+				sb.append(", ");
+			}
 		}
-		sb.delete(sb.length() - 2, sb.length());
+		if (sb.length() > 2) {
+			sb.delete(sb.length() - 2, sb.length());
+		}
+
 		return sb.toString();
 	}
 }
