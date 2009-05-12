@@ -16,6 +16,7 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
+import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.model.ModelElementId;
 import org.unicase.workspace.Activator;
@@ -105,6 +106,24 @@ public final class WorkspaceUtil {
 		readEvent.setSourceView(sourceView);
 		readEvent.setTimestamp(new Date());
 		projectSpace.addEvent(readEvent);
+	}
+
+	/**
+	 * Log a trace event to the given projectSpace.
+	 * 
+	 * @param projectSpace the project space
+	 * @param sourceElement the source element of the trace
+	 * @param targetElement the target event of the trace
+	 * @param featureName the feature reference which was traced.
+	 */
+	public static void logTraceEvent(ProjectSpace projectSpace, ModelElementId sourceElement,
+		ModelElementId targetElement, String featureName) {
+		TraceEvent traceEvent = EventsFactory.eINSTANCE.createTraceEvent();
+		traceEvent.setSourceElement(sourceElement);
+		traceEvent.setTargetElement(targetElement);
+		traceEvent.setTimestamp(new Date());
+		traceEvent.setFeatureName(featureName);
+		projectSpace.addEvent(traceEvent);
 	}
 
 	/**

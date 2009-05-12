@@ -36,6 +36,7 @@ import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.impl.RationaleFactoryImpl;
 import org.unicase.ui.meeditor.ControlFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
@@ -224,7 +225,8 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 			hyperLinkGridData.horizontalAlignment = GridData.HORIZONTAL_ALIGN_CENTER;
 			hyperlink.setLayoutData(hyperLinkGridData);
 			hyperlink.layout();
-			IHyperlinkListener listener = new MEHyperLinkAdapter(criteria.get(i));
+			IHyperlinkListener listener = new MEHyperLinkAdapter(criteria.get(i), issue, RationalePackage.eINSTANCE
+				.getIssue_Criteria().getName());
 			hyperlink.addHyperlinkListener(listener);
 		}
 
@@ -237,7 +239,8 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 			Proposal currentProposal = proposals.get(p);
 			final Hyperlink hyperlink = getToolkit().createHyperlink(matrixSection, currentProposal.getName(),
 				parentStyle);
-			IHyperlinkListener listener = new MEHyperLinkAdapter(currentProposal);
+			IHyperlinkListener listener = new MEHyperLinkAdapter(currentProposal, issue, RationalePackage.eINSTANCE
+				.getIssue_Proposals().getName());
 			hyperlink.addHyperlinkListener(listener);
 			getToolkit().createLabel(matrixSection, "     ");
 			for (int i = 0; i < criteria.size(); i++) {
