@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.unicase.model.ModelElement;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -282,6 +283,13 @@ public class NotificationInfo implements Notification {
 	}
 
 	/**
+	 * @return @see org.eclipse.emf.common.notify.Notification#getNewValue()
+	 */
+	public ModelElement getNewModelElementValue() {
+		return (ModelElement) notification.getNewValue();
+	}
+
+	/**
 	 * @return @see org.eclipse.emf.common.notify.Notification#getNotifier()
 	 */
 	public Object getNotifier() {
@@ -359,6 +367,13 @@ public class NotificationInfo implements Notification {
 	}
 
 	/**
+	 * @return @see org.eclipse.emf.common.notify.Notification#getOldValue()
+	 */
+	public ModelElement getOldModelElementValue() {
+		return (ModelElement) notification.getOldValue();
+	}
+
+	/**
 	 * @return @see org.eclipse.emf.common.notify.Notification#getPosition()
 	 */
 	public int getPosition() {
@@ -401,6 +416,13 @@ public class NotificationInfo implements Notification {
 	@Override
 	public String toString() {
 		return notification.toString();
+	}
+
+	/**
+	 * @return @see org.eclipse.emf.common.notify.Notification#getNotifier()
+	 */
+	public ModelElement getNotifierModelElement() {
+		return (ModelElement) notification.getNotifier();
 	}
 
 	/**
