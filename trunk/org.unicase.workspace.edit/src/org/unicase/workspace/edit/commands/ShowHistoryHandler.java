@@ -42,7 +42,7 @@ public class ShowHistoryHandler extends ServerRequestCommandHandler {
 	@Override
 	protected Object run() throws EmfStoreException {
 		ProjectSpace projectSpace = ActionHelper.getProjectSpace(getEvent());
-		ModelElement modelElement = ActionHelper.getModelElement(getEvent());
+		ModelElement modelElement = getModelElement();
 		if (projectSpace == null) {
 			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getActiveProjectSpace();
