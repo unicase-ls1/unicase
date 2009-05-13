@@ -9,7 +9,9 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.model.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -19,12 +21,17 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 
+	private ModelElement modelElement;
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		this.setEvent(event);
+
+		// caching the modelelement, because the event loses parts of its context.
+		setModelElement(ActionHelper.getModelElement(event));
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -40,5 +47,22 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 			}
 		});
 		return null;
+	}
+
+	/**
+	 * @return the modelelement that is in the context of the handler's execution event. It's a cached value in case the
+	 *         event gets modified.
+	 */
+	public ModelElement getModelElement() {
+		return modelElement;
+	}
+
+	/**
+	 * Setter for the modelElement.
+	 * 
+	 * @param modelElement the modelElement.
+	 */
+	public void setModelElement(ModelElement modelElement) {
+		this.modelElement = modelElement;
 	}
 }
