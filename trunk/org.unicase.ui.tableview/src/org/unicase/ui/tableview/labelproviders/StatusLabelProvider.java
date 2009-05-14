@@ -37,7 +37,7 @@ public class StatusLabelProvider extends ColumnLabelProvider implements IColorPr
 	public StatusLabelProvider() {
 		images = new HashMap<String, Image>();
 
-		ImageDescriptor imageDescriptor = Activator.getImageDescriptor("icons/open.gif");
+		ImageDescriptor imageDescriptor = Activator.getImageDescriptor("icons/open.png");
 		images.put(OPEN, imageDescriptor.createImage());
 
 		imageDescriptor = Activator.getImageDescriptor("icons/closed.gif");
