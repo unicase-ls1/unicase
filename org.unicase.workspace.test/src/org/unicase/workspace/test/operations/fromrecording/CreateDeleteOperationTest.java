@@ -69,7 +69,6 @@ public class CreateDeleteOperationTest extends OperationTest {
 	 */
 	@Test
 	public void deleteElementTest() throws UnsupportedOperationException, UnsupportedNotificationException {
-		fail("not implemented yet");
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		getProject().addModelElement(useCase);
 		
@@ -98,7 +97,6 @@ public class CreateDeleteOperationTest extends OperationTest {
 	 */
 	@Test
 	public void complexDeleteElementTest() throws UnsupportedOperationException, UnsupportedNotificationException {
-		fail("not implemented yet");
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		getProject().addModelElement(section);
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
@@ -188,7 +186,6 @@ public class CreateDeleteOperationTest extends OperationTest {
 	 */
 	@Test
 	public void complexDeleteElementReverseTest() throws UnsupportedOperationException, UnsupportedNotificationException {
-		fail("not implemented yet");
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		getProject().addModelElement(section);
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();

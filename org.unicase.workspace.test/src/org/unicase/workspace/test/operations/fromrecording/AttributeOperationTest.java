@@ -62,7 +62,7 @@ public class AttributeOperationTest extends OperationTest{
 	 */
 	@Test
 	public void changeAttributeTwice() throws UnsupportedOperationException, UnsupportedNotificationException {
-		fail("not implemented yet, multiple chain conversion required, canonizer test");
+//		fail("not implemented yet, multiple chain conversion required, canonizer test");
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		getProject().addModelElement(useCase);
 		
