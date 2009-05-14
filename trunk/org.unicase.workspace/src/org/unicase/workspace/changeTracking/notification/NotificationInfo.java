@@ -41,6 +41,19 @@ public class NotificationInfo implements Notification {
 	}
 
 	/**
+	 * @return the structural feature affected
+	 */
+	public EStructuralFeature getStructuralFeature() {
+
+		if (getFeature() instanceof EStructuralFeature) {
+			return (EStructuralFeature) getFeature();
+		}
+
+		return null;
+
+	}
+
+	/**
 	 * @return the valid
 	 */
 	public boolean isValid() {
