@@ -6,7 +6,6 @@
 package org.unicase.workspace.test.operations.fromrecording;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;

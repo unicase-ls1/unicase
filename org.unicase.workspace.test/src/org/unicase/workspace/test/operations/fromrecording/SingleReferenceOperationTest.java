@@ -6,7 +6,6 @@
 package org.unicase.workspace.test.operations.fromrecording;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
@@ -20,7 +19,6 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
-import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
 import java.util.List;
