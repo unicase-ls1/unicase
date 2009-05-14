@@ -81,7 +81,7 @@ public class SingleReferenceOperationTest extends OperationTest {
 	 */
 	@Test
 	public void changeSingleReferenceTwice() throws UnsupportedOperationException, UnsupportedNotificationException {
-		fail("not implemented yet, multiple chain conversion required, canonizer test");
+//		fail("not implemented yet, multiple chain conversion required, canonizer test");
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		getProject().addModelElement(useCase);
 		Actor oldActor = RequirementFactory.eINSTANCE.createActor();
@@ -103,7 +103,7 @@ public class SingleReferenceOperationTest extends OperationTest {
 		assertEquals(1, initiatedUseCases.size());
 		assertEquals(useCase, initiatedUseCases.get(0));
 		
-		List<AbstractOperation> operations = generateOperations();
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		
 		assertEquals(1, operations.size());
 		AbstractOperation operation = operations.get(0);
