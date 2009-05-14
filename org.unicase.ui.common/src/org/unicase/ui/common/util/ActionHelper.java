@@ -64,7 +64,7 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * This extracts active model element. From MEEditor or from Navigator
+	 * This extracts active model element. From MEEditor or from any view which is a selection provider.
 	 * 
 	 * @param event the ExecutionEvent given by caller handler
 	 * @return active model element
@@ -331,7 +331,7 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * . Extract the selected ModelElement in navigator or other StructuredViewer This will be called from Handler
+	 * Extract the selected ModelElement from a viewer which is selection provider. This will be called from Handler
 	 * classes, which pass the ExecutionEvent.
 	 * 
 	 * @param event ExecutionEvent to extract the selection from.
@@ -357,7 +357,7 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * . Extract the selected Object in navigator or other StructuredViewer. This method uses the general
+	 * Extract the selected Object in navigator or other StructuredViewer. This method uses the general
 	 * ISelectionService of Workbench to extract the selection. Beware that the part providing the selection should have
 	 * registered its SelectionProvider.
 	 * 
@@ -381,7 +381,7 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * . Extract the selected EObject in navigator or other StructuredViewer. This method uses the general
+	 * Extract the selected EObject in navigator or other StructuredViewer. This method uses the general
 	 * ISelectionService of Workbench to extract the selection. Beware that the part providing the selection should have
 	 * registered its SelectionProvider.
 	 * 
