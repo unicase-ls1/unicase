@@ -317,11 +317,12 @@ public class ESBrowserView extends ViewPart {
 					accessControl.checkServerAdminAccess();
 					manager.add(new Separator("Administrative"));
 					manager.add(serverAddProject);
+					manager.add(manageOrgUnits);
+
 				} catch (EmfStoreException e) {
 					// access denied
 				}
 				serverChangeSession.setText("Log out");
-				manager.add(manageOrgUnits);
 
 			} else if (session != null && !session.isLoggedIn()) {
 				manager.add(new Separator("Userspace"));
@@ -479,7 +480,8 @@ public class ESBrowserView extends ViewPart {
 				}
 			}
 		};
-		manageOrgUnits.setText("Manage OrgUnits...");
+		manageOrgUnits.setText("Manage Users/Groups...");
+		manageOrgUnits.setImageDescriptor(Activator.getImageDescriptor("icons/Group.gif"));
 
 		deleteAction = new DeleteAction();
 		deleteAction.setText("Delete");
