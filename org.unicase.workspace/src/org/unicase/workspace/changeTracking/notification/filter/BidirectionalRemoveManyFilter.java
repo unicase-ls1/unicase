@@ -25,45 +25,45 @@ public class BidirectionalRemoveManyFilter implements NotificationFilter {
 
 		List<NotificationInfo> rec = recording.asMutableList();
 
-		// we look for 2 or more set/remove messages followed by an REMOVE_MANY message
-		if (rec.size() < 3) {
+		// we look for 1 or more set/remove messages followed by an REMOVE_MANY message
+		if (rec.size() < 2) {
 			return;
 		}
 
-		NotificationInfo nLast = rec.get(rec.size() - 1);
+		// any REMOVE_MANY message within the queue is a candidate
+		// a list of messages directly preceding it, might be opposites, that need to be filtered
 
-		if (!nLast.isRemoveManyEvent()) {
-			return;
-		}
-		// TODO: check for IDs instead of identity
+		for (int i = 0; i < rec.size(); i++) {
 
-		// n:n case make sure each of the preceding messages is an remove message referencing the notifier from nLast
-		if (rec.get(0).isRemoveEvent()) {
-			for (int i = 0; i < rec.size() - 1; i++) {
-				NotificationInfo n = rec.get(i);
-				if (!(n.isRemoveEvent() && n.getOldValue() == nLast.getNotifier())) {
-					return;
-				}
+			// only interested in remove many events
+			if (!rec.get(i).isRemoveManyEvent()) {
+				continue;
 			}
+			NotificationInfo nLast = rec.get(i);
 
-		}
-		// n:1 case make sure each of the preceding messages is a set message referencing the notifier from nLast
-		else if (rec.get(0).isSetEvent()) {
-			for (int i = 0; i < rec.size() - 1; i++) {
-				NotificationInfo n = rec.get(i);
-				if (!(n.isSetEvent() && n.getOldValue() == nLast.getNotifier())) {
-					return;
+			int j = i - 1;
+			while (j >= 0) {
+				NotificationInfo n = rec.get(j);
+
+				// check if one feature is the opposite of the other
+				if (n.getReference().getEOpposite() != nLast.getFeature()) {
+					break;
 				}
+
+				// n:n case, REMOVE messages can be deleted if referencing our REMOVE_MANY on opposite
+				if (n.isRemoveEvent() && n.getOldValue() == nLast.getNotifier()) {
+					rec.remove(j);
+					// n:1 case SET messages can be deleted if referencing our REMOVE_MANY on opposite
+					// nLast
+				} else if ((n.isSetEvent() && n.getOldValue() == nLast.getNotifier() && n.getNewValue() == null)) {
+					rec.remove(j);
+				} else {
+					break;
+				}
+				i--;
+				j--;
 			}
-
-		}
-
-		// here we know each preceding message was an opposite of the last add_many message,
-		// it is safe to remove the remove/set messages
-		while (rec.size() > 1) {
-			rec.remove(0);
 		}
 
 	}
-
 }

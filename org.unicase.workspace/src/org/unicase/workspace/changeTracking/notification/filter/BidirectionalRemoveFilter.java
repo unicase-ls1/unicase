@@ -25,27 +25,35 @@ public class BidirectionalRemoveFilter implements NotificationFilter {
 
 		List<NotificationInfo> rec = recording.asMutableList();
 
-		if (rec.size() != 2) {
-			return;
-		}
+		for (int i = 0; i < rec.size() - 1; i++) {
 
-		// TODO: check for IDs instead of object identity
-		NotificationInfo n1 = rec.get(0);
-		NotificationInfo n2 = rec.get(1);
+			// TODO: check for IDs instead of object identity
+			NotificationInfo n1 = rec.get(i);
+			NotificationInfo n2 = rec.get(i + 1);
 
-		// n:n operation, both are remove events
-		if (n1.isRemoveEvent() && n2.isRemoveEvent() && (n2.getOldValue() == n1.getNotifier())) {
-			rec.remove(n1);
-		}
+			// check if one feature is the opposite of the other
+			if (n1.getReference().getEOpposite() != n2.getFeature() || (n2.getOldValue() != n1.getNotifier())) {
+				continue;
+			}
 
-		// 1:n operation, one set one remove
-		if (n1.isSetEvent() && n2.isRemoveEvent() && (n2.getOldValue() == n1.getNotifier())) {
-			rec.remove(n1);
-		}
+			// n:n operation, both are remove events
+			if (n1.isRemoveEvent() && n2.isRemoveEvent()) {
+				rec.remove(n1);
+				i--;
+			}
 
-		// n:1 operation, one remove one set
-		if (n1.isRemoveEvent() && n2.isSetEvent() && (n2.getOldValue() == n1.getNotifier())) {
-			rec.remove(n1);
+			// 1:n operation, one set one remove
+			if (n1.isSetEvent() && n2.isRemoveEvent()) {
+				rec.remove(n1);
+				i--;
+			}
+
+			// n:1 operation, one remove one set
+			if (n1.isRemoveEvent() && n2.isSetEvent()) {
+				rec.remove(n1);
+				i--;
+			}
+
 		}
 
 	}
