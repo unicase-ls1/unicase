@@ -5,13 +5,6 @@
  */
 package org.unicase.ui.stem.views.statusview;
 
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -26,6 +19,13 @@ import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.exceptions.DialogHandler;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * This is the label provider for status column on user tab of status view.
  * 
@@ -38,6 +38,7 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 	private static final String OPEN = "open";
 	private static final String CLOSED = "closed";
 	private static final String BLOCKED = "blocked";
+	private static final String OPEN_RESOLVED = "open_resolved";
 
 	/**
 	 * Constructor.
@@ -45,7 +46,7 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 	public UserTabStatusColumnLabelProvider() {
 		images = new HashMap<String, Image>();
 
-		String path = "icons/open.gif";
+		String path = "icons/open.png";
 		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path(path), null);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(OPEN, imageDescriptor.createImage());
@@ -59,6 +60,11 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path(path), null);
 		imageDescriptor = ImageDescriptor.createFromURL(url);
 		images.put(BLOCKED, imageDescriptor.createImage());
+
+		path = "icons/open_resolved.png";
+		url = FileLocator.find(Platform.getBundle("org.unicase.ui.stem"), new Path(path), null);
+		imageDescriptor = ImageDescriptor.createFromURL(url);
+		images.put(OPEN_RESOLVED, imageDescriptor.createImage());
 	}
 
 	/**
@@ -72,6 +78,7 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 		images.get(OPEN).dispose();
 		images.get(CLOSED).dispose();
 		images.get(BLOCKED).dispose();
+		images.get(OPEN_RESOLVED).dispose();
 
 		images.clear();
 
@@ -99,6 +106,9 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 			}
 
 			if (status.equals(MEState.OPEN)) {
+				if (me instanceof WorkItem && ((WorkItem) me).isResolved()) {
+					return images.get(OPEN_RESOLVED);
+				}
 				return images.get(OPEN);
 
 			} else if (status.equals(MEState.CLOSED)) {
