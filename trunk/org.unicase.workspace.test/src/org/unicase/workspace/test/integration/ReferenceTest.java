@@ -31,8 +31,8 @@ public class ReferenceTest extends IntegrationTestCase {
 	public void containmentReferenceAddNewTest() throws SerializationException, EmfStoreException {
 		System.out.println("ContainmentReferenceAddNewTest");
 
-		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = TestHelper.getDomain();
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -43,7 +43,7 @@ public class ReferenceTest extends IntegrationTestCase {
 		});
 
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceAddNewTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceAddNewTest"));
 
 	}
 	
@@ -60,8 +60,8 @@ public class ReferenceTest extends IntegrationTestCase {
 	public void containmentRefTransitiveChange() throws SerializationException, EmfStoreException {
 		System.out.println("ContainmentRefTransitiveChange");
 
-		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = TestHelper.getDomain();
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -72,7 +72,7 @@ public class ReferenceTest extends IntegrationTestCase {
 		});
 
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentRefTransitiveChange"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentRefTransitiveChange"));
 
 	}
 	
@@ -86,8 +86,8 @@ public class ReferenceTest extends IntegrationTestCase {
 	@Test
 	public void multiReferenceMoveTests() throws SerializationException, EmfStoreException {
 		System.out.println("MultiReferenceMoveTests");
-		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = TestHelper.getDomain();
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -96,7 +96,7 @@ public class ReferenceTest extends IntegrationTestCase {
 		});
 
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "MultiReferenceMoveTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiReferenceMoveTest"));
 
 	}
 	
@@ -110,8 +110,8 @@ public class ReferenceTest extends IntegrationTestCase {
 	@Test
 	public void nonContainmentReferenceAddTest() throws SerializationException, EmfStoreException {
 		System.out.println("NonContainmentReferenceAddTest");
-		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = TestHelper.getDomain();
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -122,7 +122,7 @@ public class ReferenceTest extends IntegrationTestCase {
 		});
 
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceAddTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceAddTest"));
 	}
 
 	/**
@@ -135,8 +135,8 @@ public class ReferenceTest extends IntegrationTestCase {
 	public void nonContainmentReferenceRemoveTest() throws SerializationException, EmfStoreException {
 		System.out.println("NonContainmentReferenceRemoveTest");
 
-		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = TestHelper.getDomain();
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -146,7 +146,7 @@ public class ReferenceTest extends IntegrationTestCase {
 		});
 
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceRemoveTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceRemoveTest"));
 
 	}
 	
@@ -160,8 +160,8 @@ public class ReferenceTest extends IntegrationTestCase {
 	@Test
 	public void containmentReferenceMoveTest() throws SerializationException, EmfStoreException {
 		System.out.println("ContainmentReferenceMoveTest");
-		final TestHelper testHelper = new TestHelper(randomSeed, getTestProject());
-		TransactionalEditingDomain domain = TestHelper.getDomain();
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -171,7 +171,7 @@ public class ReferenceTest extends IntegrationTestCase {
 		});
 
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceMoveTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceMoveTest"));
 
 	}
 

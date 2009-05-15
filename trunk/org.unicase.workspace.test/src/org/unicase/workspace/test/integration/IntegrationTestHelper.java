@@ -53,7 +53,7 @@ import java.util.Random;
  * 
  * @author Hodaie
  */
-public final class TestHelper {
+public final class IntegrationTestHelper {
 
 	/**
 	 * Numbers of different integration tests. Each integration test case must have a corresponding method in this class
@@ -74,7 +74,7 @@ public final class TestHelper {
 	 * @param randomSeed ranodm seed
 	 * @param testProject test project
 	 */
-	public TestHelper(long randomSeed, Project testProject) {
+	public IntegrationTestHelper(long randomSeed, Project testProject) {
 		this.random = new Random(randomSeed);
 		this.testProject = testProject;
 	}

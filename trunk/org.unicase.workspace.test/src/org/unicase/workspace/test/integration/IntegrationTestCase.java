@@ -241,7 +241,7 @@ public abstract class IntegrationTestCase {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				System.out.println(TestHelper.getChangePackage(getTestProjectSpace().getOperations(), true, false)
+				System.out.println(IntegrationTestHelper.getChangePackage(getTestProjectSpace().getOperations(), true, false)
 					.getOperations().size()
 					+ " operations.");
 				try {
