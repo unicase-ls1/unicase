@@ -5,17 +5,6 @@
  */
 package org.unicase.workspace.impl;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -62,6 +51,17 @@ import org.unicase.workspace.exceptions.ServerUrlResolutionException;
 import org.unicase.workspace.exceptions.UnkownProjectException;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.util.WorkspaceUtil;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Workspace</b></em>'. <!-- end-user-doc -->
@@ -688,7 +688,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			setActiveProjectSpace(null);
 		}
 		save();
-		projectToProjectSpaceMap.remove(projectSpace).getProject();
+		projectToProjectSpaceMap.remove(projectSpace.getProject());
 
 		// delete folder of projectSPace
 		String pathToProject = Configuration.getWorkspaceDirectory() + "ps-" + projectSpace.getIdentifier();
