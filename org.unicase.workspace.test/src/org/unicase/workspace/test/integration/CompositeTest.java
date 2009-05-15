@@ -32,7 +32,7 @@ public class CompositeTest extends IntegrationTestCase {
 	private int randomSelectIterations = 50;
 	private int testAllIterations = 20;
 
-	private TestHelper testHelper;
+	private IntegrationTestHelper testHelper;
 
 	/**
 	 * Runs a random set of operations.
@@ -44,7 +44,7 @@ public class CompositeTest extends IntegrationTestCase {
 	public void runTest() throws SerializationException, EmfStoreException {
 		System.out.println("CompositeTest");
 
-		TransactionalEditingDomain domain = TestHelper.getDomain();
+		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -57,13 +57,13 @@ public class CompositeTest extends IntegrationTestCase {
 		});
 
 		commitChanges();
-		assertTrue(TestHelper.areEqual(getTestProject(), getCompareProject(), "CompositeTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CompositeTest"));
 
 	}
 	
 
 	private void doTest() {
-		testHelper = new TestHelper(randomSeed, getTestProject());
+		testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 
 		if (testAll) {
 
@@ -82,7 +82,7 @@ public class CompositeTest extends IntegrationTestCase {
 
 	private void randomSelectTest() {
 		List<Integer> testsToRun = new ArrayList<Integer>();
-		for (int i = 0; i < TestHelper.NUM_OF_TESTS; i++) {
+		for (int i = 0; i < IntegrationTestHelper.NUM_OF_TESTS; i++) {
 			testsToRun.add(new Integer(i));
 		}
 
@@ -100,11 +100,11 @@ public class CompositeTest extends IntegrationTestCase {
 
 	private void testAll() {
 		List<Integer> testsToRun = new ArrayList<Integer>();
-		for (int i = 0; i < TestHelper.NUM_OF_TESTS; i++) {
+		for (int i = 0; i < IntegrationTestHelper.NUM_OF_TESTS; i++) {
 			testsToRun.add(new Integer(i));
 		}
 
-		for (int j = 0; j < TestHelper.NUM_OF_TESTS; j++) {
+		for (int j = 0; j < IntegrationTestHelper.NUM_OF_TESTS; j++) {
 			int index = testHelper.getRandomPosition(testsToRun.size());
 			Integer testToRun = testsToRun.get(index);
 			
