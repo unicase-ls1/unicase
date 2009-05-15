@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.4"?>
 
-<product name="Unicase" id="org.unicase.client.product" application="org.unicase.client.application" version="0.3.18.qualifier" useFeatures="false">
+<product name="Unicase" id="org.unicase.client.product" application="org.unicase.client.application" version="0.3.22.internal.qualifier" useFeatures="false">
 
    <aboutInfo>
       <image path="about.png"/>
