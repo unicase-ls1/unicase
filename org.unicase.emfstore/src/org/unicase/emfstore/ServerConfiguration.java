@@ -201,7 +201,32 @@ public final class ServerConfiguration {
 	/**
 	 * Property to validate server on start up.
 	 */
-	public static final String VALIDATE_SERVERSPACE_ON_SERVERSTART = "emfstore.validateOnLoad";
+	public static final String VALIDATE_SERVERSPACE_ON_SERVERSTART = "emfstore.validation";
+
+	/**
+	 * Sets the level of validation. The level is set via bitmask, use the values
+	 * {@link org.unicase.emfstore.startup.EmfStoreValidator#RESOLVEALL},
+	 * {@link org.unicase.emfstore.startup.EmfStoreValidator#MODELELEMENTID} and
+	 * {@link org.unicase.emfstore.startup.EmfStoreValidator#PROJECTGENERATION}. E.g.: If you want to resolve all
+	 * elements and check use the modelelement id validation, you have to set the level to <code>1 | 2</code>, which is
+	 * 3.
+	 */
+	public static final String VALIDATION_LEVEL = "emfstore.validation.level";
+
+	/**
+	 * Default validation level.
+	 */
+	public static final String VALIDATION_LEVEL_DEFAULT = "7";
+
+	/**
+	 * Exclude projects from validation, use {@link #MULTI_PROPERTY_SEPERATOR} to seperate them.
+	 */
+	public static final String VALIDATION_PROJECT_EXCLUDE = "emfstore.validation.exclude";
+
+	/**
+	 * By default, no project is excluded.
+	 */
+	public static final String VALIDATION_PROJECT_EXCLUDE_DEFAULT = "";
 
 	/**
 	 * Property name of accepted client versions. Enter the version's names or any, seperate multiple entries with

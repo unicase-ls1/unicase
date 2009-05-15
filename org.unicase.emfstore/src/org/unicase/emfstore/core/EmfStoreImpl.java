@@ -34,7 +34,7 @@ import org.unicase.model.Project;
 /**
  * This is the main implementation of {@link EmfStore}.
  * 
- * @author wesedon
+ * @author wesendon
  * @see EmfStore
  */
 public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore {

@@ -407,8 +407,17 @@ public class EmfStoreController implements IApplication, Runnable {
 		for (EObject object : contents) {
 			if (object instanceof ServerSpace) {
 				EmfStoreValidator emfStoreValidator = new EmfStoreValidator((ServerSpace) object);
-				emfStoreValidator.validate(EmfStoreValidator.RESOLVEALL | EmfStoreValidator.MODELELEMENTID
-					| EmfStoreValidator.PROJECTGENERATION, true);
+				String[] excludedProjects = ServerConfiguration.getSplittedProperty(
+					ServerConfiguration.VALIDATION_PROJECT_EXCLUDE,
+					ServerConfiguration.VALIDATION_PROJECT_EXCLUDE_DEFAULT);
+				emfStoreValidator.setExcludedProjects(Arrays.asList(excludedProjects));
+				try {
+					String level = ServerConfiguration.getProperties().getProperty(
+						ServerConfiguration.VALIDATION_LEVEL, ServerConfiguration.VALIDATION_LEVEL_DEFAULT);
+					emfStoreValidator.validate(Integer.parseInt(level));
+				} catch (NumberFormatException e) {
+					emfStoreValidator.validate(Integer.parseInt(ServerConfiguration.VALIDATION_LEVEL_DEFAULT));
+				}
 			}
 		}
 	}
