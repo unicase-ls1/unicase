@@ -5,12 +5,16 @@
  */
 package org.unicase.workspace.test.integration;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+import java.net.URISyntaxException;
+import java.util.Calendar;
+
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -25,17 +29,11 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.test.Activator;
-
-import java.io.File;
-import java.io.FileFilter;
-import java.io.IOException;
-import java.net.URISyntaxException;
-import java.util.Calendar;
+import org.unicase.workspace.test.SetupHelper;
 
 /**
  * @author Hodaie
@@ -47,10 +45,8 @@ public abstract class IntegrationTestCase {
 	private Project compareProject;
 
 	private static Usersession usersession;
-	private static TransactionalEditingDomain domain;
 
 	private ProjectId projectId;
-	private static Workspace workSpace;
 
 	/**
 	 * set up test project.
@@ -59,16 +55,13 @@ public abstract class IntegrationTestCase {
 	 */
 	@BeforeClass
 	public static void startServer() throws URISyntaxException {
-		if (workSpace != null) {
+		if (SetupHelper.getWorkSpace() != null) {
 			return;
 		}
 
-		ServerConfiguration.setTesting(true);
-		new Thread(new EmfStoreController()).start();
+		SetupHelper.startSever();
 
-		Configuration.setTesting(true);
-		workSpace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		SetupHelper.setupWorkSpace();
 
 	}
 
@@ -78,7 +71,7 @@ public abstract class IntegrationTestCase {
 	@Before
 	public void setup() {
 
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		SetupHelper.getDomain().getCommandStack().execute(new RecordingCommand(SetupHelper.getDomain()) {
 
 			@Override
 			protected void doExecute() {
@@ -177,7 +170,7 @@ public abstract class IntegrationTestCase {
 				uriString = uriString.replace("reference:file:/", "");
 			}
 
-			testSpace = workSpace.importProject(uriString);
+			testSpace = SetupHelper.getWorkSpace().importProject(uriString);
 
 			testProject = testSpace.getProject();
 
@@ -210,7 +203,7 @@ public abstract class IntegrationTestCase {
 				usersession.logIn();
 			}
 
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			SetupHelper.getDomain().getCommandStack().execute(new RecordingCommand(SetupHelper.getDomain()) {
 				@Override
 				protected void doExecute() {
 					try {
@@ -238,7 +231,7 @@ public abstract class IntegrationTestCase {
 		logMessage.setAuthor(usersession.getUsername());
 		logMessage.setDate(Calendar.getInstance().getTime());
 		logMessage.setMessage("some message");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		SetupHelper.getDomain().getCommandStack().execute(new RecordingCommand(SetupHelper.getDomain()) {
 			@Override
 			protected void doExecute() {
 				System.out.println(IntegrationTestHelper.getChangePackage(getTestProjectSpace().getOperations(), true, false)
@@ -281,14 +274,12 @@ public abstract class IntegrationTestCase {
 	 */
 	public Project getCompareProject() throws EmfStoreException {
 
-		// Project compareProject = ((WorkspaceImpl)
-		// WorkspaceManager.getInstance().getCurrentWorkspace()).checkout(usersession, projectId);
 
 		final ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
 		projectInfo.setName("CompareProject");
 		projectInfo.setDescription("compare project description");
 		projectInfo.setProjectId(projectId);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		SetupHelper.getDomain().getCommandStack().execute(new RecordingCommand(SetupHelper.getDomain()) {
 
 			@Override
 			protected void doExecute() {
