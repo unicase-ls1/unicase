@@ -40,7 +40,7 @@ public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 		if (property.equals(ServerConfiguration.TRUE)) {
 			return new RMISSLServerSocketFactory();
 		} else if (property.equals(ServerConfiguration.FALSE)) {
-			return RMISocketFactory.getDefaultSocketFactory();
+			return RMISocketFactory.getSocketFactory();
 		} else {
 			throw new InvalidPropertyException();
 		}
@@ -52,7 +52,7 @@ public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 		if (property.equals(ServerConfiguration.TRUE)) {
 			return new RMISSLClientSocketFactory();
 		} else if (property.equals(ServerConfiguration.FALSE)) {
-			return RMISocketFactory.getDefaultSocketFactory();
+			return RMISocketFactory.getSocketFactory();
 		} else {
 			throw new InvalidPropertyException();
 		}

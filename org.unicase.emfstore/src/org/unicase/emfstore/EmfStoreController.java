@@ -103,6 +103,7 @@ public class EmfStoreController implements IApplication, Runnable {
 		if (instance != null) {
 			throw new FatalEmfStoreException("Another EmfStore Controller seems to be running already!");
 		}
+
 		instance = this;
 
 		serverHeader();
@@ -594,10 +595,9 @@ public class EmfStoreController implements IApplication, Runnable {
 	 */
 	public void run() {
 		try {
-			run(true);
-			// this.notify();
-			// waitForTermination();
+			run(false);
 		} catch (FatalEmfStoreException e) {
+			e.printStackTrace();
 		}
 	}
 
@@ -607,9 +607,12 @@ public class EmfStoreController implements IApplication, Runnable {
 	 * @throws FatalEmfStoreException in case of failure
 	 */
 	public static void runAsNewThread() throws FatalEmfStoreException {
-		EmfStoreController controller = new EmfStoreController();
-		// controller.run(false);
-		(new Thread(controller)).start();
+		Thread thread = new Thread(new EmfStoreController());
+		thread.start();
+		try {
+			thread.join();
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 	}
-
 }
