@@ -688,7 +688,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			setActiveProjectSpace(null);
 		}
 		save();
-		projectToProjectSpaceMap.remove(projectSpace).getProject();
+		projectToProjectSpaceMap.remove(projectSpace.getProject());
 
 		// delete folder of projectSPace
 		String pathToProject = Configuration.getWorkspaceDirectory() + "ps-" + projectSpace.getIdentifier();
