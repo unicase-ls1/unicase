@@ -41,7 +41,7 @@ import org.eclipse.ui.part.IShowInTargetList;
 import org.eclipse.ui.part.ShowInContext;
 
 /**
- * @generated NOT
+ * @generated
  */
 public class ModelDiagramEditor extends
 		org.unicase.ui.common.diagram.part.ModelDiagramEditor implements

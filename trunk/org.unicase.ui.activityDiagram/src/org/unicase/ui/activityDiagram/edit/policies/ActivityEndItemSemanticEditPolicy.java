@@ -41,27 +41,29 @@ public class ActivityEndItemSemanticEditPolicy
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (org.unicase.ui.activityDiagram.providers.ModelElementTypes.Transition_4001 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionCreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+					.getModel()));
 		}
 		return null;
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (org.unicase.ui.activityDiagram.providers.ModelElementTypes.Transition_4001 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionCreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+					.getModel()));
 		}
 		return null;
 	}
