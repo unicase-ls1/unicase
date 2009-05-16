@@ -3,7 +3,6 @@ package org.unicase.ui.activityDiagram.edit.policies;
 import java.util.Collections;
 import java.util.Iterator;
 
-import java.util.Map;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
@@ -42,7 +41,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.activity.ActivityEnd;
 import org.unicase.model.activity.ActivityInitial;
 import org.unicase.model.activity.ActivityObject;
-import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.diagram.MEDiagram;
 
 /**
@@ -348,7 +346,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	public static class LinkConstraints {
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		public static boolean canCreateTransition_4001(MEDiagram container,
 				ActivityObject source, ActivityObject target) {

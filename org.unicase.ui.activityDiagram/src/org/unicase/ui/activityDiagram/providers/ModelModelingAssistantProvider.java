@@ -20,7 +20,8 @@ import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 /**
  * @generated
  */
-public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagram.providers.ModelingAssistantProvider {
+public class ModelModelingAssistantProvider extends
+		org.unicase.ui.common.diagram.providers.ModelingAssistantProvider {
 
 	/**
 	 * @generated
@@ -112,7 +113,6 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 		return selectExistingElement(source, getTypesForTarget(source,
 				relationshipType));
 	}
-
 
 	/**
 	 * @generated

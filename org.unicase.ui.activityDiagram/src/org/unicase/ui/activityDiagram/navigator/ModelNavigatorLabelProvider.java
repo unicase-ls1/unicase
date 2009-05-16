@@ -18,10 +18,8 @@ import org.eclipse.ui.navigator.ICommonContentExtensionSite;
 import org.eclipse.ui.navigator.ICommonLabelProvider;
 import org.unicase.model.activity.ActivityEnd;
 import org.unicase.model.activity.ActivityInitial;
-import org.unicase.model.activity.ActivityObject;
 import org.unicase.model.activity.Branch;
 import org.unicase.model.activity.Fork;
-import org.unicase.model.activity.Transition;
 import org.unicase.model.diagram.MEDiagram;
 
 /**

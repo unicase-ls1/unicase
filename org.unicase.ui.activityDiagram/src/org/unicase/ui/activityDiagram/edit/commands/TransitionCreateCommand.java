@@ -36,14 +36,32 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	private MEDiagram container;
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 * @param request The request that caused the creation of this command
 	 * @param source The source element of the connection to be created
 	 * @param target The target element of the connection to be created
 	 */
-	public TransitionCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public TransitionCreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target) {
 		super(request);
-		throw new UnsupportedOperationException();
+		this.source = source;
+		this.target = target;
+		if (request.getContainmentFeature() == null) {
+			setContainmentFeature(DiagramPackage.eINSTANCE
+					.getMEDiagram_NewElements());
+		}
+
+		// Find container element for the new link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null; element = element
+				.eContainer()) {
+			if (element instanceof MEDiagram) {
+				container = (MEDiagram) element;
+				super.setElementToEdit(container);
+				break;
+			}
+		}
 	}
 
 	/**
@@ -53,18 +71,20 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	 * @param eContainer The container element which will contain the connection
 	 * @generated NOT
 	 */
-	public TransitionCreateCommand(CreateRelationshipRequest request, EObject source, EObject target, EObject eContainer) {
+	public TransitionCreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target, EObject eContainer) {
 		super(request);
 		this.source = source;
 		this.target = target;
 		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
+			setContainmentFeature(DiagramPackage.eINSTANCE
+					.getMEDiagram_NewElements());
 		}
-
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = eContainer; element != null; element = element.eContainer()) {
+		for (EObject element = eContainer; element != null; element = element
+				.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
 				super.setElementToEdit(container);
