@@ -138,6 +138,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 
 		if (workspace.getActiveProjectSpace() != null) {
 			activeProject = workspace.getActiveProjectSpace().getProject();
+			activeProject.addProjectChangeObserver(TaskView.this);
 		}
 		viewer.setInput(activeProject);
 	}
