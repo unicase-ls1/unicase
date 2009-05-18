@@ -5,6 +5,17 @@
  */
 package org.unicase.workspace.impl;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Calendar;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -21,7 +32,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
@@ -51,17 +61,6 @@ import org.unicase.workspace.exceptions.ServerUrlResolutionException;
 import org.unicase.workspace.exceptions.UnkownProjectException;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.util.WorkspaceUtil;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Workspace</b></em>'. <!-- end-user-doc -->
@@ -312,23 +311,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		this.save();
 
 		return projectSpace;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> This method is only used for integration testing. <!-- end-user-doc -->
-	 * 
-	 * @generated NOT
-	 */
-	public Project checkout(Usersession usersession, ProjectId projectId) throws EmfStoreException {
-
-		// get Project from server
-		final Project project = this.connectionManager.getProject(usersession.getSessionId(), projectId,
-			VersionSpec.HEAD_VERSION);
-		if (project == null) {
-			throw new EmfStoreException("Server returned a null project!");
-		}
-
-		return project;
 	}
 
 	/**
