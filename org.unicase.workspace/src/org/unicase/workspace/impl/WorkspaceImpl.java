@@ -531,6 +531,31 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		return projectSpace;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Workspace#importProjectSpace(java.lang.String)
+	 */
+	public ProjectSpace importProjectSpace(String absoluteFileName) throws IOException {
+		ResourceSetImpl resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(URI.createFileURI(absoluteFileName), true);
+		EList<EObject> directContents = resource.getContents();
+		// sanity check
+
+		if (directContents.size() != 1 && (!(directContents.get(0) instanceof ProjectSpace))) {
+			throw new IOException("File is corrupt, does not contain a ProjectSpace.");
+		}
+
+		ProjectSpace projectSpace = (ProjectSpace) directContents.get(0);
+		resource.getContents().remove(projectSpace);
+
+		projectSpace.initResources(this.workspaceResourceSet);
+
+		addProjectSpace(projectSpace);
+		this.save();
+		return projectSpace;
+	}
+
 	private void addProjectSpace(ProjectSpace projectSpace) {
 		getProjectSpaces().add(projectSpace);
 		projectToProjectSpaceMap.put(projectSpace.getProject(), projectSpace);
@@ -577,31 +602,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		Workspace copy = (Workspace) EcoreUtil.copy(WorkspaceManager.getInstance().getCurrentWorkspace());
 		resource.getContents().add(copy);
 		resource.save(null);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.Workspace#importProjectSpace(java.lang.String)
-	 */
-	public ProjectSpace importProjectSpace(String absoluteFileName) throws IOException {
-		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI.createFileURI(absoluteFileName), true);
-		EList<EObject> directContents = resource.getContents();
-		// sanity check
-
-		if (directContents.size() != 1 && (!(directContents.get(0) instanceof ProjectSpace))) {
-			throw new IOException("File is corrupt, does not contain a ProjectSpace.");
-		}
-
-		ProjectSpace projectSpace = (ProjectSpace) directContents.get(0);
-		resource.getContents().remove(projectSpace);
-
-		projectSpace.initResources(this.workspaceResourceSet);
-
-		addProjectSpace(projectSpace);
-		this.save();
-		return projectSpace;
 	}
 
 	/**
