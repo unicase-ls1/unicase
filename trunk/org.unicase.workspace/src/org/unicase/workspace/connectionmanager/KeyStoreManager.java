@@ -102,6 +102,7 @@ public final class KeyStoreManager {
 					clientKeyTarget.delete();
 					InputStream inputStream = getClass().getResourceAsStream(KEYSTORENAME);
 					FileUtil.copyFile(inputStream, clientKeyTarget);
+					keyStore = null;
 				}
 			} catch (CertificateStoreException e) {
 			} catch (IOException e) {
