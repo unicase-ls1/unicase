@@ -6,7 +6,7 @@
 package org.unicase.ui.ganttview.models.impl;
 
 import java.util.Calendar;
-import java.util.Collection;
+import java.util.List;
 import java.util.Observable;
 
 import org.unicase.ui.ganttview.models.IGanttItem;
@@ -18,19 +18,12 @@ public class GanttModel extends Observable implements IGanttModel {
 		
 	}
 
-	public Collection<IGanttItem> getRootGanttItems() {
+	public List<IGanttItem> getRootGanttItems() {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	public void modifyGanttItem(String name, Calendar newStartDate, Calendar newEndDate) {
-		// TODO Auto-generated method stub
-		this.notifyObservers();
-	}
-
-	
-	//TODO: Create IGanttItem Structure from WorkPackages
-	public void setInput() {
 		// TODO Auto-generated method stub
 		this.notifyObservers();
 	}

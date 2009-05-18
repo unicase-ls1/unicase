@@ -8,12 +8,29 @@ package org.unicase.ui.ganttview.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.unicase.ui.ganttview.models.impl.GanttModel;
+import org.unicase.ui.ganttview.views.GanttView;
 
 public class ShowGanttViewHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		// TODO Auto-generated method stub
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		//ModelElement me = ActionHelper.getModelElement(event);
+
+		try {
+			GanttView ganttView = (GanttView) page.showView(GanttView.ID);//, me.getName(),
+				//IWorkbenchPage.VIEW_ACTIVATE);
+			ganttView.setInput(new GanttModel()); //createGanttModel with selected GanttItems
+
+		} catch (PartInitException e) {
+			//DialogHandler.showExceptionDialog(e);
+		}
+
 		return null;
+
 	}
 
 }

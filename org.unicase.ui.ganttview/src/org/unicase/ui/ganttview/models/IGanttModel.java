@@ -6,12 +6,10 @@
 package org.unicase.ui.ganttview.models;
 
 import java.util.Calendar;
-import java.util.Collection;
+import java.util.List;
 
 public interface IGanttModel {
 	
-	public Collection<IGanttItem> getRootGanttItems();
+	public List<IGanttItem> getRootGanttItems();
 	public void modifyGanttItem(String name, Calendar newStartDate, Calendar newEndDate);
-	public void setInput();
-
 }

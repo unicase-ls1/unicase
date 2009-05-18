@@ -6,7 +6,7 @@
 package org.unicase.ui.ganttview.models;
 
 import java.util.Calendar;
-import java.util.Collection;
+import java.util.List;
 
 public interface IGanttItem {
 	
@@ -14,7 +14,7 @@ public interface IGanttItem {
 	public Calendar getEndDate();
 	public String getName();
 	public int getCompletionStatus();
-	public Collection<IGanttItem> getChildren();
+	public List<IGanttItem> getChildren();
 	public IGanttItem getParent();
 	
 }
