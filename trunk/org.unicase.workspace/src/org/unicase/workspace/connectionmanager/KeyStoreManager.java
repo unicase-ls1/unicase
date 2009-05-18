@@ -28,6 +28,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 import org.apache.commons.codec.binary.Base64;
+import org.unicase.model.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -85,11 +86,25 @@ public final class KeyStoreManager {
 				InputStream inputStream = getClass().getResourceAsStream(KEYSTORENAME);
 				File clientKeyTarget = new File(Configuration.getWorkspaceDirectory() + KEYSTORENAME);
 				// copy to destination
-				org.unicase.model.util.FileUtil.copyFile(inputStream, clientKeyTarget);
+				FileUtil.copyFile(inputStream, clientKeyTarget);
 			} catch (IOException e) {
 				// TODO OW: exception? - now the user will be alerted to the
 				// problem as soon as he tries to connect.
 				// throw new ConnectionException("Couldn't find keystore.");
+			}
+		} else {
+			try {
+				// if default certificate is not contained in keystore, keystore will be deleted and recopied from the
+				// plugin. This is done, because one assumes that the default key is in the plugin's keystore. It would
+				// be nicer to add the default certificate to the given keystore.
+				if (getCertificate(getDefaultCertificate()) == null) {
+					File clientKeyTarget = new File(getPathToKeyStore());
+					clientKeyTarget.delete();
+					InputStream inputStream = getClass().getResourceAsStream(KEYSTORENAME);
+					FileUtil.copyFile(inputStream, clientKeyTarget);
+				}
+			} catch (CertificateStoreException e) {
+			} catch (IOException e) {
 			}
 		}
 
@@ -295,15 +310,12 @@ public final class KeyStoreManager {
 	}
 
 	private Certificate getCertificateForEncryption(ServerInfo serverInfo) throws CertificateStoreException {
-		String alias = "";
-		if (serverInfo.getCertificateAlias() == null) {
-			alias = getDefaultCertificate();
-		} else {
-			alias = serverInfo.getCertificateAlias();
-		}
-		Certificate publicKey = getCertificate(alias);
+		Certificate publicKey = getCertificate(serverInfo.getCertificateAlias());
 		if (publicKey == null) {
 			publicKey = getCertificate(getDefaultCertificate());
+			if (publicKey == null) {
+				throw new CertificateStoreException("Unable to get certificate for password encryption.");
+			}
 		}
 		return publicKey;
 	}
@@ -344,6 +356,9 @@ public final class KeyStoreManager {
 	 *             operations.
 	 */
 	public Certificate getCertificate(String alias) throws CertificateStoreException {
+		if (alias == null) {
+			return null;
+		}
 		loadKeyStore();
 		try {
 			return keyStore.getCertificate(alias);
