@@ -310,6 +310,9 @@ public final class KeyStoreManager {
 	}
 
 	private Certificate getCertificateForEncryption(ServerInfo serverInfo) throws CertificateStoreException {
+		if (serverInfo == null) {
+			throw new CertificateStoreException("Server info is null.");
+		}
 		Certificate publicKey = getCertificate(serverInfo.getCertificateAlias());
 		if (publicKey == null) {
 			publicKey = getCertificate(getDefaultCertificate());
