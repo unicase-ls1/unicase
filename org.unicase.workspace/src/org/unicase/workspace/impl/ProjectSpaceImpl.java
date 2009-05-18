@@ -1104,10 +1104,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public PrimaryVersionSpec resolveVersionSpec(VersionSpec versionSpec) throws EmfStoreException {
 		ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
-		// FIXME OW why head version spec
-		// FIXME use resolve version spec of usersession
-		return connectionManager.resolveVersionSpec(getUsersession().getSessionId(), getProjectId(),
-			VersioningFactory.eINSTANCE.createHeadVersionSpec());
+		return connectionManager.resolveVersionSpec(getUsersession().getSessionId(), getProjectId(), versionSpec);
 	}
 
 	/**
