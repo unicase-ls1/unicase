@@ -51,7 +51,7 @@ public class AnalyserTest extends TestCase {
 
 					int stepLength = 2;
 					VersionIterator projectIt = new VersionIterator(usersession, pI.getProjectId(), stepLength, start,
-						end, false, true, false);
+						end, true, false);
 					int it = 1;
 					while (projectIt.hasNext()) {
 						projectData = projectIt.next();
