@@ -10,7 +10,6 @@ import java.io.FileFilter;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -47,7 +46,7 @@ public abstract class IntegrationTestCase {
 
 		SetupHelper.startSever();
 
-		SetupHelper.setupWorkSpace();
+		
 
 	}
 
@@ -57,14 +56,10 @@ public abstract class IntegrationTestCase {
 	@Before
 	public void setup() {
 
-		SetupHelper.getDomain().getCommandStack().execute(new RecordingCommand(SetupHelper.getDomain()) {
-
-			@Override
-			protected void doExecute() {
-				SetupHelper.createTestProjectSapce();
-			}
-		});
-
+		SetupHelper.setupWorkSpace();
+		
+		SetupHelper.createTestProjectSapce();
+		
 		SetupHelper.shareProject();
 
 	}
