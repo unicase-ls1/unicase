@@ -26,7 +26,10 @@ public class FixSuite {
 		// fixes.add(new FindChanges());
 		// fixes.add(new CopyProjectTest());
 		// fixes.add(new DuplicateUseCaseFix());
-		fixes.add(new CheckChanges());
+		// fixes.add(new CheckChanges());
+		// fixes.add(new CheckCommentsFix());
+		// fixes.add(new NullifyProjectTailFix());
+		fixes.add(new VersionConnectionFix());
 	}
 
 	public void fix(String projectId) {

@@ -24,58 +24,43 @@ public class CheckChanges extends AbstractFix {
 
 		for (Version version : history.getVersions()) {
 			if (version.getProjectState() != null && state == null) {
-				System.out.println("loading initial projectstate in version "
-					+ version.getPrimarySpec().getIdentifier());
+				if (output()) {
+					System.out.println("loading initial projectstate in version "
+						+ version.getPrimarySpec().getIdentifier());
+				}
 				state = (Project) EcoreUtil.copy(version.getProjectState());
+				callHook(version, state);
 			} else {
 
 				version.getChanges().apply(state);
 
-				// if (between(version, 1299, 1400)) {
-				// ModelElement modelElement = state
-				// .getModelElement(createMEID("c858a0dc-59cd-4ded-8bd2-68d02387cdd1"));
-				// if (modelElement instanceof UseCase) {
-				// System.out.println("Version: " + version(version) + " size: "
-				// + ((UseCase) modelElement).getIncludedUseCases().size());
-				// }
-				// }
+				callHook(version, state);
 
-				// specialVersion113(state, version);
-
-				// System.out.println("applying changes in version " + version.getPrimarySpec().getIdentifier());
 				if (version.getProjectState() != null) {
 					int[] compare = linearCompare(version.getProjectState(), state);
 					if (compare[0] == 0) {
-						System.out.println("project compare not equal in version "
-							+ version.getPrimarySpec().getIdentifier());
-
-						// if (version(version) >= 1300) {
-						printProjectStates(state, version);
-						// }
-
+						if (output()) {
+							System.out.println("project compare not equal in version "
+								+ version.getPrimarySpec().getIdentifier());
+							printProjectStates(state, version);
+						}
 					} else {
-						System.out.println("project compare is equal(!) in version "
-							+ version.getPrimarySpec().getIdentifier());
+						if (output()) {
+							System.out.println("project compare is equal(!) in version "
+								+ version.getPrimarySpec().getIdentifier());
+						}
 					}
-
-					// if (version(version) == 150 && state.getModelElement(createMEID("_jpuo0LIbEd2mdsnzOQPBHw")) !=
-					// null) {
-					// System.out.println(state.getModelElement(createMEID("_jpuo0LIbEd2mdsnzOQPBHw")));
-					// System.out.println("Element in version " + version(version));
-					//
-					// TreeIterator<EObject> allContents = state.eAllContents();
-					// while (allContents.hasNext()) {
-					// ModelElement next = (ModelElement) allContents.next();
-					// if (next.getIdentifier().equals("_jpuo0LIbEd2mdsnzOQPBHw")) {
-					// System.out.println("in list too");
-					// }
-					// }
-					// }
-
 					state = (Project) EcoreUtil.copy(version.getProjectState());
 				}
 			}
 		}
+	}
+
+	public boolean output() {
+		return true;
+	}
+
+	public void callHook(Version version, Project state) {
 	}
 
 	@SuppressWarnings("unused")
