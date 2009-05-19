@@ -367,6 +367,22 @@ public interface ProjectSpace extends IdentifiableElement {
 	EList<ESNotification> getNotifications();
 
 	/**
+	 * Returns the value of the '<em><b>Pending File Transfers</b></em>' containment reference list. The list contents
+	 * are of type {@link org.unicase.workspace.PendingFileTransfer}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Pending File Transfers</em>' containment reference list isn't clear, there really
+	 * should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Pending File Transfers</em>' containment reference list.
+	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_PendingFileTransfers()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<PendingFileTransfer> getPendingFileTransfers();
+
+	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
 	 * 
 	 * @return new base version

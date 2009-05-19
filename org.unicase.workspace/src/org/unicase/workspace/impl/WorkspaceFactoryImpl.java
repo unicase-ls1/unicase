@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.workspace.OperationComposite;
+import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -72,6 +73,8 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 			return createOperationComposite();
 		case WorkspacePackage.WORKSPACE_MODEL_VERSION:
 			return createWorkspaceModelVersion();
+		case WorkspacePackage.PENDING_FILE_TRANSFER:
+			return createPendingFileTransfer();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -135,6 +138,16 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 	public WorkspaceModelVersion createWorkspaceModelVersion() {
 		WorkspaceModelVersionImpl workspaceModelVersion = new WorkspaceModelVersionImpl();
 		return workspaceModelVersion;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public PendingFileTransfer createPendingFileTransfer() {
+		PendingFileTransferImpl pendingFileTransfer = new PendingFileTransferImpl();
+		return pendingFileTransfer;
 	}
 
 	/**

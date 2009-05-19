@@ -63,6 +63,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
         eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//notification/ESNotification"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="pendingFileTransfers" upperBound="-1"
+        eType="#//PendingFileTransfer" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationComposite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
@@ -71,5 +73,11 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="WorkspaceModelVersion">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelReleaseNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="PendingFileTransfer">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentId" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="filePath" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

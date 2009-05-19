@@ -210,6 +210,29 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.workspace.PendingFileTransfer} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected PendingFileTransferItemProvider pendingFileTransferItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.workspace.PendingFileTransfer}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createPendingFileTransferAdapter() {
+		if (pendingFileTransferItemProvider == null) {
+			pendingFileTransferItemProvider = new PendingFileTransferItemProvider(this);
+		}
+
+		return pendingFileTransferItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -315,6 +338,8 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 			operationCompositeItemProvider.dispose();
 		if (workspaceModelVersionItemProvider != null)
 			workspaceModelVersionItemProvider.dispose();
+		if (pendingFileTransferItemProvider != null)
+			pendingFileTransferItemProvider.dispose();
 	}
 
 }

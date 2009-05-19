@@ -241,7 +241,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
 	 */
@@ -299,7 +299,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		} catch (EmfStoreException e) {
 			projectSpace.getNotifications().clear();
 			WorkspaceUtil.logException("Creating notifications failed!", e);
+			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
+			// END SUPRESS CATCH EXCEPTION
 			projectSpace.getNotifications().clear();
 			WorkspaceUtil.logException("Creating notifications failed!", e);
 		} catch (IOException e) {
@@ -314,7 +316,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
 	 */
@@ -329,7 +331,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
 	 */
@@ -337,6 +339,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		return this.eResource().isModified();
 	}
 
+	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -500,9 +503,9 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * @param fileName
-	 * @param absoluteFileName
-	 * @return
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Workspace#importProject(java.lang.String)
 	 */
 	public ProjectSpace importProject(String absoluteFileName) throws IOException {
 		ResourceSetImpl resourceSet = new ResourceSetImpl();

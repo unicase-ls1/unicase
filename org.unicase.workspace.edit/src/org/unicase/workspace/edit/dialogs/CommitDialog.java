@@ -5,6 +5,10 @@
  */
 package org.unicase.workspace.edit.dialogs;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -33,10 +37,6 @@ import org.unicase.workspace.edit.Activator;
 import org.unicase.workspace.edit.views.changes.DetailedChangesComposite;
 import org.unicase.workspace.edit.views.changes.PushedNotificationEditingSupport;
 import org.unicase.workspace.edit.views.changes.TabbedChangesComposite;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
 
 /**
  * This class shows a ChangesTreeComposite and a Text control to enter commit message.
