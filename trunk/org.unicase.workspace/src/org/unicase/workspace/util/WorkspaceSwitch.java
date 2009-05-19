@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.workspace.OperationComposite;
+import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -126,6 +127,13 @@ public class WorkspaceSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case WorkspacePackage.PENDING_FILE_TRANSFER: {
+			PendingFileTransfer pendingFileTransfer = (PendingFileTransfer) theEObject;
+			T result = casePendingFileTransfer(pendingFileTransfer);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -207,6 +215,20 @@ public class WorkspaceSwitch<T> {
 	 * @generated
 	 */
 	public T caseWorkspaceModelVersion(WorkspaceModelVersion object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Pending File Transfer</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Pending File Transfer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePendingFileTransfer(PendingFileTransfer object) {
 		return null;
 	}
 

@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.workspace.OperationComposite;
+import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -75,6 +76,13 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	private EClass workspaceModelVersionEClass = null;
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass pendingFileTransferEClass = null;
+
+	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
 	 * EPackage.Registry} by the package package URI value.
 	 * <p>
@@ -121,8 +129,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 			return (WorkspacePackage) EPackage.Registry.INSTANCE.getEPackage(WorkspacePackage.eNS_URI);
 
 		// Obtain or create and register package
-		WorkspacePackageImpl theWorkspacePackage = (WorkspacePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof WorkspacePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+		WorkspacePackageImpl theWorkspacePackage = (WorkspacePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof WorkspacePackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new WorkspacePackageImpl());
 
 		isInited = true;
@@ -453,6 +461,15 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * 
 	 * @generated
 	 */
+	public EReference getProjectSpace_PendingFileTransfers() {
+		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getOperationComposite() {
 		return operationCompositeEClass;
 	}
@@ -482,6 +499,42 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 */
 	public EAttribute getWorkspaceModelVersion_ModelReleaseNumber() {
 		return (EAttribute) workspaceModelVersionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getPendingFileTransfer() {
+		return pendingFileTransferEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getPendingFileTransfer_AttachmentId() {
+		return (EReference) pendingFileTransferEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getPendingFileTransfer_FileVersion() {
+		return (EAttribute) pendingFileTransferEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getPendingFileTransfer_FilePath() {
+		return (EAttribute) pendingFileTransferEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -549,12 +602,18 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		createEAttribute(projectSpaceEClass, PROJECT_SPACE__OLD_LOG_MESSAGES);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__LOCAL_OPERATIONS);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__NOTIFICATIONS);
+		createEReference(projectSpaceEClass, PROJECT_SPACE__PENDING_FILE_TRANSFERS);
 
 		operationCompositeEClass = createEClass(OPERATION_COMPOSITE);
 		createEReference(operationCompositeEClass, OPERATION_COMPOSITE__OPERATIONS);
 
 		workspaceModelVersionEClass = createEClass(WORKSPACE_MODEL_VERSION);
 		createEAttribute(workspaceModelVersionEClass, WORKSPACE_MODEL_VERSION__MODEL_RELEASE_NUMBER);
+
+		pendingFileTransferEClass = createEClass(PENDING_FILE_TRANSFER);
+		createEReference(pendingFileTransferEClass, PENDING_FILE_TRANSFER__ATTACHMENT_ID);
+		createEAttribute(pendingFileTransferEClass, PENDING_FILE_TRANSFER__FILE_VERSION);
+		createEAttribute(pendingFileTransferEClass, PENDING_FILE_TRANSFER__FILE_PATH);
 	}
 
 	/**
@@ -699,6 +758,9 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEReference(getProjectSpace_Notifications(), theNotificationPackage.getESNotification(), null,
 			"notifications", null, 0, -1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_PendingFileTransfers(), this.getPendingFileTransfer(), null,
+			"pendingFileTransfers", null, 0, -1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operationCompositeEClass, OperationComposite.class, "OperationComposite", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -711,6 +773,18 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEAttribute(getWorkspaceModelVersion_ModelReleaseNumber(), ecorePackage.getEInt(), "modelReleaseNumber",
 			null, 0, 1, WorkspaceModelVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 			!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(pendingFileTransferEClass, PendingFileTransfer.class, "PendingFileTransfer", !IS_ABSTRACT,
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPendingFileTransfer_AttachmentId(), theModelPackage.getModelElementId(), null,
+			"attachmentId", null, 0, 1, PendingFileTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPendingFileTransfer_FileVersion(), ecorePackage.getEString(), "fileVersion", null, 0, 1,
+			PendingFileTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPendingFileTransfer_FilePath(), ecorePackage.getEString(), "filePath", null, 0, 1,
+			PendingFileTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

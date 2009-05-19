@@ -63,6 +63,7 @@ import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.OperationComposite;
+import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
@@ -103,6 +104,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getOldLogMessages <em>Old Log Messages</em>}</li>
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getLocalOperations <em>Local Operations</em>}</li>
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getNotifications <em>Notifications</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getPendingFileTransfers <em>Pending File Transfers
+ *             </em>}</li>
  *             </ul>
  *             </p>
  * @generated
@@ -291,6 +294,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	protected EList<ESNotification> notifications;
 
+	/**
+	 * The cached value of the '{@link #getPendingFileTransfers() <em>Pending File Transfers</em>}' containment
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getPendingFileTransfers()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PendingFileTransfer> pendingFileTransfers;
+
 	private boolean isRecording;
 
 	private CreateDeleteOperation deleteOperation;
@@ -303,7 +316,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */
@@ -823,8 +836,19 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @throws EmfStoreException
-	 * @throws EmfStoreException
+	 * @generated
+	 */
+	public EList<PendingFileTransfer> getPendingFileTransfers() {
+		if (pendingFileTransfers == null) {
+			pendingFileTransfers = new EObjectContainmentEList.Resolving<PendingFileTransfer>(
+				PendingFileTransfer.class, this, WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS);
+		}
+		return pendingFileTransfers;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	public PrimaryVersionSpec commit(final LogMessage logMessage) throws EmfStoreException {
@@ -832,9 +856,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
-	 * @throws EmfStoreException
 	 * @generated NOT
 	 */
 	public PrimaryVersionSpec commit(final LogMessage logMessage, CommitObserver commitObserver)
@@ -899,6 +922,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.workspace.ProjectSpace#getOperations()
 	 */
 	public List<AbstractOperation> getOperations() {
@@ -1015,13 +1040,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				this.getUsersession().getUsername(), this);
 			this.getNotifications().addAll(newNotifications);
 			saveProjectSpaceOnly();
+			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
+			// END SUPRESS CATCH EXCEPTION
 			WorkspaceUtil.logException("Creating notifications failed!", e);
 		}
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
 	 */
@@ -1108,7 +1135,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc --> {@inheritDoc}
+	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.workspace.ProjectSpace#initResources(org.eclipse.emf.ecore.resource.ResourceSet)
 	 * @generated NOT
@@ -1174,6 +1201,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		init();
 	}
 
+	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1194,6 +1222,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return basicSetLocalOperations(null, msgs);
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
 			return ((InternalEList<?>) getNotifications()).basicRemove(otherEnd, msgs);
+		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
+			return ((InternalEList<?>) getPendingFileTransfers()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1242,6 +1272,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return basicGetLocalOperations();
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
 			return getNotifications();
+		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
+			return getPendingFileTransfers();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1297,6 +1329,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			getNotifications().clear();
 			getNotifications().addAll((Collection<? extends ESNotification>) newValue);
 			return;
+		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
+			getPendingFileTransfers().clear();
+			getPendingFileTransfers().addAll((Collection<? extends PendingFileTransfer>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1348,6 +1384,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
 			getNotifications().clear();
 			return;
+		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
+			getPendingFileTransfers().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1387,6 +1426,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return localOperations != null;
 		case WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS:
 			return notifications != null && !notifications.isEmpty();
+		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
+			return pendingFileTransfers != null && !pendingFileTransfers.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1504,32 +1545,35 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				Resource oldResource = modelElement.eResource();
-				URI oldUri = oldResource.getURI();
-				if (!oldUri.isFile()) {
-					throw new IllegalStateException(
-						"Project contains ModelElements that are not part of a file resource.");
-				}
-				String oldFileName = oldUri.toFileString();
-				if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) {
-					String newfileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier()
-						+ File.separatorChar + getResourceCount() + ".ucf";
-					setResourceCount(getResourceCount() + 1);
-					checkIfFileExists(newfileName);
-					URI fileURI = URI.createFileURI(newfileName);
-					Resource newResource = oldResource.getResourceSet().createResource(fileURI);
-					newResource.getContents().add(modelElement);
-				}
-			}
-
-			private void checkIfFileExists(String newfileName) {
-				if (new File(newfileName).exists()) {
-					throw new IllegalStateException("File fragment \"" + newfileName
-						+ "\" already exists - ProjectSpace corrupted.");
-				}
+				addElementToResouce(modelElement);
 			}
 		});
 
+	}
+
+	private void checkIfFileExists(String newfileName) {
+		if (new File(newfileName).exists()) {
+			throw new IllegalStateException("File fragment \"" + newfileName
+				+ "\" already exists - ProjectSpace corrupted.");
+		}
+	}
+
+	private void addElementToResouce(final ModelElement modelElement) {
+		Resource oldResource = modelElement.eResource();
+		URI oldUri = oldResource.getURI();
+		if (!oldUri.isFile()) {
+			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
+		}
+		String oldFileName = oldUri.toFileString();
+		if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) {
+			String newfileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar
+				+ getResourceCount() + ".ucf";
+			setResourceCount(getResourceCount() + 1);
+			checkIfFileExists(newfileName);
+			URI fileURI = URI.createFileURI(newfileName);
+			Resource newResource = oldResource.getResourceSet().createResource(fileURI);
+			newResource.getContents().add(modelElement);
+		}
 	}
 
 	/**
@@ -1685,6 +1729,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		cm.removeTag(getUsersession().getSessionId(), getProjectId(), versionSpec, tag);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		if (isRecording) {
 			if (deleteOperation == null) {
@@ -1721,6 +1771,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.Project,
+	 *      org.unicase.model.ModelElement)
+	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		if (isRecording) {
 			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
@@ -1728,6 +1784,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#resolve(org.unicase.emfstore.esmodel.url.ModelElementUrlFragment)
+	 */
 	public ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
 		ModelElementId modelElementId = modelElementUrlFragment.getModelElementId();
 		ModelElement modelElement = getProject().getModelElement(modelElementId);
@@ -1783,7 +1844,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Create a CreateDeleteOperation
+	 * Create a CreateDeleteOperation.
 	 * 
 	 * @param modelElement the model element to delete or create
 	 * @param delete whether the element is deleted or created
@@ -1798,6 +1859,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return createDeleteOperation;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#makeTransient()
+	 */
 	public void makeTransient() {
 		if (initCompleted) {
 			throw new IllegalAccessError("Project Space cannot be set to transient after init.");
@@ -1806,6 +1872,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.workspace.ProjectSpace#applyMergeResult(java.util.List)
 	 */
 	public void applyMergeResult(List<AbstractOperation> mergeResult, VersionSpec mergeTargetSpec)
@@ -1823,6 +1891,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		updateDirtyState();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#beginCompositeOperation()
+	 */
 	public CompositeOperationHandle beginCompositeOperation() {
 		if (this.compositeOperation != null) {
 			throw new IllegalStateException("Can only have one composite at once!");
@@ -1832,6 +1905,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return handle;
 	}
 
+	/**
+	 * Completes the current composite operation.
+	 */
 	public void endCompositeOperation() {
 		this.getOperations().add(this.compositeOperation);
 		this.compositeOperation = null;
@@ -1840,6 +1916,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		updateDirtyState();
 	}
 
+	/**
+	 * Aborts the current composite operation.
+	 */
 	public void abortCompositeOperation() {
 		stopChangeRecording();
 		this.compositeOperation.reverse().apply(getProject());
@@ -1848,6 +1927,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		updateDirtyState();
 	}
 
+	/**
+	 * Returns the notification recorder of the project space. Currently only a dummy to avoid compile error in test
+	 * plugin.
+	 * 
+	 * @return the notification recorder
+	 */
 	public NotificationRecorder getNotificationRecorder() {
 		// SC: FIXME
 		// dummy method

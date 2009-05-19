@@ -71,6 +71,14 @@ public interface WorkspaceFactory extends EFactory {
 	WorkspaceModelVersion createWorkspaceModelVersion();
 
 	/**
+	 * Returns a new object of class '<em>Pending File Transfer</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Pending File Transfer</em>'.
+	 * @generated
+	 */
+	PendingFileTransfer createPendingFileTransfer();
+
+	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

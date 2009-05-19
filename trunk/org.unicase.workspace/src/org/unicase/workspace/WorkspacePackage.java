@@ -387,13 +387,22 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__NOTIFICATIONS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
+	 * The feature id for the '<em><b>Pending File Transfers</b></em>' containment reference list. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__PENDING_FILE_TRANSFERS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 13;
+
+	/**
 	 * The number of structural features of the '<em>Project Space</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 13;
+	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.OperationCompositeImpl
@@ -450,6 +459,50 @@ public interface WorkspacePackage extends EPackage {
 	 * @ordered
 	 */
 	int WORKSPACE_MODEL_VERSION_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.workspace.impl.PendingFileTransferImpl
+	 * <em>Pending File Transfer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.workspace.impl.PendingFileTransferImpl
+	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getPendingFileTransfer()
+	 * @generated
+	 */
+	int PENDING_FILE_TRANSFER = 6;
+
+	/**
+	 * The feature id for the '<em><b>Attachment Id</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PENDING_FILE_TRANSFER__ATTACHMENT_ID = 0;
+
+	/**
+	 * The feature id for the '<em><b>File Version</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PENDING_FILE_TRANSFER__FILE_VERSION = 1;
+
+	/**
+	 * The feature id for the '<em><b>File Path</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PENDING_FILE_TRANSFER__FILE_PATH = 2;
+
+	/**
+	 * The number of structural features of the '<em>Pending File Transfer</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PENDING_FILE_TRANSFER_FEATURE_COUNT = 3;
 
 	/**
 	 * Returns the meta object for class ' {@link org.unicase.workspace.Workspace <em>Workspace</em>}'. <!--
@@ -827,6 +880,18 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_Notifications();
 
 	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.workspace.ProjectSpace#getPendingFileTransfers <em>Pending File Transfers</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Pending File Transfers</em>'.
+	 * @see org.unicase.workspace.ProjectSpace#getPendingFileTransfers()
+	 * @see #getProjectSpace()
+	 * @generated
+	 */
+	EReference getProjectSpace_PendingFileTransfers();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.OperationComposite <em>Operation Composite</em>}
 	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -869,6 +934,50 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getWorkspaceModelVersion_ModelReleaseNumber();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.workspace.PendingFileTransfer
+	 * <em>Pending File Transfer</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Pending File Transfer</em>'.
+	 * @see org.unicase.workspace.PendingFileTransfer
+	 * @generated
+	 */
+	EClass getPendingFileTransfer();
+
+	/**
+	 * Returns the meta object for the containment reference '
+	 * {@link org.unicase.workspace.PendingFileTransfer#getAttachmentId <em>Attachment Id</em>}'. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '<em>Attachment Id</em>'.
+	 * @see org.unicase.workspace.PendingFileTransfer#getAttachmentId()
+	 * @see #getPendingFileTransfer()
+	 * @generated
+	 */
+	EReference getPendingFileTransfer_AttachmentId();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#getFileVersion
+	 * <em>File Version</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>File Version</em>'.
+	 * @see org.unicase.workspace.PendingFileTransfer#getFileVersion()
+	 * @see #getPendingFileTransfer()
+	 * @generated
+	 */
+	EAttribute getPendingFileTransfer_FileVersion();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#getFilePath
+	 * <em>File Path</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>File Path</em>'.
+	 * @see org.unicase.workspace.PendingFileTransfer#getFilePath()
+	 * @see #getPendingFileTransfer()
+	 * @generated
+	 */
+	EAttribute getPendingFileTransfer_FilePath();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1172,6 +1281,14 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__NOTIFICATIONS = eINSTANCE.getProjectSpace_Notifications();
 
 		/**
+		 * The meta object literal for the '<em><b>Pending File Transfers</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT_SPACE__PENDING_FILE_TRANSFERS = eINSTANCE.getProjectSpace_PendingFileTransfers();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.OperationCompositeImpl
 		 * <em>Operation Composite</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -1207,6 +1324,40 @@ public interface WorkspacePackage extends EPackage {
 		 */
 		EAttribute WORKSPACE_MODEL_VERSION__MODEL_RELEASE_NUMBER = eINSTANCE
 			.getWorkspaceModelVersion_ModelReleaseNumber();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.workspace.impl.PendingFileTransferImpl
+		 * <em>Pending File Transfer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.workspace.impl.PendingFileTransferImpl
+		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getPendingFileTransfer()
+		 * @generated
+		 */
+		EClass PENDING_FILE_TRANSFER = eINSTANCE.getPendingFileTransfer();
+
+		/**
+		 * The meta object literal for the '<em><b>Attachment Id</b></em>' containment reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PENDING_FILE_TRANSFER__ATTACHMENT_ID = eINSTANCE.getPendingFileTransfer_AttachmentId();
+
+		/**
+		 * The meta object literal for the '<em><b>File Version</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute PENDING_FILE_TRANSFER__FILE_VERSION = eINSTANCE.getPendingFileTransfer_FileVersion();
+
+		/**
+		 * The meta object literal for the '<em><b>File Path</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute PENDING_FILE_TRANSFER__FILE_PATH = eINSTANCE.getPendingFileTransfer_FilePath();
 
 	}
 
