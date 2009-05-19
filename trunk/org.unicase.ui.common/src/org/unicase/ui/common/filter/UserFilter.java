@@ -142,10 +142,16 @@ public class UserFilter extends ViewerFilter {
 		return user;
 	}
 
+	/**
+	 * @param showTeam whether to show teams artifacts
+	 */
 	public void setShowTeam(boolean showTeam) {
 		this.showTeam = showTeam;
 	}
 
+	/**
+	 * @return true if teams artifacts are shown
+	 */
 	public boolean isShowTeam() {
 		return showTeam;
 	}
