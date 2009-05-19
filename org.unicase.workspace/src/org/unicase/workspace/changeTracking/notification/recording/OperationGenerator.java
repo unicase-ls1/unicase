@@ -15,13 +15,28 @@ import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
 /**
- * Generates Operations from a notification recording.
+ * HelperClass: Generates Operations from a notification recording.
  * 
  * @author chodnik
  */
-public class OperationGenerator {
+public final class OperationGenerator {
 
-	static public List<AbstractOperation> generateFromRecording(NotificationRecording recording)
+	/**
+	 * Private constuctor.
+	 */
+	private OperationGenerator() {
+		// nothing to do
+	}
+
+	/**
+	 * Generates Operations from a notification recording.
+	 * 
+	 * @param recording the notification recording
+	 * @return a list of abstract operations
+	 * @throws UnsupportedNotificationException if the recording contains notifications that can not be processed by
+	 *             this generator.
+	 */
+	public static List<AbstractOperation> generateFromRecording(NotificationRecording recording)
 		throws UnsupportedNotificationException {
 
 		LinkedList<AbstractOperation> ops = new LinkedList<AbstractOperation>();

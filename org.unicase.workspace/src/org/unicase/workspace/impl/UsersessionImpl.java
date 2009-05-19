@@ -344,6 +344,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		setPersistentPasswordGen(newPersistentPassword);
 	}
 
+	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -714,14 +715,15 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
+		if (eIsProxy()) {
 			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (username: ");
@@ -730,6 +732,11 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		return result.toString();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Usersession#getRemoteProjectList()
+	 */
 	public List<ProjectInfo> getRemoteProjectList() throws EmfStoreException {
 		// MK sanity checks for usersession state
 		return getWorkspaceManager().getConnectionManager().getProjectList(sessionId);
@@ -751,11 +758,21 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Usersession#deleteProject(org.unicase.emfstore.esmodel.ProjectId, boolean)
+	 */
 	public void deleteProject(ProjectId projectId, boolean deleteFiles) throws EmfStoreException {
 		ConnectionManager connectionManager = getWorkspaceManager().getConnectionManager();
 		connectionManager.deleteProject(getSessionId(), projectId, deleteFiles);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Usersession#getSessionId()
+	 */
 	public SessionId getSessionId() {
 		SessionId sessionIdGen = getSessionIdGen();
 		if (sessionIdGen == null) {

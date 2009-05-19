@@ -453,7 +453,8 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * @param connectionManager
+	 * {@inheritDoc}
+	 * 
 	 * @generated NOT
 	 */
 	public void setConnectionManager(ConnectionManager connectionManager) {
@@ -574,7 +575,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	}
 
 	/**
-	 * @return
+	 * {@inheritDoc}
 	 */
 	public ResourceSet getWorkspaceResourceSet() {
 		return this.workspaceResourceSet;
@@ -659,6 +660,11 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		return result;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Workspace#getProjectSpace(org.unicase.model.Project)
+	 */
 	public ProjectSpace getProjectSpace(Project project) throws UnkownProjectException {
 		ProjectSpace projectSpace = projectToProjectSpaceMap.get(project);
 		if (projectSpace == null) {
@@ -667,6 +673,11 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		return projectSpace;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.Workspace#deleteProjectSpace(org.unicase.workspace.ProjectSpace)
+	 */
 	public void deleteProjectSpace(ProjectSpace projectSpace) throws IOException {
 		getProjectSpaces().remove(projectSpace);
 		if (getActiveProjectSpace() == projectSpace) {
