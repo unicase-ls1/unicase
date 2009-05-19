@@ -60,7 +60,7 @@ public final class IntegrationTestHelper {
 	 * which actually implements the test and will be called from test case. Knowing the number of available methods is
 	 * required in composite test.
 	 */
-	public static final int NUM_OF_TESTS = 15;
+	public static final int NUM_OF_TESTS = 16;
 
 	private static TransactionalEditingDomain domain;
 	private static final String TEMP_PATH = Configuration.getWorkspaceDirectory() + "tmp";
