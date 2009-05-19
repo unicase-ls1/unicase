@@ -5,48 +5,40 @@
  */
 package org.unicase.workspace.test.integration;
 
-import java.io.File;
-import java.io.FileFilter;
-import java.io.IOException;
 import java.net.URISyntaxException;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
-import org.unicase.model.util.FileUtil;
-import org.unicase.workspace.Configuration;
 import org.unicase.workspace.test.SetupHelper;
+import org.unicase.workspace.test.TestProjectEnum;
 
 /**
  * @author Hodaie
  */
 public abstract class IntegrationTestCase {
 
-	// private ProjectSpace testSpace;
-	//private Project testProject;
-	//private Project compareProject;
-
-	//private static Usersession usersession;
-
-	//private ProjectId projectId;
-
+	private static boolean serverRunning;
+	private static SetupHelper setupHelper;
+	
 	/**
 	 * set up test project.
 	 * 
 	 * @throws URISyntaxException URISyntaxException
 	 */
 	@BeforeClass
-	public static void startServer() throws URISyntaxException {
-		if (SetupHelper.getWorkSpace() != null) {
+	public static void init() throws URISyntaxException {
+		if (serverRunning) {
 			return;
 		}
-
-		SetupHelper.startSever();
-
 		
+		
+		SetupHelper.startSever();
+		serverRunning = true;
+
+		setupHelper = new SetupHelper(TestProjectEnum.UNICASE);
 
 	}
 
@@ -56,11 +48,11 @@ public abstract class IntegrationTestCase {
 	@Before
 	public void setup() {
 
-		SetupHelper.setupWorkSpace();
+		setupHelper.setupWorkSpace();
 		
-		SetupHelper.createTestProjectSapce();
+		setupHelper.setupTestProjectSpace();
 		
-		SetupHelper.shareProject();
+		setupHelper.shareProject();
 
 	}
 
@@ -69,47 +61,9 @@ public abstract class IntegrationTestCase {
 	 */
 	@After
 	public void cleanUp() {
-		String serverPath = ServerConfiguration.getServerHome();
-		File serverDirectory = new File(serverPath);
-		FileFilter serverFileFilter = new FileFilter() {
-
-			public boolean accept(File pathname) {
-				return pathname.getName().startsWith("project-");
-			}
-
-		};
-		File[] filesToDeleteOnServer = serverDirectory.listFiles(serverFileFilter);
-		for (int i = 0; i < filesToDeleteOnServer.length; i++) {
-			try {
-				FileUtil.deleteFolder(filesToDeleteOnServer[i]);
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-		}
-
-		new File(serverPath + "storage.uss").delete();
-
-		String workspacePath = Configuration.getWorkspaceDirectory();
-		File workspaceDirectory = new File(workspacePath);
-		FileFilter workspaceFileFilter = new FileFilter() {
-
-			public boolean accept(File pathname) {
-				return pathname.getName().startsWith("ps-");
-			}
-
-		};
-		File[] filesToDelete2 = workspaceDirectory.listFiles(workspaceFileFilter);
-		for (int i = 0; i < filesToDelete2.length; i++) {
-			try {
-				FileUtil.deleteFolder(filesToDelete2[i]);
-			} catch (IOException e) {
-
-				e.printStackTrace();
-			}
-		}
-
-		new File(workspacePath + "workspace.ucw").delete();
+		setupHelper.cleanupWorkspace();
+		
+		SetupHelper.cleanupServer();
 	}
 
 	
@@ -121,7 +75,7 @@ public abstract class IntegrationTestCase {
 	 * @return the testProject
 	 */
 	public Project getTestProject() {
-		return SetupHelper.getTestProject();
+		return setupHelper.getTestProject();
 	}
 
 	/**
@@ -132,7 +86,7 @@ public abstract class IntegrationTestCase {
 	 * @throws EmfStoreException EmfStoreException
 	 */
 	public Project getCompareProject() throws EmfStoreException {
-		return SetupHelper.getCompareProject();
+		return setupHelper.getCompareProject();
 		
 	}
 	
@@ -140,7 +94,7 @@ public abstract class IntegrationTestCase {
 	 * Commits changes.
 	 */
 	protected void commitChanges(){
-		SetupHelper.commitChanges();
+		setupHelper.commitChanges();
 	}
 
 }

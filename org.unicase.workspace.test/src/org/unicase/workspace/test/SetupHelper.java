@@ -7,6 +7,7 @@
 package org.unicase.workspace.test;
 
 import java.io.File;
+import java.io.FileFilter;
 import java.io.IOException;
 import java.util.Calendar;
 import java.util.Properties;
@@ -24,6 +25,7 @@ import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.model.Project;
+import org.unicase.model.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
@@ -35,21 +37,29 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.test.integration.IntegrationTestHelper;
 
 /**
- * Helper class for test fixtures.
+ * Helper class for setup/cleanup test fixtures.
  * 
  * @author hodaie
  */
-public final class SetupHelper {
+public class SetupHelper {
 
-	private static TransactionalEditingDomain domain;
-	private static Workspace workSpace;
-	private static ProjectSpace testProjectSpace;
-	private static Project testProject;
-	private static Usersession usersession;
-	private static ProjectId projectId;
-	private static Project compareProject;
-
-	private SetupHelper() {
+	private  TransactionalEditingDomain domain;
+	private  Workspace workSpace;
+	private  ProjectSpace testProjectSpace;
+	private  Project testProject;
+	private  Usersession usersession;
+	private  ProjectId projectId;
+	private  Project compareProject;
+	
+	private TestProjectEnum projectTemplate;
+	
+	/**
+	 * 
+	 * @param projectTemplate test project to initialize SetupHelper
+	 */
+	public SetupHelper(TestProjectEnum projectTemplate) {
+		
+		this.projectTemplate = projectTemplate;
 	}
 
 	/**
@@ -87,7 +97,7 @@ public final class SetupHelper {
 	/**
 	 * Setups workspace.
 	 */
-	public static void setupWorkSpace() {
+	public void setupWorkSpace() {
 
 		Configuration.setTesting(true);
 		workSpace = WorkspaceManager.getInstance().getCurrentWorkspace();
@@ -96,112 +106,148 @@ public final class SetupHelper {
 	}
 
 	/**
-	 * Setups a new project space.
+	 * Setups a new test project space by importing one of template test projects.
 	 */
-	public static void setupProjectSpace() {
+	public void setupTestProjectSpace() {
+		
 
+		final String path;
+		path = projectTemplate.getPath();
+
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				String uriString = Activator.getDefault().getBundle().getLocation() + path;
+				if (File.separator.equals("/")) {
+					uriString = uriString.replace("reference:file:", "");
+
+				} else {
+					uriString = uriString.replace("reference:file:/", "");
+				}
+				try {
+					testProjectSpace = importProject(uriString);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		});
+
+		projectId = testProjectSpace.getProjectId();
+
+		testProject = testProjectSpace.getProject();
+
+	
+	}
+	
+	
+	/**
+	 * Setups a new test project space by importing a project file located at absolutePath.
+	 * @param absolutePath absolutePath to a project to import.
+	 */
+	public void setupTestProjectSpace(final String absolutePath) {
+			
+
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				String uriString = Activator.getDefault().getBundle().getLocation() + absolutePath;
+				if (File.separator.equals("/")) {
+					uriString = uriString.replace("reference:file:", "");
+
+				} else {
+					uriString = uriString.replace("reference:file:/", "");
+				}
+				try {
+					testProjectSpace = importProject(uriString);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		});
+
+		testProject = testProjectSpace.getProject();
+	
 	}
 
 	/**
 	 * Cleans server up.
 	 */
 	public static void cleanupServer() {
+		String serverPath = ServerConfiguration.getServerHome();
+		File serverDirectory = new File(serverPath);
+		FileFilter serverFileFilter = new FileFilter() {
+
+			public boolean accept(File pathname) {
+				return pathname.getName().startsWith("project-");
+			}
+
+		};
+		File[] filesToDeleteOnServer = serverDirectory.listFiles(serverFileFilter);
+		for (int i = 0; i < filesToDeleteOnServer.length; i++) {
+			try {
+				FileUtil.deleteFolder(filesToDeleteOnServer[i]);
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+		}
+
+		new File(serverPath + "storage.uss").delete();
 
 	}
 
 	/**
 	 * Cleans workspace up.
 	 */
-	public static void cleanupWorkspace() {
+	public  void cleanupWorkspace() {
+		
+		String workspacePath = Configuration.getWorkspaceDirectory();
+		File workspaceDirectory = new File(workspacePath);
+		FileFilter workspaceFileFilter = new FileFilter() {
 
+			public boolean accept(File pathname) {
+				return pathname.getName().startsWith("ps-");
+			}
+
+		};
+		File[] filesToDelete2 = workspaceDirectory.listFiles(workspaceFileFilter);
+		for (int i = 0; i < filesToDelete2.length; i++) {
+			try {
+				FileUtil.deleteFolder(filesToDelete2[i]);
+			} catch (IOException e) {
+
+				e.printStackTrace();
+			}
+		}
+
+		new File(workspacePath + "workspace.ucw").delete();
 	}
 
-	/**
-	 * @return workspace
-	 */
-	public static Workspace getWorkSpace() {
-		return workSpace;
-	}
+	
 
 	/**
-	 * @return editing domain
-	 */
-	public static TransactionalEditingDomain getDomain() {
-		return domain;
-	}
-
-	/**
-	 * Imports a project space from an exported project space file.
+	 * Imports a project space from an exported project file.
 	 * 
 	 * @param uri path to an exported project file
 	 * @return project space
 	 * @throws IOException IOException
 	 */
-	public static ProjectSpace importProject(String uri) throws IOException {
+	public  ProjectSpace importProject(String uri) throws IOException {
 		return workSpace.importProject(uri);
 
 	}
 
-	/**
-	 * Create test project space.
-	 */
-	public static void createTestProjectSapce() {
+	
 
-			final String path;
-
-			// use a random generated project (with about 6000 elements) with these parameter(10, 12345, 5, 3, 15, 20)
-			// path = "TestProjects/randomProject6";
-
-			// use a random generated project (with about 8000 elements) with these parameter(15, 12345, 5, 3, 15, 20)
-			// path = "TestProjects/randomProject8";
-
-			// use a random generated project (with about 12000 elements) with these parameter(20, 12345, 5, 5, 10, 20)
-			// path = "TestProjects/randomProject12";
-
-			// use a random generated project (with about 14000 elements) with these parameter(30, 123, 5, 5, 10, 20)
-			// path = "TestProjects/randomProject14";
-
-			// use a random generated project (with about 25000 elements) with these parameter(70, 123, 5, 5, 10, 20)
-			// path = "TestProjects/randomProject25";
-
-			// use dolli2 project
-			// path = "TestProjects/dolli2.ucp";
-
-			// use unicase project
-			path = "TestProjects/unicase.ucp";
-
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-				@Override
-				protected void doExecute() {
-					String uriString = Activator.getDefault().getBundle().getLocation() + path;
-					if (File.separator.equals("/")) {
-						uriString = uriString.replace("reference:file:", "");
-
-					} else {
-						uriString = uriString.replace("reference:file:/", "");
-					}
-					try {
-						testProjectSpace = SetupHelper.importProject(uriString);
-					} catch (IOException e) {
-						e.printStackTrace();
-					}
-				}
-
-			});
-
-			projectId = testProjectSpace.getProjectId();
-
-			testProject = testProjectSpace.getProject();
-
-		
-
-	}
 
 	/**
 	 * This shares test project with server.
 	 */
-	public static void shareProject() {
+	public  void shareProject() {
 		if (usersession == null) {
 			usersession = WorkspaceFactory.eINSTANCE.createUsersession();
 
@@ -220,7 +266,7 @@ public final class SetupHelper {
 				usersession.logIn();
 			}
 
-			SetupHelper.getDomain().getCommandStack().execute(new RecordingCommand(SetupHelper.getDomain()) {
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
 					try {
@@ -244,12 +290,12 @@ public final class SetupHelper {
 	/**
 	 * Commits the changes to server.
 	 */
-	public static void commitChanges() {
+	public  void commitChanges() {
 		final LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 		logMessage.setAuthor(usersession.getUsername());
 		logMessage.setDate(Calendar.getInstance().getTime());
 		logMessage.setMessage("some message");
-		SetupHelper.getDomain().getCommandStack().execute(new RecordingCommand(SetupHelper.getDomain()) {
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
 				System.out.println(IntegrationTestHelper.getChangePackage(getTestProjectSpace().getOperations(), true,
@@ -271,18 +317,18 @@ public final class SetupHelper {
 
 	/**
 	 * Returns project to be compared with test project. This is project that lies on server after committing the
-	 * changes.
+	 * changes. We check out and return it.
 	 * 
 	 * @return project lying on the server
 	 * @throws EmfStoreException EmfStoreException
 	 */
-	public static Project getCompareProject() throws EmfStoreException {
+	public  Project getCompareProject() throws EmfStoreException {
 
 		final ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
 		projectInfo.setName("CompareProject");
 		projectInfo.setDescription("compare project description");
 		projectInfo.setProjectId(projectId);
-		SetupHelper.getDomain().getCommandStack().execute(new RecordingCommand(SetupHelper.getDomain()) {
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
 			protected void doExecute() {
@@ -302,15 +348,29 @@ public final class SetupHelper {
 	/**
 	 * @return the testProject
 	 */
-	public static Project getTestProject() {
+	public  Project getTestProject() {
 		return testProject;
 	}
 
 	/**
 	 * @return test project space
 	 */
-	public static ProjectSpace getTestProjectSpace() {
+	public  ProjectSpace getTestProjectSpace() {
 		return testProjectSpace;
+	}
+	
+	/**
+	 * @return workspace
+	 */
+	public  Workspace getWorkSpace() {
+		return workSpace;
+	}
+
+	/**
+	 * @return editing domain
+	 */
+	public  TransactionalEditingDomain getDomain() {
+		return domain;
 	}
 
 }
