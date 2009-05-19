@@ -38,6 +38,7 @@ public class ReferenceTest extends IntegrationTestCase {
 			@Override
 			protected void doExecute() {
 				testHelper.doContainemntReferenceAddNew();
+			
 			}
 
 		});
