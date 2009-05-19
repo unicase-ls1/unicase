@@ -234,7 +234,7 @@
               id="org.unicase.ui.common.UnicaseToolbar">
            <command
                  commandId="org.unicase.ui.common.handlers.open_me_ID"
-                 icon="icons/open_model_element.gif"
+                 icon="icons/ModelElement.png"
                  style="push"
                  tooltip="Shows open model element dialog">
            </command>
@@ -244,7 +244,7 @@
            locationURI="toolbar:org.unicase.ui.navigator.viewer?after=additions">
         <command
               commandId="org.unicase.ui.common.handlers.open_me_ID"
-              icon="icons/open_model_element.gif"
+              icon="icons/ModelElement.png"
               style="push"
               tooltip="Shows open model element dialog">
         </command>
