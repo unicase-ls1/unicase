@@ -133,7 +133,7 @@ public class CompositeTest extends IntegrationTestCase {
 			case 1:
 				// CreateAndDelete 
 				System.out.println("CreateAndDelete");
-				testHelper.doCreateChangeRefDelete();
+				testHelper.doCreateDelete();
 				break;
 
 			case 2:
@@ -212,6 +212,12 @@ public class CompositeTest extends IntegrationTestCase {
 				// CreateAndMultipleChangeTest
 				System.out.println("CreateAndMultipleChangeTest");
 				testHelper.doCreateAndMultipleChange();
+				break;
+				
+			case 15:
+				// CreateChangeRefDelete
+				System.out.println("CreateChangeRefDelete");
+				testHelper.doCreateChangeRefDelete();
 				break;
 				
 			default:
