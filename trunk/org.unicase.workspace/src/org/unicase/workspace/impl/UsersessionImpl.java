@@ -540,6 +540,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		newSessionId = connectionManager.logIn(username, getPassword(), copy, Configuration.getClientVersion());
 
 		this.setSessionId(newSessionId);
+		updateACUser();
 	}
 
 	/**
