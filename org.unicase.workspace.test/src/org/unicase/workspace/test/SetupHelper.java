@@ -138,8 +138,8 @@ public final class SetupHelper {
 	 * @throws IOException IOException
 	 */
 	public static ProjectSpace importProject(String uri) throws IOException {
-		return workSpace.importProjectSpace(uri);
-		
+		return workSpace.importProject(uri);
+
 	}
 
 	/**
@@ -147,8 +147,7 @@ public final class SetupHelper {
 	 */
 	public static void createTestProjectSapce() {
 
-		try {
-			String path;
+			final String path;
 
 			// use a random generated project (with about 6000 elements) with these parameter(10, 12345, 5, 3, 15, 20)
 			// path = "TestProjects/randomProject6";
@@ -171,26 +170,34 @@ public final class SetupHelper {
 			// use unicase project
 			path = "TestProjects/unicase.ucp";
 
-			String uriString = Activator.getDefault().getBundle().getLocation() + path;
-			if (File.separator.equals("/")) {
-				uriString = uriString.replace("reference:file:", "");
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
 
-			} else {
-				uriString = uriString.replace("reference:file:/", "");
-			}
+				@Override
+				protected void doExecute() {
+					String uriString = Activator.getDefault().getBundle().getLocation() + path;
+					if (File.separator.equals("/")) {
+						uriString = uriString.replace("reference:file:", "");
 
-			testProjectSpace = SetupHelper.importProject(uriString);
+					} else {
+						uriString = uriString.replace("reference:file:/", "");
+					}
+					try {
+						testProjectSpace = SetupHelper.importProject(uriString);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
+				}
+
+			});
+
+			projectId = testProjectSpace.getProjectId();
 
 			testProject = testProjectSpace.getProject();
 
-		} catch (IOException e) {
-
-			e.printStackTrace();
-		}
+		
 
 	}
-	
-	
+
 	/**
 	 * This shares test project with server.
 	 */
@@ -231,8 +238,9 @@ public final class SetupHelper {
 			e.printStackTrace();
 		}
 
+		projectId = testProjectSpace.getProjectId();
 	}
-	
+
 	/**
 	 * Commits the changes to server.
 	 */
@@ -260,7 +268,7 @@ public final class SetupHelper {
 		});
 
 	}
-	
+
 	/**
 	 * Returns project to be compared with test project. This is project that lies on server after committing the
 	 * changes.
@@ -291,8 +299,6 @@ public final class SetupHelper {
 		return compareProject;
 	}
 
-
-
 	/**
 	 * @return the testProject
 	 */
@@ -301,7 +307,6 @@ public final class SetupHelper {
 	}
 
 	/**
-	 * 
 	 * @return test project space
 	 */
 	public static ProjectSpace getTestProjectSpace() {
