@@ -437,6 +437,9 @@ public final class ActionHelper {
 	public static ProjectSpace getProjectSpace(ExecutionEvent event) {
 
 		ISelection sel = HandlerUtil.getCurrentSelection(event);
+		if(sel == null){
+			sel = HandlerUtil.getActiveMenuSelection(event);
+		}
 		if (!(sel instanceof IStructuredSelection)) {
 			return null;
 		}
