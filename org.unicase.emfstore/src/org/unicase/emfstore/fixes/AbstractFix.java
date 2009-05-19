@@ -1,16 +1,22 @@
 package org.unicase.emfstore.fixes;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.connection.rmi.SerializationUtil;
 import org.unicase.emfstore.esmodel.ProjectHistory;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.RMISerializationException;
-import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
@@ -39,7 +45,7 @@ public abstract class AbstractFix {
 			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (Exception e) {
-			System.out.println(StorageException.NOSAVE);
+			e.printStackTrace();
 			System.exit(0);
 		}
 		// END SUPRESS CATCH EXCEPTION
@@ -147,5 +153,38 @@ public abstract class AbstractFix {
 			e.printStackTrace();
 		}
 		return result;
+	}
+
+	public String getProjectFolder(ProjectId projectId) {
+		return ServerConfiguration.getServerHome() + ServerConfiguration.FILE_PREFIX_PROJECTFOLDER + projectId.getId()
+			+ File.separatorChar;
+	}
+
+	public void createResourceForProject(Project project, PrimaryVersionSpec versionId, ProjectId projectId)
+		throws FatalEmfStoreException {
+		String filename = getProjectFolder(projectId) + getProjectFile(versionId.getIdentifier());
+		saveInResource(project, filename);
+	}
+
+	public void createResourceForChangePackage(ChangePackage changePackage, PrimaryVersionSpec versionId,
+		ProjectId projectId) throws FatalEmfStoreException {
+		String filename = getProjectFolder(projectId) + getChangePackageFile(versionId.getIdentifier());
+		saveInResource(changePackage, filename);
+	}
+
+	public String getProjectFile(int versionNumber) {
+		return ServerConfiguration.FILE_PREFIX_PROJECTSTATE + versionNumber
+			+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
+	}
+
+	public String getChangePackageFile(int versionNumber) {
+		return ServerConfiguration.FILE_PREFIX_CHANGEPACKAGE + versionNumber
+			+ ServerConfiguration.FILE_EXTENSION_CHANGEPACKAGE;
+	}
+
+	public void saveInResource(EObject obj, String fileName) throws FatalEmfStoreException {
+		Resource resource = projectHistory.eResource().getResourceSet().createResource(URI.createFileURI(fileName));
+		resource.getContents().add(obj);
+		save(obj);
 	}
 }

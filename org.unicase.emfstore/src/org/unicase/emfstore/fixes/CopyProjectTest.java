@@ -2,18 +2,13 @@ package org.unicase.emfstore.fixes;
 
 import java.io.File;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
-import org.unicase.model.Project;
 
 public class CopyProjectTest extends AbstractFix {
 
@@ -65,38 +60,5 @@ public class CopyProjectTest extends AbstractFix {
 		String fileName = getProjectFolder(projectId) + ServerConfiguration.FILE_PREFIX_VERSION
 			+ version.getPrimarySpec().getIdentifier() + ServerConfiguration.FILE_EXTENSION_VERSION;
 		saveInResource(version, fileName);
-	}
-
-	private void createResourceForProject(Project project, PrimaryVersionSpec versionId, ProjectId projectId)
-		throws FatalEmfStoreException {
-		String filename = getProjectFolder(projectId) + getProjectFile(versionId.getIdentifier());
-		saveInResource(project, filename);
-	}
-
-	private void createResourceForChangePackage(ChangePackage changePackage, PrimaryVersionSpec versionId,
-		ProjectId projectId) throws FatalEmfStoreException {
-		String filename = getProjectFolder(projectId) + getChangePackageFile(versionId.getIdentifier());
-		saveInResource(changePackage, filename);
-	}
-
-	private String getProjectFile(int versionNumber) {
-		return ServerConfiguration.FILE_PREFIX_PROJECTSTATE + versionNumber
-			+ ServerConfiguration.FILE_EXTENSION_PROJECTSTATE;
-	}
-
-	private String getChangePackageFile(int versionNumber) {
-		return ServerConfiguration.FILE_PREFIX_CHANGEPACKAGE + versionNumber
-			+ ServerConfiguration.FILE_EXTENSION_CHANGEPACKAGE;
-	}
-
-	private String getProjectFolder(ProjectId projectId) {
-		return ServerConfiguration.getServerHome() + ServerConfiguration.FILE_PREFIX_PROJECTFOLDER + projectId.getId()
-			+ File.separatorChar;
-	}
-
-	private void saveInResource(EObject obj, String fileName) throws FatalEmfStoreException {
-		Resource resource = projectHistory.eResource().getResourceSet().createResource(URI.createFileURI(fileName));
-		resource.getContents().add(obj);
-		save(obj);
 	}
 }
