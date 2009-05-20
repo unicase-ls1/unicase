@@ -88,7 +88,43 @@ public class TopologyNto1Test extends TopologyTest{
 		assertNull(op.getNewValue());
 		assertEquals(op.getOldValue(), section.getModelElementId());
 		
-		
 	}	
+	
+	/**
+	 * Set a container from some value to some other value.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	/*
+	@Test
+	public void setContainerFromValueToOtherValueSameFeature() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+
+		getProject().addModelElement(section1);
+		getProject().addModelElement(section2);
+		getProject().addModelElement(useCase);
+		useCase.setLeafSection(section1);
+		
+		assertTrue(section1.getModelElements().contains(useCase));
+		
+		clearOperations();
+
+		useCase.setLeafSection(section2);
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(1, operations.size());
+		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
+		SingleReferenceOperation op = (SingleReferenceOperation) operations.get(0);
+		assertEquals(useCase.getModelElementId(), op.getModelElementId());
+		assertEquals("leafSection", op.getFeatureName());
+		assertNull(op.getNewValue());
+		assertEquals(op.getOldValue(), section.getModelElementId());
+		
+	}		*/
 	
 }
