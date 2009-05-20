@@ -15,7 +15,7 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-  Topology1to1Test.class, TopologyNtoNTest.class, TopologyNto1Test.class
+  Topology1to1Test.class, TopologyNtoNTest.class, TopologyNto1Test.class, Topology1toNTest.class
 })
 public class AllTopologyTests {
 
