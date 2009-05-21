@@ -134,9 +134,7 @@ public class FeatureItemProvider extends ModelElementItemProvider implements IEd
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Feature) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Feature_type") : getString("_UI_Feature_type")
-			+ " " + label;
+		return super.getText(object);
 	}
 
 	/**

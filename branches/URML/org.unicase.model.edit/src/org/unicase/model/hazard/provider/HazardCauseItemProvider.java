@@ -144,9 +144,7 @@ public class HazardCauseItemProvider extends ModelElementItemProvider implements
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((HazardCause) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_HazardCause_type")
-			: getString("_UI_HazardCause_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
