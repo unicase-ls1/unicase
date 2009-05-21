@@ -12,35 +12,36 @@ import org.unicase.model.organization.OrgUnit;
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Functional Requirement</b></em>'. <!--
  * end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}</li>
- * <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}</li>
- * <li>{@link org.unicase.model.requirement.FunctionalRequirement#getPriority <em>Priority</em>}</li>
- * <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements
- * </em>}</li>
- * <li>{@link org.unicase.model.requirement.FunctionalRequirement#getUseCases <em>Use Cases</em>}</li>
- * <li>{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}</li>
- * <li>{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li>
- * <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStakeholder <em>Stakeholder</em>}</li>
- * <li>{@link org.unicase.model.requirement.FunctionalRequirement#getCost <em>Cost</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getPriority <em>Priority</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getDetailedUseCases <em>Detailed Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStakeholder <em>Stakeholder</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getCost <em>Cost</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getDetailedFeatures <em>Detailed Features</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement()
  * @model
  * @generated
  */
 public interface FunctionalRequirement extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Reviewed</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Reviewed</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Reviewed</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Reviewed</em>' attribute.
 	 * @see #setReviewed(boolean)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Reviewed()
@@ -50,9 +51,8 @@ public interface FunctionalRequirement extends ModelElement {
 	boolean isReviewed();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Reviewed</em>' attribute.
 	 * @see #isReviewed()
 	 * @generated
@@ -60,25 +60,25 @@ public interface FunctionalRequirement extends ModelElement {
 	void setReviewed(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Stakeholder</b></em>' reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Stakeholder</b></em>' reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Stakeholder</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Stakeholder</em>' reference.
 	 * @see #setStakeholder(OrgUnit)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Stakeholder()
-	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 * @model keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	OrgUnit getStakeholder();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getStakeholder
-	 * <em>Stakeholder</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getStakeholder <em>Stakeholder</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Stakeholder</em>' reference.
 	 * @see #getStakeholder()
 	 * @generated
@@ -86,12 +86,12 @@ public interface FunctionalRequirement extends ModelElement {
 	void setStakeholder(OrgUnit value);
 
 	/**
-	 * Returns the value of the '<em><b>Cost</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Cost</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Cost</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Cost</em>' attribute.
 	 * @see #setCost(int)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Cost()
@@ -101,9 +101,8 @@ public interface FunctionalRequirement extends ModelElement {
 	int getCost();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getCost <em>Cost</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getCost <em>Cost</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Cost</em>' attribute.
 	 * @see #getCost()
 	 * @generated
@@ -111,13 +110,32 @@ public interface FunctionalRequirement extends ModelElement {
 	void setCost(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Story Points</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Detailed Features</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.requirement.Feature}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.requirement.Feature#getDetailingRequirements <em>Detailing Requirements</em>}'. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Detailed Features</em>' reference list isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Detailed Features</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_DetailedFeatures()
+	 * @see org.unicase.model.requirement.Feature#getDetailingRequirements
+	 * @model opposite="detailingRequirements" keys="identifier"
+	 * @generated
+	 */
+	EList<Feature> getDetailedFeatures();
+
+	/**
+	 * Returns the value of the '<em><b>Story Points</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Story Points</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Story Points</em>' attribute.
 	 * @see #setStoryPoints(int)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_StoryPoints()
@@ -127,9 +145,8 @@ public interface FunctionalRequirement extends ModelElement {
 	int getStoryPoints();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints
-	 * <em>Story Points</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Story Points</em>' attribute.
 	 * @see #getStoryPoints()
 	 * @generated
@@ -137,13 +154,13 @@ public interface FunctionalRequirement extends ModelElement {
 	void setStoryPoints(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Priority</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Priority</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Priority</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Priority</em>' attribute.
 	 * @see #setPriority(int)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Priority()
@@ -153,9 +170,8 @@ public interface FunctionalRequirement extends ModelElement {
 	int getPriority();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getPriority <em>Priority</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getPriority <em>Priority</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Priority</em>' attribute.
 	 * @see #getPriority()
 	 * @generated
@@ -163,16 +179,15 @@ public interface FunctionalRequirement extends ModelElement {
 	void setPriority(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Refining Requirements</b></em>' containment reference list. The list contents
-	 * are of type {@link org.unicase.model.requirement.FunctionalRequirement}. It is bidirectional and its opposite is
-	 * '{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}'.
+	 * Returns the value of the '<em><b>Refining Requirements</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.FunctionalRequirement}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Refining Requirements</em>' reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Refining Requirements</em>' containment reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefiningRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement
@@ -183,15 +198,33 @@ public interface FunctionalRequirement extends ModelElement {
 	EList<FunctionalRequirement> getRefiningRequirements();
 
 	/**
-	 * Returns the value of the '<em><b>Refined Requirement</b></em>' container reference. It is bidirectional and its
-	 * opposite is '{@link org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements
-	 * <em>Refining Requirements</em>}'. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Detailed Use Cases</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UseCase#getDetailingFunctionalRequirements <em>Detailing Functional Requirements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Detailed Use Cases</em>' reference list isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Detailed Use Cases</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_DetailedUseCases()
+	 * @see org.unicase.model.requirement.UseCase#getDetailingFunctionalRequirements
+	 * @model opposite="detailingFunctionalRequirements" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @generated
+	 */
+	EList<UseCase> getDetailedUseCases();
+
+	/**
+	 * Returns the value of the '<em><b>Refined Requirement</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Refined Requirement</em>' reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Refined Requirement</em>' container reference.
 	 * @see #setRefinedRequirement(FunctionalRequirement)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefinedRequirement()
@@ -203,34 +236,13 @@ public interface FunctionalRequirement extends ModelElement {
 	FunctionalRequirement getRefinedRequirement();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement
-	 * <em>Refined Requirement</em>}' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}' container reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Refined Requirement</em>' container reference.
 	 * @see #getRefinedRequirement()
 	 * @generated
 	 */
 	void setRefinedRequirement(FunctionalRequirement value);
-
-	/**
-	 * Returns the value of the '<em><b>Use Cases</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.requirement.UseCase}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.requirement.UseCase#getFunctionalRequirements <em>Functional Requirements</em>}'. <!--
-	 * begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Use Cases</em>' reference list isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Use Cases</em>' reference list.
-	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_UseCases()
-	 * @see org.unicase.model.requirement.UseCase#getFunctionalRequirements
-	 * @model opposite="functionalRequirements" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
-	 * @generated
-	 */
-	EList<UseCase> getUseCases();
 
 	/**
 	 * Returns the value of the '<em><b>Scenarios</b></em>' reference list. The list contents are of type

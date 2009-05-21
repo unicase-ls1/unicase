@@ -55,11 +55,12 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 			addParticipatingActorsPropertyDescriptor(object);
 			addUseCaseStepsPropertyDescriptor(object);
 			addScenariosPropertyDescriptor(object);
-			addFunctionalRequirementsPropertyDescriptor(object);
-			addNonFunctionalRequirementsPropertyDescriptor(object);
-			addIdentifiedClassesPropertyDescriptor(object);
+			addDetailingFunctionalRequirementsPropertyDescriptor(object);
+			addConstrainingNFRsPropertyDescriptor(object);
+			addParticipatingClassesPropertyDescriptor(object);
 			addIncludedUseCasesPropertyDescriptor(object);
 			addExtendedUseCasesPropertyDescriptor(object);
+			addDescribedFeaturesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -89,44 +90,45 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Functional Requirements feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Detailing Functional Requirements feature. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addFunctionalRequirementsPropertyDescriptor(Object object) {
+	protected void addDetailingFunctionalRequirementsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_functionalRequirements_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_functionalRequirements_feature",
-				"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__FUNCTIONAL_REQUIREMENTS, true, false, true,
-			null, null, null));
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_UseCase_detailingFunctionalRequirements_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_UseCase_detailingFunctionalRequirements_feature",
+				"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__DETAILING_FUNCTIONAL_REQUIREMENTS, true,
+			false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Non Functional Requirements feature. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This adds a property descriptor for the Constraining NF Rs feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addNonFunctionalRequirementsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_nonFunctionalRequirements_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_nonFunctionalRequirements_feature",
-				"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS, true, false,
-			true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Identified Classes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addIdentifiedClassesPropertyDescriptor(Object object) {
+	protected void addConstrainingNFRsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors
 			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-				getResourceLocator(), getString("_UI_UseCase_identifiedClasses_feature"), getString(
-					"_UI_PropertyDescriptor_description", "_UI_UseCase_identifiedClasses_feature", "_UI_UseCase_type"),
-				RequirementPackage.Literals.USE_CASE__IDENTIFIED_CLASSES, true, false, true, null, null, null));
+				getResourceLocator(), getString("_UI_UseCase_constrainingNFRs_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_UseCase_constrainingNFRs_feature", "_UI_UseCase_type"),
+				RequirementPackage.Literals.USE_CASE__CONSTRAINING_NF_RS, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Participating Classes feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	protected void addParticipatingClassesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_participatingClasses_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_participatingClasses_feature",
+				"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__PARTICIPATING_CLASSES, true, false, true,
+			null, null, null));
 	}
 
 	/**
@@ -153,6 +155,19 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 				getResourceLocator(), getString("_UI_UseCase_extendedUseCases_feature"), getString(
 					"_UI_PropertyDescriptor_description", "_UI_UseCase_extendedUseCases_feature", "_UI_UseCase_type"),
 				RequirementPackage.Literals.USE_CASE__EXTENDED_USE_CASES, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Described Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDescribedFeaturesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_UseCase_describedFeatures_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_UseCase_describedFeatures_feature", "_UI_UseCase_type"),
+				RequirementPackage.Literals.USE_CASE__DESCRIBED_FEATURES, true, false, true, null, null, null));
 	}
 
 	/**

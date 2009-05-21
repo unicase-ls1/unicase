@@ -23,13 +23,11 @@ import org.unicase.model.profile.StereotypeInstance;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceImpl#getStereotypeInstance <em>Stereotype
- * Instance</em>}</li>
- * <li>{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceImpl#getStereotypeAttribute <em>Stereotype
- * Attribute</em>}</li>
+ *   <li>{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceImpl#getStereotypeInstance <em>Stereotype Instance</em>}</li>
+ *   <li>{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceImpl#getStereotypeAttribute <em>Stereotype Attribute</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl implements StereotypeAttributeInstance {
@@ -45,7 +43,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StereotypeAttributeInstanceImpl() {
@@ -54,7 +51,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,7 +60,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StereotypeInstance getStereotypeInstance() {
@@ -75,7 +70,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StereotypeInstance basicGetStereotypeInstance() {
@@ -86,7 +80,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetStereotypeInstance(StereotypeInstance newStereotypeInstance, NotificationChain msgs) {
@@ -97,7 +90,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStereotypeInstance(StereotypeInstance newStereotypeInstance) {
@@ -122,7 +114,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StereotypeAttribute getStereotypeAttribute() {
@@ -141,7 +132,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StereotypeAttribute basicGetStereotypeAttribute() {
@@ -150,7 +140,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetStereotypeAttribute(StereotypeAttribute newStereotypeAttribute,
@@ -171,7 +160,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStereotypeAttribute(StereotypeAttribute newStereotypeAttribute) {
@@ -196,7 +184,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,7 +205,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -234,7 +220,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -249,7 +234,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -269,7 +253,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -287,7 +270,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -305,7 +287,6 @@ public abstract class StereotypeAttributeInstanceImpl extends ModelElementImpl i
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

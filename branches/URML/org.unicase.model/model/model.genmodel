@@ -172,6 +172,8 @@
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Class/methods"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//classes/Class/demoParticipations"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//classes/Class/instances"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//classes/Package">
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//classes/Package/containedPackageElements"/>
@@ -236,6 +238,10 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//classes/Dependency/target"/>
       </genClasses>
+      <genClasses ecoreClass="model.ecore#//classes/Object">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//classes/Object/class"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Document" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//document">
@@ -255,9 +261,11 @@
         ecorePackage="model.ecore#//requirement">
       <genClasses ecoreClass="model.ecore#//requirement/NonFunctionalRequirement">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"/>
+            ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"/>
+            ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/constrainedFRs"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/FunctionalRequirement">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refinedRequirement"/>
@@ -265,13 +273,15 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/priority"/>
         <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refiningRequirements"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/useCases"/>
+            ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/detailedUseCases"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/scenarios"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/reviewed"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/stakeholder"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/cost"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/detailedFeatures"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/UseCase">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -289,15 +299,17 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/scenarios"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/functionalRequirements"/>
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/detailingFunctionalRequirements"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/nonFunctionalRequirements"/>
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/constrainingNFRs"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/identifiedClasses"/>
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/participatingClasses"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/includedUseCases"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/extendedUseCases"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/describedFeatures"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/Scenario">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/steps"/>
@@ -356,6 +368,13 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/UserTask/participatingActor"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UserTask/realizingUseCases"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//requirement/Feature">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/Feature/describingUseCases"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/Feature/refiningFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/Feature/detailingRequirements"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Rationale" basePackage="org.unicase.model" disposableProviderFactory="true"
@@ -594,6 +613,43 @@
       <genClasses ecoreClass="model.ecore#//activity/Branch"/>
       <genClasses ecoreClass="model.ecore#//activity/ActivityInitial"/>
       <genClasses ecoreClass="model.ecore#//activity/ActivityEnd"/>
+    </nestedGenPackages>
+    <nestedGenPackages prefix="Hazard" basePackage="org.unicase.model" resource="XML"
+        disposableProviderFactory="true" ecorePackage="model.ecore#//hazard">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//hazard/EvalStatus">
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//hazard/EvalStatus/New"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//hazard/EvalStatus/Evaluated"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//hazard/EvalStatus/Unkown"/>
+      </genEnums>
+      <genClasses ecoreClass="model.ecore#//hazard/Hazard">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//hazard/Hazard/severity"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//hazard/Hazard/involvedClasses"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//hazard/Hazard/targetedActors"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//hazard/Hazard/causes"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//hazard/Hazard/mitigations"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//hazard/Mitigation">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//hazard/Mitigation/technique"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//hazard/Mitigation/evaluationStatus"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//hazard/Mitigation/causes"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//hazard/Mitigation/hazards"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//hazard/HazardCause">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//hazard/HazardCause/hazards"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//hazard/HazardCause/hazardousModelElements"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//hazard/HazardCause/evaluationStatus"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//hazard/HazardCause/likelihood"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//hazard/HazardCause/mitigations"/>
+      </genClasses>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

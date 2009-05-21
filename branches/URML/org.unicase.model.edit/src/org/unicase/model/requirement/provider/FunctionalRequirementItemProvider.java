@@ -57,11 +57,12 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 			addRefinedRequirementPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
 			addRefiningRequirementsPropertyDescriptor(object);
-			addUseCasesPropertyDescriptor(object);
+			addDetailedUseCasesPropertyDescriptor(object);
 			addScenariosPropertyDescriptor(object);
 			addReviewedPropertyDescriptor(object);
 			addStakeholderPropertyDescriptor(object);
 			addCostPropertyDescriptor(object);
+			addDetailedFeaturesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -106,6 +107,21 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
+	 * This adds a property descriptor for the Detailed Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDetailedFeaturesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_FunctionalRequirement_detailedFeatures_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_detailedFeatures_feature",
+					"_UI_FunctionalRequirement_type"),
+				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES, true, false, true, null, null,
+				null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Priority feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -135,6 +151,21 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
+	 * This adds a property descriptor for the Detailed Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDetailedUseCasesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_FunctionalRequirement_detailedUseCases_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_detailedUseCases_feature",
+					"_UI_FunctionalRequirement_type"),
+				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__DETAILED_USE_CASES, true, false, true, null, null,
+				null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Refined Requirement feature. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -148,19 +179,6 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 				"_UI_FunctionalRequirement_type"),
 			RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT, true, false, false, null, null,
 			null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addUseCasesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_useCases_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_useCases_feature",
-				"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__USE_CASES, true,
-			false, true, null, null, null));
 	}
 
 	/**

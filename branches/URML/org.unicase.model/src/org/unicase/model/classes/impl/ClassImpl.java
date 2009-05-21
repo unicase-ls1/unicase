@@ -27,17 +27,18 @@ import org.unicase.model.requirement.UseCase;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.classes.impl.ClassImpl#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.ClassImpl#getSuperClasses <em>Super Classes</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.ClassImpl#getSubClasses <em>Sub Classes</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.ClassImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.ClassImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.ClassImpl#getMethods <em>Methods</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.ClassImpl#getDemoParticipations <em>Demo Participations</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getSuperClasses <em>Super Classes</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getSubClasses <em>Sub Classes</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getMethods <em>Methods</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getDemoParticipations <em>Demo Participations</em>}</li>
+ *   <li>{@link org.unicase.model.classes.impl.ClassImpl#getInstances <em>Instances</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class ClassImpl extends PackageElementImpl implements org.unicase.model.classes.Class {
@@ -51,18 +52,18 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	 */
 	protected EList<UseCase> participatedUseCases;
 	/**
-	 * The cached value of the '{@link #getSuperClasses() <em>Super Classes</em>}' reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getSuperClasses() <em>Super Classes</em>}' reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getSuperClasses()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<org.unicase.model.classes.Class> superClasses;
 	/**
-	 * The cached value of the '{@link #getSubClasses() <em>Sub Classes</em>}' reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSubClasses() <em>Sub Classes</em>}' reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSubClasses()
 	 * @generated
 	 * @ordered
@@ -99,9 +100,9 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	protected EList<Attribute> attributes;
 
 	/**
-	 * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list. <!-- begin-user-doc
+	 * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getMethods()
 	 * @generated
 	 * @ordered
@@ -119,8 +120,17 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	protected EList<Scenario> demoParticipations;
 
 	/**
+	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getInstances()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<org.unicase.model.classes.Object> instances;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ClassImpl() {
@@ -129,7 +139,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,20 +148,18 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getParticipatedUseCases() {
 		if (participatedUseCases == null) {
 			participatedUseCases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
-				ClassesPackage.CLASS__PARTICIPATED_USE_CASES, RequirementPackage.USE_CASE__IDENTIFIED_CLASSES);
+				ClassesPackage.CLASS__PARTICIPATED_USE_CASES, RequirementPackage.USE_CASE__PARTICIPATING_CLASSES);
 		}
 		return participatedUseCases;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getSuperClasses() {
@@ -166,7 +173,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getSubClasses() {
@@ -180,7 +186,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Association> getIncomingAssociations() {
@@ -193,7 +198,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Association> getOutgoingAssociations() {
@@ -206,7 +210,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Attribute> getAttributes() {
@@ -219,7 +222,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Method> getMethods() {
@@ -232,7 +234,6 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getDemoParticipations() {
@@ -245,7 +246,19 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EList<org.unicase.model.classes.Object> getInstances() {
+		if (instances == null) {
+			instances = new EObjectWithInverseResolvingEList<org.unicase.model.classes.Object>(
+				org.unicase.model.classes.Object.class, this, ClassesPackage.CLASS__INSTANCES,
+				ClassesPackage.OBJECT__CLASS);
+		}
+		return instances;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -272,13 +285,14 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDemoParticipations()).basicAdd(otherEnd,
 				msgs);
+		case ClassesPackage.CLASS__INSTANCES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstances()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -300,13 +314,14 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return ((InternalEList<?>) getMethods()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return ((InternalEList<?>) getDemoParticipations()).basicRemove(otherEnd, msgs);
+		case ClassesPackage.CLASS__INSTANCES:
+			return ((InternalEList<?>) getInstances()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,13 +343,14 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return getMethods();
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return getDemoParticipations();
+		case ClassesPackage.CLASS__INSTANCES:
+			return getInstances();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -373,13 +389,16 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			getDemoParticipations().clear();
 			getDemoParticipations().addAll((Collection<? extends Scenario>) newValue);
 			return;
+		case ClassesPackage.CLASS__INSTANCES:
+			getInstances().clear();
+			getInstances().addAll((Collection<? extends org.unicase.model.classes.Object>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -409,13 +428,15 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			getDemoParticipations().clear();
 			return;
+		case ClassesPackage.CLASS__INSTANCES:
+			getInstances().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -437,6 +458,8 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 			return methods != null && !methods.isEmpty();
 		case ClassesPackage.CLASS__DEMO_PARTICIPATIONS:
 			return demoParticipations != null && !demoParticipations.isEmpty();
+		case ClassesPackage.CLASS__INSTANCES:
+			return instances != null && !instances.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.Feature;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
@@ -33,32 +34,31 @@ import org.unicase.model.requirement.UserTask;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getInitiatingActor <em>Initiating Actor</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getParticipatingActors <em>Participating Actors</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRealizedUserTask <em>Realized User Task</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPrecondition <em>Precondition</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getUseCaseSteps <em>Use Case Steps</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPostcondition <em>Postcondition</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRules <em>Rules</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getException <em>Exception</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getScenarios <em>Scenarios</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getFunctionalRequirements <em>Functional Requirements</em>}
- * </li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getNonFunctionalRequirements <em>Non Functional
- * Requirements</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIdentifiedClasses <em>Identified Classes</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIncludedUseCases <em>Included Use Cases</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getExtendedUseCases <em>Extended Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getInitiatingActor <em>Initiating Actor</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getParticipatingActors <em>Participating Actors</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRealizedUserTask <em>Realized User Task</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPrecondition <em>Precondition</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getUseCaseSteps <em>Use Case Steps</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getPostcondition <em>Postcondition</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getRules <em>Rules</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getException <em>Exception</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getScenarios <em>Scenarios</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getDetailingFunctionalRequirements <em>Detailing Functional Requirements</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getConstrainingNFRs <em>Constraining NF Rs</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getParticipatingClasses <em>Participating Classes</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIncludedUseCases <em>Included Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getExtendedUseCases <em>Extended Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getDescribedFeatures <em>Described Features</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	/**
-	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getInitiatingActor()
 	 * @generated
 	 * @ordered
@@ -86,9 +86,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected UserTask realizedUserTask;
 
 	/**
-	 * The default value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPrecondition()
 	 * @generated
 	 * @ordered
@@ -96,9 +96,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected static final String PRECONDITION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPrecondition()
 	 * @generated
 	 * @ordered
@@ -116,9 +116,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected EList<Step> useCaseSteps;
 
 	/**
-	 * The default value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPostcondition()
 	 * @generated
 	 * @ordered
@@ -126,9 +126,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected static final String POSTCONDITION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPostcondition() <em>Postcondition</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPostcondition()
 	 * @generated
 	 * @ordered
@@ -136,9 +136,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected String postcondition = POSTCONDITION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getRules() <em>Rules</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getRules() <em>Rules</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getRules()
 	 * @generated
 	 * @ordered
@@ -156,9 +156,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected String rules = RULES_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -166,9 +166,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected static final String EXCEPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getException()
 	 * @generated
 	 * @ordered
@@ -176,9 +176,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected String exception = EXCEPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getScenarios() <em>Scenarios</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getScenarios() <em>Scenarios</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getScenarios()
 	 * @generated
 	 * @ordered
@@ -186,34 +186,33 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected EList<Scenario> scenarios;
 
 	/**
-	 * The cached value of the '{@link #getFunctionalRequirements() <em>Functional Requirements</em>}' reference list.
+	 * The cached value of the '{@link #getDetailingFunctionalRequirements() <em>Detailing Functional Requirements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getFunctionalRequirements()
+	 * @see #getDetailingFunctionalRequirements()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<FunctionalRequirement> functionalRequirements;
+	protected EList<FunctionalRequirement> detailingFunctionalRequirements;
 
 	/**
-	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference
-	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getNonFunctionalRequirements()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<NonFunctionalRequirement> nonFunctionalRequirements;
-
-	/**
-	 * The cached value of the '{@link #getIdentifiedClasses() <em>Identified Classes</em>}' reference list. <!--
+	 * The cached value of the '{@link #getConstrainingNFRs() <em>Constraining NF Rs</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getIdentifiedClasses()
+	 * @see #getConstrainingNFRs()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<org.unicase.model.classes.Class> identifiedClasses;
+	protected EList<NonFunctionalRequirement> constrainingNFRs;
+
+	/**
+	 * The cached value of the '{@link #getParticipatingClasses() <em>Participating Classes</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getParticipatingClasses()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<org.unicase.model.classes.Class> participatingClasses;
 
 	/**
 	 * The cached value of the '{@link #getIncludedUseCases() <em>Included Use Cases</em>}' reference list. <!--
@@ -236,8 +235,17 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected EList<UseCase> extendedUseCases;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getDescribedFeatures() <em>Described Features</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
+	 * @see #getDescribedFeatures()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Feature> describedFeatures;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected UseCaseImpl() {
@@ -246,7 +254,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -256,7 +263,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Actor getInitiatingActor() {
@@ -274,7 +280,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Actor basicGetInitiatingActor() {
@@ -283,7 +288,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInitiatingActor(Actor newInitiatingActor, NotificationChain msgs) {
@@ -302,7 +306,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setInitiatingActor(Actor newInitiatingActor) {
@@ -324,7 +327,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getScenarios() {
@@ -337,49 +339,45 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EList<FunctionalRequirement> getFunctionalRequirements() {
-		if (functionalRequirements == null) {
-			functionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(
-				FunctionalRequirement.class, this, RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS,
-				RequirementPackage.FUNCTIONAL_REQUIREMENT__USE_CASES);
+	public EList<FunctionalRequirement> getDetailingFunctionalRequirements() {
+		if (detailingFunctionalRequirements == null) {
+			detailingFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(
+				FunctionalRequirement.class, this, RequirementPackage.USE_CASE__DETAILING_FUNCTIONAL_REQUIREMENTS,
+				RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_USE_CASES);
 		}
-		return functionalRequirements;
+		return detailingFunctionalRequirements;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EList<NonFunctionalRequirement> getNonFunctionalRequirements() {
-		if (nonFunctionalRequirements == null) {
-			nonFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<NonFunctionalRequirement>(
-				NonFunctionalRequirement.class, this, RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS,
-				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES);
+	public EList<NonFunctionalRequirement> getConstrainingNFRs() {
+		if (constrainingNFRs == null) {
+			constrainingNFRs = new EObjectWithInverseResolvingEList.ManyInverse<NonFunctionalRequirement>(
+				NonFunctionalRequirement.class, this, RequirementPackage.USE_CASE__CONSTRAINING_NF_RS,
+				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FRS);
 		}
-		return nonFunctionalRequirements;
+		return constrainingNFRs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EList<org.unicase.model.classes.Class> getIdentifiedClasses() {
-		if (identifiedClasses == null) {
-			identifiedClasses = new EObjectWithInverseResolvingEList.ManyInverse<org.unicase.model.classes.Class>(
-				org.unicase.model.classes.Class.class, this, RequirementPackage.USE_CASE__IDENTIFIED_CLASSES,
+	public EList<org.unicase.model.classes.Class> getParticipatingClasses() {
+		if (participatingClasses == null) {
+			participatingClasses = new EObjectWithInverseResolvingEList.ManyInverse<org.unicase.model.classes.Class>(
+				org.unicase.model.classes.Class.class, this, RequirementPackage.USE_CASE__PARTICIPATING_CLASSES,
 				ClassesPackage.CLASS__PARTICIPATED_USE_CASES);
 		}
-		return identifiedClasses;
+		return participatingClasses;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getIncludedUseCases() {
@@ -392,7 +390,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getExtendedUseCases() {
@@ -405,7 +402,18 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public EList<Feature> getDescribedFeatures() {
+		if (describedFeatures == null) {
+			describedFeatures = new EObjectWithInverseResolvingEList.ManyInverse<Feature>(Feature.class, this,
+				RequirementPackage.USE_CASE__DESCRIBED_FEATURES, RequirementPackage.FEATURE__DESCRIBING_USE_CASES);
+		}
+		return describedFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Actor> getParticipatingActors() {
@@ -418,7 +426,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UserTask getRealizedUserTask() {
@@ -436,7 +443,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UserTask basicGetRealizedUserTask() {
@@ -445,7 +451,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetRealizedUserTask(UserTask newRealizedUserTask, NotificationChain msgs) {
@@ -464,7 +469,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setRealizedUserTask(UserTask newRealizedUserTask) {
@@ -486,7 +490,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getPrecondition() {
@@ -495,7 +498,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPrecondition(String newPrecondition) {
@@ -508,7 +510,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Step> getUseCaseSteps() {
@@ -521,7 +522,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getPostcondition() {
@@ -530,7 +530,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPostcondition(String newPostcondition) {
@@ -543,7 +542,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getRules() {
@@ -552,7 +550,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setRules(String newRules) {
@@ -564,7 +561,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getException() {
@@ -573,7 +569,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setException(String newException) {
@@ -586,7 +581,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -610,14 +604,16 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUseCaseSteps()).basicAdd(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__SCENARIOS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getScenarios()).basicAdd(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getFunctionalRequirements()).basicAdd(otherEnd,
-				msgs);
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements()).basicAdd(
+		case RequirementPackage.USE_CASE__DETAILING_FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailingFunctionalRequirements()).basicAdd(
 				otherEnd, msgs);
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIdentifiedClasses())
+		case RequirementPackage.USE_CASE__CONSTRAINING_NF_RS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConstrainingNFRs()).basicAdd(otherEnd, msgs);
+		case RequirementPackage.USE_CASE__PARTICIPATING_CLASSES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingClasses()).basicAdd(otherEnd,
+				msgs);
+		case RequirementPackage.USE_CASE__DESCRIBED_FEATURES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDescribedFeatures())
 				.basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
@@ -625,7 +621,6 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -641,19 +636,20 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return ((InternalEList<?>) getUseCaseSteps()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__SCENARIOS:
 			return ((InternalEList<?>) getScenarios()).basicRemove(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getFunctionalRequirements()).basicRemove(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			return ((InternalEList<?>) getNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			return ((InternalEList<?>) getIdentifiedClasses()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.USE_CASE__DETAILING_FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<?>) getDetailingFunctionalRequirements()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.USE_CASE__CONSTRAINING_NF_RS:
+			return ((InternalEList<?>) getConstrainingNFRs()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.USE_CASE__PARTICIPATING_CLASSES:
+			return ((InternalEList<?>) getParticipatingClasses()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.USE_CASE__DESCRIBED_FEATURES:
+			return ((InternalEList<?>) getDescribedFeatures()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -681,23 +677,24 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return getException();
 		case RequirementPackage.USE_CASE__SCENARIOS:
 			return getScenarios();
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			return getFunctionalRequirements();
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			return getNonFunctionalRequirements();
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			return getIdentifiedClasses();
+		case RequirementPackage.USE_CASE__DETAILING_FUNCTIONAL_REQUIREMENTS:
+			return getDetailingFunctionalRequirements();
+		case RequirementPackage.USE_CASE__CONSTRAINING_NF_RS:
+			return getConstrainingNFRs();
+		case RequirementPackage.USE_CASE__PARTICIPATING_CLASSES:
+			return getParticipatingClasses();
 		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
 			return getIncludedUseCases();
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
 			return getExtendedUseCases();
+		case RequirementPackage.USE_CASE__DESCRIBED_FEATURES:
+			return getDescribedFeatures();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -734,17 +731,17 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			getScenarios().clear();
 			getScenarios().addAll((Collection<? extends Scenario>) newValue);
 			return;
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			getFunctionalRequirements().clear();
-			getFunctionalRequirements().addAll((Collection<? extends FunctionalRequirement>) newValue);
+		case RequirementPackage.USE_CASE__DETAILING_FUNCTIONAL_REQUIREMENTS:
+			getDetailingFunctionalRequirements().clear();
+			getDetailingFunctionalRequirements().addAll((Collection<? extends FunctionalRequirement>) newValue);
 			return;
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			getNonFunctionalRequirements().clear();
-			getNonFunctionalRequirements().addAll((Collection<? extends NonFunctionalRequirement>) newValue);
+		case RequirementPackage.USE_CASE__CONSTRAINING_NF_RS:
+			getConstrainingNFRs().clear();
+			getConstrainingNFRs().addAll((Collection<? extends NonFunctionalRequirement>) newValue);
 			return;
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			getIdentifiedClasses().clear();
-			getIdentifiedClasses().addAll((Collection<? extends org.unicase.model.classes.Class>) newValue);
+		case RequirementPackage.USE_CASE__PARTICIPATING_CLASSES:
+			getParticipatingClasses().clear();
+			getParticipatingClasses().addAll((Collection<? extends org.unicase.model.classes.Class>) newValue);
 			return;
 		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
 			getIncludedUseCases().clear();
@@ -754,13 +751,16 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			getExtendedUseCases().clear();
 			getExtendedUseCases().addAll((Collection<? extends UseCase>) newValue);
 			return;
+		case RequirementPackage.USE_CASE__DESCRIBED_FEATURES:
+			getDescribedFeatures().clear();
+			getDescribedFeatures().addAll((Collection<? extends Feature>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -793,14 +793,14 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 		case RequirementPackage.USE_CASE__SCENARIOS:
 			getScenarios().clear();
 			return;
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			getFunctionalRequirements().clear();
+		case RequirementPackage.USE_CASE__DETAILING_FUNCTIONAL_REQUIREMENTS:
+			getDetailingFunctionalRequirements().clear();
 			return;
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			getNonFunctionalRequirements().clear();
+		case RequirementPackage.USE_CASE__CONSTRAINING_NF_RS:
+			getConstrainingNFRs().clear();
 			return;
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			getIdentifiedClasses().clear();
+		case RequirementPackage.USE_CASE__PARTICIPATING_CLASSES:
+			getParticipatingClasses().clear();
 			return;
 		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
 			getIncludedUseCases().clear();
@@ -808,13 +808,15 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
 			getExtendedUseCases().clear();
 			return;
+		case RequirementPackage.USE_CASE__DESCRIBED_FEATURES:
+			getDescribedFeatures().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -839,23 +841,24 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return EXCEPTION_EDEFAULT == null ? exception != null : !EXCEPTION_EDEFAULT.equals(exception);
 		case RequirementPackage.USE_CASE__SCENARIOS:
 			return scenarios != null && !scenarios.isEmpty();
-		case RequirementPackage.USE_CASE__FUNCTIONAL_REQUIREMENTS:
-			return functionalRequirements != null && !functionalRequirements.isEmpty();
-		case RequirementPackage.USE_CASE__NON_FUNCTIONAL_REQUIREMENTS:
-			return nonFunctionalRequirements != null && !nonFunctionalRequirements.isEmpty();
-		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
-			return identifiedClasses != null && !identifiedClasses.isEmpty();
+		case RequirementPackage.USE_CASE__DETAILING_FUNCTIONAL_REQUIREMENTS:
+			return detailingFunctionalRequirements != null && !detailingFunctionalRequirements.isEmpty();
+		case RequirementPackage.USE_CASE__CONSTRAINING_NF_RS:
+			return constrainingNFRs != null && !constrainingNFRs.isEmpty();
+		case RequirementPackage.USE_CASE__PARTICIPATING_CLASSES:
+			return participatingClasses != null && !participatingClasses.isEmpty();
 		case RequirementPackage.USE_CASE__INCLUDED_USE_CASES:
 			return includedUseCases != null && !includedUseCases.isEmpty();
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
 			return extendedUseCases != null && !extendedUseCases.isEmpty();
+		case RequirementPackage.USE_CASE__DESCRIBED_FEATURES:
+			return describedFeatures != null && !describedFeatures.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

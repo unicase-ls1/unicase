@@ -35,7 +35,7 @@ public class UsecaseIdentifiedClassConstraint extends AbstractModelConstraint {
 
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof UseCase) {
-				EList<Class> identifiedClasses = ((UseCase) eObj).getIdentifiedClasses();
+				EList<Class> identifiedClasses = ((UseCase) eObj).getParticipatingClasses();
 				if (identifiedClasses.size() < 1) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						(ModelElement) eObj, "identifiedClasses");
