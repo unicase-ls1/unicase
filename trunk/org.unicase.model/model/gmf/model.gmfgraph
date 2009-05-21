@@ -438,7 +438,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActorNode_name"
-            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
           <layoutData
               xsi:type="gmfgraph:GridLayoutData"/>
           <font
@@ -459,14 +459,14 @@
           name="UseCaseFigure">
         <layout
             xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.CenterLayout"/>
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
         <foregroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="black"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="UsecaseFigure_name"
-            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -718,6 +718,122 @@
           accessor="getActivityFigureName"
           figure="//@figures.4/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="ForkFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ForkFigure">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <minimumSize
+            dx="10"
+            dy="10"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="Arrow">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Arrow"
+          targetDecoration="//@figures.4/@descriptors.2/@actualFigure/@children.0">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <children
+            xsi:type="gmfgraph:PolylineDecoration"
+            name="ArrowDec"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="ActivityFinalFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="ActivityFinalFigure">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <maximumSize
+            dx="23"
+            dy="23"/>
+        <minimumSize
+            dx="23"
+            dy="23"/>
+        <preferredSize
+            dx="23"
+            dy="23"/>
+        <children
+            xsi:type="gmfgraph:Ellipse"
+            name="ActivityFinalFigure_inner">
+          <backgroundColor
+              xsi:type="gmfgraph:ConstantColor"
+              value="black"/>
+          <maximumSize
+              dx="15"
+              dy="15"/>
+          <minimumSize
+              dx="15"
+              dy="15"/>
+          <preferredSize
+              dx="15"
+              dy="15"/>
+        </children>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="ActivityInitialFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="ActivityFinalFigure">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <maximumSize
+            dx="15"
+            dy="15"/>
+        <minimumSize
+            dx="15"
+            dy="15"/>
+        <preferredSize
+            dx="15"
+            dy="15"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="ConditionLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="ConditionLabel"/>
+    </descriptors>
+    <descriptors
+        name="BranchFigure">
+      <actualFigure
+          xsi:type="gmfgraph:ScalablePolygon"
+          name="BranchFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="lightGray"/>
+        <minimumSize
+            dx="10"
+            dy="10"/>
+        <template
+            x="20"/>
+        <template
+            x="40"
+            y="20"/>
+        <template
+            x="20"
+            y="40"/>
+        <template
+            y="20"/>
+      </actualFigure>
+    </descriptors>
   </figures>
   <nodes
       name="Class"
@@ -764,6 +880,18 @@
   <nodes
       name="Activity"
       figure="ActivityFigure"/>
+  <nodes
+      name="ForkNode"
+      figure="ForkFigure"/>
+  <nodes
+      name="ActivityFinalNode"
+      figure="ActivityFinalFigure"/>
+  <nodes
+      name="ActivityInitialNode"
+      figure="ActivityInitialFigure"/>
+  <nodes
+      name="BranchNode"
+      figure="BranchFigure"/>
   <connections
       name="Association"
       figure="AssociationFigure"/>
@@ -794,6 +922,9 @@
   <connections
       name="Transition"
       figure="TransitionFigure"/>
+  <connections
+      name="ActivityTransition"
+      figure="Arrow"/>
   <compartments
       name="ClassNode_attributes"
       figure="ClassFigure"
@@ -942,5 +1073,17 @@
   <labels
       name="ActivityNode_name"
       figure="ActivityFigure"
+      elementIcon="false"
       accessor="//@figures.4/@descriptors.0/@accessors.0"/>
+  <labels
+      name="ConditionLabel"
+      figure="ConditionLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
 </gmfgraph:Canvas>
