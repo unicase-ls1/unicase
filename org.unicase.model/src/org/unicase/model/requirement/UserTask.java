@@ -11,15 +11,16 @@ import org.unicase.model.NonDomainElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>User Task</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.requirement.UserTask#getInitiatingActor <em>Initiating Actor</em>}</li>
- * <li>{@link org.unicase.model.requirement.UserTask#getParticipatingActor <em>Participating Actor</em>}</li>
- * <li>{@link org.unicase.model.requirement.UserTask#getRealizingUseCases <em>Realizing Use Cases</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UserTask#getInitiatingActor <em>Initiating Actor</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UserTask#getParticipatingActor <em>Participating Actor</em>}</li>
+ *   <li>{@link org.unicase.model.requirement.UserTask#getRealizingUseCases <em>Realizing Use Cases</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.requirement.RequirementPackage#getUserTask()
  * @model
  * @generated
@@ -45,9 +46,8 @@ public interface UserTask extends ModelElement, NonDomainElement {
 	Actor getInitiatingActor();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.requirement.UserTask#getInitiatingActor
-	 * <em>Initiating Actor</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.requirement.UserTask#getInitiatingActor <em>Initiating Actor</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Initiating Actor</em>' reference.
 	 * @see #getInitiatingActor()
 	 * @generated

@@ -34,6 +34,7 @@ import org.unicase.model.component.ComponentFactory;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.hazard.HazardFactory;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.profile.ProfileFactory;
@@ -192,6 +193,9 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 			ClassesFactory.eINSTANCE.createDependency()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			ClassesFactory.eINSTANCE.createObject()));
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			DocumentFactory.eINSTANCE.createLeafSection()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
@@ -223,6 +227,9 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			RequirementFactory.eINSTANCE.createUserTask()));
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			RequirementFactory.eINSTANCE.createFeature()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			RationaleFactory.eINSTANCE.createIssue()));
@@ -322,6 +329,15 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			HazardFactory.eINSTANCE.createHazard()));
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			HazardFactory.eINSTANCE.createMitigation()));
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			HazardFactory.eINSTANCE.createHazardCause()));
 	}
 
 	/**

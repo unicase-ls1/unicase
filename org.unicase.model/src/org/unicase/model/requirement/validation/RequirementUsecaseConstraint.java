@@ -35,7 +35,7 @@ public class RequirementUsecaseConstraint extends AbstractModelConstraint {
 
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof NonFunctionalRequirement) {
-				EList<UseCase> useCases = ((NonFunctionalRequirement) eObj).getRestrictedUseCases();
+				EList<UseCase> useCases = ((NonFunctionalRequirement) eObj).getConstrainedUseCases();
 				if (useCases.size() < 1) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						(ModelElement) eObj, "restrictedUseCases");

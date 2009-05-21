@@ -35,7 +35,8 @@ public class UsecaseRequirementConstraint extends AbstractModelConstraint {
 
 		if (eType == EMFEventType.NULL) {
 			if (eObj instanceof UseCase) {
-				EList<FunctionalRequirement> functionalRequirements = ((UseCase) eObj).getFunctionalRequirements();
+				EList<FunctionalRequirement> functionalRequirements = ((UseCase) eObj)
+					.getDetailingFunctionalRequirements();
 				if (functionalRequirements.size() < 1) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
 						(ModelElement) eObj, "functionalRequirements");

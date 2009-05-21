@@ -18,44 +18,42 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.model.util.UtilFactory
  * @model kind="package"
  * @generated
  */
 public interface UtilPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "util";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/model/util";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.model.util";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	UtilPackage eINSTANCE = org.unicase.model.util.impl.UtilPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.util.impl.ModelElementPathImpl <em>Model Element Path</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.model.util.impl.ModelElementPathImpl <em>Model Element Path</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.model.util.impl.ModelElementPathImpl
 	 * @see org.unicase.model.util.impl.UtilPackageImpl#getModelElementPath()
 	 * @generated
@@ -81,18 +79,18 @@ public interface UtilPackage extends EPackage {
 	int MODEL_ELEMENT_PATH__TARGET = 1;
 
 	/**
-	 * The feature id for the '<em><b>Path</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Path</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int MODEL_ELEMENT_PATH__PATH = 2;
 
 	/**
-	 * The number of structural features of the '<em>Model Element Path</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Model Element Path</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -101,7 +99,6 @@ public interface UtilPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.util.ModelElementPath <em>Model Element Path</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Model Element Path</em>'.
 	 * @see org.unicase.model.util.ModelElementPath
 	 * @generated
@@ -109,9 +106,8 @@ public interface UtilPackage extends EPackage {
 	EClass getModelElementPath();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.model.util.ModelElementPath#getSource
-	 * <em>Source</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference '{@link org.unicase.model.util.ModelElementPath#getSource <em>Source</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Source</em>'.
 	 * @see org.unicase.model.util.ModelElementPath#getSource()
 	 * @see #getModelElementPath()
@@ -120,9 +116,8 @@ public interface UtilPackage extends EPackage {
 	EReference getModelElementPath_Source();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.model.util.ModelElementPath#getTarget
-	 * <em>Target</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the containment reference '{@link org.unicase.model.util.ModelElementPath#getTarget <em>Target</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the containment reference '<em>Target</em>'.
 	 * @see org.unicase.model.util.ModelElementPath#getTarget()
 	 * @see #getModelElementPath()
@@ -143,8 +138,8 @@ public interface UtilPackage extends EPackage {
 	EReference getModelElementPath_Path();
 
 	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the factory that creates the instances of the model.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -159,14 +154,12 @@ public interface UtilPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.util.impl.ModelElementPathImpl
-		 * <em>Model Element Path</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.model.util.impl.ModelElementPathImpl <em>Model Element Path</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.model.util.impl.ModelElementPathImpl
 		 * @see org.unicase.model.util.impl.UtilPackageImpl#getModelElementPath()
 		 * @generated
@@ -174,17 +167,17 @@ public interface UtilPackage extends EPackage {
 		EClass MODEL_ELEMENT_PATH = eINSTANCE.getModelElementPath();
 
 		/**
-		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Source</b></em>' containment reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference MODEL_ELEMENT_PATH__SOURCE = eINSTANCE.getModelElementPath_Source();
 
 		/**
-		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Target</b></em>' containment reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference MODEL_ELEMENT_PATH__TARGET = eINSTANCE.getModelElementPath_Target();

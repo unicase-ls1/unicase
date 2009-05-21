@@ -25,20 +25,20 @@ import org.unicase.model.task.WorkItem;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.organization.impl.UserImpl#getEmail <em>Email</em>}</li>
- * <li>{@link org.unicase.model.organization.impl.UserImpl#getFirstName <em>First Name</em>}</li>
- * <li>{@link org.unicase.model.organization.impl.UserImpl#getLastName <em>Last Name</em>}</li>
- * <li>{@link org.unicase.model.organization.impl.UserImpl#getWorkItemsToReview <em>Work Items To Review</em>}</li>
+ *   <li>{@link org.unicase.model.organization.impl.UserImpl#getEmail <em>Email</em>}</li>
+ *   <li>{@link org.unicase.model.organization.impl.UserImpl#getFirstName <em>First Name</em>}</li>
+ *   <li>{@link org.unicase.model.organization.impl.UserImpl#getLastName <em>Last Name</em>}</li>
+ *   <li>{@link org.unicase.model.organization.impl.UserImpl#getWorkItemsToReview <em>Work Items To Review</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class UserImpl extends OrgUnitImpl implements User {
 	/**
-	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getEmail() <em>Email</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getEmail()
 	 * @generated
 	 * @ordered
@@ -55,36 +55,36 @@ public class UserImpl extends OrgUnitImpl implements User {
 	protected String email = EMAIL_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getFirstName() <em>First Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getFirstName() <em>First Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFirstName()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String FIRST_NAME_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getFirstName() <em>First Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFirstName() <em>First Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFirstName()
 	 * @generated
 	 * @ordered
 	 */
 	protected String firstName = FIRST_NAME_EDEFAULT;
 	/**
-	 * The default value of the '{@link #getLastName() <em>Last Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getLastName() <em>Last Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLastName()
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String LAST_NAME_EDEFAULT = null;
 	/**
-	 * The cached value of the '{@link #getLastName() <em>Last Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getLastName() <em>Last Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getLastName()
 	 * @generated
 	 * @ordered
@@ -103,7 +103,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UserImpl() {
@@ -112,7 +111,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,7 +120,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getEmail() {
@@ -131,7 +128,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEmail(String newEmail) {
@@ -143,7 +139,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getFirstName() {
@@ -152,7 +147,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFirstName(String newFirstName) {
@@ -165,7 +159,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLastName() {
@@ -174,7 +167,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLastName(String newLastName) {
@@ -187,7 +179,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<WorkItem> getWorkItemsToReview() {
@@ -200,7 +191,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -216,7 +206,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -230,7 +219,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -250,7 +238,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -276,7 +263,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -300,7 +286,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -320,7 +305,6 @@ public class UserImpl extends OrgUnitImpl implements User {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

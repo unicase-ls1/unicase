@@ -20,13 +20,12 @@ import org.unicase.model.bug.Severity;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static BugFactory init() {
@@ -43,8 +42,8 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public BugFactoryImpl() {
@@ -53,7 +52,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,7 +66,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,7 +84,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -106,7 +102,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BugReport createBugReport() {
@@ -116,7 +111,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BugStatus createBugStatusFromString(EDataType eDataType, String initialValue) {
@@ -129,7 +123,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertBugStatusToString(EDataType eDataType, Object instanceValue) {
@@ -138,7 +131,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Severity createSeverityFromString(EDataType eDataType, String initialValue) {
@@ -151,7 +143,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertSeverityToString(EDataType eDataType, Object instanceValue) {
@@ -160,7 +151,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ResolutionType createResolutionTypeFromString(EDataType eDataType, String initialValue) {
@@ -173,7 +163,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String convertResolutionTypeToString(EDataType eDataType, Object instanceValue) {
@@ -182,7 +171,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BugPackage getBugPackage() {
@@ -191,7 +179,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

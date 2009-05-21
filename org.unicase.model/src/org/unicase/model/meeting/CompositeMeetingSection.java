@@ -10,27 +10,28 @@ import org.eclipse.emf.common.util.EList;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Composite Meeting Section</b></em>'. <!--
  * end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.meeting.CompositeMeetingSection#getSubsections <em>Subsections</em>}</li>
+ *   <li>{@link org.unicase.model.meeting.CompositeMeetingSection#getSubsections <em>Subsections</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.model.meeting.MeetingPackage#getCompositeMeetingSection()
  * @model
  * @generated
  */
 public interface CompositeMeetingSection extends MeetingSection {
 	/**
-	 * Returns the value of the '<em><b>Subsections</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.model.meeting.MeetingSection}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Subsections</b></em>' containment reference list.
+	 * The list contents are of type {@link org.unicase.model.meeting.MeetingSection}.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Subsections</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Subsections</em>' containment reference list.
 	 * @see org.unicase.model.meeting.MeetingPackage#getCompositeMeetingSection_Subsections()
 	 * @model containment="true" resolveProxies="true" keys="identifier"

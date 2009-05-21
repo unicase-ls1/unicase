@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <history:History xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:history="http://www.cs.tum.edu/cope/history">
-  <releases date="2009-02-10T17:24:06.781+0100" label="0.3.4.internal">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:history="http://www.cs.tum.edu/cope/history">
+  <releases date="2009-02-10T08:24:06.781-0800" label="0.3.4.internal">
     <changes xsi:type="history:CompositeChange">
       <changes xsi:type="history:AddRootPackage" package="model.ecore#/">
         <changes xsi:type="history:Set" element="model.ecore#/" featureName="name"
@@ -3171,36 +3171,37 @@
             featureName="value" dataValue="left"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/FunctionalRequirement"
-          element="model.ecore#//requirement/FunctionalRequirement/useCases" referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/useCases"
+          element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases"
+          referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases"
             featureName="name" dataValue="useCases"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/useCases"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases"
             featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/useCases"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases"
             featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
-        <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/useCases"
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/FunctionalRequirement/useCases"
-          element="model.ecore#//requirement/FunctionalRequirement/useCases/%org.unicase.ui.meeditor%"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/FunctionalRequirement/detailedUseCases"
+          element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases/%org.unicase.ui.meeditor%"
           referenceName="eAnnotations">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/useCases/%org.unicase.ui.meeditor%"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases/%org.unicase.ui.meeditor%"
             featureName="source" dataValue="org.unicase.ui.meeditor"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/FunctionalRequirement/useCases/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/FunctionalRequirement/useCases/%org.unicase.ui.meeditor%/@details.0"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/FunctionalRequirement/detailedUseCases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases/%org.unicase.ui.meeditor%/@details.0"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/useCases/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases/%org.unicase.ui.meeditor%/@details.0"
             featureName="key" dataValue="priority"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/useCases/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases/%org.unicase.ui.meeditor%/@details.0"
             featureName="value" dataValue="10.0"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/FunctionalRequirement/useCases/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/FunctionalRequirement/useCases/%org.unicase.ui.meeditor%/@details.1"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/FunctionalRequirement/detailedUseCases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases/%org.unicase.ui.meeditor%/@details.1"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/useCases/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases/%org.unicase.ui.meeditor%/@details.1"
             featureName="key" dataValue="position"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/useCases/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases/%org.unicase.ui.meeditor%/@details.1"
             featureName="value" dataValue="right"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase"
@@ -3234,77 +3235,78 @@
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase"
-          element="model.ecore#//requirement/UseCase/functionalRequirements" referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/functionalRequirements"
+          element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements"
+          referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements"
             featureName="name" dataValue="functionalRequirements"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/functionalRequirements"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements"
             featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/functionalRequirements"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements"
             featureName="eType" referenceValue="model.ecore#//requirement/FunctionalRequirement"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/functionalRequirements"
-            featureName="eOpposite" referenceValue="model.ecore#//requirement/FunctionalRequirement/useCases"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/useCases"
-            featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/functionalRequirements"/>
-        <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/functionalRequirements"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/FunctionalRequirement/detailedUseCases"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/detailingFunctionalRequirements"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/functionalRequirements"
-          element="model.ecore#//requirement/UseCase/functionalRequirements/%org.unicase.ui.meeditor%"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/detailingFunctionalRequirements"
+          element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements/%org.unicase.ui.meeditor%"
           referenceName="eAnnotations">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/functionalRequirements/%org.unicase.ui.meeditor%"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements/%org.unicase.ui.meeditor%"
             featureName="source" dataValue="org.unicase.ui.meeditor"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/functionalRequirements/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/UseCase/functionalRequirements/%org.unicase.ui.meeditor%/@details.0"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/detailingFunctionalRequirements/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements/%org.unicase.ui.meeditor%/@details.0"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/functionalRequirements/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements/%org.unicase.ui.meeditor%/@details.0"
             featureName="key" dataValue="priority"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/functionalRequirements/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements/%org.unicase.ui.meeditor%/@details.0"
             featureName="value" dataValue="11.0"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/functionalRequirements/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/UseCase/functionalRequirements/%org.unicase.ui.meeditor%/@details.1"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/detailingFunctionalRequirements/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements/%org.unicase.ui.meeditor%/@details.1"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/functionalRequirements/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements/%org.unicase.ui.meeditor%/@details.1"
             featureName="key" dataValue="position"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/functionalRequirements/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements/%org.unicase.ui.meeditor%/@details.1"
             featureName="value" dataValue="right"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase"
-          element="model.ecore#//requirement/UseCase/identifiedClasses" referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/identifiedClasses"
+          element="model.ecore#//requirement/UseCase/participatingClasses" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/participatingClasses"
             featureName="name" dataValue="identifiedClasses"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/identifiedClasses"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/participatingClasses"
             featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/identifiedClasses"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/participatingClasses"
             featureName="eType" referenceValue="model.ecore#//classes/Class"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/identifiedClasses"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/participatingClasses"
             featureName="eOpposite" referenceValue="model.ecore#//classes/Class/participatedUseCases"/>
         <changes xsi:type="history:Set" element="model.ecore#//classes/Class/participatedUseCases"
-            featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/identifiedClasses"/>
-        <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/identifiedClasses"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/participatingClasses"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/participatingClasses"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/identifiedClasses"
-          element="model.ecore#//requirement/UseCase/identifiedClasses/%org.unicase.ui.meeditor%"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/participatingClasses"
+          element="model.ecore#//requirement/UseCase/participatingClasses/%org.unicase.ui.meeditor%"
           referenceName="eAnnotations">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/identifiedClasses/%org.unicase.ui.meeditor%"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/participatingClasses/%org.unicase.ui.meeditor%"
             featureName="source" dataValue="org.unicase.ui.meeditor"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/identifiedClasses/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/UseCase/identifiedClasses/%org.unicase.ui.meeditor%/@details.0"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/participatingClasses/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/participatingClasses/%org.unicase.ui.meeditor%/@details.0"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/identifiedClasses/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/participatingClasses/%org.unicase.ui.meeditor%/@details.0"
             featureName="key" dataValue="priority"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/identifiedClasses/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/participatingClasses/%org.unicase.ui.meeditor%/@details.0"
             featureName="value" dataValue="13.0"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/identifiedClasses/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/UseCase/identifiedClasses/%org.unicase.ui.meeditor%/@details.1"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/participatingClasses/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/participatingClasses/%org.unicase.ui.meeditor%/@details.1"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/identifiedClasses/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/participatingClasses/%org.unicase.ui.meeditor%/@details.1"
             featureName="key" dataValue="position"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/identifiedClasses/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/participatingClasses/%org.unicase.ui.meeditor%/@details.1"
             featureName="value" dataValue="right"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase"
@@ -4419,74 +4421,74 @@
             featureName="eSuperTypes" referenceValue="model.ecore#//rationale/Criterion"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase"
-          element="model.ecore#//requirement/UseCase/nonFunctionalRequirements" referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
+          element="model.ecore#//requirement/UseCase/constrainingNFRs" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/constrainingNFRs"
             featureName="name" dataValue="nonFunctionalRequirements"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/constrainingNFRs"
             featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/constrainingNFRs"
             featureName="eType" referenceValue="model.ecore#//requirement/NonFunctionalRequirement"/>
-        <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/constrainingNFRs"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement"
-          element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
+          element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases"
           referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases"
             featureName="name" dataValue="restrictedUseCases"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases"
             featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases"
             featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
-            featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/nonFunctionalRequirements"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
-            featureName="eOpposite" referenceValue="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"/>
-        <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/constrainingNFRs"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/constrainingNFRs"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"
-          element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases/%org.unicase.ui.meeditor%"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases"
+          element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases/%org.unicase.ui.meeditor%"
           referenceName="eAnnotations">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases/%org.unicase.ui.meeditor%"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases/%org.unicase.ui.meeditor%"
             featureName="source" dataValue="org.unicase.ui.meeditor"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases/%org.unicase.ui.meeditor%/@details.0"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases/%org.unicase.ui.meeditor%/@details.0"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases/%org.unicase.ui.meeditor%/@details.0"
             featureName="key" dataValue="priority"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases/%org.unicase.ui.meeditor%/@details.0"
             featureName="value" dataValue="9.2"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases/%org.unicase.ui.meeditor%/@details.1"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases/%org.unicase.ui.meeditor%/@details.1"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases/%org.unicase.ui.meeditor%/@details.1"
             featureName="key" dataValue="position"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases/%org.unicase.ui.meeditor%/@details.1"
             featureName="value" dataValue="right"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/nonFunctionalRequirements"
-          element="model.ecore#//requirement/UseCase/nonFunctionalRequirements/%org.unicase.ui.meeditor%"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/constrainingNFRs"
+          element="model.ecore#//requirement/UseCase/constrainingNFRs/%org.unicase.ui.meeditor%"
           referenceName="eAnnotations">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements/%org.unicase.ui.meeditor%"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/constrainingNFRs/%org.unicase.ui.meeditor%"
             featureName="source" dataValue="org.unicase.ui.meeditor"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/nonFunctionalRequirements/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/UseCase/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.0"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/constrainingNFRs/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/constrainingNFRs/%org.unicase.ui.meeditor%/@details.0"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/constrainingNFRs/%org.unicase.ui.meeditor%/@details.0"
             featureName="key" dataValue="priority"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/constrainingNFRs/%org.unicase.ui.meeditor%/@details.0"
             featureName="value" dataValue="12.0"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/nonFunctionalRequirements/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/UseCase/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.1"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase/constrainingNFRs/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/constrainingNFRs/%org.unicase.ui.meeditor%/@details.1"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/constrainingNFRs/%org.unicase.ui.meeditor%/@details.1"
             featureName="key" dataValue="position"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/constrainingNFRs/%org.unicase.ui.meeditor%/@details.1"
             featureName="value" dataValue="right"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/Scenario"
@@ -4501,41 +4503,41 @@
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement"
-          element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
+          element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios"
           referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios"
             featureName="name" dataValue="restrictedScenarios"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios"
             featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios"
             featureName="eType" referenceValue="model.ecore#//requirement/Scenario"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/Scenario/nonFunctionalRequirements"/>
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Scenario/nonFunctionalRequirements"
-            featureName="eOpposite" referenceValue="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"/>
-        <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"
-          element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios/%org.unicase.ui.meeditor%"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios"
+          element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios/%org.unicase.ui.meeditor%"
           referenceName="eAnnotations">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios/%org.unicase.ui.meeditor%"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios/%org.unicase.ui.meeditor%"
             featureName="source" dataValue="org.unicase.ui.meeditor"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios/%org.unicase.ui.meeditor%/@details.0"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios/%org.unicase.ui.meeditor%/@details.0"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios/%org.unicase.ui.meeditor%/@details.0"
             featureName="key" dataValue="priority"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios/%org.unicase.ui.meeditor%/@details.0"
             featureName="value" dataValue="9.1"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios/%org.unicase.ui.meeditor%"
-          element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios/%org.unicase.ui.meeditor%/@details.1"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios/%org.unicase.ui.meeditor%/@details.1"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios/%org.unicase.ui.meeditor%/@details.1"
             featureName="key" dataValue="position"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios/%org.unicase.ui.meeditor%/@details.1"
             featureName="value" dataValue="right"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/Scenario/nonFunctionalRequirements"
@@ -6215,5 +6217,366 @@
         featureName="name" dataValue="fileName"/>
     <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/cost"
         featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#/" element="model.ecore#//hazard"
+        referenceName="eSubpackages"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard" featureName="nsURI"
+        dataValue=""/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard" featureName="nsPrefix"
+        dataValue=""/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard" featureName="nsPrefix"
+        dataValue="org.unicase.model.activity"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard" featureName="nsURI"
+        dataValue="http://unicase.org/model/activity"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard" featureName="name"
+        dataValue="hazard"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard" featureName="nsPrefix"
+        dataValue="org.unicase.model.hazard"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard" featureName="nsURI"
+        dataValue="http://unicase.org/model/hazard"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard" element="#//@releases.1/@changes.40/@element"
+        referenceName="eSubpackages"/>
+    <changes xsi:type="history:Delete">
+      <element xsi:type="ecore:EPackage"/>
+    </changes>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard" element="model.ecore#//hazard/Hazard"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:Add" element="model.ecore#//hazard/Hazard" featureName="eSuperTypes"
+        referenceValue="model.ecore#//ModelElement"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard" featureName="instanceClassName"/>
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard" featureName="instanceTypeName"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard" featureName="name"
+        dataValue="Hazard"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard" element="model.ecore#//hazard/Mitigation"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation" featureName="name"
+        dataValue="Mitigation"/>
+    <changes xsi:type="history:Add" element="model.ecore#//hazard/Mitigation" featureName="eSuperTypes"
+        referenceValue="model.ecore#//ModelElement"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard" element="model.ecore#//requirement/Feature"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:Add" element="model.ecore#//requirement/Feature" featureName="eSuperTypes"
+        referenceValue="model.ecore#//ModelElement"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature" featureName="name"
+        dataValue="Feature"/>
+    <changes xsi:type="history:Move" target="model.ecore#//requirement" element="model.ecore#//requirement/Feature"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard" element="model.ecore#//hazard/HazardCause"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause" featureName="name"
+        dataValue="HazardCause"/>
+    <changes xsi:type="history:Add" element="model.ecore#//hazard/HazardCause" featureName="eSuperTypes"
+        referenceValue="model.ecore#//ModelElement"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/Feature"
+        element="model.ecore#//requirement/Feature/describingUseCases" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/describingUseCases"
+        featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/describingUseCases"
+        featureName="name" dataValue="describingUseCases"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase"
+        element="#//@releases.1/@changes.59/@element" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Delete">
+      <element xsi:type="ecore:EAttribute"/>
+    </changes>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/UseCase"
+        element="model.ecore#//requirement/UseCase/describedFeatures" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/describedFeatures"
+        featureName="eType" referenceValue="model.ecore#//requirement/Feature"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/describedFeatures"
+        featureName="name" dataValue="describedFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/describedFeatures"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/describingUseCases"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/describedFeatures"
+          featureName="eOpposite" referenceValue="model.ecore#//requirement/Feature/describingUseCases"/>
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/describingUseCases"
+          featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/describedFeatures"/>
+    </changes>
+    <changes xsi:type="history:Add" element="model.ecore#//requirement/Feature/describingUseCases"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/describedFeatures"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/Feature"
+        element="model.ecore#//requirement/Feature/refiningFeatures" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/refiningFeatures"
+        featureName="containment" dataValue="true"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/refiningFeatures"
+        featureName="eType" referenceValue="model.ecore#//requirement/Feature"/>
+    <changes xsi:type="history:Add" element="model.ecore#//requirement/Feature/refiningFeatures"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/refiningFeatures"
+        featureName="name" dataValue="refiningFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/refiningFeatures"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/FunctionalRequirement"
+        element="model.ecore#//requirement/FunctionalRequirement/detailedFeatures"
+        referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedFeatures"
+        featureName="eType" referenceValue="model.ecore#//requirement/Feature"/>
+    <changes xsi:type="history:Add" element="model.ecore#//requirement/FunctionalRequirement/detailedFeatures"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedFeatures"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedFeatures"
+        featureName="name" dataValue="detailedFeatures"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/Feature"
+        element="model.ecore#//requirement/Feature/detailingRequirements" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/detailingRequirements"
+        featureName="eType" referenceValue="model.ecore#//requirement/FunctionalRequirement"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedFeatures"
+          featureName="eOpposite" referenceValue="model.ecore#//requirement/Feature/detailingRequirements"/>
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/detailingRequirements"
+          featureName="eOpposite" referenceValue="model.ecore#//requirement/FunctionalRequirement/detailedFeatures"/>
+    </changes>
+    <changes xsi:type="history:Add" element="model.ecore#//requirement/Feature/detailingRequirements"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/detailingRequirements"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/Feature/detailingRequirements"
+        featureName="name" dataValue="detailingRequirements"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/constrainingNFRs"
+        featureName="name" dataValue="constrainingNFRs"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//requirement/NonFunctionalRequirement"
+        element="model.ecore#//requirement/NonFunctionalRequirement/constrainedFRs"
+        referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedFRs"
+        featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases"
+          featureName="eOpposite"/>
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/constrainingNFRs"
+          featureName="eOpposite" referenceValue="model.ecore#//requirement/NonFunctionalRequirement/constrainedFRs"/>
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedFRs"
+          featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/constrainingNFRs"/>
+    </changes>
+    <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedFRs"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedFRs"
+        featureName="name" dataValue="constrainedFRs"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedFRs"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedUseCases"
+        featureName="name" dataValue="constrainedUseCases"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/constrainedScenarios"
+        featureName="name" dataValue="constrainedScenarios"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/detailingFunctionalRequirements"
+        featureName="name" dataValue="detailingFunctionalRequirements"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/detailedUseCases"
+        featureName="name" dataValue="detailedUseCases"/>
+    <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/participatingClasses"
+        featureName="name" dataValue="participatingClasses"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//classes" element="model.ecore#//classes/Object"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Object" featureName="name"
+        dataValue="Object"/>
+    <changes xsi:type="history:Add" element="model.ecore#//classes/Object" featureName="eSuperTypes"
+        referenceValue="model.ecore#//ModelElement"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Object" featureName="instanceClassName"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Object" featureName="instanceTypeName"/>
+    </changes>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//classes/Object"
+        element="model.ecore#//classes/Object/class" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Object/class" featureName="name"
+        dataValue="class"/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Object/class" featureName="eType"
+        referenceValue="model.ecore#//classes/Class"/>
+    <changes xsi:type="history:Add" element="model.ecore#//classes/Object/class" featureName="eKeys"
+        referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//classes/Class" element="model.ecore#//classes/Class/instances"
+        referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Class/instances"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Class/instances"
+        featureName="eType" referenceValue="model.ecore#//classes/Object"/>
+    <changes xsi:type="history:Set" element="model.ecore#//classes/Class/instances"
+        featureName="name" dataValue="instances"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Object/class"
+          featureName="eOpposite" referenceValue="model.ecore#//classes/Class/instances"/>
+      <changes xsi:type="history:Set" element="model.ecore#//classes/Class/instances"
+          featureName="eOpposite" referenceValue="model.ecore#//classes/Object/class"/>
+    </changes>
+    <changes xsi:type="history:Add" element="model.ecore#//classes/Class/instances"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/Hazard" element="model.ecore#//hazard/Hazard/involvedClasses"
+        referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/involvedClasses"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/involvedClasses"
+        featureName="eType" referenceValue="model.ecore#//classes/Class"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/involvedClasses"
+        featureName="name" dataValue="involvedClasses"/>
+    <changes xsi:type="history:Add" element="model.ecore#//hazard/Hazard/involvedClasses"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/Hazard" element="model.ecore#//hazard/Hazard/targetedActors"
+        referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/targetedActors"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/targetedActors"
+        featureName="name" dataValue="targetedActors"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/targetedActors"
+        featureName="eType" referenceValue="model.ecore#//requirement/Actor"/>
+    <changes xsi:type="history:Add" element="model.ecore#//hazard/Hazard/targetedActors"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/Hazard" element="model.ecore#//hazard/Hazard/severity"
+        referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/severity"
+        featureName="name" dataValue="severity"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/severity"
+        featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/Hazard" element="model.ecore#//hazard/Hazard/causes"
+        referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/causes" featureName="upperBound"
+        dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/causes" featureName="eType"
+        referenceValue="model.ecore#//hazard/HazardCause"/>
+    <changes xsi:type="history:Add" element="model.ecore#//hazard/Hazard/causes" featureName="eKeys"
+        referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/causes" featureName="name"
+        dataValue="causes"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/HazardCause"
+        element="model.ecore#//hazard/HazardCause/hazards" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/hazards"
+        featureName="eType" referenceValue="model.ecore#//hazard/Hazard"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/hazards"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/hazards"
+        featureName="name" dataValue="hazards"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/HazardCause"
+        element="model.ecore#//hazard/HazardCause/hazardousModelElements" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/hazardousModelElements"
+        featureName="eType" referenceValue="model.ecore#//ModelElement"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/hazardousModelElements"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Add" element="model.ecore#//hazard/HazardCause/hazardousModelElements"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/hazardousModelElements"
+        featureName="name" dataValue="hazardousModelElements"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/hazards"
+          featureName="eOpposite" referenceValue="model.ecore#//hazard/Hazard/causes"/>
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/causes"
+          featureName="eOpposite" referenceValue="model.ecore#//hazard/HazardCause/hazards"/>
+    </changes>
+    <changes xsi:type="history:Add" element="model.ecore#//hazard/HazardCause/hazards"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/HazardCause"
+        element="model.ecore#//hazard/HazardCause/evaluationStatus" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/evaluationStatus"
+        featureName="name" dataValue="evaluationStatus"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard" element="model.ecore#//hazard/EvalStatus"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus" featureName="name"
+        dataValue="evalStatus"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/EvalStatus"
+        element="model.ecore#//hazard/EvalStatus/New" referenceName="eLiterals"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/EvalStatus"
+        element="model.ecore#//hazard/EvalStatus/Evaluated" referenceName="eLiterals"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/EvalStatus"
+        element="model.ecore#//hazard/EvalStatus/Unkown" referenceName="eLiterals"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus/New"
+        featureName="name" dataValue="NEW"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus/New"
+        featureName="literal" dataValue="New"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus/New"
+        featureName="name" dataValue="New"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus/Evaluated"
+        featureName="name" dataValue="Evaluated"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus/Unkown"
+        featureName="literal" dataValue="Unkown"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus/Unkown"
+        featureName="name" dataValue="Unkown"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus/Unkown"
+        featureName="value" dataValue="2"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus/Evaluated"
+        featureName="value" dataValue="1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/evaluationStatus"
+        featureName="eType" referenceValue="model.ecore#//hazard/EvalStatus"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus" featureName="instanceClassName"/>
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus" featureName="instanceTypeName"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/EvalStatus" featureName="name"
+        dataValue="EvalStatus"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/HazardCause"
+        element="model.ecore#//hazard/HazardCause/likelihood" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/likelihood"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/likelihood"
+        featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/likelihood"
+        featureName="name" dataValue="likelihood"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/Mitigation"
+        element="model.ecore#//hazard/Mitigation/technique" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/technique"
+        featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/technique"
+        featureName="name" dataValue="technique"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/Mitigation"
+        element="model.ecore#//hazard/Mitigation/evaluationStatus" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/evaluationStatus"
+          featureName="name" dataValue="evaluationStatus"/>
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/evaluationStatus"
+          featureName="eType" referenceValue="model.ecore#//hazard/EvalStatus"/>
+    </changes>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/Mitigation"
+        element="model.ecore#//hazard/Mitigation/causes" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/causes"
+          featureName="name" dataValue="causes"/>
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/causes"
+          featureName="upperBound" dataValue="-1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/causes"
+          featureName="eType" referenceValue="model.ecore#//hazard/HazardCause"/>
+      <changes xsi:type="history:Add" element="model.ecore#//hazard/Mitigation/causes"
+          featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/Mitigation"
+        element="model.ecore#//hazard/Mitigation/hazards" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/hazards"
+          featureName="name" dataValue="hazards"/>
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/hazards"
+          featureName="upperBound" dataValue="-1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/hazards"
+          featureName="eType" referenceValue="model.ecore#//hazard/Hazard"/>
+      <changes xsi:type="history:Add" element="model.ecore#//hazard/Mitigation/hazards"
+          featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/HazardCause"
+        element="model.ecore#//hazard/HazardCause/mitigations" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/mitigations"
+        featureName="eType" referenceValue="model.ecore#//hazard/Mitigation"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/mitigations"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Add" element="model.ecore#//hazard/HazardCause/mitigations"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/mitigations"
+          featureName="eOpposite" referenceValue="model.ecore#//hazard/Mitigation/causes"/>
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/causes"
+          featureName="eOpposite" referenceValue="model.ecore#//hazard/HazardCause/mitigations"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/HazardCause/mitigations"
+        featureName="name" dataValue="mitigations"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//hazard/Hazard" element="model.ecore#//hazard/Hazard/mitigations"
+        referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/mitigations"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/mitigations"
+        featureName="eType" referenceValue="model.ecore#//hazard/Mitigation"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Mitigation/hazards"
+          featureName="eOpposite" referenceValue="model.ecore#//hazard/Hazard/mitigations"/>
+      <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/mitigations"
+          featureName="eOpposite" referenceValue="model.ecore#//hazard/Mitigation/hazards"/>
+    </changes>
+    <changes xsi:type="history:Add" element="model.ecore#//hazard/Hazard/mitigations"
+        featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/mitigations"
+        featureName="name" dataValue="mitigations"/>
   </releases>
 </history:History>

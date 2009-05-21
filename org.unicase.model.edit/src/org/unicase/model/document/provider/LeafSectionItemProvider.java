@@ -31,6 +31,7 @@ import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.hazard.HazardFactory;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.profile.ProfileFactory;
@@ -227,6 +228,9 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 			ClassesFactory.eINSTANCE.createDependency()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			ClassesFactory.eINSTANCE.createObject()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			RequirementFactory.eINSTANCE.createNonFunctionalRequirement()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
@@ -252,6 +256,9 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			RequirementFactory.eINSTANCE.createUserTask()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			RequirementFactory.eINSTANCE.createFeature()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			RationaleFactory.eINSTANCE.createIssue()));
@@ -351,6 +358,15 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			HazardFactory.eINSTANCE.createHazard()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			HazardFactory.eINSTANCE.createMitigation()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			HazardFactory.eINSTANCE.createHazardCause()));
 	}
 
 	/**

@@ -233,6 +233,29 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.classes.Object} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected ObjectItemProvider objectItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.classes.Object}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createObjectAdapter() {
+		if (objectItemProvider == null) {
+			objectItemProvider = new ObjectItemProvider(this);
+		}
+
+		return objectItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -340,6 +363,8 @@ public class ClassesItemProviderAdapterFactory extends ClassesAdapterFactory imp
 			methodArgumentItemProvider.dispose();
 		if (dependencyItemProvider != null)
 			dependencyItemProvider.dispose();
+		if (objectItemProvider != null)
+			objectItemProvider.dispose();
 	}
 
 }

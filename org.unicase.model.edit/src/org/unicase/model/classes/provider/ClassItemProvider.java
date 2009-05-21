@@ -57,6 +57,7 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 			addAttributesPropertyDescriptor(object);
 			addMethodsPropertyDescriptor(object);
 			addDemoParticipationsPropertyDescriptor(object);
+			addInstancesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -162,6 +163,18 @@ public class ClassItemProvider extends PackageElementItemProvider implements IEd
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_demoParticipations_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_Class_demoParticipations_feature", "_UI_Class_type"),
 			ClassesPackage.Literals.CLASS__DEMO_PARTICIPATIONS, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Instances feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addInstancesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Class_instances_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Class_instances_feature", "_UI_Class_type"),
+			ClassesPackage.Literals.CLASS__INSTANCES, true, false, true, null, null, null));
 	}
 
 	/**

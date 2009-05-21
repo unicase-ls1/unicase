@@ -33,6 +33,7 @@ import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.hazard.HazardFactory;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.profile.ProfileFactory;
@@ -241,6 +242,9 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 			ClassesFactory.eINSTANCE.createDependency()));
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			ClassesFactory.eINSTANCE.createObject()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			DocumentFactory.eINSTANCE.createLeafSection()));
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
@@ -272,6 +276,9 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			RequirementFactory.eINSTANCE.createUserTask()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			RequirementFactory.eINSTANCE.createFeature()));
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			RationaleFactory.eINSTANCE.createIssue()));
@@ -371,6 +378,15 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			ActivityFactory.eINSTANCE.createActivityEnd()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			HazardFactory.eINSTANCE.createHazard()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			HazardFactory.eINSTANCE.createMitigation()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			HazardFactory.eINSTANCE.createHazardCause()));
 	}
 
 	/**

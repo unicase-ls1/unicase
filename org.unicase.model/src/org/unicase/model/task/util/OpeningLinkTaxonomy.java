@@ -52,7 +52,7 @@ public class OpeningLinkTaxonomy {
 		openers.addAll(me.getAnnotations());
 
 		if (me instanceof UseCase) {
-			EList<FunctionalRequirement> functionalRequirements = ((UseCase) me).getFunctionalRequirements();
+			EList<FunctionalRequirement> functionalRequirements = ((UseCase) me).getDetailingFunctionalRequirements();
 			openers.addAll(functionalRequirements);
 		}
 		if (me instanceof Scenario) {
@@ -87,7 +87,7 @@ public class OpeningLinkTaxonomy {
 			opened.addAll(annotation.getAnnotatedModelElements());
 		}
 		if (modelElement instanceof FunctionalRequirement) {
-			EList<UseCase> useCases = ((FunctionalRequirement) modelElement).getUseCases();
+			EList<UseCase> useCases = ((FunctionalRequirement) modelElement).getDetailedUseCases();
 			opened.addAll(useCases);
 		}
 		if (modelElement instanceof UseCase) {

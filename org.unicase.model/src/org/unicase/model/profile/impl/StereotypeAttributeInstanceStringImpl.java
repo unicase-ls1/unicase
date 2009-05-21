@@ -17,18 +17,18 @@ import org.unicase.model.profile.StereotypeAttributeInstanceString;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceStringImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceStringImpl#getValue <em>Value</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class StereotypeAttributeInstanceStringImpl extends StereotypeAttributeInstanceImpl implements
 	StereotypeAttributeInstanceString {
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -47,7 +47,6 @@ public class StereotypeAttributeInstanceStringImpl extends StereotypeAttributeIn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StereotypeAttributeInstanceStringImpl() {
@@ -56,7 +55,6 @@ public class StereotypeAttributeInstanceStringImpl extends StereotypeAttributeIn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +64,6 @@ public class StereotypeAttributeInstanceStringImpl extends StereotypeAttributeIn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getValue() {
@@ -75,7 +72,6 @@ public class StereotypeAttributeInstanceStringImpl extends StereotypeAttributeIn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setValue(String newValue) {
@@ -88,7 +84,6 @@ public class StereotypeAttributeInstanceStringImpl extends StereotypeAttributeIn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,7 +97,6 @@ public class StereotypeAttributeInstanceStringImpl extends StereotypeAttributeIn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,7 +111,6 @@ public class StereotypeAttributeInstanceStringImpl extends StereotypeAttributeIn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,7 +125,6 @@ public class StereotypeAttributeInstanceStringImpl extends StereotypeAttributeIn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,7 +138,6 @@ public class StereotypeAttributeInstanceStringImpl extends StereotypeAttributeIn
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

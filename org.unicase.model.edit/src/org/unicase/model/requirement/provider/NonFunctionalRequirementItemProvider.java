@@ -49,42 +49,58 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addRestrictedScenariosPropertyDescriptor(object);
-			addRestrictedUseCasesPropertyDescriptor(object);
+			addConstrainedScenariosPropertyDescriptor(object);
+			addConstrainedUseCasesPropertyDescriptor(object);
+			addConstrainedFRsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Restricted Scenarios feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * This adds a property descriptor for the Constrained Scenarios feature. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 */
-	protected void addRestrictedScenariosPropertyDescriptor(Object object) {
+	protected void addConstrainedScenariosPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
 			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_restrictedScenarios_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_restrictedScenarios_feature",
+			getString("_UI_NonFunctionalRequirement_constrainedScenarios_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_constrainedScenarios_feature",
 				"_UI_NonFunctionalRequirement_type"),
-			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS, true, false, true, null,
+			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_SCENARIOS, true, false, true, null,
 			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Restricted Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * This adds a property descriptor for the Constrained Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 */
-	protected void addRestrictedUseCasesPropertyDescriptor(Object object) {
+	protected void addConstrainedUseCasesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
 			.getRootAdapterFactory(), getResourceLocator(),
-			getString("_UI_NonFunctionalRequirement_restrictedUseCases_feature"), getString(
-				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_restrictedUseCases_feature",
+			getString("_UI_NonFunctionalRequirement_constrainedUseCases_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_constrainedUseCases_feature",
 				"_UI_NonFunctionalRequirement_type"),
-			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES, true, false, true, null,
+			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_USE_CASES, true, false, true, null,
 			null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Constrained FRs feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addConstrainedFRsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_NonFunctionalRequirement_constrainedFRs_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_constrainedFRs_feature",
+				"_UI_NonFunctionalRequirement_type"),
+			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__CONSTRAINED_FRS, true, false, true, null, null,
+			null));
 	}
 
 	/**
