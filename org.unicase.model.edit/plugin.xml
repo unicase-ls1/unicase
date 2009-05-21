@@ -148,6 +148,14 @@
            uri="http://unicase.org/model/activity">
      </factory>
   </extension>
+  <extension
+        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.model.hazard.provider.HazardItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/model/hazard">
+     </factory>
+  </extension>
  
 </plugin>
 

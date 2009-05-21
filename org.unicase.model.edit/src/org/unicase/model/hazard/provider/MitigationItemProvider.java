@@ -127,9 +127,7 @@ public class MitigationItemProvider extends ModelElementItemProvider implements 
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Mitigation) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Mitigation_type")
-			: getString("_UI_Mitigation_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
