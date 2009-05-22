@@ -12,13 +12,13 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class BranchItemSemanticEditPolicy
-		extends
-		org.unicase.ui.activityDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class BranchItemSemanticEditPolicy extends
+	org.unicase.ui.activityDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompoundCommand cc = getDestroyEdgesCommand();
 		addDestroyShortcutsCommand(cc);
@@ -33,23 +33,20 @@ public class BranchItemSemanticEditPolicy
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+			: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (org.unicase.ui.activityDiagram.providers.ModelElementTypes.Transition_4001 == req
-				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionCreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-					.getModel()));
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (org.unicase.ui.activityDiagram.providers.ModelElementTypes.Transition_4001 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionCreateCommand(req, req
+				.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		return null;
 	}
@@ -57,29 +54,25 @@ public class BranchItemSemanticEditPolicy
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
-		if (org.unicase.ui.activityDiagram.providers.ModelElementTypes.Transition_4001 == req
-				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionCreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-					.getModel()));
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (org.unicase.ui.activityDiagram.providers.ModelElementTypes.Transition_4001 == req.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionCreateCommand(req, req
+				.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		return null;
 	}
 
 	/**
-	 * Returns command to reorient EClass based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EClass based link. New link target or source should be the domain model element
+	 * associated with this node.
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	@Override
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case org.unicase.ui.activityDiagram.edit.parts.TransitionEditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionReorientCommand(
-					req));
+			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
