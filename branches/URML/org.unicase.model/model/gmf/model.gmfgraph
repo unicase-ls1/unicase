@@ -719,6 +719,23 @@
           figure="//@figures.4/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
   </figures>
+  <figures
+      name="URMLDiagram">
+    <descriptors
+        name="HazardFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.CenterLayout"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="UseCaseFigure">
+      <accessors
+          accessor="getUseCaseFigure_name"/>
+    </descriptors>
+  </figures>
   <nodes
       name="Class"
       figure="ClassFigure"/>
@@ -764,6 +781,9 @@
   <nodes
       name="Activity"
       figure="ActivityFigure"/>
+  <nodes
+      name="Hazard"
+      figure="HazardFigure"/>
   <connections
       name="Association"
       figure="AssociationFigure"/>

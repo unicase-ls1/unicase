@@ -35,17 +35,17 @@ import org.unicase.model.profile.util.ProfileAdapterFactory;
 public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory implements ComposeableAdapterFactory,
 	IChangeNotifier, IDisposable {
 	/**
-	 * This keeps track of the root adapter factory that delegates to this adapter factory. <!-- begin-user-doc --> <!--
+	 * This keeps track of the root adapter factory that delegates to this adapter factory.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
 
 	/**
-	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}. <!-- begin-user-doc --> <!--
+	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -59,8 +59,8 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
 
 	/**
-	 * This constructs an instance. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ProfileItemProviderAdapterFactory() {
@@ -80,9 +80,9 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	protected ProfileItemProvider profileItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.profile.Profile}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.profile.Profile}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -103,9 +103,9 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	protected StereotypeItemProvider stereotypeItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.profile.Stereotype}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.profile.Stereotype}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -120,15 +120,14 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.model.profile.StereotypeInstance} instances.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StereotypeInstanceItemProvider stereotypeInstanceItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.profile.StereotypeInstance}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.model.profile.StereotypeInstance}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,17 +140,16 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.profile.StereotypeAttributeSimple}
-	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.profile.StereotypeAttributeSimple} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected StereotypeAttributeSimpleItemProvider stereotypeAttributeSimpleItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.profile.StereotypeAttributeSimple}. <!-- begin-user-doc
+	 * This creates an adapter for a {@link org.unicase.model.profile.StereotypeAttributeSimple}.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,10 +162,9 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.model.profile.StereotypeAttributeInstanceString} instances. <!-- begin-user-doc --> <!--
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.profile.StereotypeAttributeInstanceString} instances.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StereotypeAttributeInstanceStringItemProvider stereotypeAttributeInstanceStringItemProvider;
@@ -188,8 +185,8 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	}
 
 	/**
-	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the root adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -197,8 +194,8 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	}
 
 	/**
-	 * This sets the composed adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This sets the composed adapter factory that contains this factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -207,7 +204,6 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -216,9 +212,9 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	}
 
 	/**
-	 * This implementation substitutes the factory itself as the key for the adapter. <!-- begin-user-doc --> <!--
+	 * This implementation substitutes the factory itself as the key for the adapter.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -228,7 +224,6 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -244,8 +239,8 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	}
 
 	/**
-	 * This adds a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -253,8 +248,8 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	}
 
 	/**
-	 * This removes a listener. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This removes a listener.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -262,9 +257,9 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	}
 
 	/**
-	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}. <!-- begin-user-doc --> <!--
+	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
@@ -276,8 +271,8 @@ public class ProfileItemProviderAdapterFactory extends ProfileAdapterFactory imp
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This disposes all of the item providers created by this factory. 
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void dispose() {

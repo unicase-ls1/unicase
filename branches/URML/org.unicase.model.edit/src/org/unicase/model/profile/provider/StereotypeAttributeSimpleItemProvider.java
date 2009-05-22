@@ -32,8 +32,8 @@ public class StereotypeAttributeSimpleItemProvider extends StereotypeAttributeIt
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public StereotypeAttributeSimpleItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +41,8 @@ public class StereotypeAttributeSimpleItemProvider extends StereotypeAttributeIt
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -56,8 +56,8 @@ public class StereotypeAttributeSimpleItemProvider extends StereotypeAttributeIt
 	}
 
 	/**
-	 * This adds a property descriptor for the Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Type feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
@@ -69,8 +69,8 @@ public class StereotypeAttributeSimpleItemProvider extends StereotypeAttributeIt
 	}
 
 	/**
-	 * This returns StereotypeAttributeSimple.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns StereotypeAttributeSimple.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -79,8 +79,8 @@ public class StereotypeAttributeSimpleItemProvider extends StereotypeAttributeIt
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -110,9 +110,9 @@ public class StereotypeAttributeSimpleItemProvider extends StereotypeAttributeIt
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

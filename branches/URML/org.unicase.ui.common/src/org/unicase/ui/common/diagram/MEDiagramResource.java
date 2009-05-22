@@ -136,6 +136,9 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 		} else if (meDiagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
 			id = "Activity";
 		}
+		else if (meDiagram.getType().equals(DiagramType.URML_DIAGRAM)) {
+			id = "Urml";
+		}
 		
 		
 

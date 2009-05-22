@@ -300,6 +300,7 @@
       <eLiterals name="COMPONENT_DIAGRAM" value="2" literal="COMPONENT_DIAGRAM"/>
       <eLiterals name="STATE_DIAGRAM" value="3" literal="STATE_DIAGRAM"/>
       <eLiterals name="ACTIVITY_DIAGRAM" value="4" literal="ACTIVITY_DIAGRAM"/>
+      <eLiterals name="URML_Diagram" value="5" literal="URML_Diagram"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="classes" nsURI="http://unicase.org/model/classes" nsPrefix="org.unicase.model.classes">

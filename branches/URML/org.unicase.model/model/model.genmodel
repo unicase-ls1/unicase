@@ -121,6 +121,7 @@
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/COMPONENT_DIAGRAM"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/STATE_DIAGRAM"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/ACTIVITY_DIAGRAM"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//diagram/DiagramType/URML_Diagram"/>
       </genEnums>
       <genClasses ecoreClass="model.ecore#//diagram/MEDiagram">
         <genFeatures children="true" createChild="true" propertyDescription="" propertySortChoices="true"

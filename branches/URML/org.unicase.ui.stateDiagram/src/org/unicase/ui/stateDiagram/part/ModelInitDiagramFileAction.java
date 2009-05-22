@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -52,11 +52,14 @@ public class ModelInitDiagramFileAction implements IObjectActionDelegate {
 	public void selectionChanged(IAction action, ISelection selection) {
 		domainModelURI = null;
 		action.setEnabled(false);
-		if (selection instanceof IStructuredSelection == false || selection.isEmpty()) {
+		if (selection instanceof IStructuredSelection == false
+				|| selection.isEmpty()) {
 			return;
 		}
-		IFile file = (IFile) ((IStructuredSelection) selection).getFirstElement();
-		domainModelURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+		IFile file = (IFile) ((IStructuredSelection) selection)
+				.getFirstElement();
+		domainModelURI = URI.createPlatformResourceURI(file.getFullPath()
+				.toString(), true);
 		action.setEnabled(true);
 	}
 
@@ -71,29 +74,34 @@ public class ModelInitDiagramFileAction implements IObjectActionDelegate {
 	 * @generated
 	 */
 	public void run(IAction action) {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
+				.createEditingDomain();
 		ResourceSet resourceSet = new ResourceSetImpl();
 		EObject diagramRoot = null;
 		try {
 			Resource resource = resourceSet.getResource(domainModelURI, true);
 			diagramRoot = (EObject) resource.getContents().get(0);
 		} catch (WrappedException ex) {
-			org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
-				"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
+			org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin
+					.getInstance().logError(
+							"Unable to load resource: " + domainModelURI, ex); //$NON-NLS-1$
 		}
 		if (diagramRoot == null) {
 			MessageDialog
-				.openError(
-					getShell(),
-					org.unicase.ui.stateDiagram.part.Messages.ModelInitDiagramFileAction_InitDiagramFileResourceErrorDialogTitle,
-					org.unicase.ui.stateDiagram.part.Messages.ModelInitDiagramFileAction_InitDiagramFileResourceErrorDialogMessage);
+					.openError(
+							getShell(),
+							org.unicase.ui.stateDiagram.part.Messages.InitDiagramFile_ResourceErrorDialogTitle,
+							org.unicase.ui.stateDiagram.part.Messages.InitDiagramFile_ResourceErrorDialogMessage);
 			return;
 		}
-		Wizard wizard = new org.unicase.ui.stateDiagram.part.ModelNewDiagramFileWizard(domainModelURI, diagramRoot,
-			editingDomain);
-		wizard.setWindowTitle(NLS.bind(
-			org.unicase.ui.stateDiagram.part.Messages.ModelInitDiagramFileAction_InitDiagramFileWizardTitle,
-			org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID));
-		org.unicase.ui.stateDiagram.part.ModelDiagramEditorUtil.runWizard(getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
+		Wizard wizard = new org.unicase.ui.stateDiagram.part.ModelNewDiagramFileWizard(
+				domainModelURI, diagramRoot, editingDomain);
+		wizard
+				.setWindowTitle(NLS
+						.bind(
+								org.unicase.ui.stateDiagram.part.Messages.InitDiagramFile_WizardTitle,
+								org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID));
+		org.unicase.ui.stateDiagram.part.ModelDiagramEditorUtil.runWizard(
+				getShell(), wizard, "InitDiagramFile"); //$NON-NLS-1$
 	}
 }

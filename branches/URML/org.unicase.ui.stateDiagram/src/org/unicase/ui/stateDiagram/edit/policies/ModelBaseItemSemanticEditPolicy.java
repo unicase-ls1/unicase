@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -17,6 +17,7 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
@@ -59,6 +60,18 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
+	 * @generated
+	 */
+	private final IElementType myElementType;
+
+	/**
+	 * @generated
+	 */
+	protected ModelBaseItemSemanticEditPolicy(IElementType elementType) {
+		myElementType = elementType;
+	}
+
+	/**
 	 * Extended request data key to hold editpart visual id. Add visual id of edited editpart to extended data of the
 	 * request so command switch can decide what kind of diagram element is being edited. It is done in those cases when
 	 * it's not possible to deduce diagram element kind from domain element.
@@ -67,10 +80,12 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	public Command getCommand(Request request) {
 		if (request instanceof ReconnectRequest) {
-			Object view = ((ReconnectRequest) request).getConnectionEditPart().getModel();
+			Object view = ((ReconnectRequest) request).getConnectionEditPart()
+					.getModel();
 			if (view instanceof View) {
-				Integer id = new Integer(org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
-					.getVisualID((View) view));
+				Integer id = new Integer(
+						org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
+								.getVisualID((View) view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
 			}
 		}
@@ -92,52 +107,74 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
-		Object editHelperContext = completedRequest.getEditHelperContext();
-		if (editHelperContext instanceof View
-			|| (editHelperContext instanceof IEditHelperContext && ((IEditHelperContext) editHelperContext)
-				.getEObject() instanceof View)) {
-			// no semantic commands are provided for pure design elements
-			return null;
-		}
-		if (editHelperContext == null) {
-			editHelperContext = ViewUtil.resolveSemanticElement((View) getHost().getModel());
-		}
-		IElementType elementType = ElementTypeRegistry.getInstance().getElementType(editHelperContext);
-		if (elementType == ElementTypeRegistry.getInstance().getType("org.eclipse.gmf.runtime.emf.type.core.default")) { //$NON-NLS-1$ 
-			elementType = null;
-		}
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
-		if (semanticCommand != null) {
-			ICommand command = semanticCommand instanceof ICommandProxy ? ((ICommandProxy) semanticCommand)
-				.getICommand() : new CommandProxy(semanticCommand);
-			completedRequest.setParameter(
-				org.unicase.ui.stateDiagram.edit.helpers.ModelBaseEditHelper.EDIT_POLICY_COMMAND, command);
-		}
-		if (elementType != null) {
-			ICommand command = elementType.getEditCommand(completedRequest);
-			if (command != null) {
-				if (!(command instanceof CompositeTransactionalCommand)) {
-					TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-					command = new CompositeTransactionalCommand(editingDomain, command.getLabel()).compose(command);
-				}
-				semanticCommand = new ICommandProxy(command);
-			}
-		}
-		boolean shouldProceed = true;
+		semanticCommand = getEditHelperCommand(completedRequest,
+				semanticCommand);
 		if (completedRequest instanceof DestroyRequest) {
-			shouldProceed = shouldProceed((DestroyRequest) completedRequest);
+			DestroyRequest destroyRequest = (DestroyRequest) completedRequest;
+			return shouldProceed(destroyRequest) ? addDeleteViewCommand(
+					semanticCommand, destroyRequest) : null;
 		}
-		if (shouldProceed) {
-			if (completedRequest instanceof DestroyRequest) {
-				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
-				Command deleteViewCommand = new ICommandProxy(new DeleteCommand(editingDomain, (View) getHost()
-					.getModel()));
-				semanticCommand = semanticCommand == null ? deleteViewCommand : semanticCommand
-					.chain(deleteViewCommand);
+		return semanticCommand;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command addDeleteViewCommand(Command mainCommand,
+			DestroyRequest completedRequest) {
+		Command deleteViewCommand = getGEFWrapper(new DeleteCommand(
+				getEditingDomain(), (View) getHost().getModel()));
+		return mainCommand == null ? deleteViewCommand : mainCommand
+				.chain(deleteViewCommand);
+	}
+
+	/**
+	 * @generated
+	 */
+	private Command getEditHelperCommand(IEditCommandRequest request,
+			Command editPolicyCommand) {
+		if (editPolicyCommand != null) {
+			ICommand command = editPolicyCommand instanceof ICommandProxy ? ((ICommandProxy) editPolicyCommand)
+					.getICommand()
+					: new CommandProxy(editPolicyCommand);
+			request
+					.setParameter(
+							org.unicase.ui.stateDiagram.edit.helpers.ModelBaseEditHelper.EDIT_POLICY_COMMAND,
+							command);
+		}
+		IElementType requestContextElementType = getContextElementType(request);
+		request
+				.setParameter(
+						org.unicase.ui.stateDiagram.edit.helpers.ModelBaseEditHelper.CONTEXT_ELEMENT_TYPE,
+						requestContextElementType);
+		ICommand command = requestContextElementType.getEditCommand(request);
+		request
+				.setParameter(
+						org.unicase.ui.stateDiagram.edit.helpers.ModelBaseEditHelper.EDIT_POLICY_COMMAND,
+						null);
+		request
+				.setParameter(
+						org.unicase.ui.stateDiagram.edit.helpers.ModelBaseEditHelper.CONTEXT_ELEMENT_TYPE,
+						null);
+		if (command != null) {
+			if (!(command instanceof CompositeTransactionalCommand)) {
+				command = new CompositeTransactionalCommand(getEditingDomain(),
+						command.getLabel()).compose(command);
 			}
-			return semanticCommand;
+			return new ICommandProxy(command);
 		}
-		return null;
+		return editPolicyCommand;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IElementType getContextElementType(IEditCommandRequest request) {
+		IElementType requestContextElementType = org.unicase.ui.stateDiagram.providers.ModelElementTypes
+				.getElementType(getVisualID(request));
+		return requestContextElementType != null ? requestContextElementType
+				: myElementType;
 	}
 
 	/**
@@ -236,14 +273,16 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
@@ -252,22 +291,6 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected final Command getGEFWrapper(ICommand cmd) {
 		return new ICommandProxy(cmd);
-	}
-
-	/**
-	 * @deprecated use getGEFWrapper() instead
-	 * @generated
-	 */
-	protected final Command getMSLWrapper(ICommand cmd) {
-		// XXX deprecated: use getGEFWrapper() instead
-		return getGEFWrapper(cmd);
-	}
-
-	/**
-	 * @generated
-	 */
-	protected EObject getSemanticElement() {
-		return ViewUtil.resolveSemanticElement((View) getHost().getModel());
 	}
 
 	/**
@@ -280,47 +303,18 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	/**
-	 * Creates command to destroy the link.
-	 * 
+	 * Clean all shortcuts to the host element from the same diagram
 	 * @generated
 	 */
-	protected Command getDestroyElementCommand(View view) {
-		EditPart editPart = (EditPart) getHost().getViewer().getEditPartRegistry().get(view);
-		DestroyElementRequest request = new DestroyElementRequest(getEditingDomain(), false);
-		return editPart.getCommand(new EditCommandRequestWrapper(request, Collections.EMPTY_MAP));
-	}
-
-	/**
-	 * Creates commands to destroy all host incoming and outgoing links.
-	 * 
-	 * @generated
-	 */
-	protected CompoundCommand getDestroyEdgesCommand() {
-		CompoundCommand cmd = new CompoundCommand();
-		View view = (View) getHost().getModel();
-		for (Iterator it = view.getSourceEdges().iterator(); it.hasNext();) {
-			cmd.add(getDestroyElementCommand((Edge) it.next()));
-		}
-		for (Iterator it = view.getTargetEdges().iterator(); it.hasNext();) {
-			cmd.add(getDestroyElementCommand((Edge) it.next()));
-		}
-		return cmd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected void addDestroyShortcutsCommand(CompoundCommand command) {
-		View view = (View) getHost().getModel();
-		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
-			return;
-		}
-		for (Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
+	protected void addDestroyShortcutsCommand(ICompositeCommand cmd, View view) {
+		assert view.getEAnnotation("Shortcut") == null;
+		for (Iterator it = view.getDiagram().getChildren().iterator(); it
+				.hasNext();) {
 			View nextView = (View) it.next();
 			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
 			}
-			command.add(getDestroyElementCommand(nextView));
+			cmd.add(new DeleteCommand(getEditingDomain(), nextView));
 		}
 	}
 
@@ -332,15 +326,16 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateTransition_4001(MEDiagram container, State source, State target) {
+		public static boolean canCreateTransition_4001(MEDiagram container,
+				State source, State target) {
 			return canExistTransition_4001(container, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistTransition_4001(MEDiagram container, State source, State target) {
-
+		public static boolean canExistTransition_4001(MEDiagram container,
+				State source, State target) {
 			return true;
 		}
 	}

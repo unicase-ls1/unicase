@@ -26,16 +26,16 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.hazard.Hazard} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.hazard.Hazard} object.
+ * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class HazardItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public HazardItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class HazardItemProvider extends ModelElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -62,8 +62,8 @@ public class HazardItemProvider extends ModelElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Severity feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Severity feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSeverityPropertyDescriptor(Object object) {
@@ -75,8 +75,8 @@ public class HazardItemProvider extends ModelElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Involved Classes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Involved Classes feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addInvolvedClassesPropertyDescriptor(Object object) {
@@ -87,8 +87,8 @@ public class HazardItemProvider extends ModelElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Targeted Actors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Targeted Actors feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addTargetedActorsPropertyDescriptor(Object object) {
@@ -99,8 +99,8 @@ public class HazardItemProvider extends ModelElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Causes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Causes feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCausesPropertyDescriptor(Object object) {
@@ -111,8 +111,8 @@ public class HazardItemProvider extends ModelElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds a property descriptor for the Mitigations feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Mitigations feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addMitigationsPropertyDescriptor(Object object) {
@@ -123,8 +123,8 @@ public class HazardItemProvider extends ModelElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This returns Hazard.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Hazard.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -162,9 +162,9 @@ public class HazardItemProvider extends ModelElementItemProvider implements IEdi
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -173,8 +173,8 @@ public class HazardItemProvider extends ModelElementItemProvider implements IEdi
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
