@@ -12,5 +12,12 @@
       <smallIcon
           xsi:type="gmftool:DefaultImage"/>
     </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="HazardCause"
+        description="">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
   </palette>
 </gmftool:ToolRegistry>

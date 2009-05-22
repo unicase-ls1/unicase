@@ -729,11 +729,22 @@
             xsi:type="gmfgraph:CustomLayout"
             qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.CenterLayout"/>
       </actualFigure>
+      <accessors
+          accessor="getHazardFigure_name"/>
     </descriptors>
     <descriptors
         name="UseCaseFigure">
       <accessors
           accessor="getUseCaseFigure_name"/>
+    </descriptors>
+    <descriptors
+        name="HazardCauseFigure">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.CenterLayout"/>
+      </actualFigure>
     </descriptors>
   </figures>
   <nodes
@@ -784,6 +795,9 @@
   <nodes
       name="Hazard"
       figure="HazardFigure"/>
+  <nodes
+      name="HazardCause"
+      figure="HazardCauseFigure"/>
   <connections
       name="Association"
       figure="AssociationFigure"/>
@@ -963,4 +977,8 @@
       name="ActivityNode_name"
       figure="ActivityFigure"
       accessor="//@figures.4/@descriptors.0/@accessors.0"/>
+  <labels
+      name="HazardNode_name"
+      figure="HazardFigure"
+      accessor="//@figures.5/@descriptors.0/@accessors.0"/>
 </gmfgraph:Canvas>

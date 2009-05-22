@@ -19,6 +19,21 @@
           href="../model.gmfgraph#Hazard"/>
     </ownedChild>
   </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="../../model.ecore#//hazard/HazardCause"/>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="urml.gmftool#//@palette/@tools.1"/>
+      <diagramNode
+          href="../model.gmfgraph#HazardCause"/>
+    </ownedChild>
+  </nodes>
   <diagram>
     <diagramCanvas
         href="../model.gmfgraph#MEDiagram"/>
