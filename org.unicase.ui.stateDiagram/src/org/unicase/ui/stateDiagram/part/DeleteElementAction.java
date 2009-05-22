@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -50,10 +50,14 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 		setId(ActionIds.ACTION_DELETE_FROM_MODEL);
 		setText(DiagramUIMessages.DiagramEditor_Delete_from_Model);
 		setToolTipText(DiagramUIMessages.DiagramEditor_Delete_from_ModelToolTip);
-		ISharedImages workbenchImages = PlatformUI.getWorkbench().getSharedImages();
-		setHoverImageDescriptor(workbenchImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
-		setImageDescriptor(workbenchImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
-		setDisabledImageDescriptor(workbenchImages.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
+		ISharedImages workbenchImages = PlatformUI.getWorkbench()
+				.getSharedImages();
+		setHoverImageDescriptor(workbenchImages
+				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
+		setImageDescriptor(workbenchImages
+				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE));
+		setDisabledImageDescriptor(workbenchImages
+				.getImageDescriptor(ISharedImages.IMG_TOOL_DELETE_DISABLED));
 	}
 
 	/**
@@ -72,7 +76,8 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 			return UnexecutableCommand.INSTANCE;
 		}
 		Iterator editParts = operationSet.iterator();
-		CompositeTransactionalCommand command = new CompositeTransactionalCommand(getEditingDomain(), getCommandLabel());
+		CompositeTransactionalCommand command = new CompositeTransactionalCommand(
+				getEditingDomain(), getCommandLabel());
 		while (editParts.hasNext()) {
 			EditPart editPart = (EditPart) editParts.next();
 			Command curCommand = editPart.getCommand(request);

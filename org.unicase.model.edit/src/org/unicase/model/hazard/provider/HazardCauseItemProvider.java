@@ -26,16 +26,16 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.hazard.HazardCause} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.hazard.HazardCause} object.
+ * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class HazardCauseItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public HazardCauseItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +43,8 @@ public class HazardCauseItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -62,8 +62,8 @@ public class HazardCauseItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Hazards feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Hazards feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addHazardsPropertyDescriptor(Object object) {
@@ -74,9 +74,9 @@ public class HazardCauseItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Hazardous Model Elements feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Hazardous Model Elements feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addHazardousModelElementsPropertyDescriptor(Object object) {
@@ -89,8 +89,8 @@ public class HazardCauseItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Evaluation Status feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Evaluation Status feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addEvaluationStatusPropertyDescriptor(Object object) {
@@ -102,8 +102,8 @@ public class HazardCauseItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Likelihood feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Likelihood feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addLikelihoodPropertyDescriptor(Object object) {
@@ -115,8 +115,8 @@ public class HazardCauseItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Mitigations feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Mitigations feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addMitigationsPropertyDescriptor(Object object) {
@@ -128,8 +128,8 @@ public class HazardCauseItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * This returns HazardCause.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns HazardCause.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -138,13 +138,15 @@ public class HazardCauseItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		return super.getText(object);
+		String label = ((HazardCause) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_HazardCause_type")
+			: getString("_UI_HazardCause_type") + " " + label;
 	}
 
 	/**
@@ -168,9 +170,9 @@ public class HazardCauseItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -179,8 +181,8 @@ public class HazardCauseItemProvider extends ModelElementItemProvider implements
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

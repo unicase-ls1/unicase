@@ -32,8 +32,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
 public class DeploymentNodeItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public DeploymentNodeItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +41,8 @@ public class DeploymentNodeItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -56,8 +56,8 @@ public class DeploymentNodeItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the Components feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Components feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addComponentsPropertyDescriptor(Object object) {
@@ -69,8 +69,8 @@ public class DeploymentNodeItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This returns DeploymentNode.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns DeploymentNode.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -79,8 +79,8 @@ public class DeploymentNodeItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -104,9 +104,9 @@ public class DeploymentNodeItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -115,8 +115,8 @@ public class DeploymentNodeItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

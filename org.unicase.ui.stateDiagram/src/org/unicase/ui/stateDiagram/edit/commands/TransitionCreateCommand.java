@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -11,8 +11,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
@@ -23,7 +27,7 @@ import org.unicase.model.state.Transition;
 /**
  * @generated
  */
-public class TransitionCreateCommand extends CreateElementCommand {
+public class TransitionCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -38,7 +42,7 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	private MEDiagram container;
+	private final MEDiagram container;
 
 	/**
 	 * @generated NOT
@@ -46,7 +50,8 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	 * @param source The source element of the connection to be created
 	 * @param target The target element of the connection to be created
 	 */
-	public TransitionCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public TransitionCreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target) {
 		super(request);
 		throw new UnsupportedOperationException();
 	}
@@ -58,18 +63,21 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	 * @param eContainer The container element which will contain the connection
 	 * @generated NOT
 	 */
-	public TransitionCreateCommand(CreateRelationshipRequest request, EObject source, EObject target, EObject eContainer) {
+	public TransitionCreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target, EObject eContainer) {
 		super(request);
 		this.source = source;
 		this.target = target;
 		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
+			setContainmentFeature(DiagramPackage.eINSTANCE
+					.getMEDiagram_NewElements());
 		}
 
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = eContainer; element != null; element = element.eContainer()) {
+		for (EObject element = eContainer; element != null; element = element
+				.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
 				super.setElementToEdit(container);
@@ -99,7 +107,8 @@ public class TransitionCreateCommand extends CreateElementCommand {
 			return false;
 		}
 		return org.unicase.ui.stateDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canCreateTransition_4001(getContainer(), getSource(), getTarget());
+				.canCreateTransition_4001(getContainer(), getSource(),
+						getTarget());
 	}
 
 	/**
@@ -118,28 +127,44 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	protected EClass getEClassToEdit() {
-		return DiagramPackage.eINSTANCE.getMEDiagram();
-	}
-
-	/**
-	 * @generated
-	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
-		return super.doExecuteWithResult(monitor, info);
+
+		Transition newElement = StateFactory.eINSTANCE.createTransition();
+		getContainer().getNewElements().add(newElement);
+		newElement.setSource(getSource());
+		newElement.setTarget(getTarget());
+		doConfigure(newElement, monitor, info);
+		((CreateElementRequest) getRequest()).setNewElement(newElement);
+		return CommandResult.newOKCommandResult(newElement);
+
 	}
 
 	/**
 	 * @generated
 	 */
-	protected ConfigureRequest createConfigureRequest() {
-		ConfigureRequest request = super.createConfigureRequest();
-		request.setParameter(CreateRelationshipRequest.SOURCE, getSource());
-		request.setParameter(CreateRelationshipRequest.TARGET, getTarget());
-		return request;
+	protected void doConfigure(Transition newElement, IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
+		IElementType elementType = ((CreateElementRequest) getRequest())
+				.getElementType();
+		ConfigureRequest configureRequest = new ConfigureRequest(
+				getEditingDomain(), newElement, elementType);
+		configureRequest.setClientContext(((CreateElementRequest) getRequest())
+				.getClientContext());
+		configureRequest.addParameters(getRequest().getParameters());
+		configureRequest.setParameter(CreateRelationshipRequest.SOURCE,
+				getSource());
+		configureRequest.setParameter(CreateRelationshipRequest.TARGET,
+				getTarget());
+		ICommand configureCommand = elementType
+				.getEditCommand(configureRequest);
+		if (configureCommand != null && configureCommand.canExecute()) {
+			configureCommand.execute(monitor, info);
+		}
 	}
 
 	/**
@@ -168,5 +193,23 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	 */
 	public MEDiagram getContainer() {
 		return container;
+	}
+
+	/**
+	 * Default approach is to traverse ancestors of the source to find instance of container.
+	 * Modify with appropriate logic.
+	 * @generated
+	 */
+	private static MEDiagram deduceContainer(EObject source, EObject target) {
+		// Find container element for the new link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null; element = element
+				.eContainer()) {
+			if (element instanceof MEDiagram) {
+				return (MEDiagram) element;
+			}
+		}
+		return null;
 	}
 }

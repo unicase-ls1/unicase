@@ -36,8 +36,8 @@ import org.unicase.model.requirement.RequirementPackage;
 public class FunctionalRequirementItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public FunctionalRequirementItemProvider(AdapterFactory adapterFactory) {
@@ -45,8 +45,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -68,8 +68,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Reviewed feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Reviewed feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addReviewedPropertyDescriptor(Object object) {
@@ -81,8 +81,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Stakeholder feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Stakeholder feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addStakeholderPropertyDescriptor(Object object) {
@@ -94,8 +94,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Cost feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Cost feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCostPropertyDescriptor(Object object) {
@@ -107,8 +107,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Detailed Features feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Detailed Features feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDetailedFeaturesPropertyDescriptor(Object object) {
@@ -122,8 +122,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Priority feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Priority feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPriorityPropertyDescriptor(Object object) {
@@ -151,8 +151,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Detailed Use Cases feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Detailed Use Cases feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDetailedUseCasesPropertyDescriptor(Object object) {
@@ -182,8 +182,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
-	 * This adds a property descriptor for the Scenarios feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Scenarios feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addScenariosPropertyDescriptor(Object object) {
@@ -197,9 +197,9 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -213,7 +213,6 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -225,8 +224,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
-	 * This returns FunctionalRequirement.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns FunctionalRequirement.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -270,9 +269,9 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -285,8 +284,8 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

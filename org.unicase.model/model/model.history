@@ -6578,5 +6578,20 @@
         featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
     <changes xsi:type="history:Set" element="model.ecore#//hazard/Hazard/mitigations"
         featureName="name" dataValue="mitigations"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//diagram/DiagramType"
+        element="#//@releases.1/@changes.181/@element" referenceName="eAnnotations"/>
+    <changes xsi:type="history:Delete">
+      <element xsi:type="ecore:EAnnotation"/>
+    </changes>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//diagram/DiagramType"
+        element="model.ecore#//diagram/DiagramType/URML%20Diagram" referenceName="eLiterals"/>
+    <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/URML%20Diagram"
+        featureName="literal" dataValue="URML Diagram"/>
+    <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/URML%20Diagram"
+        featureName="value" dataValue="5"/>
+    <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/URML%20Diagram"
+        featureName="name" dataValue="URML D"/>
+    <changes xsi:type="history:Set" element="model.ecore#//diagram/DiagramType/URML%20Diagram"
+        featureName="name" dataValue="URML Diagram"/>
   </releases>
 </history:History>

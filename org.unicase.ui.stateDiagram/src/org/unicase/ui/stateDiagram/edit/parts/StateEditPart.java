@@ -1,13 +1,16 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.stateDiagram.edit.parts;
 
+import java.util.ArrayList;
+import java.util.List;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.RoundedRectangle;
+import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.draw2d.geometry.Dimension;
@@ -21,10 +24,12 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ConstrainedToolbarLayoutE
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.ui.common.diagram.ConfigurableRectangleFigure;
@@ -61,11 +66,11 @@ public class StateEditPart extends ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.ui.stateDiagram.edit.policies.StateItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.ui.stateDiagram.edit.policies.StateItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
-		// editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -107,24 +112,27 @@ public class StateEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart) {
-			((org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart) childEditPart).setLabel(getPrimaryShape()
-				.getFigureStateFigure_name());
+		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart) {
+			((org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureStateFigure_exitConditions());
+			return true;
+		}
+		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart) {
+			((org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureStateFigure_activities());
 			return true;
 		}
 		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateEntryConditionsEditPart) {
 			((org.unicase.ui.stateDiagram.edit.parts.StateEntryConditionsEditPart) childEditPart)
-				.setLabel(getPrimaryShape().getFigureStateFigure_entryConditions());
+					.setLabel(getPrimaryShape()
+							.getFigureStateFigure_entryConditions());
 			return true;
 		}
-		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart) {
-			((org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart) childEditPart).setLabel(getPrimaryShape()
-				.getFigureStateFigure_activities());
-			return true;
-		}
-		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart) {
-			((org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart) childEditPart)
-				.setLabel(getPrimaryShape().getFigureStateFigure_exitConditions());
+		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart) {
+			((org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureStateFigure_name());
 			return true;
 		}
 		return false;
@@ -134,7 +142,18 @@ public class StateEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-
+		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateExitConditionsEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateActivitiesEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateEntryConditionsEditPart) {
+			return true;
+		}
+		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart) {
+			return true;
+		}
 		return false;
 	}
 
@@ -162,15 +181,14 @@ public class StateEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-
-		return super.getContentPaneFor(editPart);
+		return getContentPane();
 	}
 
 	/**
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(40), getMapMode().DPtoLP(40));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(40, 40);
 		return result;
 	}
 
@@ -199,7 +217,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 	protected IFigure setupContentPane(IFigure nodeShape) {
 		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
-			layout.setSpacing(getMapMode().DPtoLP(5));
+			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
 		}
 		return nodeShape; // use nodeShape itself as contentPane
@@ -218,9 +236,104 @@ public class StateEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	protected void setForegroundColor(Color color) {
+		if (primaryShape != null) {
+			primaryShape.setForegroundColor(color);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setBackgroundColor(Color color) {
+		if (primaryShape != null) {
+			primaryShape.setBackgroundColor(color);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLineWidth(int width) {
+		if (primaryShape instanceof Shape) {
+			((Shape) primaryShape).setLineWidth(width);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
+	protected void setLineType(int style) {
+		if (primaryShape instanceof Shape) {
+			((Shape) primaryShape).setLineStyle(style);
+		}
+	}
+
+	/**
+	 * @generated
+	 */
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
-			.getType(org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart.VISUAL_ID));
+				.getType(org.unicase.ui.stateDiagram.edit.parts.StateNameEditPart.VISUAL_ID));
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSource() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types
+				.add(org.unicase.ui.stateDiagram.providers.ModelElementTypes.Transition_4001);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnSourceAndTarget(
+			IGraphicalEditPart targetEditPart) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (targetEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.StateEditPart) {
+			types
+					.add(org.unicase.ui.stateDiagram.providers.ModelElementTypes.Transition_4001);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForTarget(
+			IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == org.unicase.ui.stateDiagram.providers.ModelElementTypes.Transition_4001) {
+			types
+					.add(org.unicase.ui.stateDiagram.providers.ModelElementTypes.State_2001);
+		}
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMARelTypesOnTarget() {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		types
+				.add(org.unicase.ui.stateDiagram.providers.ModelElementTypes.Transition_4001);
+		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/getMATypesForSource(
+			IElementType relationshipType) {
+		List/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/types = new ArrayList/*<org.eclipse.gmf.runtime.emf.type.core.IElementType>*/();
+		if (relationshipType == org.unicase.ui.stateDiagram.providers.ModelElementTypes.Transition_4001) {
+			types
+					.add(org.unicase.ui.stateDiagram.providers.ModelElementTypes.State_2001);
+		}
+		return types;
 	}
 
 	/**
@@ -260,9 +373,11 @@ public class StateEditPart extends ShapeNodeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
-			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(8), getMapMode().DPtoLP(0), getMapMode().DPtoLP(8),
-				getMapMode().DPtoLP(0)));
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8),
+					getMapMode().DPtoLP(8)));
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(8),
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(8),
+					getMapMode().DPtoLP(0)));
 			createContents();
 		}
 
@@ -275,8 +390,9 @@ public class StateEditPart extends ShapeNodeEditPart {
 
 			stateFigure_name0.setBorders("SEW");
 
-			stateFigure_name0.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5), getMapMode()
-				.DPtoLP(2), getMapMode().DPtoLP(5)));
+			stateFigure_name0.setBorder(new MarginBorder(
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5)));
 
 			this.add(stateFigure_name0);
 
@@ -289,8 +405,9 @@ public class StateEditPart extends ShapeNodeEditPart {
 
 			fFigureStateFigure_name.setFont(FFIGURESTATEFIGURE_NAME_FONT);
 
-			fFigureStateFigure_name.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(5),
-				getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
+			fFigureStateFigure_name.setBorder(new MarginBorder(getMapMode()
+					.DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(5)));
 
 			stateFigure_name0.add(fFigureStateFigure_name);
 
@@ -298,45 +415,54 @@ public class StateEditPart extends ShapeNodeEditPart {
 
 			stateFigure_entryConditions0.setBorders("EW");
 
-			stateFigure_entryConditions0.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5),
-				getMapMode().DPtoLP(2), getMapMode().DPtoLP(5)));
+			stateFigure_entryConditions0.setBorder(new MarginBorder(
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(2), getMapMode().DPtoLP(5)));
 
 			this.add(stateFigure_entryConditions0);
 
 			org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_entryConditions0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();
 
-			stateFigure_entryConditions0.setLayoutManager(layoutStateFigure_entryConditions0);
+			stateFigure_entryConditions0
+					.setLayoutManager(layoutStateFigure_entryConditions0);
 
 			fFigureStateFigure_entryConditions = new WrappingLabel();
 			fFigureStateFigure_entryConditions.setText("");
 
-			fFigureStateFigure_entryConditions.setFont(FFIGURESTATEFIGURE_ENTRYCONDITIONS_FONT);
+			fFigureStateFigure_entryConditions
+					.setFont(FFIGURESTATEFIGURE_ENTRYCONDITIONS_FONT);
 
-			fFigureStateFigure_entryConditions.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode()
-				.DPtoLP(5), getMapMode().DPtoLP(0), getMapMode().DPtoLP(5)));
+			fFigureStateFigure_entryConditions.setBorder(new MarginBorder(
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(5)));
 
-			stateFigure_entryConditions0.add(fFigureStateFigure_entryConditions);
+			stateFigure_entryConditions0
+					.add(fFigureStateFigure_entryConditions);
 
 			ConfigurableRectangleFigure stateFigure_activities0 = new ConfigurableRectangleFigure();
 
 			stateFigure_activities0.setBorders("EW");
 
-			stateFigure_activities0.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5),
-				getMapMode().DPtoLP(2), getMapMode().DPtoLP(5)));
+			stateFigure_activities0.setBorder(new MarginBorder(getMapMode()
+					.DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(2),
+					getMapMode().DPtoLP(5)));
 
 			this.add(stateFigure_activities0);
 
 			org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_activities0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();
 
-			stateFigure_activities0.setLayoutManager(layoutStateFigure_activities0);
+			stateFigure_activities0
+					.setLayoutManager(layoutStateFigure_activities0);
 
 			fFigureStateFigure_activities = new WrappingLabel();
 			fFigureStateFigure_activities.setText("");
 
-			fFigureStateFigure_activities.setFont(FFIGURESTATEFIGURE_ACTIVITIES_FONT);
+			fFigureStateFigure_activities
+					.setFont(FFIGURESTATEFIGURE_ACTIVITIES_FONT);
 
-			fFigureStateFigure_activities.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(5),
-				getMapMode().DPtoLP(0), getMapMode().DPtoLP(5)));
+			fFigureStateFigure_activities.setBorder(new MarginBorder(
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(5)));
 
 			stateFigure_activities0.add(fFigureStateFigure_activities);
 
@@ -344,22 +470,26 @@ public class StateEditPart extends ShapeNodeEditPart {
 
 			stateFigure_exitConditions0.setBorders("EW");
 
-			stateFigure_exitConditions0.setBorder(new MarginBorder(getMapMode().DPtoLP(2), getMapMode().DPtoLP(5),
-				getMapMode().DPtoLP(2), getMapMode().DPtoLP(5)));
+			stateFigure_exitConditions0.setBorder(new MarginBorder(getMapMode()
+					.DPtoLP(2), getMapMode().DPtoLP(5), getMapMode().DPtoLP(2),
+					getMapMode().DPtoLP(5)));
 
 			this.add(stateFigure_exitConditions0);
 
 			org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_exitConditions0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();
 
-			stateFigure_exitConditions0.setLayoutManager(layoutStateFigure_exitConditions0);
+			stateFigure_exitConditions0
+					.setLayoutManager(layoutStateFigure_exitConditions0);
 
 			fFigureStateFigure_exitConditions = new WrappingLabel();
 			fFigureStateFigure_exitConditions.setText("");
 
-			fFigureStateFigure_exitConditions.setFont(FFIGURESTATEFIGURE_EXITCONDITIONS_FONT);
+			fFigureStateFigure_exitConditions
+					.setFont(FFIGURESTATEFIGURE_EXITCONDITIONS_FONT);
 
-			fFigureStateFigure_exitConditions.setBorder(new MarginBorder(getMapMode().DPtoLP(0),
-				getMapMode().DPtoLP(5), getMapMode().DPtoLP(0), getMapMode().DPtoLP(5)));
+			fFigureStateFigure_exitConditions.setBorder(new MarginBorder(
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(5),
+					getMapMode().DPtoLP(0), getMapMode().DPtoLP(5)));
 
 			stateFigure_exitConditions0.add(fFigureStateFigure_exitConditions);
 
@@ -417,25 +547,32 @@ public class StateEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FFIGURESTATEFIGURE_NAME_FONT = new Font(Display.getCurrent(), Display.getDefault()
-		.getSystemFont().getFontData()[0].getName(), 9, SWT.NORMAL);
+	static final Font FFIGURESTATEFIGURE_NAME_FONT = new Font(Display
+			.getCurrent(),
+			Display.getDefault().getSystemFont().getFontData()[0].getName(), 9,
+			SWT.NORMAL);
 
 	/**
 	 * @generated
 	 */
-	static final Font FFIGURESTATEFIGURE_ENTRYCONDITIONS_FONT = new Font(Display.getCurrent(), Display.getDefault()
-		.getSystemFont().getFontData()[0].getName(), 9, SWT.NORMAL);
+	static final Font FFIGURESTATEFIGURE_ENTRYCONDITIONS_FONT = new Font(
+			Display.getCurrent(), Display.getDefault().getSystemFont()
+					.getFontData()[0].getName(), 9, SWT.NORMAL);
 
 	/**
 	 * @generated
 	 */
-	static final Font FFIGURESTATEFIGURE_ACTIVITIES_FONT = new Font(Display.getCurrent(), Display.getDefault()
-		.getSystemFont().getFontData()[0].getName(), 9, SWT.NORMAL);
+	static final Font FFIGURESTATEFIGURE_ACTIVITIES_FONT = new Font(Display
+			.getCurrent(),
+			Display.getDefault().getSystemFont().getFontData()[0].getName(), 9,
+			SWT.NORMAL);
 
 	/**
 	 * @generated
 	 */
-	static final Font FFIGURESTATEFIGURE_EXITCONDITIONS_FONT = new Font(Display.getCurrent(), Display.getDefault()
-		.getSystemFont().getFontData()[0].getName(), 9, SWT.NORMAL);
+	static final Font FFIGURESTATEFIGURE_EXITCONDITIONS_FONT = new Font(Display
+			.getCurrent(),
+			Display.getDefault().getSystemFont().getFontData()[0].getName(), 9,
+			SWT.NORMAL);
 
 }

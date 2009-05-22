@@ -5,6 +5,7 @@
  */
 package org.unicase.ui.stateDiagram.edit.parts;
 
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 
@@ -14,7 +15,7 @@ import org.eclipse.gmf.runtime.notation.View;
  * @implements org.unicase.ui.common.diagram.MEDiagramEditPart public class MEDiagramEditPart extends
  *             org.unicase.ui.common.diagram.MEDiagramEditPart {
  */
-public class MEDiagramEditPart extends org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart {
+public class MEDiagramEditPart extends DiagramEditPart implements org.unicase.ui.common.diagram.MEDiagramEditPart, public, class, MEDiagramEditPart, extends {
 
 	/**
 	 * @generated
@@ -30,20 +31,18 @@ public class MEDiagramEditPart extends org.unicase.ui.common.diagram.edit.parts.
 	 * @generated
 	 */
 	public MEDiagramEditPart(View view) {
-		super(view);
-	}
+    super(view);
+  }
 
 	/**
 	 * @generated
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.ui.stateDiagram.edit.policies.MEDiagramItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
-			new org.unicase.ui.stateDiagram.edit.policies.MEDiagramCanonicalEditPolicy());
-		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
-	}
+      super.createDefaultEditPolicies();
+    installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new org.unicase.ui.stateDiagram.edit.policies.MEDiagramItemSemanticEditPolicy());
+      installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new org.unicase.ui.stateDiagram.edit.policies.MEDiagramCanonicalEditPolicy());
+            // removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
+  }
 
 }

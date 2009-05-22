@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -83,22 +83,26 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(
+			ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass
+					&& !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin.getInstance().getItemImageDescriptor(
-					eClass.getEPackage().getEFactoryInstance().create(eClass));
+				return org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().getItemImageDescriptor(
+								eClass.getEPackage().getEFactoryInstance()
+										.create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -174,7 +178,8 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(State_2001, StatePackage.eINSTANCE.getState());
 
-			elements.put(Transition_4001, StatePackage.eINSTANCE.getTransition());
+			elements.put(Transition_4001, StatePackage.eINSTANCE
+					.getTransition());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -197,6 +202,21 @@ public class ModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(Transition_4001);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
+	}
+
+	/**
+	 * @generated
+	 */
+	public static IElementType getElementType(int visualID) {
+		switch (visualID) {
+		case org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
+			return MEDiagram_55;
+		case org.unicase.ui.stateDiagram.edit.parts.StateEditPart.VISUAL_ID:
+			return State_2001;
+		case org.unicase.ui.stateDiagram.edit.parts.TransitionEditPart.VISUAL_ID:
+			return Transition_4001;
+		}
+		return null;
 	}
 
 }

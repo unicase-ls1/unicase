@@ -32,8 +32,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
 public class ComponentServiceItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ComponentServiceItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +41,8 @@ public class ComponentServiceItemProvider extends ModelElementItemProvider imple
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,8 +57,8 @@ public class ComponentServiceItemProvider extends ModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds a property descriptor for the Offering Component feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Offering Component feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addOfferingComponentPropertyDescriptor(Object object) {
@@ -86,8 +86,8 @@ public class ComponentServiceItemProvider extends ModelElementItemProvider imple
 	}
 
 	/**
-	 * This returns ComponentService.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns ComponentService.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -96,8 +96,8 @@ public class ComponentServiceItemProvider extends ModelElementItemProvider imple
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -121,9 +121,9 @@ public class ComponentServiceItemProvider extends ModelElementItemProvider imple
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -132,8 +132,8 @@ public class ComponentServiceItemProvider extends ModelElementItemProvider imple
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -123,22 +123,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String ModelInitDiagramFileAction_InitDiagramFileResourceErrorDialogTitle;
+	public static String InitDiagramFile_ResourceErrorDialogTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String ModelInitDiagramFileAction_InitDiagramFileResourceErrorDialogMessage;
+	public static String InitDiagramFile_ResourceErrorDialogMessage;
 
 	/**
 	 * @generated
 	 */
-	public static String ModelInitDiagramFileAction_InitDiagramFileWizardTitle;
+	public static String InitDiagramFile_WizardTitle;
 
 	/**
 	 * @generated
 	 */
-	public static String ModelInitDiagramFileAction_OpenModelFileDialogTitle;
+	public static String InitDiagramFile_OpenModelFileDialogTitle;
 
 	/**
 	 * @generated
@@ -293,17 +293,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String AbstractParser_UnexpectedValueTypeMessage;
+	public static String AbstractParser_UnexpectedValueType;
 
 	/**
 	 * @generated
 	 */
-	public static String AbstractParser_WrongStringConversionMessage;
+	public static String AbstractParser_WrongStringConversion;
 
 	/**
 	 * @generated
 	 */
-	public static String AbstractParser_UnknownLiteralMessage;
+	public static String AbstractParser_UnknownLiteral;
 
 	/**
 	 * @generated

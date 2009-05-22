@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -26,7 +26,8 @@ public class ModelCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
-	public ModelCreationWizardPage(String pageName, IStructuredSelection selection, String fileExtension) {
+	public ModelCreationWizardPage(String pageName,
+			IStructuredSelection selection, String fileExtension) {
 		super(pageName, selection);
 		this.fileExtension = fileExtension;
 	}
@@ -67,8 +68,9 @@ public class ModelCreationWizardPage extends WizardNewFileCreationPage {
 	 */
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(org.unicase.ui.stateDiagram.part.ModelDiagramEditorUtil.getUniqueFileName(getContainerFullPath(),
-			getFileName(), getExtension()));
+		setFileName(org.unicase.ui.stateDiagram.part.ModelDiagramEditorUtil
+				.getUniqueFileName(getContainerFullPath(), getFileName(),
+						getExtension()));
 		setPageComplete(validatePage());
 	}
 
@@ -80,9 +82,12 @@ public class ModelCreationWizardPage extends WizardNewFileCreationPage {
 			return false;
 		}
 		String extension = getExtension();
-		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
-			setErrorMessage(NLS.bind(org.unicase.ui.stateDiagram.part.Messages.ModelCreationWizardPageExtensionError,
-				extension));
+		if (extension != null
+				&& !getFilePath().toString().endsWith("." + extension)) {
+			setErrorMessage(NLS
+					.bind(
+							org.unicase.ui.stateDiagram.part.Messages.ModelCreationWizardPageExtensionError,
+							extension));
 			return false;
 		}
 		return true;
