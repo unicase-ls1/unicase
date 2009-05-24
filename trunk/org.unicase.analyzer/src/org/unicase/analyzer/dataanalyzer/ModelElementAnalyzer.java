@@ -1,5 +1,7 @@
 /**
- * 
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.dataanalyzer;
 
@@ -17,9 +19,9 @@ public class ModelElementAnalyzer implements DataAnalyzer {
 	private static final String MECOUNT = "ModelElement #";
 
 	/**
-	 * (non-Javadoc).
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
-	 * @return return
+	 * 
+	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
+	 * 
 	 */
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
@@ -27,10 +29,10 @@ public class ModelElementAnalyzer implements DataAnalyzer {
 		return names;
 	}
 
-	/** (non-Javadoc).
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
+	/** 
+	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
 	 * @param data {@link ProjectAnalysisData}
-	 *@return return 
+	 * 
 	 */
 	public List<Object> getValue(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();

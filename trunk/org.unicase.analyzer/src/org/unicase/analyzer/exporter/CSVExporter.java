@@ -1,5 +1,7 @@
 /**
- * 
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.exporter;
 
@@ -16,7 +18,7 @@ public class CSVExporter implements Exporter {
 
 	private static String COLUMN_SEPERATOR = ",";
 
-	private boolean OVERWRITE;
+	private boolean isOVERWRITE;
 
 	private File targetFile;
 
@@ -28,7 +30,7 @@ public class CSVExporter implements Exporter {
 	 * 
 	 * @param targetFile
 	 *            the target file
-	 * @throws IOException 
+	 * @throws IOException @see {@link IOException}
 	 */
 	public CSVExporter(File targetFile) throws IOException {
 		this(targetFile, false);
@@ -42,11 +44,11 @@ public class CSVExporter implements Exporter {
 	 * @param isOverwrite
 	 *            if true, existing files will be overwritten, otherwise it will
 	 *            be appended.
-	 * @throws IOException 
+	 * @throws IOException @see {@link IOException}
 	 */
 	public CSVExporter(File targetFile, boolean isOverwrite) throws IOException {
 		this.targetFile = targetFile;
-		this.OVERWRITE = isOverwrite;
+		this.isOVERWRITE = isOverwrite;
 		
 		if(isOverwrite) {
 			initFileWriter(true);
@@ -55,7 +57,7 @@ public class CSVExporter implements Exporter {
 	}
 	
 	private void initFileWriter() throws IOException {
-		initFileWriter(OVERWRITE);
+		initFileWriter(isOVERWRITE);
 	}
 	
 	private void initFileWriter(boolean isOverwrite) throws IOException {
@@ -73,8 +75,11 @@ public class CSVExporter implements Exporter {
 		return column.toString();
 	}
 	
-	/* (non-Javadoc)
+	/**
+	 * 
 	 * @see org.unicase.analyzer.exporter.Exporter#export(java.util.List)
+	 * @param lines 2D List
+	 * @throws IOException @see {@link IOException}
 	 */
 	public void export(List<List<Object>> lines) throws IOException {
 		initFileWriter();
@@ -88,8 +93,10 @@ public class CSVExporter implements Exporter {
 
 	}
 
-	/* (non-Javadoc)
+	/**
 	 * @see org.unicase.analyzer.exporter.Exporter#writeLine(java.util.List)
+	 * @param columns columns
+	 * @throws IOException @see {@link IOException}
 	 */
 	public void writeLine(List<Object> columns) throws IOException {
 		initFileWriter(false);

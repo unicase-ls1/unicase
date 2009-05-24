@@ -1,22 +1,25 @@
 /**
- * 
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.dataanalyzer;
 
 import java.io.IOException;
-import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.NoSuchElementException;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.VersionIterator;
 import org.unicase.analyzer.exporter.Exporter;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
@@ -25,8 +28,10 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.Project;
+import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.organization.User;
 import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.model.task.ActionItem;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 
@@ -42,25 +47,36 @@ public class DetectionAnalyzer implements DataAnalyzer {
 	private List<String> view;
 	private List<Date> diff;
 
-	private DateFormat format;
-	private DateFormat diffFormat;
-	private List<String> funcRequirements;
+	private String funcRequirement;
 	
 	/**
 	 * Constructor of DetectionAnalyzer. A special analyzer for detecting the 
 	 * update time and read time for each user, after a modelElement has been modified.
-	 * @param users List of given users
-	 * @param funcRequirements List of given FunctionalRequirements of 
-	 * each user for detecting.
+	 * @param funcRequirement given FunctionalRequirement for detecting.
+	 * @param it VersionIterator.
 	 */
-	public DetectionAnalyzer(List<String> users, List<String> funcRequirements){
-
-		this.users = users;
-		this.funcRequirements = funcRequirements;
+	public DetectionAnalyzer(String funcRequirement, VersionIterator it){
+		
+		this.funcRequirement = funcRequirement;
+		this.users = new ArrayList<String>();
 		this.update = new ArrayList<Date>();
 		this.read = new ArrayList<Date>();
 		this.view = new ArrayList<String>();
 		this.diff = new ArrayList<Date>();
+		
+		List<User> userElist = new ArrayList<User>();
+		try {
+			Project project = it.getConnectionManager().getProject(it.getUsersession().getSessionId(), it.getProjectId(), VersioningFactory.eINSTANCE.createHeadVersionSpec());
+			userElist = project.getAllModelElementsbyClass(OrganizationFactory.eINSTANCE.createUser().eClass(), new BasicEList<User>());
+			for(User user : userElist){
+				this.users.add(user.getName());
+			}
+		} catch (EmfStoreException e) {
+			String message = "Could not get changes from server";
+			WorkspaceUtil.logException(message, e);
+			throw new NoSuchElementException(message + ":\n" + e);
+		}
+		
 		for(int i=0; i<users.size();i++){
 			update.add(null);
 			read.add(null);
@@ -68,12 +84,13 @@ public class DetectionAnalyzer implements DataAnalyzer {
 			diff.add(null);
 		}
 		
-		this.format = new SimpleDateFormat("EEE d MMM yyyy HH:mm:ss Z");
-		this.diffFormat = new SimpleDateFormat("D 'days' HH:mm:ss");
+		new SimpleDateFormat("EEE d MMM yyyy HH:mm:ss Z");
+		new SimpleDateFormat("D 'days' HH:mm:ss");
 	
 	}
-	/* (non-Javadoc)
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
+	/**
+	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
+	 * 
 	 */
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
@@ -85,8 +102,9 @@ public class DetectionAnalyzer implements DataAnalyzer {
 		return names;
 	}
 
-	/* (non-Javadoc)
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
+	/**
+	 * @param data {@link ProjectAnalysisData}
+	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
 	 */
 	public List<Object> getValue(ProjectAnalysisData data) {
 		List<Object> values = this.getValue();
@@ -94,7 +112,7 @@ public class DetectionAnalyzer implements DataAnalyzer {
 	}
 
 	/**
-	 * Analyze the give ProjectAnalysisData.
+	 * Analyze the given ProjectAnalysisData.
 	 * @param data ProjectAnalysisData
 	 * @param It VersionIterator
 	 */
@@ -103,7 +121,7 @@ public class DetectionAnalyzer implements DataAnalyzer {
 		
 		PrimaryVersionSpec base;
 		PrimaryVersionSpec target;
-		List<ModelElementId> meIdMap = null;//Map for the ModelElement candidates
+		List<ModelElementId> meIdList = null;//List for the ModelElement candidates
 		
 		for(ChangePackage change : data.getChangePackages()){
 			for(String user : users){
@@ -120,7 +138,12 @@ public class DetectionAnalyzer implements DataAnalyzer {
 							else{
 								base = ((CheckoutEvent) event).getBaseVersion();
 								target = EsModelUtil.clone(base);
-								target.setIdentifier(base.getIdentifier()- 20); //just consider the last 10 revisions
+								if(base.getIdentifier()- 20 > 0){
+									target.setIdentifier(base.getIdentifier()- 20); //just consider the last 20 revisions
+								}
+								else{
+									target.setIdentifier(0);
+								}
 							}
 							// just store the earliest update date for each user
 							if(update.get(index)== null || update.get(index).after(updateDate)){
@@ -130,10 +153,10 @@ public class DetectionAnalyzer implements DataAnalyzer {
 								List<ChangePackage> updateChanges = It.getConnectionManager().getChanges(It.getUsersession().getSessionId(), 
 									It.getProjectId(), base, target);
 								//Map for the ModelElement candidates
-								meIdMap = new ArrayList<ModelElementId>();
+								meIdList = new ArrayList<ModelElementId>();
 								for(ChangePackage updateChange : updateChanges){
 									for(AbstractOperation op : updateChange.getOperations()){
-										meIdMap.add(op.getModelElementId());
+										meIdList.add(op.getModelElementId());
 									}
 								}
 
@@ -147,7 +170,7 @@ public class DetectionAnalyzer implements DataAnalyzer {
 						else if(event instanceof ReadEvent){
 							ReadEvent readEvent = (ReadEvent) event;
 							ModelElementId meId = readEvent.getModelElement();
-							checkReadEvent(index, meId, meIdMap, readEvent, data);
+							checkReadEvent(index, meId, meIdList, readEvent, data);
 						}
 						if(read.get(index)!=null && update.get(index)!=null){
 							Date diffDate = new Date(read.get(index).getTime()-update.get(index).getTime());
@@ -159,14 +182,14 @@ public class DetectionAnalyzer implements DataAnalyzer {
 		}			
 	}
 	
-	// check the ReadEvent reads the given FunctionalRequirements not, if yes, record the ReadDate and ReadView
-	private void checkReadEvent(int index, ModelElementId meId, List<ModelElementId> meIdMap, 
+	// check the ReadEvent reads the given FunctionalRequirements or not, if yes, record the ReadDate and ReadView
+	private void checkReadEvent(int index, ModelElementId meId, List<ModelElementId> meIdList, 
 		ReadEvent readEvent, ProjectAnalysisData data){
 		Date readDate = new Date();
-		if(meIdMap != null){
-			if(meIdMap.contains(meId)){
+		if(meIdList != null){
+			if(meIdList.contains(meId)){
 				ModelElement me = data.getProjectState().getModelElement(meId);
-				if(me instanceof FunctionalRequirement && me.getName().contains(funcRequirements.get(index))){
+				if(me instanceof FunctionalRequirement && me.getName().contains(funcRequirement)){
 					readDate = readEvent.getTimestamp();
 					// just store the earliest read date for each user
 					if(read.get(index)== null || read.get(index).after(readDate)){
@@ -185,12 +208,13 @@ public class DetectionAnalyzer implements DataAnalyzer {
 	public void runAnalysis(Exporter exporter) throws IOException {
 		
 		List<Object> values =  getValue();
-		int linesNumber = values.size()/5;
+		int columnsNumber = getName().size();
+		int linesNumber = values.size()/columnsNumber;
 		
 		for(int i = 0; i < linesNumber; i++){
 			List<Object> line = new ArrayList<Object>();
-			for(int j = 0; j < 5; j++){
-				line.add(values.get(i*linesNumber+j));
+			for(int j = 0; j < columnsNumber; j++){
+				line.add(values.get(i*columnsNumber+j));
 			}
 			exporter.writeLine(line);
 		}
@@ -202,15 +226,17 @@ public class DetectionAnalyzer implements DataAnalyzer {
 
 		for(String user : users){
 			int index = users.indexOf(user);
-						
+					
 			values.add(user);
 			if(update.get(index) != null){
-				values.add(format.format(update.get(index)));
+				//values.add(format.format(update.get(index)));
+				values.add(update.get(index));
 			}else{
 				values.add("-");
 			}
 			if(read.get(index) != null){
-				values.add(format.format(read.get(index)));
+				//values.add(format.format(read.get(index)));
+				values.add(read.get(index));
 			}else{
 				values.add("-");
 			}
