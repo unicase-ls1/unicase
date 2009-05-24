@@ -8,25 +8,20 @@ package org.unicase.analyzer.dataanalyzer;
 import java.util.List;
 
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.analyzer.VersionIterator;
 
 /**
  * @author liya
  *
  */
-public interface DataAnalyzer {
-
+public interface TwoDDataAnalyzer extends DataAnalyzer {
+	
 	/**
 	 * Returns the specified values of the given ProjectAnalysisData.
 	 * 
-	 * @param data ProjectAnalysisData
-	 * @return values per column
+	 * @param data {@link ProjectAnalysisData}
+	 * @param it {@link VersionIterator}
+	 * @return values 2D table of values
 	 */
-	List<Object> getValue(ProjectAnalysisData data);
-
-	/**
-	 * Returns the names of the columns.
-	 * 
-	 * @return the names of the columns
-	 */
-	List<String> getName();
+	List<List<Object>> get2DValue(ProjectAnalysisData data, VersionIterator it);
 }

@@ -1,6 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.analyzer;
@@ -47,7 +48,7 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 	/**
 	 * By default, the iterator will go through from version 0 to Head version,
 	 * and the next() method will return the copy of ProjectAnalysisData instead
-	 * of ProjectAnalysisData
+	 * of ProjectAnalysisData.
 	 * 
 	 * @param usersession
 	 *            the session id for authentication
@@ -94,7 +95,7 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 			int stepLength, VersionSpec start, VersionSpec end,
 			boolean isForward, boolean returnProjectDataCopy)
 			throws IteratorException {
-		// LY: remove this if backward iterator is implemented
+//		 LY: remove this if backward iterator is implemented
 		if (!isForward) {
 			throw new IllegalArgumentException(
 					"isForward=false not yet supported!");
@@ -190,14 +191,21 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 
 			List<ChangePackage> changePackages = projectdata
 					.getChangePackages();
+			ChangePackage nextChangePackage = VersioningFactory.eINSTANCE.createChangePackage();
 			for (ChangePackage changePackage : changes) {
+				int index = changes.indexOf(changePackage);
 				if(isForward){
 					changePackage.apply(currentState);
+					changePackages.add(changePackage);
 				}else{
+					if(index != 0){	
+						changePackages.add(nextChangePackage);
+					}
 					changePackage.reverse().apply(currentState);
+					//TODO return changePackage(i+1) but might be in another iteration
+					//WHAT SHALL I DO????
+					nextChangePackage = changes.get(index+1);
 				}
-				
-				changePackages.add(changePackage);
 			}
 		}
 		PrimaryVersionSpec nextSpecCopy = (PrimaryVersionSpec) EcoreUtil
@@ -221,6 +229,12 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 		}
 	}
 
+	/**Updates the PrimaryVersionSpec.
+	 * 
+	 * @param specifier {@link PrimaryVersionSpec}
+	 * @param stepLength int 
+	 * @param isForward boolean
+	 */
 	protected void updateSpecifier(PrimaryVersionSpec specifier,
 			int stepLength, boolean isForward) {
 		int currentIdentifier = specifier.getIdentifier();

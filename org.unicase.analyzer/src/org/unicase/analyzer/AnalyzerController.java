@@ -1,12 +1,17 @@
 /**
- * 
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
+
 import org.unicase.analyzer.dataanalyzer.DataAnalyzer;
 import org.unicase.analyzer.dataanalyzer.DetectionAnalyzer;
+import org.unicase.analyzer.dataanalyzer.TwoDDataAnalyzer;
 import org.unicase.analyzer.exporter.Exporter;
 
 /**
@@ -21,7 +26,7 @@ public class AnalyzerController {
 	
 	private Exporter exporter;
 	
-	private boolean exportHere;
+	private int flag;
 
 	/**
 	 * The Controller adds the proper analyzers and iterators, then starts the
@@ -38,15 +43,17 @@ public class AnalyzerController {
 		this.analyzers = analyzers;
 		this.exporter = exporter;
 		
-		//For DetectionAnalyzer, the exporter will be exported from the analyzer itself, 
-		//instead of the controller
-		for(DataAnalyzer analyzer : analyzers) {
-			if(!(analyzer instanceof DetectionAnalyzer)){
-				this.exportHere = true;
+		//flag is used for switching different ways of exporting, depends on different analyzers
+		DataAnalyzer analyzer = analyzers.get(0);
+			if(analyzer instanceof DetectionAnalyzer){
+				this.flag = 1;
+			}else if(analyzer instanceof TwoDDataAnalyzer){
+				this.flag = 2;
+			}else if(analyzer instanceof DataAnalyzer){
+				this.flag = 3;
 			}else{
-				this.exportHere = false;
+				this.flag = 4;
 			}
-		}
 			
 		try {
 			runAnalysis(exporter);
@@ -62,31 +69,45 @@ public class AnalyzerController {
 	 */
 	private void runAnalysis(Exporter exporter) throws IOException {
 		writeHeader(exporter);
-		ArrayList<Object> line = new ArrayList<Object>();
-		while(projectIterator.hasNext()) {
-			ProjectAnalysisData data = projectIterator.next();
-			line.clear();
-			for(DataAnalyzer analyzer : analyzers) {
-				if(exportHere){
-					for(Object obj : analyzer.getValue(data)) {
-						line.add(obj);
-					}
-				}
-			}
-			if(exportHere){
-				exporter.writeLine(line);
-			}
-			for(DataAnalyzer analyzer : analyzers) {
-				if(analyzer instanceof DetectionAnalyzer){
+		switch(flag){
+		case 1:
+			ArrayList<Object> line = new ArrayList<Object>();
+			while(projectIterator.hasNext()) {
+				ProjectAnalysisData data = projectIterator.next();
+				line.clear();
+				for(DataAnalyzer analyzer : analyzers) {
 					DetectionAnalyzer detectionAnalyzer = (DetectionAnalyzer)analyzer;
 					detectionAnalyzer.analyzeData(data, projectIterator);
 				}
 			}
-		}
-		for(DataAnalyzer analyzer : analyzers) {
-			if(analyzer instanceof DetectionAnalyzer){
-				((DetectionAnalyzer) analyzer).runAnalysis(exporter);
+			for(DataAnalyzer analyzer : analyzers) {
+				if(analyzer instanceof DetectionAnalyzer){
+					((DetectionAnalyzer) analyzer).runAnalysis(exporter);
+				}
 			}
+		case 2:
+			List<List<Object>> lines = new ArrayList<List<Object>>();
+			while(projectIterator.hasNext()) {
+				ProjectAnalysisData data = projectIterator.next();
+				for(DataAnalyzer analyzer : analyzers) {
+					lines = ((TwoDDataAnalyzer)analyzer).get2DValue(data, projectIterator);
+					exporter.export(lines);
+				}
+			}
+		case 3:		
+			line = new ArrayList<Object>();
+			while(projectIterator.hasNext()) {
+				ProjectAnalysisData data = projectIterator.next();
+				line.clear();
+				for(DataAnalyzer analyzer : analyzers) {
+					for(Object obj : analyzer.getValue(data)) {
+						line.add(obj);
+					}
+				}
+				exporter.writeLine(line);
+			}
+		case 4:
+			break;
 		}
 	}
 
