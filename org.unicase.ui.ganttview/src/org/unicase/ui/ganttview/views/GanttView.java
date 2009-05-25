@@ -3,13 +3,22 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.eclipse.nebula.widgets.ganttchart.GanttChart;
+import org.eclipse.nebula.widgets.ganttchart.GanttControlParent;
 import org.eclipse.nebula.widgets.ganttchart.GanttEvent;
 import org.eclipse.nebula.widgets.ganttchart.IGanttEventListener;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeColumn;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ui.ganttview.models.IGanttItem;
 import org.unicase.ui.ganttview.models.IGanttModel;
@@ -24,10 +33,14 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 	 */
 	public static final String ID = "org.unicase.ui.ganttview.views.GanttView";
 	
+	private static final int SPACER = 2;
+	private static final int ONE_ROW_HIGHT = 24;
+	
 	
 	private IGanttModel ganttModel;
 	private GanttChart ganttChart;
 	private Composite parent;
+	private Tree tree;
 	
 	/**
 	 * The constructor.
@@ -44,8 +57,71 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 	public void createPartControl(Composite parent) {	
 		this.parent = parent;	
 		this.parent.setLayout(new FillLayout());
-		ganttChart = new GanttChart(this.parent, SWT.NONE);
+		SashForm sashForm = new SashForm(this.parent, SWT.HORIZONTAL);
+		GanttControlParent ganttCpLeft = new GanttControlParent(sashForm, SWT.NONE);
+		
+		ganttChart = new GanttChart(sashForm, SWT.NONE);
 		ganttChart.addGanttEventListener(this);
+		
+		
+		ganttChart.getGanttComposite().setDrawHorizontalLinesOverride(true);
+		ganttChart.getGanttComposite().setDrawVerticalLinesOverride(false);
+		ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HIGHT-SPACER);
+		ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
+		ganttCpLeft.setGanttChart(ganttChart);
+		
+		tree = new Tree(ganttCpLeft, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
+		tree.setHeaderVisible(true);
+		tree.setLinesVisible(true);
+
+		// normally a tree item height on XP is 16 pixels. This is rather tight for a GANTT chart as it leaves little space for connecting lines etc.
+		// As we want some air, we force each item height to be 24 pixels.
+		tree.addListener(SWT.MeasureItem, new Listener() {
+			public void handleEvent(Event event) {
+				event.height = ONE_ROW_HIGHT;
+			}
+		});
+		
+		// when an item is selected in the tree, we highlight it by setting it selected in the chart as well
+		tree.addSelectionListener(new SelectionListener() {
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+			public void widgetSelected(SelectionEvent e) {
+				if (tree.getSelectionCount() == 0)
+					return;
+
+				// set the selection
+				TreeItem sel = tree.getSelection()[0];
+				GanttEvent ge = (GanttEvent) sel.getData();
+				ganttChart.getGanttComposite().setSelection(ge);
+			}
+
+		});
+
+		//tree.addListener(SWT.Collapse, expandCollapseListener);
+		//tree.addListener(SWT.Expand, expandCollapseListener);
+
+
+		TreeColumn tcName = new TreeColumn(tree, SWT.NONE);
+		tcName.setText("Name");
+		tcName.setWidth(150);
+		
+		TreeColumn tcStartDate = new TreeColumn(tree, SWT.NONE);
+		tcStartDate.setText("Start");
+		tcStartDate.setWidth(100);
+		
+		TreeColumn tcEndDateDate = new TreeColumn(tree, SWT.NONE);
+		tcEndDateDate.setText("End");
+		tcEndDateDate.setWidth(100);
+		
+		TreeColumn tcCompleted = new TreeColumn(tree, SWT.NONE);
+		tcCompleted.setText("Completed");
+		tcCompleted.setWidth(100);
+
+		sashForm.setWeights(new int[] { 30, 70 });
+		
 		this.setInput(null); // Create GanttModel with all WorkItems
 	}
 	
@@ -56,31 +132,31 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 		
 		this.ganttModel = ganttModel;
 		this.ganttModel.addGanttModelListener(this);
-		updateView();
+		recreateView();
 	}
 	
 	
 
-	private void updateView() {
+	private void recreateView() {
+		
+		GanttViewHelper.clearGanttChart(ganttChart);
 		
 		for(IGanttItem ganttItem : ganttModel.getRootGanttItems()) {
 		
-			GanttEvent rootEvent = new GanttEvent(ganttChart, ganttItem.getName());
-			rootEvent.setData(ganttItem);
-			CreateChildEvents(ganttItem, rootEvent);
+			TreeItem rootTreeItem = GanttViewHelper.createRootTreeItemWithGanttEvent(tree, ganttChart, ganttItem);
+			CreateChildEvents(ganttItem, rootTreeItem);
+			rootTreeItem.setExpanded(true);
 			
 		}
 		
 	}
 
-	private void CreateChildEvents(IGanttItem ganttItem, GanttEvent rootEvent) {
+	private void CreateChildEvents(IGanttItem ganttItem, TreeItem rootTreeItem) {
 		
 		for(IGanttItem childItem : ganttItem.getChildGanttItems()) {
 			
-			GanttEvent childEvent = new GanttEvent(ganttChart, childItem.getName(), childItem.getStartDate(), childItem.getEndDate(), childItem.getCompletionStatus());
-			childEvent.setData(childItem);
-			rootEvent.addScopeEvent(childEvent);
-			CreateChildEvents(childItem, childEvent);
+			TreeItem childTreeItem = GanttViewHelper.createChildTreeItemWithGanttEvent(rootTreeItem, ganttChart, childItem);
+			CreateChildEvents(childItem, childTreeItem);
 		}
 	}
 

@@ -36,6 +36,9 @@ public final class GanttModelFactory {
 			
 			GanttItem rootItem = new GanttItem();
 			rootItem.setName("Root Item " + i);
+			// hack - should be computed with regard to child items
+			rootItem.setStartDate(Calendar.getInstance());
+			rootItem.setEndDate(Calendar.getInstance());
 			
 			result.getGanttItems().put(rootItem.getName(), rootItem);
 			result.getRootGanttItems().add(rootItem);
