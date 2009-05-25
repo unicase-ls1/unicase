@@ -46,7 +46,7 @@ public final class GanttModelFactory {
 			for(int j = 0; j < 3; j++) {
 				
 				GanttItem childItem = new GanttItem();
-				childItem.setName("Child Item " +j);
+				childItem.setName("Child Item "+i+" " +j);
 			
 				Calendar childStartDate = (Calendar) startDate.clone();
 				childStartDate.add(Calendar.DATE, 0 + (new Random()).nextInt(3-0));

@@ -29,6 +29,13 @@ public final class GanttViewHelper {
 		}
 	}
 	
+	public static void setTreeItemText(TreeItem treeItem, IGanttItem ganttItem) {
+		treeItem.setText(new String[] { ganttItem.getName(), 
+		getFormattedDateString(ganttItem.getStartDate()), 
+		getFormattedDateString(ganttItem.getEndDate()),
+		ganttItem.getCompletionStatus()+"" });
+	}
+	
 	
 	public static TreeItem createRootTreeItemWithGanttEvent(Tree tree, GanttChart ganttChart, IGanttItem ganttItem) {
 		
@@ -36,11 +43,7 @@ public final class GanttViewHelper {
 		ganttEvent.setData(ganttItem);
 		
 		TreeItem treeItem = new TreeItem(tree, SWT.NONE);
-		treeItem.setText(new String[] { ganttItem.getName(), 
-				getFormattedDateString(ganttItem.getStartDate()), 
-				getFormattedDateString(ganttItem.getEndDate()),
-				ganttItem.getCompletionStatus()+"" });
-		
+		setTreeItemText(treeItem, ganttItem);		
 		treeItem.setData(ganttEvent);
 		
 		return treeItem;
@@ -57,10 +60,7 @@ public final class GanttViewHelper {
 		((GanttEvent)rootTreeItem.getData()).addScopeEvent(ganttEvent);
 		
 		TreeItem treeItem = new TreeItem(rootTreeItem, SWT.NONE);
-		treeItem.setText(new String[] { ganttItem.getName(), 
-				getFormattedDateString(ganttItem.getStartDate()), 
-				getFormattedDateString(ganttItem.getEndDate()),
-				ganttItem.getCompletionStatus()+"" });
+		setTreeItemText(treeItem, ganttItem);
 		
 		treeItem.setData(ganttEvent);
 		
@@ -71,6 +71,33 @@ public final class GanttViewHelper {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 		
 		return sdf.format(date.getTime());
+	}
+	
+	public static TreeItem getTreeItemByGanttItem(Tree tree, IGanttItem ganttItem) {
+		
+		return getTreeItemByGanttItemInner(tree.getItems(), ganttItem);
+		
+	}
+	
+	private static TreeItem getTreeItemByGanttItemInner(TreeItem[] treeItems, IGanttItem ganttItem) {
+		
+		TreeItem result = null;
+		
+		for(TreeItem item : treeItems) {
+			
+			GanttEvent ganttEvent = (GanttEvent)item.getData();
+			IGanttItem ganttEventsData = (IGanttItem)ganttEvent.getData();
+			
+	        if(ganttEventsData.getName().equals(ganttItem.getName()))
+	        	return item;
+	        else {
+	        	result = getTreeItemByGanttItemInner(item.getItems(), ganttItem);
+	        	if(result != null)
+	        		break;
+	        }    	
+		}
+		
+		return result;
 	}
 	
 	

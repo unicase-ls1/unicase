@@ -82,6 +82,25 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 			}
 		});
 		
+		// when a root node is collapsed/expanded, we collapse the entire scope in a similar fashion
+		Listener expandCollapseListener = new Listener() {
+			public void handleEvent(Event event) {
+				GanttEvent ge = (GanttEvent)event.item.getData();
+
+				if (event.type == SWT.Collapse) {
+					ge.hideAllChildren();
+					ganttChart.redrawGanttChart();
+				} else {
+					ge.showAllChildren();
+					ganttChart.redrawGanttChart();
+				}
+			}
+		};
+
+		tree.addListener(SWT.Collapse, expandCollapseListener);
+		tree.addListener(SWT.Expand, expandCollapseListener);
+
+		
 		// when an item is selected in the tree, we highlight it by setting it selected in the chart as well
 		tree.addSelectionListener(new SelectionListener() {
 
@@ -170,9 +189,14 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 
 	
 	public void ganttItemChanged(IGanttItem ganttItem) {
-		System.out.println(ganttItem.getName());
-		System.out.println(ganttItem.getStartDate().getTime().toString());
-		System.out.println(ganttItem.getEndDate().getTime().toString());
+		
+		TreeItem treeItem = GanttViewHelper.getTreeItemByGanttItem(tree, ganttItem);
+	
+		if(treeItem == null)
+			return;
+		
+		GanttViewHelper.setTreeItemText(treeItem, ganttItem);
+		tree.redraw();
 	}
 
 	public void eventDoubleClicked(GanttEvent arg0, MouseEvent arg1) {
