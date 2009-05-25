@@ -5,27 +5,51 @@
 
 package org.unicase.ui.ganttview.models.impl;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Hashtable;
 import java.util.List;
-import java.util.Observable;
 
 import org.unicase.ui.ganttview.models.IGanttItem;
 import org.unicase.ui.ganttview.models.IGanttModel;
+import org.unicase.ui.ganttview.models.IGanttModelListener;
 
-public class GanttModel extends Observable implements IGanttModel {
+public class GanttModel implements IGanttModel {
+	
+	private List<IGanttModelListener> ganttModelListeners;
+	private Hashtable<String, IGanttItem> ganttItems;
+	private List<IGanttItem> rootGanttItems;
+	
 	
 	public GanttModel() {
-		
+		this.ganttModelListeners = new ArrayList<IGanttModelListener>();
+		this.ganttItems = new Hashtable<String, IGanttItem>();
+		this.rootGanttItems = new ArrayList<IGanttItem>();
 	}
 
 	public List<IGanttItem> getRootGanttItems() {
-		// TODO Auto-generated method stub
-		return null;
+		return rootGanttItems;
 	}
 
 	public void modifyGanttItem(String name, Calendar newStartDate, Calendar newEndDate) {
 		// TODO Auto-generated method stub
-		this.notifyObservers();
+		notifyAllListeners();
+	}
+
+	public Hashtable<String, IGanttItem> getGanttItems() {
+		return ganttItems;
+	}
+
+	
+	public void addGanttModelListener(IGanttModelListener ganttModelListener) {
+		this.ganttModelListeners.add(ganttModelListener);
+	}
+	
+	private void notifyAllListeners() {
+		
+		for(IGanttModelListener listener : this.ganttModelListeners) {
+			listener.ganttModelChanged(null);
+		}
 	}
 		
 }

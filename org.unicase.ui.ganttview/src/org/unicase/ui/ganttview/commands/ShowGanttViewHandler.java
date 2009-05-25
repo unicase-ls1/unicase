@@ -11,7 +11,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.ui.ganttview.models.impl.GanttModel;
+import org.unicase.ui.ganttview.models.GanttModelFactory;
 import org.unicase.ui.ganttview.views.GanttView;
 
 public class ShowGanttViewHandler extends AbstractHandler {
@@ -23,7 +23,7 @@ public class ShowGanttViewHandler extends AbstractHandler {
 		try {
 			GanttView ganttView = (GanttView) page.showView(GanttView.ID);//, me.getName(),
 				//IWorkbenchPage.VIEW_ACTIVATE);
-			ganttView.setInput(new GanttModel()); //createGanttModel with selected GanttItems
+			ganttView.setInput(GanttModelFactory.createGanttModelTest()); //createGanttModel with selected GanttItems
 
 		} catch (PartInitException e) {
 			//DialogHandler.showExceptionDialog(e);

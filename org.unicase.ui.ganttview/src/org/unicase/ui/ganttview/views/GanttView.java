@@ -1,29 +1,23 @@
 package org.unicase.ui.ganttview.views;
 import java.util.Calendar;
-import java.util.Observable;
-import java.util.Observer;
+import java.util.List;
 
-import org.eclipse.nebula.widgets.ganttchart.ColorCache;
 import org.eclipse.nebula.widgets.ganttchart.GanttChart;
 import org.eclipse.nebula.widgets.ganttchart.GanttEvent;
 import org.eclipse.nebula.widgets.ganttchart.GanttSection;
+import org.eclipse.nebula.widgets.ganttchart.IGanttEventListener;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseEvent;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
-import org.eclipse.swt.widgets.MenuItem;
-import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IPartListener;
-import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.ui.ganttview.models.IGanttItem;
-import org.unicase.ui.ganttview.models.impl.GanttModel;
-import org.unicase.ui.ganttview.util.GanttViewHelper;
+import org.unicase.ui.ganttview.models.IGanttModel;
+import org.unicase.ui.ganttview.models.IGanttModelListener;
 
 
-public class GanttView extends ViewPart  implements Observer {
+public class GanttView extends ViewPart implements IGanttModelListener, IGanttEventListener {
 	
 	/**
 	 * ID for this view.
@@ -31,7 +25,7 @@ public class GanttView extends ViewPart  implements Observer {
 	public static final String ID = "org.unicase.ui.ganttview.views.GanttView";
 	
 	
-	private GanttModel ganttModel;
+	private IGanttModel ganttModel;
 	private GanttChart ganttChart;
 	
 	/**
@@ -47,22 +41,27 @@ public class GanttView extends ViewPart  implements Observer {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {	
-		
+			
 		parent.setLayout(new FillLayout());
 		ganttChart = new GanttChart(parent, SWT.NONE);
-		this.setInput(new GanttModel()); // Create GanttModel with all WorkItems
+		ganttChart.addGanttEventListener(this);
+		this.setInput(null); // Create GanttModel with all WorkItems
 
 	}
 	
-	public void setInput(GanttModel ganttModel ) {
+	public void setInput(IGanttModel ganttModel ) {
+		
+		if(ganttModel == null)
+			return;
+		
 		this.ganttModel = ganttModel;
-		ganttModel.addObserver(this);
-		updateView(ganttModel);
+		this.ganttModel.addGanttModelListener(this);
+		updateView();
 	}
 	
 
 	
-	private void updateView(GanttModel ganttModel) {
+	private void updateView() {
 		
 		for(IGanttItem ganttItem : ganttModel.getRootGanttItems()) {
 			
@@ -77,7 +76,7 @@ public class GanttView extends ViewPart  implements Observer {
 
 	private void CreateChildEvents(GanttChart ganttChart, IGanttItem ganttItem, GanttEvent ganttEvent) {
 		
-		for(IGanttItem childItem : ganttItem.getChildren()) {
+		for(IGanttItem childItem : ganttItem.getChildGanttItems()) {
 			GanttEvent childEvent = new GanttEvent(ganttChart, childItem.getName(), childItem.getStartDate(), childItem.getEndDate(), childItem.getCompletionStatus());
 			ganttEvent.addScopeEvent(childEvent);
 			CreateChildEvents(ganttChart, childItem, childEvent);
@@ -92,7 +91,71 @@ public class GanttView extends ViewPart  implements Observer {
 		
 	}
 
-	public void update(Observable observable, Object arg1) {
+	
+	public void ganttModelChanged(IGanttItem ganttItem) {
+		updateView();
+	}
+
+	public void eventDoubleClicked(GanttEvent arg0, MouseEvent arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void eventHeaderSelected(Calendar arg0, List arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void eventPropertiesSelected(List arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void eventSelected(GanttEvent arg0, List arg1, MouseEvent arg2) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void eventsDeleteRequest(List arg0, MouseEvent arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void eventsMoveFinished(List arg0, MouseEvent arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void eventsMoved(List arg0, MouseEvent arg1) {
+		
+	}
+
+	public void eventsResizeFinished(List arg0, MouseEvent arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void eventsResized(List arg0, MouseEvent arg1) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void lastDraw(GC arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void zoomReset() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void zoomedIn(int arg0) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	public void zoomedOut(int arg0) {
 		// TODO Auto-generated method stub
 		
 	}

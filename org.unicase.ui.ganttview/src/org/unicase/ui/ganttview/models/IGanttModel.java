@@ -10,6 +10,7 @@ import java.util.List;
 
 public interface IGanttModel {
 	
+	public void addGanttModelListener(IGanttModelListener ganttModelListener);
 	public List<IGanttItem> getRootGanttItems();
 	public void modifyGanttItem(String name, Calendar newStartDate, Calendar newEndDate);
 }

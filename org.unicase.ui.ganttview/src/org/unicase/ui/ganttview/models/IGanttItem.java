@@ -14,7 +14,7 @@ public interface IGanttItem {
 	public Calendar getEndDate();
 	public String getName();
 	public int getCompletionStatus();
-	public List<IGanttItem> getChildren();
-	public IGanttItem getParent();
+	public List<IGanttItem> getChildGanttItems();
+	public IGanttItem getParentGanttItem();
 	
 }
