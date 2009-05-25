@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.eclipse.nebula.widgets.ganttchart.GanttChart;
 import org.eclipse.nebula.widgets.ganttchart.GanttEvent;
+import org.eclipse.nebula.widgets.ganttchart.GanttGroup;
 import org.eclipse.nebula.widgets.ganttchart.GanttSection;
 import org.eclipse.nebula.widgets.ganttchart.IGanttEventListener;
 import org.eclipse.swt.SWT;
@@ -65,21 +66,20 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 		
 		for(IGanttItem ganttItem : ganttModel.getRootGanttItems()) {
 			
-			GanttSection section = new GanttSection(ganttChart, ganttItem.getName());
-			GanttEvent rootEvent = new GanttEvent(ganttChart, ganttItem.getName(), ganttItem.getStartDate(), ganttItem.getEndDate(), ganttItem.getCompletionStatus());
-			section.addGanttEvent(rootEvent);
-			
-			CreateChildEvents(ganttChart, ganttItem, rootEvent);
-				
+			GanttEvent rootEvent = new GanttEvent(ganttChart, ganttItem.getName());
+			CreateChildEvents(ganttItem, rootEvent);
 		}
+		
+		ganttChart.redraw();
 	}
 
-	private void CreateChildEvents(GanttChart ganttChart, IGanttItem ganttItem, GanttEvent ganttEvent) {
+	private void CreateChildEvents(IGanttItem ganttItem, GanttEvent rootEvent) {
 		
 		for(IGanttItem childItem : ganttItem.getChildGanttItems()) {
+			
 			GanttEvent childEvent = new GanttEvent(ganttChart, childItem.getName(), childItem.getStartDate(), childItem.getEndDate(), childItem.getCompletionStatus());
-			ganttEvent.addScopeEvent(childEvent);
-			CreateChildEvents(ganttChart, childItem, childEvent);
+			rootEvent.addScopeEvent(childEvent);
+			CreateChildEvents(childItem, childEvent);
 		}
 	}
 
