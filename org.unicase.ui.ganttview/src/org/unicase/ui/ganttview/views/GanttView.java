@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.eclipse.nebula.widgets.ganttchart.GanttChart;
 import org.eclipse.nebula.widgets.ganttchart.GanttEvent;
-import org.eclipse.nebula.widgets.ganttchart.GanttGroup;
-import org.eclipse.nebula.widgets.ganttchart.GanttSection;
 import org.eclipse.nebula.widgets.ganttchart.IGanttEventListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -16,6 +14,7 @@ import org.eclipse.ui.part.ViewPart;
 import org.unicase.ui.ganttview.models.IGanttItem;
 import org.unicase.ui.ganttview.models.IGanttModel;
 import org.unicase.ui.ganttview.models.IGanttModelListener;
+import org.unicase.ui.ganttview.util.GanttViewHelper;
 
 
 public class GanttView extends ViewPart implements IGanttModelListener, IGanttEventListener {
@@ -28,6 +27,7 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 	
 	private IGanttModel ganttModel;
 	private GanttChart ganttChart;
+	private Composite parent;
 	
 	/**
 	 * The constructor.
@@ -42,15 +42,14 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 	 */
 	@Override
 	public void createPartControl(Composite parent) {	
-			
-		parent.setLayout(new FillLayout());
-		ganttChart = new GanttChart(parent, SWT.NONE);
+		this.parent = parent;	
+		this.parent.setLayout(new FillLayout());
+		ganttChart = new GanttChart(this.parent, SWT.NONE);
 		ganttChart.addGanttEventListener(this);
 		this.setInput(null); // Create GanttModel with all WorkItems
-
 	}
 	
-	public void setInput(IGanttModel ganttModel ) {
+	public void setInput(IGanttModel ganttModel) {
 		
 		if(ganttModel == null)
 			return;
@@ -60,17 +59,18 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 		updateView();
 	}
 	
-
 	
+
 	private void updateView() {
 		
 		for(IGanttItem ganttItem : ganttModel.getRootGanttItems()) {
-			
+		
 			GanttEvent rootEvent = new GanttEvent(ganttChart, ganttItem.getName());
+			rootEvent.setData(ganttItem);
 			CreateChildEvents(ganttItem, rootEvent);
+			
 		}
 		
-		ganttChart.redraw();
 	}
 
 	private void CreateChildEvents(IGanttItem ganttItem, GanttEvent rootEvent) {
@@ -78,6 +78,7 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 		for(IGanttItem childItem : ganttItem.getChildGanttItems()) {
 			
 			GanttEvent childEvent = new GanttEvent(ganttChart, childItem.getName(), childItem.getStartDate(), childItem.getEndDate(), childItem.getCompletionStatus());
+			childEvent.setData(childItem);
 			rootEvent.addScopeEvent(childEvent);
 			CreateChildEvents(childItem, childEvent);
 		}
@@ -92,8 +93,10 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 	}
 
 	
-	public void ganttModelChanged(IGanttItem ganttItem) {
-		updateView();
+	public void ganttItemChanged(IGanttItem ganttItem) {
+		System.out.println(ganttItem.getName());
+		System.out.println(ganttItem.getStartDate().getTime().toString());
+		System.out.println(ganttItem.getEndDate().getTime().toString());
 	}
 
 	public void eventDoubleClicked(GanttEvent arg0, MouseEvent arg1) {
@@ -122,22 +125,40 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 	}
 
 	public void eventsMoveFinished(List arg0, MouseEvent arg1) {
-		// TODO Auto-generated method stub
+		
+		Object eventObject = arg0.get(0);
+		
+		if(!(eventObject instanceof GanttEvent))
+			return;
+		
+		GanttEvent ganttEvent = (GanttEvent) eventObject;
+		IGanttItem ganttItem = (IGanttItem)ganttEvent.getData();
+		ganttModel.modifyGanttItem(ganttItem.getName(), ganttEvent.getRevisedStart(), ganttEvent.getRevisedEnd());
 		
 	}
 
 	public void eventsMoved(List arg0, MouseEvent arg1) {
-		
+		// TODO Auto-generated method stub
 	}
 
 	public void eventsResizeFinished(List arg0, MouseEvent arg1) {
-		// TODO Auto-generated method stub
+		Object eventObject = arg0.get(0);
+		
+		if(!(eventObject instanceof GanttEvent))
+			return;
+		
+		GanttEvent ganttEvent = (GanttEvent) eventObject;
+		IGanttItem ganttItem = (IGanttItem)ganttEvent.getData();
+		
+		Calendar startDate = ganttEvent.getRevisedStart() == null ? ganttItem.getStartDate() : ganttEvent.getRevisedStart();
+		Calendar endDate = ganttEvent.getRevisedEnd() == null ? ganttItem.getEndDate() : ganttEvent.getRevisedEnd();
+		
+		ganttModel.modifyGanttItem(ganttItem.getName(), startDate, endDate);
 		
 	}
 
 	public void eventsResized(List arg0, MouseEvent arg1) {
 		// TODO Auto-generated method stub
-		
 	}
 
 	public void lastDraw(GC arg0) {

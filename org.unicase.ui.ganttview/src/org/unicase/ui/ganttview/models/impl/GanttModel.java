@@ -25,6 +25,7 @@ public class GanttModel implements IGanttModel {
 		this.ganttModelListeners = new ArrayList<IGanttModelListener>();
 		this.ganttItems = new Hashtable<String, IGanttItem>();
 		this.rootGanttItems = new ArrayList<IGanttItem>();
+		addGanttModelListener(new WorkItemGanttModelListener());
 	}
 
 	public List<IGanttItem> getRootGanttItems() {
@@ -32,8 +33,12 @@ public class GanttModel implements IGanttModel {
 	}
 
 	public void modifyGanttItem(String name, Calendar newStartDate, Calendar newEndDate) {
-		// TODO Auto-generated method stub
-		notifyAllListeners();
+		GanttItem modifiedGanttItem = (GanttItem) ganttItems.get(name);
+		
+		modifiedGanttItem.setStartDate(newStartDate);
+		modifiedGanttItem.setEndDate(newEndDate);
+		
+		notifyAllListeners(modifiedGanttItem);
 	}
 
 	public Hashtable<String, IGanttItem> getGanttItems() {
@@ -45,10 +50,10 @@ public class GanttModel implements IGanttModel {
 		this.ganttModelListeners.add(ganttModelListener);
 	}
 	
-	private void notifyAllListeners() {
+	private void notifyAllListeners(IGanttItem modifiedGanttItem) {
 		
 		for(IGanttModelListener listener : this.ganttModelListeners) {
-			listener.ganttModelChanged(null);
+			listener.ganttItemChanged(modifiedGanttItem);
 		}
 	}
 		

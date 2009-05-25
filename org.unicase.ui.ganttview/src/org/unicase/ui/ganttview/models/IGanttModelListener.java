@@ -6,5 +6,6 @@
 package org.unicase.ui.ganttview.models;
 
 public interface IGanttModelListener {
-	public void ganttModelChanged(IGanttItem ganttItem);
+	
+	public void ganttItemChanged(IGanttItem ganttItem);
 }

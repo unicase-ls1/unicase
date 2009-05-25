@@ -13,6 +13,18 @@ import org.unicase.ui.ganttview.models.impl.GanttModel;
 
 public final class GanttModelFactory {
 	
+	public static IGanttModel createGanttModelFromSelectedWorkItems() {
+		GanttModel result = null;
+		//TODO: Build GanttModel from ContextMenu Selection
+		return result;
+	}
+	
+	public static IGanttModel createGanttModelFromWorkItems() {
+		GanttModel result = null;
+		//TODO: Build GanttModel from all WorkItems
+		return result;
+	}
+	
 	public static IGanttModel createGanttModelTest() {
 
 		GanttModel result = new GanttModel();
@@ -51,3 +63,4 @@ public final class GanttModelFactory {
 		return result;
 	}
 }
+
