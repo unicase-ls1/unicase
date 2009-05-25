@@ -28,15 +28,6 @@
    <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="toolbar:org.unicase.ui.taskview?after=taskviewFilters">
-         <command
-               commandId="org.unicase.ui.navigator.ShowMEInNavigator"
-               icon="icons/link_with_navigator.gif"
-               style="push"
-               tooltip="show selected item in navigator">
-         </command>
-      </menuContribution>
-      <menuContribution
             locationURI="popup:org.unicase.ui.tableview.UnicasetableView_ID">
          <command
                commandId="org.unicase.ui.common.deleteModelelement"

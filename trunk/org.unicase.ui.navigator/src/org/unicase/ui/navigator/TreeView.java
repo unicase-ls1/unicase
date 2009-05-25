@@ -5,15 +5,22 @@
  */
 package org.unicase.ui.navigator;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IAction;
+import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TreePath;
+import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
@@ -21,12 +28,16 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IDecoratorManager;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -40,15 +51,44 @@ public class TreeView extends ViewPart { // implements IShowInSource
 	private static TreeViewer viewer;
 	private MenuManager menuMgr;
 
+	private boolean linkedWithEditor;
+
+	private Action linkWithEditor;
+	private PartListener partListener;
+
 	/**
-	 * . Constructor
+	 * Constructor.
 	 */
 	public TreeView() {
-
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * Reveals the editor input in navigator. Or if navigator selection is open in an editor, activates the editor.
+	 * 
+	 * @param link
+	 */
+	private void linkWithEditor(boolean linkEnabled) {
+		if (linkEnabled) {
+
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().addPartListener(partListener);
+		} else {
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().removePartListener(partListener);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.part.WorkbenchPart#dispose()
+	 */
+	@Override
+	public void dispose() {
+		getSite().getPage().removePartListener(partListener);
+		super.dispose();
+	}
+
+	/**
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
@@ -61,6 +101,12 @@ public class TreeView extends ViewPart { // implements IShowInSource
 
 		// this is for workaround for update problem in navigator
 		getSite().setSelectionProvider(viewer);
+		partListener = new PartListener(this);
+
+		createActions();
+
+		IToolBarManager toolBarManager = getViewSite().getActionBars().getToolBarManager();
+		toolBarManager.add(linkWithEditor);
 
 		menuMgr = new MenuManager();
 		menuMgr.add(new Separator("additions"));
@@ -70,6 +116,7 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		control.setMenu(menu);
 
 		ActionHelper.createKeyHookDCAction(viewer, TreeView.class.getName());
+
 		addDragNDropSupport();
 		addSelectionListener();
 
@@ -81,6 +128,72 @@ public class TreeView extends ViewPart { // implements IShowInSource
 
 	}
 
+	private void createActions() {
+		linkWithEditor = new Action("Link with editor", IAction.AS_CHECK_BOX) {
+
+			@Override
+			public void run() {
+				if (linkedWithEditor) {
+					linkedWithEditor = false;
+					linkWithEditor(false);
+				} else {
+					linkedWithEditor = true;
+					linkWithEditor(true);
+					IEditorPart editor = getSite().getPage().getActiveEditor();
+					if (editor != null) {
+						editorActivated(editor);
+					}
+				}
+			}
+
+		};
+
+		linkWithEditor.setImageDescriptor(Activator.getImageDescriptor("icons/link_with_editor.gif"));
+		linkWithEditor.setToolTipText("Link with editor");
+
+	}
+
+	/**
+	 * @param editor editor
+	 */
+	public void editorActivated(IEditorPart editor) {
+		if (!(editor instanceof MEEditor)) {
+			return;
+		}
+
+		MEEditor meEditor = (MEEditor) editor;
+		ModelElement me = (ModelElement) meEditor.getEditorInput().getAdapter(ModelElement.class);
+		if (me != null) {
+			revealME(me);
+		}
+
+	}
+
+	private void revealME(ModelElement me) {
+
+		if (me == null) {
+			return;
+		}
+
+		// we could easily use the following method.
+		// but it has the problem that it shows the first occurrence of and element.
+		// for example if we have the same element somewhere else linked, and shown as a child (e.g. in
+		// ActionItemMeetingSection),
+		// it just show the first one that it finds. We want only the real containment to be shown.
+		// // TreeView.getTreeViewer().setSelection(new StructuredSelection(me), true);
+
+		EObject container = me.eContainer();
+		viewer.setSelection(new StructuredSelection(container));
+
+		TreeSelection treeSelection = (TreeSelection) viewer.getSelection();
+		if (treeSelection.getPaths().length > 0) {
+			TreePath treePath = treeSelection.getPaths()[0].createChildPath(me);
+
+			TreeSelection newTreeSeleciton = new TreeSelection(treePath);
+			viewer.setSelection(newTreeSeleciton, true);
+		}
+	}
+
 	private void addSelectionListener() {
 		viewer.addSelectionChangedListener(new ISelectionChangedListener() {
 
@@ -89,12 +202,66 @@ public class TreeView extends ViewPart { // implements IShowInSource
 					IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 					Object obj = selection.getFirstElement();
 					setActiveProjectSpace(obj);
+					if (linkedWithEditor) {
+						linkWithEditor(obj);
+					}
+
 					if (obj instanceof ModelElement) {
 						getViewSite().getActionBars().getStatusLineManager().setMessage(((ModelElement) obj).getName());
 					}
 				}
 			}
+
 		});
+
+	}
+
+	private void linkWithEditor(Object obj) {
+		if (obj == null) {
+			return;
+		}
+		if (!(obj instanceof ModelElement)) {
+			return;
+		}
+
+		ModelElement me = (ModelElement) obj;
+		if (!isEditorOpen(me)) {
+			return;
+		} else {
+			activateEditor(me);
+		}
+	}
+
+	private void activateEditor(ModelElement selectedME) {
+		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
+			Object editorInput = null;
+			try {
+
+				editorInput = editorRef.getEditorInput().getAdapter(ModelElement.class);
+			} catch (PartInitException e) {
+				e.printStackTrace();
+			}
+			if (selectedME.equals(editorInput)) {
+				getSite().getPage().activate(editorRef.getPart(true));
+				return;
+			}
+		}
+	}
+
+	private boolean isEditorOpen(ModelElement selectedME) {
+		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
+			Object editorInput = null;
+			try {
+
+				editorInput = editorRef.getEditorInput().getAdapter(ModelElement.class);
+			} catch (PartInitException e) {
+				e.printStackTrace();
+			}
+			if (selectedME.equals(editorInput)) {
+				return true;
+			}
+		}
+		return false;
 
 	}
 
@@ -149,7 +316,7 @@ public class TreeView extends ViewPart { // implements IShowInSource
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void setFocus() {
