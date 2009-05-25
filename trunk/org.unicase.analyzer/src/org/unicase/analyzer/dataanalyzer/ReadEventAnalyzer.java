@@ -109,6 +109,10 @@ public class ReadEventAnalyzer implements DataAnalyzer {
 		}
 	}
 	
+	/**
+	 * @param exporter @see {@link Exporter}
+	 * @throws IOException @see {@link IOException}
+	 */
 	public void writeHeader(Exporter exporter) throws IOException {
 		ArrayList<Object> line = new ArrayList<Object>();
 		for(String name : this.getName()) {
