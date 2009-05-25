@@ -6,10 +6,11 @@
 package org.unicase.analyzer.dataanalyzer;
 
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -84,8 +85,6 @@ public class DetectionAnalyzer implements DataAnalyzer {
 			diff.add(null);
 		}
 		
-		new SimpleDateFormat("EEE d MMM yyyy HH:mm:ss Z");
-		new SimpleDateFormat("D 'days' HH:mm:ss");
 	
 	}
 	/**
@@ -114,14 +113,14 @@ public class DetectionAnalyzer implements DataAnalyzer {
 	/**
 	 * Analyze the given ProjectAnalysisData.
 	 * @param data ProjectAnalysisData
-	 * @param It VersionIterator
+	 * @param it VersionIterator
 	 */
-	public void analyzeData(ProjectAnalysisData data, VersionIterator It){
+	public void analyzeData(ProjectAnalysisData data, VersionIterator it){
 		Date updateDate = new Date();
 		
 		PrimaryVersionSpec base;
 		PrimaryVersionSpec target;
-		List<ModelElementId> meIdList = null;//List for the ModelElement candidates
+		Map<ModelElementId, Date> meIdMap = null;//Map for the ModelElement candidates
 		
 		for(ChangePackage change : data.getChangePackages()){
 			for(String user : users){
@@ -146,17 +145,17 @@ public class DetectionAnalyzer implements DataAnalyzer {
 								}
 							}
 							// just store the earliest update date for each user
-							if(update.get(index)== null || update.get(index).after(updateDate)){
-								update.set(index, updateDate);
-							}
+//							if(update.get(index)== null || update.get(index).after(updateDate)){
+//								update.set(index, updateDate);
+//							}
 							try {
-								List<ChangePackage> updateChanges = It.getConnectionManager().getChanges(It.getUsersession().getSessionId(), 
-									It.getProjectId(), base, target);
+								List<ChangePackage> updateChanges = it.getConnectionManager().getChanges(it.getUsersession().getSessionId(), 
+									it.getProjectId(), base, target);
 								//Map for the ModelElement candidates
-								meIdList = new ArrayList<ModelElementId>();
+								meIdMap = new HashMap<ModelElementId, Date>();
 								for(ChangePackage updateChange : updateChanges){
 									for(AbstractOperation op : updateChange.getOperations()){
-										meIdList.add(op.getModelElementId());
+										meIdMap.put(op.getModelElementId(), event.getTimestamp());
 									}
 								}
 
@@ -170,11 +169,7 @@ public class DetectionAnalyzer implements DataAnalyzer {
 						else if(event instanceof ReadEvent){
 							ReadEvent readEvent = (ReadEvent) event;
 							ModelElementId meId = readEvent.getModelElement();
-							checkReadEvent(index, meId, meIdList, readEvent, data);
-						}
-						if(read.get(index)!=null && update.get(index)!=null){
-							Date diffDate = new Date(read.get(index).getTime()-update.get(index).getTime());
-							diff.set(index, diffDate);
+							checkReadEvent(index, meId, meIdMap, readEvent, data);
 						}
 					}
 				}
@@ -183,18 +178,21 @@ public class DetectionAnalyzer implements DataAnalyzer {
 	}
 	
 	// check the ReadEvent reads the given FunctionalRequirements or not, if yes, record the ReadDate and ReadView
-	private void checkReadEvent(int index, ModelElementId meId, List<ModelElementId> meIdList, 
+	private void checkReadEvent(int index, ModelElementId meId, Map<ModelElementId, Date> meIdMap, 
 		ReadEvent readEvent, ProjectAnalysisData data){
 		Date readDate = new Date();
-		if(meIdList != null){
-			if(meIdList.contains(meId)){
+		if(meIdMap != null){
+			if(meIdMap.containsKey(meId)){
 				ModelElement me = data.getProjectState().getModelElement(meId);
 				if(me instanceof FunctionalRequirement && me.getName().contains(funcRequirement)){
 					readDate = readEvent.getTimestamp();
 					// just store the earliest read date for each user
 					if(read.get(index)== null || read.get(index).after(readDate)){
+						update.set(index, meIdMap.get(meId));
 						read.set(index, readDate);
 						view.set(index, readEvent.getReadView());
+						Date diffDate = new Date(read.get(index).getTime()-update.get(index).getTime());
+						diff.set(index, diffDate);
 					}
 				}
 			}
@@ -203,7 +201,7 @@ public class DetectionAnalyzer implements DataAnalyzer {
 	/**
 	 * Export the analysis result to the given exporter.
 	 * @param exporter Exporter
-	 * @throws IOException
+	 * @throws IOException @see {@link IOException}
 	 */
 	public void runAnalysis(Exporter exporter) throws IOException {
 		
@@ -229,13 +227,11 @@ public class DetectionAnalyzer implements DataAnalyzer {
 					
 			values.add(user);
 			if(update.get(index) != null){
-				//values.add(format.format(update.get(index)));
 				values.add(update.get(index));
 			}else{
 				values.add("-");
 			}
 			if(read.get(index) != null){
-				//values.add(format.format(read.get(index)));
 				values.add(read.get(index));
 			}else{
 				values.add("-");
@@ -246,7 +242,6 @@ public class DetectionAnalyzer implements DataAnalyzer {
 				values.add("-");
 			}
 			if(diff.get(index) != null){
-				//values.add(diffFormat.format(diff.get(index)));
 				values.add(diff.get(index).getTime());
 			}else{
 				values.add("-");
