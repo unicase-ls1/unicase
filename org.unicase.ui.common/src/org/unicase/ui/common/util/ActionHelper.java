@@ -56,8 +56,8 @@ public final class ActionHelper {
 	private static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
 	private static final String FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE = "featureToMark";
 	
-	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.workspace.edit.dashboardInput";
-	private static final String DASHBOARD_COMMAND = "org.unicase.workspace.edit.showDashboard";
+	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.workspace.ui.dashboardInput";
+	private static final String DASHBOARD_COMMAND = "org.unicase.workspace.ui.showDashboard";
 
 	private ActionHelper() {
 

@@ -23,8 +23,8 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
-import org.unicase.workspace.edit.dialogs.LoginDialog;
 import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
+import org.unicase.workspace.ui.dialogs.LoginDialog;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**

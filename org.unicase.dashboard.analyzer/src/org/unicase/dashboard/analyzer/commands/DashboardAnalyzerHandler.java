@@ -59,7 +59,7 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.edit.views.changes.ChangePackageVisualizationHelper;
+import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.notification.NotificationProvider;
 
@@ -92,7 +92,7 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		end.setIdentifier(622);
 		try {
-			VersionIterator iterator = new VersionIterator(session, pid, 1, start, end, false, true, true);
+			VersionIterator iterator = new VersionIterator(session, pid, 1, start, end, true, true);
 
 			progressDialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
 			progressDialog.open();
