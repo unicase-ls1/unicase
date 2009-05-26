@@ -45,6 +45,7 @@ public class ContainmentChangeFilter implements NotificationFilter {
 		NotificationInfo n1 = rec.get(0);
 		NotificationInfo n2 = rec.get(1);
 		NotificationInfo n3 = rec.get(2);
+		// 1:n case
 		// TODO: check for IDs instead of identity
 		// TODO: check for containmentfeature
 		if (n1.isRemoveEvent() && n2.isSetEvent() && n3.isAddEvent()) {
@@ -52,6 +53,17 @@ public class ContainmentChangeFilter implements NotificationFilter {
 				rec.remove(n1);
 				rec.remove(n3);
 			}
+		}
+
+		// 1:1 case
+		if (n1.isSetEvent() && n2.isSetEvent() && n3.isSetEvent() && n1.isReferenceNotification()
+			&& n2.isReferenceNotification() && n3.isReferenceNotification()
+			&& n1.getReference().getEOpposite() == n3.getReference()
+			&& n2.getReference().getEOpposite() == n3.getReference() && n3.getOldValue() == n1.getNotifier()
+			&& n3.getNewValue() == n2.getNotifier()) {
+			// keep only last message here
+			rec.remove(n1);
+			rec.remove(n2);
 		}
 
 	}
@@ -73,6 +85,17 @@ public class ContainmentChangeFilter implements NotificationFilter {
 				&& n2.getNotifier() == n4.getNewValue() && n2.getNewValue() == null && n3.getOldValue() == null) {
 				rec.remove(n1);
 				rec.remove(n4);
+				return;
+			}
+		}
+
+		// different order of same messages also allowed
+		if (n1.isRemoveEvent() && n4.isSetEvent() && n3.isSetEvent() && n2.isAddEvent()) {
+			if (n1.getOldValue() == n4.getNotifier() && n4.getNotifier() == n3.getNotifier()
+				&& n4.getNotifier() == n2.getNewValue() && n4.getNewValue() == n2.getNotifier()
+				&& n3.getOldValue() == n1.getNotifier() && n3.getNewValue() == null) {
+				rec.remove(n1);
+				rec.remove(n2);
 			}
 		}
 
