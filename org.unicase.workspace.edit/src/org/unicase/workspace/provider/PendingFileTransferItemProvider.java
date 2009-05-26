@@ -54,7 +54,7 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 			super.getPropertyDescriptors(object);
 
 			addFileVersionPropertyDescriptor(object);
-			addFilePathPropertyDescriptor(object);
+			addChunkNumberPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -73,16 +73,16 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 	}
 
 	/**
-	 * This adds a property descriptor for the File Path feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Chunk Number feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addFilePathPropertyDescriptor(Object object) {
+	protected void addChunkNumberPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PendingFileTransfer_filePath_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_filePath_feature",
-				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__FILE_PATH, true,
-			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PendingFileTransfer_chunkNumber_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_chunkNumber_feature",
+				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__CHUNK_NUMBER, true,
+			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -150,7 +150,7 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 
 		switch (notification.getFeatureID(PendingFileTransfer.class)) {
 		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_VERSION:
-		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_PATH:
+		case WorkspacePackage.PENDING_FILE_TRANSFER__CHUNK_NUMBER:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case WorkspacePackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID:
