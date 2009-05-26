@@ -26,7 +26,21 @@ public class BidirectionalSetFilter implements NotificationFilter {
 
 		List<NotificationInfo> rec = recording.asMutableList();
 
-		// bidirectional SET has 3 messages, REMOVE from old, ADD to new, SET on child
+		// possible 1:1 case
+		if (rec.size() == 2) {
+			NotificationInfo n1 = rec.get(0);
+			NotificationInfo n2 = rec.get(1);
+
+			if (n1.isSetEvent() && n2.isSetEvent() && n1.isReferenceNotification() && n2.isReferenceNotification()
+				&& n1.getReference().getEOpposite() == n2.getReference()) {
+				// keep only the second set, this is a bidirectional 1 to 1 case
+				rec.remove(n1);
+				return;
+			}
+
+		}
+
+		// 1:n bidirectional SET has 3 messages, REMOVE from old, ADD to new, SET on child
 		if (rec.size() != 3) {
 			return;
 		}

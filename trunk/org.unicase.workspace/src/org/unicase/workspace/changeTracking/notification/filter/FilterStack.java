@@ -20,10 +20,29 @@ import org.unicase.workspace.changeTracking.notification.recording.NotificationR
  */
 public final class FilterStack implements NotificationFilter {
 
-	private static final NotificationFilter[] DEFAULT_STACK = { new TouchFilter(), new TransientFilter(),
-		new EmptyRemovalsFilter(), new ContainmentChangeFilter(), new BidirectionalSetFilter(),
-		new BidirectionalRemoveFilter(), new BidirectionalAddFilter(), new BidirectionalAddManyFilter(),
-		new BidirectionalRemoveManyFilter(), new ContainmentRemovalFilter() };
+	private static final NotificationFilter[] DEFAULT_STACK = {
+	//
+		new TouchFilter(),
+		//
+		new TransientFilter(),
+		//
+		new EmptyRemovalsFilter(),
+		// 
+		new ContainmentChangeFilter(),
+		// 
+		new BidirectionalSetFilter(),
+		// 
+		new BidirectionalRemoveFilter(),
+		// 
+		new BidirectionalAddFilter(),
+		// 
+		new BidirectionalAddManyFilter(),
+		//
+		new BidirectionalRemoveManyFilter(),
+		//
+		new ContainmentRemovalFilter(),
+		//
+		new GenericBidirectionalFilter() };
 
 	/**
 	 * The default filter stack.
