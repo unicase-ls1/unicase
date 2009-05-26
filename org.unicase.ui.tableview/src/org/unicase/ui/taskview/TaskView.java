@@ -17,10 +17,11 @@ import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Text;
@@ -188,18 +189,20 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			@Override
 			protected Control createControl(Composite parent) {
 				Composite composite = new Composite(parent, SWT.NONE);
-				GridLayoutFactory.fillDefaults().margins(1, 0).spacing(0, 0).applyTo(composite);
-				txtUser = new Text(composite, SWT.NONE);
-				GridData layoutData = new GridData(SWT.FILL, SWT.CENTER, true, true);
-				layoutData.widthHint = 100;
-				txtUser.setLayoutData(layoutData);
-				txtUser.setEditable(false);
-				if (loggedInUser != null && filterToLoggedInUser.isChecked()) {
-					txtUser.setText(loggedInUser.getName());
-				} else {
-					txtUser.setText("[no user]");
-				}
-
+				GridLayoutFactory.fillDefaults().margins(1, 0).spacing(0, 0).numColumns(2).applyTo(composite);
+				// txtUser = new Text(composite, SWT.NONE);
+				// GridData layoutData = new GridData(SWT.FILL, SWT.CENTER, true, true);
+				// layoutData.widthHint = 100;
+				// txtUser.setLayoutData(layoutData);
+				// txtUser.setEditable(false);
+				// if (loggedInUser != null && filterToLoggedInUser.isChecked()) {
+				// txtUser.setText(loggedInUser.getName());
+				// } else {
+				// txtUser.setText("[no user]");
+				// }
+				Combo combo = new Combo(composite, SWT.DROP_DOWN | SWT.READ_ONLY);
+				combo.setItems(new String[] { "adasdasd", "asfdasf" });
+				GridDataFactory.fillDefaults().applyTo(combo);
 				return composite;
 			}
 
