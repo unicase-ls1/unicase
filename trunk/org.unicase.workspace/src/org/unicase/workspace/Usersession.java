@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.workspace.util.LoginObserver;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Usersession</b></em>'. <!-- end-user-doc -->
@@ -319,6 +320,13 @@ public interface Usersession extends EObject {
 	 * @throws EmfStoreException forwards any exception.
 	 */
 	void updateACUser() throws EmfStoreException;
+
+	/**
+	 * Register a new login observer.
+	 * 
+	 * @param observer the login observer
+	 */
+	void addLoginObserver(LoginObserver observer);
 
 	// end of custom code
 } // Usersession

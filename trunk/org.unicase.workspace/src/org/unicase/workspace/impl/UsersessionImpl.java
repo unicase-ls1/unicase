@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,6 +38,7 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
+import org.unicase.workspace.util.LoginObserver;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Usersession</b></em>'. <!-- end-user-doc -->
@@ -171,6 +173,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @ordered
 	 */
 	protected ACUser acUser;
+
+	private List<LoginObserver> loginObservers;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -541,6 +545,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 		this.setSessionId(newSessionId);
 		updateACUser();
+		for (LoginObserver observer : loginObservers) {
+			observer.loginCompleted();
+		}
 	}
 
 	/**
@@ -816,6 +823,16 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	public List<HistoryInfo> getHistoryInfo(ProjectId projectId, HistoryQuery query) throws EmfStoreException {
 		ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 		return connectionManager.getHistoryInfo(getSessionId(), projectId, query);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void addLoginObserver(LoginObserver observer) {
+		if (loginObservers == null) {
+			loginObservers = new ArrayList<LoginObserver>();
+		}
+		loginObservers.add(observer);
 	}
 
 } // UsersessionImpl
