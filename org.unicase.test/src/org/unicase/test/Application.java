@@ -4,8 +4,6 @@ import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.test.servertests.ServerTestSuite;
 import org.unicase.test.servertests.analyser.AnalyserTestSuite;
-import org.unicase.test.tests.change.manual.ManualChangeTestSuite;
-import org.unicase.test.tests.change.random.RandomChangeTestSuite;
 
 /**
  * This class controls all aspects of the application's execution
@@ -24,6 +22,7 @@ public class Application implements IApplication {
 	 * 
 	 * @seeorg.eclipse.equinox.app.IApplicationk#start(org.eclipse.equinox.app. IApplicationContext)
 	 */
+	@SuppressWarnings("null")
 	public Object start(IApplicationContext context) throws Exception {
 
 		// ///////
@@ -33,12 +32,12 @@ public class Application implements IApplication {
 		TestSuite test = null;
 		switch (testToRun) {
 		case RANDOMTEST:
-			test = new RandomChangeTestSuite();
-			((RandomChangeTestSuite) test).setTestProjectPath(null);
+			// test = new RandomChangeTestSuite();
+			// ((RandomChangeTestSuite) test).setTestProjectPath(null);
 			break;
 
 		case MANUALTEST:
-			test = new ManualChangeTestSuite();
+			// test = new ManualChangeTestSuite();
 			break;
 
 		case SERVERTEST:
