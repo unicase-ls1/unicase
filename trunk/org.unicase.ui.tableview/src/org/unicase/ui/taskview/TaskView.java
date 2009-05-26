@@ -5,9 +5,6 @@
  */
 package org.unicase.ui.taskview;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
@@ -57,6 +54,9 @@ import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * TaskView shows checkables (work items which can be set to done).
@@ -131,7 +131,6 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		workspace.eAdapters().add(workspaceListenerAdapter);
 
 		createActions();
-		initLoggedInUser();
 
 		getSite().setSelectionProvider(viewer.getTableViewer());
 		hookDoubleClickAction();
@@ -140,6 +139,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			activeProject = workspace.getActiveProjectSpace().getProject();
 			activeProject.addProjectChangeObserver(TaskView.this);
 		}
+
+		initLoggedInUser();
 		viewer.setInput(activeProject);
 	}
 
