@@ -545,8 +545,10 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 
 		this.setSessionId(newSessionId);
 		updateACUser();
-		for (LoginObserver observer : loginObservers) {
-			observer.loginCompleted();
+		if (loginObservers != null) {
+			for (LoginObserver observer : loginObservers) {
+				observer.loginCompleted();
+			}
 		}
 	}
 
