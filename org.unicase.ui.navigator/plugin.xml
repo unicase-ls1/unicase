@@ -187,6 +187,16 @@
                visible="true">
          </separator>
       </menuContribution>
+      
+       <menuContribution
+           locationURI="toolbar:org.unicase.ui.navigator.viewer?bofore=additions">
+        <command
+              commandId="org.unicase.ui.common.handlers.open_me_ID"
+              icon="icons/ModelElement.png"
+              style="push"
+              tooltip="Shows open model element dialog">
+        </command>
+     </menuContribution> 
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
