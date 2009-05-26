@@ -33,7 +33,7 @@ public class Topology1to1Test extends TopologyTest{
 	 * @throws UnsupportedNotificationException on test fail
 	 */
 	@Test
-	public void containmentNullToValueNotContainedAlready() throws UnsupportedOperationException, UnsupportedNotificationException {
+	public void containmentNullToValueNotContainedAlreadyOperateOnParent() throws UnsupportedOperationException, UnsupportedNotificationException {
 
 		Issue issue = RationaleFactory.eINSTANCE.createIssue();
 		Solution solution = RationaleFactory.eINSTANCE.createSolution();
@@ -62,13 +62,48 @@ public class Topology1to1Test extends TopologyTest{
 	}
 	
 	/**
+	 * Change an containment attribute from null to some reference, and check resulting op.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentNullToValueNotContainedAlreadyOperateOnChild() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		Solution solution = RationaleFactory.eINSTANCE.createSolution();
+		
+		assertEquals(issue.getSolution(), null);
+		
+		getProject().addModelElement(issue);
+		getProject().addModelElement(solution);
+
+		clearOperations();
+		
+		solution.setIssue(issue);
+		assertSame(solution, issue.getSolution());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(1, operations.size());
+		AbstractOperation op = operations.get(0);
+		assertEquals(true, op instanceof SingleReferenceOperation);
+		SingleReferenceOperation refOp = (SingleReferenceOperation) op;
+		
+		assertEquals(null, refOp.getOldValue());
+		assertEquals(issue.getModelElementId(), refOp.getNewValue());
+		assertEquals("issue", refOp.getFeatureName());
+		assertEquals(solution.getModelElementId(), refOp.getModelElementId());
+	}	
+	
+	/**
 	 * Change an containment attribute from some reference to some other reference, and check resulting op.
 	 * 
 	 * @throws UnsupportedOperationException on test fail
 	 * @throws UnsupportedNotificationException on test fail
 	 */
 	@Test
-	public void containmentValueToOtherValueNotContainedAlready() throws UnsupportedOperationException, UnsupportedNotificationException {
+	public void containmentValueToOtherValueNotContainedAlreadyOperateOnParent() throws UnsupportedOperationException, UnsupportedNotificationException {
 
 		Issue issue = RationaleFactory.eINSTANCE.createIssue();
 		Solution solutionOld = RationaleFactory.eINSTANCE.createSolution();
@@ -98,6 +133,69 @@ public class Topology1to1Test extends TopologyTest{
 		assertEquals("solution", refOp.getFeatureName());
 		assertEquals(issue.getModelElementId(), refOp.getModelElementId());
 	}
+	
+	/**
+	 * Change an containment attribute from some reference to some other reference, and check resulting op.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentValueToOtherValueNotContainedAlreadyOperateOnChild() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		Solution solutionOld = RationaleFactory.eINSTANCE.createSolution();
+		Solution solutionNew = RationaleFactory.eINSTANCE.createSolution();
+
+		getProject().addModelElement(issue);
+		getProject().addModelElement(solutionOld);
+		getProject().addModelElement(solutionNew);
+		
+		issue.setSolution(solutionOld);
+		assertEquals(issue.getSolution(), solutionOld);
+		
+		clearOperations();
+		
+		solutionNew.setIssue(issue);
+		assertSame(solutionNew, issue.getSolution());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		// please note: the perspective (operation called on containee) implies the following EMF notifications:
+		
+		// OldSolution: SET issue from issue to null
+		// Issue: SET solution from oldSolution to newSolution
+		// NewSolution: SET issue from null to issue
+		// 
+		// Since we are operating on newSolution we expect an operation :
+		// solutionNew: got new Issue
+		//
+		// we need to preserve the fact, that "oldSolution" was the former solution of "issue"
+		// following the "last bidirectional message wins" rule, the first message has to
+		// go away, since it is the bidirectional of the second message 
+		
+		assertEquals(2, operations.size());
+
+		AbstractOperation op1 = operations.get(0);
+		assertEquals(true, op1 instanceof SingleReferenceOperation);
+		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
+		
+		assertEquals(issue.getModelElementId(), refOp1.getModelElementId());
+		assertEquals(solutionOld.getModelElementId(), refOp1.getOldValue());
+		assertEquals(solutionNew.getModelElementId(), refOp1.getNewValue());
+		assertEquals("solution", refOp1.getFeatureName());
+
+		AbstractOperation op2 = operations.get(1);
+		assertEquals(true, op2 instanceof SingleReferenceOperation);
+		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
+		
+		assertEquals(solutionNew.getModelElementId(), refOp2.getModelElementId());
+		assertEquals(issue.getModelElementId(), refOp2.getNewValue());
+		assertNull(refOp2.getOldValue());
+		assertEquals("issue", refOp2.getFeatureName());
+		
+	}
+		
 	
 	/**
 	 * Change an containment attribute from some reference to some other reference, and check resulting op.
@@ -162,6 +260,7 @@ public class Topology1to1Test extends TopologyTest{
 	 * @throws UnsupportedOperationException on test fail
 	 * @throws UnsupportedNotificationException on test fail
 	 */
+	/*
 	@Test
 	public void containmentNullToValueContainedAlready1() throws UnsupportedOperationException, UnsupportedNotificationException {
 
@@ -197,7 +296,7 @@ public class Topology1to1Test extends TopologyTest{
 		assertEquals(solution1.getModelElementId(), refOp1.getModelElementId());
 		
 	}		
-	
+	*/
 	/**
 	 * Change an containment attribute from some reference to some other reference, and check resulting op.
 	 * 
@@ -230,26 +329,26 @@ public class Topology1to1Test extends TopologyTest{
 		assertTrue(leafSection.getModelElements().isEmpty());
 		
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		fail("not sure what the expected behaviour is");
+		
 		assertEquals(2, operations.size());
 		AbstractOperation op1 = operations.get(0);
 		AbstractOperation op2 = operations.get(1);
 		assertEquals(true, op1 instanceof SingleReferenceOperation);
 		assertEquals(true, op2 instanceof SingleReferenceOperation);
 		
-		//SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
+		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
 		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
 
 		// please note: 2 ops are necessary, this is because the oldvalues are necessary for
 		// the ops to be reversible! we need to track the parent of issue 2!
 		
-		// first solution 2 is getting its new parent
+		// first solution 2 is losing its old leaf section parent
 		
-/*		assertEquals(issue2.getModelElementId(), refOp1.getOldValue());
-		assertEquals(issue1.getModelElementId(), refOp1.getNewValue());
-		assertEquals("issue", refOp1.getFeatureName());
+		assertEquals(leafSection.getModelElementId(), refOp1.getOldValue());
+		assertNull(refOp1.getNewValue());
+		assertEquals("leafSection", refOp1.getFeatureName());
 		assertEquals(solution2.getModelElementId(), refOp1.getModelElementId());
-	*/	
+		
 		// second the issue 1 is getting its new child
 		assertEquals(solution1.getModelElementId(), refOp2.getOldValue());
 		assertEquals(solution2.getModelElementId(), refOp2.getNewValue());
@@ -264,7 +363,7 @@ public class Topology1to1Test extends TopologyTest{
 	 * @throws UnsupportedNotificationException on test fail
 	 */
 	@Test
-	public void containmentValueToNull() throws UnsupportedOperationException, UnsupportedNotificationException {
+	public void containmentValueToNullOperateOnParent() throws UnsupportedOperationException, UnsupportedNotificationException {
 
 		Issue issue = RationaleFactory.eINSTANCE.createIssue();
 		Solution solution = RationaleFactory.eINSTANCE.createSolution();
@@ -292,5 +391,41 @@ public class Topology1to1Test extends TopologyTest{
 		assertEquals("solution", refOp.getFeatureName());
 		assertEquals(issue.getModelElementId(), refOp.getModelElementId());
 	}	
+	
+	/**
+	 * Change an containment attribute from some reference to null, and check resulting op.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentValueToNullOperateOnChild() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		Solution solution = RationaleFactory.eINSTANCE.createSolution();
+		
+		assertEquals(issue.getSolution(), null);
+		
+		getProject().addModelElement(issue);
+		getProject().addModelElement(solution);
+		issue.setSolution(solution);
+		
+		clearOperations();
+		
+		assertSame(solution, issue.getSolution());
+		solution.setIssue(null);
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(1, operations.size());
+		AbstractOperation op = operations.get(0);
+		assertEquals(true, op instanceof SingleReferenceOperation);
+		SingleReferenceOperation refOp = (SingleReferenceOperation) op;
+		
+		assertEquals(null, refOp.getNewValue());
+		assertEquals(issue.getModelElementId(), refOp.getOldValue());
+		assertEquals("issue", refOp.getFeatureName());
+		assertEquals(solution.getModelElementId(), refOp.getModelElementId());
+	}		
 	
 }
