@@ -116,7 +116,7 @@ public class TreeView extends ViewPart { // implements IShowInSource
 	private void createActions() {
 		isLinkedWithEditor = getDialogSettings().getBoolean("LinkWithEditor");
 		if (isLinkedWithEditor) {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().addPartListener(partListener);
+			getSite().getPage().addPartListener(partListener);
 		}
 
 		linkWithEditor = new Action("Link with editor", SWT.TOGGLE) {
@@ -125,11 +125,10 @@ public class TreeView extends ViewPart { // implements IShowInSource
 			public void run() {
 				if (isLinkedWithEditor) {
 					isLinkedWithEditor = false;
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().removePartListener(
-						partListener);
+					getSite().getPage().removePartListener(partListener);
 				} else {
 					isLinkedWithEditor = true;
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().addPartListener(partListener);
+					getSite().getPage().addPartListener(partListener);
 					IEditorPart editor = getSite().getPage().getActiveEditor();
 					if (editor != null) {
 						editorActivated(editor);
