@@ -80,6 +80,7 @@ import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.util.CommitObserver;
+import org.unicase.workspace.util.LoginObserver;
 import org.unicase.workspace.util.UpdateObserver;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -110,7 +111,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *             </p>
  * @generated
  */
-public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, ProjectChangeObserver {
+public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, ProjectChangeObserver,
+	LoginObserver {
 
 	private static final String UNKOWN_CREATOR = "unkown";
 
@@ -1103,6 +1105,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void init() {
 		initCompleted = true;
 		this.getProject().addProjectChangeObserver(this);
+		getUsersession().addLoginObserver(this);
 		startChangeRecording();
 
 	}
@@ -1938,4 +1941,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		// dummy method
 		return null;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void loginCompleted() {
+		// resume down/upload.
+	}
+
 } // ProjectContainerImpl
