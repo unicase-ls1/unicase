@@ -10,10 +10,10 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -22,6 +22,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
@@ -30,6 +31,8 @@ import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
+import org.eclipse.ui.IPartListener2;
+import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
@@ -51,8 +54,7 @@ public class TreeView extends ViewPart { // implements IShowInSource
 	private static TreeViewer viewer;
 	private MenuManager menuMgr;
 
-	private boolean linkedWithEditor;
-
+	private boolean isLinkedWithEditor;
 	private Action linkWithEditor;
 	private PartListener partListener;
 
@@ -60,20 +62,6 @@ public class TreeView extends ViewPart { // implements IShowInSource
 	 * Constructor.
 	 */
 	public TreeView() {
-	}
-
-	/**
-	 * Reveals the editor input in navigator. Or if navigator selection is open in an editor, activates the editor.
-	 * 
-	 * @param link
-	 */
-	private void linkWithEditor(boolean linkEnabled) {
-		if (linkEnabled) {
-
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().addPartListener(partListener);
-		} else {
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().removePartListener(partListener);
-		}
 	}
 
 	/**
@@ -101,7 +89,7 @@ public class TreeView extends ViewPart { // implements IShowInSource
 
 		// this is for workaround for update problem in navigator
 		getSite().setSelectionProvider(viewer);
-		partListener = new PartListener(this);
+		partListener = new PartListener();
 
 		createActions();
 
@@ -129,28 +117,41 @@ public class TreeView extends ViewPart { // implements IShowInSource
 	}
 
 	private void createActions() {
-		linkWithEditor = new Action("Link with editor", IAction.AS_CHECK_BOX) {
+		isLinkedWithEditor = getDialogSettings().getBoolean("LinkWithEditor");
+		if (isLinkedWithEditor) {
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().addPartListener(partListener);
+		}
+
+		linkWithEditor = new Action("Link with editor", SWT.TOGGLE) {
 
 			@Override
 			public void run() {
-				if (linkedWithEditor) {
-					linkedWithEditor = false;
-					linkWithEditor(false);
+				if (isLinkedWithEditor) {
+					isLinkedWithEditor = false;
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().removePartListener(
+						partListener);
 				} else {
-					linkedWithEditor = true;
-					linkWithEditor(true);
+					isLinkedWithEditor = true;
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().addPartListener(partListener);
 					IEditorPart editor = getSite().getPage().getActiveEditor();
 					if (editor != null) {
 						editorActivated(editor);
 					}
 				}
+
+				getDialogSettings().put("LinkWithEditor", this.isChecked());
 			}
 
 		};
 
 		linkWithEditor.setImageDescriptor(Activator.getImageDescriptor("icons/link_with_editor.gif"));
 		linkWithEditor.setToolTipText("Link with editor");
+		linkWithEditor.setChecked(getDialogSettings().getBoolean("LinkWithEditor"));
 
+	}
+
+	private IDialogSettings getDialogSettings() {
+		return Activator.getDefault().getDialogSettings();
 	}
 
 	/**
@@ -183,7 +184,7 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		// // TreeView.getTreeViewer().setSelection(new StructuredSelection(me), true);
 
 		EObject container = me.eContainer();
-		viewer.setSelection(new StructuredSelection(container));
+		viewer.setSelection(new StructuredSelection(container), true);
 
 		TreeSelection treeSelection = (TreeSelection) viewer.getSelection();
 		if (treeSelection.getPaths().length > 0) {
@@ -202,7 +203,9 @@ public class TreeView extends ViewPart { // implements IShowInSource
 					IStructuredSelection selection = (IStructuredSelection) event.getSelection();
 					Object obj = selection.getFirstElement();
 					setActiveProjectSpace(obj);
-					if (linkedWithEditor) {
+
+					// activate MEEditor if this obj is already open.
+					if (isLinkedWithEditor) {
 						linkWithEditor(obj);
 					}
 
@@ -216,15 +219,20 @@ public class TreeView extends ViewPart { // implements IShowInSource
 
 	}
 
-	private void linkWithEditor(Object obj) {
-		if (obj == null) {
+	/**
+	 * This checks if there is a MEEditor for selected ME open. If so, calls activateEditor to show editor.
+	 * 
+	 * @param selectedME
+	 */
+	private void linkWithEditor(Object selectedME) {
+		if (selectedME == null) {
 			return;
 		}
-		if (!(obj instanceof ModelElement)) {
+		if (!(selectedME instanceof ModelElement)) {
 			return;
 		}
 
-		ModelElement me = (ModelElement) obj;
+		ModelElement me = (ModelElement) selectedME;
 		if (!isEditorOpen(me)) {
 			return;
 		} else {
@@ -232,6 +240,11 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		}
 	}
 
+	/**
+	 * If there is a MEEditor for selected ME open, it shows the editor.
+	 * 
+	 * @param selectedME
+	 */
 	private void activateEditor(ModelElement selectedME) {
 		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
 			Object editorInput = null;
@@ -248,6 +261,12 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		}
 	}
 
+	/**
+	 * This checks if selectedME is already open in a MEEditor.
+	 * 
+	 * @param selectedME
+	 * @return
+	 */
 	private boolean isEditorOpen(ModelElement selectedME) {
 		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
 			Object editorInput = null;
@@ -332,6 +351,86 @@ public class TreeView extends ViewPart { // implements IShowInSource
 	 */
 	public static TreeViewer getTreeViewer() {
 		return viewer;
+	}
+
+	/**
+	 * This is a prart listener for navigator. I had to implement it in a separate class, because of check style warning
+	 * about anonymous classes greater than 30 lines.
+	 * 
+	 * @author Hodaie
+	 */
+	private class PartListener implements IPartListener2 {
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.IPartListener2#partActivated(org.eclipse.ui.IWorkbenchPartReference)
+		 */
+		public void partActivated(IWorkbenchPartReference partRef) {
+			if (partRef instanceof IEditorReference) {
+				TreeView.this.editorActivated(((IEditorReference) partRef).getEditor(true));
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.IPartListener2#partBroughtToTop(org.eclipse.ui.IWorkbenchPartReference)
+		 */
+		public void partInputChanged(IWorkbenchPartReference partRef) {
+			if (partRef instanceof IEditorReference) {
+				TreeView.this.editorActivated(((IEditorReference) partRef).getEditor(true));
+			}
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.IPartListener2#partBroughtToTop(org.eclipse.ui.IWorkbenchPartReference)
+		 */
+		public void partBroughtToTop(IWorkbenchPartReference partRef) {
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.IPartListener2#partBroughtToTop(org.eclipse.ui.IWorkbenchPartReference)
+		 */
+		public void partClosed(IWorkbenchPartReference partRef) {
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.IPartListener2#partBroughtToTop(org.eclipse.ui.IWorkbenchPartReference)
+		 */
+		public void partDeactivated(IWorkbenchPartReference partRef) {
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.IPartListener2#partBroughtToTop(org.eclipse.ui.IWorkbenchPartReference)
+		 */
+		public void partHidden(IWorkbenchPartReference partRef) {
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.IPartListener2#partBroughtToTop(org.eclipse.ui.IWorkbenchPartReference)
+		 */
+		public void partOpened(IWorkbenchPartReference partRef) {
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.ui.IPartListener2#partBroughtToTop(org.eclipse.ui.IWorkbenchPartReference)
+		 */
+		public void partVisible(IWorkbenchPartReference partRef) {
+		}
+
 	}
 
 }
