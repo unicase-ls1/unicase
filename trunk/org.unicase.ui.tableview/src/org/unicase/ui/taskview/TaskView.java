@@ -5,6 +5,9 @@
  */
 package org.unicase.ui.taskview;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.BasicEList;
@@ -55,9 +58,6 @@ import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * TaskView shows checkables (work items which can be set to done).
@@ -285,13 +285,14 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			@Override
 			public void run() {
 				setUserFilter(isChecked(), loggedInUser);
+				updateFilters();
 				selectedUser = null;
 			}
 
 		};
 		filterToLoggedInUser.setImageDescriptor(Activator.getImageDescriptor("/icons/filtertouser.png"));
 		filterToLoggedInUser.setToolTipText("Restricts the displayed table items to items owned by the current user.");
-		final Boolean userFilterCheckState = Boolean.parseBoolean(getDialogSettings().get("UserFilter"));
+		boolean userFilterCheckState = getDialogSettings().getBoolean("UserFilter");
 		filterToLoggedInUser.setChecked(userFilterCheckState);
 
 		//
@@ -301,7 +302,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		filterResolvedBugReports = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
-				if (loggedInUser != null && userFilterCheckState) {
+				if (loggedInUser != null && filterToLoggedInUser.isChecked()) {
 					setResolvedBugReportsFilter(isChecked(), loggedInUser);
 				} else {
 					setResolvedBugReportsFilter(isChecked(), selectedUser);
@@ -341,7 +342,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		filterToTeam.setToolTipText("Show/Hide items owned by the current user's teammates.");
 		Boolean teamFilterCeckState = Boolean.parseBoolean(getDialogSettings().get("TeamFilter"));
 		filterToTeam.setChecked(teamFilterCeckState);
-		if (loggedInUser != null && userFilterCheckState) {
+		if (loggedInUser != null && filterToLoggedInUser.isChecked()) {
 			setTeamFilter(teamFilterCeckState);
 		} else {
 			setTeamFilter(teamFilterCeckState);
@@ -590,12 +591,10 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 			if (userFilter != null) {
 				userFilter.setUser(user);
 				viewer.addFilter(userFilter);
-				if (txtUser == null) {
-					return;
-				}
-				if (user != null) {
+
+				if (user != null && txtUser != null) {
 					txtUser.setText(user.getName());
-				} else {
+				} else if (txtUser != null) {
 					txtUser.setText("[no user]");
 				}
 
