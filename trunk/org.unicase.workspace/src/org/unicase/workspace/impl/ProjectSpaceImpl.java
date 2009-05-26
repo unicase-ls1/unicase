@@ -1105,7 +1105,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void init() {
 		initCompleted = true;
 		this.getProject().addProjectChangeObserver(this);
-		getUsersession().addLoginObserver(this);
 		startChangeRecording();
 
 	}
@@ -1471,6 +1470,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void shareProject(Usersession usersession) throws EmfStoreException {
 		this.setUsersession(usersession);
+		usersession.addLoginObserver(this);
 		LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 		logMessage.setAuthor(usersession.getUsername());
 		logMessage.setClientDate(new Date());

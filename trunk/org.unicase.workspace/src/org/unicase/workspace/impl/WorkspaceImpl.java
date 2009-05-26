@@ -270,6 +270,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		projectSpace.setBaseVersion(primaryVersionSpec);
 		projectSpace.setLastUpdated(new Date());
 		projectSpace.setUsersession(usersession);
+		usersession.addLoginObserver((ProjectSpaceImpl) projectSpace);
 		projectSpace.setProject(project);
 		projectSpace.setResourceCount(0);
 		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
