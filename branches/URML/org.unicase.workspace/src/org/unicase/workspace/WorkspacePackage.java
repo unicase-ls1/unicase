@@ -488,12 +488,12 @@ public interface WorkspacePackage extends EPackage {
 	int PENDING_FILE_TRANSFER__FILE_VERSION = 1;
 
 	/**
-	 * The feature id for the '<em><b>File Path</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Chunk Number</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int PENDING_FILE_TRANSFER__FILE_PATH = 2;
+	int PENDING_FILE_TRANSFER__CHUNK_NUMBER = 2;
 
 	/**
 	 * The number of structural features of the '<em>Pending File Transfer</em>' class. <!-- begin-user-doc --> <!--
@@ -969,15 +969,15 @@ public interface WorkspacePackage extends EPackage {
 	EAttribute getPendingFileTransfer_FileVersion();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#getFilePath
-	 * <em>File Path</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.unicase.workspace.PendingFileTransfer#getChunkNumber
+	 * <em>Chunk Number</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the attribute '<em>File Path</em>'.
-	 * @see org.unicase.workspace.PendingFileTransfer#getFilePath()
+	 * @return the meta object for the attribute '<em>Chunk Number</em>'.
+	 * @see org.unicase.workspace.PendingFileTransfer#getChunkNumber()
 	 * @see #getPendingFileTransfer()
 	 * @generated
 	 */
-	EAttribute getPendingFileTransfer_FilePath();
+	EAttribute getPendingFileTransfer_ChunkNumber();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1352,12 +1352,12 @@ public interface WorkspacePackage extends EPackage {
 		EAttribute PENDING_FILE_TRANSFER__FILE_VERSION = eINSTANCE.getPendingFileTransfer_FileVersion();
 
 		/**
-		 * The meta object literal for the '<em><b>File Path</b></em>' attribute feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
+		 * The meta object literal for the '<em><b>Chunk Number</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EAttribute PENDING_FILE_TRANSFER__FILE_PATH = eINSTANCE.getPendingFileTransfer_FilePath();
+		EAttribute PENDING_FILE_TRANSFER__CHUNK_NUMBER = eINSTANCE.getPendingFileTransfer_ChunkNumber();
 
 	}
 

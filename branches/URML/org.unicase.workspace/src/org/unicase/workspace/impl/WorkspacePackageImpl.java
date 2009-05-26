@@ -533,7 +533,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * 
 	 * @generated
 	 */
-	public EAttribute getPendingFileTransfer_FilePath() {
+	public EAttribute getPendingFileTransfer_ChunkNumber() {
 		return (EAttribute) pendingFileTransferEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -613,7 +613,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		pendingFileTransferEClass = createEClass(PENDING_FILE_TRANSFER);
 		createEReference(pendingFileTransferEClass, PENDING_FILE_TRANSFER__ATTACHMENT_ID);
 		createEAttribute(pendingFileTransferEClass, PENDING_FILE_TRANSFER__FILE_VERSION);
-		createEAttribute(pendingFileTransferEClass, PENDING_FILE_TRANSFER__FILE_PATH);
+		createEAttribute(pendingFileTransferEClass, PENDING_FILE_TRANSFER__CHUNK_NUMBER);
 	}
 
 	/**
@@ -782,7 +782,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEAttribute(getPendingFileTransfer_FileVersion(), ecorePackage.getEString(), "fileVersion", null, 0, 1,
 			PendingFileTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPendingFileTransfer_FilePath(), ecorePackage.getEString(), "filePath", null, 0, 1,
+		initEAttribute(getPendingFileTransfer_ChunkNumber(), ecorePackage.getEInt(), "chunkNumber", null, 0, 1,
 			PendingFileTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 
