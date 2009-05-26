@@ -10,6 +10,7 @@ import java.util.Random;
 
 import org.unicase.ui.ganttview.models.impl.GanttItem;
 import org.unicase.ui.ganttview.models.impl.GanttModel;
+import org.unicase.ui.ganttview.util.GanttItemHelper;
 
 public final class GanttModelFactory {
 	
@@ -29,31 +30,25 @@ public final class GanttModelFactory {
 
 		GanttModel result = new GanttModel();
 		
-		for(int i = 0; i < 4; i++) {
+		for(int i = 0; i < 4 ; i++) {
 			
 			Calendar startDate = Calendar.getInstance();
 			startDate.add(Calendar.DATE, i*5);
 			
 			GanttItem rootItem = new GanttItem();
 			rootItem.setName("Root Item " + i);
-			// hack - should be computed with regard to child items
-			rootItem.setStartDate(Calendar.getInstance());
-			rootItem.setEndDate(Calendar.getInstance());
-			
+						
 			result.getGanttItems().put(rootItem.getName(), rootItem);
 			result.getRootGanttItems().add(rootItem);
 			
 			for(int j = 0; j < 3; j++) {
 				
 				GanttItem childItem = new GanttItem();
-				childItem.setName("Child Item "+i+" " +j);
-			
-				Calendar childStartDate = (Calendar) startDate.clone();
-				childStartDate.add(Calendar.DATE, 0 + (new Random()).nextInt(3-0));
-				childItem.setStartDate(childStartDate);
+				childItem.setName("Child Item "+i+" " +j);									
+				childItem.setStartDate(startDate);
 				
 				Calendar endDate = (Calendar) startDate.clone();
-				endDate.add(Calendar.DATE, 3 + (new Random()).nextInt(30-3));
+				endDate.add(Calendar.DATE, j+5);
 				childItem.setEndDate(endDate);
 				
 				rootItem.getChildGanttItems().add(childItem);
@@ -61,6 +56,8 @@ public final class GanttModelFactory {
 				
 				result.getGanttItems().put(childItem.getName(), childItem);
 			}
+			
+			GanttItemHelper.setParentGanttItemStartAndEndDate(rootItem);
 		}
 				
 		return result;

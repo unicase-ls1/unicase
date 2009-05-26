@@ -13,6 +13,7 @@ import java.util.List;
 import org.unicase.ui.ganttview.models.IGanttItem;
 import org.unicase.ui.ganttview.models.IGanttModel;
 import org.unicase.ui.ganttview.models.IGanttModelListener;
+import org.unicase.ui.ganttview.util.GanttItemHelper;
 
 public class GanttModel implements IGanttModel {
 	
@@ -39,6 +40,23 @@ public class GanttModel implements IGanttModel {
 		modifiedGanttItem.setEndDate(newEndDate);
 		
 		notifyAllListeners(modifiedGanttItem);
+		
+		modifyParentGanttItem(modifiedGanttItem);
+				
+	}
+	
+	private void modifyParentGanttItem(GanttItem ganttItem) {
+		
+		if(ganttItem.getParentGanttItem() == null)
+			return;
+		
+		GanttItem parent = (GanttItem) ganttItem.getParentGanttItem();		
+		GanttItemHelper.setParentGanttItemStartAndEndDate(parent);
+		
+		notifyAllListeners(parent);
+		
+		modifyParentGanttItem(parent);
+		
 	}
 
 	public Hashtable<String, IGanttItem> getGanttItems() {

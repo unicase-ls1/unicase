@@ -20,13 +20,17 @@ public final class GanttViewHelper {
 
 	private GanttViewHelper() {}
 
-	public static void clearGanttChart(GanttChart ganttChart) {
+	public static void clearGantt(GanttChart ganttChart, Tree tree) {
 		
 		GanttComposite ganttComposite = ganttChart.getGanttComposite();
 		
-		for(Object ganttEvent : ganttComposite.getEvents()) {
-			ganttComposite.removeEvent((GanttEvent)ganttEvent);
-		}
+		ganttComposite.getEvents().clear();
+		ganttComposite.getGanttConnections().clear();
+		ganttComposite.getGanttSections().clear();
+		ganttComposite.getGroups().clear();
+				
+		tree.removeAll();
+			
 	}
 	
 	public static void setTreeItemText(TreeItem treeItem, IGanttItem ganttItem) {
@@ -55,7 +59,7 @@ public final class GanttViewHelper {
 				ganttItem.getStartDate(),
 				ganttItem.getEndDate(),
 				ganttItem.getCompletionStatus());
-		
+						
 		ganttEvent.setData(ganttItem);
 		((GanttEvent)rootTreeItem.getData()).addScopeEvent(ganttEvent);
 		
@@ -75,8 +79,7 @@ public final class GanttViewHelper {
 	
 	public static TreeItem getTreeItemByGanttItem(Tree tree, IGanttItem ganttItem) {
 		
-		return getTreeItemByGanttItemInner(tree.getItems(), ganttItem);
-		
+		return getTreeItemByGanttItemInner(tree.getItems(), ganttItem);	
 	}
 	
 	private static TreeItem getTreeItemByGanttItemInner(TreeItem[] treeItems, IGanttItem ganttItem) {

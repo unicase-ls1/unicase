@@ -23,7 +23,8 @@ public class ShowGanttViewHandler extends AbstractHandler {
 		try {
 			GanttView ganttView = (GanttView) page.showView(GanttView.ID);//, me.getName(),
 				//IWorkbenchPage.VIEW_ACTIVATE);
-			ganttView.setInput(GanttModelFactory.createGanttModelTest()); //createGanttModel with selected GanttItems
+			ganttView.setInput(GanttModelFactory.createGanttModelTest());
+			//TODO: ganttView.setInput(GanttModelFactory.createGanttModelFromSelectedWorkItems());
 
 		} catch (PartInitException e) {
 			//DialogHandler.showExceptionDialog(e);

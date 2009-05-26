@@ -20,6 +20,7 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.ui.ganttview.models.GanttModelFactory;
 import org.unicase.ui.ganttview.models.IGanttItem;
 import org.unicase.ui.ganttview.models.IGanttModel;
 import org.unicase.ui.ganttview.models.IGanttModelListener;
@@ -141,7 +142,8 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 
 		sashForm.setWeights(new int[] { 30, 70 });
 		
-		this.setInput(null); // Create GanttModel with all WorkItems
+		this.setInput(GanttModelFactory.createGanttModelTest());		
+		// TODO:this.setInput(GanttModelFactory.createGanttModelFromWorkItems());
 	}
 	
 	public void setInput(IGanttModel ganttModel) {
@@ -158,10 +160,10 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 
 	private void recreateView() {
 		
-		GanttViewHelper.clearGanttChart(ganttChart);
+		GanttViewHelper.clearGantt(ganttChart, tree);
 		
 		for(IGanttItem ganttItem : ganttModel.getRootGanttItems()) {
-		
+												
 			TreeItem rootTreeItem = GanttViewHelper.createRootTreeItemWithGanttEvent(tree, ganttChart, ganttItem);
 			CreateChildEvents(ganttItem, rootTreeItem);
 			rootTreeItem.setExpanded(true);
