@@ -91,17 +91,14 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		getSite().setSelectionProvider(viewer);
 		partListener = new PartListener();
 
-		createActions();
-
-		IToolBarManager toolBarManager = getViewSite().getActionBars().getToolBarManager();
-		toolBarManager.add(linkWithEditor);
-
 		menuMgr = new MenuManager();
 		menuMgr.add(new Separator("additions"));
 		getSite().registerContextMenu(menuMgr, viewer);
 		Control control = viewer.getControl();
 		Menu menu = menuMgr.createContextMenu(control);
 		control.setMenu(menu);
+
+		createActions();
 
 		ActionHelper.createKeyHookDCAction(viewer, TreeView.class.getName());
 
@@ -148,6 +145,12 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		linkWithEditor.setToolTipText("Link with editor");
 		linkWithEditor.setChecked(getDialogSettings().getBoolean("LinkWithEditor"));
 
+		IToolBarManager toolBarManager = getViewSite().getActionBars().getToolBarManager();
+		Separator additionsSeperator = new Separator("additions");
+		additionsSeperator.setVisible(true);
+		toolBarManager.add(additionsSeperator);
+		toolBarManager.insertAfter("additions", linkWithEditor);
+
 	}
 
 	private IDialogSettings getDialogSettings() {
@@ -174,6 +177,11 @@ public class TreeView extends ViewPart { // implements IShowInSource
 
 		if (me == null) {
 			return;
+		}
+
+		// hack
+		if (!viewer.getExpandedState(me)) {
+			viewer.expandToLevel(2);
 		}
 
 		// we could easily use the following method.
