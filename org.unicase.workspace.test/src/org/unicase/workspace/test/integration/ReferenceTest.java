@@ -31,7 +31,7 @@ public class ReferenceTest extends IntegrationTestCase {
 	public void containmentReferenceAddNewTest() throws SerializationException, EmfStoreException {
 		System.out.println("ContainmentReferenceAddNewTest");
 
-		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getSetupHelper().getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -43,8 +43,8 @@ public class ReferenceTest extends IntegrationTestCase {
 
 		});
 
-		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceAddNewTest"));
+		getSetupHelper().commitChanges();
+		assertTrue(IntegrationTestHelper.areEqual(getSetupHelper().getTestProject(), getSetupHelper().getCompareProject(), "ContainmentReferenceAddNewTest"));
 
 	}
 	
@@ -61,7 +61,7 @@ public class ReferenceTest extends IntegrationTestCase {
 	public void containmentRefTransitiveChange() throws SerializationException, EmfStoreException {
 		System.out.println("ContainmentRefTransitiveChange");
 
-		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getSetupHelper().getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -72,8 +72,8 @@ public class ReferenceTest extends IntegrationTestCase {
 
 		});
 
-		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentRefTransitiveChange"));
+		getSetupHelper().commitChanges();
+		assertTrue(IntegrationTestHelper.areEqual(getSetupHelper().getTestProject(), getSetupHelper().getCompareProject(), "ContainmentRefTransitiveChange"));
 
 	}
 	
@@ -87,7 +87,7 @@ public class ReferenceTest extends IntegrationTestCase {
 	@Test
 	public void multiReferenceMoveTests() throws SerializationException, EmfStoreException {
 		System.out.println("MultiReferenceMoveTests");
-		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getSetupHelper().getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
@@ -96,8 +96,8 @@ public class ReferenceTest extends IntegrationTestCase {
 			}
 		});
 
-		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiReferenceMoveTest"));
+		getSetupHelper().commitChanges();
+		assertTrue(IntegrationTestHelper.areEqual(getSetupHelper().getTestProject(), getSetupHelper().getCompareProject(), "MultiReferenceMoveTest"));
 
 	}
 	
@@ -111,7 +111,7 @@ public class ReferenceTest extends IntegrationTestCase {
 	@Test
 	public void nonContainmentReferenceAddTest() throws SerializationException, EmfStoreException {
 		System.out.println("NonContainmentReferenceAddTest");
-		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getSetupHelper().getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -122,8 +122,8 @@ public class ReferenceTest extends IntegrationTestCase {
 
 		});
 
-		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceAddTest"));
+		getSetupHelper().commitChanges();
+		assertTrue(IntegrationTestHelper.areEqual(getSetupHelper().getTestProject(), getSetupHelper().getCompareProject(), "NonContainmentReferenceAddTest"));
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class ReferenceTest extends IntegrationTestCase {
 	public void nonContainmentReferenceRemoveTest() throws SerializationException, EmfStoreException {
 		System.out.println("NonContainmentReferenceRemoveTest");
 
-		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getSetupHelper().getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -146,8 +146,8 @@ public class ReferenceTest extends IntegrationTestCase {
 			}
 		});
 
-		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceRemoveTest"));
+		getSetupHelper().commitChanges();
+		assertTrue(IntegrationTestHelper.areEqual(getSetupHelper().getTestProject(), getSetupHelper().getCompareProject(), "NonContainmentReferenceRemoveTest"));
 
 	}
 	
@@ -161,7 +161,7 @@ public class ReferenceTest extends IntegrationTestCase {
 	@Test
 	public void containmentReferenceMoveTest() throws SerializationException, EmfStoreException {
 		System.out.println("ContainmentReferenceMoveTest");
-		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getSetupHelper().getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -171,8 +171,8 @@ public class ReferenceTest extends IntegrationTestCase {
 			}
 		});
 
-		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceMoveTest"));
+		getSetupHelper().commitChanges();
+		assertTrue(IntegrationTestHelper.areEqual(getSetupHelper().getTestProject(), getSetupHelper().getCompareProject(), "ContainmentReferenceMoveTest"));
 
 	}
 
