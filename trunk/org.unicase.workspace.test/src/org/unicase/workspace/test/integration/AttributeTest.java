@@ -30,7 +30,7 @@ public class AttributeTest extends IntegrationTestCase {
 	public void multiAttributeMoveTest() throws SerializationException, EmfStoreException {
 		System.out.println("MultiAttributeMoveTest");
 
-		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getSetupHelper().getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
@@ -39,8 +39,8 @@ public class AttributeTest extends IntegrationTestCase {
 			}
 		});
 
-		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiAttributeMoveTest"));
+		getSetupHelper().commitChanges();
+		assertTrue(IntegrationTestHelper.areEqual(getSetupHelper().getTestProject(), getSetupHelper().getCompareProject(), "MultiAttributeMoveTest"));
 
 	}
 	
@@ -54,7 +54,7 @@ public class AttributeTest extends IntegrationTestCase {
 	public void attributeChangeTest() throws SerializationException, EmfStoreException {
 		System.out.println("AttributeChangeTest");
 
-		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getSetupHelper().getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -65,9 +65,9 @@ public class AttributeTest extends IntegrationTestCase {
 
 		});
 
-		commitChanges();
+		getSetupHelper().commitChanges();
 
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "AttributeChangeTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getSetupHelper().getTestProject(), getSetupHelper().getCompareProject(), "AttributeChangeTest"));
 
 	}
 	
@@ -81,7 +81,7 @@ public class AttributeTest extends IntegrationTestCase {
 	@Test
 	public void attributeTransitiveChangeTest() throws SerializationException, EmfStoreException {
 		System.out.println("AttributeTransitiveChangeTest");
-		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
+		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getSetupHelper().getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -93,8 +93,8 @@ public class AttributeTest extends IntegrationTestCase {
 
 		});
 
-		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "AttributeTransitiveChangeTest"));
+		getSetupHelper().commitChanges();
+		assertTrue(IntegrationTestHelper.areEqual(getSetupHelper().getTestProject(), getSetupHelper().getCompareProject(), "AttributeTransitiveChangeTest"));
 
 	}
 
