@@ -28,8 +28,8 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void multiAttributeMoveTest() throws SerializationException, EmfStoreException {
-		System.out.println("MultiAttributeMoveTest");
+	public void multiAttributeMoveReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("MultiAttributeMoveReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
@@ -42,7 +42,7 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiAttributeMoveTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiAttributeMoveReversibilityTest"));
 
 	}
 	
@@ -53,8 +53,8 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void attributeChangeTest() throws SerializationException, EmfStoreException {
-		System.out.println("AttributeChangeTest");
+	public void attributeChangeReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("AttributeChangeReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
@@ -69,7 +69,7 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 		});
 
 	
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "AttributeChangeTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "AttributeChangeReversibilityTest"));
 
 	}
 	
@@ -81,8 +81,8 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void attributeTransitiveChangeTest() throws SerializationException, EmfStoreException {
-		System.out.println("AttributeTransitiveChangeTest");
+	public void attributeTransitiveChangeReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("AttributeTransitiveChangeReversibilityTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -96,7 +96,7 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "AttributeTransitiveChangeTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "AttributeTransitiveChangeReversibilityTest"));
 
 	}
 

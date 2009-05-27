@@ -29,8 +29,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void createAndChangeAttributeTest() throws SerializationException, EmfStoreException {
-		System.out.println("CreateAndChangeAttributeTest");
+	public void createAndChangeAttributeReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("CreateAndChangeAttributeReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
@@ -46,7 +46,7 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeAttributeTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeAttributeReversibilityTest"));
 
 	}
 
@@ -58,8 +58,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void createAndMultipleChangeTest() throws SerializationException, EmfStoreException {
-		System.out.println("CreateAndMultipleChangeTest");
+	public void createAndMultipleChangeReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("CreateAndMultipleChangeReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
@@ -75,7 +75,7 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndMultipleChangeTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndMultipleChangeReversibilityTest"));
 
 	}
 
@@ -86,8 +86,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void createAndChangeRefTest() throws SerializationException, EmfStoreException {
-		System.out.println("CreateAndChangeRefTest");
+	public void createAndChangeRefReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("CreateAndChangeRefReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
@@ -103,7 +103,7 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeRefTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeRefReversibilityTest"));
 
 	}
 
@@ -114,8 +114,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void createChangeRefDeleteTest() throws SerializationException, EmfStoreException {
-		System.out.println("CreateChangeRefDeleteTest");
+	public void createChangeRefDeleteReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("CreateChangeRefDeleteReversibilityTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -129,7 +129,7 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 		});
 
 	
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateChangeRefDeleteTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateChangeRefDeleteReversibilityTest"));
 
 	}
 
@@ -140,8 +140,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void createDeleteTest() throws SerializationException, EmfStoreException {
-		System.out.println("CreateDeleteOperationsReversibilityTest");
+	public void createDeleteReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("CreateDeleteReversibilityTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -155,7 +155,7 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateDeleteOperationsReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateDeleteReversibilityTest"));
 
 	}
 
@@ -166,8 +166,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void deleteAndRevertDeleteTest() throws SerializationException, EmfStoreException {
-		System.out.println("DeleteAndRevertDeleteTest");
+	public void deleteAndRevertDeleteReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("DeleteAndRevertDeleteReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
@@ -180,7 +180,7 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteAndRevertDeleteTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteAndRevertDeleteReversibilityTest"));
 	}
 
 	/**
@@ -190,9 +190,9 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void deleteTest() throws SerializationException, EmfStoreException {
+	public void deleteReversibilityTest() throws SerializationException, EmfStoreException {
 
-		System.out.println("DeleteTest");
+		System.out.println("DeleteReversibilityTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -206,7 +206,7 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteReversibilityTest"));
 
 	}
 

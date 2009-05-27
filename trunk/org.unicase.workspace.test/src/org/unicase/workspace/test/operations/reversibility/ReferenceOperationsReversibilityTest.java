@@ -29,8 +29,8 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void containmentReferenceAddNewTest() throws SerializationException, EmfStoreException {
-		System.out.println("ContainmentReferenceAddNewTest");
+	public void containmentReferenceAddNewReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("ContainmentReferenceAddNewReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
@@ -45,7 +45,7 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceAddNewTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceAddNewReversibilityTest"));
 
 	}
 	
@@ -59,8 +59,8 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void containmentRefTransitiveChange() throws SerializationException, EmfStoreException {
-		System.out.println("ContainmentRefTransitiveChange");
+	public void containmentRefTransitiveChangeReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("ContainmentRefTransitiveChangeReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
@@ -75,7 +75,7 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentRefTransitiveChange"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentRefTransitiveChangeReversibilityTest"));
 
 	}
 	
@@ -87,8 +87,8 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void multiReferenceMoveTests() throws SerializationException, EmfStoreException {
-		System.out.println("MultiReferenceMoveTests");
+	public void multiReferenceMoveReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("MultiReferenceMoveReversibilityTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -100,7 +100,7 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 		});
 
 
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiReferenceMoveTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiReferenceMoveReversibilityTest"));
 
 	}
 	
@@ -112,8 +112,8 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void nonContainmentReferenceAddTest() throws SerializationException, EmfStoreException {
-		System.out.println("NonContainmentReferenceAddTest");
+	public void nonContainmentReferenceAddReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("NonContainmentReferenceAddReversibilityTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -127,7 +127,7 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceAddTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceAddReversibilityTest"));
 	}
 
 	/**
@@ -137,8 +137,8 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void nonContainmentReferenceRemoveTest() throws SerializationException, EmfStoreException {
-		System.out.println("NonContainmentReferenceRemoveTest");
+	public void nonContainmentReferenceRemoveReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("NonContainmentReferenceRemoveReversibilityTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
@@ -152,7 +152,7 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 		});
 
 		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceRemoveTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceRemoveReversibilityTest"));
 
 	}
 	
@@ -164,8 +164,8 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void containmentReferenceMoveTest() throws SerializationException, EmfStoreException {
-		System.out.println("ContainmentReferenceMoveTest");
+	public void containmentReferenceMoveReversibilityTest() throws SerializationException, EmfStoreException {
+		System.out.println("ContainmentReferenceMoveReversibilityTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -178,7 +178,7 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 		});
 
 	
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceMoveTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceMoveReversibilityTest"));
 
 	}
 

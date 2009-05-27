@@ -58,8 +58,8 @@ public class ReferenceTest extends IntegrationTest {
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void containmentRefTransitiveChange() throws SerializationException, EmfStoreException {
-		System.out.println("ContainmentRefTransitiveChange");
+	public void containmentRefTransitiveChangeTest() throws SerializationException, EmfStoreException {
+		System.out.println("ContainmentRefTransitiveChangeTest");
 
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
@@ -73,7 +73,7 @@ public class ReferenceTest extends IntegrationTest {
 		});
 
 		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentRefTransitiveChange"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentRefTransitiveChangeTest"));
 
 	}
 	
@@ -85,8 +85,8 @@ public class ReferenceTest extends IntegrationTest {
 	 * @throws SerializationException SerializationException
 	 */
 	@Test
-	public void multiReferenceMoveTests() throws SerializationException, EmfStoreException {
-		System.out.println("MultiReferenceMoveTests");
+	public void multiReferenceMoveTest() throws SerializationException, EmfStoreException {
+		System.out.println("MultiReferenceMoveTest");
 		final IntegrationTestHelper testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 		TransactionalEditingDomain domain = IntegrationTestHelper.getDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
