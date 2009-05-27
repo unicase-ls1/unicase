@@ -56,14 +56,14 @@ public class CompositeTest extends IntegrationTest {
 
 		});
 
-		getSetupHelper().commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getSetupHelper().getTestProject(), getSetupHelper().getCompareProject(), "CompositeTest"));
+		commitChanges();
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CompositeTest"));
 
 	}
 	
 
 	private void doTest() {
-		testHelper = new IntegrationTestHelper(randomSeed, getSetupHelper().getTestProject());
+		testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
 
 		if (testAll) {
 
