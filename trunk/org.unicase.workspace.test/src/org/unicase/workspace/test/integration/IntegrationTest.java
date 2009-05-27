@@ -5,13 +5,15 @@
  */
 package org.unicase.workspace.test.integration;
 
+import java.net.URISyntaxException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.Project;
 import org.unicase.workspace.test.SetupHelper;
 import org.unicase.workspace.test.TestProjectEnum;
-
-import java.net.URISyntaxException;
 
 /**
  * @author Hodaie
@@ -66,12 +68,35 @@ public abstract class IntegrationTest {
 		SetupHelper.cleanupServer();
 	}
 
-		
+	
+	
+
+	
+
 	/**
-	 * @return the setupHelper
+	 * @return the testProject
 	 */
-	public SetupHelper getSetupHelper() {
-		return setupHelper;
+	public Project getTestProject() {
+		return setupHelper.getTestProject();
+	}
+
+	/**
+	 * Returns project to be compared with test project. This is project that lies on server after committing the
+	 * changes.
+	 * 
+	 * @return project lying on the server
+	 * @throws EmfStoreException EmfStoreException
+	 */
+	public Project getCompareProject() throws EmfStoreException {
+		return setupHelper.getCompareProject();
+		
+	}
+	
+	/**
+	 * Commits changes.
+	 */
+	protected void commitChanges(){
+		setupHelper.commitChanges();
 	}
 
 }
