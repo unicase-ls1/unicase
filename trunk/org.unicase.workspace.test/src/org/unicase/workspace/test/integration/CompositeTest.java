@@ -22,7 +22,7 @@ import java.util.List;
  * 
  * @author hodaie
  */
-public class CompositeTest extends IntegrationTestCase {
+public class CompositeTest extends IntegrationTest {
 
 	private long randomSeed = 1;
 

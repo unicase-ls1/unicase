@@ -17,7 +17,7 @@ import org.unicase.model.util.SerializationException;
  * @author Hodaie
  */
 
-public class CreateDeleteTest extends IntegrationTestCase {
+public class CreateDeleteTest extends IntegrationTest {
 
 	private long randomSeed = 1;
 
