@@ -16,7 +16,7 @@ import org.unicase.model.util.SerializationException;
 /**
  * @author Hodaie
  */
-public class ReferenceTest extends IntegrationTestCase {
+public class ReferenceTest extends IntegrationTest {
 
 	private long randomSeed = 1;
 

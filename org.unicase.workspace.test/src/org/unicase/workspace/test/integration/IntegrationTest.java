@@ -16,7 +16,7 @@ import java.net.URISyntaxException;
 /**
  * @author Hodaie
  */
-public abstract class IntegrationTestCase {
+public abstract class IntegrationTest {
 
 	private static boolean serverRunning;
 	private SetupHelper setupHelper;
