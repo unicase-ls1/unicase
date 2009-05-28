@@ -544,8 +544,6 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 			Comment tempComment = RationaleFactory.eINSTANCE.createComment();
 			if (items.length == 2) {
 				tempComment.setName(items[1]);
-			} else {
-				tempComment.setName("Log message: added new AIs for sprint 34");
 			}
 			return new Comment[] { tempComment };
 		} else if (getNotification().getRelatedModelElements().size() == 1) {
