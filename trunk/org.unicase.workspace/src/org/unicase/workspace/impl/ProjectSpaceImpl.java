@@ -87,7 +87,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Project Container</b></em>'.
  * 
- * @implements ProjectChangeObserver <!-- end-user-doc -->
+ * @implements ProjectChangeObserver, LoginObserver <!-- end-user-doc -->
  *             <p>
  *             The following features are implemented:
  *             <ul>

@@ -16,7 +16,8 @@ import org.unicase.model.ModelElementId;
  * <ul>
  * <li>{@link org.unicase.workspace.PendingFileTransfer#getAttachmentId <em>Attachment Id</em>}</li>
  * <li>{@link org.unicase.workspace.PendingFileTransfer#getFileVersion <em>File Version</em>}</li>
- * <li>{@link org.unicase.workspace.PendingFileTransfer#getFilePath <em>File Path</em>}</li>
+ * <li>{@link org.unicase.workspace.PendingFileTransfer#getChunkNumber <em>Chunk Number</em>}</li>
+ * <li>{@link org.unicase.workspace.PendingFileTransfer#isUpload <em>Upload</em>}</li>
  * </ul>
  * </p>
  * 
@@ -78,29 +79,55 @@ public interface PendingFileTransfer extends EObject {
 	void setFileVersion(String value);
 
 	/**
-	 * Returns the value of the '<em><b>File Path</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Chunk Number</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>File Path</em>' attribute isn't clear, there really should be more of a description
+	 * If the meaning of the '<em>Chunk Number</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>File Path</em>' attribute.
-	 * @see #setFilePath(String)
-	 * @see org.unicase.workspace.WorkspacePackage#getPendingFileTransfer_FilePath()
+	 * @return the value of the '<em>Chunk Number</em>' attribute.
+	 * @see #setChunkNumber(int)
+	 * @see org.unicase.workspace.WorkspacePackage#getPendingFileTransfer_ChunkNumber()
 	 * @model
 	 * @generated
 	 */
-	String getFilePath();
+	int getChunkNumber();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.workspace.PendingFileTransfer#getFilePath <em>File Path</em>}'
+	 * Sets the value of the '{@link org.unicase.workspace.PendingFileTransfer#getChunkNumber <em>Chunk Number</em>}'
 	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @param value the new value of the '<em>File Path</em>' attribute.
-	 * @see #getFilePath()
+	 * @param value the new value of the '<em>Chunk Number</em>' attribute.
+	 * @see #getChunkNumber()
 	 * @generated
 	 */
-	void setFilePath(String value);
+	void setChunkNumber(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Upload</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Upload</em>' attribute isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Upload</em>' attribute.
+	 * @see #setUpload(boolean)
+	 * @see org.unicase.workspace.WorkspacePackage#getPendingFileTransfer_Upload()
+	 * @model
+	 * @generated
+	 */
+	boolean isUpload();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.PendingFileTransfer#isUpload <em>Upload</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Upload</em>' attribute.
+	 * @see #isUpload()
+	 * @generated
+	 */
+	void setUpload(boolean value);
 
 } // PendingFileTransfer
