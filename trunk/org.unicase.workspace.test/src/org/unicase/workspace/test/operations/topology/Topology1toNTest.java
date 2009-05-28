@@ -10,11 +10,19 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.model.bug.BugFactory;
+import org.unicase.model.bug.BugReport;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.rationale.Solution;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
+import org.unicase.model.task.TaskFactory;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
 import java.util.Arrays;
@@ -181,6 +189,154 @@ public class Topology1toNTest extends TopologyTest{
 		assertEquals(op.getIndex(), 1);
 		
 	}		
+	
+	/**
+	 * add an contained child to a non-empty containment feature.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentAddSameFeatureContainedChildToNonEmpty() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor1 = RequirementFactory.eINSTANCE.createActor();
+		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(actor1);
+		getProject().addModelElement(actor2);
+		getProject().addModelElement(section1);
+		getProject().addModelElement(section2);
+
+		section1.getModelElements().add(actor1);
+		section2.getModelElements().add(actor2);
+		
+		clearOperations();
+		
+		section1.getModelElements().add(actor2);
+		assertFalse(section2.getModelElements().contains(actor2));
+		assertTrue(section1.getModelElements().contains(actor2));
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(2, operations.size());
+
+		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
+		// first op is: LeafSection change on actor2 (preserving old parent)
+		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(0);
+		assertEquals(op1.getOldValue(), section2.getModelElementId());
+		assertEquals(op1.getNewValue(), section1.getModelElementId());
+		assertEquals("leafSection", op1.getFeatureName());
+		
+		// second op is: Section2 welcomes its new child 
+		assertTrue(operations.get(1) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op2 = (MultiReferenceOperation) operations.get(1);
+		assertTrue(op2.isAdd());
+		assertEquals(1, op2.getReferencedModelElements().size());
+		assertEquals(actor2.getModelElementId(), op2.getReferencedModelElements().get(0));
+		assertEquals("modelElements", op2.getFeatureName());
+		assertEquals(op2.getModelElementId(), section1.getModelElementId());
+		assertEquals(op2.getIndex(), 1);
+		
+	}		
+	
+	
+	/**
+	 * add an contained child to a non-empty containment feature.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentAddDifferentFeatureContainedNChildToNonEmpty() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		WorkPackage pack =  TaskFactory.eINSTANCE.createWorkPackage();
+		BugReport br = BugFactory.eINSTANCE.createBugReport();
+		
+		getProject().addModelElement(section);
+		getProject().addModelElement(pack);
+		getProject().addModelElement(br);
+		br.setLeafSection(section);
+		
+		assertTrue(section.getModelElements().contains(br));
+		
+		clearOperations();
+
+		pack.getContainedWorkItems().add(br);
+		assertFalse(section.getModelElements().contains(br));
+		assertTrue(pack.getContainedWorkItems().contains(br));
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		assertEquals(2, operations.size());
+
+		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
+		// first op is: LeafSection change on bug report (preserving old parent)
+		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(0);
+		assertEquals(op1.getOldValue(), section.getModelElementId());
+		assertNull(op1.getNewValue());
+		assertEquals("leafSection", op1.getFeatureName());
+		
+		// second op is: Workpackage welcomes its new child 
+		assertTrue(operations.get(1) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op2 = (MultiReferenceOperation) operations.get(1);
+		assertTrue(op2.isAdd());
+		assertEquals(1, op2.getReferencedModelElements().size());
+		assertEquals(br.getModelElementId(), op2.getReferencedModelElements().get(0));
+		assertEquals("containedWorkItems", op2.getFeatureName());
+		assertEquals(op2.getModelElementId(), pack.getModelElementId());
+		assertEquals(op2.getIndex(), 0);
+		
+	}			
+	
+	/**
+	 * add an contained child to a non-empty containment feature.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentAddDifferentFeatureContained1ChildToNonEmpty() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		Solution solution = RationaleFactory.eINSTANCE.createSolution();
+
+		getProject().addModelElement(issue);
+		getProject().addModelElement(section);
+		getProject().addModelElement(solution);
+		issue.setSolution(solution);
+		
+		clearOperations();
+
+		section.getModelElements().add(solution);
+		assertTrue(section.getModelElements().contains(solution));
+		assertNull(issue.getSolution());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		assertEquals(2, operations.size());
+
+		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
+
+		// first op is: solution loses its old parent 
+		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(0);
+		assertEquals(solution.getModelElementId(), op1.getModelElementId());
+		assertEquals("issue", op1.getFeatureName());
+		assertEquals(op1.getOldValue(), issue.getModelElementId());
+		assertNull(op1.getNewValue());
+		
+		// second op is: section welcomes its new child 
+		assertTrue(operations.get(1) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op2 = (MultiReferenceOperation) operations.get(1);
+		assertTrue(op2.isAdd());
+		assertEquals(op2.getModelElementId(), section.getModelElementId());
+		assertEquals(1, op2.getReferencedModelElements().size());
+		assertEquals(solution.getModelElementId(), op2.getReferencedModelElements().get(0));
+		assertEquals("modelElements", op2.getFeatureName());
+		assertEquals(op2.getIndex(), 0);
+		
+	}				
 	
 	/**
 	 * remove last child from a containment feature.

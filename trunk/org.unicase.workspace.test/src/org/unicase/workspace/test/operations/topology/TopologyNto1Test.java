@@ -14,6 +14,9 @@ import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.model.rationale.Solution;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
@@ -243,7 +246,7 @@ public class TopologyNto1Test extends TopologyTest{
 	 */
 	
 	@Test
-	public void setContainerFromValueToOtherValueDifferentFeature() throws UnsupportedOperationException, UnsupportedNotificationException {
+	public void setContainerFromValueToOtherValueDifferentFeatureN() throws UnsupportedOperationException, UnsupportedNotificationException {
 
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		WorkPackage pack =  TaskFactory.eINSTANCE.createWorkPackage();
@@ -281,5 +284,53 @@ public class TopologyNto1Test extends TopologyTest{
 		
 		
 	}			
+	
+	/**
+	 * Set a container from some value to some other value on different features though.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	
+	@Test
+	public void setContainerFromValueToOtherValueDifferentFeature1() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		Solution solution = RationaleFactory.eINSTANCE.createSolution();
+
+		getProject().addModelElement(issue);
+		getProject().addModelElement(section);
+		getProject().addModelElement(solution);
+		issue.setSolution(solution);
+		
+		clearOperations();
+
+		solution.setLeafSection(section); 
+		assertTrue(section.getModelElements().contains(solution));
+		assertNull(issue.getSolution());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		assertEquals(2, operations.size());
+
+		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
+
+		// first op is: solution loses its old parent 
+		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(0);
+		assertEquals(solution.getModelElementId(), op1.getModelElementId());
+		assertEquals("issue", op1.getFeatureName());
+		assertEquals(op1.getOldValue(), issue.getModelElementId());
+		assertNull(op1.getNewValue());
+		
+		// second op is: solution annouces its new parent
+		SingleReferenceOperation op2 = (SingleReferenceOperation) operations.get(1);
+		assertEquals(solution.getModelElementId(), op2.getModelElementId());
+		assertEquals("leafSection", op2.getFeatureName());
+		assertEquals(op2.getNewValue(), section.getModelElementId());
+		assertNull(op2.getOldValue());
+		
+		
+	}			
+		
 	
 }
