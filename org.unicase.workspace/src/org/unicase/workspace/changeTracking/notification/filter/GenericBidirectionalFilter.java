@@ -32,13 +32,18 @@ public class GenericBidirectionalFilter implements NotificationFilter {
 			if (n.isReferenceNotification() && n.getReference().getEOpposite() != null) {
 
 				// check for opposites on single reference notifications
-				NotificationInfo last = rec.get(rec.size() - 1);
-				NotificationInfo next = rec.get(i + 1);
 
-				if (isOppositeOf(n, last) || isOppositeOf(n, next)) {
-					rec.remove(i);
-					i--;
+				for (int j = i + 1; j < rec.size(); j++) {
+					if (isOppositeOf(n, rec.get(j))) {
+						rec.remove(i);
+						i--;
+					}
 				}
+
+				/*
+				 * NotificationInfo last = rec.get(rec.size() - 1); NotificationInfo next = rec.get(i + 1); if
+				 * (isOppositeOf(n, last) || isOppositeOf(n, next)) { rec.remove(i); i--; }
+				 */
 
 			}
 

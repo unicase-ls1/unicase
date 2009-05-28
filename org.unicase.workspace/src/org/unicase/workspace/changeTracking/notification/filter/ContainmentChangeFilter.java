@@ -48,13 +48,12 @@ public class ContainmentChangeFilter implements NotificationFilter {
 		// 1:n case
 		// TODO: check for IDs instead of identity
 		// TODO: check for containmentfeature
-		if (n1.isRemoveEvent() && n2.isSetEvent() && n3.isAddEvent()) {
-			if (n1.getOldValue() == n2.getNotifier() && n2.getNotifier() == n3.getNewValue()) {
-				rec.remove(n1);
-				rec.remove(n3);
-			}
-		}
 
+		// this rule would destroy the notion of operation perspective, thus commenting out
+		/*
+		 * if (n1.isRemoveEvent() && n2.isSetEvent() && n3.isAddEvent()) { if (n1.getOldValue() == n2.getNotifier() &&
+		 * n2.getNotifier() == n3.getNewValue()) { rec.remove(n1); return; } }
+		 */
 		// 1:1 case
 		if (n1.isSetEvent() && n2.isSetEvent() && n3.isSetEvent() && n1.isReferenceNotification()
 			&& n2.isReferenceNotification() && n3.isReferenceNotification()
@@ -80,15 +79,12 @@ public class ContainmentChangeFilter implements NotificationFilter {
 		// TODO: check for IDs instead of identity
 		// TODO: check for containmentfeature
 
-		if (n1.isRemoveEvent() && n2.isSetEvent() && n3.isSetEvent() && n4.isAddEvent()) {
-			if (n1.getOldValue() == n2.getNotifier() && n2.getNotifier() == n3.getNotifier()
-				&& n2.getNotifier() == n4.getNewValue() && n2.getNewValue() == null && n3.getOldValue() == null) {
-				rec.remove(n1);
-				rec.remove(n4);
-				return;
-			}
-		}
-
+		// This rule would destroy operation perspective (last item removed), thus commented out
+		/*
+		 * if (n1.isRemoveEvent() && n2.isSetEvent() && n3.isSetEvent() && n4.isAddEvent()) { if (n1.getOldValue() ==
+		 * n2.getNotifier() && n2.getNotifier() == n3.getNotifier() && n2.getNotifier() == n4.getNewValue() &&
+		 * n2.getNewValue() == null && n3.getOldValue() == null) { rec.remove(n1); rec.remove(n4); return; } }
+		 */
 		// different order of same messages also allowed
 		if (n1.isRemoveEvent() && n4.isSetEvent() && n3.isSetEvent() && n2.isAddEvent()) {
 			if (n1.getOldValue() == n4.getNotifier() && n4.getNotifier() == n3.getNotifier()

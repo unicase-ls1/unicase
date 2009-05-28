@@ -41,12 +41,12 @@ public class BidirectionalAddFilter implements NotificationFilter {
 			return;
 		}
 		// 1:n add operation test, an add and a set are going on
-		if (n1.isAddEvent() && n2.isSetEvent() && (n1.getNewValue() == n2.getNotifier())) {
+		if (n1.isAddEvent() && n2.isSetEvent() && (n1.getNewValue() == n2.getNotifier() && n2.getOldValue() == null)) {
 			rec.remove(n1);
 			return;
 		}
 		// n:1 add operation test, a set and an add are going on
-		if (n1.isSetEvent() && n2.isAddEvent() && (n1.getNewValue() == n2.getNotifier())) {
+		if (n1.isSetEvent() && n2.isAddEvent() && (n1.getNewValue() == n2.getNotifier()) && n1.getOldValue() == null) {
 			rec.remove(n1);
 			return;
 		}
