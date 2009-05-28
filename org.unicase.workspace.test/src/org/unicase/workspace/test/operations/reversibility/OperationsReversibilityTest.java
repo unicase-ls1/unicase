@@ -23,7 +23,7 @@ public abstract class OperationsReversibilityTest {
 
 	private static boolean serverRunning;
 	private SetupHelper setupHelper;
-	
+
 	/**
 	 * set up test project.
 	 * 
@@ -34,12 +34,9 @@ public abstract class OperationsReversibilityTest {
 		if (serverRunning) {
 			return;
 		}
-		
-		
+
 		SetupHelper.startSever();
 		serverRunning = true;
-
-		
 
 	}
 
@@ -48,13 +45,13 @@ public abstract class OperationsReversibilityTest {
 	 */
 	@Before
 	public void setup() {
-		
+
 		setupHelper = new SetupHelper(TestProjectEnum.UNICASE);
 
 		setupHelper.setupWorkSpace();
-		
+
 		setupHelper.setupTestProjectSpace();
-		
+
 		setupHelper.shareProject();
 
 	}
@@ -65,13 +62,9 @@ public abstract class OperationsReversibilityTest {
 	@After
 	public void cleanUp() {
 		setupHelper.cleanupWorkspace();
-		
+
 		SetupHelper.cleanupServer();
 	}
-
-		
-
-	
 
 	/**
 	 * @return the testProject
@@ -89,24 +82,25 @@ public abstract class OperationsReversibilityTest {
 	 */
 	public Project getCompareProject() throws EmfStoreException {
 		return setupHelper.getCompareProject();
-		
+
 	}
-	
-	/**
-	 * Commits changes.
-	 */
-	public void commitChanges(){
-		setupHelper.commitChanges();
-	}
-	
-	
+
 	/**
 	 * Returns the test project space.
+	 * 
 	 * @return test project space
 	 */
-	public ProjectSpace getTestProjectSpace(){
+	public ProjectSpace getTestProjectSpace() {
 		return setupHelper.getTestProjectSpace();
 	}
+
 	
+	
+	// /**
+	// * Commits changes.
+	// */
+	// public void commitChanges(){
+	// setupHelper.commitChanges();
+	// }
 
 }

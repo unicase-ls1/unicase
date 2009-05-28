@@ -23,6 +23,7 @@ import org.junit.runners.Suite;
 	AttributeOperationsReversibilityTest.class,
 	ReferenceOperationsReversibilityTest.class,
 	CreateDeleteOperationsReversibilityTest.class, 
+	CompositeOperationReversibilityTest.class
 	})
 public class AllOperationReversibilityTests {
 
