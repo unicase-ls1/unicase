@@ -733,11 +733,6 @@
           accessor="getHazardFigure_name"/>
     </descriptors>
     <descriptors
-        name="UseCaseFigure">
-      <accessors
-          accessor="getUseCaseFigure_name"/>
-    </descriptors>
-    <descriptors
         name="HazardCauseFigure">
       <actualFigure
           xsi:type="gmfgraph:CustomFigure">
