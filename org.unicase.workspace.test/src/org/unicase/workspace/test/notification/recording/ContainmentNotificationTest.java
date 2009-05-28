@@ -43,7 +43,8 @@ public class ContainmentNotificationTest extends NotificationTest{
 		section1.getModelElements().add(useCase);
 		
 		// reattach usecase to another leaf section
-		section2.getModelElements().add(useCase);
+		//section2.getModelElements().add(useCase);
+		useCase.setLeafSection(section2);
 		
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
@@ -78,7 +79,8 @@ public class ContainmentNotificationTest extends NotificationTest{
 		section.getModelElements().add(child);
 		
 		// reattach child to a functional requirement
-		req.getRefiningRequirements().add(child);
+		//req.getRefiningRequirements().add(child);
+		child.setRefinedRequirement(req);
 		
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();

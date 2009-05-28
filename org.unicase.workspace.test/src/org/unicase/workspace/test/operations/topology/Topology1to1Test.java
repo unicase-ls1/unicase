@@ -204,7 +204,7 @@ public class Topology1to1Test extends TopologyTest{
 	 * @throws UnsupportedNotificationException on test fail
 	 */
 	@Test
-	public void containmentValueToOtherValueContainedAlready1() throws UnsupportedOperationException, UnsupportedNotificationException {
+	public void containmentValueToOtherValueContainedAlready1OperateOnParent() throws UnsupportedOperationException, UnsupportedNotificationException {
 
 		Issue issue1 = RationaleFactory.eINSTANCE.createIssue();
 		Issue issue2 = RationaleFactory.eINSTANCE.createIssue();
@@ -239,7 +239,7 @@ public class Topology1to1Test extends TopologyTest{
 		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
 
 		// please note: 2 ops are necessary, this is because the oldvalues are necessary for
-		// the ops to be reversible! we need to track the parent of issue 2!
+		// the ops to be reversible! we need to track the parent of solution 2!
 		
 		// first solution 2 is getting its new parent
 		assertEquals(issue2.getModelElementId(), refOp1.getOldValue());
@@ -253,6 +253,152 @@ public class Topology1to1Test extends TopologyTest{
 		assertEquals("solution", refOp2.getFeatureName());
 		assertEquals(issue1.getModelElementId(), refOp2.getModelElementId());
 	}	
+	
+	/**
+	 * Change an containment attribute from some reference to some other reference, and check resulting op.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentValueToOtherValueContainedAlready1OperateOnChild() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		Issue issue1 = RationaleFactory.eINSTANCE.createIssue();
+		Issue issue2 = RationaleFactory.eINSTANCE.createIssue();
+		Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
+		Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
+
+		getProject().addModelElement(issue1);
+		getProject().addModelElement(issue2);
+		getProject().addModelElement(solution1);
+		getProject().addModelElement(solution2);
+		
+		issue1.setSolution(solution1);
+		issue2.setSolution(solution2);
+		assertEquals(issue1.getSolution(), solution1);
+		assertEquals(issue2.getSolution(), solution2);
+		
+		clearOperations();
+		
+		solution2.setIssue(issue1);
+		assertSame(solution2, issue1.getSolution());
+		assertNull(issue2.getSolution());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(2, operations.size());
+		AbstractOperation op1 = operations.get(0);
+		AbstractOperation op2 = operations.get(1);
+		assertEquals(true, op1 instanceof SingleReferenceOperation);
+		assertEquals(true, op2 instanceof SingleReferenceOperation);
+		
+		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
+		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
+
+		// please note: 2 ops are necessary, this is because the oldvalues are necessary for
+		// the ops to be reversible! we need to track the parent of solution 2!
+		
+		// first issue 1 is getting its new child
+		assertEquals(solution1.getModelElementId(), refOp1.getOldValue());
+		assertEquals(solution2.getModelElementId(), refOp1.getNewValue());
+		assertEquals("solution", refOp1.getFeatureName());
+		assertEquals(issue1.getModelElementId(), refOp1.getModelElementId());
+		
+		// second the solution2 is getting its issue reset, here the old parent is preserved
+		assertEquals(issue2.getModelElementId(), refOp2.getOldValue());
+		assertEquals(issue1.getModelElementId(), refOp2.getNewValue());
+		assertEquals("issue", refOp2.getFeatureName());
+		assertEquals(solution2.getModelElementId(), refOp2.getModelElementId());
+	}		
+	
+	/**
+	 * Change an containment attribute from some reference to some other reference, and check resulting op.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentNullToOtherValueContainedAlready1OperateOnChild() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		Issue issue1 = RationaleFactory.eINSTANCE.createIssue();
+		Issue issue2 = RationaleFactory.eINSTANCE.createIssue();
+		Solution solution = RationaleFactory.eINSTANCE.createSolution();
+
+		getProject().addModelElement(issue1);
+		getProject().addModelElement(issue2);
+		getProject().addModelElement(solution);
+		
+		issue1.setSolution(solution);
+		assertEquals(issue1.getSolution(), solution);
+		
+		clearOperations();
+		solution.setIssue(issue2);
+		assertNull(issue1.getSolution());
+		assertSame(issue2.getSolution(), solution);
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(1, operations.size());
+		AbstractOperation op1 = operations.get(0);
+		assertTrue(op1 instanceof SingleReferenceOperation);
+		
+		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
+
+		assertEquals(solution.getModelElementId(), refOp1.getModelElementId());
+		assertEquals("issue", refOp1.getFeatureName());
+		assertEquals(issue1.getModelElementId(), refOp1.getOldValue());
+		assertEquals(issue2.getModelElementId(), refOp1.getNewValue());
+	}			
+	
+	/**
+	 * Change an containment attribute from some reference to some other reference, and check resulting op.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentNullToOtherValueContainedAlready1OperateOnParent() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		Issue issue1 = RationaleFactory.eINSTANCE.createIssue();
+		Issue issue2 = RationaleFactory.eINSTANCE.createIssue();
+		Solution solution = RationaleFactory.eINSTANCE.createSolution();
+
+		getProject().addModelElement(issue1);
+		getProject().addModelElement(issue2);
+		getProject().addModelElement(solution);
+		
+		issue1.setSolution(solution);
+		assertEquals(issue1.getSolution(), solution);
+		
+		clearOperations();
+		issue2.setSolution(solution);
+		assertNull(issue1.getSolution());
+		assertSame(issue2.getSolution(), solution);
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(2, operations.size());
+		
+		AbstractOperation op1 = operations.get(0);
+		assertTrue(op1 instanceof SingleReferenceOperation);
+		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
+
+		AbstractOperation op2 = operations.get(1);
+		assertTrue(op2 instanceof SingleReferenceOperation);
+		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
+
+		assertEquals(solution.getModelElementId(), refOp1.getModelElementId());
+		assertEquals("issue", refOp1.getFeatureName());
+		assertEquals(issue1.getModelElementId(), refOp1.getOldValue());
+		assertEquals(issue2.getModelElementId(), refOp1.getNewValue());
+
+		assertEquals(issue2.getModelElementId(), refOp2.getModelElementId());
+		assertEquals("solution", refOp2.getFeatureName());
+		assertNull(refOp2.getOldValue());
+		assertEquals(solution.getModelElementId(), refOp2.getNewValue());
+
+	
+	}				
 	
 	/**
 	 * Change an containment attribute from some reference to some other reference, and check resulting op.
@@ -304,7 +450,7 @@ public class Topology1to1Test extends TopologyTest{
 	 * @throws UnsupportedNotificationException on test fail
 	 */
 	@Test
-	public void containmentValueToOtherValueContainedAlreadyN() throws UnsupportedOperationException, UnsupportedNotificationException {
+	public void containmentValueToOtherValueContainedAlreadyNOperateOnParent() throws UnsupportedOperationException, UnsupportedNotificationException {
 
 		Issue issue = RationaleFactory.eINSTANCE.createIssue();
 		LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
@@ -356,6 +502,187 @@ public class Topology1to1Test extends TopologyTest{
 		assertEquals(issue.getModelElementId(), refOp2.getModelElementId());
 	}		
 
+	/**
+	 * Change an containment attribute from some reference to some other reference, and check resulting op.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentValueToOtherValueContainedAlreadyNOperateOnChild() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
+		Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
+		Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
+
+		getProject().addModelElement(issue);
+		getProject().addModelElement(leafSection);
+		getProject().addModelElement(solution1);
+		getProject().addModelElement(solution2);
+		
+		leafSection.getModelElements().add(solution2);
+		issue.setSolution(solution1);
+		
+		assertEquals(issue.getSolution(), solution1);
+		assertTrue(leafSection.getModelElements().contains(solution2));
+		
+		clearOperations();
+		
+		solution2.setIssue(issue);
+		assertSame(solution2, issue.getSolution());
+		assertTrue(leafSection.getModelElements().isEmpty());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(3, operations.size());
+		AbstractOperation op1 = operations.get(0);
+		AbstractOperation op2 = operations.get(1);
+		AbstractOperation op3 = operations.get(2);
+		
+		assertEquals(true, op1 instanceof SingleReferenceOperation);
+		assertEquals(true, op2 instanceof SingleReferenceOperation);
+		assertEquals(true, op3 instanceof SingleReferenceOperation);
+		
+		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
+		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
+		SingleReferenceOperation refOp3 = (SingleReferenceOperation) op3;
+
+		// please note: 3 ops are necessary from this perspective
+		// 1. old solution of issue must be tracked
+		// 2. old parent of solution 2 must be tracked (the leafsection)
+		// 3. solution2 must announce its new issue
+		
+		assertEquals(issue.getModelElementId(), refOp1.getModelElementId());
+		assertEquals("solution", refOp1.getFeatureName());
+		assertEquals(solution1.getModelElementId(), refOp1.getOldValue());
+		assertEquals(solution2.getModelElementId(), refOp1.getNewValue());
+
+		assertEquals(solution2.getModelElementId(), refOp2.getModelElementId());
+		assertEquals("leafSection", refOp2.getFeatureName());
+		assertEquals(leafSection.getModelElementId(), refOp2.getOldValue());
+		assertNull(refOp2.getNewValue());
+		
+		assertEquals(solution2.getModelElementId(), refOp3.getModelElementId());
+		assertEquals("issue", refOp3.getFeatureName());
+		assertNull(refOp3.getOldValue());
+		assertEquals(issue.getModelElementId(), refOp3.getNewValue());
+		
+		
+	}			
+	
+	/**
+	 * Change an containment attribute from some reference to some other reference, and check resulting op.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentNullToValueContainedAlreadyNOperateOnParent() throws UnsupportedOperationException, UnsupportedNotificationException {
+		
+		Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
+		Solution solution = RationaleFactory.eINSTANCE.createSolution();
+
+		getProject().addModelElement(issue);
+		getProject().addModelElement(leafSection);
+		getProject().addModelElement(solution);
+		
+		leafSection.getModelElements().add(solution);
+		assertTrue(leafSection.getModelElements().contains(solution));
+		
+		clearOperations();
+		
+		issue.setSolution(solution);
+		assertSame(solution, issue.getSolution());
+		assertTrue(leafSection.getModelElements().isEmpty());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(2, operations.size());
+		AbstractOperation op1 = operations.get(0);
+		AbstractOperation op2 = operations.get(1);
+		assertEquals(true, op1 instanceof SingleReferenceOperation);
+		assertEquals(true, op2 instanceof SingleReferenceOperation);
+		
+		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
+		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
+
+		// please note: 2 ops are necessary, this is because the oldvalues are necessary for
+		// the ops to be reversible! we need to track the parent of solution!
+		
+		// first solution is losing its old leaf section parent
+		
+		assertEquals(solution.getModelElementId(), refOp1.getModelElementId());
+		assertEquals("leafSection", refOp1.getFeatureName());
+		assertEquals(leafSection.getModelElementId(), refOp1.getOldValue());
+		assertNull(refOp1.getNewValue());
+		
+		// second the solution is getting its new issue
+		assertEquals(issue.getModelElementId(), refOp2.getModelElementId());
+		assertEquals("solution", refOp2.getFeatureName());
+		assertNull(refOp2.getOldValue());
+		assertEquals(solution.getModelElementId(), refOp2.getNewValue());
+		
+		
+	}		
+
+	/**
+	 * Change an containment attribute from some reference to some other reference, and check resulting op.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void containmentNullToValueContainedAlreadyNOperateOnChild() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		Issue issue = RationaleFactory.eINSTANCE.createIssue();
+		LeafSection leafSection = DocumentFactory.eINSTANCE.createLeafSection();
+		Solution solution = RationaleFactory.eINSTANCE.createSolution();
+
+		getProject().addModelElement(issue);
+		getProject().addModelElement(leafSection);
+		getProject().addModelElement(solution);
+		
+		leafSection.getModelElements().add(solution);
+		assertTrue(leafSection.getModelElements().contains(solution));
+		
+		clearOperations();
+		
+		solution.setIssue(issue);
+		assertSame(solution, issue.getSolution());
+		assertTrue(leafSection.getModelElements().isEmpty());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(2, operations.size());
+		AbstractOperation op1 = operations.get(0);
+		AbstractOperation op2 = operations.get(1);
+		
+		assertEquals(true, op1 instanceof SingleReferenceOperation);
+		assertEquals(true, op2 instanceof SingleReferenceOperation);
+		
+		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
+		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
+
+		// please note: 3 ops are necessary from this perspective
+		// 1. old solution of issue must be tracked
+		// 2. old parent of solution 2 must be tracked (the leafsection)
+		// 3. solution2 must announce its new issue
+		
+		assertEquals(solution.getModelElementId(), refOp1.getModelElementId());
+		assertEquals("leafSection", refOp1.getFeatureName());
+		assertNull(refOp1.getNewValue());
+		assertEquals(leafSection.getModelElementId(), refOp1.getOldValue());
+
+		assertEquals(solution.getModelElementId(), refOp2.getModelElementId());
+		assertEquals("issue", refOp2.getFeatureName());
+		assertNull(refOp2.getOldValue());
+		assertEquals(issue.getModelElementId(), refOp2.getNewValue());
+		
+		
+	}				
+	
 	/**
 	 * Change an containment attribute from some reference to null, and check resulting op.
 	 * 
