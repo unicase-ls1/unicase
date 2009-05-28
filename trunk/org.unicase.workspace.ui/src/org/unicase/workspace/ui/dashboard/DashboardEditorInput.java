@@ -81,8 +81,8 @@ public class DashboardEditorInput implements IEditorInput {
 	public String getName() {
 
 		String projectName = getProjectSpace().getProjectName();
-		if (projectName.length() > 10) {
-			projectName = projectName.substring(0, 7) + "...";
+		if (projectName.length() > 15) {
+			projectName = projectName.substring(0, 12) + "...";
 		}
 		return "Dashboard [" + projectName + "]";
 	}
