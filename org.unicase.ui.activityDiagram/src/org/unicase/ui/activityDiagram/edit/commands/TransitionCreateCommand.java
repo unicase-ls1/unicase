@@ -36,32 +36,14 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	private MEDiagram container;
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 * @param request The request that caused the creation of this command
 	 * @param source The source element of the connection to be created
 	 * @param target The target element of the connection to be created
 	 */
-	public TransitionCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	public TransitionCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request);
-		this.source = source;
-		this.target = target;
-		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(DiagramPackage.eINSTANCE
-					.getMEDiagram_NewElements());
-		}
-
-		// Find container element for the new link.
-		// Climb up by containment hierarchy starting from the source
-		// and return the first element that is instance of the container class.
-		for (EObject element = source; element != null; element = element
-				.eContainer()) {
-			if (element instanceof MEDiagram) {
-				container = (MEDiagram) element;
-				super.setElementToEdit(container);
-				break;
-			}
-		}
+		throw new UnsupportedOperationException();
 	}
 
 	/**
@@ -71,20 +53,17 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	 * @param eContainer The container element which will contain the connection
 	 * @generated NOT
 	 */
-	public TransitionCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target, EObject eContainer) {
+	public TransitionCreateCommand(CreateRelationshipRequest request, EObject source, EObject target, EObject eContainer) {
 		super(request);
 		this.source = source;
 		this.target = target;
 		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(DiagramPackage.eINSTANCE
-					.getMEDiagram_NewElements());
+			setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
 		}
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = eContainer; element != null; element = element
-				.eContainer()) {
+		for (EObject element = eContainer; element != null; element = element.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
 				super.setElementToEdit(container);
@@ -96,6 +75,7 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
@@ -114,13 +94,13 @@ public class TransitionCreateCommand extends CreateElementCommand {
 			return false;
 		}
 		return org.unicase.ui.activityDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateTransition_4001(getContainer(), getSource(),
-						getTarget());
+			.canCreateTransition_4001(getContainer(), getSource(), getTarget());
 	}
 
 	/**
 	 * @generated NOT
 	 */
+	@Override
 	protected EObject doDefaultElementCreation() {
 		Transition newElement = ActivityFactory.eINSTANCE.createTransition();
 		getContainer().getNewElements().add(newElement);
@@ -133,6 +113,7 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EClass getEClassToEdit() {
 		return DiagramPackage.eINSTANCE.getMEDiagram();
 	}
@@ -140,11 +121,10 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	@Override
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		return super.doExecuteWithResult(monitor, info);
 	}
@@ -152,6 +132,7 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ConfigureRequest createConfigureRequest() {
 		ConfigureRequest request = super.createConfigureRequest();
 		request.setParameter(CreateRelationshipRequest.SOURCE, getSource());
@@ -162,6 +143,7 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setElementToEdit(EObject element) {
 		throw new UnsupportedOperationException();
 	}

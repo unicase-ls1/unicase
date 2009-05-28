@@ -381,6 +381,16 @@
 	      </propertyTester>
 	</extension>
 	   <extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.core.expressions.propertyTesters">
       <?gmfgen generated="true"?>
        <propertyTester
            id="org.unicase.ui.activityDiagram.URIEditorInputPropertyTester"
@@ -388,17 +398,6 @@
            namespace="org.unicase.ui.activityDiagram"
            properties="isURIEditorInput"
            class="org.unicase.ui.activityDiagram.part.ModelUriEditorInputTester">
-       </propertyTester>
-   </extension>
-
-	   <extension point="org.eclipse.core.expressions.propertyTesters">
-      <?gmfgen generated="true"?>
-       <propertyTester
-           id="org.unicase.ui.activityDiagram.DomainModelElementPropertyTester"
-           type="org.eclipse.emf.ecore.EObject"
-           namespace="org.unicase.ui.activityDiagram"
-           properties="isDomainModelElement"
-           class="org.unicase.ui.activityDiagram.part.ModelDomainModelElementTester">
        </propertyTester>
    </extension>
 
@@ -527,5 +526,15 @@
          contextId="org.unicase.ui.activityDiagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.unicase.ui.activityDiagram.DomainModelElementPropertyTester"
+           type="org.eclipse.emf.ecore.EObject"
+           namespace="org.unicase.ui.activityDiagram"
+           properties="isDomainModelElement"
+           class="org.unicase.ui.activityDiagram.part.ModelDomainModelElementTester">
+       </propertyTester>
    </extension>
+
 </plugin>

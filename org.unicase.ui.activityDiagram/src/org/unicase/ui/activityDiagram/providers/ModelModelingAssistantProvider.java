@@ -16,12 +16,12 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.ui.common.diagram.providers.ModelingAssistantProvider;
 
 /**
  * @generated
  */
-public class ModelModelingAssistantProvider extends
-		org.unicase.ui.common.diagram.providers.ModelingAssistantProvider {
+public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 
 	/**
 	 * @generated

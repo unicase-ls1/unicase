@@ -2,10 +2,11 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2009/GenModel" packageNamePrefix="org.unicase.ui.urmldiagram"
-    modelID="Urml"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.urmlDiagram"
+    modelID="URML"
     diagramFileExtension="urml_diagram"
-    templateDirectory="">
+    dynamicTemplates="true"
+    templateDirectory="/org.unicase.model/model/gmf/templates/codegen">
   <diagram
       visualID="69"
       editPartClassName="MEDiagramEditPart"
@@ -116,13 +117,17 @@
           iD="org.unicase.diagram.rulersAndGrid"
           name="Rulers And Grid"
           kind="RulersAndGrid"/>
+      <children
+          xsi:type="gmfgen:GenStandardPreferencePage"
+          iD="org.unicase.diagram.pathmaps"
+          name="Pathmaps"
+          kind="Pathmaps"/>
     </preferencePages>
   </diagram>
   <plugin
-      iD="org.unicase.ui.urmldiagram"
-      name="URML Plugin">
-    <requiredPlugins>org.eclipse.draw2d</requiredPlugins>
-  </plugin>
+      iD="org.unicase.ui.urmlDiagram"
+      provider="Unicase"
+      version="0.0.1.qualifier"/>
   <editor/>
   <navigator>
     <childReferences
@@ -156,24 +161,4 @@
   </propertySheet>
   <domainGenModel
       href="../../model.genmodel#/"/>
-  <contextMenus
-      context="//@diagram">
-    <items
-        xsi:type="gmfgen:LoadResourceAction"/>
-  </contextMenus>
-  <contextMenus
-      context="//@diagram">
-    <items
-        xsi:type="gmfgen:LoadResourceAction"/>
-  </contextMenus>
-  <contextMenus
-      context="//@diagram">
-    <items
-        xsi:type="gmfgen:LoadResourceAction"/>
-  </contextMenus>
-  <contextMenus
-      context="//@diagram">
-    <items
-        xsi:type="gmfgen:LoadResourceAction"/>
-  </contextMenus>
 </gmfgen:GenEditorGenerator>

@@ -313,7 +313,7 @@ public final class ActionHelper {
 		} else if (diagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
 			id = "org.unicase.ui.activityDiagram.part.ModelDiagramEditorID";
 		}	else if (diagram.getType().equals(DiagramType.URML_DIAGRAM)) {
-			id = "org.unicase.ui.urmldiagram.part.ModelDiagramEditorID";
+			id = "org.unicase.ui.urmlDiagram.part.ModelDiagramEditorID";
 		}		
 
 		if (id == null) {
