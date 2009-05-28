@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Runs a random set of operations.
+ * Runs a random set of operations. Reverts them. Compares local project with project on the server. 
  * 
  * @author hodaie
  */
@@ -30,7 +30,13 @@ public class CompositeOperationReversibilityTest extends OperationsReversibility
 
 	private boolean testAll = true;
 	private int maxTimesToRunATestCase = 3;
+	/**
+	 * How many times should I select a test case to run.
+	 */
 	private int randomSelectIterations = 50;
+	/**
+	 * If i'm testing all test cases, how many times should I do it.
+	 */
 	private int testAllIterations = 20;
 
 	private IntegrationTestHelper testHelper;

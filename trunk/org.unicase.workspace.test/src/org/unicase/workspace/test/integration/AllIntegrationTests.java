@@ -23,6 +23,7 @@ import org.junit.runners.Suite;
 	AttributeTest.class,
 	ReferenceTest.class,
 	CreateDeleteTest.class, 
+	CompositeTest.class
 	})
 public class AllIntegrationTests {
 
