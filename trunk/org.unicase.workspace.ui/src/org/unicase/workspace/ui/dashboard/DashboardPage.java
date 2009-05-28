@@ -31,7 +31,6 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 import org.unicase.workspace.ui.dashboard.widgets.AbstractDashboardWidget;
 import org.unicase.workspace.ui.dashboard.widgets.DashboardEventWidget;
-import org.unicase.workspace.ui.dashboard.widgets.DashboardRelatedTasksWidget;
 import org.unicase.workspace.ui.dashboard.widgets.DashboardTaskWidget;
 
 /**
