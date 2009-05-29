@@ -91,7 +91,14 @@ public class SetupHelper {
 	 * Setups server space.
 	 */
 	public static void setupSeverSpace() {
-
+        // create a new server space
+		
+				
+		// import project history from local folder (it is located in our test plug-in)
+		
+		// add the history to server space
+		
+		
 	}
 
 	/**
