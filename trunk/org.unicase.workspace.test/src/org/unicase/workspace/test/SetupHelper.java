@@ -91,7 +91,8 @@ public class SetupHelper {
 	 * Setups server space.
 	 */
 	public static void setupSeverSpace() {
-        // create a new server space
+        // 1.
+		// create a new server space
 		
 				
 		// import project history from local folder (it is located in our test plug-in)
@@ -99,7 +100,23 @@ public class SetupHelper {
 		// add the history to server space
 		
 		
+		//===============================
+		//2.
+		// copy whole folders and storage from file system to .unicase.test/emf
+		
+//		ServerConfiguration.setTesting(true);
+//		String serverPath = ServerConfiguration.getServerHome();
+		
+		//copy myProj to serverPath.
+		
+		// start server.
+		
+		
+		
+		
 	}
+	
+	
 
 	/**
 	 * Setups workspace.
