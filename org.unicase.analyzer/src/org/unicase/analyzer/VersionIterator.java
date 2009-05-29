@@ -203,7 +203,6 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 					}
 					changePackage.reverse().apply(currentState);
 					//TODO return changePackage(i+1) but might be in another iteration
-					//WHAT SHALL I DO????
 					nextChangePackage = changes.get(index+1);
 				}
 			}
