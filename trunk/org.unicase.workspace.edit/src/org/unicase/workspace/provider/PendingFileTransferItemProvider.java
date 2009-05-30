@@ -70,7 +70,7 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PendingFileTransfer_fileVersion_feature"),
 			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_fileVersion_feature",
 				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__FILE_VERSION, true,
-			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -146,9 +146,8 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PendingFileTransfer) object).getFileVersion();
-		return label == null || label.length() == 0 ? getString("_UI_PendingFileTransfer_type")
-			: getString("_UI_PendingFileTransfer_type") + " " + label;
+		PendingFileTransfer pendingFileTransfer = (PendingFileTransfer) object;
+		return getString("_UI_PendingFileTransfer_type") + " " + pendingFileTransfer.getFileVersion();
 	}
 
 	/**

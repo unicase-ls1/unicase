@@ -61,12 +61,12 @@ public interface PendingFileTransfer extends EObject {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>File Version</em>' attribute.
-	 * @see #setFileVersion(String)
+	 * @see #setFileVersion(int)
 	 * @see org.unicase.workspace.WorkspacePackage#getPendingFileTransfer_FileVersion()
 	 * @model
 	 * @generated
 	 */
-	String getFileVersion();
+	int getFileVersion();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.workspace.PendingFileTransfer#getFileVersion <em>File Version</em>}'
@@ -76,7 +76,7 @@ public interface PendingFileTransfer extends EObject {
 	 * @see #getFileVersion()
 	 * @generated
 	 */
-	void setFileVersion(String value);
+	void setFileVersion(int value);
 
 	/**
 	 * Returns the value of the '<em><b>Chunk Number</b></em>' attribute. <!-- begin-user-doc -->
