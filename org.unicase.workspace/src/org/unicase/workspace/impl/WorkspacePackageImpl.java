@@ -789,7 +789,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEReference(getPendingFileTransfer_AttachmentId(), theModelPackage.getModelElementId(), null,
 			"attachmentId", null, 0, 1, PendingFileTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getPendingFileTransfer_FileVersion(), ecorePackage.getEString(), "fileVersion", null, 0, 1,
+		initEAttribute(getPendingFileTransfer_FileVersion(), ecorePackage.getEInt(), "fileVersion", null, 0, 1,
 			PendingFileTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPendingFileTransfer_ChunkNumber(), ecorePackage.getEInt(), "chunkNumber", null, 0, 1,

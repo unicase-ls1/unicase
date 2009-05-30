@@ -49,7 +49,7 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String FILE_VERSION_EDEFAULT = null;
+	protected static final int FILE_VERSION_EDEFAULT = 0;
 
 	/**
 	 * The cached value of the '{@link #getFileVersion() <em>File Version</em>}' attribute. <!-- begin-user-doc --> <!--
@@ -59,7 +59,7 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 	 * @generated
 	 * @ordered
 	 */
-	protected String fileVersion = FILE_VERSION_EDEFAULT;
+	protected int fileVersion = FILE_VERSION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getChunkNumber() <em>Chunk Number</em>}' attribute. <!-- begin-user-doc -->
@@ -202,7 +202,7 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 	 * 
 	 * @generated
 	 */
-	public String getFileVersion() {
+	public int getFileVersion() {
 		return fileVersion;
 	}
 
@@ -211,8 +211,8 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 	 * 
 	 * @generated
 	 */
-	public void setFileVersion(String newFileVersion) {
-		String oldFileVersion = fileVersion;
+	public void setFileVersion(int newFileVersion) {
+		int oldFileVersion = fileVersion;
 		fileVersion = newFileVersion;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PENDING_FILE_TRANSFER__FILE_VERSION,
@@ -311,7 +311,7 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 			setAttachmentId((ModelElementId) newValue);
 			return;
 		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_VERSION:
-			setFileVersion((String) newValue);
+			setFileVersion((Integer) newValue);
 			return;
 		case WorkspacePackage.PENDING_FILE_TRANSFER__CHUNK_NUMBER:
 			setChunkNumber((Integer) newValue);
@@ -358,7 +358,7 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 		case WorkspacePackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID:
 			return attachmentId != null;
 		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_VERSION:
-			return FILE_VERSION_EDEFAULT == null ? fileVersion != null : !FILE_VERSION_EDEFAULT.equals(fileVersion);
+			return fileVersion != FILE_VERSION_EDEFAULT;
 		case WorkspacePackage.PENDING_FILE_TRANSFER__CHUNK_NUMBER:
 			return chunkNumber != CHUNK_NUMBER_EDEFAULT;
 		case WorkspacePackage.PENDING_FILE_TRANSFER__UPLOAD:
