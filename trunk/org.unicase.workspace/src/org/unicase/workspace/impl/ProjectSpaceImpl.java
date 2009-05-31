@@ -114,7 +114,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, ProjectChangeObserver,
 	LoginObserver {
 
-	private static final String UNKOWN_CREATOR = "unkown";
+	private static final String UNKOWN_CREATOR = "unknown";
 
 	/**
 	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
