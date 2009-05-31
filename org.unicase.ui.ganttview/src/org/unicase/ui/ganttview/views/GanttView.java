@@ -142,7 +142,7 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 
 		sashForm.setWeights(new int[] { 30, 70 });
 		
-		this.setInput(GanttModelFactory.createGanttModelTest());		
+//		this.setInput(GanttModelFactory.createGanttModelTest());		
 		// TODO:this.setInput(GanttModelFactory.createGanttModelFromWorkItems());
 	}
 	
