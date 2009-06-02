@@ -8,6 +8,7 @@ package org.unicase.ui.iterationplanner.wizard;
 
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.ui.iterationplanner.core.IterationPlanner;
 
@@ -41,7 +42,9 @@ public class RequirementsPage extends WizardPage {
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
-
+		Composite contents = new Composite(parent, SWT.NONE);
+		setControl(contents);
+		setPageComplete(true);		
 	}
 
 	/**

@@ -11,14 +11,10 @@ import org.unicase.ui.iterationplanner.core.IterationPlanner;
 
 /**
  * @author Hodaie
- *
+ * 
  */
 public class IterationPlanningWizard extends Wizard {
 
-	
-	
-	
-	
 	private IterationPlanner iterationPlanner;
 
 	/**
@@ -27,48 +23,55 @@ public class IterationPlanningWizard extends Wizard {
 	public IterationPlanningWizard() {
 
 		iterationPlanner = new IterationPlanner();
-	  
-	
+
 	}
-	
-	
+
 	/**
-	 *  {@inheritDoc}
-	 *  
+	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.wizard.Wizard#addPages()
 	 */
 	@Override
 	public void addPages() {
-		//first page: select last sprint, select backlog,
+		// 1. page: set sprint attributes, name, duration, estimate
+		SprintAttributesPage sprintAttributesPage = new SprintAttributesPage(
+				iterationPlanner);
+		addPage(sprintAttributesPage);
+
+		// 2. page: select last sprint, select backlog,
 		TaskPage tasksPage = new TaskPage(iterationPlanner);
 		addPage(tasksPage);
-		
-		
-		//second page: select participants
-		RequirementsPage requirementsPage = new RequirementsPage(iterationPlanner);
+
+		// 3. page: select participants
+		RequirementsPage requirementsPage = new RequirementsPage(
+				iterationPlanner);
 		addPage(requirementsPage);
-		
-		
-		//third page: set sprint attributes, name, duration, estimate
-		SprintAttributesPage sprintAttributesPage = new SprintAttributesPage(iterationPlanner);
-		addPage(sprintAttributesPage);
-		
-		
-		//fourth page: show plans in a table tree viewer
-		addPage(new PlansPage(iterationPlanner));
-		
-		
+
+		// 4. page: show plans in a table tree viewer
+		PlansPage plansPage = new PlansPage(iterationPlanner);
+		addPage(plansPage);
+
 	}
 
-	
 	/**
 	 * {@inheritDoc}
 	 * 
 	 */
 	@Override
 	public boolean performFinish() {
-		
+
 		return false;
+	}
+
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.wizard.Wizard#canFinish()
+	 */
+	@Override
+	public boolean canFinish() {
+		return getContainer().getCurrentPage() instanceof PlansPage;
 	}
 
 }

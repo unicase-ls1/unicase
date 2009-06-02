@@ -5,9 +5,17 @@
  */
 package org.unicase.ui.iterationplanner.wizard;
 
+
+import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.unicase.ui.iterationplanner.core.IterationPlanner;
 
 /**
@@ -68,7 +76,22 @@ public class TaskPage extends WizardPage {
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
-
+		
+		Composite contents = new Composite(parent, SWT.NONE);
+		setControl(contents);
+		setPageComplete(true);
+		
+//		parent.setLayout(new GridLayout(2, false));
+//		
+//		Label lblLastSprint = new Label(parent, SWT.NONE);
+//		lblLastSprint.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+//				false, 2, 1));
+//		lblLastSprint.setText("Select work packages to include in planning (you will be normally selecting project backlog and last sprint):");
+//		
+//		
+//		TableViewer tableViewer = new TableViewer(parent, SWT.NONE);
+		
+		
 	}
 
 }
