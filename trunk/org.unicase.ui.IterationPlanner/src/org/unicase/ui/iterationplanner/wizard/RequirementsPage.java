@@ -56,4 +56,14 @@ public class RequirementsPage extends WizardPage {
 		return super.getNextPage();
 	}
 
+	/**
+	 * 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+	 */
+	@Override
+	public boolean canFlipToNextPage() {
+		return super.canFlipToNextPage();
+	}
+
 }

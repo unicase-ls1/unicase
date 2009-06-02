@@ -44,7 +44,6 @@ public class TaskPage extends WizardPage {
 	public IWizardPage getNextPage() {
 		iterationPlanner.setBackLog(null);
 		iterationPlanner.setLastSprint(null);
-		iterationPlanner.setNumOfSprintsToPlan(1);
 		
 		return super.getNextPage();
 	}
