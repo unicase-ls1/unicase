@@ -28,7 +28,6 @@ public class AddAnnotationHandler extends AbstractHandler {
 
 	private static final String ADD_ACTIONITEM_COMMAND_ID = "org.unicase.ui.common.commands.annotateActionItem";
 	private static final String ADD_ISSUE_COMMAND_ID = "org.unicase.ui.common.commands.annotateIssue";
-	private static final String ADD_COMMENT_COMMAND_ID = "org.unicase.ui.common.commands.annotateComment";
 
 	private ExecutionEvent event;
 
@@ -72,10 +71,6 @@ public class AddAnnotationHandler extends AbstractHandler {
 		} else if (event.getCommand().getId().equals(ADD_ISSUE_COMMAND_ID)) {
 			result = RationaleFactory.eINSTANCE.createIssue();
 			result.setName("New Issue");
-			result.setDescription("");
-		} else if (event.getCommand().getId().equals(ADD_COMMENT_COMMAND_ID)) {
-			result = RationaleFactory.eINSTANCE.createComment();
-			result.setName("New Comment");
 			result.setDescription("");
 		} else {
 			result = null;

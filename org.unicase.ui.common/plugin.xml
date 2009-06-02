@@ -73,16 +73,15 @@
            id="org.unicase.ui.common.commands.annotateIssue"
            name="annotateIssue">
      </command>
-     <command
-           categoryId="org.unicase.ui.common.commands.addAnnotations"
-           defaultHandler="org.unicase.ui.common.handlers.AddAnnotationHandler"
-           id="org.unicase.ui.common.commands.annotateComment"
-           name="annotateComment">
-     </command>
      <category
            id="org.unicase.ui.common.commands.addAnnotations"
            name="Add Annotations">
      </category>
+     <command
+           defaultHandler="org.unicase.ui.common.handlers.AddCommentHandler"
+           id="org.unicase.ui.common.commands.addComment"
+           name="addComment">
+     </command>
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -151,7 +150,7 @@
            </visibleWhen>
            <command
                  commandId="org.unicase.ui.common.commands.annotateActionItem"
-                 icon="icons/AnnotateWithActionItem.gif"
+                 icon="icons/ActionItem.png"
                  label="Add Action Item"
                  style="push">
            </command>
@@ -161,13 +160,13 @@
                  label="Add Issue"
                  style="push">
            </command>
-           <command
-                 commandId="org.unicase.ui.common.commands.annotateComment"
-                 icon="icons/Comment.gif"
-                 label="Add Comment"
-                 style="push">
-           </command>
         </menu>
+        <command
+              commandId="org.unicase.ui.common.commands.addComment"
+              icon="icons/Comment.png"
+              label="Add Comment"
+              style="push">
+        </command>
         <separator
               name="org.unicase.ui.common.commands.annotateActionItemSeperator"
               visible="true">
@@ -178,7 +177,7 @@
            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
         <command
               commandId="org.unicase.ui.common.commands.annotateActionItem"
-              icon="icons/AnnotateWithActionItem.gif"
+              icon="icons/ActionItem.png"
               label="Add Action Item"
               style="push">
            <visibleWhen
@@ -207,8 +206,8 @@
            </visibleWhen>
         </command>
         <command
-              commandId="org.unicase.ui.common.commands.annotateComment"
-              icon="icons/Comment.gif"
+              commandId="org.unicase.ui.common.commands.addComment"
+              icon="icons/Comment.png"
               label="Add Comment"
               style="push">
            <visibleWhen
@@ -228,6 +227,28 @@
               style="push">
         </command>
      </menuContribution>
+     
+     <menuContribution
+           locationURI="toolbar:org.unicase.ui.meeditor.METhreadPage?after=additions">
+        <command
+              commandId="org.unicase.ui.common.commands.addComment"
+              icon="icons/Comment.png"
+              label="Add Comment"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <with
+                    variable="activeModelelement">
+                 <reference
+                       definitionId="org.unicase.ui.common.commands.modelElementNotSection">
+                 </reference>
+              </with>
+           </visibleWhen>
+        </command>
+
+     </menuContribution>
+     
+     
      <menuContribution
            locationURI="toolbar:org.eclipse.ui.main.toolbar">
         <toolbar

@@ -53,8 +53,10 @@ public final class ActionHelper {
 
 	private static final String MEEDITOR_ID = "org.unicase.ui.meeditor";
 	private static final String MEEDITOR_OPENMODELELEMENT_COMMAND_ID = "org.unicase.ui.meeditor.openModelElement";
+	private static final String MEEDITOR_OPENDISCUSSION_COMMAND_ID = "org.unicase.ui.meeditor.openModelElementDiscussion";
 	private static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
 	private static final String FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE = "featureToMark";
+	private static final String TOGGLE_ADD_COMMENT_VARIABLE = "toggleAddComment";
 	
 	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.workspace.ui.dashboardInput";
 	private static final String DASHBOARD_COMMAND = "org.unicase.workspace.ui.showDashboard";
@@ -454,6 +456,34 @@ public final class ActionHelper {
 			return null;
 		}
 		return (ProjectSpace) selectedElement;
+	}
+	
+	/**
+	 * Opens the discussion page for the meeditor.
+	 * @param me the modelElement
+	 * @param toggleReply if a reply widget should be automatically shown.
+	 */
+	public static void openDiscussion(ModelElement me, boolean toggleReply){
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
+
+		IEvaluationContext context = handlerService.getCurrentState();
+		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
+		if(toggleReply){
+			context.addVariable(TOGGLE_ADD_COMMENT_VARIABLE, "toggle");
+		}
+
+		try {
+			handlerService.executeCommand(MEEDITOR_OPENDISCUSSION_COMMAND_ID, null);
+
+		} catch (ExecutionException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotDefinedException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotEnabledException e) {
+			DialogHandler.showExceptionDialog(e);
+		} catch (NotHandledException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
 	}
 
 }
