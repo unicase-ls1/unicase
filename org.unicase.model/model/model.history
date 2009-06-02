@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <history:History xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:history="http://www.cs.tum.edu/cope/history">
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:history="http://www.cs.tum.edu/cope/history">
   <releases date="2009-02-10T17:24:06.781+0100" label="0.3.4.internal">
     <changes xsi:type="history:CompositeChange">
       <changes xsi:type="history:AddRootPackage" package="model.ecore#/">
@@ -4711,38 +4711,38 @@
             featureName="eSuperTypes" referenceValue="model.ecore#//Annotation"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//rationale/Comment"
-          element="model.ecore#//rationale/Comment/replies" referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/replies"
+          element="#//@releases.1/@changes.34/@element" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="#//@releases.1/@changes.34/@element"
             featureName="name" dataValue="replies"/>
-        <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/replies"
+        <changes xsi:type="history:Set" element="#//@releases.1/@changes.34/@element"
             featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/replies"
+        <changes xsi:type="history:Set" element="#//@releases.1/@changes.34/@element"
             featureName="containment" dataValue="true"/>
-        <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/replies"
+        <changes xsi:type="history:Set" element="#//@releases.1/@changes.34/@element"
             featureName="eType" referenceValue="model.ecore#//rationale/Comment"/>
-        <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment/replies"
+        <changes xsi:type="history:Add" element="#//@releases.1/@changes.34/@element"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//rationale/Comment/replies"
-          element="model.ecore#//rationale/Comment/replies/%org.unicase.ui.meeditor%"
+      <changes xsi:type="history:CreateChild" target="#//@releases.1/@changes.34/@element"
+          element="#//@releases.1/@changes.34/@element/%org.unicase.ui.meeditor%"
           referenceName="eAnnotations">
-        <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/replies/%org.unicase.ui.meeditor%"
+        <changes xsi:type="history:Set" element="#//@releases.1/@changes.34/@element/%org.unicase.ui.meeditor%"
             featureName="source" dataValue="org.unicase.ui.meeditor"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//rationale/Comment/replies/%org.unicase.ui.meeditor%"
-          element="model.ecore#//rationale/Comment/replies/%org.unicase.ui.meeditor%/@details.0"
+      <changes xsi:type="history:CreateChild" target="#//@releases.1/@changes.34/@element/%org.unicase.ui.meeditor%"
+          element="#//@releases.1/@changes.34/@element/%org.unicase.ui.meeditor%/@details.0"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/replies/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="#//@releases.1/@changes.34/@element/%org.unicase.ui.meeditor%/@details.0"
             featureName="key" dataValue="priority"/>
-        <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/replies/%org.unicase.ui.meeditor%/@details.0"
+        <changes xsi:type="history:Set" element="#//@releases.1/@changes.34/@element/%org.unicase.ui.meeditor%/@details.0"
             featureName="value" dataValue="10.0"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//rationale/Comment/replies/%org.unicase.ui.meeditor%"
-          element="model.ecore#//rationale/Comment/replies/%org.unicase.ui.meeditor%/@details.1"
+      <changes xsi:type="history:CreateChild" target="#//@releases.1/@changes.34/@element/%org.unicase.ui.meeditor%"
+          element="#//@releases.1/@changes.34/@element/%org.unicase.ui.meeditor%/@details.1"
           referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/replies/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="#//@releases.1/@changes.34/@element/%org.unicase.ui.meeditor%/@details.1"
             featureName="key" dataValue="position"/>
-        <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/replies/%org.unicase.ui.meeditor%/@details.1"
+        <changes xsi:type="history:Set" element="#//@releases.1/@changes.34/@element/%org.unicase.ui.meeditor%/@details.1"
             featureName="value" dataValue="right"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#/" element="model.ecore#//change"
@@ -6215,5 +6215,63 @@
         featureName="name" dataValue="fileName"/>
     <changes xsi:type="history:Set" element="model.ecore#//requirement/FunctionalRequirement/cost"
         featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    <changes xsi:type="history:Remove" element="model.ecore#//rationale/Comment" featureName="eSuperTypes"
+        referenceValue="model.ecore#//Annotation"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment" featureName="instanceClassName"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment" featureName="instanceTypeName"/>
+    </changes>
+    <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment" featureName="eSuperTypes"
+        referenceValue="model.ecore#//ModelElement"/>
+    <changes xsi:type="history:Delete">
+      <element xsi:type="ecore:EReference" name="replies" upperBound="-1" eType="ecore:EClass model.ecore#//rationale/Comment"
+          containment="true" eKeys="model.ecore#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="10.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </element>
+    </changes>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//ModelElement" element="model.ecore#//ModelElement/comments"
+        referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//ModelElement/comments"
+        featureName="name" dataValue="comments"/>
+    <changes xsi:type="history:Set" element="model.ecore#//ModelElement/comments"
+        featureName="eType" referenceValue="model.ecore#//rationale/Comment"/>
+    <changes xsi:type="history:Set" element="model.ecore#//ModelElement/comments"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//ModelElement/comments"
+        featureName="containment" dataValue="true"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/sender"
+        featureName="upperBound" dataValue="-1"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//rationale/Comment"
+        element="model.ecore#//rationale/Comment/recipients" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/recipients"
+          featureName="name" dataValue="recipient"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/recipients"
+          featureName="upperBound" dataValue="-1"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/recipients"
+          featureName="eType" referenceValue="model.ecore#//organization/OrgUnit"/>
+      <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment/recipients"
+          featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/sender"
+        featureName="name" dataValue="sender"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/sender"
+        featureName="upperBound" dataValue="1"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/recipients"
+        featureName="name" dataValue="recipients"/>
+    <changes xsi:type="history:CreateChild" target="model.ecore#//rationale/Comment"
+        element="model.ecore#//rationale/Comment/commentedElement" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/commentedElement"
+        featureName="name" dataValue="commentedElement"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/commentedElement"
+        featureName="eType" referenceValue="model.ecore#//ModelElement"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//ModelElement/comments"
+          featureName="eOpposite" referenceValue="model.ecore#//rationale/Comment/commentedElement"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/Comment/commentedElement"
+          featureName="eOpposite" referenceValue="model.ecore#//ModelElement/comments"/>
+    </changes>
   </releases>
 </history:History>

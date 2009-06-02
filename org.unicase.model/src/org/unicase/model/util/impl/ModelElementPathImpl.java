@@ -20,25 +20,19 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.util.ModelElementPath;
 import org.unicase.model.util.UtilPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Model Element Path</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.util.impl.ModelElementPathImpl#getSource <em>Source</em>}</li>
- * <li>{@link org.unicase.model.util.impl.ModelElementPathImpl#getTarget <em>Target</em>}</li>
- * <li>{@link org.unicase.model.util.impl.ModelElementPathImpl#getPath <em>Path</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.util.impl.ModelElementPathImpl#getSource <em>Source</em>}</li> <li>{@link
+ * org.unicase.model.util.impl.ModelElementPathImpl#getTarget <em>Target</em>}</li> <li>{@link
+ * org.unicase.model.util.impl.ModelElementPathImpl#getPath <em>Path</em>}</li> </ul> </p>
  * @generated
  */
 public class ModelElementPathImpl extends EObjectImpl implements ModelElementPath {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -46,9 +40,9 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 	protected ModelElementId source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -56,9 +50,9 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 	protected ModelElementId target;
 
 	/**
-	 * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference list. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getPath() <em>Path</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getPath()
 	 * @generated
 	 * @ordered
@@ -67,7 +61,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelElementPathImpl() {
@@ -76,7 +69,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,7 +78,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getSource() {
@@ -113,7 +104,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetSource() {
@@ -122,7 +112,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSource(ModelElementId newSource, NotificationChain msgs) {
@@ -141,7 +130,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSource(ModelElementId newSource) {
@@ -163,7 +151,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getTarget() {
@@ -190,7 +177,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetTarget() {
@@ -199,7 +185,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTarget(ModelElementId newTarget, NotificationChain msgs) {
@@ -218,7 +203,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTarget(ModelElementId newTarget) {
@@ -240,7 +224,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElementId> getPath() {
@@ -253,7 +236,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -271,7 +253,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -293,7 +274,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -316,7 +296,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -337,7 +316,6 @@ public class ModelElementPathImpl extends EObjectImpl implements ModelElementPat
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

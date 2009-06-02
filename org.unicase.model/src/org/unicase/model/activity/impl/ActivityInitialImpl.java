@@ -9,17 +9,14 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.model.activity.ActivityInitial;
 import org.unicase.model.activity.ActivityPackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Initial</b></em>'. <!-- end-user-doc -->
- * <p>
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Initial</b></em>'. <!-- end-user-doc --> <p>
  * </p>
- * 
  * @generated
  */
 public class ActivityInitialImpl extends ActivityObjectImpl implements ActivityInitial {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ActivityInitialImpl() {
@@ -28,7 +25,6 @@ public class ActivityInitialImpl extends ActivityObjectImpl implements ActivityI
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

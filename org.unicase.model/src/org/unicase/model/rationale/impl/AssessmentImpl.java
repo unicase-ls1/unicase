@@ -17,24 +17,19 @@ import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Assessment</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.rationale.impl.AssessmentImpl#getProposal <em>Proposal</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.AssessmentImpl#getCriterion <em>Criterion</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.AssessmentImpl#getValue <em>Value</em>}</li>
- * </ul>
- * </p>
- * 
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.rationale.impl.AssessmentImpl#getProposal <em>Proposal</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.AssessmentImpl#getCriterion <em>Criterion</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.AssessmentImpl#getValue <em>Value</em>}</li> </ul> </p>
  * @generated
  */
 public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	/**
-	 * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCriterion()
 	 * @generated
 	 * @ordered
@@ -42,9 +37,9 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 	protected Criterion criterion;
 
 	/**
-	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getValue()
 	 * @generated
 	 * @ordered
@@ -63,7 +58,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssessmentImpl() {
@@ -72,7 +66,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,29 +75,26 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Proposal getProposal() {
-		if (eContainerFeatureID() != RationalePackage.ASSESSMENT__PROPOSAL)
+		if (eContainerFeatureID != RationalePackage.ASSESSMENT__PROPOSAL)
 			return null;
 		return (Proposal) eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Proposal basicGetProposal() {
-		if (eContainerFeatureID() != RationalePackage.ASSESSMENT__PROPOSAL)
+		if (eContainerFeatureID != RationalePackage.ASSESSMENT__PROPOSAL)
 			return null;
 		return (Proposal) eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetProposal(Proposal newProposal, NotificationChain msgs) {
@@ -114,12 +104,11 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setProposal(Proposal newProposal) {
 		if (newProposal != eInternalContainer()
-			|| (eContainerFeatureID() != RationalePackage.ASSESSMENT__PROPOSAL && newProposal != null)) {
+			|| (eContainerFeatureID != RationalePackage.ASSESSMENT__PROPOSAL && newProposal != null)) {
 			if (EcoreUtil.isAncestor(this, newProposal))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -138,7 +127,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Criterion getCriterion() {
@@ -156,7 +144,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Criterion basicGetCriterion() {
@@ -165,7 +152,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetCriterion(Criterion newCriterion, NotificationChain msgs) {
@@ -184,7 +170,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCriterion(Criterion newCriterion) {
@@ -206,7 +191,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getValue() {
@@ -215,7 +199,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setValue(int newValue) {
@@ -227,7 +210,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -248,7 +230,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -264,12 +245,11 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case RationalePackage.ASSESSMENT__PROPOSAL:
 			return eInternalContainer().eInverseRemove(this, RationalePackage.PROPOSAL__ASSESSMENTS, Proposal.class,
 				msgs);
@@ -279,7 +259,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -294,14 +273,13 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 				return getCriterion();
 			return basicGetCriterion();
 		case RationalePackage.ASSESSMENT__VALUE:
-			return getValue();
+			return new Integer(getValue());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -314,7 +292,7 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 			setCriterion((Criterion) newValue);
 			return;
 		case RationalePackage.ASSESSMENT__VALUE:
-			setValue((Integer) newValue);
+			setValue(((Integer) newValue).intValue());
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -322,7 +300,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -343,7 +320,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -361,7 +337,6 @@ public class AssessmentImpl extends ModelElementImpl implements Assessment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

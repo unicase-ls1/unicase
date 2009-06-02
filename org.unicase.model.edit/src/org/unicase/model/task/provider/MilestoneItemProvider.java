@@ -26,17 +26,16 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskPackage;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.task.Milestone} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class MilestoneItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MilestoneItemProvider(AdapterFactory adapterFactory) {
@@ -44,8 +43,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -84,8 +83,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Predecessors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Predecessors feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPredecessorsPropertyDescriptor(Object object) {
@@ -96,8 +95,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Successors feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Successors feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addSuccessorsPropertyDescriptor(Object object) {
@@ -108,8 +107,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Assignee feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Assignee feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAssigneePropertyDescriptor(Object object) {
@@ -120,8 +119,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Reviewer feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Reviewer feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addReviewerPropertyDescriptor(Object object) {
@@ -132,8 +131,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Participants feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Participants feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addParticipantsPropertyDescriptor(Object object) {
@@ -144,8 +143,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Due Date feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Due Date feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDueDatePropertyDescriptor(Object object) {
@@ -157,8 +156,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Estimate feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Estimate feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addEstimatePropertyDescriptor(Object object) {
@@ -170,8 +169,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Effort feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Effort feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addEffortPropertyDescriptor(Object object) {
@@ -183,8 +182,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Priority feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Priority feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPriorityPropertyDescriptor(Object object) {
@@ -196,8 +195,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Resolved feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Resolved feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addResolvedPropertyDescriptor(Object object) {
@@ -209,9 +208,9 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Contained Model Elements feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Contained Model Elements feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addContainedModelElementsPropertyDescriptor(Object object) {
@@ -225,9 +224,9 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -241,7 +240,6 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -253,8 +251,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This returns Milestone.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Milestone.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -296,9 +294,9 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -307,8 +305,8 @@ public class MilestoneItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -25,17 +25,16 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.profile.ProfileFactory;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.ModelElement} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class ModelElementItemProvider extends IdentifiableElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ModelElementItemProvider(AdapterFactory adapterFactory) {
@@ -43,8 +42,8 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -57,13 +56,14 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 			addAnnotationsPropertyDescriptor(object);
 			addAttachmentsPropertyDescriptor(object);
 			addIncomingDocumentReferencesPropertyDescriptor(object);
+			addCommentsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Name feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
@@ -75,8 +75,8 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Description feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Description feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
@@ -88,8 +88,8 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Annotations feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Annotations feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAnnotationsPropertyDescriptor(Object object) {
@@ -101,8 +101,8 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Attachments feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Attachments feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addAttachmentsPropertyDescriptor(Object object) {
@@ -114,9 +114,9 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds a property descriptor for the Incoming Document References feature. <!-- begin-user-doc --> <!--
+	 * This adds a property descriptor for the Incoming Document References feature.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addIncomingDocumentReferencesPropertyDescriptor(Object object) {
@@ -129,11 +129,24 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
+	 * This adds a property descriptor for the Comments feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addCommentsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_ModelElement_comments_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_ModelElement_comments_feature", "_UI_ModelElement_type"),
+			ModelPackage.Literals.MODEL_ELEMENT__COMMENTS, true, false, false, null, null, null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,7 +160,6 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -196,9 +208,9 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

@@ -51,6 +51,13 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="appliedStereotypeInstances"
         upperBound="-1" eType="#//profile/StereotypeInstance" containment="true" eOpposite="#//profile/StereotypeInstance/modelElement"
         eKeys="#//IdentifiableElement/identifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="comments" upperBound="-1"
+        eType="#//rationale/Comment" containment="true" eOpposite="#//rationale/Comment/commentedElement">
+      <eAnnotations source="org.unicase.ui.meeditor">
+        <details key="priority" value="2.0"/>
+        <details key="position" value="left"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Project">
     <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" ordered="false"
@@ -1030,16 +1037,13 @@
           eOpposite="#//rationale/Criterion/assessments" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//Annotation">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="replies" upperBound="-1"
-          eType="#//rationale/Comment" containment="true" eKeys="#//IdentifiableElement/identifier">
-        <eAnnotations source="org.unicase.ui.meeditor">
-          <details key="priority" value="10.0"/>
-          <details key="position" value="right"/>
-        </eAnnotations>
-      </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="recipient" eType="#//organization/OrgUnit"
+    <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sender" eType="#//organization/OrgUnit"
           eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="recipients" upperBound="-1"
+          eType="#//organization/OrgUnit" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" eType="#//ModelElement"
+          eOpposite="#//ModelElement/comments"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="change" nsURI="http://unicase.org/model/change" nsPrefix="org.unicase.model.rationale">

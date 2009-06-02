@@ -9,17 +9,13 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.model.activity.ActivityEnd;
 import org.unicase.model.activity.ActivityPackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>End</b></em>'. <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>End</b></em>'. <!-- end-user-doc --> <p> </p>
  * @generated
  */
 public class ActivityEndImpl extends ActivityObjectImpl implements ActivityEnd {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ActivityEndImpl() {
@@ -28,7 +24,6 @@ public class ActivityEndImpl extends ActivityObjectImpl implements ActivityEnd {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

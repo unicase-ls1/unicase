@@ -55,71 +55,61 @@ import org.unicase.model.task.impl.TaskPackageImpl;
 import org.unicase.model.util.UtilPackage;
 import org.unicase.model.util.impl.UtilPackageImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class RequirementPackageImpl extends EPackageImpl implements RequirementPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass nonFunctionalRequirementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass functionalRequirementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass useCaseEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass scenarioEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass actorEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass actorInstanceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass stepEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass systemFunctionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass userTaskEClass = null;
@@ -143,24 +133,27 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
-	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
-	 * <p>
-	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
-	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
-	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
-	 * another.
-	 * <p>
-	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * Creates, registers, and initializes the <b>Package</b> for this
+	 * model, and for any others upon which it depends.  Simple
+	 * dependencies are satisfied by calling this method on all
+	 * dependent packages before doing anything else.  This method drives
+	 * initialization for interdependent packages directly, in parallel
+	 * with this package, itself.
+	 * <p>Of this package and its interdependencies, all packages which
+	 * have not yet been registered by their URI values are first created
+	 * and registered.  The packages are then initialized in two steps:
+	 * meta-model objects for all of the packages are created before any
+	 * are initialized, since one package's meta-model objects may refer to
+	 * those of another.
+	 * <p>Invocation of this method will not affect any packages that have
+	 * already been initialized.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -276,7 +269,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getNonFunctionalRequirement() {
@@ -285,7 +277,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getNonFunctionalRequirement_RestrictedScenarios() {
@@ -294,7 +285,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getNonFunctionalRequirement_RestrictedUseCases() {
@@ -303,7 +293,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getFunctionalRequirement() {
@@ -312,7 +301,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFunctionalRequirement_Reviewed() {
@@ -321,7 +309,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_Stakeholder() {
@@ -330,7 +317,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFunctionalRequirement_Cost() {
@@ -339,7 +325,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFunctionalRequirement_StoryPoints() {
@@ -348,7 +333,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getFunctionalRequirement_Priority() {
@@ -357,7 +341,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_RefiningRequirements() {
@@ -366,7 +349,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_RefinedRequirement() {
@@ -375,7 +357,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_UseCases() {
@@ -384,7 +365,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getFunctionalRequirement_Scenarios() {
@@ -393,7 +373,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getUseCase() {
@@ -402,7 +381,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_InitiatingActor() {
@@ -411,7 +389,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_Scenarios() {
@@ -420,7 +397,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_FunctionalRequirements() {
@@ -429,7 +405,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_NonFunctionalRequirements() {
@@ -438,7 +413,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_IdentifiedClasses() {
@@ -447,7 +421,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_IncludedUseCases() {
@@ -456,7 +429,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_ExtendedUseCases() {
@@ -465,7 +437,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_ParticipatingActors() {
@@ -474,7 +445,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_RealizedUserTask() {
@@ -483,7 +453,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUseCase_Precondition() {
@@ -492,7 +461,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUseCase_UseCaseSteps() {
@@ -501,7 +469,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUseCase_Postcondition() {
@@ -510,7 +477,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUseCase_Rules() {
@@ -519,7 +485,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getUseCase_Exception() {
@@ -528,7 +493,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getScenario() {
@@ -537,7 +501,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getScenario_Steps() {
@@ -546,7 +509,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getScenario_InitiatingActorInstance() {
@@ -555,7 +517,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getScenario_ParticipatingActorInstances() {
@@ -564,7 +525,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getScenario_InstantiatedUseCases() {
@@ -573,7 +533,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getScenario_FunctionalRequirements() {
@@ -582,7 +541,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getScenario_NonFunctionalRequirements() {
@@ -591,7 +549,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getScenario_ParticipatingMethods() {
@@ -600,7 +557,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getScenario_ParticipatingClasses() {
@@ -609,7 +565,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getActor() {
@@ -618,7 +573,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getActor_InitiatedUserTask() {
@@ -627,7 +581,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getActor_ParticipatedUserTasks() {
@@ -636,7 +589,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getActor_InitiatedUseCases() {
@@ -645,7 +597,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getActor_ParticipatedUseCases() {
@@ -654,7 +605,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getActor_Instances() {
@@ -663,7 +613,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getActorInstance() {
@@ -672,7 +621,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getActorInstance_InitiatedScenarios() {
@@ -681,7 +629,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getActorInstance_ParticipatedScenarios() {
@@ -690,7 +637,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getActorInstance_InstantiatedActor() {
@@ -699,7 +645,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getStep() {
@@ -708,7 +653,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getStep_UserStep() {
@@ -717,7 +661,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStep_IncludedUseCase() {
@@ -726,7 +669,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStep_IncludedSystemFunction() {
@@ -735,7 +677,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getStep_UseCase() {
@@ -744,7 +685,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSystemFunction() {
@@ -753,7 +693,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSystemFunction_Input() {
@@ -762,7 +701,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSystemFunction_Output() {
@@ -771,7 +709,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getSystemFunction_Exception() {
@@ -780,7 +717,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getUserTask() {
@@ -789,7 +725,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUserTask_InitiatingActor() {
@@ -798,7 +733,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUserTask_ParticipatingActor() {
@@ -807,7 +741,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getUserTask_RealizingUseCases() {
@@ -816,7 +749,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RequirementFactory getRequirementFactory() {
@@ -825,15 +757,14 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -914,15 +845,14 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -1201,8 +1131,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
@@ -1257,9 +1187,9 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
-	 * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>. <!-- begin-user-doc
+	 * Initializes the annotations for <b>http:///org/eclipse/emf/ecore/util/ExtendedMetaData</b>.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void createExtendedMetaDataAnnotations() {

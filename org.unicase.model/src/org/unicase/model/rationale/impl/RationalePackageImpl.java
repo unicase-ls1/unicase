@@ -52,50 +52,43 @@ import org.unicase.model.task.impl.TaskPackageImpl;
 import org.unicase.model.util.UtilPackage;
 import org.unicase.model.util.impl.UtilPackageImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class RationalePackageImpl extends EPackageImpl implements RationalePackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass issueEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass proposalEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass solutionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass criterionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass assessmentEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass commentEClass = null;
@@ -119,24 +112,27 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
-	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
-	 * <p>
-	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
-	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
-	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
-	 * another.
-	 * <p>
-	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * Creates, registers, and initializes the <b>Package</b> for this
+	 * model, and for any others upon which it depends.  Simple
+	 * dependencies are satisfied by calling this method on all
+	 * dependent packages before doing anything else.  This method drives
+	 * initialization for interdependent packages directly, in parallel
+	 * with this package, itself.
+	 * <p>Of this package and its interdependencies, all packages which
+	 * have not yet been registered by their URI values are first created
+	 * and registered.  The packages are then initialized in two steps:
+	 * meta-model objects for all of the packages are created before any
+	 * are initialized, since one package's meta-model objects may refer to
+	 * those of another.
+	 * <p>Invocation of this method will not affect any packages that have
+	 * already been initialized.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -252,7 +248,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getIssue() {
@@ -261,7 +256,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getIssue_Proposals() {
@@ -270,7 +264,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getIssue_Solution() {
@@ -279,7 +272,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getIssue_Criteria() {
@@ -288,7 +280,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getIssue_Activity() {
@@ -297,7 +288,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getProposal() {
@@ -306,7 +296,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProposal_Assessments() {
@@ -315,7 +304,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProposal_Issue() {
@@ -324,7 +312,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getSolution() {
@@ -333,7 +320,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSolution_UnderlyingProposals() {
@@ -342,7 +328,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getSolution_Issue() {
@@ -351,7 +336,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getCriterion() {
@@ -360,7 +344,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getCriterion_Assessments() {
@@ -369,7 +352,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAssessment() {
@@ -378,7 +360,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAssessment_Proposal() {
@@ -387,7 +368,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAssessment_Criterion() {
@@ -396,7 +376,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAssessment_Value() {
@@ -405,7 +384,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getComment() {
@@ -413,26 +391,34 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComment_Replies() {
+	public EReference getComment_Sender() {
 		return (EReference) commentEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getComment_Recipient() {
+	public EReference getComment_Recipients() {
 		return (EReference) commentEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getComment_CommentedElement() {
+		return (EReference) commentEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RationaleFactory getRationaleFactory() {
@@ -441,15 +427,14 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -481,21 +466,21 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		createEAttribute(assessmentEClass, ASSESSMENT__VALUE);
 
 		commentEClass = createEClass(COMMENT);
-		createEReference(commentEClass, COMMENT__REPLIES);
-		createEReference(commentEClass, COMMENT__RECIPIENT);
+		createEReference(commentEClass, COMMENT__SENDER);
+		createEReference(commentEClass, COMMENT__RECIPIENTS);
+		createEReference(commentEClass, COMMENT__COMMENTED_ELEMENT);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -529,7 +514,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		criterionEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		assessmentEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		assessmentEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
-		commentEClass.getESuperTypes().add(theModelPackage.getAnnotation());
+		commentEClass.getESuperTypes().add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(issueEClass, Issue.class, "Issue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -589,14 +574,17 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComment_Replies(), this.getComment(), null, "replies", null, 0, -1, Comment.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		getComment_Replies().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getComment_Recipient(), theOrganizationPackage.getOrgUnit(), null, "recipient", null, 0, 1,
+		initEReference(getComment_Sender(), theOrganizationPackage.getOrgUnit(), null, "sender", null, 0, 1,
 			Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getComment_Recipient().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		getComment_Sender().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getComment_Recipients(), theOrganizationPackage.getOrgUnit(), null, "recipients", null, 0, -1,
+			Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComment_Recipients().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getComment_CommentedElement(), theModelPackage.getModelElement(), theModelPackage
+			.getModelElement_Comments(), "commentedElement", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
 		// org.unicase.ui.meeditor
@@ -604,8 +592,8 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	}
 
 	/**
-	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Initializes the annotations for <b>org.unicase.ui.meeditor</b>.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void createOrgAnnotations() {
@@ -620,7 +608,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 			new String[] { "priority", "10.0", "position", "right" });
 		addAnnotation(getSolution_Issue(), source, new String[] { "priority", "10.0", "position", "left" });
 		addAnnotation(getCriterion_Assessments(), source, new String[] { "priority", "10.0", "position", "right" });
-		addAnnotation(getComment_Replies(), source, new String[] { "priority", "10.0", "position", "right" });
 	}
 
 } // RationalePackageImpl

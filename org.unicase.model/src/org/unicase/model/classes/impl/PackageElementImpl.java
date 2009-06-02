@@ -21,18 +21,13 @@ import org.unicase.model.classes.Dependency;
 import org.unicase.model.classes.PackageElement;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Package Element</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.classes.impl.PackageElementImpl#getParentPackage <em>Parent Package</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.PackageElementImpl#getOutgoingDependencies <em>Outgoing Dependencies</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.PackageElementImpl#getIncomingDependencies <em>Incoming Dependencies</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.classes.impl.PackageElementImpl#getParentPackage <em>Parent Package</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.PackageElementImpl#getOutgoingDependencies <em>Outgoing Dependencies</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.PackageElementImpl#getIncomingDependencies <em>Incoming
+ * Dependencies</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class PackageElementImpl extends ModelElementImpl implements PackageElement {
@@ -57,7 +52,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PackageElementImpl() {
@@ -66,7 +60,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -76,29 +69,26 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package getParentPackage() {
-		if (eContainerFeatureID() != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE)
+		if (eContainerFeatureID != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE)
 			return null;
 		return (org.unicase.model.classes.Package) eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Package basicGetParentPackage() {
-		if (eContainerFeatureID() != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE)
+		if (eContainerFeatureID != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE)
 			return null;
 		return (org.unicase.model.classes.Package) eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParentPackage(org.unicase.model.classes.Package newParentPackage,
@@ -110,12 +100,11 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentPackage(org.unicase.model.classes.Package newParentPackage) {
 		if (newParentPackage != eInternalContainer()
-			|| (eContainerFeatureID() != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE && newParentPackage != null)) {
+			|| (eContainerFeatureID != ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE && newParentPackage != null)) {
 			if (EcoreUtil.isAncestor(this, newParentPackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -134,7 +123,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Dependency> getOutgoingDependencies() {
@@ -147,7 +135,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Dependency> getIncomingDependencies() {
@@ -160,7 +147,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -183,7 +169,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -201,12 +186,11 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case ClassesPackage.PACKAGE_ELEMENT__PARENT_PACKAGE:
 			return eInternalContainer().eInverseRemove(this, ClassesPackage.PACKAGE__CONTAINED_PACKAGE_ELEMENTS,
 				org.unicase.model.classes.Package.class, msgs);
@@ -216,7 +200,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -236,7 +219,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -260,7 +242,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -281,7 +262,6 @@ public abstract class PackageElementImpl extends ModelElementImpl implements Pac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
