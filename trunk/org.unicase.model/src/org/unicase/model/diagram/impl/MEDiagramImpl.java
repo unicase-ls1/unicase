@@ -35,19 +35,13 @@ import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.impl.AttachmentImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>ME Diagram</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getElements <em>Elements</em>}</li>
- * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
- * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>New Elements</em>}</li>
- * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getType <em>Type</em>}</li>
- * <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
- * </ul>
- * </p>
- * 
+ * <p> The following features are implemented: <ul> <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getElements
+ * <em>Elements</em>}</li> <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram
+ * <em>Gmfdiagram</em>}</li> <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>New
+ * Elements</em>}</li> <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getType <em>Type</em>}</li> <li>{@link
+ * org.unicase.model.diagram.impl.MEDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li> </ul> </p>
  * @generated
  */
 public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
@@ -57,9 +51,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	private static final long serialVersionUID = -1316169257375326716L;
 
 	/**
-	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getElements() <em>Elements</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getElements()
 	 * @generated
 	 * @ordered
@@ -67,9 +61,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	protected EList<ModelElement> elements;
 
 	/**
-	 * The cached value of the '{@link #getGmfdiagram() <em>Gmfdiagram</em>}' containment reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getGmfdiagram() <em>Gmfdiagram</em>}' containment reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getGmfdiagram()
 	 * @generated
 	 * @ordered
@@ -107,9 +101,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	protected DiagramType type = TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDiagramLayout()
 	 * @generated
 	 * @ordered
@@ -117,9 +111,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	protected static final String DIAGRAM_LAYOUT_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getDiagramLayout()
 	 * @generated
 	 * @ordered
@@ -128,7 +122,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MEDiagramImpl() {
@@ -137,7 +130,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -147,7 +139,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getElements() {
@@ -160,7 +151,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Diagram getGmfdiagram() {
@@ -187,7 +177,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Diagram basicGetGmfdiagram() {
@@ -196,7 +185,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetGmfdiagram(Diagram newGmfdiagram, NotificationChain msgs) {
@@ -215,7 +203,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setGmfdiagram(Diagram newGmfdiagram) {
@@ -258,7 +245,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DiagramType getType() {
@@ -267,7 +253,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setType(DiagramType newType) {
@@ -279,7 +264,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDiagramLayout() {
@@ -288,7 +272,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDiagramLayout(String newDiagramLayout) {
@@ -301,7 +284,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -317,7 +299,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -341,7 +322,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -371,7 +351,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -398,7 +377,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -421,7 +399,6 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

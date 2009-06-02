@@ -15,24 +15,18 @@ import org.unicase.model.state.State;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.state.impl.TransitionImpl#getCondition <em>Condition</em>}</li>
- * <li>{@link org.unicase.model.state.impl.TransitionImpl#getSource <em>Source</em>}</li>
- * <li>{@link org.unicase.model.state.impl.TransitionImpl#getTarget <em>Target</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.state.impl.TransitionImpl#getCondition
+ * <em>Condition</em>}</li> <li>{@link org.unicase.model.state.impl.TransitionImpl#getSource <em>Source</em>}</li>
+ * <li>{@link org.unicase.model.state.impl.TransitionImpl#getTarget <em>Target</em>}</li> </ul> </p>
  * @generated
  */
 public class TransitionImpl extends ModelElementImpl implements Transition {
 	/**
-	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCondition()
 	 * @generated
 	 * @ordered
@@ -40,9 +34,9 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	protected static final String CONDITION_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getCondition()
 	 * @generated
 	 * @ordered
@@ -50,9 +44,9 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	protected String condition = CONDITION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -60,9 +54,9 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	protected State source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -71,7 +65,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TransitionImpl() {
@@ -80,7 +73,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,7 +82,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getCondition() {
@@ -99,7 +90,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCondition(String newCondition) {
@@ -112,7 +102,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public State getSource() {
@@ -130,7 +119,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public State basicGetSource() {
@@ -139,7 +127,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSource(State newSource, NotificationChain msgs) {
@@ -158,7 +145,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setSource(State newSource) {
@@ -179,7 +165,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public State getTarget() {
@@ -197,7 +182,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public State basicGetTarget() {
@@ -206,7 +190,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTarget(State newTarget, NotificationChain msgs) {
@@ -225,7 +208,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTarget(State newTarget) {
@@ -246,7 +228,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -268,7 +249,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -284,7 +264,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -306,7 +285,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -327,7 +305,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -348,7 +325,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -366,7 +342,6 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -17,22 +17,17 @@ import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Group</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.organization.impl.GroupImpl#getOrgUnits <em>Org Units</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Group</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.organization.impl.GroupImpl#getOrgUnits <em>Org
+ * Units</em>}</li> </ul> </p>
  * @generated
  */
 public class GroupImpl extends OrgUnitImpl implements Group {
 	/**
-	 * The cached value of the '{@link #getOrgUnits() <em>Org Units</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getOrgUnits() <em>Org Units</em>}' reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getOrgUnits()
 	 * @generated
 	 * @ordered
@@ -41,7 +36,6 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected GroupImpl() {
@@ -50,7 +44,6 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -60,7 +53,6 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<OrgUnit> getOrgUnits() {
@@ -73,7 +65,6 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -88,7 +79,6 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,7 +92,6 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,7 +105,6 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -133,7 +121,6 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +135,6 @@ public class GroupImpl extends OrgUnitImpl implements Group {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

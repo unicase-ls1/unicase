@@ -11,16 +11,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.StereotypeAttributeSimple;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Stereotype Attribute Simple</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl#getType <em>Type</em>}</li>
- * </ul>
- * </p>
- * 
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl#getType <em>Type</em>}</li> </ul> </p>
  * @generated
  */
 public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl implements StereotypeAttributeSimple {
@@ -46,7 +40,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StereotypeAttributeSimpleImpl() {
@@ -55,7 +48,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,7 +57,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getType() {
@@ -74,7 +65,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setType(String newType) {
@@ -87,7 +77,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,7 +90,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,7 +104,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,7 +118,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,7 +131,6 @@ public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl imple
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

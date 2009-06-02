@@ -13,49 +13,46 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.AnnotationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelPackage;
+import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationalePackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Comment</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getReplies <em>Replies</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getRecipient <em>Recipient</em>}</li>
- * </ul>
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Comment</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.rationale.impl.CommentImpl#getSender
+ * <em>Sender</em>}</li> <li>{@link org.unicase.model.rationale.impl.CommentImpl#getRecipients <em>Recipients</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.CommentImpl#getCommentedElement <em>Commented Element</em>}</li> </ul>
  * </p>
- * 
  * @generated
  */
-public class CommentImpl extends AnnotationImpl implements Comment {
+public class CommentImpl extends ModelElementImpl implements Comment {
 	/**
-	 * The cached value of the '{@link #getReplies() <em>Replies</em>}' containment reference list. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * 
-	 * @see #getReplies()
+	 * The cached value of the '{@link #getSender() <em>Sender</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getSender()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Comment> replies;
+	protected OrgUnit sender;
 
 	/**
-	 * The cached value of the '{@link #getRecipient() <em>Recipient</em>}' reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #getRecipient()
+	 * The cached value of the '{@link #getRecipients() <em>Recipients</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRecipients()
 	 * @generated
 	 * @ordered
 	 */
-	protected OrgUnit recipient;
+	protected EList<OrgUnit> recipients;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CommentImpl() {
@@ -64,7 +61,6 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,105 +69,195 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Comment> getReplies() {
-		if (replies == null) {
-			replies = new EObjectContainmentEList.Resolving<Comment>(Comment.class, this,
-				RationalePackage.COMMENT__REPLIES);
-		}
-		return replies;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public OrgUnit getRecipient() {
-		if (recipient != null && recipient.eIsProxy()) {
-			InternalEObject oldRecipient = (InternalEObject) recipient;
-			recipient = (OrgUnit) eResolveProxy(oldRecipient);
-			if (recipient != oldRecipient) {
+	public OrgUnit getSender() {
+		if (sender != null && sender.eIsProxy()) {
+			InternalEObject oldSender = (InternalEObject) sender;
+			sender = (OrgUnit) eResolveProxy(oldSender);
+			if (sender != oldSender) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RationalePackage.COMMENT__RECIPIENT,
-						oldRecipient, recipient));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RationalePackage.COMMENT__SENDER,
+						oldSender, sender));
 			}
 		}
-		return recipient;
+		return sender;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OrgUnit basicGetRecipient() {
-		return recipient;
+	public OrgUnit basicGetSender() {
+		return sender;
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setRecipient(OrgUnit newRecipient) {
-		OrgUnit oldRecipient = recipient;
-		recipient = newRecipient;
+	public void setSender(OrgUnit newSender) {
+		OrgUnit oldSender = sender;
+		sender = newSender;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.COMMENT__RECIPIENT, oldRecipient,
-				recipient));
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.COMMENT__SENDER, oldSender, sender));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<OrgUnit> getRecipients() {
+		if (recipients == null) {
+			recipients = new EObjectResolvingEList<OrgUnit>(OrgUnit.class, this, RationalePackage.COMMENT__RECIPIENTS);
+		}
+		return recipients;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElement getCommentedElement() {
+		if (eContainerFeatureID != RationalePackage.COMMENT__COMMENTED_ELEMENT)
+			return null;
+		return (ModelElement) eContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ModelElement basicGetCommentedElement() {
+		if (eContainerFeatureID != RationalePackage.COMMENT__COMMENTED_ELEMENT)
+			return null;
+		return (ModelElement) eInternalContainer();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public NotificationChain basicSetCommentedElement(ModelElement newCommentedElement, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject) newCommentedElement, RationalePackage.COMMENT__COMMENTED_ELEMENT,
+			msgs);
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setCommentedElement(ModelElement newCommentedElement) {
+		if (newCommentedElement != eInternalContainer()
+			|| (eContainerFeatureID != RationalePackage.COMMENT__COMMENTED_ELEMENT && newCommentedElement != null)) {
+			if (EcoreUtil.isAncestor(this, newCommentedElement))
+				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
+			NotificationChain msgs = null;
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			if (newCommentedElement != null)
+				msgs = ((InternalEObject) newCommentedElement).eInverseAdd(this, ModelPackage.MODEL_ELEMENT__COMMENTS,
+					ModelElement.class, msgs);
+			msgs = basicSetCommentedElement(newCommentedElement, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RationalePackage.COMMENT__COMMENTED_ELEMENT,
+				newCommentedElement, newCommentedElement));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
+			if (eInternalContainer() != null)
+				msgs = eBasicRemoveFromContainer(msgs);
+			return basicSetCommentedElement((ModelElement) otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RationalePackage.COMMENT__REPLIES:
-			return ((InternalEList<?>) getReplies()).basicRemove(otherEnd, msgs);
+		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
+			return basicSetCommentedElement(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
+		switch (eContainerFeatureID) {
+		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
+			return eInternalContainer().eInverseRemove(this, ModelPackage.MODEL_ELEMENT__COMMENTS, ModelElement.class,
+				msgs);
+		}
+		return super.eBasicRemoveFromContainerFeature(msgs);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case RationalePackage.COMMENT__REPLIES:
-			return getReplies();
-		case RationalePackage.COMMENT__RECIPIENT:
+		case RationalePackage.COMMENT__SENDER:
 			if (resolve)
-				return getRecipient();
-			return basicGetRecipient();
+				return getSender();
+			return basicGetSender();
+		case RationalePackage.COMMENT__RECIPIENTS:
+			return getRecipients();
+		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
+			if (resolve)
+				return getCommentedElement();
+			return basicGetCommentedElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case RationalePackage.COMMENT__REPLIES:
-			getReplies().clear();
-			getReplies().addAll((Collection<? extends Comment>) newValue);
+		case RationalePackage.COMMENT__SENDER:
+			setSender((OrgUnit) newValue);
 			return;
-		case RationalePackage.COMMENT__RECIPIENT:
-			setRecipient((OrgUnit) newValue);
+		case RationalePackage.COMMENT__RECIPIENTS:
+			getRecipients().clear();
+			getRecipients().addAll((Collection<? extends OrgUnit>) newValue);
+			return;
+		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
+			setCommentedElement((ModelElement) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -179,17 +265,19 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case RationalePackage.COMMENT__REPLIES:
-			getReplies().clear();
+		case RationalePackage.COMMENT__SENDER:
+			setSender((OrgUnit) null);
 			return;
-		case RationalePackage.COMMENT__RECIPIENT:
-			setRecipient((OrgUnit) null);
+		case RationalePackage.COMMENT__RECIPIENTS:
+			getRecipients().clear();
+			return;
+		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
+			setCommentedElement((ModelElement) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -197,16 +285,17 @@ public class CommentImpl extends AnnotationImpl implements Comment {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case RationalePackage.COMMENT__REPLIES:
-			return replies != null && !replies.isEmpty();
-		case RationalePackage.COMMENT__RECIPIENT:
-			return recipient != null;
+		case RationalePackage.COMMENT__SENDER:
+			return sender != null;
+		case RationalePackage.COMMENT__RECIPIENTS:
+			return recipients != null && !recipients.isEmpty();
+		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
+			return basicGetCommentedElement() != null;
 		}
 		return super.eIsSet(featureID);
 	}

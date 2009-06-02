@@ -23,17 +23,16 @@ import org.unicase.model.change.MergingProposal;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.rationale.provider.ProposalItemProvider;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.change.MergingProposal} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class MergingProposalItemProvider extends ProposalItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This constructs an instance from a factory and a notifier.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public MergingProposalItemProvider(AdapterFactory adapterFactory) {
@@ -41,8 +40,8 @@ public class MergingProposalItemProvider extends ProposalItemProvider implements
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the property descriptors for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -72,8 +71,8 @@ public class MergingProposalItemProvider extends ProposalItemProvider implements
 	}
 
 	/**
-	 * This adds a property descriptor for the Pending Changes feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds a property descriptor for the Pending Changes feature.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addPendingChangesPropertyDescriptor(Object object) {
@@ -85,8 +84,8 @@ public class MergingProposalItemProvider extends ProposalItemProvider implements
 	}
 
 	/**
-	 * This returns MergingProposal.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns MergingProposal.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -95,8 +94,8 @@ public class MergingProposalItemProvider extends ProposalItemProvider implements
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -120,9 +119,9 @@ public class MergingProposalItemProvider extends ProposalItemProvider implements
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
-	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
+	 * that can be created under this object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -131,8 +130,8 @@ public class MergingProposalItemProvider extends ProposalItemProvider implements
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Return the resource locator for this item provider's resources.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override

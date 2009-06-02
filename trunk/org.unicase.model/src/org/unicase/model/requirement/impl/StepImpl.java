@@ -17,25 +17,20 @@ import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.SystemFunction;
 import org.unicase.model.requirement.UseCase;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Step</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.requirement.impl.StepImpl#isUserStep <em>User Step</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedUseCase <em>Included Use Case</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedSystemFunction <em>Included System Function</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.StepImpl#getUseCase <em>Use Case</em>}</li>
- * </ul>
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Step</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.requirement.impl.StepImpl#isUserStep <em>User
+ * Step</em>}</li> <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedUseCase <em>Included Use
+ * Case</em>}</li> <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedSystemFunction <em>Included System
+ * Function</em>}</li> <li>{@link org.unicase.model.requirement.impl.StepImpl#getUseCase <em>Use Case</em>}</li> </ul>
  * </p>
- * 
  * @generated
  */
 public class StepImpl extends ModelElementImpl implements Step {
 	/**
-	 * The default value of the '{@link #isUserStep() <em>User Step</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isUserStep() <em>User Step</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isUserStep()
 	 * @generated
 	 * @ordered
@@ -43,9 +38,9 @@ public class StepImpl extends ModelElementImpl implements Step {
 	protected static final boolean USER_STEP_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isUserStep() <em>User Step</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isUserStep() <em>User Step</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isUserStep()
 	 * @generated
 	 * @ordered
@@ -53,9 +48,9 @@ public class StepImpl extends ModelElementImpl implements Step {
 	protected boolean userStep = USER_STEP_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getIncludedUseCase() <em>Included Use Case</em>}' reference. <!-- begin-user-doc
+	 * The cached value of the '{@link #getIncludedUseCase() <em>Included Use Case</em>}' reference.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #getIncludedUseCase()
 	 * @generated
 	 * @ordered
@@ -74,7 +69,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StepImpl() {
@@ -83,7 +77,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -93,7 +86,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isUserStep() {
@@ -102,7 +94,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setUserStep(boolean newUserStep) {
@@ -115,7 +106,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UseCase getIncludedUseCase() {
@@ -133,7 +123,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UseCase basicGetIncludedUseCase() {
@@ -142,7 +131,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIncludedUseCase(UseCase newIncludedUseCase) {
@@ -155,7 +143,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SystemFunction getIncludedSystemFunction() {
@@ -174,7 +161,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SystemFunction basicGetIncludedSystemFunction() {
@@ -183,7 +169,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIncludedSystemFunction(SystemFunction newIncludedSystemFunction) {
@@ -196,29 +181,26 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UseCase getUseCase() {
-		if (eContainerFeatureID() != RequirementPackage.STEP__USE_CASE)
+		if (eContainerFeatureID != RequirementPackage.STEP__USE_CASE)
 			return null;
 		return (UseCase) eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UseCase basicGetUseCase() {
-		if (eContainerFeatureID() != RequirementPackage.STEP__USE_CASE)
+		if (eContainerFeatureID != RequirementPackage.STEP__USE_CASE)
 			return null;
 		return (UseCase) eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetUseCase(UseCase newUseCase, NotificationChain msgs) {
@@ -228,12 +210,11 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setUseCase(UseCase newUseCase) {
 		if (newUseCase != eInternalContainer()
-			|| (eContainerFeatureID() != RequirementPackage.STEP__USE_CASE && newUseCase != null)) {
+			|| (eContainerFeatureID != RequirementPackage.STEP__USE_CASE && newUseCase != null)) {
 			if (EcoreUtil.isAncestor(this, newUseCase))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -252,7 +233,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -268,7 +248,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -282,12 +261,11 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case RequirementPackage.STEP__USE_CASE:
 			return eInternalContainer().eInverseRemove(this, RequirementPackage.USE_CASE__USE_CASE_STEPS,
 				UseCase.class, msgs);
@@ -297,14 +275,13 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case RequirementPackage.STEP__USER_STEP:
-			return isUserStep();
+			return isUserStep() ? Boolean.TRUE : Boolean.FALSE;
 		case RequirementPackage.STEP__INCLUDED_USE_CASE:
 			if (resolve)
 				return getIncludedUseCase();
@@ -323,14 +300,13 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case RequirementPackage.STEP__USER_STEP:
-			setUserStep((Boolean) newValue);
+			setUserStep(((Boolean) newValue).booleanValue());
 			return;
 		case RequirementPackage.STEP__INCLUDED_USE_CASE:
 			setIncludedUseCase((UseCase) newValue);
@@ -347,7 +323,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -371,7 +346,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -391,7 +365,6 @@ public class StepImpl extends ModelElementImpl implements Step {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

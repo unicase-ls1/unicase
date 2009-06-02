@@ -8,19 +8,12 @@ package org.unicase.model.requirement;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.rationale.Criterion;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Non Functional Requirement</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are supported:
- * <ul>
- * <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedScenarios <em>Restricted Scenarios
- * </em>}</li>
- * <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases <em>Restricted Use Cases
- * </em>}</li>
- * </ul>
- * </p>
- * 
+ * end-user-doc --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedScenarios <em>Restricted Scenarios</em>}</li>
+ * <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases <em>Restricted Use
+ * Cases</em>}</li> </ul> </p>
  * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement()
  * @model
  * @generated
@@ -28,16 +21,15 @@ import org.unicase.model.rationale.Criterion;
 public interface NonFunctionalRequirement extends Criterion {
 
 	/**
-	 * Returns the value of the '<em><b>Restricted Scenarios</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.requirement.Scenario}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.requirement.Scenario#getNonFunctionalRequirements <em>Non Functional Requirements</em>}
-	 * '. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Restricted Scenarios</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.Scenario}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.Scenario#getNonFunctionalRequirements <em>Non Functional Requirements</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Restricted Scenarios</em>' reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Restricted Scenarios</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement_RestrictedScenarios()
 	 * @see org.unicase.model.requirement.Scenario#getNonFunctionalRequirements
@@ -48,16 +40,15 @@ public interface NonFunctionalRequirement extends Criterion {
 	EList<Scenario> getRestrictedScenarios();
 
 	/**
-	 * Returns the value of the '<em><b>Restricted Use Cases</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.requirement.UseCase}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.requirement.UseCase#getNonFunctionalRequirements <em>Non Functional Requirements</em>}'.
+	 * Returns the value of the '<em><b>Restricted Use Cases</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.requirement.UseCase}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.UseCase#getNonFunctionalRequirements <em>Non Functional Requirements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Restricted Use Cases</em>' reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Restricted Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement_RestrictedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getNonFunctionalRequirements

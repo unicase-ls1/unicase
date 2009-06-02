@@ -12,22 +12,17 @@ import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.MeetingSection;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Section</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.meeting.impl.MeetingSectionImpl#getAllocatedTime <em>Allocated Time</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Section</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.meeting.impl.MeetingSectionImpl#getAllocatedTime <em>Allocated Time</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class MeetingSectionImpl extends ModelElementImpl implements MeetingSection {
 	/**
-	 * The default value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAllocatedTime()
 	 * @generated
 	 * @ordered
@@ -35,9 +30,9 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 	protected static final int ALLOCATED_TIME_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute. <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getAllocatedTime()
 	 * @generated
 	 * @ordered
@@ -46,7 +41,6 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MeetingSectionImpl() {
@@ -55,7 +49,6 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,7 +58,6 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getAllocatedTime() {
@@ -74,7 +66,6 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAllocatedTime(int newAllocatedTime) {
@@ -87,28 +78,26 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case MeetingPackage.MEETING_SECTION__ALLOCATED_TIME:
-			return getAllocatedTime();
+			return new Integer(getAllocatedTime());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case MeetingPackage.MEETING_SECTION__ALLOCATED_TIME:
-			setAllocatedTime((Integer) newValue);
+			setAllocatedTime(((Integer) newValue).intValue());
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -116,7 +105,6 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,7 +119,6 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -145,7 +132,6 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

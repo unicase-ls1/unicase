@@ -21,16 +21,11 @@ import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.Solution;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Solution</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.rationale.impl.SolutionImpl#getUnderlyingProposals <em>Underlying Proposals</em>}</li>
- * <li>{@link org.unicase.model.rationale.impl.SolutionImpl#getIssue <em>Issue</em>}</li>
- * </ul>
- * </p>
- * 
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Solution</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.rationale.impl.SolutionImpl#getUnderlyingProposals <em>Underlying Proposals</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.SolutionImpl#getIssue <em>Issue</em>}</li> </ul> </p>
  * @generated
  */
 public class SolutionImpl extends ModelElementImpl implements Solution {
@@ -46,7 +41,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SolutionImpl() {
@@ -55,7 +49,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,7 +58,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Proposal> getUnderlyingProposals() {
@@ -78,29 +70,26 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Issue getIssue() {
-		if (eContainerFeatureID() != RationalePackage.SOLUTION__ISSUE)
+		if (eContainerFeatureID != RationalePackage.SOLUTION__ISSUE)
 			return null;
 		return (Issue) eContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Issue basicGetIssue() {
-		if (eContainerFeatureID() != RationalePackage.SOLUTION__ISSUE)
+		if (eContainerFeatureID != RationalePackage.SOLUTION__ISSUE)
 			return null;
 		return (Issue) eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetIssue(Issue newIssue, NotificationChain msgs) {
@@ -110,12 +99,11 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIssue(Issue newIssue) {
 		if (newIssue != eInternalContainer()
-			|| (eContainerFeatureID() != RationalePackage.SOLUTION__ISSUE && newIssue != null)) {
+			|| (eContainerFeatureID != RationalePackage.SOLUTION__ISSUE && newIssue != null)) {
 			if (EcoreUtil.isAncestor(this, newIssue))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -133,7 +121,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -149,7 +136,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,12 +149,11 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case RationalePackage.SOLUTION__ISSUE:
 			return eInternalContainer().eInverseRemove(this, RationalePackage.ISSUE__SOLUTION, Issue.class, msgs);
 		}
@@ -177,7 +162,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -195,7 +179,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -215,7 +198,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -233,7 +215,6 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

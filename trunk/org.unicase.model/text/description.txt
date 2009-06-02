@@ -7,24 +7,37 @@ This can be disabled with -vmargs -Dorg.eclipse.emf.examples.generator.validator
 
 Package model <http://unicase.org/model>
 
-  Class ModelElement
+  Class ModelElement -> IdentifiableElement
     Attribute name : EString
     Attribute description : EString
-    Reference identifier : ModelElementId
-    Reference readerInfos : ReaderInfo<<0..*>>
-    Reference actionItems : ActionItem<<0..*>>
-    Operation getProject() : Project
-    Operation addReader(User) : void
+    Attribute creator : EString
+    Attribute creationDate : EDate
+    Reference annotations : Annotation<<0..*>>
+    Reference attachments : Attachment<<0..*>>
+    Reference incomingDocumentReferences : LeafSection<<0..*>>
+    Reference leafSection : LeafSection
+    Attribute /state : EString
+    Reference appliedStereotypeInstances : StereotypeInstance<<0..*>>
+    Reference comments : Comment<<0..*>>
 
   Class Project
     Reference modelElements : ModelElement<<0..*>>
-    Operation addModelElement(ModelElement) : void
-
-  Class ModelElementId -> UniqueIdentifier
 
   Class UniqueIdentifier
     Attribute id : EString<<1..1>>
 
-  Class ReaderInfo
-    Attribute date : EDate
-    Reference readerId : OrgUnit
+  Class Annotation -> ModelElement
+    Reference annotatedModelElements : ModelElement<<0..*>>
+
+  Class Attachment -> ModelElement
+    Reference referringModelElements : ModelElement<<0..*>>
+
+  Class IdentifiableElement
+    Attribute identifier : EString<<1..1>>
+
+  Class ModelElementId -> UniqueIdentifier
+
+  Class NonDomainElement
+
+  Class ModelVersion
+    Attribute releaseNumber : EInt
