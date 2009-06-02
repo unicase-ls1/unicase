@@ -25,6 +25,10 @@ public class Plan {
 	
 	private Map<WorkItem, User> plan;
 
+	/**
+	 * plan. 
+	 * @param plan plan.
+	 */
 	public Plan(Map<WorkItem, User> plan){
 		this.plan = plan;
 	}
@@ -34,5 +38,24 @@ public class Plan {
 	 */
 	public Map<WorkItem, User> getPlan() {
 		return plan;
+	}
+	
+	
+	/**
+	 * @param task task
+	 * @return assignee for this task.
+	 */
+	public User getAssignee(WorkItem task){
+		return plan.get(task);
+	}
+	
+	/**
+	 * Sets assignee for this task.
+	 * @param task task
+	 * @param user assignee
+	 */
+	public void setAssignee(WorkItem task, User user){
+		plan.put(task, user);
+		
 	}
 }

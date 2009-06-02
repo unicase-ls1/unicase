@@ -6,10 +6,10 @@
 
 package org.unicase.ui.iterationplanner.core;
 
+import java.util.List;
+
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
-
-import java.util.List;
 
 /**
  * @author Hodaie
@@ -19,7 +19,17 @@ public abstract class Dispatcher {
 	
 	
 	
-	public abstract List<Plan> dispatch(List<WorkItem> tasks, List<User> users);
+	/**
+	 * assigns tasks to users. 
+	 * @param tasks tasks
+	 * @param assignees users
+	 * @return a list of plans. Each plan is simply a mapping from task to user. 
+	 */
+	public abstract List<Plan> dispatch(List<WorkItem> tasks, List<User> assignees);
+	
+	
+	
+	
 
 }
 
