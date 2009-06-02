@@ -8,6 +8,7 @@ package org.unicase.ui.stem.views.statusview.dnd;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -18,6 +19,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
@@ -37,7 +39,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 
 	private ModelElement currentOpenME;
 	private ModelElement dragSource;
-	private ModelElement dropTarget;
+	private Object dropTarget;
 
 	/**
 	 * {@inheritDoc}
@@ -201,7 +203,6 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	 * and sets the target, source, and dropee fields.
 	 * 
 	 * @param event DropTargetEvent
-	 * @return
 	 */
 	@SuppressWarnings("unchecked")
 	private boolean extractDnDSourceAndTarget(DropTargetEvent event) {
@@ -231,11 +232,41 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 
 		if (event.item == null || event.item.getData() == null) {
 			dropTarget = currentOpenME;
-		} else if (event.item.getData() instanceof ModelElement) {
-			dropTarget = (ModelElement) event.item.getData();
+		}
+
+		// TODO: The following lines are ugly code and just a result of extending this abstract
+		// adapter to be able handling DnDs on the ActivityTab and UserTab..! (deser)
+		else if (event.item.getData() instanceof ModelElement) {
+			dropTarget = event.item.getData();
+		} else if (event.item.getData() instanceof ActivityType) {
+			dropTarget = event.item.getData();
+		} else if (event.item.getData() instanceof EObject) {
+			dropTarget = event.item.getData();
 		}
 
 		return result;
+	}
+
+	/**
+	 * This checks currentOpenME and if source is not contained in opener of it, then it will be contained.
+	 * 
+	 * @param workItem drag source
+	 */
+	protected void addWorkItemToCurrentOpenME(WorkItem workItem) {
+
+		Set<ModelElement> openersForCurrentOpenME = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+			.getLeafOpeners(getCurrentOpenME());
+
+		if (!openersForCurrentOpenME.contains(workItem)) {
+			if (getCurrentOpenME() instanceof WorkPackage) {
+				((WorkPackage) getCurrentOpenME()).getContainedWorkItems().add(workItem);
+
+			} else {
+				workItem.getAnnotatedModelElements().add(getCurrentOpenME());
+			}
+
+		}
+
 	}
 
 	/**
@@ -269,7 +300,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	/**
 	 * @return the dropTarget
 	 */
-	public ModelElement getDropTarget() {
+	public Object getDropTarget() {
 		return dropTarget;
 	}
 

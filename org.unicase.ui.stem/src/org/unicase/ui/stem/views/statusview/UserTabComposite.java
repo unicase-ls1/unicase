@@ -221,7 +221,7 @@ public class UserTabComposite extends Composite implements ProjectChangeObserver
 	 */
 	public void setInput(ModelElement me, StatusView statusView) {
 		// this.input = me;
-		userTabDropAdapter.setCurrentOpenMe(me);
+		userTabDropAdapter.setCurrentOpenME(me);
 		statusColumnLabelProvider.setCurrentOpenME(me);
 		if ((treeViewer.getInput() == null) || (!treeViewer.getInput().equals(me))) {
 			treeViewer.setInput(me);
