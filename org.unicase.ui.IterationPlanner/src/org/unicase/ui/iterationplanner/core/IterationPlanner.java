@@ -21,8 +21,9 @@ public class IterationPlanner {
 
 	private WorkPackage backLog;
 	private WorkPackage lastSprint;
-	private int numOfSprintsToPlan;
 	private List<FunctionalRequirement> requirements;
+	private int sprintDuration;
+	private String sprintName;
 
 	/**
 	 * @param backLog
@@ -54,23 +55,7 @@ public class IterationPlanner {
 		return lastSprint;
 	}
 
-	/**
-	 * How many sprints should be planned.
-	 * 
-	 * @param sprintsToPlan
-	 *            number of sprints to plan.
-	 */
-	public void setNumOfSprintsToPlan(int sprintsToPlan) {
-		this.setNumOfSprintsToPlan(sprintsToPlan);
 
-	}
-
-	/**
-	 * @return the numOfSprintsToPlan
-	 */
-	public int getNumOfSprintsToPlan() {
-		return numOfSprintsToPlan;
-	}
 
 	/**
 	 * 
@@ -87,6 +72,39 @@ public class IterationPlanner {
 	 */
 	public List<FunctionalRequirement> getRequirements() {
 		return requirements;
+	}
+
+	
+
+	/**
+	 * 
+	 * @param sprintName sprint name 
+	 */
+	public void setSprintName(String sprintName) {
+		this.sprintName = sprintName;
+	}
+	
+	
+	/**
+	 * 
+	 * @return sprint name
+	 */
+	public String getSprintName(){
+		return sprintName;
+	}
+
+	/**
+	 * @param sprintDuration the sprintDuration to set
+	 */
+	public void setSprintDuration(int sprintDuration) {
+		this.sprintDuration = sprintDuration;
+	}
+
+	/**
+	 * @return the sprintDuration
+	 */
+	public int getSprintDuration() {
+		return sprintDuration;
 	}
 
 }

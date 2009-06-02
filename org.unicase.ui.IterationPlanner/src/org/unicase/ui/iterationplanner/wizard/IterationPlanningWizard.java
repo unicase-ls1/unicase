@@ -50,8 +50,12 @@ public class IterationPlanningWizard extends Wizard {
 		
 		
 		//third page: set sprint attributes, name, duration, estimate
+		SprintAttributesPage sprintAttributesPage = new SprintAttributesPage(iterationPlanner);
+		addPage(sprintAttributesPage);
+		
 		
 		//fourth page: show plans in a table tree viewer
+		addPage(new PlansPage(iterationPlanner));
 		
 		
 	}

@@ -11,64 +11,57 @@ import org.eclipse.swt.widgets.Composite;
 import org.unicase.ui.iterationplanner.core.IterationPlanner;
 
 /**
- * In this page user selects backlog, and last sprint.
- * 
+ * Sprint attributes page.
  * @author hodaie
- * 
+ *
  */
-public class TaskPage extends WizardPage {
+public class SprintAttributesPage extends WizardPage {
+
 
 	private IterationPlanner iterationPlanner;
 
-	
+	/**
+	 * Constructor.
+	 * @param planner iteration planner
+	 */
+	public SprintAttributesPage(IterationPlanner planner){
+		super("sprint attributes page");
+		this.iterationPlanner = planner;
+	}
 	
 	/**
 	 * 
 	 * {@inheritDoc}
-	 * 
 	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
 	 */
 	@Override
 	public boolean canFlipToNextPage() {
-
 		return super.canFlipToNextPage();
 	}
 
 	/**
 	 * 
 	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
+	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
-	@Override
-	public IWizardPage getNextPage() {
-		iterationPlanner.setBackLog(null);
-		iterationPlanner.setLastSprint(null);
+	public void createControl(Composite parent) {
 		
-		return super.getNextPage();
-	}
-
-	
-	/**
-	 * Constructor.
-	 * 
-	 * @param planner
-	 *            iteration planner.
-	 */
-	protected TaskPage(IterationPlanner planner) {
-		super("task page");
-		this.iterationPlanner = planner;
 	}
 
 	/**
 	 * 
 	 * {@inheritDoc}
-	 * 
-	 * 
-	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
+	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
 	 */
-	public void createControl(Composite parent) {
+	@Override
+	public IWizardPage getNextPage() {
+		iterationPlanner.setSprintName("sprint name");
+		iterationPlanner.setSprintDuration(10);
 
+		return super.getNextPage();
 	}
+
+	
+	
 
 }
