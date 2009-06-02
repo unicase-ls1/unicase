@@ -5,9 +5,16 @@
  */
 package org.unicase.ui.iterationplanner.wizard;
 
+
+
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 import org.unicase.ui.iterationplanner.core.IterationPlanner;
 
 /**
@@ -19,6 +26,8 @@ public class SprintAttributesPage extends WizardPage {
 
 
 	private IterationPlanner iterationPlanner;
+	private Text txtSprintName;
+	private Text txtSprintDuration;
 
 	/**
 	 * Constructor.
@@ -36,7 +45,7 @@ public class SprintAttributesPage extends WizardPage {
 	 */
 	@Override
 	public boolean canFlipToNextPage() {
-		return super.canFlipToNextPage();
+		return txtSprintName.getText() != "" && txtSprintDuration.getText().matches("[1-9]");
 	}
 
 	/**
@@ -45,6 +54,35 @@ public class SprintAttributesPage extends WizardPage {
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
+		
+		Composite contents = new Composite(parent, SWT.NONE);
+		
+		contents.setLayout(new GridLayout(2, false));
+		
+		//sprint name
+		Label lblSprintName = new Label(
+				contents, SWT.NONE);
+		lblSprintName.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+				false));
+		lblSprintName.setText("Sprint name:");
+		
+		txtSprintName = new Text(contents, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+		txtSprintName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtSprintName.setText("");
+		
+		//sprint duration
+		Label lblSprintDuration = new Label(contents, SWT.NONE);
+		lblSprintDuration.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+				false));
+		lblSprintDuration.setText("Sprint duration (weeks):");
+		
+		txtSprintDuration = new Text(contents, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+		txtSprintDuration.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtSprintDuration.setText("");
+		
+		setControl(contents);
+		setPageComplete(true);
+		
 		
 	}
 
@@ -55,8 +93,8 @@ public class SprintAttributesPage extends WizardPage {
 	 */
 	@Override
 	public IWizardPage getNextPage() {
-		iterationPlanner.setSprintName("sprint name");
-		iterationPlanner.setSprintDuration(10);
+		iterationPlanner.setSprintName(txtSprintName.getText());
+		iterationPlanner.setSprintDuration(Integer.parseInt(txtSprintDuration.getText()));
 
 		return super.getNextPage();
 	}
