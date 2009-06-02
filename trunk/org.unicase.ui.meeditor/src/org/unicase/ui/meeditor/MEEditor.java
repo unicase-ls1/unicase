@@ -93,6 +93,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private ComposedAdapterFactory adapterFactory;
 	private TransactionalEditingDomain editingDomain;
 	private MEEditorPage mePage;
+	private METhreadPage commentsPage;
 
 	private Adapter eAdapter;
 
@@ -114,8 +115,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 		} else {
 			mePage = new MEEditorPage(this, "Edit", "Standard View", editingDomain, modelElement);
 		}
+		commentsPage = new METhreadPage(this, "Discussion", "Discussion", editingDomain, modelElement);
 		try {
 			addPage(mePage);
+			addPage(commentsPage);
 		} catch (PartInitException e) {
 			// JH Auto-generated catch block
 			e.printStackTrace();

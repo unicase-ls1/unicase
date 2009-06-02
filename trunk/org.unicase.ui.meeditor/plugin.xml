@@ -19,6 +19,14 @@
       </command>
    </extension>
    <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="org.unicase.ui.meeditor.commands.OpenModelElementDiscussionHandler"
+            id="org.unicase.ui.meeditor.openModelElementDiscussion"
+            name="OpenModelElementDiscussion">
+      </command>
+   </extension>
+   <extension
          point="org.eclipse.ui.menus">
       <menuContribution
             locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
