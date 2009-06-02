@@ -11,10 +11,34 @@
  */
 package org.unicase.ui.iterationplanner.taskprovider;
 
+import org.unicase.model.organization.User;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.task.WorkItem;
+
+import java.util.List;
+
 /**
  * @author Hodaie
  *
  */
 public class TaskProvider {
+	
+	public List<WorkItem> sortByPriority(List<WorkItem> tasks){
+		return null;
+	}
+	
+	public List<WorkItem> getWorkItems(List<FunctionalRequirement> frs){
+		return null;
+	}
+	
+	
+	
+	public User findAppropriateAssignee(WorkItem workItem){
+
+		return null;
+	}
+	
+	
+	
 
 }

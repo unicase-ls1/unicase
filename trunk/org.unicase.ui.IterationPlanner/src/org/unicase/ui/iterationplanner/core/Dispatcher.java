@@ -6,10 +6,20 @@
 
 package org.unicase.ui.iterationplanner.core;
 
+import org.unicase.model.organization.User;
+import org.unicase.model.task.WorkItem;
+
+import java.util.List;
+
 /**
  * @author Hodaie
  *
  */
-public class Dispatcher {
+public abstract class Dispatcher {
+	
+	
+	
+	public abstract List<Plan> dispatch(List<WorkItem> tasks, List<User> users);
 
 }
+

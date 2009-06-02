@@ -11,10 +11,14 @@
  */
 package org.unicase.ui.iterationplanner.evaluator;
 
+import org.unicase.ui.iterationplanner.core.Plan;
+
 /**
  * @author Hodaie
  *
  */
-public class Evaluator {
+public abstract class Evaluator {
+	
+	public abstract int evaluate(Plan plan);
 
 }
