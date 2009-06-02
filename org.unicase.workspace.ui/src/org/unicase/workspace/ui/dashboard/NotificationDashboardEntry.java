@@ -450,20 +450,20 @@ public class NotificationDashboardEntry extends AbstractDashboardEntry {
 		}
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(replyButton);
 
-		for (Comment c : comment.getReplies()) {
-			Composite userReply = new Composite(commentEntry, SWT.NONE);
-			GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(userReply);
-			GridDataFactory.fillDefaults().indent(30, 0).span(3, 1).grab(true, false).applyTo(userReply);
-			createCommentEntry(userReply, c);
-		}
-		for (Annotation annotation : comment.getAnnotations()) {
-			if (RationalePackage.eINSTANCE.getComment().isInterface()) {
-				Composite userReply = new Composite(commentEntry, SWT.NONE);
-				GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(userReply);
-				GridDataFactory.fillDefaults().indent(20, 0).span(3, 1).grab(true, false).applyTo(userReply);
-				createCommentEntry(userReply, (Comment) annotation);
-			}
-		}
+//		for (Comment c : comment.getReplies()) {
+//			Composite userReply = new Composite(commentEntry, SWT.NONE);
+//			GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(userReply);
+//			GridDataFactory.fillDefaults().indent(30, 0).span(3, 1).grab(true, false).applyTo(userReply);
+//			createCommentEntry(userReply, c);
+//		}
+//		for (Annotation annotation : comment.getAnnotations()) {
+//			if (RationalePackage.eINSTANCE.getComment().isInterface()) {
+//				Composite userReply = new Composite(commentEntry, SWT.NONE);
+//				GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(userReply);
+//				GridDataFactory.fillDefaults().indent(20, 0).span(3, 1).grab(true, false).applyTo(userReply);
+//				createCommentEntry(userReply, (Comment) annotation);
+//			}
+//		}
 	}
 
 	private void toggleDrawer(TypedEvent e, boolean open) {
