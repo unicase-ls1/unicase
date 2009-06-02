@@ -7,12 +7,15 @@ package org.unicase.ui.stem.views.statusview;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerComparator;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -21,6 +24,8 @@ import org.unicase.model.Project;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.TaskTableUtil;
+import org.unicase.ui.stem.views.statusview.dnd.ActivityTabDropAdapter;
+import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -36,6 +41,8 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	private TreeViewer treeViewer;
 	private Workspace workspace;
 	private AdapterImpl adapterImpl;
+	private ActivityTabDropAdapter activityTabDropAdapter;
+	private StatusViewTabsDragAdapter activityTabDragAdapter;
 
 	/**
 	 * default constructor.
@@ -94,16 +101,36 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 			}
 
 		});
+
+		addDnDSupport();
+	}
+
+	private void addDnDSupport() {
+		int dndOperations = DND.DROP_COPY | DND.DROP_MOVE | DND.DROP_LINK;
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
+
+		activityTabDropAdapter = new ActivityTabDropAdapter();
+		treeViewer.addDropSupport(dndOperations, transfers, activityTabDropAdapter);
+		activityTabDragAdapter = new StatusViewTabsDragAdapter(treeViewer);
+		treeViewer.addDragSupport(dndOperations, transfers, activityTabDragAdapter);
+
 	}
 
 	/**
-	 * . set input to TreeViewer
+	 * Set input to TreeViewer.
 	 * 
 	 * @param me input model element
+	 * @param statusView the active status view. This is needed for drag and drop.
 	 */
-	public void setInput(ModelElement me) {
-		// this.input = me;
+	public void setInput(ModelElement me, StatusView statusView) {
+		activityTabDropAdapter.setCurrentOpenME(me);
 		treeViewer.setInput(me);
+
+		if ((treeViewer.getInput() == null) || (!treeViewer.getInput().equals(me))) {
+			treeViewer.setInput(me);
+		} else {
+			treeViewer.refresh();
+		}
 
 	}
 

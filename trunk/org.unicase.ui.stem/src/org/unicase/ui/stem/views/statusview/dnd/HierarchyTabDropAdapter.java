@@ -60,7 +60,7 @@ public class HierarchyTabDropAdapter extends AbstractDropAdapter {
 	}
 
 	private void annotateNonWorkItemDropTarget() {
-		// dorp WorkItem B on ME (non work package) A:
+		// drop WorkItem B on ME (non work package) A:
 		// if B somewhere exists in annotations of A (hierachical),
 		// do nothing; otherwise Annotate A with B
 
@@ -72,7 +72,7 @@ public class HierarchyTabDropAdapter extends AbstractDropAdapter {
 
 		}
 
-		ModelElement dropTarget = getDropTarget();
+		ModelElement dropTarget = (ModelElement) getDropTarget();
 		ModelElement dragSource = getDragSource();
 
 		Set<ModelElement> openersForDropTarget = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
