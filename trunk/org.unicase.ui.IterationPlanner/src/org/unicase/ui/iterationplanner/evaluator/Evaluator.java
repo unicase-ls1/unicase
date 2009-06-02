@@ -19,6 +19,11 @@ import org.unicase.ui.iterationplanner.core.Plan;
  */
 public abstract class Evaluator {
 	
+	/**
+	 * evaluate.
+	 * @param plan plan
+	 * @return evaluation
+	 */
 	public abstract int evaluate(Plan plan);
 
 }
