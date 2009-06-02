@@ -12,6 +12,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
@@ -41,6 +42,7 @@ import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Issue;
+import org.unicase.model.rationale.RationalePackage;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.FeatureHintTooltipSupport;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
@@ -233,6 +235,13 @@ public class MEEditorPage extends FormPage {
 
 	}
 
+	private boolean isCommentFeature(Object feature) {
+		if (feature instanceof EReference) {
+			return ((EReference) feature).getEType().equals(RationalePackage.eINSTANCE.getComment());
+		}
+		return false;
+	}
+
 	private void createAttributes(Composite column, List<IItemPropertyDescriptor> attributes) {
 		Composite attributeComposite = toolkit.createComposite(column);
 		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(attributeComposite);
@@ -248,7 +257,8 @@ public class MEEditorPage extends FormPage {
 			}
 			meControls.add(meControl);
 			Control control;
-			if (!itemPropertyDescriptor.isMany(modelElement)) {
+			if (!itemPropertyDescriptor.isMany(modelElement)
+				|| isCommentFeature(itemPropertyDescriptor.getFeature(modelElement))) {
 				Label label = toolkit.createLabel(attributeComposite, itemPropertyDescriptor
 					.getDisplayName(modelElement));
 				label.setData(modelElement);

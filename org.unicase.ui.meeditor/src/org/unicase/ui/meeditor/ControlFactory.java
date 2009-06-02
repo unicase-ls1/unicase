@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.requirement.Step;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
@@ -24,6 +25,7 @@ import org.unicase.ui.meeditor.mecontrols.MEEnumControl;
 import org.unicase.ui.meeditor.mecontrols.MEIntControl;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
+import org.unicase.ui.meeditor.mecontrols.commentcontrol.MECommentsLinkControl;
 import org.unicase.ui.meeditor.mecontrols.issuecontrol.AssessmentMatrixControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
@@ -72,7 +74,9 @@ public class ControlFactory {
 			if (feature.getEType().getInstanceClass().equals(Step.class)) {
 				return createMEUseCaseStepsControl(reference, itemPropertyDescriptor);
 			}
-
+			if (feature.getEType().getInstanceClass().equals(Comment.class)) {
+				return createMECommentControl(reference);
+			}
 			if (feature.getUpperBound() != 1) {
 				if (reference.isMany()) {
 					return createMELinkControl((EReference) feature, itemPropertyDescriptor);
@@ -132,6 +136,10 @@ public class ControlFactory {
 
 	private MEControl createMEDateControl(EAttribute attribute) {
 		return new MEDateControl(attribute, toolkit, modelElement, editingDomain);
+	}
+
+	private MEControl createMECommentControl(EReference reference) {
+		return new MECommentsLinkControl(reference, toolkit, modelElement, editingDomain);
 	}
 
 	private MEControl createMEIntControl(EAttribute attribute) {
