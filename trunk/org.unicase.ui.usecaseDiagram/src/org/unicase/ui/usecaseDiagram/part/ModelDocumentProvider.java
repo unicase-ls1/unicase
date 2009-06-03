@@ -25,9 +25,7 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.ISchedulingRule;
 import org.eclipse.core.runtime.jobs.MultiRule;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -38,7 +36,6 @@ import org.eclipse.emf.transaction.NotificationFilter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.core.DiagramEditingDomainFactory;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocumentProvider;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDocument;
@@ -54,21 +51,30 @@ import org.eclipse.ui.part.FileEditorInput;
 /**
  * @generated
  */
-public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.ModelDocumentProvider implements
-	IDiagramDocumentProvider {
+public class ModelDocumentProvider extends
+		org.unicase.ui.common.diagram.part.ModelDocumentProvider implements
+		IDiagramDocumentProvider {
 
 	/**
 	 * @generated
 	 */
 	@Override
-	protected ElementInfo createElementInfo(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR,
-				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID, 0, NLS.bind(
-					org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_IncorrectInputError,
-					new Object[] { element,
-						"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-				null));
+	protected ElementInfo createElementInfo(Object element)
+			throws CoreException {
+		if (false == element instanceof FileEditorInput
+				&& false == element instanceof URIEditorInput) {
+			throw new CoreException(
+					new Status(
+							IStatus.ERROR,
+							org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
+							0,
+							NLS
+									.bind(
+											org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_IncorrectInputError,
+											new Object[] {
+													element,
+													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+							null));
 		}
 		IEditorInput editorInput = (IEditorInput) element;
 		IDiagramDocument document = (IDiagramDocument) createDocument(editorInput);
@@ -84,13 +90,20 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	 */
 	@Override
 	protected IDocument createDocument(Object element) throws CoreException {
-		if (false == element instanceof FileEditorInput && false == element instanceof URIEditorInput) {
-			throw new CoreException(new Status(IStatus.ERROR,
-				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID, 0, NLS.bind(
-					org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_IncorrectInputError,
-					new Object[] { element,
-						"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-				null));
+		if (false == element instanceof FileEditorInput
+				&& false == element instanceof URIEditorInput) {
+			throw new CoreException(
+					new Status(
+							IStatus.ERROR,
+							org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
+							0,
+							NLS
+									.bind(
+											org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_IncorrectInputError,
+											new Object[] {
+													element,
+													"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+							null));
 		}
 		IDocument document = createEmptyDocument();
 		setDocumentContent(document, (IEditorInput) element);
@@ -115,7 +128,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it.hasNext();) {
+		for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
+				.getLoadedResourcesIterator(); it.hasNext();) {
 			Resource nextResource = (Resource) it.next();
 			IFile file = WorkspaceSynchronizer.getFile(nextResource);
 			if (file != null) {
@@ -127,45 +141,6 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 			}
 		}
 		return result;
-	}
-
-	/**
-	 * @generated
-	 */
-	private TransactionalEditingDomain createEditingDomain() {
-		TransactionalEditingDomain editingDomain = DiagramEditingDomainFactory.getInstance().createEditingDomain();
-		editingDomain.setID("org.unicase.EditingDomain"); //$NON-NLS-1$
-		final NotificationFilter diagramResourceModifiedFilter = NotificationFilter.createNotifierFilter(
-			editingDomain.getResourceSet()).and(NotificationFilter.createEventTypeFilter(Notification.ADD)).and(
-			NotificationFilter.createFeatureFilter(ResourceSet.class, ResourceSet.RESOURCE_SET__RESOURCES));
-		editingDomain.getResourceSet().eAdapters().add(new Adapter() {
-
-			private Notifier myTarger;
-
-			public Notifier getTarget() {
-				return myTarger;
-			}
-
-			public boolean isAdapterForType(Object type) {
-				return false;
-			}
-
-			public void notifyChanged(Notification notification) {
-				if (diagramResourceModifiedFilter.matches(notification)) {
-					Object value = notification.getNewValue();
-					if (value instanceof Resource) {
-						((Resource) value).setTrackingModification(true);
-					}
-				}
-			}
-
-			public void setTarget(Notifier newTarget) {
-				myTarger = newTarget;
-			}
-
-		});
-
-		return editingDomain;
 	}
 
 	/**
@@ -190,7 +165,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 			Resource diagramResource = document.getDiagram().eResource();
 			if (diagramResource != null) {
 				IFile file = WorkspaceSynchronizer.getFile(diagramResource);
-				return file == null || file.getLocation() == null || !file.getLocation().toFile().exists();
+				return file == null || file.getLocation() == null
+						|| !file.getLocation().toFile().exists();
 			}
 		}
 		return super.isDeleted(element);
@@ -207,15 +183,25 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	 * @generated
 	 */
 	@Override
-	protected void doValidateState(Object element, Object computationContext) throws CoreException {
+	protected void disposeElementInfo(Object element, ElementInfo info) {
+		if (info instanceof ResourceSetInfo) {
+			ResourceSetInfo resourceSetInfo = (ResourceSetInfo) info;
+			resourceSetInfo.dispose();
+		}
+		super.disposeElementInfo(element, info);
+	}
+
+	/**
+	 * @generated
+	 */
+	@Override
+	protected void doValidateState(Object element, Object computationContext)
+			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.resources.IFile> */files2Validate = new ArrayList/*
-																						 * <org.eclipse.core.resources.IFile
-																						 * >
-																						 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			Collection/*<org.eclipse.core.resources.IFile>*/files2Validate = new ArrayList/*<org.eclipse.core.resources.IFile>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
+					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
@@ -223,7 +209,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 				}
 			}
 			ResourcesPlugin.getWorkspace().validateEdit(
-				(IFile[]) files2Validate.toArray(new IFile[files2Validate.size()]), computationContext);
+					(IFile[]) files2Validate.toArray(new IFile[files2Validate
+							.size()]), computationContext);
 		}
 
 		super.doValidateState(element, computationContext);
@@ -240,11 +227,12 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
-						org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from
-					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.
-					// ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+							.getInstance()
+							.logError(
+									org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_isModifiable,
+									ex);
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isReadOnly();
@@ -258,7 +246,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	@Override
 	public boolean isModifiable(Object element) {
 		if (!isStateValidated(element)) {
-			if (element instanceof FileEditorInput || element instanceof URIEditorInput) {
+			if (element instanceof FileEditorInput
+					|| element instanceof URIEditorInput) {
 				return true;
 			}
 		}
@@ -268,11 +257,12 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 				try {
 					updateCache(element);
 				} catch (CoreException ex) {
-					org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
-						org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_isModifiable, ex);
-					// Error message to log was initially taken from
-					// org.eclipse.gmf.runtime.diagram.ui.resources.editor.
-					// ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
+					org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+							.getInstance()
+							.logError(
+									org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_isModifiable,
+									ex);
+					// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.StorageDocumentProvider_isModifiable
 				}
 			}
 			return info.isModifiable();
@@ -286,8 +276,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	protected void updateCache(Object element) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
+					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null && file.isReadOnly()) {
@@ -333,19 +323,18 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	protected ISchedulingRule getResetRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
+					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
-					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(file));
+					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
+							.modifyRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[]) rules
+					.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -357,19 +346,17 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	protected ISchedulingRule getSaveRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
+					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					rules.add(computeSchedulingRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[]) rules
+					.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -381,19 +368,18 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	protected ISchedulingRule getSynchronizeRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */rules = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/rules = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
+					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
-					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory().refreshRule(file));
+					rules.add(ResourcesPlugin.getWorkspace().getRuleFactory()
+							.refreshRule(file));
 				}
 			}
-			return new MultiRule((ISchedulingRule[]) rules.toArray(new ISchedulingRule[rules.size()]));
+			return new MultiRule((ISchedulingRule[]) rules
+					.toArray(new ISchedulingRule[rules.size()]));
 		}
 		return null;
 	}
@@ -405,20 +391,18 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	protected ISchedulingRule getValidateStateRule(Object element) {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			Collection/* <org.eclipse.core.runtime.jobs.ISchedulingRule> */files = new ArrayList/*
-																							 * <org.eclipse.core.runtime.
-																							 * jobs.ISchedulingRule>
-																							 */();
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			Collection/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/files = new ArrayList/*<org.eclipse.core.runtime.jobs.ISchedulingRule>*/();
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
+					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				IFile file = WorkspaceSynchronizer.getFile(nextResource);
 				if (file != null) {
 					files.add(file);
 				}
 			}
-			return ResourcesPlugin.getWorkspace().getRuleFactory().validateEditRule(
-				(IFile[]) files.toArray(new IFile[files.size()]));
+			return ResourcesPlugin.getWorkspace().getRuleFactory()
+					.validateEditRule(
+							(IFile[]) files.toArray(new IFile[files.size()]));
 		}
 		return null;
 	}
@@ -428,30 +412,35 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	 */
 	private ISchedulingRule computeSchedulingRule(IResource toCreateOrModify) {
 		if (toCreateOrModify.exists())
-			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(toCreateOrModify);
+			return ResourcesPlugin.getWorkspace().getRuleFactory().modifyRule(
+					toCreateOrModify);
 
 		IResource parent = toCreateOrModify;
 		do {
 			/*
-			 * XXX This is a workaround for https://bugs.eclipse.org/bugs/show_bug.cgi?id=67601
-			 * IResourceRuleFactory.createRule should iterate the hierarchy itself.
+			 * XXX This is a workaround for
+			 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=67601
+			 * IResourceRuleFactory.createRule should iterate the hierarchy
+			 * itself.
 			 */
 			toCreateOrModify = parent;
 			parent = toCreateOrModify.getParent();
 		} while (parent != null && !parent.exists());
 
-		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(toCreateOrModify);
+		return ResourcesPlugin.getWorkspace().getRuleFactory().createRule(
+				toCreateOrModify);
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	protected void doSynchronize(Object element, IProgressMonitor monitor) throws CoreException {
+	protected void doSynchronize(Object element, IProgressMonitor monitor)
+			throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-				.hasNext();) {
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
+					.getLoadedResourcesIterator(); it.hasNext();) {
 				Resource nextResource = (Resource) it.next();
 				handleElementChanged(info, nextResource, monitor);
 			}
@@ -464,37 +453,49 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	 * @generated
 	 */
 	@Override
-	protected void doSaveDocument(IProgressMonitor monitor, Object element, IDocument document, boolean overwrite)
-		throws CoreException {
+	protected void doSaveDocument(IProgressMonitor monitor, Object element,
+			IDocument document, boolean overwrite) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
 			if (!overwrite && !info.isSynchronized()) {
 				throw new CoreException(
-					new Status(IStatus.ERROR, org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
-						IResourceStatus.OUT_OF_SYNC_LOCAL,
-						org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_UnsynchronizedFileSaveError,
-						null));
+						new Status(
+								IStatus.ERROR,
+								org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
+								IResourceStatus.OUT_OF_SYNC_LOCAL,
+								org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_UnsynchronizedFileSaveError,
+								null));
 			}
 			info.stopResourceListening();
 			fireElementStateChanging(element);
 			try {
-				monitor.beginTask(org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_SaveDiagramTask,
-					info.getResourceSet().getResources().size() + 1); // "Saving diagram"
-				for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = info.getLoadedResourcesIterator(); it
-					.hasNext();) {
+				monitor
+						.beginTask(
+								org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_SaveDiagramTask,
+								info.getResourceSet().getResources().size() + 1); //"Saving diagram"
+				for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
+						.getLoadedResourcesIterator(); it.hasNext();) {
 					Resource nextResource = (Resource) it.next();
-					monitor.setTaskName(NLS.bind(
-						org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_SaveNextResourceTask,
-						nextResource.getURI()));
-					if (nextResource.isLoaded() && !info.getEditingDomain().isReadOnly(nextResource)) {
+					monitor
+							.setTaskName(NLS
+									.bind(
+											org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_SaveNextResourceTask,
+											nextResource.getURI()));
+					if (nextResource.isLoaded()
+							&& !info.getEditingDomain()
+									.isReadOnly(nextResource)) {
 						try {
-							nextResource.save(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorUtil
-								.getSaveOptions());
+							nextResource
+									.save(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorUtil
+											.getSaveOptions());
 						} catch (IOException e) {
 							fireElementStateChangeFailed(element);
-							throw new CoreException(new Status(IStatus.ERROR,
-								org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
-								EditorStatusCodes.RESOURCE_FAILURE, e.getLocalizedMessage(), null));
+							throw new CoreException(
+									new Status(
+											IStatus.ERROR,
+											org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
+											EditorStatusCodes.RESOURCE_FAILURE,
+											e.getLocalizedMessage(), null));
 						}
 					}
 					monitor.worked(1);
@@ -513,51 +514,70 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 			if (element instanceof FileEditorInput) {
 				IFile newFile = ((FileEditorInput) element).getFile();
 				affectedFiles = Collections.singletonList(newFile);
-				newResoruceURI = URI.createPlatformResourceURI(newFile.getFullPath().toString(), true);
+				newResoruceURI = URI.createPlatformResourceURI(newFile
+						.getFullPath().toString(), true);
 			} else if (element instanceof URIEditorInput) {
 				newResoruceURI = ((URIEditorInput) element).getURI();
 			} else {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR,
-					org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID, 0, NLS.bind(
-						org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_IncorrectInputError,
-						new Object[] { element,
-							"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
-					null));
+				throw new CoreException(
+						new Status(
+								IStatus.ERROR,
+								org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
+								0,
+								NLS
+										.bind(
+												org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_IncorrectInputError,
+												new Object[] {
+														element,
+														"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+								null));
 			}
 			if (false == document instanceof IDiagramDocument) {
 				fireElementStateChangeFailed(element);
 				throw new CoreException(
-					new Status(
-						IStatus.ERROR,
-						org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
-						0,
-						"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
+						new Status(
+								IStatus.ERROR,
+								org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
+								0,
+								"Incorrect document used: " + document + " instead of org.eclipse.gmf.runtime.diagram.ui.resources.editor.document.IDiagramDocument", null)); //$NON-NLS-1$ //$NON-NLS-2$
 			}
 			IDiagramDocument diagramDocument = (IDiagramDocument) document;
-			final Resource newResource = diagramDocument.getEditingDomain().getResourceSet().createResource(
-				newResoruceURI);
-			final Diagram diagramCopy = (Diagram) EcoreUtil.copy(diagramDocument.getDiagram());
+			final Resource newResource = diagramDocument.getEditingDomain()
+					.getResourceSet().createResource(newResoruceURI);
+			final Diagram diagramCopy = (Diagram) EcoreUtil
+					.copy(diagramDocument.getDiagram());
 			try {
-				new AbstractTransactionalCommand(diagramDocument.getEditingDomain(), NLS.bind(
-					org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_SaveAsOperation, diagramCopy
-						.getName()), affectedFiles) {
-					@Override
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
-						throws ExecutionException {
+				new AbstractTransactionalCommand(
+						diagramDocument.getEditingDomain(),
+						NLS
+								.bind(
+										org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_SaveAsOperation,
+										diagramCopy.getName()), affectedFiles) {
+					protected CommandResult doExecuteWithResult(
+							IProgressMonitor monitor, IAdaptable info)
+							throws ExecutionException {
 						newResource.getContents().add(diagramCopy);
 						return CommandResult.newOKCommandResult();
 					}
 				}.execute(monitor, null);
-				newResource.save(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorUtil.getSaveOptions());
+				newResource
+						.save(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorUtil
+								.getSaveOptions());
 			} catch (ExecutionException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR,
-					org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID, 0, e.getLocalizedMessage(), null));
+				throw new CoreException(
+						new Status(
+								IStatus.ERROR,
+								org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
+								0, e.getLocalizedMessage(), null));
 			} catch (IOException e) {
 				fireElementStateChangeFailed(element);
-				throw new CoreException(new Status(IStatus.ERROR,
-					org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID, 0, e.getLocalizedMessage(), null));
+				throw new CoreException(
+						new Status(
+								IStatus.ERROR,
+								org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.ID,
+								0, e.getLocalizedMessage(), null));
 			}
 			newResource.unload();
 		}
@@ -566,17 +586,19 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	/**
 	 * @generated
 	 */
-	protected void handleElementChanged(ResourceSetInfo info, Resource changedResource, IProgressMonitor monitor) {
+	protected void handleElementChanged(ResourceSetInfo info,
+			Resource changedResource, IProgressMonitor monitor) {
 		IFile file = WorkspaceSynchronizer.getFile(changedResource);
 		if (file != null) {
 			try {
 				file.refreshLocal(IResource.DEPTH_INFINITE, monitor);
 			} catch (CoreException ex) {
-				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
-					org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_handleElementContentChanged, ex);
-				// Error message to log was initially taken from
-				// org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.
-				// internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
+				org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+						.getInstance()
+						.logError(
+								org.unicase.ui.usecaseDiagram.part.Messages.ModelDocumentProvider_handleElementContentChanged,
+								ex);
+				// Error message to log was initially taken from org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide.internal.l10n.EditorMessages.FileDocumentProvider_handleElementContentChanged
 			}
 		}
 		changedResource.unload();
@@ -602,8 +624,9 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	protected void handleElementMoved(IEditorInput input, URI uri) {
 		if (input instanceof FileEditorInput) {
 			IFile newFile = ResourcesPlugin.getWorkspace().getRoot().getFile(
-				new Path(URI.decode(uri.path())).removeFirstSegments(1));
-			fireElementMoved(input, newFile == null ? null : new FileEditorInput(newFile));
+					new Path(URI.decode(uri.path())).removeFirstSegments(1));
+			fireElementMoved(input, newFile == null ? null
+					: new FileEditorInput(newFile));
 			return;
 		}
 		// TODO: append suffix to the URI! (use diagram as a parameter)
@@ -614,7 +637,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	 * @generated
 	 */
 	@Override
-	public IEditorInput createInputWithEditingDomain(IEditorInput editorInput, TransactionalEditingDomain domain) {
+	public IEditorInput createInputWithEditingDomain(IEditorInput editorInput,
+			TransactionalEditingDomain domain) {
 		return editorInput;
 	}
 
@@ -691,7 +715,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 		/**
 		 * @generated
 		 */
-		public ResourceSetInfo(IDiagramDocument document, IEditorInput editorInput) {
+		public ResourceSetInfo(IDiagramDocument document,
+				IEditorInput editorInput) {
 			super(document);
 			myDocument = document;
 			myEditorInput = editorInput;
@@ -731,9 +756,9 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 		/**
 		 * @generated
 		 */
-		public Iterator/* <org.eclipse.emf.ecore.resource.Resource> */getLoadedResourcesIterator() {
-			return new ArrayList/* <org.eclipse.emf.ecore.resource.Resource> */(getResourceSet().getResources())
-				.iterator();
+		public Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/getLoadedResourcesIterator() {
+			return new ArrayList/*<org.eclipse.emf.ecore.resource.Resource>*/(
+					getResourceSet().getResources()).iterator();
 		}
 
 		/**
@@ -749,7 +774,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 		public void dispose() {
 			stopResourceListening();
 			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = getLoadedResourcesIterator(); it.hasNext();) {
+			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it
+					.hasNext();) {
 				Resource resource = (Resource) it.next();
 				resource.unload();
 			}
@@ -788,7 +814,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 		 * @generated
 		 */
 		public final void startResourceListening() {
-			mySynchronizer = new WorkspaceSynchronizer(getEditingDomain(), new SynchronizerDelegate());
+			mySynchronizer = new WorkspaceSynchronizer(getEditingDomain(),
+					new SynchronizerDelegate());
 		}
 
 		/**
@@ -836,7 +863,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 		/**
 		 * @generated
 		 */
-		private class SynchronizerDelegate implements WorkspaceSynchronizer.Delegate {
+		private class SynchronizerDelegate implements
+				WorkspaceSynchronizer.Delegate {
 
 			/**
 			 * @generated
@@ -856,7 +884,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 				}
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
-						handleElementChanged(ResourceSetInfo.this, resource, null);
+						handleElementChanged(ResourceSetInfo.this, resource,
+								null);
 					}
 				});
 				return true;
@@ -874,7 +903,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 				}
 				Display.getDefault().asyncExec(new Runnable() {
 					public void run() {
-						fireElementDeleted(ResourceSetInfo.this.getEditorInput());
+						fireElementDeleted(ResourceSetInfo.this
+								.getEditorInput());
 					}
 				});
 				return true;
@@ -883,7 +913,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 			/**
 			 * @generated
 			 */
-			public boolean handleResourceMoved(Resource resource, final URI newURI) {
+			public boolean handleResourceMoved(Resource resource,
+					final URI newURI) {
 				synchronized (ResourceSetInfo.this) {
 					if (ResourceSetInfo.this.fCanBeSaved) {
 						ResourceSetInfo.this.setUnSynchronized(resource);
@@ -893,7 +924,8 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 				if (myDocument.getDiagram().eResource() == resource) {
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
-							handleElementMoved(ResourceSetInfo.this.getEditorInput(), newURI);
+							handleElementMoved(ResourceSetInfo.this
+									.getEditorInput(), newURI);
 						}
 					});
 				} else {
@@ -926,9 +958,12 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 		 */
 		public ResourceSetModificationListener(ResourceSetInfo info) {
 			myInfo = info;
-			myModifiedFilter = NotificationFilter.createEventTypeFilter(Notification.SET).or(
-				NotificationFilter.createEventTypeFilter(Notification.UNSET)).and(
-				NotificationFilter.createFeatureFilter(Resource.class, Resource.RESOURCE__IS_MODIFIED));
+			myModifiedFilter = NotificationFilter.createEventTypeFilter(
+					Notification.SET).or(
+					NotificationFilter
+							.createEventTypeFilter(Notification.UNSET)).and(
+					NotificationFilter.createFeatureFilter(Resource.class,
+							Resource.RESOURCE__IS_MODIFIED));
 		}
 
 		/**
@@ -939,13 +974,15 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 			if (notification.getNotifier() instanceof ResourceSet) {
 				super.notifyChanged(notification);
 			}
-			if (!notification.isTouch() && myModifiedFilter.matches(notification)) {
+			if (!notification.isTouch()
+					&& myModifiedFilter.matches(notification)) {
 				if (notification.getNotifier() instanceof Resource) {
 					Resource resource = (Resource) notification.getNotifier();
 					if (resource.isLoaded()) {
 						boolean modified = false;
-						for (Iterator/* <org.eclipse.emf.ecore.resource.Resource> */it = myInfo
-							.getLoadedResourcesIterator(); it.hasNext() && !modified;) {
+						for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = myInfo
+								.getLoadedResourcesIterator(); it.hasNext()
+								&& !modified;) {
 							Resource nextResource = (Resource) it.next();
 							if (nextResource.isLoaded()) {
 								modified = nextResource.isModified();
@@ -962,10 +999,12 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 							}
 						}
 						if (dirtyStateChanged) {
-							fireElementDirtyStateChanged(myInfo.getEditorInput(), modified);
+							fireElementDirtyStateChanged(myInfo
+									.getEditorInput(), modified);
 
 							if (!modified) {
-								myInfo.setModificationStamp(computeModificationStamp(myInfo));
+								myInfo
+										.setModificationStamp(computeModificationStamp(myInfo));
 							}
 						}
 					}

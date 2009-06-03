@@ -279,83 +279,81 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
          <metamodelType
-               id="org.unicase.ui.usecaseDiagram.Actor_1001"
-               name="%metatype.name.Actor_1001"
+               id="org.unicase.ui.usecaseDiagram.Actor_2001"
+               name="%metatype.name.Actor_2001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Actor"
                edithelper="org.unicase.ui.usecaseDiagram.edit.helpers.ActorEditHelper">
-            <param name="semanticHint" value="1001"/>
+            <param name="semanticHint" value="2001"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
          <metamodelType
-               id="org.unicase.ui.usecaseDiagram.UseCase_1002"
-               name="%metatype.name.UseCase_1002"
+               id="org.unicase.ui.usecaseDiagram.UseCase_2002"
+               name="%metatype.name.UseCase_2002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="UseCase"
                edithelper="org.unicase.ui.usecaseDiagram.edit.helpers.UseCaseEditHelper">
-            <param name="semanticHint" value="1002"/>
+            <param name="semanticHint" value="2002"/>
          </metamodelType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
          <specializationType
-               id="org.unicase.ui.usecaseDiagram.ActorParticipatedUseCases_3001"
-               name="%metatype.name.ActorParticipatedUseCases_3001"
+               id="org.unicase.ui.usecaseDiagram.ActorParticipatedUseCases_4001"
+               name="%metatype.name.ActorParticipatedUseCases_4001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3001"/>
+            <param name="semanticHint" value="4001"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
          <specializationType
-               id="org.unicase.ui.usecaseDiagram.ActorInitiatedUseCases_3002"
-               name="%metatype.name.ActorInitiatedUseCases_3002"
+               id="org.unicase.ui.usecaseDiagram.ActorInitiatedUseCases_4002"
+               name="%metatype.name.ActorInitiatedUseCases_4002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3002"/>
+            <param name="semanticHint" value="4002"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
          <specializationType
-               id="org.unicase.ui.usecaseDiagram.UseCaseIncludedUseCases_3003"
-               name="%metatype.name.UseCaseIncludedUseCases_3003"
+               id="org.unicase.ui.usecaseDiagram.UseCaseIncludedUseCases_4003"
+               name="%metatype.name.UseCaseIncludedUseCases_4003"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3003"/>
+            <param name="semanticHint" value="4003"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
          <specializationType
-               id="org.unicase.ui.usecaseDiagram.UseCaseExtendedUseCases_3004"
-               name="%metatype.name.UseCaseExtendedUseCases_3004"
+               id="org.unicase.ui.usecaseDiagram.UseCaseExtendedUseCases_4004"
+               name="%metatype.name.UseCaseExtendedUseCases_4004"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3004"/>
+            <param name="semanticHint" value="4004"/>
          </specializationType>
       </metamodel>
    </extension>
 
  
 	   <extension point="org.eclipse.core.expressions.propertyTesters">
-      <?gmfgen generated="true"?>
-       <propertyTester
-           id="org.unicase.ui.usecaseDiagram.URIEditorInputPropertyTester"
-           type="org.eclipse.emf.common.ui.URIEditorInput"
-           namespace="org.unicase.ui.usecaseDiagram"
-           properties="isURIEditorInput"
-           class="org.unicase.ui.usecaseDiagram.part.ModelUriEditorInputTester">
-       </propertyTester>
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
    </extension>
 
 	   <extension point="org.eclipse.core.expressions.propertyTesters">
-      <?gmfgen generated="true"?>
-       <propertyTester
-           id="org.unicase.ui.usecaseDiagram.DomainModelElementPropertyTester"
-           type="org.eclipse.emf.ecore.EObject"
-           namespace="org.unicase.ui.usecaseDiagram"
-           properties="isDomainModelElement"
-           class="org.unicase.ui.usecaseDiagram.part.ModelDomainModelElementTester">
-       </propertyTester>
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
    </extension>
 
 	   <extension point="org.eclipse.ui.navigator.viewer">
@@ -492,28 +490,28 @@
    </extension>
 
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-      <?gmfgen generated="false"?>
+      <?gmfgen generated="true"?>
       <clientContext id="UseCaseClientContext">
-         <enablement>
-            <and>
+              <enablement>
+              <and>
                <instanceof
                      value="org.unicase.model.ModelElement">
                </instanceof>
                <test
                      property="org.unicase.ui.usecaseDiagram.isDiagramType"
                      value="USECASE_DIAGRAM">
-               </test>
+               </test>  
             </and>
          </enablement>
       </clientContext> 
       <binding context="UseCaseClientContext">
          <elementType ref="org.unicase.ui.usecaseDiagram.MEDiagram_77"/>
-         <elementType ref="org.unicase.ui.usecaseDiagram.Actor_1001"/>
-         <elementType ref="org.unicase.ui.usecaseDiagram.UseCase_1002"/>
-         <elementType ref="org.unicase.ui.usecaseDiagram.ActorParticipatedUseCases_3001"/>
-         <elementType ref="org.unicase.ui.usecaseDiagram.ActorInitiatedUseCases_3002"/>
-         <elementType ref="org.unicase.ui.usecaseDiagram.UseCaseIncludedUseCases_3003"/>
-         <elementType ref="org.unicase.ui.usecaseDiagram.UseCaseExtendedUseCases_3004"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.Actor_2001"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.UseCase_2002"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.ActorParticipatedUseCases_4001"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.ActorInitiatedUseCases_4002"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.UseCaseIncludedUseCases_4003"/>
+         <elementType ref="org.unicase.ui.usecaseDiagram.UseCaseExtendedUseCases_4004"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
@@ -527,6 +525,37 @@
                      type="org.unicase.model.ModelElement">
                </propertyTester>
             </extension>
+<extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
+   </extension>
+<extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.unicase.ui.usecaseDiagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="org.unicase.ui.usecaseDiagram"
+           properties="isURIEditorInput"
+           class="org.unicase.ui.usecaseDiagram.part.ModelUriEditorInputTester">
+       </propertyTester>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.unicase.ui.usecaseDiagram.DomainModelElementPropertyTester"
+           type="org.eclipse.emf.ecore.EObject"
+           namespace="org.unicase.ui.usecaseDiagram"
+           properties="isDomainModelElement"
+           class="org.unicase.ui.usecaseDiagram.part.ModelDomainModelElementTester">
+       </propertyTester>
+   </extension>
+
+
+
 
 
 </plugin>

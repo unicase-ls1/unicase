@@ -32,7 +32,8 @@ public class ActorCreateCommand extends CreateElementCommand {
 	 */
 	@Override
 	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -53,7 +54,7 @@ public class ActorCreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject doDefaultElementCreation() {
 		Actor newElement = RequirementFactory.eINSTANCE.createActor();
-		newElement.setName("new Actor");
+
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
 

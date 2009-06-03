@@ -1,5 +1,5 @@
-/** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -44,7 +44,9 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.state.State;
+import org.unicase.model.state.StateEnd;
+import org.unicase.model.state.StateInitial;
+import org.unicase.model.state.StateNode;
 
 /**
  * @generated
@@ -65,6 +67,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
+	@Override
 	public Command getCommand(Request request) {
 		if (request instanceof ReconnectRequest) {
 			Object view = ((ReconnectRequest) request).getConnectionEditPart().getModel();
@@ -90,6 +93,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Object editHelperContext = completedRequest.getEditHelperContext();
@@ -258,6 +262,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @deprecated use getGEFWrapper() instead
 	 * @generated
 	 */
+	@Deprecated
 	protected final Command getMSLWrapper(ICommand cmd) {
 		// XXX deprecated: use getGEFWrapper() instead
 		return getGEFWrapper(cmd);
@@ -330,16 +335,16 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static class LinkConstraints {
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
-		public static boolean canCreateTransition_4001(MEDiagram container, State source, State target) {
-			return canExistTransition_4001(container, source, target);
+		public static boolean canCreateTransition_4001(MEDiagram container, StateNode source, StateNode target) {
+			return !(source instanceof StateEnd || target instanceof StateInitial);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistTransition_4001(MEDiagram container, State source, State target) {
+		public static boolean canExistTransition_4001(MEDiagram container, StateNode source, StateNode target) {
 
 			return true;
 		}

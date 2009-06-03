@@ -16,12 +16,14 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class UseCaseItemSemanticEditPolicy extends
-	org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class UseCaseItemSemanticEditPolicy
+		extends
+		org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		CompoundCommand cc = getDestroyEdgesCommand();
 		addDestroyShortcutsCommand(cc);
@@ -36,33 +38,36 @@ public class UseCaseItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-			: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001 == req
-			.getElementType()) {
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_4001 == req
+				.getElementType()) {
 			return null;
 		}
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002 == req
-			.getElementType()) {
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4002 == req
+				.getElementType()) {
 			return null;
 		}
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003 == req
-			.getElementType()) {
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_4003 == req
+				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseIncludedUseCasesCreateCommand(
-				req, req.getSource(), req.getTarget()));
+					req, req.getSource(), req.getTarget()));
 		}
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004 == req
-			.getElementType()) {
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_4004 == req
+				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseExtendedUseCasesCreateCommand(
-				req, req.getSource(), req.getTarget()));
+					req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -70,26 +75,27 @@ public class UseCaseItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_3001 == req
-			.getElementType()) {
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_4001 == req
+				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorParticipatedUseCasesCreateCommand(
-				req, req.getSource(), req.getTarget()));
+					req, req.getSource(), req.getTarget()));
 		}
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_3002 == req
-			.getElementType()) {
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4002 == req
+				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorInitiatedUseCasesCreateCommand(
-				req, req.getSource(), req.getTarget()));
+					req, req.getSource(), req.getTarget()));
 		}
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_3003 == req
-			.getElementType()) {
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_4003 == req
+				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseIncludedUseCasesCreateCommand(
-				req, req.getSource(), req.getTarget()));
+					req, req.getSource(), req.getTarget()));
 		}
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_3004 == req
-			.getElementType()) {
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_4004 == req
+				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseExtendedUseCasesCreateCommand(
-				req, req.getSource(), req.getTarget()));
+					req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -100,20 +106,22 @@ public class UseCaseItemSemanticEditPolicy extends
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+	@Override
+	protected Command getReorientReferenceRelationshipCommand(
+			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case org.unicase.ui.usecaseDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorParticipatedUseCasesReorientCommand(
-				req));
+					req));
 		case org.unicase.ui.usecaseDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorInitiatedUseCasesReorientCommand(
-				req));
+					req));
 		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseIncludedUseCasesReorientCommand(
-				req));
+					req));
 		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseExtendedUseCasesReorientCommand(
-				req));
+					req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

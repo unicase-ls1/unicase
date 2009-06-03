@@ -32,7 +32,8 @@ public class UseCaseExtendedUseCasesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public UseCaseExtendedUseCasesCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public UseCaseExtendedUseCasesCreateCommand(
+			CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -41,6 +42,7 @@ public class UseCaseExtendedUseCasesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
@@ -56,15 +58,18 @@ public class UseCaseExtendedUseCasesCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canCreateUseCaseExtendedUseCases_3004(getSource(), getTarget());
+				.canCreateUseCaseExtendedUseCases_4004(getSource(), getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	@Override
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
 			getSource().getExtendedUseCases().add(getTarget());

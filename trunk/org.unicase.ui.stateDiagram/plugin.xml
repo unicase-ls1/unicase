@@ -295,6 +295,26 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/state">
          <metamodelType
+               id="org.unicase.ui.stateDiagram.StateInitial_2002"
+               name="%metatype.name.StateInitial_2002"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="StateInitial"
+               edithelper="org.unicase.ui.stateDiagram.edit.helpers.StateInitialEditHelper">
+            <param name="semanticHint" value="2002"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/state">
+         <metamodelType
+               id="org.unicase.ui.stateDiagram.StateEnd_2003"
+               name="%metatype.name.StateEnd_2003"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+               eclass="StateEnd"
+               edithelper="org.unicase.ui.stateDiagram.edit.helpers.StateEndEditHelper">
+            <param name="semanticHint" value="2003"/>
+         </metamodelType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/state">
+         <metamodelType
                id="org.unicase.ui.stateDiagram.Transition_4001"
                name="%metatype.name.Transition_4001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
@@ -306,25 +326,23 @@
    </extension>
 
 	   <extension point="org.eclipse.core.expressions.propertyTesters">
-      <?gmfgen generated="true"?>
-       <propertyTester
-           id="org.unicase.ui.stateDiagram.URIEditorInputPropertyTester"
-           type="org.eclipse.emf.common.ui.URIEditorInput"
-           namespace="org.unicase.ui.stateDiagram"
-           properties="isURIEditorInput"
-           class="org.unicase.ui.stateDiagram.part.ModelUriEditorInputTester">
-       </propertyTester>
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
    </extension>
 
 	   <extension point="org.eclipse.core.expressions.propertyTesters">
-      <?gmfgen generated="true"?>
-       <propertyTester
-           id="org.unicase.ui.stateDiagram.DomainModelElementPropertyTester"
-           type="org.eclipse.emf.ecore.EObject"
-           namespace="org.unicase.ui.stateDiagram"
-           properties="isDomainModelElement"
-           class="org.unicase.ui.stateDiagram.part.ModelDomainModelElementTester">
-       </propertyTester>
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
    </extension>
 
 	   <extension point="org.eclipse.ui.navigator.viewer">
@@ -487,5 +505,15 @@
             properties="isDiagramType"
             type="org.unicase.model.ModelElement">
       </propertyTester>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.unicase.ui.stateDiagram.DomainModelElementPropertyTester"
+           type="org.eclipse.emf.ecore.EObject"
+           namespace="org.unicase.ui.stateDiagram"
+           properties="isDomainModelElement"
+           class="org.unicase.ui.stateDiagram.part.ModelDomainModelElementTester">
+       </propertyTester>
    </extension>
+
 </plugin>

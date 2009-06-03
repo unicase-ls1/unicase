@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -14,6 +14,7 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.state.State;
+import org.unicase.model.state.StateNode;
 import org.unicase.model.state.Transition;
 
 /**
@@ -66,40 +67,42 @@ public class TransitionReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof State && newEnd instanceof State)) {
+		if (!(oldEnd instanceof StateNode && newEnd instanceof StateNode)) {
 			return false;
 		}
-		State target = getLink().getTarget();
+		StateNode target = getLink().getTarget();
 		if (!(getLink().eContainer() instanceof MEDiagram)) {
 			return false;
 		}
 		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.ui.stateDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canExistTransition_4001(container, getNewSource(), target);
+				.canExistTransition_4001(container, getNewSource(), target);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof State && newEnd instanceof State)) {
+		if (!(oldEnd instanceof StateNode && newEnd instanceof StateNode)) {
 			return false;
 		}
-		State source = getLink().getSource();
+		StateNode source = getLink().getSource();
 		if (!(getLink().eContainer() instanceof MEDiagram)) {
 			return false;
 		}
 		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.ui.stateDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canExistTransition_4001(container, source, getNewTarget());
+				.canExistTransition_4001(container, source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -136,28 +139,28 @@ public class TransitionReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected State getOldSource() {
-		return (State) oldEnd;
+	protected StateNode getOldSource() {
+		return (StateNode) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected State getNewSource() {
-		return (State) newEnd;
+	protected StateNode getNewSource() {
+		return (StateNode) newEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected State getOldTarget() {
-		return (State) oldEnd;
+	protected StateNode getOldTarget() {
+		return (StateNode) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected State getNewTarget() {
-		return (State) newEnd;
+	protected StateNode getNewTarget() {
+		return (StateNode) newEnd;
 	}
 }

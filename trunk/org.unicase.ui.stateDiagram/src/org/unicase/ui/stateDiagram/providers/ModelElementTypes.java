@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -61,6 +61,16 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType StateInitial_2002 = getElementType("org.unicase.ui.stateDiagram.StateInitial_2002"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType StateEnd_2003 = getElementType("org.unicase.ui.stateDiagram.StateEnd_2003"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Transition_4001 = getElementType("org.unicase.ui.stateDiagram.Transition_4001"); //$NON-NLS-1$
 
 	/**
@@ -83,22 +93,26 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(
+			ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass
+					&& !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin.getInstance().getItemImageDescriptor(
-					eClass.getEPackage().getEFactoryInstance().create(eClass));
+				return org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().getItemImageDescriptor(
+								eClass.getEPackage().getEFactoryInstance()
+										.create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -174,7 +188,13 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(State_2001, StatePackage.eINSTANCE.getState());
 
-			elements.put(Transition_4001, StatePackage.eINSTANCE.getTransition());
+			elements.put(StateInitial_2002, StatePackage.eINSTANCE
+					.getStateInitial());
+
+			elements.put(StateEnd_2003, StatePackage.eINSTANCE.getStateEnd());
+
+			elements.put(Transition_4001, StatePackage.eINSTANCE
+					.getTransition());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -194,6 +214,8 @@ public class ModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES = new HashSet();
 			KNOWN_ELEMENT_TYPES.add(MEDiagram_55);
 			KNOWN_ELEMENT_TYPES.add(State_2001);
+			KNOWN_ELEMENT_TYPES.add(StateInitial_2002);
+			KNOWN_ELEMENT_TYPES.add(StateEnd_2003);
 			KNOWN_ELEMENT_TYPES.add(Transition_4001);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);

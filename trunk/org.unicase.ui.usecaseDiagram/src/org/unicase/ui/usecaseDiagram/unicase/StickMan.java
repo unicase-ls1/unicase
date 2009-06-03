@@ -39,6 +39,7 @@ public class StickMan extends ShadowShape {
 	 * @param graphics The Graphics object
 	 * @param bounds The bounding rectangle
 	 */
+	@Override
 	protected void outlineShape(Graphics graphics, Rectangle bounds) {
 		PointList pl = setupPoints(bounds);
 		graphics.drawPolygon(pl);
@@ -50,6 +51,7 @@ public class StickMan extends ShadowShape {
 	 * @param graphics The Graphics object
 	 * @param bounds The bounding rectangle
 	 */
+	@Override
 	protected void fillShape(Graphics graphics, Rectangle bounds) {
 		PointList pl = setupPoints(bounds);
 		graphics.fillPolygon(pl);

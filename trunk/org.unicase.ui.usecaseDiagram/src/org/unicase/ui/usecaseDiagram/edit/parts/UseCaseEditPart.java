@@ -26,6 +26,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.ui.common.diagram.figures.CenterLayout;
+import org.unicase.ui.common.diagram.figures.Label;
 
 /**
  * @generated
@@ -35,7 +37,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1002;
+	public static final int VISUAL_ID = 2002;
 
 	/**
 	 * @generated
@@ -60,11 +62,11 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.ui.usecaseDiagram.edit.policies.UseCaseItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.ui.usecaseDiagram.edit.policies.UseCaseItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
-		// editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -74,21 +76,19 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -116,8 +116,8 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart) {
-			((org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart) childEditPart).setLabel(getPrimaryShape()
-				.getUseCaseFigure_name());
+			((org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getUseCaseFigure_name());
 			return true;
 		}
 		return false;
@@ -166,7 +166,8 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(140), getMapMode().DPtoLP(60));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
+				.DPtoLP(140), getMapMode().DPtoLP(60));
 		return result;
 	}
 
@@ -219,7 +220,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
-			.getType(org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID));
+				.getType(org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -230,14 +231,14 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private org.unicase.ui.common.diagram.figures.Label fUseCaseFigure_name;
+		private Label fUseCaseFigure_name;
 
 		/**
 		 * @generated
 		 */
 		public UseCaseFigure() {
 
-			org.unicase.ui.common.diagram.figures.CenterLayout layoutThis = new org.unicase.ui.common.diagram.figures.CenterLayout();
+			CenterLayout layoutThis = new CenterLayout();
 
 			this.setLayoutManager(layoutThis);
 
@@ -250,7 +251,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		 */
 		private void createContents() {
 
-			fUseCaseFigure_name = new org.unicase.ui.common.diagram.figures.Label();
+			fUseCaseFigure_name = new Label();
 
 			fUseCaseFigure_name.setFont(FUSECASEFIGURE_NAME_FONT);
 
@@ -281,7 +282,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public org.unicase.ui.common.diagram.figures.Label getUseCaseFigure_name() {
+		public Label getUseCaseFigure_name() {
 			return fUseCaseFigure_name;
 		}
 
@@ -290,6 +291,7 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FUSECASEFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 12, SWT.BOLD);
+	static final Font FUSECASEFIGURE_NAME_FONT = new Font(Display.getCurrent(),
+			"Arial", 12, SWT.BOLD);
 
 }

@@ -53,30 +53,36 @@ public class ModelElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType MEDiagram_77 = getElementType("org.unicase.ui.usecaseDiagram.MEDiagram_77"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType Actor_1001 = getElementType("org.unicase.ui.usecaseDiagram.Actor_1001"); //$NON-NLS-1$
+	public static final IElementType Actor_2001 = getElementType("org.unicase.ui.usecaseDiagram.Actor_2001"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType UseCase_1002 = getElementType("org.unicase.ui.usecaseDiagram.UseCase_1002"); //$NON-NLS-1$
+	public static final IElementType UseCase_2002 = getElementType("org.unicase.ui.usecaseDiagram.UseCase_2002"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActorParticipatedUseCases_3001 = getElementType("org.unicase.ui.usecaseDiagram.ActorParticipatedUseCases_3001"); //$NON-NLS-1$
+	public static final IElementType ActorParticipatedUseCases_4001 = getElementType("org.unicase.ui.usecaseDiagram.ActorParticipatedUseCases_4001"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType ActorInitiatedUseCases_3002 = getElementType("org.unicase.ui.usecaseDiagram.ActorInitiatedUseCases_3002"); //$NON-NLS-1$
+	public static final IElementType ActorInitiatedUseCases_4002 = getElementType("org.unicase.ui.usecaseDiagram.ActorInitiatedUseCases_4002"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType UseCaseIncludedUseCases_3003 = getElementType("org.unicase.ui.usecaseDiagram.UseCaseIncludedUseCases_3003"); //$NON-NLS-1$
+	public static final IElementType UseCaseIncludedUseCases_4003 = getElementType("org.unicase.ui.usecaseDiagram.UseCaseIncludedUseCases_4003"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType UseCaseExtendedUseCases_3004 = getElementType("org.unicase.ui.usecaseDiagram.UseCaseExtendedUseCases_3004"); //$NON-NLS-1$
+	public static final IElementType UseCaseExtendedUseCases_4004 = getElementType("org.unicase.ui.usecaseDiagram.UseCaseExtendedUseCases_4004"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -98,22 +104,26 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(
+			ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass
+					&& !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.getInstance()
-					.getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
+				return org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().getItemImageDescriptor(
+								eClass.getEPackage().getEFactoryInstance()
+										.create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -187,17 +197,23 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(MEDiagram_77, DiagramPackage.eINSTANCE.getMEDiagram());
 
-			elements.put(Actor_1001, RequirementPackage.eINSTANCE.getActor());
+			elements.put(Actor_2001, RequirementPackage.eINSTANCE.getActor());
 
-			elements.put(UseCase_1002, RequirementPackage.eINSTANCE.getUseCase());
+			elements.put(UseCase_2002, RequirementPackage.eINSTANCE
+					.getUseCase());
 
-			elements.put(ActorParticipatedUseCases_3001, RequirementPackage.eINSTANCE.getActor_ParticipatedUseCases());
+			elements.put(ActorParticipatedUseCases_4001,
+					RequirementPackage.eINSTANCE
+							.getActor_ParticipatedUseCases());
 
-			elements.put(ActorInitiatedUseCases_3002, RequirementPackage.eINSTANCE.getActor_InitiatedUseCases());
+			elements.put(ActorInitiatedUseCases_4002,
+					RequirementPackage.eINSTANCE.getActor_InitiatedUseCases());
 
-			elements.put(UseCaseIncludedUseCases_3003, RequirementPackage.eINSTANCE.getUseCase_IncludedUseCases());
+			elements.put(UseCaseIncludedUseCases_4003,
+					RequirementPackage.eINSTANCE.getUseCase_IncludedUseCases());
 
-			elements.put(UseCaseExtendedUseCases_3004, RequirementPackage.eINSTANCE.getUseCase_ExtendedUseCases());
+			elements.put(UseCaseExtendedUseCases_4004,
+					RequirementPackage.eINSTANCE.getUseCase_ExtendedUseCases());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -216,12 +232,12 @@ public class ModelElementTypes extends ElementInitializers {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
 			KNOWN_ELEMENT_TYPES.add(MEDiagram_77);
-			KNOWN_ELEMENT_TYPES.add(Actor_1001);
-			KNOWN_ELEMENT_TYPES.add(UseCase_1002);
-			KNOWN_ELEMENT_TYPES.add(ActorParticipatedUseCases_3001);
-			KNOWN_ELEMENT_TYPES.add(ActorInitiatedUseCases_3002);
-			KNOWN_ELEMENT_TYPES.add(UseCaseIncludedUseCases_3003);
-			KNOWN_ELEMENT_TYPES.add(UseCaseExtendedUseCases_3004);
+			KNOWN_ELEMENT_TYPES.add(Actor_2001);
+			KNOWN_ELEMENT_TYPES.add(UseCase_2002);
+			KNOWN_ELEMENT_TYPES.add(ActorParticipatedUseCases_4001);
+			KNOWN_ELEMENT_TYPES.add(ActorInitiatedUseCases_4002);
+			KNOWN_ELEMENT_TYPES.add(UseCaseIncludedUseCases_4003);
+			KNOWN_ELEMENT_TYPES.add(UseCaseExtendedUseCases_4004);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}

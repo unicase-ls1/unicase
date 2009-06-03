@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -32,13 +32,15 @@ public class ModelVisualIDRegistry {
 	 */
 	public static int getVisualID(View view) {
 		if (view instanceof Diagram) {
-			if (org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID.equals(view.getType())) {
+			if (org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
+					.equals(view.getType())) {
 				return org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID;
 			} else {
 				return -1;
 			}
 		}
-		return org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry.getVisualID(view.getType());
+		return org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
+				.getVisualID(view.getType());
 	}
 
 	/**
@@ -63,9 +65,12 @@ public class ModelVisualIDRegistry {
 		try {
 			return Integer.parseInt(type);
 		} catch (NumberFormatException e) {
-			if (Boolean.TRUE.toString().equalsIgnoreCase(Platform.getDebugOption(DEBUG_KEY))) {
-				org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
-					"Unable to parse view type as a visualID number: " + type);
+			if (Boolean.TRUE.toString().equalsIgnoreCase(
+					Platform.getDebugOption(DEBUG_KEY))) {
+				org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().logError(
+								"Unable to parse view type as a visualID number: "
+										+ type);
 			}
 		}
 		return -1;
@@ -85,8 +90,9 @@ public class ModelVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (DiagramPackage.eINSTANCE.getMEDiagram().isSuperTypeOf(domainElement.eClass())
-			&& isDiagram((MEDiagram) domainElement)) {
+		if (DiagramPackage.eINSTANCE.getMEDiagram().isSuperTypeOf(
+				domainElement.eClass())
+				&& isDiagram((MEDiagram) domainElement)) {
 			return org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID;
 		}
 		return -1;
@@ -99,13 +105,17 @@ public class ModelVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		String containerModelID = org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry.getModelID(containerView);
-		if (!org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID.equals(containerModelID)) {
+		String containerModelID = org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
+				.getModelID(containerView);
+		if (!org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
+				.equals(containerModelID)) {
 			return -1;
 		}
 		int containerVisualID;
-		if (org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry.getVisualID(containerView);
+		if (org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
+				.equals(containerModelID)) {
+			containerVisualID = org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
+					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID;
@@ -115,8 +125,17 @@ public class ModelVisualIDRegistry {
 		}
 		switch (containerVisualID) {
 		case org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-			if (StatePackage.eINSTANCE.getState().isSuperTypeOf(domainElement.eClass())) {
+			if (StatePackage.eINSTANCE.getState().isSuperTypeOf(
+					domainElement.eClass())) {
 				return org.unicase.ui.stateDiagram.edit.parts.StateEditPart.VISUAL_ID;
+			}
+			if (StatePackage.eINSTANCE.getStateInitial().isSuperTypeOf(
+					domainElement.eClass())) {
+				return org.unicase.ui.stateDiagram.edit.parts.StateInitialEditPart.VISUAL_ID;
+			}
+			if (StatePackage.eINSTANCE.getStateEnd().isSuperTypeOf(
+					domainElement.eClass())) {
+				return org.unicase.ui.stateDiagram.edit.parts.StateEndEditPart.VISUAL_ID;
 			}
 			break;
 		}
@@ -127,13 +146,17 @@ public class ModelVisualIDRegistry {
 	 * @generated
 	 */
 	public static boolean canCreateNode(View containerView, int nodeVisualID) {
-		String containerModelID = org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry.getModelID(containerView);
-		if (!org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID.equals(containerModelID)) {
+		String containerModelID = org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
+				.getModelID(containerView);
+		if (!org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
+				.equals(containerModelID)) {
 			return false;
 		}
 		int containerVisualID;
-		if (org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID.equals(containerModelID)) {
-			containerVisualID = org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry.getVisualID(containerView);
+		if (org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
+				.equals(containerModelID)) {
+			containerVisualID = org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
+					.getVisualID(containerView);
 		} else {
 			if (containerView instanceof Diagram) {
 				containerVisualID = org.unicase.ui.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID;
@@ -160,6 +183,12 @@ public class ModelVisualIDRegistry {
 			if (org.unicase.ui.stateDiagram.edit.parts.StateEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if (org.unicase.ui.stateDiagram.edit.parts.StateInitialEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if (org.unicase.ui.stateDiagram.edit.parts.StateEndEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case org.unicase.ui.stateDiagram.edit.parts.TransitionEditPart.VISUAL_ID:
 			if (org.unicase.ui.stateDiagram.edit.parts.TransitionNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -177,7 +206,8 @@ public class ModelVisualIDRegistry {
 		if (domainElement == null) {
 			return -1;
 		}
-		if (StatePackage.eINSTANCE.getTransition().isSuperTypeOf(domainElement.eClass())) {
+		if (StatePackage.eINSTANCE.getTransition().isSuperTypeOf(
+				domainElement.eClass())) {
 			return org.unicase.ui.stateDiagram.edit.parts.TransitionEditPart.VISUAL_ID;
 		}
 		return -1;

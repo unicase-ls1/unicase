@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -22,8 +22,9 @@ public class ModelSheetLabelProvider extends DecoratingLabelProvider {
 	 * @generated
 	 */
 	public ModelSheetLabelProvider() {
-		super(new AdapterFactoryLabelProvider(org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin.getInstance()
-			.getItemProvidersAdapterFactory()), null);
+		super(new AdapterFactoryLabelProvider(
+				org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().getItemProvidersAdapterFactory()), null);
 	}
 
 	/**
@@ -32,7 +33,8 @@ public class ModelSheetLabelProvider extends DecoratingLabelProvider {
 	public String getText(Object element) {
 		Object selected = unwrap(element);
 		if (selected instanceof org.unicase.ui.stateDiagram.navigator.ModelNavigatorGroup) {
-			return ((org.unicase.ui.stateDiagram.navigator.ModelNavigatorGroup) selected).getGroupName();
+			return ((org.unicase.ui.stateDiagram.navigator.ModelNavigatorGroup) selected)
+					.getGroupName();
 		}
 		return super.getText(selected);
 	}

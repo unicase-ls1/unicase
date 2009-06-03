@@ -20,12 +20,13 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class UseCaseExtendedUseCasesEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class UseCaseExtendedUseCasesEditPart extends ConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3004;
+	public static final int VISUAL_ID = 4004;
 
 	/**
 	 * @generated
@@ -37,10 +38,12 @@ public class UseCaseExtendedUseCasesEditPart extends ConnectionNodeEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.ui.usecaseDiagram.edit.policies.UseCaseExtendedUseCasesItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.ui.usecaseDiagram.edit.policies.UseCaseExtendedUseCasesItemSemanticEditPolicy());
 	}
 
 	/**
@@ -53,6 +56,7 @@ public class UseCaseExtendedUseCasesEditPart extends ConnectionNodeEditPart impl
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -67,6 +71,7 @@ public class UseCaseExtendedUseCasesEditPart extends ConnectionNodeEditPart impl
 	 * @generated
 	 */
 
+	@Override
 	protected Connection createConnectionFigure() {
 		return new DashedLineOpenArrow();
 	}

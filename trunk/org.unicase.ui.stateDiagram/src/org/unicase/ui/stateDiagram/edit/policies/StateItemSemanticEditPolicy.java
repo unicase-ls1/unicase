@@ -17,8 +17,9 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class StateItemSemanticEditPolicy extends
-	org.unicase.ui.stateDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class StateItemSemanticEditPolicy
+		extends
+		org.unicase.ui.stateDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -41,8 +42,9 @@ public class StateItemSemanticEditPolicy extends
 	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-			: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
@@ -50,10 +52,13 @@ public class StateItemSemanticEditPolicy extends
 	 * @param req The {@link CreateRelationshipRequest} for the command
 	 * @return A Command in response to the command
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (org.unicase.ui.stateDiagram.providers.ModelElementTypes.Transition_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.stateDiagram.edit.commands.TransitionCreateCommand(req, req
-				.getSource(), req.getTarget(), (EObject) getHost().getModel()));
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (org.unicase.ui.stateDiagram.providers.ModelElementTypes.Transition_4001 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.stateDiagram.edit.commands.TransitionCreateCommand(
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
 		}
 		return null;
 	}
@@ -61,10 +66,13 @@ public class StateItemSemanticEditPolicy extends
 	/**
 	 * @generated NOT
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (org.unicase.ui.stateDiagram.providers.ModelElementTypes.Transition_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.stateDiagram.edit.commands.TransitionCreateCommand(req, req
-				.getSource(), req.getTarget(), (EObject) getHost().getModel()));
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (org.unicase.ui.stateDiagram.providers.ModelElementTypes.Transition_4001 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.stateDiagram.edit.commands.TransitionCreateCommand(
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
 		}
 		return null;
 	}
@@ -76,10 +84,12 @@ public class StateItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case org.unicase.ui.stateDiagram.edit.parts.TransitionEditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.stateDiagram.edit.commands.TransitionReorientCommand(req));
+			return getGEFWrapper(new org.unicase.ui.stateDiagram.edit.commands.TransitionReorientCommand(
+					req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

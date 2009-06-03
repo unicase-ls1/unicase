@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -16,18 +16,40 @@ import org.unicase.model.diagram.DiagramPackage;
 /**
  * @generated
  */
-public class MEDiagramItemSemanticEditPolicy extends
-	org.unicase.ui.stateDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class MEDiagramItemSemanticEditPolicy
+		extends
+		org.unicase.ui.stateDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (org.unicase.ui.stateDiagram.providers.ModelElementTypes.State_2001 == req.getElementType()) {
+		if (org.unicase.ui.stateDiagram.providers.ModelElementTypes.State_2001 == req
+				.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
+				req.setContainmentFeature(DiagramPackage.eINSTANCE
+						.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.ui.stateDiagram.edit.commands.StateCreateCommand(req));
+			return getGEFWrapper(new org.unicase.ui.stateDiagram.edit.commands.StateCreateCommand(
+					req));
+		}
+		if (org.unicase.ui.stateDiagram.providers.ModelElementTypes.StateInitial_2002 == req
+				.getElementType()) {
+			if (req.getContainmentFeature() == null) {
+				req.setContainmentFeature(DiagramPackage.eINSTANCE
+						.getMEDiagram_NewElements());
+			}
+			return getGEFWrapper(new org.unicase.ui.stateDiagram.edit.commands.StateInitialCreateCommand(
+					req));
+		}
+		if (org.unicase.ui.stateDiagram.providers.ModelElementTypes.StateEnd_2003 == req
+				.getElementType()) {
+			if (req.getContainmentFeature() == null) {
+				req.setContainmentFeature(DiagramPackage.eINSTANCE
+						.getMEDiagram_NewElements());
+			}
+			return getGEFWrapper(new org.unicase.ui.stateDiagram.edit.commands.StateEndCreateCommand(
+					req));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -36,20 +58,26 @@ public class MEDiagramItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+				.getEditingDomain();
 		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req));
 	}
 
 	/**
 	 * @generated
 	 */
-	private static class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
+	private static class DuplicateAnythingCommand extends
+			DuplicateEObjectsCommand {
 
 		/**
 		 * @generated
 		 */
-		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req) {
-			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
+		public DuplicateAnythingCommand(
+				TransactionalEditingDomain editingDomain,
+				DuplicateElementsRequest req) {
+			super(editingDomain, req.getLabel(), req
+					.getElementsToBeDuplicated(), req
+					.getAllDuplicatedElementsMap());
 		}
 
 	}

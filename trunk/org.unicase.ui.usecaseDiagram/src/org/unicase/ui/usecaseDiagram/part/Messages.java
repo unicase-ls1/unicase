@@ -293,57 +293,57 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Actor_1001_outgoinglinks;
+	public static String NavigatorGroupName_Actor_2001_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCase_1002_incominglinks;
+	public static String NavigatorGroupName_UseCase_2002_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCase_1002_outgoinglinks;
+	public static String NavigatorGroupName_UseCase_2002_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ActorParticipatedUseCases_3001_target;
+	public static String NavigatorGroupName_ActorParticipatedUseCases_4001_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ActorParticipatedUseCases_3001_source;
+	public static String NavigatorGroupName_ActorParticipatedUseCases_4001_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ActorInitiatedUseCases_3002_target;
+	public static String NavigatorGroupName_ActorInitiatedUseCases_4002_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ActorInitiatedUseCases_3002_source;
+	public static String NavigatorGroupName_ActorInitiatedUseCases_4002_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCaseIncludedUseCases_3003_target;
+	public static String NavigatorGroupName_UseCaseIncludedUseCases_4003_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCaseIncludedUseCases_3003_source;
+	public static String NavigatorGroupName_UseCaseIncludedUseCases_4003_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCaseExtendedUseCases_3004_target;
+	public static String NavigatorGroupName_UseCaseExtendedUseCases_4004_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_UseCaseExtendedUseCases_3004_source;
+	public static String NavigatorGroupName_UseCaseExtendedUseCases_4004_source;
 
 	/**
 	 * @generated

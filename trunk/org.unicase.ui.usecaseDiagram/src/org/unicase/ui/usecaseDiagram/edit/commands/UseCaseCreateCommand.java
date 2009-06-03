@@ -32,7 +32,8 @@ public class UseCaseCreateCommand extends CreateElementCommand {
 	 */
 	@Override
 	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -53,7 +54,7 @@ public class UseCaseCreateCommand extends CreateElementCommand {
 	@Override
 	protected EObject doDefaultElementCreation() {
 		UseCase newElement = RequirementFactory.eINSTANCE.createUseCase();
-		newElement.setName("new UseCase");
+
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
 

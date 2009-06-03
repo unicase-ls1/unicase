@@ -10,11 +10,13 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramActionBarContributor;
 /**
  * @generated
  */
-public class ModelDiagramActionBarContributor extends DiagramActionBarContributor {
+public class ModelDiagramActionBarContributor extends
+		DiagramActionBarContributor {
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Class getEditorClass() {
 		return org.unicase.ui.usecaseDiagram.part.ModelDiagramEditor.class;
 	}
@@ -22,6 +24,7 @@ public class ModelDiagramActionBarContributor extends DiagramActionBarContributo
 	/**
 	 * @generated
 	 */
+	@Override
 	protected String getEditorId() {
 		return org.unicase.ui.usecaseDiagram.part.ModelDiagramEditor.ID;
 	}

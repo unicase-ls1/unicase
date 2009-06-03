@@ -16,24 +16,32 @@ import org.unicase.model.diagram.DiagramPackage;
 /**
  * @generated
  */
-public class MEDiagramItemSemanticEditPolicy extends
-	org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class MEDiagramItemSemanticEditPolicy
+		extends
+		org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_1001 == req.getElementType()) {
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.Actor_2001 == req
+				.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
+				req.setContainmentFeature(DiagramPackage.eINSTANCE
+						.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorCreateCommand(req));
+			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorCreateCommand(
+					req));
 		}
-		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_1002 == req.getElementType()) {
+		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_2002 == req
+				.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
+				req.setContainmentFeature(DiagramPackage.eINSTANCE
+						.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseCreateCommand(req));
+			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseCreateCommand(
+					req));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -41,21 +49,28 @@ public class MEDiagramItemSemanticEditPolicy extends
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
+				.getEditingDomain();
 		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req));
 	}
 
 	/**
 	 * @generated
 	 */
-	private static class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
+	private static class DuplicateAnythingCommand extends
+			DuplicateEObjectsCommand {
 
 		/**
 		 * @generated
 		 */
-		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req) {
-			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
+		public DuplicateAnythingCommand(
+				TransactionalEditingDomain editingDomain,
+				DuplicateElementsRequest req) {
+			super(editingDomain, req.getLabel(), req
+					.getElementsToBeDuplicated(), req
+					.getAllDuplicatedElementsMap());
 		}
 
 	}

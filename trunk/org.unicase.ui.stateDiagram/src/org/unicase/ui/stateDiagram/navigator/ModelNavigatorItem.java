@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -14,7 +14,8 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ModelNavigatorItem extends org.unicase.ui.stateDiagram.navigator.ModelAbstractNavigatorItem {
+public class ModelNavigatorItem extends
+		org.unicase.ui.stateDiagram.navigator.ModelAbstractNavigatorItem {
 
 	/**
 	 * @generated
@@ -25,8 +26,9 @@ public class ModelNavigatorItem extends org.unicase.ui.stateDiagram.navigator.Mo
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if (adaptableObject instanceof org.unicase.ui.stateDiagram.navigator.ModelNavigatorItem
-					&& (adapterType == View.class || adapterType == EObject.class)) {
-					return ((org.unicase.ui.stateDiagram.navigator.ModelNavigatorItem) adaptableObject).getView();
+						&& (adapterType == View.class || adapterType == EObject.class)) {
+					return ((org.unicase.ui.stateDiagram.navigator.ModelNavigatorItem) adaptableObject)
+							.getView();
 				}
 				return null;
 			}
@@ -75,8 +77,12 @@ public class ModelNavigatorItem extends org.unicase.ui.stateDiagram.navigator.Mo
 	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof org.unicase.ui.stateDiagram.navigator.ModelNavigatorItem) {
-			return EcoreUtil.getURI(getView()).equals(
-				EcoreUtil.getURI(((org.unicase.ui.stateDiagram.navigator.ModelNavigatorItem) obj).getView()));
+			return EcoreUtil
+					.getURI(getView())
+					.equals(
+							EcoreUtil
+									.getURI(((org.unicase.ui.stateDiagram.navigator.ModelNavigatorItem) obj)
+											.getView()));
 		}
 		return super.equals(obj);
 	}

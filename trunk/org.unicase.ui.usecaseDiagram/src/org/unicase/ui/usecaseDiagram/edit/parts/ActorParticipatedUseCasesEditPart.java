@@ -17,12 +17,13 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ActorParticipatedUseCasesEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ActorParticipatedUseCasesEditPart extends ConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3001;
+	public static final int VISUAL_ID = 4001;
 
 	/**
 	 * @generated
@@ -34,10 +35,12 @@ public class ActorParticipatedUseCasesEditPart extends ConnectionNodeEditPart im
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.ui.usecaseDiagram.edit.policies.ActorParticipatedUseCasesItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.ui.usecaseDiagram.edit.policies.ActorParticipatedUseCasesItemSemanticEditPolicy());
 	}
 
 	/**
@@ -50,6 +53,7 @@ public class ActorParticipatedUseCasesEditPart extends ConnectionNodeEditPart im
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -64,6 +68,7 @@ public class ActorParticipatedUseCasesEditPart extends ConnectionNodeEditPart im
 	 * @generated
 	 */
 
+	@Override
 	protected Connection createConnectionFigure() {
 		return new ParticipateFigure();
 	}

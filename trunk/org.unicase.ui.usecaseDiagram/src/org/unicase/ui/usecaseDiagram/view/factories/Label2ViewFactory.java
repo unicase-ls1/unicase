@@ -25,6 +25,7 @@ public class Label2ViewFactory extends AbstractLabelViewFactory {
 	/**
 	 * @generated
 	 */
+	@Override
 	public View createView(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
 		boolean persisted, PreferencesHint preferencesHint) {
 		Node view = (Node) super.createView(semanticAdapter, containerView, semanticHint, index, persisted,
@@ -39,6 +40,7 @@ public class Label2ViewFactory extends AbstractLabelViewFactory {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List createStyles(View view) {
 		List styles = new ArrayList();
 		return styles;

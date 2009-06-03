@@ -43,7 +43,8 @@ public class UseCaseExtendedUseCasesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public UseCaseExtendedUseCasesReorientCommand(ReorientReferenceRelationshipRequest request) {
+	public UseCaseExtendedUseCasesReorientCommand(
+			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -54,6 +55,7 @@ public class UseCaseExtendedUseCasesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean canExecute() {
 		if (false == referenceOwner instanceof UseCase) {
 			return false;
@@ -75,7 +77,8 @@ public class UseCaseExtendedUseCasesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canExistUseCaseExtendedUseCases_3004(getNewSource(), getOldTarget());
+				.canExistUseCaseExtendedUseCases_4004(getNewSource(),
+						getOldTarget());
 	}
 
 	/**
@@ -86,15 +89,19 @@ public class UseCaseExtendedUseCasesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canExistUseCaseExtendedUseCases_3004(getOldSource(), getNewTarget());
+				.canExistUseCaseExtendedUseCases_4004(getOldSource(),
+						getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	@Override
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

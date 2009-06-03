@@ -19,6 +19,7 @@ public class UseCaseNameViewFactory extends BasicNodeViewFactory {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List createStyles(View view) {
 		List styles = new ArrayList();
 		return styles;

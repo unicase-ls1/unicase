@@ -26,7 +26,8 @@ public class ModelCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
-	public ModelCreationWizardPage(String pageName, IStructuredSelection selection, String fileExtension) {
+	public ModelCreationWizardPage(String pageName,
+			IStructuredSelection selection, String fileExtension) {
 		super(pageName, selection);
 		this.fileExtension = fileExtension;
 	}
@@ -65,24 +66,30 @@ public class ModelCreationWizardPage extends WizardNewFileCreationPage {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorUtil.getUniqueFileName(getContainerFullPath(),
-			getFileName(), getExtension()));
+		setFileName(org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorUtil
+				.getUniqueFileName(getContainerFullPath(), getFileName(),
+						getExtension()));
 		setPageComplete(validatePage());
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected boolean validatePage() {
 		if (!super.validatePage()) {
 			return false;
 		}
 		String extension = getExtension();
-		if (extension != null && !getFilePath().toString().endsWith("." + extension)) {
-			setErrorMessage(NLS.bind(org.unicase.ui.usecaseDiagram.part.Messages.ModelCreationWizardPageExtensionError,
-				extension));
+		if (extension != null
+				&& !getFilePath().toString().endsWith("." + extension)) {
+			setErrorMessage(NLS
+					.bind(
+							org.unicase.ui.usecaseDiagram.part.Messages.ModelCreationWizardPageExtensionError,
+							extension));
 			return false;
 		}
 		return true;

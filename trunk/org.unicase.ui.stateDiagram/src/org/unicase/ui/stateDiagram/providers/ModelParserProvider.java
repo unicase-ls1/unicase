@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -22,7 +22,8 @@ import org.unicase.model.state.StatePackage;
 /**
  * @generated
  */
-public class ModelParserProvider extends AbstractProvider implements IParserProvider {
+public class ModelParserProvider extends AbstractProvider implements
+		IParserProvider {
 
 	/**
 	 * @generated
@@ -43,9 +44,10 @@ public class ModelParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	protected IParser createStateName_5001Parser() {
-		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getModelElement_Name(), };
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
 		org.unicase.ui.stateDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.stateDiagram.parsers.MessageFormatParser(
-			features);
+				features);
 		return parser;
 	}
 
@@ -68,9 +70,10 @@ public class ModelParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	protected IParser createStateEntryConditions_5002Parser() {
-		EAttribute[] features = new EAttribute[] { StatePackage.eINSTANCE.getState_EntryConditions(), };
+		EAttribute[] features = new EAttribute[] { StatePackage.eINSTANCE
+				.getState_EntryConditions(), };
 		org.unicase.ui.stateDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.stateDiagram.parsers.MessageFormatParser(
-			features);
+				features);
 		parser.setViewPattern("ENTRY/{0}");
 		parser.setEditorPattern("{0}");
 		parser.setEditPattern("{0}");
@@ -96,9 +99,10 @@ public class ModelParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	protected IParser createStateActivities_5003Parser() {
-		EAttribute[] features = new EAttribute[] { StatePackage.eINSTANCE.getState_Activities(), };
+		EAttribute[] features = new EAttribute[] { StatePackage.eINSTANCE
+				.getState_Activities(), };
 		org.unicase.ui.stateDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.stateDiagram.parsers.MessageFormatParser(
-			features);
+				features);
 		parser.setViewPattern("DO/{0}");
 		parser.setEditorPattern("{0}");
 		parser.setEditPattern("{0}");
@@ -124,9 +128,10 @@ public class ModelParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	protected IParser createStateExitConditions_5004Parser() {
-		EAttribute[] features = new EAttribute[] { StatePackage.eINSTANCE.getState_ExitConditions(), };
+		EAttribute[] features = new EAttribute[] { StatePackage.eINSTANCE
+				.getState_ExitConditions(), };
 		org.unicase.ui.stateDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.stateDiagram.parsers.MessageFormatParser(
-			features);
+				features);
 		parser.setViewPattern("EXIT/{0}");
 		parser.setEditorPattern("{0}");
 		parser.setEditPattern("{0}");
@@ -152,9 +157,10 @@ public class ModelParserProvider extends AbstractProvider implements IParserProv
 	 * @generated
 	 */
 	protected IParser createTransitionName_6001Parser() {
-		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getModelElement_Name(), };
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
 		org.unicase.ui.stateDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.stateDiagram.parsers.MessageFormatParser(
-			features);
+				features);
 		return parser;
 	}
 
@@ -183,11 +189,13 @@ public class ModelParserProvider extends AbstractProvider implements IParserProv
 	public IParser getParser(IAdaptable hint) {
 		String vid = (String) hint.getAdapter(String.class);
 		if (vid != null) {
-			return getParser(org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry.getVisualID(vid));
+			return getParser(org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
+					.getVisualID(vid));
 		}
 		View view = (View) hint.getAdapter(View.class);
 		if (view != null) {
-			return getParser(org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry.getVisualID(view));
+			return getParser(org.unicase.ui.stateDiagram.part.ModelVisualIDRegistry
+					.getVisualID(view));
 		}
 		return null;
 	}
@@ -198,7 +206,8 @@ public class ModelParserProvider extends AbstractProvider implements IParserProv
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
-			if (org.unicase.ui.stateDiagram.providers.ModelElementTypes.getElement(hint) == null) {
+			if (org.unicase.ui.stateDiagram.providers.ModelElementTypes
+					.getElement(hint) == null) {
 				return false;
 			}
 			return getParser(hint) != null;

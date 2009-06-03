@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.ui.common.diagram.figures.Label;
 
 /**
  * @generated
@@ -37,7 +38,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 1001;
+	public static final int VISUAL_ID = 2001;
 
 	/**
 	 * @generated
@@ -62,11 +63,11 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.ui.usecaseDiagram.edit.policies.ActorItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.ui.usecaseDiagram.edit.policies.ActorItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
-		// editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -76,21 +77,19 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
-			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child
+						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
-			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
-			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -118,8 +117,8 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart) {
-			((org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart) childEditPart).setLabel(getPrimaryShape()
-				.getFigureActorFigure_name());
+			((org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape().getFigureActorFigure_name());
 			return true;
 		}
 		return false;
@@ -168,7 +167,8 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(30), getMapMode().DPtoLP(50));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
+				.DPtoLP(40), getMapMode().DPtoLP(40));
 		return result;
 	}
 
@@ -221,7 +221,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
-			.getType(org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID));
+				.getType(org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -232,7 +232,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		private org.unicase.ui.common.diagram.figures.Label fFigureActorFigure_name;
+		private Label fFigureActorFigure_name;
 
 		/**
 		 * @generated
@@ -249,7 +249,8 @@ public class ActorEditPart extends ShapeNodeEditPart {
 			this.setLayoutManager(layoutThis);
 
 			this.setOutline(false);
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(10),
+					getMapMode().DPtoLP(10)));
 			createContents();
 		}
 
@@ -270,7 +271,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 			constraintActorFigure0.grabExcessVerticalSpace = true;
 			this.add(actorFigure0, constraintActorFigure0);
 
-			fFigureActorFigure_name = new org.unicase.ui.common.diagram.figures.Label();
+			fFigureActorFigure_name = new Label();
 
 			fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);
 
@@ -282,7 +283,9 @@ public class ActorEditPart extends ShapeNodeEditPart {
 			constraintFFigureActorFigure_name.verticalSpan = 1;
 			constraintFFigureActorFigure_name.grabExcessHorizontalSpace = false;
 			constraintFFigureActorFigure_name.grabExcessVerticalSpace = false;
-			this.add(fFigureActorFigure_name, constraintFFigureActorFigure_name);
+			this
+					.add(fFigureActorFigure_name,
+							constraintFFigureActorFigure_name);
 
 		}
 
@@ -309,7 +312,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
-		public org.unicase.ui.common.diagram.figures.Label getFigureActorFigure_name() {
+		public Label getFigureActorFigure_name() {
 			return fFigureActorFigure_name;
 		}
 
@@ -318,6 +321,7 @@ public class ActorEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FFIGUREACTORFIGURE_NAME_FONT = new Font(Display.getCurrent(), "Arial", 12, SWT.BOLD);
+	static final Font FFIGUREACTORFIGURE_NAME_FONT = new Font(Display
+			.getCurrent(), "Arial", 12, SWT.BOLD);
 
 }
