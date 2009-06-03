@@ -314,6 +314,8 @@ public final class ActionHelper {
 			id = "org.unicase.ui.stateDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
 			id = "org.unicase.ui.activityDiagram.part.ModelDiagramEditorID";
+		} else if (diagram.getType().equals(DiagramType.WORKITEM_DIAGRAM)) {
+			id = "org.unicase.ui.workItemDiagram.part.ModelDiagramEditorID";
 		}		
 
 		if (id == null) {

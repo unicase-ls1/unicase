@@ -84,8 +84,11 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 			clientContextID = "ModelClientContext";
 		} else if (type == DiagramType.STATE_DIAGRAM) {
 			clientContextID = "StateClientContext";
-		}
-
+		} else if (type == DiagramType.ACTIVITY_DIAGRAM) {
+			clientContextID = "ActivityClientContext";
+		} else if (type == DiagramType.WORKITEM_DIAGRAM) {
+			clientContextID = "WorkItemClientContext";
+		}	
 		IClientContext cc = ClientContextManager.getInstance().getClientContext(clientContextID);
 		if (cc == null) {
 			return false;
@@ -96,7 +99,7 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 		for (int i = 0; i < containedTypes.length; i++) {
 			contains |= containedTypes[i].equals(dropeeType);
 		}
-		return contains;
+		return contains;		
 	}
 
 	/**
