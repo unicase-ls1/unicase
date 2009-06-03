@@ -223,7 +223,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (eContainerFeatureID != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID() != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eContainer();
 	}
@@ -233,7 +233,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
-		if (eContainerFeatureID != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID() != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eInternalContainer();
 	}
@@ -254,7 +254,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
 		if (newContainingWorkpackage != eInternalContainer()
-			|| (eContainerFeatureID != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			|| (eContainerFeatureID() != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -618,7 +618,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE:
 			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				WorkPackage.class, msgs);
@@ -656,13 +656,13 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		case TaskPackage.MILESTONE__DUE_DATE:
 			return getDueDate();
 		case TaskPackage.MILESTONE__ESTIMATE:
-			return new Integer(getEstimate());
+			return getEstimate();
 		case TaskPackage.MILESTONE__EFFORT:
-			return new Integer(getEffort());
+			return getEffort();
 		case TaskPackage.MILESTONE__PRIORITY:
-			return new Integer(getPriority());
+			return getPriority();
 		case TaskPackage.MILESTONE__RESOLVED:
-			return isResolved() ? Boolean.TRUE : Boolean.FALSE;
+			return isResolved();
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
 			return getContainedModelElements();
 		}
@@ -706,16 +706,16 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			setDueDate((Date) newValue);
 			return;
 		case TaskPackage.MILESTONE__ESTIMATE:
-			setEstimate(((Integer) newValue).intValue());
+			setEstimate((Integer) newValue);
 			return;
 		case TaskPackage.MILESTONE__EFFORT:
-			setEffort(((Integer) newValue).intValue());
+			setEffort((Integer) newValue);
 			return;
 		case TaskPackage.MILESTONE__PRIORITY:
-			setPriority(((Integer) newValue).intValue());
+			setPriority((Integer) newValue);
 			return;
 		case TaskPackage.MILESTONE__RESOLVED:
-			setResolved(((Boolean) newValue).booleanValue());
+			setResolved((Boolean) newValue);
 			return;
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
 			getContainedModelElements().clear();

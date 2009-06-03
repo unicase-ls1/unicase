@@ -13,6 +13,7 @@ import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.change.*;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
@@ -101,11 +102,11 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseIssue(mergingIssue);
 			if (result == null)
-				result = caseAnnotation(mergingIssue);
-			if (result == null)
 				result = caseCheckable(mergingIssue);
 			if (result == null)
 				result = caseWorkItem(mergingIssue);
+			if (result == null)
+				result = caseAnnotation(mergingIssue);
 			if (result == null)
 				result = caseModelElement(mergingIssue);
 			if (result == null)

@@ -254,9 +254,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected EList<StereotypeInstance> appliedStereotypeInstances;
 
 	/**
-	 * The cached value of the '{@link #getComments() <em>Comments</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * The cached value of the '{@link #getComments() <em>Comments</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getComments()
 	 * @generated
 	 * @ordered
@@ -413,7 +413,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * @generated
 	 */
 	public LeafSection getLeafSection() {
-		if (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
+		if (eContainerFeatureID() != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
 			return null;
 		return (LeafSection) eContainer();
 	}
@@ -423,7 +423,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * @generated
 	 */
 	public LeafSection basicGetLeafSection() {
-		if (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
+		if (eContainerFeatureID() != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
 			return null;
 		return (LeafSection) eInternalContainer();
 	}
@@ -443,7 +443,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 */
 	public void setLeafSection(LeafSection newLeafSection) {
 		if (newLeafSection != eInternalContainer()
-			|| (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION && newLeafSection != null)) {
+			|| (eContainerFeatureID() != ModelPackage.MODEL_ELEMENT__LEAF_SECTION && newLeafSection != null)) {
 			if (EcoreUtil.isAncestor(this, newLeafSection))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -490,8 +490,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<Comment> getComments() {
@@ -663,7 +662,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return eInternalContainer().eInverseRemove(this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
 				LeafSection.class, msgs);

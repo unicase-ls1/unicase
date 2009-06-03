@@ -33,8 +33,8 @@ import org.unicase.model.rationale.RationalePackage;
 public class CommentImpl extends ModelElementImpl implements Comment {
 	/**
 	 * The cached value of the '{@link #getSender() <em>Sender</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @see #getSender()
 	 * @generated
 	 * @ordered
@@ -69,8 +69,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OrgUnit getSender() {
@@ -87,8 +86,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OrgUnit basicGetSender() {
@@ -96,8 +94,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setSender(OrgUnit newSender) {
@@ -108,8 +105,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EList<OrgUnit> getRecipients() {
@@ -120,30 +116,27 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ModelElement getCommentedElement() {
-		if (eContainerFeatureID != RationalePackage.COMMENT__COMMENTED_ELEMENT)
+		if (eContainerFeatureID() != RationalePackage.COMMENT__COMMENTED_ELEMENT)
 			return null;
 		return (ModelElement) eContainer();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ModelElement basicGetCommentedElement() {
-		if (eContainerFeatureID != RationalePackage.COMMENT__COMMENTED_ELEMENT)
+		if (eContainerFeatureID() != RationalePackage.COMMENT__COMMENTED_ELEMENT)
 			return null;
 		return (ModelElement) eInternalContainer();
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public NotificationChain basicSetCommentedElement(ModelElement newCommentedElement, NotificationChain msgs) {
@@ -153,13 +146,12 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void setCommentedElement(ModelElement newCommentedElement) {
 		if (newCommentedElement != eInternalContainer()
-			|| (eContainerFeatureID != RationalePackage.COMMENT__COMMENTED_ELEMENT && newCommentedElement != null)) {
+			|| (eContainerFeatureID() != RationalePackage.COMMENT__COMMENTED_ELEMENT && newCommentedElement != null)) {
 			if (EcoreUtil.isAncestor(this, newCommentedElement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -177,8 +169,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -206,13 +197,12 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
 			return eInternalContainer().eInverseRemove(this, ModelPackage.MODEL_ELEMENT__COMMENTS, ModelElement.class,
 				msgs);

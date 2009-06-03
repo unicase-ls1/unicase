@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -20,7 +19,6 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.state.State;
 import org.unicase.model.state.StatePackage;
@@ -54,8 +52,6 @@ public class StateItemProvider extends ModelElementItemProvider implements IEdit
 			addExitConditionsPropertyDescriptor(object);
 			addActivitiesPropertyDescriptor(object);
 			addEntryConditionsPropertyDescriptor(object);
-			addOutgoingTransitionsPropertyDescriptor(object);
-			addIncomingTransitionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -97,32 +93,6 @@ public class StateItemProvider extends ModelElementItemProvider implements IEdit
 			"_UI_PropertyDescriptor_description", "_UI_State_entryConditions_feature", "_UI_State_type"),
 			StatePackage.Literals.STATE__ENTRY_CONDITIONS, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Outgoing Transitions feature. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	protected void addOutgoingTransitionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_State_outgoingTransitions_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_State_outgoingTransitions_feature", "_UI_State_type"),
-			StatePackage.Literals.STATE__OUTGOING_TRANSITIONS, true, false, true, null, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Incoming Transitions feature. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	protected void addIncomingTransitionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_State_incomingTransitions_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_State_incomingTransitions_feature", "_UI_State_type"),
-			StatePackage.Literals.STATE__INCOMING_TRANSITIONS, true, false, true, null, null, null));
 	}
 
 	/**
@@ -177,16 +147,6 @@ public class StateItemProvider extends ModelElementItemProvider implements IEdit
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-	}
-
-	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public ResourceLocator getResourceLocator() {
-		return ModelEditPlugin.INSTANCE;
 	}
 
 }

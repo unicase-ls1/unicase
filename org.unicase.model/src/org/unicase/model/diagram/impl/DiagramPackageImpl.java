@@ -116,8 +116,8 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 			return (DiagramPackage) EPackage.Registry.INSTANCE.getEPackage(DiagramPackage.eNS_URI);
 
 		// Obtain or create and register package
-		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		DiagramPackageImpl theDiagramPackage = (DiagramPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof DiagramPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new DiagramPackageImpl());
 
 		isInited = true;
@@ -373,6 +373,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		addEEnumLiteral(diagramTypeEEnum, DiagramType.COMPONENT_DIAGRAM);
 		addEEnumLiteral(diagramTypeEEnum, DiagramType.STATE_DIAGRAM);
 		addEEnumLiteral(diagramTypeEEnum, DiagramType.ACTIVITY_DIAGRAM);
+		addEEnumLiteral(diagramTypeEEnum, DiagramType.WORKITEM_DIAGRAM);
 	}
 
 } // DiagramPackageImpl

@@ -261,16 +261,17 @@ public interface ModelElement extends IdentifiableElement {
 	 * Returns the value of the '<em><b>Comments</b></em>' containment reference list.
 	 * The list contents are of type {@link org.unicase.model.rationale.Comment}.
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Comment#getCommentedElement <em>Commented Element</em>}'.
-	 * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc
+	 * -->
 	 * <p>
-	 * If the meaning of the '<em>Comments</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Comments</em>' containment reference list isn't clear, there really should be more of
+	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Comments</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getModelElement_Comments()
 	 * @see org.unicase.model.rationale.Comment#getCommentedElement
-	 * @model opposite="commentedElement" containment="true" resolveProxies="true"
+	 * @model opposite="commentedElement" containment="true" resolveProxies="true" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='2.0' position='left'"
 	 * @generated
 	 */

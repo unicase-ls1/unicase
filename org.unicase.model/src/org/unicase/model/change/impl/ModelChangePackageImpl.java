@@ -125,9 +125,9 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			return new Integer(getSourceVersion());
+			return getSourceVersion();
 		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			return new Integer(getTargetVersion());
+			return getTargetVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -140,10 +140,10 @@ public class ModelChangePackageImpl extends ModelElementImpl implements ModelCha
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case ChangePackage.MODEL_CHANGE_PACKAGE__SOURCE_VERSION:
-			setSourceVersion(((Integer) newValue).intValue());
+			setSourceVersion((Integer) newValue);
 			return;
 		case ChangePackage.MODEL_CHANGE_PACKAGE__TARGET_VERSION:
-			setTargetVersion(((Integer) newValue).intValue());
+			setTargetVersion((Integer) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

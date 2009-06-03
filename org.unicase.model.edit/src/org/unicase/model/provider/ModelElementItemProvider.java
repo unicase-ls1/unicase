@@ -130,8 +130,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 
 	/**
 	 * This adds a property descriptor for the Comments feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected void addCommentsPropertyDescriptor(Object object) {

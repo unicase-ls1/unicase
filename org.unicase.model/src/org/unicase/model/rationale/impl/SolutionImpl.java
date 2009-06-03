@@ -73,7 +73,7 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	 * @generated
 	 */
 	public Issue getIssue() {
-		if (eContainerFeatureID != RationalePackage.SOLUTION__ISSUE)
+		if (eContainerFeatureID() != RationalePackage.SOLUTION__ISSUE)
 			return null;
 		return (Issue) eContainer();
 	}
@@ -83,7 +83,7 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	 * @generated
 	 */
 	public Issue basicGetIssue() {
-		if (eContainerFeatureID != RationalePackage.SOLUTION__ISSUE)
+		if (eContainerFeatureID() != RationalePackage.SOLUTION__ISSUE)
 			return null;
 		return (Issue) eInternalContainer();
 	}
@@ -103,7 +103,7 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	 */
 	public void setIssue(Issue newIssue) {
 		if (newIssue != eInternalContainer()
-			|| (eContainerFeatureID != RationalePackage.SOLUTION__ISSUE && newIssue != null)) {
+			|| (eContainerFeatureID() != RationalePackage.SOLUTION__ISSUE && newIssue != null)) {
 			if (EcoreUtil.isAncestor(this, newIssue))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -153,7 +153,7 @@ public class SolutionImpl extends ModelElementImpl implements Solution {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case RationalePackage.SOLUTION__ISSUE:
 			return eInternalContainer().eInverseRemove(this, RationalePackage.ISSUE__SOLUTION, Issue.class, msgs);
 		}

@@ -52,7 +52,8 @@
         upperBound="-1" eType="#//profile/StereotypeInstance" containment="true" eOpposite="#//profile/StereotypeInstance/modelElement"
         eKeys="#//IdentifiableElement/identifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="comments" upperBound="-1"
-        eType="#//rationale/Comment" containment="true" eOpposite="#//rationale/Comment/commentedElement">
+        eType="#//rationale/Comment" containment="true" eOpposite="#//rationale/Comment/commentedElement"
+        eKeys="#//IdentifiableElement/identifier">
       <eAnnotations source="org.unicase.ui.meeditor">
         <details key="priority" value="2.0"/>
         <details key="position" value="left"/>
@@ -1044,7 +1045,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="recipients" upperBound="-1"
           eType="#//organization/OrgUnit" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" eType="#//ModelElement"
-          eOpposite="#//ModelElement/comments"/>
+          eOpposite="#//ModelElement/comments" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="change" nsURI="http://unicase.org/model/change" nsPrefix="org.unicase.model.rationale">

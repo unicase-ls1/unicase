@@ -117,6 +117,52 @@ public class StateItemProviderAdapterFactory extends StateAdapterFactory impleme
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.state.StateInitial} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected StateInitialItemProvider stateInitialItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.state.StateInitial}.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateInitialAdapter() {
+		if (stateInitialItemProvider == null) {
+			stateInitialItemProvider = new StateInitialItemProvider(this);
+		}
+
+		return stateInitialItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.state.StateEnd} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected StateEndItemProvider stateEndItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.state.StateEnd}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateEndAdapter() {
+		if (stateEndItemProvider == null) {
+			stateEndItemProvider = new StateEndItemProvider(this);
+		}
+
+		return stateEndItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
@@ -162,7 +208,7 @@ public class StateItemProviderAdapterFactory extends StateAdapterFactory impleme
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class) || (((Class<?>) type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -212,6 +258,10 @@ public class StateItemProviderAdapterFactory extends StateAdapterFactory impleme
 			stateItemProvider.dispose();
 		if (transitionItemProvider != null)
 			transitionItemProvider.dispose();
+		if (stateInitialItemProvider != null)
+			stateInitialItemProvider.dispose();
+		if (stateEndItemProvider != null)
+			stateEndItemProvider.dispose();
 	}
 
 }

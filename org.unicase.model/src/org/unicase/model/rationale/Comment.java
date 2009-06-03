@@ -23,8 +23,8 @@ public interface Comment extends ModelElement {
 	 * Returns the value of the '<em><b>Sender</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Sender</em>' reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Sender</em>' reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Sender</em>' reference.
@@ -36,9 +36,9 @@ public interface Comment extends ModelElement {
 	OrgUnit getSender();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.rationale.Comment#getSender <em>Sender</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.rationale.Comment#getSender <em>Sender</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Sender</em>' reference.
 	 * @see #getSender()
 	 * @generated
@@ -50,8 +50,8 @@ public interface Comment extends ModelElement {
 	 * The list contents are of type {@link org.unicase.model.organization.OrgUnit}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Recipients</em>' reference list isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Recipients</em>' reference list isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Recipients</em>' reference list.
@@ -66,23 +66,22 @@ public interface Comment extends ModelElement {
 	 * It is bidirectional and its opposite is '{@link org.unicase.model.ModelElement#getComments <em>Comments</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Commented Element</em>' container reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Commented Element</em>' container reference isn't clear, there really should be more
+	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Commented Element</em>' container reference.
 	 * @see #setCommentedElement(ModelElement)
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_CommentedElement()
 	 * @see org.unicase.model.ModelElement#getComments
-	 * @model opposite="comments" transient="false"
+	 * @model opposite="comments" keys="identifier" transient="false"
 	 * @generated
 	 */
 	ModelElement getCommentedElement();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.rationale.Comment#getCommentedElement <em>Commented Element</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Commented Element</em>' container reference.
 	 * @see #getCommentedElement()
 	 * @generated
