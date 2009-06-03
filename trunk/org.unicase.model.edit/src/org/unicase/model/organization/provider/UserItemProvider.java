@@ -22,16 +22,17 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 
-/*
+/**
  * This is the item provider adapter for a {@link org.unicase.model.organization.User} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class UserItemProvider extends OrgUnitItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UserItemProvider(AdapterFactory adapterFactory) {
@@ -39,8 +40,8 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -56,8 +57,8 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	}
 
 	/**
-	 * This adds a property descriptor for the Email feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Email feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addEmailPropertyDescriptor(Object object) {
@@ -69,8 +70,8 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	}
 
 	/**
-	 * This adds a property descriptor for the First Name feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the First Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addFirstNamePropertyDescriptor(Object object) {
@@ -82,8 +83,8 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	}
 
 	/**
-	 * This adds a property descriptor for the Last Name feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Last Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected void addLastNamePropertyDescriptor(Object object) {
@@ -95,8 +96,8 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	}
 
 	/**
-	 * This returns User.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns User.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,9 +137,9 @@ public class UserItemProvider extends OrgUnitItemProvider implements IEditingDom
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

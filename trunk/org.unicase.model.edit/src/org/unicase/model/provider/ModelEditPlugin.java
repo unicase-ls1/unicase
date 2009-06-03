@@ -8,8 +8,9 @@ package org.unicase.model.provider;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 
-/*
+/**
  * This is the central singleton for the Model edit plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
+ * 
  * @generated
  */
 public final class ModelEditPlugin extends EMFPlugin {
