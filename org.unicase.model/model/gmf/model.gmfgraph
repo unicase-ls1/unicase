@@ -291,7 +291,7 @@
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="componentText"
-              qualifiedClassName="org.unicase.ui.componentDiagram.unicase.Label">
+              qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
             <attributes
                 name="text"
                 value="&quot;\u00ABcomponent\u00BB&quot;"/>
@@ -328,7 +328,7 @@
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="ComponentNode_name"
-              qualifiedClassName="org.unicase.ui.componentDiagram.unicase.Label">
+              qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
             <font
                 xsi:type="gmfgraph:BasicFont"
                 faceName="Arial"
@@ -347,9 +347,6 @@
           xsi:type="gmfgraph:PolylineConnection"
           name="RequiredInterfaceConnectionFigure"
           targetDecoration="//@figures.1/@descriptors.1/@actualFigure/@children.0">
-        <foregroundColor
-            xsi:type="gmfgraph:ConstantColor"
-            value="black"/>
         <children
             xsi:type="gmfgraph:CustomDecoration"
             name="RequiredInterfaceConnectionFigure_Lollypop"
@@ -389,18 +386,14 @@
         name="ProvidedInterfaceConnectionFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="ProvidedInterfaceConnectionFigure">
-        <foregroundColor
-            xsi:type="gmfgraph:ConstantColor"
-            value="black"/>
-      </actualFigure>
+          name="ProvidedInterfaceConnectionFigure"/>
     </descriptors>
     <descriptors
         name="InterfaceNameLabelFigure">
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="InterfaceNode_name"
-          qualifiedClassName="org.unicase.ui.componentDiagram.unicase.Label">
+          qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
         <font
             xsi:type="gmfgraph:BasicFont"
             faceName="Arial"
@@ -695,6 +688,63 @@
           accessor="getFigureTransitionFigure_name"
           figure="//@figures.3/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="StateFinalFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="StateFinalFigure">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <maximumSize
+            dx="23"
+            dy="23"/>
+        <minimumSize
+            dx="23"
+            dy="23"/>
+        <preferredSize
+            dx="23"
+            dy="23"/>
+        <children
+            xsi:type="gmfgraph:Ellipse"
+            name="StateFinalFigure_inner">
+          <backgroundColor
+              xsi:type="gmfgraph:ConstantColor"
+              value="black"/>
+          <maximumSize
+              dx="15"
+              dy="15"/>
+          <minimumSize
+              dx="15"
+              dy="15"/>
+          <preferredSize
+              dx="15"
+              dy="15"/>
+        </children>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="StateInitialFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="StateFinalFigure">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <maximumSize
+            dx="15"
+            dy="15"/>
+        <minimumSize
+            dx="15"
+            dy="15"/>
+        <preferredSize
+            dx="15"
+            dy="15"/>
+      </actualFigure>
+    </descriptors>
   </figures>
   <figures
       name="ActivityDiagram">
@@ -835,6 +885,43 @@
       </actualFigure>
     </descriptors>
   </figures>
+  <figures
+      name="WorkItemDiagram">
+    <descriptors
+        name="WorkItemFigure">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="WorkItemFigure">
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="WorkItemFigure_name"
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.Label"/>
+      </actualFigure>
+      <accessors
+          accessor="getWorkItemFigureName"
+          figure="//@figures.5/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="LinkFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="LinkFigure"/>
+    </descriptors>
+    <descriptors
+        name="PredecessorLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="PredecessorLabel"
+          text="predecessor"/>
+    </descriptors>
+    <descriptors
+        name="SuccessorLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="SuccessorLabel"
+          text="successor"/>
+    </descriptors>
+  </figures>
   <nodes
       name="Class"
       figure="ClassFigure"/>
@@ -892,6 +979,15 @@
   <nodes
       name="BranchNode"
       figure="BranchFigure"/>
+  <nodes
+      name="WorkItemNode"
+      figure="WorkItemFigure"/>
+  <nodes
+      name="StateFinalNode"
+      figure="StateFinalFigure"/>
+  <nodes
+      name="StateInitialNode"
+      figure="StateInitialFigure"/>
   <connections
       name="Association"
       figure="AssociationFigure"/>
@@ -925,6 +1021,9 @@
   <connections
       name="ActivityTransition"
       figure="Arrow"/>
+  <connections
+      name="WorkItemLink"
+      figure="LinkFigure"/>
   <compartments
       name="ClassNode_attributes"
       figure="ClassFigure"
@@ -1054,6 +1153,7 @@
   <labels
       name="TransitionLine_condition"
       figure="TransitionFigure"
+      elementIcon="false"
       accessor="//@figures.3/@descriptors.1/@accessors.0"/>
   <labels
       name="StateNode_entryConditions"
@@ -1082,6 +1182,32 @@
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="WorkItem_name"
+      figure="WorkItemFigure"
+      elementIcon="false"
+      accessor="//@figures.5/@descriptors.0/@accessors.0"/>
+  <labels
+      name="SuccessorLabel"
+      figure="SuccessorLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="PredecessorLabel"
+      figure="PredecessorLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="END"/>
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="20"/>
