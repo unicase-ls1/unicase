@@ -21,9 +21,6 @@
         <features
             href="../../model.ecore#//ModelElement/name"/>
       </labelMappings>
-      <tool
-          xsi:type="gmftool:CreationTool"
-          href="componentDiagram.gmftool#//@palette/@tools.1"/>
       <diagramNode
           href="../model.gmfgraph#ProvidedInterfaceCircleNode"/>
     </ownedChild>
@@ -54,7 +51,7 @@
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="componentDiagram.gmftool#//@palette/@tools.3"/>
+        href="componentDiagram.gmftool#//@palette/@tools.2"/>
     <diagramLink
         href="../model.gmfgraph#ProvidedInterfaceLink"/>
     <linkMetaFeature
@@ -64,7 +61,7 @@
   <links>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="componentDiagram.gmftool#//@palette/@tools.2"/>
+        href="componentDiagram.gmftool#//@palette/@tools.1"/>
     <diagramLink
         href="../model.gmfgraph#RequiredInterfaceLink"/>
     <linkMetaFeature

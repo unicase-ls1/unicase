@@ -5,7 +5,9 @@
     xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.usecaseDiagram"
     modelID="UseCase"
     sameFileForDiagramAndModel="true"
-    diagramFileExtension="useCase_diagram">
+    diagramFileExtension="useCase_diagram"
+    dynamicTemplates="true"
+    templateDirectory="/org.unicase.model/model/gmf/templates/codegen">
   <diagram
       visualID="77"
       editPartClassName="MEDiagramEditPart"
@@ -26,7 +28,7 @@
     <domainDiagramElement
         href="../../model.genmodel#//model/diagram/MEDiagram"/>
     <topLevelNodes
-        visualID="1001"
+        visualID="2001"
         editPartClassName="ActorEditPart"
         itemSemanticEditPolicyClassName="ActorItemSemanticEditPolicy"
         notationViewFactoryClassName="ActorViewFactory"
@@ -41,11 +43,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="ActorFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActorFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.usecaseDiagram.unicase.Label fFigureActorFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActorFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(10)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.usecaseDiagram.unicase.StickMan actorFigure0 = new org.unicase.ui.usecaseDiagram.unicase.StickMan();&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintActorFigure0 = new org.eclipse.draw2d.GridData();&#xA;constraintActorFigure0.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalIndent = 0;&#xA;constraintActorFigure0.horizontalSpan = 1;&#xA;constraintActorFigure0.verticalSpan = 1;&#xA;constraintActorFigure0.grabExcessHorizontalSpace = true;&#xA;constraintActorFigure0.grabExcessVerticalSpace = true;&#xA;this.add(actorFigure0, constraintActorFigure0);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name = new org.unicase.ui.usecaseDiagram.unicase.Label();&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureActorFigure_name = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureActorFigure_name.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalIndent = 0;&#xA;constraintFFigureActorFigure_name.horizontalSpan = 1;&#xA;constraintFFigureActorFigure_name.verticalSpan = 1;&#xA;constraintFFigureActorFigure_name.grabExcessHorizontalSpace = false;&#xA;constraintFFigureActorFigure_name.grabExcessVerticalSpace = false;&#xA;this.add(fFigureActorFigure_name, constraintFFigureActorFigure_name);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.usecaseDiagram.unicase.Label getFigureActorFigure_name() {&#xA;&#x9;&#x9;return fFigureActorFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREACTORFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 12, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
-        <attributes
-            xsi:type="gmfgen:DefaultSizeAttributes"
-            width="30"
-            height="50"/>
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActorFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.common.diagram.figures.Label fFigureActorFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActorFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(10)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.usecaseDiagram.unicase.StickMan actorFigure0 = new org.unicase.ui.usecaseDiagram.unicase.StickMan();&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintActorFigure0 = new org.eclipse.draw2d.GridData();&#xA;constraintActorFigure0.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalIndent = 0;&#xA;constraintActorFigure0.horizontalSpan = 1;&#xA;constraintActorFigure0.verticalSpan = 1;&#xA;constraintActorFigure0.grabExcessHorizontalSpace = true;&#xA;constraintActorFigure0.grabExcessVerticalSpace = true;&#xA;this.add(actorFigure0, constraintActorFigure0);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name = new org.unicase.ui.common.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureActorFigure_name = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureActorFigure_name.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalIndent = 0;&#xA;constraintFFigureActorFigure_name.horizontalSpan = 1;&#xA;constraintFFigureActorFigure_name.verticalSpan = 1;&#xA;constraintFFigureActorFigure_name.grabExcessHorizontalSpace = false;&#xA;constraintFFigureActorFigure_name.grabExcessVerticalSpace = false;&#xA;this.add(fFigureActorFigure_name, constraintFFigureActorFigure_name);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.common.diagram.figures.Label getFigureActorFigure_name() {&#xA;&#x9;&#x9;return fFigureActorFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREACTORFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 12, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet>
@@ -57,7 +55,7 @@
             href="../../model.genmodel#//model/diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
-          visualID="4001"
+          visualID="5001"
           editPartClassName="ActorNameEditPart"
           itemSemanticEditPolicyClassName="ActorNameItemSemanticEditPolicy"
           notationViewFactoryClassName="ActorNameViewFactory">
@@ -66,7 +64,7 @@
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getFigureActorFigure_name"
-            figureQualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
+            figureQualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedFont="true"/>
@@ -80,7 +78,7 @@
       </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="1002"
+        visualID="2002"
         editPartClassName="UseCaseEditPart"
         itemSemanticEditPolicyClassName="UseCaseItemSemanticEditPolicy"
         notationViewFactoryClassName="UseCaseViewFactory"
@@ -95,7 +93,7 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="UseCaseFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class UseCaseFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.usecaseDiagram.unicase.Label fUseCaseFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public UseCaseFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.unicase.ui.usecaseDiagram.unicase.CenterLayout layoutThis = new org.unicase.ui.usecaseDiagram.unicase.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fUseCaseFigure_name = new org.unicase.ui.usecaseDiagram.unicase.Label();&#xA;&#xA;&#xA;&#xA;fUseCaseFigure_name.setFont(FUSECASEFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fUseCaseFigure_name);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.usecaseDiagram.unicase.Label getUseCaseFigure_name() {&#xA;&#x9;&#x9;return fUseCaseFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FUSECASEFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 12, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class UseCaseFigure extends org.eclipse.draw2d.Ellipse {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.common.diagram.figures.Label fUseCaseFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public UseCaseFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.unicase.ui.common.diagram.figures.CenterLayout layoutThis = new org.unicase.ui.common.diagram.figures.CenterLayout();&#xA;&#xA;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;fUseCaseFigure_name = new org.unicase.ui.common.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fUseCaseFigure_name.setFont(FUSECASEFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;this.add(fUseCaseFigure_name);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.common.diagram.figures.Label getUseCaseFigure_name() {&#xA;&#x9;&#x9;return fUseCaseFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FUSECASEFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 12, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
         <attributes
             xsi:type="gmfgen:StyleAttributes"
             fixedForeground="true"/>
@@ -114,7 +112,7 @@
             href="../../model.genmodel#//model/diagram/MEDiagram/elements"/>
       </modelFacet>
       <labels
-          visualID="4002"
+          visualID="5002"
           editPartClassName="UseCaseNameEditPart"
           itemSemanticEditPolicyClassName="UseCaseNameItemSemanticEditPolicy"
           notationViewFactoryClassName="UseCaseNameViewFactory">
@@ -123,7 +121,7 @@
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getUseCaseFigure_name"
-            figureQualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
+            figureQualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedFont="true"/>
@@ -136,7 +134,7 @@
       </labels>
     </topLevelNodes>
     <links
-        visualID="3001"
+        visualID="4001"
         editPartClassName="ActorParticipatedUseCasesEditPart"
         itemSemanticEditPolicyClassName="ActorParticipatedUseCasesItemSemanticEditPolicy"
         notationViewFactoryClassName="ActorParticipatedUseCasesViewFactory"
@@ -161,10 +159,10 @@
             href="../../model.genmodel#//model/requirement/Actor/participatedUseCases"/>
       </modelFacet>
       <labels
-          visualID="4003"
-          editPartClassName="LabelEditPart"
-          itemSemanticEditPolicyClassName="LabelItemSemanticEditPolicy"
-          notationViewFactoryClassName="LabelViewFactory"
+          visualID="6001"
+          editPartClassName="ParticipateLabelEditPart"
+          itemSemanticEditPolicyClassName="ParticipateLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="ParticipateLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -180,7 +178,7 @@
       </labels>
     </links>
     <links
-        visualID="3002"
+        visualID="4002"
         editPartClassName="ActorInitiatedUseCasesEditPart"
         itemSemanticEditPolicyClassName="ActorInitiatedUseCasesItemSemanticEditPolicy"
         notationViewFactoryClassName="ActorInitiatedUseCasesViewFactory"
@@ -205,10 +203,10 @@
             href="../../model.genmodel#//model/requirement/Actor/initiatedUseCases"/>
       </modelFacet>
       <labels
-          visualID="4004"
-          editPartClassName="Label2EditPart"
-          itemSemanticEditPolicyClassName="Label2ItemSemanticEditPolicy"
-          notationViewFactoryClassName="Label2ViewFactory"
+          visualID="6002"
+          editPartClassName="InitiateLabelEditPart"
+          itemSemanticEditPolicyClassName="InitiateLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="InitiateLabelViewFactory"
           readOnly="true">
         <diagramRunTimeClass
             href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
@@ -226,7 +224,7 @@
           targetEnd="//@expressionProviders/@providers.0/@expressions.0"/>
     </links>
     <links
-        visualID="3003"
+        visualID="4003"
         editPartClassName="UseCaseIncludedUseCasesEditPart"
         itemSemanticEditPolicyClassName="UseCaseIncludedUseCasesItemSemanticEditPolicy"
         notationViewFactoryClassName="UseCaseIncludedUseCasesViewFactory"
@@ -251,7 +249,7 @@
             href="../../model.genmodel#//model/requirement/UseCase/includedUseCases"/>
       </modelFacet>
       <labels
-          visualID="4005"
+          visualID="6003"
           editPartClassName="IncludeLabelEditPart"
           itemSemanticEditPolicyClassName="IncludeLabelItemSemanticEditPolicy"
           notationViewFactoryClassName="IncludeLabelViewFactory"
@@ -272,7 +270,7 @@
           targetEnd="//@expressionProviders/@providers.0/@expressions.1"/>
     </links>
     <links
-        visualID="3004"
+        visualID="4004"
         editPartClassName="UseCaseExtendedUseCasesEditPart"
         itemSemanticEditPolicyClassName="UseCaseExtendedUseCasesItemSemanticEditPolicy"
         notationViewFactoryClassName="UseCaseExtendedUseCasesViewFactory"
@@ -297,7 +295,7 @@
             href="../../model.genmodel#//model/requirement/UseCase/extendedUseCases"/>
       </modelFacet>
       <labels
-          visualID="4006"
+          visualID="6004"
           editPartClassName="ExtendLabelEditPart"
           itemSemanticEditPolicyClassName="ExtendLabelItemSemanticEditPolicy"
           notationViewFactoryClassName="ExtendLabelViewFactory"

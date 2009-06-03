@@ -58,6 +58,36 @@
           href="../model.gmfgraph#State"/>
     </ownedChild>
   </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="../../model.ecore#//state/StateInitial"/>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="stateDiagram.gmftool#//@palette/@tools.2"/>
+      <diagramNode
+          href="../model.gmfgraph#StateInitialNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="../../model.ecore#//state/StateEnd"/>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="stateDiagram.gmftool#//@palette/@tools.3"/>
+      <diagramNode
+          href="../model.gmfgraph#StateFinalNode"/>
+    </ownedChild>
+  </nodes>
   <links>
     <domainMetaElement
         href="../../model.ecore#//state/Transition"/>
