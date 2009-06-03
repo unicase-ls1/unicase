@@ -12,6 +12,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.state.State;
+import org.unicase.model.state.StateEnd;
+import org.unicase.model.state.StateInitial;
+import org.unicase.model.state.StateNode;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
@@ -77,6 +80,21 @@ public class StateAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
+		public Adapter caseStateNode(StateNode object) {
+			return createStateNodeAdapter();
+		}
+
+		@Override
+		public Adapter caseStateInitial(StateInitial object) {
+			return createStateInitialAdapter();
+		}
+
+		@Override
+		public Adapter caseStateEnd(StateEnd object) {
+			return createStateEndAdapter();
+		}
+
+		@Override
 		public Adapter caseIdentifiableElement(IdentifiableElement object) {
 			return createIdentifiableElementAdapter();
 		}
@@ -127,6 +145,45 @@ public class StateAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTransitionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.state.StateNode <em>Node</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.state.StateNode
+	 * @generated
+	 */
+	public Adapter createStateNodeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.state.StateInitial <em>Initial</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful
+	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.state.StateInitial
+	 * @generated
+	 */
+	public Adapter createStateInitialAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.state.StateEnd <em>End</em>}'. <!--
+	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
+	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.state.StateEnd
+	 * @generated
+	 */
+	public Adapter createStateEndAdapter() {
 		return null;
 	}
 

@@ -158,8 +158,6 @@ public class RationaleSwitch<T> {
 			Comment comment = (Comment) theEObject;
 			T result = caseComment(comment);
 			if (result == null)
-				result = caseAnnotation(comment);
-			if (result == null)
 				result = caseModelElement(comment);
 			if (result == null)
 				result = caseIdentifiableElement(comment);

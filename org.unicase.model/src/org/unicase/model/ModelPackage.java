@@ -191,12 +191,21 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT__COMMENTS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
 	 * The number of structural features of the '<em>Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
+	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class. <!--
@@ -356,6 +365,15 @@ public interface ModelPackage extends EPackage {
 	int ANNOTATION__APPLIED_STEREOTYPE_INSTANCES = MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__COMMENTS = MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -475,6 +493,15 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTACHMENT__APPLIED_STEREOTYPE_INSTANCES = MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__COMMENTS = MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -687,6 +714,17 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getModelElement_AppliedStereotypeInstances();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.ModelElement#getComments
+	 * <em>Comments</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Comments</em>'.
+	 * @see org.unicase.model.ModelElement#getComments()
+	 * @see #getModelElement()
+	 * @generated
+	 */
+	EReference getModelElement_Comments();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.Project <em>Project</em>}'. <!-- begin-user-doc -->
@@ -944,6 +982,14 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = eINSTANCE.getModelElement_AppliedStereotypeInstances();
+
+		/**
+		 * The meta object literal for the '<em><b>Comments</b></em>' containment reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT__COMMENTS = eINSTANCE.getModelElement_Comments();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class. <!--

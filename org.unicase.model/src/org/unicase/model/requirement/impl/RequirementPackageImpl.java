@@ -172,7 +172,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 		// Obtain or create and register package
 		RequirementPackageImpl theRequirementPackage = (RequirementPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+			.get(eNS_URI) instanceof RequirementPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
 			: new RequirementPackageImpl());
 
 		isInited = true;

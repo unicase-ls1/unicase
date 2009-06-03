@@ -6,7 +6,7 @@
 package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.Annotation;
+import org.unicase.model.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 
 /**
@@ -14,8 +14,9 @@ import org.unicase.model.organization.OrgUnit;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.rationale.Comment#getReplies <em>Replies</em>}</li>
- * <li>{@link org.unicase.model.rationale.Comment#getRecipient <em>Recipient</em>}</li>
+ * <li>{@link org.unicase.model.rationale.Comment#getSender <em>Sender</em>}</li>
+ * <li>{@link org.unicase.model.rationale.Comment#getRecipients <em>Recipients</em>}</li>
+ * <li>{@link org.unicase.model.rationale.Comment#getCommentedElement <em>Commented Element</em>}</li>
  * </ul>
  * </p>
  * 
@@ -23,48 +24,75 @@ import org.unicase.model.organization.OrgUnit;
  * @model
  * @generated
  */
-public interface Comment extends Annotation {
+public interface Comment extends ModelElement {
 	/**
-	 * Returns the value of the '<em><b>Replies</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.model.rationale.Comment}. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Sender</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Replies</em>' reference list isn't clear, there really should be more of a description
+	 * If the meaning of the '<em>Sender</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Replies</em>' containment reference list.
-	 * @see org.unicase.model.rationale.RationalePackage#getComment_Replies()
-	 * @model containment="true" resolveProxies="true" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
-	 * @generated
-	 */
-	EList<Comment> getReplies();
-
-	/**
-	 * Returns the value of the '<em><b>Recipient</b></em>' reference. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Recipient</em>' reference isn't clear, there really should be more of a description
-	 * here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Recipient</em>' reference.
-	 * @see #setRecipient(OrgUnit)
-	 * @see org.unicase.model.rationale.RationalePackage#getComment_Recipient()
+	 * @return the value of the '<em>Sender</em>' reference.
+	 * @see #setSender(OrgUnit)
+	 * @see org.unicase.model.rationale.RationalePackage#getComment_Sender()
 	 * @model keys="identifier"
 	 * @generated
 	 */
-	OrgUnit getRecipient();
+	OrgUnit getSender();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.rationale.Comment#getRecipient <em>Recipient</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.rationale.Comment#getSender <em>Sender</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @param value the new value of the '<em>Recipient</em>' reference.
-	 * @see #getRecipient()
+	 * @param value the new value of the '<em>Sender</em>' reference.
+	 * @see #getSender()
 	 * @generated
 	 */
-	void setRecipient(OrgUnit value);
+	void setSender(OrgUnit value);
+
+	/**
+	 * Returns the value of the '<em><b>Recipients</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.organization.OrgUnit}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Recipients</em>' reference list isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Recipients</em>' reference list.
+	 * @see org.unicase.model.rationale.RationalePackage#getComment_Recipients()
+	 * @model keys="identifier"
+	 * @generated
+	 */
+	EList<OrgUnit> getRecipients();
+
+	/**
+	 * Returns the value of the '<em><b>Commented Element</b></em>' container reference. It is bidirectional and its
+	 * opposite is '{@link org.unicase.model.ModelElement#getComments <em>Comments</em>}'. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Commented Element</em>' container reference isn't clear, there really should be more
+	 * of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Commented Element</em>' container reference.
+	 * @see #setCommentedElement(ModelElement)
+	 * @see org.unicase.model.rationale.RationalePackage#getComment_CommentedElement()
+	 * @see org.unicase.model.ModelElement#getComments
+	 * @model opposite="comments" keys="identifier" transient="false"
+	 * @generated
+	 */
+	ModelElement getCommentedElement();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.rationale.Comment#getCommentedElement <em>Commented Element</em>}
+	 * ' container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Commented Element</em>' container reference.
+	 * @see #getCommentedElement()
+	 * @generated
+	 */
+	void setCommentedElement(ModelElement value);
 
 } // Comment

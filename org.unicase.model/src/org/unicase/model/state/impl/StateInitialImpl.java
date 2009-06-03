@@ -3,26 +3,26 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.model.activity.impl;
+package org.unicase.model.state.impl;
 
 import org.eclipse.emf.ecore.EClass;
-import org.unicase.model.activity.ActivityPackage;
-import org.unicase.model.activity.Branch;
+import org.unicase.model.state.StateInitial;
+import org.unicase.model.state.StatePackage;
 
 /**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Branch</b></em>'. <!-- end-user-doc -->
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Initial</b></em>'. <!-- end-user-doc -->
  * <p>
  * </p>
  * 
  * @generated
  */
-public class BranchImpl extends ActivityObjectImpl implements Branch {
+public class StateInitialImpl extends StateNodeImpl implements StateInitial {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected BranchImpl() {
+	protected StateInitialImpl() {
 		super();
 	}
 
@@ -33,7 +33,7 @@ public class BranchImpl extends ActivityObjectImpl implements Branch {
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ActivityPackage.Literals.BRANCH;
+		return StatePackage.Literals.STATE_INITIAL;
 	}
 
-} // BranchImpl
+} // StateInitialImpl

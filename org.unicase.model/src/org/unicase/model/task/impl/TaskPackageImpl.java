@@ -147,8 +147,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 			return (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
 
 		// Obtain or create and register package
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new TaskPackageImpl());
 
 		isInited = true;

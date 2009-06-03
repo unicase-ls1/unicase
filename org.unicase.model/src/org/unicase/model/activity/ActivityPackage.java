@@ -158,6 +158,15 @@ public interface ActivityPackage extends EPackage {
 	int ACTIVITY_OBJECT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_OBJECT__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Transitions</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -285,6 +294,15 @@ public interface ActivityPackage extends EPackage {
 	 * @ordered
 	 */
 	int TRANSITION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -423,6 +441,15 @@ public interface ActivityPackage extends EPackage {
 	int ACTIVITY__APPLIED_STEREOTYPE_INSTANCES = ACTIVITY_OBJECT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY__COMMENTS = ACTIVITY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Transitions</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -550,6 +577,15 @@ public interface ActivityPackage extends EPackage {
 	 * @ordered
 	 */
 	int FORK__APPLIED_STEREOTYPE_INSTANCES = ACTIVITY_OBJECT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FORK__COMMENTS = ACTIVITY_OBJECT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Transitions</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -681,6 +717,15 @@ public interface ActivityPackage extends EPackage {
 	int BRANCH__APPLIED_STEREOTYPE_INSTANCES = ACTIVITY_OBJECT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int BRANCH__COMMENTS = ACTIVITY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Transitions</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -810,6 +855,15 @@ public interface ActivityPackage extends EPackage {
 	int ACTIVITY_INITIAL__APPLIED_STEREOTYPE_INSTANCES = ACTIVITY_OBJECT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_INITIAL__COMMENTS = ACTIVITY_OBJECT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Incoming Transitions</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -937,6 +991,15 @@ public interface ActivityPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTIVITY_END__APPLIED_STEREOTYPE_INSTANCES = ACTIVITY_OBJECT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTIVITY_END__COMMENTS = ACTIVITY_OBJECT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Transitions</b></em>' reference list. <!-- begin-user-doc --> <!--

@@ -5,9 +5,6 @@
  */
 package org.unicase.model.state;
 
-import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
-
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>State</b></em>'. <!-- end-user-doc -->
  * <p>
@@ -16,8 +13,6 @@ import org.unicase.model.ModelElement;
  * <li>{@link org.unicase.model.state.State#getExitConditions <em>Exit Conditions</em>}</li>
  * <li>{@link org.unicase.model.state.State#getActivities <em>Activities</em>}</li>
  * <li>{@link org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}</li>
- * <li>{@link org.unicase.model.state.State#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
- * <li>{@link org.unicase.model.state.State#getIncomingTransitions <em>Incoming Transitions</em>}</li>
  * </ul>
  * </p>
  * 
@@ -25,7 +20,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface State extends ModelElement {
+public interface State extends StateNode {
 	/**
 	 * Returns the value of the '<em><b>Exit Conditions</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
@@ -103,41 +98,5 @@ public interface State extends ModelElement {
 	 * @generated
 	 */
 	void setEntryConditions(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Outgoing Transitions</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.state.Transition}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.state.Transition#getSource <em>Source</em>}'. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Outgoing Transitions</em>' reference list isn't clear, there really should be more of
-	 * a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Outgoing Transitions</em>' reference list.
-	 * @see org.unicase.model.state.StatePackage#getState_OutgoingTransitions()
-	 * @see org.unicase.model.state.Transition#getSource
-	 * @model opposite="source" keys="identifier"
-	 * @generated
-	 */
-	EList<Transition> getOutgoingTransitions();
-
-	/**
-	 * Returns the value of the '<em><b>Incoming Transitions</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.state.Transition}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.state.Transition#getTarget <em>Target</em>}'. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Incoming Transitions</em>' reference list isn't clear, there really should be more of
-	 * a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Incoming Transitions</em>' reference list.
-	 * @see org.unicase.model.state.StatePackage#getState_IncomingTransitions()
-	 * @see org.unicase.model.state.Transition#getTarget
-	 * @model opposite="target" keys="identifier"
-	 * @generated
-	 */
-	EList<Transition> getIncomingTransitions();
 
 } // State

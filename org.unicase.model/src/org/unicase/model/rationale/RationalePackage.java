@@ -158,6 +158,15 @@ public interface RationalePackage extends EPackage {
 	int ISSUE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.ANNOTATION__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE__COMMENTS = ModelPackage.ANNOTATION__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -420,6 +429,15 @@ public interface RationalePackage extends EPackage {
 	int PROPOSAL__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROPOSAL__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -546,6 +564,15 @@ public interface RationalePackage extends EPackage {
 	 * @ordered
 	 */
 	int SOLUTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SOLUTION__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Underlying Proposals</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -676,6 +703,15 @@ public interface RationalePackage extends EPackage {
 	int CRITERION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CRITERION__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -797,6 +833,15 @@ public interface RationalePackage extends EPackage {
 	int ASSESSMENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASSESSMENT__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Proposal</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -846,7 +891,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__IDENTIFIER = ModelPackage.ANNOTATION__IDENTIFIER;
+	int COMMENT__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -854,7 +899,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__NAME = ModelPackage.ANNOTATION__NAME;
+	int COMMENT__NAME = ModelPackage.MODEL_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -862,7 +907,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__DESCRIPTION = ModelPackage.ANNOTATION__DESCRIPTION;
+	int COMMENT__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -870,7 +915,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__CREATOR = ModelPackage.ANNOTATION__CREATOR;
+	int COMMENT__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -878,7 +923,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__CREATION_DATE = ModelPackage.ANNOTATION__CREATION_DATE;
+	int COMMENT__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -887,7 +932,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__ANNOTATIONS = ModelPackage.ANNOTATION__ANNOTATIONS;
+	int COMMENT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -896,7 +941,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__ATTACHMENTS = ModelPackage.ANNOTATION__ATTACHMENTS;
+	int COMMENT__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -905,7 +950,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.ANNOTATION__INCOMING_DOCUMENT_REFERENCES;
+	int COMMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -914,7 +959,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__LEAF_SECTION = ModelPackage.ANNOTATION__LEAF_SECTION;
+	int COMMENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -922,7 +967,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__STATE = ModelPackage.ANNOTATION__STATE;
+	int COMMENT__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -931,33 +976,41 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.ANNOTATION__APPLIED_STEREOTYPE_INSTANCES;
+	int COMMENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
-	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__ANNOTATED_MODEL_ELEMENTS = ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS;
+	int COMMENT__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Replies</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Sender</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__SENDER = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Recipients</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMMENT__RECIPIENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Commented Element</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT__REPLIES = ModelPackage.ANNOTATION_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Recipient</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int COMMENT__RECIPIENT = ModelPackage.ANNOTATION_FEATURE_COUNT + 1;
+	int COMMENT__COMMENTED_ELEMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Comment</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -965,7 +1018,7 @@ public interface RationalePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMMENT_FEATURE_COUNT = ModelPackage.ANNOTATION_FEATURE_COUNT + 2;
+	int COMMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.rationale.Issue <em>Issue</em>}'. <!--
@@ -1163,27 +1216,38 @@ public interface RationalePackage extends EPackage {
 	EClass getComment();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.model.rationale.Comment#getReplies <em>Replies</em>}'. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * Returns the meta object for the reference '{@link org.unicase.model.rationale.Comment#getSender <em>Sender</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the containment reference list '<em>Replies</em>'.
-	 * @see org.unicase.model.rationale.Comment#getReplies()
+	 * @return the meta object for the reference '<em>Sender</em>'.
+	 * @see org.unicase.model.rationale.Comment#getSender()
 	 * @see #getComment()
 	 * @generated
 	 */
-	EReference getComment_Replies();
+	EReference getComment_Sender();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.rationale.Comment#getRecipient
-	 * <em>Recipient</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the reference list '{@link org.unicase.model.rationale.Comment#getRecipients
+	 * <em>Recipients</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the reference '<em>Recipient</em>'.
-	 * @see org.unicase.model.rationale.Comment#getRecipient()
+	 * @return the meta object for the reference list '<em>Recipients</em>'.
+	 * @see org.unicase.model.rationale.Comment#getRecipients()
 	 * @see #getComment()
 	 * @generated
 	 */
-	EReference getComment_Recipient();
+	EReference getComment_Recipients();
+
+	/**
+	 * Returns the meta object for the container reference '
+	 * {@link org.unicase.model.rationale.Comment#getCommentedElement <em>Commented Element</em>}'. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the container reference '<em>Commented Element</em>'.
+	 * @see org.unicase.model.rationale.Comment#getCommentedElement()
+	 * @see #getComment()
+	 * @generated
+	 */
+	EReference getComment_CommentedElement();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1363,20 +1427,28 @@ public interface RationalePackage extends EPackage {
 		EClass COMMENT = eINSTANCE.getComment();
 
 		/**
-		 * The meta object literal for the '<em><b>Replies</b></em>' containment reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference COMMENT__REPLIES = eINSTANCE.getComment_Replies();
-
-		/**
-		 * The meta object literal for the '<em><b>Recipient</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Sender</b></em>' reference feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EReference COMMENT__RECIPIENT = eINSTANCE.getComment_Recipient();
+		EReference COMMENT__SENDER = eINSTANCE.getComment_Sender();
+
+		/**
+		 * The meta object literal for the '<em><b>Recipients</b></em>' reference list feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference COMMENT__RECIPIENTS = eINSTANCE.getComment_Recipients();
+
+		/**
+		 * The meta object literal for the '<em><b>Commented Element</b></em>' container reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference COMMENT__COMMENTED_ELEMENT = eINSTANCE.getComment_CommentedElement();
 
 	}
 

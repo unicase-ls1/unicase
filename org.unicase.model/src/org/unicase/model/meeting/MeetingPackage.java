@@ -158,6 +158,15 @@ public interface MeetingPackage extends EPackage {
 	int MEETING__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -353,6 +362,15 @@ public interface MeetingPackage extends EPackage {
 	int MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING_SECTION__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -470,6 +488,15 @@ public interface MeetingPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES = MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_MEETING_SECTION__COMMENTS = MEETING_SECTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -601,6 +628,15 @@ public interface MeetingPackage extends EPackage {
 	int ISSUE_MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES = MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE_MEETING_SECTION__COMMENTS = MEETING_SECTION__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -728,6 +764,15 @@ public interface MeetingPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_ITEM_MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES = MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM_MEETING_SECTION__COMMENTS = MEETING_SECTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->

@@ -50,7 +50,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 
 	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */

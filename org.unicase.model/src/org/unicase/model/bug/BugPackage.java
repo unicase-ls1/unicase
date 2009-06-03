@@ -158,6 +158,15 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__APPLIED_STEREOTYPE_INSTANCES = TaskPackage.WORK_ITEM__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__COMMENTS = TaskPackage.WORK_ITEM__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 

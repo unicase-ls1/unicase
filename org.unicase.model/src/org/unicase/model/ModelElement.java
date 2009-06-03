@@ -11,6 +11,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.StereotypeInstance;
+import org.unicase.model.rationale.Comment;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 
@@ -29,6 +30,7 @@ import org.unicase.model.task.util.MEState;
  * <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
  * <li>{@link org.unicase.model.ModelElement#getState <em>State</em>}</li>
  * <li>{@link org.unicase.model.ModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
+ * <li>{@link org.unicase.model.ModelElement#getComments <em>Comments</em>}</li>
  * </ul>
  * </p>
  * 
@@ -264,6 +266,26 @@ public interface ModelElement extends IdentifiableElement {
 	 * @generated
 	 */
 	EList<StereotypeInstance> getAppliedStereotypeInstances();
+
+	/**
+	 * Returns the value of the '<em><b>Comments</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.model.rationale.Comment}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.rationale.Comment#getCommentedElement <em>Commented Element</em>}'. <!-- begin-user-doc
+	 * -->
+	 * <p>
+	 * If the meaning of the '<em>Comments</em>' containment reference list isn't clear, there really should be more of
+	 * a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Comments</em>' containment reference list.
+	 * @see org.unicase.model.ModelPackage#getModelElement_Comments()
+	 * @see org.unicase.model.rationale.Comment#getCommentedElement
+	 * @model opposite="commentedElement" containment="true" resolveProxies="true" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='2.0' position='left'"
+	 * @generated
+	 */
+	EList<Comment> getComments();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

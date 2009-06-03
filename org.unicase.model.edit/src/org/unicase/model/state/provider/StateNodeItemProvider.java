@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.model.rationale.provider;
+package org.unicase.model.state.provider;
 
 import java.util.Collection;
 import java.util.List;
@@ -20,23 +20,23 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
-import org.unicase.model.rationale.Comment;
-import org.unicase.model.rationale.RationalePackage;
+import org.unicase.model.state.StateNode;
+import org.unicase.model.state.StatePackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.rationale.Comment} object. <!-- begin-user-doc -->
+ * This is the item provider adapter for a {@link org.unicase.model.state.StateNode} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * 
  * @generated
  */
-public class CommentItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+public class StateNodeItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	public CommentItemProvider(AdapterFactory adapterFactory) {
+	public StateNodeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -50,44 +50,38 @@ public class CommentItemProvider extends ModelElementItemProvider implements IEd
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSenderPropertyDescriptor(object);
-			addRecipientsPropertyDescriptor(object);
+			addOutgoingTransitionsPropertyDescriptor(object);
+			addIncomingTransitionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Sender feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Outgoing Transitions feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated
 	 */
-	protected void addSenderPropertyDescriptor(Object object) {
+	protected void addOutgoingTransitionsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_sender_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Comment_sender_feature", "_UI_Comment_type"),
-			RationalePackage.Literals.COMMENT__SENDER, false, false, true, null, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_StateNode_outgoingTransitions_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_StateNode_outgoingTransitions_feature",
+				"_UI_StateNode_type"), StatePackage.Literals.STATE_NODE__OUTGOING_TRANSITIONS, true, false, true, null,
+			null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Recipients feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Incoming Transitions feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
 	 * 
 	 * @generated
 	 */
-	protected void addRecipientsPropertyDescriptor(Object object) {
+	protected void addIncomingTransitionsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_recipients_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Comment_recipients_feature", "_UI_Comment_type"),
-			RationalePackage.Literals.COMMENT__RECIPIENTS, false, false, true, null, null, null));
-	}
-
-	/**
-	 * This returns Comment.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Comment"));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_StateNode_incomingTransitions_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_StateNode_incomingTransitions_feature",
+				"_UI_StateNode_type"), StatePackage.Literals.STATE_NODE__INCOMING_TRANSITIONS, true, false, true, null,
+			null, null));
 	}
 
 	/**
@@ -97,8 +91,8 @@ public class CommentItemProvider extends ModelElementItemProvider implements IEd
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Comment) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_Comment_type") : getString("_UI_Comment_type")
+		String label = ((StateNode) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_StateNode_type") : getString("_UI_StateNode_type")
 			+ " " + label;
 	}
 

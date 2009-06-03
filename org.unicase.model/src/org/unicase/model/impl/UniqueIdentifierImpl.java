@@ -47,7 +47,7 @@ public abstract class UniqueIdentifierImpl extends EObjectImpl implements Unique
 
 	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT
 	 */

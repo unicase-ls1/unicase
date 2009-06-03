@@ -171,8 +171,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			return (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new ModelPackageImpl());
 
 		isInited = true;
@@ -378,6 +378,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
+	public EReference getModelElement_Comments() {
+		return (EReference) modelElementEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getProject() {
 		return projectEClass;
 	}
@@ -538,6 +547,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(modelElementEClass, MODEL_ELEMENT__LEAF_SECTION);
 		createEAttribute(modelElementEClass, MODEL_ELEMENT__STATE);
 		createEReference(modelElementEClass, MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES);
+		createEReference(modelElementEClass, MODEL_ELEMENT__COMMENTS);
 
 		projectEClass = createEClass(PROJECT);
 		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
@@ -682,6 +692,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getModelElement_AppliedStereotypeInstances().getEKeys().add(this.getIdentifiableElement_Identifier());
+		initEReference(getModelElement_Comments(), theRationalePackage.getComment(), theRationalePackage
+			.getComment_CommentedElement(), "comments", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getModelElement_Comments().getEKeys().add(this.getIdentifiableElement_Identifier());
 
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1,
@@ -752,6 +766,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		addAnnotation(getModelElement_Attachments(), source, new String[] { "priority", "101.0", "position", "right" });
 		addAnnotation(getModelElement_IncomingDocumentReferences(), source, new String[] { "priority", "102.0",
 			"position", "right" });
+		addAnnotation(getModelElement_Comments(), source, new String[] { "priority", "2.0", "position", "left" });
 		addAnnotation(getAnnotation_AnnotatedModelElements(), source, new String[] { "priority", "90.0", "position",
 			"right" });
 	}

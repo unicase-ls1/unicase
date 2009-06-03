@@ -194,8 +194,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			return (ClassesPackage) EPackage.Registry.INSTANCE.getEPackage(ClassesPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		ClassesPackageImpl theClassesPackage = (ClassesPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ClassesPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new ClassesPackageImpl());
 
 		isInited = true;

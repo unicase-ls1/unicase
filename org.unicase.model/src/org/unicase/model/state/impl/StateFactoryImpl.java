@@ -11,7 +11,9 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.state.State;
+import org.unicase.model.state.StateEnd;
 import org.unicase.model.state.StateFactory;
+import org.unicase.model.state.StateInitial;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
@@ -60,6 +62,10 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 			return createState();
 		case StatePackage.TRANSITION:
 			return createTransition();
+		case StatePackage.STATE_INITIAL:
+			return createStateInitial();
+		case StatePackage.STATE_END:
+			return createStateEnd();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -83,6 +89,26 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	public Transition createTransition() {
 		TransitionImpl transition = new TransitionImpl();
 		return transition;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public StateInitial createStateInitial() {
+		StateInitialImpl stateInitial = new StateInitialImpl();
+		return stateInitial;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public StateEnd createStateEnd() {
+		StateEndImpl stateEnd = new StateEndImpl();
+		return stateEnd;
 	}
 
 	/**
