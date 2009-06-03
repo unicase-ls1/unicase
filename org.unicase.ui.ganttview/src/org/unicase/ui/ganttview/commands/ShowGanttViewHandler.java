@@ -12,6 +12,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.ganttview.models.GanttModelFactory;
 import org.unicase.ui.ganttview.views.GanttView;
@@ -28,6 +29,7 @@ public class ShowGanttViewHandler extends AbstractHandler {
 //			ganttView.setInput(GanttModelFactory.createGanttModelTest());
 //			TODO: 
 			ganttView.setInput(GanttModelFactory.createGanttModelFromSelectedWorkItems(me));
+			WorkPackage p = null;
 
 		} catch (PartInitException e) {
 			//DialogHandler.showExceptionDialog(e);

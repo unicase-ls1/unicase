@@ -6,7 +6,6 @@
 package org.unicase.ui.ganttview.models;
 
 import java.util.Calendar;
-import java.util.Random;
 import java.util.Set;
 
 import org.unicase.model.ModelElement;

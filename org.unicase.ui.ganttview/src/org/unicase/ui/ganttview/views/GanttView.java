@@ -20,7 +20,6 @@ import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.ui.ganttview.models.GanttModelFactory;
 import org.unicase.ui.ganttview.models.IGanttItem;
 import org.unicase.ui.ganttview.models.IGanttModel;
 import org.unicase.ui.ganttview.models.IGanttModelListener;
