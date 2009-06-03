@@ -18,21 +18,22 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationalePackage;
 
-/*
+/**
  * This is the item provider adapter for a {@link org.unicase.model.rationale.Comment} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
+ * 
  * @generated
  */
-public class CommentItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+public class CommentItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
-	 * This constructs an instance from a factory and a notifier.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CommentItemProvider(AdapterFactory adapterFactory) {
@@ -40,8 +41,8 @@ public class CommentItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This returns the property descriptors for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the property descriptors for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -49,39 +50,39 @@ public class CommentItemProvider extends ModelElementItemProvider implements IEd
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addSenderPropertyDescriptor(object);
-			addRecipientsPropertyDescriptor(object);
+			addRepliesPropertyDescriptor(object);
+			addRecipientPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Sender feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Replies feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	protected void addSenderPropertyDescriptor(Object object) {
+	protected void addRepliesPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_sender_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Comment_sender_feature", "_UI_Comment_type"),
-			RationalePackage.Literals.COMMENT__SENDER, false, false, true, null, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_replies_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Comment_replies_feature", "_UI_Comment_type"),
+			RationalePackage.Literals.COMMENT__REPLIES, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Recipients feature.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Recipient feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	protected void addRecipientsPropertyDescriptor(Object object) {
+	protected void addRecipientPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_recipients_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Comment_recipients_feature", "_UI_Comment_type"),
-			RationalePackage.Literals.COMMENT__RECIPIENTS, false, false, true, null, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_recipient_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Comment_recipient_feature", "_UI_Comment_type"),
+			RationalePackage.Literals.COMMENT__RECIPIENT, true, false, true, null, null, null));
 	}
 
 	/**
-	 * This returns Comment.gif.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns Comment.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -90,8 +91,8 @@ public class CommentItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This returns the label text for the adapted class.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -115,9 +116,9 @@ public class CommentItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children
-	 * that can be created under this object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds {@link org.eclipse.emf.edit.command.CommandParameter}s describing the children that can be created
+	 * under this object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,8 +127,8 @@ public class CommentItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
