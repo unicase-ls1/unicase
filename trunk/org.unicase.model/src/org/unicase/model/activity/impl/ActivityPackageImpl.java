@@ -155,8 +155,8 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 			return (ActivityPackage) EPackage.Registry.INSTANCE.getEPackage(ActivityPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new ActivityPackageImpl());
 
 		isInited = true;

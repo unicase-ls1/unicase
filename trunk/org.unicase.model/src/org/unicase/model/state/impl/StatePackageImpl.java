@@ -40,7 +40,10 @@ import org.unicase.model.rationale.impl.RationalePackageImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.impl.RequirementPackageImpl;
 import org.unicase.model.state.State;
+import org.unicase.model.state.StateEnd;
 import org.unicase.model.state.StateFactory;
+import org.unicase.model.state.StateInitial;
+import org.unicase.model.state.StateNode;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 import org.unicase.model.task.TaskPackage;
@@ -67,6 +70,27 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 	 * @generated
 	 */
 	private EClass transitionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass stateNodeEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass stateInitialEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass stateEndEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -115,8 +139,8 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 			return (StatePackage) EPackage.Registry.INSTANCE.getEPackage(StatePackage.eNS_URI);
 
 		// Obtain or create and register package
-		StatePackageImpl theStatePackage = (StatePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		StatePackageImpl theStatePackage = (StatePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new StatePackageImpl());
 
 		isInited = true;
@@ -259,24 +283,6 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getState_OutgoingTransitions() {
-		return (EReference) stateEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getState_IncomingTransitions() {
-		return (EReference) stateEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EClass getTransition() {
 		return transitionEClass;
 	}
@@ -313,6 +319,51 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 	 * 
 	 * @generated
 	 */
+	public EClass getStateNode() {
+		return stateNodeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getStateNode_OutgoingTransitions() {
+		return (EReference) stateNodeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getStateNode_IncomingTransitions() {
+		return (EReference) stateNodeEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getStateInitial() {
+		return stateInitialEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getStateEnd() {
+		return stateEndEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public StateFactory getStateFactory() {
 		return (StateFactory) getEFactoryInstance();
 	}
@@ -340,13 +391,19 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 		createEAttribute(stateEClass, STATE__EXIT_CONDITIONS);
 		createEAttribute(stateEClass, STATE__ACTIVITIES);
 		createEAttribute(stateEClass, STATE__ENTRY_CONDITIONS);
-		createEReference(stateEClass, STATE__OUTGOING_TRANSITIONS);
-		createEReference(stateEClass, STATE__INCOMING_TRANSITIONS);
 
 		transitionEClass = createEClass(TRANSITION);
 		createEAttribute(transitionEClass, TRANSITION__CONDITION);
 		createEReference(transitionEClass, TRANSITION__SOURCE);
 		createEReference(transitionEClass, TRANSITION__TARGET);
+
+		stateNodeEClass = createEClass(STATE_NODE);
+		createEReference(stateNodeEClass, STATE_NODE__OUTGOING_TRANSITIONS);
+		createEReference(stateNodeEClass, STATE_NODE__INCOMING_TRANSITIONS);
+
+		stateInitialEClass = createEClass(STATE_INITIAL);
+
+		stateEndEClass = createEClass(STATE_END);
 	}
 
 	/**
@@ -380,8 +437,11 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		stateEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		stateEClass.getESuperTypes().add(this.getStateNode());
 		transitionEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		stateNodeEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		stateInitialEClass.getESuperTypes().add(this.getStateNode());
+		stateEndEClass.getESuperTypes().add(this.getStateNode());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(stateEClass, State.class, "State", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -392,27 +452,35 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 		initEAttribute(getState_EntryConditions(), ecorePackage.getEString(), "entryConditions", null, 0, 1,
 			State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		initEReference(getState_OutgoingTransitions(), this.getTransition(), this.getTransition_Source(),
-			"outgoingTransitions", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getState_OutgoingTransitions().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getState_IncomingTransitions(), this.getTransition(), this.getTransition_Target(),
-			"incomingTransitions", null, 0, -1, State.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getState_IncomingTransitions().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(transitionEClass, Transition.class, "Transition", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTransition_Condition(), ecorePackage.getEString(), "condition", "", 0, 1, Transition.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTransition_Source(), this.getState(), this.getState_OutgoingTransitions(), "source", null, 0,
-			1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Source(), this.getStateNode(), this.getStateNode_OutgoingTransitions(), "source",
+			null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getTransition_Source().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getTransition_Target(), this.getState(), this.getState_IncomingTransitions(), "target", null, 0,
-			1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTransition_Target(), this.getStateNode(), this.getStateNode_IncomingTransitions(), "target",
+			null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getTransition_Target().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+
+		initEClass(stateNodeEClass, StateNode.class, "StateNode", IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getStateNode_OutgoingTransitions(), this.getTransition(), this.getTransition_Source(),
+			"outgoingTransitions", null, 0, -1, StateNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getStateNode_OutgoingTransitions().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getStateNode_IncomingTransitions(), this.getTransition(), this.getTransition_Target(),
+			"incomingTransitions", null, 0, -1, StateNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getStateNode_IncomingTransitions().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+
+		initEClass(stateInitialEClass, StateInitial.class, "StateInitial", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(stateEndEClass, StateEnd.class, "StateEnd", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 	}
 
 } // StatePackageImpl

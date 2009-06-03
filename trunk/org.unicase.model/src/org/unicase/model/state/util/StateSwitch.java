@@ -12,6 +12,9 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.state.State;
+import org.unicase.model.state.StateEnd;
+import org.unicase.model.state.StateInitial;
+import org.unicase.model.state.StateNode;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
@@ -83,6 +86,8 @@ public class StateSwitch<T> {
 			State state = (State) theEObject;
 			T result = caseState(state);
 			if (result == null)
+				result = caseStateNode(state);
+			if (result == null)
 				result = caseModelElement(state);
 			if (result == null)
 				result = caseIdentifiableElement(state);
@@ -97,6 +102,43 @@ public class StateSwitch<T> {
 				result = caseModelElement(transition);
 			if (result == null)
 				result = caseIdentifiableElement(transition);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StatePackage.STATE_NODE: {
+			StateNode stateNode = (StateNode) theEObject;
+			T result = caseStateNode(stateNode);
+			if (result == null)
+				result = caseModelElement(stateNode);
+			if (result == null)
+				result = caseIdentifiableElement(stateNode);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StatePackage.STATE_INITIAL: {
+			StateInitial stateInitial = (StateInitial) theEObject;
+			T result = caseStateInitial(stateInitial);
+			if (result == null)
+				result = caseStateNode(stateInitial);
+			if (result == null)
+				result = caseModelElement(stateInitial);
+			if (result == null)
+				result = caseIdentifiableElement(stateInitial);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case StatePackage.STATE_END: {
+			StateEnd stateEnd = (StateEnd) theEObject;
+			T result = caseStateEnd(stateEnd);
+			if (result == null)
+				result = caseStateNode(stateEnd);
+			if (result == null)
+				result = caseModelElement(stateEnd);
+			if (result == null)
+				result = caseIdentifiableElement(stateEnd);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -129,6 +171,45 @@ public class StateSwitch<T> {
 	 * @generated
 	 */
 	public T caseTransition(Transition object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Node</em>'. <!-- begin-user-doc --> This
+	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Node</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateNode(StateNode object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Initial</em>'. <!-- begin-user-doc --> This
+	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Initial</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateInitial(StateInitial object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>End</em>'. <!-- begin-user-doc --> This
+	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>End</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseStateEnd(StateEnd object) {
 		return null;
 	}
 

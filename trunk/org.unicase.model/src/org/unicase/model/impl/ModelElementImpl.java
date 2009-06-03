@@ -32,6 +32,8 @@ import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.StereotypeInstance;
+import org.unicase.model.rationale.Comment;
+import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.MEStateImpl;
@@ -53,6 +55,7 @@ import org.unicase.model.task.util.MEStateImpl;
  * <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
  * <li>{@link org.unicase.model.impl.ModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype Instances
  * </em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getComments <em>Comments</em>}</li>
  * </ul>
  * </p>
  * 
@@ -260,18 +263,27 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 */
 	protected EList<StereotypeInstance> appliedStereotypeInstances;
 
+	/**
+	 * The cached value of the '{@link #getComments() <em>Comments</em>}' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getComments()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Comment> comments;
+
 	private boolean calculatingState;
 
 	private org.unicase.model.task.util.MEState meState;
 
 	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Constructor.
 	 * 
 	 * @generated NOT
 	 */
 	protected ModelElementImpl() {
-		// MK: Document why this is so.
 		super();
 
 		// TODO AS activate this when the models on the server are fixed.
@@ -504,6 +516,19 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	}
 
 	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<Comment> getComments() {
+		if (comments == null) {
+			comments = new EObjectContainmentWithInverseEList.Resolving<Comment>(Comment.class, this,
+				ModelPackage.MODEL_ELEMENT__COMMENTS, RationalePackage.COMMENT__COMMENTED_ELEMENT);
+		}
+		return comments;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->.
 	 * 
 	 * @generated NOT
@@ -630,6 +655,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAppliedStereotypeInstances()).basicAdd(
 				otherEnd, msgs);
+		case ModelPackage.MODEL_ELEMENT__COMMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getComments()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -652,6 +679,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 			return basicSetLeafSection(null, msgs);
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return ((InternalEList<?>) getAppliedStereotypeInstances()).basicRemove(otherEnd, msgs);
+		case ModelPackage.MODEL_ELEMENT__COMMENTS:
+			return ((InternalEList<?>) getComments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -701,6 +730,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 			return getState();
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return getAppliedStereotypeInstances();
+		case ModelPackage.MODEL_ELEMENT__COMMENTS:
+			return getComments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -745,6 +776,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 			getAppliedStereotypeInstances().clear();
 			getAppliedStereotypeInstances().addAll((Collection<? extends StereotypeInstance>) newValue);
 			return;
+		case ModelPackage.MODEL_ELEMENT__COMMENTS:
+			getComments().clear();
+			getComments().addAll((Collection<? extends Comment>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -784,6 +819,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			getAppliedStereotypeInstances().clear();
 			return;
+		case ModelPackage.MODEL_ELEMENT__COMMENTS:
+			getComments().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -816,6 +854,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 			return STATE_EDEFAULT == null ? getState() != null : !STATE_EDEFAULT.equals(getState());
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return appliedStereotypeInstances != null && !appliedStereotypeInstances.isEmpty();
+		case ModelPackage.MODEL_ELEMENT__COMMENTS:
+			return comments != null && !comments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

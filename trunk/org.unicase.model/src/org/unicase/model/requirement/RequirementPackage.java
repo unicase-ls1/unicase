@@ -159,6 +159,15 @@ public interface RequirementPackage extends EPackage {
 	int NON_FUNCTIONAL_REQUIREMENT__APPLIED_STEREOTYPE_INSTANCES = RationalePackage.CRITERION__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__COMMENTS = RationalePackage.CRITERION__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Assessments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -296,6 +305,15 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int FUNCTIONAL_REQUIREMENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Refined Requirement</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -482,6 +500,15 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int USE_CASE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Initiating Actor</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -716,6 +743,15 @@ public interface RequirementPackage extends EPackage {
 	int SCENARIO__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -899,6 +935,15 @@ public interface RequirementPackage extends EPackage {
 	int ACTOR__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Initiated User Task</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -1054,6 +1099,15 @@ public interface RequirementPackage extends EPackage {
 	int ACTOR_INSTANCE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR_INSTANCE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Initiated Scenarios</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -1191,6 +1245,15 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int STEP__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>User Step</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1339,6 +1402,15 @@ public interface RequirementPackage extends EPackage {
 	int SYSTEM_FUNCTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Input</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -1473,6 +1545,15 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER_TASK__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Initiating Actor</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc

@@ -168,6 +168,15 @@ public interface OrganizationPackage extends EPackage {
 	int ORG_UNIT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -302,6 +311,15 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER__APPLIED_STEREOTYPE_INSTANCES = ORG_UNIT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USER__COMMENTS = ORG_UNIT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -481,6 +499,15 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUP__APPLIED_STEREOTYPE_INSTANCES = ORG_UNIT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__COMMENTS = ORG_UNIT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->

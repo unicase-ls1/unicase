@@ -314,6 +314,12 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 			StateFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			StateFactory.eINSTANCE.createStateInitial()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			StateFactory.eINSTANCE.createStateEnd()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			AttachmentFactory.eINSTANCE.createUrlAttachment()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,

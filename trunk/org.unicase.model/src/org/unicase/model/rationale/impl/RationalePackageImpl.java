@@ -147,8 +147,8 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 			return (RationalePackage) EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI);
 
 		// Obtain or create and register package
-		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new RationalePackageImpl());
 
 		isInited = true;
@@ -417,7 +417,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 * 
 	 * @generated
 	 */
-	public EReference getComment_Replies() {
+	public EReference getComment_Sender() {
 		return (EReference) commentEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -426,8 +426,17 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 * 
 	 * @generated
 	 */
-	public EReference getComment_Recipient() {
+	public EReference getComment_Recipients() {
 		return (EReference) commentEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getComment_CommentedElement() {
+		return (EReference) commentEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -481,8 +490,9 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		createEAttribute(assessmentEClass, ASSESSMENT__VALUE);
 
 		commentEClass = createEClass(COMMENT);
-		createEReference(commentEClass, COMMENT__REPLIES);
-		createEReference(commentEClass, COMMENT__RECIPIENT);
+		createEReference(commentEClass, COMMENT__SENDER);
+		createEReference(commentEClass, COMMENT__RECIPIENTS);
+		createEReference(commentEClass, COMMENT__COMMENTED_ELEMENT);
 	}
 
 	/**
@@ -529,7 +539,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		criterionEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		assessmentEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		assessmentEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
-		commentEClass.getESuperTypes().add(theModelPackage.getAnnotation());
+		commentEClass.getESuperTypes().add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(issueEClass, Issue.class, "Issue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -589,14 +599,18 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(commentEClass, Comment.class, "Comment", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getComment_Replies(), this.getComment(), null, "replies", null, 0, -1, Comment.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		getComment_Replies().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getComment_Recipient(), theOrganizationPackage.getOrgUnit(), null, "recipient", null, 0, 1,
+		initEReference(getComment_Sender(), theOrganizationPackage.getOrgUnit(), null, "sender", null, 0, 1,
 			Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getComment_Recipient().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		getComment_Sender().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getComment_Recipients(), theOrganizationPackage.getOrgUnit(), null, "recipients", null, 0, -1,
+			Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComment_Recipients().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getComment_CommentedElement(), theModelPackage.getModelElement(), theModelPackage
+			.getModelElement_Comments(), "commentedElement", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComment_CommentedElement().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor
@@ -620,7 +634,6 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 			new String[] { "priority", "10.0", "position", "right" });
 		addAnnotation(getSolution_Issue(), source, new String[] { "priority", "10.0", "position", "left" });
 		addAnnotation(getCriterion_Assessments(), source, new String[] { "priority", "10.0", "position", "right" });
-		addAnnotation(getComment_Replies(), source, new String[] { "priority", "10.0", "position", "right" });
 	}
 
 } // RationalePackageImpl

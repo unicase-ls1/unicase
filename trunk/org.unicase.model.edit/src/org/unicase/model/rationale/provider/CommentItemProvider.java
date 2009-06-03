@@ -18,8 +18,8 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
+import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationalePackage;
 
@@ -29,7 +29,7 @@ import org.unicase.model.rationale.RationalePackage;
  * 
  * @generated
  */
-public class CommentItemProvider extends AnnotationItemProvider implements IEditingDomainItemProvider,
+public class CommentItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -50,34 +50,34 @@ public class CommentItemProvider extends AnnotationItemProvider implements IEdit
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addRepliesPropertyDescriptor(object);
-			addRecipientPropertyDescriptor(object);
+			addSenderPropertyDescriptor(object);
+			addRecipientsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Replies feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Sender feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addRepliesPropertyDescriptor(Object object) {
+	protected void addSenderPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_replies_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Comment_replies_feature", "_UI_Comment_type"),
-			RationalePackage.Literals.COMMENT__REPLIES, true, false, true, null, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_sender_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Comment_sender_feature", "_UI_Comment_type"),
+			RationalePackage.Literals.COMMENT__SENDER, false, false, true, null, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Recipient feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Recipients feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addRecipientPropertyDescriptor(Object object) {
+	protected void addRecipientsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_recipient_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_Comment_recipient_feature", "_UI_Comment_type"),
-			RationalePackage.Literals.COMMENT__RECIPIENT, true, false, true, null, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_recipients_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_Comment_recipients_feature", "_UI_Comment_type"),
+			RationalePackage.Literals.COMMENT__RECIPIENTS, false, false, true, null, null, null));
 	}
 
 	/**

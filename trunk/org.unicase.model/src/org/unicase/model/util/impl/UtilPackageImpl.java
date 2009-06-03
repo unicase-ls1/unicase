@@ -106,8 +106,8 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 			return (UtilPackage) EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI);
 
 		// Obtain or create and register package
-		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new UtilPackageImpl());
 
 		isInited = true;

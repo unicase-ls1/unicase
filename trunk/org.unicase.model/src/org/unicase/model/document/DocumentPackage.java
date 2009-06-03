@@ -157,6 +157,15 @@ public interface DocumentPackage extends EPackage {
 	int SECTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -275,6 +284,15 @@ public interface DocumentPackage extends EPackage {
 	 * @ordered
 	 */
 	int LEAF_SECTION__APPLIED_STEREOTYPE_INSTANCES = SECTION__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_SECTION__COMMENTS = SECTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -414,6 +432,15 @@ public interface DocumentPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_SECTION__APPLIED_STEREOTYPE_INSTANCES = SECTION__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_SECTION__COMMENTS = SECTION__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc

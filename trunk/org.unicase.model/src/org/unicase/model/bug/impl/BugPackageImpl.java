@@ -131,8 +131,8 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 			return (BugPackage) EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI);
 
 		// Obtain or create and register package
-		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new BugPackageImpl());
 
 		isInited = true;

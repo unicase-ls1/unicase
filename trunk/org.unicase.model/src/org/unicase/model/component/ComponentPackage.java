@@ -157,6 +157,15 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Packages</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -303,6 +312,15 @@ public interface ComponentPackage extends EPackage {
 	int COMPONENT_SERVICE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SERVICE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Offering Component</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -430,6 +448,15 @@ public interface ComponentPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEPLOYMENT_NODE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT_NODE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->

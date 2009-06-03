@@ -159,6 +159,15 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE_ELEMENT__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Parent Package</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -296,6 +305,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int CLASS__APPLIED_STEREOTYPE_INSTANCES = PACKAGE_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS__COMMENTS = PACKAGE_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Parent Package</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -508,6 +526,15 @@ public interface ClassesPackage extends EPackage {
 	int PACKAGE__APPLIED_STEREOTYPE_INSTANCES = PACKAGE_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PACKAGE__COMMENTS = PACKAGE_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Parent Package</b></em>' container reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -661,6 +688,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int ASSOCIATION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ASSOCIATION__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -831,6 +867,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int ATTRIBUTE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ATTRIBUTE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Defining Class</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -1008,6 +1053,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int METHOD__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Visibility</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1222,6 +1276,15 @@ public interface ClassesPackage extends EPackage {
 	int METHOD_ARGUMENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD_ARGUMENT__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -1372,6 +1435,15 @@ public interface ClassesPackage extends EPackage {
 	 * @ordered
 	 */
 	int DEPENDENCY__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DEPENDENCY__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
