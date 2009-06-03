@@ -27,9 +27,9 @@ public class «documentProviderClassName» extends org.unicase.ui.common.diagram.p
 	«EXPAND setupDocument-»
 	
 	«EXPAND computeModificationStamp-»
-	
-	«EXPAND createEditingDomain-»
-	
+	«REM»Removed method createEditingDomain «ENDREM»
+	«REM»Removed method createEmptyDocument «ENDREM»
+	«REM»Removed method setupDocumentContent «ENDREM»	
 	«EXPAND getModificationStamp-»
 	
 	«EXPAND isDeleted-»
