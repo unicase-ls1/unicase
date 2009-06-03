@@ -77,11 +77,19 @@ protected org.eclipse.gef.commands.Command getCompleteCreateRelationshipCommand(
 if («getDiagram().getElementTypesQualifiedClassName()».«getUniqueIdentifier()» == req.getElementType()) {
 	«IF createStartLinkCommand(typeModelFacet)-»
 	return getGEFWrapper(new «getCreateCommandQualifiedClassName()»(req,
+	«IF typeModelFacet.oclIsKindOf(gmfgen::TypeLinkModelFacet)-»
 		«IF createStartIncomingLinkCommand(typeModelFacet)-»
 			req.getTarget(), req.getSource(), (EObject) getHost().getModel()
 		«ELSE-»
 			req.getSource(), req.getTarget(), (EObject) getHost().getModel()
 		«ENDIF-»
+	«ELSE-»
+		«IF createStartIncomingLinkCommand(typeModelFacet)-»
+			req.getTarget(), req.getSource()
+		«ELSE-»
+			req.getSource(), req.getTarget()
+		«ENDIF-»
+	«ENDIF-»	
 	));
 	«ELSE-»
 	return null;
@@ -92,11 +100,11 @@ if («getDiagram().getElementTypesQualifiedClassName()».«getUniqueIdentifier()» =
 «DEFINE completeLinkCommands(gmfgen::TypeModelFacet typeModelFacet) FOR gmfgen::GenLink-»
 if («getDiagram().getElementTypesQualifiedClassName()».«getUniqueIdentifier()» == req.getElementType()) {
 	«IF createCompleteLinkCommand(typeModelFacet)-»
-	return getGEFWrapper(new «getCreateCommandQualifiedClassName()»(req,
+	return getGEFWrapper(new «getCreateCommandQualifiedClassName()»(req,	
 		«IF createCompleteOutgoingLinkCommand(typeModelFacet)-»
-			req.getTarget(), req.getSource(), (EObject) getHost().getModel()
+			req.getTarget(), req.getSource()
 		«ELSE-»
-			req.getSource(), req.getTarget(), (EObject) getHost().getModel()
+			req.getSource(), req.getTarget()
 		«ENDIF-»
 	));
 	«ELSE-»
