@@ -87,16 +87,17 @@
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
-«ENDDEFINE»
    <extension point="org.eclipse.core.expressions.propertyTesters">
-      <propertyTester
+    <propertyTester
 	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
 	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
 	     namespace="org.unicase.ui.common"
 	     properties="isDiagramType"
 	     type="org.unicase.model.ModelElement">
-	  </propertyTester>
+    </propertyTester>
    </extension>
+«ENDDEFINE»
+
 «DEFINE elementTypeSafe FOR gmfgen::ElementType-»
 «IF !definedExternally-»
 «EXPAND elementType-»
