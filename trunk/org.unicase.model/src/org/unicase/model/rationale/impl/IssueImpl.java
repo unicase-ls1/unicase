@@ -321,7 +321,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (eContainerFeatureID != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID() != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eContainer();
 	}
@@ -331,7 +331,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
-		if (eContainerFeatureID != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID() != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eInternalContainer();
 	}
@@ -352,7 +352,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
 		if (newContainingWorkpackage != eInternalContainer()
-			|| (eContainerFeatureID != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			|| (eContainerFeatureID() != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -830,7 +830,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				WorkPackage.class, msgs);
@@ -846,7 +846,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case RationalePackage.ISSUE__CHECKED:
-			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
+			return isChecked();
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			if (resolve)
 				return getContainingWorkpackage();
@@ -870,13 +870,13 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__DUE_DATE:
 			return getDueDate();
 		case RationalePackage.ISSUE__ESTIMATE:
-			return new Integer(getEstimate());
+			return getEstimate();
 		case RationalePackage.ISSUE__EFFORT:
-			return new Integer(getEffort());
+			return getEffort();
 		case RationalePackage.ISSUE__PRIORITY:
-			return new Integer(getPriority());
+			return getPriority();
 		case RationalePackage.ISSUE__RESOLVED:
-			return isResolved() ? Boolean.TRUE : Boolean.FALSE;
+			return isResolved();
 		case RationalePackage.ISSUE__PROPOSALS:
 			return getProposals();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -900,7 +900,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case RationalePackage.ISSUE__CHECKED:
-			setChecked(((Boolean) newValue).booleanValue());
+			setChecked((Boolean) newValue);
 			return;
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			setContainingWorkpackage((WorkPackage) newValue);
@@ -931,16 +931,16 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			setDueDate((Date) newValue);
 			return;
 		case RationalePackage.ISSUE__ESTIMATE:
-			setEstimate(((Integer) newValue).intValue());
+			setEstimate((Integer) newValue);
 			return;
 		case RationalePackage.ISSUE__EFFORT:
-			setEffort(((Integer) newValue).intValue());
+			setEffort((Integer) newValue);
 			return;
 		case RationalePackage.ISSUE__PRIORITY:
-			setPriority(((Integer) newValue).intValue());
+			setPriority((Integer) newValue);
 			return;
 		case RationalePackage.ISSUE__RESOLVED:
-			setResolved(((Boolean) newValue).booleanValue());
+			setResolved((Boolean) newValue);
 			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();

@@ -143,8 +143,8 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 			return (RationalePackage) EPackage.Registry.INSTANCE.getEPackage(RationalePackage.eNS_URI);
 
 		// Obtain or create and register package
-		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+		RationalePackageImpl theRationalePackage = (RationalePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RationalePackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new RationalePackageImpl());
 
 		isInited = true;
@@ -391,8 +391,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getComment_Sender() {
@@ -400,8 +399,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getComment_Recipients() {
@@ -409,8 +407,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getComment_CommentedElement() {
@@ -585,6 +582,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		initEReference(getComment_CommentedElement(), theModelPackage.getModelElement(), theModelPackage
 			.getModelElement_Comments(), "commentedElement", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComment_CommentedElement().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor

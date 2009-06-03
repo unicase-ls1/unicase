@@ -32,24 +32,23 @@ public interface Attribute extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Defining Class</em>' container reference.
-	 * @see #setDefiningClass(org.unicase.model.classes.Class)
+	 * @see #setDefiningClass(Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_DefiningClass()
 	 * @see org.unicase.model.classes.Class#getAttributes
 	 * @model opposite="attributes" transient="false"
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
-	org.unicase.model.classes.Class getDefiningClass();
+	Class getDefiningClass();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getDefiningClass <em>Defining Class</em>}' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Defining Class</em>' container reference.
 	 * @see #getDefiningClass()
 	 * @generated
 	 */
-	void setDefiningClass(org.unicase.model.classes.Class value);
+	void setDefiningClass(Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.

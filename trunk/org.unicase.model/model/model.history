@@ -2,7 +2,7 @@
 <history:History xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:history="http://www.cs.tum.edu/cope/history">
-  <releases date="2009-02-10T17:24:06.781+0100" label="0.3.4.internal">
+  <releases date="2009-02-10T08:24:06.781-0800" label="0.3.4.internal">
     <changes xsi:type="history:CompositeChange">
       <changes xsi:type="history:AddRootPackage" package="model.ecore#/">
         <changes xsi:type="history:Set" element="model.ecore#/" featureName="name"
@@ -5787,26 +5787,26 @@
         <changes xsi:type="history:Add" element="model.ecore#//state/Transition" featureName="eSuperTypes"
             referenceValue="model.ecore#//ModelElement"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//state/State" element="model.ecore#//state/State/outgoingTransitions"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//state/State" element="model.ecore#//state/StateNode/outgoingTransitions"
           referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//state/State/outgoingTransitions"
+        <changes xsi:type="history:Set" element="model.ecore#//state/StateNode/outgoingTransitions"
             featureName="name" dataValue="outgoingTransitions"/>
-        <changes xsi:type="history:Set" element="model.ecore#//state/State/outgoingTransitions"
+        <changes xsi:type="history:Set" element="model.ecore#//state/StateNode/outgoingTransitions"
             featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//state/State/outgoingTransitions"
+        <changes xsi:type="history:Set" element="model.ecore#//state/StateNode/outgoingTransitions"
             featureName="eType" referenceValue="model.ecore#//state/Transition"/>
-        <changes xsi:type="history:Add" element="model.ecore#//state/State/outgoingTransitions"
+        <changes xsi:type="history:Add" element="model.ecore#//state/StateNode/outgoingTransitions"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
-      <changes xsi:type="history:CreateChild" target="model.ecore#//state/State" element="model.ecore#//state/State/incomingTransitions"
+      <changes xsi:type="history:CreateChild" target="model.ecore#//state/State" element="model.ecore#//state/StateNode/incomingTransitions"
           referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//state/State/incomingTransitions"
+        <changes xsi:type="history:Set" element="model.ecore#//state/StateNode/incomingTransitions"
             featureName="name" dataValue="incomingTransitions"/>
-        <changes xsi:type="history:Set" element="model.ecore#//state/State/incomingTransitions"
+        <changes xsi:type="history:Set" element="model.ecore#//state/StateNode/incomingTransitions"
             featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//state/State/incomingTransitions"
+        <changes xsi:type="history:Set" element="model.ecore#//state/StateNode/incomingTransitions"
             featureName="eType" referenceValue="model.ecore#//state/Transition"/>
-        <changes xsi:type="history:Add" element="model.ecore#//state/State/incomingTransitions"
+        <changes xsi:type="history:Add" element="model.ecore#//state/StateNode/incomingTransitions"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:CreateChild" target="model.ecore#//state/Transition"
@@ -5825,8 +5825,8 @@
         <changes xsi:type="history:Set" element="model.ecore#//state/Transition/source"
             featureName="eType" referenceValue="model.ecore#//state/State"/>
         <changes xsi:type="history:Set" element="model.ecore#//state/Transition/source"
-            featureName="eOpposite" referenceValue="model.ecore#//state/State/outgoingTransitions"/>
-        <changes xsi:type="history:Set" element="model.ecore#//state/State/outgoingTransitions"
+            featureName="eOpposite" referenceValue="model.ecore#//state/StateNode/outgoingTransitions"/>
+        <changes xsi:type="history:Set" element="model.ecore#//state/StateNode/outgoingTransitions"
             featureName="eOpposite" referenceValue="model.ecore#//state/Transition/source"/>
         <changes xsi:type="history:Add" element="model.ecore#//state/Transition/source"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
@@ -5838,8 +5838,8 @@
         <changes xsi:type="history:Set" element="model.ecore#//state/Transition/target"
             featureName="eType" referenceValue="model.ecore#//state/State"/>
         <changes xsi:type="history:Set" element="model.ecore#//state/Transition/target"
-            featureName="eOpposite" referenceValue="model.ecore#//state/State/incomingTransitions"/>
-        <changes xsi:type="history:Set" element="model.ecore#//state/State/incomingTransitions"
+            featureName="eOpposite" referenceValue="model.ecore#//state/StateNode/incomingTransitions"/>
+        <changes xsi:type="history:Set" element="model.ecore#//state/StateNode/incomingTransitions"
             featureName="eOpposite" referenceValue="model.ecore#//state/Transition/target"/>
         <changes xsi:type="history:Add" element="model.ecore#//state/Transition/target"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>

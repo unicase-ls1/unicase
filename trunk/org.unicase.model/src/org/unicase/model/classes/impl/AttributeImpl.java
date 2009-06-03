@@ -178,7 +178,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getDefiningClass() {
-		if (eContainerFeatureID != ClassesPackage.ATTRIBUTE__DEFINING_CLASS)
+		if (eContainerFeatureID() != ClassesPackage.ATTRIBUTE__DEFINING_CLASS)
 			return null;
 		return (org.unicase.model.classes.Class) eContainer();
 	}
@@ -188,7 +188,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetDefiningClass() {
-		if (eContainerFeatureID != ClassesPackage.ATTRIBUTE__DEFINING_CLASS)
+		if (eContainerFeatureID() != ClassesPackage.ATTRIBUTE__DEFINING_CLASS)
 			return null;
 		return (org.unicase.model.classes.Class) eInternalContainer();
 	}
@@ -209,7 +209,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 */
 	public void setDefiningClass(org.unicase.model.classes.Class newDefiningClass) {
 		if (newDefiningClass != eInternalContainer()
-			|| (eContainerFeatureID != ClassesPackage.ATTRIBUTE__DEFINING_CLASS && newDefiningClass != null)) {
+			|| (eContainerFeatureID() != ClassesPackage.ATTRIBUTE__DEFINING_CLASS && newDefiningClass != null)) {
 			if (EcoreUtil.isAncestor(this, newDefiningClass))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -484,7 +484,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
 			return eInternalContainer().eInverseRemove(this, ClassesPackage.CLASS__ATTRIBUTES,
 				org.unicase.model.classes.Class.class, msgs);

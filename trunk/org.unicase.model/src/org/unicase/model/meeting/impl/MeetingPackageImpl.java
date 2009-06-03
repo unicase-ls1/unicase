@@ -136,8 +136,8 @@ public class MeetingPackageImpl extends EPackageImpl implements MeetingPackage {
 			return (MeetingPackage) EPackage.Registry.INSTANCE.getEPackage(MeetingPackage.eNS_URI);
 
 		// Obtain or create and register package
-		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		MeetingPackageImpl theMeetingPackage = (MeetingPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof MeetingPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new MeetingPackageImpl());
 
 		isInited = true;

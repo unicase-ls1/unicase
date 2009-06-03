@@ -150,8 +150,8 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 			return (ProfilePackage) EPackage.Registry.INSTANCE.getEPackage(ProfilePackage.eNS_URI);
 
 		// Obtain or create and register package
-		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new ProfilePackageImpl());
 
 		isInited = true;

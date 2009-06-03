@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.component.*;
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.ComponentService;

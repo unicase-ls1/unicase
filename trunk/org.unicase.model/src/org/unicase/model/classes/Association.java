@@ -39,17 +39,17 @@ public interface Association extends ModelElement {
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
-	org.unicase.model.classes.Class getSource();
+	Class getSource();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSource <em>Source</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSource <em>Source</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source</em>' reference.
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(org.unicase.model.classes.Class value);
+	void setSource(Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference. It is bidirectional and its opposite is '
@@ -69,17 +69,17 @@ public interface Association extends ModelElement {
 	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
-	org.unicase.model.classes.Class getTarget();
+	Class getTarget();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}' reference. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Target</em>' reference.
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(org.unicase.model.classes.Class value);
+	void setTarget(Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.

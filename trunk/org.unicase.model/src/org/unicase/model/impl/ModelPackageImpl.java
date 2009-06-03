@@ -164,8 +164,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 			return (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		ModelPackageImpl theModelPackage = (ModelPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ModelPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new ModelPackageImpl());
 
 		isInited = true;
@@ -356,8 +356,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getModelElement_Comments() {
@@ -660,6 +659,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getModelElement_Comments(), theRationalePackage.getComment(), theRationalePackage
 			.getComment_CommentedElement(), "comments", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getModelElement_Comments().getEKeys().add(this.getIdentifiableElement_Identifier());
 
 		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1,

@@ -139,7 +139,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 	 * @generated
 	 */
 	public ModelElement getModelElement() {
-		if (eContainerFeatureID != ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT)
+		if (eContainerFeatureID() != ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT)
 			return null;
 		return (ModelElement) eContainer();
 	}
@@ -149,7 +149,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 	 * @generated
 	 */
 	public ModelElement basicGetModelElement() {
-		if (eContainerFeatureID != ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT)
+		if (eContainerFeatureID() != ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT)
 			return null;
 		return (ModelElement) eInternalContainer();
 	}
@@ -170,7 +170,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 	 */
 	public void setModelElement(ModelElement newModelElement) {
 		if (newModelElement != eInternalContainer()
-			|| (eContainerFeatureID != ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT && newModelElement != null)) {
+			|| (eContainerFeatureID() != ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT && newModelElement != null)) {
 			if (EcoreUtil.isAncestor(this, newModelElement))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -248,7 +248,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT:
 			return eInternalContainer().eInverseRemove(this, ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
 				ModelElement.class, msgs);

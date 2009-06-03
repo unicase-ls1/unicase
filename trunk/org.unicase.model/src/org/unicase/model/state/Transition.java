@@ -44,23 +44,23 @@ public interface Transition extends ModelElement {
 	void setCondition(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.state.State#getOutgoingTransitions <em>Outgoing Transitions</em>}'.
-	 * <!-- begin-user-doc
-	 * -->
+	 * Returns the value of the '<em><b>Source</b></em>' reference. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.state.StateNode#getOutgoingTransitions <em>Outgoing Transitions</em>}'. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source</em>' reference.
-	 * @see #setSource(State)
+	 * @see #setSource(StateNode)
 	 * @see org.unicase.model.state.StatePackage#getTransition_Source()
-	 * @see org.unicase.model.state.State#getOutgoingTransitions
+	 * @see org.unicase.model.state.StateNode#getOutgoingTransitions
 	 * @model opposite="outgoingTransitions" keys="identifier"
 	 * @generated
 	 */
-	State getSource();
+	StateNode getSource();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.state.Transition#getSource <em>Source</em>}' reference. <!--
@@ -70,26 +70,26 @@ public interface Transition extends ModelElement {
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(State value);
+	void setSource(StateNode value);
 
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.state.State#getIncomingTransitions <em>Incoming Transitions</em>}'.
-	 * <!-- begin-user-doc
-	 * -->
+	 * Returns the value of the '<em><b>Target</b></em>' reference. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.state.StateNode#getIncomingTransitions <em>Incoming Transitions</em>}'. <!--
+	 * begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' reference isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Target</em>' reference.
-	 * @see #setTarget(State)
+	 * @see #setTarget(StateNode)
 	 * @see org.unicase.model.state.StatePackage#getTransition_Target()
-	 * @see org.unicase.model.state.State#getIncomingTransitions
+	 * @see org.unicase.model.state.StateNode#getIncomingTransitions
 	 * @model opposite="incomingTransitions" keys="identifier"
 	 * @generated
 	 */
-	State getTarget();
+	StateNode getTarget();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.state.Transition#getTarget <em>Target</em>}' reference. <!--
@@ -99,6 +99,6 @@ public interface Transition extends ModelElement {
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(State value);
+	void setTarget(StateNode value);
 
 } // Transition

@@ -128,8 +128,8 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 			return (ChangePackage) EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
 
 		// Obtain or create and register package
-		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new ChangePackageImpl());
 
 		isInited = true;

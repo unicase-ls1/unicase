@@ -13,6 +13,7 @@ import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.rationale.*;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
@@ -87,11 +88,11 @@ public class RationaleSwitch<T> {
 			Issue issue = (Issue) theEObject;
 			T result = caseIssue(issue);
 			if (result == null)
-				result = caseAnnotation(issue);
-			if (result == null)
 				result = caseCheckable(issue);
 			if (result == null)
 				result = caseWorkItem(issue);
+			if (result == null)
+				result = caseAnnotation(issue);
 			if (result == null)
 				result = caseModelElement(issue);
 			if (result == null)

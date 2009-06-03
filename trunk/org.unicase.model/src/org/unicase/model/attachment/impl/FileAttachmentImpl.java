@@ -213,7 +213,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_ID:
 			return getFileID();
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
-			return new Long(getFileSize());
+			return getFileSize();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -235,7 +235,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			setFileID((String) newValue);
 			return;
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
-			setFileSize(((Long) newValue).longValue());
+			setFileSize((Long) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

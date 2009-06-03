@@ -73,7 +73,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * @generated
 	 */
 	public CompositeSection getParent() {
-		if (eContainerFeatureID != DocumentPackage.LEAF_SECTION__PARENT)
+		if (eContainerFeatureID() != DocumentPackage.LEAF_SECTION__PARENT)
 			return null;
 		return (CompositeSection) eContainer();
 	}
@@ -83,7 +83,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * @generated
 	 */
 	public CompositeSection basicGetParent() {
-		if (eContainerFeatureID != DocumentPackage.LEAF_SECTION__PARENT)
+		if (eContainerFeatureID() != DocumentPackage.LEAF_SECTION__PARENT)
 			return null;
 		return (CompositeSection) eInternalContainer();
 	}
@@ -103,7 +103,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	public void setParent(CompositeSection newParent) {
 		if (newParent != eInternalContainer()
-			|| (eContainerFeatureID != DocumentPackage.LEAF_SECTION__PARENT && newParent != null)) {
+			|| (eContainerFeatureID() != DocumentPackage.LEAF_SECTION__PARENT && newParent != null)) {
 			if (EcoreUtil.isAncestor(this, newParent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -189,7 +189,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID) {
+		switch (eContainerFeatureID()) {
 		case DocumentPackage.LEAF_SECTION__PARENT:
 			return eInternalContainer().eInverseRemove(this, DocumentPackage.COMPOSITE_SECTION__SUBSECTIONS,
 				CompositeSection.class, msgs);

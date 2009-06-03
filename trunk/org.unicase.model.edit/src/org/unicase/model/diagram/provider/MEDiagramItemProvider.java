@@ -332,6 +332,12 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 			StateFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			StateFactory.eINSTANCE.createStateInitial()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			StateFactory.eINSTANCE.createStateEnd()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			AttachmentFactory.eINSTANCE.createUrlAttachment()));
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,

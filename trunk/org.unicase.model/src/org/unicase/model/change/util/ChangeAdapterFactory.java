@@ -13,6 +13,7 @@ import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.change.*;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;

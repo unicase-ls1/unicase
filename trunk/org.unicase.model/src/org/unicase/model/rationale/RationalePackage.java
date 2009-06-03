@@ -153,8 +153,8 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -424,8 +424,8 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -561,8 +561,8 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -697,8 +697,8 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -826,8 +826,8 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -972,8 +972,8 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -981,8 +981,7 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Sender</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -990,8 +989,7 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Recipients</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -999,8 +997,8 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * The feature id for the '<em><b>Commented Element</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
@@ -1200,8 +1198,7 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference '{@link org.unicase.model.rationale.Comment#getSender <em>Sender</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Sender</em>'.
 	 * @see org.unicase.model.rationale.Comment#getSender()
 	 * @see #getComment()
@@ -1211,8 +1208,7 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.model.rationale.Comment#getRecipients <em>Recipients</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Recipients</em>'.
 	 * @see org.unicase.model.rationale.Comment#getRecipients()
 	 * @see #getComment()
@@ -1222,8 +1218,8 @@ public interface RationalePackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.unicase.model.rationale.Comment#getCommentedElement <em>Commented Element</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * @return the meta object for the container reference '<em>Commented Element</em>'.
 	 * @see org.unicase.model.rationale.Comment#getCommentedElement()
 	 * @see #getComment()
@@ -1403,8 +1399,8 @@ public interface RationalePackage extends EPackage {
 
 		/**
 		 * The meta object literal for the '<em><b>Sender</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
 		 * @generated
 		 */
 		EReference COMMENT__SENDER = eINSTANCE.getComment_Sender();
@@ -1418,9 +1414,9 @@ public interface RationalePackage extends EPackage {
 		EReference COMMENT__RECIPIENTS = eINSTANCE.getComment_Recipients();
 
 		/**
-		 * The meta object literal for the '<em><b>Commented Element</b></em>' container reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Commented Element</b></em>' container reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
 		 * @generated
 		 */
 		EReference COMMENT__COMMENTED_ELEMENT = eINSTANCE.getComment_CommentedElement();

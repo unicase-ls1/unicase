@@ -45,21 +45,28 @@ public enum DiagramType implements Enumerator {
 	 * @ordered
 	 */
 	COMPONENT_DIAGRAM(2, "COMPONENT_DIAGRAM", "COMPONENT_DIAGRAM"), /**
-	 * The '<em><b>STATE DIAGRAM</b></em>' literal object.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @see #STATE_DIAGRAM_VALUE
-	 * @generated
-	 * @ordered
-	 */
+																	 * The '<em><b>STATE DIAGRAM</b></em>' literal object.
+																	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+																	 * @see #STATE_DIAGRAM_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
 	STATE_DIAGRAM(3, "STATE_DIAGRAM", "STATE_DIAGRAM"), /**
-	 * The '<em><b>ACTIVITY DIAGRAM</b></em>' literal object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #ACTIVITY_DIAGRAM_VALUE
-	 * @generated
-	 * @ordered
-	 */
-	ACTIVITY_DIAGRAM(4, "ACTIVITY_DIAGRAM", "ACTIVITY_DIAGRAM");
+														 * The '<em><b>ACTIVITY DIAGRAM</b></em>' literal object. <!--
+														 * begin-user-doc --> <!-- end-user-doc -->
+														 * 
+														 * @see #ACTIVITY_DIAGRAM_VALUE
+														 * @generated
+														 * @ordered
+														 */
+	ACTIVITY_DIAGRAM(4, "ACTIVITY_DIAGRAM", "ACTIVITY_DIAGRAM"), /**
+																	 * The '<em><b>WORKITEM DIAGRAM</b></em>' literal object.
+																	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+																	 * @see #WORKITEM_DIAGRAM_VALUE
+																	 * @generated
+																	 * @ordered
+																	 */
+	WORKITEM_DIAGRAM(5, "WORKITEM_DIAGRAM", "WORKITEM_DIAGRAM");
 
 	/**
 	 * The '<em><b>CLASS DIAGRAM</b></em>' literal value.
@@ -137,12 +144,27 @@ public enum DiagramType implements Enumerator {
 	public static final int ACTIVITY_DIAGRAM_VALUE = 4;
 
 	/**
+	 * The '<em><b>WORKITEM DIAGRAM</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>WORKITEM DIAGRAM</b></em>' literal object isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #WORKITEM_DIAGRAM
+	 * @model
+	 * @generated
+	 * @ordered
+	 */
+	public static final int WORKITEM_DIAGRAM_VALUE = 5;
+
+	/**
 	 * An array of all the '<em><b>Type</b></em>' enumerators.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	private static final DiagramType[] VALUES_ARRAY = new DiagramType[] { CLASS_DIAGRAM, USECASE_DIAGRAM,
-		COMPONENT_DIAGRAM, STATE_DIAGRAM, ACTIVITY_DIAGRAM, };
+		COMPONENT_DIAGRAM, STATE_DIAGRAM, ACTIVITY_DIAGRAM, WORKITEM_DIAGRAM, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Type</b></em>' enumerators. <!-- begin-user-doc --> <!-- end-user-doc
@@ -201,6 +223,8 @@ public enum DiagramType implements Enumerator {
 			return STATE_DIAGRAM;
 		case ACTIVITY_DIAGRAM_VALUE:
 			return ACTIVITY_DIAGRAM;
+		case WORKITEM_DIAGRAM_VALUE:
+			return WORKITEM_DIAGRAM;
 		}
 		return null;
 	}

@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.impl.ModelElementImpl;
-import org.unicase.model.state.State;
+import org.unicase.model.state.StateNode;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
@@ -51,7 +51,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * @generated
 	 * @ordered
 	 */
-	protected State source;
+	protected StateNode source;
 
 	/**
 	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
@@ -61,7 +61,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * @generated
 	 * @ordered
 	 */
-	protected State target;
+	protected StateNode target;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -104,10 +104,10 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public State getSource() {
+	public StateNode getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject) source;
-			source = (State) eResolveProxy(oldSource);
+			source = (StateNode) eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StatePackage.TRANSITION__SOURCE,
@@ -121,7 +121,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public State basicGetSource() {
+	public StateNode basicGetSource() {
 		return source;
 	}
 
@@ -129,8 +129,8 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(State newSource, NotificationChain msgs) {
-		State oldSource = source;
+	public NotificationChain basicSetSource(StateNode newSource, NotificationChain msgs) {
+		StateNode oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -147,15 +147,15 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSource(State newSource) {
+	public void setSource(StateNode newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, StatePackage.STATE__OUTGOING_TRANSITIONS,
-					State.class, msgs);
+				msgs = ((InternalEObject) source).eInverseRemove(this, StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
+					StateNode.class, msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject) newSource).eInverseAdd(this, StatePackage.STATE__OUTGOING_TRANSITIONS,
-					State.class, msgs);
+				msgs = ((InternalEObject) newSource).eInverseAdd(this, StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
+					StateNode.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -167,10 +167,10 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public State getTarget() {
+	public StateNode getTarget() {
 		if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject) target;
-			target = (State) eResolveProxy(oldTarget);
+			target = (StateNode) eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StatePackage.TRANSITION__TARGET,
@@ -184,7 +184,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public State basicGetTarget() {
+	public StateNode basicGetTarget() {
 		return target;
 	}
 
@@ -192,8 +192,8 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(State newTarget, NotificationChain msgs) {
-		State oldTarget = target;
+	public NotificationChain basicSetTarget(StateNode newTarget, NotificationChain msgs) {
+		StateNode oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -210,15 +210,15 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTarget(State newTarget) {
+	public void setTarget(StateNode newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, StatePackage.STATE__INCOMING_TRANSITIONS,
-					State.class, msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this, StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
+					StateNode.class, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject) newTarget).eInverseAdd(this, StatePackage.STATE__INCOMING_TRANSITIONS,
-					State.class, msgs);
+				msgs = ((InternalEObject) newTarget).eInverseAdd(this, StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
+					StateNode.class, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -235,14 +235,14 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 		switch (featureID) {
 		case StatePackage.TRANSITION__SOURCE:
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, StatePackage.STATE__OUTGOING_TRANSITIONS,
-					State.class, msgs);
-			return basicSetSource((State) otherEnd, msgs);
+				msgs = ((InternalEObject) source).eInverseRemove(this, StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
+					StateNode.class, msgs);
+			return basicSetSource((StateNode) otherEnd, msgs);
 		case StatePackage.TRANSITION__TARGET:
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, StatePackage.STATE__INCOMING_TRANSITIONS,
-					State.class, msgs);
-			return basicSetTarget((State) otherEnd, msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this, StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
+					StateNode.class, msgs);
+			return basicSetTarget((StateNode) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -294,10 +294,10 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 			setCondition((String) newValue);
 			return;
 		case StatePackage.TRANSITION__SOURCE:
-			setSource((State) newValue);
+			setSource((StateNode) newValue);
 			return;
 		case StatePackage.TRANSITION__TARGET:
-			setTarget((State) newValue);
+			setTarget((StateNode) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -314,10 +314,10 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 			setCondition(CONDITION_EDEFAULT);
 			return;
 		case StatePackage.TRANSITION__SOURCE:
-			setSource((State) null);
+			setSource((StateNode) null);
 			return;
 		case StatePackage.TRANSITION__TARGET:
-			setTarget((State) null);
+			setTarget((StateNode) null);
 			return;
 		}
 		super.eUnset(featureID);
