@@ -9,24 +9,31 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElementId;
 
-/*
+/**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Model Element Path</b></em>'. <!-- end-user-doc
- * --> <p> The following features are supported: <ul> <li>{@link org.unicase.model.util.ModelElementPath#getSource
- * <em>Source</em>}</li> <li>{@link org.unicase.model.util.ModelElementPath#getTarget <em>Target</em>}</li> <li>{@link
- * org.unicase.model.util.ModelElementPath#getPath <em>Path</em>}</li> </ul> </p>
+ * -->
+ * <p>
+ * The following features are supported:
+ * <ul>
+ * <li>{@link org.unicase.model.util.ModelElementPath#getSource <em>Source</em>}</li>
+ * <li>{@link org.unicase.model.util.ModelElementPath#getTarget <em>Target</em>}</li>
+ * <li>{@link org.unicase.model.util.ModelElementPath#getPath <em>Path</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @see org.unicase.model.util.UtilPackage#getModelElementPath()
  * @model
  * @generated
  */
 public interface ModelElementPath extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Source</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Source</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Source</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Source</em>' containment reference.
 	 * @see #setSource(ModelElementId)
 	 * @see org.unicase.model.util.UtilPackage#getModelElementPath_Source()
@@ -36,8 +43,9 @@ public interface ModelElementPath extends EObject {
 	ModelElementId getSource();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.util.ModelElementPath#getSource <em>Source</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.util.ModelElementPath#getSource <em>Source</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Source</em>' containment reference.
 	 * @see #getSource()
 	 * @generated
@@ -45,13 +53,13 @@ public interface ModelElementPath extends EObject {
 	void setSource(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Target</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Target</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Target</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Target</em>' containment reference.
 	 * @see #setTarget(ModelElementId)
 	 * @see org.unicase.model.util.UtilPackage#getModelElementPath_Target()
@@ -61,8 +69,9 @@ public interface ModelElementPath extends EObject {
 	ModelElementId getTarget();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.util.ModelElementPath#getTarget <em>Target</em>}' containment reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.util.ModelElementPath#getTarget <em>Target</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Target</em>' containment reference.
 	 * @see #getTarget()
 	 * @generated
@@ -70,14 +79,14 @@ public interface ModelElementPath extends EObject {
 	void setTarget(ModelElementId value);
 
 	/**
-	 * Returns the value of the '<em><b>Path</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.ModelElementId}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Path</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.model.ModelElementId}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Path</em>' containment reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Path</em>' containment reference list.
 	 * @see org.unicase.model.util.UtilPackage#getModelElementPath_Path()
 	 * @model containment="true" resolveProxies="true"

@@ -7,10 +7,15 @@ package org.unicase.model.meeting;
 
 import org.unicase.model.ModelElement;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Section</b></em>'. <!-- end-user-doc --> <p> The
- * following features are supported: <ul> <li>{@link org.unicase.model.meeting.MeetingSection#getAllocatedTime
- * <em>Allocated Time</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Section</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are supported:
+ * <ul>
+ * <li>{@link org.unicase.model.meeting.MeetingSection#getAllocatedTime <em>Allocated Time</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @see org.unicase.model.meeting.MeetingPackage#getMeetingSection()
  * @model abstract="true"
  * @generated
@@ -34,8 +39,9 @@ public interface MeetingSection extends ModelElement {
 	int getAllocatedTime();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.meeting.MeetingSection#getAllocatedTime <em>Allocated Time</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.meeting.MeetingSection#getAllocatedTime <em>Allocated Time</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Allocated Time</em>' attribute.
 	 * @see #getAllocatedTime()
 	 * @generated

@@ -14,10 +14,16 @@ import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.rationale.Issue;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Issue Meeting Section</b></em>'. <!--
- * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
- * org.unicase.model.meeting.impl.IssueMeetingSectionImpl#getIncludedIssues <em>Included Issues</em>}</li> </ul> </p>
+ * end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.meeting.impl.IssueMeetingSectionImpl#getIncludedIssues <em>Included Issues</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class IssueMeetingSectionImpl extends MeetingSectionImpl implements IssueMeetingSection {
@@ -33,6 +39,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected IssueMeetingSectionImpl() {
@@ -41,6 +48,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -50,6 +58,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Issue> getIncludedIssues() {
@@ -62,6 +71,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,6 +85,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -91,6 +102,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,6 +117,7 @@ public class IssueMeetingSectionImpl extends MeetingSectionImpl implements Issue
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

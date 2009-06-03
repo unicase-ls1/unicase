@@ -15,22 +15,28 @@ import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.impl.ModelElementImpl;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Association</b></em>'. <!-- end-user-doc -->
- * <p> The following features are implemented: <ul> <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSource
- * <em>Source</em>}</li> <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTarget <em>Target</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getType <em>Type</em>}</li> <li>{@link
- * org.unicase.model.classes.impl.AssociationImpl#getSourceMultiplicity <em>Source Multiplicity</em>}</li> <li>{@link
- * org.unicase.model.classes.impl.AssociationImpl#getTargetMultiplicity <em>Target Multiplicity</em>}</li> <li>{@link
- * org.unicase.model.classes.impl.AssociationImpl#getSourceRole <em>Source Role</em>}</li> <li>{@link
- * org.unicase.model.classes.impl.AssociationImpl#getTargetRole <em>Target Role</em>}</li> </ul> </p>
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSource <em>Source</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getType <em>Type</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceMultiplicity <em>Source Multiplicity</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetMultiplicity <em>Target Multiplicity</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceRole <em>Source Role</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetRole <em>Target Role</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class AssociationImpl extends ModelElementImpl implements Association {
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
@@ -38,9 +44,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected org.unicase.model.classes.Class source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
@@ -108,9 +114,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected String targetMultiplicity = TARGET_MULTIPLICITY_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getSourceRole()
 	 * @generated
 	 * @ordered
@@ -118,9 +124,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected static final String SOURCE_ROLE_EDEFAULT = "1";
 
 	/**
-	 * The cached value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSourceRole() <em>Source Role</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getSourceRole()
 	 * @generated
 	 * @ordered
@@ -128,9 +134,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected String sourceRole = SOURCE_ROLE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getTargetRole()
 	 * @generated
 	 * @ordered
@@ -138,9 +144,9 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 	protected static final String TARGET_ROLE_EDEFAULT = "1";
 
 	/**
-	 * The cached value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTargetRole() <em>Target Role</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getTargetRole()
 	 * @generated
 	 * @ordered
@@ -149,6 +155,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected AssociationImpl() {
@@ -157,6 +164,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -166,6 +174,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getSource() {
@@ -183,6 +192,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetSource() {
@@ -191,6 +201,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetSource(org.unicase.model.classes.Class newSource, NotificationChain msgs) {
@@ -209,6 +220,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSource(org.unicase.model.classes.Class newSource) {
@@ -230,6 +242,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getTarget() {
@@ -247,6 +260,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetTarget() {
@@ -255,6 +269,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetTarget(org.unicase.model.classes.Class newTarget, NotificationChain msgs) {
@@ -273,6 +288,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTarget(org.unicase.model.classes.Class newTarget) {
@@ -294,6 +310,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AssociationType getType() {
@@ -302,6 +319,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setType(AssociationType newType) {
@@ -313,6 +331,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getSourceMultiplicity() {
@@ -321,6 +340,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSourceMultiplicity(String newSourceMultiplicity) {
@@ -333,6 +353,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getTargetMultiplicity() {
@@ -341,6 +362,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetMultiplicity(String newTargetMultiplicity) {
@@ -353,6 +375,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getSourceRole() {
@@ -361,6 +384,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setSourceRole(String newSourceRole) {
@@ -373,6 +397,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getTargetRole() {
@@ -381,6 +406,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setTargetRole(String newTargetRole) {
@@ -393,6 +419,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -414,6 +441,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -429,6 +457,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -458,6 +487,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -490,6 +520,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -522,6 +553,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -549,6 +581,7 @@ public class AssociationImpl extends ModelElementImpl implements Association {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

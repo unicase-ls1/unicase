@@ -9,14 +9,17 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
 
-/*
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Element Id</b></em>'. <!-- end-user-doc --> <p>
+/**
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Element Id</b></em>'. <!-- end-user-doc -->
+ * <p>
  * </p>
+ * 
  * @generated
  */
 public class ModelElementIdImpl extends UniqueIdentifierImpl implements ModelElementId {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ModelElementIdImpl() {
@@ -25,6 +28,7 @@ public class ModelElementIdImpl extends UniqueIdentifierImpl implements ModelEle
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

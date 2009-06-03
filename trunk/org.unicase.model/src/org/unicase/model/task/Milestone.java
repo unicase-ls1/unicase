@@ -8,10 +8,15 @@ package org.unicase.model.task;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Milestone</b></em>'. <!-- end-user-doc --> <p>
- * The following features are supported: <ul> <li>{@link org.unicase.model.task.Milestone#getContainedModelElements
- * <em>Contained Model Elements</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Milestone</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are supported:
+ * <ul>
+ * <li>{@link org.unicase.model.task.Milestone#getContainedModelElements <em>Contained Model Elements</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @see org.unicase.model.task.TaskPackage#getMilestone()
  * @model
  * @generated
@@ -19,18 +24,17 @@ import org.unicase.model.ModelElement;
 public interface Milestone extends WorkItem {
 
 	/**
-	 * Returns the value of the '<em><b>Contained Model Elements</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.ModelElement}.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Contained Model Elements</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.ModelElement}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Contained Model Elements</em>' reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Contained Model Elements</em>' reference list.
 	 * @see org.unicase.model.task.TaskPackage#getMilestone_ContainedModelElements()
-	 * @model keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='1' position='right'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='1' position='right'"
 	 * @generated
 	 */
 	EList<ModelElement> getContainedModelElements();
