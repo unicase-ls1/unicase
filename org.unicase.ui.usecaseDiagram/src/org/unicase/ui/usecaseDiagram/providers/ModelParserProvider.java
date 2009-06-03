@@ -21,55 +21,58 @@ import org.unicase.model.ModelPackage;
 /**
  * @generated
  */
-public class ModelParserProvider extends AbstractProvider implements IParserProvider {
+public class ModelParserProvider extends AbstractProvider implements
+		IParserProvider {
 
 	/**
 	 * @generated
 	 */
-	private IParser actorName_4001Parser;
+	private IParser actorName_5001Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getActorName_4001Parser() {
-		if (actorName_4001Parser == null) {
-			actorName_4001Parser = createActorName_4001Parser();
+	private IParser getActorName_5001Parser() {
+		if (actorName_5001Parser == null) {
+			actorName_5001Parser = createActorName_5001Parser();
 		}
-		return actorName_4001Parser;
+		return actorName_5001Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IParser createActorName_4001Parser() {
-		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getModelElement_Name(), };
+	protected IParser createActorName_5001Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
 		org.unicase.ui.usecaseDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.usecaseDiagram.parsers.MessageFormatParser(
-			features);
+				features);
 		return parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	private IParser useCaseName_4002Parser;
+	private IParser useCaseName_5002Parser;
 
 	/**
 	 * @generated
 	 */
-	private IParser getUseCaseName_4002Parser() {
-		if (useCaseName_4002Parser == null) {
-			useCaseName_4002Parser = createUseCaseName_4002Parser();
+	private IParser getUseCaseName_5002Parser() {
+		if (useCaseName_5002Parser == null) {
+			useCaseName_5002Parser = createUseCaseName_5002Parser();
 		}
-		return useCaseName_4002Parser;
+		return useCaseName_5002Parser;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected IParser createUseCaseName_4002Parser() {
-		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getModelElement_Name(), };
+	protected IParser createUseCaseName_5002Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
 		org.unicase.ui.usecaseDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.usecaseDiagram.parsers.MessageFormatParser(
-			features);
+				features);
 		return parser;
 	}
 
@@ -79,9 +82,9 @@ public class ModelParserProvider extends AbstractProvider implements IParserProv
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
 		case org.unicase.ui.usecaseDiagram.edit.parts.ActorNameEditPart.VISUAL_ID:
-			return getActorName_4001Parser();
+			return getActorName_5001Parser();
 		case org.unicase.ui.usecaseDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID:
-			return getUseCaseName_4002Parser();
+			return getUseCaseName_5002Parser();
 		}
 		return null;
 	}
@@ -92,11 +95,13 @@ public class ModelParserProvider extends AbstractProvider implements IParserProv
 	public IParser getParser(IAdaptable hint) {
 		String vid = (String) hint.getAdapter(String.class);
 		if (vid != null) {
-			return getParser(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry.getVisualID(vid));
+			return getParser(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+					.getVisualID(vid));
 		}
 		View view = (View) hint.getAdapter(View.class);
 		if (view != null) {
-			return getParser(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry.getVisualID(view));
+			return getParser(org.unicase.ui.usecaseDiagram.part.ModelVisualIDRegistry
+					.getVisualID(view));
 		}
 		return null;
 	}
@@ -107,7 +112,8 @@ public class ModelParserProvider extends AbstractProvider implements IParserProv
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
-			if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.getElement(hint) == null) {
+			if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes
+					.getElement(hint) == null) {
 				return false;
 			}
 			return getParser(hint) != null;
@@ -137,6 +143,7 @@ public class ModelParserProvider extends AbstractProvider implements IParserProv
 		/**
 		 * @generated
 		 */
+		@Override
 		public Object getAdapter(Class adapter) {
 			if (IElementType.class.equals(adapter)) {
 				return elementType;

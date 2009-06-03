@@ -21,6 +21,7 @@ public class MEDiagramViewFactory extends DiagramViewFactory {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List createStyles(View view) {
 		List styles = new ArrayList();
 		styles.add(NotationFactory.eINSTANCE.createDiagramStyle());
@@ -30,6 +31,7 @@ public class MEDiagramViewFactory extends DiagramViewFactory {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected MeasurementUnit getMeasurementUnit() {
 		return MeasurementUnit.PIXEL_LITERAL;
 	}

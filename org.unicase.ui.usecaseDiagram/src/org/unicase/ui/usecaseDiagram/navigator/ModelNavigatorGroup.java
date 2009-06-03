@@ -11,7 +11,8 @@ import java.util.LinkedList;
 /**
  * @generated
  */
-public class ModelNavigatorGroup extends org.unicase.ui.usecaseDiagram.navigator.ModelAbstractNavigatorItem {
+public class ModelNavigatorGroup extends
+		org.unicase.ui.usecaseDiagram.navigator.ModelAbstractNavigatorItem {
 
 	/**
 	 * @generated
@@ -82,6 +83,7 @@ public class ModelNavigatorGroup extends org.unicase.ui.usecaseDiagram.navigator
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup) {
 			org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup anotherGroup = (org.unicase.ui.usecaseDiagram.navigator.ModelNavigatorGroup) obj;
@@ -95,6 +97,7 @@ public class ModelNavigatorGroup extends org.unicase.ui.usecaseDiagram.navigator
 	/**
 	 * @generated
 	 */
+	@Override
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}

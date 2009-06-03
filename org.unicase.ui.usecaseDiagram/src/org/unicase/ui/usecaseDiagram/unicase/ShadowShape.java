@@ -66,6 +66,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	 * @param hHint a hint for the height
 	 * @return the Dimension
 	 */
+	@Override
 	public Dimension getPreferredSize(int wHint, int hHint) {
 		Dimension original = super.getPreferredSize(wHint, hHint);
 		if (is3D()) {
@@ -78,6 +79,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	 * @param graphics The Graphics object Paints this figure, including its border and children. Border is painted
 	 *            first.
 	 */
+	@Override
 	public void paint(Graphics graphics) {
 		paintBorder(graphics);
 		if (getBackgroundColor() != null) {
@@ -96,6 +98,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	/**
 	 * @param graphics The Graphics object
 	 */
+	@Override
 	protected void fillShape(Graphics graphics) {
 		fillShape(graphics, getProportionalBounds());
 	}
@@ -109,6 +112,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	/**
 	 * @param graphics The Graphics object
 	 */
+	@Override
 	protected void outlineShape(Graphics graphics) {
 		outlineShape(graphics, getProportionalBounds());
 	}
@@ -128,6 +132,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 			return is3D() ? SHADOW_INSETS : IFigure.NO_INSETS;
 		}
 
+		@Override
 		public boolean isOpaque() {
 			return is3D();
 		}

@@ -16,12 +16,13 @@ public class ModelUriEditorInputTester extends PropertyTester {
 	/**
 	 * @generated
 	 */
-	public boolean test(Object receiver, String method, Object[] args, Object expectedValue) {
+	public boolean test(Object receiver, String method, Object[] args,
+			Object expectedValue) {
 		if (false == receiver instanceof URIEditorInput) {
 			return false;
 		}
 		URIEditorInput editorInput = (URIEditorInput) receiver;
-		return "model_diagram".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
+		return "useCase_diagram".equals(editorInput.getURI().fileExtension()); //$NON-NLS-1$
 	}
 
 }

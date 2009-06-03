@@ -25,12 +25,15 @@ public class IncludeLabelViewFactory extends AbstractLabelViewFactory {
 	/**
 	 * @generated
 	 */
-	public View createView(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,
-		boolean persisted, PreferencesHint preferencesHint) {
-		Node view = (Node) super.createView(semanticAdapter, containerView, semanticHint, index, persisted,
-			preferencesHint);
+	@Override
+	public View createView(IAdaptable semanticAdapter, View containerView,
+			String semanticHint, int index, boolean persisted,
+			PreferencesHint preferencesHint) {
+		Node view = (Node) super.createView(semanticAdapter, containerView,
+				semanticHint, index, persisted, preferencesHint);
 		Location location = (Location) view.getLayoutConstraint();
-		IMapMode mapMode = MeasurementUnitHelper.getMapMode(containerView.getDiagram().getMeasurementUnit());
+		IMapMode mapMode = MeasurementUnitHelper.getMapMode(containerView
+				.getDiagram().getMeasurementUnit());
 		location.setX(mapMode.DPtoLP(0));
 		location.setY(mapMode.DPtoLP(20));
 		return view;
@@ -39,6 +42,7 @@ public class IncludeLabelViewFactory extends AbstractLabelViewFactory {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List createStyles(View view) {
 		List styles = new ArrayList();
 		return styles;

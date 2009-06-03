@@ -1,5 +1,5 @@
 /** 
-* <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -17,7 +17,8 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class TransitionEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class TransitionEditPart extends ConnectionNodeEditPart implements
+		ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -36,8 +37,9 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements ITreeB
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.ui.stateDiagram.edit.policies.TransitionItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.ui.stateDiagram.edit.policies.TransitionItemSemanticEditPolicy());
 	}
 
 	/**
@@ -45,8 +47,9 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements ITreeB
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof org.unicase.ui.stateDiagram.edit.parts.TransitionNameEditPart) {
-			((org.unicase.ui.stateDiagram.edit.parts.TransitionNameEditPart) childEditPart).setLabel(getPrimaryShape()
-				.getFigureTransitionFigure_name());
+			((org.unicase.ui.stateDiagram.edit.parts.TransitionNameEditPart) childEditPart)
+					.setLabel(getPrimaryShape()
+							.getFigureTransitionFigure_name());
 			return true;
 		}
 		return false;

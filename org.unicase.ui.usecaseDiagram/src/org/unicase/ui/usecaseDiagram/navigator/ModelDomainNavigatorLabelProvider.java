@@ -21,7 +21,8 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-		org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+			org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin
+					.getInstance().getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -35,7 +36,8 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	public Image getImage(Object element) {
 		if (element instanceof org.unicase.ui.usecaseDiagram.navigator.ModelDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider
-				.getImage(((org.unicase.ui.usecaseDiagram.navigator.ModelDomainNavigatorItem) element).getEObject());
+					.getImage(((org.unicase.ui.usecaseDiagram.navigator.ModelDomainNavigatorItem) element)
+							.getEObject());
 		}
 		return null;
 	}
@@ -46,7 +48,8 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	public String getText(Object element) {
 		if (element instanceof org.unicase.ui.usecaseDiagram.navigator.ModelDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider
-				.getText(((org.unicase.ui.usecaseDiagram.navigator.ModelDomainNavigatorItem) element).getEObject());
+					.getText(((org.unicase.ui.usecaseDiagram.navigator.ModelDomainNavigatorItem) element)
+							.getEObject());
 		}
 		return null;
 	}
