@@ -307,7 +307,7 @@
       <eLiterals name="COMPONENT_DIAGRAM" value="2" literal="COMPONENT_DIAGRAM"/>
       <eLiterals name="STATE_DIAGRAM" value="3" literal="STATE_DIAGRAM"/>
       <eLiterals name="ACTIVITY_DIAGRAM" value="4" literal="ACTIVITY_DIAGRAM"/>
-      <eLiterals name="WORKITEM_DIAGRAM" value="4" literal="WORKITEM_DIAGRAM"/>
+      <eLiterals name="WORKITEM_DIAGRAM" value="5" literal="WORKITEM_DIAGRAM"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="classes" nsURI="http://unicase.org/model/classes" nsPrefix="org.unicase.model.classes">
