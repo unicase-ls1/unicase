@@ -20,11 +20,16 @@ import org.unicase.model.profile.Profile;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.Stereotype;
 
-/*
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Profile</b></em>'. <!-- end-user-doc --> <p>
- * The following features are implemented: <ul> <li>{@link
- * org.unicase.model.profile.impl.ProfileImpl#getAffectedContainers <em>Affected Containers</em>}</li> <li>{@link
- * org.unicase.model.profile.impl.ProfileImpl#getStereotypes <em>Stereotypes</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Profile</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.profile.impl.ProfileImpl#getAffectedContainers <em>Affected Containers</em>}</li>
+ * <li>{@link org.unicase.model.profile.impl.ProfileImpl#getStereotypes <em>Stereotypes</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class ProfileImpl extends ModelElementImpl implements Profile {
@@ -50,6 +55,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProfileImpl() {
@@ -58,6 +64,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,6 +74,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getAffectedContainers() {
@@ -79,6 +87,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Stereotype> getStereotypes() {
@@ -91,6 +100,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -105,6 +115,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -118,6 +129,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -133,6 +145,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -153,6 +166,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -170,6 +184,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

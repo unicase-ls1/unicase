@@ -10,22 +10,20 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.state.*;
 import org.unicase.model.state.State;
-import org.unicase.model.state.StateEnd;
 import org.unicase.model.state.StateFactory;
-import org.unicase.model.state.StateInitial;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static StateFactory init() {
@@ -42,8 +40,8 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StateFactoryImpl() {
@@ -52,6 +50,7 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -61,10 +60,6 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 			return createState();
 		case StatePackage.TRANSITION:
 			return createTransition();
-		case StatePackage.STATE_INITIAL:
-			return createStateInitial();
-		case StatePackage.STATE_END:
-			return createStateEnd();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -72,6 +67,7 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public State createState() {
@@ -81,6 +77,7 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Transition createTransition() {
@@ -90,24 +87,7 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StateInitial createStateInitial() {
-		StateInitialImpl stateInitial = new StateInitialImpl();
-		return stateInitial;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public StateEnd createStateEnd() {
-		StateEndImpl stateEnd = new StateEndImpl();
-		return stateEnd;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public StatePackage getStatePackage() {
@@ -116,6 +96,7 @@ public class StateFactoryImpl extends EFactoryImpl implements StateFactory {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

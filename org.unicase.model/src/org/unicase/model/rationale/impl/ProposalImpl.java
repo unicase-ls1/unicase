@@ -22,11 +22,16 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 
-/*
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Proposal</b></em>'. <!-- end-user-doc --> <p>
- * The following features are implemented: <ul> <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getAssessments
- * <em>Assessments</em>}</li> <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getIssue <em>Issue</em>}</li>
- * </ul> </p>
+/**
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Proposal</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getAssessments <em>Assessments</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getIssue <em>Issue</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class ProposalImpl extends ModelElementImpl implements Proposal {
@@ -42,6 +47,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ProposalImpl() {
@@ -50,6 +56,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,6 +66,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Assessment> getAssessments() {
@@ -71,6 +79,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Issue getIssue() {
@@ -81,6 +90,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Issue basicGetIssue() {
@@ -91,6 +101,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetIssue(Issue newIssue, NotificationChain msgs) {
@@ -100,6 +111,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setIssue(Issue newIssue) {
@@ -122,6 +134,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -140,6 +153,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,6 +169,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,6 +183,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,6 +201,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -204,6 +221,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -221,6 +239,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

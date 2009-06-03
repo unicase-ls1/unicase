@@ -22,14 +22,19 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
 
-/*
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Actor</b></em>'. <!-- end-user-doc --> <p> The
- * following features are implemented: <ul> <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInitiatedUserTask
- * <em>Initiated User Task</em>}</li> <li>{@link org.unicase.model.requirement.impl.ActorImpl#getParticipatedUserTasks
- * <em>Participated User Tasks</em>}</li> <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInitiatedUseCases
- * <em>Initiated Use Cases</em>}</li> <li>{@link org.unicase.model.requirement.impl.ActorImpl#getParticipatedUseCases
- * <em>Participated Use Cases</em>}</li> <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInstances
- * <em>Instances</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Actor</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInitiatedUserTask <em>Initiated User Task</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.ActorImpl#getParticipatedUserTasks <em>Participated User Tasks</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInitiatedUseCases <em>Initiated Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.ActorImpl#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInstances <em>Instances</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class ActorImpl extends ModelElementImpl implements Actor {
@@ -46,6 +51,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	/**
 	 * The cached value of the '{@link #getParticipatedUserTasks() <em>Participated User Tasks</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getParticipatedUserTasks()
 	 * @generated
 	 * @ordered
@@ -73,9 +79,9 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	protected EList<UseCase> participatedUseCases;
 
 	/**
-	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' reference list.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getInstances() <em>Instances</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getInstances()
 	 * @generated
 	 * @ordered
@@ -84,6 +90,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ActorImpl() {
@@ -92,6 +99,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,6 +109,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UserTask getInitiatedUserTask() {
@@ -118,6 +127,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UserTask basicGetInitiatedUserTask() {
@@ -126,6 +136,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetInitiatedUserTask(UserTask newInitiatedUserTask, NotificationChain msgs) {
@@ -144,6 +155,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setInitiatedUserTask(UserTask newInitiatedUserTask) {
@@ -165,6 +177,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UserTask> getParticipatedUserTasks() {
@@ -177,6 +190,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getInitiatedUseCases() {
@@ -189,6 +203,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getParticipatedUseCases() {
@@ -201,6 +216,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ActorInstance> getInstances() {
@@ -213,6 +229,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -241,6 +258,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -262,6 +280,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -285,6 +304,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -316,6 +336,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -342,6 +363,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

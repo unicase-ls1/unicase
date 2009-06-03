@@ -24,12 +24,18 @@ import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.impl.ModelElementImpl;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Leaf Section</b></em>'. <!-- end-user-doc -->
- * <p> The following features are implemented: <ul> <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getParent
- * <em>Parent</em>}</li> <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getModelElements <em>Model
- * Elements</em>}</li> <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getReferencedModelElements
- * <em>Referenced Model Elements</em>}</li> </ul> </p>
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getParent <em>Parent</em>}</li>
+ * <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getModelElements <em>Model Elements</em>}</li>
+ * <li>{@link org.unicase.model.document.impl.LeafSectionImpl#getReferencedModelElements <em>Referenced Model Elements
+ * </em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
@@ -43,8 +49,9 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 */
 	protected EList<ModelElement> modelElements;
 	/**
-	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getReferencedModelElements()
 	 * @generated
 	 * @ordered
@@ -53,6 +60,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected LeafSectionImpl() {
@@ -61,6 +69,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,6 +79,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CompositeSection getParent() {
@@ -80,6 +90,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public CompositeSection basicGetParent() {
@@ -90,6 +101,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetParent(CompositeSection newParent, NotificationChain msgs) {
@@ -99,6 +111,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setParent(CompositeSection newParent) {
@@ -122,6 +135,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getModelElements() {
@@ -134,6 +148,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<ModelElement> getReferencedModelElements() {
@@ -147,6 +162,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -168,6 +184,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,6 +202,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,6 +217,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,6 +237,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -241,6 +261,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -261,6 +282,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -9,16 +9,22 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Class</b></em>'. <!-- end-user-doc --> <p> The
- * following features are supported: <ul> <li>{@link org.unicase.model.classes.Class#getParticipatedUseCases
- * <em>Participated Use Cases</em>}</li> <li>{@link org.unicase.model.classes.Class#getSuperClasses <em>Super
- * Classes</em>}</li> <li>{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}</li> <li>{@link
- * org.unicase.model.classes.Class#getIncomingAssociations <em>Incoming Associations</em>}</li> <li>{@link
- * org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}</li> <li>{@link
- * org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}</li> <li>{@link
- * org.unicase.model.classes.Class#getMethods <em>Methods</em>}</li> <li>{@link
- * org.unicase.model.classes.Class#getDemoParticipations <em>Demo Participations</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Class</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are supported:
+ * <ul>
+ * <li>{@link org.unicase.model.classes.Class#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.classes.Class#getSuperClasses <em>Super Classes</em>}</li>
+ * <li>{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}</li>
+ * <li>{@link org.unicase.model.classes.Class#getIncomingAssociations <em>Incoming Associations</em>}</li>
+ * <li>{@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
+ * <li>{@link org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}</li>
+ * <li>{@link org.unicase.model.classes.Class#getMethods <em>Methods</em>}</li>
+ * <li>{@link org.unicase.model.classes.Class#getDemoParticipations <em>Demo Participations</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @see org.unicase.model.classes.ClassesPackage#getClass_()
  * @model
  * @generated
@@ -46,15 +52,15 @@ public interface Class extends PackageElement {
 	EList<UseCase> getParticipatedUseCases();
 
 	/**
-	 * Returns the value of the '<em><b>Super Classes</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.classes.Class}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Super Classes</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.classes.Class}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Super Classes</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Super Classes</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_SuperClasses()
 	 * @see org.unicase.model.classes.Class#getSubClasses
@@ -65,15 +71,15 @@ public interface Class extends PackageElement {
 	EList<Class> getSuperClasses();
 
 	/**
-	 * Returns the value of the '<em><b>Sub Classes</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.classes.Class}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Class#getSuperClasses <em>Super Classes</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Sub Classes</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.classes.Class}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.classes.Class#getSuperClasses <em>Super Classes</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Sub Classes</em>' reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Sub Classes</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_SubClasses()
 	 * @see org.unicase.model.classes.Class#getSuperClasses
@@ -84,53 +90,51 @@ public interface Class extends PackageElement {
 	EList<Class> getSubClasses();
 
 	/**
-	 * Returns the value of the '<em><b>Incoming Associations</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.classes.Association}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Incoming Associations</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.classes.Association}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.classes.Association#getTarget <em>Target</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Incoming Associations</em>' reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Incoming Associations</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_IncomingAssociations()
 	 * @see org.unicase.model.classes.Association#getTarget
-	 * @model opposite="target" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
+	 * @model opposite="target" keys="identifier" annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
 	 * @generated
 	 */
 	EList<Association> getIncomingAssociations();
 
 	/**
-	 * Returns the value of the '<em><b>Outgoing Associations</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.classes.Association}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Association#getSource <em>Source</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Outgoing Associations</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.classes.Association}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.classes.Association#getSource <em>Source</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Outgoing Associations</em>' reference list isn't clear, there really should be more of
 	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Outgoing Associations</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_OutgoingAssociations()
 	 * @see org.unicase.model.classes.Association#getSource
-	 * @model opposite="source" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='21.0' position='right'"
+	 * @model opposite="source" keys="identifier" annotation="org.unicase.ui.meeditor priority='21.0' position='right'"
 	 * @generated
 	 */
 	EList<Association> getOutgoingAssociations();
 
 	/**
-	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.classes.Attribute}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Attribute#getDefiningClass <em>Defining Class</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Attributes</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.model.classes.Attribute}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.classes.Attribute#getDefiningClass <em>Defining Class</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Attributes</em>' containment reference list isn't clear, there really should be more
 	 * of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Attributes</em>' containment reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_Attributes()
 	 * @see org.unicase.model.classes.Attribute#getDefiningClass
@@ -141,15 +145,15 @@ public interface Class extends PackageElement {
 	EList<Attribute> getAttributes();
 
 	/**
-	 * Returns the value of the '<em><b>Methods</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.classes.Method}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.classes.Method#getDefiningClass <em>Defining Class</em>}'.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Methods</b></em>' containment reference list. The list contents are of type
+	 * {@link org.unicase.model.classes.Method}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.classes.Method#getDefiningClass <em>Defining Class</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Methods</em>' containment reference list isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Methods</em>' containment reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_Methods()
 	 * @see org.unicase.model.classes.Method#getDefiningClass

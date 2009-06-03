@@ -32,25 +32,30 @@ import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.StereotypeInstance;
-import org.unicase.model.rationale.Comment;
-import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.MEStateImpl;
 
-/*
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc --> <p>
- * The following features are implemented: <ul> <li>{@link org.unicase.model.impl.ModelElementImpl#getName
- * <em>Name</em>}</li> <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getCreator <em>Creator</em>}</li> <li>{@link
- * org.unicase.model.impl.ModelElementImpl#getCreationDate <em>Creation Date</em>}</li> <li>{@link
- * org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li> <li>{@link
- * org.unicase.model.impl.ModelElementImpl#getAttachments <em>Attachments</em>}</li> <li>{@link
- * org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li> <li>{@link
- * org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li> <li>{@link
- * org.unicase.model.impl.ModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getComments <em>Comments</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getCreator <em>Creator</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getAttachments <em>Attachments</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References
+ * </em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype Instances
+ * </em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public abstract class ModelElementImpl extends IdentifiableElementImpl implements ModelElement {
@@ -146,9 +151,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected String name = NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -156,9 +161,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected static final String DESCRIPTION_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getDescription() <em>Description</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getDescription()
 	 * @generated
 	 * @ordered
@@ -166,9 +171,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected String description = DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getCreator()
 	 * @generated
 	 * @ordered
@@ -176,9 +181,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected static final String CREATOR_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCreator() <em>Creator</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getCreator()
 	 * @generated
 	 * @ordered
@@ -186,9 +191,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected String creator = CREATOR_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The default value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCreationDate()
 	 * @generated
 	 * @ordered
@@ -196,9 +201,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected static final Date CREATION_DATE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getCreationDate() <em>Creation Date</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getCreationDate()
 	 * @generated
 	 * @ordered
@@ -206,9 +211,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected Date creationDate = CREATION_DATE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAnnotations() <em>Annotations</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAnnotations()
 	 * @generated
 	 * @ordered
@@ -216,9 +221,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected EList<Annotation> annotations;
 
 	/**
-	 * The cached value of the '{@link #getAttachments() <em>Attachments</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getAttachments() <em>Attachments</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getAttachments()
 	 * @generated
 	 * @ordered
@@ -226,8 +231,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected EList<Attachment> attachments;
 
 	/**
-	 * The cached value of the '{@link #getIncomingDocumentReferences() <em>Incoming Document References</em>}' reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getIncomingDocumentReferences() <em>Incoming Document References</em>}'
+	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getIncomingDocumentReferences()
 	 * @generated
 	 * @ordered
@@ -235,9 +241,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected EList<LeafSection> incomingDocumentReferences;
 
 	/**
-	 * The default value of the '{@link #getState() <em>State</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getState() <em>State</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getState()
 	 * @generated
 	 * @ordered
@@ -245,23 +251,14 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	protected static final String STATE_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getAppliedStereotypeInstances() <em>Applied Stereotype Instances</em>}' containment reference list.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getAppliedStereotypeInstances() <em>Applied Stereotype Instances</em>}'
+	 * containment reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @see #getAppliedStereotypeInstances()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<StereotypeInstance> appliedStereotypeInstances;
-
-	/**
-	 * The cached value of the '{@link #getComments() <em>Comments</em>}' containment reference list. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see #getComments()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<Comment> comments;
 
 	private boolean calculatingState;
 
@@ -285,6 +282,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -294,6 +292,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getName() {
@@ -302,6 +301,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -313,6 +313,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getDescription() {
@@ -321,6 +322,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setDescription(String newDescription) {
@@ -333,6 +335,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getCreator() {
@@ -341,6 +344,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCreator(String newCreator) {
@@ -353,6 +357,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Date getCreationDate() {
@@ -361,6 +366,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCreationDate(Date newCreationDate) {
@@ -373,6 +379,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Annotation> getAnnotations() {
@@ -385,6 +392,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Attachment> getAttachments() {
@@ -397,6 +405,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<LeafSection> getIncomingDocumentReferences() {
@@ -410,6 +419,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LeafSection getLeafSection() {
@@ -420,6 +430,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public LeafSection basicGetLeafSection() {
@@ -430,6 +441,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLeafSection(LeafSection newLeafSection, NotificationChain msgs) {
@@ -439,6 +451,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setLeafSection(LeafSection newLeafSection) {
@@ -478,6 +491,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<StereotypeInstance> getAppliedStereotypeInstances() {
@@ -487,18 +501,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 				ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT);
 		}
 		return appliedStereotypeInstances;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<Comment> getComments() {
-		if (comments == null) {
-			comments = new EObjectContainmentWithInverseEList.Resolving<Comment>(Comment.class, this,
-				ModelPackage.MODEL_ELEMENT__COMMENTS, RationalePackage.COMMENT__COMMENTED_ELEMENT);
-		}
-		return comments;
 	}
 
 	/**
@@ -607,6 +609,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -627,14 +630,13 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getAppliedStereotypeInstances()).basicAdd(
 				otherEnd, msgs);
-		case ModelPackage.MODEL_ELEMENT__COMMENTS:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getComments()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -650,14 +652,13 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 			return basicSetLeafSection(null, msgs);
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return ((InternalEList<?>) getAppliedStereotypeInstances()).basicRemove(otherEnd, msgs);
-		case ModelPackage.MODEL_ELEMENT__COMMENTS:
-			return ((InternalEList<?>) getComments()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -672,6 +673,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -699,14 +701,13 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 			return getState();
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return getAppliedStereotypeInstances();
-		case ModelPackage.MODEL_ELEMENT__COMMENTS:
-			return getComments();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -744,16 +745,13 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 			getAppliedStereotypeInstances().clear();
 			getAppliedStereotypeInstances().addAll((Collection<? extends StereotypeInstance>) newValue);
 			return;
-		case ModelPackage.MODEL_ELEMENT__COMMENTS:
-			getComments().clear();
-			getComments().addAll((Collection<? extends Comment>) newValue);
-			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -786,15 +784,13 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			getAppliedStereotypeInstances().clear();
 			return;
-		case ModelPackage.MODEL_ELEMENT__COMMENTS:
-			getComments().clear();
-			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -820,14 +816,13 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 			return STATE_EDEFAULT == null ? getState() != null : !STATE_EDEFAULT.equals(getState());
 		case ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES:
 			return appliedStereotypeInstances != null && !appliedStereotypeInstances.isEmpty();
-		case ModelPackage.MODEL_ELEMENT__COMMENTS:
-			return comments != null && !comments.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

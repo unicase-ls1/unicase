@@ -11,35 +11,39 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.StereotypeInstance;
-import org.unicase.model.rationale.Comment;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 
-/*
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc --> <p>
- * The following features are supported: <ul> <li>{@link org.unicase.model.ModelElement#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}</li> <li>{@link
- * org.unicase.model.ModelElement#getCreator <em>Creator</em>}</li> <li>{@link
- * org.unicase.model.ModelElement#getCreationDate <em>Creation Date</em>}</li> <li>{@link
- * org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li> <li>{@link
- * org.unicase.model.ModelElement#getAttachments <em>Attachments</em>}</li> <li>{@link
- * org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li> <li>{@link
- * org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li> <li>{@link
- * org.unicase.model.ModelElement#getState <em>State</em>}</li> <li>{@link
- * org.unicase.model.ModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li> <li>{@link
- * org.unicase.model.ModelElement#getComments <em>Comments</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are supported:
+ * <ul>
+ * <li>{@link org.unicase.model.ModelElement#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}</li>
+ * <li>{@link org.unicase.model.ModelElement#getCreator <em>Creator</em>}</li>
+ * <li>{@link org.unicase.model.ModelElement#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li>
+ * <li>{@link org.unicase.model.ModelElement#getAttachments <em>Attachments</em>}</li>
+ * <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
+ * <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
+ * <li>{@link org.unicase.model.ModelElement#getState <em>State</em>}</li>
+ * <li>{@link org.unicase.model.ModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @see org.unicase.model.ModelPackage#getModelElement()
  * @model abstract="true"
  * @generated
  */
 public interface ModelElement extends IdentifiableElement {
 	/**
-	 * Returns the value of the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Name</em>' attribute isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.unicase.model.ModelPackage#getModelElement_Name()
@@ -59,13 +63,13 @@ public interface ModelElement extends IdentifiableElement {
 	void setName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Description</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.unicase.model.ModelPackage#getModelElement_Description()
@@ -78,6 +82,7 @@ public interface ModelElement extends IdentifiableElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Description</em>' attribute.
 	 * @see #getDescription()
 	 * @generated
@@ -85,13 +90,13 @@ public interface ModelElement extends IdentifiableElement {
 	void setDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Creator</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Creator</em>' attribute.
 	 * @see #setCreator(String)
 	 * @see org.unicase.model.ModelPackage#getModelElement_Creator()
@@ -111,13 +116,13 @@ public interface ModelElement extends IdentifiableElement {
 	void setCreator(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Creation Date</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Creation Date</em>' attribute.
 	 * @see #setCreationDate(Date)
 	 * @see org.unicase.model.ModelPackage#getModelElement_CreationDate()
@@ -129,6 +134,7 @@ public interface ModelElement extends IdentifiableElement {
 	/**
 	 * Sets the value of the '{@link org.unicase.model.ModelElement#getCreationDate <em>Creation Date</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Creation Date</em>' attribute.
 	 * @see #getCreationDate()
 	 * @generated
@@ -176,15 +182,16 @@ public interface ModelElement extends IdentifiableElement {
 	EList<Attachment> getAttachments();
 
 	/**
-	 * Returns the value of the '<em><b>Incoming Document References</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.model.document.LeafSection}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}'.
+	 * Returns the value of the '<em><b>Incoming Document References</b></em>' reference list. The list contents are of
+	 * type {@link org.unicase.model.document.LeafSection}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Incoming Document References</em>' reference list isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Incoming Document References</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getModelElement_IncomingDocumentReferences()
 	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements
@@ -195,15 +202,15 @@ public interface ModelElement extends IdentifiableElement {
 	EList<LeafSection> getIncomingDocumentReferences();
 
 	/**
-	 * Returns the value of the '<em><b>Leaf Section</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}'.
-	 * <!-- begin-user-doc
+	 * Returns the value of the '<em><b>Leaf Section</b></em>' container reference. It is bidirectional and its opposite
+	 * is '{@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}'. <!-- begin-user-doc
 	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Leaf Section</em>' container reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Leaf Section</em>' container reference.
 	 * @see #setLeafSection(LeafSection)
 	 * @see org.unicase.model.ModelPackage#getModelElement_LeafSection()
@@ -214,8 +221,9 @@ public interface ModelElement extends IdentifiableElement {
 	LeafSection getLeafSection();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}' container
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Leaf Section</em>' container reference.
 	 * @see #getLeafSection()
 	 * @generated
@@ -256,26 +264,6 @@ public interface ModelElement extends IdentifiableElement {
 	 * @generated
 	 */
 	EList<StereotypeInstance> getAppliedStereotypeInstances();
-
-	/**
-	 * Returns the value of the '<em><b>Comments</b></em>' containment reference list.
-	 * The list contents are of type {@link org.unicase.model.rationale.Comment}.
-	 * It is bidirectional and its opposite is '{@link org.unicase.model.rationale.Comment#getCommentedElement <em>Commented Element</em>}'.
-	 * <!-- begin-user-doc
-	 * -->
-	 * <p>
-	 * If the meaning of the '<em>Comments</em>' containment reference list isn't clear, there really should be more of
-	 * a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Comments</em>' containment reference list.
-	 * @see org.unicase.model.ModelPackage#getModelElement_Comments()
-	 * @see org.unicase.model.rationale.Comment#getCommentedElement
-	 * @model opposite="commentedElement" containment="true" resolveProxies="true" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='2.0' position='left'"
-	 * @generated
-	 */
-	EList<Comment> getComments();
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

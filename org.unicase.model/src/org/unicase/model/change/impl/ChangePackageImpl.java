@@ -50,30 +50,35 @@ import org.unicase.model.task.impl.TaskPackageImpl;
 import org.unicase.model.util.UtilPackage;
 import org.unicase.model.util.impl.UtilPackageImpl;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass modelChangePackageEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass mergingIssueEClass = null;
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass mergingProposalEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass mergingSolutionEClass = null;
@@ -97,27 +102,24 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
-	 * <!-- begin-user-doc
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
+	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
+	 * <p>
+	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
+	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
+	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
+	 * another.
+	 * <p>
+	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -128,8 +130,8 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 			return (ChangePackage) EPackage.Registry.INSTANCE.getEPackage(ChangePackage.eNS_URI);
 
 		// Obtain or create and register package
-		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
+		ChangePackageImpl theChangePackage = (ChangePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ChangePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(eNS_URI)
 			: new ChangePackageImpl());
 
 		isInited = true;
@@ -233,6 +235,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getModelChangePackage() {
@@ -241,6 +244,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getModelChangePackage_SourceVersion() {
@@ -249,6 +253,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getModelChangePackage_TargetVersion() {
@@ -257,6 +262,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMergingIssue() {
@@ -265,6 +271,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getMergingIssue_ResolvingRevision() {
@@ -273,6 +280,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMergingProposal() {
@@ -281,6 +289,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMergingProposal_ConflictingProposals() {
@@ -289,6 +298,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMergingProposal_PendingChanges() {
@@ -297,6 +307,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getMergingSolution() {
@@ -305,6 +316,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getMergingSolution_AppliedChanges() {
@@ -313,6 +325,7 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ChangeFactory getChangeFactory() {
@@ -321,14 +334,15 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -354,14 +368,15 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {

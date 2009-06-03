@@ -12,10 +12,15 @@ import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.rationale.impl.IssueImpl;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Merging Issue</b></em>'. <!-- end-user-doc -->
- * <p> The following features are implemented: <ul> <li>{@link
- * org.unicase.model.change.impl.MergingIssueImpl#getResolvingRevision <em>Resolving Revision</em>}</li> </ul> </p>
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.change.impl.MergingIssueImpl#getResolvingRevision <em>Resolving Revision</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class MergingIssueImpl extends IssueImpl implements MergingIssue {
@@ -41,6 +46,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected MergingIssueImpl() {
@@ -49,6 +55,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -58,6 +65,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getResolvingRevision() {
@@ -66,6 +74,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setResolvingRevision(int newResolvingRevision) {
@@ -78,6 +87,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -91,6 +101,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -105,6 +116,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -119,6 +131,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -132,6 +145,7 @@ public class MergingIssueImpl extends IssueImpl implements MergingIssue {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

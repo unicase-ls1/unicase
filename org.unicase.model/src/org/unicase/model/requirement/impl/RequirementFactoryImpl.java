@@ -10,7 +10,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.requirement.*;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
@@ -23,14 +22,15 @@ import org.unicase.model.requirement.SystemFunction;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class RequirementFactoryImpl extends EFactoryImpl implements RequirementFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static RequirementFactory init() {
@@ -47,8 +47,8 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementFactoryImpl() {
@@ -57,6 +57,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -87,6 +88,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public NonFunctionalRequirement createNonFunctionalRequirement() {
@@ -96,6 +98,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FunctionalRequirement createFunctionalRequirement() {
@@ -105,6 +108,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UseCase createUseCase() {
@@ -114,6 +118,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Scenario createScenario() {
@@ -123,6 +128,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Actor createActor() {
@@ -132,6 +138,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ActorInstance createActorInstance() {
@@ -141,6 +148,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Step createStep() {
@@ -150,6 +158,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public SystemFunction createSystemFunction() {
@@ -159,6 +168,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UserTask createUserTask() {
@@ -168,6 +178,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public RequirementPackage getRequirementPackage() {
@@ -176,6 +187,7 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

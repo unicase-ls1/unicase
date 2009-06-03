@@ -11,22 +11,28 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.impl.ModelElementImpl;
-import org.unicase.model.state.StateNode;
+import org.unicase.model.state.State;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
-/*
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc --> <p>
- * The following features are implemented: <ul> <li>{@link org.unicase.model.state.impl.TransitionImpl#getCondition
- * <em>Condition</em>}</li> <li>{@link org.unicase.model.state.impl.TransitionImpl#getSource <em>Source</em>}</li>
- * <li>{@link org.unicase.model.state.impl.TransitionImpl#getTarget <em>Target</em>}</li> </ul> </p>
+/**
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.state.impl.TransitionImpl#getCondition <em>Condition</em>}</li>
+ * <li>{@link org.unicase.model.state.impl.TransitionImpl#getSource <em>Source</em>}</li>
+ * <li>{@link org.unicase.model.state.impl.TransitionImpl#getTarget <em>Target</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class TransitionImpl extends ModelElementImpl implements Transition {
 	/**
-	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getCondition()
 	 * @generated
 	 * @ordered
@@ -34,9 +40,9 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	protected static final String CONDITION_EDEFAULT = "";
 
 	/**
-	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getCondition() <em>Condition</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getCondition()
 	 * @generated
 	 * @ordered
@@ -44,27 +50,28 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 	protected String condition = CONDITION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getSource()
 	 * @generated
 	 * @ordered
 	 */
-	protected StateNode source;
+	protected State source;
 
 	/**
-	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference.
-	 * <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getTarget() <em>Target</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
+	 * 
 	 * @see #getTarget()
 	 * @generated
 	 * @ordered
 	 */
-	protected StateNode target;
+	protected State target;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected TransitionImpl() {
@@ -73,6 +80,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,6 +90,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public String getCondition() {
@@ -90,6 +99,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setCondition(String newCondition) {
@@ -102,12 +112,13 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public StateNode getSource() {
+	public State getSource() {
 		if (source != null && source.eIsProxy()) {
 			InternalEObject oldSource = (InternalEObject) source;
-			source = (StateNode) eResolveProxy(oldSource);
+			source = (State) eResolveProxy(oldSource);
 			if (source != oldSource) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StatePackage.TRANSITION__SOURCE,
@@ -119,18 +130,20 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public StateNode basicGetSource() {
+	public State basicGetSource() {
 		return source;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetSource(StateNode newSource, NotificationChain msgs) {
-		StateNode oldSource = source;
+	public NotificationChain basicSetSource(State newSource, NotificationChain msgs) {
+		State oldSource = source;
 		source = newSource;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -145,17 +158,18 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setSource(StateNode newSource) {
+	public void setSource(State newSource) {
 		if (newSource != source) {
 			NotificationChain msgs = null;
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
-					StateNode.class, msgs);
+				msgs = ((InternalEObject) source).eInverseRemove(this, StatePackage.STATE__OUTGOING_TRANSITIONS,
+					State.class, msgs);
 			if (newSource != null)
-				msgs = ((InternalEObject) newSource).eInverseAdd(this, StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
-					StateNode.class, msgs);
+				msgs = ((InternalEObject) newSource).eInverseAdd(this, StatePackage.STATE__OUTGOING_TRANSITIONS,
+					State.class, msgs);
 			msgs = basicSetSource(newSource, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -165,12 +179,13 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public StateNode getTarget() {
+	public State getTarget() {
 		if (target != null && target.eIsProxy()) {
 			InternalEObject oldTarget = (InternalEObject) target;
-			target = (StateNode) eResolveProxy(oldTarget);
+			target = (State) eResolveProxy(oldTarget);
 			if (target != oldTarget) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, StatePackage.TRANSITION__TARGET,
@@ -182,18 +197,20 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public StateNode basicGetTarget() {
+	public State basicGetTarget() {
 		return target;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetTarget(StateNode newTarget, NotificationChain msgs) {
-		StateNode oldTarget = target;
+	public NotificationChain basicSetTarget(State newTarget, NotificationChain msgs) {
+		State oldTarget = target;
 		target = newTarget;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
@@ -208,17 +225,18 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
-	public void setTarget(StateNode newTarget) {
+	public void setTarget(State newTarget) {
 		if (newTarget != target) {
 			NotificationChain msgs = null;
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
-					StateNode.class, msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this, StatePackage.STATE__INCOMING_TRANSITIONS,
+					State.class, msgs);
 			if (newTarget != null)
-				msgs = ((InternalEObject) newTarget).eInverseAdd(this, StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
-					StateNode.class, msgs);
+				msgs = ((InternalEObject) newTarget).eInverseAdd(this, StatePackage.STATE__INCOMING_TRANSITIONS,
+					State.class, msgs);
 			msgs = basicSetTarget(newTarget, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -228,6 +246,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -235,20 +254,21 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 		switch (featureID) {
 		case StatePackage.TRANSITION__SOURCE:
 			if (source != null)
-				msgs = ((InternalEObject) source).eInverseRemove(this, StatePackage.STATE_NODE__OUTGOING_TRANSITIONS,
-					StateNode.class, msgs);
-			return basicSetSource((StateNode) otherEnd, msgs);
+				msgs = ((InternalEObject) source).eInverseRemove(this, StatePackage.STATE__OUTGOING_TRANSITIONS,
+					State.class, msgs);
+			return basicSetSource((State) otherEnd, msgs);
 		case StatePackage.TRANSITION__TARGET:
 			if (target != null)
-				msgs = ((InternalEObject) target).eInverseRemove(this, StatePackage.STATE_NODE__INCOMING_TRANSITIONS,
-					StateNode.class, msgs);
-			return basicSetTarget((StateNode) otherEnd, msgs);
+				msgs = ((InternalEObject) target).eInverseRemove(this, StatePackage.STATE__INCOMING_TRANSITIONS,
+					State.class, msgs);
+			return basicSetTarget((State) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -264,6 +284,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -285,6 +306,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -294,10 +316,10 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 			setCondition((String) newValue);
 			return;
 		case StatePackage.TRANSITION__SOURCE:
-			setSource((StateNode) newValue);
+			setSource((State) newValue);
 			return;
 		case StatePackage.TRANSITION__TARGET:
-			setTarget((StateNode) newValue);
+			setTarget((State) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -305,6 +327,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -314,10 +337,10 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 			setCondition(CONDITION_EDEFAULT);
 			return;
 		case StatePackage.TRANSITION__SOURCE:
-			setSource((StateNode) null);
+			setSource((State) null);
 			return;
 		case StatePackage.TRANSITION__TARGET:
-			setTarget((StateNode) null);
+			setTarget((State) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -325,6 +348,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -342,6 +366,7 @@ public class TransitionImpl extends ModelElementImpl implements Transition {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

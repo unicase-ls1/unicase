@@ -10,20 +10,20 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.attachment.*;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.attachment.UrlAttachment;
 
-/*
+/**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static AttachmentFactory init() {
@@ -40,8 +40,8 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AttachmentFactoryImpl() {
@@ -50,6 +50,7 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,6 +67,7 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public UrlAttachment createUrlAttachment() {
@@ -75,6 +77,7 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public FileAttachment createFileAttachment() {
@@ -84,6 +87,7 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public AttachmentPackage getAttachmentPackage() {
@@ -92,6 +96,7 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */

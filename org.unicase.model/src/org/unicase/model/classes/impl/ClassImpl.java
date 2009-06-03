@@ -22,16 +22,22 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
-/*
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Class</b></em>'. <!-- end-user-doc --> <p> The
- * following features are implemented: <ul> <li>{@link org.unicase.model.classes.impl.ClassImpl#getParticipatedUseCases
- * <em>Participated Use Cases</em>}</li> <li>{@link org.unicase.model.classes.impl.ClassImpl#getSuperClasses <em>Super
- * Classes</em>}</li> <li>{@link org.unicase.model.classes.impl.ClassImpl#getSubClasses <em>Sub Classes</em>}</li>
+/**
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Class</b></em>'. <!-- end-user-doc -->
+ * <p>
+ * The following features are implemented:
+ * <ul>
+ * <li>{@link org.unicase.model.classes.impl.ClassImpl#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.ClassImpl#getSuperClasses <em>Super Classes</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.ClassImpl#getSubClasses <em>Sub Classes</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getIncomingAssociations <em>Incoming Associations</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.ClassImpl#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.ClassImpl#getAttributes <em>Attributes</em>}</li> <li>{@link
- * org.unicase.model.classes.impl.ClassImpl#getMethods <em>Methods</em>}</li> <li>{@link
- * org.unicase.model.classes.impl.ClassImpl#getDemoParticipations <em>Demo Participations</em>}</li> </ul> </p>
+ * <li>{@link org.unicase.model.classes.impl.ClassImpl#getAttributes <em>Attributes</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.ClassImpl#getMethods <em>Methods</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.ClassImpl#getDemoParticipations <em>Demo Participations</em>}</li>
+ * </ul>
+ * </p>
+ * 
  * @generated
  */
 public class ClassImpl extends PackageElementImpl implements org.unicase.model.classes.Class {
@@ -45,18 +51,18 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	 */
 	protected EList<UseCase> participatedUseCases;
 	/**
-	 * The cached value of the '{@link #getSuperClasses() <em>Super Classes</em>}' reference list.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getSuperClasses() <em>Super Classes</em>}' reference list. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getSuperClasses()
 	 * @generated
 	 * @ordered
 	 */
 	protected EList<org.unicase.model.classes.Class> superClasses;
 	/**
-	 * The cached value of the '{@link #getSubClasses() <em>Sub Classes</em>}' reference list.
-	 * <!-- begin-user-doc -->
+	 * The cached value of the '{@link #getSubClasses() <em>Sub Classes</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @see #getSubClasses()
 	 * @generated
 	 * @ordered
@@ -93,9 +99,9 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 	protected EList<Attribute> attributes;
 
 	/**
-	 * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list.
-	 * <!-- begin-user-doc
+	 * The cached value of the '{@link #getMethods() <em>Methods</em>}' containment reference list. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #getMethods()
 	 * @generated
 	 * @ordered
@@ -114,6 +120,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected ClassImpl() {
@@ -122,6 +129,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -131,6 +139,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<UseCase> getParticipatedUseCases() {
@@ -143,6 +152,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getSuperClasses() {
@@ -156,6 +166,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<org.unicase.model.classes.Class> getSubClasses() {
@@ -169,6 +180,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Association> getIncomingAssociations() {
@@ -181,6 +193,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Association> getOutgoingAssociations() {
@@ -193,6 +206,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Attribute> getAttributes() {
@@ -205,6 +219,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Method> getMethods() {
@@ -217,6 +232,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EList<Scenario> getDemoParticipations() {
@@ -229,6 +245,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -261,6 +278,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -288,6 +306,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -315,6 +334,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
@@ -359,6 +379,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -394,6 +415,7 @@ public class ClassImpl extends PackageElementImpl implements org.unicase.model.c
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
