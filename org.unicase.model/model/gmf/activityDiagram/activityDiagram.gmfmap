@@ -37,19 +37,71 @@
           href="../../model.ecore#//activity/Fork"/>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="activityDiagram.gmftool#//@palette/@tools.1"/>
+          href="activityDiagram.gmftool#//@palette/@tools.5"/>
       <diagramNode
           href="../model.gmfgraph#ForkNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="../../model.ecore#//activity/ActivityInitial"/>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="activityDiagram.gmftool#//@palette/@tools.2"/>
+      <diagramNode
+          href="../model.gmfgraph#ActivityInitialNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="../../model.ecore#//activity/ActivityEnd"/>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="activityDiagram.gmftool#//@palette/@tools.3"/>
+      <diagramNode
+          href="../model.gmfgraph#ActivityFinalNode"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="../../model.ecore#//activity/Branch"/>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="activityDiagram.gmftool#//@palette/@tools.4"/>
+      <diagramNode
+          href="../model.gmfgraph#BranchNode"/>
     </ownedChild>
   </nodes>
   <links>
     <domainMetaElement
         href="../../model.ecore#//activity/Transition"/>
+    <labelMappings
+        xsi:type="gmfmap:FeatureLabelMapping">
+      <diagramLabel
+          href="../model.gmfgraph#ConditionLabel"/>
+      <features
+          href="../../model.ecore#//activity/Transition/condition"/>
+    </labelMappings>
     <containmentFeature
         href="../../model.ecore#//diagram/MEDiagram/newElements"/>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="activityDiagram.gmftool#//@palette/@tools.2"/>
+        href="activityDiagram.gmftool#//@palette/@tools.1"/>
     <diagramLink
         href="../model.gmfgraph#ActivityTransition"/>
     <sourceMetaFeature

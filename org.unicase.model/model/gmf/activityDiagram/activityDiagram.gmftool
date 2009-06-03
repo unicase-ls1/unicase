@@ -15,14 +15,6 @@
     </tools>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="Fork">
-      <smallIcon
-          xsi:type="gmftool:DefaultImage"/>
-      <largeIcon
-          xsi:type="gmftool:DefaultImage"/>
-    </tools>
-    <tools
-        xsi:type="gmftool:CreationTool"
         title="Transition">
       <smallIcon
           xsi:type="gmftool:DefaultImage"/>
@@ -31,7 +23,31 @@
     </tools>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="ActivityObject">
+        title="Activity Initial Node">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+      <largeIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Activity Final Node">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+      <largeIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Branch / Merge">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+      <largeIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Fork / Join">
       <smallIcon
           xsi:type="gmftool:DefaultImage"/>
       <largeIcon

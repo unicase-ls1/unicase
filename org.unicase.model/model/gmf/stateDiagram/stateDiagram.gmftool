@@ -21,5 +21,21 @@
       <largeIcon
           xsi:type="gmftool:DefaultImage"/>
     </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="State Initial Node">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+      <largeIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="State Final Node">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+      <largeIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
   </palette>
 </gmftool:ToolRegistry>

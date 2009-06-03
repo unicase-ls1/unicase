@@ -10,15 +10,21 @@
         title="Component"/>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="ProvidedService"
-        description=""/>
+        title="Need"
+        description="">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="/icons/full/obj16/Usage.gif"
+          bundle="org.unicase.model.edit"/>
+    </tools>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="RequiredServiceLink"
-        description=""/>
-    <tools
-        xsi:type="gmftool:CreationTool"
-        title="ProvidedServiceLink"
-        description=""/>
+        title="Ability"
+        description="">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="/icons/full/obj16/InterfaceRealization.gif"
+          bundle="org.unicase.model.edit"/>
+    </tools>
   </palette>
 </gmftool:ToolRegistry>
