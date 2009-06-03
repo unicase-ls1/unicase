@@ -5,27 +5,26 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentFactory;
+import org.unicase.model.component.ComponentService;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
 
 /**
  * @generated
  */
-public class ComponentCreateCommand extends CreateElementCommand {
+public class ComponentServiceCreateCommand extends CreateElementCommand {
 
 	/**
 	 * @generated
 	 */
-	public ComponentCreateCommand(CreateElementRequest req) {
+	public ComponentServiceCreateCommand(CreateElementRequest req) {
 		super(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected EObject getElementToEdit() {
 		EObject container = ((CreateElementRequest) getRequest())
 				.getContainer();
@@ -38,7 +37,6 @@ public class ComponentCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected EClass getEClassToEdit() {
 		return DiagramPackage.eINSTANCE.getMEDiagram();
 	}
@@ -46,9 +44,9 @@ public class ComponentCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected EObject doDefaultElementCreation() {
-		Component newElement = ComponentFactory.eINSTANCE.createComponent();
+		ComponentService newElement = ComponentFactory.eINSTANCE
+				.createComponentService();
 
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);

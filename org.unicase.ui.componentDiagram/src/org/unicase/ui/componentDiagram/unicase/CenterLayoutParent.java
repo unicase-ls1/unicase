@@ -9,6 +9,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 public class CenterLayoutParent extends StackLayout {
 
+	@Override
 	public void layout(IFigure figure) {
 
 		IFigure parent = figure.getParent();

@@ -13,9 +13,7 @@ import org.eclipse.draw2d.geometry.Rectangle;
 
 /**
  * This shape is used to draw the component icon that is displayed in the right hand corner of a component. This is a
- * classifier rectangle with two smaller rectangles protruding from its left hand side. Creation 21 juil. 06
- * 
- * @author <a href="mailto:jacques.lescot@anyware-tech.com">Jacques LESCOT</a>
+ * classifier rectangle with two smaller rectangles protruding from its left hand side.
  */
 public class ComponentIcon extends Shape {
 	/**
@@ -28,6 +26,7 @@ public class ComponentIcon extends Shape {
 	/**
 	 * @see org.eclipse.draw2d.Shape#fillShape(org.eclipse.draw2d.Graphics)
 	 */
+	@Override
 	protected void fillShape(Graphics graphics) {
 		// No fill needed
 	}
@@ -35,6 +34,7 @@ public class ComponentIcon extends Shape {
 	/**
 	 * @see org.eclipse.draw2d.Shape#outlineShape(org.eclipse.draw2d.Graphics)
 	 */
+	@Override
 	protected void outlineShape(Graphics graphics) {
 		Rectangle r = new Rectangle();
 		r.setBounds(getBounds());

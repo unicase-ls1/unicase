@@ -96,6 +96,7 @@ public class ModelOCLFactory {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected Object doEvaluate(Object context, Map env) {
 			Query oclQuery = getQuery();
 			if (oclQuery == null) {
@@ -133,6 +134,7 @@ public class ModelOCLFactory {
 
 					private boolean usesAllInstances = false;
 
+					@Override
 					public Object visitOperationCallExp(OperationCallExp oc) {
 						if (!usesAllInstances) {
 							usesAllInstances = PredefinedType.ALL_INSTANCES == oc.getOperationCode();

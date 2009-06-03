@@ -6,7 +6,8 @@ import java.util.LinkedList;
 /**
  * @generated
  */
-public class ModelNavigatorGroup extends org.unicase.ui.componentDiagram.navigator.ModelAbstractNavigatorItem {
+public class ModelNavigatorGroup extends
+		org.unicase.ui.componentDiagram.navigator.ModelAbstractNavigatorItem {
 
 	/**
 	 * @generated
@@ -77,6 +78,7 @@ public class ModelNavigatorGroup extends org.unicase.ui.componentDiagram.navigat
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean equals(Object obj) {
 		if (obj instanceof org.unicase.ui.componentDiagram.navigator.ModelNavigatorGroup) {
 			org.unicase.ui.componentDiagram.navigator.ModelNavigatorGroup anotherGroup = (org.unicase.ui.componentDiagram.navigator.ModelNavigatorGroup) obj;
@@ -90,6 +92,7 @@ public class ModelNavigatorGroup extends org.unicase.ui.componentDiagram.navigat
 	/**
 	 * @generated
 	 */
+	@Override
 	public int hashCode() {
 		return getGroupName().hashCode();
 	}

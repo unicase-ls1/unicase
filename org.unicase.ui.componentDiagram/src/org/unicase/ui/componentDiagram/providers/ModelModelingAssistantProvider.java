@@ -16,22 +16,26 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.ui.common.diagram.providers.ModelingAssistantProvider;
 
 /**
  * @generated
  */
-public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagram.providers.ModelingAssistantProvider {
+public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 
 	/**
 	 * @generated
 	 */
 	@Override
 	public List getTypesForPopupBar(IAdaptable host) {
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host
+				.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart) {
 			List types = new ArrayList();
-			types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentService_1001);
-			types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.Component_1002);
+			types
+					.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentService_2001);
+			types
+					.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.Component_2002);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -42,11 +46,14 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	 */
 	@Override
 	public List getRelTypesOnSource(IAdaptable source) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart) {
 			List types = new ArrayList();
-			types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_3001);
-			types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_3002);
+			types
+					.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_4001);
+			types
+					.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_4002);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -57,11 +64,14 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	 */
 	@Override
 	public List getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.Component2EditPart) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentServiceEditPart) {
 			List types = new ArrayList();
-			types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_3001);
-			types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_3002);
+			types
+					.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_4001);
+			types
+					.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_4002);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -71,16 +81,21 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	 * @generated
 	 */
 	@Override
-	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
+	public List getRelTypesOnSourceAndTarget(IAdaptable source,
+			IAdaptable target) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart) {
 			List types = new ArrayList();
-			if (targetEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.Component2EditPart) {
-				types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_3001);
+			if (targetEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentServiceEditPart) {
+				types
+						.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_4001);
 			}
-			if (targetEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.Component2EditPart) {
-				types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_3002);
+			if (targetEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentServiceEditPart) {
+				types
+						.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_4002);
 			}
 			return types;
 		}
@@ -91,15 +106,19 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	 * @generated
 	 */
 	@Override
-	public List getTypesForSource(IAdaptable target, IElementType relationshipType) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
-		if (targetEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.Component2EditPart) {
+	public List getTypesForSource(IAdaptable target,
+			IElementType relationshipType) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
+				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentServiceEditPart) {
 			List types = new ArrayList();
-			if (relationshipType == org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_3001) {
-				types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.Component_1002);
+			if (relationshipType == org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_4001) {
+				types
+						.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.Component_2002);
 			}
-			if (relationshipType == org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_3002) {
-				types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.Component_1002);
+			if (relationshipType == org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_4002) {
+				types
+						.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.Component_2002);
 			}
 			return types;
 		}
@@ -110,15 +129,19 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	 * @generated
 	 */
 	@Override
-	public List getTypesForTarget(IAdaptable source, IElementType relationshipType) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+	public List getTypesForTarget(IAdaptable source,
+			IElementType relationshipType) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
+				.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentEditPart) {
 			List types = new ArrayList();
-			if (relationshipType == org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_3001) {
-				types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentService_1001);
+			if (relationshipType == org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_4001) {
+				types
+						.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentService_2001);
 			}
-			if (relationshipType == org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_3002) {
-				types.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentService_1001);
+			if (relationshipType == org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_4002) {
+				types
+						.add(org.unicase.ui.componentDiagram.providers.ModelElementTypes.ComponentService_2001);
 			}
 			return types;
 		}
@@ -129,32 +152,20 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	 * @generated
 	 */
 	@Override
-	public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType) {
-		return selectExistingElement(target, getTypesForSource(target, relationshipType));
+	public EObject selectExistingElementForSource(IAdaptable target,
+			IElementType relationshipType) {
+		return selectExistingElement(target, getTypesForSource(target,
+				relationshipType));
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType) {
-		return selectExistingElement(source, getTypesForTarget(source, relationshipType));
-	}
-
-	/**
-	 * @generated NOT
-	 */
-	@Override
-	protected EObject selectExistingElement(IAdaptable host, Collection types) {
-		/*
-		 * if (types.isEmpty()) { return null; } IGraphicalEditPart editPart = (IGraphicalEditPart)
-		 * host.getAdapter(IGraphicalEditPart.class); if (editPart == null) { return null; } Diagram diagram = (Diagram)
-		 * editPart.getRoot().getContents().getModel(); Collection elements = new HashSet(); for (Iterator it =
-		 * diagram.getElement().eAllContents(); it.hasNext();) { EObject element = (EObject) it.next(); if
-		 * (isApplicableElement(element, types)) { elements.add(element); } } if (elements.isEmpty()) { return null; }
-		 * return selectElement((EObject[]) elements.toArray(new EObject[elements.size()]));
-		 */
-		return super.selectExistingElement(host, types);
+	public EObject selectExistingElementForTarget(IAdaptable source,
+			IElementType relationshipType) {
+		return selectExistingElement(source, getTypesForTarget(source,
+				relationshipType));
 	}
 
 	/**
@@ -162,7 +173,8 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	 */
 	@Override
 	protected boolean isApplicableElement(EObject element, Collection types) {
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(element);
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(
+				element);
 		return types.contains(type);
 	}
 
@@ -173,11 +185,14 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-			org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.getInstance()
-				.getItemProvidersAdapterFactory());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
-		dialog.setMessage(org.unicase.ui.componentDiagram.part.Messages.ModelModelingAssistantProviderMessage);
-		dialog.setTitle(org.unicase.ui.componentDiagram.part.Messages.ModelModelingAssistantProviderTitle);
+				org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().getItemProvidersAdapterFactory());
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+				shell, labelProvider);
+		dialog
+				.setMessage(org.unicase.ui.componentDiagram.part.Messages.ModelModelingAssistantProviderMessage);
+		dialog
+				.setTitle(org.unicase.ui.componentDiagram.part.Messages.ModelModelingAssistantProviderTitle);
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements);
 		EObject selected = null;

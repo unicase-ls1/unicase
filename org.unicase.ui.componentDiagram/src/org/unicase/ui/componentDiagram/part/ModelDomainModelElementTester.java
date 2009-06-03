@@ -13,7 +13,8 @@ public class ModelDomainModelElementTester extends PropertyTester {
 	/**
 	 * @generated
 	 */
-	public boolean test(Object receiver, String method, Object[] args, Object expectedValue) {
+	public boolean test(Object receiver, String method, Object[] args,
+			Object expectedValue) {
 		if (false == receiver instanceof EObject) {
 			return false;
 		}
@@ -31,6 +32,9 @@ public class ModelDomainModelElementTester extends PropertyTester {
 		if (eClass == ModelPackage.eINSTANCE.getAnnotation()) {
 			return true;
 		}
+		if (eClass == ModelPackage.eINSTANCE.getAttachment()) {
+			return true;
+		}
 		if (eClass == ModelPackage.eINSTANCE.getIdentifiableElement()) {
 			return true;
 		}
@@ -38,6 +42,9 @@ public class ModelDomainModelElementTester extends PropertyTester {
 			return true;
 		}
 		if (eClass == ModelPackage.eINSTANCE.getNonDomainElement()) {
+			return true;
+		}
+		if (eClass == ModelPackage.eINSTANCE.getModelVersion()) {
 			return true;
 		}
 		return false;

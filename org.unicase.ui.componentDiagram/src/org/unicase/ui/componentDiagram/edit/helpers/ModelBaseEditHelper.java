@@ -22,6 +22,7 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ICommand getInsteadCommand(IEditCommandRequest req) {
 		ICommand epCommand = (ICommand) req.getParameter(EDIT_POLICY_COMMAND);
 		req.setParameter(EDIT_POLICY_COMMAND, null);
@@ -41,6 +42,7 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ICommand getCreateCommand(CreateElementRequest req) {
 		return null;
 	}
@@ -48,13 +50,16 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
-	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
+	@Override
+	protected ICommand getCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
 		return null;
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
 		return null;
 	}
@@ -62,6 +67,7 @@ public class ModelBaseEditHelper extends AbstractEditHelper {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected ICommand getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return null;
 	}

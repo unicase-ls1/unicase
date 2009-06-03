@@ -14,6 +14,7 @@ public class ComponentNameViewFactory extends BasicNodeViewFactory {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List createStyles(View view) {
 		List styles = new ArrayList();
 		return styles;
