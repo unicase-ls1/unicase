@@ -307,6 +307,7 @@
       <eLiterals name="COMPONENT_DIAGRAM" value="2" literal="COMPONENT_DIAGRAM"/>
       <eLiterals name="STATE_DIAGRAM" value="3" literal="STATE_DIAGRAM"/>
       <eLiterals name="ACTIVITY_DIAGRAM" value="4" literal="ACTIVITY_DIAGRAM"/>
+      <eLiterals name="WORKITEM_DIAGRAM" value="4" literal="WORKITEM_DIAGRAM"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="classes" nsURI="http://unicase.org/model/classes" nsPrefix="org.unicase.model.classes">
@@ -1250,10 +1251,20 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="state" nsURI="http://unicase.org/model/state" nsPrefix="org.unicase.model.state">
-    <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="State" eSuperTypes="#//state/StateNode">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="exitConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="activities" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="entryConditions" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          defaultValueLiteral=""/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//state/StateNode"
+          eOpposite="#//state/StateNode/outgoingTransitions" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//state/StateNode"
+          eOpposite="#//state/StateNode/incomingTransitions" eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StateNode" abstract="true" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="outgoingTransitions"
           upperBound="-1" eType="#//state/Transition" eOpposite="#//state/Transition/source"
           eKeys="#//IdentifiableElement/identifier"/>
@@ -1261,14 +1272,8 @@
           upperBound="-1" eType="#//state/Transition" eOpposite="#//state/Transition/target"
           eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Transition" eSuperTypes="#//ModelElement">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="condition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
-          defaultValueLiteral=""/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//state/State"
-          eOpposite="#//state/State/outgoingTransitions" eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="#//state/State"
-          eOpposite="#//state/State/incomingTransitions" eKeys="#//IdentifiableElement/identifier"/>
-    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="StateInitial" eSuperTypes="#//state/StateNode"/>
+    <eClassifiers xsi:type="ecore:EClass" name="StateEnd" eSuperTypes="#//state/StateNode"/>
   </eSubpackages>
   <eSubpackages name="attachment" nsURI="http://unicase.org/model/attachment" nsPrefix="org.unicase.model.attachment">
     <eClassifiers xsi:type="ecore:EClass" name="UrlAttachment" eSuperTypes="#//Attachment">
