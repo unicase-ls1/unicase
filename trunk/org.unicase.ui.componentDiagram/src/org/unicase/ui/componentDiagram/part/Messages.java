@@ -278,32 +278,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ComponentService_1001_incominglinks;
+	public static String NavigatorGroupName_ComponentService_2001_incominglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_Component_1002_outgoinglinks;
+	public static String NavigatorGroupName_Component_2002_outgoinglinks;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ComponentOfferedServices_3001_target;
+	public static String NavigatorGroupName_ComponentOfferedServices_4001_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ComponentOfferedServices_3001_source;
+	public static String NavigatorGroupName_ComponentOfferedServices_4001_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ComponentConsumedServices_3002_target;
+	public static String NavigatorGroupName_ComponentConsumedServices_4002_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ComponentConsumedServices_3002_source;
+	public static String NavigatorGroupName_ComponentConsumedServices_4002_source;
 
 	/**
 	 * @generated

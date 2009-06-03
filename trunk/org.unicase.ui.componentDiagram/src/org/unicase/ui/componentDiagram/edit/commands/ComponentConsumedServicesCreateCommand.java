@@ -28,7 +28,8 @@ public class ComponentConsumedServicesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ComponentConsumedServicesCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
+	public ComponentConsumedServicesCreateCommand(
+			CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -37,6 +38,7 @@ public class ComponentConsumedServicesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
@@ -52,15 +54,19 @@ public class ComponentConsumedServicesCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return org.unicase.ui.componentDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-			.canCreateComponentConsumedServices_3002(getSource(), getTarget());
+				.canCreateComponentConsumedServices_4002(getSource(),
+						getTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	@Override
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
+			IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException(
+					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
 			getSource().getConsumedServices().add(getTarget());

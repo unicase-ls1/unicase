@@ -100,6 +100,7 @@ public class ModelEditPartProvider extends AbstractEditPartProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public synchronized IGraphicalEditPart createGraphicEditPart(View view) {
 		if (isAllowCaching()) {
 			IGraphicalEditPart part = getCachedPart(view);
@@ -115,11 +116,13 @@ public class ModelEditPartProvider extends AbstractEditPartProvider {
 	/**
 	 * @generated
 	 */
+	@Override
 	public synchronized boolean provides(IOperation operation) {
 		if (operation instanceof CreateGraphicEditPartOperation) {
 			View view = ((IEditPartOperation) operation).getView();
 			if (!org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
-				.equals(org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry.getModelID(view))) {
+					.equals(org.unicase.ui.componentDiagram.part.ModelVisualIDRegistry
+							.getModelID(view))) {
 				return false;
 			}
 			if (isAllowCaching() && getCachedPart(view) != null) {

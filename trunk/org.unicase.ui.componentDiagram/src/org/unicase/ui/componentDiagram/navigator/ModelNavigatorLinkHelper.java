@@ -34,17 +34,20 @@ public class ModelNavigatorLinkHelper implements ILinkHelper {
 	 */
 	private static IEditorInput getEditorInput(Diagram diagram) {
 		Resource diagramResource = diagram.eResource();
-		for (Iterator it = diagramResource.getContents().iterator(); it.hasNext();) {
+		for (Iterator it = diagramResource.getContents().iterator(); it
+				.hasNext();) {
 			EObject nextEObject = (EObject) it.next();
 			if (nextEObject == diagram) {
-				return new FileEditorInput(WorkspaceSynchronizer.getFile(diagramResource));
+				return new FileEditorInput(WorkspaceSynchronizer
+						.getFile(diagramResource));
 			}
 			if (nextEObject instanceof Diagram) {
 				break;
 			}
 		}
 		URI uri = EcoreUtil.getURI(diagram);
-		String editorName = uri.lastSegment() + "#" + diagram.eResource().getContents().indexOf(diagram); //$NON-NLS-1$
+		String editorName = uri.lastSegment()
+				+ "#" + diagram.eResource().getContents().indexOf(diagram); //$NON-NLS-1$
 		IEditorInput editorInput = new URIEditorInput(uri, editorName);
 		return editorInput;
 	}
@@ -53,8 +56,9 @@ public class ModelNavigatorLinkHelper implements ILinkHelper {
 	 * @generated
 	 */
 	public IStructuredSelection findSelection(IEditorInput anInput) {
-		IDiagramDocument document = org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.getInstance()
-			.getDocumentProvider().getDiagramDocument(anInput);
+		IDiagramDocument document = org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
+				.getInstance().getDocumentProvider()
+				.getDiagramDocument(anInput);
 		if (document == null) {
 			return StructuredSelection.EMPTY;
 		}
@@ -62,7 +66,7 @@ public class ModelNavigatorLinkHelper implements ILinkHelper {
 		IFile file = WorkspaceSynchronizer.getFile(diagram.eResource());
 		if (file != null) {
 			org.unicase.ui.componentDiagram.navigator.ModelNavigatorItem item = new org.unicase.ui.componentDiagram.navigator.ModelNavigatorItem(
-				diagram, file, false);
+					diagram, file, false);
 			return new StructuredSelection(item);
 		}
 		return StructuredSelection.EMPTY;
@@ -71,7 +75,8 @@ public class ModelNavigatorLinkHelper implements ILinkHelper {
 	/**
 	 * @generated
 	 */
-	public void activateEditor(IWorkbenchPage aPage, IStructuredSelection aSelection) {
+	public void activateEditor(IWorkbenchPage aPage,
+			IStructuredSelection aSelection) {
 		if (aSelection == null || aSelection.isEmpty()) {
 			return;
 		}
@@ -80,16 +85,16 @@ public class ModelNavigatorLinkHelper implements ILinkHelper {
 		}
 
 		org.unicase.ui.componentDiagram.navigator.ModelAbstractNavigatorItem abstractNavigatorItem = (org.unicase.ui.componentDiagram.navigator.ModelAbstractNavigatorItem) aSelection
-			.getFirstElement();
+				.getFirstElement();
 		View navigatorView = null;
 		if (abstractNavigatorItem instanceof org.unicase.ui.componentDiagram.navigator.ModelNavigatorItem) {
 			navigatorView = ((org.unicase.ui.componentDiagram.navigator.ModelNavigatorItem) abstractNavigatorItem)
-				.getView();
+					.getView();
 		} else if (abstractNavigatorItem instanceof org.unicase.ui.componentDiagram.navigator.ModelNavigatorGroup) {
 			org.unicase.ui.componentDiagram.navigator.ModelNavigatorGroup navigatorGroup = (org.unicase.ui.componentDiagram.navigator.ModelNavigatorGroup) abstractNavigatorItem;
 			if (navigatorGroup.getParent() instanceof org.unicase.ui.componentDiagram.navigator.ModelNavigatorItem) {
 				navigatorView = ((org.unicase.ui.componentDiagram.navigator.ModelNavigatorItem) navigatorGroup
-					.getParent()).getView();
+						.getParent()).getView();
 			}
 		}
 		if (navigatorView == null) {
@@ -103,13 +108,17 @@ public class ModelNavigatorLinkHelper implements ILinkHelper {
 		aPage.bringToTop(editor);
 		if (editor instanceof DiagramEditor) {
 			DiagramEditor diagramEditor = (DiagramEditor) editor;
-			ResourceSet diagramEditorResourceSet = diagramEditor.getEditingDomain().getResourceSet();
-			EObject selectedView = diagramEditorResourceSet.getEObject(EcoreUtil.getURI(navigatorView), true);
+			ResourceSet diagramEditorResourceSet = diagramEditor
+					.getEditingDomain().getResourceSet();
+			EObject selectedView = diagramEditorResourceSet.getEObject(
+					EcoreUtil.getURI(navigatorView), true);
 			if (selectedView == null) {
 				return;
 			}
-			GraphicalViewer graphicalViewer = (GraphicalViewer) diagramEditor.getAdapter(GraphicalViewer.class);
-			EditPart selectedEditPart = (EditPart) graphicalViewer.getEditPartRegistry().get(selectedView);
+			GraphicalViewer graphicalViewer = (GraphicalViewer) diagramEditor
+					.getAdapter(GraphicalViewer.class);
+			EditPart selectedEditPart = (EditPart) graphicalViewer
+					.getEditPartRegistry().get(selectedView);
 			if (selectedEditPart != null) {
 				graphicalViewer.select(selectedEditPart);
 			}

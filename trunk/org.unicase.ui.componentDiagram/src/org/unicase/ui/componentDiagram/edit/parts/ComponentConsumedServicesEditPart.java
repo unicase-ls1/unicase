@@ -17,12 +17,13 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ComponentConsumedServicesEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ComponentConsumedServicesEditPart extends ConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3002;
+	public static final int VISUAL_ID = 4002;
 
 	/**
 	 * @generated
@@ -34,10 +35,12 @@ public class ComponentConsumedServicesEditPart extends ConnectionNodeEditPart im
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.ui.componentDiagram.edit.policies.ComponentConsumedServicesItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.ui.componentDiagram.edit.policies.ComponentConsumedServicesItemSemanticEditPolicy());
 	}
 
 	/**
@@ -47,6 +50,7 @@ public class ComponentConsumedServicesEditPart extends ConnectionNodeEditPart im
 	 * @generated
 	 */
 
+	@Override
 	protected Connection createConnectionFigure() {
 		return new RequiredInterfaceConnectionFigure();
 	}
@@ -67,7 +71,6 @@ public class ComponentConsumedServicesEditPart extends ConnectionNodeEditPart im
 		 * @generated
 		 */
 		public RequiredInterfaceConnectionFigure() {
-			this.setForegroundColor(ColorConstants.black);
 
 			setTargetDecoration(createTargetDecoration());
 		}
@@ -85,11 +88,14 @@ public class ComponentConsumedServicesEditPart extends ConnectionNodeEditPart im
 
 	}
 
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 
-		List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(((View) getModel()).getElement());
+		List editPolicies = CanonicalEditPolicy
+				.getRegisteredEditPolicies(((View) getModel()).getElement());
 		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
+			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it
+					.next();
 			nextEditPolicy.refresh();
 		}
 

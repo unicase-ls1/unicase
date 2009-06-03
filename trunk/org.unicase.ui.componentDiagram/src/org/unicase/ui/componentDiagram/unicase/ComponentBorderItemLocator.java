@@ -23,6 +23,7 @@ public class ComponentBorderItemLocator extends BorderItemLocator {
 		// TODO Auto-generated constructor stub
 	}
 
+	@Override
 	public void relocate(IFigure borderItem) {
 
 		Rectangle bounds = getParentBorder();

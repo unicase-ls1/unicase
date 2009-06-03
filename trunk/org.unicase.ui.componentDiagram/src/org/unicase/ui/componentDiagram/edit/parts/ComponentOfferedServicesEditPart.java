@@ -16,12 +16,13 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3001;
+	public static final int VISUAL_ID = 4001;
 
 	/**
 	 * @generated
@@ -33,10 +34,12 @@ public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart imp
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
-			new org.unicase.ui.componentDiagram.edit.policies.ComponentOfferedServicesItemSemanticEditPolicy());
+		installEditPolicy(
+				EditPolicyRoles.SEMANTIC_ROLE,
+				new org.unicase.ui.componentDiagram.edit.policies.ComponentOfferedServicesItemSemanticEditPolicy());
 	}
 
 	/**
@@ -45,37 +48,26 @@ public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart imp
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected Connection createConnectionFigure() {
-		return new ProvidedInterfaceConnectionFigure();
+		return new PolylineConnectionEx();
 	}
 
 	/**
 	 * @generated
 	 */
-	public ProvidedInterfaceConnectionFigure getPrimaryShape() {
-		return (ProvidedInterfaceConnectionFigure) getFigure();
+	public PolylineConnectionEx getPrimaryShape() {
+		return (PolylineConnectionEx) getFigure();
 	}
 
-	/**
-	 * @generated
-	 */
-	public class ProvidedInterfaceConnectionFigure extends PolylineConnectionEx {
-
-		/**
-		 * @generated
-		 */
-		public ProvidedInterfaceConnectionFigure() {
-			this.setForegroundColor(ColorConstants.black);
-
-		}
-
-	}
-
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 
-		List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(((View) getModel()).getElement());
+		List editPolicies = CanonicalEditPolicy
+				.getRegisteredEditPolicies(((View) getModel()).getElement());
 		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
+			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it
+					.next();
 			nextEditPolicy.refresh();
 		}
 

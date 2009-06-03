@@ -19,9 +19,9 @@ import org.eclipse.emf.edit.provider.IWrapperItemProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
@@ -68,7 +68,7 @@ public class ModelElementChooserDialog extends Dialog {
 	/**
 	 * @generated
 	 */
-	private TransactionalEditingDomain myEditingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+	private TransactionalEditingDomain myEditingDomain = WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain();
 
 	/**
 	 * @generated
@@ -82,6 +82,7 @@ public class ModelElementChooserDialog extends Dialog {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Control createDialogArea(Composite parent) {
 		Composite composite = (Composite) super.createDialogArea(parent);
 		getShell().setText(
@@ -93,6 +94,7 @@ public class ModelElementChooserDialog extends Dialog {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected Control createButtonBar(Composite parent) {
 		Control buttonBar = super.createButtonBar(parent);
 		setOkButtonEnabled(false);
@@ -140,6 +142,7 @@ public class ModelElementChooserDialog extends Dialog {
 	/**
 	 * @generated
 	 */
+	@Override
 	public int open() {
 		int result = super.open();
 		for (Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
@@ -323,6 +326,7 @@ public class ModelElementChooserDialog extends Dialog {
 		/**
 		 * @generated
 		 */
+		@Override
 		public boolean select(Viewer viewer, Object parentElement, Object element) {
 			if (element instanceof IContainer) {
 				return true;

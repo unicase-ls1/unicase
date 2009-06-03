@@ -21,17 +21,23 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.unicase.model.activity.provider.ActivityItemProviderAdapterFactory;
+import org.unicase.model.attachment.provider.AttachmentItemProviderAdapterFactory;
 import org.unicase.model.bug.provider.BugItemProviderAdapterFactory;
 import org.unicase.model.change.provider.ChangeItemProviderAdapterFactory;
 import org.unicase.model.classes.provider.ClassesItemProviderAdapterFactory;
 import org.unicase.model.component.provider.ComponentItemProviderAdapterFactory;
 import org.unicase.model.diagram.provider.DiagramItemProviderAdapterFactory;
 import org.unicase.model.document.provider.DocumentItemProviderAdapterFactory;
+import org.unicase.model.meeting.provider.MeetingItemProviderAdapterFactory;
 import org.unicase.model.organization.provider.OrganizationItemProviderAdapterFactory;
+import org.unicase.model.profile.provider.ProfileItemProviderAdapterFactory;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.model.rationale.provider.RationaleItemProviderAdapterFactory;
 import org.unicase.model.requirement.provider.RequirementItemProviderAdapterFactory;
+import org.unicase.model.state.provider.StateItemProviderAdapterFactory;
 import org.unicase.model.task.provider.TaskItemProviderAdapterFactory;
+import org.unicase.model.util.provider.UtilItemProviderAdapterFactory;
 
 /**
  * @generated
@@ -46,7 +52,8 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(ID);
+	public static final PreferencesHint DIAGRAM_PREFERENCES_HINT = new PreferencesHint(
+			ID);
 
 	/**
 	 * @generated
@@ -72,16 +79,19 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
+	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
-		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
+		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT,
+				getPreferenceStore());
 		adapterFactory = createAdapterFactory();
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory.dispose();
 		adapterFactory = null;
@@ -120,6 +130,12 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 		factories.add(new ChangeItemProviderAdapterFactory());
 		factories.add(new BugItemProviderAdapterFactory());
 		factories.add(new ComponentItemProviderAdapterFactory());
+		factories.add(new MeetingItemProviderAdapterFactory());
+		factories.add(new StateItemProviderAdapterFactory());
+		factories.add(new AttachmentItemProviderAdapterFactory());
+		factories.add(new ProfileItemProviderAdapterFactory());
+		factories.add(new UtilItemProviderAdapterFactory());
+		factories.add(new ActivityItemProviderAdapterFactory());
 		factories.add(new EcoreItemProviderAdapterFactory());
 		factories.add(new NotationItemProviderAdapterFactory());
 		factories.add(new ResourceItemProviderAdapterFactory());
@@ -137,9 +153,11 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(item, IItemLabelProvider.class);
+		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory
+				.adapt(item, IItemLabelProvider.class);
 		if (labelProvider != null) {
-			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
+			return ExtendedImageRegistry.getInstance().getImageDescriptor(
+					labelProvider.getImage(item));
 		}
 		return null;
 	}
@@ -166,8 +184,8 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
 		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute()
-				.toString());
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p
+					.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}
@@ -223,7 +241,9 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 		if (error == null && throwable != null) {
 			error = throwable.getMessage();
 		}
-		getLog().log(new Status(IStatus.ERROR, ModelDiagramEditorPlugin.ID, IStatus.OK, error, throwable));
+		getLog().log(
+				new Status(IStatus.ERROR, ModelDiagramEditorPlugin.ID,
+						IStatus.OK, error, throwable));
 		debug(error, throwable);
 	}
 
@@ -241,7 +261,9 @@ public class ModelDiagramEditorPlugin extends AbstractUIPlugin {
 		if (message == null && throwable != null) {
 			message = throwable.getMessage();
 		}
-		getLog().log(new Status(IStatus.INFO, ModelDiagramEditorPlugin.ID, IStatus.OK, message, throwable));
+		getLog().log(
+				new Status(IStatus.INFO, ModelDiagramEditorPlugin.ID,
+						IStatus.OK, message, throwable));
 		debug(message, throwable);
 	}
 

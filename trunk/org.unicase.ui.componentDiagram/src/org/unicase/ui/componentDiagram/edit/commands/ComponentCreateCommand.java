@@ -25,8 +25,10 @@ public class ComponentCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject getElementToEdit() {
-		EObject container = ((CreateElementRequest) getRequest()).getContainer();
+		EObject container = ((CreateElementRequest) getRequest())
+				.getContainer();
 		if (container instanceof View) {
 			container = ((View) container).getElement();
 		}
@@ -36,6 +38,7 @@ public class ComponentCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EClass getEClassToEdit() {
 		return DiagramPackage.eINSTANCE.getMEDiagram();
 	}
@@ -43,6 +46,7 @@ public class ComponentCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected EObject doDefaultElementCreation() {
 		Component newElement = ComponentFactory.eINSTANCE.createComponent();
 

@@ -128,22 +128,30 @@ public abstract class ModelAbstractExpression {
 			return value;
 		}
 		if (Number.class.isAssignableFrom(targetWrapperClass)) {
-			if (targetWrapperClass.equals(Byte.class))
+			if (targetWrapperClass.equals(Byte.class)) {
 				return new Byte(num.byteValue());
-			if (targetWrapperClass.equals(Integer.class))
+			}
+			if (targetWrapperClass.equals(Integer.class)) {
 				return new Integer(num.intValue());
-			if (targetWrapperClass.equals(Short.class))
+			}
+			if (targetWrapperClass.equals(Short.class)) {
 				return new Short(num.shortValue());
-			if (targetWrapperClass.equals(Long.class))
+			}
+			if (targetWrapperClass.equals(Long.class)) {
 				return new Long(num.longValue());
-			if (targetWrapperClass.equals(BigInteger.class))
+			}
+			if (targetWrapperClass.equals(BigInteger.class)) {
 				return BigInteger.valueOf(num.longValue());
-			if (targetWrapperClass.equals(Float.class))
+			}
+			if (targetWrapperClass.equals(Float.class)) {
 				return new Float(num.floatValue());
-			if (targetWrapperClass.equals(Double.class))
+			}
+			if (targetWrapperClass.equals(Double.class)) {
 				return new Double(num.doubleValue());
-			if (targetWrapperClass.equals(BigDecimal.class))
+			}
+			if (targetWrapperClass.equals(BigDecimal.class)) {
 				return new BigDecimal(num.doubleValue());
+			}
 		}
 		return value;
 	}

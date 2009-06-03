@@ -28,6 +28,7 @@ public class ModelTextSelectionEditPolicy extends SelectionEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showPrimarySelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -41,6 +42,7 @@ public class ModelTextSelectionEditPolicy extends SelectionEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(true);
@@ -56,6 +58,7 @@ public class ModelTextSelectionEditPolicy extends SelectionEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideSelection() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setSelected(false);
@@ -72,6 +75,7 @@ public class ModelTextSelectionEditPolicy extends SelectionEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void showFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(true);
@@ -85,6 +89,7 @@ public class ModelTextSelectionEditPolicy extends SelectionEditPolicy {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void hideFocus() {
 		if (getHostFigure() instanceof WrappingLabel) {
 			((WrappingLabel) getHostFigure()).setFocus(false);
@@ -119,8 +124,10 @@ public class ModelTextSelectionEditPolicy extends SelectionEditPolicy {
 		if (getHostFigure() instanceof Label) {
 			Label feedbackFigure = new Label();
 			feedbackFigure.setOpaque(true);
-			feedbackFigure.setBackgroundColor(ColorConstants.menuBackgroundSelected);
-			feedbackFigure.setForegroundColor(ColorConstants.menuForegroundSelected);
+			feedbackFigure
+					.setBackgroundColor(ColorConstants.menuBackgroundSelected);
+			feedbackFigure
+					.setForegroundColor(ColorConstants.menuForegroundSelected);
 			return feedbackFigure;
 		} else {
 			RectangleFigure feedbackFigure = new RectangleFigure();
@@ -160,7 +167,8 @@ public class ModelTextSelectionEditPolicy extends SelectionEditPolicy {
 				updateLabel((Label) selectionFeedbackFigure);
 				selectionFeedbackFigure.setBounds(getFeedbackBounds());
 			} else {
-				selectionFeedbackFigure.setBounds(getFeedbackBounds().expand(5, 5));
+				selectionFeedbackFigure.setBounds(getFeedbackBounds().expand(5,
+						5));
 			}
 		}
 	}

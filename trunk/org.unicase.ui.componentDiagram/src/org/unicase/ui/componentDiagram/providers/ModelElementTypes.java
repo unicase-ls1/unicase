@@ -48,22 +48,26 @@ public class ModelElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType MEDiagram_99 = getElementType("org.unicase.ui.componentDiagram.MEDiagram_99"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType ComponentService_1001 = getElementType("org.unicase.ui.componentDiagram.ComponentService_1001"); //$NON-NLS-1$
+	public static final IElementType ComponentService_2001 = getElementType("org.unicase.ui.componentDiagram.ComponentService_2001"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType Component_1002 = getElementType("org.unicase.ui.componentDiagram.Component_1002"); //$NON-NLS-1$
+	public static final IElementType Component_2002 = getElementType("org.unicase.ui.componentDiagram.Component_2002"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType ComponentOfferedServices_3001 = getElementType("org.unicase.ui.componentDiagram.ComponentOfferedServices_3001"); //$NON-NLS-1$
+	public static final IElementType ComponentOfferedServices_4001 = getElementType("org.unicase.ui.componentDiagram.ComponentOfferedServices_4001"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
-	public static final IElementType ComponentConsumedServices_3002 = getElementType("org.unicase.ui.componentDiagram.ComponentConsumedServices_3002"); //$NON-NLS-1$
+	public static final IElementType ComponentConsumedServices_4002 = getElementType("org.unicase.ui.componentDiagram.ComponentConsumedServices_4002"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -85,22 +89,26 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(
+			ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass
+					&& !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin.getInstance()
-					.getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
+				return org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
+						.getInstance().getItemImageDescriptor(
+								eClass.getEPackage().getEFactoryInstance()
+										.create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -174,13 +182,17 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(MEDiagram_99, DiagramPackage.eINSTANCE.getMEDiagram());
 
-			elements.put(ComponentService_1001, ComponentPackage.eINSTANCE.getComponentService());
+			elements.put(ComponentService_2001, ComponentPackage.eINSTANCE
+					.getComponentService());
 
-			elements.put(Component_1002, ComponentPackage.eINSTANCE.getComponent());
+			elements.put(Component_2002, ComponentPackage.eINSTANCE
+					.getComponent());
 
-			elements.put(ComponentOfferedServices_3001, ComponentPackage.eINSTANCE.getComponent_OfferedServices());
+			elements.put(ComponentOfferedServices_4001,
+					ComponentPackage.eINSTANCE.getComponent_OfferedServices());
 
-			elements.put(ComponentConsumedServices_3002, ComponentPackage.eINSTANCE.getComponent_ConsumedServices());
+			elements.put(ComponentConsumedServices_4002,
+					ComponentPackage.eINSTANCE.getComponent_ConsumedServices());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -199,10 +211,10 @@ public class ModelElementTypes extends ElementInitializers {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet();
 			KNOWN_ELEMENT_TYPES.add(MEDiagram_99);
-			KNOWN_ELEMENT_TYPES.add(ComponentService_1001);
-			KNOWN_ELEMENT_TYPES.add(Component_1002);
-			KNOWN_ELEMENT_TYPES.add(ComponentOfferedServices_3001);
-			KNOWN_ELEMENT_TYPES.add(ComponentConsumedServices_3002);
+			KNOWN_ELEMENT_TYPES.add(ComponentService_2001);
+			KNOWN_ELEMENT_TYPES.add(Component_2002);
+			KNOWN_ELEMENT_TYPES.add(ComponentOfferedServices_4001);
+			KNOWN_ELEMENT_TYPES.add(ComponentConsumedServices_4002);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
