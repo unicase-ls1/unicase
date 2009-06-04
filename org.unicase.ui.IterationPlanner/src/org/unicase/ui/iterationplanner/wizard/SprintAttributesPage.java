@@ -13,7 +13,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.ui.iterationplanner.core.IterationPlanner;
 
@@ -22,7 +24,7 @@ import org.unicase.ui.iterationplanner.core.IterationPlanner;
  * @author hodaie
  *
  */
-public class SprintAttributesPage extends WizardPage {
+public class SprintAttributesPage extends WizardPage implements Listener {
 
 
 	private IterationPlanner iterationPlanner;
@@ -69,6 +71,7 @@ public class SprintAttributesPage extends WizardPage {
 		txtSprintName = new Text(contents, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
 		txtSprintName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		txtSprintName.setText("");
+		txtSprintName.addListener(SWT.KeyUp, this);
 		
 		//sprint duration
 		Label lblSprintDuration = new Label(contents, SWT.NONE);
@@ -79,6 +82,7 @@ public class SprintAttributesPage extends WizardPage {
 		txtSprintDuration = new Text(contents, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
 		txtSprintDuration.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
 		txtSprintDuration.setText("");
+		txtSprintDuration.addListener(SWT.KeyUp, this);
 		
 		setControl(contents);
 		setPageComplete(true);
@@ -97,6 +101,15 @@ public class SprintAttributesPage extends WizardPage {
 		iterationPlanner.setSprintDuration(Integer.parseInt(txtSprintDuration.getText()));
 
 		return super.getNextPage();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
+	 */
+	public void handleEvent(Event event) {
+		getWizard().getContainer().updateButtons();
 	}
 
 	

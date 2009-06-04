@@ -19,42 +19,12 @@ import org.unicase.model.task.WorkPackage;
  */
 public class IterationPlanner {
 
-	private WorkPackage backLog;
-	private WorkPackage lastSprint;
+	private List<WorkPackage> workPackages;
 	private List<FunctionalRequirement> requirements;
 	private int sprintDuration;
 	private String sprintName;
 
-	/**
-	 * @param backLog
-	 *            the backLog to set
-	 */
-	public void setBackLog(WorkPackage backLog) {
-		this.backLog = backLog;
-	}
-
-	/**
-	 * @return the backLog
-	 */
-	public WorkPackage getBackLog() {
-		return backLog;
-	}
-
-	/**
-	 * @param lastSprint
-	 *            the lastSprint to set
-	 */
-	public void setLastSprint(WorkPackage lastSprint) {
-		this.lastSprint = lastSprint;
-	}
-
-	/**
-	 * @return the lastSprint
-	 */
-	public WorkPackage getLastSprint() {
-		return lastSprint;
-	}
-
+	
 
 
 	/**
@@ -105,6 +75,20 @@ public class IterationPlanner {
 	 */
 	public int getSprintDuration() {
 		return sprintDuration;
+	}
+
+	/**
+	 * @param workPackages the workPackages to set
+	 */
+	public void setWorkPackages(List<WorkPackage> workPackages) {
+		this.workPackages = workPackages;
+	}
+
+	/**
+	 * @return the workPackages
+	 */
+	public List<WorkPackage> getWorkPackages() {
+		return workPackages;
 	}
 
 }
