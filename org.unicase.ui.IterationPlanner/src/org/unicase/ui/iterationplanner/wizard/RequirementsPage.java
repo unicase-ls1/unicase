@@ -6,10 +6,16 @@
 
 package org.unicase.ui.iterationplanner.wizard;
 
+
+import org.eclipse.jface.viewers.CheckboxTreeViewer;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.unicase.ui.iterationplanner.core.IterationPlanner;
 
 /**
@@ -43,7 +49,15 @@ public class RequirementsPage extends WizardPage {
 	 */
 	public void createControl(Composite parent) {
 		Composite contents = new Composite(parent, SWT.NONE);
+		contents.setLayout(new GridLayout());
 		
+		Label lblReq = new Label(contents, SWT.NONE);
+		lblReq.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+				false));
+		lblReq.setText("Select requirements which should be implemented in this sprint:");
+		
+		
+		CheckboxTreeViewer treeViewer = new CheckboxTreeViewer(contents, SWT.NONE);
 		
 		
 		
