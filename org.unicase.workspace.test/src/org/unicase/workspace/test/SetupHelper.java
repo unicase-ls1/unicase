@@ -8,7 +8,11 @@ package org.unicase.workspace.test;
 
 import java.io.File;
 import java.io.FileFilter;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.Properties;
 
@@ -48,6 +52,8 @@ public class SetupHelper {
 	private  ProjectSpace testProjectSpace;
 	private  Project testProject;
 	private  Usersession usersession;
+
+
 	private  ProjectId projectId;
 	private  Project compareProject;
 	
@@ -86,11 +92,40 @@ public class SetupHelper {
 		}
 
 	}
+	
+	 private static void copyDirectory(File sourceLocation , File targetLocation)
+	    throws IOException {
+	        
+	        if (sourceLocation.isDirectory()) {
+	            if (!targetLocation.exists()) {
+	            	 targetLocation.mkdir();
+	            }
+	            
+	            String[] children = sourceLocation.list();
+	            for (int i=0; i<children.length; i++) {
+	                copyDirectory(new File(sourceLocation, children[i]),
+	                        new File(targetLocation, children[i]));
+	            }
+	        } else {
+	            
+	            InputStream in = new FileInputStream(sourceLocation);
+	            OutputStream out = new FileOutputStream(targetLocation);
+	            
+	            // Copy the bits from instream to outstream
+	            byte[] buf = new byte[1024];
+	            int len;
+	            while ((len = in.read(buf)) > 0) {
+	                out.write(buf, 0, len);
+	            }
+	            in.close();
+	            out.close();
+	        }
+	    }
 
 	/**
 	 * Setups server space.
 	 */
-	public static void setupSeverSpace() {
+	public static void setupServerSpace() {
         // 1.
 		// create a new server space
 		
@@ -102,21 +137,60 @@ public class SetupHelper {
 		
 		//===============================
 		//2.
-		// copy whole folders and storage from file system to .unicase.test/emf
+		// copy whole folders and storage from file system to .unicase.test/emfstore
 		
-//		ServerConfiguration.setTesting(true);
-//		String serverPath = ServerConfiguration.getServerHome();
+		ServerConfiguration.setTesting(true);
+		String serverPath = ServerConfiguration.getServerHome();
+		File targetLocation = new File(serverPath);
+		String srcPath = "TestProjects/Projects";
+		File sourceLocation = new File(srcPath);
 		
-		//copy myProj to serverPath.
+		try {
+			copyDirectory(sourceLocation, targetLocation);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 		// start server.
 		
-		
+		try {
+			Properties properties = ServerConfiguration.getProperties();
+			properties.setProperty(ServerConfiguration.RMI_ENCRYPTION, ServerConfiguration.FALSE);
+			EmfStoreController.runAsNewThread();
+		} catch (FatalEmfStoreException e) {
+			e.printStackTrace();
+		}		
 		
 		
 	}
 	
-	
+	/**
+	 * log in the test server.
+	 */
+	public void loginServer(){
+		if (usersession == null) {
+			usersession = WorkspaceFactory.eINSTANCE.createUsersession();
+
+			ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
+			serverInfo.setPort(1099);
+			serverInfo.setUrl("127.0.0.1");
+
+			usersession.setServerInfo(serverInfo);
+			usersession.setUsername("super");
+			usersession.setPassword("super");
+
+		}
+		
+		if (!usersession.isLoggedIn()) {
+			try {
+				usersession.logIn();
+			} catch (AccessControlException e) {
+				e.printStackTrace();
+			} catch (EmfStoreException e) {
+				e.printStackTrace();
+			}
+		}				
+	}
 
 	/**
 	 * Setups workspace.
@@ -396,5 +470,11 @@ public class SetupHelper {
 	public  TransactionalEditingDomain getDomain() {
 		return domain;
 	}
-
+	
+	/**
+	 * @return the usersession
+	 */
+	public Usersession getUsersession() {
+		return usersession;
+	}
 }
