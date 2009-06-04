@@ -20,7 +20,6 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.impl.WorkspaceFactoryImpl;
-import org.unicase.workspace.util.FileTransferUtil;
 
 /**
  * Job for the file download.
@@ -136,26 +135,6 @@ public abstract class FileTransferJob extends Job {
 	}
 
 	/**
-	 * Sets the attributes for the file transfer on the file attachment.
-	 * 
-	 * @param size of file
-	 */
-	protected void setAttributes(final int size) {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				FileAttachment fileAttachment = getFileAttachment();
-				fileAttachment.setFileName(FileTransferUtil.getFileName(getFile(), fileAttachment.getIdentifier()));
-				fileAttachment.setFileID("" + getFileInformation().getFileVersion());
-				fileAttachment.setFileSize(size);
-				setFileAttachment(fileAttachment);
-			}
-		});
-	}
-
-	/**
 	 * @return the exception, if there has been any. Null otherwise.
 	 */
 	public Exception getException() {
@@ -220,7 +199,7 @@ public abstract class FileTransferJob extends Job {
 	/**
 	 * @return the file information data object
 	 */
-	protected FileInformation getFileInformation() {
+	public FileInformation getFileInformation() {
 		return fileInformation;
 	}
 

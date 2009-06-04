@@ -6,6 +6,7 @@
 
 package org.unicase.workspace.util;
 
+import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.attachment.FileAttachment;
 
 /**
@@ -24,8 +25,11 @@ public interface FileTransferObserver {
 	/**
 	 * @param exception that might have been thrown
 	 * @param fileAttachment for which the download was finished
+	 * @param fileInformation file information
+	 * @param size size
 	 */
-	void uploadFinished(final Exception exception, final FileAttachment fileAttachment);
+	void uploadFinished(final Exception exception, final FileAttachment fileAttachment,
+		final FileInformation fileInformation, final int size);
 
 	/**
 	 * Opens the file refered to by this file attachment.
