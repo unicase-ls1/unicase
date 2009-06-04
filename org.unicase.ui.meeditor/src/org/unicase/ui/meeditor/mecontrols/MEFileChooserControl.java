@@ -172,11 +172,9 @@ public class MEFileChooserControl extends AbstractMEControl implements FileTrans
 					domain.getCommandStack().execute(new RecordingCommand(domain) {
 						@Override
 						protected void doExecute() {
-							FileAttachment fAttachment = (FileAttachment) getModelElement();
-							fAttachment.setFileName(FileTransferUtil.getFileName(new File(FileTransferUtil
-								.getCachedFileLocation(fileAttachment)), fileAttachment.getIdentifier()));
-							fAttachment.setFileID("" + fileInformation.getFileVersion());
-							fAttachment.setFileSize(size);
+							fileAttachment.setFileName(fileInformation.getFileName());
+							fileAttachment.setFileID("" + fileInformation.getFileVersion());
+							fileAttachment.setFileSize(size);
 						}
 					});
 					MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Upload succeeded!",

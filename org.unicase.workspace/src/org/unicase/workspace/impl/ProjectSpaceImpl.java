@@ -1975,7 +1975,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			@Override
 			public void done(IJobChangeEvent event) {
 				fileTransferObserver.uploadFinished(fileUploadJob.getException(), fileAttachment, fileUploadJob
-					.getFileInformation(), fileUploadJob.getState());
+					.getFileInformation(), fileUploadJob.getSize());
 			}
 		});
 		// execute file upload job
