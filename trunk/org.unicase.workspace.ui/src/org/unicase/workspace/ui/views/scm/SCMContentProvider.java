@@ -6,12 +6,11 @@
 package org.unicase.workspace.ui.views.scm;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.jface.viewers.ILazyTreeContentProvider;
+import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -32,13 +31,22 @@ import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
  * @author Shterev
  * 
  */
-public class SCMContentProvider implements ILazyTreeContentProvider {
+public class SCMContentProvider implements ITreeContentProvider {
+	
+	/**
+	 * group by model element.
+	 */
+	public static final String MODEL_ELEMENT = "modelElement";
+	
+	/**
+	 * group by operation.
+	 */
+	public static final String OPERATION = "operation";
 
-	private HashMap<ChangePackage, HistoryInfo> changePackageToHistoryMap;
-	private HashMap<AbstractOperation, ChangePackage> operationToChangePackageMap;
 	private TreeViewer viewer;
-	private HistoryInfo[] rootNodes;
 	private Project project;
+	private List<ChangePackage> changePackages;
+	private String groupBy = MODEL_ELEMENT;
 
 	/**
 	 * Default constructor.
@@ -51,64 +59,33 @@ public class SCMContentProvider implements ILazyTreeContentProvider {
 	public SCMContentProvider(TreeViewer viewer, Project project) {
 		this.viewer = viewer;
 		this.project = project;
+		changePackages = new ArrayList<ChangePackage>();
+		groupBy = MODEL_ELEMENT;
 	}
-
+	
 	/**
-	 * {@inheritDoc}
+	 * Sets the tree item group criterion.
+	 * @param groupCriterion {@link #MODEL_ELEMENT} or {@link #OPERATION}
 	 */
-	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-		this.rootNodes = (HistoryInfo[]) newInput;
+	public void groupBy(String groupCriterion){
+		groupBy = groupCriterion;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Object getParent(Object element) {
-		if (element instanceof ChangePackage) {
-			return changePackageToHistoryMap.get(element);
-		} else if (element instanceof AbstractOperation) {
-			return operationToChangePackageMap.get(element);
-		}
-		return rootNodes;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void updateChildCount(Object element, int currentChildCount) {
-		int length = 0;
-		if (element instanceof HistoryInfo) {
-			HistoryInfo historyInfo = (HistoryInfo) element;
-			length = getChildren(historyInfo).size();
-		} else if (element instanceof ChangePackage) {
-			ChangePackage changePackage = (ChangePackage) element;
-			length = getChildren(changePackage).size();
-		} else if (element instanceof AbstractOperation) {
-			AbstractOperation op = (AbstractOperation) element;
-			length= getChildren(op).size();
-		}
-		viewer.setChildCount(element, length);
-	}
-
-	private List<EObject> getChildren(AbstractOperation op) {
+	private Object[] getChildren(AbstractOperation op) {
 		ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(
-				new ArrayList<ChangePackage>(operationToChangePackageMap
-						.values()), project);
+				changePackages, project);
 		List<EObject> mes = new ArrayList<EObject>();
 		mes.add(helper.getModelElement(op.getModelElementId()));
 		mes.addAll(helper.getAffectedElements(op));
-		return mes;
+		return mes.toArray();
 	}
 
-	private List<AbstractOperation> getChildren(ChangePackage changePackage) {
+	private Object[] getChildren(ChangePackage changePackage) {
 		EList<AbstractOperation> operations = changePackage.getOperations();
-		for (AbstractOperation op : operations) {
-			operationToChangePackageMap.put(op, changePackage);
-		}
-		return operations;
+		return operations.toArray();
 	}
 
-	private List<ChangePackage> getChildren(HistoryInfo historyInfo) {
+	private Object[] getChildren(HistoryInfo historyInfo) {
 		PrimaryVersionSpec currentVersionSpec = historyInfo.getPrimerySpec();
 		int current = currentVersionSpec.getIdentifier();
 
@@ -125,31 +102,50 @@ public class SCMContentProvider implements ILazyTreeContentProvider {
 						.getActiveProjectSpace();
 				changes = activeProjectSpace.getChanges(prevVersionSpec,
 						currentVersionSpec);
-				for (ChangePackage cp : changes) {
-					changePackageToHistoryMap.put(cp, historyInfo);
-				}
+				changePackages.addAll(changes);
 			} catch (EmfStoreException e) {
 				DialogHandler.showExceptionDialog(e);
 			}
 		}
-		return changes;
+		return changes.toArray();
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void updateElement(Object parent, int index) {
-		 Object element = null;
-		 if(parent instanceof HistoryInfo){
-			 // ??
-		 }else if (parent instanceof ChangePackage){
-			 element = ((ChangePackage)parent).getOperations().get(index);
-		 }else{
-			 element = rootNodes[index];
-		 }
-		 viewer.replace(parent, index, element);
-		 updateChildCount(element, -1);
+	public Object[] getChildren(Object element) {
+		if (element instanceof HistoryInfo) {
+			HistoryInfo historyInfo = (HistoryInfo) element;
+			return getChildren(historyInfo);
+		} else if (element instanceof ChangePackage) {
+			ChangePackage changePackage = (ChangePackage) element;
+			return getChildren(changePackage);
+		} else if (element instanceof AbstractOperation) {
+			AbstractOperation op = (AbstractOperation) element;
+			return getChildren(op);
+		}
+		return new Object[0];
+	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean hasChildren(Object element) {
+		return true;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object[] getElements(Object inputElement) {
+		return (Object[]) viewer.getInput();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Object getParent(Object element) {
+		return null;
 	}
 
 	/**
@@ -157,7 +153,13 @@ public class SCMContentProvider implements ILazyTreeContentProvider {
 	 */
 	public void dispose() {
 		// TODO Auto-generated method stub
+	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		//
 	}
 
 }
