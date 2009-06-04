@@ -24,6 +24,8 @@ import org.unicase.workspace.util.FileTransferUtil;
  */
 public class FileUploadJob extends FileTransferJob {
 
+	private int size;
+
 	/**
 	 * If the selectedFile is null, this means that the file transfer is to be resumed from cache.
 	 * 
@@ -59,7 +61,7 @@ public class FileUploadJob extends FileTransferJob {
 			} else {
 				setFile(new File(FileTransferUtil.getCachedFileLocation(getFileAttachment())));
 			}
-			final int size = FilePartitionerUtil.getFileSize(getFile());
+			size = FilePartitionerUtil.getFileSize(getFile());
 			// set the upload monitor
 			monitor.beginTask("Uploading "
 				+ FileTransferUtil.getFileName(getFile(), getFileInformation().getFileAttachmentId()),
@@ -67,7 +69,6 @@ public class FileUploadJob extends FileTransferJob {
 			// executes the file transfer (loop)
 			executeTransfer(monitor);
 			// set file attachment values
-			setAttributes(size);
 		} catch (EmfStoreException e) {
 			setException(e);
 			return Status.CANCEL_STATUS;
@@ -104,5 +105,12 @@ public class FileUploadJob extends FileTransferJob {
 	 */
 	public String getUploadedFileName() {
 		return FileTransferUtil.getFileName(getFile(), getFileAttachment().getIdentifier());
+	}
+
+	/**
+	 * @return size
+	 */
+	public int getSize() {
+		return size;
 	}
 }
