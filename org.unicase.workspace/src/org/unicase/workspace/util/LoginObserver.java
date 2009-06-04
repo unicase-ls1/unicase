@@ -9,7 +9,7 @@ package org.unicase.workspace.util;
 /**
  * Observer interface for logging in.
  * 
- * @author C
+ * @author pfeifferc
  */
 public interface LoginObserver {
 

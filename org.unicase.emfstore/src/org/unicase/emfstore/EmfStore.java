@@ -5,6 +5,7 @@
  */
 package org.unicase.emfstore;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
@@ -22,7 +23,10 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
+import org.unicase.emfstore.filetransfer.FileChunk;
+import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.Project;
+
 
 /**
  * An EMF store is responsible for storing projects, change management on projects and for persisting projects.
@@ -201,4 +205,29 @@ public interface EmfStore extends EmfStoreInterface {
 	 */
 	ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException;
 
+	/**
+	 * Uploads a file chunk to the server.
+	 * 
+	 * @param sessionId session id
+	 * @param projectId project id
+	 * @param fileChunk file chunk
+	 * @return FileVersion denoting the current file version to be written to
+	 * @throws EmfStoreException if any error occurs in the EmfStore
+	 * @throws RemoteException if any remote error occurs
+	 */
+	FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
+		throws EmfStoreException, RemoteException;
+
+	/**
+	 * Downloads a file chunk from the server.
+	 * 
+	 * @param sessionId session id
+	 * @param projectId project id
+	 * @param fileInformation file information
+	 * @return FileChunk
+	 * @throws EmfStoreException if any error occurs in the EmfStore
+	 * @throws RemoteException if any remote error occurs
+	 */
+	FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
+		throws EmfStoreException, RemoteException;
 }

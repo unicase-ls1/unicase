@@ -15,17 +15,19 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.requirement.Step;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.MEDateControl;
 import org.unicase.ui.meeditor.mecontrols.MEEnumControl;
+import org.unicase.model.rationale.Comment;
+import org.unicase.ui.meeditor.mecontrols.MEFileChooserControl;
+import org.unicase.ui.meeditor.mecontrols.commentcontrol.MECommentsLinkControl;
+import org.unicase.ui.meeditor.mecontrols.MEFileSizeControl;
 import org.unicase.ui.meeditor.mecontrols.MEIntControl;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
-import org.unicase.ui.meeditor.mecontrols.commentcontrol.MECommentsLinkControl;
 import org.unicase.ui.meeditor.mecontrols.issuecontrol.AssessmentMatrixControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
@@ -95,7 +97,12 @@ public class ControlFactory {
 	}
 
 	private MEControl createAttributeControl(IItemPropertyDescriptor itemPropertyDescriptor, EStructuralFeature feature) {
-
+		if (feature.getName().equalsIgnoreCase("fileName")) {
+			return createMEFileChooserControl((EAttribute) feature);
+		}
+		if (feature.getName().equalsIgnoreCase("fileSize")) {
+			return createMEFileSizeControl((EAttribute) feature);
+		}
 		if (feature.getName().equalsIgnoreCase("email")) {
 			return createMEEmailControl((EAttribute) feature);
 		}
@@ -114,11 +121,19 @@ public class ControlFactory {
 		if (feature.getEType() instanceof EEnum) {
 			return createMEEnumControl((EAttribute) feature);
 		}
-		return createMETextControl((EAttribute) feature);
+		return createMETextControl((EAttribute) feature, itemPropertyDescriptor);
 	}
 
 	private MEControl createMEEmailControl(EAttribute feature) {
 		return new MEEmailControl(feature, toolkit, modelElement, editingDomain);
+	}
+
+	private MEControl createMEFileSizeControl(EAttribute feature) {
+		return new MEFileSizeControl(feature, toolkit, modelElement, editingDomain);
+	}
+
+	private MEControl createMEFileChooserControl(EAttribute feature) {
+		return new MEFileChooserControl(feature, toolkit, modelElement, editingDomain);
 	}
 
 	private MEControl createMERichTextControl(EAttribute feature) {
@@ -137,7 +152,7 @@ public class ControlFactory {
 	private MEControl createMEDateControl(EAttribute attribute) {
 		return new MEDateControl(attribute, toolkit, modelElement, editingDomain);
 	}
-
+	
 	private MEControl createMECommentControl(EReference reference) {
 		return new MECommentsLinkControl(reference, toolkit, modelElement, editingDomain);
 	}
@@ -151,8 +166,8 @@ public class ControlFactory {
 
 	}
 
-	private MEControl createMETextControl(EAttribute attribute) {
-		return new METextControl(attribute, toolkit, modelElement, editingDomain);
+	private MEControl createMETextControl(EAttribute attribute, IItemPropertyDescriptor itemPropertyDescriptor) {
+		return new METextControl(attribute, toolkit, modelElement, editingDomain, itemPropertyDescriptor);
 	}
 
 	private MEControl createMELinkControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {

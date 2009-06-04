@@ -36,6 +36,8 @@ import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.RMISerializationException;
 import org.unicase.emfstore.exceptions.UnknownSessionException;
+import org.unicase.emfstore.filetransfer.FileChunk;
+import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.Project;
 import org.unicase.workspace.ServerInfo;
 
@@ -276,5 +278,33 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			throw new UnknownSessionException("Session unkown to Connection manager, log in first!");
 		}
 		return facade;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
+		throws EmfStoreException {
+		RMIEmfStoreFacade facade = getFacade(sessionId);
+		try {
+			return facade.uploadFileChunk(SerializationUtil.eObjectToString(sessionId), SerializationUtil
+				.eObjectToString(projectId), fileChunk);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
+		throws EmfStoreException, ConnectionException {
+		RMIEmfStoreFacade facade = getFacade(sessionId);
+		try {
+			return facade.downloadFileChunk(SerializationUtil.eObjectToString(sessionId), SerializationUtil
+				.eObjectToString(projectId), fileInformation);
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
 	}
 }

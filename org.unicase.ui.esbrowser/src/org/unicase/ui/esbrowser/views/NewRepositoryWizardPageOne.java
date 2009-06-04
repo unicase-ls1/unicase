@@ -11,6 +11,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -216,7 +217,9 @@ public class NewRepositoryWizardPageOne extends WizardPage {
 			csd.setBlockOnOpen(true);
 			csd.setTitle("Certificate Selection Dialogue");
 			csd.open();
-			cert.setText(csd.getCertificateAlias());
+			if (csd.getReturnCode() == Window.OK) {
+				cert.setText(csd.getCertificateAlias());
+			}
 		}
 	}
 }

@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
@@ -27,9 +28,11 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.model.attachment.FileAttachment;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.util.CommitObserver;
+import org.unicase.workspace.util.FileTransferObserver;
 import org.unicase.workspace.util.UpdateObserver;
 
 /**
@@ -584,5 +587,22 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @return a handle to abort or complete the operation
 	 */
 	CompositeOperationHandle beginCompositeOperation();
+
+	/**
+	 * Uploads a file to the server.
+	 * 
+	 * @param selectedFile the selected file
+	 * @param fileAttachment the file attachment
+	 * @param fileTransferObserver file transfer observer interface
+	 */
+	void uploadFileToServer(File selectedFile, FileAttachment fileAttachment, FileTransferObserver fileTransferObserver);
+
+	/**
+	 * Downloads a file from the server.
+	 * 
+	 * @param fileAttachment the file attachment
+	 * @param fileTransferObserver file transfer observer interface
+	 */
+	void downloadFileFromServer(FileAttachment fileAttachment, FileTransferObserver fileTransferObserver);
 
 } // ProjectContainer
