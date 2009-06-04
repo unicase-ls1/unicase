@@ -142,7 +142,14 @@ public class SetupHelper {
 		ServerConfiguration.setTesting(true);
 		String serverPath = ServerConfiguration.getServerHome();
 		File targetLocation = new File(serverPath);
-		String srcPath = "TestProjects/Projects";
+		String path = "TestProjects/Projects";
+		String srcPath = Activator.getDefault().getBundle().getLocation() + path;
+		if (File.separator.equals("/")) {
+			srcPath = srcPath.replace("reference:file:", "");
+
+		} else {
+			srcPath = srcPath.replace("reference:file:/", "");
+		}
 		File sourceLocation = new File(srcPath);
 		
 		try {
