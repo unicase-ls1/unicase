@@ -62,7 +62,7 @@ public class MEFileSizeControl extends AbstractMEControl {
 		fileUnit.setText("bytes");
 		fileUnit.setEditable(false);
 		fileUnit.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(false, true).applyTo(fileUnit);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(false, true).hint(60, 15).applyTo(fileUnit);
 
 		return parent;
 	}
