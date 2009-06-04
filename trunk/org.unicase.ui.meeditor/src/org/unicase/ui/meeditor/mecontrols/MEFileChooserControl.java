@@ -5,10 +5,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
@@ -19,22 +15,18 @@ import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.meeditor.Activator;
-import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.FileTransferObserver;
 import org.unicase.workspace.util.FileTransferUtil;
 
@@ -83,57 +75,57 @@ public class MEFileChooserControl extends AbstractMEControl implements FileTrans
 		Button open = new Button(composite, SWT.PUSH);
 		open.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 		open.setImage(Activator.getImageDescriptor("icons/page_go.png").createImage());
-		open.addSelectionListener(new SelectionListener() {
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
-
-			public void widgetSelected(SelectionEvent e) {
-				Display.getCurrent().asyncExec(new Runnable() {
-					public void run() {
-						FileAttachment fileAttachment = (FileAttachment) getModelElement();
-						File file = new File(FileTransferUtil.getCachedFileLocation(fileAttachment));
-						try {
-							if (file.exists() && fileAttachment.getFileSize() != new FileInputStream(file).available()) {
-								MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Please wait!",
-									"File download has not yet been completed");
-							} else {
-								WorkspaceManager.getProjectSpace((FileAttachment) getModelElement())
-									.downloadFileFromServer((FileAttachment) getModelElement(),
-										MEFileChooserControl.this);
-							}
-						} catch (IOException e) {
-							DialogHandler.showErrorDialog("Cache Location can not be accessed!");
-						}
-					}
-				});
-			}
-		});
+		// open.addSelectionListener(new SelectionListener() {
+		// public void widgetDefaultSelected(SelectionEvent e) {
+		// }
+		//
+		// public void widgetSelected(SelectionEvent e) {
+		// Display.getCurrent().asyncExec(new Runnable() {
+		// public void run() {
+		// FileAttachment fileAttachment = (FileAttachment) getModelElement();
+		// File file = new File(FileTransferUtil.getCachedFileLocation(fileAttachment));
+		// try {
+		// if (file.exists() && fileAttachment.getFileSize() != new FileInputStream(file).available()) {
+		// MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Please wait!",
+		// "File download has not yet been completed");
+		// } else {
+		// WorkspaceManager.getProjectSpace((FileAttachment) getModelElement())
+		// .downloadFileFromServer((FileAttachment) getModelElement(),
+		// MEFileChooserControl.this);
+		// }
+		// } catch (IOException e) {
+		// DialogHandler.showErrorDialog("Cache Location can not be accessed!");
+		// }
+		// }
+		// });
+		// }
+		// });
 
 		// Right column: button to open a dialog for uploading files
-		Button button = new Button(composite, SWT.PUSH);
-		button.addSelectionListener(new SelectionListener() {
-
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// nothing to do
-			}
-
-			public void widgetSelected(SelectionEvent e) {
-				final FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell());
-				fileDialog.open();
-				if (!fileDialog.getFileName().equals("")) {
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						public void run() {
-							WorkspaceManager.getProjectSpace((FileAttachment) getModelElement()).uploadFileToServer(
-								new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()),
-								(FileAttachment) getModelElement(), MEFileChooserControl.this);
-						}
-					});
-				}
-			}
-		});
-		button.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
-		button.setImage(Activator.getImageDescriptor("icons/page_add.png").createImage());
+		Button upload = new Button(composite, SWT.PUSH);
+		// upload.addSelectionListener(new SelectionListener() {
+		//
+		// public void widgetDefaultSelected(SelectionEvent e) {
+		// // nothing to do
+		// }
+		//
+		// public void widgetSelected(SelectionEvent e) {
+		// final FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell());
+		// fileDialog.open();
+		// if (!fileDialog.getFileName().equals("")) {
+		// Display.getCurrent().asyncExec(new Runnable() {
+		//
+		// public void run() {
+		// WorkspaceManager.getProjectSpace((FileAttachment) getModelElement()).uploadFileToServer(
+		// new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()),
+		// (FileAttachment) getModelElement(), MEFileChooserControl.this);
+		// }
+		// });
+		// }
+		// }
+		// });
+		upload.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
+		upload.setImage(Activator.getImageDescriptor("icons/page_add.png").createImage());
 
 		return parent;
 	}
