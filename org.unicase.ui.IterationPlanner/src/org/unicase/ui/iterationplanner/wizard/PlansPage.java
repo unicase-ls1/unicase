@@ -51,7 +51,7 @@ public class PlansPage extends WizardPage {
 	 */
 	@Override
 	public boolean isPageComplete() {
-		iterationPlanner.setSprintName("aa");
+		iterationPlanner.getSprint().setName("aaa");
 		return true;
 	}
 
