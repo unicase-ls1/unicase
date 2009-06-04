@@ -16,7 +16,7 @@ import java.util.List;
  */
 public class CSVExporter implements Exporter {
 
-	private static String COLUMN_SEPERATOR = ",";
+	private static final String COLUMN_SEPERATOR = ",";
 
 	private boolean isOVERWRITE;
 

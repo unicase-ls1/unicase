@@ -191,19 +191,15 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 
 			List<ChangePackage> changePackages = projectdata
 					.getChangePackages();
-			ChangePackage nextChangePackage = VersioningFactory.eINSTANCE.createChangePackage();
+			
 			for (ChangePackage changePackage : changes) {
-				int index = changes.indexOf(changePackage);
+				
 				if(isForward){
 					changePackage.apply(currentState);
 					changePackages.add(changePackage);
 				}else{
-					if(index != 0){	
-						changePackages.add(nextChangePackage);
-					}
 					changePackage.reverse().apply(currentState);
-					//TODO return changePackage(i+1) but might be in another iteration
-					nextChangePackage = changes.get(index+1);
+					changePackages.add(changePackage);
 				}
 			}
 		}
