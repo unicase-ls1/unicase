@@ -43,6 +43,11 @@ public class RequirementsPage extends WizardPage {
 	 */
 	public void createControl(Composite parent) {
 		Composite contents = new Composite(parent, SWT.NONE);
+		
+		
+		
+		
+		
 		setControl(contents);
 		setPageComplete(true);		
 	}
