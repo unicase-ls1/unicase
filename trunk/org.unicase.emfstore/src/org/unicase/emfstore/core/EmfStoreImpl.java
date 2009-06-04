@@ -5,10 +5,12 @@
  */
 package org.unicase.emfstore.core;
 
+import java.rmi.RemoteException;
 import java.util.List;
 
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
+import org.unicase.emfstore.core.subinterfaces.FileTransferSubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.HistorySubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.ProjectSubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.UserSubInterfaceImpl;
@@ -28,8 +30,12 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
+import org.unicase.emfstore.filetransfer.FileChunk;
+import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.Project;
+
 
 /**
  * This is the main implementation of {@link EmfStore}.
@@ -60,6 +66,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 		addSubInterface(new ProjectSubInterfaceImpl(this));
 		addSubInterface(new UserSubInterfaceImpl(this));
 		addSubInterface(new VersionSubInterfaceImpl(this));
+		addSubInterface(new FileTransferSubInterfaceImpl(this));
 	}
 
 	/**
@@ -177,6 +184,34 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	public ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException {
 		sanityCheckObject(sessionId);
 		return getSubInterface(UserSubInterfaceImpl.class).resolveUser(sessionId, id);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
+		throws EmfStoreException, RemoteException {
+		sanityCheckObjects(new Object[] { sessionId, projectId, fileInformation });
+		checkReadAccess(sessionId, projectId, null);
+		try {
+			return getSubInterface(FileTransferSubInterfaceImpl.class).readChunk(projectId, fileInformation);
+		} catch (FileTransferException e) {
+			throw new EmfStoreException(e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
+		throws EmfStoreException, RemoteException {
+		sanityCheckObjects(new Object[] { sessionId, projectId, fileChunk });
+		checkWriteAccess(sessionId, projectId, null);
+		try {
+			return getSubInterface(FileTransferSubInterfaceImpl.class).writeChunk(fileChunk, projectId);
+		} catch (FileTransferException e) {
+			throw new EmfStoreException(e);
+		}
 	}
 
 }

@@ -29,7 +29,10 @@ import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.RMISerializationException;
+import org.unicase.emfstore.filetransfer.FileChunk;
+import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.Project;
+
 
 /**
  * Implementation of a RMIEmfStoreFacade.
@@ -240,5 +243,25 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 		LOGGER.debug("Client call on resolveUser RECEIVED.");
 		return SerializationUtil.eObjectToString(emfStore.resolveUser((SessionId) SerializationUtil
 			.stringToEObject(sessionId), (ACOrgUnitId) SerializationUtil.stringToEObject(orgUnitId)));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public FileInformation uploadFileChunk(String sessionId, String projectId, FileChunk fileChunk)
+		throws EmfStoreException, RemoteException {
+		LOGGER.debug("Client call on uploadFileChunk RECEIVED.");
+		return emfStore.uploadFileChunk((SessionId) SerializationUtil.stringToEObject(sessionId),
+			(ProjectId) SerializationUtil.stringToEObject(projectId), fileChunk);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public FileChunk downloadFileChunk(String sessionId, String projectId, FileInformation fileInformation)
+		throws EmfStoreException, RemoteException {
+		LOGGER.debug("Client call on downloadFileChunk RECEIVED.");
+		return emfStore.downloadFileChunk((SessionId) SerializationUtil.stringToEObject(sessionId),
+			(ProjectId) SerializationUtil.stringToEObject(projectId), fileInformation);
 	}
 }

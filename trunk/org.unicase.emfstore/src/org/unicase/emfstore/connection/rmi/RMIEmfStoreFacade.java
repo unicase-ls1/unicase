@@ -13,6 +13,9 @@ import java.util.List;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.filetransfer.FileChunk;
+import org.unicase.emfstore.filetransfer.FileInformation;
+
 
 // END IGNORE UNNECCESSARY IMPORT
 /**
@@ -213,4 +216,27 @@ public interface RMIEmfStoreFacade extends Remote {
 	 * @throws RemoteException rmi related exception
 	 */
 	String resolveUser(String sessionId, String orgUnitId) throws EmfStoreException, RemoteException;
+
+	/**
+	 * @param sessionId session id
+	 * @param projectId project id
+	 * @param fileChunk file chunk
+	 * @return FileVersion denoting the current file version to be written to
+	 * @throws EmfStoreException if any error occurs in the EmfStore
+	 * @throws RemoteException if any remote error occurs
+	 */
+	FileInformation uploadFileChunk(String sessionId, String projectId, FileChunk fileChunk) throws EmfStoreException,
+		RemoteException;
+
+	/**
+	 * @param sessionId session id
+	 * @param projectId project id
+	 * @param fileInformation file information
+	 * @return FileChunk
+	 * @throws EmfStoreException if any error occurs in the EmfStore
+	 * @throws RemoteException if any remote error occurs
+	 */
+	FileChunk downloadFileChunk(String sessionId, String projectId, FileInformation fileInformation)
+		throws EmfStoreException, RemoteException;
+
 }

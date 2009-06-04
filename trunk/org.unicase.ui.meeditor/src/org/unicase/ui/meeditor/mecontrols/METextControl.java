@@ -11,6 +11,7 @@ import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
@@ -30,6 +31,8 @@ public class METextControl extends AbstractMEControl implements MEControl {
 
 	private EAttribute attribute;
 
+	private IItemPropertyDescriptor itemPropertyDescriptor;
+
 	/**
 	 * Default Constructor.
 	 * 
@@ -37,10 +40,13 @@ public class METextControl extends AbstractMEControl implements MEControl {
 	 * @param toolkit see {@link AbstractMEControl}
 	 * @param modelElement see {@link AbstractMEControl}
 	 * @param editingDomain see {@link AbstractMEControl}
+	 * @param itemPropertyDescriptor the property descriptor
 	 */
-	public METextControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
+	public METextControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain,
+		IItemPropertyDescriptor itemPropertyDescriptor) {
 		super(editingDomain, modelElement, toolkit);
 		this.attribute = attribute;
+		this.itemPropertyDescriptor = itemPropertyDescriptor;
 	}
 
 	/**
@@ -50,6 +56,9 @@ public class METextControl extends AbstractMEControl implements MEControl {
 	 */
 	public Control createControl(Composite parent, int style) {
 		text = getToolkit().createText(parent, new String(), style | SWT.SINGLE);
+		if (!itemPropertyDescriptor.canSetProperty(getModelElement())) {
+			text.setEditable(false);
+		}
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeText(text, SWT.FocusOut), model, null, null);
