@@ -34,6 +34,7 @@ public class UnicasePerspective implements IPerspectiveFactory {
 		addViews();
 	}
 
+	@SuppressWarnings("deprecation")
 	private void addViews() {
 		// Creates the overall folder layout.
 		// Note that each new Folder uses a percentage of the remaining
