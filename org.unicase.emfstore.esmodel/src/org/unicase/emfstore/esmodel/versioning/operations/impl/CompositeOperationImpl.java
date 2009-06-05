@@ -211,7 +211,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 
 	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
 	 */
