@@ -21,10 +21,10 @@ import java.util.List;
 
 /**
  * Tests operations in n:n topologies.
+ * 
  * @author chodnick
- *
  */
-public class TopologyNtoNTest extends TopologyTest{
+public class TopologyNtoNTest extends TopologyTest {
 
 	/**
 	 * Add to an empty annotation.
@@ -40,13 +40,13 @@ public class TopologyNtoNTest extends TopologyTest{
 
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(mileStone);
-		
+
 		clearOperations();
-		
+
 		useCase.getAnnotations().add(mileStone);
-		
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		
+
 		assertEquals(1, operations.size());
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
@@ -56,9 +56,9 @@ public class TopologyNtoNTest extends TopologyTest{
 		assertEquals("annotations", op.getFeatureName());
 		assertEquals(op.getModelElementId(), useCase.getModelElementId());
 		assertEquals(op.getIndex(), 0);
-		
+
 	}
-	
+
 	/**
 	 * Add many to an empty annotation.
 	 * 
@@ -75,15 +75,15 @@ public class TopologyNtoNTest extends TopologyTest{
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(mileStone1);
 		getProject().addModelElement(mileStone2);
-		
-		Milestone[] stones = {mileStone1, mileStone2};
-		
+
+		Milestone[] stones = { mileStone1, mileStone2 };
+
 		clearOperations();
-		
+
 		useCase.getAnnotations().addAll(Arrays.asList(stones));
-		
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		
+
 		assertEquals(1, operations.size());
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
@@ -94,9 +94,9 @@ public class TopologyNtoNTest extends TopologyTest{
 		assertEquals("annotations", op.getFeatureName());
 		assertEquals(op.getModelElementId(), useCase.getModelElementId());
 		assertEquals(op.getIndex(), 0);
-		
-	}	
-	
+
+	}
+
 	/**
 	 * Add to a non-empty annotation.
 	 * 
@@ -113,14 +113,14 @@ public class TopologyNtoNTest extends TopologyTest{
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(mileStone);
 		getProject().addModelElement(otherMileStone);
-		
+
 		useCase.getAnnotations().add(otherMileStone);
 		clearOperations();
-		
+
 		useCase.getAnnotations().add(mileStone);
-		
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		
+
 		assertEquals(1, operations.size());
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
@@ -130,9 +130,9 @@ public class TopologyNtoNTest extends TopologyTest{
 		assertEquals("annotations", op.getFeatureName());
 		assertEquals(op.getModelElementId(), useCase.getModelElementId());
 		assertEquals(op.getIndex(), 1);
-		
+
 	}
-	
+
 	/**
 	 * Add many to an nonempty annotation.
 	 * 
@@ -151,17 +151,17 @@ public class TopologyNtoNTest extends TopologyTest{
 		getProject().addModelElement(mileStone1);
 		getProject().addModelElement(mileStone2);
 		getProject().addModelElement(otherMileStone);
-		
-		Milestone[] stones = {mileStone1, mileStone2};
-		
+
+		Milestone[] stones = { mileStone1, mileStone2 };
+
 		useCase.getAnnotations().add(otherMileStone);
-		
+
 		clearOperations();
-		
+
 		useCase.getAnnotations().addAll(Arrays.asList(stones));
-		
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		
+
 		assertEquals(1, operations.size());
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
@@ -172,9 +172,9 @@ public class TopologyNtoNTest extends TopologyTest{
 		assertEquals("annotations", op.getFeatureName());
 		assertEquals(op.getModelElementId(), useCase.getModelElementId());
 		assertEquals(op.getIndex(), 1);
-		
-	}		
-	
+
+	}
+
 	/**
 	 * Remove an element to empty annotations.
 	 * 
@@ -190,13 +190,13 @@ public class TopologyNtoNTest extends TopologyTest{
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(mileStone);
 		useCase.getAnnotations().add(mileStone);
-		
+
 		clearOperations();
-		
+
 		useCase.getAnnotations().remove(mileStone);
-		
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		
+
 		assertEquals(1, operations.size());
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
@@ -206,8 +206,8 @@ public class TopologyNtoNTest extends TopologyTest{
 		assertEquals("annotations", op.getFeatureName());
 		assertEquals(op.getModelElementId(), useCase.getModelElementId());
 		assertEquals(op.getIndex(), 0);
-		
-	}	
+
+	}
 
 	/**
 	 * Remove an element and leave non-empty annotations.
@@ -225,16 +225,16 @@ public class TopologyNtoNTest extends TopologyTest{
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(mileStone);
 		getProject().addModelElement(otherMileStone);
-		
+
 		useCase.getAnnotations().add(mileStone);
 		useCase.getAnnotations().add(otherMileStone);
-		
+
 		clearOperations();
-		
+
 		useCase.getAnnotations().remove(mileStone);
-		
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		
+
 		assertEquals(1, operations.size());
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
@@ -244,8 +244,8 @@ public class TopologyNtoNTest extends TopologyTest{
 		assertEquals("annotations", op.getFeatureName());
 		assertEquals(op.getModelElementId(), useCase.getModelElementId());
 		assertEquals(op.getIndex(), 0);
-		
-	}	
+
+	}
 
 	/**
 	 * Remove some element and leave empty annotations.
@@ -263,20 +263,20 @@ public class TopologyNtoNTest extends TopologyTest{
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(mileStone);
 		getProject().addModelElement(otherMileStone);
-		
+
 		useCase.getAnnotations().add(mileStone);
 		useCase.getAnnotations().add(otherMileStone);
-		
-		Milestone[] stones = {mileStone, otherMileStone};
+
+		Milestone[] stones = { mileStone, otherMileStone };
 		clearOperations();
-		
+
 		useCase.getAnnotations().removeAll(Arrays.asList(stones));
-		
+
 		// if you use clear instead of explicit removal, op.getIndex() will be -1
-		//useCase.getAnnotations().clear();
-		
+		// useCase.getAnnotations().clear();
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		
+
 		assertEquals(1, operations.size());
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
@@ -287,9 +287,9 @@ public class TopologyNtoNTest extends TopologyTest{
 		assertEquals("annotations", op.getFeatureName());
 		assertEquals(op.getModelElementId(), useCase.getModelElementId());
 		assertEquals(op.getIndex(), 0);
-		
-	}		
-	
+
+	}
+
 	/**
 	 * Remove some element and leave non-empty annotations.
 	 * 
@@ -308,21 +308,21 @@ public class TopologyNtoNTest extends TopologyTest{
 		getProject().addModelElement(mileStone1);
 		getProject().addModelElement(mileStone2);
 		getProject().addModelElement(mileStone3);
-		
+
 		useCase.getAnnotations().add(mileStone1);
 		useCase.getAnnotations().add(mileStone2);
 		useCase.getAnnotations().add(mileStone3);
-		
-		Milestone[] stones = {mileStone1, mileStone2};
+
+		Milestone[] stones = { mileStone1, mileStone2 };
 		clearOperations();
-		
+
 		useCase.getAnnotations().removeAll(Arrays.asList(stones));
-		
+
 		// if you use clear instead of explicit removal, op.getIndex() will be -1
-		//useCase.getAnnotations().clear();
-		
+		// useCase.getAnnotations().clear();
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		
+
 		assertEquals(1, operations.size());
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
@@ -333,7 +333,7 @@ public class TopologyNtoNTest extends TopologyTest{
 		assertEquals("annotations", op.getFeatureName());
 		assertEquals(op.getModelElementId(), useCase.getModelElementId());
 		assertEquals(op.getIndex(), 0);
-		
-	}			
-	
+
+	}
+
 }

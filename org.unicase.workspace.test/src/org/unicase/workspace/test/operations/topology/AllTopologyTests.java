@@ -7,16 +7,14 @@ package org.unicase.workspace.test.operations.topology;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
- 
+
 /**
  * Test Suite for running all tests of topology.
+ * 
  * @author koegel
- *
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({
-  Topology1to1Test.class, TopologyNtoNTest.class, TopologyNto1Test.class, Topology1toNTest.class
-})
+@Suite.SuiteClasses( { Topology1to1Test.class, TopologyNtoNTest.class, TopologyNto1Test.class, Topology1toNTest.class })
 public class AllTopologyTests {
 
 }
