@@ -7,17 +7,63 @@
       title="Standard">
     <tools
         xsi:type="gmftool:CreationTool"
-        title="Hazard"
+        title="HazardCause"
         description="">
       <smallIcon
           xsi:type="gmftool:DefaultImage"/>
     </tools>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="HazardCause"
+        title="Mitigation"
         description="">
       <smallIcon
           xsi:type="gmftool:DefaultImage"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Exclamation"
+        description="">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="FunctionalRequirement"
+        description="">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Hazard"
+        description="">
+      <smallIcon
+          xsi:type="gmftool:DefaultImage"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:ToolGroup"
+        title="UseCase"
+        collapsible="true"
+        active="//@palette/@tools.5/@tools.0">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Use Case"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Actor"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Participate"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Initiate"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Include"/>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Extend"
+          description=""/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>
