@@ -19,7 +19,6 @@ import java.util.Date;
  * Abstract super class for operation tests, contains setup.
  * 
  * @author chodnick
- *
  */
 public abstract class TopologyTest {
 
@@ -39,16 +38,16 @@ public abstract class TopologyTest {
 		projectSpace.setProjectDescription("ps description");
 		projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
 		projectSpace.setProjectName("ps name");
-		
+
 		setProject(ModelFactory.eINSTANCE.createProject());
-		
+
 		projectSpace.setProject(getProject());
-		
+
 		projectSpace.makeTransient();
 		projectSpace.init();
-		
+
 		setProjectSpace(projectSpace);
-		
+
 	}
 
 	/**
