@@ -7,6 +7,7 @@ package org.unicase.workspace.ui.views.scm;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
@@ -32,12 +33,12 @@ import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
  * 
  */
 public class SCMContentProvider implements ITreeContentProvider {
-	
+
 	/**
 	 * group by model element.
 	 */
 	public static final String MODEL_ELEMENT = "modelElement";
-	
+
 	/**
 	 * group by operation.
 	 */
@@ -62,12 +63,14 @@ public class SCMContentProvider implements ITreeContentProvider {
 		changePackages = new ArrayList<ChangePackage>();
 		groupBy = MODEL_ELEMENT;
 	}
-	
+
 	/**
 	 * Sets the tree item group criterion.
-	 * @param groupCriterion {@link #MODEL_ELEMENT} or {@link #OPERATION}
+	 * 
+	 * @param groupCriterion
+	 *            {@link #MODEL_ELEMENT} or {@link #OPERATION}
 	 */
-	public void groupBy(String groupCriterion){
+	public void groupBy(String groupCriterion) {
 		groupBy = groupCriterion;
 	}
 
@@ -81,8 +84,14 @@ public class SCMContentProvider implements ITreeContentProvider {
 	}
 
 	private Object[] getChildren(ChangePackage changePackage) {
-		EList<AbstractOperation> operations = changePackage.getOperations();
-		return operations.toArray();
+		if (groupBy.equals(OPERATION)) {
+			EList<AbstractOperation> operations = changePackage.getOperations();
+			return operations.toArray();
+		}
+		ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(
+				changePackages, project);
+		Set<EObject> modelElements = helper.getAllModelElements(changePackage);
+		return modelElements.toArray();
 	}
 
 	private Object[] getChildren(HistoryInfo historyInfo) {
