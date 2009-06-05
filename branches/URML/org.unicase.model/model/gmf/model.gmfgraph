@@ -291,7 +291,7 @@
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="componentText"
-              qualifiedClassName="org.unicase.ui.componentDiagram.unicase.Label">
+              qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
             <attributes
                 name="text"
                 value="&quot;\u00ABcomponent\u00BB&quot;"/>
@@ -328,7 +328,7 @@
           <children
               xsi:type="gmfgraph:CustomFigure"
               name="ComponentNode_name"
-              qualifiedClassName="org.unicase.ui.componentDiagram.unicase.Label">
+              qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
             <font
                 xsi:type="gmfgraph:BasicFont"
                 faceName="Arial"
@@ -400,7 +400,7 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="InterfaceNode_name"
-          qualifiedClassName="org.unicase.ui.componentDiagram.unicase.Label">
+          qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
         <font
             xsi:type="gmfgraph:BasicFont"
             faceName="Arial"
@@ -438,7 +438,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActorNode_name"
-            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
           <layoutData
               xsi:type="gmfgraph:GridLayoutData"/>
           <font
@@ -459,14 +459,14 @@
           name="UseCaseFigure">
         <layout
             xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.CenterLayout"/>
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
         <foregroundColor
             xsi:type="gmfgraph:ConstantColor"
             value="black"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="UsecaseFigure_name"
-            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.Label">
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
           <font
               xsi:type="gmfgraph:BasicFont"
               faceName="Arial"
@@ -568,7 +568,7 @@
             qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
+              qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
           <insets
               top="2"
               left="5"
@@ -595,7 +595,7 @@
             qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
+              qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
           <insets
               top="2"
               left="5"
@@ -620,7 +620,7 @@
             qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
+              qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
           <insets
               top="2"
               left="5"
@@ -646,7 +646,7 @@
             qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
+              qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
           <insets
               top="2"
               left="5"
@@ -720,26 +720,45 @@
     </descriptors>
   </figures>
   <figures
-      name="URMLDiagram">
+      name="URML">
     <descriptors
-        name="HazardFigure">
+        name="Cause">
       <actualFigure
-          xsi:type="gmfgraph:CustomFigure">
-        <layout
-            xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.CenterLayout"/>
-      </actualFigure>
-      <accessors
-          accessor="getHazardFigure_name"/>
+          xsi:type="gmfgraph:CustomFigure"
+          name="Cause"
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.CauseFigure"/>
     </descriptors>
     <descriptors
-        name="HazardCauseFigure">
+        name="Mitigation">
       <actualFigure
-          xsi:type="gmfgraph:CustomFigure">
-        <layout
-            xsi:type="gmfgraph:CustomLayout"
-            qualifiedClassName="org.unicase.ui.usecaseDiagram.unicase.CenterLayout"/>
+          xsi:type="gmfgraph:CustomFigure"
+          name="Mitigation"
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.MitigationFigure"/>
+    </descriptors>
+    <descriptors
+        name="Exclamation">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="Exclamation"
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.ExclamationFigure"/>
+    </descriptors>
+    <descriptors
+        name="FunctionalRequirement">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="FunctionalRequirementFigure"
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.FunctionalRequirementFigure">
+        <minimumSize
+            dx="10"
+            dy="10"/>
       </actualFigure>
+    </descriptors>
+    <descriptors
+        name="Hazard">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="Hazard"
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.HazardFigure"/>
     </descriptors>
   </figures>
   <nodes
@@ -788,11 +807,20 @@
       name="Activity"
       figure="ActivityFigure"/>
   <nodes
-      name="Hazard"
-      figure="HazardFigure"/>
+      name="CauseNode"
+      figure="Cause"/>
   <nodes
-      name="HazardCause"
-      figure="HazardCauseFigure"/>
+      name="MitigationNode"
+      figure="Mitigation"/>
+  <nodes
+      name="FunctionalRequirementNode"
+      figure="FunctionalRequirement"/>
+  <nodes
+      name="ExclamationNode"
+      figure="Exclamation"/>
+  <nodes
+      name="HazardNode"
+      figure="Hazard"/>
   <connections
       name="Association"
       figure="AssociationFigure"/>
@@ -972,8 +1000,4 @@
       name="ActivityNode_name"
       figure="ActivityFigure"
       accessor="//@figures.4/@descriptors.0/@accessors.0"/>
-  <labels
-      name="HazardNode_name"
-      figure="HazardFigure"
-      accessor="//@figures.5/@descriptors.0/@accessors.0"/>
 </gmfgraph:Canvas>
