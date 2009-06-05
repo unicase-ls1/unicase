@@ -226,15 +226,6 @@
               icon="icons/Comment.png"
               label="Add Comment"
               style="push">
-           <visibleWhen
-                 checkEnabled="false">
-              <with
-                    variable="activeModelelement">
-                 <reference
-                       definitionId="org.unicase.ui.common.commands.modelElementNotSection">
-                 </reference>
-              </with>
-           </visibleWhen>
         </command>
 
      </menuContribution>
