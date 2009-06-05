@@ -97,8 +97,6 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 		return false;
 	}
 
-	// end of custom code
-
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -142,6 +140,8 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	public boolean canRead(ProjectId projectId, ModelElement modelElement) {
 		return false;
 	}
+
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->

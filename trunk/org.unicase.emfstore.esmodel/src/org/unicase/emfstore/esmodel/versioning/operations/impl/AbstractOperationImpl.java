@@ -267,8 +267,9 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 				oldClientDate, clientDate));
 	}
 
+	// begin of custom code
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
 	 */
@@ -280,14 +281,14 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
 	 */
 	public abstract AbstractOperation reverse();
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
 	 */
@@ -297,11 +298,13 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
 	 */
 	public abstract boolean canApply(Project project);
+
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
