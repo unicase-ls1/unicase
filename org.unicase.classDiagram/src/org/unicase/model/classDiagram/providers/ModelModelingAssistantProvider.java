@@ -229,14 +229,6 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	}
 
 	/**
-	 * @generated NOT
-	 */
-	@Override
-	protected EObject selectExistingElement(IAdaptable host, Collection types) {
-		return super.selectExistingElement(host, types);
-	}
-
-	/**
 	 * @generated
 	 */
 	@Override
