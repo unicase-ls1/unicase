@@ -48,8 +48,9 @@ public class TimeIterator extends VersionIterator {
 		throws IteratorException {
 
 		this(usersession, projectId, stepLength, stepLengthUnit,
-			VersioningFactory.eINSTANCE.createPrimaryVersionSpec(),
-			VersioningFactory.eINSTANCE.createHeadVersionSpec(), true, true);
+			new VersionSpecQuery(VersioningFactory.eINSTANCE
+				.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE
+				.createHeadVersionSpec()), true, true);
 	}
 
 	/**
@@ -57,8 +58,8 @@ public class TimeIterator extends VersionIterator {
 	 * @param projectId the project id of the project to get
 	 * @param stepLength the step length for the iterator to go through to the next
 	 * @param stepLengthUnit the unit of time step length based on Calendar's static field, e.g. Calendar.SECOND
-	 * @param start the version for the iterator to start from
-	 * @param end the version for the iterator to end with
+	 * @param versionSpecQuery
+	 *        the version query for the iterator from start till the end
 	 * @param isForward the direction for the iterator go through, either forward(true) or backward(false). However,
 	 *            doesn't work for backward currently, will be solved in the near future
 	 * @param returnProjectDataCopy the next() method will return the copy of ProjectAnalysisData when it is set to true
@@ -66,9 +67,13 @@ public class TimeIterator extends VersionIterator {
 	 * @generated NOT
 	 */
 	public TimeIterator(Usersession usersession, ProjectId projectId, int stepLength, int stepLengthUnit,
-		VersionSpec start, VersionSpec end, boolean isForward, boolean returnProjectDataCopy) throws IteratorException {
+		VersionSpecQuery versionSpecQuery, boolean isForward, boolean returnProjectDataCopy) throws IteratorException {
 
-		super(usersession, projectId, stepLength, start, end, isForward, returnProjectDataCopy);
+		super(usersession, projectId, stepLength, versionSpecQuery, isForward, returnProjectDataCopy);
+		
+		VersionSpec start = versionSpecQuery.getStart();
+		VersionSpec end = versionSpecQuery.getEnd();
+		
 		this.stepLengthUnit = stepLengthUnit;
 
 		this.dateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();

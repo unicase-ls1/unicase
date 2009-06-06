@@ -116,10 +116,7 @@ public class DetectionAnalyzer implements DataAnalyzer {
 	 * @param it VersionIterator
 	 */
 	public void analyzeData(ProjectAnalysisData data, VersionIterator it){
-		Date updateDate = new Date();
 		
-		PrimaryVersionSpec base;
-		PrimaryVersionSpec target;
 		Map<ModelElementId, Date> meIdMap = null;//Map for the ModelElement candidates
 		
 		for(ChangePackage change : data.getChangePackages()){
@@ -129,41 +126,7 @@ public class DetectionAnalyzer implements DataAnalyzer {
 					for(Event event : change.getEvents()){
 						//UpdateEvent
 						if(event instanceof UpdateEvent || event instanceof CheckoutEvent){
-							updateDate = event.getTimestamp();
-							if(event instanceof UpdateEvent){
-								base = ((UpdateEvent) event).getBaseVersion();
-								target = ((UpdateEvent) event).getTargetVersion();
-							}
-							else{
-								base = ((CheckoutEvent) event).getBaseVersion();
-								target = EsModelUtil.clone(base);
-								if(base.getIdentifier()- 20 > 0){
-									target.setIdentifier(base.getIdentifier()- 20); //just consider the last 20 revisions
-								}
-								else{
-									target.setIdentifier(0);
-								}
-							}
-							// just store the earliest update date for each user
-//							if(update.get(index)== null || update.get(index).after(updateDate)){
-//								update.set(index, updateDate);
-//							}
-							try {
-								List<ChangePackage> updateChanges = it.getConnectionManager().getChanges(it.getUsersession().getSessionId(), 
-									it.getProjectId(), base, target);
-								//Map for the ModelElement candidates
-								meIdMap = new HashMap<ModelElementId, Date>();
-								for(ChangePackage updateChange : updateChanges){
-									for(AbstractOperation op : updateChange.getOperations()){
-										meIdMap.put(op.getModelElementId(), event.getTimestamp());
-									}
-								}
-
-							} catch (EmfStoreException e) {
-								String message = "Could not get changes from server";
-								WorkspaceUtil.logException(message, e);
-								throw new NoSuchElementException(message + ":\n" + e);
-							}
+							meIdMap = generateMeIdMap(it, event);							
 						}
 						//ReadEvent
 						else if(event instanceof ReadEvent){
@@ -177,25 +140,64 @@ public class DetectionAnalyzer implements DataAnalyzer {
 		}			
 	}
 	
+	private Map<ModelElementId, Date> generateMeIdMap(VersionIterator it, Event event){
+		PrimaryVersionSpec base;
+		PrimaryVersionSpec target;
+		if(event instanceof UpdateEvent){
+			base = ((UpdateEvent) event).getBaseVersion();
+			target = ((UpdateEvent) event).getTargetVersion();
+		}
+		else{
+			base = ((CheckoutEvent) event).getBaseVersion();
+			target = EsModelUtil.clone(base);
+			if(base.getIdentifier()- 20 > 0){
+				target.setIdentifier(base.getIdentifier()- 20); //just consider the last 20 revisions
+			}
+			else{
+				target.setIdentifier(0);
+			}
+		}
+		try {
+			List<ChangePackage> updateChanges = it.getConnectionManager().getChanges(it.getUsersession().getSessionId(), 
+				it.getProjectId(), base, target);
+			//Map for the ModelElement candidates
+			Map<ModelElementId, Date> meIdMap = new HashMap<ModelElementId, Date>();
+			for(ChangePackage updateChange : updateChanges){
+				for(AbstractOperation op : updateChange.getOperations()){
+					meIdMap.put(op.getModelElementId(), event.getTimestamp());
+				}
+			}
+			return meIdMap;
+
+		} catch (EmfStoreException e) {
+			String message = "Could not get changes from server";
+			WorkspaceUtil.logException(message, e);
+			throw new NoSuchElementException(message + ":\n" + e);
+		}
+	}
+	
 	// check the ReadEvent reads the given FunctionalRequirements or not, if yes, record the ReadDate and ReadView
 	private void checkReadEvent(int index, ModelElementId meId, Map<ModelElementId, Date> meIdMap, 
 		ReadEvent readEvent, ProjectAnalysisData data){
-		Date readDate = new Date();
 		if(meIdMap != null){
 			if(meIdMap.containsKey(meId)){
 				ModelElement me = data.getProjectState().getModelElement(meId);
 				if(me instanceof FunctionalRequirement && me.getName().contains(funcRequirement)){
-					readDate = readEvent.getTimestamp();
-					// just store the earliest read date for each user
-					if(read.get(index)== null || read.get(index).after(readDate)){
-						update.set(index, meIdMap.get(meId));
-						read.set(index, readDate);
-						view.set(index, readEvent.getReadView());
-						Date diffDate = new Date(read.get(index).getTime()-update.get(index).getTime());
-						diff.set(index, diffDate);
-					}
+					record(meId, meIdMap, index, readEvent);
 				}
 			}
+		}
+	}
+	
+	private void record(ModelElementId meId, Map<ModelElementId, Date> meIdMap, int index, ReadEvent readEvent){
+		Date readDate = readEvent.getTimestamp();
+		// just store the earliest read date for each user
+		if(read.get(index)== null || read.get(index).after(readDate)){
+			update.set(index, meIdMap.get(meId));
+			read.set(index, readDate);
+			view.set(index, readEvent.getReadView());
+			Date diffDate = new Date(read.get(index).getTime()-update.get(index).getTime());
+			diff.set(index, diffDate);
 		}
 	}
 	/**

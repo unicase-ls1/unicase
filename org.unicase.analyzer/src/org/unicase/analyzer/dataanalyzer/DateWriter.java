@@ -64,17 +64,21 @@ public class DateWriter implements DataAnalyzer {
 			if(data.getChangePackages() != null && data.getChangePackages().size() != 0) {
 				ChangePackage changePackage = changepackages.get(changepackages.size()-1);
 				if( changePackage !=null) {
-					if(changePackage.getLogMessage() != null) {
-						if(changePackage.getLogMessage().getDate() != null) {
-							calendar.setTime(changePackage.getLogMessage().getDate());
-						}
-					}
+					setTime(changePackage);
 				}
 			}
 		}
 		date = calendar.getTime();
 		values.add(format.format(date));
 		return values;
+	}
+	
+	private void setTime(ChangePackage changePackage){
+		if(changePackage.getLogMessage() != null) {
+			if(changePackage.getLogMessage().getDate() != null) {
+				calendar.setTime(changePackage.getLogMessage().getDate());
+			}
+		}
 	}
 
 }

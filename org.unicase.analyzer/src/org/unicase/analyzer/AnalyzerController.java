@@ -41,7 +41,7 @@ public class AnalyzerController {
 			Exporter exporter) {
 		this.projectIterator = projectIterator;
 		this.analyzers = analyzers;
-		this.exporter = exporter;
+		this.setExporter(exporter);
 		
 		//flag is used for switching different ways of exporting, depends on different analyzers
 		DataAnalyzer analyzer = analyzers.get(0);
@@ -51,8 +51,6 @@ public class AnalyzerController {
 				this.flag = 2;
 			}else if(analyzer instanceof DataAnalyzer){
 				this.flag = 3;
-			}else{
-				this.flag = 4;
 			}
 			
 		try {
@@ -84,7 +82,7 @@ public class AnalyzerController {
 				if(analyzer instanceof DetectionAnalyzer){
 					((DetectionAnalyzer) analyzer).runAnalysis(exporter);
 				}
-			}
+			}return;
 		case 2:
 			List<List<Object>> lines = new ArrayList<List<Object>>();
 			while(projectIterator.hasNext()) {
@@ -93,8 +91,8 @@ public class AnalyzerController {
 					lines = ((TwoDDataAnalyzer)analyzer).get2DValue(data, projectIterator);
 					exporter.export(lines);
 				}
-			}
-		case 3:		
+			}return;
+		case 3:
 			line = new ArrayList<Object>();
 			while(projectIterator.hasNext()) {
 				ProjectAnalysisData data = projectIterator.next();
@@ -105,8 +103,8 @@ public class AnalyzerController {
 					}
 				}
 				exporter.writeLine(line);
-			}
-		case 4:
+			}return;
+		default:
 			break;
 		}
 	}
@@ -125,5 +123,19 @@ public class AnalyzerController {
 			}
 		}
 		exporter.writeLine(line);
+	}
+
+	/**
+	 * @param exporter the exporter to set
+	 */
+	public void setExporter(Exporter exporter) {
+		this.exporter = exporter;
+	}
+
+	/**
+	 * @return the exporter
+	 */
+	public Exporter getExporter() {
+		return exporter;
 	}
 }
