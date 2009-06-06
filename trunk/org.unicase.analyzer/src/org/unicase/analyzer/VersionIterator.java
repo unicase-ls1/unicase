@@ -63,9 +63,10 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 
 	public VersionIterator(Usersession usersession, ProjectId projectId,
 			int stepLength) throws IteratorException {
-		this(usersession, projectId, stepLength, VersioningFactory.eINSTANCE
-				.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE
-				.createHeadVersionSpec(), true, true);
+		
+		this(usersession, projectId, stepLength, new VersionSpecQuery(VersioningFactory.eINSTANCE
+			.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE
+			.createHeadVersionSpec()), true, true);
 	}
 
 	/**
@@ -75,10 +76,8 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 	 *            the project id of the project to get
 	 * @param stepLength
 	 *            the step length for the iterator to go through to the next
-	 * @param start
-	 *            the version for the iterator to start from
-	 * @param end
-	 *            the version for the iterator to end with
+	 * @param versionSpecQuery
+	 *            the version query for the iterator from start till the end
 	 * @param isForward
 	 *            the direction for the iterator go through, either
 	 *            forward(true) or backward(false) However, doesn't work for
@@ -92,7 +91,7 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 	 */
 
 	public VersionIterator(Usersession usersession, ProjectId projectId,
-			int stepLength, VersionSpec start, VersionSpec end,
+			int stepLength, VersionSpecQuery versionSpecQuery,
 			boolean isForward, boolean returnProjectDataCopy)
 			throws IteratorException {
 //		 LY: remove this if backward iterator is implemented
@@ -100,6 +99,9 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 			throw new IllegalArgumentException(
 					"isForward=false not yet supported!");
 		}
+		VersionSpec start = versionSpecQuery.getStart();
+		VersionSpec end = versionSpecQuery.getEnd();
+		
 		this.usersession = usersession;
 		this.projectId = projectId;
 		this.stepLength = stepLength;
