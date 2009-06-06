@@ -14,6 +14,7 @@ import java.util.ArrayList;
 import org.junit.Test;
 import org.unicase.analyzer.AnalyzerController;
 import org.unicase.analyzer.VersionIterator;
+import org.unicase.analyzer.VersionSpecQuery;
 import org.unicase.analyzer.dataanalyzer.DataAnalyzer;
 import org.unicase.analyzer.dataanalyzer.DetectionAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
@@ -61,9 +62,10 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 					PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 					end.setIdentifier(25);
 
+					VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
+
 					 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength,
-					 start,
-					 end, true, false);
+					 versionSpecQuery, true, false);
 					ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 					analyzers.add(new DetectionAnalyzer("Attributes", projectIt));
 					@SuppressWarnings("unused")
@@ -92,9 +94,9 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 					PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 					end.setIdentifier(49);
 
+					VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
 					 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength,
-					 start,
-					 end, true, false);
+					 versionSpecQuery, true, false);
 					ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 					analyzers.add(new DetectionAnalyzer("Attributes", projectIt));
 					@SuppressWarnings("unused")
