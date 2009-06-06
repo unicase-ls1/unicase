@@ -104,6 +104,7 @@ public class DashboardEditorInput implements IEditorInput {
 	/**
 	 * {@inheritDoc}
 	 */
+	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
 		return null;
 	}
