@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.test.servertests.analyser;
 
 import java.util.List;
@@ -17,11 +22,18 @@ import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
+/**
+ * @author liya
+ */
 public class AnalyserTest extends TestCase {
 
 	private ConnectionManager connectionManager;
 	private SessionId sessionId;
 
+	/**
+	 * @param testName String
+	 * @param sessionId SessionId
+	 */
 	public AnalyserTest(String testName, SessionId sessionId) {
 		super(testName);
 
@@ -30,6 +42,9 @@ public class AnalyserTest extends TestCase {
 
 	}
 
+	/**
+	 * @see org.unicase.test.TestCase#runTest()
+	 */
 	@Override
 	public void runTest() {
 		try {
@@ -67,6 +82,10 @@ public class AnalyserTest extends TestCase {
 
 	}
 
+	/**
+	 * @see org.unicase.test.TestCase#outputResults(boolean)
+	 * @param outputToFile boolean
+	 */
 	@Override
 	public void outputResults(boolean outputToFile) {
 
