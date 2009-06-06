@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.TimeIterator;
 import org.unicase.analyzer.VersionIterator;
+import org.unicase.analyzer.VersionSpecQuery;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -72,7 +73,7 @@ public class IteratorTest extends AnalyzersTest {
 	}	
 	
 	/**
-	 * Test backword VersionIterator 
+	 * Test VersionIterator with given start and end
 	 */
     @Test
 	public void test3(){
@@ -85,11 +86,11 @@ public class IteratorTest extends AnalyzersTest {
 					PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 					start.setIdentifier(3);
 					PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-					end.setIdentifier(0);
-
+					end.setIdentifier(24);
+					
+					VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
 					 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength,
-					 start,
-					 end, false, false);
+					 versionSpecQuery, true, false);
 					while (projectIt.hasNext()) {
 						ProjectAnalysisData projectData = projectIt.next();
 						 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
