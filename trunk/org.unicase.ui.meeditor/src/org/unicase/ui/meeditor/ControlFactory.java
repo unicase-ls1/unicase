@@ -15,19 +15,19 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.requirement.Step;
 import org.unicase.ui.meeditor.mecontrols.MEBoolControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.MEDateControl;
 import org.unicase.ui.meeditor.mecontrols.MEEnumControl;
-import org.unicase.model.rationale.Comment;
 import org.unicase.ui.meeditor.mecontrols.MEFileChooserControl;
-import org.unicase.ui.meeditor.mecontrols.commentcontrol.MECommentsLinkControl;
 import org.unicase.ui.meeditor.mecontrols.MEFileSizeControl;
 import org.unicase.ui.meeditor.mecontrols.MEIntControl;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.meeditor.mecontrols.METextControl;
+import org.unicase.ui.meeditor.mecontrols.commentcontrol.MECommentsLinkControl;
 import org.unicase.ui.meeditor.mecontrols.issuecontrol.AssessmentMatrixControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEMultiLinkControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MESingleLinkControl;
@@ -109,6 +109,11 @@ public class ControlFactory {
 		if (itemPropertyDescriptor.isMultiLine(modelElement)) {
 			return createMERichTextControl((EAttribute) feature);
 		}
+		return createGenericAttributeControl(itemPropertyDescriptor, feature);
+	}
+
+	private MEControl createGenericAttributeControl(IItemPropertyDescriptor itemPropertyDescriptor,
+		EStructuralFeature feature) {
 		if (feature.getEType().getInstanceClass().equals(boolean.class)) {
 			return createMEBoolControl((EAttribute) feature);
 		}
@@ -152,7 +157,7 @@ public class ControlFactory {
 	private MEControl createMEDateControl(EAttribute attribute) {
 		return new MEDateControl(attribute, toolkit, modelElement, editingDomain);
 	}
-	
+
 	private MEControl createMECommentControl(EReference reference) {
 		return new MECommentsLinkControl(reference, toolkit, modelElement, editingDomain);
 	}

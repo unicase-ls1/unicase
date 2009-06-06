@@ -174,8 +174,10 @@ public class MECommentsLinkControl extends AbstractMEControl implements MEContro
 	}
 
 	/**
-	 * @param comment.
-	 * @return
+	 * The recursive size of the comment's children.
+	 * 
+	 * @param comment the comment
+	 * @return the size
 	 */
 	public static int sizeOf(Comment comment) {
 		int i = 1;
