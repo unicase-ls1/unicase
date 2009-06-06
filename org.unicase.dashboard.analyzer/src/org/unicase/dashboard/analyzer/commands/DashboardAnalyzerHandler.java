@@ -36,6 +36,7 @@ import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.VersionIterator;
+import org.unicase.analyzer.VersionSpecQuery;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.dashboard.analyzer.providers.CreatorNotificationProvider;
 import org.unicase.dashboard.analyzer.providers.ModifierNotificationProvider;
@@ -91,8 +92,11 @@ public class DashboardAnalyzerHandler extends AbstractHandler {
 		start.setIdentifier(1);
 		PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		end.setIdentifier(622);
+		
+		VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
+
 		try {
-			VersionIterator iterator = new VersionIterator(session, pid, 1, start, end, true, true);
+			VersionIterator iterator = new VersionIterator(session, pid, 1, versionSpecQuery, true, true);
 
 			progressDialog = new ProgressMonitorDialog(Display.getCurrent().getActiveShell());
 			progressDialog.open();
