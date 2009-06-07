@@ -598,6 +598,7 @@
             name="Unicase">
       </category>
       <view
+            allowMultiple="false"
             category="org.unicase"
             class="org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView"
             icon="icons/historyview.png"

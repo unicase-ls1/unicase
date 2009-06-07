@@ -264,6 +264,23 @@ public class HistoryBrowserView extends AbstractSCMView {
 		refresh.setImageDescriptor(Activator.getImageDescriptor("/icons/refresh.png"));
 		refresh.setToolTipText("Refresh");
 		menuManager.add(refresh);
+		
+		Action groupByME = new Action("",SWT.TOGGLE) {
+			@Override
+			public void run() {
+				if(isChecked()){
+					viewer.setContentProvider(new SCMContentProvider.Compact(viewer,getActiveProjectSpace().getProject()));
+				}else{
+					viewer.setContentProvider(new SCMContentProvider.Detailed(viewer,getActiveProjectSpace().getProject()));
+				}
+				viewer.refresh();
+			}
+			
+		};
+		groupByME.setImageDescriptor(Activator.getImageDescriptor("/icons/groupByME.png"));
+		groupByME.setToolTipText("Group by model element");
+		groupByME.setChecked(true);
+		menuManager.add(groupByME);
 
 		Action prev = new Action() {
 			@Override
