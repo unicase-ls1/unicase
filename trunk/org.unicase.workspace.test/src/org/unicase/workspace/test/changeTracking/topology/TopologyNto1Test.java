@@ -5,7 +5,13 @@
  */
 package org.unicase.workspace.test.changeTracking.topology;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -23,8 +29,6 @@ import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
-
-import java.util.List;
 
 /**
  * Tests operations in n:1 topologies.

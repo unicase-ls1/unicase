@@ -5,7 +5,12 @@
  */
 package org.unicase.workspace.test.changeTracking.notification.recording;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
+import java.util.Arrays;
+import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
@@ -14,9 +19,6 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
-
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Tests the notification recording for attribute features.

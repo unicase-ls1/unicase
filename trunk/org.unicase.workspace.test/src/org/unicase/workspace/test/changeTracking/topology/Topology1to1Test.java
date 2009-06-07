@@ -5,7 +5,12 @@
  */
 package org.unicase.workspace.test.changeTracking.topology;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertSame;
+import static org.junit.Assert.assertTrue;
+
+import java.util.List;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -16,8 +21,6 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.Solution;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
-
-import java.util.List;
 
 /**
  * Tests operations in 1:1 topologies.

@@ -8,15 +8,15 @@ package org.unicase.workspace.test.integration.reversibility;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.util.SerializationException;
 import org.unicase.workspace.test.integration.forward.IntegrationTestHelper;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Runs a random set of operations. Reverts them. Compares local project with project on the server. 

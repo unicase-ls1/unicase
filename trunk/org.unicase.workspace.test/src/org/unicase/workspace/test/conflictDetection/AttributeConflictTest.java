@@ -8,6 +8,8 @@ package org.unicase.workspace.test.conflictDetection;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Date;
+
 import org.junit.Test;
 import org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy;
 import org.unicase.emfstore.conflictDetection.FineGrainedConflictDetectionStrategy;
@@ -16,8 +18,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.requirement.RequirementFactory;
-
-import java.util.Date;
 
 /**
  * Test conflict detection for attributes.

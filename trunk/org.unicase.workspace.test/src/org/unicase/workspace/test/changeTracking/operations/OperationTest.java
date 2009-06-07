@@ -5,6 +5,8 @@
  */
 package org.unicase.workspace.test.changeTracking.operations;
 
+import java.util.Date;
+
 import org.junit.Before;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
@@ -12,8 +14,6 @@ import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
-
-import java.util.Date;
 
 /**
  * Abstract super class for operation tests, contains setup.

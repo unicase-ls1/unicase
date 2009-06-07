@@ -8,14 +8,14 @@ package org.unicase.workspace.test.integration.forward;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.util.SerializationException;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Runs a random set of operations.

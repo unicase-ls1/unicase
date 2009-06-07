@@ -5,6 +5,8 @@
  */
 package org.unicase.workspace.test.integration.reversibility;
 
+import java.net.URISyntaxException;
+
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -13,8 +15,6 @@ import org.unicase.model.Project;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.test.SetupHelper;
 import org.unicase.workspace.test.TestProjectEnum;
-
-import java.net.URISyntaxException;
 
 /**
  * @author Hodaie
