@@ -9,12 +9,10 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.test.integration;
+package org.unicase.workspace.test.integration.reversibility;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
-import org.unicase.workspace.test.integration.forward.AllForwardIntegrationTests;
-import org.unicase.workspace.test.integration.reversibility.AllReversibilityIntegrationTests;
 
 /**
  * @author Hodaie
@@ -22,9 +20,11 @@ import org.unicase.workspace.test.integration.reversibility.AllReversibilityInte
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	AllForwardIntegrationTests.class,
-	AllReversibilityIntegrationTests.class
+	AttributeOperationsReversibilityTest.class,
+	ReferenceOperationsReversibilityTest.class,
+	CreateDeleteOperationsReversibilityTest.class, 
+	CompositeOperationReversibilityTest.class
 	})
-public class AllIntegrationTests {
+public class AllReversibilityIntegrationTests {
 
 }

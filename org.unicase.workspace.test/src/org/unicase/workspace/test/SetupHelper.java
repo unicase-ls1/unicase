@@ -38,7 +38,7 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
-import org.unicase.workspace.test.integration.IntegrationTestHelper;
+import org.unicase.workspace.test.integration.forward.IntegrationTestHelper;
 
 /**
  * Helper class for setup/cleanup test fixtures.
