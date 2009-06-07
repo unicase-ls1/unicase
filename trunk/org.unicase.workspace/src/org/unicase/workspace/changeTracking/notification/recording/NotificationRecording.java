@@ -15,6 +15,7 @@ import org.eclipse.core.runtime.MultiStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.unicase.workspace.Activator;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
@@ -118,7 +119,10 @@ public class NotificationRecording {
 			hintType = "DELETE";
 		}
 
-		debugLog("captured notification chain: " + hintType + " operation");
+		// debug messages only in developer and internal release versions
+		if (!Configuration.isReleaseVersion()) {
+			debugLog("captured notification chain: " + hintType + " operation");
+		}
 	}
 
 	/**

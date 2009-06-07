@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.changeTracking.notification;
+package org.unicase.workspace.changeTracking;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -24,6 +24,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
  * Converts an EMF notification to an Operation.
