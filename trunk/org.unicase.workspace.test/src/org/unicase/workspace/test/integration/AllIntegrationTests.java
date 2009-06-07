@@ -13,6 +13,8 @@ package org.unicase.workspace.test.integration;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.unicase.workspace.test.integration.forward.AllForwardIntegrationTests;
+import org.unicase.workspace.test.integration.reversibility.AllReversibilityIntegrationTests;
 
 /**
  * @author Hodaie
@@ -20,10 +22,8 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses({
-	AttributeTest.class,
-	ReferenceTest.class,
-	CreateDeleteTest.class, 
-	CompositeTest.class
+	AllForwardIntegrationTests.class,
+	AllReversibilityIntegrationTests.class
 	})
 public class AllIntegrationTests {
 

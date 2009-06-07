@@ -8,10 +8,9 @@ package org.unicase.workspace.test;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.unicase.workspace.test.changeTracking.AllChangeTrackingTests;
 import org.unicase.workspace.test.conflictDetection.AllConflictDetectionTests;
-import org.unicase.workspace.test.notification.recording.AllNotificationTests;
-import org.unicase.workspace.test.operations.AllOperationTests;
-import org.unicase.workspace.test.operations.topology.AllTopologyTests;
+import org.unicase.workspace.test.integration.AllIntegrationTests;
 
 /**
  * Runs all tests.
@@ -19,7 +18,11 @@ import org.unicase.workspace.test.operations.topology.AllTopologyTests;
  * @author koegel
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { AllOperationTests.class, AllConflictDetectionTests.class, AllNotificationTests.class, AllTopologyTests.class })
+@Suite.SuiteClasses( { 
+	AllChangeTrackingTests.class,
+	AllConflictDetectionTests.class,
+	AllIntegrationTests.class
+})
 public class AllTests {
 
 }
