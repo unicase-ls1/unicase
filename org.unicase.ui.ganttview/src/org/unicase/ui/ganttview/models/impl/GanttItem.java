@@ -14,10 +14,14 @@ import org.unicase.ui.ganttview.models.IGanttItem;
 public class GanttItem implements IGanttItem {
 	
 	private List<IGanttItem> childGanttItems;
+	private List<IGanttItem> successors;
+	private List<IGanttItem> predecessors;
 	private Calendar startDate;
 	private Calendar endDate;
 	private String name;
 	private IGanttItem parentGanttItem;
+	private int estimate;
+	private int closedEstimate;
 	
 	
 	public GanttItem() {
@@ -44,8 +48,11 @@ public class GanttItem implements IGanttItem {
 		return this.childGanttItems;
 	}
 	public int getCompletionStatus() {
-		//TODO: Calculate Completion Status
-		return 50;
+		float fclosedEstimate = closedEstimate;
+		float festimate = estimate;
+		float fresult = (fclosedEstimate / festimate)*100;
+				
+		return (int)fresult;
 	}
 	public Calendar getEndDate() {
 		return this.endDate;
@@ -60,5 +67,15 @@ public class GanttItem implements IGanttItem {
 		return this.startDate;
 	}
 
-	
+	public void addSuccessor(GanttItem successor) {
+		this.successors.add(successor);
+	}
+
+	public void setEstimate(int estimate) {
+		this.estimate = estimate;
+	}
+
+	public void setClosedEstimate(int closedEstimate) {
+		this.closedEstimate = closedEstimate;
+	}
 }

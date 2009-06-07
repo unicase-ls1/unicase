@@ -6,9 +6,17 @@
 package org.unicase.ui.ganttview.models;
 
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
+import org.unicase.model.task.util.MEState;
+import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.ganttview.models.impl.GanttItem;
 import org.unicase.ui.ganttview.models.impl.GanttModel;
 import org.unicase.ui.ganttview.util.GanttItemHelper;
@@ -65,37 +73,114 @@ public final class GanttModelFactory {
 //	}
 
 	
-	private static GanttItem recurisveModelElementToGantItem(ModelElement me)
+	private static GanttItem recurisveModelElementToGanttItem(WorkPackage wp)
 	{
 		Calendar startDate = Calendar.getInstance();
-		startDate.add(Calendar.DATE, 0);
 		Calendar endDate = (Calendar) startDate.clone();
-		endDate.add(Calendar.DATE, 5);
 		
 		GanttItem result = new GanttItem();
-		result.setName(me.getName());
-		result.setStartDate(startDate);
-		result.setEndDate(endDate);
-					
-		Set<ModelElement> subModels = me.getContainedElements();
-		for (ModelElement modelElement : subModels) {
-			GanttItem childItem = recurisveModelElementToGantItem(modelElement);
-			result.getChildGanttItems().add(childItem);
-			childItem.setParentGanttItem(result);
-//			result.getGanttItems().put(childItem.getName(), childItem);
+		
+//		WorkPackage wp = (WorkPackage) me;
+		
+		
+		result.setName(wp.getName());
+		
+		Date dstart = wp.getStartDate();
+		if (dstart != null) {
+			startDate.setTime(dstart);
+			result.setStartDate(startDate);
 		}
-		GanttItemHelper.setParentGanttItemStartAndEndDate(result);
+		
+		Date dend = wp.getDueDate();		
+		if (dend != null) {
+			endDate.setTime(dend);
+			result.setEndDate(endDate);
+		}
+		
+		Set<ModelElement> subModels = wp.getContainedElements();
+		if (subModels != null) {
+			for (ModelElement modelElement : subModels) {
+				if ( !(modelElement instanceof WorkPackage) ) {
+					continue;
+				}
+				GanttItem childItem = recurisveModelElementToGanttItem((WorkPackage)modelElement);
+				result.getChildGanttItems().add(childItem);
+				childItem.setParentGanttItem(result);
+			}
+			GanttItemHelper.setParentGanttItemStartAndEndDate(result);	
+		}
+		
+		
+		EList<WorkItem> successors = wp.getSuccessors();
+		if (successors != null) {
+			for (WorkItem workItem : successors) {
+				if ( !(workItem instanceof WorkPackage) ) {
+					continue;
+				}
+				result.addSuccessor(recurisveModelElementToGanttItem((WorkPackage)workItem));
+			}	
+		}
+		
+		
+		result.setEstimate(getEstimate((ModelElement)wp, null, new HashSet<WorkItem>(wp.getAllContainedWorkItems())));
+		
+		result.setClosedEstimate(getClosedEstimate(new HashSet<WorkItem>(wp.getAllContainedWorkItems())));
+			
 		
 		return result;
 	}
 
+
+	private static int getEstimate(ModelElement element, WorkPackage currentOpenME, Set<WorkItem> relativeWorkItems) {
+
+		int estimate = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getEstimate(relativeWorkItems);
+		if (element instanceof WorkItem) {
+			estimate += ((WorkItem) element).getEstimate();
+		}
+		return estimate;
+	}
+
+	private static int getClosedEstimate(ModelElement element, WorkPackage currentOpenME, Set<WorkItem> relativeWorkItems) {
+
+		int closedEstimate = getClosedEstimate(relativeWorkItems);
+		if (element instanceof WorkItem) {
+			WorkItem workItem = (WorkItem) element;
+			if (workItem.getState().equals(MEState.CLOSED)) {
+				closedEstimate += workItem.getEstimate();
+			}
+		}
+
+		return closedEstimate;
+	}
+
+	private static int getClosedEstimate(Set<WorkItem> relativeWorkItems) {
+		int closedEstimate = 0;
+		Iterator<WorkItem> iterator = relativeWorkItems.iterator();
+		while (iterator.hasNext()) {
+			WorkItem workItem = iterator.next();
+			if (workItem.getState().equals(MEState.CLOSED)) {
+				closedEstimate += workItem.getEstimate();
+			}
+		}
+		return closedEstimate;
+	}
+	
 	public static IGanttModel createGanttModelFromSelectedWorkItems(ModelElement me) {
 		GanttModel result = new GanttModel();
-		GanttItem rootItem = recurisveModelElementToGantItem(me);
-
+		
+		if ( !(me instanceof WorkPackage) ) {
+			return result;
+		}
+		
+		WorkPackage wp = (WorkPackage) me;
+		
+		GanttItem rootItem = recurisveModelElementToGanttItem(wp);	
 		result.getGanttItems().put(rootItem.getName(), rootItem);
+//		result.put(me.getIdentifier(), rootItem);
+//		result.getGanttItems().put(me.getIdentifier(), rootItem);
 		result.getRootGanttItems().add(rootItem);
 
+		
 //		GanttItemHelper.setParentGanttItemStartAndEndDate(rootItem);
 		
 		return result;
