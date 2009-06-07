@@ -79,6 +79,8 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(form.getBody());
 		form.setImage(Activator.getImageDescriptor("icons/comments.png").createImage());
 		form.setText(getEditor().getTitle() + ": Discussion");
+		form.getBody().setBackgroundMode(SWT.INHERIT_FORCE);
+		form.getBody().setBackground(new Color(Display.getCurrent(), 225, 225, 225));
 		createToolbar();
 		createWidget();
 		form.pack();
@@ -91,8 +93,6 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 		body = new Composite(form.getBody(), SWT.NONE);
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(body);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, true).applyTo(body);
-		body.setBackgroundMode(SWT.INHERIT_FORCE);
-		body.setBackground(new Color(Display.getCurrent(), 225, 225, 225));
 
 		inputComposite = new Composite(body, SWT.NONE);
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(inputComposite);
