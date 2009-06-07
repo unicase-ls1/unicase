@@ -81,15 +81,18 @@ public class SingleReferenceOperationItemProvider extends ReferenceOperationItem
 			true, false, true, null, null, null));
 	}
 
+	// begin of custom code
 	/**
-	 * This returns SingleReferenceOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * @param object the object
+	 * @return This returns the image.
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/SingleReferenceOperation"));
+		return super.getImage(object);
 	}
+
+	// end of custom code
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
