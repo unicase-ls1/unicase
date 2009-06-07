@@ -905,7 +905,12 @@
         name="LinkFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="LinkFigure"/>
+          name="LinkFigure"
+          targetDecoration="//@figures.4/@descriptors.2/@actualFigure/@children.0">
+        <children
+            xsi:type="gmfgraph:PolylineDecoration"
+            name="ArrowDec"/>
+      </actualFigure>
     </descriptors>
     <descriptors
         name="PredecessorLabelFigure">
@@ -920,6 +925,48 @@
           xsi:type="gmfgraph:Label"
           name="SuccessorLabel"
           text="successor"/>
+    </descriptors>
+  </figures>
+  <figures
+      name="URML">
+    <descriptors
+        name="Cause">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="Cause"
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.CauseFigure"/>
+    </descriptors>
+    <descriptors
+        name="Mitigation">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="Mitigation"
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.MitigationFigure"/>
+    </descriptors>
+    <descriptors
+        name="Exclamation">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="Exclamation"
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.ExclamationFigure"/>
+    </descriptors>
+    <descriptors
+        name="FunctionalRequirement">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="FunctionalRequirementFigure"
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.FunctionalRequirementFigure">
+        <minimumSize
+            dx="10"
+            dy="10"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="Hazard">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="Hazard"
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.HazardFigure"/>
     </descriptors>
   </figures>
   <nodes
@@ -988,6 +1035,21 @@
   <nodes
       name="StateInitialNode"
       figure="StateInitialFigure"/>
+  <nodes
+      name="CauseNode"
+      figure="Cause"/>
+  <nodes
+      name="MitigationNode"
+      figure="Mitigation"/>
+  <nodes
+      name="FunctionalRequirementNode"
+      figure="FunctionalRequirement"/>
+  <nodes
+      name="ExclamationNode"
+      figure="Exclamation"/>
+  <nodes
+      name="HazardNode"
+      figure="Hazard"/>
   <connections
       name="Association"
       figure="AssociationFigure"/>
