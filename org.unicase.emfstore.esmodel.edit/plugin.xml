@@ -39,12 +39,18 @@
 	          org.eclipse.emf.edit.provider.IItemLabelProvider
 	          org.eclipse.emf.edit.provider.IItemPropertySource" />
   </extension>
-  <extension
-        point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+  <extension  point="org.eclipse.emf.edit.itemProviderAdapterFactories">
      <factory
            class="org.unicase.emfstore.esmodel.versioning.provider.VersioningItemProviderAdapterFactory"
            supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
-           uri="http://unicase.org/emfstore/esmodel/versioning">
+           uri="http://unicase.org/esmodel/versioning">
+     </factory>
+  </extension>
+  <extension  point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+     <factory
+           class="org.unicase.emfstore.esmodel.versioning.operations.provider.OperationsItemProviderAdapterFactory"
+           supportedTypes="org.eclipse.emf.edit.provider.IEditingDomainItemProvider  org.eclipse.emf.edit.provider.IStructuredItemContentProvider  org.eclipse.emf.edit.provider.ITreeItemContentProvider  org.eclipse.emf.edit.provider.IItemLabelProvider   org.eclipse.emf.edit.provider.IItemPropertySource"
+           uri="http://unicase.org/esmodel/versioning/operations">
      </factory>
   </extension>
 
