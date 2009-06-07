@@ -83,15 +83,18 @@ public class ReferenceOperationItemProvider extends FeatureOperationItemProvider
 			true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
+	// begin of custom code
 	/**
-	 * This returns ReferenceOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * @param object the object
+	 * @return This returns the image.
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceOperation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ReferenceOperation.png"));
 	}
+
+	// end of custom code
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
