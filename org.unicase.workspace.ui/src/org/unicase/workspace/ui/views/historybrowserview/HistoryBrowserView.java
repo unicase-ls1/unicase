@@ -15,6 +15,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.jface.viewers.TreeNode;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -37,6 +39,8 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.AbstractSCMView;
+import org.unicase.workspace.ui.views.scm.SCMContentProvider;
+import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
 import org.unicase.workspace.util.EventUtil;
 
 /**
@@ -51,8 +55,6 @@ public class HistoryBrowserView extends AbstractSCMView {
 
 	private List<HistoryInfo> historyInfos;
 
-	private HistoryComposite historyComposite;
-
 	private ProjectSpace activeProjectSpace;
 
 	private int startOffset = 24;
@@ -62,6 +64,8 @@ public class HistoryBrowserView extends AbstractSCMView {
 	private int headVersion;
 
 	private ModelElement modelElement;
+
+	private TreeViewer viewer;
 
 	/**
 	 * Constructor.
@@ -313,10 +317,29 @@ public class HistoryBrowserView extends AbstractSCMView {
 		progressDialog.getProgressMonitor().worked(10);
 		load(currentEnd);
 		progressDialog.getProgressMonitor().worked(80);
-		historyComposite.updateTable();
+//		historyComposite.updateTable();
+		viewer.setInput(nodify(null, getHistoryInfos()).toArray());
 		progressDialog.getProgressMonitor().done();
 		progressDialog.close();
 	}
+	
+	/**
+	 * Creates a TreeNode wrapper list from the given object list.
+	 * @param treeNode the parent tree node
+	 * @param list the list of childern objects.
+	 * @return a new wrapped {@link ArrayList}.
+	 */
+	protected List<TreeNode> nodify(TreeNode treeNode,
+			List<? extends Object> list) {
+		ArrayList<TreeNode> nodes = new ArrayList<TreeNode>();
+		for (Object o : list) {
+			TreeNode meNode = new TreeNode(o);
+			meNode.setParent(treeNode);
+			nodes.add(meNode);
+		}
+		return nodes;
+	}
+
 
 	/**
 	 * This will be called to set contents of browser tab. {@inheritDoc}
@@ -325,8 +348,13 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 */
 	@Override
 	protected Control setBrowserTabControl() {
-		historyComposite = new HistoryComposite(this, getTabFolder(), SWT.NONE);
-		return historyComposite;
+		
+		viewer = new TreeViewer(getTabFolder(), SWT.NONE);
+		viewer.setContentProvider(new SCMContentProvider.Compact(viewer,getActiveProjectSpace().getProject()));
+		viewer.setLabelProvider(new SCMLabelProvider());
+		viewer.setInput(nodify(null, getHistoryInfos()).toArray());
+		
+		return viewer.getTree();
 	}
 
 	/**
