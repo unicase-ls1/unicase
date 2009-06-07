@@ -652,6 +652,12 @@
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
               sequence="Alt+V">
         </key>
+        <key
+              commandId="org.unicase.workspace.ui.deleteProject"
+              contextId="org.eclipse.ui.contexts.window"
+              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+              sequence="Alt+Delete">
+        </key>
      </extension>
      <extension
            point="org.eclipse.core.expressions.propertyTesters">
