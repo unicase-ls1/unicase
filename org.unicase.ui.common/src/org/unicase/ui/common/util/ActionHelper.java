@@ -80,7 +80,7 @@ public final class ActionHelper {
 		// This decision is should be made to extract the model element
 		// for attaching action item accordingly.
 		String partId = HandlerUtil.getActivePartId(event);
-		if (partId.equals(MEEDITOR_ID)) {
+		if (partId!=null && partId.equals(MEEDITOR_ID)) {
 			// extract model element from editor input
 			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getActiveEditor().getEditorInput();
