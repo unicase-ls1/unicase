@@ -126,7 +126,7 @@ public class MECommentReplyWidget extends Composite {
 		recipientsLabel.setText("Recipients: ");
 
 		final Label recipients = new Label(recipientsComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().applyTo(recipients);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.CENTER).applyTo(recipients);
 
 		final EList<OrgUnit> recipientsList = new BasicEList<OrgUnit>();
 		Comment comment = null;
