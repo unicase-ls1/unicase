@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
@@ -49,7 +50,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCannonizer;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
@@ -72,15 +72,18 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.changeTracking.OperationParser;
+import org.unicase.workspace.changeTracking.NotificationToOperationConverter;
+import org.unicase.workspace.changeTracking.notification.NotificationInfo;
+import org.unicase.workspace.changeTracking.notification.filter.FilterStack;
+import org.unicase.workspace.changeTracking.notification.filter.NotificationFilter;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
+import org.unicase.workspace.changeTracking.notification.recording.NotificationRecordingHint;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
-import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 import org.unicase.workspace.filetransfer.FileDownloadJob;
 import org.unicase.workspace.filetransfer.FileUploadJob;
 import org.unicase.workspace.filetransfer.IJobChangeListenerAdapter;
@@ -323,6 +326,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	private boolean isTransient;
 
 	private CompositeOperation compositeOperation;
+
+	private NotificationRecorder notificationRecorder;
 
 	// begin of custom code
 	/**
@@ -1096,6 +1101,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	public void startChangeRecording() {
+		if (notificationRecorder == null) {
+			notificationRecorder = new NotificationRecorder();
+		}
+		// notificationRecorder;
 		isRecording = true;
 		updateDirtyState();
 	}
@@ -1598,42 +1607,68 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (isRecording) {
-			List<AbstractOperation> createdOperations;
-			try {
-				createdOperations = OperationParser.parseOperations(notification, modelElement);
-			} catch (UnsupportedNotificationException e) {
-				WorkspaceUtil.logException("Recording an operation failed!", e);
-				// save model element anyway, other wise model could be corrupted
-				save(modelElement);
-				return;
-			}
-			if (this.deleteOperation == null) {
-				if (this.compositeOperation != null) {
-					this.compositeOperation.getSubOperations().addAll(createdOperations);
-				} else {
-					getOperations().addAll(createdOperations);
-					OperationsCannonizer.cannonize(getOperations());
-				}
-			} else {
-				EList<ReferenceOperation> subOperations = this.deleteOperation.getSubOperations();
-				// check if all recorded ops are reference operations
-				// MK: should also check if reference operations really refer to the delete
-				for (AbstractOperation operation : createdOperations) {
-					if (OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
-						subOperations.add((ReferenceOperation) operation);
-					} else {
-						getOperations().add(operation);
-						String message = "During a delete operation an operation of a type other than ReferenceOperation occured: "
-							+ operation.getClass().getCanonicalName();
-						WorkspaceUtil.logException(message, new IllegalStateException(message));
-					}
-				}
+			notificationRecorder.record(notification);
+
+			if (notificationRecorder.isRecordingComplete()) {
+				recordingFinished();
 			}
 			// MK: maybe skip save if we are within a delete operation
 			saveProjectSpaceOnly();
 			updateDirtyState();
 		}
 		save(modelElement);
+	}
+
+	private void recordingFinished() {
+
+		notificationRecorder.getRecording().debugLog();
+
+		// canonize recorded notifications
+		NotificationFilter f = FilterStack.DEFAULT;
+		f.filter(notificationRecorder.getRecording());
+		notificationRecorder.getRecording().debugLog("filtered notification chain");
+
+		// create operations from "valid" notifications, log invalid ones, accumulate the ops
+		List<AbstractOperation> ops = new LinkedList<AbstractOperation>();
+		List<NotificationInfo> rec = notificationRecorder.getRecording().asMutableList();
+		for (NotificationInfo n : rec) {
+			if (!n.isValid()) {
+				WorkspaceUtil.log("INVALID NOTIFICATION MESSAGE DETECTED: " + n.getValidationMessage(), null, 0);
+				continue;
+			} else {
+				AbstractOperation op = NotificationToOperationConverter.convert(n);
+				if (op != null) {
+					ops.add(op);
+				} else {
+					// we should never get here, this would indicate a consistency error,
+					// n.isValid() should have been false
+					WorkspaceUtil.log("INVALID NOTIFICATION CLASSIFICATION,"
+						+ " notification is valid, but cannot be converted to an operation: " + n.toString(), null, 0);
+					continue;
+				}
+			}
+		}
+
+		// add resulting operations as suboperations to composite, delete or top-level operations
+		// handle delete, verify reference operations only
+		if (deleteOperation != null) {
+			// check, that all ops are reference ops
+			for (AbstractOperation op : ops) {
+				if (op instanceof ReferenceOperation) {
+					deleteOperation.getSubOperations().add((ReferenceOperation) op);
+				} else {
+					WorkspaceUtil.log("NON-REFERNCE OP AS SUBOP OF A DELETE OPERATION DETECTED: "
+						+ op.getClass().getCanonicalName(), null, 0);
+				}
+			}
+
+		} else if (compositeOperation != null) {
+			compositeOperation.getSubOperations().addAll(ops);
+		} else {
+			getOperations().addAll(ops);
+			OperationsCannonizer.cannonize(getOperations());
+		}
+
 	}
 
 	private void save(ModelElement modelElement) {
@@ -1751,6 +1786,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		if (isRecording) {
+
+			notificationRecorder.stopRecording();
+			recordingFinished();
+
 			if (deleteOperation == null) {
 				throw new IllegalStateException("DeleteCompleted called without previous delete start call");
 			}
@@ -1795,6 +1834,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		if (isRecording) {
 			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 			deleteOperation.setClientDate(new Date());
+
+			notificationRecorder.newRecording(NotificationRecordingHint.DELETE);
+
 		}
 	}
 
@@ -1935,6 +1977,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void abortCompositeOperation() {
 		stopChangeRecording();
+		recordingFinished();
 		this.compositeOperation.reverse().apply(getProject());
 		startChangeRecording();
 		this.compositeOperation = null;
@@ -1942,15 +1985,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Returns the notification recorder of the project space. Currently only a dummy to avoid compile error in test
-	 * plugin.
+	 * Returns the notification recorder of the project space.
 	 * 
 	 * @return the notification recorder
 	 */
 	public NotificationRecorder getNotificationRecorder() {
-		// SC: FIXME
-		// dummy method
-		return null;
+		return notificationRecorder;
 	}
 
 	/**
