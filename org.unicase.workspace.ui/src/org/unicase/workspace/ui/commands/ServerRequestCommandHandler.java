@@ -7,12 +7,12 @@ package org.unicase.workspace.ui.commands;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.util.RecordingCommandWithResult;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -37,19 +37,21 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 		setProjectSpace(ActionHelper.getProjectSpace(event));
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		final RecordingCommandWithResult<Object> command = new RecordingCommandWithResult<Object>(domain) {
 
 			@Override
 			protected void doExecute() {
 				try {
-					handleRun();
+					Object ret = handleRun();
+					setTypedResult(ret);
 				} catch (ExecutionException e) {
 					DialogHandler.showExceptionDialog(e);
 					WorkspaceUtil.logException("Exception during login", e);
 				}
 			}
-		});
-		return null;
+		};
+		domain.getCommandStack().execute(command);
+		return command.getTypedResult();
 	}
 
 	private void setProjectSpace(ProjectSpace projectSpace) {
