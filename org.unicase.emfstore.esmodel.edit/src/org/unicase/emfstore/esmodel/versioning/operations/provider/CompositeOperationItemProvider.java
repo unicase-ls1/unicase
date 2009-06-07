@@ -130,15 +130,18 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 		return super.getChildFeature(object, child);
 	}
 
+	// begin of custom code
 	/**
-	 * This returns CompositeOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * @param object the object
+	 * @return This returns the image.
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeOperation"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/CompositeOperation.png"));
 	}
+
+	// end of custom code
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->

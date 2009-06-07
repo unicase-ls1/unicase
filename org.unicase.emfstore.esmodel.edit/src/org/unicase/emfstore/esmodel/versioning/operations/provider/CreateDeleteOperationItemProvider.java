@@ -116,15 +116,25 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 		return super.getChildFeature(object, child);
 	}
 
+	// begin of custom code
 	/**
-	 * This returns CreateDeleteOperation.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
+	 * @param object the object
+	 * @return This returns the image.
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/CreateDeleteOperation"));
+		CreateDeleteOperation op = (CreateDeleteOperation) object;
+		Object image = null;
+		if (op.isDelete()) {
+			image = getResourceLocator().getImage("full/obj16/DeleteOperation.png");
+		} else {
+			image = getResourceLocator().getImage("full/obj16/CreateOperation.png");
+		}
+		return overlayImage(object, image);
 	}
+
+	// end of custom code
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
