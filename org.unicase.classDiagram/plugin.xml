@@ -252,8 +252,8 @@
       </editpartProvider>
    </extension>
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
-      <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.unicase.model.classDiagram.providers.ModelModelingAssistantProvider">
+      <?gmfgen generated="false"?>
+      <modelingAssistantProvider class="org.unicase.model.classDiagram.providers.ClassModelingAssistantProvider">
          <Priority name="Lowest"/>
       </modelingAssistantProvider>
    </extension>
