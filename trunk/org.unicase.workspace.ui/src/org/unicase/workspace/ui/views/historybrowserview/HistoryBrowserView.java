@@ -368,7 +368,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 		
 		viewer = new TreeViewer(getTabFolder(), SWT.NONE);
 		viewer.setContentProvider(new SCMContentProvider.Compact(viewer,getActiveProjectSpace().getProject()));
-		viewer.setLabelProvider(new SCMLabelProvider());
+		viewer.setLabelProvider(new SCMLabelProvider(getActiveProjectSpace().getProject()));
 		viewer.setInput(nodify(null, getHistoryInfos()).toArray());
 		
 		return viewer.getTree();
