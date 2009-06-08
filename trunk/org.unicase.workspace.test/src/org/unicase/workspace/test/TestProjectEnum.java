@@ -19,37 +19,27 @@ public enum TestProjectEnum {
 	/**
 	 * a random generated project (with about 6000 elements) with these parameter(10, 12345, 5, 3, 15, 20).
 	 */
-	RANDOM_6K("TestProjects/randomProject6"),
+	RANDOM_6K("TestProjects/randomProject6.ucp"),
 	
 	/**
 	 * a random generated project (with about 8000 elements) with these parameter(15, 12345, 5, 3, 15, 20).
 	 */
-	RANDOM_8K("TestProjects/randomProject8"),
+	RANDOM_8K("TestProjects/randomProject8.ucp"),
 	
 	/**
 	 *  a random generated project (with about 12000 elements) with these parameter(20, 12345, 5, 5, 10, 20).
 	 */
-	RANDOM_12K("TestProjects/randomProject12"),
+	RANDOM_12K("TestProjects/randomProject12.ucp"),
 	
 	/**
 	 * a random generated project (with about 14000 elements) with these parameter(30, 123, 5, 5, 10, 20).
 	 */
-	RANDOM_14K("TestProjects/randomProject14"),
+	RANDOM_14K("TestProjects/randomProject14.ucp"),
 
 	/**
 	 * use a random generated project (with about 25000 elements) with these parameter(70, 123, 5, 5, 10, 20).
 	 */
-	RANDOM_25K("TestProjects/randomProject25"), 
-	
-	/**
-	 * dolli2 project.
-	 */
-	DOLLI2("TestProjects/dolli2.ucp"),
-	
-	/**
-	 *  use unicase project.
-	 */
-	UNICASE("TestProjects/unicase.ucp"), 
+	RANDOM_25K("TestProjects/randomProject25.ucp"), 
 	
 	/**
 	 * no test project.
@@ -58,7 +48,7 @@ public enum TestProjectEnum {
 
 
 	
-	private String path = "TestProjects/unicase.ucp";
+	private String path;
 
 	private TestProjectEnum(String path){
 		this.path = path;
