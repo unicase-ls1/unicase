@@ -239,10 +239,7 @@ public class SetupHelper {
 
 		});
 
-		projectId = testProjectSpace.getProjectId();
-
 		testProject = testProjectSpace.getProject();
-
 	
 	}
 	

@@ -16,6 +16,12 @@ package org.unicase.workspace.test;
  *
  */
 public enum TestProjectEnum {
+	
+	/**
+	 * a random generated project (with about 6000 elements) with these parameter(7, 1, 4, 3, 5, 20).
+	 */
+	RANDOM_3K("TestProjects/randomProject3.ucp"),
+	
 	/**
 	 * a random generated project (with about 6000 elements) with these parameter(10, 12345, 5, 3, 15, 20).
 	 */
