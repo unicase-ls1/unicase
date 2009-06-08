@@ -26,6 +26,8 @@ public class GanttItem implements IGanttItem {
 	
 	public GanttItem() {
 		childGanttItems = new ArrayList<IGanttItem>();
+		successors = new ArrayList<IGanttItem>();
+		predecessors = new ArrayList<IGanttItem>();
 	}
 	
 	public void setStartDate(Calendar startDate) {

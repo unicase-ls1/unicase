@@ -106,7 +106,7 @@ public final class GanttViewHelper {
 	public static GanttEvent getGanttEventByGanttItem(GanttChart ganttChart, IGanttItem ganttItem) {
 		
 		for(Object event : ganttChart.getGanttComposite().getEvents()){
-			if(((GanttEvent)event).getData().equals(ganttItem))
+			if(((IGanttItem)((GanttEvent)event).getData()).getName().equals(ganttItem.getName()))
 				return (GanttEvent)event;
 		}
 		
