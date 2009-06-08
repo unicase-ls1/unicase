@@ -48,9 +48,8 @@ public class FindChanges extends AbstractFix {
 		try {
 			System.out.println("printing to file from version " + version.getPrimarySpec().getIdentifier());
 			FileWriter fileWriter = new FileWriter(System.getProperty("user.home") + "/Desktop/changes.txt", true);
-			fileWriter.write("version: " + version.getPrimarySpec().getIdentifier()
-				+ System.getProperty("line.separator") + System.getProperty("line.separator") + result
-				+ System.getProperty("line.separator"));
+			fileWriter.write("version: " + version(version) + System.getProperty("line.separator")
+				+ System.getProperty("line.separator") + result + System.getProperty("line.separator"));
 			fileWriter.close();
 		} catch (IOException e) {
 			e.printStackTrace();
