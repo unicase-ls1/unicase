@@ -78,4 +78,8 @@ public class GanttItem implements IGanttItem {
 	public void setClosedEstimate(int closedEstimate) {
 		this.closedEstimate = closedEstimate;
 	}
+	
+	public List<IGanttItem> getSuccessors() {
+		return successors;
+	}
 }

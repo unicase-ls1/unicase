@@ -16,5 +16,6 @@ public interface IGanttItem {
 	public int getCompletionStatus();
 	public List<IGanttItem> getChildGanttItems();
 	public IGanttItem getParentGanttItem();
+	public List<IGanttItem> getSuccessors();
 	
 }
