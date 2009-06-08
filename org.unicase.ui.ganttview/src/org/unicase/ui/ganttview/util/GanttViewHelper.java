@@ -103,6 +103,16 @@ public final class GanttViewHelper {
 		return result;
 	}
 	
+	public static GanttEvent getGanttEventByGanttItem(GanttChart ganttChart, IGanttItem ganttItem) {
+		
+		for(Object event : ganttChart.getGanttComposite().getEvents()){
+			if(((GanttEvent)event).getData().equals(ganttItem))
+				return (GanttEvent)event;
+		}
+		
+		return null;
+	}
+	
 	
 	
 }

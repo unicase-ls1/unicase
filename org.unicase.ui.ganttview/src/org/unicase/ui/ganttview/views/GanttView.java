@@ -166,9 +166,20 @@ public class GanttView extends ViewPart implements IGanttModelListener, IGanttEv
 			TreeItem rootTreeItem = GanttViewHelper.createRootTreeItemWithGanttEvent(tree, ganttChart, ganttItem);
 			CreateChildEvents(ganttItem, rootTreeItem);
 			rootTreeItem.setExpanded(true);
-			
 		}
 		
+		SetGanttConnections();
+		
+	}
+
+	private void SetGanttConnections() {
+		
+		for(Object eventObject : ganttChart.getGanttComposite().getEvents()) {
+			IGanttItem ganttItem = (IGanttItem)((GanttEvent)eventObject).getData();
+			for(IGanttItem successor : ganttItem.getSuccessors()) {
+				ganttChart.addConnection((GanttEvent)eventObject, GanttViewHelper.getGanttEventByGanttItem(ganttChart, successor));
+			}
+		}
 	}
 
 	private void CreateChildEvents(IGanttItem ganttItem, TreeItem rootTreeItem) {
