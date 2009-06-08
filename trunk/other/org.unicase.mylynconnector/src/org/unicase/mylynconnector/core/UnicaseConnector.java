@@ -29,7 +29,7 @@ import org.unicase.workspace.util.RecordingCommandWithResult;
 
 public class UnicaseConnector extends AbstractRepositoryConnector {
 
-	public static final String DOLLI2 = "dolli2";
+	public static final String DOLLI2 = "unicase";
 	public static final String CONNECTOR_KIND = "org.unicase.mylynconnector";
 
 	public UnicaseConnector() {
