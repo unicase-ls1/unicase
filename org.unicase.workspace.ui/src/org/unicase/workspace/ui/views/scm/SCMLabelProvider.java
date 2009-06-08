@@ -15,7 +15,9 @@ import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsDescriptionProvider;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 
 /**
  * Label provider for the scm views.
@@ -24,11 +26,24 @@ import org.unicase.model.ModelElement;
  * 
  */
 public class SCMLabelProvider extends ColumnLabelProvider {
-	
-	
 
-	private AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	private OperationsDescriptionProvider operationsDescriptionProvider;
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param project
+	 *            the project.
+	 */
+	public SCMLabelProvider(Project project) {
+		super();
+		this.operationsDescriptionProvider = new OperationsDescriptionProvider(
+				project);
+	}
+
+	private AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+			new ComposedAdapterFactory(
+					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	/**
 	 * {@inheritDoc}
@@ -41,33 +56,36 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 			if (value instanceof HistoryInfo) {
 				HistoryInfo historyInfo = (HistoryInfo) value;
 				return "Version "
-						+ historyInfo.getPrimerySpec().getIdentifier() + " ["
-						+ historyInfo.getLogMessage().getAuthor() + " @ "
-						+ dateFormat.format(historyInfo.getLogMessage().getClientDate()) + "] "
+						+ historyInfo.getPrimerySpec().getIdentifier()
+						+ " ["
+						+ historyInfo.getLogMessage().getAuthor()
+						+ " @ "
+						+ dateFormat.format(historyInfo.getLogMessage()
+								.getClientDate()) + "] "
 						+ historyInfo.getLogMessage().getMessage();
-			}else if(value instanceof AbstractOperation){
-				return ((AbstractOperation)value).getDescription();
-			}else if(value instanceof ModelElement){
-				return ((ModelElement)value).getName();
-			}else if(value instanceof EObject){
-				return ((EObject)value).eClass().getName();
+			} else if (value instanceof AbstractOperation) {
+				return operationsDescriptionProvider.getDescription((AbstractOperation)value);
+			} else if (value instanceof ModelElement) {
+				return ((ModelElement) value).getName();
+			} else if (value instanceof EObject) {
+				return ((EObject) value).eClass().getName();
 			}
 			return value.toString();
 		}
 		return super.getText(element);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
 	public Image getImage(Object element) {
-		
+
 		if (element instanceof TreeNode) {
 			Object value = ((TreeNode) element).getValue();
 			return adapterFactoryLabelProvider.getImage(value);
 		}
-		
+
 		return super.getImage(element);
 	}
 }
