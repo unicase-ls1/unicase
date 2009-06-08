@@ -3,7 +3,10 @@ package org.unicase.mylynconnector.ui;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.mylyn.tasks.core.AbstractRepositoryConnector;
 import org.eclipse.mylyn.tasks.core.IRepositoryQuery;
@@ -13,6 +16,7 @@ import org.eclipse.mylyn.tasks.ui.wizards.AbstractRepositoryQueryPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.dialogs.FilteredList;
 import org.unicase.model.ModelElement;
@@ -55,24 +59,17 @@ public class UnicaseQueryPage extends AbstractRepositoryQueryPage {
 
 	public void createControl(Composite parent) {
 		Composite composite = new Composite(parent, SWT.BORDER);
-		 composite.setLayout(new GridLayout(1, false));
-		 GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(composite);
+		
+		GridLayoutFactory.fillDefaults().applyTo(composite);
+		GridDataFactory.fillDefaults().applyTo(composite);
 		 
 		Label label = new Label(composite, SWT.NONE);
 		label.setText("Select your ActionItem:");
 
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		filteredList = new FilteredList(composite, SWT.BORDER | SWT.MULTI
-				| SWT.V_SCROLL, new LabelProvider() {
-			@Override
-			public String getText(Object element) {
-				if (element instanceof ModelElement) {
-					return ((ModelElement) element).getName();
-				} else {
-					return "";
-				}
-			}
-		}, true, true, true);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).applyTo(filteredList);
+				| SWT.V_SCROLL, labelProvider, true, true, true);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(filteredList);
 		filteredList.setVisible(true);
 		fillList();
 		setControl(composite);
