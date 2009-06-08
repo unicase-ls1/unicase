@@ -57,14 +57,14 @@ public class TestProjectParmeters {
 	@Override
 	public String toString() {
 
-		StringBuilder sb = new StringBuilder("Project parameters: \n");
+		StringBuilder sb = new StringBuilder("Project parameters: ");
 
-		sb.append("numOfEachME: " + numOfEachME + "\n");
-		sb.append("randomSeed: " + randomSeed + "\n");
-		sb.append("projWidth: " + projWidth + "\n");
-		sb.append("projDepth: " + projDepth + "\n");
-		sb.append("maxNumOfManyRefs: " + maxNumOfManyRefs + "\n");
-		sb.append("maxNumOfMEsInLeafSection: " + maxNumOfMEsInLeafSection + "\n");
+		sb.append("numOfEachME: " + numOfEachME + ";");
+		sb.append("randomSeed: " + randomSeed + ";");
+		sb.append("projWidth: " + projWidth + ";");
+		sb.append("projDepth: " + projDepth + ";");
+		sb.append("maxNumOfManyRefs: " + maxNumOfManyRefs + ";");
+		sb.append("maxNumOfMEsInLeafSection: " + maxNumOfMEsInLeafSection + ";");
 
 		return sb.toString();
 	}
