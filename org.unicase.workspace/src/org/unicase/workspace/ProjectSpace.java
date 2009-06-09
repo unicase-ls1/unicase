@@ -605,4 +605,11 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	void downloadFileFromServer(FileAttachment fileAttachment, FileTransferObserver fileTransferObserver);
 
+	/**
+	 * Add a commit observer to the project space.
+	 * 
+	 * @param observer a project commit observer
+	 */
+	void addCommitObserver(CommitObserver observer);
+
 } // ProjectContainer
