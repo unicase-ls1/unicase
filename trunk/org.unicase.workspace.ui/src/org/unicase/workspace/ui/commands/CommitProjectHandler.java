@@ -102,7 +102,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	/**
 	 * {@inheritDoc}
 	 */
-	public boolean inspectChanges(ChangePackage changePackage) {
+	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
 		CommitDialog commitDialog = new CommitDialog(shell, changePackage);
 		int returnCode = commitDialog.open();
 		if (returnCode == Window.OK) {
@@ -119,7 +119,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	 * 
 	 * @see org.unicase.workspace.util.CommitObserver#commitCompleted()
 	 */
-	public void commitCompleted() {
+	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec versionSpec) {
 		ActionHelper.openDashboard();
 	}
 
