@@ -419,9 +419,6 @@
                id="org.unicase.ui.taskview">
          </viewShortcut>
          <viewShortcut
-               id="org.unicase.ui.test.modelTestView">
-         </viewShortcut>
-         <viewShortcut
                id="org.unicase.ui.treeview.views.IterationPlanningView">
          </viewShortcut>
          <viewShortcut
