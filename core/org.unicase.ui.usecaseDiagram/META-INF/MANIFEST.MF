@@ -39,8 +39,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
- org.unicase.model.edit;visibility:=reexport;bundle-version="0.3.18.qualifier",
- org.unicase.ui.common;bundle-version="0.3.18.qualifier",
+ org.unicase.model.edit;visibility:=reexport;bundle-version="0.3.24.internal",
+ org.unicase.ui.common;bundle-version="0.3.24.internal",
  org.unicase.model;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
