@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase DocExport Plug-in
 Bundle-SymbolicName: org.unicase.docExport; singleton:=true
-Bundle-Version: 0.3.18.qualifier
+Bundle-Version: 0.3.24.internal
 Bundle-Activator: org.unicase.docExport.Activator
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.render,
  org.eclipse.gmf.runtime.diagram.ui,
@@ -11,7 +11,7 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui.render,
  org.eclipse.core.databinding.beans,
  org.eclipse.core.filesystem,
  org.eclipse.emf.edit.ui,
- org.unicase.ui.common;bundle-version="0.3.18"
+ org.unicase.ui.common;bundle-version="0.3.24.internal"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: lib/iText-2.1.3.jar,
