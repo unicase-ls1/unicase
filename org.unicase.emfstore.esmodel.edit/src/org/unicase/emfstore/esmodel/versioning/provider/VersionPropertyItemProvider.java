@@ -11,7 +11,6 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -19,27 +18,27 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.VersionProperty;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.HistoryInfo} object. <!--
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.VersionProperty} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class VersionPropertyItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	public HistoryInfoItemProvider(AdapterFactory adapterFactory) {
+	public VersionPropertyItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -53,80 +52,47 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addPrimerySpecPropertyDescriptor(object);
-			addLogMessagePropertyDescriptor(object);
+			addNamePropertyDescriptor(object);
+			addValuePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Primery Spec feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addPrimerySpecPropertyDescriptor(Object object) {
+	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryInfo_primerySpec_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_HistoryInfo_primerySpec_feature",
-				"_UI_HistoryInfo_type"), VersioningPackage.Literals.HISTORY_INFO__PRIMERY_SPEC, true, false, true,
-			null, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_VersionProperty_name_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_VersionProperty_name_feature", "_UI_VersionProperty_type"),
+			VersioningPackage.Literals.VERSION_PROPERTY__NAME, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This adds a property descriptor for the Log Message feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This adds a property descriptor for the Value feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected void addLogMessagePropertyDescriptor(Object object) {
+	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryInfo_logMessage_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_HistoryInfo_logMessage_feature", "_UI_HistoryInfo_type"),
-			VersioningPackage.Literals.HISTORY_INFO__LOG_MESSAGE, true, false, true, null, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_VersionProperty_value_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_VersionProperty_value_feature", "_UI_VersionProperty_type"),
+			VersioningPackage.Literals.VERSION_PROPERTY__VALUE, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This returns VersionProperty.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
-	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(VersioningPackage.Literals.HISTORY_INFO__TAG_SPECS);
-			childrenFeatures.add(VersioningPackage.Literals.HISTORY_INFO__VERSION_PROPERTIES);
-		}
-		return childrenFeatures;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
-	}
-
-	// begin of custom code
-	/**
-	 * @param object the object
-	 * @return This returns the image.
-	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/HistoryInfo.png"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/VersionProperty"));
 	}
-
-	// end of custom code
 
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -135,7 +101,9 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_HistoryInfo_type");
+		String label = ((VersionProperty) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_VersionProperty_type")
+			: getString("_UI_VersionProperty_type") + " " + label;
 	}
 
 	/**
@@ -149,10 +117,10 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(HistoryInfo.class)) {
-		case VersioningPackage.HISTORY_INFO__TAG_SPECS:
-		case VersioningPackage.HISTORY_INFO__VERSION_PROPERTIES:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+		switch (notification.getFeatureID(VersionProperty.class)) {
+		case VersioningPackage.VERSION_PROPERTY__NAME:
+		case VersioningPackage.VERSION_PROPERTY__VALUE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
 		super.notifyChanged(notification);
@@ -167,12 +135,6 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.HISTORY_INFO__TAG_SPECS,
-			VersioningFactory.eINSTANCE.createTagVersionSpec()));
-
-		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.HISTORY_INFO__VERSION_PROPERTIES,
-			VersioningFactory.eINSTANCE.createVersionProperty()));
 	}
 
 	/**

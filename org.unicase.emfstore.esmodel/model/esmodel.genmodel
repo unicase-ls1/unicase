@@ -58,6 +58,7 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/events"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/logMessage"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/notifications"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/ChangePackage/versionProperties"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/HistoryInfo">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -65,6 +66,7 @@
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryInfo/logMessage"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryInfo/tagSpecs"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/HistoryInfo/versionProperties"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/HistoryQuery">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -85,6 +87,10 @@
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/Version/logMessage"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//versioning/HeadVersionSpec"/>
+      <genClasses ecoreClass="esmodel.ecore#//versioning/VersionProperty">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/VersionProperty/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/VersionProperty/value"/>
+      </genClasses>
       <nestedGenPackages prefix="Operations" basePackage="org.unicase.emfstore.esmodel.versioning"
           disposableProviderFactory="true" ecorePackage="esmodel.ecore#//versioning/operations">
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/AbstractOperation">

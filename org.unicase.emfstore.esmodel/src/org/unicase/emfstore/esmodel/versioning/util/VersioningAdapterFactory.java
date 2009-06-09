@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
+import org.unicase.emfstore.esmodel.versioning.VersionProperty;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
@@ -120,6 +121,11 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseHeadVersionSpec(HeadVersionSpec object) {
 			return createHeadVersionSpecAdapter();
+		}
+
+		@Override
+		public Adapter caseVersionProperty(VersionProperty object) {
+			return createVersionPropertyAdapter();
 		}
 
 		@Override
@@ -276,6 +282,20 @@ public class VersioningAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createHeadVersionSpecAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.VersionProperty
+	 * <em>Version Property</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.VersionProperty
+	 * @generated
+	 */
+	public Adapter createVersionPropertyAdapter() {
 		return null;
 	}
 

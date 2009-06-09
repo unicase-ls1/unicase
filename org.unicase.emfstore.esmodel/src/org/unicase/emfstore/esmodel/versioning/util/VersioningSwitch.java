@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
+import org.unicase.emfstore.esmodel.versioning.VersionProperty;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
@@ -163,6 +164,13 @@ public class VersioningSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case VersioningPackage.VERSION_PROPERTY: {
+			VersionProperty versionProperty = (VersionProperty) theEObject;
+			T result = caseVersionProperty(versionProperty);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -300,6 +308,20 @@ public class VersioningSwitch<T> {
 	 * @generated
 	 */
 	public T caseHeadVersionSpec(HeadVersionSpec object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Version Property</em>'. <!-- begin-user-doc
+	 * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Version Property</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVersionProperty(VersionProperty object) {
 		return null;
 	}
 

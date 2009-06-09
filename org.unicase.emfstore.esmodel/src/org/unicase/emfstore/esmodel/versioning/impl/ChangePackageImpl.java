@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.VersionProperty;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
@@ -80,6 +81,16 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @ordered
 	 */
 	protected EList<ESNotification> notifications;
+
+	/**
+	 * The cached value of the '{@link #getVersionProperties() <em>Version Properties</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getVersionProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<VersionProperty> versionProperties;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -216,6 +227,19 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		return notifications;
 	}
 
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<VersionProperty> getVersionProperties() {
+		if (versionProperties == null) {
+			versionProperties = new EObjectContainmentEList.Resolving<VersionProperty>(VersionProperty.class, this,
+				VersioningPackage.CHANGE_PACKAGE__VERSION_PROPERTIES);
+		}
+		return versionProperties;
+	}
+
 	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> Reverse the change package. That applying the change package and the reversed change
@@ -281,6 +305,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			return basicSetLogMessage(null, msgs);
 		case VersioningPackage.CHANGE_PACKAGE__NOTIFICATIONS:
 			return ((InternalEList<?>) getNotifications()).basicRemove(otherEnd, msgs);
+		case VersioningPackage.CHANGE_PACKAGE__VERSION_PROPERTIES:
+			return ((InternalEList<?>) getVersionProperties()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -305,6 +331,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			return basicGetLogMessage();
 		case VersioningPackage.CHANGE_PACKAGE__NOTIFICATIONS:
 			return getNotifications();
+		case VersioningPackage.CHANGE_PACKAGE__VERSION_PROPERTIES:
+			return getVersionProperties();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -333,6 +361,10 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			getNotifications().clear();
 			getNotifications().addAll((Collection<? extends ESNotification>) newValue);
 			return;
+		case VersioningPackage.CHANGE_PACKAGE__VERSION_PROPERTIES:
+			getVersionProperties().clear();
+			getVersionProperties().addAll((Collection<? extends VersionProperty>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -357,6 +389,9 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		case VersioningPackage.CHANGE_PACKAGE__NOTIFICATIONS:
 			getNotifications().clear();
 			return;
+		case VersioningPackage.CHANGE_PACKAGE__VERSION_PROPERTIES:
+			getVersionProperties().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -377,6 +412,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			return logMessage != null;
 		case VersioningPackage.CHANGE_PACKAGE__NOTIFICATIONS:
 			return notifications != null && !notifications.isEmpty();
+		case VersioningPackage.CHANGE_PACKAGE__VERSION_PROPERTIES:
+			return versionProperties != null && !versionProperties.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

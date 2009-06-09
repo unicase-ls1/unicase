@@ -21,6 +21,7 @@ import org.unicase.model.Project;
  * <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getEvents <em>Events</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getLogMessage <em>Log Message</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getNotifications <em>Notifications</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getVersionProperties <em>Version Properties</em>}</li>
  * </ul>
  * </p>
  * 
@@ -99,6 +100,22 @@ public interface ChangePackage extends EObject {
 	 * @generated
 	 */
 	EList<ESNotification> getNotifications();
+
+	/**
+	 * Returns the value of the '<em><b>Version Properties</b></em>' containment reference list. The list contents are
+	 * of type {@link org.unicase.emfstore.esmodel.versioning.VersionProperty}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Version Properties</em>' containment reference list isn't clear, there really should
+	 * be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Version Properties</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getChangePackage_VersionProperties()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<VersionProperty> getVersionProperties();
 
 	/**
 	 * Apply all operations in the change package to the given project.

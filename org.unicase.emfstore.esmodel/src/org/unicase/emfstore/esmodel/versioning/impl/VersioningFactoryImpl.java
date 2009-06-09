@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
+import org.unicase.emfstore.esmodel.versioning.VersionProperty;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
@@ -81,6 +82,8 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 			return createVersion();
 		case VersioningPackage.HEAD_VERSION_SPEC:
 			return createHeadVersionSpec();
+		case VersioningPackage.VERSION_PROPERTY:
+			return createVersionProperty();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -174,6 +177,16 @@ public class VersioningFactoryImpl extends EFactoryImpl implements VersioningFac
 	public HeadVersionSpec createHeadVersionSpec() {
 		HeadVersionSpecImpl headVersionSpec = new HeadVersionSpecImpl();
 		return headVersionSpec;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public VersionProperty createVersionProperty() {
+		VersionPropertyImpl versionProperty = new VersionPropertyImpl();
+		return versionProperty;
 	}
 
 	/**

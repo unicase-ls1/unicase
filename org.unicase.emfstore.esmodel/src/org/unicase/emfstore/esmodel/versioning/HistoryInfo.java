@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getPrimerySpec <em>Primery Spec</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getLogMessage <em>Log Message</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getTagSpecs <em>Tag Specs</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getVersionProperties <em>Version Properties</em>}</li>
  * </ul>
  * </p>
  * 
@@ -91,5 +92,21 @@ public interface HistoryInfo extends EObject {
 	 * @generated
 	 */
 	EList<TagVersionSpec> getTagSpecs();
+
+	/**
+	 * Returns the value of the '<em><b>Version Properties</b></em>' containment reference list. The list contents are
+	 * of type {@link org.unicase.emfstore.esmodel.versioning.VersionProperty}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Version Properties</em>' containment reference list isn't clear, there really should
+	 * be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Version Properties</em>' containment reference list.
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getHistoryInfo_VersionProperties()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<VersionProperty> getVersionProperties();
 
 } // HistoryInfo
