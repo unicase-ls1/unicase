@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Ganttview Plug-in
 Bundle-SymbolicName: org.unicase.ui.ganttview; singleton:=true
-Bundle-Version: 1.0.0
+Bundle-Version: 0.3.24.internal
 Bundle-Activator: org.unicase.ui.ganttview.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.unicase.model,
- org.unicase.ui.common;bundle-version="0.3.18"
+ org.unicase.ui.common
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: lib/org.eclipse.nebula.widgets.ganttchart-2.0-NIGHTLY.jar,
