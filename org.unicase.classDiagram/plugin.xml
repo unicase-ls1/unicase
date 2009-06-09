@@ -257,7 +257,12 @@
          <Priority name="Lowest"/>
       </modelingAssistantProvider>
    </extension>
-
+	<extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
+      <?gmfgen generated="false"?>
+      <modelingAssistantProvider class="org.unicase.model.classDiagram.providers.ModelModelingAssistantProvider">
+         <Priority name="Lowest"/>
+      </modelingAssistantProvider>
+   </extension>
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders">
       <?gmfgen generated="true"?>
       <IconProvider class="org.unicase.model.classDiagram.providers.ModelIconProvider">
