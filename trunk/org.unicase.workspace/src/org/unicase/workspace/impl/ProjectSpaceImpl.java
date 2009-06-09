@@ -329,6 +329,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	private NotificationRecorder notificationRecorder;
 
+	private List<CommitObserver> commitObservers;
+
 	// begin of custom code
 	/**
 	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -337,6 +339,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	protected ProjectSpaceImpl() {
 		super();
+		this.commitObservers = new ArrayList<CommitObserver>();
 	}
 
 	// end of custom code
@@ -907,7 +910,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		changePackage.cannonize();
 
-		if (commitObserver != null && !commitObserver.inspectChanges(changePackage)) {
+		notifyPreCommitObservers(changePackage);
+
+		if (commitObserver != null && !commitObserver.inspectChanges(this, changePackage)) {
 			return this.getBaseVersion();
 		}
 
@@ -924,10 +929,37 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		saveProjectSpaceOnly();
 
 		if (commitObserver != null) {
-			commitObserver.commitCompleted();
+			commitObserver.commitCompleted(this, newBaseVersion);
 		}
+
+		notifyPostCommitObservers(newBaseVersion);
+
 		updateDirtyState();
 		return newBaseVersion;
+	}
+
+	private void notifyPostCommitObservers(PrimaryVersionSpec newBaseVersion) {
+		for (CommitObserver observer : commitObservers) {
+			try {
+				observer.commitCompleted(this, newBaseVersion);
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException e) {
+				// END SUPRESS CATCH EXCEPTION
+				WorkspaceUtil.logException("CommitObserver failed with exception", e);
+			}
+		}
+	}
+
+	private void notifyPreCommitObservers(ChangePackage changePackage) {
+		for (CommitObserver observer : commitObservers) {
+			try {
+				observer.inspectChanges(this, changePackage);
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException e) {
+				// END SUPRESS CATCH EXCEPTION
+				WorkspaceUtil.logException("CommitObserver failed with exception", e);
+			}
+		}
 	}
 
 	private void generateNotifications(ChangePackage changePackage) {
@@ -2071,4 +2103,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		// }
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#addCommitObserver(org.unicase.workspace.util.CommitObserver)
+	 */
+	public void addCommitObserver(CommitObserver observer) {
+		this.commitObservers.add(observer);
+	}
 } // ProjectContainerImpl

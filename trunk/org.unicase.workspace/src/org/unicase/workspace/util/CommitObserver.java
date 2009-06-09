@@ -6,6 +6,8 @@
 package org.unicase.workspace.util;
 
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * An observer which waits for commit notifications and authorizes the commit procedure.
@@ -15,15 +17,20 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 public interface CommitObserver {
 
 	/**
-	 * A callback method to initiate the commit dialog and allow the user to confirm the changes.
+	 * Called before the commit proceeds. A callback method to initiate the commit dialog and allow the user to confirm
+	 * the changes.
 	 * 
+	 * @param projectSpace the project space the commit occurs on
 	 * @param changePackage the change package
 	 * @return true if the changes have been confirmed, false - otherwise.
 	 */
-	boolean inspectChanges(ChangePackage changePackage);
+	boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage);
 
 	/**
 	 * Called after the commit is completed.
+	 * 
+	 * @param projectSpace the {@link ProjectSpace}
+	 * @param newRevision the new revision that was created by the commit
 	 */
-	void commitCompleted();
+	void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision);
 }
