@@ -3,7 +3,7 @@
 <repository name='unicase' type='org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository' version='1.0.0'>
   <properties size='2'>
     <property name='p2.compressed' value='false'/>
-    <property name='p2.timestamp' value='1235743608161'/>
+    <property name='p2.timestamp' value='1244559495138'/>
   </properties>
   <references size='6'>
     <repository url='http://cope.in.tum.de' type='0' options='0'/>
@@ -13,7 +13,7 @@
     <repository url='http://wwwbruegge.in.tum.de/static/unicase/' type='1' options='0'/>
     <repository url='http://dist.codehaus.org/groovy/distributions/update/' type='0' options='0'/>
   </references>
-  <units size='188'>
+  <units size='190'>
     <unit id='org.unicase.classDiagram' version='0.2.17.internal'>
       <update id='org.unicase.classDiagram' range='[0.0.0,0.2.17.internal)' severity='0'/>
       <properties size='4'>
@@ -8753,6 +8753,132 @@
         <instructions size='1'>
           <instruction key='manifest'>
             Bundle-Name: %pluginName&#xA;Bundle-ClassPath: .&#xA;Bundle-Version: 0.3.24.internal&#xA;Eclipse-LazyStart: true&#xA;Bundle-Activator: org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin&#xA;Bundle-Vendor: %providerName&#xA;Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources,org.eclipse.core.expressions,org.eclipse.jface,org.eclipse.ui.ide,org.eclipse.ui.views,org.eclipse.ui.navigator,org.eclipse.ui.navigator.resources,org.eclipse.emf.ecore,org.eclipse.emf.ecore.xmi,org.eclipse.emf.edit.ui,org.eclipse.gmf.runtime.emf.core,org.eclipse.gmf.runtime.emf.commands.core,org.eclipse.gmf.runtime.emf.ui.properties,org.eclipse.gmf.runtime.diagram.ui,org.eclipse.gmf.runtime.diagram.ui.properties,org.eclipse.gmf.runtime.diagram.ui.providers,org.eclipse.gmf.runtime.diagram.ui.providers.ide,org.eclipse.gmf.runtime.diagram.ui.render,org.eclipse.gmf.runtime.diagram.ui.resources.editor,org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,org.eclipse.emf.ecore;visibility:=reexport,org.eclipse.emf.ecore.edit;visibility:=reexport,org.eclipse.gmf.runtime.notation;visibility:=reexport,org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,org.eclipse.gef;visibility:=reexport,org.unicase.ui.common;bundle-version=&quot;0.3.24.internal&quot;,org.unicase.model.edit;bundle-version=&quot;0.3.24.internal&quot;&#xA;Export-Package: org.unicase.ui.stateDiagram.edit.parts,org.unicase.ui.stateDiagram.part,org.unicase.ui.stateDiagram.providers&#xA;Bundle-SymbolicName: org.unicase.ui.stateDiagram; singleton:=true&#xA;Manifest-Version: 1.0&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Bundle-Localization: plugin
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.unicase.ui.usecaseDiagram' version='1.0.0.200906091657'>
+      <update id='org.unicase.ui.usecaseDiagram' range='[0.0.0,1.0.0.200906091657)' severity='0'/>
+      <properties size='4'>
+        <property name='df_LT.providerName' value='Sample Plugin Provider, Inc'/>
+        <property name='df_LT.pluginName' value='UseCase Diagram Plugin'/>
+        <property name='org.eclipse.equinox.p2.name' value='%pluginName'/>
+        <property name='org.eclipse.equinox.p2.provider' value='%providerName'/>
+      </properties>
+      <provides size='7'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.unicase.ui.usecaseDiagram' version='1.0.0.200906091657'/>
+        <provided namespace='osgi.bundle' name='org.unicase.ui.usecaseDiagram' version='1.0.0.200906091657'/>
+        <provided namespace='java.package' name='org.unicase.ui.usecaseDiagram.edit.parts' version='0.0.0'/>
+        <provided namespace='java.package' name='org.unicase.ui.usecaseDiagram.part' version='0.0.0'/>
+        <provided namespace='java.package' name='org.unicase.ui.usecaseDiagram.providers' version='0.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+      </provides>
+      <requires size='33'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.expressions' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.views' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.navigator' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.navigator.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore.xmi' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.edit.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.emf.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.emf.commands.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.emf.ui.properties' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.properties' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.providers' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.providers.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.render' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.resources.editor' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore.edit' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.notation' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.notation.edit' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gef' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.draw2d.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.draw2d' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ocl.ecore' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.unicase.model.edit' range='0.3.24.internal'/>
+        <required namespace='osgi.bundle' name='org.unicase.ui.common' range='0.3.24.internal'/>
+        <required namespace='osgi.bundle' name='org.unicase.model' range='0.0.0'/>
+        <required namespace='java.package' name='org.unicase.ui.common.diagram.figures' range='0.0.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.unicase.ui.usecaseDiagram' version='1.0.0.200906091657'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: %pluginName&#xA;Bundle-ClassPath: .&#xA;Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources,org.eclipse.core.expressions,org.eclipse.jface,org.eclipse.ui.ide,org.eclipse.ui.views,org.eclipse.ui.navigator,org.eclipse.ui.navigator.resources,org.eclipse.emf.ecore.xmi,org.eclipse.emf.edit.ui,org.eclipse.gmf.runtime.emf.core,org.eclipse.gmf.runtime.emf.commands.core,org.eclipse.gmf.runtime.emf.ui.properties,org.eclipse.gmf.runtime.diagram.ui,org.eclipse.gmf.runtime.diagram.ui.properties,org.eclipse.gmf.runtime.diagram.ui.providers,org.eclipse.gmf.runtime.diagram.ui.providers.ide,org.eclipse.gmf.runtime.diagram.ui.render,org.eclipse.gmf.runtime.diagram.ui.resources.editor,org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,org.eclipse.emf.ecore.edit;visibility:=reexport,org.eclipse.gmf.runtime.notation;visibility:=reexport,org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,org.eclipse.gef;visibility:=reexport,org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,org.eclipse.draw2d;visibility:=reexport,org.eclipse.emf.ecore,org.eclipse.emf.ecore;visibility:=reexport,org.eclipse.ocl.ecore;visibility:=reexport,org.unicase.model.edit;visibility:=reexport;bundle-version=&quot;0.3.24.internal&quot;,org.unicase.ui.common;bundle-version=&quot;0.3.24.internal&quot;,org.unicase.model;visibility:=reexport&#xA;Bundle-Activator: org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorPlugin&#xA;Bundle-Vendor: %providerName&#xA;Manifest-Version: 1.0&#xA;Bundle-Version: 1.0.0.200906091657&#xA;Bundle-Localization: plugin&#xA;Export-Package: org.unicase.ui.usecaseDiagram.edit.parts,org.unicase.ui.usecaseDiagram.part,org.unicase.ui.usecaseDiagram.providers&#xA;Bundle-SymbolicName: org.unicase.ui.usecaseDiagram; singleton:=true&#xA;Import-Package: org.unicase.ui.common.diagram.figures&#xA;Eclipse-LazyStart: true
+          </instruction>
+        </instructions>
+      </touchpointData>
+    </unit>
+    <unit id='org.unicase.ui.stateDiagram' version='1.0.0.200906091657'>
+      <update id='org.unicase.ui.stateDiagram' range='[0.0.0,1.0.0.200906091657)' severity='0'/>
+      <properties size='4'>
+        <property name='df_LT.providerName' value='Sample Plugin Provider, Inc'/>
+        <property name='df_LT.pluginName' value='Model Plugin'/>
+        <property name='org.eclipse.equinox.p2.name' value='%pluginName'/>
+        <property name='org.eclipse.equinox.p2.provider' value='%providerName'/>
+      </properties>
+      <provides size='7'>
+        <provided namespace='org.eclipse.equinox.p2.iu' name='org.unicase.ui.stateDiagram' version='1.0.0.200906091657'/>
+        <provided namespace='osgi.bundle' name='org.unicase.ui.stateDiagram' version='1.0.0.200906091657'/>
+        <provided namespace='java.package' name='org.unicase.ui.stateDiagram.edit.parts' version='0.0.0'/>
+        <provided namespace='java.package' name='org.unicase.ui.stateDiagram.part' version='0.0.0'/>
+        <provided namespace='java.package' name='org.unicase.ui.stateDiagram.providers' version='0.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+        <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+      </provides>
+      <requires size='31'>
+        <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.core.expressions' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.jface' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.views' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.navigator' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.ui.navigator.resources' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore.xmi' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.edit.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.emf.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.emf.commands.core' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.emf.ui.properties' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.properties' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.providers' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.providers.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.render' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.resources.editor' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.emf.ecore.edit' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.notation' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.notation.edit' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gmf.runtime.draw2d.ui' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.eclipse.gef' range='0.0.0'/>
+        <required namespace='osgi.bundle' name='org.unicase.ui.common' range='0.3.24.internal'/>
+        <required namespace='osgi.bundle' name='org.unicase.model.edit' range='0.3.24.internal'/>
+        <required namespace='osgi.bundle' name='org.unicase.model' range='0.0.0'/>
+        <required namespace='java.package' name='org.unicase.ui.common.diagram.figures' range='0.0.0'/>
+      </requires>
+      <artifacts size='1'>
+        <artifact classifier='osgi.bundle' id='org.unicase.ui.stateDiagram' version='1.0.0.200906091657'/>
+      </artifacts>
+      <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+      <touchpointData size='1'>
+        <instructions size='1'>
+          <instruction key='manifest'>
+            Bundle-ManifestVersion: 2&#xA;Bundle-RequiredExecutionEnvironment: J2SE-1.5&#xA;Bundle-ActivationPolicy: lazy&#xA;Bundle-Name: %pluginName&#xA;Bundle-ClassPath: .&#xA;Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources,org.eclipse.core.expressions,org.eclipse.jface,org.eclipse.ui.ide,org.eclipse.ui.views,org.eclipse.ui.navigator,org.eclipse.ui.navigator.resources,org.eclipse.emf.ecore,org.eclipse.emf.ecore.xmi,org.eclipse.emf.edit.ui,org.eclipse.gmf.runtime.emf.core,org.eclipse.gmf.runtime.emf.commands.core,org.eclipse.gmf.runtime.emf.ui.properties,org.eclipse.gmf.runtime.diagram.ui,org.eclipse.gmf.runtime.diagram.ui.properties,org.eclipse.gmf.runtime.diagram.ui.providers,org.eclipse.gmf.runtime.diagram.ui.providers.ide,org.eclipse.gmf.runtime.diagram.ui.render,org.eclipse.gmf.runtime.diagram.ui.resources.editor,org.eclipse.gmf.runtime.diagram.ui.resources.editor.ide,org.eclipse.emf.ecore;visibility:=reexport,org.eclipse.emf.ecore.edit;visibility:=reexport,org.eclipse.gmf.runtime.notation;visibility:=reexport,org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,org.eclipse.gef;visibility:=reexport,org.unicase.ui.common;bundle-version=&quot;0.3.24.internal&quot;,org.unicase.model.edit;bundle-version=&quot;0.3.24.internal&quot;,org.unicase.model;visibility:=reexport&#xA;Bundle-Activator: org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin&#xA;Bundle-Vendor: %providerName&#xA;Manifest-Version: 1.0&#xA;Bundle-Version: 1.0.0.200906091657&#xA;Bundle-Localization: plugin&#xA;Export-Package: org.unicase.ui.stateDiagram.edit.parts,org.unicase.ui.stateDiagram.part,org.unicase.ui.stateDiagram.providers&#xA;Bundle-SymbolicName: org.unicase.ui.stateDiagram; singleton:=true&#xA;Import-Package: org.unicase.ui.common.diagram.figures&#xA;Eclipse-LazyStart: true
           </instruction>
         </instructions>
       </touchpointData>
