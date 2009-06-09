@@ -280,6 +280,29 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.VersionProperty}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected VersionPropertyItemProvider versionPropertyItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.VersionProperty}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createVersionPropertyAdapter() {
+		if (versionPropertyItemProvider == null) {
+			versionPropertyItemProvider = new VersionPropertyItemProvider(this);
+		}
+
+		return versionPropertyItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -391,6 +414,8 @@ public class VersioningItemProviderAdapterFactory extends VersioningAdapterFacto
 			versionItemProvider.dispose();
 		if (headVersionSpecItemProvider != null)
 			headVersionSpecItemProvider.dispose();
+		if (versionPropertyItemProvider != null)
+			versionPropertyItemProvider.dispose();
 	}
 
 }

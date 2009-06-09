@@ -251,13 +251,22 @@ public interface VersioningPackage extends EPackage {
 	int CHANGE_PACKAGE__NOTIFICATIONS = 3;
 
 	/**
+	 * The feature id for the '<em><b>Version Properties</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CHANGE_PACKAGE__VERSION_PROPERTIES = 4;
+
+	/**
 	 * The number of structural features of the '<em>Change Package</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int CHANGE_PACKAGE_FEATURE_COUNT = 4;
+	int CHANGE_PACKAGE_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl
@@ -297,13 +306,22 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_INFO__TAG_SPECS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Version Properties</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int HISTORY_INFO__VERSION_PROPERTIES = 3;
+
+	/**
 	 * The number of structural features of the '<em>History Info</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int HISTORY_INFO_FEATURE_COUNT = 3;
+	int HISTORY_INFO_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl
@@ -449,6 +467,41 @@ public interface VersioningPackage extends EPackage {
 	 * @ordered
 	 */
 	int HEAD_VERSION_SPEC_FEATURE_COUNT = VERSION_SPEC_FEATURE_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionPropertyImpl
+	 * <em>Version Property</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersionPropertyImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getVersionProperty()
+	 * @generated
+	 */
+	int VERSION_PROPERTY = 10;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION_PROPERTY__NAME = 0;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION_PROPERTY__VALUE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Version Property</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION_PROPERTY_FEATURE_COUNT = 2;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.TagVersionSpec
@@ -639,6 +692,18 @@ public interface VersioningPackage extends EPackage {
 	EReference getChangePackage_Notifications();
 
 	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.emfstore.esmodel.versioning.ChangePackage#getVersionProperties <em>Version Properties</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Version Properties</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getVersionProperties()
+	 * @see #getChangePackage()
+	 * @generated
+	 */
+	EReference getChangePackage_VersionProperties();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo
 	 * <em>History Info</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -683,6 +748,18 @@ public interface VersioningPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getHistoryInfo_TagSpecs();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getVersionProperties <em>Version Properties</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Version Properties</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.HistoryInfo#getVersionProperties()
+	 * @see #getHistoryInfo()
+	 * @generated
+	 */
+	EReference getHistoryInfo_VersionProperties();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery
@@ -832,6 +909,40 @@ public interface VersioningPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getHeadVersionSpec();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.VersionProperty
+	 * <em>Version Property</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Version Property</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.VersionProperty
+	 * @generated
+	 */
+	EClass getVersionProperty();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link org.unicase.emfstore.esmodel.versioning.VersionProperty#getName <em>Name</em>}'. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Name</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.VersionProperty#getName()
+	 * @see #getVersionProperty()
+	 * @generated
+	 */
+	EAttribute getVersionProperty_Name();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link org.unicase.emfstore.esmodel.versioning.VersionProperty#getValue <em>Value</em>}'. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Value</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.VersionProperty#getValue()
+	 * @see #getVersionProperty()
+	 * @generated
+	 */
+	EAttribute getVersionProperty_Value();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1003,6 +1114,14 @@ public interface VersioningPackage extends EPackage {
 		EReference CHANGE_PACKAGE__NOTIFICATIONS = eINSTANCE.getChangePackage_Notifications();
 
 		/**
+		 * The meta object literal for the '<em><b>Version Properties</b></em>' containment reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference CHANGE_PACKAGE__VERSION_PROPERTIES = eINSTANCE.getChangePackage_VersionProperties();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryInfoImpl
 		 * <em>History Info</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -1035,6 +1154,14 @@ public interface VersioningPackage extends EPackage {
 		 * @generated
 		 */
 		EReference HISTORY_INFO__TAG_SPECS = eINSTANCE.getHistoryInfo_TagSpecs();
+
+		/**
+		 * The meta object literal for the '<em><b>Version Properties</b></em>' containment reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference HISTORY_INFO__VERSION_PROPERTIES = eINSTANCE.getHistoryInfo_VersionProperties();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl
@@ -1145,6 +1272,32 @@ public interface VersioningPackage extends EPackage {
 		 * @generated
 		 */
 		EClass HEAD_VERSION_SPEC = eINSTANCE.getHeadVersionSpec();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionPropertyImpl
+		 * <em>Version Property</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersionPropertyImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl#getVersionProperty()
+		 * @generated
+		 */
+		EClass VERSION_PROPERTY = eINSTANCE.getVersionProperty();
+
+		/**
+		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute VERSION_PROPERTY__NAME = eINSTANCE.getVersionProperty_Name();
+
+		/**
+		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute VERSION_PROPERTY__VALUE = eINSTANCE.getVersionProperty_Value();
 
 	}
 

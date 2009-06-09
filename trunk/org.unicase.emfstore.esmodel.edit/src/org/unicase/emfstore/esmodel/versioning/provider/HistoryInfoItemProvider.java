@@ -97,6 +97,7 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(VersioningPackage.Literals.HISTORY_INFO__TAG_SPECS);
+			childrenFeatures.add(VersioningPackage.Literals.HISTORY_INFO__VERSION_PROPERTIES);
 		}
 		return childrenFeatures;
 	}
@@ -150,6 +151,7 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 
 		switch (notification.getFeatureID(HistoryInfo.class)) {
 		case VersioningPackage.HISTORY_INFO__TAG_SPECS:
+		case VersioningPackage.HISTORY_INFO__VERSION_PROPERTIES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -168,6 +170,9 @@ public class HistoryInfoItemProvider extends ItemProviderAdapter implements IEdi
 
 		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.HISTORY_INFO__TAG_SPECS,
 			VersioningFactory.eINSTANCE.createTagVersionSpec()));
+
+		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.HISTORY_INFO__VERSION_PROPERTIES,
+			VersioningFactory.eINSTANCE.createVersionProperty()));
 	}
 
 	/**
