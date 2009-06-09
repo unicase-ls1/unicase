@@ -54,7 +54,7 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public List getRelTypesOnSource(IAdaptable source) {
@@ -72,13 +72,19 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004);
 			types
 					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
+			return types;
+		}else if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
+			List types = new ArrayList();
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
 			return types;
 		}
+
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public List getRelTypesOnTarget(IAdaptable target) {
@@ -96,13 +102,18 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004);
 			types
 					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
+			return types;
+		}else if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
+			List types = new ArrayList();
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public List getRelTypesOnSourceAndTarget(IAdaptable source,
@@ -133,13 +144,28 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007);
 			}
+			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
+			}
 			return types;
 		}
+		
+		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
+			List types = new ArrayList();
+			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart){ 
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
+			}
+			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
+			}
+			return types;
+		}
+		
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public List getTypesForSource(IAdaptable target,
@@ -168,13 +194,27 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006) {
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Package_2002);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+			}
+			
+			return types;
+		}
+		
+		if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
+			List types = new ArrayList();
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006) {
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Package_2002);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+			}
 			return types;
 		}
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public List getTypesForTarget(IAdaptable source,
@@ -202,6 +242,20 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007) {
 				types
 						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+			}
+			
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006) {
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Package_2002);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+			}
+			return types;
+		}
+		
+		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
+			List types = new ArrayList();
+			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006) {
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Package_2002);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			return types;
 		}
