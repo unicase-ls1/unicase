@@ -2,7 +2,7 @@
 <feature
       id="UnicaseEmfStoreFeature"
       label="UnicaseEmfStoreFeature Feature"
-      version="0.2.5"
+      version="0.3.24.internal"
       provider-name="unicase.org">
 
    <description url="http://unicase.org">
