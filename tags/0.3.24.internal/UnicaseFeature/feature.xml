@@ -296,4 +296,18 @@ This Agreement is governed by the laws of the State of New York and the intellec
          version="0.3.24.internal"
          unpack="false"/>
 
+   <plugin
+         id="org.unicase.workspace.ui"
+         download-size="0"
+         install-size="0"
+         version="0.3.24.internal"
+         unpack="false"/>
+
+   <plugin
+         id="org.unicase.ui.activityDiagram"
+         download-size="0"
+         install-size="0"
+         version="0.3.24.internal"
+         unpack="false"/>
+
 </feature>
