@@ -32,6 +32,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.changes.DetailedChangesComposite;
@@ -90,7 +91,11 @@ public class CommitDialog extends TitleAreaDialog {
 		GridDataFactory.fillDefaults().grab(true, false).span(2, 1).align(SWT.FILL, SWT.TOP).hint(1, 150).applyTo(
 			txtLogMsg);
 		String logMsg = "";
-		if (oldLogMessages != null && oldLogMessages.size() > 0) {
+		LogMessage logMessage = changes.getLogMessage();
+		if (logMessage!=null && logMessage.getMessage()!=null) {
+			logMsg = logMessage.getMessage();
+		}
+		else if (oldLogMessages != null && oldLogMessages.size() > 0) {
 			logMsg = oldLogMessages.get(oldLogMessages.size() - 1);
 		}
 		txtLogMsg.setText(logMsg);
