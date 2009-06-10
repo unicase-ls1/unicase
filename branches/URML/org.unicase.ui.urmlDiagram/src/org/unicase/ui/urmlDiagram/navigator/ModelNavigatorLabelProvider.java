@@ -229,48 +229,69 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getHazardCause_2001Text(View view) {
-		HazardCause domainModelElement = (HazardCause) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+		IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCause_2001,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.urmlDiagram.edit.parts.HazardCauseNameEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
 		} else {
 			org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 2001); //$NON-NLS-1$
+					.getInstance().logError(
+							"Parser was not found for label " + 5003); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
+
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getMitigation_2002Text(View view) {
-		Mitigation domainModelElement = (Mitigation) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+		IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.urmlDiagram.providers.ModelElementTypes.Mitigation_2002,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.urmlDiagram.edit.parts.MitigationNameEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
 		} else {
 			org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 2002); //$NON-NLS-1$
+					.getInstance().logError(
+							"Parser was not found for label " + 5004); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
+
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getHazard_2003Text(View view) {
-		Hazard domainModelElement = (Hazard) view.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+		IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.urmlDiagram.providers.ModelElementTypes.Hazard_2003,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.urmlDiagram.edit.parts.HazardNameEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
 		} else {
 			org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 2003); //$NON-NLS-1$
+					.getInstance().logError(
+							"Parser was not found for label " + 5005); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
+
 	}
 
 	/**
@@ -323,17 +344,23 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getFunctionalRequirement_2006Text(View view) {
-		FunctionalRequirement domainModelElement = (FunctionalRequirement) view
-				.getElement();
-		if (domainModelElement != null) {
-			return domainModelElement.getName();
+		IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirement_2006,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementNameEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
 		} else {
 			org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 2006); //$NON-NLS-1$
+					.getInstance().logError(
+							"Parser was not found for label " + 5006); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
+
 	}
 
 	/**
@@ -420,14 +447,40 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getHazardMitigations_4005Text(View view) {
-		return ""; //$NON-NLS-1$
+
+		IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardMitigations_4005,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.urmlDiagram.edit.parts.MitigateLabelEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			return ""; //$NON-NLS-1$
+		}
+
 	}
 
 	/**
 	 * @generated
 	 */
 	private String getHazardCauseMitigations_4006Text(View view) {
-		return ""; //$NON-NLS-1$
+
+		IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel2EditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			return ""; //$NON-NLS-1$
+		}
+
 	}
 
 	/**
