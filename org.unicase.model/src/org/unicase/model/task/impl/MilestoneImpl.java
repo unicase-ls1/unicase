@@ -29,27 +29,23 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Milestone</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPredecessors <em>Predecessors</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getSuccessors <em>Successors</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getAssignee <em>Assignee</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getReviewer <em>Reviewer</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getParticipants <em>Participants</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getDueDate <em>Due Date</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEstimate <em>Estimate</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getEffort <em>Effort</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#isResolved <em>Resolved</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.MilestoneImpl#getContainedModelElements <em>Contained Model Elements</em>}</li>
- * </ul>
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Milestone</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.MilestoneImpl#getPredecessors <em>Predecessors</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#getSuccessors <em>Successors</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#getAssignee <em>Assignee</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#getReviewer <em>Reviewer</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#getParticipants <em>Participants</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#getDueDate <em>Due Date</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#getEstimate <em>Estimate</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#getEffort <em>Effort</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#getPriority <em>Priority</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#isResolved <em>Resolved</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.MilestoneImpl#getContainedModelElements <em>Contained Model Elements</em>}</li> </ul>
  * </p>
- *
  * @generated
  */
 public class MilestoneImpl extends AnnotationImpl implements Milestone {
@@ -227,7 +223,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (eContainerFeatureID() != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eContainer();
 	}
@@ -237,7 +233,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
-		if (eContainerFeatureID() != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eInternalContainer();
 	}
@@ -258,7 +254,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
 		if (newContainingWorkpackage != eInternalContainer()
-			|| (eContainerFeatureID() != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			|| (eContainerFeatureID != TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -622,7 +618,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case TaskPackage.MILESTONE__CONTAINING_WORKPACKAGE:
 			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				WorkPackage.class, msgs);
@@ -660,13 +656,13 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 		case TaskPackage.MILESTONE__DUE_DATE:
 			return getDueDate();
 		case TaskPackage.MILESTONE__ESTIMATE:
-			return getEstimate();
+			return new Integer(getEstimate());
 		case TaskPackage.MILESTONE__EFFORT:
-			return getEffort();
+			return new Integer(getEffort());
 		case TaskPackage.MILESTONE__PRIORITY:
-			return getPriority();
+			return new Integer(getPriority());
 		case TaskPackage.MILESTONE__RESOLVED:
-			return isResolved();
+			return isResolved() ? Boolean.TRUE : Boolean.FALSE;
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
 			return getContainedModelElements();
 		}
@@ -710,16 +706,16 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			setDueDate((Date) newValue);
 			return;
 		case TaskPackage.MILESTONE__ESTIMATE:
-			setEstimate((Integer) newValue);
+			setEstimate(((Integer) newValue).intValue());
 			return;
 		case TaskPackage.MILESTONE__EFFORT:
-			setEffort((Integer) newValue);
+			setEffort(((Integer) newValue).intValue());
 			return;
 		case TaskPackage.MILESTONE__PRIORITY:
-			setPriority((Integer) newValue);
+			setPriority(((Integer) newValue).intValue());
 			return;
 		case TaskPackage.MILESTONE__RESOLVED:
-			setResolved((Boolean) newValue);
+			setResolved(((Boolean) newValue).booleanValue());
 			return;
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
 			getContainedModelElements().clear();

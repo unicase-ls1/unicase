@@ -7,7 +7,7 @@ package org.unicase.model.classes;
 
 import org.eclipse.emf.ecore.EFactory;
 
-/**
+/*
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of
  * the model. <!-- end-user-doc -->
  * @see org.unicase.model.classes.ClassesPackage
@@ -27,7 +27,7 @@ public interface ClassesFactory extends EFactory {
 	 * @return a new object of class '<em>Class</em>'.
 	 * @generated
 	 */
-	Class createClass();
+	org.unicase.model.classes.Class createClass();
 
 	/**
 	 * Returns a new object of class '<em>Package</em>'.
@@ -35,7 +35,7 @@ public interface ClassesFactory extends EFactory {
 	 * @return a new object of class '<em>Package</em>'.
 	 * @generated
 	 */
-	Package createPackage();
+	org.unicase.model.classes.Package createPackage();
 
 	/**
 	 * Returns a new object of class '<em>Association</em>'.
@@ -83,7 +83,7 @@ public interface ClassesFactory extends EFactory {
 	 * @return a new object of class '<em>Object</em>'.
 	 * @generated
 	 */
-	Object createObject();
+	org.unicase.model.classes.Object createObject();
 
 	/**
 	 * Returns the package supported by this factory.

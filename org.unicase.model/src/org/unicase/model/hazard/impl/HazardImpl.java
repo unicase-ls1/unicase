@@ -23,19 +23,13 @@ import org.unicase.model.hazard.Mitigation;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.Actor;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Hazard</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.hazard.impl.HazardImpl#getSeverity <em>Severity</em>}</li>
- *   <li>{@link org.unicase.model.hazard.impl.HazardImpl#getInvolvedClasses <em>Involved Classes</em>}</li>
- *   <li>{@link org.unicase.model.hazard.impl.HazardImpl#getTargetedActors <em>Targeted Actors</em>}</li>
- *   <li>{@link org.unicase.model.hazard.impl.HazardImpl#getCauses <em>Causes</em>}</li>
- *   <li>{@link org.unicase.model.hazard.impl.HazardImpl#getMitigations <em>Mitigations</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Hazard</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.hazard.impl.HazardImpl#getSeverity
+ * <em>Severity</em>}</li> <li>{@link org.unicase.model.hazard.impl.HazardImpl#getInvolvedClasses <em>Involved
+ * Classes</em>}</li> <li>{@link org.unicase.model.hazard.impl.HazardImpl#getTargetedActors <em>Targeted
+ * Actors</em>}</li> <li>{@link org.unicase.model.hazard.impl.HazardImpl#getCauses <em>Causes</em>}</li> <li>{@link
+ * org.unicase.model.hazard.impl.HazardImpl#getMitigations <em>Mitigations</em>}</li> </ul> </p>
  * @generated
  */
 public class HazardImpl extends ModelElementImpl implements Hazard {
@@ -221,7 +215,7 @@ public class HazardImpl extends ModelElementImpl implements Hazard {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case HazardPackage.HAZARD__SEVERITY:
-			return getSeverity();
+			return new Integer(getSeverity());
 		case HazardPackage.HAZARD__INVOLVED_CLASSES:
 			return getInvolvedClasses();
 		case HazardPackage.HAZARD__TARGETED_ACTORS:
@@ -243,7 +237,7 @@ public class HazardImpl extends ModelElementImpl implements Hazard {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case HazardPackage.HAZARD__SEVERITY:
-			setSeverity((Integer) newValue);
+			setSeverity(((Integer) newValue).intValue());
 			return;
 		case HazardPackage.HAZARD__INVOLVED_CLASSES:
 			getInvolvedClasses().clear();

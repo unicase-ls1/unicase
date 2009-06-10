@@ -27,10 +27,9 @@ import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.RequirementPackage;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.requirement.FunctionalRequirement} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FunctionalRequirementItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,

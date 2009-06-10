@@ -8,17 +8,11 @@ package org.unicase.model.change;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.rationale.Proposal;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Merging Proposal</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are supported:
- * <ul>
- * <li>{@link org.unicase.model.change.MergingProposal#getConflictingProposals <em>Conflicting Proposals</em>}</li>
- * <li>{@link org.unicase.model.change.MergingProposal#getPendingChanges <em>Pending Changes</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.change.MergingProposal#getConflictingProposals <em>Conflicting Proposals</em>}</li> <li>{@link
+ * org.unicase.model.change.MergingProposal#getPendingChanges <em>Pending Changes</em>}</li> </ul> </p>
  * @see org.unicase.model.change.ChangePackage#getMergingProposal()
  * @model
  * @generated

@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.profile.*;
 import org.unicase.model.profile.Profile;
 import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.profile.ProfilePackage;
@@ -18,7 +19,7 @@ import org.unicase.model.profile.StereotypeAttributeInstanceString;
 import org.unicase.model.profile.StereotypeAttributeSimple;
 import org.unicase.model.profile.StereotypeInstance;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * @generated
  */

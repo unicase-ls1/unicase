@@ -21,19 +21,13 @@ import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Actor Instance</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.requirement.impl.ActorInstanceImpl#getInitiatedScenarios <em>Initiated Scenarios</em>}</li>
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.requirement.impl.ActorInstanceImpl#getInitiatedScenarios <em>Initiated Scenarios</em>}</li>
  * <li>{@link org.unicase.model.requirement.impl.ActorInstanceImpl#getParticipatedScenarios <em>Participated Scenarios
- * </em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.ActorInstanceImpl#getInstantiatedActor <em>Instantiated Actor</em>}</li>
- * </ul>
- * </p>
- * 
+ * </em>}</li> <li>{@link org.unicase.model.requirement.impl.ActorInstanceImpl#getInstantiatedActor <em>Instantiated
+ * Actor</em>}</li> </ul> </p>
  * @generated
  */
 public class ActorInstanceImpl extends ModelElementImpl implements ActorInstance {

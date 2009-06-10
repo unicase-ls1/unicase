@@ -8,16 +8,10 @@ package org.unicase.model.change;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.rationale.Solution;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Merging Solution</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are supported:
- * <ul>
- * <li>{@link org.unicase.model.change.MergingSolution#getAppliedChanges <em>Applied Changes</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.change.MergingSolution#getAppliedChanges <em>Applied Changes</em>}</li> </ul> </p>
  * @see org.unicase.model.change.ChangePackage#getMergingSolution()
  * @model
  * @generated

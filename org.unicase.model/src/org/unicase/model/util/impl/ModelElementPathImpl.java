@@ -20,18 +20,12 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.util.ModelElementPath;
 import org.unicase.model.util.UtilPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Model Element Path</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.util.impl.ModelElementPathImpl#getSource <em>Source</em>}</li>
- * <li>{@link org.unicase.model.util.impl.ModelElementPathImpl#getTarget <em>Target</em>}</li>
- * <li>{@link org.unicase.model.util.impl.ModelElementPathImpl#getPath <em>Path</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.util.impl.ModelElementPathImpl#getSource <em>Source</em>}</li> <li>{@link
+ * org.unicase.model.util.impl.ModelElementPathImpl#getTarget <em>Target</em>}</li> <li>{@link
+ * org.unicase.model.util.impl.ModelElementPathImpl#getPath <em>Path</em>}</li> </ul> </p>
  * @generated
  */
 public class ModelElementPathImpl extends EObjectImpl implements ModelElementPath {

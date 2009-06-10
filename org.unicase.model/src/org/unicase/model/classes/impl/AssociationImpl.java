@@ -15,21 +15,15 @@ import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Association</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceMultiplicity <em>Source Multiplicity</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetMultiplicity <em>Target Multiplicity</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSourceRole <em>Source Role</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTargetRole <em>Target Role</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are implemented: <ul> <li>{@link org.unicase.model.classes.impl.AssociationImpl#getSource
+ * <em>Source</em>}</li> <li>{@link org.unicase.model.classes.impl.AssociationImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AssociationImpl#getType <em>Type</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AssociationImpl#getSourceMultiplicity <em>Source Multiplicity</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AssociationImpl#getTargetMultiplicity <em>Target Multiplicity</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AssociationImpl#getSourceRole <em>Source Role</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AssociationImpl#getTargetRole <em>Target Role</em>}</li> </ul> </p>
  * @generated
  */
 public class AssociationImpl extends ModelElementImpl implements Association {

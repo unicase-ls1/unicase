@@ -18,17 +18,12 @@ import org.unicase.model.change.MergingProposal;
 import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.rationale.impl.ProposalImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Merging Proposal</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.change.impl.MergingProposalImpl#getConflictingProposals <em>Conflicting Proposals</em>}</li>
- * <li>{@link org.unicase.model.change.impl.MergingProposalImpl#getPendingChanges <em>Pending Changes</em>}</li>
- * </ul>
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.change.impl.MergingProposalImpl#getConflictingProposals <em>Conflicting Proposals</em>}</li>
+ * <li>{@link org.unicase.model.change.impl.MergingProposalImpl#getPendingChanges <em>Pending Changes</em>}</li> </ul>
  * </p>
- * 
  * @generated
  */
 public class MergingProposalImpl extends ProposalImpl implements MergingProposal {

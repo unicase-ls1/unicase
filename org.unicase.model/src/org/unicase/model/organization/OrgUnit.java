@@ -9,19 +9,12 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.WorkItem;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Org Unit</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.organization.OrgUnit#getAcOrgId <em>Ac Org Id</em>}</li>
- *   <li>{@link org.unicase.model.organization.OrgUnit#getGroupMemberships <em>Group Memberships</em>}</li>
- *   <li>{@link org.unicase.model.organization.OrgUnit#getAssignments <em>Assignments</em>}</li>
- *   <li>{@link org.unicase.model.organization.OrgUnit#getParticipations <em>Participations</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Org Unit</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.organization.OrgUnit#getAcOrgId <em>Ac Org
+ * Id</em>}</li> <li>{@link org.unicase.model.organization.OrgUnit#getGroupMemberships <em>Group Memberships</em>}</li>
+ * <li>{@link org.unicase.model.organization.OrgUnit#getAssignments <em>Assignments</em>}</li> <li>{@link
+ * org.unicase.model.organization.OrgUnit#getParticipations <em>Participations</em>}</li> </ul> </p>
  * @see org.unicase.model.organization.OrganizationPackage#getOrgUnit()
  * @model abstract="true"
  * @generated

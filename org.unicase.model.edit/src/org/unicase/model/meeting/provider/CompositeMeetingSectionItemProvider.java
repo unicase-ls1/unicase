@@ -22,10 +22,9 @@ import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.MeetingPackage;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.meeting.CompositeMeetingSection} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class CompositeMeetingSectionItemProvider extends MeetingSectionItemProvider implements

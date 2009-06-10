@@ -7,16 +7,10 @@ package org.unicase.model;
 
 import org.eclipse.emf.common.util.EList;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Attachment</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.Attachment#getReferringModelElements <em>Referring Model Elements</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Attachment</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.Attachment#getReferringModelElements
+ * <em>Referring Model Elements</em>}</li> </ul> </p>
  * @see org.unicase.model.ModelPackage#getAttachment()
  * @model abstract="true"
  * @generated

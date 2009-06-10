@@ -8,18 +8,11 @@ package org.unicase.model.requirement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>System Function</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.SystemFunction#getInput <em>Input</em>}</li>
- *   <li>{@link org.unicase.model.requirement.SystemFunction#getOutput <em>Output</em>}</li>
- *   <li>{@link org.unicase.model.requirement.SystemFunction#getException <em>Exception</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are supported: <ul> <li>{@link org.unicase.model.requirement.SystemFunction#getInput
+ * <em>Input</em>}</li> <li>{@link org.unicase.model.requirement.SystemFunction#getOutput <em>Output</em>}</li>
+ * <li>{@link org.unicase.model.requirement.SystemFunction#getException <em>Exception</em>}</li> </ul> </p>
  * @see org.unicase.model.requirement.RequirementPackage#getSystemFunction()
  * @model
  * @generated

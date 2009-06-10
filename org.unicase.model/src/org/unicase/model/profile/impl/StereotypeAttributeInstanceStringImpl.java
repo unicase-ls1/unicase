@@ -11,16 +11,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.StereotypeAttributeInstanceString;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Stereotype Attribute Instance String</b></em>'.
- * <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceStringImpl#getValue <em>Value</em>}</li>
- * </ul>
- * </p>
- *
+ * <!-- end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.profile.impl.StereotypeAttributeInstanceStringImpl#getValue <em>Value</em>}</li> </ul> </p>
  * @generated
  */
 public class StereotypeAttributeInstanceStringImpl extends StereotypeAttributeInstanceImpl implements

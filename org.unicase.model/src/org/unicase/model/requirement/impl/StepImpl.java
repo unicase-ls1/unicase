@@ -17,18 +17,13 @@ import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.SystemFunction;
 import org.unicase.model.requirement.UseCase;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Step</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.StepImpl#isUserStep <em>User Step</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedUseCase <em>Included Use Case</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedSystemFunction <em>Included System Function</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.StepImpl#getUseCase <em>Use Case</em>}</li>
- * </ul>
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Step</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.requirement.impl.StepImpl#isUserStep <em>User
+ * Step</em>}</li> <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedUseCase <em>Included Use
+ * Case</em>}</li> <li>{@link org.unicase.model.requirement.impl.StepImpl#getIncludedSystemFunction <em>Included System
+ * Function</em>}</li> <li>{@link org.unicase.model.requirement.impl.StepImpl#getUseCase <em>Use Case</em>}</li> </ul>
  * </p>
- *
  * @generated
  */
 public class StepImpl extends ModelElementImpl implements Step {
@@ -189,7 +184,7 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 * @generated
 	 */
 	public UseCase getUseCase() {
-		if (eContainerFeatureID() != RequirementPackage.STEP__USE_CASE)
+		if (eContainerFeatureID != RequirementPackage.STEP__USE_CASE)
 			return null;
 		return (UseCase) eContainer();
 	}
@@ -199,7 +194,7 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 * @generated
 	 */
 	public UseCase basicGetUseCase() {
-		if (eContainerFeatureID() != RequirementPackage.STEP__USE_CASE)
+		if (eContainerFeatureID != RequirementPackage.STEP__USE_CASE)
 			return null;
 		return (UseCase) eInternalContainer();
 	}
@@ -219,7 +214,7 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 */
 	public void setUseCase(UseCase newUseCase) {
 		if (newUseCase != eInternalContainer()
-			|| (eContainerFeatureID() != RequirementPackage.STEP__USE_CASE && newUseCase != null)) {
+			|| (eContainerFeatureID != RequirementPackage.STEP__USE_CASE && newUseCase != null)) {
 			if (EcoreUtil.isAncestor(this, newUseCase))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -270,7 +265,7 @@ public class StepImpl extends ModelElementImpl implements Step {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case RequirementPackage.STEP__USE_CASE:
 			return eInternalContainer().eInverseRemove(this, RequirementPackage.USE_CASE__USE_CASE_STEPS,
 				UseCase.class, msgs);
@@ -286,7 +281,7 @@ public class StepImpl extends ModelElementImpl implements Step {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case RequirementPackage.STEP__USER_STEP:
-			return isUserStep();
+			return isUserStep() ? Boolean.TRUE : Boolean.FALSE;
 		case RequirementPackage.STEP__INCLUDED_USE_CASE:
 			if (resolve)
 				return getIncludedUseCase();
@@ -311,7 +306,7 @@ public class StepImpl extends ModelElementImpl implements Step {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case RequirementPackage.STEP__USER_STEP:
-			setUserStep((Boolean) newValue);
+			setUserStep(((Boolean) newValue).booleanValue());
 			return;
 		case RequirementPackage.STEP__INCLUDED_USE_CASE:
 			setIncludedUseCase((UseCase) newValue);

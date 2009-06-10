@@ -18,16 +18,12 @@ import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.Transition;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Object</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.activity.impl.ActivityObjectImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
- *   <li>{@link org.unicase.model.activity.impl.ActivityObjectImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Object</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link
+ * org.unicase.model.activity.impl.ActivityObjectImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
+ * <li>{@link org.unicase.model.activity.impl.ActivityObjectImpl#getOutgoingTransitions <em>Outgoing
+ * Transitions</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class ActivityObjectImpl extends ModelElementImpl implements ActivityObject {

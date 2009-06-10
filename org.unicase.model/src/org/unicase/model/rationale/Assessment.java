@@ -8,18 +8,11 @@ package org.unicase.model.rationale;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Assessment</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.rationale.Assessment#getProposal <em>Proposal</em>}</li>
- *   <li>{@link org.unicase.model.rationale.Assessment#getCriterion <em>Criterion</em>}</li>
- *   <li>{@link org.unicase.model.rationale.Assessment#getValue <em>Value</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Assessment</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.rationale.Assessment#getProposal
+ * <em>Proposal</em>}</li> <li>{@link org.unicase.model.rationale.Assessment#getCriterion <em>Criterion</em>}</li>
+ * <li>{@link org.unicase.model.rationale.Assessment#getValue <em>Value</em>}</li> </ul> </p>
  * @see org.unicase.model.rationale.RationalePackage#getAssessment()
  * @model
  * @generated

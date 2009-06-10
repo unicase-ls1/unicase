@@ -18,15 +18,10 @@ import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.RationalePackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Criterion</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.CriterionImpl#getAssessments <em>Assessments</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Criterion</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.rationale.impl.CriterionImpl#getAssessments
+ * <em>Assessments</em>}</li> </ul> </p>
  * @generated
  */
 public class CriterionImpl extends ModelElementImpl implements Criterion {

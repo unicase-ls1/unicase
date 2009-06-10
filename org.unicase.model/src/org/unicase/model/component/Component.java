@@ -8,19 +8,13 @@ package org.unicase.model.component;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Component</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.component.Component#getPackages <em>Packages</em>}</li>
- *   <li>{@link org.unicase.model.component.Component#getOfferedServices <em>Offered Services</em>}</li>
- *   <li>{@link org.unicase.model.component.Component#getConsumedServices <em>Consumed Services</em>}</li>
- *   <li>{@link org.unicase.model.component.Component#getSubsystems <em>Subsystems</em>}</li>
- * </ul>
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Component</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.component.Component#getPackages
+ * <em>Packages</em>}</li> <li>{@link org.unicase.model.component.Component#getOfferedServices <em>Offered
+ * Services</em>}</li> <li>{@link org.unicase.model.component.Component#getConsumedServices <em>Consumed
+ * Services</em>}</li> <li>{@link org.unicase.model.component.Component#getSubsystems <em>Subsystems</em>}</li> </ul>
  * </p>
- *
  * @see org.unicase.model.component.ComponentPackage#getComponent()
  * @model
  * @generated

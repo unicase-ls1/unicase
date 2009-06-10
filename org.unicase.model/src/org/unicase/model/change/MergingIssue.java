@@ -7,16 +7,10 @@ package org.unicase.model.change;
 
 import org.unicase.model.rationale.Issue;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Merging Issue</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.change.MergingIssue#getResolvingRevision <em>Resolving Revision</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are supported: <ul> <li>{@link org.unicase.model.change.MergingIssue#getResolvingRevision
+ * <em>Resolving Revision</em>}</li> </ul> </p>
  * @see org.unicase.model.change.ChangePackage#getMergingIssue()
  * @model
  * @generated

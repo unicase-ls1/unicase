@@ -26,24 +26,19 @@ import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Meeting</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getLocation <em>Location</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getStarttime <em>Starttime</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getEndtime <em>Endtime</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getFacilitator <em>Facilitator</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getMinutetaker <em>Minutetaker</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getTimekeeper <em>Timekeeper</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getParticipants <em>Participants</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getSections <em>Sections</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getIdentifiedIssuesSection <em>Identified Issues Section</em>}</li>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getIdentifiedWorkItemsSection <em>Identified Work Items Section</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Meeting</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getLocation
+ * <em>Location</em>}</li> <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getStarttime <em>Starttime</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getEndtime <em>Endtime</em>}</li> <li>{@link
+ * org.unicase.model.meeting.impl.MeetingImpl#getFacilitator <em>Facilitator</em>}</li> <li>{@link
+ * org.unicase.model.meeting.impl.MeetingImpl#getMinutetaker <em>Minutetaker</em>}</li> <li>{@link
+ * org.unicase.model.meeting.impl.MeetingImpl#getTimekeeper <em>Timekeeper</em>}</li> <li>{@link
+ * org.unicase.model.meeting.impl.MeetingImpl#getParticipants <em>Participants</em>}</li> <li>{@link
+ * org.unicase.model.meeting.impl.MeetingImpl#getSections <em>Sections</em>}</li> <li>{@link
+ * org.unicase.model.meeting.impl.MeetingImpl#getIdentifiedIssuesSection <em>Identified Issues Section</em>}</li>
+ * <li>{@link org.unicase.model.meeting.impl.MeetingImpl#getIdentifiedWorkItemsSection <em>Identified Work Items
+ * Section</em>}</li> </ul> </p>
  * @generated
  */
 public class MeetingImpl extends ModelElementImpl implements Meeting {

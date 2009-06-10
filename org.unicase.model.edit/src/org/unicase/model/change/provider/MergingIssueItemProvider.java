@@ -25,9 +25,8 @@ import org.unicase.model.change.MergingIssue;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.rationale.provider.IssueItemProvider;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.change.MergingIssue} object.
- * <!-- begin-user-doc -->
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.change.MergingIssue} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */

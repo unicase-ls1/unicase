@@ -13,6 +13,7 @@ import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.rationale.*;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
@@ -23,11 +24,11 @@ import org.unicase.model.rationale.Solution;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
-/**
- * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
- * {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
- * starting with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is
- * returned, which is the result of the switch. <!-- end-user-doc -->
+/*
+ * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call {@link
+ * #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model, starting
+ * with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is returned,
+ * which is the result of the switch. <!-- end-user-doc -->
  * @see org.unicase.model.rationale.RationalePackage
  * @generated
  */
@@ -87,11 +88,11 @@ public class RationaleSwitch<T> {
 			Issue issue = (Issue) theEObject;
 			T result = caseIssue(issue);
 			if (result == null)
+				result = caseAnnotation(issue);
+			if (result == null)
 				result = caseCheckable(issue);
 			if (result == null)
 				result = caseWorkItem(issue);
-			if (result == null)
-				result = caseAnnotation(issue);
 			if (result == null)
 				result = caseModelElement(issue);
 			if (result == null)

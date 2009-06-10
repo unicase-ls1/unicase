@@ -10,18 +10,11 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Work Package</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.task.WorkPackage#getContainedWorkItems <em>Contained Work Items</em>}</li>
- *   <li>{@link org.unicase.model.task.WorkPackage#getStartDate <em>Start Date</em>}</li>
- *   <li>{@link org.unicase.model.task.WorkPackage#getEndDate <em>End Date</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are supported: <ul> <li>{@link org.unicase.model.task.WorkPackage#getContainedWorkItems
+ * <em>Contained Work Items</em>}</li> <li>{@link org.unicase.model.task.WorkPackage#getStartDate <em>Start
+ * Date</em>}</li> <li>{@link org.unicase.model.task.WorkPackage#getEndDate <em>End Date</em>}</li> </ul> </p>
  * @see org.unicase.model.task.TaskPackage#getWorkPackage()
  * @model
  * @generated

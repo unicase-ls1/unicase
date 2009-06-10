@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
+import org.unicase.model.profile.*;
 import org.unicase.model.profile.Profile;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.Stereotype;
@@ -20,7 +21,7 @@ import org.unicase.model.profile.StereotypeAttributeInstanceString;
 import org.unicase.model.profile.StereotypeAttributeSimple;
 import org.unicase.model.profile.StereotypeInstance;
 
-/**
+/*
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
  * method for each class of the model. <!-- end-user-doc -->
  * @see org.unicase.model.profile.ProfilePackage

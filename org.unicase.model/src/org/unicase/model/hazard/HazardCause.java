@@ -8,20 +8,13 @@ package org.unicase.model.hazard;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Cause</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.hazard.HazardCause#getHazards <em>Hazards</em>}</li>
- *   <li>{@link org.unicase.model.hazard.HazardCause#getHazardousModelElements <em>Hazardous Model Elements</em>}</li>
- *   <li>{@link org.unicase.model.hazard.HazardCause#getEvaluationStatus <em>Evaluation Status</em>}</li>
- *   <li>{@link org.unicase.model.hazard.HazardCause#getLikelihood <em>Likelihood</em>}</li>
- *   <li>{@link org.unicase.model.hazard.HazardCause#getMitigations <em>Mitigations</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Cause</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.hazard.HazardCause#getHazards
+ * <em>Hazards</em>}</li> <li>{@link org.unicase.model.hazard.HazardCause#getHazardousModelElements <em>Hazardous Model
+ * Elements</em>}</li> <li>{@link org.unicase.model.hazard.HazardCause#getEvaluationStatus <em>Evaluation
+ * Status</em>}</li> <li>{@link org.unicase.model.hazard.HazardCause#getLikelihood <em>Likelihood</em>}</li> <li>{@link
+ * org.unicase.model.hazard.HazardCause#getMitigations <em>Mitigations</em>}</li> </ul> </p>
  * @see org.unicase.model.hazard.HazardPackage#getHazardCause()
  * @model
  * @generated

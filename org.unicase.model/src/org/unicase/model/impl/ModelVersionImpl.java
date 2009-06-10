@@ -12,15 +12,10 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.ModelVersion;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Version</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.impl.ModelVersionImpl#getReleaseNumber <em>Release Number</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Version</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.impl.ModelVersionImpl#getReleaseNumber
+ * <em>Release Number</em>}</li> </ul> </p>
  * @generated
  */
 public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
@@ -89,7 +84,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case ModelPackage.MODEL_VERSION__RELEASE_NUMBER:
-			return getReleaseNumber();
+			return new Integer(getReleaseNumber());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -102,7 +97,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case ModelPackage.MODEL_VERSION__RELEASE_NUMBER:
-			setReleaseNumber((Integer) newValue);
+			setReleaseNumber(((Integer) newValue).intValue());
 			return;
 		}
 		super.eSet(featureID, newValue);

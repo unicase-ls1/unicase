@@ -9,11 +9,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.Branch;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Branch</b></em>'. <!-- end-user-doc -->
- * <p>
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Branch</b></em>'. <!-- end-user-doc --> <p>
  * </p>
- *
  * @generated
  */
 public class BranchImpl extends ActivityObjectImpl implements Branch {

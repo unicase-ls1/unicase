@@ -19,12 +19,12 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.classes.ClassesPackage;
+import org.unicase.model.classes.PackageElement;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.classes.PackageElement} object.
- * <!-- begin-user-doc
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.classes.PackageElement} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * @generated
  */

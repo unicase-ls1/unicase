@@ -20,18 +20,12 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>User</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.organization.impl.UserImpl#getEmail <em>Email</em>}</li>
- *   <li>{@link org.unicase.model.organization.impl.UserImpl#getFirstName <em>First Name</em>}</li>
- *   <li>{@link org.unicase.model.organization.impl.UserImpl#getLastName <em>Last Name</em>}</li>
- *   <li>{@link org.unicase.model.organization.impl.UserImpl#getWorkItemsToReview <em>Work Items To Review</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>User</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.organization.impl.UserImpl#getEmail
+ * <em>Email</em>}</li> <li>{@link org.unicase.model.organization.impl.UserImpl#getFirstName <em>First Name</em>}</li>
+ * <li>{@link org.unicase.model.organization.impl.UserImpl#getLastName <em>Last Name</em>}</li> <li>{@link
+ * org.unicase.model.organization.impl.UserImpl#getWorkItemsToReview <em>Work Items To Review</em>}</li> </ul> </p>
  * @generated
  */
 public class UserImpl extends OrgUnitImpl implements User {

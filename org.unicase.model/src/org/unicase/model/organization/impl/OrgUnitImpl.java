@@ -22,18 +22,13 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Org Unit</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.organization.impl.OrgUnitImpl#getAcOrgId <em>Ac Org Id</em>}</li>
- *   <li>{@link org.unicase.model.organization.impl.OrgUnitImpl#getGroupMemberships <em>Group Memberships</em>}</li>
- *   <li>{@link org.unicase.model.organization.impl.OrgUnitImpl#getAssignments <em>Assignments</em>}</li>
- *   <li>{@link org.unicase.model.organization.impl.OrgUnitImpl#getParticipations <em>Participations</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Org Unit</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.organization.impl.OrgUnitImpl#getAcOrgId
+ * <em>Ac Org Id</em>}</li> <li>{@link org.unicase.model.organization.impl.OrgUnitImpl#getGroupMemberships <em>Group
+ * Memberships</em>}</li> <li>{@link org.unicase.model.organization.impl.OrgUnitImpl#getAssignments
+ * <em>Assignments</em>}</li> <li>{@link org.unicase.model.organization.impl.OrgUnitImpl#getParticipations
+ * <em>Participations</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {

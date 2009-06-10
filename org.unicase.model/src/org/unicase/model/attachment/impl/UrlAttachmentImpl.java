@@ -12,15 +12,10 @@ import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.impl.AttachmentImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Url Attachment</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.attachment.impl.UrlAttachmentImpl#getUrl <em>Url</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.attachment.impl.UrlAttachmentImpl#getUrl <em>Url</em>}</li> </ul> </p>
  * @generated
  */
 public class UrlAttachmentImpl extends AttachmentImpl implements UrlAttachment {

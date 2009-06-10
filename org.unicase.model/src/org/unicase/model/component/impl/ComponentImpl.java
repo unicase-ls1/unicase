@@ -20,18 +20,13 @@ import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.ComponentService;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Component</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getPackages <em>Packages</em>}</li>
- *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getOfferedServices <em>Offered Services</em>}</li>
- *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getConsumedServices <em>Consumed Services</em>}</li>
- *   <li>{@link org.unicase.model.component.impl.ComponentImpl#getSubsystems <em>Subsystems</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Component</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.component.impl.ComponentImpl#getPackages
+ * <em>Packages</em>}</li> <li>{@link org.unicase.model.component.impl.ComponentImpl#getOfferedServices <em>Offered
+ * Services</em>}</li> <li>{@link org.unicase.model.component.impl.ComponentImpl#getConsumedServices <em>Consumed
+ * Services</em>}</li> <li>{@link org.unicase.model.component.impl.ComponentImpl#getSubsystems <em>Subsystems</em>}</li>
+ * </ul> </p>
  * @generated
  */
 public class ComponentImpl extends ModelElementImpl implements Component {

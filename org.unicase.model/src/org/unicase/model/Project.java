@@ -11,18 +11,10 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.util.ProjectChangeObserver;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project</b></em>'.
- * 
- * @implements IAdaptable <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.Project#getModelElements <em>Model Elements</em>}</li>
- * </ul>
- * </p>
- *
+ * @implements IAdaptable <!-- end-user-doc --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.Project#getModelElements <em>Model Elements</em>}</li> </ul> </p>
  * @see org.unicase.model.ModelPackage#getProject()
  * @model
  * @generated

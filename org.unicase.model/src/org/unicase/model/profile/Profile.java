@@ -8,17 +8,11 @@ package org.unicase.model.profile;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Profile</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.profile.Profile#getAffectedContainers <em>Affected Containers</em>}</li>
- *   <li>{@link org.unicase.model.profile.Profile#getStereotypes <em>Stereotypes</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Profile</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.profile.Profile#getAffectedContainers
+ * <em>Affected Containers</em>}</li> <li>{@link org.unicase.model.profile.Profile#getStereotypes
+ * <em>Stereotypes</em>}</li> </ul> </p>
  * @see org.unicase.model.profile.ProfilePackage#getProfile()
  * @model
  * @generated

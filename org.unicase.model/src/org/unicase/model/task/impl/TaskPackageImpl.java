@@ -55,7 +55,7 @@ import org.unicase.model.task.WorkPackage;
 import org.unicase.model.util.UtilPackage;
 import org.unicase.model.util.impl.UtilPackageImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
  * @generated
  */
@@ -145,8 +145,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 			return (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
 
 		// Obtain or create and register package
-		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
+		TaskPackageImpl theTaskPackage = (TaskPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof TaskPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(eNS_URI)
 			: new TaskPackageImpl());
 
 		isInited = true;
@@ -658,6 +658,8 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		addAnnotation(getWorkItem_Predecessors(), source, new String[] { "priority", "11.0", "position", "right" });
 		addAnnotation(getWorkItem_Successors(), source, new String[] { "priority", "12.0", "position", "right" });
 		addAnnotation(getWorkItem_Assignee(), source, new String[] { "priority", "11.0", "position", "left" });
+		addAnnotation(getWorkItem_Assignee(), 1, "org.unicase.ui.meeditor", new String[] { "priority", "10.0",
+			"position", "right" });
 		addAnnotation(getWorkItem_Assignee(), 1, "org.unicase.ui.meeditor", new String[] { "priority", "10.0",
 			"position", "right" });
 		addAnnotation(getWorkItem_Reviewer(), source, new String[] { "priority", "12.0", "position", "left" });

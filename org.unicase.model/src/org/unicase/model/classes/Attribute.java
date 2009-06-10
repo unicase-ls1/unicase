@@ -7,23 +7,16 @@ package org.unicase.model.classes;
 
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Attribute</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.classes.Attribute#getDefiningClass <em>Defining Class</em>}</li>
- *   <li>{@link org.unicase.model.classes.Attribute#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.unicase.model.classes.Attribute#getScope <em>Scope</em>}</li>
- *   <li>{@link org.unicase.model.classes.Attribute#getSignature <em>Signature</em>}</li>
- *   <li>{@link org.unicase.model.classes.Attribute#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.Attribute#getDefaultValue <em>Default Value</em>}</li>
- *   <li>{@link org.unicase.model.classes.Attribute#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.unicase.model.classes.Attribute#getLabel <em>Label</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Attribute</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.classes.Attribute#getDefiningClass
+ * <em>Defining Class</em>}</li> <li>{@link org.unicase.model.classes.Attribute#getVisibility <em>Visibility</em>}</li>
+ * <li>{@link org.unicase.model.classes.Attribute#getScope <em>Scope</em>}</li> <li>{@link
+ * org.unicase.model.classes.Attribute#getSignature <em>Signature</em>}</li> <li>{@link
+ * org.unicase.model.classes.Attribute#getType <em>Type</em>}</li> <li>{@link
+ * org.unicase.model.classes.Attribute#getDefaultValue <em>Default Value</em>}</li> <li>{@link
+ * org.unicase.model.classes.Attribute#getProperties <em>Properties</em>}</li> <li>{@link
+ * org.unicase.model.classes.Attribute#getLabel <em>Label</em>}</li> </ul> </p>
  * @see org.unicase.model.classes.ClassesPackage#getAttribute()
  * @model
  * @generated
@@ -39,23 +32,24 @@ public interface Attribute extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Defining Class</em>' container reference.
-	 * @see #setDefiningClass(Class)
+	 * @see #setDefiningClass(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getAttribute_DefiningClass()
 	 * @see org.unicase.model.classes.Class#getAttributes
 	 * @model opposite="attributes" transient="false"
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
-	Class getDefiningClass();
+	org.unicase.model.classes.Class getDefiningClass();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Attribute#getDefiningClass <em>Defining Class</em>}' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Defining Class</em>' container reference.
 	 * @see #getDefiningClass()
 	 * @generated
 	 */
-	void setDefiningClass(Class value);
+	void setDefiningClass(org.unicase.model.classes.Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute.

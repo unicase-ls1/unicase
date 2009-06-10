@@ -30,29 +30,24 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Work Package</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getPredecessors <em>Predecessors</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getSuccessors <em>Successors</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getAssignee <em>Assignee</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getReviewer <em>Reviewer</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getParticipants <em>Participants</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getDueDate <em>Due Date</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getEstimate <em>Estimate</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getEffort <em>Effort</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#isResolved <em>Resolved</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getContainedWorkItems <em>Contained Work Items</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getStartDate <em>Start Date</em>}</li>
- *   <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getEndDate <em>End Date</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
+ * <li>{@link org.unicase.model.task.impl.WorkPackageImpl#getPredecessors <em>Predecessors</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getSuccessors <em>Successors</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getAssignee <em>Assignee</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getReviewer <em>Reviewer</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getParticipants <em>Participants</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getDueDate <em>Due Date</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getEstimate <em>Estimate</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getEffort <em>Effort</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getPriority <em>Priority</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#isResolved <em>Resolved</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getContainedWorkItems <em>Contained Work Items</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getStartDate <em>Start Date</em>}</li> <li>{@link
+ * org.unicase.model.task.impl.WorkPackageImpl#getEndDate <em>End Date</em>}</li> </ul> </p>
  * @generated
  */
 public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
@@ -266,7 +261,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (eContainerFeatureID() != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eContainer();
 	}
@@ -276,7 +271,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
-		if (eContainerFeatureID() != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eInternalContainer();
 	}
@@ -297,7 +292,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
 		if (newContainingWorkpackage != eInternalContainer()
-			|| (eContainerFeatureID() != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			|| (eContainerFeatureID != TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -707,7 +702,7 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case TaskPackage.WORK_PACKAGE__CONTAINING_WORKPACKAGE:
 			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				WorkPackage.class, msgs);
@@ -745,13 +740,13 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		case TaskPackage.WORK_PACKAGE__DUE_DATE:
 			return getDueDate();
 		case TaskPackage.WORK_PACKAGE__ESTIMATE:
-			return getEstimate();
+			return new Integer(getEstimate());
 		case TaskPackage.WORK_PACKAGE__EFFORT:
-			return getEffort();
+			return new Integer(getEffort());
 		case TaskPackage.WORK_PACKAGE__PRIORITY:
-			return getPriority();
+			return new Integer(getPriority());
 		case TaskPackage.WORK_PACKAGE__RESOLVED:
-			return isResolved();
+			return isResolved() ? Boolean.TRUE : Boolean.FALSE;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			return getContainedWorkItems();
 		case TaskPackage.WORK_PACKAGE__START_DATE:
@@ -799,16 +794,16 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			setDueDate((Date) newValue);
 			return;
 		case TaskPackage.WORK_PACKAGE__ESTIMATE:
-			setEstimate((Integer) newValue);
+			setEstimate(((Integer) newValue).intValue());
 			return;
 		case TaskPackage.WORK_PACKAGE__EFFORT:
-			setEffort((Integer) newValue);
+			setEffort(((Integer) newValue).intValue());
 			return;
 		case TaskPackage.WORK_PACKAGE__PRIORITY:
-			setPriority((Integer) newValue);
+			setPriority(((Integer) newValue).intValue());
 			return;
 		case TaskPackage.WORK_PACKAGE__RESOLVED:
-			setResolved((Boolean) newValue);
+			setResolved(((Boolean) newValue).booleanValue());
 			return;
 		case TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS:
 			getContainedWorkItems().clear();

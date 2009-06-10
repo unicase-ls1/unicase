@@ -7,17 +7,11 @@ package org.unicase.model.classes;
 
 import org.eclipse.emf.common.util.EList;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Package</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.classes.Package#getContainedPackageElements <em>Contained Package Elements</em>}</li>
- *   <li>{@link org.unicase.model.classes.Package#getFacadeClass <em>Facade Class</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Package</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.classes.Package#getContainedPackageElements
+ * <em>Contained Package Elements</em>}</li> <li>{@link org.unicase.model.classes.Package#getFacadeClass <em>Facade
+ * Class</em>}</li> </ul> </p>
  * @see org.unicase.model.classes.ClassesPackage#getPackage()
  * @model
  * @generated
@@ -52,20 +46,21 @@ public interface Package extends PackageElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Facade Class</em>' reference.
-	 * @see #setFacadeClass(Class)
+	 * @see #setFacadeClass(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getPackage_FacadeClass()
 	 * @model annotation="org.unicase.ui.meeditor priority='20.0' position='left'"
 	 * @generated
 	 */
-	Class getFacadeClass();
+	org.unicase.model.classes.Class getFacadeClass();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Package#getFacadeClass <em>Facade Class</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Facade Class</em>' reference.
 	 * @see #getFacadeClass()
 	 * @generated
 	 */
-	void setFacadeClass(Class value);
+	void setFacadeClass(org.unicase.model.classes.Class value);
 
 } // Package

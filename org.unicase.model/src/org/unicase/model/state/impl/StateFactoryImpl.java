@@ -10,12 +10,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.state.*;
 import org.unicase.model.state.State;
 import org.unicase.model.state.StateFactory;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * @generated
  */

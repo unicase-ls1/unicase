@@ -17,15 +17,10 @@ import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Annotation</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.impl.AnnotationImpl#getAnnotatedModelElements <em>Annotated Model Elements</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.impl.AnnotationImpl#getAnnotatedModelElements <em>Annotated Model Elements</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class AnnotationImpl extends ModelElementImpl implements Annotation {

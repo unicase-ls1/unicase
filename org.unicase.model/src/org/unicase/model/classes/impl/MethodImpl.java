@@ -29,26 +29,20 @@ import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Method</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getScope <em>Scope</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getDefiningClass <em>Defining Class</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getReturnType <em>Return Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getSignature <em>Signature</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getArguments <em>Arguments</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getLabel <em>Label</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#isStubbed <em>Stubbed</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getCalledMethods <em>Called Methods</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getCallingMethods <em>Calling Methods</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.MethodImpl#getDemoParticipations <em>Demo Participations</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Method</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.classes.impl.MethodImpl#getVisibility
+ * <em>Visibility</em>}</li> <li>{@link org.unicase.model.classes.impl.MethodImpl#getScope <em>Scope</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getDefiningClass <em>Defining Class</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodImpl#getReturnType <em>Return Type</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodImpl#getSignature <em>Signature</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodImpl#getArguments <em>Arguments</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodImpl#getProperties <em>Properties</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodImpl#getLabel <em>Label</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodImpl#isStubbed <em>Stubbed</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodImpl#getCalledMethods <em>Called Methods</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodImpl#getCallingMethods <em>Calling Methods</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodImpl#getDemoParticipations <em>Demo Participations</em>}</li> </ul> </p>
  * @generated
  */
 public class MethodImpl extends ModelElementImpl implements Method {
@@ -283,7 +277,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getDefiningClass() {
-		if (eContainerFeatureID() != ClassesPackage.METHOD__DEFINING_CLASS)
+		if (eContainerFeatureID != ClassesPackage.METHOD__DEFINING_CLASS)
 			return null;
 		return (org.unicase.model.classes.Class) eContainer();
 	}
@@ -293,7 +287,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetDefiningClass() {
-		if (eContainerFeatureID() != ClassesPackage.METHOD__DEFINING_CLASS)
+		if (eContainerFeatureID != ClassesPackage.METHOD__DEFINING_CLASS)
 			return null;
 		return (org.unicase.model.classes.Class) eInternalContainer();
 	}
@@ -314,7 +308,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 */
 	public void setDefiningClass(org.unicase.model.classes.Class newDefiningClass) {
 		if (newDefiningClass != eInternalContainer()
-			|| (eContainerFeatureID() != ClassesPackage.METHOD__DEFINING_CLASS && newDefiningClass != null)) {
+			|| (eContainerFeatureID != ClassesPackage.METHOD__DEFINING_CLASS && newDefiningClass != null)) {
 			if (EcoreUtil.isAncestor(this, newDefiningClass))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -467,7 +461,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case ClassesPackage.METHOD__DEFINING_CLASS:
 			return eInternalContainer().eInverseRemove(this, ClassesPackage.CLASS__METHODS,
 				org.unicase.model.classes.Class.class, msgs);
@@ -501,7 +495,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 		case ClassesPackage.METHOD__LABEL:
 			return getLabel();
 		case ClassesPackage.METHOD__STUBBED:
-			return isStubbed();
+			return isStubbed() ? Boolean.TRUE : Boolean.FALSE;
 		case ClassesPackage.METHOD__CALLED_METHODS:
 			return getCalledMethods();
 		case ClassesPackage.METHOD__CALLING_METHODS:
@@ -543,7 +537,7 @@ public class MethodImpl extends ModelElementImpl implements Method {
 			setLabel((String) newValue);
 			return;
 		case ClassesPackage.METHOD__STUBBED:
-			setStubbed((Boolean) newValue);
+			setStubbed(((Boolean) newValue).booleanValue());
 			return;
 		case ClassesPackage.METHOD__CALLED_METHODS:
 			getCalledMethods().clear();

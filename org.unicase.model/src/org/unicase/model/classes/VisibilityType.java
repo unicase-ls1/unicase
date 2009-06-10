@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Visibility Type</b></em>', and
  * utility methods for working with them. <!-- end-user-doc -->
  * @see org.unicase.model.classes.ClassesPackage#getVisibilityType()
@@ -27,13 +27,13 @@ public enum VisibilityType implements Enumerator {
 	 * @ordered
 	 */
 	UNDEFINED(0, "UNDEFINED", "Undefined"), /**
-											 * The '<em><b>PACKAGE</b></em>' literal object.
-											 * <!-- begin-user-doc -->
-											 * <!-- end-user-doc -->
-											 * @see #PACKAGE_VALUE
-											 * @generated
-											 * @ordered
-											 */
+	 * The '<em><b>PACKAGE</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #PACKAGE_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	PACKAGE(1, "PACKAGE", "#"),
 
 	/**
@@ -53,13 +53,13 @@ public enum VisibilityType implements Enumerator {
 	 * @ordered
 	 */
 	GLOBAL(3, "GLOBAL", "+"), /**
-								 * The '<em><b>PROTECTED</b></em>' literal object.
-								 * <!-- begin-user-doc --> <!--
-								 * end-user-doc -->
-								 * @see #PROTECTED_VALUE
-								 * @generated
-								 * @ordered
-								 */
+	 * The '<em><b>PROTECTED</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #PROTECTED_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	PROTECTED(4, "PROTECTED", "~");
 
 	/**

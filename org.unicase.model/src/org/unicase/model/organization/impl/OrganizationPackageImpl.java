@@ -51,7 +51,7 @@ import org.unicase.model.task.impl.TaskPackageImpl;
 import org.unicase.model.util.UtilPackage;
 import org.unicase.model.util.impl.UtilPackageImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
  * @generated
  */
@@ -124,7 +124,7 @@ public class OrganizationPackageImpl extends EPackageImpl implements Organizatio
 
 		// Obtain or create and register package
 		OrganizationPackageImpl theOrganizationPackage = (OrganizationPackageImpl) (EPackage.Registry.INSTANCE
-			.get(eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
+			.getEPackage(eNS_URI) instanceof OrganizationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
 			: new OrganizationPackageImpl());
 
 		isInited = true;

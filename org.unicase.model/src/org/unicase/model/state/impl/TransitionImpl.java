@@ -15,17 +15,11 @@ import org.unicase.model.state.State;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.state.impl.TransitionImpl#getCondition <em>Condition</em>}</li>
- *   <li>{@link org.unicase.model.state.impl.TransitionImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.unicase.model.state.impl.TransitionImpl#getTarget <em>Target</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.state.impl.TransitionImpl#getCondition
+ * <em>Condition</em>}</li> <li>{@link org.unicase.model.state.impl.TransitionImpl#getSource <em>Source</em>}</li>
+ * <li>{@link org.unicase.model.state.impl.TransitionImpl#getTarget <em>Target</em>}</li> </ul> </p>
  * @generated
  */
 public class TransitionImpl extends ModelElementImpl implements Transition {

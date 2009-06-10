@@ -5,17 +5,10 @@
  */
 package org.unicase.model.profile;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Stereotype Attribute Instance String</b></em>'.
- * <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.profile.StereotypeAttributeInstanceString#getValue <em>Value</em>}</li>
- * </ul>
- * </p>
- *
+ * <!-- end-user-doc --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.profile.StereotypeAttributeInstanceString#getValue <em>Value</em>}</li> </ul> </p>
  * @see org.unicase.model.profile.ProfilePackage#getStereotypeAttributeInstanceString()
  * @model
  * @generated

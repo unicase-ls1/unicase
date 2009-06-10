@@ -8,19 +8,12 @@ package org.unicase.model.requirement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Step</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.Step#isUserStep <em>User Step</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Step#getIncludedUseCase <em>Included Use Case</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Step#getIncludedSystemFunction <em>Included System Function</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Step#getUseCase <em>Use Case</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Step</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.requirement.Step#isUserStep <em>User
+ * Step</em>}</li> <li>{@link org.unicase.model.requirement.Step#getIncludedUseCase <em>Included Use Case</em>}</li>
+ * <li>{@link org.unicase.model.requirement.Step#getIncludedSystemFunction <em>Included System Function</em>}</li>
+ * <li>{@link org.unicase.model.requirement.Step#getUseCase <em>Use Case</em>}</li> </ul> </p>
  * @see org.unicase.model.requirement.RequirementPackage#getStep()
  * @model
  * @generated

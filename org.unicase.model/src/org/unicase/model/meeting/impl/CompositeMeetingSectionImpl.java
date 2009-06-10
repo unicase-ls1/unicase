@@ -17,16 +17,10 @@ import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.MeetingSection;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Composite Meeting Section</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.meeting.impl.CompositeMeetingSectionImpl#getSubsections <em>Subsections</em>}</li>
- * </ul>
- * </p>
- *
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.meeting.impl.CompositeMeetingSectionImpl#getSubsections <em>Subsections</em>}</li> </ul> </p>
  * @generated
  */
 public class CompositeMeetingSectionImpl extends MeetingSectionImpl implements CompositeMeetingSection {

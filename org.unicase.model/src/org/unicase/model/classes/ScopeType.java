@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Scope Type</b></em>', and utility
  * methods for working with them. <!-- end-user-doc -->
  * @see org.unicase.model.classes.ClassesPackage#getScopeType()
@@ -27,13 +27,13 @@ public enum ScopeType implements Enumerator {
 	 * @ordered
 	 */
 	INSTANCE(1, "INSTANCE", "Instance"), /**
-											 * The '<em><b>CLASS</b></em>' literal object.
-											 * <!-- begin-user-doc --> <!--
-											 * end-user-doc -->
-											 * @see #CLASS_VALUE
-											 * @generated
-											 * @ordered
-											 */
+	 * The '<em><b>CLASS</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #CLASS_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	CLASS(2, "CLASS", "Class");
 
 	/**

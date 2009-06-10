@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -35,19 +36,13 @@ import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.impl.AttachmentImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>ME Diagram</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getElements <em>Elements</em>}</li>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram <em>Gmfdiagram</em>}</li>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>New Elements</em>}</li>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are implemented: <ul> <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getElements
+ * <em>Elements</em>}</li> <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getGmfdiagram
+ * <em>Gmfdiagram</em>}</li> <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getNewElements <em>New
+ * Elements</em>}</li> <li>{@link org.unicase.model.diagram.impl.MEDiagramImpl#getType <em>Type</em>}</li> <li>{@link
+ * org.unicase.model.diagram.impl.MEDiagramImpl#getDiagramLayout <em>Diagram Layout</em>}</li> </ul> </p>
  * @generated
  */
 public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {

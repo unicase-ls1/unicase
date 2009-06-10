@@ -21,16 +21,12 @@ import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.ComponentService;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Service</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.component.impl.ComponentServiceImpl#getOfferingComponent <em>Offering Component</em>}</li>
- *   <li>{@link org.unicase.model.component.impl.ComponentServiceImpl#getConsumingComponents <em>Consuming Components</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Service</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.component.impl.ComponentServiceImpl#getOfferingComponent <em>Offering Component</em>}</li>
+ * <li>{@link org.unicase.model.component.impl.ComponentServiceImpl#getConsumingComponents <em>Consuming
+ * Components</em>}</li> </ul> </p>
  * @generated
  */
 public class ComponentServiceImpl extends ModelElementImpl implements ComponentService {
@@ -66,7 +62,7 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 * @generated
 	 */
 	public Component getOfferingComponent() {
-		if (eContainerFeatureID() != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
+		if (eContainerFeatureID != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
 			return null;
 		return (Component) eContainer();
 	}
@@ -76,7 +72,7 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 * @generated
 	 */
 	public Component basicGetOfferingComponent() {
-		if (eContainerFeatureID() != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
+		if (eContainerFeatureID != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT)
 			return null;
 		return (Component) eInternalContainer();
 	}
@@ -97,7 +93,7 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 */
 	public void setOfferingComponent(Component newOfferingComponent) {
 		if (newOfferingComponent != eInternalContainer()
-			|| (eContainerFeatureID() != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT && newOfferingComponent != null)) {
+			|| (eContainerFeatureID != ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT && newOfferingComponent != null)) {
 			if (EcoreUtil.isAncestor(this, newOfferingComponent))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -166,7 +162,7 @@ public class ComponentServiceImpl extends ModelElementImpl implements ComponentS
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case ComponentPackage.COMPONENT_SERVICE__OFFERING_COMPONENT:
 			return eInternalContainer().eInverseRemove(this, ComponentPackage.COMPONENT__OFFERED_SERVICES,
 				Component.class, msgs);

@@ -7,16 +7,10 @@ package org.unicase.model;
 
 import org.eclipse.emf.ecore.EObject;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Version</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.ModelVersion#getReleaseNumber <em>Release Number</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Version</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.ModelVersion#getReleaseNumber <em>Release
+ * Number</em>}</li> </ul> </p>
  * @see org.unicase.model.ModelPackage#getModelVersion()
  * @model
  * @generated

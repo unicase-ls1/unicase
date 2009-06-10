@@ -15,17 +15,11 @@ import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.Transition;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.activity.impl.TransitionImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.unicase.model.activity.impl.TransitionImpl#getTarget <em>Target</em>}</li>
- *   <li>{@link org.unicase.model.activity.impl.TransitionImpl#getCondition <em>Condition</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.activity.impl.TransitionImpl#getSource
+ * <em>Source</em>}</li> <li>{@link org.unicase.model.activity.impl.TransitionImpl#getTarget <em>Target</em>}</li>
+ * <li>{@link org.unicase.model.activity.impl.TransitionImpl#getCondition <em>Condition</em>}</li> </ul> </p>
  * @generated
  */
 public class TransitionImpl extends ModelElementImpl implements Transition {

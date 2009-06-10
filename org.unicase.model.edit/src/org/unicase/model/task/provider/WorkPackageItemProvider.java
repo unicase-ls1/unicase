@@ -30,9 +30,8 @@ import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.task.WorkPackage} object.
- * <!-- begin-user-doc -->
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.task.WorkPackage} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */

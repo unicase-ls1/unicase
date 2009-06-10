@@ -7,16 +7,10 @@ package org.unicase.model.classes;
 
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Object</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.classes.Object#getClass_ <em>Class</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Object</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.classes.Object#getClass_ <em>Class</em>}</li>
+ * </ul> </p>
  * @see org.unicase.model.classes.ClassesPackage#getObject()
  * @model
  * @generated
@@ -32,22 +26,22 @@ public interface Object extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Class</em>' reference.
-	 * @see #setClass(Class)
+	 * @see #setClass(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getObject_Class()
 	 * @see org.unicase.model.classes.Class#getInstances
 	 * @model opposite="instances" keys="identifier"
 	 * @generated
 	 */
-	Class getClass_();
+	org.unicase.model.classes.Class getClass_();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Object#getClass_ <em>Class</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.classes.Object#getClass_ <em>Class</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Class</em>' reference.
 	 * @see #getClass_()
 	 * @generated
 	 */
-	void setClass(Class value);
+	void setClass(org.unicase.model.classes.Class value);
 
 } // Object

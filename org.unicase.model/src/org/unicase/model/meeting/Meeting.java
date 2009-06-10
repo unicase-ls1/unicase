@@ -12,25 +12,19 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Meeting</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.meeting.Meeting#getLocation <em>Location</em>}</li>
- *   <li>{@link org.unicase.model.meeting.Meeting#getStarttime <em>Starttime</em>}</li>
- *   <li>{@link org.unicase.model.meeting.Meeting#getEndtime <em>Endtime</em>}</li>
- *   <li>{@link org.unicase.model.meeting.Meeting#getFacilitator <em>Facilitator</em>}</li>
- *   <li>{@link org.unicase.model.meeting.Meeting#getMinutetaker <em>Minutetaker</em>}</li>
- *   <li>{@link org.unicase.model.meeting.Meeting#getTimekeeper <em>Timekeeper</em>}</li>
- *   <li>{@link org.unicase.model.meeting.Meeting#getParticipants <em>Participants</em>}</li>
- *   <li>{@link org.unicase.model.meeting.Meeting#getSections <em>Sections</em>}</li>
- *   <li>{@link org.unicase.model.meeting.Meeting#getIdentifiedIssuesSection <em>Identified Issues Section</em>}</li>
- *   <li>{@link org.unicase.model.meeting.Meeting#getIdentifiedWorkItemsSection <em>Identified Work Items Section</em>}</li>
- * </ul>
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Meeting</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.meeting.Meeting#getLocation
+ * <em>Location</em>}</li> <li>{@link org.unicase.model.meeting.Meeting#getStarttime <em>Starttime</em>}</li> <li>{@link
+ * org.unicase.model.meeting.Meeting#getEndtime <em>Endtime</em>}</li> <li>{@link
+ * org.unicase.model.meeting.Meeting#getFacilitator <em>Facilitator</em>}</li> <li>{@link
+ * org.unicase.model.meeting.Meeting#getMinutetaker <em>Minutetaker</em>}</li> <li>{@link
+ * org.unicase.model.meeting.Meeting#getTimekeeper <em>Timekeeper</em>}</li> <li>{@link
+ * org.unicase.model.meeting.Meeting#getParticipants <em>Participants</em>}</li> <li>{@link
+ * org.unicase.model.meeting.Meeting#getSections <em>Sections</em>}</li> <li>{@link
+ * org.unicase.model.meeting.Meeting#getIdentifiedIssuesSection <em>Identified Issues Section</em>}</li> <li>{@link
+ * org.unicase.model.meeting.Meeting#getIdentifiedWorkItemsSection <em>Identified Work Items Section</em>}</li> </ul>
  * </p>
- *
  * @see org.unicase.model.meeting.MeetingPackage#getMeeting()
  * @model
  * @generated

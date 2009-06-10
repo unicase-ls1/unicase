@@ -25,9 +25,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.state.Transition} object.
- * <!-- begin-user-doc -->
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.state.Transition} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */

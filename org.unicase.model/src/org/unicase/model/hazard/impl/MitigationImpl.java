@@ -22,18 +22,12 @@ import org.unicase.model.hazard.HazardPackage;
 import org.unicase.model.hazard.Mitigation;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Mitigation</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.hazard.impl.MitigationImpl#getTechnique <em>Technique</em>}</li>
- *   <li>{@link org.unicase.model.hazard.impl.MitigationImpl#getEvaluationStatus <em>Evaluation Status</em>}</li>
- *   <li>{@link org.unicase.model.hazard.impl.MitigationImpl#getCauses <em>Causes</em>}</li>
- *   <li>{@link org.unicase.model.hazard.impl.MitigationImpl#getHazards <em>Hazards</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Mitigation</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.hazard.impl.MitigationImpl#getTechnique
+ * <em>Technique</em>}</li> <li>{@link org.unicase.model.hazard.impl.MitigationImpl#getEvaluationStatus <em>Evaluation
+ * Status</em>}</li> <li>{@link org.unicase.model.hazard.impl.MitigationImpl#getCauses <em>Causes</em>}</li> <li>{@link
+ * org.unicase.model.hazard.impl.MitigationImpl#getHazards <em>Hazards</em>}</li> </ul> </p>
  * @generated
  */
 public class MitigationImpl extends ModelElementImpl implements Mitigation {

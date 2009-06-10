@@ -5,17 +5,10 @@
  */
 package org.unicase.model.profile;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Stereotype Attribute Simple</b></em>'. <!--
- * end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.profile.StereotypeAttributeSimple#getType <em>Type</em>}</li>
- * </ul>
- * </p>
- *
+ * end-user-doc --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.profile.StereotypeAttributeSimple#getType <em>Type</em>}</li> </ul> </p>
  * @see org.unicase.model.profile.ProfilePackage#getStereotypeAttributeSimple()
  * @model
  * @generated

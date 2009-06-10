@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.model.*;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
 import org.unicase.model.IdentifiableElement;
@@ -20,11 +21,11 @@ import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
 import org.unicase.model.UniqueIdentifier;
 
-/**
- * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
- * {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
- * starting with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is
- * returned, which is the result of the switch. <!-- end-user-doc -->
+/*
+ * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call {@link
+ * #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model, starting
+ * with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is returned,
+ * which is the result of the switch. <!-- end-user-doc -->
  * @see org.unicase.model.ModelPackage
  * @generated
  */

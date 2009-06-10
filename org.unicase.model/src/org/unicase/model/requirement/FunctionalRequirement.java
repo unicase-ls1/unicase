@@ -9,26 +9,19 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Functional Requirement</b></em>'. <!--
- * end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getDetailedUseCases <em>Detailed Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStakeholder <em>Stakeholder</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getCost <em>Cost</em>}</li>
- *   <li>{@link org.unicase.model.requirement.FunctionalRequirement#getDetailedFeatures <em>Detailed Features</em>}</li>
- * </ul>
- * </p>
- *
+ * end-user-doc --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement <em>Refined Requirement</em>}</li>
+ * <li>{@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}</li> <li>{@link
+ * org.unicase.model.requirement.FunctionalRequirement#getPriority <em>Priority</em>}</li> <li>{@link
+ * org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements <em>Refining Requirements</em>}</li>
+ * <li>{@link org.unicase.model.requirement.FunctionalRequirement#getDetailedUseCases <em>Detailed Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.FunctionalRequirement#getScenarios <em>Scenarios</em>}</li> <li>{@link
+ * org.unicase.model.requirement.FunctionalRequirement#isReviewed <em>Reviewed</em>}</li> <li>{@link
+ * org.unicase.model.requirement.FunctionalRequirement#getStakeholder <em>Stakeholder</em>}</li> <li>{@link
+ * org.unicase.model.requirement.FunctionalRequirement#getCost <em>Cost</em>}</li> <li>{@link
+ * org.unicase.model.requirement.FunctionalRequirement#getDetailedFeatures <em>Detailed Features</em>}</li> </ul> </p>
  * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement()
  * @model
  * @generated

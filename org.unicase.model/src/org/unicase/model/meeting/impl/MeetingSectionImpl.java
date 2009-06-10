@@ -12,15 +12,10 @@ import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.MeetingSection;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Section</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.meeting.impl.MeetingSectionImpl#getAllocatedTime <em>Allocated Time</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Section</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.meeting.impl.MeetingSectionImpl#getAllocatedTime <em>Allocated Time</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class MeetingSectionImpl extends ModelElementImpl implements MeetingSection {
@@ -89,7 +84,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case MeetingPackage.MEETING_SECTION__ALLOCATED_TIME:
-			return getAllocatedTime();
+			return new Integer(getAllocatedTime());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -102,7 +97,7 @@ public abstract class MeetingSectionImpl extends ModelElementImpl implements Mee
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case MeetingPackage.MEETING_SECTION__ALLOCATED_TIME:
-			setAllocatedTime((Integer) newValue);
+			setAllocatedTime(((Integer) newValue).intValue());
 			return;
 		}
 		super.eSet(featureID, newValue);

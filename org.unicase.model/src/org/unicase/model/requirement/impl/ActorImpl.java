@@ -22,19 +22,14 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Actor</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInitiatedUserTask <em>Initiated User Task</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.ActorImpl#getParticipatedUserTasks <em>Participated User Tasks</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInitiatedUseCases <em>Initiated Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.ActorImpl#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInstances <em>Instances</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Actor</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInitiatedUserTask
+ * <em>Initiated User Task</em>}</li> <li>{@link org.unicase.model.requirement.impl.ActorImpl#getParticipatedUserTasks
+ * <em>Participated User Tasks</em>}</li> <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInitiatedUseCases
+ * <em>Initiated Use Cases</em>}</li> <li>{@link org.unicase.model.requirement.impl.ActorImpl#getParticipatedUseCases
+ * <em>Participated Use Cases</em>}</li> <li>{@link org.unicase.model.requirement.impl.ActorImpl#getInstances
+ * <em>Instances</em>}</li> </ul> </p>
  * @generated
  */
 public class ActorImpl extends ModelElementImpl implements Actor {

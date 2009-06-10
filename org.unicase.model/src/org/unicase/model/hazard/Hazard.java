@@ -9,20 +9,13 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.requirement.Actor;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Hazard</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.hazard.Hazard#getSeverity <em>Severity</em>}</li>
- *   <li>{@link org.unicase.model.hazard.Hazard#getInvolvedClasses <em>Involved Classes</em>}</li>
- *   <li>{@link org.unicase.model.hazard.Hazard#getTargetedActors <em>Targeted Actors</em>}</li>
- *   <li>{@link org.unicase.model.hazard.Hazard#getCauses <em>Causes</em>}</li>
- *   <li>{@link org.unicase.model.hazard.Hazard#getMitigations <em>Mitigations</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Hazard</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.hazard.Hazard#getSeverity <em>Severity</em>}</li>
+ * <li>{@link org.unicase.model.hazard.Hazard#getInvolvedClasses <em>Involved Classes</em>}</li> <li>{@link
+ * org.unicase.model.hazard.Hazard#getTargetedActors <em>Targeted Actors</em>}</li> <li>{@link
+ * org.unicase.model.hazard.Hazard#getCauses <em>Causes</em>}</li> <li>{@link
+ * org.unicase.model.hazard.Hazard#getMitigations <em>Mitigations</em>}</li> </ul> </p>
  * @see org.unicase.model.hazard.HazardPackage#getHazard()
  * @model
  * @generated

@@ -20,17 +20,13 @@ import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.FeatureImpl#getDescribingUseCases <em>Describing Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FeatureImpl#getRefiningFeatures <em>Refining Features</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.FeatureImpl#getDetailingRequirements <em>Detailing Requirements</em>}</li>
- * </ul>
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.requirement.impl.FeatureImpl#getDescribingUseCases <em>Describing Use Cases</em>}</li> <li>{@link
+ * org.unicase.model.requirement.impl.FeatureImpl#getRefiningFeatures <em>Refining Features</em>}</li> <li>{@link
+ * org.unicase.model.requirement.impl.FeatureImpl#getDetailingRequirements <em>Detailing Requirements</em>}</li> </ul>
  * </p>
- *
  * @generated
  */
 public class FeatureImpl extends ModelElementImpl implements Feature {

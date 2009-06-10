@@ -25,19 +25,14 @@ import org.unicase.model.hazard.HazardPackage;
 import org.unicase.model.hazard.Mitigation;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Cause</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.hazard.impl.HazardCauseImpl#getHazards <em>Hazards</em>}</li>
- *   <li>{@link org.unicase.model.hazard.impl.HazardCauseImpl#getHazardousModelElements <em>Hazardous Model Elements</em>}</li>
- *   <li>{@link org.unicase.model.hazard.impl.HazardCauseImpl#getEvaluationStatus <em>Evaluation Status</em>}</li>
- *   <li>{@link org.unicase.model.hazard.impl.HazardCauseImpl#getLikelihood <em>Likelihood</em>}</li>
- *   <li>{@link org.unicase.model.hazard.impl.HazardCauseImpl#getMitigations <em>Mitigations</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Cause</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.hazard.impl.HazardCauseImpl#getHazards
+ * <em>Hazards</em>}</li> <li>{@link org.unicase.model.hazard.impl.HazardCauseImpl#getHazardousModelElements
+ * <em>Hazardous Model Elements</em>}</li> <li>{@link org.unicase.model.hazard.impl.HazardCauseImpl#getEvaluationStatus
+ * <em>Evaluation Status</em>}</li> <li>{@link org.unicase.model.hazard.impl.HazardCauseImpl#getLikelihood
+ * <em>Likelihood</em>}</li> <li>{@link org.unicase.model.hazard.impl.HazardCauseImpl#getMitigations
+ * <em>Mitigations</em>}</li> </ul> </p>
  * @generated
  */
 public class HazardCauseImpl extends ModelElementImpl implements HazardCause {

@@ -48,7 +48,7 @@ import org.unicase.model.util.ModelElementPath;
 import org.unicase.model.util.UtilFactory;
 import org.unicase.model.util.UtilPackage;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
  * @generated
  */
@@ -109,8 +109,8 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 			return (UtilPackage) EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI);
 
 		// Obtain or create and register package
-		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
+		UtilPackageImpl theUtilPackage = (UtilPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof UtilPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(eNS_URI)
 			: new UtilPackageImpl());
 
 		isInited = true;

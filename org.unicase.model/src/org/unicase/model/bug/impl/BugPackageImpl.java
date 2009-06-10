@@ -52,7 +52,7 @@ import org.unicase.model.task.impl.TaskPackageImpl;
 import org.unicase.model.util.UtilPackage;
 import org.unicase.model.util.impl.UtilPackageImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
  * @generated
  */
@@ -131,8 +131,8 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 			return (BugPackage) EPackage.Registry.INSTANCE.getEPackage(BugPackage.eNS_URI);
 
 		// Obtain or create and register package
-		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
+		BugPackageImpl theBugPackage = (BugPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof BugPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(eNS_URI)
 			: new BugPackageImpl());
 
 		isInited = true;

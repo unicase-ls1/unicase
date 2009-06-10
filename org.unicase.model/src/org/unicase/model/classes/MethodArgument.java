@@ -7,20 +7,13 @@ package org.unicase.model.classes;
 
 import org.unicase.model.ModelElement;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Method Argument</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.classes.MethodArgument#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.MethodArgument#getDirection <em>Direction</em>}</li>
- *   <li>{@link org.unicase.model.classes.MethodArgument#getDefaultValue <em>Default Value</em>}</li>
- *   <li>{@link org.unicase.model.classes.MethodArgument#getSignature <em>Signature</em>}</li>
- *   <li>{@link org.unicase.model.classes.MethodArgument#getLabel <em>Label</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are supported: <ul> <li>{@link org.unicase.model.classes.MethodArgument#getType
+ * <em>Type</em>}</li> <li>{@link org.unicase.model.classes.MethodArgument#getDirection <em>Direction</em>}</li>
+ * <li>{@link org.unicase.model.classes.MethodArgument#getDefaultValue <em>Default Value</em>}</li> <li>{@link
+ * org.unicase.model.classes.MethodArgument#getSignature <em>Signature</em>}</li> <li>{@link
+ * org.unicase.model.classes.MethodArgument#getLabel <em>Label</em>}</li> </ul> </p>
  * @see org.unicase.model.classes.ClassesPackage#getMethodArgument()
  * @model
  * @generated

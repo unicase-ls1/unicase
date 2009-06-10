@@ -18,10 +18,9 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.activity.ActivityInitial;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.activity.ActivityInitial} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ActivityInitialItemProvider extends ActivityObjectItemProvider implements IEditingDomainItemProvider,

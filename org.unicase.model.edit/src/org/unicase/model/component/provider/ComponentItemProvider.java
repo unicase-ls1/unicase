@@ -26,9 +26,8 @@ import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.component.Component} object.
- * <!-- begin-user-doc -->
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.component.Component} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */

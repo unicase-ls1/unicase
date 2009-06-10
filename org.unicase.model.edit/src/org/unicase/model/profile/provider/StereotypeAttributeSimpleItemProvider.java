@@ -22,10 +22,9 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.StereotypeAttributeSimple;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.profile.StereotypeAttributeSimple} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class StereotypeAttributeSimpleItemProvider extends StereotypeAttributeItemProvider implements

@@ -8,19 +8,13 @@ package org.unicase.model.requirement;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.rationale.Criterion;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Non Functional Requirement</b></em>'. <!--
- * end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getConstrainedScenarios <em>Constrained Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getConstrainedUseCases <em>Constrained Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getConstrainedFRs <em>Constrained FRs</em>}</li>
- * </ul>
- * </p>
- *
+ * end-user-doc --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.requirement.NonFunctionalRequirement#getConstrainedScenarios <em>Constrained Scenarios</em>}</li>
+ * <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getConstrainedUseCases <em>Constrained Use
+ * Cases</em>}</li> <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getConstrainedFRs <em>Constrained
+ * FRs</em>}</li> </ul> </p>
  * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement()
  * @model
  * @generated

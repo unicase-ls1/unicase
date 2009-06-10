@@ -20,12 +20,12 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.RequirementPackage;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.requirement.ActorInstance} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ActorInstanceItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
