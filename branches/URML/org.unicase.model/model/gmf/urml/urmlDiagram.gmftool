@@ -21,13 +21,6 @@
     </tools>
     <tools
         xsi:type="gmftool:CreationTool"
-        title="Exclamation"
-        description="">
-      <smallIcon
-          xsi:type="gmftool:DefaultImage"/>
-    </tools>
-    <tools
-        xsi:type="gmftool:CreationTool"
         title="FunctionalRequirement"
         description="">
       <smallIcon
@@ -44,7 +37,7 @@
         xsi:type="gmftool:ToolGroup"
         title="UseCase"
         collapsible="true"
-        active="//@palette/@tools.5/@tools.0">
+        active="//@palette/@tools.4/@tools.0">
       <tools
           xsi:type="gmftool:CreationTool"
           title="Use Case"/>
@@ -53,17 +46,46 @@
           title="Actor"/>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Participate"/>
+          title="Participate">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Participate.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Initiate"/>
+          title="Initiate">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Initiate.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Include"/>
+          title="Include">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Include.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
       <tools
           xsi:type="gmftool:CreationTool"
           title="Extend"
-          description=""/>
+          description="">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Extend.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
+    </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Mitigate"
+        description="">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="/icons/full/obj16/Association.gif"
+          bundle="org.unicase.model.edit"/>
     </tools>
   </palette>
 </gmftool:ToolRegistry>
