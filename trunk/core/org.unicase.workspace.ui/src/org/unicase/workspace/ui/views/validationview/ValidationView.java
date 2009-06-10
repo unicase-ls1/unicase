@@ -6,10 +6,13 @@
 package org.unicase.workspace.ui.views.validationview;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.model.IConstraintStatus;
@@ -33,7 +36,10 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
@@ -54,6 +60,8 @@ public class ValidationView extends ViewPart {
 	private DialogSettings settings;
 	private String filename;
 	private final String viewId = getClass().getName();
+	private Workspace workspace;
+	private AdapterImpl workspaceListenerAdapter;
 
 	/**
 	 * Default constructor.
@@ -67,6 +75,24 @@ public class ValidationView extends ViewPart {
 		} catch (IOException e) {
 			// Do nothing.
 		}
+
+		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		workspaceListenerAdapter = new AdapterImpl() {
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__PROJECT_SPACES) {
+					if (msg.getOldValue() != null
+						&& (msg.getOldValue() instanceof List || msg.getOldValue() instanceof ProjectSpace)) {
+						tableViewer.setInput(new ArrayList<IConstraintStatus>());
+					}
+
+				}
+				super.notifyChanged(msg);
+			}
+		};
+		workspace.eAdapters().add(workspaceListenerAdapter);
 	}
 
 	/**
@@ -294,5 +320,14 @@ public class ValidationView extends ViewPart {
 			}
 		}
 
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void dispose() {
+		workspace.eAdapters().remove(workspaceListenerAdapter);
+		super.dispose();
 	}
 }
