@@ -6,7 +6,7 @@
     modelID="URML"
     diagramFileExtension="urml_diagram"
     dynamicTemplates="true"
-    templateDirectory="/org.unicase.model/model/gmf/templates/codegen">
+    templateDirectory="org.unicase.model/model/gmf/templates/codegen">
   <diagram
       visualID="66"
       editPartClassName="MEDiagramEditPart"
@@ -26,7 +26,7 @@
     <domainDiagramElement
         href="../../model.genmodel#//model/diagram/MEDiagram"/>
     <topLevelNodes
-        visualID="2003"
+        visualID="2001"
         editPartClassName="HazardCauseEditPart"
         itemSemanticEditPolicyClassName="HazardCauseItemSemanticEditPolicy"
         notationViewFactoryClassName="HazardCauseViewFactory"
@@ -40,7 +40,9 @@
           editHelperClassName="HazardCauseEditHelper"/>
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="org.unicase.ui.urmlDiagram.unicase.CauseFigure"/>
+          figureQualifiedClassName="org.unicase.ui.urmlDiagram.unicase.CauseFigure">
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
       <modelFacet>
         <metaClass
             href="../../model.genmodel#//model/hazard/HazardCause"/>
@@ -49,9 +51,33 @@
         <childMetaFeature
             href="../../model.genmodel#//model/diagram/MEDiagram/elements"/>
       </modelFacet>
+      <labels
+          xsi:type="gmfgen:GenExternalNodeLabel"
+          visualID="5003"
+          editPartClassName="HazardCauseNameEditPart"
+          itemSemanticEditPolicyClassName="HazardCauseNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="HazardCauseNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="CauseName"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CauseName extends org.unicase.ui.common.diagram.figures.Label {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CauseName() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet"
+            editorPattern="">
+          <metaFeatures
+              href="../../model.genmodel#//model/ModelElement/name"/>
+        </modelFacet>
+      </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2004"
+        visualID="2002"
         editPartClassName="MitigationEditPart"
         itemSemanticEditPolicyClassName="MitigationItemSemanticEditPolicy"
         notationViewFactoryClassName="MitigationViewFactory"
@@ -65,7 +91,9 @@
           editHelperClassName="MitigationEditHelper"/>
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="org.unicase.ui.urmlDiagram.unicase.MitigationFigure"/>
+          figureQualifiedClassName="org.unicase.ui.urmlDiagram.unicase.MitigationFigure">
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
       <modelFacet>
         <metaClass
             href="../../model.genmodel#//model/hazard/Mitigation"/>
@@ -74,9 +102,32 @@
         <childMetaFeature
             href="../../model.genmodel#//model/diagram/MEDiagram/elements"/>
       </modelFacet>
+      <labels
+          xsi:type="gmfgen:GenExternalNodeLabel"
+          visualID="5004"
+          editPartClassName="MitigationNameEditPart"
+          itemSemanticEditPolicyClassName="MitigationNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="MitigationNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="MitigationName"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MitigationName extends org.unicase.ui.common.diagram.figures.Label {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MitigationName() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet">
+          <metaFeatures
+              href="../../model.genmodel#//model/ModelElement/name"/>
+        </modelFacet>
+      </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2001"
+        visualID="2003"
         editPartClassName="HazardEditPart"
         itemSemanticEditPolicyClassName="HazardItemSemanticEditPolicy"
         notationViewFactoryClassName="HazardViewFactory"
@@ -90,7 +141,9 @@
           editHelperClassName="HazardEditHelper"/>
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="org.unicase.ui.urmlDiagram.unicase.HazardFigure"/>
+          figureQualifiedClassName="org.unicase.ui.urmlDiagram.unicase.HazardFigure">
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
       <modelFacet>
         <metaClass
             href="../../model.genmodel#//model/hazard/Hazard"/>
@@ -99,9 +152,32 @@
         <childMetaFeature
             href="../../model.genmodel#//model/diagram/MEDiagram/elements"/>
       </modelFacet>
+      <labels
+          xsi:type="gmfgen:GenExternalNodeLabel"
+          visualID="5005"
+          editPartClassName="HazardNameEditPart"
+          itemSemanticEditPolicyClassName="HazardNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="HazardNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="HazardName"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class HazardName extends org.unicase.ui.common.diagram.figures.Label {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public HazardName() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet">
+          <metaFeatures
+              href="../../model.genmodel#//model/ModelElement/name"/>
+        </modelFacet>
+      </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2005"
+        visualID="2004"
         editPartClassName="ActorEditPart"
         itemSemanticEditPolicyClassName="ActorItemSemanticEditPolicy"
         notationViewFactoryClassName="ActorViewFactory"
@@ -150,7 +226,7 @@
       </labels>
     </topLevelNodes>
     <topLevelNodes
-        visualID="2006"
+        visualID="2005"
         editPartClassName="UseCaseEditPart"
         itemSemanticEditPolicyClassName="UseCaseItemSemanticEditPolicy"
         notationViewFactoryClassName="UseCaseViewFactory"
@@ -197,6 +273,57 @@
           <attributes
               xsi:type="gmfgen:StyleAttributes"
               fixedFont="true"/>
+        </viewmap>
+        <modelFacet
+            xsi:type="gmfgen:FeatureLabelModelFacet">
+          <metaFeatures
+              href="../../model.genmodel#//model/ModelElement/name"/>
+        </modelFacet>
+      </labels>
+    </topLevelNodes>
+    <topLevelNodes
+        visualID="2006"
+        editPartClassName="FunctionalRequirementEditPart"
+        itemSemanticEditPolicyClassName="FunctionalRequirementItemSemanticEditPolicy"
+        notationViewFactoryClassName="FunctionalRequirementViewFactory"
+        canonicalEditPolicyClassName="FunctionalRequirementCanonicalEditPolicy"
+        graphicalNodeEditPolicyClassName="FunctionalRequirementGraphicalNodeEditPolicy"
+        createCommandClassName="FunctionalRequirementCreateCommand">
+      <diagramRunTimeClass
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+      <elementType
+          xsi:type="gmfgen:MetamodelType"
+          editHelperClassName="FunctionalRequirementEditHelper"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="FunctionalRequirement"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FunctionalRequirement extends org.unicase.ui.urmlDiagram.unicase.FunctionalRequirementFigure {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FunctionalRequirement() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(10)&#xA;));&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+      <modelFacet>
+        <metaClass
+            href="../../model.genmodel#//model/requirement/FunctionalRequirement"/>
+        <containmentMetaFeature
+            href="../../model.genmodel#//model/diagram/MEDiagram/newElements"/>
+        <childMetaFeature
+            href="../../model.genmodel#//model/diagram/MEDiagram/elements"/>
+      </modelFacet>
+      <labels
+          xsi:type="gmfgen:GenExternalNodeLabel"
+          visualID="5006"
+          editPartClassName="FunctionalRequirementNameEditPart"
+          itemSemanticEditPolicyClassName="FunctionalRequirementNameItemSemanticEditPolicy"
+          notationViewFactoryClassName="FunctionalRequirementNameViewFactory">
+        <diagramRunTimeClass
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="FuncReqName"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class FuncReqName extends org.unicase.ui.common.diagram.figures.Label {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public FuncReqName() {&#xA;&#x9;&#x9;&#x9;&#x9;&#xA;&#xA;&#xA;this.setFont(THIS_FONT);&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font THIS_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 10, org.eclipse.swt.SWT.NORMAL);&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:StyleAttributes"
+              fixedFont="true"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
         </viewmap>
         <modelFacet
             xsi:type="gmfgen:FeatureLabelModelFacet">
@@ -381,6 +508,94 @@
         </viewmap>
       </labels>
     </links>
+    <links
+        visualID="4005"
+        editPartClassName="HazardMitigationsEditPart"
+        itemSemanticEditPolicyClassName="HazardMitigationsItemSemanticEditPolicy"
+        notationViewFactoryClassName="HazardMitigationsViewFactory"
+        createCommandClassName="HazardMitigationsCreateCommand"
+        reorientCommandClassName="HazardMitigationsReorientCommand">
+      <diagramRunTimeClass
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="MitigateFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MitigateFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MitigateFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedForeground="true"/>
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="../../model.genmodel#//model/hazard/Hazard/mitigations"/>
+      </modelFacet>
+      <labels
+          visualID="6005"
+          editPartClassName="MitigateLabelEditPart"
+          itemSemanticEditPolicyClassName="MitigateLabelItemSemanticEditPolicy"
+          notationViewFactoryClassName="MitigateLabelViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="MitigateLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MitigateLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MitigateLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;\u00ABmitigate\u00BB&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+      </labels>
+    </links>
+    <links
+        visualID="4006"
+        editPartClassName="HazardCauseMitigationsEditPart"
+        itemSemanticEditPolicyClassName="HazardCauseMitigationsItemSemanticEditPolicy"
+        notationViewFactoryClassName="HazardCauseMitigationsViewFactory"
+        createCommandClassName="HazardCauseMitigationsCreateCommand"
+        reorientCommandClassName="HazardCauseMitigationsReorientCommand">
+      <diagramRunTimeClass
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="MitigateFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MitigateFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MitigateFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedForeground="true"/>
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="../../model.genmodel#//model/hazard/HazardCause/mitigations"/>
+      </modelFacet>
+      <labels
+          visualID="6006"
+          editPartClassName="MitigateLabel2EditPart"
+          itemSemanticEditPolicyClassName="MitigateLabel2ItemSemanticEditPolicy"
+          notationViewFactoryClassName="MitigateLabel2ViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="MitigateLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MitigateLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MitigateLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;\u00ABmitigate\u00BB&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+      </labels>
+    </links>
     <palette>
       <groups
           title="Default"
@@ -397,17 +612,19 @@
             genNodes="//@diagram/@topLevelNodes.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
-            title="Exclamation"
-            description=""/>
-        <entries
-            xsi:type="gmfgen:ToolEntry"
             title="FunctionalRequirement"
-            description=""/>
+            description=""
+            genNodes="//@diagram/@topLevelNodes.5"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Hazard"
             description=""
             genNodes="//@diagram/@topLevelNodes.2"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Mitigate"
+            description=""
+            genLinks="//@diagram/@links.4 //@diagram/@links.5"/>
       </groups>
       <groups
           title="UseCase"
@@ -424,19 +641,23 @@
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Participate"
+            smallIconPath="/org.unicase.model.edit/icons/full/obj16/Participate.gif"
             genLinks="//@diagram/@links.0"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Initiate"
+            smallIconPath="/org.unicase.model.edit/icons/full/obj16/Initiate.gif"
             genLinks="//@diagram/@links.1"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Include"
+            smallIconPath="/org.unicase.model.edit/icons/full/obj16/Include.gif"
             genLinks="//@diagram/@links.2"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Extend"
             description=""
+            smallIconPath="/org.unicase.model.edit/icons/full/obj16/Extend.gif"
             genLinks="//@diagram/@links.3"/>
       </groups>
     </palette>
@@ -472,9 +693,7 @@
     </preferencePages>
   </diagram>
   <plugin
-      iD="org.unicase.ui.urmlDiagram"
-      provider="Unicase"
-      version="0.0.1.qualifier"/>
+      iD="org.unicase.ui.urmlDiagram"/>
   <editor/>
   <navigator>
     <childReferences
@@ -494,6 +713,9 @@
     <childReferences
         parent="//@diagram"
         child="//@diagram/@topLevelNodes.4"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@topLevelNodes.5"/>
     <childReferences
         parent="//@diagram"
         child="//@diagram/@links.0"
@@ -595,6 +817,64 @@
     <childReferences
         parent="//@diagram/@topLevelNodes.4"
         child="//@diagram/@links.3"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.4"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.4"
+        child="//@diagram/@topLevelNodes.1"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.4"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.4"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@links.4"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.5"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.5"
+        child="//@diagram/@topLevelNodes.1"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.5"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.5"
+        child="//@diagram/@topLevelNodes.0"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@links.5"
         referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>

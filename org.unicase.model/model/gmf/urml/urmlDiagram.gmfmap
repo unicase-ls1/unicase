@@ -13,9 +13,17 @@
     <ownedChild>
       <domainMetaElement
           href="../../model.ecore#//hazard/HazardCause"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping"
+          editorPattern="">
+        <diagramLabel
+            href="../model.gmfgraph#Cause_name"/>
+        <features
+            href="../../model.ecore#//ModelElement/name"/>
+      </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.0"/>
+          href="urmlDiagram.gmftool#//@palette/@tools.0"/>
       <diagramNode
           href="../model.gmfgraph#CauseNode"/>
     </ownedChild>
@@ -28,9 +36,16 @@
     <ownedChild>
       <domainMetaElement
           href="../../model.ecore#//hazard/Mitigation"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="../model.gmfgraph#Mitigation_name"/>
+        <features
+            href="../../model.ecore#//ModelElement/name"/>
+      </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.1"/>
+          href="urmlDiagram.gmftool#//@palette/@tools.1"/>
       <diagramNode
           href="../model.gmfgraph#MitigationNode"/>
     </ownedChild>
@@ -43,9 +58,16 @@
     <ownedChild>
       <domainMetaElement
           href="../../model.ecore#//hazard/Hazard"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="../model.gmfgraph#Hazard_name"/>
+        <features
+            href="../../model.ecore#//ModelElement/name"/>
+      </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.4"/>
+          href="urmlDiagram.gmftool#//@palette/@tools.3"/>
       <diagramNode
           href="../model.gmfgraph#HazardNode"/>
     </ownedChild>
@@ -67,7 +89,7 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.5/@tools.1"/>
+          href="urmlDiagram.gmftool#//@palette/@tools.4/@tools.1"/>
       <diagramNode
           href="../model.gmfgraph#Actor"/>
     </ownedChild>
@@ -89,9 +111,31 @@
       </labelMappings>
       <tool
           xsi:type="gmftool:CreationTool"
-          href="urml.gmftool#//@palette/@tools.5/@tools.0"/>
+          href="urmlDiagram.gmftool#//@palette/@tools.4/@tools.0"/>
       <diagramNode
           href="../model.gmfgraph#UseCase"/>
+    </ownedChild>
+  </nodes>
+  <nodes>
+    <containmentFeature
+        href="../../model.ecore#//diagram/MEDiagram/newElements"/>
+    <childrenFeature
+        href="../../model.ecore#//diagram/MEDiagram/elements"/>
+    <ownedChild>
+      <domainMetaElement
+          href="../../model.ecore#//requirement/FunctionalRequirement"/>
+      <labelMappings
+          xsi:type="gmfmap:FeatureLabelMapping">
+        <diagramLabel
+            href="../model.gmfgraph#FuncReq_name"/>
+        <features
+            href="../../model.ecore#//ModelElement/name"/>
+      </labelMappings>
+      <tool
+          xsi:type="gmftool:CreationTool"
+          href="urmlDiagram.gmftool#//@palette/@tools.2"/>
+      <diagramNode
+          href="../model.gmfgraph#FunctionalRequirementNode"/>
     </ownedChild>
   </nodes>
   <links>
@@ -102,7 +146,7 @@
     </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.5/@tools.2"/>
+        href="urmlDiagram.gmftool#//@palette/@tools.4/@tools.2"/>
     <diagramLink
         href="../model.gmfgraph#Participate"/>
     <linkMetaFeature
@@ -117,7 +161,7 @@
     </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.5/@tools.3"/>
+        href="urmlDiagram.gmftool#//@palette/@tools.4/@tools.3"/>
     <diagramLink
         href="../model.gmfgraph#Initiate"/>
     <linkMetaFeature
@@ -132,7 +176,7 @@
     </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.5/@tools.4"/>
+        href="urmlDiagram.gmftool#//@palette/@tools.4/@tools.4"/>
     <diagramLink
         href="../model.gmfgraph#Include"/>
     <linkMetaFeature
@@ -147,12 +191,42 @@
     </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="urml.gmftool#//@palette/@tools.5/@tools.5"/>
+        href="urmlDiagram.gmftool#//@palette/@tools.4/@tools.5"/>
     <diagramLink
         href="../model.gmfgraph#Extend"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
         href="../../model.ecore#//requirement/UseCase/extendedUseCases"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../model.gmfgraph#MitigateLabel"/>
+    </labelMappings>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="urmlDiagram.gmftool#//@palette/@tools.5"/>
+    <diagramLink
+        href="../model.gmfgraph#MitigateLink"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../model.ecore#//hazard/Hazard/mitigations"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../model.gmfgraph#MitigateLabel"/>
+    </labelMappings>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="urmlDiagram.gmftool#//@palette/@tools.5"/>
+    <diagramLink
+        href="../model.gmfgraph#MitigateLink"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../model.ecore#//hazard/HazardCause/mitigations"/>
   </links>
   <diagram>
     <diagramCanvas
@@ -162,6 +236,6 @@
     <domainMetaElement
         href="../../model.ecore#//diagram/MEDiagram"/>
     <palette
-        href="urml.gmftool#//@palette"/>
+        href="urmlDiagram.gmftool#//@palette"/>
   </diagram>
 </gmfmap:Mapping>
