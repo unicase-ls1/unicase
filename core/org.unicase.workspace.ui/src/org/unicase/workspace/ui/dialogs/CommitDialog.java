@@ -17,6 +17,8 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.graphics.Image;
@@ -45,7 +47,7 @@ import org.unicase.workspace.ui.views.changes.TabbedChangesComposite;
  * @author Hodaie
  * @author Shterev
  */
-public class CommitDialog extends TitleAreaDialog {
+public class CommitDialog extends TitleAreaDialog implements KeyListener {
 
 	private Text txtLogMsg;
 	private String logMsg = "";
@@ -100,6 +102,8 @@ public class CommitDialog extends TitleAreaDialog {
 		}
 		txtLogMsg.setText(logMsg);
 		txtLogMsg.selectAll();
+		// to implement a shortcut for submitting the commit
+		txtLogMsg.addKeyListener(this);
 
 		// previous log messages
 		Label oldLabel = new Label(contents, SWT.NONE);
@@ -221,4 +225,23 @@ public class CommitDialog extends TitleAreaDialog {
 		return logMsg.equals("") ? "<Empty log message>" : logMsg;
 	}
 
+	/**
+	 * handles the pressing of Ctrl+ENTER: OKpressed() is called.
+	 * {@inheritDoc}
+	 * @see org.eclipse.swt.events.KeyListener#keyPressed(org.eclipse.swt.events.KeyEvent)
+	 */
+	public void keyPressed(KeyEvent e) {
+		if(e.keyCode == SWT.CR && (e.stateMask & SWT.CTRL) != 0) {
+			this.okPressed();
+		}
+	}
+
+	/**
+	 * does nothing.
+	 * {@inheritDoc}
+	 * @see org.eclipse.swt.events.KeyListener#keyReleased(org.eclipse.swt.events.KeyEvent)
+	 */
+	public void keyReleased(KeyEvent e) {
+		// nothing to do
+	}
 }
