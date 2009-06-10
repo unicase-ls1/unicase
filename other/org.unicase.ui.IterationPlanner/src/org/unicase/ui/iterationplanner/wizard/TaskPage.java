@@ -5,8 +5,6 @@
  */
 package org.unicase.ui.iterationplanner.wizard;
 
-import java.util.List;
-
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -22,14 +20,14 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
-import org.eclipse.swt.widgets.Listener;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.ui.iterationplanner.core.IterationPlanner;
 import org.unicase.workspace.WorkspaceManager;
+
+import java.util.List;
 
 /**
  * In this page user selects backlog, and last sprint.
@@ -37,7 +35,7 @@ import org.unicase.workspace.WorkspaceManager;
  * @author hodaie
  * 
  */
-public class TaskPage extends WizardPage implements Listener {
+public class TaskPage extends WizardPage {
 
 	/**
 	 * content provider.
@@ -164,7 +162,7 @@ public class TaskPage extends WizardPage implements Listener {
 	@Override
 	public boolean canFlipToNextPage() {
 		tableViewer.refresh();
-		return super.canFlipToNextPage();
+		return true;
 	}
 
 	/**
@@ -182,26 +180,6 @@ public class TaskPage extends WizardPage implements Listener {
 		return super.getNextPage();
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
-	 */
-	public void handleEvent(Event event) {
-
-	}
-
-	/**
-	 * 
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
-	 */
-	@Override
-	public boolean isPageComplete() {
-		tableViewer.refresh();
-		return super.isPageComplete();
-	}
-
+	
+	
 }
