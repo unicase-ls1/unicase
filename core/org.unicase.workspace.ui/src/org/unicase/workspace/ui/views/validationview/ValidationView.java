@@ -79,7 +79,6 @@ public class ValidationView extends ViewPart {
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		workspaceListenerAdapter = new AdapterImpl() {
 
-			@SuppressWarnings("unchecked")
 			@Override
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__PROJECT_SPACES) {
