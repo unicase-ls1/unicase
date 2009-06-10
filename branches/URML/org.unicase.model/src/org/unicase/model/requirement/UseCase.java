@@ -8,30 +8,24 @@ package org.unicase.model.requirement;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Use Case</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.UseCase#getInitiatingActor <em>Initiating Actor</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getParticipatingActors <em>Participating Actors</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getRealizedUserTask <em>Realized User Task</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getPrecondition <em>Precondition</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getUseCaseSteps <em>Use Case Steps</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getPostcondition <em>Postcondition</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getRules <em>Rules</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getException <em>Exception</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getScenarios <em>Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getDetailingFunctionalRequirements <em>Detailing Functional Requirements</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getConstrainingNFRs <em>Constraining NF Rs</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getParticipatingClasses <em>Participating Classes</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getIncludedUseCases <em>Included Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getExtendedUseCases <em>Extended Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.UseCase#getDescribedFeatures <em>Described Features</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Use Case</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.requirement.UseCase#getInitiatingActor
+ * <em>Initiating Actor</em>}</li> <li>{@link org.unicase.model.requirement.UseCase#getParticipatingActors
+ * <em>Participating Actors</em>}</li> <li>{@link org.unicase.model.requirement.UseCase#getRealizedUserTask <em>Realized
+ * User Task</em>}</li> <li>{@link org.unicase.model.requirement.UseCase#getPrecondition <em>Precondition</em>}</li>
+ * <li>{@link org.unicase.model.requirement.UseCase#getUseCaseSteps <em>Use Case Steps</em>}</li> <li>{@link
+ * org.unicase.model.requirement.UseCase#getPostcondition <em>Postcondition</em>}</li> <li>{@link
+ * org.unicase.model.requirement.UseCase#getRules <em>Rules</em>}</li> <li>{@link
+ * org.unicase.model.requirement.UseCase#getException <em>Exception</em>}</li> <li>{@link
+ * org.unicase.model.requirement.UseCase#getScenarios <em>Scenarios</em>}</li> <li>{@link
+ * org.unicase.model.requirement.UseCase#getDetailingFunctionalRequirements <em>Detailing Functional
+ * Requirements</em>}</li> <li>{@link org.unicase.model.requirement.UseCase#getConstrainingNFRs <em>Constraining NF
+ * Rs</em>}</li> <li>{@link org.unicase.model.requirement.UseCase#getParticipatingClasses <em>Participating
+ * Classes</em>}</li> <li>{@link org.unicase.model.requirement.UseCase#getIncludedUseCases <em>Included Use
+ * Cases</em>}</li> <li>{@link org.unicase.model.requirement.UseCase#getExtendedUseCases <em>Extended Use
+ * Cases</em>}</li> <li>{@link org.unicase.model.requirement.UseCase#getDescribedFeatures <em>Described
+ * Features</em>}</li> </ul> </p>
  * @see org.unicase.model.requirement.RequirementPackage#getUseCase()
  * @model
  * @generated

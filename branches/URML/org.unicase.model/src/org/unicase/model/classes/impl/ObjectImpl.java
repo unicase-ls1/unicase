@@ -13,15 +13,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Object</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.classes.impl.ObjectImpl#getClass_ <em>Class</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Object</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.classes.impl.ObjectImpl#getClass_
+ * <em>Class</em>}</li> </ul> </p>
  * @generated
  */
 public class ObjectImpl extends ModelElementImpl implements org.unicase.model.classes.Object {

@@ -7,19 +7,12 @@ package org.unicase.model.attachment;
 
 import org.unicase.model.Attachment;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>File Attachment</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.attachment.FileAttachment#getFileName <em>File Name</em>}</li>
- *   <li>{@link org.unicase.model.attachment.FileAttachment#getFileHash <em>File Hash</em>}</li>
- *   <li>{@link org.unicase.model.attachment.FileAttachment#getFileID <em>File ID</em>}</li>
- *   <li>{@link org.unicase.model.attachment.FileAttachment#getFileSize <em>File Size</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are supported: <ul> <li>{@link org.unicase.model.attachment.FileAttachment#getFileName
+ * <em>File Name</em>}</li> <li>{@link org.unicase.model.attachment.FileAttachment#getFileHash <em>File Hash</em>}</li>
+ * <li>{@link org.unicase.model.attachment.FileAttachment#getFileID <em>File ID</em>}</li> <li>{@link
+ * org.unicase.model.attachment.FileAttachment#getFileSize <em>File Size</em>}</li> </ul> </p>
  * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment()
  * @model
  * @generated

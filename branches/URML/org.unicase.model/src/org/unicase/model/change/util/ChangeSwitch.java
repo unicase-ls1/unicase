@@ -13,6 +13,7 @@ import org.unicase.model.Annotation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.change.*;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.MergingIssue;
 import org.unicase.model.change.MergingProposal;
@@ -24,11 +25,11 @@ import org.unicase.model.rationale.Solution;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
-/**
- * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
- * {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
- * starting with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is
- * returned, which is the result of the switch. <!-- end-user-doc -->
+/*
+ * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call {@link
+ * #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model, starting
+ * with the actual class of the object and proceeding up the inheritance hierarchy until a non-null result is returned,
+ * which is the result of the switch. <!-- end-user-doc -->
  * @see org.unicase.model.change.ChangePackage
  * @generated
  */
@@ -101,11 +102,11 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseIssue(mergingIssue);
 			if (result == null)
+				result = caseAnnotation(mergingIssue);
+			if (result == null)
 				result = caseCheckable(mergingIssue);
 			if (result == null)
 				result = caseWorkItem(mergingIssue);
-			if (result == null)
-				result = caseAnnotation(mergingIssue);
 			if (result == null)
 				result = caseModelElement(mergingIssue);
 			if (result == null)

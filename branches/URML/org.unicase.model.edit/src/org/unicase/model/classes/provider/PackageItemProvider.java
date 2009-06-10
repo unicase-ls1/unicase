@@ -22,9 +22,8 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.classes.ClassesFactory;
 import org.unicase.model.classes.ClassesPackage;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.classes.Package} object.
- * <!-- begin-user-doc -->
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.classes.Package} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */

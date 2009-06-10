@@ -8,19 +8,12 @@ package org.unicase.model.bug;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Report</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.bug.BugReport#getStatus <em>Status</em>}</li>
- *   <li>{@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}</li>
- *   <li>{@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}</li>
- *   <li>{@link org.unicase.model.bug.BugReport#getResolutionType <em>Resolution Type</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Report</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.bug.BugReport#getStatus <em>Status</em>}</li>
+ * <li>{@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}</li> <li>{@link
+ * org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}</li> <li>{@link
+ * org.unicase.model.bug.BugReport#getResolutionType <em>Resolution Type</em>}</li> </ul> </p>
  * @see org.unicase.model.bug.BugPackage#getBugReport()
  * @model
  * @generated

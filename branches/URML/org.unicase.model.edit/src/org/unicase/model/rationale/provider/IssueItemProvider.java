@@ -29,9 +29,8 @@ import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.rationale.Issue} object.
- * <!-- begin-user-doc -->
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.rationale.Issue} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */

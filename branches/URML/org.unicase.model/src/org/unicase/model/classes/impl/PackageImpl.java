@@ -18,16 +18,11 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.PackageElement;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Package</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.classes.impl.PackageImpl#getContainedPackageElements <em>Contained Package Elements</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.PackageImpl#getFacadeClass <em>Facade Class</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Package</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.classes.impl.PackageImpl#getContainedPackageElements <em>Contained Package Elements</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.PackageImpl#getFacadeClass <em>Facade Class</em>}</li> </ul> </p>
  * @generated
  */
 public class PackageImpl extends PackageElementImpl implements org.unicase.model.classes.Package {

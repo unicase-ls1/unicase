@@ -8,19 +8,12 @@ package org.unicase.model.hazard;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Mitigation</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.hazard.Mitigation#getTechnique <em>Technique</em>}</li>
- *   <li>{@link org.unicase.model.hazard.Mitigation#getEvaluationStatus <em>Evaluation Status</em>}</li>
- *   <li>{@link org.unicase.model.hazard.Mitigation#getCauses <em>Causes</em>}</li>
- *   <li>{@link org.unicase.model.hazard.Mitigation#getHazards <em>Hazards</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Mitigation</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.hazard.Mitigation#getTechnique
+ * <em>Technique</em>}</li> <li>{@link org.unicase.model.hazard.Mitigation#getEvaluationStatus <em>Evaluation
+ * Status</em>}</li> <li>{@link org.unicase.model.hazard.Mitigation#getCauses <em>Causes</em>}</li> <li>{@link
+ * org.unicase.model.hazard.Mitigation#getHazards <em>Hazards</em>}</li> </ul> </p>
  * @see org.unicase.model.hazard.HazardPackage#getMitigation()
  * @model
  * @generated

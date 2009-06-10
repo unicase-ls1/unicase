@@ -18,9 +18,8 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.activity.Fork;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.activity.Fork} object.
- * <!-- begin-user-doc --> <!--
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.activity.Fork} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * @generated
  */

@@ -8,19 +8,12 @@ package org.unicase.model.profile;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Stereotype</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.profile.Stereotype#isRequired <em>Required</em>}</li>
- *   <li>{@link org.unicase.model.profile.Stereotype#getProfile <em>Profile</em>}</li>
- *   <li>{@link org.unicase.model.profile.Stereotype#getStereotypeInstances <em>Stereotype Instances</em>}</li>
- *   <li>{@link org.unicase.model.profile.Stereotype#getStereotypeAttributes <em>Stereotype Attributes</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Stereotype</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.profile.Stereotype#isRequired
+ * <em>Required</em>}</li> <li>{@link org.unicase.model.profile.Stereotype#getProfile <em>Profile</em>}</li> <li>{@link
+ * org.unicase.model.profile.Stereotype#getStereotypeInstances <em>Stereotype Instances</em>}</li> <li>{@link
+ * org.unicase.model.profile.Stereotype#getStereotypeAttributes <em>Stereotype Attributes</em>}</li> </ul> </p>
  * @see org.unicase.model.profile.ProfilePackage#getStereotype()
  * @model
  * @generated

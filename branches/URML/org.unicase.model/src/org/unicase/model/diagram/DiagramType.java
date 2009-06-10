@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Type</b></em>', and utility
  * methods for working with them. <!-- end-user-doc -->
  * @see org.unicase.model.diagram.DiagramPackage#getDiagramType()
@@ -45,28 +45,28 @@ public enum DiagramType implements Enumerator {
 	 * @ordered
 	 */
 	COMPONENT_DIAGRAM(2, "COMPONENT_DIAGRAM", "COMPONENT_DIAGRAM"), /**
-																	 * The '<em><b>STATE DIAGRAM</b></em>' literal object.
-																	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-																	 * @see #STATE_DIAGRAM_VALUE
-																	 * @generated
-																	 * @ordered
-																	 */
+	 * The '<em><b>STATE DIAGRAM</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #STATE_DIAGRAM_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	STATE_DIAGRAM(3, "STATE_DIAGRAM", "STATE_DIAGRAM"), /**
-														 * The '<em><b>ACTIVITY DIAGRAM</b></em>' literal object. <!--
-														 * begin-user-doc --> <!-- end-user-doc -->
-														 * 
-														 * @see #ACTIVITY_DIAGRAM_VALUE
-														 * @generated
-														 * @ordered
-														 */
+	 * The '<em><b>ACTIVITY DIAGRAM</b></em>' literal object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #ACTIVITY_DIAGRAM_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	ACTIVITY_DIAGRAM(4, "ACTIVITY_DIAGRAM", "ACTIVITY_DIAGRAM"), /**
-																	 * The '<em><b>URML Diagram</b></em>' literal object.
-																	 * <!-- begin-user-doc -->
-																	 * <!-- end-user-doc -->
-																	 * @see #URML_DIAGRAM_VALUE
-																	 * @generated
-																	 * @ordered
-																	 */
+	 * The '<em><b>URML Diagram</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #URML_DIAGRAM_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	URML_DIAGRAM(5, "URML_Diagram", "URML_Diagram");
 
 	/**

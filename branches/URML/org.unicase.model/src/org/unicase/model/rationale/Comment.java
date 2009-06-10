@@ -9,17 +9,11 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Annotation;
 import org.unicase.model.organization.OrgUnit;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Comment</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.rationale.Comment#getReplies <em>Replies</em>}</li>
- *   <li>{@link org.unicase.model.rationale.Comment#getRecipient <em>Recipient</em>}</li>
- * </ul>
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Comment</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.rationale.Comment#getReplies
+ * <em>Replies</em>}</li> <li>{@link org.unicase.model.rationale.Comment#getRecipient <em>Recipient</em>}</li> </ul>
  * </p>
- *
  * @see org.unicase.model.rationale.RationalePackage#getComment()
  * @model
  * @generated

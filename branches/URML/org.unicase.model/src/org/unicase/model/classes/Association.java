@@ -7,22 +7,15 @@ package org.unicase.model.classes;
 
 import org.unicase.model.ModelElement;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Association</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.classes.Association#getSource <em>Source</em>}</li>
- *   <li>{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}</li>
- *   <li>{@link org.unicase.model.classes.Association#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.Association#getSourceMultiplicity <em>Source Multiplicity</em>}</li>
- *   <li>{@link org.unicase.model.classes.Association#getTargetMultiplicity <em>Target Multiplicity</em>}</li>
- *   <li>{@link org.unicase.model.classes.Association#getSourceRole <em>Source Role</em>}</li>
- *   <li>{@link org.unicase.model.classes.Association#getTargetRole <em>Target Role</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are supported: <ul> <li>{@link org.unicase.model.classes.Association#getSource
+ * <em>Source</em>}</li> <li>{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}</li> <li>{@link
+ * org.unicase.model.classes.Association#getType <em>Type</em>}</li> <li>{@link
+ * org.unicase.model.classes.Association#getSourceMultiplicity <em>Source Multiplicity</em>}</li> <li>{@link
+ * org.unicase.model.classes.Association#getTargetMultiplicity <em>Target Multiplicity</em>}</li> <li>{@link
+ * org.unicase.model.classes.Association#getSourceRole <em>Source Role</em>}</li> <li>{@link
+ * org.unicase.model.classes.Association#getTargetRole <em>Target Role</em>}</li> </ul> </p>
  * @see org.unicase.model.classes.ClassesPackage#getAssociation()
  * @model
  * @generated
@@ -46,17 +39,17 @@ public interface Association extends ModelElement {
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
-	Class getSource();
+	org.unicase.model.classes.Class getSource();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSource <em>Source</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getSource <em>Source</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Source</em>' reference.
 	 * @see #getSource()
 	 * @generated
 	 */
-	void setSource(Class value);
+	void setSource(org.unicase.model.classes.Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Target</b></em>' reference. It is bidirectional and its opposite is '
@@ -76,17 +69,17 @@ public interface Association extends ModelElement {
 	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
-	Class getTarget();
+	org.unicase.model.classes.Class getTarget();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}' reference. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.model.classes.Association#getTarget <em>Target</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Target</em>' reference.
 	 * @see #getTarget()
 	 * @generated
 	 */
-	void setTarget(Class value);
+	void setTarget(org.unicase.model.classes.Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.

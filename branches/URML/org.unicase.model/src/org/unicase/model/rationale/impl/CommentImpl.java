@@ -20,16 +20,11 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationalePackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Comment</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getReplies <em>Replies</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.CommentImpl#getRecipient <em>Recipient</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Comment</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.rationale.impl.CommentImpl#getReplies
+ * <em>Replies</em>}</li> <li>{@link org.unicase.model.rationale.impl.CommentImpl#getRecipient <em>Recipient</em>}</li>
+ * </ul> </p>
  * @generated
  */
 public class CommentImpl extends AnnotationImpl implements Comment {

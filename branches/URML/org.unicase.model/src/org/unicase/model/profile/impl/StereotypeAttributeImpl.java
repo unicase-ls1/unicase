@@ -22,17 +22,12 @@ import org.unicase.model.profile.Stereotype;
 import org.unicase.model.profile.StereotypeAttribute;
 import org.unicase.model.profile.StereotypeAttributeInstance;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Stereotype Attribute</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.profile.impl.StereotypeAttributeImpl#getStereotype <em>Stereotype</em>}</li>
- *   <li>{@link org.unicase.model.profile.impl.StereotypeAttributeImpl#getStereotypeAttributeInstances <em>Stereotype Attribute Instances</em>}</li>
- * </ul>
- * </p>
- *
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.profile.impl.StereotypeAttributeImpl#getStereotype <em>Stereotype</em>}</li> <li>{@link
+ * org.unicase.model.profile.impl.StereotypeAttributeImpl#getStereotypeAttributeInstances <em>Stereotype Attribute
+ * Instances</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class StereotypeAttributeImpl extends ModelElementImpl implements StereotypeAttribute {
@@ -67,7 +62,7 @@ public abstract class StereotypeAttributeImpl extends ModelElementImpl implement
 	 * @generated
 	 */
 	public Stereotype getStereotype() {
-		if (eContainerFeatureID() != ProfilePackage.STEREOTYPE_ATTRIBUTE__STEREOTYPE)
+		if (eContainerFeatureID != ProfilePackage.STEREOTYPE_ATTRIBUTE__STEREOTYPE)
 			return null;
 		return (Stereotype) eContainer();
 	}
@@ -77,7 +72,7 @@ public abstract class StereotypeAttributeImpl extends ModelElementImpl implement
 	 * @generated
 	 */
 	public Stereotype basicGetStereotype() {
-		if (eContainerFeatureID() != ProfilePackage.STEREOTYPE_ATTRIBUTE__STEREOTYPE)
+		if (eContainerFeatureID != ProfilePackage.STEREOTYPE_ATTRIBUTE__STEREOTYPE)
 			return null;
 		return (Stereotype) eInternalContainer();
 	}
@@ -98,7 +93,7 @@ public abstract class StereotypeAttributeImpl extends ModelElementImpl implement
 	 */
 	public void setStereotype(Stereotype newStereotype) {
 		if (newStereotype != eInternalContainer()
-			|| (eContainerFeatureID() != ProfilePackage.STEREOTYPE_ATTRIBUTE__STEREOTYPE && newStereotype != null)) {
+			|| (eContainerFeatureID != ProfilePackage.STEREOTYPE_ATTRIBUTE__STEREOTYPE && newStereotype != null)) {
 			if (EcoreUtil.isAncestor(this, newStereotype))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -169,7 +164,7 @@ public abstract class StereotypeAttributeImpl extends ModelElementImpl implement
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case ProfilePackage.STEREOTYPE_ATTRIBUTE__STEREOTYPE:
 			return eInternalContainer().eInverseRemove(this, ProfilePackage.STEREOTYPE__STEREOTYPE_ATTRIBUTES,
 				Stereotype.class, msgs);

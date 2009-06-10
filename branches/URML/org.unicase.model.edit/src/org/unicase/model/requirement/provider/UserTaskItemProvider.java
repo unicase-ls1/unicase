@@ -23,9 +23,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UserTask;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.requirement.UserTask} object.
- * <!-- begin-user-doc
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.UserTask} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * @generated
  */

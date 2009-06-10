@@ -9,17 +9,11 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Solution</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.rationale.Solution#getUnderlyingProposals <em>Underlying Proposals</em>}</li>
- *   <li>{@link org.unicase.model.rationale.Solution#getIssue <em>Issue</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Solution</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.rationale.Solution#getUnderlyingProposals
+ * <em>Underlying Proposals</em>}</li> <li>{@link org.unicase.model.rationale.Solution#getIssue <em>Issue</em>}</li>
+ * </ul> </p>
  * @see org.unicase.model.rationale.RationalePackage#getSolution()
  * @model
  * @generated

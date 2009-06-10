@@ -55,7 +55,7 @@ import org.unicase.model.task.impl.TaskPackageImpl;
 import org.unicase.model.util.UtilPackage;
 import org.unicase.model.util.impl.UtilPackageImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
  * @generated
  */
@@ -152,8 +152,8 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 			return (ProfilePackage) EPackage.Registry.INSTANCE.getEPackage(ProfilePackage.eNS_URI);
 
 		// Obtain or create and register package
-		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
+		ProfilePackageImpl theProfilePackage = (ProfilePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ProfilePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(eNS_URI)
 			: new ProfilePackageImpl());
 
 		isInited = true;

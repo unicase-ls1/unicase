@@ -25,9 +25,8 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.profile.ProfileFactory;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.ModelElement} object.
- * <!-- begin-user-doc --> <!--
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.ModelElement} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * @generated
  */

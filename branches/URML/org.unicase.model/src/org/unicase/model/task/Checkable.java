@@ -7,16 +7,10 @@ package org.unicase.model.task;
 
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Checkable</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.task.Checkable#isChecked <em>Checked</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Checkable</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.task.Checkable#isChecked
+ * <em>Checked</em>}</li> </ul> </p>
  * @see org.unicase.model.task.TaskPackage#getCheckable()
  * @model interface="true" abstract="true"
  * @generated

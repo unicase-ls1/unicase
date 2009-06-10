@@ -20,22 +20,16 @@ import org.unicase.model.classes.ScopeType;
 import org.unicase.model.classes.VisibilityType;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Attribute</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefiningClass <em>Defining Class</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getScope <em>Scope</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getSignature <em>Signature</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefaultValue <em>Default Value</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.AttributeImpl#getLabel <em>Label</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Attribute</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.classes.impl.AttributeImpl#getDefiningClass
+ * <em>Defining Class</em>}</li> <li>{@link org.unicase.model.classes.impl.AttributeImpl#getVisibility
+ * <em>Visibility</em>}</li> <li>{@link org.unicase.model.classes.impl.AttributeImpl#getScope <em>Scope</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.AttributeImpl#getSignature <em>Signature</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AttributeImpl#getType <em>Type</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AttributeImpl#getDefaultValue <em>Default Value</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AttributeImpl#getProperties <em>Properties</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.AttributeImpl#getLabel <em>Label</em>}</li> </ul> </p>
  * @generated
  */
 public class AttributeImpl extends ModelElementImpl implements Attribute {
@@ -184,7 +178,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class getDefiningClass() {
-		if (eContainerFeatureID() != ClassesPackage.ATTRIBUTE__DEFINING_CLASS)
+		if (eContainerFeatureID != ClassesPackage.ATTRIBUTE__DEFINING_CLASS)
 			return null;
 		return (org.unicase.model.classes.Class) eContainer();
 	}
@@ -194,7 +188,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 * @generated
 	 */
 	public org.unicase.model.classes.Class basicGetDefiningClass() {
-		if (eContainerFeatureID() != ClassesPackage.ATTRIBUTE__DEFINING_CLASS)
+		if (eContainerFeatureID != ClassesPackage.ATTRIBUTE__DEFINING_CLASS)
 			return null;
 		return (org.unicase.model.classes.Class) eInternalContainer();
 	}
@@ -215,7 +209,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 */
 	public void setDefiningClass(org.unicase.model.classes.Class newDefiningClass) {
 		if (newDefiningClass != eInternalContainer()
-			|| (eContainerFeatureID() != ClassesPackage.ATTRIBUTE__DEFINING_CLASS && newDefiningClass != null)) {
+			|| (eContainerFeatureID != ClassesPackage.ATTRIBUTE__DEFINING_CLASS && newDefiningClass != null)) {
 			if (EcoreUtil.isAncestor(this, newDefiningClass))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -490,7 +484,7 @@ public class AttributeImpl extends ModelElementImpl implements Attribute {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case ClassesPackage.ATTRIBUTE__DEFINING_CLASS:
 			return eInternalContainer().eInverseRemove(this, ClassesPackage.CLASS__ATTRIBUTES,
 				org.unicase.model.classes.Class.class, msgs);

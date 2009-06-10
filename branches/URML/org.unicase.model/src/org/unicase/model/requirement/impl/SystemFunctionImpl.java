@@ -12,18 +12,12 @@ import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.SystemFunction;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>System Function</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.requirement.impl.SystemFunctionImpl#getInput <em>Input</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.SystemFunctionImpl#getOutput <em>Output</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.SystemFunctionImpl#getException <em>Exception</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.requirement.impl.SystemFunctionImpl#getInput <em>Input</em>}</li> <li>{@link
+ * org.unicase.model.requirement.impl.SystemFunctionImpl#getOutput <em>Output</em>}</li> <li>{@link
+ * org.unicase.model.requirement.impl.SystemFunctionImpl#getException <em>Exception</em>}</li> </ul> </p>
  * @generated
  */
 public class SystemFunctionImpl extends ModelElementImpl implements SystemFunction {

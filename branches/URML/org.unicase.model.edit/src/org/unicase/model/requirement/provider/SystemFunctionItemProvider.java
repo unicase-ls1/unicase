@@ -25,10 +25,9 @@ import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.SystemFunction;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.requirement.SystemFunction} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class SystemFunctionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,

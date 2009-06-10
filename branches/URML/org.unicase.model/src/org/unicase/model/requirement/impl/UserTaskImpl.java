@@ -21,17 +21,12 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>User Task</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getInitiatingActor <em>Initiating Actor</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getParticipatingActor <em>Participating Actor</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getRealizingUseCases <em>Realizing Use Cases</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>User Task</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.requirement.impl.UserTaskImpl#getInitiatingActor <em>Initiating Actor</em>}</li> <li>{@link
+ * org.unicase.model.requirement.impl.UserTaskImpl#getParticipatingActor <em>Participating Actor</em>}</li> <li>{@link
+ * org.unicase.model.requirement.impl.UserTaskImpl#getRealizingUseCases <em>Realizing Use Cases</em>}</li> </ul> </p>
  * @generated
  */
 public class UserTaskImpl extends ModelElementImpl implements UserTask {

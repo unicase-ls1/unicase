@@ -22,16 +22,11 @@ import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Proposal</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getAssessments <em>Assessments</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getIssue <em>Issue</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Proposal</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getAssessments
+ * <em>Assessments</em>}</li> <li>{@link org.unicase.model.rationale.impl.ProposalImpl#getIssue <em>Issue</em>}</li>
+ * </ul> </p>
  * @generated
  */
 public class ProposalImpl extends ModelElementImpl implements Proposal {
@@ -79,7 +74,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	 * @generated
 	 */
 	public Issue getIssue() {
-		if (eContainerFeatureID() != RationalePackage.PROPOSAL__ISSUE)
+		if (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE)
 			return null;
 		return (Issue) eContainer();
 	}
@@ -89,7 +84,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	 * @generated
 	 */
 	public Issue basicGetIssue() {
-		if (eContainerFeatureID() != RationalePackage.PROPOSAL__ISSUE)
+		if (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE)
 			return null;
 		return (Issue) eInternalContainer();
 	}
@@ -109,7 +104,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	 */
 	public void setIssue(Issue newIssue) {
 		if (newIssue != eInternalContainer()
-			|| (eContainerFeatureID() != RationalePackage.PROPOSAL__ISSUE && newIssue != null)) {
+			|| (eContainerFeatureID != RationalePackage.PROPOSAL__ISSUE && newIssue != null)) {
 			if (EcoreUtil.isAncestor(this, newIssue))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -164,7 +159,7 @@ public class ProposalImpl extends ModelElementImpl implements Proposal {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case RationalePackage.PROPOSAL__ISSUE:
 			return eInternalContainer().eInverseRemove(this, RationalePackage.ISSUE__PROPOSALS, Issue.class, msgs);
 		}

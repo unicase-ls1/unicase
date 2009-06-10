@@ -7,16 +7,10 @@ package org.unicase.model.document;
 
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Section</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.document.Section#getParent <em>Parent</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Section</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.document.Section#getParent
+ * <em>Parent</em>}</li> </ul> </p>
  * @see org.unicase.model.document.DocumentPackage#getSection()
  * @model interface="true" abstract="true"
  * @generated

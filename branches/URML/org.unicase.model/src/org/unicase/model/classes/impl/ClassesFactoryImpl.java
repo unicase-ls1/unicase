@@ -23,7 +23,7 @@ import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.ScopeType;
 import org.unicase.model.classes.VisibilityType;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * @generated
  */

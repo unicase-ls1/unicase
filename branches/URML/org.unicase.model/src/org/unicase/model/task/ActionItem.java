@@ -5,17 +5,10 @@
  */
 package org.unicase.model.task;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Action Item</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.task.ActionItem#isDone <em>Done</em>}</li>
- *   <li>{@link org.unicase.model.task.ActionItem#getActivity <em>Activity</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are supported: <ul> <li>{@link org.unicase.model.task.ActionItem#isDone
+ * <em>Done</em>}</li> <li>{@link org.unicase.model.task.ActionItem#getActivity <em>Activity</em>}</li> </ul> </p>
  * @see org.unicase.model.task.TaskPackage#getActionItem()
  * @model
  * @generated

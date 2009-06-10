@@ -35,31 +35,25 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Issue</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#isChecked <em>Checked</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getContainingWorkpackage <em>Containing Workpackage</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssociatedChangePackages <em>Associated Change Packages</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getPredecessors <em>Predecessors</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSuccessors <em>Successors</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssignee <em>Assignee</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getReviewer <em>Reviewer</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getParticipants <em>Participants</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getDueDate <em>Due Date</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getEstimate <em>Estimate</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getEffort <em>Effort</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getPriority <em>Priority</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#isResolved <em>Resolved</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getProposals <em>Proposals</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li>
- *   <li>{@link org.unicase.model.rationale.impl.IssueImpl#getActivity <em>Activity</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Issue</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.rationale.impl.IssueImpl#isChecked
+ * <em>Checked</em>}</li> <li>{@link org.unicase.model.rationale.impl.IssueImpl#getContainingWorkpackage <em>Containing
+ * Workpackage</em>}</li> <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssociatedChangePackages
+ * <em>Associated Change Packages</em>}</li> <li>{@link org.unicase.model.rationale.impl.IssueImpl#getPredecessors
+ * <em>Predecessors</em>}</li> <li>{@link org.unicase.model.rationale.impl.IssueImpl#getSuccessors
+ * <em>Successors</em>}</li> <li>{@link org.unicase.model.rationale.impl.IssueImpl#getAssignee <em>Assignee</em>}</li>
+ * <li>{@link org.unicase.model.rationale.impl.IssueImpl#getReviewer <em>Reviewer</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.IssueImpl#getParticipants <em>Participants</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.IssueImpl#getDueDate <em>Due Date</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.IssueImpl#getEstimate <em>Estimate</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.IssueImpl#getEffort <em>Effort</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.IssueImpl#getPriority <em>Priority</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.IssueImpl#isResolved <em>Resolved</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.IssueImpl#getProposals <em>Proposals</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.IssueImpl#getSolution <em>Solution</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.IssueImpl#getCriteria <em>Criteria</em>}</li> <li>{@link
+ * org.unicase.model.rationale.impl.IssueImpl#getActivity <em>Activity</em>}</li> </ul> </p>
  * @generated
  */
 public class IssueImpl extends AnnotationImpl implements Issue {
@@ -327,7 +321,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @generated
 	 */
 	public WorkPackage getContainingWorkpackage() {
-		if (eContainerFeatureID() != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eContainer();
 	}
@@ -337,7 +331,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 * @generated
 	 */
 	public WorkPackage basicGetContainingWorkpackage() {
-		if (eContainerFeatureID() != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE)
+		if (eContainerFeatureID != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE)
 			return null;
 		return (WorkPackage) eInternalContainer();
 	}
@@ -358,7 +352,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	public void setContainingWorkpackage(WorkPackage newContainingWorkpackage) {
 		if (newContainingWorkpackage != eInternalContainer()
-			|| (eContainerFeatureID() != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
+			|| (eContainerFeatureID != RationalePackage.ISSUE__CONTAINING_WORKPACKAGE && newContainingWorkpackage != null)) {
 			if (EcoreUtil.isAncestor(this, newContainingWorkpackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -836,7 +830,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			return eInternalContainer().eInverseRemove(this, TaskPackage.WORK_PACKAGE__CONTAINED_WORK_ITEMS,
 				WorkPackage.class, msgs);
@@ -852,7 +846,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case RationalePackage.ISSUE__CHECKED:
-			return isChecked();
+			return isChecked() ? Boolean.TRUE : Boolean.FALSE;
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			if (resolve)
 				return getContainingWorkpackage();
@@ -876,13 +870,13 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 		case RationalePackage.ISSUE__DUE_DATE:
 			return getDueDate();
 		case RationalePackage.ISSUE__ESTIMATE:
-			return getEstimate();
+			return new Integer(getEstimate());
 		case RationalePackage.ISSUE__EFFORT:
-			return getEffort();
+			return new Integer(getEffort());
 		case RationalePackage.ISSUE__PRIORITY:
-			return getPriority();
+			return new Integer(getPriority());
 		case RationalePackage.ISSUE__RESOLVED:
-			return isResolved();
+			return isResolved() ? Boolean.TRUE : Boolean.FALSE;
 		case RationalePackage.ISSUE__PROPOSALS:
 			return getProposals();
 		case RationalePackage.ISSUE__SOLUTION:
@@ -906,7 +900,7 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 		case RationalePackage.ISSUE__CHECKED:
-			setChecked((Boolean) newValue);
+			setChecked(((Boolean) newValue).booleanValue());
 			return;
 		case RationalePackage.ISSUE__CONTAINING_WORKPACKAGE:
 			setContainingWorkpackage((WorkPackage) newValue);
@@ -937,16 +931,16 @@ public class IssueImpl extends AnnotationImpl implements Issue {
 			setDueDate((Date) newValue);
 			return;
 		case RationalePackage.ISSUE__ESTIMATE:
-			setEstimate((Integer) newValue);
+			setEstimate(((Integer) newValue).intValue());
 			return;
 		case RationalePackage.ISSUE__EFFORT:
-			setEffort((Integer) newValue);
+			setEffort(((Integer) newValue).intValue());
 			return;
 		case RationalePackage.ISSUE__PRIORITY:
-			setPriority((Integer) newValue);
+			setPriority(((Integer) newValue).intValue());
 			return;
 		case RationalePackage.ISSUE__RESOLVED:
-			setResolved((Boolean) newValue);
+			setResolved(((Boolean) newValue).booleanValue());
 			return;
 		case RationalePackage.ISSUE__PROPOSALS:
 			getProposals().clear();

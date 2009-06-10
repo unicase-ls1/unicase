@@ -9,27 +9,19 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.requirement.Scenario;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Method</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.classes.Method#getVisibility <em>Visibility</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#getScope <em>Scope</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#getDefiningClass <em>Defining Class</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#getReturnType <em>Return Type</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#getSignature <em>Signature</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#getArguments <em>Arguments</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#getProperties <em>Properties</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#getLabel <em>Label</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#isStubbed <em>Stubbed</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#getCalledMethods <em>Called Methods</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#getCallingMethods <em>Calling Methods</em>}</li>
- *   <li>{@link org.unicase.model.classes.Method#getDemoParticipations <em>Demo Participations</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Method</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.classes.Method#getVisibility
+ * <em>Visibility</em>}</li> <li>{@link org.unicase.model.classes.Method#getScope <em>Scope</em>}</li> <li>{@link
+ * org.unicase.model.classes.Method#getDefiningClass <em>Defining Class</em>}</li> <li>{@link
+ * org.unicase.model.classes.Method#getReturnType <em>Return Type</em>}</li> <li>{@link
+ * org.unicase.model.classes.Method#getSignature <em>Signature</em>}</li> <li>{@link
+ * org.unicase.model.classes.Method#getArguments <em>Arguments</em>}</li> <li>{@link
+ * org.unicase.model.classes.Method#getProperties <em>Properties</em>}</li> <li>{@link
+ * org.unicase.model.classes.Method#getLabel <em>Label</em>}</li> <li>{@link org.unicase.model.classes.Method#isStubbed
+ * <em>Stubbed</em>}</li> <li>{@link org.unicase.model.classes.Method#getCalledMethods <em>Called Methods</em>}</li>
+ * <li>{@link org.unicase.model.classes.Method#getCallingMethods <em>Calling Methods</em>}</li> <li>{@link
+ * org.unicase.model.classes.Method#getDemoParticipations <em>Demo Participations</em>}</li> </ul> </p>
  * @see org.unicase.model.classes.ClassesPackage#getMethod()
  * @model
  * @generated
@@ -102,23 +94,24 @@ public interface Method extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Defining Class</em>' container reference.
-	 * @see #setDefiningClass(Class)
+	 * @see #setDefiningClass(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_DefiningClass()
 	 * @see org.unicase.model.classes.Class#getMethods
 	 * @model opposite="methods" transient="false"
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
-	Class getDefiningClass();
+	org.unicase.model.classes.Class getDefiningClass();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.Method#getDefiningClass <em>Defining Class</em>}' container reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Defining Class</em>' container reference.
 	 * @see #getDefiningClass()
 	 * @generated
 	 */
-	void setDefiningClass(Class value);
+	void setDefiningClass(org.unicase.model.classes.Class value);
 
 	/**
 	 * Returns the value of the '<em><b>Return Type</b></em>' attribute.

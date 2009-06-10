@@ -23,9 +23,8 @@ import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.rationale.Solution;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.rationale.Solution} object.
- * <!-- begin-user-doc -->
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.rationale.Solution} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */

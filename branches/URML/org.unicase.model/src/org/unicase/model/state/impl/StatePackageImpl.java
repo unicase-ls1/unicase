@@ -50,7 +50,7 @@ import org.unicase.model.task.impl.TaskPackageImpl;
 import org.unicase.model.util.UtilPackage;
 import org.unicase.model.util.impl.UtilPackageImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
  * @generated
  */
@@ -117,8 +117,8 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 			return (StatePackage) EPackage.Registry.INSTANCE.getEPackage(StatePackage.eNS_URI);
 
 		// Obtain or create and register package
-		StatePackageImpl theStatePackage = (StatePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
+		StatePackageImpl theStatePackage = (StatePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof StatePackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(eNS_URI)
 			: new StatePackageImpl());
 
 		isInited = true;

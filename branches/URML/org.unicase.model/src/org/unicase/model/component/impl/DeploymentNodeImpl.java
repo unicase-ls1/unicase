@@ -15,15 +15,10 @@ import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.DeploymentNode;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Node</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.component.impl.DeploymentNodeImpl#getComponents <em>Components</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Node</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.component.impl.DeploymentNodeImpl#getComponents
+ * <em>Components</em>}</li> </ul> </p>
  * @generated
  */
 public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNode {

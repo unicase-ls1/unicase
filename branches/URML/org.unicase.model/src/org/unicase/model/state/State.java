@@ -8,20 +8,13 @@ package org.unicase.model.state;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>State</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.state.State#getExitConditions <em>Exit Conditions</em>}</li>
- *   <li>{@link org.unicase.model.state.State#getActivities <em>Activities</em>}</li>
- *   <li>{@link org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}</li>
- *   <li>{@link org.unicase.model.state.State#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
- *   <li>{@link org.unicase.model.state.State#getIncomingTransitions <em>Incoming Transitions</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>State</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.state.State#getExitConditions <em>Exit
+ * Conditions</em>}</li> <li>{@link org.unicase.model.state.State#getActivities <em>Activities</em>}</li> <li>{@link
+ * org.unicase.model.state.State#getEntryConditions <em>Entry Conditions</em>}</li> <li>{@link
+ * org.unicase.model.state.State#getOutgoingTransitions <em>Outgoing Transitions</em>}</li> <li>{@link
+ * org.unicase.model.state.State#getIncomingTransitions <em>Incoming Transitions</em>}</li> </ul> </p>
  * @see org.unicase.model.state.StatePackage#getState()
  * @model
  * @generated

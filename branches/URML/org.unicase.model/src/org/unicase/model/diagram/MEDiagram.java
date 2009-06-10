@@ -12,20 +12,13 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.impl.DiagramLoadException;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>ME Diagram</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.diagram.MEDiagram#getElements <em>Elements</em>}</li>
- *   <li>{@link org.unicase.model.diagram.MEDiagram#getGmfdiagram <em>Gmfdiagram</em>}</li>
- *   <li>{@link org.unicase.model.diagram.MEDiagram#getNewElements <em>New Elements</em>}</li>
- *   <li>{@link org.unicase.model.diagram.MEDiagram#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.model.diagram.MEDiagram#getDiagramLayout <em>Diagram Layout</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>ME Diagram</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.diagram.MEDiagram#getElements
+ * <em>Elements</em>}</li> <li>{@link org.unicase.model.diagram.MEDiagram#getGmfdiagram <em>Gmfdiagram</em>}</li>
+ * <li>{@link org.unicase.model.diagram.MEDiagram#getNewElements <em>New Elements</em>}</li> <li>{@link
+ * org.unicase.model.diagram.MEDiagram#getType <em>Type</em>}</li> <li>{@link
+ * org.unicase.model.diagram.MEDiagram#getDiagramLayout <em>Diagram Layout</em>}</li> </ul> </p>
  * @see org.unicase.model.diagram.DiagramPackage#getMEDiagram()
  * @model
  * @generated

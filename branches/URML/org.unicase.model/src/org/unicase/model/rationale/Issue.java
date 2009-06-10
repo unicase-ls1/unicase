@@ -11,19 +11,12 @@ import org.unicase.model.task.ActivityType;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Issue</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.rationale.Issue#getProposals <em>Proposals</em>}</li>
- *   <li>{@link org.unicase.model.rationale.Issue#getSolution <em>Solution</em>}</li>
- *   <li>{@link org.unicase.model.rationale.Issue#getCriteria <em>Criteria</em>}</li>
- *   <li>{@link org.unicase.model.rationale.Issue#getActivity <em>Activity</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Issue</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.rationale.Issue#getProposals
+ * <em>Proposals</em>}</li> <li>{@link org.unicase.model.rationale.Issue#getSolution <em>Solution</em>}</li> <li>{@link
+ * org.unicase.model.rationale.Issue#getCriteria <em>Criteria</em>}</li> <li>{@link
+ * org.unicase.model.rationale.Issue#getActivity <em>Activity</em>}</li> </ul> </p>
  * @see org.unicase.model.rationale.RationalePackage#getIssue()
  * @model
  * @generated

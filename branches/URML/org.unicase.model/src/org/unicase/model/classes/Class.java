@@ -9,24 +9,17 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Class</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.classes.Class#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.classes.Class#getSuperClasses <em>Super Classes</em>}</li>
- *   <li>{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}</li>
- *   <li>{@link org.unicase.model.classes.Class#getIncomingAssociations <em>Incoming Associations</em>}</li>
- *   <li>{@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}</li>
- *   <li>{@link org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}</li>
- *   <li>{@link org.unicase.model.classes.Class#getMethods <em>Methods</em>}</li>
- *   <li>{@link org.unicase.model.classes.Class#getDemoParticipations <em>Demo Participations</em>}</li>
- *   <li>{@link org.unicase.model.classes.Class#getInstances <em>Instances</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Class</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.classes.Class#getParticipatedUseCases
+ * <em>Participated Use Cases</em>}</li> <li>{@link org.unicase.model.classes.Class#getSuperClasses <em>Super
+ * Classes</em>}</li> <li>{@link org.unicase.model.classes.Class#getSubClasses <em>Sub Classes</em>}</li> <li>{@link
+ * org.unicase.model.classes.Class#getIncomingAssociations <em>Incoming Associations</em>}</li> <li>{@link
+ * org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}</li> <li>{@link
+ * org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}</li> <li>{@link
+ * org.unicase.model.classes.Class#getMethods <em>Methods</em>}</li> <li>{@link
+ * org.unicase.model.classes.Class#getDemoParticipations <em>Demo Participations</em>}</li> <li>{@link
+ * org.unicase.model.classes.Class#getInstances <em>Instances</em>}</li> </ul> </p>
  * @see org.unicase.model.classes.ClassesPackage#getClass_()
  * @model
  * @generated
@@ -203,5 +196,5 @@ public interface Class extends PackageElement {
 	 * @model opposite="class" keys="identifier"
 	 * @generated
 	 */
-	EList<Object> getInstances();
+	EList<org.unicase.model.classes.Object> getInstances();
 } // Class

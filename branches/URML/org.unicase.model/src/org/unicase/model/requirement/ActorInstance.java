@@ -8,18 +8,12 @@ package org.unicase.model.requirement;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Actor Instance</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.ActorInstance#getInitiatedScenarios <em>Initiated Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.ActorInstance#getParticipatedScenarios <em>Participated Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.ActorInstance#getInstantiatedActor <em>Instantiated Actor</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.requirement.ActorInstance#getInitiatedScenarios <em>Initiated Scenarios</em>}</li> <li>{@link
+ * org.unicase.model.requirement.ActorInstance#getParticipatedScenarios <em>Participated Scenarios</em>}</li> <li>{@link
+ * org.unicase.model.requirement.ActorInstance#getInstantiatedActor <em>Instantiated Actor</em>}</li> </ul> </p>
  * @see org.unicase.model.requirement.RequirementPackage#getActorInstance()
  * @model
  * @generated

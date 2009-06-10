@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.model.hazard.*;
 import org.unicase.model.hazard.EvalStatus;
 import org.unicase.model.hazard.Hazard;
 import org.unicase.model.hazard.HazardCause;
@@ -18,7 +19,7 @@ import org.unicase.model.hazard.HazardFactory;
 import org.unicase.model.hazard.HazardPackage;
 import org.unicase.model.hazard.Mitigation;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
  * @generated
  */

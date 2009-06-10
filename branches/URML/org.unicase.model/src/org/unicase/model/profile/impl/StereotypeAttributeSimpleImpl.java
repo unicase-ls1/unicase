@@ -11,16 +11,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.StereotypeAttributeSimple;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Stereotype Attribute Simple</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl#getType <em>Type</em>}</li>
- * </ul>
- * </p>
- *
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl#getType <em>Type</em>}</li> </ul> </p>
  * @generated
  */
 public class StereotypeAttributeSimpleImpl extends StereotypeAttributeImpl implements StereotypeAttributeSimple {

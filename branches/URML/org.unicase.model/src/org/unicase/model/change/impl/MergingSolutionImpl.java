@@ -15,16 +15,10 @@ import org.unicase.model.change.MergingSolution;
 import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.rationale.impl.SolutionImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Merging Solution</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.change.impl.MergingSolutionImpl#getAppliedChanges <em>Applied Changes</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.change.impl.MergingSolutionImpl#getAppliedChanges <em>Applied Changes</em>}</li> </ul> </p>
  * @generated
  */
 public class MergingSolutionImpl extends SolutionImpl implements MergingSolution {

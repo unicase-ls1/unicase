@@ -9,18 +9,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElementId;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Model Element Path</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are supported:
- * <ul>
- * <li>{@link org.unicase.model.util.ModelElementPath#getSource <em>Source</em>}</li>
- * <li>{@link org.unicase.model.util.ModelElementPath#getTarget <em>Target</em>}</li>
- * <li>{@link org.unicase.model.util.ModelElementPath#getPath <em>Path</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are supported: <ul> <li>{@link org.unicase.model.util.ModelElementPath#getSource
+ * <em>Source</em>}</li> <li>{@link org.unicase.model.util.ModelElementPath#getTarget <em>Target</em>}</li> <li>{@link
+ * org.unicase.model.util.ModelElementPath#getPath <em>Path</em>}</li> </ul> </p>
  * @see org.unicase.model.util.UtilPackage#getModelElementPath()
  * @model
  * @generated

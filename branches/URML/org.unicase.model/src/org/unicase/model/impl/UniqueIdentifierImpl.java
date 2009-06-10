@@ -13,16 +13,10 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UniqueIdentifier;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Unique Identifier</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.impl.UniqueIdentifierImpl#getId <em>Id</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link org.unicase.model.impl.UniqueIdentifierImpl#getId
+ * <em>Id</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class UniqueIdentifierImpl extends EObjectImpl implements UniqueIdentifier {

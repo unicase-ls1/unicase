@@ -8,17 +8,11 @@ package org.unicase.model.document;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Leaf Section</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.document.LeafSection#getModelElements <em>Model Elements</em>}</li>
- *   <li>{@link org.unicase.model.document.LeafSection#getReferencedModelElements <em>Referenced Model Elements</em>}</li>
- * </ul>
- * </p>
- *
+ * <p> The following features are supported: <ul> <li>{@link org.unicase.model.document.LeafSection#getModelElements
+ * <em>Model Elements</em>}</li> <li>{@link org.unicase.model.document.LeafSection#getReferencedModelElements
+ * <em>Referenced Model Elements</em>}</li> </ul> </p>
  * @see org.unicase.model.document.DocumentPackage#getLeafSection()
  * @model
  * @generated

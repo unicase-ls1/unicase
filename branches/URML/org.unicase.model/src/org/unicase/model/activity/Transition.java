@@ -7,18 +7,11 @@ package org.unicase.model.activity;
 
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.activity.Transition#getSource <em>Source</em>}</li>
- *   <li>{@link org.unicase.model.activity.Transition#getTarget <em>Target</em>}</li>
- *   <li>{@link org.unicase.model.activity.Transition#getCondition <em>Condition</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.activity.Transition#getSource
+ * <em>Source</em>}</li> <li>{@link org.unicase.model.activity.Transition#getTarget <em>Target</em>}</li> <li>{@link
+ * org.unicase.model.activity.Transition#getCondition <em>Condition</em>}</li> </ul> </p>
  * @see org.unicase.model.activity.ActivityPackage#getTransition()
  * @model
  * @generated

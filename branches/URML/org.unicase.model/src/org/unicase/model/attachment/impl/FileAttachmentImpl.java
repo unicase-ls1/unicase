@@ -12,19 +12,13 @@ import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.impl.AttachmentImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>File Attachment</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileName <em>File Name</em>}</li>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileHash <em>File Hash</em>}</li>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileID <em>File ID</em>}</li>
- * <li>{@link org.unicase.model.attachment.impl.FileAttachmentImpl#getFileSize <em>File Size</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.attachment.impl.FileAttachmentImpl#getFileName <em>File Name</em>}</li> <li>{@link
+ * org.unicase.model.attachment.impl.FileAttachmentImpl#getFileHash <em>File Hash</em>}</li> <li>{@link
+ * org.unicase.model.attachment.impl.FileAttachmentImpl#getFileID <em>File ID</em>}</li> <li>{@link
+ * org.unicase.model.attachment.impl.FileAttachmentImpl#getFileSize <em>File Size</em>}</li> </ul> </p>
  * @generated
  */
 public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment {
@@ -219,7 +213,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_ID:
 			return getFileID();
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
-			return getFileSize();
+			return new Long(getFileSize());
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -241,7 +235,7 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			setFileID((String) newValue);
 			return;
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
-			setFileSize((Long) newValue);
+			setFileSize(((Long) newValue).longValue());
 			return;
 		}
 		super.eSet(featureID, newValue);

@@ -14,16 +14,10 @@ import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.rationale.Issue;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Issue Meeting Section</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.meeting.impl.IssueMeetingSectionImpl#getIncludedIssues <em>Included Issues</em>}</li>
- * </ul>
- * </p>
- *
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.meeting.impl.IssueMeetingSectionImpl#getIncludedIssues <em>Included Issues</em>}</li> </ul> </p>
  * @generated
  */
 public class IssueMeetingSectionImpl extends MeetingSectionImpl implements IssueMeetingSection {

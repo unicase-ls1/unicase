@@ -36,24 +36,19 @@ import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.MEStateImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getCreator <em>Creator</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAttachments <em>Attachments</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
- *   <li>{@link org.unicase.model.impl.ModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.impl.ModelElementImpl#getName
+ * <em>Name</em>}</li> <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getCreator <em>Creator</em>}</li> <li>{@link
+ * org.unicase.model.impl.ModelElementImpl#getCreationDate <em>Creation Date</em>}</li> <li>{@link
+ * org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li> <li>{@link
+ * org.unicase.model.impl.ModelElementImpl#getAttachments <em>Attachments</em>}</li> <li>{@link
+ * org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
+ * <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li> <li>{@link
+ * org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li> <li>{@link
+ * org.unicase.model.impl.ModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
+ * </ul> </p>
  * @generated
  */
 public abstract class ModelElementImpl extends IdentifiableElementImpl implements ModelElement {
@@ -406,7 +401,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * @generated
 	 */
 	public LeafSection getLeafSection() {
-		if (eContainerFeatureID() != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
+		if (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
 			return null;
 		return (LeafSection) eContainer();
 	}
@@ -416,7 +411,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * @generated
 	 */
 	public LeafSection basicGetLeafSection() {
-		if (eContainerFeatureID() != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
+		if (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION)
 			return null;
 		return (LeafSection) eInternalContainer();
 	}
@@ -436,7 +431,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 */
 	public void setLeafSection(LeafSection newLeafSection) {
 		if (newLeafSection != eInternalContainer()
-			|| (eContainerFeatureID() != ModelPackage.MODEL_ELEMENT__LEAF_SECTION && newLeafSection != null)) {
+			|| (eContainerFeatureID != ModelPackage.MODEL_ELEMENT__LEAF_SECTION && newLeafSection != null)) {
 			if (EcoreUtil.isAncestor(this, newLeafSection))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
@@ -639,7 +634,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch (eContainerFeatureID()) {
+		switch (eContainerFeatureID) {
 		case ModelPackage.MODEL_ELEMENT__LEAF_SECTION:
 			return eInternalContainer().eInverseRemove(this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
 				LeafSection.class, msgs);

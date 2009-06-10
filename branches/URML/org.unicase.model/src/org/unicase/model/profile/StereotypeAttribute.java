@@ -8,18 +8,12 @@ package org.unicase.model.profile;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Stereotype Attribute</b></em>'. <!--
- * end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.profile.StereotypeAttribute#getStereotype <em>Stereotype</em>}</li>
- *   <li>{@link org.unicase.model.profile.StereotypeAttribute#getStereotypeAttributeInstances <em>Stereotype Attribute Instances</em>}</li>
- * </ul>
- * </p>
- *
+ * end-user-doc --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.profile.StereotypeAttribute#getStereotype <em>Stereotype</em>}</li> <li>{@link
+ * org.unicase.model.profile.StereotypeAttribute#getStereotypeAttributeInstances <em>Stereotype Attribute
+ * Instances</em>}</li> </ul> </p>
  * @see org.unicase.model.profile.ProfilePackage#getStereotypeAttribute()
  * @model abstract="true"
  * @generated

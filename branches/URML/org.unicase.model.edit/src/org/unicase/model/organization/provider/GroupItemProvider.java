@@ -17,11 +17,11 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.organization.Group} object.
- * <!-- begin-user-doc -->
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.organization.Group} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */

@@ -9,11 +9,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.Fork;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Fork</b></em>'. <!-- end-user-doc -->
- * <p>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Fork</b></em>'. <!-- end-user-doc --> <p> </p>
  * @generated
  */
 public class ForkImpl extends ActivityObjectImpl implements Fork {

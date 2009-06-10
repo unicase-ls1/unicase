@@ -26,9 +26,8 @@ import org.unicase.model.requirement.Feature;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.RequirementPackage;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.requirement.Feature} object.
- * <!-- begin-user-doc -->
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.requirement.Feature} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */

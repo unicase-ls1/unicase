@@ -49,7 +49,7 @@ import org.unicase.model.task.impl.TaskPackageImpl;
 import org.unicase.model.util.UtilPackage;
 import org.unicase.model.util.impl.UtilPackageImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
  * @generated
  */
@@ -116,8 +116,8 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 			return (AttachmentPackage) EPackage.Registry.INSTANCE.getEPackage(AttachmentPackage.eNS_URI);
 
 		// Obtain or create and register package
-		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
+		AttachmentPackageImpl theAttachmentPackage = (AttachmentPackageImpl) (EPackage.Registry.INSTANCE
+			.getEPackage(eNS_URI) instanceof AttachmentPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
 			: new AttachmentPackageImpl());
 
 		isInited = true;

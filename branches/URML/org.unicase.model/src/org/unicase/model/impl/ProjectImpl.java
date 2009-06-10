@@ -30,7 +30,7 @@ import org.unicase.model.Project;
 import org.unicase.model.util.ProjectChangeNotifier;
 import org.unicase.model.util.ProjectChangeObserver;
 
-/**
+/*
  * @author koegel, naughton
  * @generated
  */

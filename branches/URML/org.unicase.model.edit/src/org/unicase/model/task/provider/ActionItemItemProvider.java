@@ -25,9 +25,8 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskPackage;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.task.ActionItem} object.
- * <!-- begin-user-doc -->
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.task.ActionItem} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */

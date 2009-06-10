@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the literals of the enumeration ' <em><b>Association Type</b></em>', and
  * utility methods for working with them. <!-- end-user-doc -->
  * @see org.unicase.model.classes.ClassesPackage#getAssociationType()
@@ -27,27 +27,27 @@ public enum AssociationType implements Enumerator {
 	 * @ordered
 	 */
 	UNDIRECTED_ASSOCIATION(0, "UNDIRECTED_ASSOCIATION", "Undirected Association"), /**
-																					 * The '<em><b>DIRECTED ASSOCIATION</b></em>' literal object.
-																					 * <!-- begin-user-doc --> <!-- end-user-doc -->
-																					 * @see #DIRECTED_ASSOCIATION_VALUE
-																					 * @generated
-																					 * @ordered
-																					 */
+	 * The '<em><b>DIRECTED ASSOCIATION</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #DIRECTED_ASSOCIATION_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	DIRECTED_ASSOCIATION(1, "DIRECTED_ASSOCIATION", "Directed Association"), /**
-																				 * The '<em><b>AGGREGATION</b></em>' literal object.
-																				 * <!-- begin-user-doc --> <!-- end-user-doc -->
-																				 * @see #AGGREGATION_VALUE
-																				 * @generated
-																				 * @ordered
-																				 */
+	 * The '<em><b>AGGREGATION</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @see #AGGREGATION_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	AGGREGATION(2, "AGGREGATION", "Aggregation"), /**
-													 * The '<em><b>COMPOSITION</b></em>' literal object. <!--
-													 * begin-user-doc --> <!-- end-user-doc -->
-													 * 
-													 * @see #COMPOSITION_VALUE
-													 * @generated
-													 * @ordered
-													 */
+	 * The '<em><b>COMPOSITION</b></em>' literal object. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #COMPOSITION_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	COMPOSITION(3, "COMPOSITION", "Composition");
 
 	/**

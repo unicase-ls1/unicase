@@ -8,20 +8,14 @@ package org.unicase.model.requirement;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Actor</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.Actor#getInitiatedUserTask <em>Initiated User Task</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Actor#getParticipatedUserTasks <em>Participated User Tasks</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Actor#getInitiatedUseCases <em>Initiated Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Actor#getParticipatedUseCases <em>Participated Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Actor#getInstances <em>Instances</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Actor</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.requirement.Actor#getInitiatedUserTask
+ * <em>Initiated User Task</em>}</li> <li>{@link org.unicase.model.requirement.Actor#getParticipatedUserTasks
+ * <em>Participated User Tasks</em>}</li> <li>{@link org.unicase.model.requirement.Actor#getInitiatedUseCases
+ * <em>Initiated Use Cases</em>}</li> <li>{@link org.unicase.model.requirement.Actor#getParticipatedUseCases
+ * <em>Participated Use Cases</em>}</li> <li>{@link org.unicase.model.requirement.Actor#getInstances
+ * <em>Instances</em>}</li> </ul> </p>
  * @see org.unicase.model.requirement.RequirementPackage#getActor()
  * @model
  * @generated

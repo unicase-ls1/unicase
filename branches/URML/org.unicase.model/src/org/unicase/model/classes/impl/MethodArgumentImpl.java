@@ -16,20 +16,14 @@ import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Method Argument</b></em>'. <!-- end-user-doc
- * -->
- * <p>
- * The following features are implemented:
- * <ul>
- * <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getType <em>Type</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getDirection <em>Direction</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getDefaultValue <em>Default Value</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getSignature <em>Signature</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodArgumentImpl#getLabel <em>Label</em>}</li>
- * </ul>
- * </p>
- * 
+ * --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.classes.impl.MethodArgumentImpl#getType <em>Type</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodArgumentImpl#getDirection <em>Direction</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodArgumentImpl#getDefaultValue <em>Default Value</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodArgumentImpl#getSignature <em>Signature</em>}</li> <li>{@link
+ * org.unicase.model.classes.impl.MethodArgumentImpl#getLabel <em>Label</em>}</li> </ul> </p>
  * @generated
  */
 public class MethodArgumentImpl extends ModelElementImpl implements MethodArgument {

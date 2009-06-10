@@ -17,15 +17,10 @@ import org.unicase.model.Attachment;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Attachment</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.impl.AttachmentImpl#getReferringModelElements <em>Referring Model Elements</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Attachment</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.impl.AttachmentImpl#getReferringModelElements <em>Referring Model Elements</em>}</li> </ul> </p>
  * @generated
  */
 public abstract class AttachmentImpl extends ModelElementImpl implements Attachment {

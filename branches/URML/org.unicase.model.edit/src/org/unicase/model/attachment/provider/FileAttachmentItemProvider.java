@@ -25,10 +25,9 @@ import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.provider.AttachmentItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.attachment.FileAttachment} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class FileAttachmentItemProvider extends AttachmentItemProvider implements IEditingDomainItemProvider,

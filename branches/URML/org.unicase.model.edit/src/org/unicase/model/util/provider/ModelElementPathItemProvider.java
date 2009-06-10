@@ -25,9 +25,8 @@ import org.unicase.model.provider.RootElementItemProvider;
 import org.unicase.model.util.ModelElementPath;
 import org.unicase.model.util.UtilPackage;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.util.ModelElementPath} object.
- * <!-- begin-user-doc
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.util.ModelElementPath} object. <!-- begin-user-doc
  * --> <!-- end-user-doc -->
  * @generated
  */

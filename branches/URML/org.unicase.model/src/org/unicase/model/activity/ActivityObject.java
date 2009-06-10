@@ -8,17 +8,11 @@ package org.unicase.model.activity;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Object</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.activity.ActivityObject#getIncomingTransitions <em>Incoming Transitions</em>}</li>
- *   <li>{@link org.unicase.model.activity.ActivityObject#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Object</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are supported: <ul> <li>{@link org.unicase.model.activity.ActivityObject#getIncomingTransitions
+ * <em>Incoming Transitions</em>}</li> <li>{@link org.unicase.model.activity.ActivityObject#getOutgoingTransitions
+ * <em>Outgoing Transitions</em>}</li> </ul> </p>
  * @see org.unicase.model.activity.ActivityPackage#getActivityObject()
  * @model abstract="true"
  * @generated

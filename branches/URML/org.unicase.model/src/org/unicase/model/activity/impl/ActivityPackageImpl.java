@@ -55,7 +55,7 @@ import org.unicase.model.task.impl.TaskPackageImpl;
 import org.unicase.model.util.UtilPackage;
 import org.unicase.model.util.impl.UtilPackageImpl;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
  * @generated
  */
@@ -152,8 +152,8 @@ public class ActivityPackageImpl extends EPackageImpl implements ActivityPackage
 			return (ActivityPackage) EPackage.Registry.INSTANCE.getEPackage(ActivityPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
-			.get(eNS_URI)
+		ActivityPackageImpl theActivityPackage = (ActivityPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof ActivityPackageImpl ? EPackage.Registry.INSTANCE
+			.getEPackage(eNS_URI)
 			: new ActivityPackageImpl());
 
 		isInited = true;

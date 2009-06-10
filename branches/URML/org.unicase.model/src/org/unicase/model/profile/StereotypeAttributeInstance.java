@@ -7,18 +7,12 @@ package org.unicase.model.profile;
 
 import org.unicase.model.ModelElement;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Stereotype Attribute Instance</b></em>'. <!--
- * end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeInstance <em>Stereotype Instance</em>}</li>
- *   <li>{@link org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeAttribute <em>Stereotype Attribute</em>}</li>
- * </ul>
- * </p>
- *
+ * end-user-doc --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeInstance <em>Stereotype Instance</em>}</li>
+ * <li>{@link org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeAttribute <em>Stereotype
+ * Attribute</em>}</li> </ul> </p>
  * @see org.unicase.model.profile.ProfilePackage#getStereotypeAttributeInstance()
  * @model abstract="true"
  * @generated

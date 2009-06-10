@@ -20,18 +20,14 @@ import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
-/**
+/*
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Non Functional Requirement</b></em>'. <!--
- * end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getConstrainedScenarios <em>Constrained Scenarios</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getConstrainedUseCases <em>Constrained Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getConstrainedFRs <em>Constrained FRs</em>}</li>
- * </ul>
- * </p>
- *
+ * end-user-doc --> <p> The following features are implemented: <ul> <li>{@link
+ * org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getConstrainedScenarios <em>Constrained
+ * Scenarios</em>}</li> <li>{@link
+ * org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getConstrainedUseCases <em>Constrained Use
+ * Cases</em>}</li> <li>{@link org.unicase.model.requirement.impl.NonFunctionalRequirementImpl#getConstrainedFRs
+ * <em>Constrained FRs</em>}</li> </ul> </p>
  * @generated
  */
 public class NonFunctionalRequirementImpl extends CriterionImpl implements NonFunctionalRequirement {

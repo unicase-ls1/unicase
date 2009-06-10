@@ -11,7 +11,7 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the literals of the enumeration '<em><b>Activity Type</b></em>', and
  * utility methods for working with them. <!-- end-user-doc -->
  * @see org.unicase.model.task.TaskPackage#getActivityType()
@@ -27,13 +27,13 @@ public enum ActivityType implements Enumerator {
 	 * @ordered
 	 */
 	NONE(0, "NONE", "<please select>"), /**
-										 * The '<em><b>ANALYSIS</b></em>' literal object.
-										 * <!-- begin-user-doc --> <!--
-										 * end-user-doc -->
-										 * @see #ANALYSIS_VALUE
-										 * @generated
-										 * @ordered
-										 */
+	 * The '<em><b>ANALYSIS</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #ANALYSIS_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	ANALYSIS(1, "ANALYSIS", "Analysis"),
 
 	/**
@@ -71,13 +71,13 @@ public enum ActivityType implements Enumerator {
 	 * @ordered
 	 */
 	TESTING(5, "TESTING", "Testing"), /**
-										 * The '<em><b>MANAGEMENT</b></em>' literal object.
-										 * <!-- begin-user-doc --> <!--
-										 * end-user-doc -->
-										 * @see #MANAGEMENT_VALUE
-										 * @generated
-										 * @ordered
-										 */
+	 * The '<em><b>MANAGEMENT</b></em>' literal object.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #MANAGEMENT_VALUE
+	 * @generated
+	 * @ordered
+	 */
 	MANAGEMENT(6, "MANAGEMENT", "Management");
 
 	/**

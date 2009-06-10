@@ -15,16 +15,11 @@ import org.unicase.model.classes.Dependency;
 import org.unicase.model.classes.PackageElement;
 import org.unicase.model.impl.ModelElementImpl;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>Dependency</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.classes.impl.DependencyImpl#getSource <em>Source</em>}</li>
- *   <li>{@link org.unicase.model.classes.impl.DependencyImpl#getTarget <em>Target</em>}</li>
- * </ul>
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>Dependency</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are implemented: <ul> <li>{@link org.unicase.model.classes.impl.DependencyImpl#getSource
+ * <em>Source</em>}</li> <li>{@link org.unicase.model.classes.impl.DependencyImpl#getTarget <em>Target</em>}</li> </ul>
  * </p>
- *
  * @generated
  */
 public class DependencyImpl extends ModelElementImpl implements Dependency {

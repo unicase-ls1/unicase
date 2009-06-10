@@ -7,17 +7,10 @@ package org.unicase.model;
 
 import org.eclipse.emf.ecore.EObject;
 
-/**
+/*
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Identifiable Element</b></em>'. <!--
- * end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.IdentifiableElement#getIdentifier <em>Identifier</em>}</li>
- * </ul>
- * </p>
- *
+ * end-user-doc --> <p> The following features are supported: <ul> <li>{@link
+ * org.unicase.model.IdentifiableElement#getIdentifier <em>Identifier</em>}</li> </ul> </p>
  * @see org.unicase.model.ModelPackage#getIdentifiableElement()
  * @model
  * @generated

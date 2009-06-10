@@ -23,9 +23,8 @@ import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationalePackage;
 
-/**
- * This is the item provider adapter for a {@link org.unicase.model.rationale.Comment} object.
- * <!-- begin-user-doc -->
+/*
+ * This is the item provider adapter for a {@link org.unicase.model.rationale.Comment} object. <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */

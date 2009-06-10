@@ -9,23 +9,18 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Method;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Scenario</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.requirement.Scenario#getSteps <em>Steps</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Scenario#getInitiatingActorInstance <em>Initiating Actor Instance</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Scenario#getParticipatingActorInstances <em>Participating Actor Instances</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Scenario#getInstantiatedUseCases <em>Instantiated Use Cases</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Scenario#getFunctionalRequirements <em>Functional Requirements</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Scenario#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Scenario#getParticipatingMethods <em>Participating Methods</em>}</li>
- *   <li>{@link org.unicase.model.requirement.Scenario#getParticipatingClasses <em>Participating Classes</em>}</li>
- * </ul>
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Scenario</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.requirement.Scenario#getSteps
+ * <em>Steps</em>}</li> <li>{@link org.unicase.model.requirement.Scenario#getInitiatingActorInstance <em>Initiating
+ * Actor Instance</em>}</li> <li>{@link org.unicase.model.requirement.Scenario#getParticipatingActorInstances
+ * <em>Participating Actor Instances</em>}</li> <li>{@link
+ * org.unicase.model.requirement.Scenario#getInstantiatedUseCases <em>Instantiated Use Cases</em>}</li> <li>{@link
+ * org.unicase.model.requirement.Scenario#getFunctionalRequirements <em>Functional Requirements</em>}</li> <li>{@link
+ * org.unicase.model.requirement.Scenario#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
+ * <li>{@link org.unicase.model.requirement.Scenario#getParticipatingMethods <em>Participating Methods</em>}</li>
+ * <li>{@link org.unicase.model.requirement.Scenario#getParticipatingClasses <em>Participating Classes</em>}</li> </ul>
  * </p>
- *
  * @see org.unicase.model.requirement.RequirementPackage#getScenario()
  * @model
  * @generated

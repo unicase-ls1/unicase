@@ -23,10 +23,9 @@ import org.unicase.model.profile.StereotypeAttribute;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 
-/**
+/*
  * This is the item provider adapter for a {@link org.unicase.model.profile.StereotypeAttribute} object. <!--
  * begin-user-doc --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class StereotypeAttributeItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,

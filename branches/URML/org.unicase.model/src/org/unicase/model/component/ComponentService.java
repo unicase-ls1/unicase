@@ -8,17 +8,11 @@ package org.unicase.model.component;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Service</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.component.ComponentService#getOfferingComponent <em>Offering Component</em>}</li>
- *   <li>{@link org.unicase.model.component.ComponentService#getConsumingComponents <em>Consuming Components</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Service</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link
+ * org.unicase.model.component.ComponentService#getOfferingComponent <em>Offering Component</em>}</li> <li>{@link
+ * org.unicase.model.component.ComponentService#getConsumingComponents <em>Consuming Components</em>}</li> </ul> </p>
  * @see org.unicase.model.component.ComponentPackage#getComponentService()
  * @model
  * @generated

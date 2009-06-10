@@ -14,25 +14,18 @@ import org.unicase.model.profile.StereotypeInstance;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 
-/**
- * <!-- begin-user-doc --> A representation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc -->
- *
- * <p>
- * The following features are supported:
- * <ul>
- *   <li>{@link org.unicase.model.ModelElement#getName <em>Name</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getCreator <em>Creator</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getCreationDate <em>Creation Date</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getAttachments <em>Attachments</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getState <em>State</em>}</li>
- *   <li>{@link org.unicase.model.ModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> A representation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc --> <p>
+ * The following features are supported: <ul> <li>{@link org.unicase.model.ModelElement#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}</li> <li>{@link
+ * org.unicase.model.ModelElement#getCreator <em>Creator</em>}</li> <li>{@link
+ * org.unicase.model.ModelElement#getCreationDate <em>Creation Date</em>}</li> <li>{@link
+ * org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li> <li>{@link
+ * org.unicase.model.ModelElement#getAttachments <em>Attachments</em>}</li> <li>{@link
+ * org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li> <li>{@link
+ * org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li> <li>{@link
+ * org.unicase.model.ModelElement#getState <em>State</em>}</li> <li>{@link
+ * org.unicase.model.ModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li> </ul> </p>
  * @see org.unicase.model.ModelPackage#getModelElement()
  * @model abstract="true"
  * @generated

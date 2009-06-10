@@ -20,19 +20,13 @@ import org.unicase.model.state.State;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
 
-/**
- * <!-- begin-user-doc --> An implementation of the model object '<em><b>State</b></em>'. <!-- end-user-doc -->
- * <p>
- * The following features are implemented:
- * <ul>
- *   <li>{@link org.unicase.model.state.impl.StateImpl#getExitConditions <em>Exit Conditions</em>}</li>
- *   <li>{@link org.unicase.model.state.impl.StateImpl#getActivities <em>Activities</em>}</li>
- *   <li>{@link org.unicase.model.state.impl.StateImpl#getEntryConditions <em>Entry Conditions</em>}</li>
- *   <li>{@link org.unicase.model.state.impl.StateImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li>
- *   <li>{@link org.unicase.model.state.impl.StateImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li>
- * </ul>
- * </p>
- *
+/*
+ * <!-- begin-user-doc --> An implementation of the model object '<em><b>State</b></em>'. <!-- end-user-doc --> <p> The
+ * following features are implemented: <ul> <li>{@link org.unicase.model.state.impl.StateImpl#getExitConditions <em>Exit
+ * Conditions</em>}</li> <li>{@link org.unicase.model.state.impl.StateImpl#getActivities <em>Activities</em>}</li>
+ * <li>{@link org.unicase.model.state.impl.StateImpl#getEntryConditions <em>Entry Conditions</em>}</li> <li>{@link
+ * org.unicase.model.state.impl.StateImpl#getOutgoingTransitions <em>Outgoing Transitions</em>}</li> <li>{@link
+ * org.unicase.model.state.impl.StateImpl#getIncomingTransitions <em>Incoming Transitions</em>}</li> </ul> </p>
  * @generated
  */
 public class StateImpl extends ModelElementImpl implements State {
