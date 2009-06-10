@@ -2,12 +2,12 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.unicase.ui.urmlDiagram; singleton:=true
-Bundle-Version: 0.0.1.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.unicase.ui.urmlDiagram.edit.parts, 
+Export-Package: org.unicase.ui.urmlDiagram.edit.parts,
  org.unicase.ui.urmlDiagram.part,
  org.unicase.ui.urmlDiagram.providers
 Require-Bundle: org.eclipse.core.runtime,
@@ -38,5 +38,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
  org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
- org.unicase.ui.common;bundle-version="0.3.18"
+ org.unicase.ui.common;bundle-version="0.3.18",
+ org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
+ org.unicase.ui.usecaseDiagram;bundle-version="0.3.18"
 Eclipse-LazyStart: true
