@@ -19,7 +19,6 @@ import org.eclipse.jface.viewers.ICheckStateListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -33,7 +32,6 @@ import org.unicase.model.organization.User;
 import org.unicase.ui.iterationplanner.core.IterationPlanner;
 import org.unicase.workspace.WorkspaceManager;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -85,9 +83,9 @@ public class AssigneesPage extends WizardPage {
 		tableViewer.addCheckStateListener(new ICheckStateListener() {
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				if (event.getChecked()) {
-					// add assignee
+					iterationPlanner.addAssignee((User) event.getElement());
 				} else {
-					// remove assignee
+					iterationPlanner.removeAssignee((User) event.getElement());
 
 				}
 				AssigneesPage.this.getWizard().getContainer().updateButtons();
@@ -122,7 +120,7 @@ public class AssigneesPage extends WizardPage {
 
 		};
 		clmAvailability.setLabelProvider(availabilityLabelProvider);
-		clmAvailability.setEditingSupport(null);
+		clmAvailability.setEditingSupport(new AvailabilityEditingSupport(tableViewer, iterationPlanner));
 
 		tableViewer.setContentProvider(new IStructuredContentProvider() {
 
@@ -142,25 +140,9 @@ public class AssigneesPage extends WizardPage {
 		tableViewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject()
 			.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>()));
 
-		tableViewer.setCheckedElements(iterationPlanner.getInitialAssignees().toArray());
+		// tableViewer.setCheckedElements(iterationPlanner.getAssignees().toArray());
 
 		setControl(contents);
-		setPageComplete(true);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
-	 */
-	@Override
-	public IWizardPage getNextPage() {
-		List<User> assignees = new ArrayList<User>();
-		for (Object obj : tableViewer.getCheckedElements()) {
-			assignees.add((User) obj);
-		}
-		iterationPlanner.setAssignees(assignees);
-		return super.getNextPage();
 	}
 
 	/**
@@ -170,6 +152,8 @@ public class AssigneesPage extends WizardPage {
 	 */
 	@Override
 	public boolean canFlipToNextPage() {
+		tableViewer.setCheckedElements(iterationPlanner.getAssignees().toArray());
+		tableViewer.refresh();
 		return tableViewer.getCheckedElements().length > 0;
 	}
 

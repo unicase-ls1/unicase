@@ -34,7 +34,6 @@ public class IterationPlanner {
 	// input
 	private List<WorkPackage> workPackages;
 	private List<FunctionalRequirement> requirements;
-	private List<User> assignees;
 	private Map<User, Integer> assigneeAvailabilities;
 
 	private WorkPackage lastSprint;
@@ -87,7 +86,7 @@ public class IterationPlanner {
 		}
 		workPackages.add(wp);
 		lastSprint = wp;
-
+		initAssigneeAvailabilities();
 	}
 
 	/**
@@ -129,17 +128,28 @@ public class IterationPlanner {
 	}
 
 	/**
-	 * @param assignees the assignees to set
+	 * @param assignee assignee
 	 */
-	public void setAssignees(List<User> assignees) {
-		this.assignees = assignees;
+	public void addAssignee(User assignee) {
+		assigneeAvailabilities.put(assignee, 0);
 	}
 
 	/**
-	 * @return the assignees
+	 * @param asssignee assignee
 	 */
-	public List<User> getAssignees() {
-		return assignees;
+	public void removeAssignee(User asssignee) {
+		assigneeAvailabilities.remove(asssignee);
+	}
+
+	/**
+	 * @return assignees
+	 */
+	public Set<User> getAssignees() {
+		if (assigneeAvailabilities == null || assigneeAvailabilities.isEmpty()) {
+			initAssigneeAvailabilities();
+		}
+		return assigneeAvailabilities.keySet();
+
 	}
 
 	/**
@@ -149,7 +159,7 @@ public class IterationPlanner {
 	 * @return availability
 	 */
 	public int getAvailability(User assignee) {
-		if (assigneeAvailabilities == null) {
+		if (assigneeAvailabilities == null || assigneeAvailabilities.isEmpty()) {
 			initAssigneeAvailabilities();
 		}
 
@@ -161,13 +171,14 @@ public class IterationPlanner {
 	}
 
 	/**
-	 * @return initial assignees
+	 * @param assignee assignee
+	 * @param value value
 	 */
-	public Set<User> getInitialAssignees() {
-		if (assigneeAvailabilities == null) {
+	public void setAvailability(User assignee, int value) {
+		if (assigneeAvailabilities == null || assigneeAvailabilities.isEmpty()) {
 			initAssigneeAvailabilities();
 		}
-		return assigneeAvailabilities.keySet();
+		assigneeAvailabilities.put(assignee, new Integer(value));
 	}
 
 	/**
@@ -175,6 +186,9 @@ public class IterationPlanner {
 	 */
 	private void initAssigneeAvailabilities() {
 		assigneeAvailabilities = new HashMap<User, Integer>();
+		if (lastSprint == null) {
+			return;
+		}
 		for (WorkItem wi : lastSprint.getAllContainedWorkItems()) {
 			if (wi.getAssignee() instanceof Group) {
 				Group group = (Group) wi.getAssignee();
