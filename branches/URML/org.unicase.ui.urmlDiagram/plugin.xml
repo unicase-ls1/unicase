@@ -397,6 +397,15 @@
             <param name="semanticHint" value="4006"/>
          </specializationType>
       </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <specializationType
+               id="org.unicase.ui.urmlDiagram.FunctionalRequirementRefiningRequirements_4007"
+               name="%metatype.name.FunctionalRequirementRefiningRequirements_4007"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4007"/>
+         </specializationType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
@@ -422,6 +431,7 @@
          <elementType ref="org.unicase.ui.urmlDiagram.UseCaseExtendedUseCases_4004"/>
          <elementType ref="org.unicase.ui.urmlDiagram.HazardMitigations_4005"/>
          <elementType ref="org.unicase.ui.urmlDiagram.HazardCauseMitigations_4006"/>
+         <elementType ref="org.unicase.ui.urmlDiagram.FunctionalRequirementRefiningRequirements_4007"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

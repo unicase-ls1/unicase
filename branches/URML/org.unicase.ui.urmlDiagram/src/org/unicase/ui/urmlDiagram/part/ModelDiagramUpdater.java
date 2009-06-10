@@ -17,6 +17,7 @@ import org.unicase.model.hazard.HazardCause;
 import org.unicase.model.hazard.HazardPackage;
 import org.unicase.model.hazard.Mitigation;
 import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 
@@ -222,7 +223,12 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getFunctionalRequirement_2006ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+		FunctionalRequirement modelElement = (FunctionalRequirement) view
+				.getElement();
+		List result = new LinkedList();
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(modelElement));
+		return result;
 	}
 
 	/**
@@ -290,7 +296,15 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getFunctionalRequirement_2006IncomingLinks(View view) {
-		return Collections.EMPTY_LIST;
+		FunctionalRequirement modelElement = (FunctionalRequirement) view
+				.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
+				.getResourceSet().getResources());
+		List result = new LinkedList();
+		result
+				.addAll(getIncomingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(
+						modelElement, crossReferences));
+		return result;
 	}
 
 	/**
@@ -350,7 +364,12 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getFunctionalRequirement_2006OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+		FunctionalRequirement modelElement = (FunctionalRequirement) view
+				.getElement();
+		List result = new LinkedList();
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(modelElement));
+		return result;
 	}
 
 	/**
@@ -494,6 +513,29 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection getIncomingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(
+			FunctionalRequirement target, Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection) crossReferences.get(target);
+		for (Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
+					.next();
+			if (setting.getEStructuralFeature() == RequirementPackage.eINSTANCE
+					.getFunctionalRequirement_RefiningRequirements()) {
+				result
+						.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
+								setting.getEObject(),
+								target,
+								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007,
+								org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static Collection getOutgoingFeatureModelFacetLinks_Actor_ParticipatedUseCases_4001(
 			Actor source) {
 		Collection result = new LinkedList();
@@ -582,6 +624,26 @@ public class ModelDiagramUpdater {
 							destination,
 							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006,
 							org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(
+			FunctionalRequirement source) {
+		Collection result = new LinkedList();
+		for (Iterator destinations = source.getRefiningRequirements()
+				.iterator(); destinations.hasNext();) {
+			FunctionalRequirement destination = (FunctionalRequirement) destinations
+					.next();
+			result
+					.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
+							source,
+							destination,
+							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007,
+							org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID));
 		}
 		return result;
 	}

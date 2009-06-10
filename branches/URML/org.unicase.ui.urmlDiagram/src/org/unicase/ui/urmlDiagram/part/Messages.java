@@ -308,6 +308,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String RefineRequirement6CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String RefineRequirement6CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String UseCase1CreationTool_title;
 
 	/**
@@ -383,6 +393,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_FunctionalRequirement_2006_incominglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FunctionalRequirement_2006_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_ActorParticipatedUseCases_4001_target;
 
 	/**
@@ -434,6 +454,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_HazardCauseMitigations_4006_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FunctionalRequirementRefiningRequirements_4007_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FunctionalRequirementRefiningRequirements_4007_source;
 
 	/**
 	 * @generated

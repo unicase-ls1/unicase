@@ -124,6 +124,9 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/hazard?HazardCause?mitigations", org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006); //$NON-NLS-1$
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/requirement?FunctionalRequirement?refiningRequirements", org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -206,6 +209,8 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 			return getHazardMitigations_4005Text(view);
 		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID:
 			return getHazardCauseMitigations_4006Text(view);
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID:
+			return getFunctionalRequirementRefiningRequirements_4007Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -473,6 +478,27 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				(view.getElement() != null ? view.getElement() : view),
 				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
 						.getType(org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel2EditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			return ""; //$NON-NLS-1$
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getFunctionalRequirementRefiningRequirements_4007Text(
+			View view) {
+
+		IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.urmlDiagram.edit.parts.RefineLabelEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE

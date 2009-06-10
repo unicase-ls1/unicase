@@ -42,6 +42,7 @@ import org.unicase.model.hazard.Hazard;
 import org.unicase.model.hazard.HazardCause;
 import org.unicase.model.hazard.Mitigation;
 import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.UseCase;
 
@@ -429,6 +430,23 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateFunctionalRequirementRefiningRequirements_4007(
+				FunctionalRequirement source, FunctionalRequirement target) {
+			if (source != null) {
+				if (source.getRefiningRequirements().contains(target)) {
+					return false;
+				}
+				if (source == target) {
+					return false;
+				}
+			}
+			return canExistFunctionalRequirementRefiningRequirements_4007(
+					source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistActorParticipatedUseCases_4001(
 				Actor source, UseCase target) {
 
@@ -476,6 +494,15 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canExistHazardCauseMitigations_4006(
 				HazardCause source, Mitigation target) {
+
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFunctionalRequirementRefiningRequirements_4007(
+				FunctionalRequirement source, FunctionalRequirement target) {
 
 			return true;
 		}

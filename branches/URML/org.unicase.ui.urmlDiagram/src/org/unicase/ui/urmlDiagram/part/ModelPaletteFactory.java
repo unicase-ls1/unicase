@@ -39,6 +39,7 @@ public class ModelPaletteFactory {
 		paletteContainer.add(createFunctionalRequirement3CreationTool());
 		paletteContainer.add(createHazard4CreationTool());
 		paletteContainer.add(createMitigate5CreationTool());
+		paletteContainer.add(createRefineRequirement6CreationTool());
 		return paletteContainer;
 	}
 
@@ -146,6 +147,24 @@ public class ModelPaletteFactory {
 		entry
 				.setSmallIcon(org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
 						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Association.gif")); //$NON-NLS-1$
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createRefineRequirement6CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007);
+		LinkToolEntry entry = new LinkToolEntry(
+				org.unicase.ui.urmlDiagram.part.Messages.RefineRequirement6CreationTool_title,
+				org.unicase.ui.urmlDiagram.part.Messages.RefineRequirement6CreationTool_desc,
+				types);
+		entry
+				.setSmallIcon(org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
+						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Transition.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

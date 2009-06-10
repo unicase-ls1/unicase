@@ -1038,6 +1038,13 @@
           name="MitigateLabel"
           text="\u00ABmitigate\u00BB"/>
     </descriptors>
+    <descriptors
+        name="RefineLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="RefineLabel"
+          text="\u00ABrefine\u00BB"/>
+    </descriptors>
   </figures>
   <nodes
       name="Class"
@@ -1156,6 +1163,9 @@
   <connections
       name="MitigateLink"
       figure="MitigateFigure"/>
+  <connections
+      name="Refine"
+      figure="Arrow"/>
   <compartments
       name="ClassNode_attributes"
       figure="ClassFigure"
@@ -1363,6 +1373,17 @@
   <labels
       name="MitigateLabel"
       figure="MitigateLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="RefineLabel"
+      figure="RefineLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"

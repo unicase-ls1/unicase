@@ -80,6 +80,12 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_4004);
 			return types;
 		}
+		if (sourceEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementEditPart) {
+			List types = new ArrayList();
+			types
+					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007);
+			return types;
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -107,6 +113,12 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_4003);
 			types
 					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_4004);
+			return types;
+		}
+		if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementEditPart) {
+			List types = new ArrayList();
+			types
+					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
@@ -157,6 +169,14 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			}
 			return types;
 		}
+		if (sourceEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementEditPart) {
+			List types = new ArrayList();
+			if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementEditPart) {
+				types
+						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007);
+			}
+			return types;
+		}
 		return Collections.EMPTY_LIST;
 	}
 
@@ -192,6 +212,14 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			if (relationshipType == org.unicase.ui.urmlDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_4004) {
 				types
 						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.UseCase_2005);
+			}
+			return types;
+		}
+		if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementEditPart) {
+			List types = new ArrayList();
+			if (relationshipType == org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007) {
+				types
+						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirement_2006);
 			}
 			return types;
 		}
@@ -238,6 +266,14 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			if (relationshipType == org.unicase.ui.urmlDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_4004) {
 				types
 						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.UseCase_2005);
+			}
+			return types;
+		}
+		if (sourceEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementEditPart) {
+			List types = new ArrayList();
+			if (relationshipType == org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007) {
+				types
+						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirement_2006);
 			}
 			return types;
 		}
