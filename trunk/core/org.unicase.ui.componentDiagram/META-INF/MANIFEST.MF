@@ -38,8 +38,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gmf.runtime.draw2d.ui;visibility:=reexport,
  org.eclipse.gef;visibility:=reexport,
  org.eclipse.ocl.ecore;visibility:=reexport,
- org.unicase.model.edit;visibility:=reexport;bundle-version="0.3.24.internal",
- org.unicase.ui.common;bundle-version="0.3.24.internal",
+ org.unicase.model.edit;visibility:=reexport;bundle-version="0.3.24.qualifier",
+ org.unicase.ui.common;bundle-version="0.3.24.qualifier",
  org.unicase.model;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
