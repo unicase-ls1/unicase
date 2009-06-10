@@ -101,6 +101,11 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType FunctionalRequirementRefiningRequirements_4007 = getElementType("org.unicase.ui.urmlDiagram.FunctionalRequirementRefiningRequirements_4007"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if (imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -246,6 +251,10 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(HazardCauseMitigations_4006, HazardPackage.eINSTANCE
 					.getHazardCause_Mitigations());
+
+			elements.put(FunctionalRequirementRefiningRequirements_4007,
+					RequirementPackage.eINSTANCE
+							.getFunctionalRequirement_RefiningRequirements());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -276,6 +285,8 @@ public class ModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(UseCaseExtendedUseCases_4004);
 			KNOWN_ELEMENT_TYPES.add(HazardMitigations_4005);
 			KNOWN_ELEMENT_TYPES.add(HazardCauseMitigations_4006);
+			KNOWN_ELEMENT_TYPES
+					.add(FunctionalRequirementRefiningRequirements_4007);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}

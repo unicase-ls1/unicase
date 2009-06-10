@@ -10,7 +10,7 @@ public class ModelNavigatorSorter extends ViewerSorter {
 	/**
 	 * @generated
 	 */
-	private static final int GROUP_CATEGORY = 4008;
+	private static final int GROUP_CATEGORY = 4009;
 
 	/**
 	 * @generated

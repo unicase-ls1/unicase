@@ -228,6 +228,21 @@
         xsi:type="ecore:EReference"
         href="../../model.ecore#//hazard/HazardCause/mitigations"/>
   </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../model.gmfgraph#RefineLabel"/>
+    </labelMappings>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="urmlDiagram.gmftool#//@palette/@tools.6"/>
+    <diagramLink
+        href="../model.gmfgraph#Refine"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../model.ecore#//requirement/FunctionalRequirement/refiningRequirements"/>
+  </links>
   <diagram>
     <diagramCanvas
         href="../model.gmfgraph#MEDiagram"/>

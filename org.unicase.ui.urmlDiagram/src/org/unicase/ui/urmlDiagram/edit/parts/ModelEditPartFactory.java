@@ -127,6 +127,14 @@ public class ModelEditPartFactory implements EditPartFactory {
 			case org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel2EditPart.VISUAL_ID:
 				return new org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel2EditPart(
 						view);
+
+			case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID:
+				return new org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart(
+						view);
+
+			case org.unicase.ui.urmlDiagram.edit.parts.RefineLabelEditPart.VISUAL_ID:
+				return new org.unicase.ui.urmlDiagram.edit.parts.RefineLabelEditPart(
+						view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);
