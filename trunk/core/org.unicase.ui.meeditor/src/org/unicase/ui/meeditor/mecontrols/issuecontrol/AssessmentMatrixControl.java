@@ -30,7 +30,6 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.Section;
-import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
@@ -376,28 +375,60 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 
 	private void handleReferencesMessage(Notification msg) {
 		EReference reference = (EReference) msg.getFeature();
+		Object oldValue = msg.getOldValue();
+		Object newValue = msg.getNewValue();
 		if (reference.getName().equals("criteria")) {
-			Object oldValue = msg.getOldValue();
-			Object newValue = msg.getNewValue();
-			if (oldValue == null && newValue != null) {
-				((ModelElement) newValue).eAdapters().add((eAdapter));
-				addAssessmentEAdapter((Criterion) newValue);
-			} else if (oldValue != null && newValue == null) {
-				((ModelElement) oldValue).eAdapters().remove((eAdapter));
-				removeAssessmentEAdapter((Criterion) oldValue);
-			}
+			handleCriteria(oldValue, newValue);
 			rebuildMatrix();
 		} else if (reference.getName().equals("proposals")) {
-			Object oldValue = msg.getOldValue();
-			Object newValue = msg.getNewValue();
-			if (oldValue == null && newValue != null) {
-				((ModelElement) newValue).eAdapters().add((eAdapter));
+			handleProposals(oldValue, newValue);
+			rebuildMatrix();
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private void handleProposals(Object oldValue, Object newValue) {
+		if (oldValue == null && newValue != null) {
+			if (newValue instanceof EList) {
+				EList<Proposal> proposals = (EList<Proposal>) newValue;
+				for (Proposal p : proposals) {
+					addAssessmentEAdapter(p);
+				}
+			} else {
 				addAssessmentEAdapter((Proposal) newValue);
-			} else if (oldValue != null && newValue == null) {
-				((ModelElement) oldValue).eAdapters().remove((eAdapter));
+			}
+		} else if (oldValue != null && newValue == null) {
+			if (oldValue instanceof EList) {
+				EList<Proposal> proposals = (EList<Proposal>) oldValue;
+				for (Proposal p : proposals) {
+					removeAssessmentEAdapter(p);
+				}
+			} else {
 				removeAssessmentEAdapter((Proposal) oldValue);
 			}
-			rebuildMatrix();
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	private void handleCriteria(Object oldValue, Object newValue) {
+		if (oldValue == null && newValue != null) {
+			if (newValue instanceof EList) {
+				EList<Criterion> criteria = (EList<Criterion>) newValue;
+				for (Criterion c : criteria) {
+					addAssessmentEAdapter(c);
+				}
+			} else {
+				addAssessmentEAdapter((Criterion) newValue);
+			}
+		} else if (oldValue != null && newValue == null) {
+			if (oldValue instanceof EList) {
+				EList<Criterion> criteria = (EList<Criterion>) oldValue;
+				for (Criterion c : criteria) {
+					removeAssessmentEAdapter(c);
+				}
+			} else {
+				removeAssessmentEAdapter((Criterion) oldValue);
+			}
 		}
 	}
 
@@ -429,6 +460,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 	}
 
 	private void removeAssessmentEAdapter(Proposal p) {
+		p.eAdapters().remove((eAdapter));
 		EList<Criterion> criteria = issue.getCriteria();
 		EList<Assessment> assessments = p.getAssessments();
 		for (Assessment a : assessments) {
@@ -439,6 +471,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 	}
 
 	private void removeAssessmentEAdapter(Criterion c) {
+		c.eAdapters().remove((eAdapter));
 		EList<Proposal> proposals = issue.getProposals();
 		EList<Assessment> assessments = c.getAssessments();
 		for (Assessment a : assessments) {
@@ -450,6 +483,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 	}
 
 	private void addAssessmentEAdapter(Proposal p) {
+		p.eAdapters().add((eAdapter));
 		EList<Criterion> criteria = issue.getCriteria();
 		EList<Assessment> assessments = p.getAssessments();
 		for (Assessment a : assessments) {
@@ -460,6 +494,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 	}
 
 	private void addAssessmentEAdapter(Criterion c) {
+		c.eAdapters().add((eAdapter));
 		EList<Proposal> proposals = issue.getProposals();
 		EList<Assessment> assessments = c.getAssessments();
 		for (Assessment a : assessments) {
