@@ -347,9 +347,6 @@
           xsi:type="gmfgraph:PolylineConnection"
           name="RequiredInterfaceConnectionFigure"
           targetDecoration="//@figures.1/@descriptors.1/@actualFigure/@children.0">
-        <foregroundColor
-            xsi:type="gmfgraph:ConstantColor"
-            value="black"/>
         <children
             xsi:type="gmfgraph:CustomDecoration"
             name="RequiredInterfaceConnectionFigure_Lollypop"
@@ -389,11 +386,7 @@
         name="ProvidedInterfaceConnectionFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="ProvidedInterfaceConnectionFigure">
-        <foregroundColor
-            xsi:type="gmfgraph:ConstantColor"
-            value="black"/>
-      </actualFigure>
+          name="ProvidedInterfaceConnectionFigure"/>
     </descriptors>
     <descriptors
         name="InterfaceNameLabelFigure">
@@ -568,7 +561,7 @@
             qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
+              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
           <insets
               top="2"
               left="5"
@@ -595,7 +588,7 @@
             qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
+              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
           <insets
               top="2"
               left="5"
@@ -620,7 +613,7 @@
             qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
+              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
           <insets
               top="2"
               left="5"
@@ -646,7 +639,7 @@
             qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
+              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
           <insets
               top="2"
               left="5"
@@ -695,6 +688,63 @@
           accessor="getFigureTransitionFigure_name"
           figure="//@figures.3/@descriptors.1/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="StateFinalFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="StateFinalFigure">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <maximumSize
+            dx="23"
+            dy="23"/>
+        <minimumSize
+            dx="23"
+            dy="23"/>
+        <preferredSize
+            dx="23"
+            dy="23"/>
+        <children
+            xsi:type="gmfgraph:Ellipse"
+            name="StateFinalFigure_inner">
+          <backgroundColor
+              xsi:type="gmfgraph:ConstantColor"
+              value="black"/>
+          <maximumSize
+              dx="15"
+              dy="15"/>
+          <minimumSize
+              dx="15"
+              dy="15"/>
+          <preferredSize
+              dx="15"
+              dy="15"/>
+        </children>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="StateInitialFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="StateFinalFigure">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <maximumSize
+            dx="15"
+            dy="15"/>
+        <minimumSize
+            dx="15"
+            dy="15"/>
+        <preferredSize
+            dx="15"
+            dy="15"/>
+      </actualFigure>
+    </descriptors>
   </figures>
   <figures
       name="ActivityDiagram">
@@ -718,6 +768,164 @@
           accessor="getActivityFigureName"
           figure="//@figures.4/@descriptors.0/@actualFigure/@children.0"/>
     </descriptors>
+    <descriptors
+        name="ForkFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Rectangle"
+          name="ForkFigure">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <minimumSize
+            dx="10"
+            dy="10"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="Arrow">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="Arrow"
+          targetDecoration="//@figures.4/@descriptors.2/@actualFigure/@children.0">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <children
+            xsi:type="gmfgraph:PolylineDecoration"
+            name="ArrowDec"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="ActivityFinalFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="ActivityFinalFigure">
+        <layout
+            xsi:type="gmfgraph:CustomLayout"
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <maximumSize
+            dx="23"
+            dy="23"/>
+        <minimumSize
+            dx="23"
+            dy="23"/>
+        <preferredSize
+            dx="23"
+            dy="23"/>
+        <children
+            xsi:type="gmfgraph:Ellipse"
+            name="ActivityFinalFigure_inner">
+          <backgroundColor
+              xsi:type="gmfgraph:ConstantColor"
+              value="black"/>
+          <maximumSize
+              dx="15"
+              dy="15"/>
+          <minimumSize
+              dx="15"
+              dy="15"/>
+          <preferredSize
+              dx="15"
+              dy="15"/>
+        </children>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="ActivityInitialFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Ellipse"
+          name="ActivityFinalFigure">
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <maximumSize
+            dx="15"
+            dy="15"/>
+        <minimumSize
+            dx="15"
+            dy="15"/>
+        <preferredSize
+            dx="15"
+            dy="15"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="ConditionLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="ConditionLabel"/>
+    </descriptors>
+    <descriptors
+        name="BranchFigure">
+      <actualFigure
+          xsi:type="gmfgraph:ScalablePolygon"
+          name="BranchFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+        <backgroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="lightGray"/>
+        <minimumSize
+            dx="10"
+            dy="10"/>
+        <template
+            x="20"/>
+        <template
+            x="40"
+            y="20"/>
+        <template
+            x="20"
+            y="40"/>
+        <template
+            y="20"/>
+      </actualFigure>
+    </descriptors>
+  </figures>
+  <figures
+      name="WorkItemDiagram">
+    <descriptors
+        name="WorkItemFigure">
+      <actualFigure
+          xsi:type="gmfgraph:RoundedRectangle"
+          name="WorkItemFigure">
+        <children
+            xsi:type="gmfgraph:CustomFigure"
+            name="WorkItemFigure_name"
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.Label"/>
+      </actualFigure>
+      <accessors
+          accessor="getWorkItemFigureName"
+          figure="//@figures.5/@descriptors.0/@actualFigure/@children.0"/>
+    </descriptors>
+    <descriptors
+        name="LinkFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="LinkFigure"
+          targetDecoration="//@figures.4/@descriptors.2/@actualFigure/@children.0">
+        <children
+            xsi:type="gmfgraph:PolylineDecoration"
+            name="ArrowDec"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="PredecessorLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="PredecessorLabel"
+          text="predecessor"/>
+    </descriptors>
+    <descriptors
+        name="SuccessorLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="SuccessorLabel"
+          text="successor"/>
+    </descriptors>
   </figures>
   <figures
       name="URML">
@@ -726,21 +934,22 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="Cause"
-          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.CauseFigure"/>
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.CauseFigure">
+        <minimumSize
+            dx="10"
+            dy="10"/>
+      </actualFigure>
     </descriptors>
     <descriptors
         name="Mitigation">
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="Mitigation"
-          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.MitigationFigure"/>
-    </descriptors>
-    <descriptors
-        name="Exclamation">
-      <actualFigure
-          xsi:type="gmfgraph:CustomFigure"
-          name="Exclamation"
-          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.ExclamationFigure"/>
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.MitigationFigure">
+        <minimumSize
+            dx="10"
+            dy="10"/>
+      </actualFigure>
     </descriptors>
     <descriptors
         name="FunctionalRequirement">
@@ -758,7 +967,76 @@
       <actualFigure
           xsi:type="gmfgraph:CustomFigure"
           name="Hazard"
-          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.HazardFigure"/>
+          qualifiedClassName="org.unicase.ui.urmlDiagram.unicase.HazardFigure">
+        <minimumSize
+            dx="10"
+            dy="10"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="MitigateFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="MitigateFigure">
+        <foregroundColor
+            xsi:type="gmfgraph:ConstantColor"
+            value="black"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="CauseName">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="CauseNode_name"
+          qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
+        <font
+            xsi:type="gmfgraph:BasicFont"
+            faceName="Arial"
+            height="10"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="MitigationName">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="MitigationNode_name"
+          qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
+        <font
+            xsi:type="gmfgraph:BasicFont"
+            faceName="Arial"
+            height="10"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="FuncReqName">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="FuncReqNode_name"
+          qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
+        <font
+            xsi:type="gmfgraph:BasicFont"
+            faceName="Arial"
+            height="10"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="HazardName">
+      <actualFigure
+          xsi:type="gmfgraph:CustomFigure"
+          name="HazardNode_name"
+          qualifiedClassName="org.unicase.ui.common.diagram.figures.Label">
+        <font
+            xsi:type="gmfgraph:BasicFont"
+            faceName="Arial"
+            height="10"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="MitigateLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="MitigateLabel"
+          text="\u00ABmitigate\u00BB"/>
     </descriptors>
   </figures>
   <nodes
@@ -807,6 +1085,27 @@
       name="Activity"
       figure="ActivityFigure"/>
   <nodes
+      name="ForkNode"
+      figure="ForkFigure"/>
+  <nodes
+      name="ActivityFinalNode"
+      figure="ActivityFinalFigure"/>
+  <nodes
+      name="ActivityInitialNode"
+      figure="ActivityInitialFigure"/>
+  <nodes
+      name="BranchNode"
+      figure="BranchFigure"/>
+  <nodes
+      name="WorkItemNode"
+      figure="WorkItemFigure"/>
+  <nodes
+      name="StateFinalNode"
+      figure="StateFinalFigure"/>
+  <nodes
+      name="StateInitialNode"
+      figure="StateInitialFigure"/>
+  <nodes
       name="CauseNode"
       figure="Cause"/>
   <nodes
@@ -815,9 +1114,6 @@
   <nodes
       name="FunctionalRequirementNode"
       figure="FunctionalRequirement"/>
-  <nodes
-      name="ExclamationNode"
-      figure="Exclamation"/>
   <nodes
       name="HazardNode"
       figure="Hazard"/>
@@ -851,6 +1147,15 @@
   <connections
       name="Transition"
       figure="TransitionFigure"/>
+  <connections
+      name="ActivityTransition"
+      figure="Arrow"/>
+  <connections
+      name="WorkItemLink"
+      figure="LinkFigure"/>
+  <connections
+      name="MitigateLink"
+      figure="MitigateFigure"/>
   <compartments
       name="ClassNode_attributes"
       figure="ClassFigure"
@@ -980,6 +1285,7 @@
   <labels
       name="TransitionLine_condition"
       figure="TransitionFigure"
+      elementIcon="false"
       accessor="//@figures.3/@descriptors.1/@accessors.0"/>
   <labels
       name="StateNode_entryConditions"
@@ -999,5 +1305,70 @@
   <labels
       name="ActivityNode_name"
       figure="ActivityFigure"
+      elementIcon="false"
       accessor="//@figures.4/@descriptors.0/@accessors.0"/>
+  <labels
+      name="ConditionLabel"
+      figure="ConditionLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="WorkItem_name"
+      figure="WorkItemFigure"
+      elementIcon="false"
+      accessor="//@figures.5/@descriptors.0/@accessors.0"/>
+  <labels
+      name="SuccessorLabel"
+      figure="SuccessorLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="PredecessorLabel"
+      figure="PredecessorLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="END"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="Cause_name"
+      figure="CauseName"
+      elementIcon="false"/>
+  <labels
+      name="Mitigation_name"
+      figure="MitigationName"
+      elementIcon="false"/>
+  <labels
+      name="FuncReq_name"
+      figure="FuncReqName"
+      elementIcon="false"/>
+  <labels
+      name="Hazard_name"
+      figure="HazardName"
+      elementIcon="false"/>
+  <labels
+      name="MitigateLabel"
+      figure="MitigateLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
 </gmfgraph:Canvas>

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.view.factories.ConnectionViewFactory;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
@@ -36,5 +37,13 @@ public class HazardCauseMitigationsViewFactory extends ConnectionViewFactory {
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,
 				index, persisted);
+		IAdaptable eObjectAdapter = null;
+		getViewService()
+				.createNode(
+						eObjectAdapter,
+						view,
+						org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+								.getType(org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel2EditPart.VISUAL_ID),
+						ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

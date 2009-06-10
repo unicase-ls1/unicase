@@ -6,14 +6,14 @@
       <?gmfgen generated="true"?>
       <fileTypes
          type="text"
-         extension="workItem_diagram">
+         extension="urml_diagram">
       </fileTypes>
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <?gmfgen generated="true"?>
       <parser
-         type="workItem_diagram"
+         type="urml_diagram"
          class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
       </parser>
    </extension>
@@ -24,7 +24,7 @@
          id="org.unicase.ui.urmlDiagram.part.ModelDiagramEditorID"
          name="%editorName"
          icon="icons/obj16/DiagramDiagramFile.gif"
-         extensions="workItem_diagram"
+         extensions="urml_diagram"
          default="true"
          class="org.unicase.ui.urmlDiagram.part.ModelDiagramEditor"
          matchingStrategy="org.unicase.ui.urmlDiagram.part.ModelMatchingStrategy"
@@ -90,7 +90,7 @@
       <?gmfgen generated="true"?>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramGlobalActionHandlerProvider"
-         id="ModelPresentation">
+         id="URMLPresentation">
          <Priority name="Lowest"/>
          <ViewId id="org.unicase.ui.urmlDiagram.part.ModelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -103,7 +103,7 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
          class="org.eclipse.gmf.runtime.diagram.ui.providers.ide.providers.DiagramIDEGlobalActionHandlerProvider"
-         id="ModelPresentationIDE">
+         id="URMLPresentationIDE">
          <Priority name="Lowest"/>
          <ViewId id="org.unicase.ui.urmlDiagram.part.ModelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -113,7 +113,7 @@
       </GlobalActionHandlerProvider>
       <GlobalActionHandlerProvider
             class="org.eclipse.gmf.runtime.diagram.ui.render.providers.DiagramUIRenderGlobalActionHandlerProvider"
-            id="ModelRender">
+            id="URMLRender">
          <Priority name="Lowest"/>
          <ViewId id="org.unicase.ui.urmlDiagram.part.ModelDiagramEditorID">
             <ElementType class="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
@@ -237,7 +237,7 @@
       <?gmfgen generated="true"?>
       <viewProvider class="org.unicase.ui.urmlDiagram.providers.ModelViewProvider">
          <Priority name="Lowest"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Model"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="URML"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints=""/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints=""/>
       </viewProvider>
@@ -401,14 +401,14 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
       <?gmfgen generated="true"?>
-      <clientContext id="ModelClientContext">
+      <clientContext id="URMLClientContext">
          <enablement>
             <test
                property="org.eclipse.gmf.runtime.emf.core.editingDomain"
                value="org.unicase.ui.urmlDiagram.EditingDomain"/>
          </enablement>
       </clientContext> 
-      <binding context="ModelClientContext">
+      <binding context="URMLClientContext">
          <elementType ref="org.unicase.ui.urmlDiagram.MEDiagram_66"/>
          <elementType ref="org.unicase.ui.urmlDiagram.HazardCause_2001"/>
          <elementType ref="org.unicase.ui.urmlDiagram.Mitigation_2002"/>
@@ -477,7 +477,7 @@
             <or>
 	           <and>
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
-        	      <test property="org.eclipse.core.resources.extension" value="workItem_diagram"/>
+        	      <test property="org.eclipse.core.resources.extension" value="urml_diagram"/>
                </and>
                <instanceof value="org.unicase.ui.urmlDiagram.navigator.ModelAbstractNavigatorItem"/>
             </or>
@@ -494,7 +494,7 @@
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
-        	         <test property="org.eclipse.core.resources.extension" value="workItem_diagram"/>
+        	         <test property="org.eclipse.core.resources.extension" value="urml_diagram"/>
                   </and>
                   <instanceof value="org.unicase.ui.urmlDiagram.navigator.ModelAbstractNavigatorItem"/>
                </or>

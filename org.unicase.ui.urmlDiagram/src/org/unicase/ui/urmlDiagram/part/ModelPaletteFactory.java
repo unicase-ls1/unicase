@@ -144,8 +144,8 @@ public class ModelPaletteFactory {
 				org.unicase.ui.urmlDiagram.part.Messages.Mitigate5CreationTool_desc,
 				types);
 		entry
-				.setSmallIcon(org.unicase.ui.urmlDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardMitigations_4005));
+				.setSmallIcon(org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
+						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Association.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

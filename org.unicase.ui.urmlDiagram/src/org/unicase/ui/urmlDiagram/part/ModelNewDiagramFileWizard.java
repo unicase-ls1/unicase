@@ -83,8 +83,7 @@ public class ModelNewDiagramFileWizard extends Wizard {
 		myFileCreationPage.setContainerFullPath(filePath);
 		myFileCreationPage
 				.setFileName(org.unicase.ui.urmlDiagram.part.ModelDiagramEditorUtil
-						.getUniqueFileName(filePath, fileName,
-								"workItem_diagram")); //$NON-NLS-1$
+						.getUniqueFileName(filePath, fileName, "urml_diagram")); //$NON-NLS-1$
 
 		diagramRootElementSelectionPage = new DiagramRootElementSelectionPage(
 				org.unicase.ui.urmlDiagram.part.Messages.ModelNewDiagramFileWizard_RootSelectionPageName);

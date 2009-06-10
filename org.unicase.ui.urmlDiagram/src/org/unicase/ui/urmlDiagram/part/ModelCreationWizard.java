@@ -102,7 +102,7 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	 */
 	public void addPages() {
 		diagramModelFilePage = new org.unicase.ui.urmlDiagram.part.ModelCreationWizardPage(
-				"DiagramModelFile", getSelection(), "workItem_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+				"DiagramModelFile", getSelection(), "urml_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage
 				.setTitle(org.unicase.ui.urmlDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage
@@ -116,7 +116,7 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
 					fileName = fileName.substring(0, fileName.length()
-							- ".workItem_diagram".length()); //$NON-NLS-1$
+							- ".urml_diagram".length()); //$NON-NLS-1$
 					setFileName(org.unicase.ui.urmlDiagram.part.ModelDiagramEditorUtil
 							.getUniqueFileName(getContainerFullPath(),
 									fileName, "model")); //$NON-NLS-1$

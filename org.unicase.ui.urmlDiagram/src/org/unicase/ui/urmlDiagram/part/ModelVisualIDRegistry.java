@@ -174,6 +174,21 @@ public class ModelVisualIDRegistry {
 			}
 		}
 		switch (containerVisualID) {
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseEditPart.VISUAL_ID:
+			if (org.unicase.ui.urmlDiagram.edit.parts.HazardCauseNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.ui.urmlDiagram.edit.parts.MitigationEditPart.VISUAL_ID:
+			if (org.unicase.ui.urmlDiagram.edit.parts.MitigationNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardEditPart.VISUAL_ID:
+			if (org.unicase.ui.urmlDiagram.edit.parts.HazardNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		case org.unicase.ui.urmlDiagram.edit.parts.ActorEditPart.VISUAL_ID:
 			if (org.unicase.ui.urmlDiagram.edit.parts.ActorNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
@@ -181,6 +196,11 @@ public class ModelVisualIDRegistry {
 			break;
 		case org.unicase.ui.urmlDiagram.edit.parts.UseCaseEditPart.VISUAL_ID:
 			if (org.unicase.ui.urmlDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementEditPart.VISUAL_ID:
+			if (org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -221,6 +241,16 @@ public class ModelVisualIDRegistry {
 			break;
 		case org.unicase.ui.urmlDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID:
 			if (org.unicase.ui.urmlDiagram.edit.parts.IncludeLabel2EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardMitigationsEditPart.VISUAL_ID:
+			if (org.unicase.ui.urmlDiagram.edit.parts.MitigateLabelEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID:
+			if (org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

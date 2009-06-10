@@ -22,6 +22,84 @@ public class ModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser hazardCauseName_5003Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getHazardCauseName_5003Parser() {
+		if (hazardCauseName_5003Parser == null) {
+			hazardCauseName_5003Parser = createHazardCauseName_5003Parser();
+		}
+		return hazardCauseName_5003Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createHazardCauseName_5003Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.ui.urmlDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.urmlDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser mitigationName_5004Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getMitigationName_5004Parser() {
+		if (mitigationName_5004Parser == null) {
+			mitigationName_5004Parser = createMitigationName_5004Parser();
+		}
+		return mitigationName_5004Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createMitigationName_5004Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.ui.urmlDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.urmlDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser hazardName_5005Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getHazardName_5005Parser() {
+		if (hazardName_5005Parser == null) {
+			hazardName_5005Parser = createHazardName_5005Parser();
+		}
+		return hazardName_5005Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createHazardName_5005Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.ui.urmlDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.urmlDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	private IParser actorName_5001Parser;
 
 	/**
@@ -74,12 +152,46 @@ public class ModelParserProvider extends AbstractProvider implements
 	/**
 	 * @generated
 	 */
+	private IParser functionalRequirementName_5006Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getFunctionalRequirementName_5006Parser() {
+		if (functionalRequirementName_5006Parser == null) {
+			functionalRequirementName_5006Parser = createFunctionalRequirementName_5006Parser();
+		}
+		return functionalRequirementName_5006Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected IParser createFunctionalRequirementName_5006Parser() {
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
+				.getModelElement_Name(), };
+		org.unicase.ui.urmlDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.urmlDiagram.parsers.MessageFormatParser(
+				features);
+		return parser;
+	}
+
+	/**
+	 * @generated
+	 */
 	protected IParser getParser(int visualID) {
 		switch (visualID) {
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseNameEditPart.VISUAL_ID:
+			return getHazardCauseName_5003Parser();
+		case org.unicase.ui.urmlDiagram.edit.parts.MitigationNameEditPart.VISUAL_ID:
+			return getMitigationName_5004Parser();
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardNameEditPart.VISUAL_ID:
+			return getHazardName_5005Parser();
 		case org.unicase.ui.urmlDiagram.edit.parts.ActorNameEditPart.VISUAL_ID:
 			return getActorName_5001Parser();
 		case org.unicase.ui.urmlDiagram.edit.parts.UseCaseNameEditPart.VISUAL_ID:
 			return getUseCaseName_5002Parser();
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementNameEditPart.VISUAL_ID:
+			return getFunctionalRequirementName_5006Parser();
 		}
 		return null;
 	}
