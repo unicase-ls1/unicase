@@ -1653,12 +1653,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	private void recordingFinished() {
 
-		notificationRecorder.getRecording().debugLog();
-
 		// canonize recorded notifications
 		NotificationFilter f = FilterStack.DEFAULT;
 		f.filter(notificationRecorder.getRecording());
-		notificationRecorder.getRecording().debugLog("filtered notification chain");
 
 		// create operations from "valid" notifications, log invalid ones, accumulate the ops
 		List<AbstractOperation> ops = new LinkedList<AbstractOperation>();
