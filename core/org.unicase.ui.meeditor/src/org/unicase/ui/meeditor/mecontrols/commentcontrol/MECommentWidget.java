@@ -95,7 +95,7 @@ public class MECommentWidget extends Composite {
 		if (sender == null) {
 			commentAuthor.setText(comment.getCreator());
 		} else {
-			commentAuthor.setText(sender.getName());
+			commentAuthor.setText(sender.getName() + "");
 		}
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(commentAuthor);
 
