@@ -19,6 +19,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
@@ -55,6 +56,7 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 
 			addSourcePropertyDescriptor(object);
 			addTargetPropertyDescriptor(object);
+			addIncludeChangePackagePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -81,6 +83,20 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryQuery_target_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_HistoryQuery_target_feature", "_UI_HistoryQuery_type"),
 			VersioningPackage.Literals.HISTORY_QUERY__TARGET, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Include Change Package feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	protected void addIncludeChangePackagePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_HistoryQuery_includeChangePackage_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_HistoryQuery_includeChangePackage_feature",
+				"_UI_HistoryQuery_type"), VersioningPackage.Literals.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE, true,
+			false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -130,7 +146,8 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_HistoryQuery_type");
+		HistoryQuery historyQuery = (HistoryQuery) object;
+		return getString("_UI_HistoryQuery_type") + " " + historyQuery.isIncludeChangePackage();
 	}
 
 	/**
@@ -145,6 +162,9 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(HistoryQuery.class)) {
+		case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;

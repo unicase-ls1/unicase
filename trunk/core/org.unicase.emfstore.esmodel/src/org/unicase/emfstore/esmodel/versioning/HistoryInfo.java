@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
  * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getLogMessage <em>Log Message</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getTagSpecs <em>Tag Specs</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getVersionProperties <em>Version Properties</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getChangePackage <em>Change Package</em>}</li>
  * </ul>
  * </p>
  * 
@@ -108,5 +109,31 @@ public interface HistoryInfo extends EObject {
 	 * @generated
 	 */
 	EList<VersionProperty> getVersionProperties();
+
+	/**
+	 * Returns the value of the '<em><b>Change Package</b></em>' containment reference. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Change Package</em>' containment reference isn't clear, there really should be more of
+	 * a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Change Package</em>' containment reference.
+	 * @see #setChangePackage(ChangePackage)
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getHistoryInfo_ChangePackage()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	ChangePackage getChangePackage();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getChangePackage
+	 * <em>Change Package</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Change Package</em>' containment reference.
+	 * @see #getChangePackage()
+	 * @generated
+	 */
+	void setChangePackage(ChangePackage value);
 
 } // HistoryInfo
