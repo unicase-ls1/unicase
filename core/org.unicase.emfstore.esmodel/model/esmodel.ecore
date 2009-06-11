@@ -85,6 +85,8 @@
           eType="#//versioning/TagVersionSpec" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="versionProperties" upperBound="-1"
           eType="#//versioning/VersionProperty" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="changePackage" eType="#//versioning/ChangePackage"
+          containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HistoryQuery">
       <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="#//versioning/PrimaryVersionSpec"
@@ -94,6 +96,8 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElements" upperBound="-1"
           eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
           containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="includeChangePackage"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Version">
       <eStructuralFeatures xsi:type="ecore:EReference" name="projectState" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"

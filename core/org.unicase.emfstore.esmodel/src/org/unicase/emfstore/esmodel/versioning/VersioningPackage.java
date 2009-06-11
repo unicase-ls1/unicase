@@ -315,13 +315,22 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_INFO__VERSION_PROPERTIES = 3;
 
 	/**
+	 * The feature id for the '<em><b>Change Package</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int HISTORY_INFO__CHANGE_PACKAGE = 4;
+
+	/**
 	 * The number of structural features of the '<em>History Info</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int HISTORY_INFO_FEATURE_COUNT = 4;
+	int HISTORY_INFO_FEATURE_COUNT = 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl
@@ -361,13 +370,22 @@ public interface VersioningPackage extends EPackage {
 	int HISTORY_QUERY__MODEL_ELEMENTS = 2;
 
 	/**
+	 * The feature id for the '<em><b>Include Change Package</b></em>' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE = 3;
+
+	/**
 	 * The number of structural features of the '<em>History Query</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int HISTORY_QUERY_FEATURE_COUNT = 3;
+	int HISTORY_QUERY_FEATURE_COUNT = 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl <em>Version</em>}'
@@ -762,6 +780,18 @@ public interface VersioningPackage extends EPackage {
 	EReference getHistoryInfo_VersionProperties();
 
 	/**
+	 * Returns the meta object for the containment reference '
+	 * {@link org.unicase.emfstore.esmodel.versioning.HistoryInfo#getChangePackage <em>Change Package</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '<em>Change Package</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.HistoryInfo#getChangePackage()
+	 * @see #getHistoryInfo()
+	 * @generated
+	 */
+	EReference getHistoryInfo_ChangePackage();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery
 	 * <em>History Query</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -806,6 +836,18 @@ public interface VersioningPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getHistoryQuery_ModelElements();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#isIncludeChangePackage
+	 * <em>Include Change Package</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Include Change Package</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.HistoryQuery#isIncludeChangePackage()
+	 * @see #getHistoryQuery()
+	 * @generated
+	 */
+	EAttribute getHistoryQuery_IncludeChangePackage();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.Version <em>Version</em>}'.
@@ -1164,6 +1206,14 @@ public interface VersioningPackage extends EPackage {
 		EReference HISTORY_INFO__VERSION_PROPERTIES = eINSTANCE.getHistoryInfo_VersionProperties();
 
 		/**
+		 * The meta object literal for the '<em><b>Change Package</b></em>' containment reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference HISTORY_INFO__CHANGE_PACKAGE = eINSTANCE.getHistoryInfo_ChangePackage();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl
 		 * <em>History Query</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -1196,6 +1246,14 @@ public interface VersioningPackage extends EPackage {
 		 * @generated
 		 */
 		EReference HISTORY_QUERY__MODEL_ELEMENTS = eINSTANCE.getHistoryQuery_ModelElements();
+
+		/**
+		 * The meta object literal for the '<em><b>Include Change Package</b></em>' attribute feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE = eINSTANCE.getHistoryQuery_IncludeChangePackage();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.impl.VersionImpl

@@ -17,6 +17,8 @@ import org.unicase.model.ModelElementId;
  * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getSource <em>Source</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getTarget <em>Target</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#getModelElements <em>Model Elements</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#isIncludeChangePackage <em>Include Change Package
+ * </em>}</li>
  * </ul>
  * </p>
  * 
@@ -92,5 +94,31 @@ public interface HistoryQuery extends EObject {
 	 * @generated
 	 */
 	EList<ModelElementId> getModelElements();
+
+	/**
+	 * Returns the value of the '<em><b>Include Change Package</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Include Change Package</em>' attribute isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Include Change Package</em>' attribute.
+	 * @see #setIncludeChangePackage(boolean)
+	 * @see org.unicase.emfstore.esmodel.versioning.VersioningPackage#getHistoryQuery_IncludeChangePackage()
+	 * @model
+	 * @generated
+	 */
+	boolean isIncludeChangePackage();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.versioning.HistoryQuery#isIncludeChangePackage
+	 * <em>Include Change Package</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Include Change Package</em>' attribute.
+	 * @see #isIncludeChangePackage()
+	 * @generated
+	 */
+	void setIncludeChangePackage(boolean value);
 
 } // HistoryQuery

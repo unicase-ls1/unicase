@@ -29,6 +29,8 @@ import org.unicase.model.ModelElementId;
  * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getSource <em>Source</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getTarget <em>Target</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#getModelElements <em>Model Elements</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.impl.HistoryQueryImpl#isIncludeChangePackage <em>Include Change
+ * Package</em>}</li>
  * </ul>
  * </p>
  * 
@@ -64,6 +66,26 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * @ordered
 	 */
 	protected EList<ModelElementId> modelElements;
+
+	/**
+	 * The default value of the '{@link #isIncludeChangePackage() <em>Include Change Package</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isIncludeChangePackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean INCLUDE_CHANGE_PACKAGE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isIncludeChangePackage() <em>Include Change Package</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #isIncludeChangePackage()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean includeChangePackage = INCLUDE_CHANGE_PACKAGE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -256,6 +278,28 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 	 * 
 	 * @generated
 	 */
+	public boolean isIncludeChangePackage() {
+		return includeChangePackage;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setIncludeChangePackage(boolean newIncludeChangePackage) {
+		boolean oldIncludeChangePackage = includeChangePackage;
+		includeChangePackage = newIncludeChangePackage;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE, oldIncludeChangePackage, includeChangePackage));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -287,6 +331,8 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 			return basicGetTarget();
 		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
 			return getModelElements();
+		case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
+			return isIncludeChangePackage();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -310,6 +356,9 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 			getModelElements().clear();
 			getModelElements().addAll((Collection<? extends ModelElementId>) newValue);
 			return;
+		case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
+			setIncludeChangePackage((Boolean) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -331,6 +380,9 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
 			getModelElements().clear();
 			return;
+		case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
+			setIncludeChangePackage(INCLUDE_CHANGE_PACKAGE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -349,8 +401,27 @@ public class HistoryQueryImpl extends EObjectImpl implements HistoryQuery {
 			return target != null;
 		case VersioningPackage.HISTORY_QUERY__MODEL_ELEMENTS:
 			return modelElements != null && !modelElements.isEmpty();
+		case VersioningPackage.HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE:
+			return includeChangePackage != INCLUDE_CHANGE_PACKAGE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy())
+			return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (includeChangePackage: ");
+		result.append(includeChangePackage);
+		result.append(')');
+		return result.toString();
 	}
 
 } // HistoryQueryImpl
