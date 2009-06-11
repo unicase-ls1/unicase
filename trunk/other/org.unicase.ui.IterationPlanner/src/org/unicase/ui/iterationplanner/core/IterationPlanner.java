@@ -6,6 +6,15 @@
 
 package org.unicase.ui.iterationplanner.core;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Collections;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.organization.Group;
@@ -15,14 +24,6 @@ import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Iteration planner.
@@ -35,6 +36,7 @@ public class IterationPlanner {
 	private List<WorkPackage> workPackages;
 	private List<FunctionalRequirement> requirements;
 	private Map<User, Integer> assigneeAvailabilities;
+	private Map<User, Integer> initialAssigneeAvailabilities;
 
 	private WorkPackage lastSprint;
 
@@ -42,7 +44,8 @@ public class IterationPlanner {
 	private WorkPackage sprint;
 
 	/**
-	 * @param requirements the requirements to set
+	 * @param requirements
+	 *            the requirements to set
 	 */
 	public void setRequirements(List<FunctionalRequirement> requirements) {
 		this.requirements = requirements;
@@ -59,7 +62,8 @@ public class IterationPlanner {
 	}
 
 	/**
-	 * @param workPackages the workPackages to set
+	 * @param workPackages
+	 *            the workPackages to set
 	 */
 	public void setWorkPackages(List<WorkPackage> workPackages) {
 		this.workPackages = workPackages;
@@ -78,7 +82,8 @@ public class IterationPlanner {
 	/**
 	 * Sets the last sprint.
 	 * 
-	 * @param wp last sprint
+	 * @param wp
+	 *            last sprint
 	 */
 	public void setLastSprint(WorkPackage wp) {
 		if (lastSprint != null) {
@@ -94,7 +99,7 @@ public class IterationPlanner {
 	 */
 	public WorkPackage getLastSprint() {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
+				.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -107,8 +112,9 @@ public class IterationPlanner {
 				}
 				if (lastSprint.getStartDate() == null) {
 					// minus 14 days (two weeks)
-					lastSprint
-						.setStartDate(new Date(lastSprint.getEndDate().getTime() - 14L * 24L * 60L * 60L * 1000L));
+					lastSprint.setStartDate(new Date(lastSprint.getEndDate()
+							.getTime()
+							- 14L * 24L * 60L * 60L * 1000L));
 				}
 			}
 
@@ -128,14 +134,16 @@ public class IterationPlanner {
 	}
 
 	/**
-	 * @param assignee assignee
+	 * @param assignee
+	 *            assignee
 	 */
 	public void addAssignee(User assignee) {
 		assigneeAvailabilities.put(assignee, 0);
 	}
 
 	/**
-	 * @param asssignee assignee
+	 * @param asssignee
+	 *            assignee
 	 */
 	public void removeAssignee(User asssignee) {
 		assigneeAvailabilities.remove(asssignee);
@@ -145,22 +153,32 @@ public class IterationPlanner {
 	 * @return assignees
 	 */
 	public Set<User> getAssignees() {
-		if (assigneeAvailabilities == null || assigneeAvailabilities.isEmpty()) {
-			initAssigneeAvailabilities();
+		if (assigneeAvailabilities != null) {
+			return assigneeAvailabilities.keySet();
 		}
-		return assigneeAvailabilities.keySet();
 
+		return Collections.emptySet();
+
+	}
+	
+	/**
+	 * reset to initial assignee availabilities.
+	 */
+	public void resetToInitialAssignees(){
+		assigneeAvailabilities.clear();
+		assigneeAvailabilities.putAll(initialAssigneeAvailabilities);
 	}
 
 	/**
 	 * returns availability of this assignee.
 	 * 
-	 * @param assignee assignee
+	 * @param assignee
+	 *            assignee
 	 * @return availability
 	 */
 	public int getAvailability(User assignee) {
-		if (assigneeAvailabilities == null || assigneeAvailabilities.isEmpty()) {
-			initAssigneeAvailabilities();
+		if (assigneeAvailabilities == null) {
+			return 0;
 		}
 
 		if (assigneeAvailabilities.containsKey(assignee)) {
@@ -171,14 +189,16 @@ public class IterationPlanner {
 	}
 
 	/**
-	 * @param assignee assignee
-	 * @param value value
+	 * @param assignee
+	 *            assignee
+	 * @param value
+	 *            value
 	 */
 	public void setAvailability(User assignee, int value) {
-		if (assigneeAvailabilities == null || assigneeAvailabilities.isEmpty()) {
-			initAssigneeAvailabilities();
+		if (assigneeAvailabilities != null) {
+			assigneeAvailabilities.put(assignee, new Integer(value));
 		}
-		assigneeAvailabilities.put(assignee, new Integer(value));
+
 	}
 
 	/**
@@ -203,6 +223,9 @@ public class IterationPlanner {
 			}
 
 		}
+		
+		initialAssigneeAvailabilities = new HashMap<User, Integer>();
+		initialAssigneeAvailabilities.putAll(assigneeAvailabilities);
 	}
 
 	private void updateAvailability(User assignee, int value) {
