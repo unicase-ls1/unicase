@@ -34,8 +34,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * This class serves as a superclass for the automatically generated ModelDocumentProvider for each diagram. The
- * non-generated methods are moved in this superclass.
+ * This class serves as a superclass for the generated ModelDocumentProvider in each diagram plugin.
  */
 @SuppressWarnings("restriction")
 public class ModelDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider {

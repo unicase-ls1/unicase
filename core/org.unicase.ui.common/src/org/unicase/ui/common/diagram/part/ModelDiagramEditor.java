@@ -49,7 +49,7 @@ import org.unicase.ui.common.diagram.DeleteFromDiagramAction;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 
 /**
- * @author denglerm This class is a superclass for the specific ModelDiagramEditor in each diagram.
+ * @author denglerm This class is a superclass for the generated ModelDiagramEditor in each diagram.
  */
 public class ModelDiagramEditor extends DiagramDocumentEditor {
 
@@ -199,7 +199,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	}
 
 	/**
-	 * @generated NOT
 	 * @see org.eclipse.ui.part.EditorPart#setInput(IEditorInput)
 	 * @param input the editor input
 	 */

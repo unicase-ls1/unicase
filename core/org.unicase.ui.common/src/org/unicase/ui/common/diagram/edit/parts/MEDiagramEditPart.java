@@ -29,7 +29,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.diagram.DiagramPackage;
 
 /**
- * @author denglerm This class is a superclass for the specific MEDiagramEditPart in each diagram.
+ * @author denglerm This class is a superclass for the generated MEDiagramEditPart in each diagram plugin.
+ * It adds DND functionality
  */
 public class MEDiagramEditPart extends DiagramEditPart {
 	/**
@@ -79,6 +80,7 @@ public class MEDiagramEditPart extends DiagramEditPart {
 
 	/**
 	 * . {@inheritDoc}
+	 * 	This method installs the DND policy and a modified ContainerNodeEditPolicy.
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
@@ -90,7 +92,8 @@ public class MEDiagramEditPart extends DiagramEditPart {
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * This method updates the view if the elements list has changed.
+	 * @param event the event
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {

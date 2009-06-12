@@ -4,12 +4,6 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.diagram.commands;
-
-/******************************************************************************
- * Copyright (c) 2005, 2006 IBM Corporation and others. All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html Contributors: IBM Corporation - initial API and implementation
- ****************************************************************************/
 import java.util.Collection;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -32,8 +26,6 @@ import org.unicase.ui.common.util.UnicaseUiUtil;
  * Command to remove a model element from the diagram, not from the model, using the EMF action protocol.
  * 
  * @author denglerm
- * @author ldamus
- * @author Christian W. Damus (cdamus)
  */
 public class DeleteFromDiagramCommand extends DestroyElementCommand {
 
@@ -64,18 +56,12 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 		EObject destructee = getElementToDestroy();
 
 		// only destroy attached elements
-		if ((destructee != null) && (destructee.eResource() != null)) {
+		if (destructee != null) {
 			MEDiagramEditPart me = (MEDiagramEditPart) EditPartUtility.getDiagramEditPart(this.editPart);
 			MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
 			diag.getElements().remove(this.elementToDestroy);
 			// tear down incoming references
 			tearDownReferences(destructee);
-
-			// in case it was cross-resource-contained
-			Resource res = destructee.eResource();
-			if (res != null) {
-				res.getContents().remove(destructee);
-			}
 		}
 
 		return CommandResult.newOKCommandResult();
