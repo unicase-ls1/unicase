@@ -1890,6 +1890,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
+		checkForCrossReferences(modelElement);
 		addToResource(modelElement);
 		if (isRecording) {
 			appendCreator(modelElement);
@@ -1901,6 +1902,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				this.getOperations().add(createCreateDeleteOperation);
 			}
 			saveProjectSpaceOnly();
+		}
+	}
+
+	private void checkForCrossReferences(ModelElement modelElement) {
+		if (modelElement.getCrossReferencedModelElements().size() > 0) {
+			IllegalStateException exception = new IllegalStateException(
+				"ModelElements may not contain cross references to other model elements when added to project!");
+			WorkspaceUtil.logException(exception.getMessage(), exception);
+			throw exception;
+		}
+		for (ModelElement child : modelElement.getAllContainedModelElements()) {
+			checkForCrossReferences(child);
 		}
 	}
 
