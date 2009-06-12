@@ -337,6 +337,13 @@ public interface ModelElement extends IdentifiableElement {
 	Set<ModelElement> getAllContainedModelElements();
 
 	/**
+	 * Get all model elements that are cross referenced by this element.
+	 * 
+	 * @return a set of model elements
+	 */
+	Set<ModelElement> getCrossReferencedModelElements();
+
+	/**
 	 * Delete the model element from its project.
 	 */
 	void delete();
