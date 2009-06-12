@@ -24,7 +24,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCannonizer;
+import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
 import org.unicase.model.Project;
 
 /**
@@ -285,7 +285,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated NOT
 	 */
 	public void cannonize() {
-		OperationsCannonizer.cannonize(getOperations());
+		OperationsCanonizer.canonize(getOperations());
 	}
 
 	// end of custom code

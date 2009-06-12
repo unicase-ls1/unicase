@@ -29,12 +29,12 @@ import org.unicase.model.ModelElementId;
  * 
  * @author koegel
  */
-public final class OperationsCannonizer {
+public final class OperationsCanonizer {
 
 	/**
 	 * Private constructor.
 	 */
-	private OperationsCannonizer() {
+	private OperationsCanonizer() {
 		// do nothing
 	}
 
@@ -43,7 +43,7 @@ public final class OperationsCannonizer {
 	 * 
 	 * @param operations a list of operations (the list is order by creation time)
 	 */
-	public static void cannonize(List<AbstractOperation> operations) {
+	public static void canonize(List<AbstractOperation> operations) {
 		Map<ModelElementId, AbstractOperation> deletedElements = new HashMap<ModelElementId, AbstractOperation>();
 		Map<String, AttributeOperation> changedAttributes = new HashMap<String, AttributeOperation>();
 		HashMap<ModelElementId, Set<AttributeOperation>> modelElementAttributeChangeMap = new HashMap<ModelElementId, Set<AttributeOperation>>();
