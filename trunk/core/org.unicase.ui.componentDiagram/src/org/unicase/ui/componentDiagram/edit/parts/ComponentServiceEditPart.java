@@ -21,7 +21,7 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.ui.componentDiagram.unicase.ComponentBorderItemLocator;
+import org.unicase.ui.common.diagram.figures.BorderItemLocatorEx;
 
 /**
  * @generated
@@ -117,7 +117,7 @@ public class ComponentServiceEditPart extends AbstractBorderedShapeEditPart {
 	protected void addBorderItem(IFigure borderItemContainer,
 			IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof org.unicase.ui.componentDiagram.edit.parts.ComponentServiceNameEditPart) {
-			ComponentBorderItemLocator locator = new ComponentBorderItemLocator(
+			BorderItemLocatorEx locator = new BorderItemLocatorEx(
 					getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(0, 10));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);

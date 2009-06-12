@@ -47,6 +47,8 @@ public class ActivityCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		Activity newElement = ActivityFactory.eINSTANCE.createActivity();
 
+		newElement.setName("new " + newElement.eClass().getName());
+
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
 

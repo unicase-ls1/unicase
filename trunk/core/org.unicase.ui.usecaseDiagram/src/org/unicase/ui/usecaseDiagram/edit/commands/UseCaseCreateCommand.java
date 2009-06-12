@@ -55,6 +55,8 @@ public class UseCaseCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		UseCase newElement = RequirementFactory.eINSTANCE.createUseCase();
 
+		newElement.setName("new " + newElement.eClass().getName());
+
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
 

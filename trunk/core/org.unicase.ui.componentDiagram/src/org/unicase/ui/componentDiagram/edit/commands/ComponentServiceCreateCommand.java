@@ -48,6 +48,8 @@ public class ComponentServiceCreateCommand extends CreateElementCommand {
 		ComponentService newElement = ComponentFactory.eINSTANCE
 				.createComponentService();
 
+		newElement.setName("new " + newElement.eClass().getName());
+
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
 

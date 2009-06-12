@@ -65,7 +65,6 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected String getCommandLabel() {
 		return DiagramUIMessages.DiagramEditor_Delete_from_Model;
 	}
@@ -73,7 +72,6 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected Command getCommand(Request request) {
 		List operationSet = getOperationSet();
 		if (operationSet.isEmpty()) {

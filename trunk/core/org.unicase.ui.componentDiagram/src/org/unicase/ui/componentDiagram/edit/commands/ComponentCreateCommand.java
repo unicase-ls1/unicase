@@ -50,6 +50,8 @@ public class ComponentCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		Component newElement = ComponentFactory.eINSTANCE.createComponent();
 
+		newElement.setName("new " + newElement.eClass().getName());
+
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
 
