@@ -5,9 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
-import java.util.Set;
-
-import org.unicase.model.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Reference Operation</b></em>'. <!-- end-user-doc
@@ -80,12 +77,5 @@ public interface ReferenceOperation extends FeatureOperation {
 	 * @generated
 	 */
 	void setOppositeFeatureName(String value);
-
-	/**
-	 * Returns all involved elements other than the element the operation refers to.
-	 * 
-	 * @return a set of model elements
-	 */
-	Set<ModelElementId> getOtherInvolvedModelElements();
 
 } // ReferenceOperation

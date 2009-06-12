@@ -7,6 +7,8 @@ package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -20,6 +22,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 
 /**
@@ -42,6 +45,21 @@ import org.unicase.model.Project;
  * @generated
  */
 public class CompositeOperationImpl extends AbstractOperationImpl implements CompositeOperation {
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getOtherInvolvedModelElements()
+	 */
+	@Override
+	public Set<ModelElementId> getOtherInvolvedModelElements() {
+		Set<ModelElementId> result = new HashSet<ModelElementId>();
+		for (AbstractOperation operation : getSubOperations()) {
+			Set<ModelElementId> allInvolvedModelElements = operation.getAllInvolvedModelElements();
+			result.addAll(allInvolvedModelElements);
+		}
+		return result;
+	}
 
 	/**
 	 * The cached value of the '{@link #getSubOperations() <em>Sub Operations</em>}' containment reference list. <!--
