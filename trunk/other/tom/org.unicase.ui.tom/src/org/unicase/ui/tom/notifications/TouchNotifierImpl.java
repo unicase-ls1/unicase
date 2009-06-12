@@ -1,7 +1,8 @@
 package org.unicase.ui.tom.notifications;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * @author schroech
@@ -9,28 +10,28 @@ import java.util.List;
  */
 public class TouchNotifierImpl implements TouchNotifier {
 
-	private List<TouchAdapter> adapters;
+	private Set<TouchAdapter> adapters;
 	private boolean deliver = true;
 
 	/**
 	 * Default constructor.
 	 */
 	public TouchNotifierImpl() {
-		adapters = new ArrayList<TouchAdapter>();
+		adapters = new HashSet<TouchAdapter>();
 	}
 	
 	/** 
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.notifications.TouchNotifier#getAdapters()
 	*/
-	public List<TouchAdapter> getAdapters() {
+	public Set<TouchAdapter> getAdapters() {
 		return adapters;
 	}
 
 	/**
 	 * @param adapters The list of {@link TouchAdapter}s
 	 */
-	public void setAdapters(List<TouchAdapter> adapters) {
+	public void setAdapters(Set<TouchAdapter> adapters) {
 		this.adapters = adapters;
 	}
 
@@ -39,7 +40,7 @@ public class TouchNotifierImpl implements TouchNotifier {
 	* @see org.unicase.ui.tom.notifications.TouchNotifier#notifyAdapters(org.unicase.ui.tom.notifications.TouchNotification)
 	*/
 	public void notifyAdapters(TouchNotification notification) {
-		List<TouchAdapter> adapters = getAdapters();
+		Set<TouchAdapter> adapters = getAdapters();
 		if (adapters != null && deliver())
 		{
 			for (TouchAdapter touchAdapter : adapters) {

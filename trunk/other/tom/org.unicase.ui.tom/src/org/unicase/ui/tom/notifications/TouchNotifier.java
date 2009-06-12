@@ -1,10 +1,10 @@
 package org.unicase.ui.tom.notifications;
 
-import java.util.List;
+import java.util.Set;
 
 public interface TouchNotifier {
 
-	List<TouchAdapter> getAdapters();
+	Set<TouchAdapter> getAdapters();
 	
 	void notifyAdapters(TouchNotification notification);
 	

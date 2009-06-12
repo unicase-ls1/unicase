@@ -10,116 +10,156 @@ import java.util.List;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.AbstractCommand;
 import org.unicase.ui.tom.commands.CreateDefaultNodeCommand;
-import org.unicase.ui.tom.commands.PromptAndCreateNodeCommand;
+import org.unicase.ui.tom.commands.CreateNodeAndConnectionCommand;
+import org.unicase.ui.tom.commands.CreateNodeCommand;
+import org.unicase.ui.tom.commands.CreateSecondaryNodeCommand;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
 
 /**
  * @author schroech
- *
+ * 
  */
 public class CreateNodeGesture extends CreateGesture implements Gesture {
 
 	/**
-	 * @param dispatcher The {@link TouchDispatch} at which the gesture will register for touch events
-	 * @param diagramEditPart The {@link DiagramEditPart}
+	 * @param dispatcher
+	 *            The {@link TouchDispatch} at which the gesture will register
+	 *            for touch events
+	 * @param diagramEditPart
+	 *            The {@link DiagramEditPart}
 	 */
 	public CreateNodeGesture(TouchDispatch dispatcher,
 			DiagramEditPart diagramEditPart) {
-		super(dispatcher,diagramEditPart);
+		super(dispatcher, diagramEditPart);
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#execute()
 	 */
 	public void execute() {
 		if (!canExecute()) {
 			return;
 		}
-		
+
 		AbstractCommand command;
 
 		MultiTouch multiTouch = getCreationTouch().getMultiTouch();
 		List<Touch> activeTouches = multiTouch.getActiveTouches();
-		
+
+		EditPart editPart = findCardinalTouchedEditPart(multiTouch
+				.getActiveTouches());
+		GraphicalEditPart graphicalEditPart = getPrimaryEditPart(editPart);
+
 		switch (activeTouches.size()) {
 		case 0:
 			return;
 		case 1:
-			command = new CreateDefaultNodeCommand(
-					getDiagramEditPart(),
-					multiTouch.getPosition());
+			try {
+				command = new CreateDefaultNodeCommand(
+						getDiagramEditPart(),
+						graphicalEditPart,
+						multiTouch.getPosition());
+			}
+			catch (IllegalArgumentException e) {
+				command = new CreateDefaultNodeCommand(
+						getDiagramEditPart(),
+						getDiagramEditPart(), 
+						multiTouch.getPosition());
+			}
+			
 			break;
 		case 2:
-			command = new PromptAndCreateNodeCommand(
-					getDiagramEditPart(),
-					multiTouch.getPosition());
+			try {
+				command = new CreateSecondaryNodeCommand(
+						getDiagramEditPart(),
+						graphicalEditPart, 
+						multiTouch.getPosition());	
+			} catch (IllegalArgumentException e) {
+				command = new CreateSecondaryNodeCommand(
+						getDiagramEditPart(),
+						getDiagramEditPart(), 
+						multiTouch.getPosition());
+			}
+			
 			break;
 		default:
 			return;
 		}
 
-		command.execute();
-
+		command.execute();	
 		setCanExecute(false);
 
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchRemoved(org.unicase.ui.tom.touches.Touch)
 	 */
 	@Override
 	public void handleSingleTouchRemoved(SingleTouch touch) {
-		//Check containment first. The touch is removed from the stationary touches in super.
-		boolean contains = getStationaryTouches().contains(touch);
-
-		super.handleSingleTouchRemoved(touch);
-
-		if (!(acceptsAdditionalTouches())) {
+		if (!(touch.getLifeSpan() < CREATION_TOUCH_LIFESPAN)) {
 			return;
 		}
 
-		if(contains) {
-			if (touch.getLifeSpan() < CREATION_TOUCH_LIFESPAN) {
-				setCreationTouch(touch);
-				setCanExecute(true);	
-			}				
+		MultiTouch multiTouch = touch.getMultiTouch();
+
+		int numberOfTouches = multiTouch.getActiveTouches().size();
+		if (numberOfTouches == 0) {
+			return;
 		}
+
+		EditPart editPart = findCardinalTouchedEditPart(multiTouch
+				.getActiveTouches());
+		editPart = getPrimaryEditPart(editPart);
+
+		if (editPart == null) {
+			return;
+		}
+
+		setCreationTouch(touch);
+		setCanExecute(true);
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.Touch)
+	 * 
+	 * @see org.unicase.ui.tom.gestures.Gesture#getMandatoryTouches()
 	 */
-	@Override
-	public void handleSingleTouchAdded(SingleTouch touch) {
-		super.handleSingleTouchAdded(touch);
-
-		if (!acceptsAdditionalTouches()) {
-			return;
-		}
-
-		EditPart foundEditPart = findTouchedEditPartExcludingDiagram(touch);
-		if (foundEditPart == null) {
-			getStationaryTouches().add(touch);
-		}
-	}
-
-	/** 
-	* {@inheritDoc}
-	* @see org.unicase.ui.tom.gestures.Gesture#getMandatoryTouches()
-	*/
 	public List<MultiTouch> getMandatoryTouches() {
 		if (getCreationTouch() == null) {
 			return Collections.emptyList();
-		}else{
-			return Collections.singletonList(getCreationTouch().getMultiTouch());
+		} else {
+			return Collections
+					.singletonList(getCreationTouch().getMultiTouch());
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchChanged(org.unicase.ui.tom.touches.SingleTouch)
+	 */
+	public void handleSingleTouchChanged(SingleTouch touch) {
+		// Do nothing
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.SingleTouch)
+	 */
+	public void handleSingleTouchAdded(SingleTouch touch) {
+		// Do nothing
 	}
 }

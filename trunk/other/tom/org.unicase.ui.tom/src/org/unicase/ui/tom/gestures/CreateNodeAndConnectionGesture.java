@@ -2,6 +2,7 @@
  * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * 
  */
 package org.unicase.ui.tom.gestures;
 
@@ -74,7 +75,7 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 			sourceEditPart = findCardinalTouchedEditPartExcludingDiagram(sourceMultiTouch.getActiveTouches());
 
 			if (targetEditPart == null
-				&& sourceEditPart == null) {
+					&& sourceEditPart == null) {
 				throw new IllegalStateException();
 			}
 			
@@ -88,6 +89,11 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 				sourcePoint = sourceMultiTouch.getPosition();
 			}
 			
+			if (sourcePoint != null
+					&& targetPoint != null) {
+				throw new IllegalStateException();
+			}
+
 			if (targetPoint != null) {
 				command = new CreateDefaultNodeAndConnectionCommand(
 						getDiagramEditPart(),
@@ -100,7 +106,7 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 						targetEditPart);
 			}
 
-			if(sourceMultiTouch.getActiveTouches().size() == 2) {
+			if(targetMultiTouch.getActiveTouches().size() == 2) {
 				IElementType type = ElementTypeRegistry.getInstance().getType("org.unicase.classDiagram.ClassSubClasses_4005");
 				if (type != null) {
 					((CreateNodeAndConnectionCommand)command).setConnectionElementType(type);
@@ -108,7 +114,7 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 			}
 
 			command.execute();
-		
+
 		} finally {
 			setCanExecute(false);			
 		}
@@ -122,7 +128,10 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 			EditPart targetEditPart = findCardinalTouchedEditPart(targetMultiTouch.getActiveTouches());
 			targetEditPart = getPrimaryEditPart(targetEditPart);
 
-			if (targetEditPart.equals(getDiagramEditPart())) {
+			if (targetEditPart == null) {
+				return possibleSourceMultiTouches;
+			}
+			if(targetEditPart.equals(getDiagramEditPart())) {
 				for (MultiTouch multiTouch : multiTouches) {
 
 					if (multiTouch.equals(targetMultiTouch)) {
@@ -148,7 +157,7 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 					editPart = getPrimaryEditPart(editPart);
 
 					if (editPart != null
-						&& editPart.equals(getDiagramEditPart())) {
+							&& editPart.equals(getDiagramEditPart())) {
 						possibleSourceMultiTouches.add(multiTouch);
 					}
 				}
@@ -184,14 +193,6 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleSingleTouchRemoved(SingleTouch touch) {
-		boolean contains = getStationaryTouches().contains(touch);
-
-		super.handleSingleTouchRemoved(touch);
-
-		if (!contains) {
-			return;
-		}
-
 		if (!(touch.getLifeSpan() < CREATION_TOUCH_LIFESPAN)) {
 			return;
 		}
@@ -212,7 +213,7 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 		if (possibleSourceMultiTouches.size() == 0) {
 			return;
 		}
-		
+
 		setSourceMultiTouches(possibleSourceMultiTouches);
 
 		if (possibleSourceMultiTouches.size() < 2) {
@@ -227,14 +228,14 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 	}
 
 	/** 
-	* {@inheritDoc}
-	* @see org.unicase.ui.tom.gestures.AbstractGesture#getOptionalTouches()
-	*/
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#getOptionalTouches()
+	 */
 	@Override
 	public List<MultiTouch> getOptionalTouches() {
 		return getSourceMultiTouches();
 	}
-	
+
 	/** 
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.tom.gestures.Gesture#getMandatoryTouches()
@@ -258,5 +259,22 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 
 	public List<MultiTouch> getSourceMultiTouches() {
 		return sourceMultiTouches;
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.SingleTouch)
+	 */
+	public void handleSingleTouchAdded(SingleTouch touch) {
+		// Do nothing
+
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchChanged(org.unicase.ui.tom.touches.SingleTouch)
+	 */
+	public void handleSingleTouchChanged(SingleTouch touch) {
+		// Do nothing
 	}
 }

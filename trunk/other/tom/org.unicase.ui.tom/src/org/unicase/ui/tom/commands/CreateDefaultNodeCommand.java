@@ -9,6 +9,7 @@ import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssistantService;
 
@@ -23,14 +24,17 @@ public class CreateDefaultNodeCommand extends CreateNodeCommand {
 	 * @param point The position where the new editPart is created
 	 */
 	@SuppressWarnings("unchecked")
-	public CreateDefaultNodeCommand(DiagramEditPart diagramEditPart, Point point) {
-		super(diagramEditPart, point, null);
+	public CreateDefaultNodeCommand(
+			DiagramEditPart diagramEditPart, 
+			GraphicalEditPart targetEditPart, 
+			Point point) {
+		super(diagramEditPart, targetEditPart, point, null);
 		
 		ModelingAssistantService service = ModelingAssistantService.getInstance();
 		List relatedNodeTypes = null;
 		IElementType defaultElementType = null;
 
-		relatedNodeTypes = service.getTypesForPopupBar(diagramEditPart);
+		relatedNodeTypes = service.getTypesForPopupBar(getTargetEditPart());
 
 		for (Object object : relatedNodeTypes) {
 			if (object instanceof IElementType) {
@@ -40,7 +44,7 @@ public class CreateDefaultNodeCommand extends CreateNodeCommand {
 		}
 		
 		if (defaultElementType == null) {
-			throw new IllegalArgumentException("No ElementType registered for DiagramEditPart");
+			throw new IllegalArgumentException("No ElementType registered for target EditPart");
 		}
 		
 		setElementType(defaultElementType);
