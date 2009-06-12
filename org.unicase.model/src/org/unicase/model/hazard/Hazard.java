@@ -66,6 +66,7 @@ public interface Hazard extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Targeted Actors</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.model.requirement.Actor}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.requirement.Actor#getHazards <em>Hazards</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Targeted Actors</em>' reference list isn't clear, there really should be more of a
@@ -74,7 +75,8 @@ public interface Hazard extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Targeted Actors</em>' reference list.
 	 * @see org.unicase.model.hazard.HazardPackage#getHazard_TargetedActors()
-	 * @model keys="identifier"
+	 * @see org.unicase.model.requirement.Actor#getHazards
+	 * @model opposite="hazards" keys="identifier"
 	 * @generated
 	 */
 	EList<Actor> getTargetedActors();

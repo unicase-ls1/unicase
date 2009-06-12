@@ -55,6 +55,7 @@ public class MitigationItemProvider extends ModelElementItemProvider implements 
 			addEvaluationStatusPropertyDescriptor(object);
 			addCausesPropertyDescriptor(object);
 			addHazardsPropertyDescriptor(object);
+			addRequirementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -107,6 +108,20 @@ public class MitigationItemProvider extends ModelElementItemProvider implements 
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Mitigation_hazards_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_Mitigation_hazards_feature", "_UI_Mitigation_type"),
 			HazardPackage.Literals.MITIGATION__HAZARDS, true, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Requirements feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addRequirementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Mitigation_requirements_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_Mitigation_requirements_feature",
+				"_UI_Mitigation_type"), HazardPackage.Literals.MITIGATION__REQUIREMENTS, true, false, true, null, null,
+			null));
 	}
 
 	/**

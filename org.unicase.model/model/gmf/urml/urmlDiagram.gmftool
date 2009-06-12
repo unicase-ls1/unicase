@@ -77,6 +77,9 @@
             path="/icons/full/obj16/Extend.gif"
             bundle="org.unicase.model.edit"/>
       </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Endangered by Hazard"/>
     </tools>
     <tools
         xsi:type="gmftool:CreationTool"

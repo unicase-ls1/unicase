@@ -406,6 +406,24 @@
             <param name="semanticHint" value="4007"/>
          </specializationType>
       </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <specializationType
+               id="org.unicase.ui.urmlDiagram.FunctionalRequirementMitigations_4008"
+               name="%metatype.name.FunctionalRequirementMitigations_4008"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4008"/>
+         </specializationType>
+      </metamodel>
+      <metamodel nsURI="http://unicase.org/model/requirement">
+         <specializationType
+               id="org.unicase.ui.urmlDiagram.ActorHazards_4010"
+               name="%metatype.name.ActorHazards_4010"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4010"/>
+         </specializationType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
@@ -432,6 +450,8 @@
          <elementType ref="org.unicase.ui.urmlDiagram.HazardMitigations_4005"/>
          <elementType ref="org.unicase.ui.urmlDiagram.HazardCauseMitigations_4006"/>
          <elementType ref="org.unicase.ui.urmlDiagram.FunctionalRequirementRefiningRequirements_4007"/>
+         <elementType ref="org.unicase.ui.urmlDiagram.FunctionalRequirementMitigations_4008"/>
+         <elementType ref="org.unicase.ui.urmlDiagram.ActorHazards_4010"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

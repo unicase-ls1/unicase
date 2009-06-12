@@ -259,6 +259,16 @@ public class ModelVisualIDRegistry {
 				return true;
 			}
 			break;
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementMitigationsEditPart.VISUAL_ID:
+			if (org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel3EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID:
+			if (org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
 		}
 		return false;
 	}

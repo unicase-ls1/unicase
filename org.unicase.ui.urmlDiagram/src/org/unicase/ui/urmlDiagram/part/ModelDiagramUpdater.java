@@ -203,6 +203,8 @@ public class ModelDiagramUpdater {
 		List result = new LinkedList();
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_Actor_ParticipatedUseCases_4001(modelElement));
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Actor_Hazards_4010(modelElement));
 		return result;
 	}
 
@@ -228,6 +230,8 @@ public class ModelDiagramUpdater {
 		List result = new LinkedList();
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(modelElement));
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_Mitigations_4008(modelElement));
 		return result;
 	}
 
@@ -252,6 +256,9 @@ public class ModelDiagramUpdater {
 		result
 				.addAll(getIncomingFeatureModelFacetLinks_HazardCause_Mitigations_4006(
 						modelElement, crossReferences));
+		result
+				.addAll(getIncomingFeatureModelFacetLinks_FunctionalRequirement_Mitigations_4008(
+						modelElement, crossReferences));
 		return result;
 	}
 
@@ -259,7 +266,13 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getHazard_2003IncomingLinks(View view) {
-		return Collections.EMPTY_LIST;
+		Hazard modelElement = (Hazard) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
+				.getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingFeatureModelFacetLinks_Actor_Hazards_4010(
+				modelElement, crossReferences));
+		return result;
 	}
 
 	/**
@@ -344,6 +357,8 @@ public class ModelDiagramUpdater {
 		List result = new LinkedList();
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_Actor_ParticipatedUseCases_4001(modelElement));
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Actor_Hazards_4010(modelElement));
 		return result;
 	}
 
@@ -369,6 +384,8 @@ public class ModelDiagramUpdater {
 		List result = new LinkedList();
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(modelElement));
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_Mitigations_4008(modelElement));
 		return result;
 	}
 
@@ -536,6 +553,52 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection getIncomingFeatureModelFacetLinks_FunctionalRequirement_Mitigations_4008(
+			Mitigation target, Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection) crossReferences.get(target);
+		for (Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
+					.next();
+			if (setting.getEStructuralFeature() == RequirementPackage.eINSTANCE
+					.getFunctionalRequirement_Mitigations()) {
+				result
+						.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
+								setting.getEObject(),
+								target,
+								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008,
+								org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementMitigationsEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getIncomingFeatureModelFacetLinks_Actor_Hazards_4010(
+			Hazard target, Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection) crossReferences.get(target);
+		for (Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
+					.next();
+			if (setting.getEStructuralFeature() == RequirementPackage.eINSTANCE
+					.getActor_Hazards()) {
+				result
+						.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
+								setting.getEObject(),
+								target,
+								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorHazards_4010,
+								org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static Collection getOutgoingFeatureModelFacetLinks_Actor_ParticipatedUseCases_4001(
 			Actor source) {
 		Collection result = new LinkedList();
@@ -644,6 +707,44 @@ public class ModelDiagramUpdater {
 							destination,
 							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007,
 							org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingFeatureModelFacetLinks_FunctionalRequirement_Mitigations_4008(
+			FunctionalRequirement source) {
+		Collection result = new LinkedList();
+		for (Iterator destinations = source.getMitigations().iterator(); destinations
+				.hasNext();) {
+			Mitigation destination = (Mitigation) destinations.next();
+			result
+					.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
+							source,
+							destination,
+							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008,
+							org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementMitigationsEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingFeatureModelFacetLinks_Actor_Hazards_4010(
+			Actor source) {
+		Collection result = new LinkedList();
+		for (Iterator destinations = source.getHazards().iterator(); destinations
+				.hasNext();) {
+			Hazard destination = (Hazard) destinations.next();
+			result
+					.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
+							source,
+							destination,
+							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorHazards_4010,
+							org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID));
 		}
 		return result;
 	}

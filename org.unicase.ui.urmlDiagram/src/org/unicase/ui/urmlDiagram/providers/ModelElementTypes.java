@@ -106,6 +106,16 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
+	public static final IElementType FunctionalRequirementMitigations_4008 = getElementType("org.unicase.ui.urmlDiagram.FunctionalRequirementMitigations_4008"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActorHazards_4010 = getElementType("org.unicase.ui.urmlDiagram.ActorHazards_4010"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private static ImageRegistry getImageRegistry() {
 		if (imageRegistry == null) {
 			imageRegistry = new ImageRegistry();
@@ -255,6 +265,13 @@ public class ModelElementTypes extends ElementInitializers {
 			elements.put(FunctionalRequirementRefiningRequirements_4007,
 					RequirementPackage.eINSTANCE
 							.getFunctionalRequirement_RefiningRequirements());
+
+			elements.put(FunctionalRequirementMitigations_4008,
+					RequirementPackage.eINSTANCE
+							.getFunctionalRequirement_Mitigations());
+
+			elements.put(ActorHazards_4010, RequirementPackage.eINSTANCE
+					.getActor_Hazards());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -287,6 +304,8 @@ public class ModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(HazardCauseMitigations_4006);
 			KNOWN_ELEMENT_TYPES
 					.add(FunctionalRequirementRefiningRequirements_4007);
+			KNOWN_ELEMENT_TYPES.add(FunctionalRequirementMitigations_4008);
+			KNOWN_ELEMENT_TYPES.add(ActorHazards_4010);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}

@@ -329,6 +329,15 @@ public class HazardPackageImpl extends EPackageImpl implements HazardPackage {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getMitigation_Requirements() {
+		return (EReference) mitigationEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -422,6 +431,7 @@ public class HazardPackageImpl extends EPackageImpl implements HazardPackage {
 		createEAttribute(mitigationEClass, MITIGATION__EVALUATION_STATUS);
 		createEReference(mitigationEClass, MITIGATION__CAUSES);
 		createEReference(mitigationEClass, MITIGATION__HAZARDS);
+		createEReference(mitigationEClass, MITIGATION__REQUIREMENTS);
 
 		hazardCauseEClass = createEClass(HAZARD_CAUSE);
 		createEReference(hazardCauseEClass, HAZARD_CAUSE__HAZARDS);
@@ -480,9 +490,9 @@ public class HazardPackageImpl extends EPackageImpl implements HazardPackage {
 			-1, Hazard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getHazard_InvolvedClasses().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getHazard_TargetedActors(), theRequirementPackage.getActor(), null, "targetedActors", null, 0,
-			-1, Hazard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHazard_TargetedActors(), theRequirementPackage.getActor(), theRequirementPackage
+			.getActor_Hazards(), "targetedActors", null, 0, -1, Hazard.class, !IS_TRANSIENT, !IS_VOLATILE,
+			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getHazard_TargetedActors().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getHazard_Causes(), this.getHazardCause(), this.getHazardCause_Hazards(), "causes", null, 0, -1,
 			Hazard.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
@@ -508,6 +518,11 @@ public class HazardPackageImpl extends EPackageImpl implements HazardPackage {
 			Mitigation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getMitigation_Hazards().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getMitigation_Requirements(), theRequirementPackage.getFunctionalRequirement(),
+			theRequirementPackage.getFunctionalRequirement_Mitigations(), "requirements", null, 0, -1,
+			Mitigation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMitigation_Requirements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(hazardCauseEClass, HazardCause.class, "HazardCause", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

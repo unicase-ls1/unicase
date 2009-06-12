@@ -7,6 +7,7 @@ package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.hazard.Mitigation;
 import org.unicase.model.organization.OrgUnit;
 
 /*
@@ -120,6 +121,24 @@ public interface FunctionalRequirement extends ModelElement {
 	 * @generated
 	 */
 	EList<Feature> getDetailedFeatures();
+
+	/**
+	 * Returns the value of the '<em><b>Mitigations</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.hazard.Mitigation}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.hazard.Mitigation#getRequirements <em>Requirements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Mitigations</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Mitigations</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Mitigations()
+	 * @see org.unicase.model.hazard.Mitigation#getRequirements
+	 * @model opposite="requirements" keys="identifier"
+	 * @generated
+	 */
+	EList<Mitigation> getMitigations();
 
 	/**
 	 * Returns the value of the '<em><b>Story Points</b></em>' attribute.

@@ -127,6 +127,12 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID:
 			return getImage(
 					"Navigator?Link?http://unicase.org/model/requirement?FunctionalRequirement?refiningRequirements", org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007); //$NON-NLS-1$
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementMitigationsEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/requirement?FunctionalRequirement?mitigations", org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008); //$NON-NLS-1$
+		case org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID:
+			return getImage(
+					"Navigator?Link?http://unicase.org/model/requirement?Actor?hazards", org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorHazards_4010); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -211,6 +217,10 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 			return getHazardCauseMitigations_4006Text(view);
 		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID:
 			return getFunctionalRequirementRefiningRequirements_4007Text(view);
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementMitigationsEditPart.VISUAL_ID:
+			return getFunctionalRequirementMitigations_4008Text(view);
+		case org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID:
+			return getActorHazards_4010Text(view);
 		}
 		return getUnknownElementText(view);
 	}
@@ -499,6 +509,46 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 				(view.getElement() != null ? view.getElement() : view),
 				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
 						.getType(org.unicase.ui.urmlDiagram.edit.parts.RefineLabelEditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			return ""; //$NON-NLS-1$
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getFunctionalRequirementMitigations_4008Text(View view) {
+
+		IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel3EditPart.VISUAL_ID));
+		IParser parser = ParserService.getInstance().getParser(hintAdapter);
+		if (parser != null) {
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE
+					.intValue());
+		} else {
+			return ""; //$NON-NLS-1$
+		}
+
+	}
+
+	/**
+	 * @generated
+	 */
+	private String getActorHazards_4010Text(View view) {
+
+		IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
+				org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorHazards_4010,
+				(view.getElement() != null ? view.getElement() : view),
+				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+						.getType(org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel4EditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 		if (parser != null) {
 			return parser.getPrintString(hintAdapter, ParserOptions.NONE

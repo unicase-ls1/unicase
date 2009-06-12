@@ -353,6 +353,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String EndangeredbyHazard7CreationTool_title;
+
+	/**
+	 * @generated
+	 */
 	public static String CommandName_OpenDiagram;
 
 	/**
@@ -374,6 +379,11 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Hazard_2003_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_Hazard_2003_incominglinks;
 
 	/**
 	 * @generated
@@ -464,6 +474,26 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_FunctionalRequirementRefiningRequirements_4007_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FunctionalRequirementMitigations_4008_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_FunctionalRequirementMitigations_4008_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActorHazards_4010_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActorHazards_4010_source;
 
 	/**
 	 * @generated

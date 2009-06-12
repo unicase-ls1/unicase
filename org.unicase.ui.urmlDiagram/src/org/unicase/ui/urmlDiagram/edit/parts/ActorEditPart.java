@@ -238,6 +238,8 @@ public class ActorEditPart extends ShapeNodeEditPart {
 			this.setLayoutManager(layoutThis);
 
 			this.setOutline(false);
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(40),
+					getMapMode().DPtoLP(40)));
 			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(10),
 					getMapMode().DPtoLP(10)));
 			createContents();

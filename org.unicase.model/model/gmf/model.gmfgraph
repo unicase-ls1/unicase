@@ -417,6 +417,9 @@
         <minimumSize
             dx="10"
             dy="10"/>
+        <preferredSize
+            dx="40"
+            dy="40"/>
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ActorFigure"
@@ -1045,6 +1048,13 @@
           name="RefineLabel"
           text="\u00ABrefine\u00BB"/>
     </descriptors>
+    <descriptors
+        name="EndangeredLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="EndangeredLabel"
+          text="\u00ABendangered by\u00BB"/>
+    </descriptors>
   </figures>
   <nodes
       name="Class"
@@ -1165,6 +1175,9 @@
       figure="MitigateFigure"/>
   <connections
       name="Refine"
+      figure="Arrow"/>
+  <connections
+      name="Endangered"
       figure="Arrow"/>
   <compartments
       name="ClassNode_attributes"
@@ -1384,6 +1397,17 @@
   <labels
       name="RefineLabel"
       figure="RefineLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="EndangeredLabel"
+      figure="EndangeredLabelFigure"
       elementIcon="false">
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
