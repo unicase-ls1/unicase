@@ -2,13 +2,13 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="core.org.unicase.ui.workItemDiagram"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.workItemDiagram"
     modelID="WorkItem"
-    diagramFileExtension="activity_diagram"
+    diagramFileExtension="workitem_diagram"
     dynamicTemplates="true"
-    templateDirectory="org.unicase.model/model/gmf/templates/codegen">
+    templateDirectory="/org.unicase.model/model/gmf/templates/codegen">
   <diagram
-      visualID="1000"
+      visualID="33"
       editPartClassName="MEDiagramEditPart"
       itemSemanticEditPolicyClassName="MEDiagramItemSemanticEditPolicy"
       notationViewFactoryClassName="MEDiagramViewFactory"
@@ -16,7 +16,7 @@
       iconProviderPriority="Low"
       validationProviderPriority="Low">
     <diagramRunTimeClass
-        href="../../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
+        href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Diagram"/>
     <elementType
         xsi:type="gmfgen:MetamodelType"
         editHelperClassName="MEDiagramEditHelper"/>
@@ -34,7 +34,7 @@
         graphicalNodeEditPolicyClassName="ActionItemGraphicalNodeEditPolicy"
         createCommandClassName="ActionItemCreateCommand">
       <diagramRunTimeClass
-          href="../../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="ActionItemEditHelper"/>
@@ -58,7 +58,7 @@
           itemSemanticEditPolicyClassName="ActionItemNameItemSemanticEditPolicy"
           notationViewFactoryClassName="ActionItemNameViewFactory">
         <diagramRunTimeClass
-            href="../../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getWorkItemFigureName"
@@ -81,7 +81,7 @@
         graphicalNodeEditPolicyClassName="IssueGraphicalNodeEditPolicy"
         createCommandClassName="IssueCreateCommand">
       <diagramRunTimeClass
-          href="../../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="IssueEditHelper"/>
@@ -105,7 +105,7 @@
           itemSemanticEditPolicyClassName="IssueNameItemSemanticEditPolicy"
           notationViewFactoryClassName="IssueNameViewFactory">
         <diagramRunTimeClass
-            href="../../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getWorkItemFigureName"
@@ -128,7 +128,7 @@
         graphicalNodeEditPolicyClassName="BugReportGraphicalNodeEditPolicy"
         createCommandClassName="BugReportCreateCommand">
       <diagramRunTimeClass
-          href="../../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
       <elementType
           xsi:type="gmfgen:MetamodelType"
           editHelperClassName="BugReportEditHelper"/>
@@ -152,7 +152,7 @@
           itemSemanticEditPolicyClassName="BugReportNameItemSemanticEditPolicy"
           notationViewFactoryClassName="BugReportNameViewFactory">
         <diagramRunTimeClass
-            href="../../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getWorkItemFigureName"
@@ -174,7 +174,7 @@
         createCommandClassName="WorkItemSuccessorsCreateCommand"
         reorientCommandClassName="WorkItemSuccessorsReorientCommand">
       <diagramRunTimeClass
-          href="../../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"/>
       <viewmap
@@ -196,7 +196,7 @@
           readOnly="true"
           alignment="SOURCE">
         <diagramRunTimeClass
-            href="../../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="SuccessorLabelFigure"
@@ -215,7 +215,7 @@
           readOnly="true"
           alignment="TARGET">
         <diagramRunTimeClass
-            href="../../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
             className="PredecessorLabelFigure"
