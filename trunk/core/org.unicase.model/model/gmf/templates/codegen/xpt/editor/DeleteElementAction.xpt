@@ -12,10 +12,6 @@
 
 «IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
 
-«DEFINE className FOR gmfgen::GenDiagram»DeleteElementAction«ENDDEFINE»
-
-«DEFINE qualifiedClassName FOR gmfgen::GenDiagram»«editorGen.editor.packageName».«EXPAND className»«ENDDEFINE»
-
 «DEFINE DeleteElementAction FOR gmfgen::GenDiagram-»
 «EXPAND xpt::Common::copyright FOR editorGen-»
 package «editorGen.editor.packageName»;
@@ -31,9 +27,9 @@ public class «EXPAND className» extends org.eclipse.gmf.runtime.diagram.ui.actio
 	«EXPAND xpt::Common::generatedMemberComment»
 	public «EXPAND className»(org.eclipse.ui.IWorkbenchPage workbenchPage) {
 		super(workbenchPage);
-	}
-
+	}	
 	«EXPAND xpt::Common::generatedMemberComment»
+	«REM»modified«ENDREM»
 	public void init() {
 		super.init();
 		setId(org.eclipse.gmf.runtime.diagram.ui.actions.ActionIds.ACTION_DELETE_FROM_MODEL);
@@ -46,6 +42,7 @@ public class «EXPAND className» extends org.eclipse.gmf.runtime.diagram.ui.actio
 		setImageDescriptor(id);
 		setDisabledImageDescriptor(id);
 	}
+	«REM»END modified«ENDREM»
 
 	«EXPAND xpt::Common::generatedMemberComment»
 	protected String getCommandLabel() {
@@ -75,7 +72,4 @@ public class «EXPAND className» extends org.eclipse.gmf.runtime.diagram.ui.actio
 	}
 	«EXPAND additions-»
 }
-«ENDDEFINE»
-
-«DEFINE additions FOR gmfgen::GenDiagram-»
 «ENDDEFINE»
