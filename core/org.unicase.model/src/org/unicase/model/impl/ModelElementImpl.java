@@ -92,6 +92,21 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.ModelElement#getReferencedModelElements()
+	 */
+	public Set<ModelElement> getCrossReferencedModelElements() {
+		Set<ModelElement> result = new HashSet<ModelElement>();
+		for (EObject crossReference : this.eCrossReferences()) {
+			if (ModelPackage.eINSTANCE.getModelElement().isInstance(crossReference)) {
+				result.add((ModelElement) crossReference);
+			}
+		}
+		return result;
+	}
+
+	/**
 	 * @see org.unicase.model.ModelElement#getContainedModelElements()
 	 */
 	public Set<ModelElement> getContainedElements() {
