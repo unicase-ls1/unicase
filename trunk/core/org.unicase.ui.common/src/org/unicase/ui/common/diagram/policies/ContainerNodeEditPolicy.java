@@ -35,7 +35,9 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
  * unspecified target and a target shape to an unspecified source. A popup will appear asking the user to select or
  * create a new source or target element. This will handle both single create connection requests and multi connection
  * requests (i.e. where the popup also prompts the user for the type of relationship to created).
- * 
+ *
+ * This original implementation of the {@link #getConnectionCreateCommand(CreateConnectionRequest)} was changed to
+ * return a modified command
  * @author denglerm
  */
 public class ContainerNodeEditPolicy extends GraphicalNodeEditPolicy {
@@ -107,6 +109,8 @@ public class ContainerNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 	/**
 	 * Called by {@link #getConnectionAndEndCommands}.
+	 * 
+	 * The method was modified to return an own CreateViewAndOptionallyElementCommandExt
 	 * 
 	 * @param endAdapter the end adapter
 	 * @param location the location

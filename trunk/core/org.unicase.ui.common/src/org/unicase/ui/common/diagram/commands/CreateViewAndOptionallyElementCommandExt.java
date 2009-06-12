@@ -14,9 +14,9 @@ import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * @author denglerm
- * This commmand is executed when the users chooses CreateLinkFrom/To existing element"
- * I override the useExistingView method useExtingView because in the GMF implementation
- * a message box is displayed.
+ * This commmand is executed when the users chooses CreateLinkFrom/To existing element
+ * This implementation overrides the {@link #useExistingView(View)} method  because we don't want to display the message
+ * box of the GMF implementation
  */
 public class CreateViewAndOptionallyElementCommandExt extends CreateViewAndOptionallyElementCommand {
 
