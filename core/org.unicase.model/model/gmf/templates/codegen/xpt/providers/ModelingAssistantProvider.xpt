@@ -20,9 +20,10 @@
 package «providersPackageName»;
 
 «EXPAND xpt::Common::generatedClassComment»
+«REM»modified extends«ENDREM»
 public class «modelingAssistantProviderClassName»
 		extends org.unicase.ui.common.diagram.providers.ModelingAssistantProvider {
-
+«REM»END modified extends«ENDREM»
 	«EXPAND xpt::Common::generatedMemberComment»
 	public java.util.List getTypesForPopupBar(org.eclipse.core.runtime.IAdaptable host) {
 		org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart editPart =
@@ -196,16 +197,4 @@ public class «modelingAssistantProviderClassName»
 	}
 	«EXPAND additions-»
 }
-«ENDDEFINE»
-
-«DEFINE additions FOR gmfgen::GenDiagram-»«ENDDEFINE»
-
-«DEFINE i18nValues FOR gmfgen::GenDiagram-»
-«EXPAND xpt::Externalizer::messageEntry(i18nKeyForModelingAssistantProvider().titleKey(), "Select domain model element")-»
-«EXPAND xpt::Externalizer::messageEntry(i18nKeyForModelingAssistantProvider().messageKey(), "Available domain model elements:")-»
-«ENDDEFINE»
-
-«DEFINE i18nAccessors FOR gmfgen::GenDiagram-»
-	«EXPAND xpt::Externalizer::accessorField(i18nKeyForModelingAssistantProvider().titleKey())-»
-	«EXPAND xpt::Externalizer::accessorField(i18nKeyForModelingAssistantProvider().messageKey())-»
 «ENDDEFINE»
