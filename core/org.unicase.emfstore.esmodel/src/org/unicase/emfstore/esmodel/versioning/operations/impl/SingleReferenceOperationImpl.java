@@ -381,6 +381,7 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 	 * 
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOtherInvolvedModelElements()
 	 */
+	@Override
 	public Set<ModelElementId> getOtherInvolvedModelElements() {
 		HashSet<ModelElementId> result = new HashSet<ModelElementId>();
 		ModelElementId newValue = getNewValue();

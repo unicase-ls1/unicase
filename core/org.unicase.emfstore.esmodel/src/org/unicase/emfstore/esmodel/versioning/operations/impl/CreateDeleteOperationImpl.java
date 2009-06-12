@@ -6,6 +6,8 @@
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -21,6 +23,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 
@@ -402,6 +405,21 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			stringBuilder.append(getModelElement().eClass().getName());
 		}
 		return stringBuilder.toString();
+	}
+
+	/**
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getOtherInvolvedModelElements()
+	 */
+	@Override
+	public Set<ModelElementId> getOtherInvolvedModelElements() {
+		Set<ModelElementId> result = new HashSet<ModelElementId>();
+		for (ModelElement modelElement : getModelElement().getAllContainedModelElements()) {
+			result.add(modelElement.getModelElementId());
+		}
+		for (ReferenceOperation operation : getSubOperations()) {
+			result.addAll(operation.getAllInvolvedModelElements());
+		}
+		return result;
 	}
 
 } // CreateDeleteOperationImpl

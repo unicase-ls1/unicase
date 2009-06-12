@@ -5,6 +5,9 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.Collections;
+import java.util.Set;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -401,6 +404,14 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 		multiReferenceMoveOperation.setOldIndex(getNewIndex());
 		multiReferenceMoveOperation.setReferencedModelElementId(ModelUtil.clone(getReferencedModelElementId()));
 		return multiReferenceMoveOperation;
+	}
+
+	/**
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getOtherInvolvedModelElements()
+	 */
+	@Override
+	public Set<ModelElementId> getOtherInvolvedModelElements() {
+		return Collections.singleton(getReferencedModelElementId());
 	}
 
 } // MultiReferenceMoveOperationImpl
