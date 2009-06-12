@@ -391,14 +391,13 @@
    </extension>
 
 	   <extension point="org.eclipse.core.expressions.propertyTesters">
-      <?gmfgen generated="true"?>
-       <propertyTester
-           id="org.unicase.ui.activityDiagram.URIEditorInputPropertyTester"
-           type="org.eclipse.emf.common.ui.URIEditorInput"
-           namespace="org.unicase.ui.activityDiagram"
-           properties="isURIEditorInput"
-           class="org.unicase.ui.activityDiagram.part.ModelUriEditorInputTester">
-       </propertyTester>
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
    </extension>
 
 	   <extension point="org.eclipse.ui.navigator.viewer">
@@ -529,6 +528,15 @@
    </extension><extension point="org.eclipse.core.expressions.propertyTesters">
       <?gmfgen generated="true"?>
        <propertyTester
+           id="org.unicase.ui.activityDiagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="org.unicase.ui.activityDiagram"
+           properties="isURIEditorInput"
+           class="org.unicase.ui.activityDiagram.part.ModelUriEditorInputTester">
+       </propertyTester>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
            id="org.unicase.ui.activityDiagram.DomainModelElementPropertyTester"
            type="org.eclipse.emf.ecore.EObject"
            namespace="org.unicase.ui.activityDiagram"
@@ -536,5 +544,6 @@
            class="org.unicase.ui.activityDiagram.part.ModelDomainModelElementTester">
        </propertyTester>
    </extension>
+
 
 </plugin>

@@ -55,6 +55,8 @@ public class ActorCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		Actor newElement = RequirementFactory.eINSTANCE.createActor();
 
+		newElement.setName("new " + newElement.eClass().getName());
+
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
 

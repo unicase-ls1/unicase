@@ -506,6 +506,24 @@
             type="org.unicase.model.ModelElement">
       </propertyTester>
    </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.unicase.ui.stateDiagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="org.unicase.ui.stateDiagram"
+           properties="isURIEditorInput"
+           class="org.unicase.ui.stateDiagram.part.ModelUriEditorInputTester">
+       </propertyTester>
+   </extension>
+<extension point="org.eclipse.core.expressions.propertyTesters">
       <?gmfgen generated="true"?>
        <propertyTester
            id="org.unicase.ui.stateDiagram.DomainModelElementPropertyTester"
@@ -515,5 +533,6 @@
            class="org.unicase.ui.stateDiagram.part.ModelDomainModelElementTester">
        </propertyTester>
    </extension>
+
 
 </plugin>

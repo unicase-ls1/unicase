@@ -47,6 +47,8 @@ public class StateEndCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		StateEnd newElement = StateFactory.eINSTANCE.createStateEnd();
 
+		newElement.setName("new " + newElement.eClass().getName());
+
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
 

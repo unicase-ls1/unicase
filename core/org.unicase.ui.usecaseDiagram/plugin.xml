@@ -490,17 +490,17 @@
    </extension>
 
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-      <?gmfgen generated="true"?>
+      <?gmfgen generated="not"?>
       <clientContext id="UseCaseClientContext">
-              <enablement>
-              <and>
+        <enablement>
+            <and>
                <instanceof
                      value="org.unicase.model.ModelElement">
                </instanceof>
                <test
                      property="org.unicase.ui.usecaseDiagram.isDiagramType"
                      value="USECASE_DIAGRAM">
-               </test>  
+               </test>
             </and>
          </enablement>
       </clientContext> 
@@ -535,6 +535,62 @@
     </propertyTester>
    </extension>
 <extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
+   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
       <?gmfgen generated="true"?>
        <propertyTester
            id="org.unicase.ui.usecaseDiagram.URIEditorInputPropertyTester"
@@ -553,6 +609,13 @@
            class="org.unicase.ui.usecaseDiagram.part.ModelDomainModelElementTester">
        </propertyTester>
    </extension>
+
+
+
+
+
+
+
 
 
 

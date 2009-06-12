@@ -47,6 +47,8 @@ public class BranchCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		Branch newElement = ActivityFactory.eINSTANCE.createBranch();
 
+		newElement.setName("new " + newElement.eClass().getName());
+
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
 

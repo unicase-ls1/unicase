@@ -47,6 +47,8 @@ public class StateInitialCreateCommand extends CreateElementCommand {
 	protected EObject doDefaultElementCreation() {
 		StateInitial newElement = StateFactory.eINSTANCE.createStateInitial();
 
+		newElement.setName("new " + newElement.eClass().getName());
+
 		MEDiagram owner = (MEDiagram) getElementToEdit();
 		owner.getNewElements().add(newElement);
 
