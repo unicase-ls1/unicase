@@ -181,6 +181,7 @@ public class SetupHelper {
 			ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
 			serverInfo.setPort(1099);
 			serverInfo.setUrl("127.0.0.1");
+			serverInfo.setCertificateAlias("unicase.org test test(!!!) certificate");
 
 			usersession.setServerInfo(serverInfo);
 			usersession.setUsername("super");
