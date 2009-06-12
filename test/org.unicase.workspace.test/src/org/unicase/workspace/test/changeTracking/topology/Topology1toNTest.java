@@ -9,12 +9,14 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElement;
@@ -259,6 +261,14 @@ public class Topology1toNTest extends TopologyTest {
 		assertTrue(section1.getModelElements().contains(actor2));
 	
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}
 	
 		assertEquals(2, operations.size());
 	
@@ -321,7 +331,14 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().addAll(Arrays.asList(actors));
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}
 		// now expectation is: we get 4 messages preserving the info on former parents for the actors
 		// and one additional one, indicating the new parent for all of them
 		assertEquals(5, operations.size());
@@ -414,7 +431,14 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().addAll(Arrays.asList(actors));
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}
 		// now expectation is: we get 4 messages preserving the info on former parents for the actors
 		// and one additional one, indicating the new parent for all of them
 		assertEquals(5, operations.size());
@@ -492,6 +516,15 @@ public class Topology1toNTest extends TopologyTest {
 		assertTrue(pack.getContainedWorkItems().contains(br));
 	
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}
+		
 		assertEquals(2, operations.size());
 	
 		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
@@ -539,6 +572,14 @@ public class Topology1toNTest extends TopologyTest {
 		assertNull(issue.getSolution());
 	
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}
 		assertEquals(2, operations.size());
 	
 		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
@@ -603,7 +644,14 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().addAll(Arrays.asList(actors));
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}
 		// now expectation is: we get 4 messages preserving the info on former parents for the actors
 		// and one additional one, indicating the new parent for all of them
 		assertEquals(5, operations.size());
@@ -696,7 +744,14 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().addAll(Arrays.asList(actors));
 	
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-	
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}	
 		// now expectation is: we get 4 messages preserving the info on former parents for the actors
 		// and one additional one, indicating the new parent for all of them
 		assertEquals(5, operations.size());
@@ -777,7 +832,14 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().addAll(Arrays.asList(solutions));
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}
 		// now expectation is: we get 2 messages preserving the info on former parents for the solutions
 		// and one additional one, indicating the new parent for both of them
 		assertEquals(3, operations.size());
@@ -845,7 +907,14 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().addAll(Arrays.asList(solutions));
 	
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-	
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}	
 		// now expectation is: we get 2 messages preserving the info on former parents for the solutions
 		// and one additional one, indicating the new parent for both of them
 		assertEquals(3, operations.size());
@@ -938,7 +1007,14 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().addAll(Arrays.asList(addedElements));
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}
 		// now expectation is: we get 6 messages preserving the info on former parents for the solutions
 		// and one additional one, indicating the new parent for both of them
 		assertEquals(7, operations.size());
@@ -1061,7 +1137,14 @@ public class Topology1toNTest extends TopologyTest {
 		section.getModelElements().addAll(Arrays.asList(addedElements));
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}
 		// now expectation is: we get 6 messages preserving the info on former parents for the solutions
 		// and one additional one, indicating the new parent for both of them
 		assertEquals(7, operations.size());

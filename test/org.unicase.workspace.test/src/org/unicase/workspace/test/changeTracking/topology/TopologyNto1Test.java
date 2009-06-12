@@ -10,11 +10,13 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.fail;
 
 import java.util.List;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugReport;
@@ -270,7 +272,14 @@ public class TopologyNto1Test extends TopologyTest {
 		assertTrue(pack.getContainedWorkItems().contains(br));
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}
 		assertEquals(2, operations.size());
 
 		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
@@ -316,8 +325,16 @@ public class TopologyNto1Test extends TopologyTest {
 		assertNull(issue.getSolution());
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-		assertEquals(2, operations.size());
+		// expecting a composite operation here
+		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation){
+			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
+		}
+		else{
+			fail("composite operation expected");
+		}
 
+		assertEquals(2, operations.size());
 		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
 
 		// first op is: solution loses its old parent
