@@ -1694,7 +1694,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		} else if (compositeOperation != null) {
 			compositeOperation.getSubOperations().addAll(ops);
 		} else {
-			getOperations().addAll(ops);
+			if (ops.size() > 1) {
+				CompositeOperation op = OperationsFactory.eINSTANCE.createCompositeOperation();
+				op.getSubOperations().addAll(ops);
+				getOperations().add(op);
+			} else {
+				getOperations().addAll(ops);
+			}
+
 			OperationsCannonizer.cannonize(getOperations());
 		}
 
