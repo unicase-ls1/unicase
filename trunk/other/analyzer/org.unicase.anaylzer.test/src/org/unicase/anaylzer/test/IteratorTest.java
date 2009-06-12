@@ -30,9 +30,9 @@ public class IteratorTest extends AnalyzersTest {
     @Test
 	public void test1(){
 		for (ProjectInfo pI : super.getProjectList()) {			
-			if (pI.getName().contains("-01")) {
+			if (pI.getName().contains("DOLLI")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
-				int stepLength = 3;
+				int stepLength = 30;
 				VersionIterator projectIt;
 				try {
 					projectIt = new VersionIterator(super.getUserSession(), pI.getProjectId(), stepLength);
