@@ -63,6 +63,9 @@ public class OSCByteArrayToJavaConverter {
 		while (streamPosition < bytesLength) {
 			// recursively read through the stream and convert packets you find
 			int packetLength = ((Integer) readInteger()).intValue();
+			if (streamPosition + packetLength >= bytesLength) {
+				break;
+			}
 			byte[] packetBytes = new byte[packetLength];
 			//streamPosition++;
 			System.arraycopy(bytes,streamPosition,packetBytes,0,packetLength);

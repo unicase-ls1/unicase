@@ -166,9 +166,16 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 			if (getSourceEditPart() == null) {
 
 				if (getNodeElementType() == null) {
-					sourceCreationCommand = new CreateDefaultNodeCommand(getDiagramEditPart(), sourcePoint);	
+					sourceCreationCommand = new CreateDefaultNodeCommand(
+							getDiagramEditPart(), 
+							getDiagramEditPart(),
+							sourcePoint);	
 				}else{
-					sourceCreationCommand = new CreateNodeCommand(getDiagramEditPart(), sourcePoint, getNodeElementType());
+					sourceCreationCommand = new CreateNodeCommand(
+							getDiagramEditPart(),
+							getDiagramEditPart(),
+							sourcePoint, 
+							getNodeElementType());
 				}	
 			}
 		}
@@ -179,11 +186,17 @@ public class CreateNodeAndConnectionCommand extends AbstractCommand {
 		if (targetCreationCommand == null) {
 			if (getTargetEditPart() == null) {
 				if (getNodeElementType() == null) {
-					targetCreationCommand = new CreateDefaultNodeCommand(getDiagramEditPart(), targetPoint);	
+					targetCreationCommand = new CreateDefaultNodeCommand(
+							getDiagramEditPart(),
+							getDiagramEditPart(),
+							targetPoint);	
 				}else{
-					targetCreationCommand = new CreateNodeCommand(getDiagramEditPart(), targetPoint, getNodeElementType());
+					targetCreationCommand = new CreateNodeCommand(
+							getDiagramEditPart(), 
+							getDiagramEditPart(),
+							targetPoint,
+							getNodeElementType());
 				}
-
 			}
 		}
 		return targetCreationCommand;

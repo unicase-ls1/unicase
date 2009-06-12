@@ -5,12 +5,8 @@
  */
 package org.unicase.ui.tom.gestures;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.TouchDispatch;
-import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
 
 /**
@@ -25,12 +21,6 @@ public abstract class CreateGesture extends AbstractGesture{
 	 */
 	protected static final long CREATION_TOUCH_LIFESPAN = 100;
 
-	/**
-	 * The maximum threshold a touch is allowed to move before is no longer classified as static. 
-	 */
-	protected static final int STATIONARY_TOUCH_MAXIMUM_MOVE = 50;
-
-	private List<Touch> stationaryTouches;
 	private Touch creationTouch;
 
 	/**
@@ -39,8 +29,6 @@ public abstract class CreateGesture extends AbstractGesture{
 	 */
 	public CreateGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
 		super(dispatch, diagramEditPart);
-
-		stationaryTouches = new ArrayList<Touch>();
 	}
 
 	/** 
@@ -50,22 +38,7 @@ public abstract class CreateGesture extends AbstractGesture{
 	public void reset() {
 		super.reset();
 
-		getStationaryTouches().clear();
 		setCreationTouch(null);
-	}
-
-	/**
-	 * @param stationaryTouches All touches not moving and not beeing lifted before the CREATION_TOUCH_LIFESPAN
-	 */
-	public void setStationaryTouches(List<Touch> stationaryTouches) {
-		this.stationaryTouches = stationaryTouches;
-	}
-
-	/**
-	 * @return A list of touches  
-	 */
-	public List<Touch> getStationaryTouches() {
-		return stationaryTouches;
 	}
 
 	/**
@@ -81,40 +54,5 @@ public abstract class CreateGesture extends AbstractGesture{
 	 */
 	public Touch getCreationTouch() {
 		return creationTouch;
-	}
-
-	/** 
-	 * {@inheritDoc}
-	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchRemoved(org.unicase.ui.tom.touches.Touch)
-	 */
-	@Override
-	public void handleSingleTouchRemoved(SingleTouch touch) {
-		getStationaryTouches().remove(touch);	
-	}
-
-	/** 
-	 * {@inheritDoc}
-	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.Touch)
-	 */
-	public void handleSingleTouchAdded(SingleTouch touch) {
-		if (!(acceptsAdditionalTouches())) {
-			return;
-		}
-
-		getStationaryTouches().add(touch);
-	}
-
-	/** 
-	 * {@inheritDoc}
-	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchChanged(org.unicase.ui.tom.touches.Touch)
-	 */
-	public void handleSingleTouchChanged(SingleTouch touch) {
-		if (!(touch instanceof SingleTouch)) {
-			return;
-		}
-
-		if (touchMoved((SingleTouch) touch, STATIONARY_TOUCH_MAXIMUM_MOVE)) {
-			getStationaryTouches().remove(touch);	
-		}			
 	}
 }

@@ -17,14 +17,14 @@ import org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssista
  * @author schroech
  *
  */
-public class CreateDefaultNodeCommand extends CreateNodeCommand {
+public class CreateSecondaryNodeCommand extends CreateNodeCommand {
 
 	/**
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
 	 * @param point The position where the new editPart is created
 	 */
 	@SuppressWarnings("unchecked")
-	public CreateDefaultNodeCommand(
+	public CreateSecondaryNodeCommand(
 			DiagramEditPart diagramEditPart, 
 			GraphicalEditPart targetEditPart, 
 			Point point) {
@@ -36,10 +36,14 @@ public class CreateDefaultNodeCommand extends CreateNodeCommand {
 
 		relatedNodeTypes = service.getTypesForPopupBar(getTargetEditPart());
 
+		int elementTypeIndex = 0;
 		for (Object object : relatedNodeTypes) {
 			if (object instanceof IElementType) {
-				defaultElementType = (IElementType) object;
-				break;
+				elementTypeIndex++;
+				if (elementTypeIndex == 2) {
+					defaultElementType = (IElementType) object;
+					break;	
+				}
 			}			
 		}
 		
@@ -49,5 +53,4 @@ public class CreateDefaultNodeCommand extends CreateNodeCommand {
 		
 		setElementType(defaultElementType);
 	}
-	
 }

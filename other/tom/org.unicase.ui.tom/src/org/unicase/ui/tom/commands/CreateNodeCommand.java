@@ -10,6 +10,7 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest.ViewAndElementDescriptor;
@@ -25,15 +26,21 @@ public class CreateNodeCommand extends AbstractCommand{
 	
 	private IElementType elementType;
 	private Point point;
+	private final GraphicalEditPart targetEditPart;
 	
 	/**
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
 	 * @param point The position where the new editPart is created
 	 * @param elementType The {@link IElementType} of the new editPart
 	 */
-	public CreateNodeCommand(DiagramEditPart diagramEditPart, Point point, IElementType elementType) {
+	public CreateNodeCommand(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart, Point point, IElementType elementType) {
 		super(diagramEditPart);
 		
+		if (targetEditPart == null) {
+			throw new NullPointerException();
+		}
+		
+		this.targetEditPart = targetEditPart;
 		this.elementType = elementType;
 		setPoint(point);
 	}
@@ -64,7 +71,7 @@ public class CreateNodeCommand extends AbstractCommand{
 	* @see org.unicase.ui.tom.commands.AbstractCommand#getCommand()
 	*/
 	public Command getCommand() {		
-		Command command = getDiagramEditPart().getCommand(getRequest());
+		Command command = getTargetEditPart().getCommand(getRequest());
 		return command;
 	}
 
@@ -95,6 +102,10 @@ public class CreateNodeCommand extends AbstractCommand{
 	 */
 	public void setPoint(Point point) {
 		this.point = point;
+	}
+
+	public GraphicalEditPart getTargetEditPart() {
+		return targetEditPart;
 	}
 
 }

@@ -4,6 +4,16 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.draw2d.FigureCanvas;
+import org.eclipse.draw2d.FreeformViewport;
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.LightweightSystem;
+import org.eclipse.draw2d.Viewport;
+import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchWindow;
+import org.eclipse.ui.PlatformUI;
+import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
 import org.unicase.ui.tom.notifications.TouchNotification;
 import org.unicase.ui.tom.notifications.TouchNotificationImpl;
 import org.unicase.ui.tom.notifications.TouchNotifierImpl;
@@ -24,6 +34,49 @@ public abstract class TouchDispatch extends TouchNotifierImpl{
 	private List<SingleTouch> activeSingleTouches;
 	private List<SingleTouch> removedSingleTouches;
 
+	private FreeformViewport freeformViewport;
+	private Viewport canvasViewport;
+
+	private ModelDiagramEditor activeEditor;
+
+	private void hookEditor(){
+
+		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
+		if (activeWorkbenchWindow == null) {
+			return;
+		}
+
+		IEditorPart editor = activeWorkbenchWindow.getActivePage().getActiveEditor();
+
+		if (editor == null
+				|| !(editor instanceof ModelDiagramEditor)) {	 
+			return;
+		}
+
+		activeEditor = (ModelDiagramEditor) editor;
+
+		FigureCanvas canvas;
+		ModelDiagramEditor activeModelDiagramEditor;
+		GraphicalViewer graphicalViewer;
+
+		activeModelDiagramEditor = (ModelDiagramEditor) activeEditor;
+		graphicalViewer = (GraphicalViewer)activeModelDiagramEditor.getAdapter(GraphicalViewer.class);
+		if (graphicalViewer != null) {
+			canvas = (FigureCanvas)graphicalViewer.getControl();
+
+			LightweightSystem activeLightweightSystem = canvas.getLightweightSystem();
+			IFigure rootFigure = activeLightweightSystem.getRootFigure();
+
+			if (rootFigure != null) {
+				freeformViewport = (FreeformViewport) rootFigure.getChildren().get(0);
+			}
+			
+			if (canvas != null) {
+				canvasViewport = canvas.getViewport();
+			}
+		}
+	}
+	
 	/**
 	 * Singleton instance.
 	 */
@@ -39,6 +92,8 @@ public abstract class TouchDispatch extends TouchNotifierImpl{
 
 		setActiveMultiTouches(new ArrayList<MultiTouch>());
 		setRemovedMultiTouches(new ArrayList<MultiTouch>());
+		
+		hookEditor();
 	}
 
 	/**
@@ -47,6 +102,10 @@ public abstract class TouchDispatch extends TouchNotifierImpl{
 	 * @param touch The touch to add
 	 */
 	void addTouch(SingleTouch touch){
+		if (!canvasViewport.getClientArea().contains(touch.getPosition())) {
+			return;
+		}
+		
 		assignMultiTouch(touch);
 
 		getActiveSingleTouches().add(touch);
@@ -84,10 +143,10 @@ public abstract class TouchDispatch extends TouchNotifierImpl{
 	void removeTouch(SingleTouch touch){
 		boolean remove = getActiveSingleTouches().remove(touch);
 		if (!remove) {
-			getRemovedTouches().remove(touch);
-		}else{
-			getRemovedTouches().add(touch);
+			return;
 		}
+		
+		getRemovedTouches().add(touch);
 		
 		MultiTouch multiTouch = touch.getMultiTouch();
 		multiTouch.removeTouch(touch);

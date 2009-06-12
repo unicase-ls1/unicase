@@ -29,7 +29,8 @@ import org.unicase.ui.tom.touches.Touch;
 public class SelectGesture extends AbstractGesture implements Gesture {
 
 	private Action selectionAction;
-
+	private MultiTouch selectionTouch;
+	
 	/**
 	 * Default constructor.
 	 * 
@@ -82,7 +83,8 @@ public class SelectGesture extends AbstractGesture implements Gesture {
 				compoundAction.add(new SelectAction(getDiagramEditPart(), primaryEditPart));
 			}
 
-			selectionAction = compoundAction;
+			setSelectionTouch(touch.getMultiTouch());
+			setSelectionAction(compoundAction);
 			setCanExecute(true);
 			return;
 		}else{
@@ -101,18 +103,20 @@ public class SelectGesture extends AbstractGesture implements Gesture {
 					return;
 				}
 				if (selectedEditParts.contains(primaryEditPart)) {
-					selectionAction = new DeselectAction(getDiagramEditPart(), primaryEditPart);
+					setSelectionAction(new DeselectAction(getDiagramEditPart(), primaryEditPart));
 				}else{
-					selectionAction = new AppendSelectionAction(getDiagramEditPart(), primaryEditPart);
+					setSelectionAction(new AppendSelectionAction(getDiagramEditPart(), primaryEditPart));
 				}
 
+				setSelectionTouch(touch.getMultiTouch());
 				setCanExecute(true);
 			}else{
 				DeselectAllAction deselectAllAction = new DeselectAllAction(getDiagramEditPart());
 				deselectAllAction.execute();
 
 				if (primaryEditPart != null) {
-					selectionAction = new SelectAction(getDiagramEditPart(), primaryEditPart);
+					setSelectionAction(new SelectAction(getDiagramEditPart(), primaryEditPart));
+					setSelectionTouch(touch.getMultiTouch());
 					setCanExecute(true);					
 				}
 			}
@@ -166,7 +170,16 @@ public class SelectGesture extends AbstractGesture implements Gesture {
 	*/
 	public List<MultiTouch> getMandatoryTouches() {
 		List<MultiTouch> mandatoryTouches = new ArrayList<MultiTouch>();
+		mandatoryTouches.add(getSelectionTouch());
 		return mandatoryTouches;
+	}
+
+	public void setSelectionTouch(MultiTouch selectionTouch) {
+		this.selectionTouch = selectionTouch;
+	}
+
+	public MultiTouch getSelectionTouch() {
+		return selectionTouch;
 	}
 
 }
