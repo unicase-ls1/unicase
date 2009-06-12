@@ -243,6 +243,36 @@
         xsi:type="ecore:EReference"
         href="../../model.ecore#//requirement/FunctionalRequirement/refiningRequirements"/>
   </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../model.gmfgraph#MitigateLabel"/>
+    </labelMappings>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="urmlDiagram.gmftool#//@palette/@tools.5"/>
+    <diagramLink
+        href="../model.gmfgraph#MitigateLink"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../model.ecore#//requirement/FunctionalRequirement/mitigations"/>
+  </links>
+  <links>
+    <labelMappings
+        readOnly="true">
+      <diagramLabel
+          href="../model.gmfgraph#EndangeredLabel"/>
+    </labelMappings>
+    <tool
+        xsi:type="gmftool:CreationTool"
+        href="urmlDiagram.gmftool#//@palette/@tools.4/@tools.6"/>
+    <diagramLink
+        href="../model.gmfgraph#Endangered"/>
+    <linkMetaFeature
+        xsi:type="ecore:EReference"
+        href="../../model.ecore#//requirement/Actor/hazards"/>
+  </links>
   <diagram>
     <diagramCanvas
         href="../model.gmfgraph#MEDiagram"/>

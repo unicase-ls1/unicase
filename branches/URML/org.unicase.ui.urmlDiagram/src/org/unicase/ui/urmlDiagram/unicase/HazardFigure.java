@@ -10,6 +10,6 @@ import org.unicase.ui.common.diagram.figures.ScaleableImageFigure;
 public class HazardFigure extends ScaleableImageFigure {
 
 	public HazardFigure() {
- 	  super("org.unicase.model.edit","icons/full/obj16/hazard.gif");
+ 	  super("org.unicase.model.edit","icons/full/obj16/exclamation.jpg");
 	}
 }

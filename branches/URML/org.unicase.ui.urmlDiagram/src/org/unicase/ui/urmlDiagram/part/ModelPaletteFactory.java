@@ -56,6 +56,7 @@ public class ModelPaletteFactory {
 		paletteContainer.add(createInitiate4CreationTool());
 		paletteContainer.add(createInclude5CreationTool());
 		paletteContainer.add(createExtend6CreationTool());
+		paletteContainer.add(createEndangeredbyHazard7CreationTool());
 		return paletteContainer;
 	}
 
@@ -135,11 +136,13 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createMitigate5CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(2);
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(3);
 		types
 				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardMitigations_4005);
 		types
 				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006);
+		types
+				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008);
 		LinkToolEntry entry = new LinkToolEntry(
 				org.unicase.ui.urmlDiagram.part.Messages.Mitigate5CreationTool_title,
 				org.unicase.ui.urmlDiagram.part.Messages.Mitigate5CreationTool_desc,
@@ -268,6 +271,23 @@ public class ModelPaletteFactory {
 		entry
 				.setSmallIcon(org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
 						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Extend.gif")); //$NON-NLS-1$
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createEndangeredbyHazard7CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorHazards_4010);
+		LinkToolEntry entry = new LinkToolEntry(
+				org.unicase.ui.urmlDiagram.part.Messages.EndangeredbyHazard7CreationTool_title,
+				null, types);
+		entry
+				.setSmallIcon(org.unicase.ui.urmlDiagram.providers.ModelElementTypes
+						.getImageDescriptor(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorHazards_4010));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}

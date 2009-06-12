@@ -22,6 +22,7 @@ import org.unicase.model.hazard.HazardPackage;
 import org.unicase.model.hazard.Mitigation;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.RequirementPackage;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Hazard</b></em>'. <!-- end-user-doc --> <p> The
@@ -147,7 +148,8 @@ public class HazardImpl extends ModelElementImpl implements Hazard {
 	 */
 	public EList<Actor> getTargetedActors() {
 		if (targetedActors == null) {
-			targetedActors = new EObjectResolvingEList<Actor>(Actor.class, this, HazardPackage.HAZARD__TARGETED_ACTORS);
+			targetedActors = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(Actor.class, this,
+				HazardPackage.HAZARD__TARGETED_ACTORS, RequirementPackage.ACTOR__HAZARDS);
 		}
 		return targetedActors;
 	}
@@ -184,6 +186,8 @@ public class HazardImpl extends ModelElementImpl implements Hazard {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case HazardPackage.HAZARD__TARGETED_ACTORS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getTargetedActors()).basicAdd(otherEnd, msgs);
 		case HazardPackage.HAZARD__CAUSES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getCauses()).basicAdd(otherEnd, msgs);
 		case HazardPackage.HAZARD__MITIGATIONS:
@@ -199,6 +203,8 @@ public class HazardImpl extends ModelElementImpl implements Hazard {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
+		case HazardPackage.HAZARD__TARGETED_ACTORS:
+			return ((InternalEList<?>) getTargetedActors()).basicRemove(otherEnd, msgs);
 		case HazardPackage.HAZARD__CAUSES:
 			return ((InternalEList<?>) getCauses()).basicRemove(otherEnd, msgs);
 		case HazardPackage.HAZARD__MITIGATIONS:

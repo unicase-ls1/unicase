@@ -52,6 +52,10 @@ public class MitigationItemSemanticEditPolicy
 				.getElementType()) {
 			return null;
 		}
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008 == req
+				.getElementType()) {
+			return null;
+		}
 		return null;
 	}
 
@@ -68,6 +72,11 @@ public class MitigationItemSemanticEditPolicy
 		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCauseMitigationsCreateCommand(
+					req, req.getSource(), req.getTarget()));
+		}
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementMitigationsCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
 		return null;
@@ -87,6 +96,9 @@ public class MitigationItemSemanticEditPolicy
 					req));
 		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCauseMitigationsReorientCommand(
+					req));
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementMitigationsEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementMitigationsReorientCommand(
 					req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);

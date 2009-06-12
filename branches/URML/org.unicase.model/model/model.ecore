@@ -755,6 +755,9 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="detailedFeatures" upperBound="-1"
           eType="#//requirement/Feature" eOpposite="#//requirement/Feature/detailingRequirements"
           eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="mitigations" upperBound="-1"
+          eType="#//hazard/Mitigation" eOpposite="#//hazard/Mitigation/requirements"
+          eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UseCase" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatingActor" eType="#//requirement/Actor"
@@ -912,6 +915,8 @@
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="hazards" upperBound="-1"
+          eType="#//hazard/Hazard" eOpposite="#//hazard/Hazard/targetedActors" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ActorInstance" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedScenarios" upperBound="-1"
@@ -1412,7 +1417,7 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="involvedClasses" upperBound="-1"
           eType="#//classes/Class" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetedActors" upperBound="-1"
-          eType="#//requirement/Actor" eKeys="#//IdentifiableElement/identifier"/>
+          eType="#//requirement/Actor" eOpposite="#//requirement/Actor/hazards" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="causes" upperBound="-1"
           eType="#//hazard/HazardCause" eOpposite="#//hazard/HazardCause/hazards"
           eKeys="#//IdentifiableElement/identifier"/>
@@ -1427,6 +1432,9 @@
           eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="hazards" upperBound="-1"
           eType="#//hazard/Hazard" eOpposite="#//hazard/Hazard/mitigations" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="requirements" upperBound="-1"
+          eType="#//requirement/FunctionalRequirement" eOpposite="#//requirement/FunctionalRequirement/mitigations"
+          eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="HazardCause" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="hazards" upperBound="-1"

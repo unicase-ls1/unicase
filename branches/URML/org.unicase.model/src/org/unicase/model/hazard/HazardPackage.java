@@ -340,13 +340,22 @@ public interface HazardPackage extends EPackage {
 	int MITIGATION__HAZARDS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Requirements</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int MITIGATION__REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Mitigation</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MITIGATION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int MITIGATION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.hazard.impl.HazardCauseImpl <em>Cause</em>}' class. <!--
@@ -623,6 +632,17 @@ public interface HazardPackage extends EPackage {
 	EReference getMitigation_Hazards();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.hazard.Mitigation#getRequirements <em>Requirements</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Requirements</em>'.
+	 * @see org.unicase.model.hazard.Mitigation#getRequirements()
+	 * @see #getMitigation()
+	 * @generated
+	 */
+	EReference getMitigation_Requirements();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.hazard.HazardCause <em>Cause</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -803,6 +823,14 @@ public interface HazardPackage extends EPackage {
 		 * @generated
 		 */
 		EReference MITIGATION__HAZARDS = eINSTANCE.getMitigation_Hazards();
+
+		/**
+		 * The meta object literal for the '<em><b>Requirements</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference MITIGATION__REQUIREMENTS = eINSTANCE.getMitigation_Requirements();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.hazard.impl.HazardCauseImpl <em>Cause</em>}' class.

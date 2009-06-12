@@ -7,6 +7,7 @@ package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.hazard.Hazard;
 
 /*
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Actor</b></em>'. <!-- end-user-doc --> <p> The
@@ -127,5 +128,23 @@ public interface Actor extends ModelElement {
 	 * @generated
 	 */
 	EList<ActorInstance> getInstances();
+
+	/**
+	 * Returns the value of the '<em><b>Hazards</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.model.hazard.Hazard}.
+	 * It is bidirectional and its opposite is '{@link org.unicase.model.hazard.Hazard#getTargetedActors <em>Targeted Actors</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Hazards</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Hazards</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getActor_Hazards()
+	 * @see org.unicase.model.hazard.Hazard#getTargetedActors
+	 * @model opposite="targetedActors" keys="identifier"
+	 * @generated
+	 */
+	EList<Hazard> getHazards();
 
 } // Actor

@@ -13,6 +13,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.hazard.EvalStatus;
@@ -21,6 +22,8 @@ import org.unicase.model.hazard.HazardCause;
 import org.unicase.model.hazard.HazardPackage;
 import org.unicase.model.hazard.Mitigation;
 import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.requirement.RequirementPackage;
 
 /*
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Mitigation</b></em>'. <!-- end-user-doc --> <p>
@@ -90,6 +93,16 @@ public class MitigationImpl extends ModelElementImpl implements Mitigation {
 	 * @ordered
 	 */
 	protected EList<Hazard> hazards;
+
+	/**
+	 * The cached value of the '{@link #getRequirements() <em>Requirements</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getRequirements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<FunctionalRequirement> requirements;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -173,6 +186,20 @@ public class MitigationImpl extends ModelElementImpl implements Mitigation {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<FunctionalRequirement> getRequirements() {
+		if (requirements == null) {
+			requirements = new EObjectWithInverseResolvingEList.ManyInverse<FunctionalRequirement>(
+				FunctionalRequirement.class, this, HazardPackage.MITIGATION__REQUIREMENTS,
+				RequirementPackage.FUNCTIONAL_REQUIREMENT__MITIGATIONS);
+		}
+		return requirements;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -184,6 +211,8 @@ public class MitigationImpl extends ModelElementImpl implements Mitigation {
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getCauses()).basicAdd(otherEnd, msgs);
 		case HazardPackage.MITIGATION__HAZARDS:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getHazards()).basicAdd(otherEnd, msgs);
+		case HazardPackage.MITIGATION__REQUIREMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRequirements()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -199,6 +228,8 @@ public class MitigationImpl extends ModelElementImpl implements Mitigation {
 			return ((InternalEList<?>) getCauses()).basicRemove(otherEnd, msgs);
 		case HazardPackage.MITIGATION__HAZARDS:
 			return ((InternalEList<?>) getHazards()).basicRemove(otherEnd, msgs);
+		case HazardPackage.MITIGATION__REQUIREMENTS:
+			return ((InternalEList<?>) getRequirements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -218,6 +249,8 @@ public class MitigationImpl extends ModelElementImpl implements Mitigation {
 			return getCauses();
 		case HazardPackage.MITIGATION__HAZARDS:
 			return getHazards();
+		case HazardPackage.MITIGATION__REQUIREMENTS:
+			return getRequirements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -244,6 +277,10 @@ public class MitigationImpl extends ModelElementImpl implements Mitigation {
 			getHazards().clear();
 			getHazards().addAll((Collection<? extends Hazard>) newValue);
 			return;
+		case HazardPackage.MITIGATION__REQUIREMENTS:
+			getRequirements().clear();
+			getRequirements().addAll((Collection<? extends FunctionalRequirement>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -267,6 +304,9 @@ public class MitigationImpl extends ModelElementImpl implements Mitigation {
 		case HazardPackage.MITIGATION__HAZARDS:
 			getHazards().clear();
 			return;
+		case HazardPackage.MITIGATION__REQUIREMENTS:
+			getRequirements().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -286,6 +326,8 @@ public class MitigationImpl extends ModelElementImpl implements Mitigation {
 			return causes != null && !causes.isEmpty();
 		case HazardPackage.MITIGATION__HAZARDS:
 			return hazards != null && !hazards.isEmpty();
+		case HazardPackage.MITIGATION__REQUIREMENTS:
+			return requirements != null && !requirements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

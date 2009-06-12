@@ -62,6 +62,7 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 			addStakeholderPropertyDescriptor(object);
 			addCostPropertyDescriptor(object);
 			addDetailedFeaturesPropertyDescriptor(object);
+			addMitigationsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -118,6 +119,20 @@ public class FunctionalRequirementItemProvider extends ModelElementItemProvider 
 					"_UI_FunctionalRequirement_type"),
 				RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES, true, false, true, null, null,
 				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Mitigations feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addMitigationsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FunctionalRequirement_mitigations_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_FunctionalRequirement_mitigations_feature",
+				"_UI_FunctionalRequirement_type"), RequirementPackage.Literals.FUNCTIONAL_REQUIREMENT__MITIGATIONS,
+			true, false, true, null, null, null));
 	}
 
 	/**

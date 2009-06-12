@@ -383,13 +383,22 @@ public interface RequirementPackage extends EPackage {
 	int FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
+	 * The feature id for the '<em><b>Mitigations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__MITIGATIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 10;
+
+	/**
 	 * The number of structural features of the '<em>Functional Requirement</em>' class.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 10;
+	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.UseCaseImpl <em>Use Case</em>}' class. <!--
@@ -962,12 +971,21 @@ public interface RequirementPackage extends EPackage {
 	int ACTOR__INSTANCES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>Hazards</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__HAZARDS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>Actor</em>' class.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int ACTOR_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ActorInstanceImpl <em>Actor Instance</em>}' class.
@@ -1759,6 +1777,17 @@ public interface RequirementPackage extends EPackage {
 	EReference getFunctionalRequirement_DetailedFeatures();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.FunctionalRequirement#getMitigations <em>Mitigations</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Mitigations</em>'.
+	 * @see org.unicase.model.requirement.FunctionalRequirement#getMitigations()
+	 * @see #getFunctionalRequirement()
+	 * @generated
+	 */
+	EReference getFunctionalRequirement_Mitigations();
+
+	/**
 	 * Returns the meta object for the attribute '
 	 * {@link org.unicase.model.requirement.FunctionalRequirement#getStoryPoints <em>Story Points</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -2153,6 +2182,17 @@ public interface RequirementPackage extends EPackage {
 	EReference getActor_Instances();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.Actor#getHazards <em>Hazards</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Hazards</em>'.
+	 * @see org.unicase.model.requirement.Actor#getHazards()
+	 * @see #getActor()
+	 * @generated
+	 */
+	EReference getActor_Hazards();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.requirement.ActorInstance <em>Actor Instance</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for class '<em>Actor Instance</em>'.
@@ -2462,6 +2502,13 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EReference FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES = eINSTANCE.getFunctionalRequirement_DetailedFeatures();
 		/**
+		 * The meta object literal for the '<em><b>Mitigations</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference FUNCTIONAL_REQUIREMENT__MITIGATIONS = eINSTANCE.getFunctionalRequirement_Mitigations();
+		/**
 		 * The meta object literal for the '<em><b>Story Points</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2723,6 +2770,13 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ACTOR__INSTANCES = eINSTANCE.getActor_Instances();
+		/**
+		 * The meta object literal for the '<em><b>Hazards</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ACTOR__HAZARDS = eINSTANCE.getActor_Hazards();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.ActorInstanceImpl <em>Actor Instance</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->

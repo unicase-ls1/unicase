@@ -447,6 +447,32 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateFunctionalRequirementMitigations_4008(
+				FunctionalRequirement source, Mitigation target) {
+			if (source != null) {
+				if (source.getMitigations().contains(target)) {
+					return false;
+				}
+			}
+			return canExistFunctionalRequirementMitigations_4008(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canCreateActorHazards_4010(Actor source,
+				Hazard target) {
+			if (source != null) {
+				if (source.getHazards().contains(target)) {
+					return false;
+				}
+			}
+			return canExistActorHazards_4010(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistActorParticipatedUseCases_4001(
 				Actor source, UseCase target) {
 
@@ -503,6 +529,24 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canExistFunctionalRequirementRefiningRequirements_4007(
 				FunctionalRequirement source, FunctionalRequirement target) {
+
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistFunctionalRequirementMitigations_4008(
+				FunctionalRequirement source, Mitigation target) {
+
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistActorHazards_4010(Actor source,
+				Hazard target) {
 
 			return true;
 		}

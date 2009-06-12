@@ -13,8 +13,11 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.unicase.model.hazard.Hazard;
+import org.unicase.model.hazard.HazardPackage;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
@@ -81,6 +84,16 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	 * @ordered
 	 */
 	protected EList<ActorInstance> instances;
+
+	/**
+	 * The cached value of the '{@link #getHazards() <em>Hazards</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getHazards()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Hazard> hazards;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -212,6 +225,19 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Hazard> getHazards() {
+		if (hazards == null) {
+			hazards = new EObjectWithInverseResolvingEList.ManyInverse<Hazard>(Hazard.class, this,
+				RequirementPackage.ACTOR__HAZARDS, HazardPackage.HAZARD__TARGETED_ACTORS);
+		}
+		return hazards;
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -235,6 +261,8 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 				msgs);
 		case RequirementPackage.ACTOR__INSTANCES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getInstances()).basicAdd(otherEnd, msgs);
+		case RequirementPackage.ACTOR__HAZARDS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getHazards()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -256,6 +284,8 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 			return ((InternalEList<?>) getParticipatedUseCases()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.ACTOR__INSTANCES:
 			return ((InternalEList<?>) getInstances()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.ACTOR__HAZARDS:
+			return ((InternalEList<?>) getHazards()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -279,6 +309,8 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 			return getParticipatedUseCases();
 		case RequirementPackage.ACTOR__INSTANCES:
 			return getInstances();
+		case RequirementPackage.ACTOR__HAZARDS:
+			return getHazards();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -310,6 +342,10 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 			getInstances().clear();
 			getInstances().addAll((Collection<? extends ActorInstance>) newValue);
 			return;
+		case RequirementPackage.ACTOR__HAZARDS:
+			getHazards().clear();
+			getHazards().addAll((Collection<? extends Hazard>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -336,6 +372,9 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 		case RequirementPackage.ACTOR__INSTANCES:
 			getInstances().clear();
 			return;
+		case RequirementPackage.ACTOR__HAZARDS:
+			getHazards().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -357,6 +396,8 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 			return participatedUseCases != null && !participatedUseCases.isEmpty();
 		case RequirementPackage.ACTOR__INSTANCES:
 			return instances != null && !instances.isEmpty();
+		case RequirementPackage.ACTOR__HAZARDS:
+			return hazards != null && !hazards.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

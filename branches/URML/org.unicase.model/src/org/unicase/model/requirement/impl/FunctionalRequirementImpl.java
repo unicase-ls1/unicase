@@ -14,9 +14,12 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.unicase.model.hazard.HazardPackage;
+import org.unicase.model.hazard.Mitigation;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.Feature;
@@ -174,6 +177,16 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 	protected EList<Feature> detailedFeatures;
 
 	/**
+	 * The cached value of the '{@link #getMitigations() <em>Mitigations</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getMitigations()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Mitigation> mitigations;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -278,6 +291,19 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 				RequirementPackage.FEATURE__DETAILING_REQUIREMENTS);
 		}
 		return detailedFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EList<Mitigation> getMitigations() {
+		if (mitigations == null) {
+			mitigations = new EObjectWithInverseResolvingEList.ManyInverse<Mitigation>(Mitigation.class, this,
+				RequirementPackage.FUNCTIONAL_REQUIREMENT__MITIGATIONS, HazardPackage.MITIGATION__REQUIREMENTS);
+		}
+		return mitigations;
 	}
 
 	/**
@@ -436,6 +462,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getScenarios()).basicAdd(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getDetailedFeatures()).basicAdd(otherEnd, msgs);
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__MITIGATIONS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getMitigations()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -457,6 +485,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			return ((InternalEList<?>) getScenarios()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES:
 			return ((InternalEList<?>) getDetailedFeatures()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__MITIGATIONS:
+			return ((InternalEList<?>) getMitigations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -506,6 +536,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			return new Integer(getCost());
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES:
 			return getDetailedFeatures();
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__MITIGATIONS:
+			return getMitigations();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -552,6 +584,10 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			getDetailedFeatures().clear();
 			getDetailedFeatures().addAll((Collection<? extends Feature>) newValue);
 			return;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__MITIGATIONS:
+			getMitigations().clear();
+			getMitigations().addAll((Collection<? extends Mitigation>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -593,6 +629,9 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES:
 			getDetailedFeatures().clear();
 			return;
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__MITIGATIONS:
+			getMitigations().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -624,6 +663,8 @@ public class FunctionalRequirementImpl extends ModelElementImpl implements Funct
 			return cost != COST_EDEFAULT;
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES:
 			return detailedFeatures != null && !detailedFeatures.isEmpty();
+		case RequirementPackage.FUNCTIONAL_REQUIREMENT__MITIGATIONS:
+			return mitigations != null && !mitigations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -49,6 +49,11 @@ public class FunctionalRequirementItemSemanticEditPolicy
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementRefiningRequirementsCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementMitigationsCreateCommand(
+					req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -61,6 +66,10 @@ public class FunctionalRequirementItemSemanticEditPolicy
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementRefiningRequirementsCreateCommand(
 					req, req.getSource(), req.getTarget()));
+		}
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008 == req
+				.getElementType()) {
+			return null;
 		}
 		return null;
 	}
@@ -76,6 +85,9 @@ public class FunctionalRequirementItemSemanticEditPolicy
 		switch (getVisualID(req)) {
 		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementRefiningRequirementsReorientCommand(
+					req));
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementMitigationsEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementMitigationsReorientCommand(
 					req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);

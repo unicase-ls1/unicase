@@ -195,7 +195,10 @@
       <viewmap
           xsi:type="gmfgen:InnerClassViewmap"
           className="ActorFigure"
-          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActorFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.common.diagram.figures.Label fFigureActorFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActorFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(10)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.usecaseDiagram.unicase.StickMan actorFigure0 = new org.unicase.ui.usecaseDiagram.unicase.StickMan();&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintActorFigure0 = new org.eclipse.draw2d.GridData();&#xA;constraintActorFigure0.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalIndent = 0;&#xA;constraintActorFigure0.horizontalSpan = 1;&#xA;constraintActorFigure0.verticalSpan = 1;&#xA;constraintActorFigure0.grabExcessHorizontalSpace = true;&#xA;constraintActorFigure0.grabExcessVerticalSpace = true;&#xA;this.add(actorFigure0, constraintActorFigure0);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name = new org.unicase.ui.common.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureActorFigure_name = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureActorFigure_name.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalIndent = 0;&#xA;constraintFFigureActorFigure_name.horizontalSpan = 1;&#xA;constraintFFigureActorFigure_name.verticalSpan = 1;&#xA;constraintFFigureActorFigure_name.grabExcessHorizontalSpace = false;&#xA;constraintFFigureActorFigure_name.grabExcessVerticalSpace = false;&#xA;this.add(fFigureActorFigure_name, constraintFFigureActorFigure_name);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.common.diagram.figures.Label getFigureActorFigure_name() {&#xA;&#x9;&#x9;return fFigureActorFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREACTORFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 12, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ActorFigure extends org.eclipse.draw2d.RectangleFigure {&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.unicase.ui.common.diagram.figures.Label fFigureActorFigure_name; &#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ActorFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;org.eclipse.draw2d.GridLayout layoutThis = new org.eclipse.draw2d.GridLayout();&#xA;&#x9;layoutThis.numColumns = 1;&#xA;&#x9;layoutThis.makeColumnsEqualWidth = true;&#xA;&#x9;layoutThis.horizontalSpacing = 0;&#xA;&#x9;layoutThis.verticalSpacing = 0;&#xA;&#x9;layoutThis.marginWidth = 0;&#xA;&#x9;layoutThis.marginHeight = 0;&#xA;&#x9;this.setLayoutManager(layoutThis);&#xA;&#xA;&#x9;&#x9;this.setOutline(false);&#xA;this.setPreferredSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(40)&#xA;, getMapMode().DPtoLP(40)&#xA;));&#xA;this.setMinimumSize(new org.eclipse.draw2d.geometry.Dimension(getMapMode().DPtoLP(10)&#xA;, getMapMode().DPtoLP(10)&#xA;));&#xA;&#x9;&#x9;createContents();&#xA;&#x9;}&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private void createContents(){&#xA;&#xA;&#xA;org.unicase.ui.usecaseDiagram.unicase.StickMan actorFigure0 = new org.unicase.ui.usecaseDiagram.unicase.StickMan();&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintActorFigure0 = new org.eclipse.draw2d.GridData();&#xA;constraintActorFigure0.verticalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalAlignment = org.eclipse.draw2d.GridData.FILL;&#xA;constraintActorFigure0.horizontalIndent = 0;&#xA;constraintActorFigure0.horizontalSpan = 1;&#xA;constraintActorFigure0.verticalSpan = 1;&#xA;constraintActorFigure0.grabExcessHorizontalSpace = true;&#xA;constraintActorFigure0.grabExcessVerticalSpace = true;&#xA;this.add(actorFigure0, constraintActorFigure0);&#xA;&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name = new org.unicase.ui.common.diagram.figures.Label();&#xA;&#xA;&#xA;&#xA;fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);&#xA;&#xA;&#xA;&#xA;&#xA;org.eclipse.draw2d.GridData constraintFFigureActorFigure_name = new org.eclipse.draw2d.GridData();&#xA;constraintFFigureActorFigure_name.verticalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalAlignment = org.eclipse.draw2d.GridData.CENTER;&#xA;constraintFFigureActorFigure_name.horizontalIndent = 0;&#xA;constraintFFigureActorFigure_name.horizontalSpan = 1;&#xA;constraintFFigureActorFigure_name.verticalSpan = 1;&#xA;constraintFFigureActorFigure_name.grabExcessHorizontalSpace = false;&#xA;constraintFFigureActorFigure_name.grabExcessVerticalSpace = false;&#xA;this.add(fFigureActorFigure_name, constraintFFigureActorFigure_name);&#xA;&#xA;&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private boolean myUseLocalCoordinates = false;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected boolean useLocalCoordinates() {&#xA;&#x9;&#x9;return myUseLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;protected void setUseLocalCoordinates(boolean useLocalCoordinates) {&#xA;&#x9;&#x9;myUseLocalCoordinates = useLocalCoordinates;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public org.unicase.ui.common.diagram.figures.Label getFigureActorFigure_name() {&#xA;&#x9;&#x9;return fFigureActorFigure_name;&#xA;&#x9;}&#xA;&#xA;&#xA;}&#xA;&#xA;/**&#xA; * @generated&#xA; */&#xA;static final org.eclipse.swt.graphics.Font FFIGUREACTORFIGURE_NAME_FONT = new org.eclipse.swt.graphics.Font(org.eclipse.swt.widgets.Display.getCurrent(), &quot;Arial&quot;, 12, org.eclipse.swt.SWT.BOLD);&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:DefaultSizeAttributes"
+            height="40"/>
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet>
@@ -643,6 +646,94 @@
         </viewmap>
       </labels>
     </links>
+    <links
+        visualID="4008"
+        editPartClassName="FunctionalRequirementMitigationsEditPart"
+        itemSemanticEditPolicyClassName="FunctionalRequirementMitigationsItemSemanticEditPolicy"
+        notationViewFactoryClassName="FunctionalRequirementMitigationsViewFactory"
+        createCommandClassName="FunctionalRequirementMitigationsCreateCommand"
+        reorientCommandClassName="FunctionalRequirementMitigationsReorientCommand">
+      <diagramRunTimeClass
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="MitigateFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MitigateFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MitigateFigure() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedForeground="true"/>
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="../../model.genmodel#//model/requirement/FunctionalRequirement/mitigations"/>
+      </modelFacet>
+      <labels
+          visualID="6008"
+          editPartClassName="MitigateLabel3EditPart"
+          itemSemanticEditPolicyClassName="MitigateLabel3ItemSemanticEditPolicy"
+          notationViewFactoryClassName="MitigateLabel3ViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="MitigateLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MitigateLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MitigateLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;\u00ABmitigate\u00BB&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+      </labels>
+    </links>
+    <links
+        visualID="4010"
+        editPartClassName="ActorHazardsEditPart"
+        itemSemanticEditPolicyClassName="ActorHazardsItemSemanticEditPolicy"
+        notationViewFactoryClassName="ActorHazardsViewFactory"
+        createCommandClassName="ActorHazardsCreateCommand"
+        reorientCommandClassName="ActorHazardsReorientCommand">
+      <diagramRunTimeClass
+          href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
+      <elementType
+          xsi:type="gmfgen:SpecializationType"/>
+      <viewmap
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="Arrow"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class Arrow extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public Arrow() {&#xA;&#x9;&#x9;&#x9;this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);&#xA;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+        <attributes
+            xsi:type="gmfgen:StyleAttributes"
+            fixedForeground="true"/>
+        <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+      </viewmap>
+      <modelFacet
+          xsi:type="gmfgen:FeatureLinkModelFacet">
+        <metaFeature
+            href="../../model.genmodel#//model/requirement/Actor/hazards"/>
+      </modelFacet>
+      <labels
+          visualID="6009"
+          editPartClassName="MitigateLabel4EditPart"
+          itemSemanticEditPolicyClassName="MitigateLabel4ItemSemanticEditPolicy"
+          notationViewFactoryClassName="MitigateLabel4ViewFactory"
+          readOnly="true">
+        <diagramRunTimeClass
+            href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <viewmap
+            xsi:type="gmfgen:InnerClassViewmap"
+            className="EndangeredLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class EndangeredLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public EndangeredLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;\u00ABendangered by\u00BB&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+          <attributes
+              xsi:type="gmfgen:LabelOffsetAttributes"
+              y="20"/>
+          <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
+        </viewmap>
+      </labels>
+    </links>
     <palette>
       <groups
           title="Default"
@@ -672,7 +763,7 @@
             title="Mitigate"
             description=""
             smallIconPath="/org.unicase.model.edit/icons/full/obj16/Association.gif"
-            genLinks="//@diagram/@links.4 //@diagram/@links.5"/>
+            genLinks="//@diagram/@links.4 //@diagram/@links.5 //@diagram/@links.7"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Refine Requirement"
@@ -713,6 +804,10 @@
             description=""
             smallIconPath="/org.unicase.model.edit/icons/full/obj16/Extend.gif"
             genLinks="//@diagram/@links.3"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Endangered by Hazard"
+            genLinks="//@diagram/@links.8"/>
       </groups>
     </palette>
     <preferencePages
@@ -958,6 +1053,64 @@
     <childReferences
         parent="//@diagram/@topLevelNodes.5"
         child="//@diagram/@links.6"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.7"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.7"
+        child="//@diagram/@topLevelNodes.1"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@links.7"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.7"
+        child="//@diagram/@topLevelNodes.5"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.5"
+        child="//@diagram/@links.7"
+        referenceType="out_target"
+        groupName="outgoing links"
+        groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram"
+        child="//@diagram/@links.8"
+        groupName="links"
+        groupIcon="icons/linksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.8"
+        child="//@diagram/@topLevelNodes.2"
+        referenceType="out_target"
+        groupName="target"
+        groupIcon="icons/linkTargetNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@links.8"
+        referenceType="in_source"
+        groupName="incoming links"
+        groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@links.8"
+        child="//@diagram/@topLevelNodes.3"
+        referenceType="in_source"
+        groupName="source"
+        groupIcon="icons/linkSourceNavigatorGroup.gif"/>
+    <childReferences
+        parent="//@diagram/@topLevelNodes.3"
+        child="//@diagram/@links.8"
         referenceType="out_target"
         groupName="outgoing links"
         groupIcon="icons/outgoingLinksNavigatorGroup.gif"/>

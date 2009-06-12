@@ -283,6 +283,8 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/FunctionalRequirement/cost"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/detailedFeatures"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/mitigations"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/UseCase">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -340,6 +342,8 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/Actor/participatedUseCases"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/Actor/instances"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/Actor/hazards"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/ActorInstance">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -640,6 +644,8 @@
             ecoreFeature="ecore:EReference model.ecore#//hazard/Mitigation/causes"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//hazard/Mitigation/hazards"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//hazard/Mitigation/requirements"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//hazard/HazardCause">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"

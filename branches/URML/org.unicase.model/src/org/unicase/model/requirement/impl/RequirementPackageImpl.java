@@ -354,6 +354,15 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getFunctionalRequirement_Mitigations() {
+		return (EReference) functionalRequirementEClass.getEStructuralFeatures().get(10);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -650,6 +659,15 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getActor_Hazards() {
+		return (EReference) actorEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
@@ -859,6 +877,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__STAKEHOLDER);
 		createEAttribute(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__COST);
 		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__DETAILED_FEATURES);
+		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__MITIGATIONS);
 
 		useCaseEClass = createEClass(USE_CASE);
 		createEReference(useCaseEClass, USE_CASE__INITIATING_ACTOR);
@@ -893,6 +912,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		createEReference(actorEClass, ACTOR__INITIATED_USE_CASES);
 		createEReference(actorEClass, ACTOR__PARTICIPATED_USE_CASES);
 		createEReference(actorEClass, ACTOR__INSTANCES);
+		createEReference(actorEClass, ACTOR__HAZARDS);
 
 		actorInstanceEClass = createEClass(ACTOR_INSTANCE);
 		createEReference(actorInstanceEClass, ACTOR_INSTANCE__INITIATED_SCENARIOS);
@@ -949,6 +969,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI);
+		HazardPackage theHazardPackage = (HazardPackage) EPackage.Registry.INSTANCE.getEPackage(HazardPackage.eNS_URI);
 		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI);
 
@@ -1037,6 +1058,11 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		getFunctionalRequirement_DetailedFeatures().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getFunctionalRequirement_Mitigations(), theHazardPackage.getMitigation(), theHazardPackage
+			.getMitigation_Requirements(), "mitigations", null, 0, -1, FunctionalRequirement.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
+		getFunctionalRequirement_Mitigations().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(useCaseEClass, UseCase.class, "UseCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUseCase_InitiatingActor(), this.getActor(), this.getActor_InitiatedUseCases(),
@@ -1158,6 +1184,10 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			"instances", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getActor_Instances().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getActor_Hazards(), theHazardPackage.getHazard(), theHazardPackage.getHazard_TargetedActors(),
+			"hazards", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getActor_Hazards().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(actorInstanceEClass, ActorInstance.class, "ActorInstance", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
