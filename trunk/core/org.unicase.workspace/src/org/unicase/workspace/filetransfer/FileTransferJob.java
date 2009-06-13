@@ -49,6 +49,7 @@ public abstract class FileTransferJob extends Job {
 	 * @param upload true if pending file transfer is upload
 	 */
 	protected void addPendingFileTransfer(final boolean upload) {
+		removePendingFileTransfer(upload);
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -56,7 +57,7 @@ public abstract class FileTransferJob extends Job {
 			protected void doExecute() {
 				PendingFileTransfer transfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
 				transfer.setAttachmentId(fileAttachment.getModelElementId());
-				transfer.setChunkNumber(0);
+				transfer.setChunkNumber(fileInformation.getChunkNumber());
 				transfer.setFileVersion(fileInformation.getFileVersion());
 				transfer.setUpload(upload);
 				WorkspaceManager.getProjectSpace(fileAttachment).getPendingFileTransfers().add(transfer);

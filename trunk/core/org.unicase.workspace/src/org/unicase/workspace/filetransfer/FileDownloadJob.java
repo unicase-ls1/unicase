@@ -31,7 +31,7 @@ public class FileDownloadJob extends FileTransferJob {
 	 * @param fileInformation file information
 	 */
 	public FileDownloadJob(FileAttachment fileAttachment, FileInformation fileInformation) {
-		super("File Download Job for " + fileAttachment.getFileName());
+		super("File Download Job");
 		setFileAttachment(fileAttachment);
 		setFileInformation(fileInformation);
 	}
@@ -47,16 +47,8 @@ public class FileDownloadJob extends FileTransferJob {
 		if (getFileAttachment().getFileName() != null && !getFileAttachment().getFileName().equals("")
 			&& getFileAttachment().getFileID() != null && !getFileAttachment().getFileID().equals("")) {
 			// make sure that the local cache folder exists
-			new File(FileTransferUtil.getCacheFolder(getFileAttachment())).mkdirs();
-			// retrieve the location of the cached file
-			setFile(new File(FileTransferUtil.getCachedFileLocation(getFileAttachment())));
-			// check if it is a resume, in which case file version is not -1
-			if (getFileInformation().getFileVersion() == -1) {
-				getFileInformation().setFileVersion(Integer.parseInt(getFileAttachment().getFileID()));
-			}
+			createCacheFolder();
 			try {
-				monitor.beginTask("Downloading ", (int) Math.ceil(getFileAttachment().getFileSize()
-					/ (float) FilePartitionerUtil.getChunkSize()));
 				executeTransfer(monitor);
 			} catch (EmfStoreException e) {
 				setException(e);
@@ -72,6 +64,10 @@ public class FileDownloadJob extends FileTransferJob {
 		return Status.OK_STATUS;
 	}
 
+	private void createCacheFolder() {
+		new File(FileTransferUtil.getCacheFolder(getFileAttachment())).mkdirs();
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -79,7 +75,11 @@ public class FileDownloadJob extends FileTransferJob {
 	 * @throws RemoteException
 	 */
 	protected void executeTransfer(IProgressMonitor monitor) throws RemoteException, EmfStoreException {
-		FileChunk fileChunk;
+		FileChunk fileChunk = getConnectionManager().downloadFileChunk(getSessionId(), getProjectId(),
+			getFileInformation());
+		setTotalWork(monitor, fileChunk.getFileSize());
+		setFile(new File(FileTransferUtil.getCacheFolder(getFileAttachment()) + File.separator
+			+ fileChunk.getFileName()));
 		addPendingFileTransfer(false);
 		do {
 			fileChunk = getConnectionManager().downloadFileChunk(getSessionId(), getProjectId(), getFileInformation());
@@ -89,6 +89,10 @@ public class FileDownloadJob extends FileTransferJob {
 			setPendingFileTransfer(false);
 		} while (!fileChunk.isLast());
 		removePendingFileTransfer(false);
+	}
+
+	private void setTotalWork(IProgressMonitor monitor, int fileSize) {
+		monitor.beginTask("Downloading ", (int) Math.ceil(fileSize / (float) FilePartitionerUtil.getChunkSize()));
 	}
 
 	/**

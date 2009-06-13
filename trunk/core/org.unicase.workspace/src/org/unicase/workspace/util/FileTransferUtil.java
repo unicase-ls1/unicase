@@ -85,15 +85,6 @@ public final class FileTransferUtil {
 	}
 
 	/**
-	 * @param fileAttachment file attachment for which to get the cached file location
-	 * @return the location of the cached file
-	 */
-	public static String getCachedFileLocation(FileAttachment fileAttachment) {
-		return getCacheFolder(fileAttachment) + File.separator + fileAttachment.getIdentifier() + FILE_NAME_DELIMITER
-			+ fileAttachment.getFileID() + FILE_NAME_DELIMITER + fileAttachment.getFileName();
-	}
-
-	/**
 	 * @param fileAttachment file attachment for which to get the cache folder
 	 * @return the location of the cache folder
 	 */
@@ -133,18 +124,58 @@ public final class FileTransferUtil {
 	 */
 	public static void openFile(FileAttachment fileAttachment) throws FileTransferException {
 		String os = System.getProperty("os.name");
+		int version = Integer.parseInt(fileAttachment.getFileID());
 		try {
 			if (os.toLowerCase().contains("windows")) {
 				Runtime.getRuntime().exec(
-					"rundll32 SHELL32.DLL,ShellExec_RunDLL " + FileTransferUtil.getCachedFileLocation(fileAttachment));
+					"rundll32 SHELL32.DLL,ShellExec_RunDLL "
+						+ FileTransferUtil.getCachedFileLocation(fileAttachment, version));
 			} else if (os.toLowerCase().contains("mac os")) {
-				Runtime.getRuntime().exec("open " + FileTransferUtil.getCachedFileLocation(fileAttachment));
-			} else if (os.toLowerCase().contains("linux")) {
+				Runtime.getRuntime().exec("open " + FileTransferUtil.getCachedFileLocation(fileAttachment, version));
+			} else {
 				throw new FileTransferException("Opening files is not yet supported for " + os + ". Please go to "
-					+ FileTransferUtil.getCachedFileLocation(fileAttachment) + " and open the file manually.");
+					+ FileTransferUtil.getCachedFileLocation(fileAttachment, version) + " and open the file manually.");
 			}
 		} catch (IOException e) {
 			throw new FileTransferException("Could not open the specified file!");
 		}
+	}
+
+	/**
+	 * @param fileAttachment file attachment for which to get the cached file location
+	 * @param fileVersion and for the specific version
+	 * @return the location of the cached file
+	 */
+	public static String getCachedFileLocation(FileAttachment fileAttachment, int fileVersion) {
+		String f = findFile(new File(getCacheFolder(fileAttachment)), fileAttachment.getIdentifier(), fileVersion);
+		if (f == null) {
+			return null;
+		}
+		return getCacheFolder(fileAttachment) + File.separator + f;
+	}
+
+	private static String findFile(File folder, String fileAttachmentId, int fileVersion) {
+		if (folder.exists()) {
+			for (File f : folder.listFiles()) {
+				if (f.getName().startsWith(fileAttachmentId + FILE_NAME_DELIMITER + fileVersion + FILE_NAME_DELIMITER)) {
+					return f.getName();
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * @param fileName name of the file
+	 * @param fileAttachmentId file attachment id
+	 * @return the file name. Removes fileAttachmendId and fileVersion strings from the file name.
+	 */
+	public static String getFileName(String fileName, String fileAttachmentId) {
+		String tmp = fileName;
+		if (tmp.startsWith(fileAttachmentId)) {
+			tmp = tmp.substring(fileAttachmentId.length() + 1);
+			tmp = tmp.substring(tmp.indexOf(FILE_NAME_DELIMITER) + 1);
+		}
+		return tmp;
 	}
 }

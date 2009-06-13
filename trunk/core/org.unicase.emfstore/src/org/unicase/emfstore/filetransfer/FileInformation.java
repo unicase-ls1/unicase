@@ -21,6 +21,8 @@ public class FileInformation implements Serializable {
 
 	private int chunkNumber;
 
+	private int fileSize;
+
 	private String fileAttachmentId;
 
 	private String fileName;
@@ -129,6 +131,20 @@ public class FileInformation implements Serializable {
 	 */
 	public void setFileAttachmentId(String fileAttachmentId) {
 		this.fileAttachmentId = fileAttachmentId;
+	}
+
+	/**
+	 * @return the file size
+	 */
+	public int getFileSize() {
+		return fileSize;
+	}
+
+	/**
+	 * @param fileSize the file size
+	 */
+	public void setFileSize(int fileSize) {
+		this.fileSize = fileSize;
 	}
 
 	/**

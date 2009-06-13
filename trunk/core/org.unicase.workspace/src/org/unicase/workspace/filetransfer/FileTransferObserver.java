@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.workspace.util;
+package org.unicase.workspace.filetransfer;
 
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.attachment.FileAttachment;
@@ -30,12 +30,4 @@ public interface FileTransferObserver {
 	 */
 	void uploadFinished(final Exception exception, final FileAttachment fileAttachment,
 		final FileInformation fileInformation, final int size);
-
-	/**
-	 * Opens the file refered to by this file attachment.
-	 * 
-	 * @param fileAttachment file attachment
-	 */
-	void openFile(FileAttachment fileAttachment);
-
 }

@@ -34,7 +34,7 @@ public class FileUploadJob extends FileTransferJob {
 	 * @param fileInformation file information
 	 */
 	public FileUploadJob(File selectedFile, FileAttachment fileAttachment, FileInformation fileInformation) {
-		super("File Download Job for " + selectedFile.getName());
+		super("File Upload Job");
 		setFile(selectedFile);
 		setFileAttachment(fileAttachment);
 		setFileInformation(fileInformation);
@@ -49,18 +49,8 @@ public class FileUploadJob extends FileTransferJob {
 		getAttributes();
 		// upload file chunks
 		try {
-			// if fileVersion is set to -1, request file version
-			if (getFileInformation().getFileVersion() == -1) {
-				getFileInformation().setFileVersion(
-					getConnectionManager().uploadFileChunk(getSessionId(), getProjectId(),
-						new FileChunk(getFileInformation(), false, null)).getFileVersion());
-			}
-			if (getFile() != null) {
-				// copy file to cache, so that it can be resumed from cache (consistency)
-				setFile(FileTransferUtil.copyFileToCache(getFile(), getFileAttachment(), getFileInformation()));
-			} else {
-				setFile(new File(FileTransferUtil.getCachedFileLocation(getFileAttachment())));
-			}
+			versionFileUpload();
+			getLocationOfFileToUpload();
 			size = FilePartitionerUtil.getFileSize(getFile());
 			// set the upload monitor
 			monitor.beginTask("Uploading "
@@ -79,6 +69,26 @@ public class FileUploadJob extends FileTransferJob {
 		return Status.OK_STATUS;
 	}
 
+	private void versionFileUpload() throws EmfStoreException, RemoteException {
+		// if fileVersion is set to -1, request file version
+		if (getFileInformation().getFileVersion() == -1) {
+			getFileInformation().setFileVersion(
+				getConnectionManager().uploadFileChunk(getSessionId(), getProjectId(),
+					new FileChunk(getFileInformation(), false, null)).getFileVersion());
+		}
+	}
+
+	private void getLocationOfFileToUpload() throws IOException {
+		// if the file is null, then the job is resuming
+		if (getFile() != null) {
+			// copy file to cache, so that it can be resumed from cache (consistency)
+			setFile(FileTransferUtil.copyFileToCache(getFile(), getFileAttachment(), getFileInformation()));
+		} else {
+			setFile(new File(FileTransferUtil.getCachedFileLocation(getFileAttachment(), getFileInformation()
+				.getFileVersion())));
+		}
+	}
+
 	/**
 	 * Retrieves and writes the file chunks until the end flag is set in a file chunk.
 	 * 
@@ -90,6 +100,7 @@ public class FileUploadJob extends FileTransferJob {
 	private void executeTransfer(IProgressMonitor monitor) throws EmfStoreException, RemoteException {
 		FileChunk fileChunk;
 		addPendingFileTransfer(true);
+		monitor.worked(getFileInformation().getChunkNumber());
 		do {
 			fileChunk = FilePartitionerUtil.readChunk(getFile(), getFileInformation());
 			getConnectionManager().uploadFileChunk(getSessionId(), getProjectId(), fileChunk);

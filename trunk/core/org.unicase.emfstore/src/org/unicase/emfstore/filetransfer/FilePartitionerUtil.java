@@ -38,8 +38,10 @@ public final class FilePartitionerUtil {
 		FileOutputStream fileOutputStream;
 		try {
 			fileOutputStream = new FileOutputStream(file, true);
+			fileOutputStream.getChannel().position(fileChunk.getChunkNumber() * CHUNK_SIZE);
 			fileOutputStream.write(fileChunk.getData());
 			// make sure everything is written instantly
+			fileOutputStream.getChannel().close();
 			fileOutputStream.flush();
 			fileOutputStream.close();
 		} catch (FileNotFoundException e) {
@@ -64,6 +66,7 @@ public final class FilePartitionerUtil {
 		try {
 			// int numberOfChunks = getNumberOfChunks(file);
 			FileInputStream fileInputStream = new FileInputStream(file);
+			int absoluteSize = fileInputStream.available();
 			fileInputStream.skip(fileInformation.getChunkNumber() * CHUNK_SIZE);
 			int remainingSize = fileInputStream.available();
 			// if the remaining size is chunk size or smaller, set end flag to true, which means this is the last chunk
@@ -78,6 +81,8 @@ public final class FilePartitionerUtil {
 			// + " | end: " + end);
 			fileInputStream.getChannel().close();
 			fileInputStream.close();
+			fileInformation.setFileName(file.getName());
+			fileInformation.setFileSize(absoluteSize);
 			return new FileChunk(fileInformation, end, data);
 		} catch (IOException e) {
 			throw new FileTransferException("Could not read from file!", e);

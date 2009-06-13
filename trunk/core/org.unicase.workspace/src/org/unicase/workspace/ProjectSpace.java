@@ -31,8 +31,8 @@ import org.unicase.model.Project;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
+import org.unicase.workspace.filetransfer.FileTransferObserver;
 import org.unicase.workspace.util.CommitObserver;
-import org.unicase.workspace.util.FileTransferObserver;
 import org.unicase.workspace.util.UpdateObserver;
 
 /**
