@@ -64,13 +64,13 @@ public class ConflictDetector {
 	 * @param changePackageList a list of change package
 	 * @return true if the change package conflicts with any package in the list
 	 */
-	public ChangePackage doConflict(ChangePackage changePackage, ArrayList<ChangePackage> changePackageList) {
+	public boolean doConflict(ChangePackage changePackage, ArrayList<ChangePackage> changePackageList) {
 		for (ChangePackage b : changePackageList) {
 			if (doConflict(changePackage, b)) {
-				return b;
+				return true;
 			}
 		}
-		return null;
+		return false;
 	}
 
 	/**
