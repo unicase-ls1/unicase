@@ -105,7 +105,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 */
 	public void checkSession(SessionId sessionId) throws AccessControlException {
 		if (!sessionUserMap.containsKey(sessionId)) {
-			throw new AccessControlException("Session ID unkown.");
+			throw new SessionTimedOutException("Session ID unkown.");
 		}
 	}
 
@@ -114,7 +114,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 * 
 	 * @see 
 	 *      org.unicase.emfstore.accesscontrol.AuthorizationControl#checkWriteAccess(org.unicase.emfstore.esmodel.SessionId
-	 *      , Ê Ê Êorg.unicase.emfstore.esmodel.ProjectId, java.util.Set)
+	 *      , ï¿½ ï¿½ ï¿½org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
 	 */
 	public void checkWriteAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
 		throws AccessControlException {
@@ -209,7 +209,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 * 
 	 * @see 
 	 *      org.unicase.emfstore.accesscontrol.AuthorizationControl#checkReadAccess(org.unicase.emfstore.esmodel.SessionId
-	 *      , Ê Ê Êorg.unicase.emfstore.esmodel.ProjectId, java.util.Set)
+	 *      , ï¿½ ï¿½ ï¿½org.unicase.emfstore.esmodel.ProjectId, java.util.Set)
 	 */
 	public void checkReadAccess(SessionId sessionId, ProjectId projectId, Set<ModelElement> modelElements)
 		throws AccessControlException {
@@ -233,7 +233,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 * 
 	 * @see 
 	 *      org.unicase.emfstore.accesscontrol.AuthorizationControl#checkProjectAdminAccess(org.unicase.emfstore.esmodel.
-	 *      SessionId, Ê Ê Êorg.unicase.emfstore.esmodel.ProjectId)
+	 *      SessionId, ï¿½ ï¿½ ï¿½org.unicase.emfstore.esmodel.ProjectId)
 	 */
 	public void checkProjectAdminAccess(SessionId sessionId, ProjectId projectId) throws AccessControlException {
 		checkSession(sessionId);
