@@ -86,4 +86,11 @@ public class FileChunk implements Serializable {
 		this.fileInformation = fileInformation;
 	}
 
+	/**
+	 * @return file size
+	 */
+	public int getFileSize() {
+		return fileInformation.getFileSize();
+	}
+
 }

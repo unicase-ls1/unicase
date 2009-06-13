@@ -38,7 +38,7 @@ import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.FileTransferObserver;
+import org.unicase.workspace.filetransfer.FileTransferObserver;
 import org.unicase.workspace.util.FileTransferUtil;
 
 /**
@@ -86,31 +86,7 @@ public class MEFileChooserControl extends AbstractMEControl implements FileTrans
 		Button open = new Button(composite, SWT.PUSH);
 		open.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
 		open.setImage(Activator.getImageDescriptor("icons/page_go.png").createImage());
-		open.addSelectionListener(new SelectionListener() {
-			public void widgetDefaultSelected(SelectionEvent e) {
-			}
-
-			public void widgetSelected(SelectionEvent e) {
-				Display.getCurrent().asyncExec(new Runnable() {
-					public void run() {
-						FileAttachment fileAttachment = (FileAttachment) getModelElement();
-						File file = new File(FileTransferUtil.getCachedFileLocation(fileAttachment));
-						try {
-							if (file.exists() && fileAttachment.getFileSize() != new FileInputStream(file).available()) {
-								MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Please wait!",
-									"File download has not yet been completed");
-							} else {
-								WorkspaceManager.getProjectSpace((FileAttachment) getModelElement())
-									.downloadFileFromServer((FileAttachment) getModelElement(),
-										MEFileChooserControl.this);
-							}
-						} catch (IOException e) {
-							DialogHandler.showErrorDialog("Cache Location can not be accessed!");
-						}
-					}
-				});
-			}
-		});
+		open.addSelectionListener(new TransferSelectionListener());
 
 		// Right column: button to open a dialog for uploading files
 		Button upload = new Button(composite, SWT.PUSH);
@@ -152,6 +128,7 @@ public class MEFileChooserControl extends AbstractMEControl implements FileTrans
 				} else {
 					MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Download succeeded!",
 						"Download of the file " + fileAttachment.getFileName() + " has succeeded!");
+					openFile(fileAttachment);
 				}
 			}
 		});
@@ -172,9 +149,12 @@ public class MEFileChooserControl extends AbstractMEControl implements FileTrans
 					domain.getCommandStack().execute(new RecordingCommand(domain) {
 						@Override
 						protected void doExecute() {
-							fileAttachment.setFileName(fileInformation.getFileName());
-							fileAttachment.setFileID("" + fileInformation.getFileVersion());
-							fileAttachment.setFileSize(size);
+							if (Integer.parseInt(fileAttachment.getFileID()) < fileInformation.getFileVersion()) {
+								fileAttachment.setFileName(FileTransferUtil.getFileName(fileInformation.getFileName(),
+									fileAttachment.getIdentifier()));
+								fileAttachment.setFileID("" + fileInformation.getFileVersion());
+								fileAttachment.setFileSize(size);
+							}
 						}
 					});
 					MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Upload succeeded!",
@@ -192,6 +172,52 @@ public class MEFileChooserControl extends AbstractMEControl implements FileTrans
 			FileTransferUtil.openFile(fileAttachment);
 		} catch (FileTransferException e) {
 			DialogHandler.showErrorDialog(e.getMessage());
+		}
+	}
+
+	/**
+	 * Transfer selection listener.
+	 * 
+	 * @author pfeifferc
+	 */
+	private final class TransferSelectionListener implements SelectionListener {
+
+		public void widgetDefaultSelected(SelectionEvent e) {
+		}
+
+		public void widgetSelected(SelectionEvent e) {
+			Display.getCurrent().asyncExec(new TransferRunnable());
+		}
+
+		/**
+		 * @author pfeifferc
+		 */
+		private final class TransferRunnable implements Runnable {
+			public void run() {
+				FileAttachment fileAttachment = (FileAttachment) getModelElement();
+				String fileLocation = FileTransferUtil.getCachedFileLocation(fileAttachment, Integer
+					.parseInt(fileAttachment.getFileID()));
+				try {
+					if (fileLocation != null) {
+						File file = new File(fileLocation);
+						if (file.exists()) {
+							long supposedSize = fileAttachment.getFileSize();
+							int actualSize = new FileInputStream(file).available();
+							if (supposedSize != actualSize) {
+								MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Please wait!",
+									"File download has not yet been completed!");
+							} else {
+								MEFileChooserControl.this.openFile(fileAttachment);
+							}
+						}
+					} else {
+						WorkspaceManager.getProjectSpace(fileAttachment).downloadFileFromServer(fileAttachment,
+							MEFileChooserControl.this);
+					}
+				} catch (IOException e) {
+					DialogHandler.showErrorDialog("There was an error accessing the location of the downloaded file!");
+				}
+			}
 		}
 	}
 }

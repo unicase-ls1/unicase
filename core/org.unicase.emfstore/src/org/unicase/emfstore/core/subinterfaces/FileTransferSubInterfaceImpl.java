@@ -59,11 +59,14 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 * @throws FileTransferException if any error occurs reading the file
 	 */
 	public FileChunk readChunk(ProjectId projectId, FileInformation fileInformation) throws FileTransferException {
-		// try to localize file that is to be downloaded
+		// check if folders exist, otherwise create
 		createDirectories(projectId);
-		File file = findFileName(new File(getProjectAttachmentFolder(projectId)),
-			fileInformation.getFileAttachmentId(), fileInformation.getFileVersion());
-		if (file == null) {
+		// try to localize file that is to be downloaded
+		File file = new File(getProjectAttachmentFolder(projectId)
+			+ File.separator
+			+ findFileInTemp(new File(getProjectAttachmentFolder(projectId)), fileInformation.getFileAttachmentId(),
+				fileInformation.getFileVersion()));
+		if (!file.exists() || file.isDirectory()) {
 			throw new FileTransferException("File can not be retrieved.");
 		}
 		return FilePartitionerUtil.readChunk(file, fileInformation);
@@ -79,12 +82,12 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 * @throws FileTransferException if any error occurs writing to the file
 	 */
 	public FileInformation writeChunk(FileChunk fileChunk, ProjectId projectId) throws FileTransferException {
+		// check if folders exist, otherwise create
+		createDirectories(projectId);
 		// folder for completed file uploads
 		File attachmentFolder = new File(getProjectAttachmentFolder(projectId));
 		// temp folder for storing incomplete file uploads
 		File attachmentTempFolder = new File(getProjectAttachmentTempFolder(projectId));
-		// check if folders exist, otherwise create
-		createDirectories(projectId);
 		// if the data is null, this is treated as a request for assigning a file version
 		FileInformation fileInformation = fileChunk.getFileInformation();
 		if (fileChunk.getData() == null) {
@@ -100,13 +103,12 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		}
 		// retrieve file version from file chunk
 		int version = fileInformation.getFileVersion();
-		fileInformation.setFileVersion(version);
 		// retrieve location for the temp file
 		File attachmentTempFile = new File(getProjectAttachmentTempFileLocation(fileInformation.getFileAttachmentId(),
-			version, fileInformation.getFileName(), projectId));
+			version, projectId));
 		// retrieve final location for file
 		File attachmentFile = new File(getProjectAttachmentFileLocation(fileInformation.getFileAttachmentId(), version,
-			fileInformation.getFileName(), projectId));
+			attachmentTempFile.getName(), projectId));
 		// file reslicer for reslicing temp file
 		FilePartitionerUtil.writeChunk(attachmentTempFile, fileChunk);
 		// move file from temp folder to attachment folder if last file chunk is received
@@ -119,6 +121,15 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			}
 		}
 		return fileInformation;
+	}
+
+	private String getProjectAttachmentTempFileLocation(String fileAttachmentId, int version, ProjectId projectId) {
+		return getProjectAttachmentTempFolder(projectId) + File.separator
+			+ findProjectAttachmentTempFileName(fileAttachmentId, version, projectId);
+	}
+
+	private String findProjectAttachmentTempFileName(String fileAttachmentId, int fileVersion, ProjectId projectId) {
+		return findFileInTempAndStorage(fileAttachmentId, fileVersion, projectId);
 	}
 
 	/**
@@ -176,13 +187,30 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		return temp.substring(0, temp.indexOf(FILE_NAME_DELIMITER));
 	}
 
-	private File findFileName(File file, String fileAttachmentId, int fileVersion) {
-		for (File f : file.listFiles()) {
+	private String findFileInTempAndStorage(String fileAttachmentId, int fileVersion, ProjectId projectId) {
+		File tempFolder = new File(getProjectAttachmentTempFolder(projectId));
+		File folder = new File(getProjectAttachmentFolder(projectId));
+		for (File f : tempFolder.listFiles()) {
 			if (f.getName().startsWith(fileAttachmentId + FILE_NAME_DELIMITER + fileVersion + FILE_NAME_DELIMITER)) {
-				return f;
+				return f.getName();
 			}
 		}
-		return null;
+		for (File f : folder.listFiles()) {
+			if (f.getName().startsWith(fileAttachmentId + FILE_NAME_DELIMITER + fileVersion + FILE_NAME_DELIMITER)) {
+				return f.getName();
+			}
+		}
+		return fileAttachmentId + FILE_NAME_DELIMITER + fileVersion + FILE_NAME_DELIMITER
+			+ "filenameinformationlost.unknown";
+	}
+
+	private String findFileInTemp(File folder, String fileAttachmentId, int fileVersion) {
+		for (File f : folder.listFiles()) {
+			if (f.getName().startsWith(fileAttachmentId + FILE_NAME_DELIMITER + fileVersion + FILE_NAME_DELIMITER)) {
+				return f.getName();
+			}
+		}
+		return "";
 	}
 
 	/**

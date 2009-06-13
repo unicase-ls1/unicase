@@ -14,6 +14,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -47,17 +48,20 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCannonizer;
+import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
+import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.impl.IdentifiableElementImpl;
 import org.unicase.model.util.ModelUtil;
@@ -85,12 +89,13 @@ import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.filetransfer.FileDownloadJob;
+import org.unicase.workspace.filetransfer.FileTransferJob;
+import org.unicase.workspace.filetransfer.FileTransferObserver;
+import org.unicase.workspace.filetransfer.FileTransferObserverImpl;
 import org.unicase.workspace.filetransfer.FileUploadJob;
 import org.unicase.workspace.filetransfer.IJobChangeListenerAdapter;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.util.CommitObserver;
-import org.unicase.workspace.util.FileTransferObserver;
-import org.unicase.workspace.util.FileTransferUtil;
 import org.unicase.workspace.util.LoginObserver;
 import org.unicase.workspace.util.UpdateObserver;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -1077,7 +1082,38 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			observer.updateCompleted();
 		}
 
+		// checkUpdatedFileAttachments(changes);
+
 		return resolvedVersion;
+	}
+
+	@SuppressWarnings("unused")
+	private void checkUpdatedFileAttachments(List<ChangePackage> changes) {
+		List<FileAttachment> attachmentsToDownload = new LinkedList<FileAttachment>();
+		for (ChangePackage change : changes) {
+			EList<AbstractOperation> operations = change.getOperations();
+			for (AbstractOperation operation : operations) {
+				if (!OperationsPackage.eINSTANCE.getAttributeOperation().isInstance(operation)) {
+					continue;
+				}
+				AttributeOperation attributeOperation = (AttributeOperation) operation;
+				if (!attributeOperation.getFeatureName().equals(
+					AttachmentPackage.eINSTANCE.getFileAttachment_FileID().getName())) {
+					continue;
+				}
+				ModelElement modelElement = getProject().getModelElement(operation.getModelElementId());
+				if (AttachmentPackage.eINSTANCE.getFileAttachment().isInstance(modelElement)) {
+					// FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(
+					// operation.getModelElementId());
+					// if (fileAttachment.isInstantDownload()) {
+					attachmentsToDownload.add((FileAttachment) modelElement);
+					// }
+				}
+			}
+		}
+		for (FileAttachment fileAttachment : attachmentsToDownload) {
+			downloadFileFromServer(fileAttachment, new FileTransferObserverImpl());
+		}
 	}
 
 	private void generateNotifications(List<ChangePackage> changes) {
@@ -1154,6 +1190,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void init() {
 		initCompleted = true;
 		this.getProject().addProjectChangeObserver(this);
+		if (getUsersession() != null) {
+			getUsersession().addLoginObserver(this);
+		}
 		startChangeRecording();
 
 	}
@@ -1587,7 +1626,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Add model element to a resource, assign a new resource if neccessary.
+	 * Add model element to a resource, assign a new resource if necessary.
 	 * 
 	 * @param modelElement the model element
 	 * @generated NOT
@@ -1702,7 +1741,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				getOperations().addAll(ops);
 			}
 
-			OperationsCannonizer.cannonize(getOperations());
+			OperationsCanonizer.canonize(getOperations());
 		}
 
 	}
@@ -1837,7 +1876,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				this.compositeOperation.getSubOperations().add(deleteOperation);
 			} else {
 				this.getOperations().add(deleteOperation);
-				OperationsCannonizer.cannonize(getOperations());
+				OperationsCanonizer.canonize(getOperations());
 			}
 
 			deleteOperation = null;
@@ -2016,7 +2055,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void endCompositeOperation() {
 		this.getOperations().add(this.compositeOperation);
 		this.compositeOperation = null;
-		OperationsCannonizer.cannonize(getOperations());
+		OperationsCanonizer.canonize(getOperations());
 		saveProjectSpaceOnly();
 		updateDirtyState();
 	}
@@ -2046,24 +2085,36 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * {@inheritDoc}
 	 */
 	public void loginCompleted() {
-		resumeTransfers();
+		// try {
+		// stop all running file transfers before resuming, to prevent redundant conflicting uploads
+		// if (stopTransfers()) {
+		// resumeTransfers();
+		// }
+		// } catch (RuntimeException e) {
+		// System.err.println(e.getMessage());
+		// TODO MK remove
+		// }
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void uploadFileToServer(File selectedFile, final FileAttachment fileAttachment,
-		final FileTransferObserver fileTransferObserver) {
+	public void uploadFileToServer(File selectedFile, FileAttachment fileAttachment, FileTransferObserver observer) {
 		// start a new file upload job, starting at file chunk number 0 and file version -1
 		FileInformation fileInformation = new FileInformation(0, -1, selectedFile.getName(), fileAttachment
 			.getIdentifier());
+		uploadFileToServer(selectedFile, fileAttachment, fileInformation, observer);
+	}
+
+	private void uploadFileToServer(File selectedFile, final FileAttachment fileAttachment,
+		FileInformation fileInformation, final FileTransferObserver observer) {
 		// create new file upload job
 		final FileUploadJob fileUploadJob = new FileUploadJob(selectedFile, fileAttachment, fileInformation);
 		fileUploadJob.addJobChangeListener(new IJobChangeListenerAdapter() {
 
 			@Override
 			public void done(IJobChangeEvent event) {
-				fileTransferObserver.uploadFinished(fileUploadJob.getException(), fileAttachment, fileUploadJob
+				observer.uploadFinished(fileUploadJob.getException(), fileAttachment, fileUploadJob
 					.getFileInformation(), fileUploadJob.getSize());
 			}
 		});
@@ -2074,50 +2125,58 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 */
-	public void downloadFileFromServer(final FileAttachment fileAttachment,
-		final FileTransferObserver fileTransferObserver) {
+	public void downloadFileFromServer(final FileAttachment fileAttachment, FileTransferObserver observer) {
 		// create new file information data object with the standard values (file version -1 means new download)
-		if (!new File(FileTransferUtil.getCachedFileLocation(fileAttachment)).exists()) {
-			FileInformation fileInformation = new FileInformation(0, -1, fileAttachment.getIdentifier());
-			final FileDownloadJob fileDownloadJob = new FileDownloadJob(fileAttachment, fileInformation);
-			fileDownloadJob.addJobChangeListener(new IJobChangeListenerAdapter() {
+		FileInformation fileInformation = new FileInformation(0, Integer.parseInt(fileAttachment.getFileID()),
+			fileAttachment.getIdentifier());
+		downloadFileFromServer(fileAttachment, fileInformation, observer);
+	}
 
-				@Override
-				public void done(IJobChangeEvent event) {
-					fileTransferObserver.downloadFinished(fileDownloadJob.getException(), fileAttachment);
-					fileTransferObserver.openFile(fileAttachment);
-				}
-			});
-			fileDownloadJob.schedule();
-		} else {
-			fileTransferObserver.openFile(fileAttachment);
-		}
+	private void downloadFileFromServer(final FileAttachment fileAttachment, FileInformation fileInformation,
+		final FileTransferObserver observer) {
+		final FileDownloadJob fileDownloadJob = new FileDownloadJob(fileAttachment, fileInformation);
+		fileDownloadJob.addJobChangeListener(new IJobChangeListenerAdapter() {
+
+			@Override
+			public void done(IJobChangeEvent event) {
+				observer.downloadFinished(fileDownloadJob.getException(), fileAttachment);
+			}
+		});
+		fileDownloadJob.schedule();
 	}
 
 	/**
 	 * Resumes file transfers that have not been finished yet.
-	 * 
-	 * @param fileTransferObserver for notifying the client of the finished transfers.
 	 */
 	private void resumeTransfers() {
-		// FileAttachment fileAttachment = AttachmentFactory.eINSTANCE.createFileAttachment();
-		// FileInformation fileInformation = new FileInformation();
-		// FileUploadJob fileUploadJob;
-		// FileDownloadJob fileDownloadJob;
-		// for (PendingFileTransfer transfer : getPendingFileTransfers()) {
-		// fileAttachment.setIdentifier(transfer.getAttachmentId().getId());
-		// fileInformation.setChunkNumber(transfer.getChunkNumber());
-		// fileInformation.setFileVersion(Integer.parseInt(transfer.getFileVersion()));
-		// if (transfer.isUpload()) {
-		// fileUploadJob = new FileUploadJob(new File(FileTransferUtil.getCachedFileLocation(fileAttachment)),
-		// fileAttachment, fileInformation);
-		// fileUploadJob.schedule();
-		//
-		// } else {
-		// fileDownloadJob = new FileDownloadJob(fileAttachment, fileInformation);
-		// fileDownloadJob.schedule();
-		// }
-		// }
+		FileAttachment fileAttachment;
+		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
+			fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
+			if (transfer.isUpload()) {
+				FileInformation fileInformation = new FileInformation(transfer.getChunkNumber(), transfer
+					.getFileVersion(), fileAttachment.getIdentifier());
+				uploadFileToServer(null, fileAttachment, fileInformation, new FileTransferObserverImpl());
+			} else {
+				FileInformation fileInformation = new FileInformation(transfer.getChunkNumber(), transfer
+					.getFileVersion(), fileAttachment.getIdentifier());
+				downloadFileFromServer(fileAttachment, fileInformation, new FileTransferObserverImpl());
+			}
+		}
+	}
+
+	/**
+	 * Stops all file transfers.
+	 * 
+	 * @return true if successful
+	 */
+	private boolean stopTransfers() {
+		Job[] jobs = Job.getJobManager().find(FileTransferJob.class);
+		for (Job job : jobs) {
+			if (!job.cancel()) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	/**
