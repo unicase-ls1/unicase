@@ -49,6 +49,9 @@ public class UnicaseQueryPage extends AbstractRepositoryQueryPage {
 			// cut off last ;
 			result = result.substring(0, result.length()-1);
 		}
+		if (getQueryTitle() != null) {
+			query.setSummary(getQueryTitle());
+		}
 		query.setAttribute("modelElementIds", result);
 	}
 
