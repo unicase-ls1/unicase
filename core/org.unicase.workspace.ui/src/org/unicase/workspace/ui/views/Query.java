@@ -20,6 +20,7 @@ import org.unicase.model.organization.User;
  * 
  * @author Hodaie
  */
+@Deprecated
 public class Query {
 
 	/**
