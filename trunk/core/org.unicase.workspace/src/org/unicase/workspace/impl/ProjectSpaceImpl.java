@@ -14,7 +14,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -89,7 +88,6 @@ import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.filetransfer.FileDownloadJob;
-import org.unicase.workspace.filetransfer.FileTransferJob;
 import org.unicase.workspace.filetransfer.FileTransferObserver;
 import org.unicase.workspace.filetransfer.FileTransferObserverImpl;
 import org.unicase.workspace.filetransfer.FileUploadJob;
@@ -2145,39 +2143,39 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		fileDownloadJob.schedule();
 	}
 
-	/**
-	 * Resumes file transfers that have not been finished yet.
-	 */
-	private void resumeTransfers() {
-		FileAttachment fileAttachment;
-		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
-			fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
-			if (transfer.isUpload()) {
-				FileInformation fileInformation = new FileInformation(transfer.getChunkNumber(), transfer
-					.getFileVersion(), fileAttachment.getIdentifier());
-				uploadFileToServer(null, fileAttachment, fileInformation, new FileTransferObserverImpl());
-			} else {
-				FileInformation fileInformation = new FileInformation(transfer.getChunkNumber(), transfer
-					.getFileVersion(), fileAttachment.getIdentifier());
-				downloadFileFromServer(fileAttachment, fileInformation, new FileTransferObserverImpl());
-			}
-		}
-	}
-
-	/**
-	 * Stops all file transfers.
-	 * 
-	 * @return true if successful
-	 */
-	private boolean stopTransfers() {
-		Job[] jobs = Job.getJobManager().find(FileTransferJob.class);
-		for (Job job : jobs) {
-			if (!job.cancel()) {
-				return false;
-			}
-		}
-		return true;
-	}
+	// /**
+	// * Resumes file transfers that have not been finished yet.
+	// */
+	// private void resumeTransfers() {
+	// FileAttachment fileAttachment;
+	// for (PendingFileTransfer transfer : getPendingFileTransfers()) {
+	// fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
+	// if (transfer.isUpload()) {
+	// FileInformation fileInformation = new FileInformation(transfer.getChunkNumber(), transfer
+	// .getFileVersion(), fileAttachment.getIdentifier());
+	// uploadFileToServer(null, fileAttachment, fileInformation, new FileTransferObserverImpl());
+	// } else {
+	// FileInformation fileInformation = new FileInformation(transfer.getChunkNumber(), transfer
+	// .getFileVersion(), fileAttachment.getIdentifier());
+	// downloadFileFromServer(fileAttachment, fileInformation, new FileTransferObserverImpl());
+	// }
+	// }
+	// }
+	//
+	// /**
+	// * Stops all file transfers.
+	// *
+	// * @return true if successful
+	// */
+	// private boolean stopTransfers() {
+	// Job[] jobs = Job.getJobManager().find(FileTransferJob.class);
+	// for (Job job : jobs) {
+	// if (!job.cancel()) {
+	// return false;
+	// }
+	// }
+	// return true;
+	// }
 
 	/**
 	 * {@inheritDoc}
