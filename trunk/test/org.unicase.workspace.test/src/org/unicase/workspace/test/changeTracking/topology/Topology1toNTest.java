@@ -74,6 +74,40 @@ public class Topology1toNTest extends TopologyTest {
 		assertEquals(op.getIndex(), 0);
 
 	}
+	
+	/**
+	 * add an uncontained child to an empty containment feature.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void createContainmentOrphan() throws UnsupportedOperationException,
+		UnsupportedNotificationException {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(actor);
+		getProject().addModelElement(section);
+		section.getModelElements().add(actor);
+		
+		clearOperations();
+		
+		getProject().addModelElement(actor);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		assertEquals(1, operations.size());
+		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
+		assertTrue(op.isAdd());
+		assertEquals(1, op.getReferencedModelElements().size());
+		assertEquals(actor.getModelElementId(), op.getReferencedModelElements().get(0));
+		assertEquals("modelElements", op.getFeatureName());
+		assertEquals(op.getModelElementId(), actor.getModelElementId());
+
+	}	
 
 	/**
 	 * add an uncontained child to a non-empty containment feature.
