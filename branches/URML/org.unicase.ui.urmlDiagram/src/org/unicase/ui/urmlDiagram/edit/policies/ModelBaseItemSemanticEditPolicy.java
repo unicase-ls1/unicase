@@ -365,14 +365,14 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateScenarioInstantiatedUseCases_4002(
-				Scenario source, UseCase target) {
+		public static boolean canCreateActorInitiatedUseCases_4012(
+				Actor source, UseCase target) {
 			if (source != null) {
-				if (source.getInstantiatedUseCases().contains(target)) {
+				if (source.getInitiatedUseCases().contains(target)) {
 					return false;
 				}
 			}
-			return canExistScenarioInstantiatedUseCases_4002(source, target);
+			return canExistActorInitiatedUseCases_4012(source, target);
 		}
 
 		/**
@@ -473,6 +473,19 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
+		public static boolean canCreateHazardCauses_4011(Hazard source,
+				HazardCause target) {
+			if (source != null) {
+				if (source.getCauses().contains(target)) {
+					return false;
+				}
+			}
+			return canExistHazardCauses_4011(source, target);
+		}
+
+		/**
+		 * @generated
+		 */
 		public static boolean canExistActorParticipatedUseCases_4001(
 				Actor source, UseCase target) {
 
@@ -482,8 +495,8 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistScenarioInstantiatedUseCases_4002(
-				Scenario source, UseCase target) {
+		public static boolean canExistActorInitiatedUseCases_4012(Actor source,
+				UseCase target) {
 
 			return true;
 		}
@@ -547,6 +560,15 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public static boolean canExistActorHazards_4010(Actor source,
 				Hazard target) {
+
+			return true;
+		}
+
+		/**
+		 * @generated
+		 */
+		public static boolean canExistHazardCauses_4011(Hazard source,
+				HazardCause target) {
 
 			return true;
 		}

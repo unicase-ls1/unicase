@@ -192,6 +192,8 @@ public class ModelDiagramUpdater {
 		List result = new LinkedList();
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_Hazard_Mitigations_4005(modelElement));
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Hazard_Causes_4011(modelElement));
 		return result;
 	}
 
@@ -203,6 +205,8 @@ public class ModelDiagramUpdater {
 		List result = new LinkedList();
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_Actor_ParticipatedUseCases_4001(modelElement));
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Actor_InitiatedUseCases_4012(modelElement));
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_Actor_Hazards_4010(modelElement));
 		return result;
@@ -239,7 +243,13 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getHazardCause_2001IncomingLinks(View view) {
-		return Collections.EMPTY_LIST;
+		HazardCause modelElement = (HazardCause) view.getElement();
+		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
+				.getResourceSet().getResources());
+		List result = new LinkedList();
+		result.addAll(getIncomingFeatureModelFacetLinks_Hazard_Causes_4011(
+				modelElement, crossReferences));
+		return result;
 	}
 
 	/**
@@ -294,7 +304,7 @@ public class ModelDiagramUpdater {
 				.addAll(getIncomingFeatureModelFacetLinks_Actor_ParticipatedUseCases_4001(
 						modelElement, crossReferences));
 		result
-				.addAll(getIncomingFeatureModelFacetLinks_Scenario_InstantiatedUseCases_4002(
+				.addAll(getIncomingFeatureModelFacetLinks_Actor_InitiatedUseCases_4012(
 						modelElement, crossReferences));
 		result
 				.addAll(getIncomingFeatureModelFacetLinks_UseCase_IncludedUseCases_4003(
@@ -346,6 +356,8 @@ public class ModelDiagramUpdater {
 		List result = new LinkedList();
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_Hazard_Mitigations_4005(modelElement));
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Hazard_Causes_4011(modelElement));
 		return result;
 	}
 
@@ -357,6 +369,8 @@ public class ModelDiagramUpdater {
 		List result = new LinkedList();
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_Actor_ParticipatedUseCases_4001(modelElement));
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Actor_InitiatedUseCases_4012(modelElement));
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_Actor_Hazards_4010(modelElement));
 		return result;
@@ -415,7 +429,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Scenario_InstantiatedUseCases_4002(
+	private static Collection getIncomingFeatureModelFacetLinks_Actor_InitiatedUseCases_4012(
 			UseCase target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
@@ -423,13 +437,13 @@ public class ModelDiagramUpdater {
 			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
 					.next();
 			if (setting.getEStructuralFeature() == RequirementPackage.eINSTANCE
-					.getScenario_InstantiatedUseCases()) {
+					.getActor_InitiatedUseCases()) {
 				result
 						.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
 								setting.getEObject(),
 								target,
-								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ScenarioInstantiatedUseCases_4002,
-								org.unicase.ui.urmlDiagram.edit.parts.ScenarioInstantiatedUseCasesEditPart.VISUAL_ID));
+								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012,
+								org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -599,6 +613,29 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	private static Collection getIncomingFeatureModelFacetLinks_Hazard_Causes_4011(
+			HazardCause target, Map crossReferences) {
+		Collection result = new LinkedList();
+		Collection settings = (Collection) crossReferences.get(target);
+		for (Iterator it = settings.iterator(); it.hasNext();) {
+			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
+					.next();
+			if (setting.getEStructuralFeature() == HazardPackage.eINSTANCE
+					.getHazard_Causes()) {
+				result
+						.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
+								setting.getEObject(),
+								target,
+								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011,
+								org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	private static Collection getOutgoingFeatureModelFacetLinks_Actor_ParticipatedUseCases_4001(
 			Actor source) {
 		Collection result = new LinkedList();
@@ -611,6 +648,25 @@ public class ModelDiagramUpdater {
 							destination,
 							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_4001,
 							org.unicase.ui.urmlDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingFeatureModelFacetLinks_Actor_InitiatedUseCases_4012(
+			Actor source) {
+		Collection result = new LinkedList();
+		for (Iterator destinations = source.getInitiatedUseCases().iterator(); destinations
+				.hasNext();) {
+			UseCase destination = (UseCase) destinations.next();
+			result
+					.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
+							source,
+							destination,
+							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012,
+							org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -745,6 +801,25 @@ public class ModelDiagramUpdater {
 							destination,
 							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorHazards_4010,
 							org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID));
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static Collection getOutgoingFeatureModelFacetLinks_Hazard_Causes_4011(
+			Hazard source) {
+		Collection result = new LinkedList();
+		for (Iterator destinations = source.getCauses().iterator(); destinations
+				.hasNext();) {
+			HazardCause destination = (HazardCause) destinations.next();
+			result
+					.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
+							source,
+							destination,
+							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011,
+							org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID));
 		}
 		return result;
 	}

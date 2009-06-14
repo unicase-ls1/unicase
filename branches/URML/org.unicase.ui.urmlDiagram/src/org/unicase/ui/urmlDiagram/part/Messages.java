@@ -243,17 +243,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Default1Group_title;
+	public static String Hazard1Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Default1Group_desc;
+	public static String FunctionalRequirement2Group_title;
 
 	/**
 	 * @generated
 	 */
-	public static String UseCase2Group_title;
+	public static String UseCase3Group_title;
 
 	/**
 	 * @generated
@@ -268,52 +268,62 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Mitigation2CreationTool_title;
+	public static String Hazard2CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Mitigation2CreationTool_desc;
+	public static String Hazard2CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String FunctionalRequirement3CreationTool_title;
+	public static String Mitigation3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String FunctionalRequirement3CreationTool_desc;
+	public static String Mitigation3CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Hazard4CreationTool_title;
+	public static String Mitigate4CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Hazard4CreationTool_desc;
+	public static String Mitigate4CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String Mitigate5CreationTool_title;
+	public static String Causes5CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Mitigate5CreationTool_desc;
+	public static String Causes5CreationTool_desc;
 
 	/**
 	 * @generated
 	 */
-	public static String RefineRequirement6CreationTool_title;
+	public static String FunctionalRequirement1CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String RefineRequirement6CreationTool_desc;
+	public static String FunctionalRequirement1CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String RefineRequirement2CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String RefineRequirement2CreationTool_desc;
 
 	/**
 	 * @generated
@@ -373,6 +383,11 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_HazardCause_2001_incominglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_Mitigation_2002_incominglinks;
 
 	/**
@@ -423,7 +438,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_ScenarioInstantiatedUseCases_4002_target;
+	public static String NavigatorGroupName_ActorInitiatedUseCases_4012_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_ActorInitiatedUseCases_4012_source;
 
 	/**
 	 * @generated
@@ -494,6 +514,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String NavigatorGroupName_ActorHazards_4010_source;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_HazardCauses_4011_target;
+
+	/**
+	 * @generated
+	 */
+	public static String NavigatorGroupName_HazardCauses_4011_source;
 
 	/**
 	 * @generated

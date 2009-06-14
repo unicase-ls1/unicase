@@ -144,7 +144,7 @@ public class ModelViewProvider extends AbstractViewProvider {
 					}
 					break;
 				case org.unicase.ui.urmlDiagram.edit.parts.InitiateLabelEditPart.VISUAL_ID:
-					if (org.unicase.ui.urmlDiagram.edit.parts.ScenarioInstantiatedUseCasesEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+					if (org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -194,6 +194,13 @@ public class ModelViewProvider extends AbstractViewProvider {
 					break;
 				case org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel4EditPart.VISUAL_ID:
 					if (org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+							.getVisualID(containerView)
+							|| containerView.getElement() != domainElement) {
+						return null; // wrong container
+					}
+					break;
+				case org.unicase.ui.urmlDiagram.edit.parts.CauseLabelEditPart.VISUAL_ID:
+					if (org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -259,6 +266,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return org.unicase.ui.urmlDiagram.view.factories.MitigateLabel3ViewFactory.class;
 		case org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel4EditPart.VISUAL_ID:
 			return org.unicase.ui.urmlDiagram.view.factories.MitigateLabel4ViewFactory.class;
+		case org.unicase.ui.urmlDiagram.edit.parts.CauseLabelEditPart.VISUAL_ID:
+			return org.unicase.ui.urmlDiagram.view.factories.CauseLabelViewFactory.class;
 		}
 		return null;
 	}
@@ -299,8 +308,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 		switch (visualID) {
 		case org.unicase.ui.urmlDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID:
 			return org.unicase.ui.urmlDiagram.view.factories.ActorParticipatedUseCasesViewFactory.class;
-		case org.unicase.ui.urmlDiagram.edit.parts.ScenarioInstantiatedUseCasesEditPart.VISUAL_ID:
-			return org.unicase.ui.urmlDiagram.view.factories.ScenarioInstantiatedUseCasesViewFactory.class;
+		case org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
+			return org.unicase.ui.urmlDiagram.view.factories.ActorInitiatedUseCasesViewFactory.class;
 		case org.unicase.ui.urmlDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID:
 			return org.unicase.ui.urmlDiagram.view.factories.UseCaseIncludedUseCasesViewFactory.class;
 		case org.unicase.ui.urmlDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID:
@@ -315,6 +324,8 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return org.unicase.ui.urmlDiagram.view.factories.FunctionalRequirementMitigationsViewFactory.class;
 		case org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID:
 			return org.unicase.ui.urmlDiagram.view.factories.ActorHazardsViewFactory.class;
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID:
+			return org.unicase.ui.urmlDiagram.view.factories.HazardCausesViewFactory.class;
 		}
 		return null;
 	}

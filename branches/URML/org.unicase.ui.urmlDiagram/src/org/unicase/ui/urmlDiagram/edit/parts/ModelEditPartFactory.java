@@ -88,8 +88,8 @@ public class ModelEditPartFactory implements EditPartFactory {
 				return new org.unicase.ui.urmlDiagram.edit.parts.ParticipateLabelEditPart(
 						view);
 
-			case org.unicase.ui.urmlDiagram.edit.parts.ScenarioInstantiatedUseCasesEditPart.VISUAL_ID:
-				return new org.unicase.ui.urmlDiagram.edit.parts.ScenarioInstantiatedUseCasesEditPart(
+			case org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
+				return new org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart(
 						view);
 
 			case org.unicase.ui.urmlDiagram.edit.parts.InitiateLabelEditPart.VISUAL_ID:
@@ -150,6 +150,14 @@ public class ModelEditPartFactory implements EditPartFactory {
 
 			case org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel4EditPart.VISUAL_ID:
 				return new org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel4EditPart(
+						view);
+
+			case org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID:
+				return new org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart(
+						view);
+
+			case org.unicase.ui.urmlDiagram.edit.parts.CauseLabelEditPart.VISUAL_ID:
+				return new org.unicase.ui.urmlDiagram.edit.parts.CauseLabelEditPart(
 						view);
 			}
 		}

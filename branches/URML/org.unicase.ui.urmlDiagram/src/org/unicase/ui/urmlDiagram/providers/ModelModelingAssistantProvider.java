@@ -64,12 +64,16 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			List types = new ArrayList();
 			types
 					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardMitigations_4005);
+			types
+					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011);
 			return types;
 		}
 		if (sourceEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.ActorEditPart) {
 			List types = new ArrayList();
 			types
 					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_4001);
+			types
+					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012);
 			types
 					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorHazards_4010);
 			return types;
@@ -99,6 +103,12 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 	public List getRelTypesOnTarget(IAdaptable target) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.HazardCauseEditPart) {
+			List types = new ArrayList();
+			types
+					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011);
+			return types;
+		}
 		if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.MitigationEditPart) {
 			List types = new ArrayList();
 			types
@@ -120,7 +130,7 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			types
 					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_4001);
 			types
-					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ScenarioInstantiatedUseCases_4002);
+					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012);
 			types
 					.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_4003);
 			types
@@ -159,6 +169,10 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 				types
 						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardMitigations_4005);
 			}
+			if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.HazardCauseEditPart) {
+				types
+						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011);
+			}
 			return types;
 		}
 		if (sourceEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.ActorEditPart) {
@@ -166,6 +180,10 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.UseCaseEditPart) {
 				types
 						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_4001);
+			}
+			if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.UseCaseEditPart) {
+				types
+						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012);
 			}
 			if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.HazardEditPart) {
 				types
@@ -207,6 +225,14 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 			IElementType relationshipType) {
 		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
 				.getAdapter(IGraphicalEditPart.class);
+		if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.HazardCauseEditPart) {
+			List types = new ArrayList();
+			if (relationshipType == org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011) {
+				types
+						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.Hazard_2003);
+			}
+			return types;
+		}
 		if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.MitigationEditPart) {
 			List types = new ArrayList();
 			if (relationshipType == org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardMitigations_4005) {
@@ -234,6 +260,10 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 		if (targetEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.UseCaseEditPart) {
 			List types = new ArrayList();
 			if (relationshipType == org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_4001) {
+				types
+						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.Actor_2004);
+			}
+			if (relationshipType == org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012) {
 				types
 						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.Actor_2004);
 			}
@@ -279,11 +309,19 @@ public class ModelModelingAssistantProvider extends ModelingAssistantProvider {
 				types
 						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.Mitigation_2002);
 			}
+			if (relationshipType == org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011) {
+				types
+						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCause_2001);
+			}
 			return types;
 		}
 		if (sourceEditPart instanceof org.unicase.ui.urmlDiagram.edit.parts.ActorEditPart) {
 			List types = new ArrayList();
 			if (relationshipType == org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_4001) {
+				types
+						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.UseCase_2005);
+			}
+			if (relationshipType == org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012) {
 				types
 						.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.UseCase_2005);
 			}

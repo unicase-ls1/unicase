@@ -85,7 +85,6 @@ public class ActorHazardsEditPart extends ConnectionNodeEditPart implements
 		 * @generated
 		 */
 		public Arrow() {
-			this.setForegroundColor(ColorConstants.black);
 
 			setTargetDecoration(createTargetDecoration());
 		}

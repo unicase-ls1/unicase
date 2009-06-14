@@ -254,7 +254,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 							false));
 			connectedViews = getDiagramLinksByType(
 					Collections.singleton(view),
-					org.unicase.ui.urmlDiagram.edit.parts.ScenarioInstantiatedUseCasesEditPart.VISUAL_ID);
+					org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID);
 			links
 					.addChildren(createNavigatorItems(connectedViews, links,
 							false));
@@ -300,6 +300,12 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 			links
 					.addChildren(createNavigatorItems(connectedViews, links,
 							false));
+			connectedViews = getDiagramLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID);
+			links
+					.addChildren(createNavigatorItems(connectedViews, links,
+							false));
 			if (!links.isEmpty()) {
 				result.add(links);
 			}
@@ -311,13 +317,24 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 			org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup outgoinglinks = new org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup(
 					org.unicase.ui.urmlDiagram.part.Messages.NavigatorGroupName_HazardCause_2001_outgoinglinks,
 					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup incominglinks = new org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.urmlDiagram.part.Messages.NavigatorGroupName_HazardCause_2001_incominglinks,
+					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection connectedViews = getOutgoingLinksByType(
 					Collections.singleton(view),
 					org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID);
 			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 					outgoinglinks, true));
+			connectedViews = getIncomingLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID);
+			incominglinks.addChildren(createNavigatorItems(connectedViews,
+					incominglinks, true));
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
+			}
+			if (!incominglinks.isEmpty()) {
+				result.add(incominglinks);
 			}
 			return result.toArray();
 		}
@@ -366,6 +383,11 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 					org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID);
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID);
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
 			}
@@ -383,6 +405,11 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 			Collection connectedViews = getOutgoingLinksByType(
 					Collections.singleton(view),
 					org.unicase.ui.urmlDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID);
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
+					outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(
+					Collections.singleton(view),
+					org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID);
 			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
 					outgoinglinks, true));
 			connectedViews = getOutgoingLinksByType(
@@ -411,7 +438,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 					incominglinks, true));
 			connectedViews = getIncomingLinksByType(
 					Collections.singleton(view),
-					org.unicase.ui.urmlDiagram.edit.parts.ScenarioInstantiatedUseCasesEditPart.VISUAL_ID);
+					org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID);
 			incominglinks.addChildren(createNavigatorItems(connectedViews,
 					incominglinks, true));
 			connectedViews = getIncomingLinksByType(
@@ -502,18 +529,29 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 			return result.toArray();
 		}
 
-		case org.unicase.ui.urmlDiagram.edit.parts.ScenarioInstantiatedUseCasesEditPart.VISUAL_ID: {
+		case org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
 			org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup target = new org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup(
-					org.unicase.ui.urmlDiagram.part.Messages.NavigatorGroupName_ScenarioInstantiatedUseCases_4002_target,
+					org.unicase.ui.urmlDiagram.part.Messages.NavigatorGroupName_ActorInitiatedUseCases_4012_target,
 					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup source = new org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.urmlDiagram.part.Messages.NavigatorGroupName_ActorInitiatedUseCases_4012_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			Collection connectedViews = getLinksTargetByType(
 					Collections.singleton(view),
 					org.unicase.ui.urmlDiagram.edit.parts.UseCaseEditPart.VISUAL_ID);
 			target.addChildren(createNavigatorItems(connectedViews, target,
 					true));
+			connectedViews = getLinksSourceByType(
+					Collections.singleton(view),
+					org.unicase.ui.urmlDiagram.edit.parts.ActorEditPart.VISUAL_ID);
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
 			if (!target.isEmpty()) {
 				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
 			}
 			return result.toArray();
 		}
@@ -696,6 +734,33 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 			connectedViews = getLinksSourceByType(
 					Collections.singleton(view),
 					org.unicase.ui.urmlDiagram.edit.parts.ActorEditPart.VISUAL_ID);
+			source.addChildren(createNavigatorItems(connectedViews, source,
+					true));
+			if (!target.isEmpty()) {
+				result.add(target);
+			}
+			if (!source.isEmpty()) {
+				result.add(source);
+			}
+			return result.toArray();
+		}
+
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID: {
+			Collection result = new ArrayList();
+			org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup target = new org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.urmlDiagram.part.Messages.NavigatorGroupName_HazardCauses_4011_target,
+					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup source = new org.unicase.ui.urmlDiagram.navigator.ModelNavigatorGroup(
+					org.unicase.ui.urmlDiagram.part.Messages.NavigatorGroupName_HazardCauses_4011_source,
+					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getLinksTargetByType(
+					Collections.singleton(view),
+					org.unicase.ui.urmlDiagram.edit.parts.HazardCauseEditPart.VISUAL_ID);
+			target.addChildren(createNavigatorItems(connectedViews, target,
+					true));
+			connectedViews = getLinksSourceByType(
+					Collections.singleton(view),
+					org.unicase.ui.urmlDiagram.edit.parts.HazardEditPart.VISUAL_ID);
 			source.addChildren(createNavigatorItems(connectedViews, source,
 					true));
 			if (!target.isEmpty()) {

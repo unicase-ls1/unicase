@@ -49,6 +49,11 @@ public class ActorItemSemanticEditPolicy
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorParticipatedUseCasesCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorInitiatedUseCasesCreateCommand(
+					req, req.getSource(), req.getTarget()));
+		}
 		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorHazards_4010 == req
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorHazardsCreateCommand(
@@ -63,6 +68,10 @@ public class ActorItemSemanticEditPolicy
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
 		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_4001 == req
+				.getElementType()) {
+			return null;
+		}
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012 == req
 				.getElementType()) {
 			return null;
 		}
@@ -84,6 +93,9 @@ public class ActorItemSemanticEditPolicy
 		switch (getVisualID(req)) {
 		case org.unicase.ui.urmlDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorParticipatedUseCasesReorientCommand(
+					req));
+		case org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorInitiatedUseCasesReorientCommand(
 					req));
 		case org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorHazardsReorientCommand(

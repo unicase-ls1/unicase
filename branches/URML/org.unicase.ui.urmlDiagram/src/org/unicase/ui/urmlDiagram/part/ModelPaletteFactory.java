@@ -21,25 +21,35 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	public void fillPalette(PaletteRoot paletteRoot) {
-		paletteRoot.add(createDefault1Group());
-		paletteRoot.add(createUseCase2Group());
+		paletteRoot.add(createHazard1Group());
+		paletteRoot.add(createFunctionalRequirement2Group());
+		paletteRoot.add(createUseCase3Group());
 	}
 
 	/**
-	 * Creates "Default" palette tool group
+	 * Creates "Hazard" palette tool group
 	 * @generated
 	 */
-	private PaletteContainer createDefault1Group() {
+	private PaletteContainer createHazard1Group() {
 		PaletteGroup paletteContainer = new PaletteGroup(
-				org.unicase.ui.urmlDiagram.part.Messages.Default1Group_title);
-		paletteContainer
-				.setDescription(org.unicase.ui.urmlDiagram.part.Messages.Default1Group_desc);
+				org.unicase.ui.urmlDiagram.part.Messages.Hazard1Group_title);
 		paletteContainer.add(createHazardCause1CreationTool());
-		paletteContainer.add(createMitigation2CreationTool());
-		paletteContainer.add(createFunctionalRequirement3CreationTool());
-		paletteContainer.add(createHazard4CreationTool());
-		paletteContainer.add(createMitigate5CreationTool());
-		paletteContainer.add(createRefineRequirement6CreationTool());
+		paletteContainer.add(createHazard2CreationTool());
+		paletteContainer.add(createMitigation3CreationTool());
+		paletteContainer.add(createMitigate4CreationTool());
+		paletteContainer.add(createCauses5CreationTool());
+		return paletteContainer;
+	}
+
+	/**
+	 * Creates "Functional Requirement" palette tool group
+	 * @generated
+	 */
+	private PaletteContainer createFunctionalRequirement2Group() {
+		PaletteGroup paletteContainer = new PaletteGroup(
+				org.unicase.ui.urmlDiagram.part.Messages.FunctionalRequirement2Group_title);
+		paletteContainer.add(createFunctionalRequirement1CreationTool());
+		paletteContainer.add(createRefineRequirement2CreationTool());
 		return paletteContainer;
 	}
 
@@ -47,9 +57,9 @@ public class ModelPaletteFactory {
 	 * Creates "UseCase" palette tool group
 	 * @generated
 	 */
-	private PaletteContainer createUseCase2Group() {
+	private PaletteContainer createUseCase3Group() {
 		PaletteDrawer paletteContainer = new PaletteDrawer(
-				org.unicase.ui.urmlDiagram.part.Messages.UseCase2Group_title);
+				org.unicase.ui.urmlDiagram.part.Messages.UseCase3Group_title);
 		paletteContainer.add(createUseCase1CreationTool());
 		paletteContainer.add(createActor2CreationTool());
 		paletteContainer.add(createParticipate3CreationTool());
@@ -81,49 +91,13 @@ public class ModelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createMitigation2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.Mitigation_2002);
-		NodeToolEntry entry = new NodeToolEntry(
-				org.unicase.ui.urmlDiagram.part.Messages.Mitigation2CreationTool_title,
-				org.unicase.ui.urmlDiagram.part.Messages.Mitigation2CreationTool_desc,
-				types);
-		entry
-				.setSmallIcon(org.unicase.ui.urmlDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.Mitigation_2002));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createFunctionalRequirement3CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirement_2006);
-		NodeToolEntry entry = new NodeToolEntry(
-				org.unicase.ui.urmlDiagram.part.Messages.FunctionalRequirement3CreationTool_title,
-				org.unicase.ui.urmlDiagram.part.Messages.FunctionalRequirement3CreationTool_desc,
-				types);
-		entry
-				.setSmallIcon(org.unicase.ui.urmlDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirement_2006));
-		entry.setLargeIcon(entry.getSmallIcon());
-		return entry;
-	}
-
-	/**
-	 * @generated
-	 */
-	private ToolEntry createHazard4CreationTool() {
+	private ToolEntry createHazard2CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types
 				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.Hazard_2003);
 		NodeToolEntry entry = new NodeToolEntry(
-				org.unicase.ui.urmlDiagram.part.Messages.Hazard4CreationTool_title,
-				org.unicase.ui.urmlDiagram.part.Messages.Hazard4CreationTool_desc,
+				org.unicase.ui.urmlDiagram.part.Messages.Hazard2CreationTool_title,
+				org.unicase.ui.urmlDiagram.part.Messages.Hazard2CreationTool_desc,
 				types);
 		entry
 				.setSmallIcon(org.unicase.ui.urmlDiagram.providers.ModelElementTypes
@@ -135,7 +109,25 @@ public class ModelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createMitigate5CreationTool() {
+	private ToolEntry createMitigation3CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.Mitigation_2002);
+		NodeToolEntry entry = new NodeToolEntry(
+				org.unicase.ui.urmlDiagram.part.Messages.Mitigation3CreationTool_title,
+				org.unicase.ui.urmlDiagram.part.Messages.Mitigation3CreationTool_desc,
+				types);
+		entry
+				.setSmallIcon(org.unicase.ui.urmlDiagram.providers.ModelElementTypes
+						.getImageDescriptor(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.Mitigation_2002));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createMitigate4CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(3);
 		types
 				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardMitigations_4005);
@@ -144,8 +136,8 @@ public class ModelPaletteFactory {
 		types
 				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008);
 		LinkToolEntry entry = new LinkToolEntry(
-				org.unicase.ui.urmlDiagram.part.Messages.Mitigate5CreationTool_title,
-				org.unicase.ui.urmlDiagram.part.Messages.Mitigate5CreationTool_desc,
+				org.unicase.ui.urmlDiagram.part.Messages.Mitigate4CreationTool_title,
+				org.unicase.ui.urmlDiagram.part.Messages.Mitigate4CreationTool_desc,
 				types);
 		entry
 				.setSmallIcon(org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
@@ -157,13 +149,49 @@ public class ModelPaletteFactory {
 	/**
 	 * @generated
 	 */
-	private ToolEntry createRefineRequirement6CreationTool() {
+	private ToolEntry createCauses5CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011);
+		LinkToolEntry entry = new LinkToolEntry(
+				org.unicase.ui.urmlDiagram.part.Messages.Causes5CreationTool_title,
+				org.unicase.ui.urmlDiagram.part.Messages.Causes5CreationTool_desc,
+				types);
+		entry
+				.setSmallIcon(org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
+						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Association.gif")); //$NON-NLS-1$
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createFunctionalRequirement1CreationTool() {
+		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		types
+				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirement_2006);
+		NodeToolEntry entry = new NodeToolEntry(
+				org.unicase.ui.urmlDiagram.part.Messages.FunctionalRequirement1CreationTool_title,
+				org.unicase.ui.urmlDiagram.part.Messages.FunctionalRequirement1CreationTool_desc,
+				types);
+		entry
+				.setSmallIcon(org.unicase.ui.urmlDiagram.providers.ModelElementTypes
+						.getImageDescriptor(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirement_2006));
+		entry.setLargeIcon(entry.getSmallIcon());
+		return entry;
+	}
+
+	/**
+	 * @generated
+	 */
+	private ToolEntry createRefineRequirement2CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types
 				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007);
 		LinkToolEntry entry = new LinkToolEntry(
-				org.unicase.ui.urmlDiagram.part.Messages.RefineRequirement6CreationTool_title,
-				org.unicase.ui.urmlDiagram.part.Messages.RefineRequirement6CreationTool_desc,
+				org.unicase.ui.urmlDiagram.part.Messages.RefineRequirement2CreationTool_title,
+				org.unicase.ui.urmlDiagram.part.Messages.RefineRequirement2CreationTool_desc,
 				types);
 		entry
 				.setSmallIcon(org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
@@ -229,7 +257,7 @@ public class ModelPaletteFactory {
 	private ToolEntry createInitiate4CreationTool() {
 		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
 		types
-				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ScenarioInstantiatedUseCases_4002);
+				.add(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012);
 		LinkToolEntry entry = new LinkToolEntry(
 				org.unicase.ui.urmlDiagram.part.Messages.Initiate4CreationTool_title,
 				null, types);
@@ -286,8 +314,8 @@ public class ModelPaletteFactory {
 				org.unicase.ui.urmlDiagram.part.Messages.EndangeredbyHazard7CreationTool_title,
 				null, types);
 		entry
-				.setSmallIcon(org.unicase.ui.urmlDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorHazards_4010));
+				.setSmallIcon(org.unicase.ui.urmlDiagram.part.ModelDiagramEditorPlugin
+						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Hazard.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
