@@ -48,7 +48,7 @@ public class UseCaseItemSemanticEditPolicy
 				.getElementType()) {
 			return null;
 		}
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ScenarioInstantiatedUseCases_4002 == req
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012 == req
 				.getElementType()) {
 			return null;
 		}
@@ -75,9 +75,9 @@ public class UseCaseItemSemanticEditPolicy
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorParticipatedUseCasesCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ScenarioInstantiatedUseCases_4002 == req
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012 == req
 				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ScenarioInstantiatedUseCasesCreateCommand(
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorInitiatedUseCasesCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
 		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_4003 == req
@@ -105,8 +105,8 @@ public class UseCaseItemSemanticEditPolicy
 		case org.unicase.ui.urmlDiagram.edit.parts.ActorParticipatedUseCasesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorParticipatedUseCasesReorientCommand(
 					req));
-		case org.unicase.ui.urmlDiagram.edit.parts.ScenarioInstantiatedUseCasesEditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ScenarioInstantiatedUseCasesReorientCommand(
+		case org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorInitiatedUseCasesReorientCommand(
 					req));
 		case org.unicase.ui.urmlDiagram.edit.parts.UseCaseIncludedUseCasesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.UseCaseIncludedUseCasesReorientCommand(

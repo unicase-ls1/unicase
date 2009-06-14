@@ -64,29 +64,14 @@ public class FunctionalRequirementMitigationsEditPart extends
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new MitigateFigure();
+		return new PolylineConnectionEx();
 	}
 
 	/**
 	 * @generated
 	 */
-	public MitigateFigure getPrimaryShape() {
-		return (MitigateFigure) getFigure();
-	}
-
-	/**
-	 * @generated
-	 */
-	public class MitigateFigure extends PolylineConnectionEx {
-
-		/**
-		 * @generated
-		 */
-		public MitigateFigure() {
-			this.setForegroundColor(ColorConstants.black);
-
-		}
-
+	public PolylineConnectionEx getPrimaryShape() {
+		return (PolylineConnectionEx) getFigure();
 	}
 
 }

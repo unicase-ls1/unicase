@@ -229,7 +229,7 @@ public class ModelVisualIDRegistry {
 				return true;
 			}
 			break;
-		case org.unicase.ui.urmlDiagram.edit.parts.ScenarioInstantiatedUseCasesEditPart.VISUAL_ID:
+		case org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID:
 			if (org.unicase.ui.urmlDiagram.edit.parts.InitiateLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -266,6 +266,11 @@ public class ModelVisualIDRegistry {
 			break;
 		case org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID:
 			if (org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel4EditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID:
+			if (org.unicase.ui.urmlDiagram.edit.parts.CauseLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;

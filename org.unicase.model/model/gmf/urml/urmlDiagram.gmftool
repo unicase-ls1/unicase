@@ -6,38 +6,73 @@
   <palette
       title="Standard">
     <tools
-        xsi:type="gmftool:CreationTool"
-        title="HazardCause"
-        description="">
-      <smallIcon
-          xsi:type="gmftool:DefaultImage"/>
+        xsi:type="gmftool:ToolGroup"
+        title="Hazard">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="HazardCause"
+          description="">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Hazard"
+          description="">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Mitigation"
+          description="">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Mitigate"
+          description="">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Association.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Causes"
+          description="">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Association.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
     </tools>
     <tools
-        xsi:type="gmftool:CreationTool"
-        title="Mitigation"
-        description="">
-      <smallIcon
-          xsi:type="gmftool:DefaultImage"/>
-    </tools>
-    <tools
-        xsi:type="gmftool:CreationTool"
-        title="FunctionalRequirement"
-        description="">
-      <smallIcon
-          xsi:type="gmftool:DefaultImage"/>
-    </tools>
-    <tools
-        xsi:type="gmftool:CreationTool"
-        title="Hazard"
-        description="">
-      <smallIcon
-          xsi:type="gmftool:DefaultImage"/>
+        xsi:type="gmftool:ToolGroup"
+        title="Functional Requirement">
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="FunctionalRequirement"
+          description="">
+        <smallIcon
+            xsi:type="gmftool:DefaultImage"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Refine Requirement"
+          description="">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Transition.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
     </tools>
     <tools
         xsi:type="gmftool:ToolGroup"
         title="UseCase"
         collapsible="true"
-        active="//@palette/@tools.4/@tools.0">
+        active="//@palette/@tools.2/@tools.0">
       <tools
           xsi:type="gmftool:CreationTool"
           title="Use Case"/>
@@ -79,25 +114,12 @@
       </tools>
       <tools
           xsi:type="gmftool:CreationTool"
-          title="Endangered by Hazard"/>
-    </tools>
-    <tools
-        xsi:type="gmftool:CreationTool"
-        title="Mitigate"
-        description="">
-      <smallIcon
-          xsi:type="gmftool:BundleImage"
-          path="/icons/full/obj16/Association.gif"
-          bundle="org.unicase.model.edit"/>
-    </tools>
-    <tools
-        xsi:type="gmftool:CreationTool"
-        title="Refine Requirement"
-        description="">
-      <smallIcon
-          xsi:type="gmftool:BundleImage"
-          path="/icons/full/obj16/Transition.gif"
-          bundle="org.unicase.model.edit"/>
+          title="Endangered by Hazard">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Hazard.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
     </tools>
   </palette>
 </gmftool:ToolRegistry>

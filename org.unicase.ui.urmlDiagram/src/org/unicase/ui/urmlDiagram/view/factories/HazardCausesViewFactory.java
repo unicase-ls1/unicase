@@ -12,7 +12,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class HazardMitigationsViewFactory extends ConnectionViewFactory {
+public class HazardCausesViewFactory extends ConnectionViewFactory {
 
 	/**
 	 * @generated
@@ -32,7 +32,7 @@ public class HazardMitigationsViewFactory extends ConnectionViewFactory {
 			boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
-					.getType(org.unicase.ui.urmlDiagram.edit.parts.HazardMitigationsEditPart.VISUAL_ID);
+					.getType(org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,
@@ -43,7 +43,7 @@ public class HazardMitigationsViewFactory extends ConnectionViewFactory {
 						eObjectAdapter,
 						view,
 						org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.ui.urmlDiagram.edit.parts.MitigateLabelEditPart.VISUAL_ID),
+								.getType(org.unicase.ui.urmlDiagram.edit.parts.CauseLabelEditPart.VISUAL_ID),
 						ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

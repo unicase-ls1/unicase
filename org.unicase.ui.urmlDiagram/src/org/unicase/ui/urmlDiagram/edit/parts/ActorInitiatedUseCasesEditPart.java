@@ -12,18 +12,18 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class HazardMitigationsEditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class ActorInitiatedUseCasesEditPart extends ConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4005;
+	public static final int VISUAL_ID = 4012;
 
 	/**
 	 * @generated
 	 */
-	public HazardMitigationsEditPart(View view) {
+	public ActorInitiatedUseCasesEditPart(View view) {
 		super(view);
 	}
 
@@ -34,7 +34,7 @@ public class HazardMitigationsEditPart extends ConnectionNodeEditPart implements
 		super.createDefaultEditPolicies();
 		installEditPolicy(
 				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.urmlDiagram.edit.policies.HazardMitigationsItemSemanticEditPolicy());
+				new org.unicase.ui.urmlDiagram.edit.policies.ActorInitiatedUseCasesItemSemanticEditPolicy());
 	}
 
 	/**
@@ -64,14 +64,29 @@ public class HazardMitigationsEditPart extends ConnectionNodeEditPart implements
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new PolylineConnectionEx();
+		return new InitiateFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public PolylineConnectionEx getPrimaryShape() {
-		return (PolylineConnectionEx) getFigure();
+	public InitiateFigure getPrimaryShape() {
+		return (InitiateFigure) getFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public class InitiateFigure extends PolylineConnectionEx {
+
+		/**
+		 * @generated
+		 */
+		public InitiateFigure() {
+			this.setForegroundColor(ColorConstants.black);
+
+		}
+
 	}
 
 }

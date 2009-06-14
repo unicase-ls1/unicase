@@ -85,7 +85,6 @@ public class FunctionalRequirementRefiningRequirementsEditPart extends
 		 * @generated
 		 */
 		public Arrow() {
-			this.setForegroundColor(ColorConstants.black);
 
 			setTargetDecoration(createTargetDecoration());
 		}

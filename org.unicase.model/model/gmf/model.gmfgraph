@@ -790,9 +790,6 @@
           xsi:type="gmfgraph:PolylineConnection"
           name="Arrow"
           targetDecoration="//@figures.4/@descriptors.2/@actualFigure/@children.0">
-        <foregroundColor
-            xsi:type="gmfgraph:ConstantColor"
-            value="black"/>
         <children
             xsi:type="gmfgraph:PolylineDecoration"
             name="ArrowDec"/>
@@ -980,11 +977,7 @@
         name="MitigateFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="MitigateFigure">
-        <foregroundColor
-            xsi:type="gmfgraph:ConstantColor"
-            value="black"/>
-      </actualFigure>
+          name="MitigateFigure"/>
     </descriptors>
     <descriptors
         name="CauseName">
@@ -1054,6 +1047,19 @@
           xsi:type="gmfgraph:Label"
           name="EndangeredLabel"
           text="\u00ABendangered by\u00BB"/>
+    </descriptors>
+    <descriptors
+        name="CauseLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="CausesLabel"
+          text="cause"/>
+    </descriptors>
+    <descriptors
+        name="CauseLinkFigure">
+      <actualFigure
+          xsi:type="gmfgraph:PolylineConnection"
+          name="MitigateFigure"/>
     </descriptors>
   </figures>
   <nodes
@@ -1179,6 +1185,9 @@
   <connections
       name="Endangered"
       figure="Arrow"/>
+  <connections
+      name="CauseLink"
+      figure="CauseLinkFigure"/>
   <compartments
       name="ClassNode_attributes"
       figure="ClassFigure"
@@ -1412,6 +1421,16 @@
     <facets
         xsi:type="gmfgraph:AlignmentFacet"
         alignment="CENTER"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="CauseLabel"
+      figure="CauseLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"/>
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="20"/>

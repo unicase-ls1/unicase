@@ -80,7 +80,8 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType ScenarioInstantiatedUseCases_4002 = getElementType("org.unicase.ui.urmlDiagram.ScenarioInstantiatedUseCases_4002"); //$NON-NLS-1$
+	public static final IElementType ActorInitiatedUseCases_4012 = getElementType("org.unicase.ui.urmlDiagram.ActorInitiatedUseCases_4012"); //$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -112,6 +113,11 @@ public class ModelElementTypes extends ElementInitializers {
 	 * @generated
 	 */
 	public static final IElementType ActorHazards_4010 = getElementType("org.unicase.ui.urmlDiagram.ActorHazards_4010"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType HazardCauses_4011 = getElementType("org.unicase.ui.urmlDiagram.HazardCauses_4011"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -246,9 +252,8 @@ public class ModelElementTypes extends ElementInitializers {
 					RequirementPackage.eINSTANCE
 							.getActor_ParticipatedUseCases());
 
-			elements.put(ScenarioInstantiatedUseCases_4002,
-					RequirementPackage.eINSTANCE
-							.getScenario_InstantiatedUseCases());
+			elements.put(ActorInitiatedUseCases_4012,
+					RequirementPackage.eINSTANCE.getActor_InitiatedUseCases());
 
 			elements.put(UseCaseIncludedUseCases_4003,
 					RequirementPackage.eINSTANCE.getUseCase_IncludedUseCases());
@@ -272,6 +277,9 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(ActorHazards_4010, RequirementPackage.eINSTANCE
 					.getActor_Hazards());
+
+			elements.put(HazardCauses_4011, HazardPackage.eINSTANCE
+					.getHazard_Causes());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -297,7 +305,7 @@ public class ModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(UseCase_2005);
 			KNOWN_ELEMENT_TYPES.add(FunctionalRequirement_2006);
 			KNOWN_ELEMENT_TYPES.add(ActorParticipatedUseCases_4001);
-			KNOWN_ELEMENT_TYPES.add(ScenarioInstantiatedUseCases_4002);
+			KNOWN_ELEMENT_TYPES.add(ActorInitiatedUseCases_4012);
 			KNOWN_ELEMENT_TYPES.add(UseCaseIncludedUseCases_4003);
 			KNOWN_ELEMENT_TYPES.add(UseCaseExtendedUseCases_4004);
 			KNOWN_ELEMENT_TYPES.add(HazardMitigations_4005);
@@ -306,6 +314,7 @@ public class ModelElementTypes extends ElementInitializers {
 					.add(FunctionalRequirementRefiningRequirements_4007);
 			KNOWN_ELEMENT_TYPES.add(FunctionalRequirementMitigations_4008);
 			KNOWN_ELEMENT_TYPES.add(ActorHazards_4010);
+			KNOWN_ELEMENT_TYPES.add(HazardCauses_4011);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}

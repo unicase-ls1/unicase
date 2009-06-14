@@ -53,6 +53,11 @@ public class HazardItemSemanticEditPolicy
 				.getElementType()) {
 			return null;
 		}
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCausesCreateCommand(
+					req, req.getSource(), req.getTarget()));
+		}
 		return null;
 	}
 
@@ -69,6 +74,10 @@ public class HazardItemSemanticEditPolicy
 				.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorHazardsCreateCommand(
 					req, req.getSource(), req.getTarget()));
+		}
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011 == req
+				.getElementType()) {
+			return null;
 		}
 		return null;
 	}
@@ -87,6 +96,9 @@ public class HazardItemSemanticEditPolicy
 					req));
 		case org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.ActorHazardsReorientCommand(
+					req));
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCausesReorientCommand(
 					req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);

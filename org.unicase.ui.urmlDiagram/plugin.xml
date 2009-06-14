@@ -354,11 +354,11 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
          <specializationType
-               id="org.unicase.ui.urmlDiagram.ScenarioInstantiatedUseCases_4002"
-               name="%metatype.name.ScenarioInstantiatedUseCases_4002"
+               id="org.unicase.ui.urmlDiagram.ActorInitiatedUseCases_4012"
+               name="%metatype.name.ActorInitiatedUseCases_4012"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4002"/>
+            <param name="semanticHint" value="4012"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
@@ -424,6 +424,15 @@
             <param name="semanticHint" value="4010"/>
          </specializationType>
       </metamodel>
+      <metamodel nsURI="http://unicase.org/model/hazard">
+         <specializationType
+               id="org.unicase.ui.urmlDiagram.HazardCauses_4011"
+               name="%metatype.name.HazardCauses_4011"
+               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
+            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
+            <param name="semanticHint" value="4011"/>
+         </specializationType>
+      </metamodel>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
@@ -444,7 +453,7 @@
          <elementType ref="org.unicase.ui.urmlDiagram.UseCase_2005"/>
          <elementType ref="org.unicase.ui.urmlDiagram.FunctionalRequirement_2006"/>
          <elementType ref="org.unicase.ui.urmlDiagram.ActorParticipatedUseCases_4001"/>
-         <elementType ref="org.unicase.ui.urmlDiagram.ScenarioInstantiatedUseCases_4002"/>
+         <elementType ref="org.unicase.ui.urmlDiagram.ActorInitiatedUseCases_4012"/>
          <elementType ref="org.unicase.ui.urmlDiagram.UseCaseIncludedUseCases_4003"/>
          <elementType ref="org.unicase.ui.urmlDiagram.UseCaseExtendedUseCases_4004"/>
          <elementType ref="org.unicase.ui.urmlDiagram.HazardMitigations_4005"/>
@@ -452,6 +461,7 @@
          <elementType ref="org.unicase.ui.urmlDiagram.FunctionalRequirementRefiningRequirements_4007"/>
          <elementType ref="org.unicase.ui.urmlDiagram.FunctionalRequirementMitigations_4008"/>
          <elementType ref="org.unicase.ui.urmlDiagram.ActorHazards_4010"/>
+         <elementType ref="org.unicase.ui.urmlDiagram.HazardCauses_4011"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

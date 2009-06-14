@@ -12,14 +12,14 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class HazardMitigationsViewFactory extends ConnectionViewFactory {
+public class ActorInitiatedUseCasesViewFactory extends ConnectionViewFactory {
 
 	/**
 	 * @generated
 	 */
 	protected List createStyles(View view) {
 		List styles = new ArrayList();
-		styles.add(NotationFactory.eINSTANCE.createConnectorStyle());
+		styles.add(NotationFactory.eINSTANCE.createRoutingStyle());
 		styles.add(NotationFactory.eINSTANCE.createFontStyle());
 		return styles;
 	}
@@ -32,7 +32,7 @@ public class HazardMitigationsViewFactory extends ConnectionViewFactory {
 			boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
-					.getType(org.unicase.ui.urmlDiagram.edit.parts.HazardMitigationsEditPart.VISUAL_ID);
+					.getType(org.unicase.ui.urmlDiagram.edit.parts.ActorInitiatedUseCasesEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
 		super.decorateView(containerView, view, semanticAdapter, semanticHint,
@@ -43,7 +43,7 @@ public class HazardMitigationsViewFactory extends ConnectionViewFactory {
 						eObjectAdapter,
 						view,
 						org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.ui.urmlDiagram.edit.parts.MitigateLabelEditPart.VISUAL_ID),
+								.getType(org.unicase.ui.urmlDiagram.edit.parts.InitiateLabelEditPart.VISUAL_ID),
 						ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

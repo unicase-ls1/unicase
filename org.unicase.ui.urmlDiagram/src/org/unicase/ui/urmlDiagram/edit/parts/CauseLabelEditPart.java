@@ -45,13 +45,13 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class InitiateLabelEditPart extends LabelEditPart implements
+public class CauseLabelEditPart extends LabelEditPart implements
 		ITextAwareEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6011;
+	public static final int VISUAL_ID = 6010;
 
 	/**
 	 * @generated
@@ -79,14 +79,14 @@ public class InitiateLabelEditPart extends LabelEditPart implements
 	static {
 		registerSnapBackPosition(
 				org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
-						.getType(org.unicase.ui.urmlDiagram.edit.parts.InitiateLabelEditPart.VISUAL_ID),
+						.getType(org.unicase.ui.urmlDiagram.edit.parts.CauseLabelEditPart.VISUAL_ID),
 				new Point(0, 20));
 	}
 
 	/**
 	 * @generated
 	 */
-	public InitiateLabelEditPart(View view) {
+	public CauseLabelEditPart(View view) {
 		super(view);
 	}
 
@@ -103,7 +103,7 @@ public class InitiateLabelEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	public int getKeyPoint() {
-		return ConnectionLocator.MIDDLE;
+		return ConnectionLocator.SOURCE;
 	}
 
 	/**
@@ -297,7 +297,7 @@ public class InitiateLabelEditPart extends LabelEditPart implements
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
 			IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
-					org.unicase.ui.urmlDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4012,
+					org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011,
 					getParserElement(), parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 		}
@@ -563,19 +563,19 @@ public class InitiateLabelEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new InitiateLabelFigure();
+		return new CauseLabelFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class InitiateLabelFigure extends WrappingLabel {
+	public class CauseLabelFigure extends WrappingLabel {
 
 		/**
 		 * @generated
 		 */
-		public InitiateLabelFigure() {
-			this.setText("\u00ABinitiate\u00BB");
+		public CauseLabelFigure() {
+			this.setText("cause");
 		}
 
 	}
