@@ -29,10 +29,13 @@ import org.unicase.workspace.util.RecordingCommandWithResult;
 
 public class UnicaseConnector extends AbstractRepositoryConnector {
 
-	public static final String DOLLI2 = "unicase";
+	public static final String DOLLI2 = "dolli2";
 	public static final String CONNECTOR_KIND = "org.unicase.mylynconnector";
+	
+	private UnicaseTaskDataHandler taskDataHandler;
 
 	public UnicaseConnector() {
+		taskDataHandler = new UnicaseTaskDataHandler();
 	}
 
 	@Override
@@ -67,30 +70,7 @@ public class UnicaseConnector extends AbstractRepositoryConnector {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
 		}
-
-		TaskData taskData = createTaskData(taskRepository);
-
-		return taskData;
-	}
-
-	private TaskData createTaskData(TaskRepository taskRepository) {
-		TaskData taskData = new TaskData(
-				new TaskAttributeMapper(taskRepository), taskRepository
-						.getConnectorKind(), taskRepository.getRepositoryUrl(),
-				"123");
-
-		TaskAttribute attribute = taskData.getRoot()
-				.createAttribute(TaskAttribute.META_LABEL);
-		attribute.setValue("The NAME!");
-
-		attribute = taskData.getRoot().createAttribute(
-				TaskAttribute.DESCRIPTION);
-		attribute.setValue("my description");
-
-		attribute = taskData.getRoot().createAttribute(
-				TaskAttribute.DATE_MODIFICATION);
-		taskData.getAttributeMapper().setDateValue(attribute, new Date());
-		return taskData;
+		return taskDataHandler.getTaskData(taskRepository, taskId);
 	}
 
 	@Override
@@ -116,14 +96,16 @@ public class UnicaseConnector extends AbstractRepositoryConnector {
 		String attribute = query.getAttribute("modelElementIds");
 		
 		if(attribute != null) {
-			for(String meIds : attribute.split(";")) {
-				if(taskExists(repository, meIds)) {
-					collector.accept(getTaskData(repository, meIds));
+			for(String meId : attribute.split(";")) {
+				if(taskExists(repository, meId)) {
+					try {
+						collector.accept(getTaskData(repository, meId, monitor));
+					} catch (CoreException e) {
+						e.printStackTrace();
+					}
 				}
 			}
 		}
-		
-		collector.accept(createTaskData(repository));
 		return Status.OK_STATUS;
 	}
 
@@ -134,10 +116,6 @@ public class UnicaseConnector extends AbstractRepositoryConnector {
 			}
 		}
 		return false;
-	}
-
-	private TaskData getTaskData(TaskRepository repository, String meIds) {
-		return createTaskData(repository);
 	}
 
 	@Override
@@ -151,34 +129,6 @@ public class UnicaseConnector extends AbstractRepositoryConnector {
 	}
 
 	public List<? extends ModelElement> getAllActionItems(final TaskRepository repository) {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-		RecordingCommandWithResult<List<? extends ModelElement>> commandWithResult = new RecordingCommandWithResult<List<? extends ModelElement>>(
-				domain) {
-			@Override
-			protected void doExecute() {
-				Workspace currentWorkspace = WorkspaceManager.getInstance()
-						.getCurrentWorkspace();
-				ProjectSpace projectSpace = null;
-				for (ProjectSpace ps : currentWorkspace.getProjectSpaces()) {
-					if (ps.getProjectName().equalsIgnoreCase(repository.getRepositoryUrl())) {
-						projectSpace = ps;
-						break;
-					}
-				}
-				if (projectSpace == null) {
-					setTypedResult(null);
-				} else {
-					EList<ActionItem> actionItems = projectSpace.getProject()
-							.getAllModelElementsbyClass(
-									TaskPackage.eINSTANCE.getActionItem(),
-									new BasicEList<ActionItem>());
-					setTypedResult(actionItems);
-				}
-
-			}
-		};
-		domain.getCommandStack().execute(commandWithResult);
-		return commandWithResult.getTypedResult();
+		return taskDataHandler.getAllActionItems(repository);
 	}
 }

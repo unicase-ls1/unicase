@@ -93,6 +93,18 @@ public final class ModelUtil {
 	}
 
 	/**
+	 * Creates a ModelElementId object from a string.
+	 * 
+	 * @param id as string
+	 * @return id as object
+	 */
+	public static ModelElementId createModelElementId(String id) {
+		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
+		modelElementId.setId(id);
+		return modelElementId;
+	}
+
+	/**
 	 * Compares to projects. Two projects are equal if all model elements are equal.
 	 * 
 	 * @param projectA the first project
