@@ -7,6 +7,7 @@ package org.unicase.workspace.test.changeTracking;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
+import org.unicase.workspace.test.changeTracking.canonization.AllCanonizationTests;
 import org.unicase.workspace.test.changeTracking.notification.recording.AllNotificationTests;
 import org.unicase.workspace.test.changeTracking.operations.AllOperationTests;
 import org.unicase.workspace.test.changeTracking.topology.AllTopologyTests;
@@ -20,7 +21,8 @@ import org.unicase.workspace.test.changeTracking.topology.AllTopologyTests;
 @Suite.SuiteClasses({
 	AllNotificationTests.class,
 	AllOperationTests.class,
-	AllTopologyTests.class
+	AllTopologyTests.class,
+	AllCanonizationTests.class
 })
 public class AllChangeTrackingTests {
 

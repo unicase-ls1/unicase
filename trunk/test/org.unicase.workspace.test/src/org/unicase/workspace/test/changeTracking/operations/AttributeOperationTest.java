@@ -6,14 +6,17 @@
 package org.unicase.workspace.test.changeTracking.operations;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.model.Project;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
 /**
@@ -124,4 +127,50 @@ public class AttributeOperationTest extends OperationTest{
 		
 		assertEquals("oldName", useCase.getName());
 	}
+	
+	/**
+	 * Test if attributeOperation.reverse().reverse() is a noop.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void changeAttributeDoubleReversal() throws UnsupportedOperationException, UnsupportedNotificationException {
+		
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase);
+		useCase.setName("oldName");
+		
+		clearOperations();
+		
+		useCase.setName("newName");
+		assertEquals("newName", useCase.getName());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(1, operations.size());
+		AbstractOperation operation = operations.get(0);
+		
+		assertEquals(true, operation instanceof AttributeOperation);
+		AttributeOperation attributeOperation = (AttributeOperation) operation;
+		
+		AttributeOperation cmpOperation = (AttributeOperation)attributeOperation.reverse().reverse();
+		
+		assertEquals(attributeOperation.getFeatureName(), cmpOperation.getFeatureName());
+		assertEquals(attributeOperation.getDescription(), cmpOperation.getDescription());
+		assertEquals(attributeOperation.getModelElementId(), cmpOperation.getModelElementId());
+		assertEquals(attributeOperation.getName(), cmpOperation.getName());
+		assertEquals(attributeOperation.getNewValue(), cmpOperation.getNewValue());
+		assertEquals(attributeOperation.getOldValue() , cmpOperation.getOldValue());
+		
+		Project expectedProject = ModelUtil.clone(getProject());
+		
+		attributeOperation.reverse().apply(getProject());
+		attributeOperation.reverse().reverse().apply(getProject());
+		
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+		
+		
+	}	
+	
 }
