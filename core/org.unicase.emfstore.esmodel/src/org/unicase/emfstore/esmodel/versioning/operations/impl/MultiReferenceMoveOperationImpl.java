@@ -5,7 +5,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
-import java.util.Collections;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -411,7 +411,9 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	 */
 	@Override
 	public Set<ModelElementId> getOtherInvolvedModelElements() {
-		return Collections.singleton(getReferencedModelElementId());
+		Set<ModelElementId> result = new HashSet<ModelElementId>();
+		result.add(getReferencedModelElementId());
+		return result;
 	}
 
 } // MultiReferenceMoveOperationImpl
