@@ -11,11 +11,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -45,6 +45,7 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
+import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.ui.views.scm.SCMContentProvider;
 import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
@@ -93,22 +94,26 @@ public class HistoryBrowserView extends ViewPart {
 	}
 
 	private void load(final int end) {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		ServerRequestCommandHandler handler = new ServerRequestCommandHandler(){
+		
 			@Override
-			protected void doExecute() {
+			protected Object run() throws EmfStoreException {
 				loadContent(end);
+				return null;
 			}
-		});
+		};
+		try {
+			handler.execute(new ExecutionEvent());
+		} catch (ExecutionException e) {
+			DialogHandler.showErrorDialog(e.getMessage());
+		}
 	}
 
-	private void loadContent(int end) {
+	private void loadContent(int end) throws EmfStoreException {
 		if (activeProjectSpace == null) {
 			historyInfos.clear();
 			return;
 		}
-		try {
 			HistoryQuery query = getQuery(end);
 			List<HistoryInfo> historyInfo = activeProjectSpace.getUsersession().getHistoryInfo(
 				activeProjectSpace.getProjectId(), query);
@@ -147,9 +152,6 @@ public class HistoryBrowserView extends ViewPart {
 				changePackageCache.values()), getActiveProjectSpace().getProject());
 			labelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
 			contentProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
-		} catch (EmfStoreException e) {
-			DialogHandler.showExceptionDialog(e);
-		}
 	}
 
 	private ProjectSpace getActiveProjectSpace() {
