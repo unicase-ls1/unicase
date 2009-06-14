@@ -83,7 +83,7 @@ public class ValidationView extends ViewPart {
 			public void notifyChanged(Notification msg) {
 				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__PROJECT_SPACES) {
 					if (msg.getOldValue() != null
-						&& (msg.getOldValue() instanceof List || msg.getOldValue() instanceof ProjectSpace)) {
+						&& (msg.getOldValue() instanceof List<?> || msg.getOldValue() instanceof ProjectSpace)) {
 						tableViewer.setInput(new ArrayList<IConstraintStatus>());
 					}
 
