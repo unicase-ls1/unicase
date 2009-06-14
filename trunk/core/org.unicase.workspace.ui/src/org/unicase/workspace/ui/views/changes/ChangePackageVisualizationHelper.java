@@ -128,7 +128,7 @@ public class ChangePackageVisualizationHelper {
 				if (modelElement != null) {
 					set.add(modelElement);
 				} else {
-					// AS: hiding elements that cannot be displayed 
+					// AS: hiding elements that cannot be displayed
 					// set.add(id);
 				}
 			}
@@ -235,8 +235,31 @@ public class ChangePackageVisualizationHelper {
 			if (modelElement != null) {
 				set.add(modelElement);
 			} else {
-				// AS: hiding elements that cannot be displayed 
+				// AS: hiding elements that cannot be displayed
 				// set.add(id);
+			}
+		}
+		return set;
+	}
+
+	/**
+	 * Get all operations for this ModelElement in the current ChangePackage.
+	 * 
+	 * @param me the ModelElement
+	 * @param changePackage the changePackage
+	 * @return the operations
+	 */
+	public Set<EObject> getOperations(ModelElement me, ChangePackage changePackage) {
+		Set<EObject> set = new HashSet<EObject>();
+		for (AbstractOperation op : changePackage.getOperations()) {
+			if (op.getModelElementId().equals(me.getModelElementId())) {
+				set.add(op);
+			} else if (op instanceof ReferenceOperation) {
+				ReferenceOperation rop = (ReferenceOperation) op;
+				Set<ModelElementId> others = rop.getOtherInvolvedModelElements();
+				if (others.contains(me.getModelElementId())) {
+					set.add(rop);
+				}
 			}
 		}
 		return set;
@@ -251,17 +274,7 @@ public class ChangePackageVisualizationHelper {
 	public Set<EObject> getOperations(ModelElement me) {
 		Set<EObject> set = new HashSet<EObject>();
 		for (ChangePackage cp : changePackages) {
-			for (AbstractOperation op : cp.getOperations()) {
-				if (op.getModelElementId().equals(me.getModelElementId())) {
-					set.add(op);
-				} else if (op instanceof ReferenceOperation) {
-					ReferenceOperation rop = (ReferenceOperation) op;
-					Set<ModelElementId> others = rop.getOtherInvolvedModelElements();
-					if (others.contains(me.getModelElementId())) {
-						set.add(rop);
-					}
-				}
-			}
+			set.addAll(getOperations(me, cp));
 		}
 		return set;
 	}
