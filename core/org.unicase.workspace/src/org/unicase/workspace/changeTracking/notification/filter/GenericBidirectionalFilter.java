@@ -37,6 +37,7 @@ public class GenericBidirectionalFilter implements NotificationFilter {
 					if (isOppositeOf(n, rec.get(j))) {
 						rec.remove(i);
 						i--;
+						break;
 					}
 				}
 
