@@ -328,7 +328,7 @@ public class HistoryBrowserView extends ViewPart {
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		showRoots.setImageDescriptor(ImageDescriptor.createFromImage(adapterFactoryLabelProvider.getImage(VersioningFactory.eINSTANCE
 			.createChangePackage())));
-		showRoots.setToolTipText("Show package nodes");
+		showRoots.setToolTipText("Show revision nodes");
 		showRoots.setChecked(true);
 		menuManager.add(showRoots);
 
