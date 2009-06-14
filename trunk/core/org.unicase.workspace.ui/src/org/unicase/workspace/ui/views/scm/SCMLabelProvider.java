@@ -59,6 +59,7 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
 		if (element instanceof TreeNode) {
 			Object value = ((TreeNode) element).getValue();
+			String ret = null;
 			if (value instanceof HistoryInfo) {
 				HistoryInfo historyInfo = (HistoryInfo) value;
 				String baseVersion = "";
@@ -88,19 +89,25 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				return builder.toString();
 
 			} else if (value instanceof AbstractOperation) {
-				return operationsDescriptionProvider.getDescription((AbstractOperation) value);
+				ret = operationsDescriptionProvider.getDescription((AbstractOperation) value);
 			} else if (value instanceof ModelElement) {
-				return ((ModelElement) value).getName();
+				ret = ((ModelElement) value).getName();
 			} else if (value instanceof ModelElementId) {
 				ModelElement modelElement = changePackageVisualizationHelper.getModelElement((ModelElementId)value);
 				if(modelElement!=null){
-					return modelElement.getName();
+					ret = modelElement.getName();
 				}else{
 					return ELEMENT_NOT_FOUND;
 				}
 			} else if (value instanceof EObject) {
-				return ((EObject) value).eClass().getName();
+				ret = ((EObject) value).eClass().getName();
+			}else{
+				ret = "";
 			}
+			if(ret.length()>50){
+				ret = ret.substring(0,47)+"...";
+			}
+			return ret;
 		}
 		return super.getText(element);
 	}
