@@ -22,6 +22,10 @@ import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.jface.viewers.DoubleClickEvent;
+import org.eclipse.jface.viewers.IDoubleClickListener;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -42,6 +46,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
@@ -59,6 +64,8 @@ import org.unicase.workspace.util.EventUtil;
  * @author Shterev
  */
 public class HistoryBrowserView extends ViewPart {
+
+	private static final String VIEW_ID = "org.unicase.workspace.ui.views.historybrowserview"; 
 
 	private List<HistoryInfo> historyInfos;
 
@@ -275,7 +282,19 @@ public class HistoryBrowserView extends ViewPart {
 		viewer.setContentProvider(contentProvider);
 		viewer.setLabelProvider(labelProvider);
 		viewer.setInput(getHistoryInfos());
-
+		
+		viewer.addDoubleClickListener(new IDoubleClickListener(){
+		
+			public void doubleClick(DoubleClickEvent event) {
+				if(event.getSelection() instanceof IStructuredSelection){
+					TreeNode node = (TreeNode) ((IStructuredSelection)event.getSelection()).getFirstElement();
+					if(node.getValue() instanceof ModelElement){
+						ActionHelper.openModelElement((ModelElement) node.getValue(), VIEW_ID);
+					}
+				}
+				
+			}
+		});
 		
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
