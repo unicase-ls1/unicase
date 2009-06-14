@@ -16,12 +16,6 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 
@@ -86,35 +80,8 @@ public class HistoryCache {
 	private void extractOperations(HashMap<ModelElementId, TreeSet<Version>> hashMap, Version version,
 		EList<AbstractOperation> operations) {
 		for (AbstractOperation abstractOperation : operations) {
-			if (abstractOperation instanceof CreateDeleteOperation) {
-				ModelElement modelElement = ((CreateDeleteOperation) abstractOperation).getModelElement();
-				addModelElement(hashMap, version, modelElement.getModelElementId());
-			} else if (abstractOperation instanceof AttributeOperation) {
-				addModelElement(hashMap, version, abstractOperation.getModelElementId());
-
-			} else if (abstractOperation instanceof SingleReferenceOperation) {
-				SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) abstractOperation;
-				ModelElementId newValue = singleReferenceOperation.getNewValue();
-				ModelElementId oldValue = singleReferenceOperation.getOldValue();
-				if (newValue != null) {
-					addModelElement(hashMap, version, newValue);
-				}
-				if (oldValue != null) {
-					addModelElement(hashMap, version, oldValue);
-				}
-				addModelElement(hashMap, version, singleReferenceOperation.getModelElementId());
-			} else if (abstractOperation instanceof MultiReferenceOperation) {
-				MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) abstractOperation;
-				addModelElement(hashMap, version, multiReferenceOperation.getModelElementId());
-				for (ModelElementId elementId : multiReferenceOperation.getReferencedModelElements()) {
-					addModelElement(hashMap, version, elementId);
-				}
-			} else if (abstractOperation instanceof MultiReferenceMoveOperation) {
-				MultiReferenceMoveOperation multiReferenceMoveOperation = (MultiReferenceMoveOperation) abstractOperation;
-				addModelElement(hashMap, version, multiReferenceMoveOperation.getModelElementId());
-				addModelElement(hashMap, version, multiReferenceMoveOperation.getReferencedModelElementId());
-			} else if (abstractOperation instanceof CompositeOperation) {
-				extractOperations(hashMap, version, ((CompositeOperation) abstractOperation).getSubOperations());
+			for (ModelElementId elementId : abstractOperation.getAllInvolvedModelElements()) {
+				addModelElement(hashMap, version, elementId);
 			}
 		}
 	}

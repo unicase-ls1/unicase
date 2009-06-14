@@ -121,7 +121,7 @@ public class HistorySubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			return new ArrayList<HistoryInfo>();
 		}
 		// only the last 20 or less versions are considered
-		int historyCount = Math.min(versions.size() - 1, 20);
+		int historyCount = Math.min(versions.size(), 20);
 		List<HistoryInfo> historyInfos = getHistoryInfo(versions.subList(0, historyCount), projectId,
 			includeChangePackage);
 		// filter operations to selected model element
