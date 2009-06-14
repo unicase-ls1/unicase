@@ -7,9 +7,9 @@ package org.unicase.workspace.ui.views.historybrowserview;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -17,7 +17,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
@@ -70,7 +69,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 	private ModelElement modelElement;
 
 	private TreeViewer viewer;
-	private Set<ChangePackage> changePackageCache;
+	private Map<Integer, ChangePackage> changePackageCache;
 
 	private ChangePackageVisualizationHelper changePackageVisualizationHelper;
 
@@ -83,7 +82,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 */
 	public HistoryBrowserView() {
 		historyInfos = new ArrayList<HistoryInfo>();
-		changePackageCache = new HashSet<ChangePackage>();
+		changePackageCache = new HashMap<Integer, ChangePackage>();
 	}
 
 	private void load(final int end) {
@@ -133,10 +132,11 @@ public class HistoryBrowserView extends AbstractSCMView {
 				historyInfos.addAll(historyInfo);
 			}
 			for(HistoryInfo hi : historyInfos){
-				changePackageCache.add(hi.getChangePackage());
+				if(hi.getChangePackage()!=null){
+					changePackageCache.put(hi.getPrimerySpec().getIdentifier(), hi.getChangePackage());
+				}
 			}
-			changePackageCache.remove(null);
-			changePackageVisualizationHelper = new ChangePackageVisualizationHelper(new ArrayList<ChangePackage>(changePackageCache),getActiveProjectSpace().getProject());
+			changePackageVisualizationHelper = new ChangePackageVisualizationHelper(new ArrayList<ChangePackage>(changePackageCache.values()),getActiveProjectSpace().getProject());
 			labelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
 			contentProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
 		} catch (EmfStoreException e) {
@@ -276,6 +276,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 		Action groupByME = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
+				boolean showRootsCache = contentProvider.showRootNodes();
 				if (isChecked()) {
 					contentProvider = new SCMContentProvider.Compact(viewer, getActiveProjectSpace()
 						.getProject());
@@ -283,6 +284,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 					contentProvider = new SCMContentProvider.Detailed(viewer, getActiveProjectSpace()
 						.getProject());
 				}
+				contentProvider.setShowRootNodes(showRootsCache);
 				viewer.setContentProvider(contentProvider);
 				viewer.refresh();
 			}
@@ -293,6 +295,26 @@ public class HistoryBrowserView extends AbstractSCMView {
 		groupByME.setChecked(true);
 		menuManager.add(groupByME);
 
+		
+		Action showRoots = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				if (isChecked()) {
+					contentProvider.setShowRootNodes(true);
+				} else {
+					contentProvider.setShowRootNodes(false);
+				}
+				viewer.setContentProvider(contentProvider);
+				viewer.refresh();
+			}
+
+		};
+		showRoots.setImageDescriptor(Activator.getImageDescriptor("/icons/groupByME.png"));
+		showRoots.setToolTipText("Show package nodes");
+		showRoots.setChecked(true);
+		menuManager.add(showRoots);
+
+		
 		Action prev = new Action() {
 			@Override
 			public void run() {
@@ -345,26 +367,9 @@ public class HistoryBrowserView extends AbstractSCMView {
 		progressDialog.getProgressMonitor().worked(10);
 		load(currentEnd);
 		progressDialog.getProgressMonitor().worked(80);
-		viewer.setInput(nodify(null, getHistoryInfos()).toArray());
+		viewer.setInput(getHistoryInfos());
 		progressDialog.getProgressMonitor().done();
 		progressDialog.close();
-	}
-
-	/**
-	 * Creates a TreeNode wrapper list from the given object list.
-	 * 
-	 * @param treeNode the parent tree node
-	 * @param list the list of childern objects.
-	 * @return a new wrapped {@link ArrayList}.
-	 */
-	protected List<TreeNode> nodify(TreeNode treeNode, List<? extends Object> list) {
-		ArrayList<TreeNode> nodes = new ArrayList<TreeNode>();
-		for (Object o : list) {
-			TreeNode meNode = new TreeNode(o);
-			meNode.setParent(treeNode);
-			nodes.add(meNode);
-		}
-		return nodes;
 	}
 
 	/**
@@ -380,7 +385,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 		labelProvider = new SCMLabelProvider(getActiveProjectSpace().getProject());
 		viewer.setContentProvider(contentProvider);
 		viewer.setLabelProvider(labelProvider);
-		viewer.setInput(nodify(null, getHistoryInfos()).toArray());
+		viewer.setInput(getHistoryInfos());
 
 		return viewer.getTree();
 	}
