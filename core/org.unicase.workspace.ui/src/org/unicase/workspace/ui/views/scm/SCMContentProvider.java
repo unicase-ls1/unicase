@@ -7,6 +7,7 @@ package org.unicase.workspace.ui.views.scm;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
@@ -110,7 +111,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 			ArrayList<Object> elements = new ArrayList<Object>();
 			for(HistoryInfo hi : historyInfos){
 				if(hi.getChangePackage()!=null){
-					elements.addAll(Arrays.asList(getChildren(hi, null)));
+					elements.addAll(Arrays.asList(getChildren(hi, new TreeNode(hi))));
 				}
 			}
 			return elements.toArray();
@@ -216,6 +217,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 			}
 			EList<AbstractOperation> operations = historyInfo.getChangePackage().getOperations();
 			List<TreeNode> nodes = nodify(treeNode, operations);
+			Collections.reverse(nodes);
 			return nodes.toArray();
 		}
 
@@ -284,10 +286,11 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		 */
 		@Override
 		protected Object[] getChildren(ModelElement modelElement, TreeNode treeNode) {
-			if (treeNode.getParent() == null || treeNode.getParent().getValue() instanceof HistoryInfo) {
+			if (treeNode.getParent().getValue() instanceof HistoryInfo) {
 				ArrayList<EObject> operations = new ArrayList<EObject>(changePackageVisualizationHelper
-					.getOperations(modelElement));
+					.getOperations(modelElement,((HistoryInfo)treeNode.getParent().getValue()).getChangePackage()));
 				List<TreeNode> nodes = nodify(treeNode, operations);
+				Collections.reverse(nodes);
 				return nodes.toArray();
 			}
 			return new Object[0];
