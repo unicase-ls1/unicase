@@ -23,6 +23,7 @@ import org.eclipse.ui.part.ViewPart;
  * 
  * @author Hodaie
  */
+@Deprecated
 public abstract class AbstractSCMView extends ViewPart {
 
 	private TabItem browserTab;
