@@ -6,6 +6,7 @@
 package org.unicase.workspace.test.changeTracking.operations;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 import java.util.Set;
@@ -15,6 +16,9 @@ import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.Project;
+import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.LeafSection;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationaleFactory;
@@ -22,6 +26,7 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
 /**
@@ -186,6 +191,42 @@ public class SingleReferenceOperationTest extends OperationTest {
 		assertEquals(true, otherInvolvedModelElements.contains(oldActor.getModelElementId()));
 		assertEquals(true, otherInvolvedModelElements.contains(newActor.getModelElementId()));
 	}
+	
+	/**
+	 * Tests reversibility of 1:n single reference feature.
+	 * 
+	 */
+	@Test
+	public void containmentSingleReferenceReversibilityTest()  {
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection oldSection = DocumentFactory.eINSTANCE.createLeafSection();
+		
+		getProject().addModelElement(useCase);
+		getProject().addModelElement(actor);
+		getProject().addModelElement(section);
+		getProject().addModelElement(oldSection);
+		
+		useCase.setLeafSection(oldSection);
+		actor.setLeafSection(oldSection);
+		
+		Project expectedProject = ModelUtil.clone(getProject());
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+		
+		clearOperations();
+		
+		useCase.setLeafSection(section);
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		assertEquals(operations.size(), 1);
+		AbstractOperation reverse = (AbstractOperation)operations.get(0).reverse();
+		reverse.apply(getProject());
+		
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+		
+	}		
 	
 	/**
 	 * Move a containee to another container.
