@@ -381,4 +381,40 @@ public class CreateDeleteOperationTest extends OperationTest {
 		getProject().addModelElement(useCase);
 
 	}
+	
+	/**
+	 * Test creating an element in a non project containment.
+	 */
+	@Test
+	public void createInNonProjectContainmentTest() {
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		getProject().addModelElement(section);
+		
+		assertEquals(true, getProject().contains(section));
+		
+		clearOperations();
+		
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		section.getModelElements().add(useCase);
+		
+		assertEquals(true, getProject().contains(useCase));
+		assertEquals(true, getProject().contains(section));
+		assertEquals(1, section.getModelElements().size());
+		assertEquals(section, useCase.getLeafSection());
+		assertEquals(useCase, section.getModelElements().iterator().next());
+		
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		
+		assertEquals(2, operations.size());
+		
+		AbstractOperation operation1 = operations.get(0);
+		AbstractOperation operation2 = operations.get(1);
+		assertEquals(true, operation1 instanceof CreateDeleteOperation);
+		assertEquals(true, operation2 instanceof MultiReferenceOperation);
+		CreateDeleteOperation createOperation = (CreateDeleteOperation) operation1;
+		MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) operation2;
+		assertEquals(false, createOperation.isDelete());
+		assertEquals(useCase.getModelElementId(), createOperation.getModelElementId());
+		assertEquals(section.getModelElementId(), multiReferenceOperation.getModelElementId());
+	}
 }
