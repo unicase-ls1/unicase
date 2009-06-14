@@ -174,6 +174,7 @@ public class HistorySubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			// null check for the initial commit
 			if (version.getChanges() != null) {
 				history.setChangePackage((ChangePackage) EcoreUtil.copy(version.getChanges()));
+				history.getChangePackage().setLogMessage((LogMessage) EcoreUtil.copy(version.getLogMessage()));
 			}
 		} else {
 			history.setLogMessage((LogMessage) EcoreUtil.copy(version.getLogMessage()));
