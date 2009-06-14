@@ -361,4 +361,24 @@ public class CreateDeleteOperationTest extends OperationTest {
 		assertEquals(1, subOperations.size());
 		
 	}
+	
+	/**
+	 * Test creation of element with cross references.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test(expected = IllegalStateException.class)
+	public void createWithCrossReferencesTest() throws UnsupportedOperationException, UnsupportedNotificationException {
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase2);
+		useCase.getIncludedUseCases().add(useCase2);
+		
+		clearOperations();
+		
+		getProject().addModelElement(useCase);
+
+	}
 }
