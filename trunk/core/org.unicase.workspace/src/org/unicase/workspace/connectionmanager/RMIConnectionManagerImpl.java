@@ -272,6 +272,13 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void logout(SessionId sessionId) throws ConnectionException, AccessControlException {
+
+	}
+
 	private RMIEmfStoreFacade getFacade(SessionId sessionId) throws UnknownSessionException {
 		RMIEmfStoreFacade facade = facadeMap.get(sessionId);
 		if (facade == null) {

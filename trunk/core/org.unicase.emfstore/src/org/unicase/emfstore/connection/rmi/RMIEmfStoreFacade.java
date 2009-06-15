@@ -16,7 +16,6 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FileInformation;
 
-
 // END IGNORE UNNECCESSARY IMPORT
 /**
  * Facade for the RMIConnectionManager. Part of the RMI transport layer.
@@ -205,6 +204,15 @@ public interface RMIEmfStoreFacade extends Remote {
 	 */
 	String login(String username, String password, String serverInfo, String clientVersionInfo) throws RemoteException,
 		AccessControlException;
+
+	/**
+	 * Deletes a session on the server.
+	 * 
+	 * @param sessionId id to be delted
+	 * @throws RemoteException in case of a rmi related failure
+	 * @throws AccessControlException in case of failure on server
+	 */
+	void logout(String sessionId) throws RemoteException, AccessControlException;
 
 	/**
 	 * Resolves the user's rights.

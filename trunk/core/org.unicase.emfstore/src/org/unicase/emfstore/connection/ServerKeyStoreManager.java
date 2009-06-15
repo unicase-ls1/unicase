@@ -62,6 +62,9 @@ public final class ServerKeyStoreManager {
 	 */
 	public String decrypt(String password) throws ServerKeyStoreException {
 		try {
+			if (password == null) {
+				throw new ServerKeyStoreException("Password is null.");
+			}
 			byte[] passwordBytes = Base64.decodeBase64(password.getBytes());
 			Cipher cipher = Cipher.getInstance("RSA");
 			cipher.init(Cipher.DECRYPT_MODE, getDecryptionKey());

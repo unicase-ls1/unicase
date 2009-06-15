@@ -36,4 +36,13 @@ public interface ConnectionManager extends EmfStore {
 	 */
 	SessionId logIn(String username, String password, ServerInfo severInfo, ClientVersionInfo clientVersionInfo)
 		throws ConnectionException, AccessControlException;
+
+	/**
+	 * Deletes a session on the server.
+	 * 
+	 * @param sessionId id to be deleted.
+	 * @throws ConnectionException connection related exception
+	 * @throws AccessControlException in case of failure on server
+	 */
+	void logout(SessionId sessionId) throws ConnectionException, AccessControlException;
 }

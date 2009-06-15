@@ -48,6 +48,12 @@ public abstract class AbstractAuthenticationControl implements AuthenticationCon
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	public void logout(SessionId sessionId) throws AccessControlException {
+	}
+
+	/**
 	 * This method must be implemented by subclasses in order to verify a pair of username and password. When using
 	 * authentication you should use {@link AuthenticationControl#logIn(String, String)} in order to gain a session id.
 	 * 

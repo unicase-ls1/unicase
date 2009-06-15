@@ -23,4 +23,13 @@ public class ServerKeyStoreException extends AccessControlException {
 		super("A server keystore related problem occured.", e);
 	}
 
+	/**
+	 * Constructor with message.
+	 * 
+	 * @param message message.
+	 */
+	public ServerKeyStoreException(String message) {
+		super(message);
+	}
+
 }

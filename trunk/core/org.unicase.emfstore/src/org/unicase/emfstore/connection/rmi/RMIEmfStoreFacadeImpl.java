@@ -33,7 +33,6 @@ import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.Project;
 
-
 /**
  * Implementation of a RMIEmfStoreFacade.
  * 
@@ -182,6 +181,19 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 		try {
 			return SerializationUtil.eObjectToString(accessControl.logIn(username, password,
 				(ClientVersionInfo) SerializationUtil.stringToEObject(version)));
+		} catch (RMISerializationException e) {
+			throw new AccessControlException(SERIALEX);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade#logout(java.lang.String)
+	 */
+	public void logout(String sessionId) throws RemoteException, AccessControlException {
+		try {
+			accessControl.logout((SessionId) SerializationUtil.stringToEObject(sessionId));
 		} catch (RMISerializationException e) {
 			throw new AccessControlException(SERIALEX);
 		}

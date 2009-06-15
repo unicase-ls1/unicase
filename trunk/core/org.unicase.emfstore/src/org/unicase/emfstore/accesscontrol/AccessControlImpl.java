@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.ServerConfiguration;
+import org.unicase.emfstore.accesscontrol.authentication.AbstractAuthenticationControl;
 import org.unicase.emfstore.accesscontrol.authentication.LDAPVerifier;
 import org.unicase.emfstore.accesscontrol.authentication.SimplePropertyFileVerifyer;
 import org.unicase.emfstore.core.MonitorProvider;
@@ -42,7 +43,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 
 	private Map<SessionId, ACUserContainer> sessionUserMap;
 	private ServerSpace serverSpace;
-	private AuthenticationControl authenticationControl;
+	private AbstractAuthenticationControl authenticationControl;
 
 	/**
 	 * Default constructor.
@@ -74,10 +75,26 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 	 */
 	public SessionId logIn(String username, String password, ClientVersionInfo clientVersionInfo)
 		throws AccessControlException {
-		ACUser user = resolveUser(username);
-		SessionId sessionId = authenticationControl.logIn(user.getName(), password, clientVersionInfo);
-		sessionUserMap.put(sessionId, new ACUserContainer(user));
-		return sessionId;
+		synchronized (MonitorProvider.getInstance().getMonitor("authentication")) {
+			ACUser user = resolveUser(username);
+			SessionId sessionId = authenticationControl.logIn(user.getName(), password, clientVersionInfo);
+			sessionUserMap.put(sessionId, new ACUserContainer(user));
+			return sessionId;
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.accesscontrol.AuthenticationControl#logout(org.unicase.emfstore.esmodel.SessionId)
+	 */
+	public void logout(SessionId sessionId) throws AccessControlException {
+		synchronized (MonitorProvider.getInstance().getMonitor("authentication")) {
+			if (sessionId == null) {
+				throw new AccessControlException("SessionId is null.");
+			}
+			sessionUserMap.remove(sessionId);
+		}
 	}
 
 	/**
@@ -350,5 +367,4 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 			lastActive = System.currentTimeMillis();
 		}
 	}
-
 }
