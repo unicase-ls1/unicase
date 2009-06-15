@@ -10,12 +10,11 @@ import java.security.cert.X509Certificate;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.IDialogConstants;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StyleRange;
-import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridLayout;
@@ -44,7 +43,6 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 
 	private TableItem selectedTableItem;
 	private String alias = "";
-	private StyledText errorMessage;
 
 	/**
 	 * The constructor.
@@ -94,13 +92,9 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 		certAlias.setEditable(false);
 		new Label(right, SWT.NONE).setText("Certificate Details: ");
 		final Text certDetails = new Text(right, SWT.MULTI | SWT.WRAP | SWT.V_SCROLL);
-		GridDataFactory.fillDefaults().grab(true, false).hint(300, 195).applyTo(certDetails);
+		GridDataFactory.fillDefaults().grab(true, false).hint(300, 230).applyTo(certDetails);
 		certDetails.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		certDetails.setEditable(false);
-		errorMessage = new StyledText(right, SWT.NONE);
-		errorMessage.setText("");
-		errorMessage.setBackground(Display.getCurrent().getActiveShell().getBackground());
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(errorMessage);
 
 		// left column: dialogue area composite (displays certificates and filter)
 		Composite dialogArea = new Composite(left, SWT.NONE);
@@ -177,14 +171,7 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 	 * @param message error message
 	 */
 	protected void setErrorMessage(String message) {
-		StyleRange styleRange = new StyleRange();
-		errorMessage.setText(message);
-		styleRange.start = 0;
-		styleRange.length = message.length();
-		styleRange.fontStyle = SWT.BOLD;
-		styleRange.foreground = Display.getCurrent().getSystemColor(SWT.COLOR_RED);
-		errorMessage.setStyleRange(styleRange);
-
+		MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Attention", message);
 	}
 
 	/**
