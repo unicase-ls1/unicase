@@ -275,8 +275,12 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void logout(SessionId sessionId) throws ConnectionException, AccessControlException {
-
+	public void logout(SessionId sessionId) throws EmfStoreException {
+		try {
+			getFacade(sessionId).logout(SerializationUtil.eObjectToString(sessionId));
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
 	}
 
 	private RMIEmfStoreFacade getFacade(SessionId sessionId) throws UnknownSessionException {
