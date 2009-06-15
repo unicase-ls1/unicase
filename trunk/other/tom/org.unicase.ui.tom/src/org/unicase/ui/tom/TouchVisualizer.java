@@ -228,7 +228,6 @@ public class TouchVisualizer extends TouchAdapterImpl{
 		if (activeEditor == null) {
 			removeAllTouches();
 
-			setActiveEditor(null);
 			freeformViewport = null;
 			canvasViewport = null;
 		}else{
