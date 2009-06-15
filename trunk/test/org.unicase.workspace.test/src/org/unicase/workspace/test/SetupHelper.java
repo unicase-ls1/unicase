@@ -403,10 +403,7 @@ public class SetupHelper {
 	 * Commits the changes to server.
 	 */
 	public  void commitChanges() {
-		final LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
-		logMessage.setAuthor(usersession.getUsername());
-		logMessage.setDate(Calendar.getInstance().getTime());
-		logMessage.setMessage("some message");
+		final LogMessage logMessage = getLogMessage(usersession.getUsername(),"some message");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -425,6 +422,21 @@ public class SetupHelper {
 			}
 		});
 
+	}
+
+	/**
+	 * Create LogMessage.
+	 * 
+	 * @param name name
+	 * @param message message
+	 * @return LogMessage
+	 */
+	public static LogMessage getLogMessage(String name, String message) {
+		final LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
+		logMessage.setAuthor(name);
+		logMessage.setDate(Calendar.getInstance().getTime());
+		logMessage.setMessage(message);
+		return logMessage;
 	}
 
 	/**
