@@ -43,9 +43,8 @@ Gesture {
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
 	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
-	public MoveConnectionBendpointGesture(TouchDispatch dispatch,
-			DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart);
+	public MoveConnectionBendpointGesture(TouchDispatch dispatch) {
+		super(dispatch);
 	}
 
 

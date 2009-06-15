@@ -27,6 +27,7 @@ import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
 import org.unicase.ui.tom.gestures.CreateConnectionGesture;
 import org.unicase.ui.tom.gestures.CreateNodeAndConnectionGesture;
 import org.unicase.ui.tom.gestures.CreateNodeGesture;
+import org.unicase.ui.tom.gestures.DiscoveryGesture;
 import org.unicase.ui.tom.gestures.Gesture;
 import org.unicase.ui.tom.gestures.MoveCanvasGesture;
 import org.unicase.ui.tom.gestures.MoveConnectionBendpointGesture;
@@ -43,14 +44,16 @@ import org.unicase.ui.tom.touches.Touch;
 
 /**
  * @author schroech
- *
+ * 
  */
-public class GestureInterpreter extends TouchNotifierImpl 
-implements TouchAdapter, GestureAdapter{
+public class GestureInterpreter extends TouchNotifierImpl implements
+		TouchAdapter, GestureAdapter {
 
 	private TouchDispatch dispatch;
 	private List<Gesture> gestures;
 	private Set<MultiTouch> claimedTouches;
+
+	private ModelDiagramEditor activeEditor;
 
 	/**
 	 * @param dispatch
@@ -60,48 +63,48 @@ implements TouchAdapter, GestureAdapter{
 		setGestures(new ArrayList<Gesture>());
 		setClaimedTouches(new HashSet<MultiTouch>());
 
-		IEditorPart editor = Utility.getActiveEditor();	
-		if (editor == null){
-			return;
-		}
-
-		DiagramEditPart diagramEditPart = ((ModelDiagramEditor) editor).getDiagramEditPart();
-
-		Gesture createNodeGesture = new CreateNodeGesture(dispatch, diagramEditPart);
+		Gesture discoveryGesture = new DiscoveryGesture(dispatch);
+		addGesture(discoveryGesture);
+		
+		Gesture createNodeGesture = new CreateNodeGesture(dispatch);
 		addGesture(createNodeGesture);
 
-		Gesture createNodeAndConnectionGesture = new CreateNodeAndConnectionGesture(dispatch, diagramEditPart);
+		Gesture createNodeAndConnectionGesture = new CreateNodeAndConnectionGesture(
+				dispatch);
 		addGesture(createNodeAndConnectionGesture);
 
-		Gesture moveGesture = new MoveNodeGesture(dispatch, diagramEditPart);
+		Gesture moveGesture = new MoveNodeGesture(dispatch);
 		addGesture(moveGesture);
 
-		Gesture moveConnectionBendpointGesture = new MoveConnectionBendpointGesture(dispatch, diagramEditPart);
+		Gesture moveConnectionBendpointGesture = new MoveConnectionBendpointGesture(
+				dispatch);
 		addGesture(moveConnectionBendpointGesture);
 
-		Gesture moveCanvasGesture = new MoveCanvasGesture(dispatch, diagramEditPart);
+		Gesture moveCanvasGesture = new MoveCanvasGesture(dispatch);
 		addGesture(moveCanvasGesture);
 
-		Gesture selectGesture = new SelectGesture(dispatch, diagramEditPart);
+		Gesture selectGesture = new SelectGesture(dispatch);
 		addGesture(selectGesture);
 
-		Gesture createConnectionGesture
-		= new CreateConnectionGesture(dispatch, diagramEditPart);
+		Gesture createConnectionGesture = new CreateConnectionGesture(dispatch);
 		addGesture(createConnectionGesture);
 
-		createNodeAndConnectionGesture.getRestrictingGestures().add(createConnectionGesture);
-		createNodeGesture.getRestrictingGestures().add(createNodeAndConnectionGesture);
+		createNodeAndConnectionGesture.getRestrictingGestures().add(
+				createConnectionGesture);
+		createNodeGesture.getRestrictingGestures().add(
+				createNodeAndConnectionGesture);
 		createNodeGesture.getRestrictingGestures().add(createConnectionGesture);
 
 		selectGesture.setPriority(7);
 		moveGesture.setPriority(6);
-		createNodeGesture.setPriority(5); 
+		createNodeGesture.setPriority(5);
 		createConnectionGesture.setPriority(5);
 		createNodeAndConnectionGesture.setPriority(4);
 		moveConnectionBendpointGesture.setPriority(1);
 		moveCanvasGesture.setPriority(0);
-		
-		moveConnectionBendpointGesture.getRestrictingGestures().add(moveCanvasGesture);
+
+		moveConnectionBendpointGesture.getRestrictingGestures().add(
+				moveCanvasGesture);
 	}
 
 	/**
@@ -115,7 +118,6 @@ implements TouchAdapter, GestureAdapter{
 		getGestures().add(gesture);
 		gesture.getAdapters().add(this);
 	}
-
 
 	public void notifyChanged(TouchNotification notification) {
 		switch (notification.getEventType()) {
@@ -136,21 +138,21 @@ implements TouchAdapter, GestureAdapter{
 	}
 
 	private void handleTouchPropagated(Touch touch) {
-		List<Gesture> executableGestures = findExecutableGestures();	
-		
+		List<Gesture> executableGestures = findExecutableGestures();
+
 		List<Gesture> unclaimedGestures = extractUnclaimedGestures(executableGestures);
-		
-		GestureExecutionStrategy strategy = new RestrictionGestureExecutionStrategy(executableGestures);
+
+		GestureExecutionStrategy strategy = new RestrictionGestureExecutionStrategy(
+				executableGestures);
 		executableGestures = strategy.getExecutableGestures();
 
 		Set<Gesture> collisionFreeGestures = extractCollisionFreeGestures(unclaimedGestures);
 
 		addClaimedTouches(collisionFreeGestures);
-		
+
 		for (Gesture gesture : collisionFreeGestures) {
 			gesture.execute();
 		}
-
 
 		if (getDispatch().getActiveSingleTouches().size() == 0) {
 			for (Gesture gesture : getGestures()) {
@@ -167,11 +169,11 @@ implements TouchAdapter, GestureAdapter{
 			if (gesture instanceof MoveNodeGesture) {
 				continue;
 			}
-			
+
 			List<MultiTouch> mandatoryTouches = gesture.getMandatoryTouches();
-//			List<MultiTouch> optionalTouches = gesture.getOptionalTouches();
+			// List<MultiTouch> optionalTouches = gesture.getOptionalTouches();
 			claimedTouches.addAll(mandatoryTouches);
-//			claimedTouches.addAll(optionalTouches);
+			// claimedTouches.addAll(optionalTouches);
 		}
 	}
 
@@ -179,12 +181,13 @@ implements TouchAdapter, GestureAdapter{
 		Map<MultiTouch, Set<Gesture>> mandatoryTouchMap = new HashMap<MultiTouch, Set<Gesture>>();
 
 		for (Gesture gesture : gestures) {
-			List<MultiTouch> gestureMandatoryTouches = gesture.getMandatoryTouches();
+			List<MultiTouch> gestureMandatoryTouches = gesture
+					.getMandatoryTouches();
 			for (MultiTouch multiTouch : gestureMandatoryTouches) {
 				Set<Gesture> set;
 				if (mandatoryTouchMap.containsKey(multiTouch)) {
 					set = mandatoryTouchMap.get(multiTouch);
-				}else{
+				} else {
 					set = new HashSet<Gesture>();
 					mandatoryTouchMap.put(multiTouch, set);
 				}
@@ -196,11 +199,11 @@ implements TouchAdapter, GestureAdapter{
 		for (MultiTouch multiTouch : mandatoryTouchMap.keySet()) {
 			Set<Gesture> set = mandatoryTouchMap.get(multiTouch);
 
-			Gesture priorizedGesture = null;	
+			Gesture priorizedGesture = null;
 			for (Gesture gesture : set) {
 				if (priorizedGesture == null) {
 					priorizedGesture = gesture;
-				}else{
+				} else {
 					int priorizedPriority = priorizedGesture.getPriority();
 					int gesturePriority = gesture.getPriority();
 					if (gesturePriority > priorizedPriority) {
@@ -218,7 +221,8 @@ implements TouchAdapter, GestureAdapter{
 		List<Gesture> unclaimedGestures = new ArrayList<Gesture>();
 		for (Gesture gesture : gestures) {
 			List<MultiTouch> mandatoryTouches = gesture.getMandatoryTouches();
-			boolean disjoint = Collections.disjoint(getClaimedTouches(), mandatoryTouches);
+			boolean disjoint = Collections.disjoint(getClaimedTouches(),
+					mandatoryTouches);
 			if (disjoint) {
 				unclaimedGestures.add(gesture);
 			}
@@ -228,26 +232,26 @@ implements TouchAdapter, GestureAdapter{
 
 	private List<Gesture> findExecutableGestures() {
 		List<Gesture> executableGestures = new ArrayList<Gesture>();
-		
+
 		for (Gesture gesture : gestures) {
 			if (gesture.canExecute()) {
 				executableGestures.add(gesture);
 			}
 		}
 		return executableGestures;
-	} 
-
-	public void handleTouchAdded(Touch touch) {
-		//don't do anything
 	}
 
+	public void handleTouchAdded(Touch touch) {
+		// don't do anything
+	}
 
 	public void handleTouchChanged(Touch touch) {
-		//don't do anything		
+		// don't do anything
 	}
 
 	public void handleTouchRemoved(Touch touch) {
-		notifyAdapters(new TouchNotificationImpl(touch, TouchNotification.touchRemoved));
+		notifyAdapters(new TouchNotificationImpl(touch,
+				TouchNotification.touchRemoved));
 	}
 
 	public void notifyChanged(GestureNotification notification) {
@@ -275,19 +279,19 @@ implements TouchAdapter, GestureAdapter{
 		}
 	}
 
-	public void handleGestureExecutionChanged(Gesture gesture){
-		//Do nothing
+	public void handleGestureExecutionChanged(Gesture gesture) {
+		// Do nothing
 	}
 
 	public void setDispatch(TouchDispatch dispatch) {
 		if (dispatch != this.dispatch) {
 			if (this.dispatch != null) {
-				this.dispatch.getAdapters().remove(this);	
+				this.dispatch.getAdapters().remove(this);
 			}
 			this.dispatch = dispatch;
-			if (this.dispatch!= null) {
-				this.dispatch.getAdapters().add(this);	
-			}			
+			if (this.dispatch != null) {
+				this.dispatch.getAdapters().add(this);
+			}
 		}
 	}
 
@@ -309,5 +313,18 @@ implements TouchAdapter, GestureAdapter{
 
 	public Set<MultiTouch> getClaimedTouches() {
 		return claimedTouches;
+	}
+
+	public void setActiveEditor(ModelDiagramEditor activeEditor) {
+		this.activeEditor = activeEditor;
+
+		DiagramEditPart diagramEditPart = activeEditor.getDiagramEditPart();
+		for (Gesture gesture : getGestures()) {
+			gesture.setDiagramEditPart(diagramEditPart);
+		}
+	}
+
+	public ModelDiagramEditor getActiveEditor() {
+		return activeEditor;
 	}
 }

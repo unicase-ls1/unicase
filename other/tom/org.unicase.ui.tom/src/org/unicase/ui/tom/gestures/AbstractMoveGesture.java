@@ -27,8 +27,8 @@ public abstract class AbstractMoveGesture extends AbstractContinuousGesture {
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
 	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
-	public AbstractMoveGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart);
+	public AbstractMoveGesture(TouchDispatch dispatch) {
+		super(dispatch);
 		
 		setCandidateTouches(new ArrayList<SingleTouch>());
 	}

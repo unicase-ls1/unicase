@@ -1,8 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+    <extension
+          point="org.eclipse.ui.bindings">
+       <key
+             commandId="org.unicase.ui.tom.handlers.enableMultiTouchMode"
+             contextId="org.eclipse.ui.contexts.window"
+             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+             sequence="Alt+Shift+M">
+       </key>
+    </extension>
    <extension
          point="org.eclipse.ui.menus">
+         
+        <menuContribution
+           locationURI="toolbar:org.eclipse.ui.main.toolbar">
+        <toolbar
+              id="org.unicase.ui.common.UnicaseToolbar">
+           <command
+                 commandId="org.unicase.ui.tom.handlers.enableMultiTouchMode"
+                 icon="icons/ModelElement.png"
+                 style="push"
+                 tooltip="Enable multi touch mode">
+           </command>
+        </toolbar>
+     </menuContribution>
+     
       <menuContribution
             locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
          <command
@@ -72,6 +95,11 @@
    </extension>
    <extension
          point="org.eclipse.ui.commands">
+      <command
+           defaultHandler="org.unicase.ui.tom.handler.ShowMultiTouchOverlayHandler"
+           id="org.unicase.ui.tom.handlers.enableMultiTouchMode"
+           name="Enable multitouch mode">
+     </command>
       <command
             defaultHandler="org.unicase.ui.tom.handler.NewTOMWindowHandler"
             id="org.unicase.ui.touchtable.newTOMWindow"

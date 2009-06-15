@@ -39,43 +39,6 @@ public abstract class TouchDispatch extends TouchNotifierImpl{
 
 	private ModelDiagramEditor activeEditor;
 
-	private void hookEditor(){
-
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		if (activeWorkbenchWindow == null) {
-			return;
-		}
-
-		IEditorPart editor = activeWorkbenchWindow.getActivePage().getActiveEditor();
-
-		if (editor == null
-				|| !(editor instanceof ModelDiagramEditor)) {	 
-			return;
-		}
-
-		activeEditor = (ModelDiagramEditor) editor;
-
-		FigureCanvas canvas;
-		ModelDiagramEditor activeModelDiagramEditor;
-		GraphicalViewer graphicalViewer;
-
-		activeModelDiagramEditor = (ModelDiagramEditor) activeEditor;
-		graphicalViewer = (GraphicalViewer)activeModelDiagramEditor.getAdapter(GraphicalViewer.class);
-		if (graphicalViewer != null) {
-			canvas = (FigureCanvas)graphicalViewer.getControl();
-
-			LightweightSystem activeLightweightSystem = canvas.getLightweightSystem();
-			IFigure rootFigure = activeLightweightSystem.getRootFigure();
-
-			if (rootFigure != null) {
-				freeformViewport = (FreeformViewport) rootFigure.getChildren().get(0);
-			}
-			
-			if (canvas != null) {
-				canvasViewport = canvas.getViewport();
-			}
-		}
-	}
 	
 	/**
 	 * Singleton instance.
@@ -92,8 +55,6 @@ public abstract class TouchDispatch extends TouchNotifierImpl{
 
 		setActiveMultiTouches(new ArrayList<MultiTouch>());
 		setRemovedMultiTouches(new ArrayList<MultiTouch>());
-		
-		hookEditor();
 	}
 
 	/**
@@ -219,6 +180,50 @@ public abstract class TouchDispatch extends TouchNotifierImpl{
 
 	public List<MultiTouch> getRemovedMultiTouches() {
 		return removedMultiTouches;
+	}
+
+	public void setActiveEditor(ModelDiagramEditor activeEditor) {
+		
+		if (this.activeEditor != activeEditor) {
+			getActiveMultiTouches().clear();
+			getActiveSingleTouches().clear();
+			
+			getRemovedMultiTouches().clear();
+			getRemovedTouches().clear();	
+		}
+		
+		this.activeEditor = activeEditor;
+		
+		if (activeEditor == null) {
+			freeformViewport = null;
+			canvasViewport = null;
+			
+		}else{
+			FigureCanvas canvas;
+			ModelDiagramEditor activeModelDiagramEditor;
+			GraphicalViewer graphicalViewer;
+
+			activeModelDiagramEditor = (ModelDiagramEditor) getActiveEditor();
+			graphicalViewer = (GraphicalViewer)activeModelDiagramEditor.getAdapter(GraphicalViewer.class);
+			if (graphicalViewer != null) {
+				canvas = (FigureCanvas)graphicalViewer.getControl();
+
+				LightweightSystem activeLightweightSystem = canvas.getLightweightSystem();
+				IFigure rootFigure = activeLightweightSystem.getRootFigure();
+
+				if (rootFigure != null) {
+					freeformViewport = (FreeformViewport) rootFigure.getChildren().get(0);
+				}
+				
+				if (canvas != null) {
+					canvasViewport = canvas.getViewport();
+				}
+			}
+		}
+	}
+
+	public ModelDiagramEditor getActiveEditor() {
+		return activeEditor;
 	}	
 
 }

@@ -1,29 +1,50 @@
 package org.unicase.ui.tom.gestures;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
+import org.unicase.ui.tom.touches.Touch;
 
 public class ChangeConnectionTypeGesture extends AbstractGesture {
 
-	public ChangeConnectionTypeGesture(TouchDispatch dispatch,
-			DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart);
-		// TODO Auto-generated constructor stub
+	private Set<SingleTouch> candidateTouches;
+	
+	public ChangeConnectionTypeGesture(TouchDispatch dispatch) {
+		super(dispatch);
+		setCandidateTouches(new HashSet<SingleTouch>());
 	}
 
 	@Override
 	public void handleSingleTouchAdded(SingleTouch touch) {
-		// TODO Auto-generated method stub
+		if (!(acceptsAdditionalTouches())) {
+			return;
+		}
 
+		EditPart touchedEditPart = findTouchedEditPartExcludingDiagram(touch);
+		touchedEditPart = getPrimaryEditPart(touchedEditPart);
+
+		if (touchedEditPart instanceof ConnectionEditPart) {
+			getCandidateTouches().add(touch);
+		}
 	}
 
 	@Override
 	public void handleSingleTouchChanged(SingleTouch touch) {
-		// TODO Auto-generated method stub
+		List<Touch> activeTouches = touch.getMultiTouch().getActiveTouches();
+		if (activeTouches.size() > 2) {
+			return;
+		}
+		
+		for (Touch currentTouch : activeTouches) {
+			
+		}
 
 	}
 
@@ -46,6 +67,14 @@ public class ChangeConnectionTypeGesture extends AbstractGesture {
 	public List<MultiTouch> getOptionalTouches() {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	public void setCandidateTouches(Set<SingleTouch> candidateTouches) {
+		this.candidateTouches = candidateTouches;
+	}
+
+	public Set<SingleTouch> getCandidateTouches() {
+		return candidateTouches;
 	}
 
 }

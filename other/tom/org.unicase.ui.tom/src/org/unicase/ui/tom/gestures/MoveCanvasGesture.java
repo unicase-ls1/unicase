@@ -31,9 +31,8 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
 	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
-	public MoveCanvasGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart); 
-		setMoveCanvasAction(new MoveCanvasAction(diagramEditPart));
+	public MoveCanvasGesture(TouchDispatch dispatch) {
+		super(dispatch); 
 	}
 
 	/** 
@@ -140,6 +139,7 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 		setExecuting(true);
 
 		Point firstPoint = ((SingleTouch) getMoveTouch()).getPath().getFirstPoint();
+		setMoveCanvasAction(new MoveCanvasAction(getDiagramEditPart()));
 		getMoveCanvasAction().prepareMove(firstPoint);
 	}
 

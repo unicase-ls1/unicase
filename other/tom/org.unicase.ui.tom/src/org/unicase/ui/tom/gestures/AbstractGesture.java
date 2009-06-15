@@ -75,9 +75,8 @@ implements TouchAdapter, Gesture{
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
 	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
-	public AbstractGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
+	public AbstractGesture(TouchDispatch dispatch) {
 		setDispatch(dispatch);
-		setDiagramEditPart(diagramEditPart);
 		setRestrictingGestures(new ArrayList<Gesture>());
 		setOptionalTouches(Collections.EMPTY_LIST);
 		

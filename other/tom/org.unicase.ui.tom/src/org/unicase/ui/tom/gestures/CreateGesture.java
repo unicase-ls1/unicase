@@ -27,8 +27,8 @@ public abstract class CreateGesture extends AbstractGesture{
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
 	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
-	public CreateGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart);
+	public CreateGesture(TouchDispatch dispatch) {
+		super(dispatch);
 	}
 
 	/** 

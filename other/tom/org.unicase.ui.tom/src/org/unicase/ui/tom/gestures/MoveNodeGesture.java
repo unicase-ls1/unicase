@@ -42,8 +42,8 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
 	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
-	public MoveNodeGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart);
+	public MoveNodeGesture(TouchDispatch dispatch) {
+		super(dispatch);
 	}
 
 	/** 

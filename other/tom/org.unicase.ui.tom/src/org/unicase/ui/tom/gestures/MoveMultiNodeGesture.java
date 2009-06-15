@@ -38,8 +38,8 @@ public class MoveMultiNodeGesture extends AbstractMoveGesture{
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
 	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
-	public MoveMultiNodeGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart);
+	public MoveMultiNodeGesture(TouchDispatch dispatch) {
+		super(dispatch);
 
 		setTouchGestureMap(new HashMap<SingleTouch, MoveNodeGesture>());	
 	}
@@ -131,7 +131,7 @@ public class MoveMultiNodeGesture extends AbstractMoveGesture{
 			return;	
 		}
 
-		MoveNodeGesture moveNodeGesture = new MoveNodeGesture(getDispatch(), getDiagramEditPart());
+		MoveNodeGesture moveNodeGesture = new MoveNodeGesture(getDispatch());
 		moveNodeGesture.setMoveTouch(getMoveTouch());
 		moveNodeGesture.execute();
 
