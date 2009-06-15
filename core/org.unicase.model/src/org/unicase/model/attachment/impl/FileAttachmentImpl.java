@@ -109,6 +109,26 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected long fileSize = FILE_SIZE_EDEFAULT;
 
 	/**
+	 * The default value of the '{@link #isRequiredOffline() <em>Required Offline</em>}' attribute. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @see #isRequiredOffline()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean REQUIRED_OFFLINE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isRequiredOffline() <em>Required Offline</em>}' attribute. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @see #isRequiredOffline()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean requiredOffline = REQUIRED_OFFLINE_EDEFAULT;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -220,6 +240,28 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	public boolean isRequiredOffline() {
+		return requiredOffline;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setRequiredOffline(boolean newRequiredOffline) {
+		boolean oldRequiredOffline = requiredOffline;
+		requiredOffline = newRequiredOffline;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE,
+				oldRequiredOffline, requiredOffline));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -231,6 +273,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			return getFileID();
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 			return getFileSize();
+		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
+			return isRequiredOffline();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -254,6 +298,9 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			return;
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 			setFileSize((Long) newValue);
+			return;
+		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
+			setRequiredOffline((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -279,6 +326,9 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 			setFileSize(FILE_SIZE_EDEFAULT);
 			return;
+		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
+			setRequiredOffline(REQUIRED_OFFLINE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -299,6 +349,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			return FILE_ID_EDEFAULT == null ? fileID != null : !FILE_ID_EDEFAULT.equals(fileID);
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 			return fileSize != FILE_SIZE_EDEFAULT;
+		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
+			return requiredOffline != REQUIRED_OFFLINE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -322,6 +374,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		result.append(fileID);
 		result.append(", fileSize: ");
 		result.append(fileSize);
+		result.append(", requiredOffline: ");
+		result.append(requiredOffline);
 		result.append(')');
 		return result.toString();
 	}

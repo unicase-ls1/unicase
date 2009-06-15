@@ -93,15 +93,9 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
-	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
 	 * <p>
-	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
-	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
-	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
-	 * another.
-	 * <p>
-	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * This method is used to initialize {@link AttachmentPackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
@@ -214,6 +208,8 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		// Mark meta-data to indicate it can't be changed
 		theAttachmentPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(AttachmentPackage.eNS_URI, theAttachmentPackage);
 		return theAttachmentPackage;
 	}
 
@@ -285,6 +281,15 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * 
 	 * @generated
 	 */
+	public EAttribute getFileAttachment_RequiredOffline() {
+		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public AttachmentFactory getAttachmentFactory() {
 		return (AttachmentFactory) getEFactoryInstance();
 	}
@@ -316,6 +321,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_HASH);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_ID);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_SIZE);
+		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__REQUIRED_OFFLINE);
 	}
 
 	/**
@@ -370,6 +376,9 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFileAttachment_FileSize(), ecorePackage.getELong(), "fileSize", null, 0, 1,
+			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileAttachment_RequiredOffline(), ecorePackage.getEBoolean(), "requiredOffline", null, 0, 1,
 			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 

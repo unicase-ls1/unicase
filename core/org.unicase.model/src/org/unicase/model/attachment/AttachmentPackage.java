@@ -345,13 +345,22 @@ public interface AttachmentPackage extends EPackage {
 	int FILE_ATTACHMENT__FILE_SIZE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Required Offline</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTACHMENT__REQUIRED_OFFLINE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>File Attachment</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_ATTACHMENT_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 4;
+	int FILE_ATTACHMENT_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.attachment.UrlAttachment <em>Url Attachment</em>}'.
@@ -427,6 +436,17 @@ public interface AttachmentPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFileAttachment_FileSize();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.attachment.FileAttachment#isRequiredOffline
+	 * <em>Required Offline</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Required Offline</em>'.
+	 * @see org.unicase.model.attachment.FileAttachment#isRequiredOffline()
+	 * @see #getFileAttachment()
+	 * @generated
+	 */
+	EAttribute getFileAttachment_RequiredOffline();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -508,6 +528,14 @@ public interface AttachmentPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FILE_ATTACHMENT__FILE_SIZE = eINSTANCE.getFileAttachment_FileSize();
+
+		/**
+		 * The meta object literal for the '<em><b>Required Offline</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute FILE_ATTACHMENT__REQUIRED_OFFLINE = eINSTANCE.getFileAttachment_RequiredOffline();
 
 	}
 
