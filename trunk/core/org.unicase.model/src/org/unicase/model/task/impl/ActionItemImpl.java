@@ -411,7 +411,7 @@ public class ActionItemImpl extends AnnotationImpl implements ActionItem {
 
 	// begin of custom code
 	/**
-	 * <!-- begin-user-doc -->
+	 * <!-- begin-user-doc --> The checked attribute is equal to done at ActionItem.
 	 * 
 	 * @return the Done state of the ActionItem. <!-- end-user-doc -->
 	 * @generated NOT
