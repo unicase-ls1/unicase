@@ -36,14 +36,14 @@ public interface PackageElement extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Parent Package</em>' container reference.
-	 * @see #setParentPackage(Package)
+	 * @see #setParentPackage(org.unicase.model.classes.Package)
 	 * @see org.unicase.model.classes.ClassesPackage#getPackageElement_ParentPackage()
 	 * @see org.unicase.model.classes.Package#getContainedPackageElements
 	 * @model opposite="containedPackageElements" keys="identifier" transient="false"
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
-	Package getParentPackage();
+	org.unicase.model.classes.Package getParentPackage();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.classes.PackageElement#getParentPackage <em>Parent Package</em>}'
@@ -53,7 +53,7 @@ public interface PackageElement extends ModelElement {
 	 * @see #getParentPackage()
 	 * @generated
 	 */
-	void setParentPackage(Package value);
+	void setParentPackage(org.unicase.model.classes.Package value);
 
 	/**
 	 * Returns the value of the '<em><b>Outgoing Dependencies</b></em>' reference list. The list contents are of type

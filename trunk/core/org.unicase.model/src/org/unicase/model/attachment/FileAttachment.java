@@ -16,6 +16,7 @@ import org.unicase.model.Attachment;
  * <li>{@link org.unicase.model.attachment.FileAttachment#getFileHash <em>File Hash</em>}</li>
  * <li>{@link org.unicase.model.attachment.FileAttachment#getFileID <em>File ID</em>}</li>
  * <li>{@link org.unicase.model.attachment.FileAttachment#getFileSize <em>File Size</em>}</li>
+ * <li>{@link org.unicase.model.attachment.FileAttachment#isRequiredOffline <em>Required Offline</em>}</li>
  * </ul>
  * </p>
  * 
@@ -127,5 +128,31 @@ public interface FileAttachment extends Attachment {
 	 * @generated
 	 */
 	void setFileSize(long value);
+
+	/**
+	 * Returns the value of the '<em><b>Required Offline</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Required Offline</em>' attribute isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Required Offline</em>' attribute.
+	 * @see #setRequiredOffline(boolean)
+	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_RequiredOffline()
+	 * @model
+	 * @generated
+	 */
+	boolean isRequiredOffline();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#isRequiredOffline
+	 * <em>Required Offline</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Required Offline</em>' attribute.
+	 * @see #isRequiredOffline()
+	 * @generated
+	 */
+	void setRequiredOffline(boolean value);
 
 } // FileAttachment
