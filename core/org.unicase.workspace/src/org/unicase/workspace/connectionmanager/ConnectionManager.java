@@ -10,6 +10,7 @@ import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.ConnectionException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ServerInfo;
 
 /**
@@ -41,8 +42,7 @@ public interface ConnectionManager extends EmfStore {
 	 * Deletes a session on the server.
 	 * 
 	 * @param sessionId id to be deleted.
-	 * @throws ConnectionException connection related exception
-	 * @throws AccessControlException in case of failure on server
+	 * @throws EmfStoreException in case of failure on server
 	 */
-	void logout(SessionId sessionId) throws ConnectionException, AccessControlException;
+	void logout(SessionId sessionId) throws EmfStoreException;
 }
