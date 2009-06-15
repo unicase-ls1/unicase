@@ -61,7 +61,7 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 						try {
 							ArrayList<ChangePackage> updateChanges = (ArrayList<ChangePackage>) it.getConnectionManager().getChanges(it.getUsersession().getSessionId(), 
 								it.getProjectId(), base, target);
-							if(conflictDetector.doConflict(changePackage, updateChanges) != null){
+							if(conflictDetector.doConflict(changePackage, updateChanges)){
 								List<AbstractOperation> operationListA = changePackage.getOperations();
 								List<AbstractOperation> operationListB = new ArrayList<AbstractOperation>();
 								for(ChangePackage updateChange : updateChanges){
