@@ -1,6 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.ui.ganttview.commands;
@@ -13,8 +14,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.ganttview.models.GanttModelFactory;
 import org.unicase.ui.ganttview.views.GanttView;
 
 public class ShowGanttViewHandler extends AbstractHandler {
@@ -24,15 +25,11 @@ public class ShowGanttViewHandler extends AbstractHandler {
 		ModelElement me = ActionHelper.getModelElement(event);
 
 		try {
-			GanttView ganttView = (GanttView) page.showView(GanttView.ID);//, me.getName(),
-				//IWorkbenchPage.VIEW_ACTIVATE);
-//			ganttView.setInput(GanttModelFactory.createGanttModelTest());
-//			TODO: 
-			ganttView.setInput(GanttModelFactory.createGanttModelFromSelectedWorkItems(me));
-			WorkPackage p = null;
+			GanttView ganttView = (GanttView) page.showView(GanttView.ID);
+			ganttView.setInput((WorkPackage) me);
 
 		} catch (PartInitException e) {
-			//DialogHandler.showExceptionDialog(e);
+			DialogHandler.showExceptionDialog(e);
 		}
 
 		return null;
