@@ -27,7 +27,9 @@ public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
 	}
 
 	public void addTuioCursor(TuioCursor tuioCursor) {
-		
+		if (getActiveEditor() == null) {
+			return;
+		}
 		if (tuioCursor.getX() < 0
 			|| tuioCursor.getY() < 0){
 			//discard the cursor
@@ -49,6 +51,9 @@ public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
 	}
 
 	public void removeTuioCursor(TuioCursor tuioCursor) {		
+		if (getActiveEditor() == null) {
+			return;
+		}
 		SingleTouch touch = touchMap.get(tuioCursor);
 		if (touch != null) {
 			touch.setTouchUpDate(new Date(tuioCursor.getUpdateTime()));
@@ -63,6 +68,9 @@ public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
 	}
 
 	public void updateTuioCursor(TuioCursor tuioCursor) {
+		if (getActiveEditor() == null) {
+			return;
+		}
 		Touch touch = touchMap.get(tuioCursor);
 		if (touch != null) {
 			try {
@@ -91,5 +99,6 @@ public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
 			instance = new TUIOTouchDispatch();
 		}
 		return instance;
-	}	
+	}
+
 }

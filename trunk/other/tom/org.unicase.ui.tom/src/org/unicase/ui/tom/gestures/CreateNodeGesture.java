@@ -36,9 +36,8 @@ public class CreateNodeGesture extends CreateGesture implements Gesture {
 	 * @param diagramEditPart
 	 *            The {@link DiagramEditPart}
 	 */
-	public CreateNodeGesture(TouchDispatch dispatcher,
-			DiagramEditPart diagramEditPart) {
-		super(dispatcher, diagramEditPart);
+	public CreateNodeGesture(TouchDispatch dispatcher) {
+		super(dispatcher);
 	}
 
 	/**

@@ -7,6 +7,7 @@ package org.unicase.ui.tom.gestures;
 
 import java.util.List;
 
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.notifications.GestureNotifier;
 import org.unicase.ui.tom.touches.MultiTouch;
 
@@ -58,6 +59,10 @@ public interface Gesture extends GestureNotifier{
 	List<MultiTouch> getMandatoryTouches();
 	
 	List<MultiTouch> getOptionalTouches();
+	
+	DiagramEditPart getDiagramEditPart();
+	
+	void setDiagramEditPart(DiagramEditPart editor);
 	
 	List<Gesture> getRestrictingGestures();
 	

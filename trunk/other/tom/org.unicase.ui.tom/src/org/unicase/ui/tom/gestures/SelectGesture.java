@@ -37,8 +37,8 @@ public class SelectGesture extends AbstractGesture implements Gesture {
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
 	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
-	public SelectGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart);
+	public SelectGesture(TouchDispatch dispatch) {
+		super(dispatch);
 	}
 
 	/** 

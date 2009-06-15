@@ -30,7 +30,7 @@ import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.Touch;
 
-public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
+public class TouchVisualizer extends TouchAdapterImpl{
 
 	private Map<Touch,TouchFigure> touchMap;
 	private Map<MultiTouch, Color> colorMap;
@@ -40,114 +40,12 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 
 	private ModelDiagramEditor activeEditor;
 
-//	private BorderItemsAwareFreeFormLayer borderItemsAwareFreeformLayer;
-
 	public TouchVisualizer() {
 
 		touchMap = new HashMap<Touch, TouchFigure>();
 		colorMap = new HashMap<MultiTouch, Color>();
 
-		hookEditor();
-
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		if (activeWorkbenchWindow != null) {
-			activeWorkbenchWindow.addPageListener(this);
-		}
 	}
-
-	private void reset(){
-		removeAllTouches();
-
-		activeEditor = null;
-		freeformViewport = null;
-		canvasViewport = null;
-//		borderItemsAwareFreeformLayer = null;
-	}
-
-	private void hookEditor(){
-
-		IWorkbenchWindow activeWorkbenchWindow = PlatformUI.getWorkbench().getActiveWorkbenchWindow();
-		if (activeWorkbenchWindow == null) {
-			return;
-		}
-
-		IEditorPart editor = activeWorkbenchWindow.getActivePage().getActiveEditor();
-
-		if (editor == null
-				|| !(editor instanceof ModelDiagramEditor)) {	 
-			return;
-		}
-
-		activeEditor = (ModelDiagramEditor) editor;
-
-		FigureCanvas canvas;
-		ModelDiagramEditor activeModelDiagramEditor;
-		GraphicalViewer graphicalViewer;
-
-		activeModelDiagramEditor = (ModelDiagramEditor) activeEditor;
-		graphicalViewer = (GraphicalViewer)activeModelDiagramEditor.getAdapter(GraphicalViewer.class);
-		if (graphicalViewer != null) {
-			canvas = (FigureCanvas)graphicalViewer.getControl();
-
-			LightweightSystem activeLightweightSystem = canvas.getLightweightSystem();
-			IFigure rootFigure = activeLightweightSystem.getRootFigure();
-
-			if (rootFigure != null) {
-				freeformViewport = (FreeformViewport) rootFigure.getChildren().get(0);
-			}
-			
-			if (canvas != null) {
-				canvasViewport = canvas.getViewport();
-			}
-			
-			Package package1 = activeEditor.getClass().getPackage();
-			ClassLoader classLoader = activeEditor.getClass().getClassLoader();
-			
-			String name = package1.getName();
-			name = name.concat(".ModelVisualIDRegistry");
-			
-			Class<?> loadClass = null;
-			try {
-				loadClass = classLoader.loadClass(name);
-			} catch (ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-//			(View containerView, EObject domainElement) {
-			try {
-				Method declaredMethod = loadClass.getDeclaredMethod("getNodeVisualID", View.class, EObject.class);
-//				declaredMethod.invoke(obj, args);
-				
-			} catch (SecurityException e) {
-				e.printStackTrace();
-			} catch (NoSuchMethodException e) {
-				e.printStackTrace();
-			}
-			
-			System.out.println(loadClass);
-			
-			
-//			org.unicase.model.classDiagram.part.ModelVisualIDRegistry
-		}
-	}
-
-//	@SuppressWarnings("unchecked")
-//	private Figure getBorderItemsAwareFreeformLayer(Figure figure) {
-//		List children = figure.getChildren();
-//		for (Object child : children) {
-//			if (child instanceof Figure) {
-//				if (child instanceof BorderItemsAwareFreeFormLayer){
-//					return (Figure) child;
-//				}else{
-//					Figure nextFigure = getBorderItemsAwareFreeformLayer((Figure) child);
-//					if (nextFigure != null) {
-//						return nextFigure;
-//					}
-//				}
-//			}
-//		}
-//		return null;
-//	}
 
 	private static final class ColorSwitch {
 		static int colorIndex = 0;
@@ -275,7 +173,9 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 	}
 
 	public void handleTouchAdded(Touch addedTouch){
-
+		if (activeEditor == null) {
+			return;
+		}
 		//		Display current = Display.getDefault();
 		//
 		//		if (current == null) {
@@ -299,40 +199,63 @@ public class TouchVisualizer extends TouchAdapterImpl implements IPageListener{
 	}
 
 	public void handleTouchChanged(Touch changedTouch) {
+		if (activeEditor == null) {
+			return;
+		}
 		TouchFigure touchFigure = touchMap.get(changedTouch);
 		if (touchFigure == null) {
 			return;
 		}
 		org.eclipse.draw2d.geometry.Rectangle clientArea = canvasViewport.getClientArea();
 
-		//		Point location = canvasViewport.getLocation();
-		//		canvasViewport.translateToAbsolute(location);
-
 		Point point = new Point(
 				changedTouch.getX()-touchFigure.getSize().width/2 + clientArea.x,
 				changedTouch.getY()-touchFigure.getSize().height/2 + clientArea.y);
-
-		//System.out.println("Touch changed: " + point);
 
 		touchFigure.setLocation(point);
 	}
 
 	public void handleTouchRemoved(Touch removedTouch) {
+		if (activeEditor == null) {
+			return;
+		}
 		removeTouch(removedTouch);		
 	}
 
-	public void pageActivated(IWorkbenchPage page) {
-		// TODO Auto-generated method stub
+	public void setActiveEditor(ModelDiagramEditor activeEditor) {
+		this.activeEditor = activeEditor;
+		
+		if (activeEditor == null) {
+			removeAllTouches();
 
+			setActiveEditor(null);
+			freeformViewport = null;
+			canvasViewport = null;
+		}else{
+			FigureCanvas canvas;
+			ModelDiagramEditor activeModelDiagramEditor;
+			GraphicalViewer graphicalViewer;
+
+			activeModelDiagramEditor = (ModelDiagramEditor) getActiveEditor();
+			graphicalViewer = (GraphicalViewer)activeModelDiagramEditor.getAdapter(GraphicalViewer.class);
+			if (graphicalViewer != null) {
+				canvas = (FigureCanvas)graphicalViewer.getControl();
+
+				LightweightSystem activeLightweightSystem = canvas.getLightweightSystem();
+				IFigure rootFigure = activeLightweightSystem.getRootFigure();
+
+				if (rootFigure != null) {
+					freeformViewport = (FreeformViewport) rootFigure.getChildren().get(0);
+				}
+				
+				if (canvas != null) {
+					canvasViewport = canvas.getViewport();
+				}
+			}
+		}
 	}
 
-	public void pageClosed(IWorkbenchPage page) {
-		System.out.println("Page closed");
-		reset();
-	}
-
-	public void pageOpened(IWorkbenchPage page) {
-		System.out.println("Page opened");
-		hookEditor();
+	public ModelDiagramEditor getActiveEditor() {
+		return activeEditor;
 	}
 }

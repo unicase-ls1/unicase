@@ -36,8 +36,8 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
 	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
-	public CreateNodeAndConnectionGesture(TouchDispatch dispatch, DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart);
+	public CreateNodeAndConnectionGesture(TouchDispatch dispatch) {
+		super(dispatch);
 	}
 
 	/** 

@@ -34,9 +34,8 @@ public class CreateConnectionGesture extends CreateGesture {
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
 	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
-	public CreateConnectionGesture(TouchDispatch dispatch,
-			DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart);
+	public CreateConnectionGesture(TouchDispatch dispatch) {
+		super(dispatch);
 	}
 
 	private List<MultiTouch> sourceMultiTouches;

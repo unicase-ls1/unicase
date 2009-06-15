@@ -23,9 +23,8 @@ public abstract class AbstractContinuousGesture extends AbstractGesture implemen
 	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
 	 * @param diagramEditPart The {@link DiagramEditPart}
 	 */
-	public AbstractContinuousGesture(TouchDispatch dispatch,
-			DiagramEditPart diagramEditPart) {
-		super(dispatch, diagramEditPart);
+	public AbstractContinuousGesture(TouchDispatch dispatch) {
+		super(dispatch);
 	}
 
 	/** 
