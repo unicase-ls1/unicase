@@ -1101,11 +1101,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				}
 				ModelElement modelElement = getProject().getModelElement(operation.getModelElementId());
 				if (AttachmentPackage.eINSTANCE.getFileAttachment().isInstance(modelElement)) {
-					// FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(
-					// operation.getModelElementId());
-					// if (fileAttachment.isInstantDownload()) {
-					attachmentsToDownload.add((FileAttachment) modelElement);
-					// }
+					FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(
+						operation.getModelElementId());
+					if (fileAttachment.isRequiredOffline()) {
+						attachmentsToDownload.add((FileAttachment) modelElement);
+					}
 				}
 			}
 		}
