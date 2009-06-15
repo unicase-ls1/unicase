@@ -213,14 +213,22 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		String eventName = wp.getName();
 
+		// Checking for unset start- or dueDate since the GanttWidget can't handle null values here
 		Date dstart = wp.getStartDate();
-		if (dstart != null) {
-			startDate.setTime(dstart);
-		}
-
 		Date dend = wp.getDueDate();
+		if (dstart != null) {
+			startDate.setTime(wp.getStartDate());
+		} else if (dstart == null && wp.getContainingWorkpackage() != null) {
+			startDate.setTime(wp.getContainingWorkpackage().getStartDate());
+		} else {
+			// TODO
+		}
 		if (dend != null) {
-			endDate.setTime(dend);
+			endDate.setTime(wp.getDueDate());
+		} else if (dstart == null && wp.getContainingWorkpackage() != null) {
+			endDate.setTime(wp.getContainingWorkpackage().getDueDate());
+		} else {
+			// TODO
 		}
 
 		float estimate = getEstimate(wp, null, new HashSet<WorkItem>(wp.getAllContainedWorkItems()));
