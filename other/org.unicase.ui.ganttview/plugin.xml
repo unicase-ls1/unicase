@@ -12,7 +12,7 @@
             allowMultiple="true"
             category="org.unicase"
             class="org.unicase.ui.ganttview.views.GanttView"
-            icon="icons/sample.gif"
+            icon="icons/application_side_tree.png"
             id="org.unicase.ui.ganttview.views.GanttView"
             name="Gantt View"
             restorable="true">
@@ -32,10 +32,19 @@
             locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionItemSeperator">
          <command
                commandId="org.unicase.ui.ganttview.ShowGanttView"
-               icon="icons/sample.gif"
+               icon="icons/application_side_tree.png"
                id="ShowGanttView"
                label="Show Gantt"
                style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <reference
+                        definitionId="org.unicase.ui.common.commands.workPackage">
+                  </reference>
+               </iterate>
+            </visibleWhen>
          </command>
       </menuContribution>
    </extension>
