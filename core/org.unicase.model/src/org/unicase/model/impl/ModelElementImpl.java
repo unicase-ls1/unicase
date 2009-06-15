@@ -517,7 +517,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -588,24 +588,26 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc --> This method return the MEState for the corresponding model element.
 	 * 
 	 * @throws CircularDependencyException
 	 * @generated NOT
+	 * @return The MEState of Modelelement
+	 * @throws CircularDependencyException if there is a circular dependency
 	 */
 	public org.unicase.model.task.util.MEState getMEState() throws CircularDependencyException {
-		if (meState == null) {
-			synchronized (this) {
-				if (meState == null) {
-					if (calculatingState) {
-						throw new CircularDependencyException(this);
-					}
-					calculatingState = true;
-					meState = new MEStateImpl(this);
-					calculatingState = false;
+
+		synchronized (this) {
+			if (meState == null) {
+				if (calculatingState) {
+					throw new CircularDependencyException(this);
 				}
+				calculatingState = true;
+				meState = new MEStateImpl(this);
+				calculatingState = false;
 			}
 		}
+
 		return meState;
 	}
 
