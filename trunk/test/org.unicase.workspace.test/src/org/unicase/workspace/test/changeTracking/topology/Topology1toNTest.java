@@ -20,6 +20,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.document.DocumentFactory;
@@ -32,6 +33,7 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
 /**
@@ -76,7 +78,7 @@ public class Topology1toNTest extends TopologyTest {
 	}
 	
 	/**
-	 * add an uncontained child to an empty containment feature.
+	 * create orphan.
 	 * 
 	 * @throws UnsupportedOperationException on test fail
 	 * @throws UnsupportedNotificationException on test fail
@@ -99,16 +101,97 @@ public class Topology1toNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
-		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
-		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
-		assertTrue(op.isAdd());
-		assertEquals(1, op.getReferencedModelElements().size());
-		assertEquals(actor.getModelElementId(), op.getReferencedModelElements().get(0));
-		assertEquals("modelElements", op.getFeatureName());
+		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
+		SingleReferenceOperation op = (SingleReferenceOperation) operations.get(0);
+		
+		assertEquals("leafSection", op.getFeatureName());
 		assertEquals(op.getModelElementId(), actor.getModelElementId());
 
 	}	
 
+	/**
+	 * reverse orphan creation.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void reverseContainmentOrphan() throws UnsupportedOperationException,
+		UnsupportedNotificationException {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(actor);
+		getProject().addModelElement(section);
+		section.getModelElements().add(actor);
+		
+		Project expectedProject = ModelUtil.clone(getProject());
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+		
+		clearOperations();
+		// create orphan
+		getProject().addModelElement(actor);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		assertEquals(1, operations.size());
+		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
+		SingleReferenceOperation op = (SingleReferenceOperation) operations.get(0);
+		
+		assertEquals("leafSection", op.getFeatureName());
+		assertEquals(op.getModelElementId(), actor.getModelElementId());
+		
+		// test the reversibility of what has happened
+		op.reverse().apply(getProject());
+		
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+	}	
+
+	/**
+	 * reverse orphan creation.
+	 * 
+	 * @throws UnsupportedOperationException on test fail
+	 * @throws UnsupportedNotificationException on test fail
+	 */
+	@Test
+	public void reverseContainmentOrphanIndexed() throws UnsupportedOperationException,
+		UnsupportedNotificationException {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		section.getModelElements().add(actor);
+		section.getModelElements().add(actor2);
+		
+		Project expectedProject = ModelUtil.clone(getProject());
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+		
+		clearOperations();
+		// create orphan
+		getProject().addModelElement(actor);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		assertEquals(1, operations.size());
+		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
+		SingleReferenceOperation op = (SingleReferenceOperation) operations.get(0);
+		
+		assertEquals("leafSection", op.getFeatureName());
+		assertEquals(op.getModelElementId(), actor.getModelElementId());
+		
+		// test the reversibility of what has happened
+		op.reverse().apply(getProject());
+		
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+	}	
+	
+	
+	
 	/**
 	 * add an uncontained child to a non-empty containment feature.
 	 * 
