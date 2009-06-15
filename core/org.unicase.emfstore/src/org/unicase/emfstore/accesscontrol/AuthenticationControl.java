@@ -29,4 +29,12 @@ public interface AuthenticationControl {
 	SessionId logIn(String username, String password, ClientVersionInfo clientVersionInfo)
 		throws AccessControlException;
 
+	/**
+	 * Deletes a session on the server.
+	 * 
+	 * @param sessionId id to be deleted.
+	 * @throws AccessControlException in case of failure on server
+	 */
+	void logout(SessionId sessionId) throws AccessControlException;
+
 }
