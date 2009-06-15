@@ -66,9 +66,13 @@ public class OperationsDescriptionProvider {
 	private String getDescriptionMultiReferenceMoveOperation(MultiReferenceMoveOperation op) {
 
 		ModelElement elem = project.getModelElement(op.getReferencedModelElementId());
-		String elemName = elem.eClass().getName() + " '" + elem.getName() + "'";
+		String elemName = op.getReferencedModelElementId().toString();
 
-		return "reordered " + op.getFeatureName() + ", moved " + elemName + " from " + op.getOldIndex() + " to "
+		if (elem != null) {
+			elemName = elem.eClass().getName() + " '" + elem.getName() + "'";
+		}
+
+		return "Reordered " + op.getFeatureName() + ", moved " + elemName + " from " + op.getOldIndex() + " to "
 			+ op.getNewIndex();
 	}
 
