@@ -9,7 +9,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
@@ -117,15 +116,9 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
-	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
 	 * <p>
-	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
-	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
-	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
-	 * another.
-	 * <p>
-	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * This method is used to initialize {@link EsmodelPackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @see #eNS_URI
@@ -193,6 +186,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		// Mark meta-data to indicate it can't be changed
 		theEsmodelPackage.freeze();
 
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(EsmodelPackage.eNS_URI, theEsmodelPackage);
 		return theEsmodelPackage;
 	}
 
@@ -484,7 +479,6 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 			.getEPackage(NotificationPackage.eNS_URI);
 		UrlPackage theUrlPackage = (UrlPackage) EPackage.Registry.INSTANCE.getEPackage(UrlPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theVersioningPackage);
@@ -559,10 +553,10 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 
 		initEClass(clientVersionInfoEClass, ClientVersionInfo.class, "ClientVersionInfo", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getClientVersionInfo_Version(), theEcorePackage.getEString(), "version", null, 0, 1,
+		initEAttribute(getClientVersionInfo_Version(), ecorePackage.getEString(), "version", null, 0, 1,
 			ClientVersionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getClientVersionInfo_Name(), theEcorePackage.getEString(), "name", null, 0, 1,
+		initEAttribute(getClientVersionInfo_Name(), ecorePackage.getEString(), "name", null, 0, 1,
 			ClientVersionInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 
