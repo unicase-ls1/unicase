@@ -5,7 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
-
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Reference Operation</b></em>'. <!-- end-user-doc
  * -->
