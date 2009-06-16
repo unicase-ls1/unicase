@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.model.ModelElement;
-import org.unicase.model.impl.ProjectImpl;
+import org.unicase.model.Project;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -193,7 +193,7 @@ public class NotificationInfo implements Notification {
 
 			// notifications from project are never propagated, thus considered nonexistent
 			// however, they themselves might have followups
-			if (nextNotification.getNotifier() instanceof ProjectImpl) {
+			if (nextNotification.getNotifier() instanceof Project) {
 				NotificationInfo nextNextInfo = new NotificationInfo(nextNotification);
 				return nextNextInfo.hasNext();
 			} else {
