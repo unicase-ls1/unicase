@@ -87,7 +87,7 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 					ModelElementId meId = readEvent.getModelElement();
 					if(meIdMap != null){
 						if(meIdMap.containsKey(meId)){
-							List<Object> line = addLine(meId, user, commitMap, readEvent);						
+							List<Object> line = addLine(meId, user, commitMap, meIdMap, readEvent);						
 							values.add(line);
 						}
 					}
@@ -98,7 +98,7 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 	
 
-	private List<Object> addLine(ModelElementId meId, String user, Map<ModelElementId, Date> commitMap, ReadEvent readEvent){
+	private List<Object> addLine(ModelElementId meId, String user, Map<ModelElementId, Date> commitMap, Map<ModelElementId, Date> meIdMap, ReadEvent readEvent){
 		List<Object> line = new ArrayList<Object>();
 		line.add(meId);
 		line.add(user);
@@ -106,7 +106,11 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 		line.add(readEvent.getTimestamp());
 		
 		long time = readEvent.getTimestamp().getTime() - commitMap.get(meId).getTime();
-		Date diff = new Date(time);
+		Date diff = new Date(time);		
+		line.add(diff.getTime());
+
+		time = meIdMap.get(meId).getTime() - commitMap.get(meId).getTime();
+		diff.setTime(time);//Time difference between update and commit the same ME
 		line.add(diff.getTime());
 		
 		return line;
@@ -121,7 +125,8 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 		names.add("User");
 		names.add("Commit Time");
 		names.add("Read Time");
-		names.add("Time Difference");
+		names.add("Commit-Read Time Difference");
+		names.add("Update-Commit Time Difference");
 		return names;
 	}
 

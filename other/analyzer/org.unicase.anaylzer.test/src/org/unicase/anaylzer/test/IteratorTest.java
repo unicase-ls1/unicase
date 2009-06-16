@@ -1,8 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
 package org.unicase.anaylzer.test;
 
 import static org.junit.Assert.assertTrue;
@@ -25,10 +25,10 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
  */
 public class IteratorTest extends AnalyzersTest {
 	/**
-	 * Test Default VersionIterator 
+	 * Test Default VersionIterator. 
 	 */
     @Test
-	public void test1(){
+	public void defaultVersionIteratorTest(){
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("DOLLI")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
@@ -49,10 +49,10 @@ public class IteratorTest extends AnalyzersTest {
 	}		
 	
 	/**
-	 * Test Default TimeIterator 
+	 * Test Default TimeIterator. 
 	 */
 	@Test
-	public void test2(){
+	public void defaultTimeIteratorTest(){
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("-01")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
@@ -73,10 +73,10 @@ public class IteratorTest extends AnalyzersTest {
 	}	
 	
 	/**
-	 * Test VersionIterator with given start and end
+	 * Test VersionIterator with given start and end.
 	 */
     @Test
-	public void test3(){
+	public void versionIteratorTest(){
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("-01")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());

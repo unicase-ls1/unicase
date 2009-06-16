@@ -1,6 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.anaylzer.test;
@@ -34,7 +35,7 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 	
 	
 	/**
-	 * Define your export file name here
+	 * Define your export file name here.
 	 */
 	public DetectionAnalyzerTest() {
 		super();
@@ -48,10 +49,10 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 
 
 	/**
-	 * DetectionAnalyzer for SEE project 01, FR Attributes
+	 * DetectionAnalyzer for SEE project 01, FR Attributes.
 	 */
 	@Test
-	public void test1(){
+	public void see01Test(){
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("-01")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
@@ -80,10 +81,10 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 	
 	
 	/**
-	 * DetectionAnalyzer for SEE project 02, FR Attributes
+	 * DetectionAnalyzer for SEE project 02, FR Attributes.
 	 */
 	@Test
-	public void test2(){
+	public void see02Test(){
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("-02")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());

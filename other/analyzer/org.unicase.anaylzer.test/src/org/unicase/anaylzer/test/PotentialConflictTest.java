@@ -1,6 +1,9 @@
 /**
- * 
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.anaylzer.test;
 
 import static org.junit.Assert.assertTrue;
@@ -28,22 +31,26 @@ public class PotentialConflictTest extends AnalyzersTest {
 	
 	
 	/**
-	 * Define your export file name here
+	 * Define your export file name here.
 	 */
 	public PotentialConflictTest() {
 		super();
 		this.export = new File("Exports/export_conflict.dat");
 		try {
-			this.exporter = new CSVExporter(export,true);
+			this.exporter = new CSVExporter(export);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
+	/**
+	 * Test on DOLLI2.
+	 */
 	@Test
-	public void test1(){
+	public void dolli2Test(){
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("DOLLI2")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
+				long startTime = System.currentTimeMillis();
 				int stepLength = 1;
 				try {
 					 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength);
@@ -54,6 +61,8 @@ public class PotentialConflictTest extends AnalyzersTest {
 				} catch (IteratorException e) {
 					e.printStackTrace();
 				}
+				long endTime = System.currentTimeMillis();
+			    System.out.println("Total elapsed time in execution is :"+ (endTime-startTime));
 			}
 		}
 		assertTrue(true);
