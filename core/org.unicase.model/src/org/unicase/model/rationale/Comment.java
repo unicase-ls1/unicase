@@ -7,6 +7,7 @@ package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
+import org.unicase.model.NonDomainElement;
 import org.unicase.model.organization.OrgUnit;
 
 /**
@@ -24,7 +25,7 @@ import org.unicase.model.organization.OrgUnit;
  * @model
  * @generated
  */
-public interface Comment extends ModelElement {
+public interface Comment extends ModelElement, NonDomainElement {
 	/**
 	 * Returns the value of the '<em><b>Sender</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>

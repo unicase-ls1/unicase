@@ -536,6 +536,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		assessmentEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		assessmentEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
 		commentEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		commentEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(issueEClass, Issue.class, "Issue", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
