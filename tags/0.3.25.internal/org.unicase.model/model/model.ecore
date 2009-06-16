@@ -1039,7 +1039,7 @@
           eOpposite="#//rationale/Criterion/assessments" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//ModelElement">
+    <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#//ModelElement #//NonDomainElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="sender" eType="#//organization/OrgUnit"
           eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="recipients" upperBound="-1"

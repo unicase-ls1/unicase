@@ -7,10 +7,7 @@ package org.unicase.workspace;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -29,12 +26,6 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.connectionmanager.RMIAdminConnectionManagerImpl;
 import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
-import org.unicase.workspace.util.WorkspaceUtil;
-
-import edu.tum.cs.cope.migration.execution.MigrationException;
-import edu.tum.cs.cope.migration.execution.Migrator;
-import edu.tum.cs.cope.migration.execution.MigratorRegistry;
-import edu.tum.cs.cope.migration.execution.ReleaseUtil;
 
 /**
  * Controller for workspaces. Workspace Manager is a singleton.
@@ -124,45 +115,20 @@ public final class WorkspaceManager {
 		final Resource resource;
 		if (!workspaceFile.exists()) {
 
-			// no workspace content found, create a workspace
-			resource = resourceSet.createResource(fileURI);
-			workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
-			workspace.getServerInfos().addAll(Configuration.getDefaultServerInfos());
-			EList<Usersession> usersessions = workspace.getUsersessions();
-			for (ServerInfo serverInfo : workspace.getServerInfos()) {
-				Usersession lastUsersession = serverInfo.getLastUsersession();
-				if (lastUsersession != null) {
-					usersessions.add(lastUsersession);
-				}
-			}
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				@Override
-				protected void doExecute() {
-					resource.getContents().add(workspace);
-				}
-			});
-
-			try {
-				resource.save(Configuration.getResourceSaveOptions());
-			} catch (IOException e) {
-				// MK Auto-generated catch block
-				e.printStackTrace();
-			}
-			stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
+			workspace = createNewWorkspace(resourceSet, domain, fileURI);
 
 		} else {
 			// file exists load it
 			// check if a migration is needed
-			migrateModel();
+			migrateModel(resourceSet, domain);
 
 			resource = resourceSet.getResource(fileURI, true);
 			EList<EObject> directContents = resource.getContents();
 			// MK cast
 			workspace = (Workspace) directContents.get(0);
 		}
+
 		workspace.setConnectionManager(this.connectionManager);
-		// MK: possible performance hit
-		resource.setTrackingModification(true);
 		workspace.setWorkspaceResourceSet(resourceSet);
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
@@ -173,6 +139,37 @@ public final class WorkspaceManager {
 
 		return workspace;
 
+	}
+
+	private Workspace createNewWorkspace(ResourceSet resourceSet, final TransactionalEditingDomain domain, URI fileURI) {
+		final Workspace workspace;
+		final Resource resource;
+		// no workspace content found, create a workspace
+		resource = resourceSet.createResource(fileURI);
+		workspace = WorkspaceFactory.eINSTANCE.createWorkspace();
+		workspace.getServerInfos().addAll(Configuration.getDefaultServerInfos());
+		EList<Usersession> usersessions = workspace.getUsersessions();
+		for (ServerInfo serverInfo : workspace.getServerInfos()) {
+			Usersession lastUsersession = serverInfo.getLastUsersession();
+			if (lastUsersession != null) {
+				usersessions.add(lastUsersession);
+			}
+		}
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				resource.getContents().add(workspace);
+			}
+		});
+
+		try {
+			resource.save(Configuration.getResourceSaveOptions());
+		} catch (IOException e) {
+			// MK Auto-generated catch block
+			e.printStackTrace();
+		}
+		stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
+		return workspace;
 	}
 
 	private void stampCurrentVersionNumber(int modelReleaseNumber) {
@@ -189,7 +186,58 @@ public final class WorkspaceManager {
 		}
 	}
 
-	private void migrateModel() {
+	private void migrateModel(ResourceSet resourceSet, TransactionalEditingDomain domain) {
+		ModelVersion workspaceModelVersion = getWorkspaceModelVersion();
+		if (workspaceModelVersion.getReleaseNumber() == ModelPackage.RELEASE_NUMBER) {
+			return;
+		}
+
+		// we need to migrate
+		// normal migration code:
+		// File workspaceFile = new File(Configuration.getWorkspaceDirectory());
+		// for (File file : workspaceFile.listFiles()) {
+		// if (file.getName().startsWith(Configuration.getProjectSpaceDirectoryPrefix())) {
+		// String projectFilePath = file.getAbsolutePath() + File.separatorChar
+		// + Configuration.getProjectFolderName() + File.separatorChar + 0
+		// + Configuration.getProjectFragmentFileExtension();
+		// URI projectURI = URI.createFileURI(projectFilePath);
+		// String operationsFilePath = null;
+		// for (File subDirFile : file.listFiles()) {
+		// if (subDirFile.getName().endsWith(Configuration.getOperationCompositeFileExtension())) {
+		// operationsFilePath = subDirFile.getAbsolutePath();
+		// }
+		// }
+		// if (operationsFilePath == null) {
+		// // MK: proper exception handling
+		// throw new IllegalStateException("Broken workspace!");
+		// }
+		// URI operationsURI = URI.createFileURI(operationsFilePath);
+		// try {
+		// migrate(projectURI, operationsURI, workspaceModelVersion.getReleaseNumber());
+		// } catch (MigrationException e) {
+		// WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
+		// + " failed!", e);
+		// }
+		// }
+		// }
+		// special migration code:
+		backupAndRecreateWorkspace(resourceSet, domain);
+
+		stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
+	}
+
+	private void backupAndRecreateWorkspace(ResourceSet resourceSet, TransactionalEditingDomain domain) {
+		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
+		String workspaceDirectory = Configuration.getWorkspaceDirectory();
+		File workspacePath = new File(workspaceDirectory);
+		String newWorkspaceDirectory = workspaceDirectory.substring(0, workspaceDirectory.lastIndexOf(".unicase"))
+			+ "unicase.0.4.0_backup";
+		File workspacebackupPath = new File(newWorkspaceDirectory);
+		workspacePath.renameTo(workspacebackupPath);
+		createNewWorkspace(resourceSet, domain, fileURI);
+	}
+
+	private ModelVersion getWorkspaceModelVersion() {
 		// check for legacy workspace
 		File versionFile = new File(Configuration.getModelReleaseNumberFileName());
 		if (!versionFile.exists()) {
@@ -202,38 +250,7 @@ public final class WorkspaceManager {
 		Resource resource = resourceSet.getResource(versionFileUri, true);
 		EList<EObject> directContents = resource.getContents();
 		ModelVersion modelVersion = (ModelVersion) directContents.get(0);
-		if (modelVersion.getReleaseNumber() == ModelPackage.RELEASE_NUMBER) {
-			return;
-		}
-
-		// we need to migrate
-		File workspaceFile = new File(Configuration.getWorkspaceDirectory());
-		for (File file : workspaceFile.listFiles()) {
-			if (file.getName().startsWith(Configuration.getProjectSpaceDirectoryPrefix())) {
-				String projectFilePath = file.getAbsolutePath() + File.separatorChar
-					+ Configuration.getProjectFolderName() + File.separatorChar + 0
-					+ Configuration.getProjectFragmentFileExtension();
-				URI projectURI = URI.createFileURI(projectFilePath);
-				String operationsFilePath = null;
-				for (File subDirFile : file.listFiles()) {
-					if (subDirFile.getName().endsWith(Configuration.getOperationCompositeFileExtension())) {
-						operationsFilePath = subDirFile.getAbsolutePath();
-					}
-				}
-				if (operationsFilePath == null) {
-					// MK: proper exception handling
-					throw new IllegalStateException("Broken workspace!");
-				}
-				URI operationsURI = URI.createFileURI(operationsFilePath);
-				try {
-					migrate(projectURI, operationsURI, modelVersion.getReleaseNumber());
-				} catch (MigrationException e) {
-					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
-						+ " failed!", e);
-				}
-			}
-		}
-		stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
+		return modelVersion;
 	}
 
 	/**
@@ -244,19 +261,19 @@ public final class WorkspaceManager {
 	 * @param sourceModelReleaseNumber
 	 * @throws ModelMigrationException
 	 */
-	private void migrate(URI projectURI, URI changesURI, int sourceModelReleaseNumber) throws MigrationException {
-		String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
-		Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
-		if (migrator == null) {
-			return;
-		}
-		List<URI> modelURIs = new ArrayList<URI>();
-		modelURIs.add(projectURI);
-		// MK: activate change migration here
-		// modelURIs.add(changesURI);
-		// MK: build in prgress monitor here
-		migrator.migrate(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new NullProgressMonitor());
-	}
+	// private void migrate(URI projectURI, URI changesURI, int sourceModelReleaseNumber) throws MigrationException {
+	// String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
+	// Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
+	// if (migrator == null) {
+	// return;
+	// }
+	// List<URI> modelURIs = new ArrayList<URI>();
+	// modelURIs.add(projectURI);
+	// // MK: activate change migration here
+	// // modelURIs.add(changesURI);
+	// // MK: build in prgress monitor here
+	// migrator.migrate(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new NullProgressMonitor());
+	// }
 
 	/**
 	 * Get the current workspace. There is always one current workspace.
