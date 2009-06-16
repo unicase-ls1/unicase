@@ -7,23 +7,27 @@ package org.unicase.workspace.ui.views.historybrowserview;
 
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.HashSet;
+import java.util.HashMap;
 import java.util.List;
-import java.util.Set;
+import java.util.Map;
 
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.jface.viewers.TreeNode;
+import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
@@ -41,21 +45,20 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
-import org.unicase.workspace.ui.views.AbstractSCMView;
+import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.ui.views.scm.SCMContentProvider;
 import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
 import org.unicase.workspace.util.EventUtil;
 
 /**
- * This the History Browser view. It inherits AbstractSCMView and hence has a query tab, where the user can set criteria
- * for view's content. It also has a browser tab (a HistoryComposite).
+ * This the History Browser view. 
  * 
  * @author Hodaie
  * @author Wesendonk
  * @author Shterev
  */
-public class HistoryBrowserView extends AbstractSCMView {
+public class HistoryBrowserView extends ViewPart {
 
 	private List<HistoryInfo> historyInfos;
 
@@ -70,7 +73,7 @@ public class HistoryBrowserView extends AbstractSCMView {
 	private ModelElement modelElement;
 
 	private TreeViewer viewer;
-	private Set<ChangePackage> changePackageCache;
+	private Map<Integer, ChangePackage> changePackageCache;
 
 	private ChangePackageVisualizationHelper changePackageVisualizationHelper;
 
@@ -78,31 +81,39 @@ public class HistoryBrowserView extends AbstractSCMView {
 
 	private SCMLabelProvider labelProvider;
 
+	private Action groupByMe;
+
+	private Action showRoots;
+
 	/**
 	 * Constructor.
 	 */
 	public HistoryBrowserView() {
 		historyInfos = new ArrayList<HistoryInfo>();
-		changePackageCache = new HashSet<ChangePackage>();
+		changePackageCache = new HashMap<Integer, ChangePackage>();
 	}
 
 	private void load(final int end) {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		ServerRequestCommandHandler handler = new ServerRequestCommandHandler(){
+		
 			@Override
-			protected void doExecute() {
+			protected Object run() throws EmfStoreException {
 				loadContent(end);
+				return null;
 			}
-		});
+		};
+		try {
+			handler.execute(new ExecutionEvent());
+		} catch (ExecutionException e) {
+			DialogHandler.showErrorDialog(e.getMessage());
+		}
 	}
 
-	private void loadContent(int end) {
+	private void loadContent(int end) throws EmfStoreException {
 		if (activeProjectSpace == null) {
 			historyInfos.clear();
 			return;
 		}
-		try {
 			HistoryQuery query = getQuery(end);
 			List<HistoryInfo> historyInfo = activeProjectSpace.getUsersession().getHistoryInfo(
 				activeProjectSpace.getProjectId(), query);
@@ -132,16 +143,15 @@ public class HistoryBrowserView extends AbstractSCMView {
 				historyInfos.clear();
 				historyInfos.addAll(historyInfo);
 			}
-			for(HistoryInfo hi : historyInfos){
-				changePackageCache.add(hi.getChangePackage());
+			for (HistoryInfo hi : historyInfos) {
+				if (hi.getChangePackage() != null) {
+					changePackageCache.put(hi.getPrimerySpec().getIdentifier(), hi.getChangePackage());
+				}
 			}
-			changePackageCache.remove(null);
-			changePackageVisualizationHelper = new ChangePackageVisualizationHelper(new ArrayList<ChangePackage>(changePackageCache),getActiveProjectSpace().getProject());
+			changePackageVisualizationHelper = new ChangePackageVisualizationHelper(new ArrayList<ChangePackage>(
+				changePackageCache.values()), getActiveProjectSpace().getProject());
 			labelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
 			contentProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
-		} catch (EmfStoreException e) {
-			DialogHandler.showExceptionDialog(e);
-		}
 	}
 
 	private ProjectSpace getActiveProjectSpace() {
@@ -256,9 +266,17 @@ public class HistoryBrowserView extends AbstractSCMView {
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		super.createPartControl(parent);
-		getBrowserTab().setText("History");
+		
+		GridLayoutFactory.fillDefaults().applyTo(parent);
+		viewer = new TreeViewer(parent, SWT.NONE);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(viewer.getControl());
+		contentProvider = new SCMContentProvider.Compact(viewer, getActiveProjectSpace().getProject());
+		labelProvider = new SCMLabelProvider(getActiveProjectSpace().getProject());
+		viewer.setContentProvider(contentProvider);
+		viewer.setLabelProvider(labelProvider);
+		viewer.setInput(getHistoryInfos());
 
+		
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
 
@@ -273,25 +291,46 @@ public class HistoryBrowserView extends AbstractSCMView {
 		refresh.setToolTipText("Refresh");
 		menuManager.add(refresh);
 
-		Action groupByME = new Action("", SWT.TOGGLE) {
+		groupByMe = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				boolean showRootsCache = contentProvider.showRootNodes();
+				if (isChecked()) {
+					contentProvider = new SCMContentProvider.Compact(viewer, getActiveProjectSpace().getProject());
+				} else {
+					contentProvider = new SCMContentProvider.Detailed(viewer, getActiveProjectSpace().getProject());
+				}
+				contentProvider.setShowRootNodes(showRootsCache);
+				viewer.setContentProvider(contentProvider);
+				viewer.refresh();
+			}
+
+		};
+		groupByMe.setImageDescriptor(Activator.getImageDescriptor("/icons/groupByME.png"));
+		groupByMe.setToolTipText("Group by model element");
+		groupByMe.setChecked(true);
+		menuManager.add(groupByMe);
+
+		showRoots = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
 				if (isChecked()) {
-					contentProvider = new SCMContentProvider.Compact(viewer, getActiveProjectSpace()
-						.getProject());
+					contentProvider.setShowRootNodes(true);
 				} else {
-					contentProvider = new SCMContentProvider.Detailed(viewer, getActiveProjectSpace()
-						.getProject());
+					contentProvider.setShowRootNodes(false);
 				}
 				viewer.setContentProvider(contentProvider);
 				viewer.refresh();
 			}
 
 		};
-		groupByME.setImageDescriptor(Activator.getImageDescriptor("/icons/groupByME.png"));
-		groupByME.setToolTipText("Group by model element");
-		groupByME.setChecked(true);
-		menuManager.add(groupByME);
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		showRoots.setImageDescriptor(ImageDescriptor.createFromImage(adapterFactoryLabelProvider.getImage(VersioningFactory.eINSTANCE
+			.createChangePackage())));
+		showRoots.setToolTipText("Show package nodes");
+		showRoots.setChecked(true);
+		menuManager.add(showRoots);
 
 		Action prev = new Action() {
 			@Override
@@ -336,7 +375,6 @@ public class HistoryBrowserView extends AbstractSCMView {
 	/**
 	 * Refreshes the view using the current end point.
 	 */
-	@Override
 	protected void refresh() {
 		ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
@@ -345,45 +383,11 @@ public class HistoryBrowserView extends AbstractSCMView {
 		progressDialog.getProgressMonitor().worked(10);
 		load(currentEnd);
 		progressDialog.getProgressMonitor().worked(80);
-		viewer.setInput(nodify(null, getHistoryInfos()).toArray());
+		viewer.setInput(getHistoryInfos());
 		progressDialog.getProgressMonitor().done();
 		progressDialog.close();
 	}
 
-	/**
-	 * Creates a TreeNode wrapper list from the given object list.
-	 * 
-	 * @param treeNode the parent tree node
-	 * @param list the list of childern objects.
-	 * @return a new wrapped {@link ArrayList}.
-	 */
-	protected List<TreeNode> nodify(TreeNode treeNode, List<? extends Object> list) {
-		ArrayList<TreeNode> nodes = new ArrayList<TreeNode>();
-		for (Object o : list) {
-			TreeNode meNode = new TreeNode(o);
-			meNode.setParent(treeNode);
-			nodes.add(meNode);
-		}
-		return nodes;
-	}
-
-	/**
-	 * This will be called to set contents of browser tab. {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.ui.views.AbstractSCMView#setBrowserTabControl()
-	 */
-	@Override
-	protected Control setBrowserTabControl() {
-
-		viewer = new TreeViewer(getTabFolder(), SWT.NONE);
-		contentProvider = new SCMContentProvider.Compact(viewer, getActiveProjectSpace().getProject());
-		labelProvider = new SCMLabelProvider(getActiveProjectSpace().getProject());
-		viewer.setContentProvider(contentProvider);
-		viewer.setLabelProvider(labelProvider);
-		viewer.setInput(nodify(null, getHistoryInfos()).toArray());
-
-		return viewer.getTree();
-	}
 
 	/**
 	 * Set the input for the History Browser.
@@ -407,10 +411,19 @@ public class HistoryBrowserView extends AbstractSCMView {
 		String label = "History for ";
 		if (me != null) {
 			label += me.getName();
+			groupByMe.setChecked(false);
+			showRoots.setChecked(false);
+			contentProvider = new SCMContentProvider.Detailed(viewer, getActiveProjectSpace().getProject());
+			contentProvider.setShowRootNodes(false);
 		} else {
 			label += projectSpace.getProjectName();
+			groupByMe.setChecked(true);
+			showRoots.setChecked(true);
+			contentProvider = new SCMContentProvider.Compact(viewer, getActiveProjectSpace().getProject());
+			contentProvider.setShowRootNodes(true);
 		}
-		getBrowserTab().setText(label);
+		setContentDescription(label);
+		viewer.setContentProvider(contentProvider);
 		refresh();
 	}
 

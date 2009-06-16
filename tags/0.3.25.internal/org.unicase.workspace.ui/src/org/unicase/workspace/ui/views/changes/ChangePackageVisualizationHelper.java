@@ -128,7 +128,8 @@ public class ChangePackageVisualizationHelper {
 				if (modelElement != null) {
 					set.add(modelElement);
 				} else {
-					set.add(id);
+					// AS: hiding elements that cannot be displayed 
+					// set.add(id);
 				}
 			}
 		}
@@ -234,7 +235,8 @@ public class ChangePackageVisualizationHelper {
 			if (modelElement != null) {
 				set.add(modelElement);
 			} else {
-				set.add(id);
+				// AS: hiding elements that cannot be displayed 
+				// set.add(id);
 			}
 		}
 		return set;

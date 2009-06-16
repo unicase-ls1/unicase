@@ -45,6 +45,7 @@ import org.unicase.workspace.ui.views.Query.QueryRangeType;
  * 
  * @author Hodaie
  */
+@Deprecated
 public class QueryComposite extends Composite {
 
 	private Button rbtnVer;
