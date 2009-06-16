@@ -160,6 +160,8 @@ public class RationaleSwitch<T> {
 			if (result == null)
 				result = caseModelElement(comment);
 			if (result == null)
+				result = caseNonDomainElement(comment);
+			if (result == null)
 				result = caseIdentifiableElement(comment);
 			if (result == null)
 				result = defaultCase(theEObject);
