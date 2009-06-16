@@ -36,6 +36,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.ui.meeditor.Activator;
@@ -201,8 +202,9 @@ public class MECommentReplyWidget extends Composite {
 					@Override
 					protected void doExecute() {
 						final Comment newComment = RationaleFactory.eINSTANCE.createComment();
+						User user;
 						try {
-							newComment.setSender(OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(modelElement)));
+							user = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(modelElement));
 						} catch (NoCurrentUserException e1) {
 							showError();
 							return;
@@ -210,9 +212,10 @@ public class MECommentReplyWidget extends Composite {
 							showError();
 							return;
 						}
+						modelElement.getComments().add(newComment);
 						newComment.getRecipients().addAll(recipientsList);
 						newComment.setName(inputText.getText());
-						modelElement.getComments().add(newComment);
+						newComment.setSender(user);
 						notifyCommentAdded();
 					}
 				});
