@@ -440,6 +440,15 @@ public class VersioningPackageImpl extends EPackageImpl implements VersioningPac
 	 * 
 	 * @generated
 	 */
+	public EReference getHistoryInfo_ChangePackage() {
+		return (EReference) historyInfoEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getHistoryQuery() {
 		return historyQueryEClass;
 	}
@@ -469,6 +478,15 @@ public class VersioningPackageImpl extends EPackageImpl implements VersioningPac
 	 */
 	public EReference getHistoryQuery_ModelElements() {
 		return (EReference) historyQueryEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getHistoryQuery_IncludeChangePackage() {
+		return (EAttribute) historyQueryEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -636,11 +654,13 @@ public class VersioningPackageImpl extends EPackageImpl implements VersioningPac
 		createEReference(historyInfoEClass, HISTORY_INFO__LOG_MESSAGE);
 		createEReference(historyInfoEClass, HISTORY_INFO__TAG_SPECS);
 		createEReference(historyInfoEClass, HISTORY_INFO__VERSION_PROPERTIES);
+		createEReference(historyInfoEClass, HISTORY_INFO__CHANGE_PACKAGE);
 
 		historyQueryEClass = createEClass(HISTORY_QUERY);
 		createEReference(historyQueryEClass, HISTORY_QUERY__SOURCE);
 		createEReference(historyQueryEClass, HISTORY_QUERY__TARGET);
 		createEReference(historyQueryEClass, HISTORY_QUERY__MODEL_ELEMENTS);
+		createEAttribute(historyQueryEClass, HISTORY_QUERY__INCLUDE_CHANGE_PACKAGE);
 
 		versionEClass = createEClass(VERSION);
 		createEReference(versionEClass, VERSION__PROJECT_STATE);
@@ -768,6 +788,9 @@ public class VersioningPackageImpl extends EPackageImpl implements VersioningPac
 		initEReference(getHistoryInfo_VersionProperties(), this.getVersionProperty(), null, "versionProperties", null,
 			0, -1, HistoryInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getHistoryInfo_ChangePackage(), this.getChangePackage(), null, "changePackage", null, 0, 1,
+			HistoryInfo.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(historyQueryEClass, HistoryQuery.class, "HistoryQuery", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -780,6 +803,9 @@ public class VersioningPackageImpl extends EPackageImpl implements VersioningPac
 		initEReference(getHistoryQuery_ModelElements(), theModelPackage.getModelElementId(), null, "modelElements",
 			null, 0, -1, HistoryQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getHistoryQuery_IncludeChangePackage(), ecorePackage.getEBoolean(), "includeChangePackage",
+			null, 0, 1, HistoryQuery.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
+			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(versionEClass, Version.class, "Version", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getVersion_ProjectState(), theModelPackage.getProject(), null, "projectState", null, 0, 1,

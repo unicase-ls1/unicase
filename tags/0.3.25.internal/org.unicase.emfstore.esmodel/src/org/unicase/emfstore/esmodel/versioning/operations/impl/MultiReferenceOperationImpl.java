@@ -392,8 +392,9 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation#getOtherInvolvedModelElements()
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getOtherInvolvedModelElements()
 	 */
+	@Override
 	public Set<ModelElementId> getOtherInvolvedModelElements() {
 		Set<ModelElementId> set = new HashSet<ModelElementId>();
 		set.addAll(getReferencedModelElements());

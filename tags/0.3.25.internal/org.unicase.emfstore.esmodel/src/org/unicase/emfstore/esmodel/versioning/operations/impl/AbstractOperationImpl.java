@@ -6,6 +6,8 @@
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -440,6 +442,26 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 		OperationId operationId = OperationsFactory.eINSTANCE.createOperationId();
 		operationId.setId(this.identifier);
 		return operationId;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getAllInvolvedModelElements()
+	 */
+	public Set<ModelElementId> getAllInvolvedModelElements() {
+		Set<ModelElementId> result = getOtherInvolvedModelElements();
+		result.add(getModelElementId());
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getOtherInvolvedModelElements()
+	 */
+	public Set<ModelElementId> getOtherInvolvedModelElements() {
+		return new HashSet<ModelElementId>();
 	}
 
 } // AbstractOperationImpl
