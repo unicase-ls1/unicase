@@ -36,6 +36,7 @@ public class AnalyzerController {
 	 * @param analyzers The list of dataAnalyzers to be used.
 	 * @param exporter The exporter to be used.
 	 */
+	@SuppressWarnings("cast")
 	public AnalyzerController(
 			VersionIterator projectIterator, ArrayList<DataAnalyzer> analyzers,
 			Exporter exporter) {
