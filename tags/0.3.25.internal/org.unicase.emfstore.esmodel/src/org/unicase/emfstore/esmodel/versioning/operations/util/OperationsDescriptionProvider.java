@@ -72,16 +72,16 @@ public class OperationsDescriptionProvider {
 			elemName = elem.eClass().getName() + " '" + elem.getName() + "'";
 		}
 
-		return "reordered " + op.getFeatureName() + ", moved " + elemName + " from " + op.getOldIndex() + " to "
+		return "Reordered " + op.getFeatureName() + ", moved " + elemName + " from " + op.getOldIndex() + " to "
 			+ op.getNewIndex();
 	}
 
 	private String getDescriptionCreateDeleteOperation(CreateDeleteOperation op) {
 
 		if (op.isDelete()) {
-			return "deleted " + op.getModelElement().eClass().getName() + " '" + op.getModelElement().getName() + "'";
+			return "Deleted " + op.getModelElement().eClass().getName() + " '" + op.getModelElement().getName() + "'";
 		} else {
-			return "created " + op.getModelElement().eClass().getName() + " '" + op.getModelElement().getName() + "'";
+			return "Created " + op.getModelElement().eClass().getName() + " '" + op.getModelElement().getName() + "'";
 		}
 
 	}
@@ -93,17 +93,17 @@ public class OperationsDescriptionProvider {
 		if (op.isAdd()) {
 			// if adding to or removing from modelElements -> attach/detach operation in main tree
 			if (op.getFeatureName().equals("modelElements")) {
-				return "attached " + elemNames;
+				return "Attached " + elemNames;
 			} else {
-				return "added " + elemNames + " to " + op.getFeatureName();
+				return "Added " + elemNames + " to " + op.getFeatureName();
 			}
 
 		} else {
 
 			if (op.getFeatureName().equals("modelElements")) {
-				return "detached " + elemNames;
+				return "Detached " + elemNames;
 			} else {
-				return "removed " + elemNames + " from " + op.getFeatureName();
+				return "Removed " + elemNames + " from " + op.getFeatureName();
 			}
 		}
 
@@ -119,17 +119,17 @@ public class OperationsDescriptionProvider {
 
 		// changing leafSections means relocating the item
 		if (op.getFeatureName().equals("leafSection")) {
-			return "relocated from '" + oldName + "' to '" + newName + "'";
+			return "Relocated from '" + oldName + "' to '" + newName + "'";
 		}
 		// generic changing text
 		else {
-			return "changed " + op.getFeatureName() + " from '" + oldName + "' to '" + newName + "'";
+			return "Changed " + op.getFeatureName() + " from '" + oldName + "' to '" + newName + "'";
 		}
 
 	}
 
 	private String getDescriptionAttributeOperation(AttributeOperation op) {
-		return "changed " + op.getFeatureName() + " from '" + op.getOldValue() + "' to '" + op.getNewValue() + "'";
+		return "Changed " + op.getFeatureName() + " from '" + op.getOldValue() + "' to '" + op.getNewValue() + "'";
 	}
 
 	private String getDescriptionUnknownOperation(AbstractOperation op) {

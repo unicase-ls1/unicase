@@ -686,7 +686,7 @@
         <extension
          point="org.eclipse.ui.menus">
       <menuContribution
-            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?before=org.unicase.ui.navigator.ShowMEInNavigator">
+            locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=org.unicase.ui.meeditor.separator1">
          <command
                commandId="org.unicase.workspace.ui.showHistory"
                icon="icons/historyview.png"

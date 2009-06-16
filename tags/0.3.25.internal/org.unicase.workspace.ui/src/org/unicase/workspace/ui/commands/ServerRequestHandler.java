@@ -82,6 +82,7 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 		this.usersession = usersession;
 	}
 
+	// BEGIN SUPRESS CATCH EXCEPTION
 	/**
 	 * Wraps the run procedures and handles exceptions.
 	 * 
@@ -134,11 +135,15 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 			}
 		} catch (EmfStoreException e) {
 			DialogHandler.showErrorDialog(e.getMessage());
+		} catch (RuntimeException e){
+			DialogHandler.showExceptionDialog(e);
 		}
 
 		progressDialog.close();
 		return ret;
 	}
+	
+	// END SUPRESS CATCH EXCEPTION
 
 	/**
 	 * Runs the actions that should be carried out by this handler. Replaces the standard execute() method, which it is
