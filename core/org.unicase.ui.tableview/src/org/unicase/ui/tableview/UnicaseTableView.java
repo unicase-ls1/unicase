@@ -106,7 +106,7 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 		Action filterToMETypeAction = new Action() {
 			@Override
 			public void run() {
-				EClass meType = UnicaseUiUtil.showMETypeSelectionDialog(getSite().getShell(), true);
+				EClass meType = UnicaseUiUtil.showMETypeSelectionDialog(getSite().getShell(), true, false);
 				if (meType != null) {
 					viewer.setInput(activeProject, meType);
 				}

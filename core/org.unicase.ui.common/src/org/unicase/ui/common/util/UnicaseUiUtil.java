@@ -25,6 +25,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
 import org.unicase.model.classes.Association;
 import org.unicase.model.util.ModelUtil;
@@ -90,9 +91,10 @@ public final class UnicaseUiUtil {
 	 * Shows a list of model element types.
 	 * @param shell shell
 	 * @param showAbstractTypes if also abstract types are shown
+	 * @param showNonDomain If non domain elements are shown
 	 * @return selected model element type
 	 */
-	public static EClass showMETypeSelectionDialog(Shell shell, boolean showAbstractTypes){
+	public static EClass showMETypeSelectionDialog(Shell shell, boolean showAbstractTypes, boolean showNonDomain){
 		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell.getShell(),
 			new MEClassLabelProvider());
 		Set<EClass> eClazz;
@@ -100,6 +102,17 @@ public final class UnicaseUiUtil {
 			eClazz = ModelUtil.getAllMETypes(ModelPackage.eINSTANCE);
 		}else{
 			eClazz = ModelUtil.getNonAbstractMETypes(ModelPackage.eINSTANCE);
+		}
+		if(!showNonDomain){
+			Set<EClass> filteredEClass = new HashSet<EClass>();
+			//Filter out non domain
+			for(EClass eClass:eClazz){
+				if(!(NonDomainElement.class.isAssignableFrom(eClass.getInstanceClass()))){
+					filteredEClass.add(eClass);
+				}
+			}
+						
+			eClazz = filteredEClass;
 		}
 		dlg.setElements(eClazz.toArray());
 		dlg.setTitle("Select model element type");

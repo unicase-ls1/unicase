@@ -126,7 +126,9 @@ public class MECommentWidget extends Composite {
 		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(userAvatar);
 
 		Label userComment = new Label(commentEntry, SWT.WRAP);
-		userComment.setText(comment.getName());
+		if (comment.getDescription() != null) {
+			userComment.setText(comment.getDescription());
+		}
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(userComment);
 
 		ImageHyperlink replyButton = new ImageHyperlink(toolbar, SWT.TOP);
