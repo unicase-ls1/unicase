@@ -22,6 +22,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.ModelElement;
+import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
@@ -58,7 +59,14 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 			project = projectSpace.getProject();
 			List<ModelElement> modelElements = new ArrayList<ModelElement>();
 			modelElements.addAll(project.getAllModelElements());
-			showShortcutDialog(shell, modelElements, "Open Model Element",
+			//Remove Non Domain Elements
+			List<ModelElement> filteredModelElements = new ArrayList<ModelElement>();
+			for(ModelElement me :modelElements){
+				if(!(me instanceof NonDomainElement)){
+					filteredModelElements.add(me);
+				}
+			}
+			showShortcutDialog(shell, filteredModelElements, "Open Model Element",
 				"   Enter model element name prefix or pattern (e.g. *Trun?)");
 		}
 
