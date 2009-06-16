@@ -96,6 +96,9 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		sessionsList.addAll(workspaceSessions);
 		ArrayList<Usersession> sessionToRemove = new ArrayList<Usersession>();
 		for (Usersession tempSession : sessionsList) {
+			if(tempSession.getServerInfo()==null){
+				continue;
+			}
 			if (!tempSession.getServerInfo().equals(server)) {
 				sessionToRemove.add(tempSession);
 			}
