@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Properties;
@@ -250,8 +251,32 @@ public class EmfStoreController implements IApplication, Runnable {
 
 	private void convertAllVersions(ModelVersion modelVersion, File projectDirectory, File[] listFiles)
 		throws FatalEmfStoreException {
-		Arrays.sort(listFiles);
 		List<URI> changePackageURIs = new ArrayList<URI>();
+
+		Arrays.sort(listFiles, new Comparator<File>() {
+
+			public int compare(File o1, File o2) {
+				return compare(o1.getName(), o2.getName());
+			}
+
+			private int compare(String name1, String name2) {
+				return getNumber(name1).compareTo(getNumber(name2));
+			}
+
+			private Integer getNumber(String filename) {
+				String name = filename.substring(0, filename.lastIndexOf("."));
+
+				int i = name.length() - 1;
+				while ('0' <= name.charAt(i) && name.charAt(i) <= '9') {
+					i--;
+				}
+				i++;
+
+				String number = name.substring(i);
+				return number.equals("") ? 0 : Integer.parseInt(number);
+			}
+		});
+
 		for (File changePackageFile : listFiles) {
 			String changePackageName = changePackageFile.getName();
 			if (changePackageName.startsWith(ServerConfiguration.FILE_PREFIX_CHANGEPACKAGE)) {
@@ -303,10 +328,9 @@ public class EmfStoreController implements IApplication, Runnable {
 		}
 		List<URI> modelURIs = new ArrayList<URI>();
 		modelURIs.add(projectURI);
-		// MK: activate change migration here
-		// for (URI changeURI : changesURIs) {
-		// modelURIs.add(changeURI);
-		// }
+		for (URI changeURI : changesURIs) {
+			modelURIs.add(changeURI);
+		}
 		migrator.migrate(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new ConsoleProgressMonitor());
 	}
 
