@@ -39,10 +39,16 @@
             <visibleWhen
                   checkEnabled="false">
                <iterate
-                     ifEmpty="false">
-                  <reference
-                        definitionId="org.unicase.ui.common.commands.workPackage">
-                  </reference>
+                     ifEmpty="false"
+                     operator="or">
+                  <or>
+                     <reference
+                           definitionId="org.unicase.ui.common.commands.workPackage">
+                     </reference>
+                     <instanceof
+                           value="org.unicase.workspace.ProjectSpace">
+                     </instanceof>
+                  </or>
                </iterate>
             </visibleWhen>
          </command>
