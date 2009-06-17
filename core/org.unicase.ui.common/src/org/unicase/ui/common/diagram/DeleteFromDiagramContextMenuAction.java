@@ -14,7 +14,9 @@ import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
 
 /**
- * @author denglerm This class is a wrapper class to make the DeleteFromDiagram action available in the context menu.
+ * @author denglerm This class is a wrapper class to make the DeleteFromDiagram action available in a
+ * diagram's context menu.
+ * of a diagram.
  */
 public class DeleteFromDiagramContextMenuAction implements IObjectActionDelegate {
 
@@ -22,6 +24,9 @@ public class DeleteFromDiagramContextMenuAction implements IObjectActionDelegate
 	 * The selected diagram element to delete.
 	 */
 	private EditPart selectedElement;
+	/**
+	 * The embedded action.
+	 */
 	private Action embeddedAction;
 
 	/**
