@@ -167,7 +167,7 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 					addElementCompound.add(strippedCommand);
 
 					Command createDiagramElementAddCommand = CommandFactory.createDiagramElementAddCommand(classToAdd,
-						getHost());
+						getHost(), false);
 					addElementCompound.add(createDiagramElementAddCommand);
 
 					Command wrappedCommand = CommandUtility.wrapInToggleCanonicalModeCommands(addElementCompound,
@@ -177,7 +177,7 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 
 				for (Association association : associationsToAdd) {
 					Command createDiagramElementAddCommand = CommandFactory.createDiagramElementAddCommand(association,
-						getHost());
+						getHost(), false);
 					addCompound.add(createDiagramElementAddCommand);
 				}
 
