@@ -52,6 +52,7 @@ public class UnicasePerspective implements IPerspectiveFactory {
 		bottom.addView("org.unicase.ui.treeview.views.StatusView");
 		bottom.addView("org.unicase.ui.taskview");
 		bottom.addView("org.unicase.ui.repository.views.HistoryView");
+//		bottom.addView("org.eclipse.pde.runtime.LogView");
 
 		bottom.addPlaceholder(IConsoleConstants.ID_CONSOLE_VIEW);
 
