@@ -211,7 +211,7 @@
         href="../model.gmfgraph#MitigateLink"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="../../model.ecore#//hazard/Hazard/mitigations"/>
+        href="../../model.ecore#//hazard/Mitigation/hazards"/>
   </links>
   <links>
     <labelMappings
@@ -226,7 +226,7 @@
         href="../model.gmfgraph#MitigateLink"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="../../model.ecore#//hazard/HazardCause/mitigations"/>
+        href="../../model.ecore#//hazard/Mitigation/causes"/>
   </links>
   <links>
     <labelMappings
@@ -241,17 +241,17 @@
         href="../model.gmfgraph#Refine"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="../../model.ecore#//requirement/FunctionalRequirement/refiningRequirements"/>
+        href="../../model.ecore#//requirement/FunctionalRequirement/refinedRequirement"/>
   </links>
   <links>
     <labelMappings
         readOnly="true">
       <diagramLabel
-          href="../model.gmfgraph#MitigateLabel"/>
+          href="../model.gmfgraph#ProvideLabel"/>
     </labelMappings>
     <tool
         xsi:type="gmftool:CreationTool"
-        href="urmlDiagram.gmftool#//@palette/@tools.0/@tools.3"/>
+        href="urmlDiagram.gmftool#//@palette/@tools.1/@tools.2"/>
     <diagramLink
         href="../model.gmfgraph#MitigateLink"/>
     <linkMetaFeature
@@ -286,7 +286,7 @@
         href="../model.gmfgraph#CauseLink"/>
     <linkMetaFeature
         xsi:type="ecore:EReference"
-        href="../../model.ecore#//hazard/Hazard/causes"/>
+        href="../../model.ecore#//hazard/HazardCause/hazards"/>
   </links>
   <diagram>
     <diagramCanvas

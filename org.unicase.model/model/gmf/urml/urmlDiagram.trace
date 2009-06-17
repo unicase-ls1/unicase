@@ -66,27 +66,6 @@
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4005"
-      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/hazard' and _eClass_.name = 'Hazard') and _feature_.name = 'mitigations')">
-    <linkLabelTraces
-        visualID="6005"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
-      visualID="4006"
-      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/hazard' and _eClass_.name = 'HazardCause') and _feature_.name = 'mitigations')">
-    <linkLabelTraces
-        visualID="6006"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
-      visualID="4007"
-      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/requirement' and _eClass_.name = 'FunctionalRequirement') and _feature_.name = 'refiningRequirements')">
-    <linkLabelTraces
-        visualID="6007"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
       visualID="4008"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/requirement' and _eClass_.name = 'FunctionalRequirement') and _feature_.name = 'mitigations')">
     <linkLabelTraces
@@ -101,17 +80,38 @@
         queryText="true"/>
   </linkTraces>
   <linkTraces
-      visualID="4011"
-      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/hazard' and _eClass_.name = 'Hazard') and _feature_.name = 'causes')">
-    <linkLabelTraces
-        visualID="6010"
-        queryText="true"/>
-  </linkTraces>
-  <linkTraces
       visualID="4012"
       queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/requirement' and _eClass_.name = 'Actor') and _feature_.name = 'initiatedUseCases')">
     <linkLabelTraces
         visualID="6011"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4013"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/hazard' and _eClass_.name = 'Mitigation') and _feature_.name = 'hazards')">
+    <linkLabelTraces
+        visualID="6012"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4014"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/hazard' and _eClass_.name = 'Mitigation') and _feature_.name = 'causes')">
+    <linkLabelTraces
+        visualID="6013"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4015"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/requirement' and _eClass_.name = 'FunctionalRequirement') and _feature_.name = 'refinedRequirement')">
+    <linkLabelTraces
+        visualID="6014"
+        queryText="true"/>
+  </linkTraces>
+  <linkTraces
+      visualID="4016"
+      queryText="modelFacet.oclIsKindOf(gmfgen::FeatureLinkModelFacet) and (let _feature_:ecore::EStructuralFeature = modelFacet.oclAsType(gmfgen::FeatureLinkModelFacet).metaFeature.ecoreFeature in (let _eClass_:ecore::EClass = _feature_.eContainingClass in _eClass_.ePackage.nsURI = 'http://unicase.org/model/hazard' and _eClass_.name = 'HazardCause') and _feature_.name = 'hazards')">
+    <linkLabelTraces
+        visualID="6015"
         queryText="true"/>
   </linkTraces>
 </trace:TraceModel>
