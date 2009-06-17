@@ -67,8 +67,8 @@ public class DeleteFromDiagramContextMenuAction implements IObjectActionDelegate
 	}
 
 	/**
-	 * @param action the action proxy that handles presentation portion of the action; must not be <code>null</code>.
-	 * @param targetPart the new part target; must not be <code>null</code>.
+	 * . {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.action.IAction.IObjectActionDelegate#setActivePar(IAction action, IWorkbenchPart
 	 *      targetPart)
 	 */

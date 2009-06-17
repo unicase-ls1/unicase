@@ -11,9 +11,10 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * . This is the Label class of eclipse draw2d with the generic representation of the label (ILabel)
+ * @author denglerm
+ * This class extends the Eclipse WrappingLabel to position text in the center.
  */
-public class Label extends WrappingLabel implements ILabel {
+public class Label extends WrappingLabel{
 
 	/**
 	 * . The default contructor

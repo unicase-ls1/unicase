@@ -294,7 +294,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	}
 	
 	/**
-	 *Turned to always true as a fix. {@inheritDoc}
+	 *	We implement our own save method, so return always false. {@inheritDoc}
 	 */
 	@Override
 	public boolean isDirty() {

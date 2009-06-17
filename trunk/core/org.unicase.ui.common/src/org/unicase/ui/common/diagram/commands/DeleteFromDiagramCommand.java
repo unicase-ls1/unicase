@@ -32,6 +32,9 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 	 * The element to be destroyed.
 	 */
 	private final EObject elementToDestroy;
+	/**
+	 * The element's EditPart.
+	 */
 	private final EditPart editPart;
 
 	/**
@@ -67,7 +70,7 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 	}
 
 	/**
-	 * Tears down references to the object that we are destroying, from all other objects in the resource set.
+	 * Remove references (e.g. associations in class diagram) from the element to other diagram elements.
 	 * 
 	 * @param destructee the object being destroyed
 	 */
