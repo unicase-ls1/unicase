@@ -2,9 +2,11 @@ package org.unicase.ui.ganttview.views;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -51,6 +53,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	private GanttChart ganttChart;
 	private Composite parent;
 	private Tree tree;
+	private Map<String, GanttEvent> workPackagesToGanttEvents;
 
 	/**
 	 * The constructor.
@@ -68,6 +71,8 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		this.parent.setLayout(new FillLayout());
 		SashForm sashForm = new SashForm(this.parent, SWT.HORIZONTAL);
 		GanttControlParent ganttCpLeft = new GanttControlParent(sashForm, SWT.NONE);
+
+		workPackagesToGanttEvents = new HashMap<String, GanttEvent>();
 
 		ganttChart = new GanttChart(sashForm, SWT.NONE);
 		ganttChart.addGanttEventListener(this);
@@ -116,8 +121,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				if (tree.getSelectionCount() == 0)
+				if (tree.getSelectionCount() == 0) {
 					return;
+				}
 
 				// set the selection
 				TreeItem sel = tree.getSelection()[0];
@@ -153,8 +159,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		if (projectSpace != null) {
 			Project inputProject = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
 				.getProject();
-			if (inputProject != null)
+			if (inputProject != null) {
 				this.setInput(inputProject);
+			}
 		}
 
 	}
@@ -163,6 +170,8 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		GanttViewHelper.clearGantt(ganttChart, tree);
 		recreateView(workPackage);
+
+		workPackagesToGanttEvents.clear();
 	}
 
 	public void setInput(Project project) {
@@ -178,11 +187,13 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		for (WorkPackage workPackage : workPackages) {
 			recreateView(workPackage);
 		}
+
+		workPackagesToGanttEvents.clear();
 	}
 
 	private void recreateView(WorkPackage workPackage) {
 
-		recurisveModelElementToGanttItem(workPackage);
+		recurisveWorkPackageToGanttEvent(workPackage);
 	}
 
 	private int getEstimate(ModelElement element, WorkPackage currentOpenME, Set<WorkItem> relativeWorkItems) {
@@ -206,8 +217,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		return closedEstimate;
 	}
 
-	private GanttEvent recurisveModelElementToGanttItem(WorkPackage wp) {
-
+	private GanttEvent workPackageToGanttEvent(WorkPackage wp) {
 		Calendar startDate = Calendar.getInstance();
 		Calendar endDate = (Calendar) startDate.clone();
 
@@ -218,14 +228,14 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		Date dend = wp.getDueDate();
 		if (dstart != null) {
 			startDate.setTime(wp.getStartDate());
-		} else if (dstart == null && wp.getContainingWorkpackage() != null) {
+		} else if (wp.getContainingWorkpackage() != null) {
 			startDate.setTime(wp.getContainingWorkpackage().getStartDate());
 		} else {
 			// TODO
 		}
 		if (dend != null) {
 			endDate.setTime(wp.getDueDate());
-		} else if (dstart == null && wp.getContainingWorkpackage() != null) {
+		} else if (wp.getContainingWorkpackage() != null) {
 			endDate.setTime(wp.getContainingWorkpackage().getDueDate());
 		} else {
 			// TODO
@@ -238,63 +248,77 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		GanttEvent result = new GanttEvent(ganttChart, eventName, startDate, endDate, completionStatus);
 		result.setData(wp);
 
+		// TODO delete entries of this map if WorkPackages are deleted in the model
+		workPackagesToGanttEvents.put(wp.getIdentifier(), result);
+
+		return result;
+	}
+
+	private GanttEvent recurisveWorkPackageToGanttEvent(WorkPackage wp) {
+
+		GanttEvent result = workPackageToGanttEvent(wp);
+
 		Set<ModelElement> subModels = wp.getContainedElements();
-		if (subModels != null) {
+		if (subModels != null && !subModels.isEmpty()) {
 			for (ModelElement modelElement : subModels) {
 				if (!(modelElement instanceof WorkPackage)) {
 					continue;
 				}
-				GanttEvent childItem = recurisveModelElementToGanttItem((WorkPackage) modelElement);
+				GanttEvent childItem = recurisveWorkPackageToGanttEvent((WorkPackage) modelElement);
 				result.addScopeEvent(childItem);
 
 			}
 
-			if (result.getStartDate() == null || result.getEndDate() == null)
-				setParentGanttEventStartAndEndDate(result);
+			// if (result.getStartDate() == null || result.getEndDate() == null)
+			// setParentGanttEventStartAndEndDate(result);
 		}
 
 		EList<WorkItem> successors = wp.getSuccessors();
-		if (successors != null) {
+		if (successors != null && !successors.isEmpty()) {
 			for (WorkItem workItem : successors) {
-				if (!(workItem instanceof WorkPackage)) {
+				if (workItem == null || !(workItem instanceof WorkPackage)) {
 					continue;
 				}
 
-				ganttChart.addConnection(result, recurisveModelElementToGanttItem((WorkPackage) workItem));
+				if (workPackagesToGanttEvents.containsKey(workItem.getIdentifier())) {
+					ganttChart.addConnection(result, workPackagesToGanttEvents.get(workItem.getIdentifier()));
+				} else {
+					ganttChart.addConnection(result, workPackageToGanttEvent((WorkPackage) workItem));
+				}
 			}
 		}
 
 		return result;
 	}
 
-	private void setParentGanttEventStartAndEndDate(GanttEvent parent) {
-
-		List<GanttEvent> childItems = parent.getScopeEvents();
-
-		if (childItems == null || childItems.isEmpty())
-			return;
-
-		long minStartDate = -1;
-		long maxEndDate = -1;
-
-		for (GanttEvent item : childItems) {
-
-			minStartDate = (minStartDate == -1) ? item.getStartDate().getTimeInMillis() : (Math.min(minStartDate, item
-				.getStartDate().getTimeInMillis()));
-			maxEndDate = (maxEndDate == -1) ? item.getEndDate().getTimeInMillis() : (Math.max(maxEndDate, item
-				.getEndDate().getTimeInMillis()));
-		}
-
-		Calendar parentStartDate = Calendar.getInstance();
-		parentStartDate.setTimeInMillis(minStartDate);
-
-		Calendar parentEndDate = Calendar.getInstance();
-		parentEndDate.setTimeInMillis(maxEndDate);
-
-		parent.setStartDate(parentStartDate);
-		parent.setEndDate(parentEndDate);
-
-	}
+	// private void setParentGanttEventStartAndEndDate(GanttEvent parent) {
+	//
+	// List<GanttEvent> childItems = parent.getScopeEvents();
+	//
+	// if (childItems == null || childItems.isEmpty())
+	// return;
+	//
+	// long minStartDate = -1;
+	// long maxEndDate = -1;
+	//
+	// for (GanttEvent item : childItems) {
+	//
+	// minStartDate = (minStartDate == -1) ? item.getStartDate().getTimeInMillis() : (Math.min(minStartDate, item
+	// .getStartDate().getTimeInMillis()));
+	// maxEndDate = (maxEndDate == -1) ? item.getEndDate().getTimeInMillis() : (Math.max(maxEndDate, item
+	// .getEndDate().getTimeInMillis()));
+	// }
+	//
+	// Calendar parentStartDate = Calendar.getInstance();
+	// parentStartDate.setTimeInMillis(minStartDate);
+	//
+	// Calendar parentEndDate = Calendar.getInstance();
+	// parentEndDate.setTimeInMillis(maxEndDate);
+	//
+	// parent.setStartDate(parentStartDate);
+	// parent.setEndDate(parentEndDate);
+	//
+	// }
 
 	/**
 	 * Passing the focus request to the viewer's control.
@@ -333,8 +357,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		Object eventObject = arg0.get(0);
 
-		if (!(eventObject instanceof GanttEvent))
+		if (!(eventObject instanceof GanttEvent)) {
 			return;
+		}
 
 		GanttEvent ganttEvent = (GanttEvent) eventObject;
 		WorkPackage wp = (WorkPackage) ganttEvent.getData();
@@ -349,8 +374,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	public void eventsResizeFinished(List arg0, MouseEvent arg1) {
 		Object eventObject = arg0.get(0);
 
-		if (!(eventObject instanceof GanttEvent))
+		if (!(eventObject instanceof GanttEvent)) {
 			return;
+		}
 
 		GanttEvent ganttEvent = (GanttEvent) eventObject;
 
