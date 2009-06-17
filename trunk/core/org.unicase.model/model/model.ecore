@@ -1069,7 +1069,6 @@
   </eSubpackages>
   <eSubpackages name="bug" nsURI="http://unicase.org/model/bug" nsPrefix="org.unicase.model.bug">
     <eClassifiers xsi:type="ecore:EClass" name="BugReport" eSuperTypes="#//task/WorkItem #//task/Checkable">
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#//bug/BugStatus"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" eType="#//bug/Severity">
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="9.5"/>
@@ -1088,13 +1087,7 @@
           <details key="position" value="left"/>
         </eAnnotations>
       </eStructuralFeatures>
-    </eClassifiers>
-    <eClassifiers xsi:type="ecore:EEnum" name="BugStatus">
-      <eLiterals name="NEW" literal="NEW"/>
-      <eLiterals name="CONFIRMED" value="1" literal="CONFIRMED"/>
-      <eLiterals name="ASSIGNED" value="2" literal="ASSIGNED"/>
-      <eLiterals name="RESOLVED" value="3" literal="RESOLVED"/>
-      <eLiterals name="CLOSED" value="4" literal="CLOSED"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="Severity">
       <eLiterals name="FEATURE" literal="FEATURE"/>
