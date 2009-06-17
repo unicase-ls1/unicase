@@ -20,7 +20,7 @@ import org.unicase.ui.common.util.UnicaseUiUtil;
 
 /**
  * @author denglerm This class represents a command to add model elements to the diagram, which are not contained in the
- *         newElements list of the diagram.
+ *         elements list of the diagram.
  */
 public class DiagramElementAddCommand extends CreateElementCommand {
 
@@ -86,16 +86,5 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 		}
 
 		return this.newElement;
-	}
-
-	/**
-	 * . {@inheritDoc}
-	 */
-	@Override
-	public boolean canExecute() {
-		// Super class checks if Diagram has a containment feature.
-		// We don't save the new element in the containment feature.
-		return true;
-	}
-
+	}	
 }

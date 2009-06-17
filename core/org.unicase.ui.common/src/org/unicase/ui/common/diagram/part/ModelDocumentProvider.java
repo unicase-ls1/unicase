@@ -34,6 +34,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
+ * @author denglerm
  * This class serves as a superclass for the generated ModelDocumentProvider in each diagram plugin.
  */
 @SuppressWarnings("restriction")

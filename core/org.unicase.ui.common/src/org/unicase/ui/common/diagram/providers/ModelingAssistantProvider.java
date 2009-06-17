@@ -18,7 +18,8 @@ import org.unicase.model.diagram.MEDiagram;
 
 
 /**
- * @servers as a superclass for the specific class of each diagram
+ * @author denglerm
+ * serves as a superclass for the specific class of each diagram
  */
 public abstract class ModelingAssistantProvider extends org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssistantProvider {
 	

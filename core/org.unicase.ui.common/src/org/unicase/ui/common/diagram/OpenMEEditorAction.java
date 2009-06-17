@@ -21,11 +21,10 @@ import org.unicase.ui.common.util.ActionHelper;
  */
 public class OpenMEEditorAction implements IObjectActionDelegate {
 
-	/**
-	 * The id of the action, referred in the popupMenus extension point of the diagram's common.xml.
-	 */
-	public static final String ID = "OpenMEEComponentID";
 
+	/**
+	 * The selected diagram element to open with MEEditor.
+	 */
 	private EditPart selectedElement;
 
 	/**
