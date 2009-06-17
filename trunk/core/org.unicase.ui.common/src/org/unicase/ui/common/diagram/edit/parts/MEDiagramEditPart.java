@@ -13,7 +13,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CanonicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DiagramDragDropEditPolicy;
@@ -22,15 +21,14 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.ui.common.diagram.commands.CommandFactory;
 
 /**
- * @author denglerm This class is a superclass for the generated MEDiagramEditPart in each diagram plugin.
- * It adds DND functionality
+ * @author denglerm This class is a superclass for the generated MEDiagramEditPart in each diagram plugin. It adds DND
+ *         functionality
  */
 public class MEDiagramEditPart extends DiagramEditPart {
 	/**
@@ -57,12 +55,9 @@ public class MEDiagramEditPart extends DiagramEditPart {
 		private Command createDropCommand(DropObjectsRequest dropRequest, List<ViewDescriptor> viewDescriptors) {
 			Command command = createViewsAndArrangeCommand(dropRequest, viewDescriptors);
 			if (command != null) {
-				CreateElementRequest req = new CreateElementRequest(((View) getModel()).getElement(),
-					ElementTypeRegistry.getInstance().getElementType(dropRequest.getObjects().iterator().next()));
-				req.setNewElement((EObject) dropRequest.getObjects().iterator().next());
 
-				return command.chain(new ICommandProxy(
-					new org.unicase.ui.common.diagram.commands.DiagramElementAddCommand(req)));
+				return command.chain(CommandFactory.createDiagramElementAddCommand((EObject) dropRequest.getObjects()
+					.iterator().next(), MEDiagramEditPart.this, true));
 
 			}
 			return null;
@@ -79,8 +74,7 @@ public class MEDiagramEditPart extends DiagramEditPart {
 	}
 
 	/**
-	 * . {@inheritDoc}
-	 * 	This method installs the DND policy and a modified ContainerNodeEditPolicy.
+	 * . {@inheritDoc} This method installs the DND policy and a modified ContainerNodeEditPolicy.
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
@@ -93,6 +87,7 @@ public class MEDiagramEditPart extends DiagramEditPart {
 
 	/**
 	 * This method updates the view if the elements list has changed.
+	 * 
 	 * @param event the event
 	 */
 	@Override
