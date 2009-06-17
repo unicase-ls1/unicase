@@ -51,7 +51,7 @@ public class MitigateLabel2EditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6006;
+	public static final int VISUAL_ID = 6013;
 
 	/**
 	 * @generated
@@ -297,7 +297,7 @@ public class MitigateLabel2EditPart extends LabelEditPart implements
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
 			IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
-					org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006,
+					org.unicase.ui.urmlDiagram.providers.ModelElementTypes.MitigationCauses_4014,
 					getParserElement(), parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 		}

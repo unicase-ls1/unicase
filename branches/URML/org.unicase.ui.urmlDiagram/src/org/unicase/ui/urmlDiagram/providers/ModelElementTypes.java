@@ -93,16 +93,17 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType HazardMitigations_4005 = getElementType("org.unicase.ui.urmlDiagram.HazardMitigations_4005"); //$NON-NLS-1$
-	/**
-	 * @generated
-	 */
-	public static final IElementType HazardCauseMitigations_4006 = getElementType("org.unicase.ui.urmlDiagram.HazardCauseMitigations_4006"); //$NON-NLS-1$
+	public static final IElementType MitigationHazards_4013 = getElementType("org.unicase.ui.urmlDiagram.MitigationHazards_4013"); //$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	public static final IElementType FunctionalRequirementRefiningRequirements_4007 = getElementType("org.unicase.ui.urmlDiagram.FunctionalRequirementRefiningRequirements_4007"); //$NON-NLS-1$
+	public static final IElementType MitigationCauses_4014 = getElementType("org.unicase.ui.urmlDiagram.MitigationCauses_4014"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType FunctionalRequirementRefinedRequirement_4015 = getElementType("org.unicase.ui.urmlDiagram.FunctionalRequirementRefinedRequirement_4015"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -117,7 +118,7 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	public static final IElementType HazardCauses_4011 = getElementType("org.unicase.ui.urmlDiagram.HazardCauses_4011"); //$NON-NLS-1$
+	public static final IElementType HazardCauseHazards_4016 = getElementType("org.unicase.ui.urmlDiagram.HazardCauseHazards_4016"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -261,15 +262,15 @@ public class ModelElementTypes extends ElementInitializers {
 			elements.put(UseCaseExtendedUseCases_4004,
 					RequirementPackage.eINSTANCE.getUseCase_ExtendedUseCases());
 
-			elements.put(HazardMitigations_4005, HazardPackage.eINSTANCE
-					.getHazard_Mitigations());
+			elements.put(MitigationHazards_4013, HazardPackage.eINSTANCE
+					.getMitigation_Hazards());
 
-			elements.put(HazardCauseMitigations_4006, HazardPackage.eINSTANCE
-					.getHazardCause_Mitigations());
+			elements.put(MitigationCauses_4014, HazardPackage.eINSTANCE
+					.getMitigation_Causes());
 
-			elements.put(FunctionalRequirementRefiningRequirements_4007,
+			elements.put(FunctionalRequirementRefinedRequirement_4015,
 					RequirementPackage.eINSTANCE
-							.getFunctionalRequirement_RefiningRequirements());
+							.getFunctionalRequirement_RefinedRequirement());
 
 			elements.put(FunctionalRequirementMitigations_4008,
 					RequirementPackage.eINSTANCE
@@ -278,8 +279,8 @@ public class ModelElementTypes extends ElementInitializers {
 			elements.put(ActorHazards_4010, RequirementPackage.eINSTANCE
 					.getActor_Hazards());
 
-			elements.put(HazardCauses_4011, HazardPackage.eINSTANCE
-					.getHazard_Causes());
+			elements.put(HazardCauseHazards_4016, HazardPackage.eINSTANCE
+					.getHazardCause_Hazards());
 		}
 		return (ENamedElement) elements.get(type);
 	}
@@ -308,13 +309,13 @@ public class ModelElementTypes extends ElementInitializers {
 			KNOWN_ELEMENT_TYPES.add(ActorInitiatedUseCases_4012);
 			KNOWN_ELEMENT_TYPES.add(UseCaseIncludedUseCases_4003);
 			KNOWN_ELEMENT_TYPES.add(UseCaseExtendedUseCases_4004);
-			KNOWN_ELEMENT_TYPES.add(HazardMitigations_4005);
-			KNOWN_ELEMENT_TYPES.add(HazardCauseMitigations_4006);
+			KNOWN_ELEMENT_TYPES.add(MitigationHazards_4013);
+			KNOWN_ELEMENT_TYPES.add(MitigationCauses_4014);
 			KNOWN_ELEMENT_TYPES
-					.add(FunctionalRequirementRefiningRequirements_4007);
+					.add(FunctionalRequirementRefinedRequirement_4015);
 			KNOWN_ELEMENT_TYPES.add(FunctionalRequirementMitigations_4008);
 			KNOWN_ELEMENT_TYPES.add(ActorHazards_4010);
-			KNOWN_ELEMENT_TYPES.add(HazardCauses_4011);
+			KNOWN_ELEMENT_TYPES.add(HazardCauseHazards_4016);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}

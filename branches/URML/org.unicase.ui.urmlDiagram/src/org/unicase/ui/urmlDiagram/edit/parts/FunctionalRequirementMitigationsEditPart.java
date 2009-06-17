@@ -2,6 +2,8 @@ package org.unicase.ui.urmlDiagram.edit.parts;
 
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.PolylineDecoration;
+import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
@@ -64,14 +66,37 @@ public class FunctionalRequirementMitigationsEditPart extends
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new PolylineConnectionEx();
+		return new Arrow();
 	}
 
 	/**
 	 * @generated
 	 */
-	public PolylineConnectionEx getPrimaryShape() {
-		return (PolylineConnectionEx) getFigure();
+	public Arrow getPrimaryShape() {
+		return (Arrow) getFigure();
+	}
+
+	/**
+	 * @generated
+	 */
+	public class Arrow extends PolylineConnectionEx {
+
+		/**
+		 * @generated
+		 */
+		public Arrow() {
+
+			setTargetDecoration(createTargetDecoration());
+		}
+
+		/**
+		 * @generated
+		 */
+		private RotatableDecoration createTargetDecoration() {
+			PolylineDecoration df = new PolylineDecoration();
+			return df;
+		}
+
 	}
 
 }

@@ -8,13 +8,13 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.unicase.model.hazard.Hazard;
 import org.unicase.model.hazard.HazardCause;
-import org.unicase.model.hazard.Mitigation;
 
 /**
  * @generated
  */
-public class HazardCauseMitigationsReorientCommand extends EditElementCommand {
+public class HazardCauseHazardsReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -39,7 +39,7 @@ public class HazardCauseMitigationsReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public HazardCauseMitigationsReorientCommand(
+	public HazardCauseHazardsReorientCommand(
 			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -68,24 +68,22 @@ public class HazardCauseMitigationsReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Mitigation && newEnd instanceof HazardCause)) {
+		if (!(oldEnd instanceof Hazard && newEnd instanceof HazardCause)) {
 			return false;
 		}
 		return org.unicase.ui.urmlDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistHazardCauseMitigations_4006(getNewSource(),
-						getOldTarget());
+				.canExistHazardCauseHazards_4016(getNewSource(), getOldTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Mitigation && newEnd instanceof Mitigation)) {
+		if (!(oldEnd instanceof Hazard && newEnd instanceof Hazard)) {
 			return false;
 		}
 		return org.unicase.ui.urmlDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistHazardCauseMitigations_4006(getOldSource(),
-						getNewTarget());
+				.canExistHazardCauseHazards_4016(getOldSource(), getNewTarget());
 	}
 
 	/**
@@ -110,8 +108,8 @@ public class HazardCauseMitigationsReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getMitigations().remove(getOldTarget());
-		getNewSource().getMitigations().add(getOldTarget());
+		getOldSource().getHazards().remove(getOldTarget());
+		getNewSource().getHazards().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -119,8 +117,8 @@ public class HazardCauseMitigationsReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getMitigations().remove(getOldTarget());
-		getOldSource().getMitigations().add(getNewTarget());
+		getOldSource().getHazards().remove(getOldTarget());
+		getOldSource().getHazards().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -141,14 +139,14 @@ public class HazardCauseMitigationsReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Mitigation getOldTarget() {
-		return (Mitigation) oldEnd;
+	protected Hazard getOldTarget() {
+		return (Hazard) oldEnd;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Mitigation getNewTarget() {
-		return (Mitigation) newEnd;
+	protected Hazard getNewTarget() {
+		return (Hazard) newEnd;
 	}
 }

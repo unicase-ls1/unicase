@@ -112,24 +112,24 @@ public class ModelEditPartFactory implements EditPartFactory {
 				return new org.unicase.ui.urmlDiagram.edit.parts.IncludeLabel2EditPart(
 						view);
 
-			case org.unicase.ui.urmlDiagram.edit.parts.HazardMitigationsEditPart.VISUAL_ID:
-				return new org.unicase.ui.urmlDiagram.edit.parts.HazardMitigationsEditPart(
+			case org.unicase.ui.urmlDiagram.edit.parts.MitigationHazardsEditPart.VISUAL_ID:
+				return new org.unicase.ui.urmlDiagram.edit.parts.MitigationHazardsEditPart(
 						view);
 
 			case org.unicase.ui.urmlDiagram.edit.parts.MitigateLabelEditPart.VISUAL_ID:
 				return new org.unicase.ui.urmlDiagram.edit.parts.MitigateLabelEditPart(
 						view);
 
-			case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID:
-				return new org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart(
+			case org.unicase.ui.urmlDiagram.edit.parts.MitigationCausesEditPart.VISUAL_ID:
+				return new org.unicase.ui.urmlDiagram.edit.parts.MitigationCausesEditPart(
 						view);
 
 			case org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel2EditPart.VISUAL_ID:
 				return new org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel2EditPart(
 						view);
 
-			case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID:
-				return new org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart(
+			case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefinedRequirementEditPart.VISUAL_ID:
+				return new org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefinedRequirementEditPart(
 						view);
 
 			case org.unicase.ui.urmlDiagram.edit.parts.RefineLabelEditPart.VISUAL_ID:
@@ -152,8 +152,8 @@ public class ModelEditPartFactory implements EditPartFactory {
 				return new org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel4EditPart(
 						view);
 
-			case org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID:
-				return new org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart(
+			case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseHazardsEditPart.VISUAL_ID:
+				return new org.unicase.ui.urmlDiagram.edit.parts.HazardCauseHazardsEditPart(
 						view);
 
 			case org.unicase.ui.urmlDiagram.edit.parts.CauseLabelEditPart.VISUAL_ID:

@@ -7,13 +7,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.unicase.model.hazard.HazardCause;
-import org.unicase.model.hazard.Mitigation;
+import org.unicase.model.requirement.FunctionalRequirement;
 
 /**
  * @generated
  */
-public class HazardCauseMitigationsCreateCommand extends EditElementCommand {
+public class FunctionalRequirementRefinedRequirementCreateCommand extends
+		EditElementCommand {
 
 	/**
 	 * @generated
@@ -28,7 +28,7 @@ public class HazardCauseMitigationsCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public HazardCauseMitigationsCreateCommand(
+	public FunctionalRequirementRefinedRequirementCreateCommand(
 			CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -42,10 +42,10 @@ public class HazardCauseMitigationsCreateCommand extends EditElementCommand {
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof HazardCause) {
+		if (source != null && false == source instanceof FunctionalRequirement) {
 			return false;
 		}
-		if (target != null && false == target instanceof Mitigation) {
+		if (target != null && false == target instanceof FunctionalRequirement) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -53,7 +53,8 @@ public class HazardCauseMitigationsCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return org.unicase.ui.urmlDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateHazardCauseMitigations_4006(getSource(), getTarget());
+				.canCreateFunctionalRequirementRefinedRequirement_4015(
+						getSource(), getTarget());
 	}
 
 	/**
@@ -66,7 +67,7 @@ public class HazardCauseMitigationsCreateCommand extends EditElementCommand {
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
-			getSource().getMitigations().add(getTarget());
+			getSource().setRefinedRequirement(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 	}
@@ -74,14 +75,14 @@ public class HazardCauseMitigationsCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected HazardCause getSource() {
-		return (HazardCause) source;
+	protected FunctionalRequirement getSource() {
+		return (FunctionalRequirement) source;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Mitigation getTarget() {
-		return (Mitigation) target;
+	protected FunctionalRequirement getTarget() {
+		return (FunctionalRequirement) target;
 	}
 }

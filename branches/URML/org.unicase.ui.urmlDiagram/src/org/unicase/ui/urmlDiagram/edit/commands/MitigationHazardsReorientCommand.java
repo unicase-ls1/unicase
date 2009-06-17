@@ -9,12 +9,12 @@ import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.unicase.model.hazard.Hazard;
-import org.unicase.model.hazard.HazardCause;
+import org.unicase.model.hazard.Mitigation;
 
 /**
  * @generated
  */
-public class HazardCausesReorientCommand extends EditElementCommand {
+public class MitigationHazardsReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -39,7 +39,7 @@ public class HazardCausesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public HazardCausesReorientCommand(
+	public MitigationHazardsReorientCommand(
 			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -52,7 +52,7 @@ public class HazardCausesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Hazard) {
+		if (false == referenceOwner instanceof Mitigation) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -68,22 +68,22 @@ public class HazardCausesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof HazardCause && newEnd instanceof Hazard)) {
+		if (!(oldEnd instanceof Hazard && newEnd instanceof Mitigation)) {
 			return false;
 		}
 		return org.unicase.ui.urmlDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistHazardCauses_4011(getNewSource(), getOldTarget());
+				.canExistMitigationHazards_4013(getNewSource(), getOldTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof HazardCause && newEnd instanceof HazardCause)) {
+		if (!(oldEnd instanceof Hazard && newEnd instanceof Hazard)) {
 			return false;
 		}
 		return org.unicase.ui.urmlDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistHazardCauses_4011(getOldSource(), getNewTarget());
+				.canExistMitigationHazards_4013(getOldSource(), getNewTarget());
 	}
 
 	/**
@@ -108,8 +108,8 @@ public class HazardCausesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getCauses().remove(getOldTarget());
-		getNewSource().getCauses().add(getOldTarget());
+		getOldSource().getHazards().remove(getOldTarget());
+		getNewSource().getHazards().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -117,36 +117,36 @@ public class HazardCausesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getCauses().remove(getOldTarget());
-		getOldSource().getCauses().add(getNewTarget());
+		getOldSource().getHazards().remove(getOldTarget());
+		getOldSource().getHazards().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Hazard getOldSource() {
-		return (Hazard) referenceOwner;
+	protected Mitigation getOldSource() {
+		return (Mitigation) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Hazard getNewSource() {
+	protected Mitigation getNewSource() {
+		return (Mitigation) newEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Hazard getOldTarget() {
+		return (Hazard) oldEnd;
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Hazard getNewTarget() {
 		return (Hazard) newEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected HazardCause getOldTarget() {
-		return (HazardCause) oldEnd;
-	}
-
-	/**
-	 * @generated
-	 */
-	protected HazardCause getNewTarget() {
-		return (HazardCause) newEnd;
 	}
 }

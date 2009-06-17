@@ -13,7 +13,7 @@ import org.unicase.model.hazard.HazardCause;
 /**
  * @generated
  */
-public class HazardCausesCreateCommand extends EditElementCommand {
+public class HazardCauseHazardsCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -28,7 +28,7 @@ public class HazardCausesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public HazardCausesCreateCommand(CreateRelationshipRequest request,
+	public HazardCauseHazardsCreateCommand(CreateRelationshipRequest request,
 			EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -42,10 +42,10 @@ public class HazardCausesCreateCommand extends EditElementCommand {
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Hazard) {
+		if (source != null && false == source instanceof HazardCause) {
 			return false;
 		}
-		if (target != null && false == target instanceof HazardCause) {
+		if (target != null && false == target instanceof Hazard) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -53,7 +53,7 @@ public class HazardCausesCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return org.unicase.ui.urmlDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateHazardCauses_4011(getSource(), getTarget());
+				.canCreateHazardCauseHazards_4016(getSource(), getTarget());
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class HazardCausesCreateCommand extends EditElementCommand {
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
-			getSource().getCauses().add(getTarget());
+			getSource().getHazards().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 	}
@@ -74,14 +74,14 @@ public class HazardCausesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Hazard getSource() {
-		return (Hazard) source;
+	protected HazardCause getSource() {
+		return (HazardCause) source;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected HazardCause getTarget() {
-		return (HazardCause) target;
+	protected Hazard getTarget() {
+		return (Hazard) target;
 	}
 }
