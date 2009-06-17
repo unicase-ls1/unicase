@@ -44,14 +44,14 @@ public class HazardCauseItemSemanticEditPolicy
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006 == req
-				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCauseMitigationsCreateCommand(
-					req, req.getSource(), req.getTarget()));
-		}
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011 == req
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.MitigationCauses_4014 == req
 				.getElementType()) {
 			return null;
+		}
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseHazards_4016 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCauseHazardsCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -61,14 +61,14 @@ public class HazardCauseItemSemanticEditPolicy
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006 == req
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.MitigationCauses_4014 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.MitigationCausesCreateCommand(
+					req, req.getSource(), req.getTarget()));
+		}
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseHazards_4016 == req
 				.getElementType()) {
 			return null;
-		}
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011 == req
-				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCausesCreateCommand(
-					req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
@@ -82,11 +82,11 @@ public class HazardCauseItemSemanticEditPolicy
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCauseMitigationsReorientCommand(
+		case org.unicase.ui.urmlDiagram.edit.parts.MitigationCausesEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.MitigationCausesReorientCommand(
 					req));
-		case org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCausesReorientCommand(
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseHazardsEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCauseHazardsReorientCommand(
 					req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);

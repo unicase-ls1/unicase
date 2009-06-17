@@ -244,17 +244,17 @@ public class ModelVisualIDRegistry {
 				return true;
 			}
 			break;
-		case org.unicase.ui.urmlDiagram.edit.parts.HazardMitigationsEditPart.VISUAL_ID:
+		case org.unicase.ui.urmlDiagram.edit.parts.MitigationHazardsEditPart.VISUAL_ID:
 			if (org.unicase.ui.urmlDiagram.edit.parts.MitigateLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID:
+		case org.unicase.ui.urmlDiagram.edit.parts.MitigationCausesEditPart.VISUAL_ID:
 			if (org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel2EditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
-		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID:
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefinedRequirementEditPart.VISUAL_ID:
 			if (org.unicase.ui.urmlDiagram.edit.parts.RefineLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
@@ -269,7 +269,7 @@ public class ModelVisualIDRegistry {
 				return true;
 			}
 			break;
-		case org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID:
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseHazardsEditPart.VISUAL_ID:
 			if (org.unicase.ui.urmlDiagram.edit.parts.CauseLabelEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}

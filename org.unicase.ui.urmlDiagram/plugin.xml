@@ -381,29 +381,29 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/hazard">
          <specializationType
-               id="org.unicase.ui.urmlDiagram.HazardMitigations_4005"
-               name="%metatype.name.HazardMitigations_4005"
+               id="org.unicase.ui.urmlDiagram.MitigationHazards_4013"
+               name="%metatype.name.MitigationHazards_4013"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4005"/>
+            <param name="semanticHint" value="4013"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/hazard">
          <specializationType
-               id="org.unicase.ui.urmlDiagram.HazardCauseMitigations_4006"
-               name="%metatype.name.HazardCauseMitigations_4006"
+               id="org.unicase.ui.urmlDiagram.MitigationCauses_4014"
+               name="%metatype.name.MitigationCauses_4014"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4006"/>
+            <param name="semanticHint" value="4014"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
          <specializationType
-               id="org.unicase.ui.urmlDiagram.FunctionalRequirementRefiningRequirements_4007"
-               name="%metatype.name.FunctionalRequirementRefiningRequirements_4007"
+               id="org.unicase.ui.urmlDiagram.FunctionalRequirementRefinedRequirement_4015"
+               name="%metatype.name.FunctionalRequirementRefinedRequirement_4015"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4007"/>
+            <param name="semanticHint" value="4015"/>
          </specializationType>
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/requirement">
@@ -426,11 +426,11 @@
       </metamodel>
       <metamodel nsURI="http://unicase.org/model/hazard">
          <specializationType
-               id="org.unicase.ui.urmlDiagram.HazardCauses_4011"
-               name="%metatype.name.HazardCauses_4011"
+               id="org.unicase.ui.urmlDiagram.HazardCauseHazards_4016"
+               name="%metatype.name.HazardCauseHazards_4016"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
             <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4011"/>
+            <param name="semanticHint" value="4016"/>
          </specializationType>
       </metamodel>
    </extension>
@@ -456,12 +456,12 @@
          <elementType ref="org.unicase.ui.urmlDiagram.ActorInitiatedUseCases_4012"/>
          <elementType ref="org.unicase.ui.urmlDiagram.UseCaseIncludedUseCases_4003"/>
          <elementType ref="org.unicase.ui.urmlDiagram.UseCaseExtendedUseCases_4004"/>
-         <elementType ref="org.unicase.ui.urmlDiagram.HazardMitigations_4005"/>
-         <elementType ref="org.unicase.ui.urmlDiagram.HazardCauseMitigations_4006"/>
-         <elementType ref="org.unicase.ui.urmlDiagram.FunctionalRequirementRefiningRequirements_4007"/>
+         <elementType ref="org.unicase.ui.urmlDiagram.MitigationHazards_4013"/>
+         <elementType ref="org.unicase.ui.urmlDiagram.MitigationCauses_4014"/>
+         <elementType ref="org.unicase.ui.urmlDiagram.FunctionalRequirementRefinedRequirement_4015"/>
          <elementType ref="org.unicase.ui.urmlDiagram.FunctionalRequirementMitigations_4008"/>
          <elementType ref="org.unicase.ui.urmlDiagram.ActorHazards_4010"/>
-         <elementType ref="org.unicase.ui.urmlDiagram.HazardCauses_4011"/>
+         <elementType ref="org.unicase.ui.urmlDiagram.HazardCauseHazards_4016"/>
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>

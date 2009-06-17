@@ -13,7 +13,7 @@ import org.unicase.model.requirement.FunctionalRequirement;
 /**
  * @generated
  */
-public class FunctionalRequirementRefiningRequirementsReorientCommand extends
+public class FunctionalRequirementRefinedRequirementReorientCommand extends
 		EditElementCommand {
 
 	/**
@@ -39,7 +39,7 @@ public class FunctionalRequirementRefiningRequirementsReorientCommand extends
 	/**
 	 * @generated
 	 */
-	public FunctionalRequirementRefiningRequirementsReorientCommand(
+	public FunctionalRequirementRefinedRequirementReorientCommand(
 			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -72,7 +72,7 @@ public class FunctionalRequirementRefiningRequirementsReorientCommand extends
 			return false;
 		}
 		return org.unicase.ui.urmlDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistFunctionalRequirementRefiningRequirements_4007(
+				.canExistFunctionalRequirementRefinedRequirement_4015(
 						getNewSource(), getOldTarget());
 	}
 
@@ -84,7 +84,7 @@ public class FunctionalRequirementRefiningRequirementsReorientCommand extends
 			return false;
 		}
 		return org.unicase.ui.urmlDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistFunctionalRequirementRefiningRequirements_4007(
+				.canExistFunctionalRequirementRefinedRequirement_4015(
 						getOldSource(), getNewTarget());
 	}
 
@@ -110,8 +110,8 @@ public class FunctionalRequirementRefiningRequirementsReorientCommand extends
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getRefiningRequirements().remove(getOldTarget());
-		getNewSource().getRefiningRequirements().add(getOldTarget());
+		getOldSource().setRefinedRequirement(null);
+		getNewSource().setRefinedRequirement(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -119,8 +119,7 @@ public class FunctionalRequirementRefiningRequirementsReorientCommand extends
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getRefiningRequirements().remove(getOldTarget());
-		getOldSource().getRefiningRequirements().add(getNewTarget());
+		getOldSource().setRefinedRequirement(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 

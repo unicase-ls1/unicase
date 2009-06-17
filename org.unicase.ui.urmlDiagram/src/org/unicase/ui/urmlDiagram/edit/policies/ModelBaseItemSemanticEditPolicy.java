@@ -404,44 +404,41 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateHazardMitigations_4005(Hazard source,
-				Mitigation target) {
+		public static boolean canCreateMitigationHazards_4013(
+				Mitigation source, Hazard target) {
 			if (source != null) {
-				if (source.getMitigations().contains(target)) {
+				if (source.getHazards().contains(target)) {
 					return false;
 				}
 			}
-			return canExistHazardMitigations_4005(source, target);
+			return canExistMitigationHazards_4013(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateHazardCauseMitigations_4006(
-				HazardCause source, Mitigation target) {
+		public static boolean canCreateMitigationCauses_4014(Mitigation source,
+				HazardCause target) {
 			if (source != null) {
-				if (source.getMitigations().contains(target)) {
+				if (source.getCauses().contains(target)) {
 					return false;
 				}
 			}
-			return canExistHazardCauseMitigations_4006(source, target);
+			return canExistMitigationCauses_4014(source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateFunctionalRequirementRefiningRequirements_4007(
+		public static boolean canCreateFunctionalRequirementRefinedRequirement_4015(
 				FunctionalRequirement source, FunctionalRequirement target) {
 			if (source != null) {
-				if (source.getRefiningRequirements().contains(target)) {
-					return false;
-				}
-				if (source == target) {
+				if (source.getRefinedRequirement() != null) {
 					return false;
 				}
 			}
-			return canExistFunctionalRequirementRefiningRequirements_4007(
-					source, target);
+			return canExistFunctionalRequirementRefinedRequirement_4015(source,
+					target);
 		}
 
 		/**
@@ -473,14 +470,14 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateHazardCauses_4011(Hazard source,
-				HazardCause target) {
+		public static boolean canCreateHazardCauseHazards_4016(
+				HazardCause source, Hazard target) {
 			if (source != null) {
-				if (source.getCauses().contains(target)) {
+				if (source.getHazards().contains(target)) {
 					return false;
 				}
 			}
-			return canExistHazardCauses_4011(source, target);
+			return canExistHazardCauseHazards_4016(source, target);
 		}
 
 		/**
@@ -522,8 +519,8 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistHazardMitigations_4005(Hazard source,
-				Mitigation target) {
+		public static boolean canExistMitigationHazards_4013(Mitigation source,
+				Hazard target) {
 
 			return true;
 		}
@@ -531,8 +528,8 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistHazardCauseMitigations_4006(
-				HazardCause source, Mitigation target) {
+		public static boolean canExistMitigationCauses_4014(Mitigation source,
+				HazardCause target) {
 
 			return true;
 		}
@@ -540,7 +537,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistFunctionalRequirementRefiningRequirements_4007(
+		public static boolean canExistFunctionalRequirementRefinedRequirement_4015(
 				FunctionalRequirement source, FunctionalRequirement target) {
 
 			return true;
@@ -567,8 +564,8 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistHazardCauses_4011(Hazard source,
-				HazardCause target) {
+		public static boolean canExistHazardCauseHazards_4016(
+				HazardCause source, Hazard target) {
 
 			return true;
 		}

@@ -165,21 +165,21 @@ public class ModelViewProvider extends AbstractViewProvider {
 					}
 					break;
 				case org.unicase.ui.urmlDiagram.edit.parts.MitigateLabelEditPart.VISUAL_ID:
-					if (org.unicase.ui.urmlDiagram.edit.parts.HazardMitigationsEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+					if (org.unicase.ui.urmlDiagram.edit.parts.MitigationHazardsEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case org.unicase.ui.urmlDiagram.edit.parts.MitigateLabel2EditPart.VISUAL_ID:
-					if (org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+					if (org.unicase.ui.urmlDiagram.edit.parts.MitigationCausesEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
 					}
 					break;
 				case org.unicase.ui.urmlDiagram.edit.parts.RefineLabelEditPart.VISUAL_ID:
-					if (org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+					if (org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefinedRequirementEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -200,7 +200,7 @@ public class ModelViewProvider extends AbstractViewProvider {
 					}
 					break;
 				case org.unicase.ui.urmlDiagram.edit.parts.CauseLabelEditPart.VISUAL_ID:
-					if (org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
+					if (org.unicase.ui.urmlDiagram.edit.parts.HazardCauseHazardsEditPart.VISUAL_ID != org.unicase.ui.urmlDiagram.part.ModelVisualIDRegistry
 							.getVisualID(containerView)
 							|| containerView.getElement() != domainElement) {
 						return null; // wrong container
@@ -314,18 +314,18 @@ public class ModelViewProvider extends AbstractViewProvider {
 			return org.unicase.ui.urmlDiagram.view.factories.UseCaseIncludedUseCasesViewFactory.class;
 		case org.unicase.ui.urmlDiagram.edit.parts.UseCaseExtendedUseCasesEditPart.VISUAL_ID:
 			return org.unicase.ui.urmlDiagram.view.factories.UseCaseExtendedUseCasesViewFactory.class;
-		case org.unicase.ui.urmlDiagram.edit.parts.HazardMitigationsEditPart.VISUAL_ID:
-			return org.unicase.ui.urmlDiagram.view.factories.HazardMitigationsViewFactory.class;
-		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID:
-			return org.unicase.ui.urmlDiagram.view.factories.HazardCauseMitigationsViewFactory.class;
-		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID:
-			return org.unicase.ui.urmlDiagram.view.factories.FunctionalRequirementRefiningRequirementsViewFactory.class;
+		case org.unicase.ui.urmlDiagram.edit.parts.MitigationHazardsEditPart.VISUAL_ID:
+			return org.unicase.ui.urmlDiagram.view.factories.MitigationHazardsViewFactory.class;
+		case org.unicase.ui.urmlDiagram.edit.parts.MitigationCausesEditPart.VISUAL_ID:
+			return org.unicase.ui.urmlDiagram.view.factories.MitigationCausesViewFactory.class;
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefinedRequirementEditPart.VISUAL_ID:
+			return org.unicase.ui.urmlDiagram.view.factories.FunctionalRequirementRefinedRequirementViewFactory.class;
 		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementMitigationsEditPart.VISUAL_ID:
 			return org.unicase.ui.urmlDiagram.view.factories.FunctionalRequirementMitigationsViewFactory.class;
 		case org.unicase.ui.urmlDiagram.edit.parts.ActorHazardsEditPart.VISUAL_ID:
 			return org.unicase.ui.urmlDiagram.view.factories.ActorHazardsViewFactory.class;
-		case org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID:
-			return org.unicase.ui.urmlDiagram.view.factories.HazardCausesViewFactory.class;
+		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseHazardsEditPart.VISUAL_ID:
+			return org.unicase.ui.urmlDiagram.view.factories.HazardCauseHazardsViewFactory.class;
 		}
 		return null;
 	}

@@ -4,6 +4,8 @@ import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
@@ -14,18 +16,18 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class FunctionalRequirementMitigationsEditPart extends
-		ConnectionNodeEditPart implements ITreeBranchEditPart {
+public class HazardCauseHazardsEditPart extends ConnectionNodeEditPart
+		implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4008;
+	public static final int VISUAL_ID = 4016;
 
 	/**
 	 * @generated
 	 */
-	public FunctionalRequirementMitigationsEditPart(View view) {
+	public HazardCauseHazardsEditPart(View view) {
 		super(view);
 	}
 
@@ -36,7 +38,7 @@ public class FunctionalRequirementMitigationsEditPart extends
 		super.createDefaultEditPolicies();
 		installEditPolicy(
 				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.urmlDiagram.edit.policies.FunctionalRequirementMitigationsItemSemanticEditPolicy());
+				new org.unicase.ui.urmlDiagram.edit.policies.HazardCauseHazardsItemSemanticEditPolicy());
 	}
 
 	/**
@@ -66,35 +68,52 @@ public class FunctionalRequirementMitigationsEditPart extends
 	 */
 
 	protected Connection createConnectionFigure() {
-		return new Arrow();
+		return new CauseLinkFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public Arrow getPrimaryShape() {
-		return (Arrow) getFigure();
+	public CauseLinkFigure getPrimaryShape() {
+		return (CauseLinkFigure) getFigure();
 	}
+
+	/**
+	 * @generated NOT
+	 */
+	private static final PointList RHOMB = new PointList(new int[] { //
+			//
+					-1, 1, //
+					0, 0, //
+					-1, -1, //
+					-2, 0, //
+					-1, 1, //
+			});
 
 	/**
 	 * @generated
 	 */
-	public class Arrow extends PolylineConnectionEx {
+	public class CauseLinkFigure extends PolylineConnectionEx {
 
 		/**
 		 * @generated
 		 */
-		public Arrow() {
+		public CauseLinkFigure() {
 
 			setTargetDecoration(createTargetDecoration());
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
-		private RotatableDecoration createTargetDecoration() {
-			PolylineDecoration df = new PolylineDecoration();
-			return df;
+		private org.unicase.ui.urmlDiagram.unicase.ComposablePolygonDecoration createTargetDecoration() {
+			org.unicase.ui.urmlDiagram.unicase.ComposablePolygonDecoration mySharedAggrecationDecoration = new org.unicase.ui.urmlDiagram.unicase.ComposablePolygonDecoration();
+			mySharedAggrecationDecoration.setTemplate(RHOMB.getCopy());
+			mySharedAggrecationDecoration.setBoundPoint(new Point(-2, 0));
+			mySharedAggrecationDecoration.setFill(true);
+			mySharedAggrecationDecoration
+					.setBackgroundColor(ColorConstants.white);
+			return mySharedAggrecationDecoration;
 		}
 
 	}

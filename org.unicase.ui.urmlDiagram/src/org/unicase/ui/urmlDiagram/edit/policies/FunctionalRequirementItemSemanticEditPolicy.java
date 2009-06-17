@@ -44,9 +44,9 @@ public class FunctionalRequirementItemSemanticEditPolicy
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007 == req
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefinedRequirement_4015 == req
 				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementRefiningRequirementsCreateCommand(
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementRefinedRequirementCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
 		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008 == req
@@ -62,9 +62,9 @@ public class FunctionalRequirementItemSemanticEditPolicy
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007 == req
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefinedRequirement_4015 == req
 				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementRefiningRequirementsCreateCommand(
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementRefinedRequirementCreateCommand(
 					req, req.getSource(), req.getTarget()));
 		}
 		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008 == req
@@ -83,8 +83,8 @@ public class FunctionalRequirementItemSemanticEditPolicy
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementRefiningRequirementsReorientCommand(
+		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefinedRequirementEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementRefinedRequirementReorientCommand(
 					req));
 		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementMitigationsEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementMitigationsReorientCommand(

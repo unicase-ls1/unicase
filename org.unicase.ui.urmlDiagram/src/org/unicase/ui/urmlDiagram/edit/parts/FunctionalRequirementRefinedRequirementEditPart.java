@@ -1,6 +1,5 @@
 package org.unicase.ui.urmlDiagram.edit.parts;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.PolylineDecoration;
 import org.eclipse.draw2d.RotatableDecoration;
@@ -14,18 +13,18 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class FunctionalRequirementMitigationsEditPart extends
+public class FunctionalRequirementRefinedRequirementEditPart extends
 		ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 4008;
+	public static final int VISUAL_ID = 4015;
 
 	/**
 	 * @generated
 	 */
-	public FunctionalRequirementMitigationsEditPart(View view) {
+	public FunctionalRequirementRefinedRequirementEditPart(View view) {
 		super(view);
 	}
 
@@ -36,7 +35,7 @@ public class FunctionalRequirementMitigationsEditPart extends
 		super.createDefaultEditPolicies();
 		installEditPolicy(
 				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.urmlDiagram.edit.policies.FunctionalRequirementMitigationsItemSemanticEditPolicy());
+				new org.unicase.ui.urmlDiagram.edit.policies.FunctionalRequirementRefinedRequirementItemSemanticEditPolicy());
 	}
 
 	/**

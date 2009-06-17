@@ -13,7 +13,7 @@ import org.unicase.model.hazard.Mitigation;
 /**
  * @generated
  */
-public class HazardMitigationsCreateCommand extends EditElementCommand {
+public class MitigationHazardsCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -28,7 +28,7 @@ public class HazardMitigationsCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public HazardMitigationsCreateCommand(CreateRelationshipRequest request,
+	public MitigationHazardsCreateCommand(CreateRelationshipRequest request,
 			EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -42,10 +42,10 @@ public class HazardMitigationsCreateCommand extends EditElementCommand {
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof Hazard) {
+		if (source != null && false == source instanceof Mitigation) {
 			return false;
 		}
-		if (target != null && false == target instanceof Mitigation) {
+		if (target != null && false == target instanceof Hazard) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -53,7 +53,7 @@ public class HazardMitigationsCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return org.unicase.ui.urmlDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateHazardMitigations_4005(getSource(), getTarget());
+				.canCreateMitigationHazards_4013(getSource(), getTarget());
 	}
 
 	/**
@@ -66,7 +66,7 @@ public class HazardMitigationsCreateCommand extends EditElementCommand {
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
-			getSource().getMitigations().add(getTarget());
+			getSource().getHazards().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 	}
@@ -74,14 +74,14 @@ public class HazardMitigationsCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected Hazard getSource() {
-		return (Hazard) source;
+	protected Mitigation getSource() {
+		return (Mitigation) source;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Mitigation getTarget() {
-		return (Mitigation) target;
+	protected Hazard getTarget() {
+		return (Hazard) target;
 	}
 }

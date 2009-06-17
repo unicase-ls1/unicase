@@ -7,13 +7,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.model.hazard.HazardCause;
+import org.unicase.model.hazard.Mitigation;
 
 /**
  * @generated
  */
-public class FunctionalRequirementRefiningRequirementsCreateCommand extends
-		EditElementCommand {
+public class MitigationCausesCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -28,8 +28,8 @@ public class FunctionalRequirementRefiningRequirementsCreateCommand extends
 	/**
 	 * @generated
 	 */
-	public FunctionalRequirementRefiningRequirementsCreateCommand(
-			CreateRelationshipRequest request, EObject source, EObject target) {
+	public MitigationCausesCreateCommand(CreateRelationshipRequest request,
+			EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
 		this.target = target;
@@ -42,10 +42,10 @@ public class FunctionalRequirementRefiningRequirementsCreateCommand extends
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof FunctionalRequirement) {
+		if (source != null && false == source instanceof Mitigation) {
 			return false;
 		}
-		if (target != null && false == target instanceof FunctionalRequirement) {
+		if (target != null && false == target instanceof HazardCause) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -53,8 +53,7 @@ public class FunctionalRequirementRefiningRequirementsCreateCommand extends
 		}
 		// target may be null here but it's possible to check constraint
 		return org.unicase.ui.urmlDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateFunctionalRequirementRefiningRequirements_4007(
-						getSource(), getTarget());
+				.canCreateMitigationCauses_4014(getSource(), getTarget());
 	}
 
 	/**
@@ -67,7 +66,7 @@ public class FunctionalRequirementRefiningRequirementsCreateCommand extends
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
-			getSource().getRefiningRequirements().add(getTarget());
+			getSource().getCauses().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 	}
@@ -75,14 +74,14 @@ public class FunctionalRequirementRefiningRequirementsCreateCommand extends
 	/**
 	 * @generated
 	 */
-	protected FunctionalRequirement getSource() {
-		return (FunctionalRequirement) source;
+	protected Mitigation getSource() {
+		return (Mitigation) source;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected FunctionalRequirement getTarget() {
-		return (FunctionalRequirement) target;
+	protected HazardCause getTarget() {
+		return (HazardCause) target;
 	}
 }

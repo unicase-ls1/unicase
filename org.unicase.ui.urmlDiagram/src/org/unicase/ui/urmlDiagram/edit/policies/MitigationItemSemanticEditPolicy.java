@@ -44,13 +44,15 @@ public class MitigationItemSemanticEditPolicy
 	 */
 	protected Command getStartCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardMitigations_4005 == req
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.MitigationHazards_4013 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.MitigationHazardsCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006 == req
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.MitigationCauses_4014 == req
 				.getElementType()) {
-			return null;
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.MitigationCausesCreateCommand(
+					req, req.getSource(), req.getTarget()));
 		}
 		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008 == req
 				.getElementType()) {
@@ -64,15 +66,13 @@ public class MitigationItemSemanticEditPolicy
 	 */
 	protected Command getCompleteCreateRelationshipCommand(
 			CreateRelationshipRequest req) {
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardMitigations_4005 == req
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.MitigationHazards_4013 == req
 				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardMitigationsCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
-		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006 == req
+		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.MitigationCauses_4014 == req
 				.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCauseMitigationsCreateCommand(
-					req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		if (org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementMitigations_4008 == req
 				.getElementType()) {
@@ -91,11 +91,11 @@ public class MitigationItemSemanticEditPolicy
 	protected Command getReorientReferenceRelationshipCommand(
 			ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case org.unicase.ui.urmlDiagram.edit.parts.HazardMitigationsEditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardMitigationsReorientCommand(
+		case org.unicase.ui.urmlDiagram.edit.parts.MitigationHazardsEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.MitigationHazardsReorientCommand(
 					req));
-		case org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.HazardCauseMitigationsReorientCommand(
+		case org.unicase.ui.urmlDiagram.edit.parts.MitigationCausesEditPart.VISUAL_ID:
+			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.MitigationCausesReorientCommand(
 					req));
 		case org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementMitigationsEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.urmlDiagram.edit.commands.FunctionalRequirementMitigationsReorientCommand(

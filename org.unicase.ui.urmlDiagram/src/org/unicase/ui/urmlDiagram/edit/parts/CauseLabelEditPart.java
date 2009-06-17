@@ -51,7 +51,7 @@ public class CauseLabelEditPart extends LabelEditPart implements
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 6010;
+	public static final int VISUAL_ID = 6015;
 
 	/**
 	 * @generated
@@ -103,7 +103,7 @@ public class CauseLabelEditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	public int getKeyPoint() {
-		return ConnectionLocator.SOURCE;
+		return ConnectionLocator.TARGET;
 	}
 
 	/**
@@ -297,7 +297,7 @@ public class CauseLabelEditPart extends LabelEditPart implements
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
 			IAdaptable hintAdapter = new org.unicase.ui.urmlDiagram.providers.ModelParserProvider.HintAdapter(
-					org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011,
+					org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseHazards_4016,
 					getParserElement(), parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 		}

@@ -173,7 +173,7 @@ public class ModelDiagramUpdater {
 		HazardCause modelElement = (HazardCause) view.getElement();
 		List result = new LinkedList();
 		result
-				.addAll(getOutgoingFeatureModelFacetLinks_HazardCause_Mitigations_4006(modelElement));
+				.addAll(getOutgoingFeatureModelFacetLinks_HazardCause_Hazards_4016(modelElement));
 		return result;
 	}
 
@@ -181,20 +181,20 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getMitigation_2002ContainedLinks(View view) {
-		return Collections.EMPTY_LIST;
+		Mitigation modelElement = (Mitigation) view.getElement();
+		List result = new LinkedList();
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Mitigation_Hazards_4013(modelElement));
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Mitigation_Causes_4014(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List getHazard_2003ContainedLinks(View view) {
-		Hazard modelElement = (Hazard) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Hazard_Mitigations_4005(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Hazard_Causes_4011(modelElement));
-		return result;
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -233,7 +233,7 @@ public class ModelDiagramUpdater {
 				.getElement();
 		List result = new LinkedList();
 		result
-				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(modelElement));
+				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_RefinedRequirement_4015(modelElement));
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_Mitigations_4008(modelElement));
 		return result;
@@ -247,7 +247,7 @@ public class ModelDiagramUpdater {
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
 				.getResourceSet().getResources());
 		List result = new LinkedList();
-		result.addAll(getIncomingFeatureModelFacetLinks_Hazard_Causes_4011(
+		result.addAll(getIncomingFeatureModelFacetLinks_Mitigation_Causes_4014(
 				modelElement, crossReferences));
 		return result;
 	}
@@ -260,12 +260,6 @@ public class ModelDiagramUpdater {
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
 				.getResourceSet().getResources());
 		List result = new LinkedList();
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_Hazard_Mitigations_4005(
-						modelElement, crossReferences));
-		result
-				.addAll(getIncomingFeatureModelFacetLinks_HazardCause_Mitigations_4006(
-						modelElement, crossReferences));
 		result
 				.addAll(getIncomingFeatureModelFacetLinks_FunctionalRequirement_Mitigations_4008(
 						modelElement, crossReferences));
@@ -280,8 +274,14 @@ public class ModelDiagramUpdater {
 		Map crossReferences = EcoreUtil.CrossReferencer.find(view.eResource()
 				.getResourceSet().getResources());
 		List result = new LinkedList();
+		result
+				.addAll(getIncomingFeatureModelFacetLinks_Mitigation_Hazards_4013(
+						modelElement, crossReferences));
 		result.addAll(getIncomingFeatureModelFacetLinks_Actor_Hazards_4010(
 				modelElement, crossReferences));
+		result
+				.addAll(getIncomingFeatureModelFacetLinks_HazardCause_Hazards_4016(
+						modelElement, crossReferences));
 		return result;
 	}
 
@@ -325,7 +325,7 @@ public class ModelDiagramUpdater {
 				.getResourceSet().getResources());
 		List result = new LinkedList();
 		result
-				.addAll(getIncomingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(
+				.addAll(getIncomingFeatureModelFacetLinks_FunctionalRequirement_RefinedRequirement_4015(
 						modelElement, crossReferences));
 		return result;
 	}
@@ -337,7 +337,7 @@ public class ModelDiagramUpdater {
 		HazardCause modelElement = (HazardCause) view.getElement();
 		List result = new LinkedList();
 		result
-				.addAll(getOutgoingFeatureModelFacetLinks_HazardCause_Mitigations_4006(modelElement));
+				.addAll(getOutgoingFeatureModelFacetLinks_HazardCause_Hazards_4016(modelElement));
 		return result;
 	}
 
@@ -345,20 +345,20 @@ public class ModelDiagramUpdater {
 	 * @generated
 	 */
 	public static List getMitigation_2002OutgoingLinks(View view) {
-		return Collections.EMPTY_LIST;
+		Mitigation modelElement = (Mitigation) view.getElement();
+		List result = new LinkedList();
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Mitigation_Hazards_4013(modelElement));
+		result
+				.addAll(getOutgoingFeatureModelFacetLinks_Mitigation_Causes_4014(modelElement));
+		return result;
 	}
 
 	/**
 	 * @generated
 	 */
 	public static List getHazard_2003OutgoingLinks(View view) {
-		Hazard modelElement = (Hazard) view.getElement();
-		List result = new LinkedList();
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Hazard_Mitigations_4005(modelElement));
-		result
-				.addAll(getOutgoingFeatureModelFacetLinks_Hazard_Causes_4011(modelElement));
-		return result;
+		return Collections.EMPTY_LIST;
 	}
 
 	/**
@@ -397,7 +397,7 @@ public class ModelDiagramUpdater {
 				.getElement();
 		List result = new LinkedList();
 		result
-				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(modelElement));
+				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_RefinedRequirement_4015(modelElement));
 		result
 				.addAll(getOutgoingFeatureModelFacetLinks_FunctionalRequirement_Mitigations_4008(modelElement));
 		return result;
@@ -498,21 +498,21 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Hazard_Mitigations_4005(
-			Mitigation target, Map crossReferences) {
+	private static Collection getIncomingFeatureModelFacetLinks_Mitigation_Hazards_4013(
+			Hazard target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
 			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
 					.next();
 			if (setting.getEStructuralFeature() == HazardPackage.eINSTANCE
-					.getHazard_Mitigations()) {
+					.getMitigation_Hazards()) {
 				result
 						.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
 								setting.getEObject(),
 								target,
-								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardMitigations_4005,
-								org.unicase.ui.urmlDiagram.edit.parts.HazardMitigationsEditPart.VISUAL_ID));
+								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.MitigationHazards_4013,
+								org.unicase.ui.urmlDiagram.edit.parts.MitigationHazardsEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -521,21 +521,21 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_HazardCause_Mitigations_4006(
-			Mitigation target, Map crossReferences) {
+	private static Collection getIncomingFeatureModelFacetLinks_Mitigation_Causes_4014(
+			HazardCause target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
 			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
 					.next();
 			if (setting.getEStructuralFeature() == HazardPackage.eINSTANCE
-					.getHazardCause_Mitigations()) {
+					.getMitigation_Causes()) {
 				result
 						.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
 								setting.getEObject(),
 								target,
-								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006,
-								org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID));
+								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.MitigationCauses_4014,
+								org.unicase.ui.urmlDiagram.edit.parts.MitigationCausesEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -544,7 +544,7 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(
+	private static Collection getIncomingFeatureModelFacetLinks_FunctionalRequirement_RefinedRequirement_4015(
 			FunctionalRequirement target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
@@ -552,13 +552,13 @@ public class ModelDiagramUpdater {
 			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
 					.next();
 			if (setting.getEStructuralFeature() == RequirementPackage.eINSTANCE
-					.getFunctionalRequirement_RefiningRequirements()) {
+					.getFunctionalRequirement_RefinedRequirement()) {
 				result
 						.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
 								setting.getEObject(),
 								target,
-								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007,
-								org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID));
+								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefinedRequirement_4015,
+								org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefinedRequirementEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -613,21 +613,21 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getIncomingFeatureModelFacetLinks_Hazard_Causes_4011(
-			HazardCause target, Map crossReferences) {
+	private static Collection getIncomingFeatureModelFacetLinks_HazardCause_Hazards_4016(
+			Hazard target, Map crossReferences) {
 		Collection result = new LinkedList();
 		Collection settings = (Collection) crossReferences.get(target);
 		for (Iterator it = settings.iterator(); it.hasNext();) {
 			EStructuralFeature.Setting setting = (EStructuralFeature.Setting) it
 					.next();
 			if (setting.getEStructuralFeature() == HazardPackage.eINSTANCE
-					.getHazard_Causes()) {
+					.getHazardCause_Hazards()) {
 				result
 						.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
 								setting.getEObject(),
 								target,
-								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011,
-								org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID));
+								org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseHazards_4016,
+								org.unicase.ui.urmlDiagram.edit.parts.HazardCauseHazardsEditPart.VISUAL_ID));
 			}
 		}
 		return result;
@@ -712,18 +712,18 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Hazard_Mitigations_4005(
-			Hazard source) {
+	private static Collection getOutgoingFeatureModelFacetLinks_Mitigation_Hazards_4013(
+			Mitigation source) {
 		Collection result = new LinkedList();
-		for (Iterator destinations = source.getMitigations().iterator(); destinations
+		for (Iterator destinations = source.getHazards().iterator(); destinations
 				.hasNext();) {
-			Mitigation destination = (Mitigation) destinations.next();
+			Hazard destination = (Hazard) destinations.next();
 			result
 					.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
 							source,
 							destination,
-							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardMitigations_4005,
-							org.unicase.ui.urmlDiagram.edit.parts.HazardMitigationsEditPart.VISUAL_ID));
+							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.MitigationHazards_4013,
+							org.unicase.ui.urmlDiagram.edit.parts.MitigationHazardsEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -731,18 +731,18 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_HazardCause_Mitigations_4006(
-			HazardCause source) {
+	private static Collection getOutgoingFeatureModelFacetLinks_Mitigation_Causes_4014(
+			Mitigation source) {
 		Collection result = new LinkedList();
-		for (Iterator destinations = source.getMitigations().iterator(); destinations
+		for (Iterator destinations = source.getCauses().iterator(); destinations
 				.hasNext();) {
-			Mitigation destination = (Mitigation) destinations.next();
+			HazardCause destination = (HazardCause) destinations.next();
 			result
 					.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
 							source,
 							destination,
-							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseMitigations_4006,
-							org.unicase.ui.urmlDiagram.edit.parts.HazardCauseMitigationsEditPart.VISUAL_ID));
+							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.MitigationCauses_4014,
+							org.unicase.ui.urmlDiagram.edit.parts.MitigationCausesEditPart.VISUAL_ID));
 		}
 		return result;
 	}
@@ -750,20 +750,19 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_FunctionalRequirement_RefiningRequirements_4007(
+	private static Collection getOutgoingFeatureModelFacetLinks_FunctionalRequirement_RefinedRequirement_4015(
 			FunctionalRequirement source) {
 		Collection result = new LinkedList();
-		for (Iterator destinations = source.getRefiningRequirements()
-				.iterator(); destinations.hasNext();) {
-			FunctionalRequirement destination = (FunctionalRequirement) destinations
-					.next();
-			result
-					.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
-							source,
-							destination,
-							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefiningRequirements_4007,
-							org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefiningRequirementsEditPart.VISUAL_ID));
+		FunctionalRequirement destination = source.getRefinedRequirement();
+		if (destination == null) {
+			return result;
 		}
+		result
+				.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
+						source,
+						destination,
+						org.unicase.ui.urmlDiagram.providers.ModelElementTypes.FunctionalRequirementRefinedRequirement_4015,
+						org.unicase.ui.urmlDiagram.edit.parts.FunctionalRequirementRefinedRequirementEditPart.VISUAL_ID));
 		return result;
 	}
 
@@ -808,18 +807,18 @@ public class ModelDiagramUpdater {
 	/**
 	 * @generated
 	 */
-	private static Collection getOutgoingFeatureModelFacetLinks_Hazard_Causes_4011(
-			Hazard source) {
+	private static Collection getOutgoingFeatureModelFacetLinks_HazardCause_Hazards_4016(
+			HazardCause source) {
 		Collection result = new LinkedList();
-		for (Iterator destinations = source.getCauses().iterator(); destinations
+		for (Iterator destinations = source.getHazards().iterator(); destinations
 				.hasNext();) {
-			HazardCause destination = (HazardCause) destinations.next();
+			Hazard destination = (Hazard) destinations.next();
 			result
 					.add(new org.unicase.ui.urmlDiagram.part.ModelLinkDescriptor(
 							source,
 							destination,
-							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauses_4011,
-							org.unicase.ui.urmlDiagram.edit.parts.HazardCausesEditPart.VISUAL_ID));
+							org.unicase.ui.urmlDiagram.providers.ModelElementTypes.HazardCauseHazards_4016,
+							org.unicase.ui.urmlDiagram.edit.parts.HazardCauseHazardsEditPart.VISUAL_ID));
 		}
 		return result;
 	}

@@ -563,19 +563,19 @@ public class MitigateLabel3EditPart extends LabelEditPart implements
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new MitigateLabelFigure();
+		return new ProvideLabelFigure();
 	}
 
 	/**
 	 * @generated
 	 */
-	public class MitigateLabelFigure extends WrappingLabel {
+	public class ProvideLabelFigure extends WrappingLabel {
 
 		/**
 		 * @generated
 		 */
-		public MitigateLabelFigure() {
-			this.setText("\u00ABmitigate\u00BB");
+		public ProvideLabelFigure() {
+			this.setText("\u00ABprovides\u00BB");
 		}
 
 	}

@@ -328,6 +328,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String Provides3CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Provides3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String UseCase1CreationTool_title;
 
 	/**
@@ -383,17 +393,17 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String NavigatorGroupName_Mitigation_2002_outgoinglinks;
+
+	/**
+	 * @generated
+	 */
 	public static String NavigatorGroupName_HazardCause_2001_incominglinks;
 
 	/**
 	 * @generated
 	 */
 	public static String NavigatorGroupName_Mitigation_2002_incominglinks;
-
-	/**
-	 * @generated
-	 */
-	public static String NavigatorGroupName_Hazard_2003_outgoinglinks;
 
 	/**
 	 * @generated
@@ -468,32 +478,32 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_HazardMitigations_4005_target;
+	public static String NavigatorGroupName_MitigationHazards_4013_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_HazardMitigations_4005_source;
+	public static String NavigatorGroupName_MitigationHazards_4013_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_HazardCauseMitigations_4006_target;
+	public static String NavigatorGroupName_MitigationCauses_4014_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_HazardCauseMitigations_4006_source;
+	public static String NavigatorGroupName_MitigationCauses_4014_source;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FunctionalRequirementRefiningRequirements_4007_target;
+	public static String NavigatorGroupName_FunctionalRequirementRefinedRequirement_4015_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_FunctionalRequirementRefiningRequirements_4007_source;
+	public static String NavigatorGroupName_FunctionalRequirementRefinedRequirement_4015_source;
 
 	/**
 	 * @generated
@@ -518,12 +528,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_HazardCauses_4011_target;
+	public static String NavigatorGroupName_HazardCauseHazards_4016_target;
 
 	/**
 	 * @generated
 	 */
-	public static String NavigatorGroupName_HazardCauses_4011_source;
+	public static String NavigatorGroupName_HazardCauseHazards_4016_source;
 
 	/**
 	 * @generated
