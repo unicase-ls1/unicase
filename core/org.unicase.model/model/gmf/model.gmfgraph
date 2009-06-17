@@ -787,9 +787,6 @@
           xsi:type="gmfgraph:PolylineConnection"
           name="Arrow"
           targetDecoration="//@figures.4/@descriptors.2/@actualFigure/@children.0">
-        <foregroundColor
-            xsi:type="gmfgraph:ConstantColor"
-            value="black"/>
         <children
             xsi:type="gmfgraph:PolylineDecoration"
             name="ArrowDec"/>
