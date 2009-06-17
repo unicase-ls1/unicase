@@ -515,28 +515,29 @@
       </labels>
     </links>
     <links
-        visualID="4005"
-        editPartClassName="HazardMitigationsEditPart"
-        itemSemanticEditPolicyClassName="HazardMitigationsItemSemanticEditPolicy"
-        notationViewFactoryClassName="HazardMitigationsViewFactory"
-        createCommandClassName="HazardMitigationsCreateCommand"
-        reorientCommandClassName="HazardMitigationsReorientCommand">
+        visualID="4013"
+        editPartClassName="MitigationHazardsEditPart"
+        itemSemanticEditPolicyClassName="MitigationHazardsItemSemanticEditPolicy"
+        notationViewFactoryClassName="MitigationHazardsViewFactory"
+        createCommandClassName="MitigationHazardsCreateCommand"
+        reorientCommandClassName="MitigationHazardsReorientCommand">
       <diagramRunTimeClass
           href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"/>
       <viewmap
-          xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx">
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="Arrow"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class Arrow extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public Arrow() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
-            href="../../model.genmodel#//model/hazard/Hazard/mitigations"/>
+            href="../../model.genmodel#//model/hazard/Mitigation/hazards"/>
       </modelFacet>
       <labels
-          visualID="6005"
+          visualID="6012"
           editPartClassName="MitigateLabelEditPart"
           itemSemanticEditPolicyClassName="MitigateLabelItemSemanticEditPolicy"
           notationViewFactoryClassName="MitigateLabelViewFactory"
@@ -555,28 +556,29 @@
       </labels>
     </links>
     <links
-        visualID="4006"
-        editPartClassName="HazardCauseMitigationsEditPart"
-        itemSemanticEditPolicyClassName="HazardCauseMitigationsItemSemanticEditPolicy"
-        notationViewFactoryClassName="HazardCauseMitigationsViewFactory"
-        createCommandClassName="HazardCauseMitigationsCreateCommand"
-        reorientCommandClassName="HazardCauseMitigationsReorientCommand">
+        visualID="4014"
+        editPartClassName="MitigationCausesEditPart"
+        itemSemanticEditPolicyClassName="MitigationCausesItemSemanticEditPolicy"
+        notationViewFactoryClassName="MitigationCausesViewFactory"
+        createCommandClassName="MitigationCausesCreateCommand"
+        reorientCommandClassName="MitigationCausesReorientCommand">
       <diagramRunTimeClass
           href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"/>
       <viewmap
-          xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx">
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="Arrow"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class Arrow extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public Arrow() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
-            href="../../model.genmodel#//model/hazard/HazardCause/mitigations"/>
+            href="../../model.genmodel#//model/hazard/Mitigation/causes"/>
       </modelFacet>
       <labels
-          visualID="6006"
+          visualID="6013"
           editPartClassName="MitigateLabel2EditPart"
           itemSemanticEditPolicyClassName="MitigateLabel2ItemSemanticEditPolicy"
           notationViewFactoryClassName="MitigateLabel2ViewFactory"
@@ -595,12 +597,12 @@
       </labels>
     </links>
     <links
-        visualID="4007"
-        editPartClassName="FunctionalRequirementRefiningRequirementsEditPart"
-        itemSemanticEditPolicyClassName="FunctionalRequirementRefiningRequirementsItemSemanticEditPolicy"
-        notationViewFactoryClassName="FunctionalRequirementRefiningRequirementsViewFactory"
-        createCommandClassName="FunctionalRequirementRefiningRequirementsCreateCommand"
-        reorientCommandClassName="FunctionalRequirementRefiningRequirementsReorientCommand">
+        visualID="4015"
+        editPartClassName="FunctionalRequirementRefinedRequirementEditPart"
+        itemSemanticEditPolicyClassName="FunctionalRequirementRefinedRequirementItemSemanticEditPolicy"
+        notationViewFactoryClassName="FunctionalRequirementRefinedRequirementViewFactory"
+        createCommandClassName="FunctionalRequirementRefinedRequirementCreateCommand"
+        reorientCommandClassName="FunctionalRequirementRefinedRequirementReorientCommand">
       <diagramRunTimeClass
           href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
@@ -614,10 +616,10 @@
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
-            href="../../model.genmodel#//model/requirement/FunctionalRequirement/refiningRequirements"/>
+            href="../../model.genmodel#//model/requirement/FunctionalRequirement/refinedRequirement"/>
       </modelFacet>
       <labels
-          visualID="6007"
+          visualID="6014"
           editPartClassName="RefineLabelEditPart"
           itemSemanticEditPolicyClassName="RefineLabelItemSemanticEditPolicy"
           notationViewFactoryClassName="RefineLabelViewFactory"
@@ -647,8 +649,9 @@
       <elementType
           xsi:type="gmfgen:SpecializationType"/>
       <viewmap
-          xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx">
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="Arrow"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class Arrow extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public Arrow() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
@@ -666,8 +669,8 @@
             href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
             xsi:type="gmfgen:InnerClassViewmap"
-            className="MitigateLabelFigure"
-            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class MitigateLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public MitigateLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;\u00ABmitigate\u00BB&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
+            className="ProvideLabelFigure"
+            classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class ProvideLabelFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public ProvideLabelFigure() {&#xA;&#x9;&#x9;&#x9;&#x9;this.setText(&quot;\u00ABprovides\u00BB&quot;);&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
           <attributes
               xsi:type="gmfgen:LabelOffsetAttributes"
               y="20"/>
@@ -717,33 +720,34 @@
       </labels>
     </links>
     <links
-        visualID="4011"
-        editPartClassName="HazardCausesEditPart"
-        itemSemanticEditPolicyClassName="HazardCausesItemSemanticEditPolicy"
-        notationViewFactoryClassName="HazardCausesViewFactory"
-        createCommandClassName="HazardCausesCreateCommand"
-        reorientCommandClassName="HazardCausesReorientCommand">
+        visualID="4016"
+        editPartClassName="HazardCauseHazardsEditPart"
+        itemSemanticEditPolicyClassName="HazardCauseHazardsItemSemanticEditPolicy"
+        notationViewFactoryClassName="HazardCauseHazardsViewFactory"
+        createCommandClassName="HazardCauseHazardsCreateCommand"
+        reorientCommandClassName="HazardCauseHazardsReorientCommand">
       <diagramRunTimeClass
           href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
       <elementType
           xsi:type="gmfgen:SpecializationType"/>
       <viewmap
-          xsi:type="gmfgen:FigureViewmap"
-          figureQualifiedClassName="org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx">
+          xsi:type="gmfgen:InnerClassViewmap"
+          className="CauseLinkFigure"
+          classBody="&#xA;/**&#xA; * @generated&#xA; */&#xA;public class CauseLinkFigure extends org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx {&#xA;&#xA;&#xA;&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;public CauseLinkFigure() {&#xA;&#x9;&#x9;&#xA;&#x9;&#x9;setTargetDecoration(createTargetDecoration());&#xA;&#x9;}&#xA;&#xA;&#x9;/**&#xA;&#x9; * @generated&#xA;&#x9; */&#xA;&#x9;private org.eclipse.draw2d.RotatableDecoration createTargetDecoration() {&#xA;&#x9;&#x9;org.eclipse.draw2d.PolylineDecoration df = new org.eclipse.draw2d.PolylineDecoration();&#xA;&#x9;&#x9;return df;&#xA;&#x9;}&#xA;&#xA;&#xA;&#xA;&#xA;}&#xA;&#xA;">
         <requiredPluginIDs>org.eclipse.gmf.runtime.draw2d.ui</requiredPluginIDs>
       </viewmap>
       <modelFacet
           xsi:type="gmfgen:FeatureLinkModelFacet">
         <metaFeature
-            href="../../model.genmodel#//model/hazard/Hazard/causes"/>
+            href="../../model.genmodel#//model/hazard/HazardCause/hazards"/>
       </modelFacet>
       <labels
-          visualID="6010"
+          visualID="6015"
           editPartClassName="CauseLabelEditPart"
           itemSemanticEditPolicyClassName="CauseLabelItemSemanticEditPolicy"
           notationViewFactoryClassName="CauseLabelViewFactory"
           readOnly="true"
-          alignment="SOURCE">
+          alignment="TARGET">
         <diagramRunTimeClass
             href="../../../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <viewmap
@@ -779,13 +783,13 @@
             xsi:type="gmfgen:ToolEntry"
             title="Mitigate"
             description=""
-            smallIconPath="/org.unicase.model.edit/icons/full/obj16/Association.gif"
-            genLinks="//@diagram/@links.4 //@diagram/@links.5 //@diagram/@links.7"/>
+            smallIconPath="/org.unicase.model.edit/icons/full/obj16/Transition.gif"
+            genLinks="//@diagram/@links.4 //@diagram/@links.5"/>
         <entries
             xsi:type="gmfgen:ToolEntry"
             title="Causes"
             description=""
-            smallIconPath="/org.unicase.model.edit/icons/full/obj16/Association.gif"
+            smallIconPath="/org.unicase.model.edit/icons/full/obj16/Transition.gif"
             genLinks="//@diagram/@links.9"/>
       </groups>
       <groups
@@ -801,6 +805,12 @@
             description=""
             smallIconPath="/org.unicase.model.edit/icons/full/obj16/Transition.gif"
             genLinks="//@diagram/@links.6"/>
+        <entries
+            xsi:type="gmfgen:ToolEntry"
+            title="Provides"
+            description=""
+            smallIconPath="/org.unicase.model.edit/icons/full/obj16/Transition.gif"
+            genLinks="//@diagram/@links.7"/>
       </groups>
       <groups
           title="UseCase"
@@ -1020,24 +1030,24 @@
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.4"
-        child="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@topLevelNodes.2"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.1"
+        parent="//@diagram/@topLevelNodes.2"
         child="//@diagram/@links.4"
         referenceType="in_source"
         groupName="incoming links"
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.4"
-        child="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@topLevelNodes.1"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.2"
+        parent="//@diagram/@topLevelNodes.1"
         child="//@diagram/@links.4"
         referenceType="out_target"
         groupName="outgoing links"
@@ -1049,24 +1059,24 @@
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.5"
-        child="//@diagram/@topLevelNodes.1"
+        child="//@diagram/@topLevelNodes.0"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.1"
+        parent="//@diagram/@topLevelNodes.0"
         child="//@diagram/@links.5"
         referenceType="in_source"
         groupName="incoming links"
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.5"
-        child="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@topLevelNodes.1"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.0"
+        parent="//@diagram/@topLevelNodes.1"
         child="//@diagram/@links.5"
         referenceType="out_target"
         groupName="outgoing links"
@@ -1165,24 +1175,24 @@
         groupIcon="icons/linksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.9"
-        child="//@diagram/@topLevelNodes.0"
+        child="//@diagram/@topLevelNodes.2"
         referenceType="out_target"
         groupName="target"
         groupIcon="icons/linkTargetNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.0"
+        parent="//@diagram/@topLevelNodes.2"
         child="//@diagram/@links.9"
         referenceType="in_source"
         groupName="incoming links"
         groupIcon="icons/incomingLinksNavigatorGroup.gif"/>
     <childReferences
         parent="//@diagram/@links.9"
-        child="//@diagram/@topLevelNodes.2"
+        child="//@diagram/@topLevelNodes.0"
         referenceType="in_source"
         groupName="source"
         groupIcon="icons/linkSourceNavigatorGroup.gif"/>
     <childReferences
-        parent="//@diagram/@topLevelNodes.2"
+        parent="//@diagram/@topLevelNodes.0"
         child="//@diagram/@links.9"
         referenceType="out_target"
         groupName="outgoing links"

@@ -35,7 +35,7 @@
           description="">
         <smallIcon
             xsi:type="gmftool:BundleImage"
-            path="/icons/full/obj16/Association.gif"
+            path="/icons/full/obj16/Transition.gif"
             bundle="org.unicase.model.edit"/>
       </tools>
       <tools
@@ -44,7 +44,7 @@
           description="">
         <smallIcon
             xsi:type="gmftool:BundleImage"
-            path="/icons/full/obj16/Association.gif"
+            path="/icons/full/obj16/Transition.gif"
             bundle="org.unicase.model.edit"/>
       </tools>
     </tools>
@@ -61,6 +61,15 @@
       <tools
           xsi:type="gmftool:CreationTool"
           title="Refine Requirement"
+          description="">
+        <smallIcon
+            xsi:type="gmftool:BundleImage"
+            path="/icons/full/obj16/Transition.gif"
+            bundle="org.unicase.model.edit"/>
+      </tools>
+      <tools
+          xsi:type="gmftool:CreationTool"
+          title="Provides"
           description="">
         <smallIcon
             xsi:type="gmftool:BundleImage"
