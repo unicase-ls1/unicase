@@ -1059,7 +1059,19 @@
         name="CauseLinkFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="MitigateFigure"/>
+          name="MitigateFigure"
+          targetDecoration="//@figures.6/@descriptors.13/@actualFigure/@children.0">
+        <children
+            xsi:type="gmfgraph:PolylineDecoration"
+            name="AggregationDec"/>
+      </actualFigure>
+    </descriptors>
+    <descriptors
+        name="ProvideLabelFigure">
+      <actualFigure
+          xsi:type="gmfgraph:Label"
+          name="ProvideLabel"
+          text="\u00ABprovides\u00BB"/>
     </descriptors>
   </figures>
   <nodes
@@ -1178,7 +1190,7 @@
       figure="LinkFigure"/>
   <connections
       name="MitigateLink"
-      figure="MitigateFigure"/>
+      figure="Arrow"/>
   <connections
       name="Refine"
       figure="Arrow"/>
@@ -1430,7 +1442,19 @@
       figure="CauseLabelFigure"
       elementIcon="false">
     <facets
-        xsi:type="gmfgraph:AlignmentFacet"/>
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="END"/>
+    <facets
+        xsi:type="gmfgraph:LabelOffsetFacet"
+        y="20"/>
+  </labels>
+  <labels
+      name="ProvideLabel"
+      figure="ProvideLabelFigure"
+      elementIcon="false">
+    <facets
+        xsi:type="gmfgraph:AlignmentFacet"
+        alignment="CENTER"/>
     <facets
         xsi:type="gmfgraph:LabelOffsetFacet"
         y="20"/>
