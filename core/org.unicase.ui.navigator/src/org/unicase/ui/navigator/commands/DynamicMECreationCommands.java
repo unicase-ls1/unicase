@@ -152,10 +152,6 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	}
 
 	/**
-	 * @author denglerm This interface is used to count ModelElements in the LeafSection.
-	 */
-
-	/**
 	 * This Interface is used to count the occurrence of model elements in the navigator.
 	 */
 	public interface ICountable {
