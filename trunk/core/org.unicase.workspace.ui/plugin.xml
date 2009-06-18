@@ -111,6 +111,10 @@
             </iterate>
          </enabledWhen>
       </handler>
+     <handler
+           class="org.unicase.workspace.ui.commands.UpdateProjectVersionHandler"
+           commandId="org.unicase.workspace.ui.updateProjectVersion">
+     </handler>
   </extension>
   <extension
         point="org.eclipse.ui.commands">
@@ -208,6 +212,11 @@
             id="org.unicase.ui.stem.ShowHistory"
             name="ShowHistory">
       </command>
+     <command
+           categoryId="org.unicase.workspace.ui.project"
+           id="org.unicase.workspace.ui.updateProjectVersion"
+           name="updateToVersion">
+     </command>
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -251,6 +260,32 @@
                  <test
                        forcePluginActivation="true"
                        property="org.unicase.workspace.ui.commands.projectIsShared"
+                       value="true">
+                 </test>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.workspace.ui.updateProjectVersion"
+              icon="icons/update.gif"
+              label="Update to version..."
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false"
+                    operator="and">
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+                 <test
+                       forcePluginActivation="true"
+                       property="org.unicase.workspace.ui.commands.projectIsShared"
+                       value="true">
+                 </test>
+                 <test
+                       forcePluginActivation="true"
+                       property="org.unicase.workspace.ui.commands.isAdmin"
                        value="true">
                  </test>
               </iterate>
@@ -695,6 +730,26 @@
          </command>
       </menuContribution>
    </extension>
+        <extension
+              point="org.eclipse.ui.preferencePages">
+           <page
+                 category="org.unicase.workspace.ui.unicasePreferences"
+                 class="org.unicase.workspace.ui.prefs.DashboardPreferencePage"
+                 id="org.unicase.workspace.ui.dashboardPreferences"
+                 name="Dashboard">
+           </page>
+           <page
+                 class="org.unicase.workspace.ui.prefs.UnicasePreferencePage"
+                 id="org.unicase.workspace.ui.unicasePreferences"
+                 name="Unicase">
+           </page>
+           <page
+                 category="org.unicase.workspace.ui.dashboardPreferences"
+                 class="org.unicase.workspace.ui.prefs.DashboardWIdgetsPreferencePage"
+                 id="org.unicase.workspace.ui.dashboardWidgetPreferences"
+                 name="Widgets">
+           </page>
+        </extension>
 
 
 </plugin>
