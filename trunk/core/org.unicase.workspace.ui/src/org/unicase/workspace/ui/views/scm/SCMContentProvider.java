@@ -32,6 +32,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 
 	private static ChangePackageVisualizationHelper changePackageVisualizationHelper;
 	private boolean showRootNodes = true;
+	private static Project project;
 
 	/**
 	 * Default constructor.
@@ -40,6 +41,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 	 * @param activeProject the project.
 	 */
 	protected SCMContentProvider(TreeViewer treeViewer, Project activeProject) {
+		project = activeProject;
 	}
 
 	/**
@@ -273,7 +275,13 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 			if(historyInfo.getChangePackage()==null){
 				return new Object[0];
 			}
-			Set<EObject> modelElements = changePackageVisualizationHelper.getAllModelElements(historyInfo.getChangePackage());
+			Set<EObject> modelElements = null;
+			if(historyInfo.getChangePackage().getLogMessage()==null){
+				ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays.asList(historyInfo.getChangePackage()), project);
+				modelElements = helper.getAllModelElements(historyInfo.getChangePackage());
+			}else{
+				modelElements = changePackageVisualizationHelper.getAllModelElements(historyInfo.getChangePackage());
+			}
 			List<TreeNode> nodes = nodify(treeNode, new ArrayList<EObject>(modelElements));
 			return nodes.toArray();
 
