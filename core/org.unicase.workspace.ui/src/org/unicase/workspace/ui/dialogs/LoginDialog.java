@@ -209,7 +209,7 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		session.setUsername(txtUsername.getText());
 		session.setSavePassword(chkSavePassword.getSelection());
 
-		if ((keyTest)) {
+		if ((keyTest || txtPassword.getText().equals(""))) {
 			session.setPassword(txtPassword.getText());
 		}
 

@@ -560,6 +560,14 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		setACUser(connectionManager.resolveUser(getSessionId(), null));
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	public void logout() throws EmfStoreException {
+		ConnectionManager connectionManager = this.getWorkspaceManager().getConnectionManager();
+		connectionManager.logout(getSessionId());
+	}
+
 	// begin of custom code
 	/**
 	 * {@inheritDoc}
