@@ -41,7 +41,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ClassFigure_Header"
-            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
               qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
@@ -63,7 +63,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ClassFigure_Attributes"
-            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:StackLayout"/>
           <attributes
@@ -73,7 +73,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="ClassFigure_Methods"
-            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:StackLayout"/>
           <attributes
@@ -558,10 +558,10 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="StateFigure_name"
-            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
-              qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
+              qualifiedClassName="org.unicase.ui.common.diagram.figures.CenterLayout"/>
           <insets
               top="2"
               left="5"
@@ -585,7 +585,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="StateFigure_entryConditions"
-            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
               qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
@@ -610,7 +610,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="StateFigure_activities"
-            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
               qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
@@ -636,7 +636,7 @@
         <children
             xsi:type="gmfgraph:CustomFigure"
             name="StateFigure_exitConditions"
-            qualifiedClassName="org.unicase.ui.common.diagram.ConfigurableRectangleFigure">
+            qualifiedClassName="org.unicase.ui.common.diagram.figures.ConfigurableRectangleFigure">
           <layout
               xsi:type="gmfgraph:CustomLayout"
               qualifiedClassName="org.unicase.ui.stateDiagram.unicase.CenterLayout"/>
@@ -676,13 +676,17 @@
         name="TransitionFigure">
       <actualFigure
           xsi:type="gmfgraph:PolylineConnection"
-          name="TransitionPolyline">
+          name="TransitionPolyline"
+          targetDecoration="//@figures.3/@descriptors.1/@actualFigure/@children.1">
         <layout
             xsi:type="gmfgraph:FlowLayout"/>
         <children
             xsi:type="gmfgraph:Label"
             name="TransitionFigure_name"
             text="unnamed"/>
+        <children
+            xsi:type="gmfgraph:PolylineDecoration"
+            name="TransitionArrowDec"/>
       </actualFigure>
       <accessors
           accessor="getFigureTransitionFigure_name"
