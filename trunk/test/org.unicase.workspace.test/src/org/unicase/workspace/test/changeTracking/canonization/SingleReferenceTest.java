@@ -107,7 +107,7 @@ public class SingleReferenceTest extends CanonizationTest {
 		assertEquals(operations.size(), 3);
 		
 		for(int i=operations.size()-1; i>=0; i--){
-			AbstractOperation reverse = (AbstractOperation)operations.get(i).reverse();
+			AbstractOperation reverse = operations.get(i).reverse();
 			reverse.apply(getProject());
 		}
 		
@@ -160,7 +160,7 @@ public class SingleReferenceTest extends CanonizationTest {
 		assertEquals(operations.size(), 2);
 		
 		for(int i=operations.size()-1; i>=0; i--){
-			AbstractOperation reverse = (AbstractOperation)operations.get(i).reverse();
+			AbstractOperation reverse = operations.get(i).reverse();
 			reverse.apply(getProject());
 		}
 		
@@ -217,7 +217,7 @@ public class SingleReferenceTest extends CanonizationTest {
 		assertEquals(operations.size(), 4);
 		
 		for(int i=operations.size()-1; i>=0; i--){
-			AbstractOperation reverse = (AbstractOperation)operations.get(i).reverse();
+			AbstractOperation reverse = operations.get(i).reverse();
 			reverse.apply(getProject());
 		}
 		

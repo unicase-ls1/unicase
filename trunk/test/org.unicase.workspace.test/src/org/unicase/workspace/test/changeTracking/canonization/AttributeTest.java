@@ -160,7 +160,7 @@ public class AttributeTest extends CanonizationTest {
 		assertEquals(operations.size(), 2);
 		
 		for(int i=operations.size()-1; i>=0; i--){
-			AbstractOperation reverse = (AbstractOperation)operations.get(i).reverse();
+			AbstractOperation reverse = operations.get(i).reverse();
 			reverse.apply(getProject());
 		}
 		
@@ -203,7 +203,7 @@ public class AttributeTest extends CanonizationTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		
 		for(int i=operations.size()-1; i>=0; i--){
-			AbstractOperation reverse = (AbstractOperation)operations.get(i).reverse();
+			AbstractOperation reverse = operations.get(i).reverse();
 			reverse.apply(getProject());
 		}
 		
@@ -255,7 +255,7 @@ public class AttributeTest extends CanonizationTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		
 		for(int i=operations.size()-1; i>=0; i--){
-			AbstractOperation reverse = (AbstractOperation)operations.get(i).reverse();
+			AbstractOperation reverse = operations.get(i).reverse();
 			reverse.apply(getProject());
 		}
 		
@@ -293,7 +293,7 @@ public class AttributeTest extends CanonizationTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		
 		for(int i=operations.size()-1; i>=0; i--){
-			AbstractOperation reverse = (AbstractOperation)operations.get(i).reverse();
+			AbstractOperation reverse = operations.get(i).reverse();
 			reverse.apply(getProject());
 		}
 		
@@ -329,7 +329,7 @@ public class AttributeTest extends CanonizationTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		
 		for(int i=operations.size()-1; i>=0; i--){
-			AbstractOperation reverse = (AbstractOperation)operations.get(i).reverse();
+			AbstractOperation reverse = operations.get(i).reverse();
 			reverse.apply(getProject());
 		}
 		
@@ -365,7 +365,7 @@ public class AttributeTest extends CanonizationTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		
 		for(int i=operations.size()-1; i>=0; i--){
-			AbstractOperation reverse = (AbstractOperation)operations.get(i).reverse();
+			AbstractOperation reverse = operations.get(i).reverse();
 			reverse.apply(getProject());
 		}
 		

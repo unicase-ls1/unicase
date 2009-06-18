@@ -221,7 +221,7 @@ public class SingleReferenceOperationTest extends OperationTest {
 		
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		assertEquals(operations.size(), 1);
-		AbstractOperation reverse = (AbstractOperation)operations.get(0).reverse();
+		AbstractOperation reverse = operations.get(0).reverse();
 		reverse.apply(getProject());
 		
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
