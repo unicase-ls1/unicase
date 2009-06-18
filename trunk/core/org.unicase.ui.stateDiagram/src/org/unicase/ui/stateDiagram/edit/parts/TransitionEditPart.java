@@ -6,6 +6,8 @@
 package org.unicase.ui.stateDiagram.edit.parts;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.PolylineDecoration;
+import org.eclipse.draw2d.RotatableDecoration;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
@@ -99,6 +101,7 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 		public TransitionFigure() {
 
 			createContents();
+			setTargetDecoration(createTargetDecoration());
 		}
 
 		/**
@@ -111,6 +114,14 @@ public class TransitionEditPart extends ConnectionNodeEditPart implements
 
 			this.add(fFigureTransitionFigure_name);
 
+		}
+
+		/**
+		 * @generated
+		 */
+		private RotatableDecoration createTargetDecoration() {
+			PolylineDecoration df = new PolylineDecoration();
+			return df;
 		}
 
 		/**
