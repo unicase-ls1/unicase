@@ -137,6 +137,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 				} else {
 					ge.showAllChildren();
 					ganttChart.redrawGanttChart();
+
 				}
 			}
 		};
@@ -184,6 +185,8 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		GanttViewHelper.clearGantt(ganttChart, treeViewer.getTree());
 		recreateView(workPackage);
+
+		treeViewer.setInput(workPackage);
 	}
 
 	public void setInput(Project project) {
