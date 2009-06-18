@@ -8,7 +8,7 @@ package org.unicase.ui.common.diagram.commands;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-
+//dengler: Document
 /**
  * @author schroech
  */

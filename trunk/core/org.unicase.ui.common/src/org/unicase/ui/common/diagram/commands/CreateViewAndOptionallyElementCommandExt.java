@@ -13,10 +13,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * @author denglerm
  * This commmand is executed when the users chooses CreateLinkFrom/To existing element
  * This implementation overrides the {@link #useExistingView(View)} method  because we don't want to display the message
- * box of the GMF implementation
+ * box of the GMF implementation.
+ * @author denglerm
  */
 public class CreateViewAndOptionallyElementCommandExt extends CreateViewAndOptionallyElementCommand {
 
@@ -40,7 +40,6 @@ public class CreateViewAndOptionallyElementCommandExt extends CreateViewAndOptio
 	public CreateViewAndOptionallyElementCommandExt(IAdaptable elementAdapter, IGraphicalEditPart containerEP,
 		Point location, PreferencesHint preferencesHint) {
 		super(elementAdapter, containerEP, location, preferencesHint);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**.

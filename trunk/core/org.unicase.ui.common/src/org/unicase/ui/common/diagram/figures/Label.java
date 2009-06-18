@@ -9,7 +9,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.swt.graphics.Image;
-
+//dengler: document
 /**
  * @author denglerm
  * This class extends the Eclipse WrappingLabel to position text in the center.
@@ -17,7 +17,7 @@ import org.eclipse.swt.graphics.Image;
 public class Label extends WrappingLabel{
 
 	/**
-	 * . The default contructor
+	 * The default constructor.
 	 */
 	public Label() {
 		super();

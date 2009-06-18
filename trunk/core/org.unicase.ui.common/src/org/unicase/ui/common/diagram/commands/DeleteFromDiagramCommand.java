@@ -4,6 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.diagram.commands;
+
 import java.util.Collection;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -20,16 +21,16 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.common.util.UnicaseUiUtil;
-
+//dengler: refactor use of edit part request and variables
 /**
- * Command to remove a model element from the diagram, not from the model, using the EMF action protocol.
+ * Command to remove a model element from the diagram elements list, not from the model.
  * 
  * @author denglerm
  */
 public class DeleteFromDiagramCommand extends DestroyElementCommand {
 
 	/**
-	 * The element to be destroyed.
+	 * The element to be removed.
 	 */
 	private final EObject elementToDestroy;
 	/**
@@ -57,12 +58,11 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 
 		EObject destructee = getElementToDestroy();
 
-		// only destroy attached elements
 		if (destructee != null) {
-			MEDiagramEditPart me = (MEDiagramEditPart) EditPartUtility.getDiagramEditPart(this.editPart);
-			MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
+			MEDiagramEditPart diagramEditPart = (MEDiagramEditPart) EditPartUtility.getDiagramEditPart(this.editPart);
+			MEDiagram diag = (MEDiagram) ((View) diagramEditPart.getModel()).getElement();
 			diag.getElements().remove(this.elementToDestroy);
-			// tear down incoming references
+			// tear down references
 			tearDownReferences(destructee);
 		}
 
@@ -79,9 +79,7 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 		MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
 		Collection<EObject> diagramNodeReferences = UnicaseUiUtil.getDiagramNodeReferences((ModelElement) destructee);
 		for (EObject object : diagramNodeReferences) {
-			if (diag.getElements().contains(object)) {
-				diag.getElements().remove(object);
-			}
+			diag.getElements().remove(object);
 		}
 	}
 }

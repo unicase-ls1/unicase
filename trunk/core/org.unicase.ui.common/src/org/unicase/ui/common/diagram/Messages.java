@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.common.diagram;
-
+//dengler: what is this?
 import org.eclipse.osgi.util.NLS;
 
 /**

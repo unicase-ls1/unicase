@@ -34,8 +34,10 @@ public class MEDiagramEditPart extends DiagramEditPart {
 	/**
 	 * The policy for diagrams.
 	 * 
-	 * @author helming
+	 * 
+	 * @author denglerm
 	 */
+	//dengler: document more detailed
 	private final class DiagramDragDropEditPolicyExtension extends DiagramDragDropEditPolicy {
 		@SuppressWarnings("unchecked")
 		@Override

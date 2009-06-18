@@ -11,7 +11,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
-
+//dengler: delete unused methods
 /**
  * @author denglerm This class is used to locate diagram labels centered and below a diagram node
  */
