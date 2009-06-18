@@ -2,10 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Ui Plug-in
 Bundle-SymbolicName: org.unicase.analyzer.ui
-Bundle-Version: 1.0.0
+Bundle-Version: 0.0.1.qualifier
 Bundle-Activator: org.unicase.analyzer.ui.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.unicase.analyzer;bundle-version="0.3.18"
+ org.unicase.analyzer.edit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
