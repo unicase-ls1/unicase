@@ -143,7 +143,6 @@ public class ESBrowserView extends ViewPart {
 			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
-					// AS: replace with logout()
 					try {
 						element.getLastUsersession().logout();
 					} catch (EmfStoreException e) {
