@@ -328,5 +328,12 @@ public interface Usersession extends EObject {
 	 */
 	void addLoginObserver(LoginObserver observer);
 
+	/**
+	 * Sends a logout call to the server.
+	 * 
+	 * @throws EmfStoreException forwards any exception.
+	 */
+	void logout() throws EmfStoreException;
+
 	// end of custom code
 } // Usersession

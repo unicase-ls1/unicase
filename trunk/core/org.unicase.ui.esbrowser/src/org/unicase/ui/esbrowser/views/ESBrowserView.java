@@ -144,6 +144,11 @@ public class ESBrowserView extends ViewPart {
 				@Override
 				protected void doExecute() {
 					// AS: replace with logout()
+					try {
+						element.getLastUsersession().logout();
+					} catch (EmfStoreException e) {
+						WorkspaceUtil.logException(e.getMessage(), e);
+					}
 					element.getLastUsersession().setSessionId(null);
 					// reset the password in the RAM cache
 					if (!element.getLastUsersession().isSavePassword()) {
