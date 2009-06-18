@@ -52,7 +52,7 @@
            name="Quick open modelelement">
      </command>
      <command
-           categoryId="org.unicase.workspace.edit.project"
+           categoryId="org.unicase.ui.common.modifyModelelement"
            defaultHandler="org.unicase.ui.common.handlers.OpenMEShortcutHandler"
            id="org.unicase.ui.common.handlers.open_me_ID"
            name="Open Modelelements Selectiondialog">
