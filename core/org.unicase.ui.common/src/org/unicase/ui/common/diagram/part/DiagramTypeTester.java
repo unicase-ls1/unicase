@@ -8,7 +8,7 @@ package org.unicase.ui.common.diagram.part;
 import org.eclipse.core.expressions.PropertyTester;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-
+//dengler clarify with schroech
 /**
  * @author schroech
  *

@@ -43,7 +43,7 @@ import org.unicase.workspace.WorkspaceManager;
 /**
  * Factory class for GMF {@link Command}s.
  * 
- * @author schroech
+ * @author schroech, denglerm
  */
 @SuppressWarnings("restriction")
 public class CommandFactory {
@@ -166,6 +166,7 @@ public class CommandFactory {
 		if(type!=null){
 			return new ICommandProxy(new DeleteFromDiagramCommand(request, editPart));
 		}
+		//dengler: document null return
 		return null;
 	}
 

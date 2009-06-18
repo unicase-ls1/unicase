@@ -19,7 +19,7 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 
 /**
- * @author denglerm This class represents a command to add model elements to the diagram, which are not contained in the
+ * @author denglerm This class represents a command to add model elements to the diagram, which are not yet contained in the
  *         elements list of the diagram.
  */
 public class DiagramElementAddCommand extends CreateElementCommand {
@@ -64,6 +64,7 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 	 * 
 	 * @return the new model element that has been added
 	 */
+	//dengler reuse get all cross references
 	@Override
 	protected EObject doDefaultElementCreation() {
 		MEDiagram childHolder = (MEDiagram) getElementToEdit();
@@ -74,7 +75,7 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 
 			Collection<EObject> diagramNodeReferences = UnicaseUiUtil
 				.getDiagramNodeReferences((ModelElement) this.newElement);
-
+			((ModelElement) this.newElement).getCrossReferencedModelElements();
 			for (EObject object : diagramNodeReferences) {
 				if (object instanceof Association) {
 					if (childHolder.getElements().contains(((Association) object).getSource())

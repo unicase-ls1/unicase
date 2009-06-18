@@ -64,7 +64,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	private LayoutListener layoutChangeListener;
 	
 	/**
-	 * . The constructor
+	 * The constructor.
 	 */
 	public ModelDiagramEditor() {
 		this(true);
@@ -106,9 +106,9 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			}
 		};
 	}
-
+//dengler: document
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
@@ -120,14 +120,14 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 					((MEDiagram) ModelDiagramEditor.this.getDiagram().eContainer()).saveDiagramLayout();
 
 				} catch (DiagramStoreException e) {
-					// TODO Auto-generated catch block
+					// dengler handle exception
 					e.printStackTrace();
 				}
 			}
 
 		});
 	}
-
+//dengler: document
 	/**
 	 * . {@inheritDoc}
 	 */
@@ -211,6 +211,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			win.getSelectionService().addSelectionListener(this);
 
 		} catch (CoreException x) {
+			//dengler show in error log
 			x.printStackTrace(System.err);
 			String title = x.getMessage();
 			String msg = x.getMessage();

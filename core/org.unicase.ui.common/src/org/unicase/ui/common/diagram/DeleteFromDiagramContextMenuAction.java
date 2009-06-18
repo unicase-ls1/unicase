@@ -12,7 +12,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
-
+//dengler: document setActivePart
 /**
  * @author denglerm This class is a wrapper class to make the DeleteFromDiagram action available in a
  * diagram's context menu.

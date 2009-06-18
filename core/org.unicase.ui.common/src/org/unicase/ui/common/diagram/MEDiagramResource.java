@@ -36,9 +36,9 @@ import org.unicase.workspace.WorkspaceManager;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
-
+//dengler: review
 /**
- * @author Helming
+ * @author Helming, denglerm
  */
 public class MEDiagramResource extends ResourceImpl implements Resource, Resource.Factory, Resource.Internal,
 	XMLResource {

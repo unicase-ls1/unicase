@@ -126,11 +126,12 @@ public final class UnicaseUiUtil {
 	}
 
 	/**
-	 * This method searches for in- and outgoing associations of a node and returns them in an ArrayList.
+	 * This method searches for in- and outgoing associations of a node and returns them in an Set.
 	 * 
 	 * @param node The diagram node
 	 * @return The list of associations
 	 */
+	//dengler: move method.
 	public static Set<EObject> getDiagramNodeReferences(ModelElement node) {
 		Set<EObject> references = new HashSet<EObject>();
 		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(node.eResource()

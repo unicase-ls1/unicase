@@ -15,12 +15,12 @@ import org.eclipse.swt.graphics.Image;
 
 /**
  * @author denglerm
- * . This is class extends the eclipse ImageFigure to allow resize
+ * This is class extends the eclipse ImageFigure to allow resize.
  */
 public class ScaleableImageFigure extends ImageFigure {	
 	
 	/**
-	 * . Constructor
+	 * Constructor.
 	 * 
 	 * @param bundle The package of the figure file
 	 * @param path the path of the figure file within the package
@@ -32,7 +32,7 @@ public class ScaleableImageFigure extends ImageFigure {
  	  this.setAlignment(PositionConstants.NORTH_WEST);
     }
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}.
 	 * 
 	 * @see org.eclipse.draw2d.ImageFigure#getImage()
 	 */
