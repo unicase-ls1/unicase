@@ -207,4 +207,13 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 	public ChangePackageVisualizationHelper getChangePackageVisualizationHelper() {
 		return changePackageVisualizationHelper;
 	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getToolTipText(Object element) {
+		TreeNode historyNode = findTopParent((TreeNode)element);
+		return getText((HistoryInfo)historyNode.getValue());
+	}
 }
