@@ -27,7 +27,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.ui.common.diagram.ConfigurableRectangleFigure;
+import org.unicase.ui.common.diagram.figures.CenterLayout;
+import org.unicase.ui.common.diagram.figures.ConfigurableRectangleFigure;
 
 /**
  * @generated
@@ -287,7 +288,7 @@ public class StateEditPart extends ShapeNodeEditPart {
 
 			this.add(stateFigure_name0);
 
-			org.unicase.ui.stateDiagram.unicase.CenterLayout layoutStateFigure_name0 = new org.unicase.ui.stateDiagram.unicase.CenterLayout();
+			CenterLayout layoutStateFigure_name0 = new CenterLayout();
 
 			stateFigure_name0.setLayoutManager(layoutStateFigure_name0);
 
