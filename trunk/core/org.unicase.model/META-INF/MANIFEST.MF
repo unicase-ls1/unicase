@@ -65,5 +65,5 @@ Export-Package: org.unicase.model,
  org.unicase.model.util.util,
  org.unicase.model.validation
 Require-Bundle: org.eclipse.gmf.runtime.notation;visibility:=reexport,
- org.eclipse.emf.transaction
+ org.eclipse.emf.transaction;visibility:=reexport
 Bundle-ActivationPolicy: lazy

@@ -5,9 +5,7 @@ Bundle-SymbolicName: org.unicase.ui.navigator;singleton:=true
 Bundle-Version: 0.3.24.qualifier
 Bundle-Activator: org.unicase.ui.navigator.Activator
 Bundle-Vendor: unicase.org
-Require-Bundle: org.eclipse.emf.transaction.ui,
- org.unicase.ui.meeditor,
- org.eclipse.ui.forms
+Require-Bundle: org.unicase.ui.meeditor
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 

@@ -20,11 +20,6 @@ Export-Package: org.unicase.workspace,
  org.unicase.workspace.notification,
  org.unicase.workspace.notification.provider,
  org.unicase.workspace.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.change;visibility:=reexport,
- org.eclipse.emf.transaction,
- org.eclipse.emf.ecore.xmi,
- org.unicase.emfstore;bundle-version="0.3.24.qualifier";visibility:=reexport
+Require-Bundle: org.unicase.emfstore;bundle-version="0.3.24.qualifier";visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.unicase.workspace.Activator

@@ -31,8 +31,6 @@ Export-Package: org.unicase.emfstore.esmodel,
  org.unicase.emfstore.esmodel.versioning.operations.impl,
  org.unicase.emfstore.esmodel.versioning.operations.util,
  org.unicase.emfstore.esmodel.versioning.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.change;visibility:=reexport,
- org.unicase.model;bundle-version="0.3.24.qualifier"
+Require-Bundle: org.eclipse.emf.ecore.change;visibility:=reexport,
+ org.unicase.model;bundle-version="0.3.24.qualifier";visibility:=reexport
 Bundle-ActivationPolicy: lazy

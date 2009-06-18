@@ -5,10 +5,7 @@ Bundle-SymbolicName: org.unicase.ui.stem;singleton:=true
 Bundle-Version: 0.3.24.qualifier
 Bundle-Activator: org.unicase.ui.stem.Activator
 Bundle-Vendor: TU-Muenchen
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.emf.transaction.ui,
- org.unicase.ui.meeditor;bundle-version="0.3.24.qualifier",
+Require-Bundle: org.unicase.ui.meeditor;bundle-version="0.3.24.qualifier",
  org.unicase.ui.tableview;bundle-version="0.3.24.qualifier"
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
