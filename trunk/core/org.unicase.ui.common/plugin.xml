@@ -492,18 +492,6 @@
       </objectContribution>
        <objectContribution
             adaptable="false"
-            id="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
-            objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart">
-         <action
-               class="org.unicase.ui.common.diagram.DeleteFromDiagramContextMenuAction"
-               enablesFor="1"
-               icon="icons/delete_edit.gif"
-               id="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
-               label="Delete From Diagram">
-         </action>
-      </objectContribution>
-       <objectContribution
-            adaptable="false"
             id="OpenMEEComponentID"
             objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
          <action
@@ -514,5 +502,21 @@
                label="Open with MEEditor">
          </action>
       </objectContribution>
+	</extension>
+	<extension point="org.eclipse.gmf.runtime.common.ui.services.action.contributionItemProviders">
+		<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
+			<Priority name="Low"/>
+				<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+					<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart"/>
+				<popupPredefinedItem id="deleteFromDiagramAction" remove="true"/>
+			</popupContribution>
+		</contributionItemProvider>
+				<contributionItemProvider class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContributionItemProvider" checkPluginLoaded="false">
+			<Priority name="Low"/>
+				<popupContribution class="org.eclipse.gmf.runtime.diagram.ui.providers.DiagramContextMenuProvider">
+					<popupStructuredContributionCriteria objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart"/>
+				<popupPredefinedItem id="deleteFromModelAction" remove="true"/>
+			</popupContribution>
+		</contributionItemProvider>
 </extension>
 </plugin>

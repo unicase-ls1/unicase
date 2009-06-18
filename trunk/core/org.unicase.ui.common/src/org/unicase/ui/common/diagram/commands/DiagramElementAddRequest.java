@@ -11,6 +11,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 //dengler: Document
 /**
  * @author schroech
+ * This class extends the CreateElementRequest to be able to specify if
+ * nodes that are linked with the "element to add" should also be added to the diagram. * 
  */
 public class DiagramElementAddRequest extends CreateElementRequest {
 

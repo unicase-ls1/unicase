@@ -27,7 +27,10 @@ import org.unicase.ui.common.util.ActionHelper;
 public class DeleteFromDiagramAction extends Action {
 
 	/**
-	 * This method deletes the diagram element from the diagram's elements list, but not from the project.
+	 * In case of a diagram node to be deleted: This method deletes the model element behind the node
+	 * from the diagram's elements list, but not from the project.
+	 * 
+	 * In case of a diagram link to be deleted: The reference is also deleted from the model.
 	 * 
 	 * @see org.eclipse.jface.action#run()
 	 */
