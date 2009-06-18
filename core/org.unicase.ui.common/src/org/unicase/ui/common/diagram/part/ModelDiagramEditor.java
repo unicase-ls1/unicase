@@ -47,6 +47,7 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 import org.unicase.ui.common.diagram.DeleteFromDiagramAction;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author denglerm This class is a superclass for the generated ModelDiagramEditor in each diagram.
@@ -120,8 +121,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 					((MEDiagram) ModelDiagramEditor.this.getDiagram().eContainer()).saveDiagramLayout();
 
 				} catch (DiagramStoreException e) {
-					// dengler handle exception
-					e.printStackTrace();
+					// dengler: handle exception
+					WorkspaceUtil.logException("Saving diagram failed", e);
 				}
 			}
 
@@ -211,12 +212,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			win.getSelectionService().addSelectionListener(this);
 
 		} catch (CoreException x) {
-			//dengler show in error log
-			x.printStackTrace(System.err);
-			String title = x.getMessage();
-			String msg = x.getMessage();
-			Shell shell = getSite().getShell();
-			ErrorDialog.openError(shell, title, msg, x.getStatus());
+			//dengler: show in error log
+			WorkspaceUtil.logException("Set diagram content failed", x);
 		}
 	}
 

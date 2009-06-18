@@ -166,7 +166,7 @@ public class CommandFactory {
 		if(type!=null){
 			return new ICommandProxy(new DeleteFromDiagramCommand(request, editPart));
 		}
-		//dengler: document null return
+		//return null: a null command within a CompoundCommand is not executed.
 		return null;
 	}
 

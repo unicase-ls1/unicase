@@ -6,6 +6,7 @@
 package org.unicase.ui.common.diagram.commands;
 
 import java.util.Collection;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -73,14 +74,24 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 		if (!(getRequest() instanceof DiagramElementAddRequest)
 			|| ((DiagramElementAddRequest) getRequest()).getAddReferences()) {
 
-			Collection<EObject> diagramNodeReferences = UnicaseUiUtil
-				.getDiagramNodeReferences((ModelElement) this.newElement);
-			((ModelElement) this.newElement).getCrossReferencedModelElements();
-			for (EObject object : diagramNodeReferences) {
+			Set<ModelElement> diagramNodeReferences = ((ModelElement) this.newElement).getCrossReferencedModelElements();
+			for (ModelElement object : diagramNodeReferences) {
 				if (object instanceof Association) {
 					if (childHolder.getElements().contains(((Association) object).getSource())
 						&& childHolder.getElements().contains(((Association) object).getTarget())) {
-						childHolder.getElements().add((ModelElement) object);
+						childHolder.getElements().add(object);
+					}
+				}
+				else if (object instanceof org.unicase.model.state.Transition) {
+					if (childHolder.getElements().contains(((org.unicase.model.state.Transition) object).getSource())
+						&& childHolder.getElements().contains(((org.unicase.model.state.Transition) object).getTarget())) {
+						childHolder.getElements().add(object);
+					}
+				}
+				else if (object instanceof org.unicase.model.activity.Transition) {
+					if (childHolder.getElements().contains(((org.unicase.model.state.Transition) object).getSource())
+						&& childHolder.getElements().contains(((org.unicase.model.state.Transition) object).getTarget())) {
+						childHolder.getElements().add(object);
 					}
 				}
 			}

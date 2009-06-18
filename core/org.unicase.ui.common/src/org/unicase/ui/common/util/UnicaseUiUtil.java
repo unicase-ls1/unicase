@@ -28,6 +28,7 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
 import org.unicase.model.classes.Association;
+import org.unicase.model.state.Transition;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.workspace.ProjectSpace;
@@ -142,7 +143,7 @@ public final class UnicaseUiUtil {
 
 				for (Setting setting : inverseReferences) {
 					EObject settingObj = setting.getEObject();
-					if (settingObj != null && settingObj instanceof Association) {
+					if (settingObj != null && (settingObj instanceof Association || settingObj instanceof Transition)) {
 						references.add(settingObj);
 					}
 				}
