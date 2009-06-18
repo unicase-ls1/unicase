@@ -114,7 +114,7 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 					.openError(shell, "Client version outdated",
 						"The client version is incompatible with the server. Please update your plugins via the Update Manager.");
 			} catch (InvalidVersionSpecException e) {
-				DialogHandler.showErrorDialog(e.getMessage());
+				DialogHandler.showErrorDialog("The requested revision was invalid");
 			}
 		} catch (SessionTimedOutException e) {
 			if (loginHandler.execute(getEvent()).equals(Window.OK)) {

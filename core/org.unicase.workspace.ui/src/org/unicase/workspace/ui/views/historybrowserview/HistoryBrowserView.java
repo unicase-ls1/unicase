@@ -24,6 +24,7 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.InputDialog;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -55,6 +56,7 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
@@ -243,6 +245,27 @@ public class HistoryBrowserView extends ViewPart {
 		next.setImageDescriptor(Activator.getImageDescriptor("/icons/next.png"));
 		next.setToolTipText("Next " + (startOffset + 1) + " items");
 		menuManager.add(next);
+		
+		Action jumpTo = new Action() {
+			@Override
+			public void run() {
+				InputDialog inputDialog = new InputDialog(getSite().getShell(), "Go to revision", "Revision", "", null);
+				if(inputDialog.open() == Window.OK){
+					try{
+						int temp = Integer.parseInt(inputDialog.getValue());
+						currentEnd = temp;
+						refresh();
+					}catch(NumberFormatException e){
+						MessageDialog.openError(getSite().getShell(), "Error", "A numeric value was expected!");
+						run();
+					}
+				}
+			}
+			
+		};
+		jumpTo.setImageDescriptor(Activator.getImageDescriptor("/icons/magnifier.png"));
+		jumpTo.setToolTipText("Go to revision...");
+		menuManager.add(jumpTo);
 	}
 
 	/**
@@ -258,7 +281,13 @@ public class HistoryBrowserView extends ViewPart {
 
 			@Override
 			protected Object run() throws EmfStoreException {
-				loadContent(end);
+				try{
+					loadContent(end);
+				}catch(InvalidVersionSpecException e){
+					MessageDialog.openError(getShell(), "Invalid revision", "The requested revision was invalid");
+					currentEnd = projectSpace.getBaseVersion().getIdentifier();
+					refresh();
+				}
 				return null;
 			}
 
