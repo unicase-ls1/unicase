@@ -4,13 +4,9 @@ Bundle-Name: Test Plug-in
 Bundle-SymbolicName: org.unicase.test; singleton:=true
 Bundle-Version: 0.3.18.qualifier
 Bundle-Activator: org.unicase.test.Activator
-Require-Bundle: org.eclipse.core.runtime,
- org.unicase.workspace;bundle-version="0.3.18.qualifier",
- org.apache.commons.logging;bundle-version="1.0.4",
- org.unicase.workspace.edit;bundle-version="0.3.18.qualifier",
- org.eclipse.emf.transaction;bundle-version="1.2.0",
- org.unicase.ui.common;bundle-version="0.3.18.qualifier",
- org.unicase.analyzer;bundle-version="0.3.18.qualifier",
- org.unicase.workspace.test;bundle-version="0.3.18"
+Require-Bundle: org.apache.commons.logging;bundle-version="1.0.4",
+ org.unicase.ui.common,
+ org.unicase.workspace.test,
+ org.unicase.analyzer.edit
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
