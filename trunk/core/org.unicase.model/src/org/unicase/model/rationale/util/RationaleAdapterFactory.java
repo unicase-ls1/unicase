@@ -14,6 +14,7 @@ import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.rationale.Assessment;
+import org.unicase.model.rationale.AudioComment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
@@ -102,6 +103,11 @@ public class RationaleAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseComment(Comment object) {
 			return createCommentAdapter();
+		}
+
+		@Override
+		public Adapter caseAudioComment(AudioComment object) {
+			return createAudioCommentAdapter();
 		}
 
 		@Override
@@ -227,6 +233,20 @@ public class RationaleAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createCommentAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.rationale.AudioComment
+	 * <em>Audio Comment</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.model.rationale.AudioComment
+	 * @generated
+	 */
+	public Adapter createAudioCommentAdapter() {
 		return null;
 	}
 

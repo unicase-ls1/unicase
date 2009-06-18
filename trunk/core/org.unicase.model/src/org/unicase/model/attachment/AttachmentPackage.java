@@ -7,6 +7,7 @@ package org.unicase.model.attachment;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.unicase.model.ModelPackage;
 
@@ -354,13 +355,31 @@ public interface AttachmentPackage extends EPackage {
 	int FILE_ATTACHMENT__REQUIRED_OFFLINE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 4;
 
 	/**
+	 * The feature id for the '<em><b>File Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTACHMENT__FILE_TYPE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>File Attachment</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_ATTACHMENT_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 5;
+	int FILE_ATTACHMENT_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.attachment.FileAttachmentType <em>File Attachment Type</em>}
+	 * ' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.model.attachment.FileAttachmentType
+	 * @see org.unicase.model.attachment.impl.AttachmentPackageImpl#getFileAttachmentType()
+	 * @generated
+	 */
+	int FILE_ATTACHMENT_TYPE = 2;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.attachment.UrlAttachment <em>Url Attachment</em>}'.
@@ -447,6 +466,27 @@ public interface AttachmentPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getFileAttachment_RequiredOffline();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.attachment.FileAttachment#getFileType
+	 * <em>File Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>File Type</em>'.
+	 * @see org.unicase.model.attachment.FileAttachment#getFileType()
+	 * @see #getFileAttachment()
+	 * @generated
+	 */
+	EAttribute getFileAttachment_FileType();
+
+	/**
+	 * Returns the meta object for enum '{@link org.unicase.model.attachment.FileAttachmentType
+	 * <em>File Attachment Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for enum '<em>File Attachment Type</em>'.
+	 * @see org.unicase.model.attachment.FileAttachmentType
+	 * @generated
+	 */
+	EEnum getFileAttachmentType();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -536,6 +576,24 @@ public interface AttachmentPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FILE_ATTACHMENT__REQUIRED_OFFLINE = eINSTANCE.getFileAttachment_RequiredOffline();
+
+		/**
+		 * The meta object literal for the '<em><b>File Type</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute FILE_ATTACHMENT__FILE_TYPE = eINSTANCE.getFileAttachment_FileType();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.attachment.FileAttachmentType
+		 * <em>File Attachment Type</em>}' enum. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.model.attachment.FileAttachmentType
+		 * @see org.unicase.model.attachment.impl.AttachmentPackageImpl#getFileAttachmentType()
+		 * @generated
+		 */
+		EEnum FILE_ATTACHMENT_TYPE = eINSTANCE.getFileAttachmentType();
 
 	}
 

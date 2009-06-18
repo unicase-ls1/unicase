@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.rationale.Assessment;
+import org.unicase.model.rationale.AudioComment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
@@ -72,6 +73,8 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 			return createAssessment();
 		case RationalePackage.COMMENT:
 			return createComment();
+		case RationalePackage.AUDIO_COMMENT:
+			return createAudioComment();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -135,6 +138,16 @@ public class RationaleFactoryImpl extends EFactoryImpl implements RationaleFacto
 	public Comment createComment() {
 		CommentImpl comment = new CommentImpl();
 		return comment;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public AudioComment createAudioComment() {
+		AudioCommentImpl audioComment = new AudioCommentImpl();
+		return audioComment;
 	}
 
 	/**

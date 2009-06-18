@@ -284,20 +284,12 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__CHECKED = TaskPackage.WORK_ITEM_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Status</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int BUG_REPORT__STATUS = TaskPackage.WORK_ITEM_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Severity</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__SEVERITY = TaskPackage.WORK_ITEM_FEATURE_COUNT + 2;
+	int BUG_REPORT__SEVERITY = TaskPackage.WORK_ITEM_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Resolution</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -305,7 +297,7 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__RESOLUTION = TaskPackage.WORK_ITEM_FEATURE_COUNT + 3;
+	int BUG_REPORT__RESOLUTION = TaskPackage.WORK_ITEM_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Resolution Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -313,7 +305,15 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int BUG_REPORT__RESOLUTION_TYPE = TaskPackage.WORK_ITEM_FEATURE_COUNT + 4;
+	int BUG_REPORT__RESOLUTION_TYPE = TaskPackage.WORK_ITEM_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Done</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__DONE = TaskPackage.WORK_ITEM_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Report</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -324,16 +324,6 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT_FEATURE_COUNT = TaskPackage.WORK_ITEM_FEATURE_COUNT + 5;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.bug.BugStatus <em>Status</em>}' enum. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.model.bug.BugStatus
-	 * @see org.unicase.model.bug.impl.BugPackageImpl#getBugStatus()
-	 * @generated
-	 */
-	int BUG_STATUS = 1;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.model.bug.Severity <em>Severity</em>}' enum. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
@@ -341,7 +331,7 @@ public interface BugPackage extends EPackage {
 	 * @see org.unicase.model.bug.impl.BugPackageImpl#getSeverity()
 	 * @generated
 	 */
-	int SEVERITY = 2;
+	int SEVERITY = 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.bug.ResolutionType <em>Resolution Type</em>}' enum. <!--
@@ -351,7 +341,7 @@ public interface BugPackage extends EPackage {
 	 * @see org.unicase.model.bug.impl.BugPackageImpl#getResolutionType()
 	 * @generated
 	 */
-	int RESOLUTION_TYPE = 3;
+	int RESOLUTION_TYPE = 2;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.bug.BugReport <em>Report</em>}'. <!-- begin-user-doc
@@ -362,17 +352,6 @@ public interface BugPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getBugReport();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.bug.BugReport#getStatus <em>Status</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Status</em>'.
-	 * @see org.unicase.model.bug.BugReport#getStatus()
-	 * @see #getBugReport()
-	 * @generated
-	 */
-	EAttribute getBugReport_Status();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}
@@ -408,14 +387,15 @@ public interface BugPackage extends EPackage {
 	EAttribute getBugReport_ResolutionType();
 
 	/**
-	 * Returns the meta object for enum '{@link org.unicase.model.bug.BugStatus <em>Status</em>}'. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.unicase.model.bug.BugReport#isDone <em>Done</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for enum '<em>Status</em>'.
-	 * @see org.unicase.model.bug.BugStatus
+	 * @return the meta object for the attribute '<em>Done</em>'.
+	 * @see org.unicase.model.bug.BugReport#isDone()
+	 * @see #getBugReport()
 	 * @generated
 	 */
-	EEnum getBugStatus();
+	EAttribute getBugReport_Done();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.model.bug.Severity <em>Severity</em>}'. <!-- begin-user-doc
@@ -469,14 +449,6 @@ public interface BugPackage extends EPackage {
 		EClass BUG_REPORT = eINSTANCE.getBugReport();
 
 		/**
-		 * The meta object literal for the '<em><b>Status</b></em>' attribute feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EAttribute BUG_REPORT__STATUS = eINSTANCE.getBugReport_Status();
-
-		/**
 		 * The meta object literal for the '<em><b>Severity</b></em>' attribute feature. <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
 		 * 
@@ -501,14 +473,12 @@ public interface BugPackage extends EPackage {
 		EAttribute BUG_REPORT__RESOLUTION_TYPE = eINSTANCE.getBugReport_ResolutionType();
 
 		/**
-		 * The meta object literal for the ' {@link org.unicase.model.bug.BugStatus <em>Status</em>}' enum. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '<em><b>Done</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
 		 * 
-		 * @see org.unicase.model.bug.BugStatus
-		 * @see org.unicase.model.bug.impl.BugPackageImpl#getBugStatus()
 		 * @generated
 		 */
-		EEnum BUG_STATUS = eINSTANCE.getBugStatus();
+		EAttribute BUG_REPORT__DONE = eINSTANCE.getBugReport_Done();
 
 		/**
 		 * The meta object literal for the ' {@link org.unicase.model.bug.Severity <em>Severity</em>}' enum. <!--

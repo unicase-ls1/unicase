@@ -1021,6 +1021,34 @@ public interface RationalePackage extends EPackage {
 	int COMMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.model.rationale.impl.AudioCommentImpl <em>Audio Comment</em>}'
+	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.model.rationale.impl.AudioCommentImpl
+	 * @see org.unicase.model.rationale.impl.RationalePackageImpl#getAudioComment()
+	 * @generated
+	 */
+	int AUDIO_COMMENT = 6;
+
+	/**
+	 * The feature id for the '<em><b>Audio File</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int AUDIO_COMMENT__AUDIO_FILE = 0;
+
+	/**
+	 * The number of structural features of the '<em>Audio Comment</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int AUDIO_COMMENT_FEATURE_COUNT = 1;
+
+	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.rationale.Issue <em>Issue</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1250,6 +1278,28 @@ public interface RationalePackage extends EPackage {
 	EReference getComment_CommentedElement();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.model.rationale.AudioComment <em>Audio Comment</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Audio Comment</em>'.
+	 * @see org.unicase.model.rationale.AudioComment
+	 * @generated
+	 */
+	EClass getAudioComment();
+
+	/**
+	 * Returns the meta object for the containment reference '
+	 * {@link org.unicase.model.rationale.AudioComment#getAudioFile <em>Audio File</em>}'. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '<em>Audio File</em>'.
+	 * @see org.unicase.model.rationale.AudioComment#getAudioFile()
+	 * @see #getAudioComment()
+	 * @generated
+	 */
+	EReference getAudioComment_AudioFile();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -1449,6 +1499,24 @@ public interface RationalePackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMMENT__COMMENTED_ELEMENT = eINSTANCE.getComment_CommentedElement();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.rationale.impl.AudioCommentImpl
+		 * <em>Audio Comment</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.model.rationale.impl.AudioCommentImpl
+		 * @see org.unicase.model.rationale.impl.RationalePackageImpl#getAudioComment()
+		 * @generated
+		 */
+		EClass AUDIO_COMMENT = eINSTANCE.getAudioComment();
+
+		/**
+		 * The meta object literal for the '<em><b>Audio File</b></em>' containment reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference AUDIO_COMMENT__AUDIO_FILE = eINSTANCE.getAudioComment_AudioFile();
 
 	}
 

@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugStatus;
 import org.unicase.model.bug.ResolutionType;
 import org.unicase.model.bug.Severity;
 
@@ -74,8 +73,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
 		switch (eDataType.getClassifierID()) {
-		case BugPackage.BUG_STATUS:
-			return createBugStatusFromString(eDataType, initialValue);
 		case BugPackage.SEVERITY:
 			return createSeverityFromString(eDataType, initialValue);
 		case BugPackage.RESOLUTION_TYPE:
@@ -93,8 +90,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
 		switch (eDataType.getClassifierID()) {
-		case BugPackage.BUG_STATUS:
-			return convertBugStatusToString(eDataType, instanceValue);
 		case BugPackage.SEVERITY:
 			return convertSeverityToString(eDataType, instanceValue);
 		case BugPackage.RESOLUTION_TYPE:
@@ -112,28 +107,6 @@ public class BugFactoryImpl extends EFactoryImpl implements BugFactory {
 	public BugReport createBugReport() {
 		BugReportImpl bugReport = new BugReportImpl();
 		return bugReport;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public BugStatus createBugStatusFromString(EDataType eDataType, String initialValue) {
-		BugStatus result = BugStatus.get(initialValue);
-		if (result == null)
-			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
-				+ eDataType.getName() + "'");
-		return result;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public String convertBugStatusToString(EDataType eDataType, Object instanceValue) {
-		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

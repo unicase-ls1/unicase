@@ -17,6 +17,7 @@ import org.unicase.model.Attachment;
  * <li>{@link org.unicase.model.attachment.FileAttachment#getFileID <em>File ID</em>}</li>
  * <li>{@link org.unicase.model.attachment.FileAttachment#getFileSize <em>File Size</em>}</li>
  * <li>{@link org.unicase.model.attachment.FileAttachment#isRequiredOffline <em>Required Offline</em>}</li>
+ * <li>{@link org.unicase.model.attachment.FileAttachment#getFileType <em>File Type</em>}</li>
  * </ul>
  * </p>
  * 
@@ -154,5 +155,34 @@ public interface FileAttachment extends Attachment {
 	 * @generated
 	 */
 	void setRequiredOffline(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>File Type</b></em>' attribute. The literals are from the enumeration
+	 * {@link org.unicase.model.attachment.FileAttachmentType}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>File Type</em>' attribute isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>File Type</em>' attribute.
+	 * @see org.unicase.model.attachment.FileAttachmentType
+	 * @see #setFileType(FileAttachmentType)
+	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_FileType()
+	 * @model
+	 * @generated
+	 */
+	FileAttachmentType getFileType();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#getFileType <em>File Type</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>File Type</em>' attribute.
+	 * @see org.unicase.model.attachment.FileAttachmentType
+	 * @see #getFileType()
+	 * @generated
+	 */
+	void setFileType(FileAttachmentType value);
 
 } // FileAttachment

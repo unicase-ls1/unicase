@@ -13,10 +13,10 @@ import org.unicase.model.task.WorkItem;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.bug.BugReport#getStatus <em>Status</em>}</li>
  * <li>{@link org.unicase.model.bug.BugReport#getSeverity <em>Severity</em>}</li>
  * <li>{@link org.unicase.model.bug.BugReport#getResolution <em>Resolution</em>}</li>
  * <li>{@link org.unicase.model.bug.BugReport#getResolutionType <em>Resolution Type</em>}</li>
+ * <li>{@link org.unicase.model.bug.BugReport#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
  * 
@@ -25,35 +25,6 @@ import org.unicase.model.task.WorkItem;
  * @generated
  */
 public interface BugReport extends WorkItem, Checkable {
-	/**
-	 * Returns the value of the '<em><b>Status</b></em>' attribute. The literals are from the enumeration
-	 * {@link org.unicase.model.bug.BugStatus}. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Status</em>' attribute isn't clear, there really should be more of a description
-	 * here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Status</em>' attribute.
-	 * @see org.unicase.model.bug.BugStatus
-	 * @see #setStatus(BugStatus)
-	 * @see org.unicase.model.bug.BugPackage#getBugReport_Status()
-	 * @model
-	 * @generated
-	 */
-	BugStatus getStatus();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.bug.BugReport#getStatus <em>Status</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Status</em>' attribute.
-	 * @see org.unicase.model.bug.BugStatus
-	 * @see #getStatus()
-	 * @generated
-	 */
-	void setStatus(BugStatus value);
-
 	/**
 	 * Returns the value of the '<em><b>Severity</b></em>' attribute. The literals are from the enumeration
 	 * {@link org.unicase.model.bug.Severity}. <!-- begin-user-doc -->
@@ -137,5 +108,30 @@ public interface BugReport extends WorkItem, Checkable {
 	 * @generated
 	 */
 	void setResolutionType(ResolutionType value);
+
+	/**
+	 * Returns the value of the '<em><b>Done</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Done</em>' attribute isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Done</em>' attribute.
+	 * @see #setDone(boolean)
+	 * @see org.unicase.model.bug.BugPackage#getBugReport_Done()
+	 * @model
+	 * @generated
+	 */
+	boolean isDone();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.bug.BugReport#isDone <em>Done</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Done</em>' attribute.
+	 * @see #isDone()
+	 * @generated
+	 */
+	void setDone(boolean value);
 
 } // BugReport

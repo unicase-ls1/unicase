@@ -6,6 +6,7 @@
 package org.unicase.model.attachment.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
@@ -13,6 +14,7 @@ import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
+import org.unicase.model.attachment.FileAttachmentType;
 import org.unicase.model.attachment.UrlAttachment;
 
 /**
@@ -70,6 +72,36 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 	 * 
 	 * @generated
 	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+		case AttachmentPackage.FILE_ATTACHMENT_TYPE:
+			return createFileAttachmentTypeFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+		case AttachmentPackage.FILE_ATTACHMENT_TYPE:
+			return convertFileAttachmentTypeToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public UrlAttachment createUrlAttachment() {
 		UrlAttachmentImpl urlAttachment = new UrlAttachmentImpl();
 		return urlAttachment;
@@ -83,6 +115,28 @@ public class AttachmentFactoryImpl extends EFactoryImpl implements AttachmentFac
 	public FileAttachment createFileAttachment() {
 		FileAttachmentImpl fileAttachment = new FileAttachmentImpl();
 		return fileAttachment;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public FileAttachmentType createFileAttachmentTypeFromString(EDataType eDataType, String initialValue) {
+		FileAttachmentType result = FileAttachmentType.get(initialValue);
+		if (result == null)
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '"
+				+ eDataType.getName() + "'");
+		return result;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public String convertFileAttachmentTypeToString(EDataType eDataType, Object instanceValue) {
+		return instanceValue == null ? null : instanceValue.toString();
 	}
 
 	/**

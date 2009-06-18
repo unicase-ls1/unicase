@@ -1047,6 +1047,10 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" eType="#//ModelElement"
           eOpposite="#//ModelElement/comments" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AudioComment">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="audioFile" eType="#//attachment/FileAttachment"
+          containment="true"/>
+    </eClassifiers>
   </eSubpackages>
   <eSubpackages name="change" nsURI="http://unicase.org/model/change" nsPrefix="org.unicase.model.rationale">
     <eClassifiers xsi:type="ecore:EClass" name="ModelChangePackage" eSuperTypes="#//ModelElement">
@@ -1299,6 +1303,13 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredOffline" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileType" eType="#//attachment/FileAttachmentType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="FileAttachmentType">
+      <eLiterals name="BINARY"/>
+      <eLiterals name="IMAGE" value="1" literal="IMAGE"/>
+      <eLiterals name="AUDIO" value="2" literal="AUDIO"/>
+      <eLiterals name="VIDEO" value="3" literal="VIDEO"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="profile" nsURI="http://unicase.org/model/profile" nsPrefix="org.unicase.model.profile">

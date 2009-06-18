@@ -22,7 +22,6 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugStatus;
 import org.unicase.model.bug.Severity;
 import org.unicase.model.provider.AnnotationItemProvider;
 import org.unicase.model.provider.ModelEditPlugin;
@@ -66,10 +65,10 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 			addEffortPropertyDescriptor(object);
 			addPriorityPropertyDescriptor(object);
 			addResolvedPropertyDescriptor(object);
-			addStatusPropertyDescriptor(object);
 			addSeverityPropertyDescriptor(object);
 			addResolutionPropertyDescriptor(object);
 			addResolutionTypePropertyDescriptor(object);
+			addDonePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -214,19 +213,6 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
-	 * This adds a property descriptor for the Status feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addStatusPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_BugReport_Status_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_BugReport_Status_feature", "_UI_BugReport_type"),
-			BugPackage.Literals.BUG_REPORT__STATUS, true, false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-			null, null));
-	}
-
-	/**
 	 * This adds a property descriptor for the Severity feature. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -266,6 +252,19 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	}
 
 	/**
+	 * This adds a property descriptor for the Done feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addDonePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_BugReport_done_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_BugReport_done_feature", "_UI_BugReport_type"),
+			BugPackage.Literals.BUG_REPORT__DONE, true, false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null,
+			null));
+	}
+
+	/**
 	 * This returns BugReport.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated NOT {@inheritDoc}
@@ -274,11 +273,11 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 	public Object getImage(Object object) {
 		if (object instanceof BugReport) {
 			BugReport bugReport = (BugReport) object;
-			if (bugReport.getStatus().equals(BugStatus.RESOLVED)) {
-				return overlayImage(object, getResourceLocator().getImage("full/obj16/Bug_resolved.png"));
-			}
-			if (bugReport.getStatus().equals(BugStatus.CLOSED)) {
+			if (bugReport.isChecked()) {
 				return overlayImage(object, getResourceLocator().getImage("full/obj16/Bug_closed.png"));
+			}
+			if (bugReport.isResolved()) {
+				return overlayImage(object, getResourceLocator().getImage("full/obj16/Bug_resolved.png"));
 			}
 			if (bugReport.getSeverity().equals(Severity.FEATURE)) {
 				return overlayImage(object, getResourceLocator().getImage("full/obj16/Bug_feature.png"));
@@ -327,10 +326,10 @@ public class BugReportItemProvider extends AnnotationItemProvider implements IEd
 		case BugPackage.BUG_REPORT__PRIORITY:
 		case BugPackage.BUG_REPORT__RESOLVED:
 		case BugPackage.BUG_REPORT__CHECKED:
-		case BugPackage.BUG_REPORT__STATUS:
 		case BugPackage.BUG_REPORT__SEVERITY:
 		case BugPackage.BUG_REPORT__RESOLUTION:
 		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
+		case BugPackage.BUG_REPORT__DONE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}
