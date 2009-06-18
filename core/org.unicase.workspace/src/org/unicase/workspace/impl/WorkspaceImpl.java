@@ -331,15 +331,6 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @generated NOT
-	 */
-	public boolean isDirty() {
-		return this.eResource().isModified();
-	}
-
 	// end of custom code
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
