@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
+import org.unicase.model.attachment.FileAttachmentType;
 import org.unicase.model.impl.AttachmentImpl;
 
 /**
@@ -127,6 +128,26 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * @ordered
 	 */
 	protected boolean requiredOffline = REQUIRED_OFFLINE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getFileType() <em>File Type</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getFileType()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final FileAttachmentType FILE_TYPE_EDEFAULT = FileAttachmentType.BINARY;
+
+	/**
+	 * The cached value of the '{@link #getFileType() <em>File Type</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getFileType()
+	 * @generated
+	 * @ordered
+	 */
+	protected FileAttachmentType fileType = FILE_TYPE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -262,6 +283,28 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * 
 	 * @generated
 	 */
+	public FileAttachmentType getFileType() {
+		return fileType;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setFileType(FileAttachmentType newFileType) {
+		FileAttachmentType oldFileType = fileType;
+		fileType = newFileType == null ? FILE_TYPE_EDEFAULT : newFileType;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE,
+				oldFileType, fileType));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -275,6 +318,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			return getFileSize();
 		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
 			return isRequiredOffline();
+		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
+			return getFileType();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -301,6 +346,9 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			return;
 		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
 			setRequiredOffline((Boolean) newValue);
+			return;
+		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
+			setFileType((FileAttachmentType) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -329,6 +377,9 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
 			setRequiredOffline(REQUIRED_OFFLINE_EDEFAULT);
 			return;
+		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
+			setFileType(FILE_TYPE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -351,6 +402,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			return fileSize != FILE_SIZE_EDEFAULT;
 		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
 			return requiredOffline != REQUIRED_OFFLINE_EDEFAULT;
+		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
+			return fileType != FILE_TYPE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -376,6 +429,8 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		result.append(fileSize);
 		result.append(", requiredOffline: ");
 		result.append(requiredOffline);
+		result.append(", fileType: ");
+		result.append(fileType);
 		result.append(')');
 		return result.toString();
 	}

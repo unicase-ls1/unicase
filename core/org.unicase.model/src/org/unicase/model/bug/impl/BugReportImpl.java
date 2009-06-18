@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugStatus;
 import org.unicase.model.bug.ResolutionType;
 import org.unicase.model.bug.Severity;
 import org.unicase.model.change.ModelChangePackage;
@@ -51,10 +50,10 @@ import org.unicase.model.task.WorkPackage;
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getPriority <em>Priority</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#isResolved <em>Resolved</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#isChecked <em>Checked</em>}</li>
- * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getStatus <em>Status</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getSeverity <em>Severity</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolution <em>Resolution</em>}</li>
  * <li>{@link org.unicase.model.bug.impl.BugReportImpl#getResolutionType <em>Resolution Type</em>}</li>
+ * <li>{@link org.unicase.model.bug.impl.BugReportImpl#isDone <em>Done</em>}</li>
  * </ul>
  * </p>
  * 
@@ -232,26 +231,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	protected static final boolean CHECKED_EDEFAULT = false;
 
 	/**
-	 * The default value of the '{@link #getStatus() <em>Status</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #getStatus()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final BugStatus STATUS_EDEFAULT = BugStatus.NEW;
-
-	/**
-	 * The cached value of the '{@link #getStatus() <em>Status</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #getStatus()
-	 * @generated
-	 * @ordered
-	 */
-	protected BugStatus status = STATUS_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #getSeverity() <em>Severity</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -310,6 +289,26 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @ordered
 	 */
 	protected ResolutionType resolutionType = RESOLUTION_TYPE_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isDone() <em>Done</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @see #isDone()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DONE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDone() <em>Done</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @see #isDone()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean done = DONE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -690,9 +689,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @return if the bugreport is closed
 	 */
 	public boolean isChecked() {
-		return (getStatus().equals(BugStatus.CLOSED));
+		return isDone();
 	}
 
+	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> Sets the bug to closed if checked. <!-- end-user-doc -->
 	 * 
@@ -700,33 +700,10 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 	 * @param newChecked if the bug should be closed
 	 */
 	public void setChecked(boolean newChecked) {
-		if (newChecked) {
-			setStatus(BugStatus.CLOSED);
-		} else {
-			setStatus(BugStatus.NEW);
-		}
+		setDone(newChecked);
 	}
 
-	/**
-	 * <!-- begin-user-doc --> .<!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public BugStatus getStatus() {
-		return status;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public void setStatus(BugStatus newStatus) {
-		BugStatus oldStatus = status;
-		status = newStatus == null ? STATUS_EDEFAULT : newStatus;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__STATUS, oldStatus, status));
-	}
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -792,6 +769,27 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__RESOLUTION_TYPE,
 				oldResolutionType, resolutionType));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public boolean isDone() {
+		return done;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setDone(boolean newDone) {
+		boolean oldDone = done;
+		done = newDone;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, BugPackage.BUG_REPORT__DONE, oldDone, done));
 	}
 
 	/**
@@ -906,14 +904,14 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return isResolved();
 		case BugPackage.BUG_REPORT__CHECKED:
 			return isChecked();
-		case BugPackage.BUG_REPORT__STATUS:
-			return getStatus();
 		case BugPackage.BUG_REPORT__SEVERITY:
 			return getSeverity();
 		case BugPackage.BUG_REPORT__RESOLUTION:
 			return getResolution();
 		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
 			return getResolutionType();
+		case BugPackage.BUG_REPORT__DONE:
+			return isDone();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -970,9 +968,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__CHECKED:
 			setChecked((Boolean) newValue);
 			return;
-		case BugPackage.BUG_REPORT__STATUS:
-			setStatus((BugStatus) newValue);
-			return;
 		case BugPackage.BUG_REPORT__SEVERITY:
 			setSeverity((Severity) newValue);
 			return;
@@ -981,6 +976,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return;
 		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
 			setResolutionType((ResolutionType) newValue);
+			return;
+		case BugPackage.BUG_REPORT__DONE:
+			setDone((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -1033,9 +1031,6 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		case BugPackage.BUG_REPORT__CHECKED:
 			setChecked(CHECKED_EDEFAULT);
 			return;
-		case BugPackage.BUG_REPORT__STATUS:
-			setStatus(STATUS_EDEFAULT);
-			return;
 		case BugPackage.BUG_REPORT__SEVERITY:
 			setSeverity(SEVERITY_EDEFAULT);
 			return;
@@ -1044,6 +1039,9 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return;
 		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
 			setResolutionType(RESOLUTION_TYPE_EDEFAULT);
+			return;
+		case BugPackage.BUG_REPORT__DONE:
+			setDone(DONE_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -1083,14 +1081,14 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 			return resolved != RESOLVED_EDEFAULT;
 		case BugPackage.BUG_REPORT__CHECKED:
 			return isChecked() != CHECKED_EDEFAULT;
-		case BugPackage.BUG_REPORT__STATUS:
-			return status != STATUS_EDEFAULT;
 		case BugPackage.BUG_REPORT__SEVERITY:
 			return severity != SEVERITY_EDEFAULT;
 		case BugPackage.BUG_REPORT__RESOLUTION:
 			return RESOLUTION_EDEFAULT == null ? resolution != null : !RESOLUTION_EDEFAULT.equals(resolution);
 		case BugPackage.BUG_REPORT__RESOLUTION_TYPE:
 			return resolutionType != RESOLUTION_TYPE_EDEFAULT;
+		case BugPackage.BUG_REPORT__DONE:
+			return done != DONE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -1152,14 +1150,14 @@ public class BugReportImpl extends AnnotationImpl implements BugReport {
 		result.append(priority);
 		result.append(", resolved: ");
 		result.append(resolved);
-		result.append(", Status: ");
-		result.append(status);
 		result.append(", severity: ");
 		result.append(severity);
 		result.append(", resolution: ");
 		result.append(resolution);
 		result.append(", resolutionType: ");
 		result.append(resolutionType);
+		result.append(", done: ");
+		result.append(done);
 		result.append(')');
 		return result.toString();
 	}

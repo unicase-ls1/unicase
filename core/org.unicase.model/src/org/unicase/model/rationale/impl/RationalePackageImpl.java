@@ -36,6 +36,7 @@ import org.unicase.model.organization.impl.OrganizationPackageImpl;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.impl.ProfilePackageImpl;
 import org.unicase.model.rationale.Assessment;
+import org.unicase.model.rationale.AudioComment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
@@ -99,6 +100,13 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 * @generated
 	 */
 	private EClass commentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass audioCommentEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -440,6 +448,24 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 	 * 
 	 * @generated
 	 */
+	public EClass getAudioComment() {
+		return audioCommentEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getAudioComment_AudioFile() {
+		return (EReference) audioCommentEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public RationaleFactory getRationaleFactory() {
 		return (RationaleFactory) getEFactoryInstance();
 	}
@@ -489,6 +515,9 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		createEReference(commentEClass, COMMENT__SENDER);
 		createEReference(commentEClass, COMMENT__RECIPIENTS);
 		createEReference(commentEClass, COMMENT__COMMENTED_ELEMENT);
+
+		audioCommentEClass = createEClass(AUDIO_COMMENT);
+		createEReference(audioCommentEClass, AUDIO_COMMENT__AUDIO_FILE);
 	}
 
 	/**
@@ -519,6 +548,8 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		TaskPackage theTaskPackage = (TaskPackage) EPackage.Registry.INSTANCE.getEPackage(TaskPackage.eNS_URI);
 		OrganizationPackage theOrganizationPackage = (OrganizationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(OrganizationPackage.eNS_URI);
+		AttachmentPackage theAttachmentPackage = (AttachmentPackage) EPackage.Registry.INSTANCE
+			.getEPackage(AttachmentPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -608,6 +639,12 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 			.getModelElement_Comments(), "commentedElement", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getComment_CommentedElement().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+
+		initEClass(audioCommentEClass, AudioComment.class, "AudioComment", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAudioComment_AudioFile(), theAttachmentPackage.getFileAttachment(), null, "audioFile", null,
+			0, 1, AudioComment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create annotations
 		// org.unicase.ui.meeditor

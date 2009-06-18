@@ -19,7 +19,6 @@ import org.unicase.model.attachment.impl.AttachmentPackageImpl;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.BugReport;
-import org.unicase.model.bug.BugStatus;
 import org.unicase.model.bug.ResolutionType;
 import org.unicase.model.bug.Severity;
 import org.unicase.model.change.ChangePackage;
@@ -62,13 +61,6 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * @generated
 	 */
 	private EClass bugReportEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EEnum bugStatusEEnum = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -244,7 +236,7 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getBugReport_Status() {
+	public EAttribute getBugReport_Severity() {
 		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -253,7 +245,7 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getBugReport_Severity() {
+	public EAttribute getBugReport_Resolution() {
 		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -262,7 +254,7 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getBugReport_Resolution() {
+	public EAttribute getBugReport_ResolutionType() {
 		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -271,17 +263,8 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getBugReport_ResolutionType() {
+	public EAttribute getBugReport_Done() {
 		return (EAttribute) bugReportEClass.getEStructuralFeatures().get(3);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EEnum getBugStatus() {
-		return bugStatusEEnum;
 	}
 
 	/**
@@ -331,13 +314,12 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 
 		// Create classes and their features
 		bugReportEClass = createEClass(BUG_REPORT);
-		createEAttribute(bugReportEClass, BUG_REPORT__STATUS);
 		createEAttribute(bugReportEClass, BUG_REPORT__SEVERITY);
 		createEAttribute(bugReportEClass, BUG_REPORT__RESOLUTION);
 		createEAttribute(bugReportEClass, BUG_REPORT__RESOLUTION_TYPE);
+		createEAttribute(bugReportEClass, BUG_REPORT__DONE);
 
 		// Create enums
-		bugStatusEEnum = createEEnum(BUG_STATUS);
 		severityEEnum = createEEnum(SEVERITY);
 		resolutionTypeEEnum = createEEnum(RESOLUTION_TYPE);
 	}
@@ -379,8 +361,6 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(bugReportEClass, BugReport.class, "BugReport", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getBugReport_Status(), this.getBugStatus(), "Status", null, 0, 1, BugReport.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBugReport_Severity(), this.getSeverity(), "severity", null, 0, 1, BugReport.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getBugReport_Resolution(), ecorePackage.getEString(), "resolution", null, 0, 1, BugReport.class,
@@ -388,15 +368,10 @@ public class BugPackageImpl extends EPackageImpl implements BugPackage {
 		initEAttribute(getBugReport_ResolutionType(), this.getResolutionType(), "resolutionType", null, 0, 1,
 			BugReport.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getBugReport_Done(), ecorePackage.getEBoolean(), "done", null, 0, 1, BugReport.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
-		initEEnum(bugStatusEEnum, BugStatus.class, "BugStatus");
-		addEEnumLiteral(bugStatusEEnum, BugStatus.NEW);
-		addEEnumLiteral(bugStatusEEnum, BugStatus.CONFIRMED);
-		addEEnumLiteral(bugStatusEEnum, BugStatus.ASSIGNED);
-		addEEnumLiteral(bugStatusEEnum, BugStatus.RESOLVED);
-		addEEnumLiteral(bugStatusEEnum, BugStatus.CLOSED);
-
 		initEEnum(severityEEnum, Severity.class, "Severity");
 		addEEnumLiteral(severityEEnum, Severity.FEATURE);
 		addEEnumLiteral(severityEEnum, Severity.TRIVIAL);

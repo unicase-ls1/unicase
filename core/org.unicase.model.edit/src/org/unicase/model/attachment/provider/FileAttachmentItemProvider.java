@@ -55,6 +55,7 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 			addFileNamePropertyDescriptor(object);
 			addFileSizePropertyDescriptor(object);
 			addRequiredOfflinePropertyDescriptor(object);
+			addFileTypePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -99,6 +100,19 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
+	 * This adds a property descriptor for the File Type feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addFileTypePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_fileType_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_fileType_feature",
+				"_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__FILE_TYPE, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
 	 * This returns FileAttachment.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -137,6 +151,7 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_ID:
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
+		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

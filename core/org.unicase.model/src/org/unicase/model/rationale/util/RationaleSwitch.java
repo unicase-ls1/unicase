@@ -14,6 +14,7 @@ import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.rationale.Assessment;
+import org.unicase.model.rationale.AudioComment;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Issue;
@@ -167,6 +168,13 @@ public class RationaleSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case RationalePackage.AUDIO_COMMENT: {
+			AudioComment audioComment = (AudioComment) theEObject;
+			T result = caseAudioComment(audioComment);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -247,6 +255,19 @@ public class RationaleSwitch<T> {
 	 * @generated
 	 */
 	public T caseComment(Comment object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Audio Comment</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Audio Comment</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAudioComment(AudioComment object) {
 		return null;
 	}
 

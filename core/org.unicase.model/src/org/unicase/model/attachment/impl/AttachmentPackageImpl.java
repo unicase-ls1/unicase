@@ -7,6 +7,7 @@ package org.unicase.model.attachment.impl;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -16,6 +17,7 @@ import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
+import org.unicase.model.attachment.FileAttachmentType;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.bug.impl.BugPackageImpl;
@@ -66,6 +68,13 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * @generated
 	 */
 	private EClass fileAttachmentEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EEnum fileAttachmentTypeEEnum = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -290,6 +299,24 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * 
 	 * @generated
 	 */
+	public EAttribute getFileAttachment_FileType() {
+		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EEnum getFileAttachmentType() {
+		return fileAttachmentTypeEEnum;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public AttachmentFactory getAttachmentFactory() {
 		return (AttachmentFactory) getEFactoryInstance();
 	}
@@ -322,6 +349,10 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_ID);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_SIZE);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__REQUIRED_OFFLINE);
+		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_TYPE);
+
+		// Create enums
+		fileAttachmentTypeEEnum = createEEnum(FILE_ATTACHMENT_TYPE);
 	}
 
 	/**
@@ -381,6 +412,16 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		initEAttribute(getFileAttachment_RequiredOffline(), ecorePackage.getEBoolean(), "requiredOffline", null, 0, 1,
 			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileAttachment_FileType(), this.getFileAttachmentType(), "fileType", null, 0, 1,
+			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+
+		// Initialize enums and add enum literals
+		initEEnum(fileAttachmentTypeEEnum, FileAttachmentType.class, "FileAttachmentType");
+		addEEnumLiteral(fileAttachmentTypeEEnum, FileAttachmentType.BINARY);
+		addEEnumLiteral(fileAttachmentTypeEEnum, FileAttachmentType.IMAGE);
+		addEEnumLiteral(fileAttachmentTypeEEnum, FileAttachmentType.AUDIO);
+		addEEnumLiteral(fileAttachmentTypeEEnum, FileAttachmentType.VIDEO);
 
 		// Create annotations
 		// org.unicase.ui.meeditor

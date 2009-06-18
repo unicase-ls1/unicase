@@ -396,6 +396,9 @@
             ecoreFeature="ecore:EReference model.ecore#//rationale/Comment/recipients"/>
         <genFeatures property="None" notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//rationale/Comment/commentedElement"/>
       </genClasses>
+      <genClasses ecoreClass="model.ecore#//rationale/AudioComment">
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//rationale/AudioComment/audioFile"/>
+      </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Change" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//change">
@@ -419,13 +422,6 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Bug" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//bug">
-      <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//bug/BugStatus">
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//bug/BugStatus/NEW"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//bug/BugStatus/CONFIRMED"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//bug/BugStatus/ASSIGNED"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//bug/BugStatus/RESOLVED"/>
-        <genEnumLiterals ecoreEnumLiteral="model.ecore#//bug/BugStatus/CLOSED"/>
-      </genEnums>
       <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//bug/Severity">
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//bug/Severity/FEATURE"/>
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//bug/Severity/TRIVIAL"/>
@@ -439,10 +435,10 @@
         <genEnumLiterals ecoreEnumLiteral="model.ecore#//bug/ResolutionType/WONT_FIX"/>
       </genEnums>
       <genClasses ecoreClass="model.ecore#//bug/BugReport">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//bug/BugReport/Status"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//bug/BugReport/severity"/>
         <genFeatures createChild="false" propertyMultiLine="true" ecoreFeature="ecore:EAttribute model.ecore#//bug/BugReport/resolution"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//bug/BugReport/resolutionType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//bug/BugReport/done"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Component" basePackage="org.unicase.model" disposableProviderFactory="true"
@@ -526,6 +522,12 @@
     </nestedGenPackages>
     <nestedGenPackages prefix="Attachment" basePackage="org.unicase.model" disposableProviderFactory="true"
         ecorePackage="model.ecore#//attachment">
+      <genEnums typeSafeEnumCompatible="false" ecoreEnum="model.ecore#//attachment/FileAttachmentType">
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//attachment/FileAttachmentType/BINARY"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//attachment/FileAttachmentType/IMAGE"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//attachment/FileAttachmentType/AUDIO"/>
+        <genEnumLiterals ecoreEnumLiteral="model.ecore#//attachment/FileAttachmentType/VIDEO"/>
+      </genEnums>
       <genClasses ecoreClass="model.ecore#//attachment/UrlAttachment">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/UrlAttachment/url"/>
       </genClasses>
@@ -535,6 +537,7 @@
         <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileID"/>
         <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileSize"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/requiredOffline"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileType"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Profile" basePackage="org.unicase.model" disposableProviderFactory="true"

@@ -6659,5 +6659,66 @@
       </element>
     </changes>
   </releases>
-  <releases/>
+  <releases>
+    <changes xsi:type="history:Create" target="model.ecore#//rationale" element="model.ecore#//rationale/AudioComment"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment"
+        featureName="name" dataValue="AudioComment"/>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment" element="model.ecore#//attachment/FileAttachmentType"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType"
+          featureName="instanceClassName"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType"
+          featureName="instanceTypeName"/>
+    </changes>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType"
+        featureName="name" dataValue="FileAttachmentType"/>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
+        element="model.ecore#//attachment/FileAttachmentType/BINARY" referenceName="eLiterals"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/BINARY"
+        featureName="name" dataValue="BINARY"/>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
+        element="model.ecore#//attachment/FileAttachmentType/IMAGE" referenceName="eLiterals"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
+        featureName="literal" dataValue=""/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
+        featureName="name" dataValue="IMAGE"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
+        featureName="literal" dataValue="IMAGE"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
+        featureName="value" dataValue="1"/>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
+        element="model.ecore#//attachment/FileAttachmentType/AUDIO" referenceName="eLiterals"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
+        featureName="value" dataValue="2"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
+        featureName="literal" dataValue="AUDIO"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
+        featureName="name" dataValue="AUDIO"/>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
+        element="model.ecore#//attachment/FileAttachmentType/VIDEO" referenceName="eLiterals"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+        featureName="literal" dataValue=""/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+        featureName="name" dataValue="VIDEO"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+        featureName="literal" dataValue="VIDEO"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+        featureName="value" dataValue="3"/>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
+        element="model.ecore#//attachment/FileAttachment/fileType" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileType"
+        featureName="eType" referenceValue="model.ecore#//attachment/FileAttachmentType"/>
+    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileType"
+        featureName="name" dataValue="fileType"/>
+    <changes xsi:type="history:Create" target="model.ecore#//rationale/AudioComment"
+        element="model.ecore#//rationale/AudioComment/audioFile" referenceName="eStructuralFeatures"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
+        featureName="containment" dataValue="true"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
+        featureName="eType" referenceValue="model.ecore#//attachment/FileAttachment"/>
+    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
+        featureName="name" dataValue="audioFile"/>
+  </releases>
 </history:History>
