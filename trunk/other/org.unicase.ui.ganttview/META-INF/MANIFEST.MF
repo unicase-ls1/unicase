@@ -7,7 +7,8 @@ Bundle-Activator: org.unicase.ui.ganttview.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.unicase.model,
- org.unicase.ui.common
+ org.unicase.ui.common,
+ org.eclipse.emf.edit.ui;bundle-version="2.4.2"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: lib/org.eclipse.nebula.widgets.ganttchart-2.0-NIGHTLY.jar,
