@@ -9,6 +9,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.nebula.widgets.ganttchart.GanttChart;
 import org.eclipse.nebula.widgets.ganttchart.GanttControlParent;
 import org.eclipse.nebula.widgets.ganttchart.GanttEvent;
@@ -50,7 +51,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 	private GanttChart ganttChart;
 	private Composite parent;
-	private Tree tree;
+	private TreeViewer treeViewer;
 
 	// private Map<String, GanttEvent> workPackagesToGanttEvents;
 
@@ -89,7 +90,30 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
 		ganttCpLeft.setGanttChart(ganttChart);
 
-		tree = new Tree(ganttCpLeft, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
+		createTree(ganttCpLeft);
+
+		sashForm.setWeights(new int[] { 30, 70 });
+
+		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+
+		if (projectSpace != null) {
+			Project inputProject = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
+				.getProject();
+			if (inputProject != null) {
+				this.setInput(inputProject);
+			}
+		}
+
+	}
+
+	private void createTree(Composite parent) {
+
+		treeViewer = new TreeViewer(parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
+		treeViewer.setContentProvider(new GanttTreeContentProvider());
+		treeViewer.setLabelProvider(new GanttTreeLabelProvider());
+
+		final Tree tree = treeViewer.getTree();
+
 		tree.setHeaderVisible(true);
 		tree.setLinesVisible(true);
 
@@ -127,9 +151,8 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				if (tree.getSelectionCount() == 0) {
+				if (tree.getSelectionCount() == 0)
 					return;
-				}
 
 				// set the selection
 				TreeItem sel = tree.getSelection()[0];
@@ -138,9 +161,6 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 			}
 
 		});
-
-		// tree.addListener(SWT.Collapse, expandCollapseListener);
-		// tree.addListener(SWT.Expand, expandCollapseListener);
 
 		TreeColumn tcName = new TreeColumn(tree, SWT.NONE);
 		tcName.setText("Name");
@@ -158,50 +178,36 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		tcCompleted.setText("Completed");
 		tcCompleted.setWidth(100);
 
-		sashForm.setWeights(new int[] { 30, 70 });
-
-		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-
-		if (projectSpace != null) {
-			Project inputProject = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-				.getProject();
-			if (inputProject != null) {
-				this.setInput(inputProject);
-			}
-		}
-
 	}
 
 	public void setInput(WorkPackage workPackage) {
 
-		GanttViewHelper.clearGantt(ganttChart, tree);
+		GanttViewHelper.clearGantt(ganttChart, treeViewer.getTree());
 		recreateView(workPackage);
-
-		// TODO should Map be cleared in deconstructor?
-		// workPackagesToGanttEvents.clear();
 	}
 
 	public void setInput(Project project) {
 
 		EList<WorkPackage> dummyList = new BasicEList<WorkPackage>();
 		setInput(project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkPackage(), dummyList));
+		treeViewer.setInput(project);
 	}
 
 	public void setInput(EList<WorkPackage> workPackages) {
 
-		GanttViewHelper.clearGantt(ganttChart, tree);
+		GanttViewHelper.clearGantt(ganttChart, treeViewer.getTree());
 
 		for (WorkPackage workPackage : workPackages) {
 			recreateView(workPackage);
 		}
 
-		// TODO should Map be cleared in deconstructor?
-		// workPackagesToGanttEvents.clear();
+		treeViewer.setInput(workPackages);
 	}
 
 	private void recreateView(WorkPackage workPackage) {
 
 		recurisveWorkPackageToGanttEvent(workPackage, true);
+		treeViewer.setInput(workPackage);
 	}
 
 	private int getEstimate(ModelElement element, WorkPackage currentOpenME, Set<WorkItem> relativeWorkItems) {
