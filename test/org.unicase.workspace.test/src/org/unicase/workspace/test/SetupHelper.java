@@ -24,6 +24,7 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -47,24 +48,22 @@ import org.unicase.workspace.test.integration.forward.IntegrationTestHelper;
  */
 public class SetupHelper {
 
-	private  TransactionalEditingDomain domain;
-	private  Workspace workSpace;
-	private  ProjectSpace testProjectSpace;
-	private  Project testProject;
-	private  Usersession usersession;
+	private TransactionalEditingDomain domain;
+	private Workspace workSpace;
+	private ProjectSpace testProjectSpace;
+	private Project testProject;
+	private Usersession usersession;
 
+	private ProjectId projectId;
+	private Project compareProject;
 
-	private  ProjectId projectId;
-	private  Project compareProject;
-	
 	private TestProjectEnum projectTemplate;
-	
+
 	/**
-	 * 
 	 * @param projectTemplate test project to initialize SetupHelper
 	 */
 	public SetupHelper(TestProjectEnum projectTemplate) {
-		
+
 		this.projectTemplate = projectTemplate;
 	}
 
@@ -92,53 +91,49 @@ public class SetupHelper {
 		}
 
 	}
-	
-	 private static void copyDirectory(File sourceLocation , File targetLocation)
-	    throws IOException {
-	        
-	        if (sourceLocation.isDirectory()) {
-	            if (!targetLocation.exists()) {
-	            	 targetLocation.mkdir();
-	            }
-	            
-	            String[] children = sourceLocation.list();
-	            for (int i=0; i<children.length; i++) {
-	                copyDirectory(new File(sourceLocation, children[i]),
-	                        new File(targetLocation, children[i]));
-	            }
-	        } else {
-	            
-	            InputStream in = new FileInputStream(sourceLocation);
-	            OutputStream out = new FileOutputStream(targetLocation);
-	            
-	            // Copy the bits from instream to outstream
-	            byte[] buf = new byte[1024];
-	            int len;
-	            while ((len = in.read(buf)) > 0) {
-	                out.write(buf, 0, len);
-	            }
-	            in.close();
-	            out.close();
-	        }
-	    }
+
+	private static void copyDirectory(File sourceLocation, File targetLocation) throws IOException {
+
+		if (sourceLocation.isDirectory()) {
+			if (!targetLocation.exists()) {
+				targetLocation.mkdir();
+			}
+
+			String[] children = sourceLocation.list();
+			for (int i = 0; i < children.length; i++) {
+				copyDirectory(new File(sourceLocation, children[i]), new File(targetLocation, children[i]));
+			}
+		} else {
+
+			InputStream in = new FileInputStream(sourceLocation);
+			OutputStream out = new FileOutputStream(targetLocation);
+
+			// Copy the bits from instream to outstream
+			byte[] buf = new byte[1024];
+			int len;
+			while ((len = in.read(buf)) > 0) {
+				out.write(buf, 0, len);
+			}
+			in.close();
+			out.close();
+		}
+	}
 
 	/**
 	 * Setups server space.
 	 */
 	public static void setupServerSpace() {
-        // 1.
+		// 1.
 		// create a new server space
-		
-				
+
 		// import project history from local folder (it is located in our test plug-in)
-		
+
 		// add the history to server space
-		
-		
-		//===============================
-		//2.
+
+		// ===============================
+		// 2.
 		// copy whole folders and storage from file system to .unicase.test/emfstore
-		
+
 		ServerConfiguration.setTesting(true);
 		String serverPath = ServerConfiguration.getServerHome();
 		File targetLocation = new File(serverPath);
@@ -151,30 +146,29 @@ public class SetupHelper {
 			srcPath = srcPath.replace("reference:file:/", "");
 		}
 		File sourceLocation = new File(srcPath);
-		
+
 		try {
 			copyDirectory(sourceLocation, targetLocation);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		// start server.
-		
+
 		try {
 			Properties properties = ServerConfiguration.getProperties();
 			properties.setProperty(ServerConfiguration.RMI_ENCRYPTION, ServerConfiguration.FALSE);
 			EmfStoreController.runAsNewThread();
 		} catch (FatalEmfStoreException e) {
 			e.printStackTrace();
-		}		
-		
-		
+		}
+
 	}
-	
+
 	/**
 	 * log in the test server.
 	 */
-	public void loginServer(){
+	public void loginServer() {
 		if (usersession == null) {
 			usersession = WorkspaceFactory.eINSTANCE.createUsersession();
 
@@ -184,7 +178,7 @@ public class SetupHelper {
 			usersession.setUsername("super");
 			usersession.setPassword("super");
 		}
-		
+
 		if (!usersession.isLoggedIn()) {
 			try {
 				usersession.logIn();
@@ -193,7 +187,7 @@ public class SetupHelper {
 			} catch (EmfStoreException e) {
 				e.printStackTrace();
 			}
-		}				
+		}
 	}
 
 	/**
@@ -224,7 +218,6 @@ public class SetupHelper {
 	 * Setups a new test project space by importing one of template test projects.
 	 */
 	public void setupTestProjectSpace() {
-		
 
 		final String path;
 		path = projectTemplate.getPath();
@@ -250,16 +243,15 @@ public class SetupHelper {
 		});
 
 		testProject = testProjectSpace.getProject();
-	
+
 	}
-	
-	
+
 	/**
 	 * Setups a new test project space by importing a project file located at absolutePath.
+	 * 
 	 * @param absolutePath absolutePath to a project to import.
 	 */
 	public void setupTestProjectSpace(final String absolutePath) {
-			
 
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
@@ -282,7 +274,7 @@ public class SetupHelper {
 		});
 
 		testProject = testProjectSpace.getProject();
-	
+
 	}
 
 	/**
@@ -315,8 +307,8 @@ public class SetupHelper {
 	/**
 	 * Cleans workspace up.
 	 */
-	public  void cleanupWorkspace() {
-		
+	public void cleanupWorkspace() {
+
 		String workspacePath = Configuration.getWorkspaceDirectory();
 		File workspaceDirectory = new File(workspacePath);
 		FileFilter workspaceFileFilter = new FileFilter() {
@@ -339,8 +331,6 @@ public class SetupHelper {
 		new File(workspacePath + "workspace.ucw").delete();
 	}
 
-	
-
 	/**
 	 * Imports a project space from an exported project file.
 	 * 
@@ -348,18 +338,15 @@ public class SetupHelper {
 	 * @return project space
 	 * @throws IOException IOException
 	 */
-	public  ProjectSpace importProject(String uri) throws IOException {
+	public ProjectSpace importProject(String uri) throws IOException {
 		return workSpace.importProject(uri);
 
 	}
 
-	
-
-
 	/**
 	 * This shares test project with server.
 	 */
-	public  void shareProject() {
+	public void shareProject() {
 		if (usersession == null) {
 			usersession = WorkspaceFactory.eINSTANCE.createUsersession();
 
@@ -378,7 +365,7 @@ public class SetupHelper {
 				usersession.logIn();
 			}
 
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
 				protected void doExecute() {
 					try {
@@ -402,8 +389,8 @@ public class SetupHelper {
 	/**
 	 * Commits the changes to server.
 	 */
-	public  void commitChanges() {
-		final LogMessage logMessage = getLogMessage(usersession.getUsername(),"some message");
+	public void commitChanges() {
+		final LogMessage logMessage = createLogMessage(usersession.getUsername(), "some message");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -431,7 +418,7 @@ public class SetupHelper {
 	 * @param message message
 	 * @return LogMessage
 	 */
-	public static LogMessage getLogMessage(String name, String message) {
+	public static LogMessage createLogMessage(String name, String message) {
 		final LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 		logMessage.setAuthor(name);
 		logMessage.setDate(Calendar.getInstance().getTime());
@@ -446,7 +433,7 @@ public class SetupHelper {
 	 * @return project lying on the server
 	 * @throws EmfStoreException EmfStoreException
 	 */
-	public  Project getCompareProject() throws EmfStoreException {
+	public Project getCompareProject() throws EmfStoreException {
 
 		final ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
 		projectInfo.setName("CompareProject");
@@ -472,35 +459,47 @@ public class SetupHelper {
 	/**
 	 * @return the testProject
 	 */
-	public  Project getTestProject() {
+	public Project getTestProject() {
 		return testProject;
 	}
 
 	/**
 	 * @return test project space
 	 */
-	public  ProjectSpace getTestProjectSpace() {
+	public ProjectSpace getTestProjectSpace() {
 		return testProjectSpace;
 	}
-	
+
 	/**
 	 * @return workspace
 	 */
-	public  Workspace getWorkSpace() {
+	public Workspace getWorkSpace() {
 		return workSpace;
 	}
 
 	/**
 	 * @return editing domain
 	 */
-	public  TransactionalEditingDomain getDomain() {
+	public TransactionalEditingDomain getDomain() {
 		return domain;
 	}
-	
+
 	/**
 	 * @return the usersession
 	 */
 	public Usersession getUsersession() {
 		return usersession;
+	}
+
+	/**
+	 * Creates a versionsepc.
+	 * 
+	 * @param i verion
+	 * @return versionspec
+	 */
+	public static PrimaryVersionSpec createPrimaryVersionSpec(int i) {
+		PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		versionSpec.setIdentifier(i);
+		return versionSpec;
 	}
 }
