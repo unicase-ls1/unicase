@@ -44,7 +44,7 @@ public interface ModelPackage extends EPackage {
 	 * 
 	 * @generated NOT
 	 */
-	int RELEASE_NUMBER = 1;
+	int RELEASE_NUMBER = 2;
 
 	/**
 	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
