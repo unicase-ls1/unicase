@@ -7,7 +7,11 @@ package org.unicase.workspace;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
 
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -21,11 +25,18 @@ import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.ModelVersion;
 import org.unicase.model.Project;
+import org.unicase.model.util.FileUtil;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 import org.unicase.workspace.connectionmanager.RMIAdminConnectionManagerImpl;
 import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
+import org.unicase.workspace.util.WorkspaceUtil;
+
+import edu.tum.cs.cope.migration.execution.MigrationException;
+import edu.tum.cs.cope.migration.execution.Migrator;
+import edu.tum.cs.cope.migration.execution.MigratorRegistry;
+import edu.tum.cs.cope.migration.execution.ReleaseUtil;
 
 /**
  * Controller for workspaces. Workspace Manager is a singleton.
@@ -165,8 +176,8 @@ public final class WorkspaceManager {
 		try {
 			resource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			// MK Auto-generated catch block
-			e.printStackTrace();
+			WorkspaceUtil.logException("Creating new workspace failed! Delete workspace folder: "
+				+ Configuration.getWorkspaceDirectory(), e);
 		}
 		stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
 		return workspace;
@@ -181,8 +192,8 @@ public final class WorkspaceManager {
 		try {
 			versionResource.save(Configuration.getResourceSaveOptions());
 		} catch (IOException e) {
-			// MK Auto-generated catch block
-			e.printStackTrace();
+			WorkspaceUtil.logException("Version stamping workspace failed! Delete workspace folder: "
+				+ Configuration.getWorkspaceDirectory(), e);
 		}
 	}
 
@@ -190,51 +201,67 @@ public final class WorkspaceManager {
 		ModelVersion workspaceModelVersion = getWorkspaceModelVersion();
 		if (workspaceModelVersion.getReleaseNumber() == ModelPackage.RELEASE_NUMBER) {
 			return;
+		} else if (workspaceModelVersion.getReleaseNumber() > ModelPackage.RELEASE_NUMBER) {
+			backupAndRecreateWorkspace(resourceSet, domain);
+			WorkspaceUtil.logException("Model conforms to a newer version, update client! New workspace was backuped!",
+				new IllegalStateException());
+			return;
 		}
 
 		// we need to migrate
-		// normal migration code:
-		// File workspaceFile = new File(Configuration.getWorkspaceDirectory());
-		// for (File file : workspaceFile.listFiles()) {
-		// if (file.getName().startsWith(Configuration.getProjectSpaceDirectoryPrefix())) {
-		// String projectFilePath = file.getAbsolutePath() + File.separatorChar
-		// + Configuration.getProjectFolderName() + File.separatorChar + 0
-		// + Configuration.getProjectFragmentFileExtension();
-		// URI projectURI = URI.createFileURI(projectFilePath);
-		// String operationsFilePath = null;
-		// for (File subDirFile : file.listFiles()) {
-		// if (subDirFile.getName().endsWith(Configuration.getOperationCompositeFileExtension())) {
-		// operationsFilePath = subDirFile.getAbsolutePath();
-		// }
-		// }
-		// if (operationsFilePath == null) {
-		// // MK: proper exception handling
-		// throw new IllegalStateException("Broken workspace!");
-		// }
-		// URI operationsURI = URI.createFileURI(operationsFilePath);
-		// try {
-		// migrate(projectURI, operationsURI, workspaceModelVersion.getReleaseNumber());
-		// } catch (MigrationException e) {
-		// WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
-		// + " failed!", e);
-		// }
-		// }
-		// }
-		// special migration code:
-		backupAndRecreateWorkspace(resourceSet, domain);
-
+		backupWorkspace(false);
+		File workspaceFile = new File(Configuration.getWorkspaceDirectory());
+		for (File file : workspaceFile.listFiles()) {
+			if (file.getName().startsWith(Configuration.getProjectSpaceDirectoryPrefix())) {
+				String projectFilePath = file.getAbsolutePath() + File.separatorChar
+					+ Configuration.getProjectFolderName() + File.separatorChar + 0
+					+ Configuration.getProjectFragmentFileExtension();
+				URI projectURI = URI.createFileURI(projectFilePath);
+				String operationsFilePath = null;
+				for (File subDirFile : file.listFiles()) {
+					if (subDirFile.getName().endsWith(Configuration.getOperationCompositeFileExtension())) {
+						operationsFilePath = subDirFile.getAbsolutePath();
+					}
+				}
+				if (operationsFilePath == null) {
+					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
+						+ " failed!", new IllegalStateException("Broken workspace!"));
+					backupAndRecreateWorkspace(resourceSet, domain);
+				}
+				URI operationsURI = URI.createFileURI(operationsFilePath);
+				try {
+					migrate(projectURI, operationsURI, workspaceModelVersion.getReleaseNumber());
+				} catch (MigrationException e) {
+					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
+						+ " failed!", e);
+					backupAndRecreateWorkspace(resourceSet, domain);
+				}
+			}
+		}
 		stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
 	}
 
 	private void backupAndRecreateWorkspace(ResourceSet resourceSet, TransactionalEditingDomain domain) {
+		backupWorkspace(true);
 		URI fileURI = URI.createFileURI(Configuration.getWorkspacePath());
+		createNewWorkspace(resourceSet, domain, fileURI);
+	}
+
+	private void backupWorkspace(boolean move) {
 		String workspaceDirectory = Configuration.getWorkspaceDirectory();
 		File workspacePath = new File(workspaceDirectory);
-		String newWorkspaceDirectory = workspaceDirectory.substring(0, workspaceDirectory.lastIndexOf(".unicase"))
-			+ "unicase.0.4.0_backup";
+		String newWorkspaceDirectory = Configuration.getUserHome() + "unicase_backup_" + System.currentTimeMillis()
+			+ "_" + new Date();
 		File workspacebackupPath = new File(newWorkspaceDirectory);
-		workspacePath.renameTo(workspacebackupPath);
-		createNewWorkspace(resourceSet, domain, fileURI);
+		if (move) {
+			workspacePath.renameTo(workspacebackupPath);
+		} else {
+			try {
+				FileUtil.copyDirectory(workspacePath, workspacebackupPath);
+			} catch (IOException e) {
+				WorkspaceUtil.logException("Workspace backup failed!", e);
+			}
+		}
 	}
 
 	private ModelVersion getWorkspaceModelVersion() {
@@ -261,19 +288,18 @@ public final class WorkspaceManager {
 	 * @param sourceModelReleaseNumber
 	 * @throws ModelMigrationException
 	 */
-	// private void migrate(URI projectURI, URI changesURI, int sourceModelReleaseNumber) throws MigrationException {
-	// String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
-	// Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
-	// if (migrator == null) {
-	// return;
-	// }
-	// List<URI> modelURIs = new ArrayList<URI>();
-	// modelURIs.add(projectURI);
-	// // MK: activate change migration here
-	// // modelURIs.add(changesURI);
-	// // MK: build in prgress monitor here
-	// migrator.migrate(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new NullProgressMonitor());
-	// }
+	private void migrate(URI projectURI, URI changesURI, int sourceModelReleaseNumber) throws MigrationException {
+		String namespaceURI = ReleaseUtil.getNamespaceURI(projectURI);
+		Migrator migrator = MigratorRegistry.getInstance().getMigrator(namespaceURI);
+		if (migrator == null) {
+			return;
+		}
+		List<URI> modelURIs = new ArrayList<URI>();
+		modelURIs.add(projectURI);
+		modelURIs.add(changesURI);
+		// MK: build in progress monitor for migration here
+		migrator.migrate(modelURIs, sourceModelReleaseNumber, Integer.MAX_VALUE, new NullProgressMonitor());
+	}
 
 	/**
 	 * Get the current workspace. There is always one current workspace.
