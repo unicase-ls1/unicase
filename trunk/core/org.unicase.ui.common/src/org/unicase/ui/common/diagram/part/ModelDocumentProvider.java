@@ -53,7 +53,7 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 	}
 
 	/**
-	 * . This method sets the diagram content
+	 * This method sets the diagram content.
 	 * 
 	 * @param document The document whose content should be set
 	 * @param element The new content element
@@ -102,19 +102,19 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 				}
 				// }
 				throw new RuntimeException(
-					org.unicase.ui.common.diagram.Messages.ModelDocumentProvider_NoDiagramInResourceError);
+					"Diagram is not present in resource");
 			} catch (IOException e) {
 				String msg = e.getLocalizedMessage();
 				CoreException thrownExcp = new CoreException(new Status(IStatus.ERROR, "org.unicase.ui.common", 0,
 					msg != null ? msg
-						: org.unicase.ui.common.diagram.Messages.ModelDocumentProvider_DiagramLoadingError, e));
+						: "Error loading diagram", e));
 				throw thrownExcp;
 
 			}
 
 		} else {
 			throw new CoreException(new Status(IStatus.ERROR, "org.unicase.ui.common", 0, NLS.bind(
-				org.unicase.ui.common.diagram.Messages.ModelDocumentProvider_IncorrectInputError, new Object[] {
+				"Incorrect editor input", new Object[] {
 					element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 				null));
 		}
