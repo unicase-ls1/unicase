@@ -6,20 +6,15 @@
 package org.unicase.ui.common.diagram.part;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LayoutListener;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.EditPartViewer;
@@ -107,6 +102,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	}
 //dengler: document
 	/**
+	 * This method calls the MEDiagram's saveDiagramLayout method to save diagram elements and layout
+	 * information.
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -128,7 +125,9 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	}
 //dengler: document
 	/**
-	 * . {@inheritDoc}
+	 * This method registers a Drag & drop listener and listeners for layout and focus change.
+	 * Additionally the standard action for pressing the DEL key is changed to DeleteFromDiagram
+	 * instead of GMF's DeleteFromModel.
 	 */
 	@Override
 	protected void initializeGraphicalViewer() {
@@ -150,6 +149,9 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 	/**
 	 * @author denglerm This class implements the abstract DiagramDropTargetListener
+	 * The superclass uses a DropObjectsRequest to obtain a dnd command from the Drag&Drop policy in
+	 * @link org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart. To set the dropped objects field
+	 * within the request the superclass calls the getObjectsBeingDropped() method of this class.
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener
 	 */
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
@@ -162,33 +164,19 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		@Override
 		protected List<EObject> getObjectsBeingDropped() {
 			TransferData data = getCurrentEvent().currentDataType;
-			Collection<URI> uris = new HashSet<URI>();
 
 			Object transferedObject = getJavaObject(data);
 
+			List<EObject> result = new ArrayList<EObject>();
+
 			if (transferedObject instanceof List) {
-				List<ModelElement> selection = (List<ModelElement>) transferedObject;
+				List selection = (List) transferedObject;
 				for (Iterator it = selection.iterator(); it.hasNext();) {
 					Object nextSelectedObject = it.next();
-					if (nextSelectedObject instanceof IAdaptable) {
-						IAdaptable adaptable = (IAdaptable) nextSelectedObject;
-						nextSelectedObject = adaptable.getAdapter(EObject.class);
-					}
-
-					if (nextSelectedObject instanceof EObject) {
-						EObject modelElement = (EObject) nextSelectedObject;
-						Resource modelElementResource = modelElement.eResource();
-						uris.add(modelElementResource.getURI().appendFragment(
-							modelElementResource.getURIFragment(modelElement)));
+					if (nextSelectedObject instanceof ModelElement) {
+						result.add((EObject) nextSelectedObject);
 					}
 				}
-			}
-
-			List<EObject> result = new ArrayList<EObject>();
-			for (Iterator<URI> it = uris.iterator(); it.hasNext();) {
-				URI nextURI = it.next();
-				EObject modelObject = getEditingDomain().getResourceSet().getEObject(nextURI, true);
-				result.add(modelObject);
 			}
 			return result;
 		}

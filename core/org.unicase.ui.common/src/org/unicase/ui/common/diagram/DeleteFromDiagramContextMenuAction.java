@@ -67,10 +67,20 @@ public class DeleteFromDiagramContextMenuAction implements IObjectActionDelegate
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * This method is to set the active part for the delegate. The active part is commonly used
+	 * to get a working context for the action, such as the shell for any dialog
+	 * which is needed.
+	 *
+	 * This method will be called every time the action appears in a popup menu.
+	 * The targetPart may change with each invocation.
 	 * 
-	 * @see org.eclipse.jface.action.IAction.IObjectActionDelegate#setActivePar(IAction action, IWorkbenchPart
-	 *      targetPart)
+	 * We don't need the active part, so do nothing.
+	 * 
+	 * @param action
+	 *            the action proxy that handles presentation portion of the
+	 *            action; must not be <code>null</code>.
+	 * @param targetPart
+	 *            the new part target; must not be <code>null</code>.
 	 */
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 	}

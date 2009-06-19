@@ -33,6 +33,7 @@ import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramLoadException;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.WorkspaceUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
@@ -49,14 +50,14 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 	private EList<EObject> list;
 
 	/**
-	 * . Constructor
+	 * Constructor.
 	 */
 	public MEDiagramResource() {
 		super();
 	}
 
 	/**
-	 * . Constructor
+	 * Constructor.
 	 * 
 	 * @param meDiagram MEDiagram
 	 */
@@ -109,7 +110,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 					meDiagram.loadDiagramLayout();
 				} catch (DiagramLoadException e) {
 					if (!(e.getCause() instanceof NullPointerException)) {
-						e.printStackTrace();
+						WorkspaceUtil.logException("Loading diagram layout failed", e);
 					}
 
 				}
@@ -137,10 +138,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 			id = "Activity";
 		} else if (meDiagram.getType().equals(DiagramType.WORKITEM_DIAGRAM)) {
 			id = "WorkItem";
-		}
-		
-		
-		
+		}		
 
 		if (id == null) {
 			throw new RuntimeException("Unsupported diagram type");
