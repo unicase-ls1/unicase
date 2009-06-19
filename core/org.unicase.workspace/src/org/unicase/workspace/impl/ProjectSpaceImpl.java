@@ -2197,6 +2197,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.commitObservers.add(observer);
 	}
 
+	/**
+	 * Adds a new OrgUnitProperty for the current user.
+	 * 
+	 * @param property the new property
+	 */
 	public void addProperty(OrgUnitProperties property) {
 		if (getUsersession() != null && getUsersession().getACUser() != null) {
 			// getUsersession().getACUser().getProperties()
