@@ -20,8 +20,6 @@ isFeatureChange = { operation, EStructuralFeature feature ->
 	return false
 }
 
-def ids = []
-
 for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {
 	if(isFeatureChange(operation, model.bug.BugReport.Status)) {
 		if(operation.newValue.literal == model.bug.BugStatus.CLOSED.literal) {
