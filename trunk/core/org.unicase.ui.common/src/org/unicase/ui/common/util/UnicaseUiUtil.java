@@ -127,32 +127,6 @@ public final class UnicaseUiUtil {
 	}
 
 	/**
-	 * This method searches for in- and outgoing associations of a node and returns them in an Set.
-	 * 
-	 * @param node The diagram node
-	 * @return The list of associations
-	 */
-	//dengler: move method.
-	public static Set<EObject> getDiagramNodeReferences(ModelElement node) {
-		Set<EObject> references = new HashSet<EObject>();
-		CrossReferenceAdapter crossReferencer = CrossReferenceAdapter.getCrossReferenceAdapter(node.eResource()
-			.getResourceSet());
-		if (crossReferencer != null) {
-			Collection<Setting> inverseReferences = crossReferencer.getInverseReferences(node);
-			if (inverseReferences != null) {
-
-				for (Setting setting : inverseReferences) {
-					EObject settingObj = setting.getEObject();
-					if (settingObj != null && (settingObj instanceof Association || settingObj instanceof Transition)) {
-						references.add(settingObj);
-					}
-				}
-			}
-		}
-		return references;
-	}
-
-	/**
 	 * This checks a user session for project administrator rights. If there is no session, the user is project admin.
 	 * 
 	 * @param session User session to check
