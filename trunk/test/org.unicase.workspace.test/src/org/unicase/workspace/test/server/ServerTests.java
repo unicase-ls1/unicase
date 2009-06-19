@@ -5,14 +5,28 @@
  */
 package org.unicase.workspace.test.server;
 
+import java.util.HashMap;
+
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
+import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.SerializationException;
@@ -30,6 +44,7 @@ import org.unicase.workspace.test.projectGenerator.TestProjectParmeters;
  * 
  * @author wesendon
  */
+
 public class ServerTests {
 
 	/**
@@ -67,11 +82,20 @@ public class ServerTests {
 		return projectsOnServerBeforeTest;
 	}
 
+	/**
+	 * @return the generatedProjectVersion
+	 */
+	public static PrimaryVersionSpec getGeneratedProjectVersion() {
+		return generatedProjectVersion;
+	}
+
 	private static SessionId sessionId;
 	private static ConnectionManager connectionManager;
 	private static Project generatedProject;
 	private static ProjectId generatedProjectId;
 	private static int projectsOnServerBeforeTest;
+	private static PrimaryVersionSpec generatedProjectVersion;
+	private static HashMap<Class<?>, Object> arguments;
 
 	/**
 	 * Start server and gain sessionid.
@@ -86,6 +110,7 @@ public class ServerTests {
 		TestProjectGenerator projectGenerator = new TestProjectGenerator(new TestProjectParmeters());
 		generatedProject = projectGenerator.generateProject();
 		projectsOnServerBeforeTest = 1;
+		initArguments();
 	}
 
 	/**
@@ -129,8 +154,10 @@ public class ServerTests {
 	 */
 	@Before
 	public void beforeTest() throws EmfStoreException {
-		generatedProjectId = connectionManager.createProject(sessionId, "initialProject", "TestProject",
-			SetupHelper.getLogMessage("super", "a logmessage"), generatedProject).getProjectId();
+		ProjectInfo projectInfo = connectionManager.createProject(sessionId, "initialProject", "TestProject",
+			SetupHelper.createLogMessage("super", "a logmessage"), generatedProject);
+		generatedProjectId = projectInfo.getProjectId();
+		generatedProjectVersion = projectInfo.getVersion();
 	}
 
 	/**
@@ -143,5 +170,50 @@ public class ServerTests {
 		for (ProjectInfo info : connectionManager.getProjectList(sessionId)) {
 			connectionManager.deleteProject(sessionId, info.getProjectId(), true);
 		}
+	}
+
+	/**
+	 * Creates a historyquery.
+	 * 
+	 * @param ver1 source
+	 * @param ver2 target
+	 * @return historyquery
+	 */
+	public static HistoryQuery createHistoryQuery(PrimaryVersionSpec ver1, PrimaryVersionSpec ver2) {
+		HistoryQuery historyQuery = VersioningFactory.eINSTANCE.createHistoryQuery();
+		historyQuery.setSource((PrimaryVersionSpec) EcoreUtil.copy(ver1));
+		historyQuery.setTarget((PrimaryVersionSpec) EcoreUtil.copy(ver2));
+		return historyQuery;
+	}
+
+	private static void initArguments() {
+		arguments = new HashMap<Class<?>, Object>();
+		arguments.put(boolean.class, false);
+		arguments.put(String.class, new String());
+		arguments.put(SessionId.class, EcoreUtil.copy(getSessionId()));
+		arguments.put(ProjectId.class, EsmodelFactory.eINSTANCE.createProjectId());
+		arguments.put(PrimaryVersionSpec.class, VersioningFactory.eINSTANCE.createPrimaryVersionSpec());
+		arguments.put(VersionSpec.class, VersioningFactory.eINSTANCE.createPrimaryVersionSpec());
+		arguments.put(TagVersionSpec.class, VersioningFactory.eINSTANCE.createTagVersionSpec());
+		arguments.put(LogMessage.class, VersioningFactory.eINSTANCE.createLogMessage());
+		arguments.put(Project.class, ModelFactory.eINSTANCE.createProject());
+		arguments.put(ChangePackage.class, VersioningFactory.eINSTANCE.createChangePackage());
+		arguments.put(HistoryQuery.class, VersioningFactory.eINSTANCE.createHistoryQuery());
+		arguments.put(ChangePackage.class, VersioningFactory.eINSTANCE.createChangePackage());
+		arguments.put(ACOrgUnitId.class, AccesscontrolFactory.eINSTANCE.createACOrgUnitId());
+	}
+
+	/**
+	 * Get a default Parameter.
+	 * 
+	 * @param clazz parameter type
+	 * @param b if false, null is returned
+	 * @return parameter
+	 */
+	protected static Object getParameter(Class<?> clazz, boolean b) {
+		if (clazz.equals(boolean.class)) {
+			return false;
+		}
+		return (b) ? arguments.get(clazz) : null;
 	}
 }

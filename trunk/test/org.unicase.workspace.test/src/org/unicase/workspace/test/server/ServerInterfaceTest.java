@@ -8,11 +8,20 @@ package org.unicase.workspace.test.server;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
 
+import java.util.List;
+
 import org.junit.Assert;
 import org.junit.Test;
+import org.unicase.emfstore.connection.rmi.SerializationUtil;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
@@ -28,7 +37,8 @@ public class ServerInterfaceTest extends ServerTests {
 	/**
 	 * If the user is logged in, the result of resolve user mustn't be null.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#resolveUser(SessionId, org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
+	 * @see org.unicase.emfstore.EmfStore#resolveUser(org.unicase.emfstore.esmodel.SessionId,
+	 *      org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId)
 	 * @throws EmfStoreException in case of failure
 	 */
 	@Test
@@ -36,6 +46,16 @@ public class ServerInterfaceTest extends ServerTests {
 		assertTrue(getConnectionManager().resolveUser(getSessionId(), null) != null);
 
 		// TODO: test with orgunitid argument
+	}
+
+	/**
+	 * Gets the list of all projects.
+	 * 
+	 * @throws EmfStoreException in case of failure
+	 */
+	@Test
+	public void getProjectListTest() throws EmfStoreException {
+		assertTrue(getConnectionManager().getProjectList(getSessionId()).size() == getProjectsOnServerBeforeTest());
 	}
 
 	/**
@@ -53,9 +73,9 @@ public class ServerInterfaceTest extends ServerTests {
 	/**
 	 * Creates a project on the server and then deletes it.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#createProject(SessionId, String, String,
+	 * @see org.unicase.emfstore.EmfStore#createProject(org.unicase.emfstore.esmodel.SessionId, String, String,
 	 *      org.unicase.emfstore.esmodel.versioning.LogMessage)
-	 * @see org.unicase.emfstore.EmfStore#getProjectList(SessionId)
+	 * @see org.unicase.emfstore.EmfStore#getProjectList(org.unicase.emfstore.esmodel.SessionId)
 	 * @throws EmfStoreException in case of failure.
 	 */
 	@Test
@@ -63,7 +83,7 @@ public class ServerInterfaceTest extends ServerTests {
 		assertTrue(getConnectionManager().getProjectList(getSessionId()).size() == getProjectsOnServerBeforeTest());
 
 		getConnectionManager().createProject(getSessionId(), "createEmptyProjectAndDelete", "TestProject",
-			SetupHelper.getLogMessage("super", "a logmessage"));
+			SetupHelper.createLogMessage("super", "a logmessage"));
 
 		assertTrue(getConnectionManager().getProjectList(getSessionId()).size() == getProjectsOnServerBeforeTest() + 1);
 	}
@@ -71,9 +91,9 @@ public class ServerInterfaceTest extends ServerTests {
 	/**
 	 * Creates a project, shares it with the server and then deletes it.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#createProject(SessionId, String, String,
+	 * @see org.unicase.emfstore.EmfStore#createProject(org.unicase.emfstore.esmodel.SessionId, String, String,
 	 *      org.unicase.emfstore.esmodel.versioning.LogMessage, Project)
-	 * @see org.unicase.emfstore.EmfStore#getProjectList(SessionId)
+	 * @see org.unicase.emfstore.EmfStore#getProjectList(org.unicase.emfstore.esmodel.SessionId)
 	 * @throws EmfStoreException in case of failure.
 	 */
 	@Test
@@ -81,7 +101,7 @@ public class ServerInterfaceTest extends ServerTests {
 		assertTrue(getConnectionManager().getProjectList(getSessionId()).size() == getProjectsOnServerBeforeTest());
 
 		ProjectInfo projectInfo = getConnectionManager().createProject(getSessionId(), "createProjectAndDelete",
-			"TestProject", SetupHelper.getLogMessage("super", "a logmessage"), getGeneratedProject());
+			"TestProject", SetupHelper.createLogMessage("super", "a logmessage"), getGeneratedProject());
 
 		assertTrue(getConnectionManager().getProjectList(getSessionId()).size() == getProjectsOnServerBeforeTest() + 1);
 		assertNotNull(getGeneratedProject());
@@ -109,6 +129,153 @@ public class ServerInterfaceTest extends ServerTests {
 	}
 
 	/**
+	 * Resolves version spec.
+	 * 
+	 * @throws EmfStoreException in case of failure.
+	 */
+	@Test
+	public void resolveVersionSpecTest() throws EmfStoreException {
+		PrimaryVersionSpec resolvedVersionSpec = getConnectionManager().resolveVersionSpec(getSessionId(),
+			getGeneratedProjectId(), VersionSpec.HEAD_VERSION);
+		assertTrue(resolvedVersionSpec.equals(getGeneratedProjectVersion()));
+	}
+
+	/**
+	 * Creates a version.
+	 * 
+	 * @throws EmfStoreException in case of failure
+	 */
+	@Test
+	public void createVersionTest() throws EmfStoreException {
+		PrimaryVersionSpec resolvedVersionSpec = getConnectionManager().resolveVersionSpec(getSessionId(),
+			getGeneratedProjectId(), VersionSpec.HEAD_VERSION);
+
+		PrimaryVersionSpec createdVersion = getConnectionManager().createVersion(getSessionId(),
+			getGeneratedProjectId(), resolvedVersionSpec, VersioningFactory.eINSTANCE.createChangePackage(),
+			SetupHelper.createLogMessage("bla", "blablba"));
+
+		resolvedVersionSpec = getConnectionManager().resolveVersionSpec(getSessionId(), getGeneratedProjectId(),
+			VersionSpec.HEAD_VERSION);
+
+		assertTrue(resolvedVersionSpec.equals(createdVersion));
+	}
+
+	/**
+	 * Gets changes, which should be empty.
+	 * 
+	 * @throws EmfStoreException in case of failure
+	 */
+	@Test
+	public void getEmptyChangesTest() throws EmfStoreException {
+		List<ChangePackage> changes = getConnectionManager().getChanges(getSessionId(), getGeneratedProjectId(),
+			SetupHelper.createPrimaryVersionSpec(0), getGeneratedProjectVersion());
+		assertTrue(changes.size() == 0);
+	}
+
+	/**
+	 * Gets changes.
+	 * 
+	 * @throws EmfStoreException in case of failure
+	 */
+	@Test
+	public void getChangesTest() throws EmfStoreException {
+		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
+		CreateDeleteOperation createCreateDeleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
+		createCreateDeleteOperation.setDelete(true);
+		createCreateDeleteOperation.setModelElementId(getGeneratedProject().getModelElements().get(0)
+			.getModelElementId());
+		changePackage.getOperations().add(createCreateDeleteOperation);
+
+		PrimaryVersionSpec resolvedVersionSpec = getConnectionManager().resolveVersionSpec(getSessionId(),
+			getGeneratedProjectId(), VersionSpec.HEAD_VERSION);
+		PrimaryVersionSpec versionSpec = getConnectionManager().createVersion(getSessionId(), getGeneratedProjectId(),
+			resolvedVersionSpec, changePackage, SetupHelper.createLogMessage("", ""));
+
+		List<ChangePackage> changes = getConnectionManager().getChanges(getSessionId(), getGeneratedProjectId(),
+			resolvedVersionSpec, versionSpec);
+
+		assertTrue(changes.size() == 1);
+		for (ChangePackage cp : changes) {
+			assertTrue(SerializationUtil.eObjectToString(changePackage).equals(SerializationUtil.eObjectToString(cp)));
+		}
+
+	}
+
+	/**
+	 * Gets a historyInfo.
+	 * 
+	 * @throws EmfStoreException in case of failure
+	 */
+	@Test
+	public void getHistoryInfoTest() throws EmfStoreException {
+		String logMessage = "historyInfo";
+
+		PrimaryVersionSpec resolvedVersionSpec = getConnectionManager().resolveVersionSpec(getSessionId(),
+			getGeneratedProjectId(), VersionSpec.HEAD_VERSION);
+		PrimaryVersionSpec createdVersion = getConnectionManager().createVersion(getSessionId(),
+			getGeneratedProjectId(), resolvedVersionSpec, VersioningFactory.eINSTANCE.createChangePackage(),
+			SetupHelper.createLogMessage("bla", logMessage));
+
+		List<HistoryInfo> historyInfo = getConnectionManager().getHistoryInfo(getSessionId(), getGeneratedProjectId(),
+			createHistoryQuery(createdVersion, createdVersion));
+
+		assertTrue(historyInfo.size() == 1);
+		assertTrue(historyInfo.get(0).getLogMessage().getMessage().equals(logMessage));
+	}
+
+	/**
+	 * Sets a tag on the head revision.
+	 * 
+	 * @throws EmfStoreException in case of failure
+	 */
+	@Test
+	public void addTagTest() throws EmfStoreException {
+		String tagName = "testValue";
+
+		TagVersionSpec tag = VersioningFactory.eINSTANCE.createTagVersionSpec();
+		tag.setName(tagName);
+
+		getConnectionManager().addTag(getSessionId(), getGeneratedProjectId(), getGeneratedProjectVersion(), tag);
+
+		List<HistoryInfo> historyInfo = getConnectionManager().getHistoryInfo(getSessionId(), getGeneratedProjectId(),
+			createHistoryQuery(getGeneratedProjectVersion(), getGeneratedProjectVersion()));
+
+		assertTrue(historyInfo.size() == 1);
+		for (TagVersionSpec tagVersionSpec : historyInfo.get(0).getTagSpecs()) {
+			if (!tagVersionSpec.getName().equals("HEAD")) {
+				assertTrue(tagVersionSpec.getName().equals(tagName));
+			}
+		}
+	}
+
+	/**
+	 * Removes a tag.
+	 * 
+	 * @throws EmfStoreException in case of failure.
+	 */
+	@Test
+	public void removeTagTest() throws EmfStoreException {
+		String tagName = "testValue";
+
+		TagVersionSpec tag = VersioningFactory.eINSTANCE.createTagVersionSpec();
+		tag.setName(tagName);
+
+		getConnectionManager().addTag(getSessionId(), getGeneratedProjectId(), getGeneratedProjectVersion(), tag);
+
+		getConnectionManager().removeTag(getSessionId(), getGeneratedProjectId(), getGeneratedProjectVersion(), tag);
+
+		List<HistoryInfo> historyInfo = getConnectionManager().getHistoryInfo(getSessionId(), getGeneratedProjectId(),
+			createHistoryQuery(getGeneratedProjectVersion(), getGeneratedProjectVersion()));
+
+		assertTrue(historyInfo.size() == 1);
+		for (TagVersionSpec tagVersionSpec : historyInfo.get(0).getTagSpecs()) {
+			if (!tagVersionSpec.getName().equals("HEAD")) {
+				assertTrue(tagVersionSpec.getName().equals(tagName));
+			}
+		}
+	}
+
+	/**
 	 * Deletes session on server and creates new one.
 	 * 
 	 * @throws EmfStoreException in case of failure
@@ -129,23 +296,4 @@ public class ServerInterfaceTest extends ServerTests {
 		Assert.assertNotNull(getConnectionManager().resolveUser(getSessionId(), null));
 	}
 
-	//
-	// /**
-	// *
-	// * @throws EmfStoreException in case of failure
-	// */
-	// @Test
-	// public void createVersion() throws EmfStoreException {
-	// assertTrue(connectionManager.getProjectList(sessionId).size() == 0);
-	//
-	// ProjectInfo projectInfo = connectionManager.createProject(sessionId, "createVersion", "TestProject",
-	// SetupHelper.getLogMessage("super", "a logmessage"));
-	//
-	// assertTrue(connectionManager.getProjectList(sessionId).size() == 1);
-	//
-	// ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-	// AttributeOperation operation = OperationsFactory.eINSTANCE.createAttributeOperation();
-	// operation.setFeatureName("bla");
-	// operation.setModelElementId(ModelUtil.createModelElementId("bla"));
-	// }
 }
