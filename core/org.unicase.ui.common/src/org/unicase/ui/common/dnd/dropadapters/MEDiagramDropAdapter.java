@@ -9,13 +9,12 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.emf.type.core.ClientContextManager;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.ui.IEditorPart;
@@ -23,7 +22,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.diagram.commands.DiagramElementAddCommand;
+import org.unicase.ui.common.diagram.commands.CommandFactory;
 import org.unicase.ui.common.util.ActionHelper;
 
 /**
@@ -55,12 +54,10 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 		ModelElement dropee = source.get(0);
 		IEditorPart iep = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if (iep instanceof DiagramDocumentEditor) {
-			CreateElementRequest req = new CreateElementRequest(target, ElementTypeRegistry.getInstance()
-				.getElementType(dropee));
-			req.setNewElement(dropee);
 			DiagramDocumentEditor dde = (DiagramDocumentEditor) iep;
-			dde.getDiagramEditPart().getViewer().getEditDomain().getCommandStack().execute(
-				new ICommandProxy(new DiagramElementAddCommand(req)));
+			DiagramEditPart editPart = dde.getDiagramEditPart();
+			editPart.getViewer().getEditDomain().getCommandStack().execute(
+				CommandFactory.createDiagramElementAddCommand(dropee, editPart, true));
 		}
 		ActionHelper.openModelElement(target, this.getClass().getName());
 	}
