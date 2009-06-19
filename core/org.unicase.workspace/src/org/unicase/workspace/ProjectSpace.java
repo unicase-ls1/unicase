@@ -612,4 +612,11 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	void addCommitObserver(CommitObserver observer);
 
+	/**
+	 * Gathers all local operations and canonizes them.
+	 * 
+	 * @return the list of operations
+	 */
+	ChangePackage getCannonizedLocalOperations();
+
 } // ProjectContainer
