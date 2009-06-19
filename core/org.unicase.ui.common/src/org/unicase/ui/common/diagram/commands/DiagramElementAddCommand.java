@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.common.diagram.commands;
 
-import java.util.Collection;
 import java.util.Set;
 
 import org.eclipse.emf.ecore.EClass;
@@ -17,7 +16,6 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.classes.Association;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.util.UnicaseUiUtil;
 
 /**
  * @author denglerm This class represents a command to add model elements to the diagram, which are not yet contained in the
