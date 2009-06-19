@@ -2,9 +2,11 @@ package org.unicase.ui.ganttview.views;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -53,7 +55,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	private Composite parent;
 	private TreeViewer treeViewer;
 
-	// private Map<String, GanttEvent> workPackagesToGanttEvents;
+	private Map<String, GanttEvent> workPackagesToGanttEvents;
 
 	/**
 	 * The constructor.
@@ -72,7 +74,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		SashForm sashForm = new SashForm(this.parent, SWT.HORIZONTAL);
 		GanttControlParent ganttCpLeft = new GanttControlParent(sashForm, SWT.NONE);
 
-		// workPackagesToGanttEvents = new HashMap<String, GanttEvent>();
+		workPackagesToGanttEvents = new HashMap<String, GanttEvent>();
 
 		ganttChart = new GanttChart(sashForm, SWT.NONE, new ReadOnlySettings());
 
@@ -187,6 +189,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		recreateView(workPackage);
 
 		treeViewer.setInput(workPackage);
+		workPackagesToGanttEvents.clear();
 	}
 
 	public void setInput(Project project) {
@@ -194,6 +197,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		EList<WorkPackage> dummyList = new BasicEList<WorkPackage>();
 		setInput(project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkPackage(), dummyList));
 		treeViewer.setInput(project);
+		workPackagesToGanttEvents.clear();
 	}
 
 	public void setInput(EList<WorkPackage> workPackages) {
@@ -205,10 +209,10 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		}
 
 		treeViewer.setInput(workPackages);
+		workPackagesToGanttEvents.clear();
 	}
 
 	private void recreateView(WorkPackage workPackage) {
-
 		recurisveWorkPackageToGanttEvent(workPackage, true);
 		treeViewer.setInput(workPackage);
 	}
@@ -263,11 +267,12 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		int completionStatus = (int) (closedEstimate / estimate) * 100;
 
 		GanttEvent result = new GanttEvent(ganttChart, eventName, startDate, endDate, completionStatus);
+		// ganttChart.reindex(result, ganttChart.getGanttComposite().getEvents().size() - 1);
 		result.setData(wp);
 
 		// TODO delete entries of this map if WorkPackages are deleted in the model
-		ganttChart.setData(wp.getIdentifier(), result);
-		// workPackagesToGanttEvents.put(wp.getIdentifier(), result);
+		// ganttChart.setData(wp.getIdentifier(), result);
+		workPackagesToGanttEvents.put(wp.getIdentifier(), result);
 
 		return result;
 	}
@@ -278,13 +283,20 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		Set<ModelElement> subModels = wp.getContainedElements();
 		if (subModels != null && !subModels.isEmpty()) {
+			// ModelElement[] subModelArray = (ModelElement[]) subModels.toArray();
+			// Arrays.sort(subModelArray);
+			// List<ModelElement> subModelList = new ArrayList<ModelElement>(subModels);
+			// Collections.sort(subModelList, c);
 			for (ModelElement modelElement : subModels) {
-				if (!(modelElement instanceof WorkPackage)) {
+				if (modelElement == null || !(modelElement instanceof WorkPackage)) {
 					continue;
 				}
-				GanttEvent childItem = recurisveWorkPackageToGanttEvent((WorkPackage) modelElement, false);
+				GanttEvent childItem = workPackagesToGanttEvents.get(modelElement.getIdentifier());
+				// GanttEvent childItem = (GanttEvent) ganttChart.getData(modelElement.getIdentifier());
+				if (childItem == null) {
+					childItem = recurisveWorkPackageToGanttEvent((WorkPackage) modelElement, false);
+				}
 				result.addScopeEvent(childItem);
-
 			}
 		}
 
@@ -303,7 +315,8 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 				// if (workPackagesToGanttEvents.containsKey(workItem.getIdentifier())) {
 				// ganttChart.addConnection(result, workPackagesToGanttEvents.get(workItem.getIdentifier()));
 
-				GanttEvent ge = (GanttEvent) ganttChart.getData(workItem.getIdentifier());
+				GanttEvent ge = workPackagesToGanttEvents.get(workItem.getIdentifier());
+				// GanttEvent ge = (GanttEvent) ganttChart.getData(workItem.getIdentifier());
 				if (ge != null) {
 					ganttChart.addConnection(result, ge);
 				} else {
