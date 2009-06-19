@@ -80,4 +80,23 @@ public final class FileUtil {
 		source.close();
 		outputStream.close();
 	}
+
+	/**
+	 * Copy a directory from source to target including its contained files and directories.
+	 * 
+	 * @param source directory
+	 * @param destination directory
+	 * @throws IOException on a IO problem during copy
+	 */
+	public static void copyDirectory(File source, File destination) throws IOException {
+
+		destination.mkdirs();
+		for (File file : source.listFiles()) {
+			if (file.isDirectory()) {
+				copyDirectory(file, new File(destination.getAbsolutePath() + File.separatorChar + file.getName()));
+			} else {
+				copyFile(file, new File(destination.getAbsolutePath() + File.separatorChar + file.getName()));
+			}
+		}
+	}
 }
