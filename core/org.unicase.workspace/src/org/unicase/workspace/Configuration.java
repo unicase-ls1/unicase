@@ -37,14 +37,25 @@ public final class Configuration {
 	// private static Map<Object, Object> resourceSaveOptions;
 
 	/**
+	 * Return the user home folder.
+	 * 
+	 * @return the full path as string
+	 */
+	public static String getUserHome() {
+		StringBuffer sb = new StringBuffer();
+		sb.append(System.getProperty("user.home"));
+		sb.append(File.separatorChar);
+		return sb.toString();
+	}
+
+	/**
 	 * Get the Workspace directory.
 	 * 
 	 * @return the workspace directory path string
 	 */
 	public static String getWorkspaceDirectory() {
 		StringBuffer sb = new StringBuffer();
-		sb.append(System.getProperty("user.home"));
-		sb.append(File.separatorChar);
+		sb.append(getUserHome());
 		sb.append(".unicase");
 		if (testing) {
 			sb.append(".test");
