@@ -8,36 +8,39 @@ package org.unicase.ui.common.diagram;
 import org.eclipse.osgi.util.NLS;
 
 /**
- * @generated
+ * There is a generated Messages.java in each diagram plugin. I extracted the error messages, used by
+ * @see org.unicase.ui.common.diagram.part.ModelDocumentProvider into this class.
+ * 
+ * @author denglerm
  */
 public class Messages extends NLS {
 
 	/**
-	 * @generated
+	 * Initialize messages.
 	 */
 	static {
 		NLS.initializeMessages("messages", Messages.class); //$NON-NLS-1$
 	}
 
 	/**
-	 * @generated
+	 * The constructor.
 	 */
 	private Messages() {
 	}
 
 	/**
-	 * @generated
+	 * An error message.
 	 */
-	public static String ModelDocumentProvider_DiagramLoadingError;
+	public static String modelDocumentProviderDiagramLoadingError;
 
 	/**
-	 * @generated
+	 * An error message.
 	 */
-	public static String ModelDocumentProvider_NoDiagramInResourceError;
+	public static String modelDocumentProviderNoDiagramInResourceError;
 
 	/**
-	 * @generated
+	 * An error message.
 	 */
-	public static String ModelDocumentProvider_IncorrectInputError;
+	public static String modelDocumentProviderIncorrectInputError;
 
 }
