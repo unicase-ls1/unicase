@@ -267,7 +267,7 @@ public class EmfStoreController implements IApplication, Runnable {
 				String name = filename.substring(0, filename.lastIndexOf("."));
 
 				int i = name.length() - 1;
-				while ('0' <= name.charAt(i) && name.charAt(i) <= '9') {
+				while (i >= 0 && '0' <= name.charAt(i) && name.charAt(i) <= '9') {
 					i--;
 				}
 				i++;
