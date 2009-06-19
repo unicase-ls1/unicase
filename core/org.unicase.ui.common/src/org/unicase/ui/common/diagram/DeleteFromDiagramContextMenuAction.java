@@ -30,7 +30,7 @@ public class DeleteFromDiagramContextMenuAction implements IObjectActionDelegate
 	private Action embeddedAction;
 
 	/**
-	 * . The constructor
+	 * The constructor.
 	 */
 	public DeleteFromDiagramContextMenuAction() {
 		this.embeddedAction = new DeleteFromDiagramAction();
