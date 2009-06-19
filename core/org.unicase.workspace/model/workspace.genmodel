@@ -61,6 +61,8 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//PendingFileTransfer/fileVersion"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//PendingFileTransfer/chunkNumber"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//PendingFileTransfer/upload"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//PendingFileTransfer/fileName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//PendingFileTransfer/preliminaryFileName"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>
