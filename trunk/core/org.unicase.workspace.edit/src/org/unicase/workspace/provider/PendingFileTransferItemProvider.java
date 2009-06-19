@@ -56,6 +56,8 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 			addFileVersionPropertyDescriptor(object);
 			addChunkNumberPropertyDescriptor(object);
 			addUploadPropertyDescriptor(object);
+			addFileNamePropertyDescriptor(object);
+			addPreliminaryFileNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -97,6 +99,35 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_upload_feature",
 				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__UPLOAD, true, false,
 			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the File Name feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addFileNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_PendingFileTransfer_fileName_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_fileName_feature",
+				"_UI_PendingFileTransfer_type"), WorkspacePackage.Literals.PENDING_FILE_TRANSFER__FILE_NAME, true,
+			false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Preliminary File Name feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 */
+	protected void addPreliminaryFileNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_PendingFileTransfer_preliminaryFileName_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_PendingFileTransfer_preliminaryFileName_feature",
+				"_UI_PendingFileTransfer_type"),
+			WorkspacePackage.Literals.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -146,8 +177,9 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 	 */
 	@Override
 	public String getText(Object object) {
-		PendingFileTransfer pendingFileTransfer = (PendingFileTransfer) object;
-		return getString("_UI_PendingFileTransfer_type") + " " + pendingFileTransfer.getFileVersion();
+		String label = ((PendingFileTransfer) object).getFileName();
+		return label == null || label.length() == 0 ? getString("_UI_PendingFileTransfer_type")
+			: getString("_UI_PendingFileTransfer_type") + " " + label;
 	}
 
 	/**
@@ -165,6 +197,8 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_VERSION:
 		case WorkspacePackage.PENDING_FILE_TRANSFER__CHUNK_NUMBER:
 		case WorkspacePackage.PENDING_FILE_TRANSFER__UPLOAD:
+		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_NAME:
+		case WorkspacePackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case WorkspacePackage.PENDING_FILE_TRANSFER__ATTACHMENT_ID:

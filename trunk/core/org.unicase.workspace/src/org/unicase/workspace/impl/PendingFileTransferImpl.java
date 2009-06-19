@@ -21,13 +21,15 @@ import org.unicase.workspace.WorkspacePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.workspace.impl.PendingFileTransferImpl#getAttachmentId <em>Attachment Id</em>}</li>
- * <li>{@link org.unicase.workspace.impl.PendingFileTransferImpl#getFileVersion <em>File Version</em>}</li>
- * <li>{@link org.unicase.workspace.impl.PendingFileTransferImpl#getChunkNumber <em>Chunk Number</em>}</li>
- * <li>{@link org.unicase.workspace.impl.PendingFileTransferImpl#isUpload <em>Upload</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.PendingFileTransferImpl#getAttachmentId <em>Attachment Id</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.PendingFileTransferImpl#getFileVersion <em>File Version</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.PendingFileTransferImpl#getChunkNumber <em>Chunk Number</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.PendingFileTransferImpl#isUpload <em>Upload</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.PendingFileTransferImpl#getFileName <em>File Name</em>}</li>
+ *   <li>{@link org.unicase.workspace.impl.PendingFileTransferImpl#getPreliminaryFileName <em>Preliminary File Name</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public class PendingFileTransferImpl extends EObjectImpl implements PendingFileTransfer {
@@ -42,9 +44,9 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 	protected ModelElementId attachmentId;
 
 	/**
-	 * The default value of the '{@link #getFileVersion() <em>File Version</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getFileVersion() <em>File Version</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getFileVersion()
 	 * @generated
 	 * @ordered
@@ -52,9 +54,9 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 	protected static final int FILE_VERSION_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getFileVersion() <em>File Version</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFileVersion() <em>File Version</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFileVersion()
 	 * @generated
 	 * @ordered
@@ -62,9 +64,9 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 	protected int fileVersion = FILE_VERSION_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #getChunkNumber() <em>Chunk Number</em>}' attribute. <!-- begin-user-doc -->
+	 * The default value of the '{@link #getChunkNumber() <em>Chunk Number</em>}' attribute.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getChunkNumber()
 	 * @generated
 	 * @ordered
@@ -72,9 +74,9 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 	protected static final int CHUNK_NUMBER_EDEFAULT = 0;
 
 	/**
-	 * The cached value of the '{@link #getChunkNumber() <em>Chunk Number</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getChunkNumber() <em>Chunk Number</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getChunkNumber()
 	 * @generated
 	 * @ordered
@@ -82,9 +84,9 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 	protected int chunkNumber = CHUNK_NUMBER_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isUpload() <em>Upload</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isUpload() <em>Upload</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isUpload()
 	 * @generated
 	 * @ordered
@@ -92,9 +94,9 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 	protected static final boolean UPLOAD_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isUpload() <em>Upload</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isUpload() <em>Upload</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isUpload()
 	 * @generated
 	 * @ordered
@@ -102,8 +104,47 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 	protected boolean upload = UPLOAD_EDEFAULT;
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getFileName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String FILE_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getFileName() <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * @see #getFileName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String fileName = FILE_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getPreliminaryFileName() <em>Preliminary File Name</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
+	 * @see #getPreliminaryFileName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String PRELIMINARY_FILE_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getPreliminaryFileName() <em>Preliminary File Name</em>}' attribute. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getPreliminaryFileName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String preliminaryFileName = PRELIMINARY_FILE_NAME_EDEFAULT;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	protected PendingFileTransferImpl() {
@@ -112,7 +153,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -122,7 +162,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId getAttachmentId() {
@@ -149,7 +188,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelElementId basicGetAttachmentId() {
@@ -158,7 +196,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetAttachmentId(ModelElementId newAttachmentId, NotificationChain msgs) {
@@ -177,7 +214,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setAttachmentId(ModelElementId newAttachmentId) {
@@ -199,7 +235,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getFileVersion() {
@@ -208,7 +243,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFileVersion(int newFileVersion) {
@@ -221,7 +255,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public int getChunkNumber() {
@@ -230,7 +263,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setChunkNumber(int newChunkNumber) {
@@ -243,7 +275,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isUpload() {
@@ -252,7 +283,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setUpload(boolean newUpload) {
@@ -265,7 +295,47 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setFileName(String newFileName) {
+		String oldFileName = fileName;
+		fileName = newFileName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PENDING_FILE_TRANSFER__FILE_NAME,
+				oldFileName, fileName));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String getPreliminaryFileName() {
+		return preliminaryFileName;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setPreliminaryFileName(String newPreliminaryFileName) {
+		String oldPreliminaryFileName = preliminaryFileName;
+		preliminaryFileName = newPreliminaryFileName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				WorkspacePackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME, oldPreliminaryFileName,
+				preliminaryFileName));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -279,7 +349,6 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -295,13 +364,16 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 			return getChunkNumber();
 		case WorkspacePackage.PENDING_FILE_TRANSFER__UPLOAD:
 			return isUpload();
+		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_NAME:
+			return getFileName();
+		case WorkspacePackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME:
+			return getPreliminaryFileName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -319,13 +391,18 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 		case WorkspacePackage.PENDING_FILE_TRANSFER__UPLOAD:
 			setUpload((Boolean) newValue);
 			return;
+		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_NAME:
+			setFileName((String) newValue);
+			return;
+		case WorkspacePackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME:
+			setPreliminaryFileName((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -343,13 +420,18 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 		case WorkspacePackage.PENDING_FILE_TRANSFER__UPLOAD:
 			setUpload(UPLOAD_EDEFAULT);
 			return;
+		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_NAME:
+			setFileName(FILE_NAME_EDEFAULT);
+			return;
+		case WorkspacePackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME:
+			setPreliminaryFileName(PRELIMINARY_FILE_NAME_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -363,13 +445,17 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 			return chunkNumber != CHUNK_NUMBER_EDEFAULT;
 		case WorkspacePackage.PENDING_FILE_TRANSFER__UPLOAD:
 			return upload != UPLOAD_EDEFAULT;
+		case WorkspacePackage.PENDING_FILE_TRANSFER__FILE_NAME:
+			return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
+		case WorkspacePackage.PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME:
+			return PRELIMINARY_FILE_NAME_EDEFAULT == null ? preliminaryFileName != null
+				: !PRELIMINARY_FILE_NAME_EDEFAULT.equals(preliminaryFileName);
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -384,6 +470,10 @@ public class PendingFileTransferImpl extends EObjectImpl implements PendingFileT
 		result.append(chunkNumber);
 		result.append(", upload: ");
 		result.append(upload);
+		result.append(", fileName: ");
+		result.append(fileName);
+		result.append(", preliminaryFileName: ");
+		result.append(preliminaryFileName);
 		result.append(')');
 		return result.toString();
 	}
