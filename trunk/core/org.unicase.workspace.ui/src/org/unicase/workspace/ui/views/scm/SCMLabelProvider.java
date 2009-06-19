@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsDescriptionProvider;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -65,7 +66,11 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				HistoryInfo historyInfo = (HistoryInfo) value;
 				return getText(historyInfo);
 			} else if (value instanceof AbstractOperation) {
-				ret = operationsDescriptionProvider.getDescription((AbstractOperation) value);
+				if(value instanceof CompositeOperation){
+					ret = "Composite operation";
+				}else{
+					ret = operationsDescriptionProvider.getDescription((AbstractOperation) value);
+				}
 			} else if (value instanceof ModelElement) {
 				ret = ((ModelElement) value).getName();
 			} else if (value instanceof ModelElementId) {

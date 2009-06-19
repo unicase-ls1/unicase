@@ -164,6 +164,28 @@ public class HistoryBrowserView extends ViewPart {
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
 
+		Action expand = new Action() {
+			@Override
+			public void run() {
+				viewer.expandToLevel(2);
+			}
+			
+		};
+//		expand.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_ELCL_COLLAPSEALL));
+		expand.setText("Expand");
+		menuManager.add(expand);
+		
+		Action collapse = new Action() {
+			@Override
+			public void run() {
+				viewer.collapseAll();
+			}
+			
+		};
+//		collapse.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_ELCL_COLLAPSEALL));
+		collapse.setText("Collapse");
+		menuManager.add(collapse);
+		
 		Action refresh = new Action() {
 			@Override
 			public void run() {
