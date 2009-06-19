@@ -730,26 +730,4 @@
          </command>
       </menuContribution>
    </extension>
-        <extension
-              point="org.eclipse.ui.preferencePages">
-           <page
-                 category="org.unicase.workspace.ui.unicasePreferences"
-                 class="org.unicase.workspace.ui.prefs.DashboardPreferencePage"
-                 id="org.unicase.workspace.ui.dashboardPreferences"
-                 name="Dashboard">
-           </page>
-           <page
-                 class="org.unicase.workspace.ui.prefs.UnicasePreferencePage"
-                 id="org.unicase.workspace.ui.unicasePreferences"
-                 name="Unicase">
-           </page>
-           <page
-                 category="org.unicase.workspace.ui.dashboardPreferences"
-                 class="org.unicase.workspace.ui.prefs.DashboardWIdgetsPreferencePage"
-                 id="org.unicase.workspace.ui.dashboardWidgetPreferences"
-                 name="Widgets">
-           </page>
-        </extension>
-
-
 </plugin>
