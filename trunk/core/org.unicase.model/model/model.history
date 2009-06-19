@@ -2,7 +2,7 @@
 <history:History xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:history="http://www.cs.tum.edu/cope/history/0.1.39">
-  <releases date="2009-06-13T17:13:48.937+0200">
+  <releases date="2009-06-13T17:13:48.937+0200" label="0">
     <changes xsi:type="history:CompositeChange">
       <changes xsi:type="history:Create" element="model.ecore#/">
         <changes xsi:type="history:Set" element="model.ecore#/" featureName="name"
@@ -5085,59 +5085,59 @@
         <changes xsi:type="history:Set" element="model.ecore#//bug/BugReport/resolution/%org.unicase.ui.meeditor%/@details.1"
             featureName="value" dataValue="left"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//bug" element="#//@releases.1/@changes.1/@element"
+      <changes xsi:type="history:Create" target="model.ecore#//bug" element="#//@releases.2/@changes.1/@element"
           referenceName="eClassifiers">
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element"
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element"
             featureName="name" dataValue="BugStatus"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//bug/BugReport" element="#//@releases.1/@changes.0/@changes.0/@element"
+      <changes xsi:type="history:Create" target="model.ecore#//bug/BugReport" element="#//@releases.2/@changes.0/@changes.0/@element"
           referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.0/@changes.0/@element"
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.0/@changes.0/@element"
             featureName="name" dataValue="Status"/>
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.0/@changes.0/@element"
-            featureName="eType" referenceValue="#//@releases.1/@changes.1/@element"/>
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.0/@changes.0/@element"
+            featureName="eType" referenceValue="#//@releases.2/@changes.1/@element"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.1/@changes.1/@element"
-          element="#//@releases.1/@changes.1/@element/NEW" referenceName="eLiterals">
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/NEW"
+      <changes xsi:type="history:Create" target="#//@releases.2/@changes.1/@element"
+          element="#//@releases.2/@changes.1/@element/NEW" referenceName="eLiterals">
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/NEW"
             featureName="name" dataValue="NEW"/>
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/NEW"
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/NEW"
             featureName="literal" dataValue="NEW"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.1/@changes.1/@element"
-          element="#//@releases.1/@changes.1/@element/CONFIRMED" referenceName="eLiterals">
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/CONFIRMED"
+      <changes xsi:type="history:Create" target="#//@releases.2/@changes.1/@element"
+          element="#//@releases.2/@changes.1/@element/CONFIRMED" referenceName="eLiterals">
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/CONFIRMED"
             featureName="name" dataValue="CONFIRMED"/>
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/CONFIRMED"
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/CONFIRMED"
             featureName="value" dataValue="1"/>
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/CONFIRMED"
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/CONFIRMED"
             featureName="literal" dataValue="CONFIRMED"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.1/@changes.1/@element"
-          element="#//@releases.1/@changes.1/@element/ASSIGNED" referenceName="eLiterals">
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/ASSIGNED"
+      <changes xsi:type="history:Create" target="#//@releases.2/@changes.1/@element"
+          element="#//@releases.2/@changes.1/@element/ASSIGNED" referenceName="eLiterals">
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/ASSIGNED"
             featureName="name" dataValue="ASSIGNED"/>
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/ASSIGNED"
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/ASSIGNED"
             featureName="value" dataValue="2"/>
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/ASSIGNED"
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/ASSIGNED"
             featureName="literal" dataValue="ASSIGNED"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.1/@changes.1/@element"
-          element="#//@releases.1/@changes.1/@element/RESOLVED" referenceName="eLiterals">
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/RESOLVED"
+      <changes xsi:type="history:Create" target="#//@releases.2/@changes.1/@element"
+          element="#//@releases.2/@changes.1/@element/RESOLVED" referenceName="eLiterals">
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/RESOLVED"
             featureName="name" dataValue="RESOLVED"/>
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/RESOLVED"
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/RESOLVED"
             featureName="value" dataValue="3"/>
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/RESOLVED"
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/RESOLVED"
             featureName="literal" dataValue="RESOLVED"/>
       </changes>
-      <changes xsi:type="history:Create" target="#//@releases.1/@changes.1/@element"
-          element="#//@releases.1/@changes.1/@element/CLOSED" referenceName="eLiterals">
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/CLOSED"
+      <changes xsi:type="history:Create" target="#//@releases.2/@changes.1/@element"
+          element="#//@releases.2/@changes.1/@element/CLOSED" referenceName="eLiterals">
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/CLOSED"
             featureName="name" dataValue="CLOSED"/>
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/CLOSED"
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/CLOSED"
             featureName="value" dataValue="4"/>
-        <changes xsi:type="history:Set" element="#//@releases.1/@changes.1/@element/CLOSED"
+        <changes xsi:type="history:Set" element="#//@releases.2/@changes.1/@element/CLOSED"
             featureName="literal" dataValue="CLOSED"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//bug" element="model.ecore#//bug/Severity"
@@ -6604,6 +6604,8 @@
             featureName="eSuperTypes" referenceValue="model.ecore#//activity/ActivityObject"/>
       </changes>
     </changes>
+  </releases>
+  <releases date="2009-06-15T16:43:42.953+0200" label="1 (0.3.25.internal)">
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
         element="model.ecore#//attachment/FileAttachment/requiredOffline" referenceName="eStructuralFeatures">
       <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/requiredOffline"
@@ -6614,10 +6616,10 @@
     <changes xsi:type="history:Add" element="model.ecore#//rationale/Comment" featureName="eSuperTypes"
         referenceValue="model.ecore#//NonDomainElement"/>
   </releases>
-  <releases date="2009-06-15T16:43:42.953+0200" label="">
+  <releases date="2009-06-15T16:43:42.953+0200" label="2">
     <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xA;&#xA;// change migration&#xA;getElementById = { id ->&#xA;&#x9;def element = model.IdentifiableElement.allInstances.find{e -> id.equals(e.identifier)} &#xA;&#x9;if(element == null) {&#xA;&#x9;&#x9;println &quot;id &quot; + id + &quot; not found&quot;&#xA;&#x9;}&#xA;&#x9;return element&#xA;}&#xA;&#xA;isFeatureChange = { operation, EStructuralFeature feature ->&#xA;&#x9;if(feature.name.equals(operation.featureName)) {&#xA;&#x9;&#x9;def id = operation.modelElementId.id&#xA;&#x9;&#x9;def element = getElementById(id)&#xA;&#x9;&#x9;if(element == null || element.instanceOf(feature.eContainingClass)) {&#xA;&#x9;&#x9;&#x9;return true&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;return false&#xA;}&#xA;&#xA;def ids = []&#xA;&#xA;for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {&#xA;&#x9;if(isFeatureChange(operation, model.bug.BugReport.Status)) {&#xA;&#x9;&#x9;if(operation.newValue.literal == model.bug.BugStatus.CLOSED.literal) {&#xA;&#x9;&#x9;&#x9;operation.featureName = &quot;done&quot;&#xA;&#x9;&#x9;&#x9;operation.oldValue = Boolean.FALSE&#xA;&#x9;&#x9;&#x9;operation.newValue = Boolean.TRUE&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;else if(operation.oldValue.literal == model.bug.BugStatus.CLOSED.literal) {&#xA;&#x9;&#x9;&#x9;operation.featureName = &quot;done&quot;&#xA;&#x9;&#x9;&#x9;operation.oldValue = Boolean.TRUE&#xA;&#x9;&#x9;&#x9;operation.newValue = Boolean.FALSE&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;else {&#xA;&#x9;&#x9;&#x9;operation.delete()&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;}&#xA;&#xA;// metamodel adaptation&#xA;statusAttribute = model.bug.BugReport.Status&#xA;&#xA;newAttribute(model.bug.BugReport, &quot;done&quot;, emf.EBoolean, 0, 1, null)&#xA;statusAttribute.delete()&#xA;&#xA;// model migration&#xA;for(report in model.bug.BugReport.allInstances) {&#xA;&#x9;def status = report.unset(statusAttribute)&#xA;&#x9;if(status == model.bug.BugStatus.CLOSED) {&#xA;&#x9;&#x9;report.done = true&#xA;&#x9;}&#xA;&#x9;else {&#xA;&#x9;&#x9;report.done = false&#xA;&#x9;}&#xA;}">
       <changes xsi:type="history:Delete">
-        <element xsi:type="ecore:EAttribute" name="Status" eType="#//@releases.1/@changes.1/@element"/>
+        <element xsi:type="ecore:EAttribute" name="Status" eType="#//@releases.2/@changes.1/@element"/>
       </changes>
       <changes xsi:type="history:OperationChange">
         <changes xsi:type="history:Create" target="model.ecore#//bug/BugReport" element="model.ecore#//bug/BugReport/done"
@@ -6659,7 +6661,7 @@
       </element>
     </changes>
   </releases>
-  <releases>
+  <releases label="">
     <changes xsi:type="history:Create" target="model.ecore#//rationale" element="model.ecore#//rationale/AudioComment"
         referenceName="eClassifiers"/>
     <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment"
