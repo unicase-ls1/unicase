@@ -28,9 +28,9 @@ public class DeleteFromDiagramAction extends Action {
 
 	/**
 	 * In case of a diagram node to be deleted: This method deletes the model element behind the node
-	 * from the diagram's elements list, but not from the project.
+	 * from the diagram's elements (done by DeleteFromDiagramCommand) list, but not from the project.
 	 * 
-	 * In case of a diagram link to be deleted: The reference is also deleted from the model.
+	 * In case of a diagram link to be deleted: The reference is deleted from the view and from the model.
 	 * 
 	 * @see org.eclipse.jface.action#run()
 	 */
