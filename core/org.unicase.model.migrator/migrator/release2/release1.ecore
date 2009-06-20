@@ -1837,4 +1837,83 @@
       <eClassifiers xsi:type="ecore:EClass" name="ActivityEnd" eSuperTypes="#/1/activity/ActivityObject"/>
     </eSubpackages>
   </ecore:EPackage>
+  <ecore:EPackage name="workspace" nsURI="http://unicase.org/workspace" nsPrefix="org.unicase.workspace">
+    <eClassifiers xsi:type="ecore:EClass" name="Workspace">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="projectSpaces" upperBound="-1"
+          eType="#/2/ProjectSpace" containment="true" eKeys="#/1/IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfos" upperBound="-1"
+          eType="#/2/ServerInfo" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="usersessions" upperBound="-1"
+          eType="#/2/Usersession" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="activeProjectSpace" eType="#/2/ProjectSpace"
+          transient="true" eKeys="#/1/IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="url" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="port" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="projectInfos" upperBound="-1"
+          eType="#/0/ProjectInfo" transient="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="lastUsersession" eType="#/2/Usersession"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="certificateAlias" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Usersession">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="username" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="password" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
+          transient="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sessionId" eType="#/0/SessionId"
+          transient="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="persistentPassword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfo" eType="#/2/ServerInfo"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="savePassword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="ACUser" eType="#/0/accesscontrol/ACUser"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ProjectSpace" eSuperTypes="#/1/IdentifiableElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#/1/Project"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" lowerBound="1"
+          eType="#/0/ProjectId" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectName" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="projectDescription" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
+          eType="#/0/versioning/events/Event" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="usersession" eType="#/2/Usersession"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="lastUpdated" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="baseVersion" lowerBound="1"
+          eType="#/0/versioning/PrimaryVersionSpec" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="resourceCount" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="dirty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldLogMessages" upperBound="-1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="localOperations" eType="#/2/OperationComposite"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
+          eType="#/0/notification/ESNotification" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="pendingFileTransfers"
+          upperBound="-1" eType="#/2/PendingFileTransfer" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="OperationComposite">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
+          eType="#/0/versioning/operations/AbstractOperation" containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="WorkspaceModelVersion">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelReleaseNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PendingFileTransfer">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentId" eType="#/1/ModelElementId"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="chunkNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="upload" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="preliminaryFileName"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </eClassifiers>
+  </ecore:EPackage>
 </xmi:XMI>
