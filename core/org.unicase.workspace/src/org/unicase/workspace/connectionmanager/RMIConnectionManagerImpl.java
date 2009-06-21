@@ -60,7 +60,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 * Default constructor.
 	 */
 	public RMIConnectionManagerImpl() {
-		facadeMap = new HashMap<SessionId, RMIEmfStoreFacade>();
+		setFacadeMap(new HashMap<SessionId, RMIEmfStoreFacade>());
 	}
 
 	/**
@@ -257,7 +257,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			RMIEmfStoreFacade facade = (RMIEmfStoreFacade) registry.lookup(RMIConnectionHandler.RMI_NAME);
 			SessionId sessionId = (SessionId) SerializationUtil.stringToEObject(facade.login(username, password,
 				SerializationUtil.eObjectToString(serverInfo), SerializationUtil.eObjectToString(clientVersionInfo)));
-			facadeMap.put(sessionId, facade);
+			getFacadeMap().put(sessionId, facade);
 			return sessionId;
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
@@ -277,14 +277,23 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 */
 	public void logout(SessionId sessionId) throws EmfStoreException {
 		try {
-			getFacade(sessionId).logout(SerializationUtil.eObjectToString(sessionId));
+			RMIEmfStoreFacade facade = getFacade(sessionId);
+			facade.logout(SerializationUtil.eObjectToString(sessionId));
+			facadeMap.remove(facade);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
 	}
 
-	private RMIEmfStoreFacade getFacade(SessionId sessionId) throws UnknownSessionException {
-		RMIEmfStoreFacade facade = facadeMap.get(sessionId);
+	/**
+	 * Returns the RMI facade for a given server, identified by the session id.
+	 * 
+	 * @param sessionId sessionid
+	 * @return rmi facase
+	 * @throws UnknownSessionException in case of failure
+	 */
+	protected RMIEmfStoreFacade getFacade(SessionId sessionId) throws UnknownSessionException {
+		RMIEmfStoreFacade facade = getFacadeMap().get(sessionId);
 		if (facade == null) {
 			throw new UnknownSessionException("Session unkown to Connection manager, log in first!");
 		}
@@ -317,5 +326,18 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
+	}
+
+	private void setFacadeMap(Map<SessionId, RMIEmfStoreFacade> facadeMap) {
+		this.facadeMap = facadeMap;
+	}
+
+	/**
+	 * Returns a map containing all active rmi facades.
+	 * 
+	 * @return map of facades.
+	 */
+	protected Map<SessionId, RMIEmfStoreFacade> getFacadeMap() {
+		return facadeMap;
 	}
 }
