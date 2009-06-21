@@ -265,7 +265,14 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
-	private RMIAdminEmfStoreFacade getFacade(SessionId sessionId) throws EmfStoreException {
+	/**
+	 * Returns the RMI facade for a given server, identified by the session id.
+	 * 
+	 * @param sessionId sessionid
+	 * @return rmi facase
+	 * @throws EmfStoreException in case of failure
+	 */
+	protected RMIAdminEmfStoreFacade getFacade(SessionId sessionId) throws EmfStoreException {
 		RMIAdminEmfStoreFacade facade = adminFacadeMap.get(sessionId);
 		if (facade == null) {
 			throw new UnknownSessionException(
