@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * @author schroech
+ * @author schroech, denglerm
  */
 public final class EditPartUtility {
 
