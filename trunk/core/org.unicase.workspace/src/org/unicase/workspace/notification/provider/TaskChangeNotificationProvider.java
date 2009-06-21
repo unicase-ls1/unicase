@@ -42,7 +42,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 
 	private EClass clazz;
 
-	private Set<ModelElementId> elementsToExclude;
+	private Set<ModelElement> elementsToExclude;
 
 	/**
 	 * Default constructor.
@@ -51,7 +51,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 	 */
 	public TaskChangeNotificationProvider(EClass assignmentClass) {
 		this.clazz = assignmentClass;
-		this.elementsToExclude = new HashSet<ModelElementId>();
+		this.elementsToExclude = new HashSet<ModelElement>();
 	}
 
 	/**
@@ -59,7 +59,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 	 * 
 	 * @param elements the elements to exclude
 	 */
-	public void addToFilter(Collection<ModelElementId> elements) {
+	public void addToFilter(Collection<? extends ModelElement> elements) {
 		this.elementsToExclude.addAll(elements);
 	}
 
@@ -80,6 +80,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 	 */
 	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
 		String currentUsername) {
+
 		// sanity checks
 		List<ESNotification> result = new ArrayList<ESNotification>();
 		User user = null;
@@ -108,7 +109,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 				if (!this.clazz.isInstance(modelElement)) {
 					continue;
 				}
-				if (this.elementsToExclude.contains(modelElementId)) {
+				if (this.elementsToExclude.contains(modelElement)) {
 					continue;
 				}
 				for (WorkItem workItem : workItemsOfUser) {
@@ -160,10 +161,10 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 		} else {
 			stringBuilder.append("<a href=\"more\">");
 			stringBuilder.append(workItems.size());
-			stringBuilder.append("</a> ");
 			stringBuilder.append(" of your ");
 			stringBuilder.append(this.clazz.getName());
-			stringBuilder.append("s have been changed.");
+			stringBuilder.append("s</a> ");
+			stringBuilder.append(" have been changed.");
 		}
 
 		String message = stringBuilder.toString();
