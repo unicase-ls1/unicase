@@ -114,6 +114,15 @@ public class ServerTests {
 	}
 
 	/**
+	 * Sets the connection manager.
+	 * 
+	 * @param cm connection manager
+	 */
+	protected static void setConnectionManager(ConnectionManager cm) {
+		connectionManager = cm;
+	}
+
+	/**
 	 * @param serverInfo serverinfo
 	 * @throws EmfStoreException in case of failure
 	 */

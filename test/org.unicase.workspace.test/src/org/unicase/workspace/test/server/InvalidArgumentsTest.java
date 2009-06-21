@@ -9,7 +9,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
 import org.junit.Assert;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -20,7 +22,10 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidInputException;
+import org.unicase.emfstore.exceptions.UnknownSessionException;
 import org.unicase.model.Project;
+import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
+import org.unicase.workspace.test.SetupHelper;
 
 /**
  * This test calls the servermethods with null arguments.
@@ -28,6 +33,27 @@ import org.unicase.model.Project;
  * @author wesendon
  */
 public class InvalidArgumentsTest extends ServerTests {
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @throws EmfStoreException in case of failure
+	 */
+	@BeforeClass
+	public static void setUpBeforeClass() throws EmfStoreException {
+		ServerTests.setUpBeforeClass();
+		setConnectionManager(new RMIConnectionManagerImpl() {
+			@Override
+			protected RMIEmfStoreFacade getFacade(SessionId sessionId) throws UnknownSessionException {
+				if (sessionId == null && getFacadeMap().size() > 0) {
+					return getFacadeMap().values().iterator().next();
+				}
+				return super.getFacade(sessionId);
+
+			}
+		});
+		ServerTests.login(SetupHelper.getServerInfo());
+	}
 
 	/**
 	 * {@inheritDoc}
