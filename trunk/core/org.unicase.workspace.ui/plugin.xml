@@ -217,6 +217,12 @@
            id="org.unicase.workspace.ui.updateProjectVersion"
            name="updateToVersion">
      </command>
+     <command
+           categoryId="org.unicase.workspace.ui.project"
+           defaultHandler="org.unicase.workspace.ui.commands.ProjectPropertiesHandler"
+           id="org.unicase.workspace.ui.projectProperties"
+           name="properties">
+     </command>
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -624,6 +630,29 @@
                visible="true">
          </separator>
       </menuContribution>
+     <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.stem.ShowHistoryViewSeperator">
+        <command
+              commandId="org.unicase.workspace.ui.projectProperties"
+              label="Properties"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false"
+                    operator="and">
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+                 <test
+                       forcePluginActivation="true"
+                       property="org.unicase.workspace.ui.commands.projectIsShared"
+                       value="true">
+                 </test>
+              </iterate>
+           </visibleWhen>
+        </command>
+     </menuContribution>
   </extension>
   
      <extension
@@ -693,6 +722,12 @@
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
               sequence="Alt+Delete">
         </key>
+        <key
+              commandId="org.unicase.workspace.ui.projectProperties"
+              contextId="org.eclipse.ui.contexts.window"
+              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+              sequence="Alt+Return">
+        </key>
      </extension>
      <extension
            point="org.eclipse.core.expressions.propertyTesters">
@@ -730,4 +765,38 @@
          </command>
       </menuContribution>
    </extension>
+        <extension
+              point="org.eclipse.ui.propertyPages">
+           <page
+                 class="org.unicase.workspace.ui.prefs.UnicasePropertyPage"
+                 id="org.unicase.workspace.ui.generalProperties"
+                 name="General">
+              <enabledWhen>
+                 <instanceof
+                       value="org.unicase.model.Project">
+                 </instanceof>
+              </enabledWhen>
+           </page>
+           <page
+                 class="org.unicase.workspace.ui.prefs.DashboardPropertyPage"
+                 id="org.unicase.workspace.ui.dashboardProperties"
+                 name="Dashboard">
+              <enabledWhen>
+                 <instanceof
+                       value="org.unicase.model.Project">
+                 </instanceof>
+              </enabledWhen>
+           </page>
+           <page
+                 category="org.unicase.workspace.ui.dashboardProperties"
+                 class="org.unicase.workspace.ui.prefs.DashboardWidgetsPropertyPage"
+                 id="org.unicase.workspace.ui.dashboardWidgetProperties"
+                 name="Widgets">
+              <enabledWhen>
+                 <instanceof
+                       value="org.unicase.model.Project">
+                 </instanceof>
+              </enabledWhen>
+           </page>
+        </extension>
 </plugin>
