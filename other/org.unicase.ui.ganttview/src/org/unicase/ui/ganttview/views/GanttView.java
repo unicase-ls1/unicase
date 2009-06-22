@@ -10,7 +10,9 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.nebula.widgets.ganttchart.GanttChart;
 import org.eclipse.nebula.widgets.ganttchart.GanttControlParent;
 import org.eclipse.nebula.widgets.ganttchart.GanttEvent;
@@ -26,7 +28,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
@@ -106,17 +107,12 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 			}
 		}
 
-		for (TreeItem treeItem : treeViewer.getTree().getItems()) {
-			treeItem.setExpanded(true);
-		}
-
 	}
 
 	private void createTree(Composite parent) {
 
 		treeViewer = new TreeViewer(parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
 		treeViewer.setContentProvider(new GanttTreeContentProvider());
-		treeViewer.setLabelProvider(new GanttTreeLabelProvider());
 
 		final Tree tree = treeViewer.getTree();
 
@@ -169,21 +165,80 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		});
 
-		TreeColumn tcName = new TreeColumn(tree, SWT.NONE);
-		tcName.setText("Name");
-		tcName.setWidth(150);
+		TreeViewerColumn tcvName = new TreeViewerColumn(treeViewer, SWT.NONE, 0);
+		tcvName.getColumn().setText("Name");
+		tcvName.getColumn().setWidth(150);
+		tcvName.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				if (element instanceof WorkPackage) {
+					return ((WorkPackage) element).getName();
+				}
 
-		TreeColumn tcStartDate = new TreeColumn(tree, SWT.NONE);
-		tcStartDate.setText("Start");
-		tcStartDate.setWidth(100);
+				return super.getText(element);
+			}
+		});
 
-		TreeColumn tcEndDateDate = new TreeColumn(tree, SWT.NONE);
-		tcEndDateDate.setText("End");
-		tcEndDateDate.setWidth(100);
+		TreeViewerColumn tcvStart = new TreeViewerColumn(treeViewer, SWT.NONE, 1);
+		tcvStart.getColumn().setText("Start");
+		tcvStart.getColumn().setWidth(100);
+		tcvStart.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				if (element instanceof WorkPackage) {
 
-		TreeColumn tcCompleted = new TreeColumn(tree, SWT.NONE);
-		tcCompleted.setText("Completed");
-		tcCompleted.setWidth(100);
+					WorkPackage wp = (WorkPackage) element;
+
+					if (wp.getStartDate() == null)
+						return "";
+
+					Calendar startDate = Calendar.getInstance();
+					startDate.setTime(wp.getStartDate());
+
+					return GanttViewHelper.getFormattedDateString(startDate);
+				}
+
+				return super.getText(element);
+			}
+		});
+
+		TreeViewerColumn tcvEnd = new TreeViewerColumn(treeViewer, SWT.NONE, 2);
+		tcvEnd.getColumn().setText("End");
+		tcvEnd.getColumn().setWidth(100);
+		tcvEnd.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				if (element instanceof WorkPackage) {
+
+					WorkPackage wp = (WorkPackage) element;
+
+					if (wp.getEndDate() == null)
+						return "";
+
+					Calendar endDate = Calendar.getInstance();
+					endDate.setTime(wp.getEndDate());
+
+					return GanttViewHelper.getFormattedDateString(endDate);
+				}
+
+				return super.getText(element);
+			}
+		});
+
+		TreeViewerColumn tcvCompleted = new TreeViewerColumn(treeViewer, SWT.NONE, 3);
+		tcvCompleted.getColumn().setText("Completed");
+		tcvCompleted.getColumn().setWidth(100);
+		tcvCompleted.setLabelProvider(new ColumnLabelProvider() {
+			@Override
+			public String getText(Object element) {
+				if (element instanceof WorkPackage) {
+
+					WorkPackage wp = (WorkPackage) element;
+				}
+
+				return super.getText(element);
+			}
+		});
 
 	}
 

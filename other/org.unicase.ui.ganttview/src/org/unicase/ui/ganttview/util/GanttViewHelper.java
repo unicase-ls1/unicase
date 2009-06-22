@@ -32,6 +32,10 @@ public final class GanttViewHelper {
 	}
 
 	public static String getFormattedDateString(Calendar date) {
+
+		if (date == null)
+			return "";
+
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
 		return sdf.format(date.getTime());
