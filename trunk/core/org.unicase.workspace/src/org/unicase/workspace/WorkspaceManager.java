@@ -218,7 +218,13 @@ public final class WorkspaceManager {
 					+ Configuration.getProjectFragmentFileExtension();
 				URI projectURI = URI.createFileURI(projectFilePath);
 				String operationsFilePath = null;
-				for (File subDirFile : file.listFiles()) {
+				File[] listFiles = file.listFiles();
+				if (listFiles == null) {
+					WorkspaceUtil.logException("The migration of the project in projectspace at " + projectFilePath
+						+ " failed!", new IllegalStateException("Broken projectSpace!"));
+					continue;
+				}
+				for (File subDirFile : listFiles) {
 					if (subDirFile.getName().endsWith(Configuration.getOperationCompositeFileExtension())) {
 						operationsFilePath = subDirFile.getAbsolutePath();
 					}
