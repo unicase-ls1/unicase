@@ -32,49 +32,43 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	 */
 	@Override
 	public List getTypesForPopupBar(IAdaptable host) {
-		IGraphicalEditPart editPart = (IGraphicalEditPart) host
-				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart editPart = (IGraphicalEditPart) host.getAdapter(IGraphicalEditPart.class);
 		if (editPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_3001);
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_3002);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Attribute_3001);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Method_3002);
 			return types;
 		}
 		if (editPart instanceof org.unicase.model.classDiagram.edit.parts.MEDiagramEditPart) {
 			List types = new ArrayList();
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Package_2002);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Package_2002);
 			return types;
 		}
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
+	 * Determines the kinds of connection types which can be created from a specific source.
+	 * 
+	 * @see getRelTypesOnTarget
+	 * @param source An {@link IAdaptable}, which must be able to adapt to {@link IGraphicalEditPart}. May not be null.
+	 * @return A {@link List} of {@link IElementType}s. May be empty.
 	 * @generated NOT
 	 */
 	@Override
 	public List getRelTypesOnSource(IAdaptable source) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001);
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002);
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003);
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004);
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007);
 			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
 			return types;
-		}else if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
+		} else if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
 			List types = new ArrayList();
 			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
 			return types;
@@ -84,27 +78,28 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	}
 
 	/**
+	 * Determines the kinds of connection types which can be created to a specific target. The generated method does not
+	 * account for connection types whose target can be multiple different model elements. For example, dependencies can
+	 * be created between both classes and packages. The generated method does not return dependency connection types
+	 * for packages.
+	 * 
+	 * @param target An {@link IAdaptable}, which must be able to adapt to {@link IGraphicalEditPart}.
+	 * @return A {@link List} of {@link IElementType}s. Can be empty.
 	 * @generated NOT
 	 */
 	@Override
 	public List getRelTypesOnTarget(IAdaptable target) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001);
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002);
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003);
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004);
-			types
-					.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004);
+			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007);
 			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
 			return types;
-		}else if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
+		} else if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
 			List types = new ArrayList();
 			types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
 			return types;
@@ -113,95 +108,86 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	}
 
 	/**
+	 * Determines the kinds of connection types which can be created between a specific source and target.
+	 * 
+	 * @see getRelTypesOnTarget
+	 * @param source An {@link IAdaptable}, which must be able to adapt to {@link IGraphicalEditPart}.
+	 * @param target An {@link IAdaptable}, which must be able to adapt to {@link IGraphicalEditPart}.
+	 * @return A {@link List} of {@link IElementType}s. Can be empty.
 	 * @generated NOT
 	 */
 	@Override
-	public List getRelTypesOnSourceAndTarget(IAdaptable source,
-			IAdaptable target) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
+	public List getRelTypesOnSourceAndTarget(IAdaptable source, IAdaptable target) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
 			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007);
 			}
-			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002);
-			}
-			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003);
-			}
-			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004);
-			}
-			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007);
-			}
+
 			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
 				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
 			}
+
 			return types;
 		}
-		
+
 		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
 			List types = new ArrayList();
-			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart){ 
+			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
-			}
-			if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
+			} else if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
 				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006);
 			}
 			return types;
 		}
-		
+
 		return Collections.EMPTY_LIST;
 	}
 
 	/**
+	 * Determines the kinds of source {@link IGrahipcalEditPart}s to which a connection from the specified target with a
+	 * specified connection {@link IElementType} can be created.
+	 * 
+	 * @see getRelTypesOnTarget
+	 * @param relationshipType The {@link IElementType} of the connection. May not be null.
+	 * @param target An {@link IAdaptable}, which must be able to adapt to {@link IGraphicalEditPart}. May not be null.
+	 * @return A {@link List} of {@link IElementType}s. May be empty.
 	 * @generated NOT
 	 */
 	@Override
-	public List getTypesForSource(IAdaptable target,
-			IElementType relationshipType) {
-		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target
-				.getAdapter(IGraphicalEditPart.class);
+	public List getTypesForSource(IAdaptable target, IElementType relationshipType) {
+		IGraphicalEditPart targetEditPart = (IGraphicalEditPart) target.getAdapter(IGraphicalEditPart.class);
 		if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006) {
 				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Package_2002);
 				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
-			
+
 			return types;
 		}
-		
+
 		if (targetEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
 			List types = new ArrayList();
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006) {
@@ -214,43 +200,43 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	}
 
 	/**
+	 * Determines the kinds of target {@link IGrahipcalEditPart}s to which a connection from the specified source with a
+	 * specified connection {@link IElementType} can be created.
+	 * 
+	 * @see getRelTypesOnTarget
+	 * @param relationshipType The {@link IElementType} of the connection. May not be null.
+	 * @param source An {@link IAdaptable}, which must be able to adapt to {@link IGraphicalEditPart}. May not be null.
+	 * @return A {@link List} of {@link IElementType}s. May be empty.
 	 * @generated NOT
 	 */
 	@Override
-	public List getTypesForTarget(IAdaptable source,
-			IElementType relationshipType) {
-		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source
-				.getAdapter(IGraphicalEditPart.class);
+	public List getTypesForTarget(IAdaptable source, IElementType relationshipType) {
+		IGraphicalEditPart sourceEditPart = (IGraphicalEditPart) source.getAdapter(IGraphicalEditPart.class);
 		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.ClassEditPart) {
 			List types = new ArrayList();
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4001) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4002) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4003) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Association_4004) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007) {
-				types
-						.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
+				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
-			
+
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006) {
 				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Package_2002);
 				types.add(org.unicase.model.classDiagram.providers.ModelElementTypes.Class_2001);
 			}
 			return types;
 		}
-		
+
 		if (sourceEditPart instanceof org.unicase.model.classDiagram.edit.parts.PackageEditPart) {
 			List types = new ArrayList();
 			if (relationshipType == org.unicase.model.classDiagram.providers.ModelElementTypes.Dependency_4006) {
@@ -266,20 +252,16 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	 * @generated
 	 */
 	@Override
-	public EObject selectExistingElementForSource(IAdaptable target,
-			IElementType relationshipType) {
-		return selectExistingElement(target, getTypesForSource(target,
-				relationshipType));
+	public EObject selectExistingElementForSource(IAdaptable target, IElementType relationshipType) {
+		return selectExistingElement(target, getTypesForSource(target, relationshipType));
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	public EObject selectExistingElementForTarget(IAdaptable source,
-			IElementType relationshipType) {
-		return selectExistingElement(source, getTypesForTarget(source,
-				relationshipType));
+	public EObject selectExistingElementForTarget(IAdaptable source, IElementType relationshipType) {
+		return selectExistingElement(source, getTypesForTarget(source, relationshipType));
 	}
 
 	/**
@@ -287,8 +269,7 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	 */
 	@Override
 	protected boolean isApplicableElement(EObject element, Collection types) {
-		IElementType type = ElementTypeRegistry.getInstance().getElementType(
-				element);
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(element);
 		return types.contains(type);
 	}
 
@@ -299,14 +280,10 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-				org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().getItemProvidersAdapterFactory());
-		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
-				shell, labelProvider);
-		dialog
-				.setMessage(org.unicase.model.classDiagram.part.Messages.ModelModelingAssistantProviderMessage);
-		dialog
-				.setTitle(org.unicase.model.classDiagram.part.Messages.ModelModelingAssistantProviderTitle);
+			org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
+		dialog.setMessage(org.unicase.model.classDiagram.part.Messages.ModelModelingAssistantProviderMessage);
+		dialog.setTitle(org.unicase.model.classDiagram.part.Messages.ModelModelingAssistantProviderTitle);
 		dialog.setMultipleSelection(false);
 		dialog.setElements(elements);
 		EObject selected = null;
