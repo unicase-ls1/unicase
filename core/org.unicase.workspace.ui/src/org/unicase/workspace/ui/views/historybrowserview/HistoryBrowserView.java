@@ -171,8 +171,8 @@ public class HistoryBrowserView extends ViewPart {
 			}
 			
 		};
-//		expand.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_ELCL_COLLAPSEALL));
-		expand.setText("Expand");
+		
+		expand.setImageDescriptor(Activator.getImageDescriptor("icons/expandall.gif"));
 		menuManager.add(expand);
 		
 		Action collapse = new Action() {
@@ -182,8 +182,7 @@ public class HistoryBrowserView extends ViewPart {
 			}
 			
 		};
-//		collapse.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(ISharedImages.IMG_ELCL_COLLAPSEALL));
-		collapse.setText("Collapse");
+		collapse.setImageDescriptor(Activator.getImageDescriptor("icons/collapseall.gif"));
 		menuManager.add(collapse);
 		
 		Action refresh = new Action() {
