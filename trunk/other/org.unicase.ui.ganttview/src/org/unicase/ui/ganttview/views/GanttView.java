@@ -114,6 +114,10 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		treeViewer.setContentProvider(new GanttTreeContentProvider());
 		treeViewer.setLabelProvider(new GanttTreeLabelProvider());
 
+		for (TreeItem treeItem : treeViewer.getTree().getItems()) {
+			treeItem.setExpanded(true);
+		}
+
 		final Tree tree = treeViewer.getTree();
 
 		tree.setHeaderVisible(true);
