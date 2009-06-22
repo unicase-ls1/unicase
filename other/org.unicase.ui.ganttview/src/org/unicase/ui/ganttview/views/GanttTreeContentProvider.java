@@ -61,12 +61,17 @@ public class GanttTreeContentProvider extends AdapterFactoryContentProvider {
 
 		Set<ModelElement> ret = new HashSet<ModelElement>();
 		WorkPackage workPackage = (WorkPackage) object;
-		List<WorkItem> containedWorkItems = workPackage.getAllContainedWorkItems();
+		List<WorkItem> containedWorkItems = workPackage.getContainedWorkItems();
 		for (WorkItem workItem : containedWorkItems) {
 			if (workItem instanceof WorkPackage) {
 				ret.add(workItem);
 			}
 		}
 		return ret;
+	}
+
+	@Override
+	public boolean hasChildren(Object object) {
+		return (this.getChildren(object).length > 0);
 	}
 }
