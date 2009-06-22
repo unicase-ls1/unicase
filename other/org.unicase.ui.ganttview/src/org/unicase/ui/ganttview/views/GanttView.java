@@ -106,6 +106,10 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 			}
 		}
 
+		for (TreeItem treeItem : treeViewer.getTree().getItems()) {
+			treeItem.setExpanded(true);
+		}
+
 	}
 
 	private void createTree(Composite parent) {
@@ -113,10 +117,6 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		treeViewer = new TreeViewer(parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
 		treeViewer.setContentProvider(new GanttTreeContentProvider());
 		treeViewer.setLabelProvider(new GanttTreeLabelProvider());
-
-		for (TreeItem treeItem : treeViewer.getTree().getItems()) {
-			treeItem.setExpanded(true);
-		}
 
 		final Tree tree = treeViewer.getTree();
 
