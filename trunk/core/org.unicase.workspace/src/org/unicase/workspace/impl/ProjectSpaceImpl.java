@@ -37,7 +37,7 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
@@ -2205,11 +2205,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @param property the new property
 	 * @generated NOT
 	 */
-	public void setProperty(OrgUnitProperties property) {
+	public void setProperty(OrgUnitProperty property) {
 		// sanity checks
 		if (getUsersession() != null && getUsersession().getACUser() != null) {
 			// FIXME: replace with a hashmap
-			for (OrgUnitProperties prop : getUsersession().getACUser().getProperties()) {
+			for (OrgUnitProperty prop : getUsersession().getACUser().getProperties()) {
 				if (prop.getName().equalsIgnoreCase(property.getName())) {
 					prop.setValue(property.getValue());
 					return;
@@ -2244,7 +2244,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	public void setProperty(String name, String value) {
-		OrgUnitProperties orgUnitProperties = AccesscontrolFactory.eINSTANCE.createOrgUnitProperties();
+		OrgUnitProperty orgUnitProperties = AccesscontrolFactory.eINSTANCE.createOrgUnitProperty();
 		orgUnitProperties.setName(name);
 		orgUnitProperties.setValue(value);
 		orgUnitProperties.setProject((ProjectId) EcoreUtil.copy(getProjectId()));
@@ -2273,7 +2273,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		StringBuilder newValue = new StringBuilder();
 		for (String s : value) {
 			newValue.append(s);
-			newValue.append(OrgUnitProperties.ARRAY_SEPARATOR);
+			newValue.append(OrgUnitProperty.ARRAY_SEPARATOR);
 		}
 		String ret = newValue.toString();
 		setProperty(name, ret.substring(0, ret.length() - 2));
@@ -2291,7 +2291,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		try {
 			for (ModelElementId mid : value) {
 				newValue.append(ModelUtil.eObjectToString(mid));
-				newValue.append(OrgUnitProperties.ARRAY_SEPARATOR);
+				newValue.append(OrgUnitProperty.ARRAY_SEPARATOR);
 			}
 		} catch (SerializationException e) {
 			return;
@@ -2308,7 +2308,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		// sanity checks
 		if (getUsersession() != null && getUsersession().getACUser() != null) {
 			// FIXME: replace with a hashmap
-			for (OrgUnitProperties p : getUsersession().getACUser().getProperties()) {
+			for (OrgUnitProperty p : getUsersession().getACUser().getProperties()) {
 				if (p.getName().equals(name)) {
 					return p.getValue();
 				}
@@ -2354,7 +2354,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public String[] getStringArrayProperty(String name) {
 		String value = getProperty(name);
 		if (value != null) {
-			String[] split = value.split(OrgUnitProperties.ARRAY_SEPARATOR);
+			String[] split = value.split(OrgUnitProperty.ARRAY_SEPARATOR);
 			return split;
 		}
 		return null;
