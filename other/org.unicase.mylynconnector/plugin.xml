@@ -22,5 +22,12 @@
             urlRepository="Tasks">
       </repository>
    </extension>
+   <extension
+         point="org.eclipse.mylyn.tasks.ui.editors">
+      <pageFactory
+            class="org.unicase.mylynconnector.ui.UnicaseTaskEditorPageFactory"
+            id="org.unicase.mylynconnector.pageFactory1">
+      </pageFactory>
+   </extension>
 
 </plugin>

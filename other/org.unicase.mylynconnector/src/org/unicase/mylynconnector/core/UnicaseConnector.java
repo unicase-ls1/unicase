@@ -1,41 +1,35 @@
 package org.unicase.mylynconnector.core;
 
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.mylyn.tasks.core.AbstractRepositoryConnector;
 import org.eclipse.mylyn.tasks.core.IRepositoryQuery;
 import org.eclipse.mylyn.tasks.core.ITask;
 import org.eclipse.mylyn.tasks.core.TaskRepository;
-import org.eclipse.mylyn.tasks.core.data.TaskAttribute;
-import org.eclipse.mylyn.tasks.core.data.TaskAttributeMapper;
 import org.eclipse.mylyn.tasks.core.data.TaskData;
 import org.eclipse.mylyn.tasks.core.data.TaskDataCollector;
 import org.eclipse.mylyn.tasks.core.sync.ISynchronizationSession;
 import org.unicase.model.ModelElement;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskPackage;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.RecordingCommandWithResult;
 
 public class UnicaseConnector extends AbstractRepositoryConnector {
 
 	public static final String DOLLI2 = "dolli2";
 	public static final String CONNECTOR_KIND = "org.unicase.mylynconnector";
-	
+
 	private UnicaseTaskDataHandler taskDataHandler;
+	private UnicaseContextListener unicaseContextListener;
+
+	public UnicaseTaskDataHandler getTaskDataHandler() {
+		return taskDataHandler;
+	}
 
 	public UnicaseConnector() {
 		taskDataHandler = new UnicaseTaskDataHandler();
+		unicaseContextListener = new UnicaseContextListener();
 	}
 
 	@Override
@@ -94,12 +88,14 @@ public class UnicaseConnector extends AbstractRepositoryConnector {
 			IRepositoryQuery query, TaskDataCollector collector,
 			ISynchronizationSession session, IProgressMonitor monitor) {
 		String attribute = query.getAttribute("modelElementIds");
-		
-		if(attribute != null) {
-			for(String meId : attribute.split(";")) {
-				if(taskExists(repository, meId)) {
+
+		if (attribute != null) {
+			for (String meId : attribute.split(";")) {
+				if (taskExists(repository, meId)) {
 					try {
-						collector.accept(getTaskData(repository, meId, monitor));
+						collector.accept(getTaskData(repository,
+								UnicaseConnectorUtil.convertMeIdToTaskId(meId),
+								monitor));
 					} catch (CoreException e) {
 						e.printStackTrace();
 					}
@@ -110,8 +106,9 @@ public class UnicaseConnector extends AbstractRepositoryConnector {
 	}
 
 	private boolean taskExists(TaskRepository repository, String meIds) {
-		for(ModelElement me: getAllActionItems(repository)) {
-			if(me.getIdentifier().equals(meIds)) {
+		meIds = UnicaseConnectorUtil.convertTaskIdToMeId(meIds);
+		for (ModelElement me : getAllActionItems(repository)) {
+			if (me.getIdentifier().equals(meIds)) {
 				return true;
 			}
 		}
@@ -128,7 +125,8 @@ public class UnicaseConnector extends AbstractRepositoryConnector {
 			ITask task, TaskData taskData) {
 	}
 
-	public List<? extends ModelElement> getAllActionItems(final TaskRepository repository) {
+	public List<? extends ModelElement> getAllActionItems(
+			final TaskRepository repository) {
 		return taskDataHandler.getAllActionItems(repository);
 	}
 }
