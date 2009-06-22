@@ -9,9 +9,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.nebula.widgets.ganttchart.GanttChart;
 import org.eclipse.nebula.widgets.ganttchart.GanttControlParent;
 import org.eclipse.nebula.widgets.ganttchart.GanttEvent;
@@ -27,6 +25,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
+import org.eclipse.swt.widgets.TreeColumn;
 import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
@@ -47,7 +46,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	public static final String ID = "org.unicase.ui.ganttview.views.GanttView";
 
 	private static final int SPACER = 2;
-	private static final int ONE_ROW_HIGHT = 24;
+	private static final int ONE_ROW_HEIGHT = 24;
 
 	private GanttChart ganttChart;
 	private Composite parent;
@@ -80,7 +79,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		ganttChart.getGanttComposite().setDrawHorizontalLinesOverride(true);
 		ganttChart.getGanttComposite().setDrawVerticalLinesOverride(false);
-		ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HIGHT - SPACER);
+		ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HEIGHT - SPACER);
 		ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
 		ganttCpLeft.setGanttChart(ganttChart);
 
@@ -104,7 +103,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		treeViewer = new TreeViewer(parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
 		treeViewer.setContentProvider(new GanttTreeContentProvider());
-		// treeViewer.setLabelProvider(new GanttTreeLabelProvider());
+		treeViewer.setLabelProvider(new GanttTreeLabelProvider());
 
 		final Tree tree = treeViewer.getTree();
 
@@ -116,7 +115,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		// As we want some air, we force each item height to be 24 pixels.
 		tree.addListener(SWT.MeasureItem, new Listener() {
 			public void handleEvent(Event event) {
-				event.height = ONE_ROW_HIGHT;
+				event.height = ONE_ROW_HEIGHT;
 			}
 		});
 
@@ -157,94 +156,97 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		});
 
-		TreeViewerColumn tcvName = new TreeViewerColumn(treeViewer, SWT.NONE, 0);
-		tcvName.getColumn().setText("Name");
-		tcvName.getColumn().setWidth(150);
-		tcvName.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				if (element instanceof WorkPackage) {
-					return ((WorkPackage) element).getName();
-				}
+		TreeColumn tcvName = new TreeColumn(treeViewer.getTree(), SWT.NONE);
+		tcvName.setText("Name");
+		tcvName.setWidth(150);
+		// tcvName.setLabelProvider(new ColumnLabelProvider() {
+		// @Override
+		// public String getText(Object element) {
+		// if (element instanceof WorkPackage) {
+		// return ((WorkPackage) element).getName();
+		// }
+		//
+		// return super.getText(element);
+		// }
+		// });
 
-				return super.getText(element);
-			}
-		});
+		// TreeViewerColumn tcvStart = new TreeViewerColumn(treeViewer, SWT.NONE, 1);
+		// tcvStart.getColumn().setText("Start");
+		// tcvStart.getColumn().setWidth(100);
+		// tcvStart.setLabelProvider(new ColumnLabelProvider() {
+		// @Override
+		// public String getText(Object element) {
+		// if (element instanceof WorkPackage) {
+		//
+		// WorkPackage wp = (WorkPackage) element;
+		//
+		// if (wp.getStartDate() == null)
+		// return "";
+		//
+		// Calendar startDate = Calendar.getInstance();
+		// startDate.setTime(wp.getStartDate());
+		//
+		// return GanttViewHelper.getFormattedDateString(startDate);
+		// }
+		//
+		// return super.getText(element);
+		// }
+		// });
 
-		TreeViewerColumn tcvStart = new TreeViewerColumn(treeViewer, SWT.NONE, 1);
-		tcvStart.getColumn().setText("Start");
-		tcvStart.getColumn().setWidth(100);
-		tcvStart.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				if (element instanceof WorkPackage) {
+		// TreeViewerColumn tcvEnd = new TreeViewerColumn(treeViewer, SWT.NONE, 2);
+		// tcvEnd.getColumn().setText("End");
+		// tcvEnd.getColumn().setWidth(100);
+		// tcvEnd.setLabelProvider(new ColumnLabelProvider() {
+		// @Override
+		// public String getText(Object element) {
+		// if (element instanceof WorkPackage) {
+		//
+		// WorkPackage wp = (WorkPackage) element;
+		//
+		// if (wp.getDueDate() == null)
+		// return "";
+		//
+		// Calendar endDate = Calendar.getInstance();
+		// endDate.setTime(wp.getDueDate());
+		//
+		// return GanttViewHelper.getFormattedDateString(endDate);
+		// }
+		//
+		// return super.getText(element);
+		// }
+		// });
 
-					WorkPackage wp = (WorkPackage) element;
-
-					if (wp.getStartDate() == null)
-						return "";
-
-					Calendar startDate = Calendar.getInstance();
-					startDate.setTime(wp.getStartDate());
-
-					return GanttViewHelper.getFormattedDateString(startDate);
-				}
-
-				return super.getText(element);
-			}
-		});
-
-		TreeViewerColumn tcvEnd = new TreeViewerColumn(treeViewer, SWT.NONE, 2);
-		tcvEnd.getColumn().setText("End");
-		tcvEnd.getColumn().setWidth(100);
-		tcvEnd.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				if (element instanceof WorkPackage) {
-
-					WorkPackage wp = (WorkPackage) element;
-
-					if (wp.getDueDate() == null)
-						return "";
-
-					Calendar endDate = Calendar.getInstance();
-					endDate.setTime(wp.getDueDate());
-
-					return GanttViewHelper.getFormattedDateString(endDate);
-				}
-
-				return super.getText(element);
-			}
-		});
-
-		TreeViewerColumn tcvCompleted = new TreeViewerColumn(treeViewer, SWT.NONE, 3);
-		tcvCompleted.getColumn().setText("Completed");
-		tcvCompleted.getColumn().setWidth(100);
-		tcvCompleted.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				if (element instanceof WorkPackage) {
-
-					WorkPackage wp = (WorkPackage) element;
-					return calculateProgress(wp) + "%";
-				}
-
-				return super.getText(element);
-			}
-		});
-
+		// TreeViewerColumn tcvCompleted = new TreeViewerColumn(treeViewer, SWT.NONE, 3);
+		// tcvCompleted.getColumn().setText("Completed");
+		// tcvCompleted.getColumn().setWidth(100);
+		// tcvCompleted.setLabelProvider(new ColumnLabelProvider() {
+		// @Override
+		// public String getText(Object element) {
+		// if (element instanceof WorkPackage) {
+		//
+		// WorkPackage wp = (WorkPackage) element;
+		// return calculateProgress(wp) + "%";
+		// }
+		//
+		// return super.getText(element);
+		// }
+		// });
+		//
 	}
 
 	public void setInput(WorkPackage workPackage) {
 
 		GanttViewHelper.clearGantt(ganttChart, treeViewer.getTree());
 
-		EList<WorkItem> workPackages = workPackage.getContainedWorkItems();
-		for (WorkItem workItem : workPackages) {
-			recreateView((WorkPackage) workItem);
+		EList<WorkItem> workItems = workPackage.getContainedWorkItems();
+		for (WorkItem workItem : workItems) {
+			if (workItem instanceof WorkPackage) {
+				recreateView((WorkPackage) workItem);
+				treeViewer.setInput(workPackage);
+			}
+
 		}
 
-		treeViewer.setInput(workPackage);
 	}
 
 	public void setInput(Project project) {
@@ -316,14 +318,14 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		Date dend = wp.getDueDate();
 		if (dstart != null) {
 			startDate.setTime(wp.getStartDate());
-		} else if (wp.getContainingWorkpackage() != null) {
+		} else if (wp.getContainingWorkpackage() != null && wp.getContainingWorkpackage().getStartDate() != null) {
 			startDate.setTime(wp.getContainingWorkpackage().getStartDate());
 		} else {
 			// TODO
 		}
 		if (dend != null) {
 			endDate.setTime(wp.getDueDate());
-		} else if (wp.getContainingWorkpackage() != null) {
+		} else if (wp.getContainingWorkpackage() != null && wp.getContainingWorkpackage().getDueDate() != null) {
 			endDate.setTime(wp.getContainingWorkpackage().getDueDate());
 		} else {
 			// TODO

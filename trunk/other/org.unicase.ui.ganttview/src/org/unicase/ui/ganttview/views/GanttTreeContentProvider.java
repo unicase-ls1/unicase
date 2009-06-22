@@ -7,17 +7,21 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
+import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.workspace.WorkspaceManager;
 
-public class GanttTreeContentProvider extends AdapterFactoryContentProvider {
-
+public class GanttTreeContentProvider extends TransactionalAdapterFactoryContentProvider {
+	/**
+	 * default constructor.
+	 */
 	public GanttTreeContentProvider() {
-		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	@Override
@@ -32,6 +36,7 @@ public class GanttTreeContentProvider extends AdapterFactoryContentProvider {
 		} else {
 			return super.getElements(object);
 		}
+
 	}
 
 	private EList<WorkPackage> getElementsForProject(Object object) {
