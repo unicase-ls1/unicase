@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.ui.common.diagram.ConfigurableRectangleFigure;
+import org.unicase.ui.common.diagram.figures.ConfigurableRectangleFigure;
 import org.unicase.ui.common.diagram.figures.CenterLayout;
 import org.unicase.ui.tom.classDiagram.edit.policies.TouchResizableShapeEditPolicy;
 

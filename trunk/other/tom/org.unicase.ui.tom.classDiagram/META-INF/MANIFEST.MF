@@ -43,6 +43,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.gef;visibility:=reexport,
  org.unicase.workspace;bundle-version="0.2.17",
  org.unicase.workspace.edit;bundle-version="0.2.17",
- org.unicase.ui.tom;bundle-version="0.0.1"
+ org.unicase.ui.tom;bundle-version="0.0.1",
+ org.unicase.ui.common
 Eclipse-LazyStart: true
-Import-Package: org.unicase.ui.common.diagram
+Import-Package: org.unicase.ui.common.diagram,
+ org.unicase.ui.common.diagram.figures
