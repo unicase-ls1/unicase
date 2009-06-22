@@ -3,7 +3,6 @@ package org.unicase.ui.ganttview.views;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -36,8 +35,6 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.EstimateHelper;
-import org.unicase.model.task.util.MEState;
-import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.ganttview.util.GanttViewHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -78,12 +75,6 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		workPackagesToGanttEvents = new HashMap<String, GanttEvent>();
 
 		ganttChart = new GanttChart(sashForm, SWT.NONE, new ReadOnlySettings());
-
-		// ganttChart.setEnabled(true);
-		// ganttChart.getVerticalBar().setEnabled(true);
-		// ganttChart.getHorizontalBar().setEnabled(true);
-		// ganttChart.setDragDetect(false);
-		// ganttChart.setCapture(false);
 
 		ganttChart.addGanttEventListener(this);
 
@@ -212,11 +203,11 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 					WorkPackage wp = (WorkPackage) element;
 
-					if (wp.getEndDate() == null)
+					if (wp.getDueDate() == null)
 						return "";
 
 					Calendar endDate = Calendar.getInstance();
-					endDate.setTime(wp.getEndDate());
+					endDate.setTime(wp.getDueDate());
 
 					return GanttViewHelper.getFormattedDateString(endDate);
 				}
@@ -234,6 +225,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 				if (element instanceof WorkPackage) {
 
 					WorkPackage wp = (WorkPackage) element;
+					return calculateProgress(wp) + "%";
 				}
 
 				return super.getText(element);
@@ -252,7 +244,6 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		}
 
 		treeViewer.setInput(workPackage);
-		workPackagesToGanttEvents.clear();
 	}
 
 	public void setInput(Project project) {
@@ -260,7 +251,6 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		EList<WorkPackage> dummyList = new BasicEList<WorkPackage>();
 		setInput(project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkPackage(), dummyList));
 		treeViewer.setInput(project);
-		workPackagesToGanttEvents.clear();
 	}
 
 	public void setInput(EList<WorkPackage> workPackages) {
@@ -270,35 +260,48 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		for (WorkPackage workPackage : workPackages) {
 			recreateView(workPackage);
 		}
-
-		treeViewer.setInput(workPackages);
-		workPackagesToGanttEvents.clear();
 	}
 
 	private void recreateView(WorkPackage workPackage) {
 		recurisveWorkPackageToGanttEvent(workPackage, true);
 		treeViewer.setInput(workPackage);
+		workPackagesToGanttEvents.clear();
 	}
 
-	private int getEstimate(ModelElement element, WorkPackage currentOpenME, Set<WorkItem> relativeWorkItems) {
+	//
+	// private int getEstimate(ModelElement element, WorkPackage currentOpenME, Set<WorkItem> relativeWorkItems) {
+	//
+	// int estimate = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getEstimate(relativeWorkItems);
+	// if (element instanceof WorkItem) {
+	// estimate += ((WorkItem) element).getEstimate();
+	// }
+	// return estimate;
+	// }
+	//
+	// private int getClosedEstimate(Set<WorkItem> relativeWorkItems) {
+	// int closedEstimate = 0;
+	// Iterator<WorkItem> iterator = relativeWorkItems.iterator();
+	// while (iterator.hasNext()) {
+	// WorkItem workItem = iterator.next();
+	// if (workItem.getState().equals(MEState.CLOSED)) {
+	// closedEstimate += workItem.getEstimate();
+	// }
+	// }
+	// return closedEstimate;
+	// }
 
-		int estimate = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getEstimate(relativeWorkItems);
-		if (element instanceof WorkItem) {
-			estimate += ((WorkItem) element).getEstimate();
-		}
-		return estimate;
-	}
+	private int calculateProgress(WorkPackage wp) {
+		// TODO WorkPackages from ProjectGenerator result in int-overflow
+		int result = 0;
+		// float estimate = getEstimate(wp, null, new HashSet<WorkItem>(wp.getAllContainedWorkItems())); // TODO rm this
+		// float closedEstimate = getClosedEstimate(new HashSet<WorkItem>(wp.getAllContainedWorkItems()));
+		// float estimate = wp.getAggregatedEstimate();
+		// float closedEstimate = wp.getClosedAggregatedEstimate();
+		float estimate = EstimateHelper.getAggregatedEstimate(wp);
+		float closedEstimate = EstimateHelper.getClosedAggregatedEstimate(wp);
+		result = (int) ((closedEstimate / estimate) * 100);
 
-	private int getClosedEstimate(Set<WorkItem> relativeWorkItems) {
-		int closedEstimate = 0;
-		Iterator<WorkItem> iterator = relativeWorkItems.iterator();
-		while (iterator.hasNext()) {
-			WorkItem workItem = iterator.next();
-			if (workItem.getState().equals(MEState.CLOSED)) {
-				closedEstimate += workItem.getEstimate();
-			}
-		}
-		return closedEstimate;
+		return result;
 	}
 
 	private GanttEvent workPackageToGanttEvent(WorkPackage wp) {
@@ -325,15 +328,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 			// TODO
 		}
 
-		// float estimate = getEstimate(wp, null, new HashSet<WorkItem>(wp.getAllContainedWorkItems())); // TODO rm this
-		// float closedEstimate = getClosedEstimate(new HashSet<WorkItem>(wp.getAllContainedWorkItems()));
-		// float estimate = wp.getAggregatedEstimate();
-		// float closedEstimate = wp.getClosedAggregatedEstimate();
-		float estimate = EstimateHelper.getAggregatedEstimate(wp);
-		float closedEstimate = EstimateHelper.getClosedAggregatedEstimate(wp);
-		int completionStatus = (int) ((closedEstimate / estimate) * 100);
-
-		GanttEvent result = new GanttEvent(ganttChart, eventName, startDate, endDate, completionStatus);
+		GanttEvent result = new GanttEvent(ganttChart, eventName, startDate, endDate, calculateProgress(wp));
 		// ganttChart.reindex(result, ganttChart.getGanttComposite().getEvents().size() - 1);
 		result.setData(wp);
 
