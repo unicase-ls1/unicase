@@ -11,11 +11,11 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.nebula.widgets.ganttchart.GanttChart;
-import org.eclipse.nebula.widgets.ganttchart.GanttControlParent;
 import org.eclipse.nebula.widgets.ganttchart.GanttEvent;
 import org.eclipse.nebula.widgets.ganttchart.IGanttEventListener;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
+import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -68,10 +68,15 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	public void createPartControl(Composite parent) {
 		this.parent = parent;
 		this.parent.setLayout(new FillLayout());
-		SashForm sashForm = new SashForm(this.parent, SWT.HORIZONTAL);
-		GanttControlParent ganttCpLeft = new GanttControlParent(sashForm, SWT.NONE);
+		ScrolledComposite ganttContainer = new ScrolledComposite(this.parent, SWT.V_SCROLL);
+		SashForm sashForm = new SashForm(ganttContainer, SWT.HORIZONTAL);
+
+		// GanttControlParent ganttCpLeft = new GanttControlParent(sashForm, SWT.NONE);
 
 		workPackagesToGanttEvents = new HashMap<String, GanttEvent>();
+
+		// createTree(ganttCpLeft);
+		createTree(sashForm);
 
 		ganttChart = new GanttChart(sashForm, SWT.NONE, new ReadOnlySettings());
 
@@ -81,11 +86,14 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		ganttChart.getGanttComposite().setDrawVerticalLinesOverride(false);
 		ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HEIGHT - SPACER);
 		ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
-		ganttCpLeft.setGanttChart(ganttChart);
-
-		createTree(ganttCpLeft);
+		// ganttCpLeft.setGanttChart(ganttChart);
 
 		sashForm.setWeights(new int[] { 30, 70 });
+
+		ganttContainer.setContent(sashForm);
+		ganttContainer.setExpandHorizontal(true);
+		ganttContainer.setExpandVertical(true);
+		ganttContainer.setMinSize(999, 999);
 
 		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 
