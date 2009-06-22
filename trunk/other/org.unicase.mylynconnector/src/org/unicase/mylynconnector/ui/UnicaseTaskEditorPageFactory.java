@@ -25,10 +25,16 @@ public class UnicaseTaskEditorPageFactory extends AbstractTaskEditorPageFactory 
 	public boolean canCreatePageFor(TaskEditorInput input) {
 		UnicaseConnector connector = (UnicaseConnector) TasksUi
 				.getRepositoryConnector(UnicaseConnector.CONNECTOR_KIND);
+		if (connector == null) {
+			return false;
+		}
 		modelElement = connector.getTaskDataHandler().getModelElement(
 				input.getTaskRepository(),
 				UnicaseConnectorUtil.convertTaskIdToMeId(input.getTask()
 						.getTaskId()));
+		if (modelElement == null) {
+			return false;
+		}
 		return (input.getTask().getConnectorKind().equals(
 				UnicaseConnector.CONNECTOR_KIND) || TasksUiUtil
 				.isOutgoingNewTask(input.getTask(),
