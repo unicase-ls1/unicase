@@ -104,6 +104,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		treeViewer = new TreeViewer(parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
 		treeViewer.setContentProvider(new GanttTreeContentProvider());
+		treeViewer.setLabelProvider(new GanttTreeLabelProvider());
 
 		final Tree tree = treeViewer.getTree();
 
@@ -159,16 +160,16 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		TreeViewerColumn tcvName = new TreeViewerColumn(treeViewer, SWT.NONE, 0);
 		tcvName.getColumn().setText("Name");
 		tcvName.getColumn().setWidth(150);
-		tcvName.setLabelProvider(new ColumnLabelProvider() {
-			@Override
-			public String getText(Object element) {
-				if (element instanceof WorkPackage) {
-					return ((WorkPackage) element).getName();
-				}
-
-				return super.getText(element);
-			}
-		});
+		// tcvName.setLabelProvider(new ColumnLabelProvider() {
+		// @Override
+		// public String getText(Object element) {
+		// if (element instanceof WorkPackage) {
+		// return ((WorkPackage) element).getName();
+		// }
+		//
+		// return super.getText(element);
+		// }
+		// });
 
 		TreeViewerColumn tcvStart = new TreeViewerColumn(treeViewer, SWT.NONE, 1);
 		tcvStart.getColumn().setText("Start");
