@@ -35,6 +35,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.ISourceProvider;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.IManagedForm;
+import org.eclipse.ui.forms.editor.FormEditor;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
@@ -82,6 +83,22 @@ public class MEEditorPage extends FormPage {
 	 * @param modelElement the modelElement
 	 */
 	public MEEditorPage(MEEditor editor, String id, String title, EditingDomain editingDomain, ModelElement modelElement) {
+		super(editor, id, title);
+		this.editingDomain = editingDomain;
+		this.modelElement = modelElement;
+	}
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param editor a editor
+	 * @param id the {@link FormPage#id}
+	 * @param title the title
+	 * @param editingDomain the editingDomain
+	 * @param modelElement the modelElement
+	 */
+	public MEEditorPage(FormEditor editor, String id, String title, EditingDomain editingDomain,
+		ModelElement modelElement) {
 		super(editor, id, title);
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
