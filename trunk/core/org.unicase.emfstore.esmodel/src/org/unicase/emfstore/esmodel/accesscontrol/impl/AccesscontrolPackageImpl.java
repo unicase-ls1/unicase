@@ -17,7 +17,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.impl.RolesPackageImpl;
 import org.unicase.emfstore.esmodel.impl.EsmodelPackageImpl;
@@ -72,7 +72,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * 
 	 * @generated
 	 */
-	private EClass orgUnitPropertiesEClass = null;
+	private EClass orgUnitPropertyEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -279,8 +279,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * 
 	 * @generated
 	 */
-	public EClass getOrgUnitProperties() {
-		return orgUnitPropertiesEClass;
+	public EClass getOrgUnitProperty() {
+		return orgUnitPropertyEClass;
 	}
 
 	/**
@@ -288,8 +288,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * 
 	 * @generated
 	 */
-	public EAttribute getOrgUnitProperties_Name() {
-		return (EAttribute) orgUnitPropertiesEClass.getEStructuralFeatures().get(0);
+	public EAttribute getOrgUnitProperty_Name() {
+		return (EAttribute) orgUnitPropertyEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -297,8 +297,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * 
 	 * @generated
 	 */
-	public EAttribute getOrgUnitProperties_Value() {
-		return (EAttribute) orgUnitPropertiesEClass.getEStructuralFeatures().get(1);
+	public EAttribute getOrgUnitProperty_Value() {
+		return (EAttribute) orgUnitPropertyEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -306,8 +306,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * 
 	 * @generated
 	 */
-	public EReference getOrgUnitProperties_Project() {
-		return (EReference) orgUnitPropertiesEClass.getEStructuralFeatures().get(2);
+	public EReference getOrgUnitProperty_Project() {
+		return (EReference) orgUnitPropertyEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -353,10 +353,10 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 
 		acOrgUnitIdEClass = createEClass(AC_ORG_UNIT_ID);
 
-		orgUnitPropertiesEClass = createEClass(ORG_UNIT_PROPERTIES);
-		createEAttribute(orgUnitPropertiesEClass, ORG_UNIT_PROPERTIES__NAME);
-		createEAttribute(orgUnitPropertiesEClass, ORG_UNIT_PROPERTIES__VALUE);
-		createEReference(orgUnitPropertiesEClass, ORG_UNIT_PROPERTIES__PROJECT);
+		orgUnitPropertyEClass = createEClass(ORG_UNIT_PROPERTY);
+		createEAttribute(orgUnitPropertyEClass, ORG_UNIT_PROPERTY__NAME);
+		createEAttribute(orgUnitPropertyEClass, ORG_UNIT_PROPERTY__VALUE);
+		createEReference(orgUnitPropertyEClass, ORG_UNIT_PROPERTY__PROJECT);
 	}
 
 	/**
@@ -418,7 +418,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		initEAttribute(getACOrgUnit_Description(), ecorePackage.getEString(), "description", null, 0, 1,
 			ACOrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getACOrgUnit_Properties(), this.getOrgUnitProperties(), null, "properties", null, 0, -1,
+		initEReference(getACOrgUnit_Properties(), this.getOrgUnitProperty(), null, "properties", null, 0, -1,
 			ACOrgUnit.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -433,18 +433,17 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		initEClass(acOrgUnitIdEClass, ACOrgUnitId.class, "ACOrgUnitId", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(orgUnitPropertiesEClass, OrgUnitProperties.class, "OrgUnitProperties", !IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(orgUnitPropertyEClass, OrgUnitProperty.class, "OrgUnitProperty", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getOrgUnitProperties_Name(), ecorePackage.getEString(), "name", null, 0, 1,
-			OrgUnitProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+		initEAttribute(getOrgUnitProperty_Name(), ecorePackage.getEString(), "name", null, 0, 1, OrgUnitProperty.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getOrgUnitProperty_Value(), ecorePackage.getEString(), "value", null, 0, 1,
+			OrgUnitProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getOrgUnitProperties_Value(), ecorePackage.getEString(), "value", null, 0, 1,
-			OrgUnitProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		initEReference(getOrgUnitProperties_Project(), theEsmodelPackage.getProjectId(), null, "project", null, 0, 1,
-			OrgUnitProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getOrgUnitProperty_Project(), theEsmodelPackage.getProjectId(), null, "project", null, 0, 1,
+			OrgUnitProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getOrgUnitProperties_Project().getEKeys().add(theModelPackage.getUniqueIdentifier_Id());
+		getOrgUnitProperty_Project().getEKeys().add(theModelPackage.getUniqueIdentifier_Id());
 	}
 
 } // AccesscontrolPackageImpl

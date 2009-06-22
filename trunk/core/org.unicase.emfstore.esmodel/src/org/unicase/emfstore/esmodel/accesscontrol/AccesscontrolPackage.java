@@ -287,14 +287,14 @@ public interface AccesscontrolPackage extends EPackage {
 	int AC_ORG_UNIT_ID_FEATURE_COUNT = ModelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertiesImpl
-	 * <em>Org Unit Properties</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertyImpl
+	 * <em>Org Unit Property</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertiesImpl
-	 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getOrgUnitProperties()
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertyImpl
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getOrgUnitProperty()
 	 * @generated
 	 */
-	int ORG_UNIT_PROPERTIES = 4;
+	int ORG_UNIT_PROPERTY = 4;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -302,7 +302,7 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT_PROPERTIES__NAME = 0;
+	int ORG_UNIT_PROPERTY__NAME = 0;
 
 	/**
 	 * The feature id for the '<em><b>Value</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -310,7 +310,7 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT_PROPERTIES__VALUE = 1;
+	int ORG_UNIT_PROPERTY__VALUE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -319,16 +319,16 @@ public interface AccesscontrolPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT_PROPERTIES__PROJECT = 2;
+	int ORG_UNIT_PROPERTY__PROJECT = 2;
 
 	/**
-	 * The number of structural features of the '<em>Org Unit Properties</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Org Unit Property</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT_PROPERTIES_FEATURE_COUNT = 3;
+	int ORG_UNIT_PROPERTY_FEATURE_COUNT = 3;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.ACUser <em>AC User</em>}'.
@@ -452,50 +452,50 @@ public interface AccesscontrolPackage extends EPackage {
 	EClass getACOrgUnitId();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties
-	 * <em>Org Unit Properties</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty
+	 * <em>Org Unit Property</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for class '<em>Org Unit Properties</em>'.
-	 * @see org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties
+	 * @return the meta object for class '<em>Org Unit Property</em>'.
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty
 	 * @generated
 	 */
-	EClass getOrgUnitProperties();
+	EClass getOrgUnitProperty();
 
 	/**
 	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties#getName <em>Name</em>}'. <!-- begin-user-doc
+	 * {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getName <em>Name</em>}'. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties#getName()
-	 * @see #getOrgUnitProperties()
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getName()
+	 * @see #getOrgUnitProperty()
 	 * @generated
 	 */
-	EAttribute getOrgUnitProperties_Name();
+	EAttribute getOrgUnitProperty_Name();
 
 	/**
 	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties#getValue <em>Value</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getValue <em>Value</em>}'. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Value</em>'.
-	 * @see org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties#getValue()
-	 * @see #getOrgUnitProperties()
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getValue()
+	 * @see #getOrgUnitProperty()
 	 * @generated
 	 */
-	EAttribute getOrgUnitProperties_Value();
+	EAttribute getOrgUnitProperty_Value();
 
 	/**
 	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties#getProject <em>Project</em>}'. <!--
+	 * {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getProject <em>Project</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference '<em>Project</em>'.
-	 * @see org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties#getProject()
-	 * @see #getOrgUnitProperties()
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty#getProject()
+	 * @see #getOrgUnitProperty()
 	 * @generated
 	 */
-	EReference getOrgUnitProperties_Project();
+	EReference getOrgUnitProperty_Project();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -615,15 +615,14 @@ public interface AccesscontrolPackage extends EPackage {
 		EClass AC_ORG_UNIT_ID = eINSTANCE.getACOrgUnitId();
 
 		/**
-		 * The meta object literal for the '
-		 * {@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertiesImpl <em>Org Unit Properties</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertyImpl
+		 * <em>Org Unit Property</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertiesImpl
-		 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getOrgUnitProperties()
+		 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertyImpl
+		 * @see org.unicase.emfstore.esmodel.accesscontrol.impl.AccesscontrolPackageImpl#getOrgUnitProperty()
 		 * @generated
 		 */
-		EClass ORG_UNIT_PROPERTIES = eINSTANCE.getOrgUnitProperties();
+		EClass ORG_UNIT_PROPERTY = eINSTANCE.getOrgUnitProperty();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
@@ -631,7 +630,7 @@ public interface AccesscontrolPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EAttribute ORG_UNIT_PROPERTIES__NAME = eINSTANCE.getOrgUnitProperties_Name();
+		EAttribute ORG_UNIT_PROPERTY__NAME = eINSTANCE.getOrgUnitProperty_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Value</b></em>' attribute feature. <!-- begin-user-doc --> <!--
@@ -639,7 +638,7 @@ public interface AccesscontrolPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EAttribute ORG_UNIT_PROPERTIES__VALUE = eINSTANCE.getOrgUnitProperties_Value();
+		EAttribute ORG_UNIT_PROPERTY__VALUE = eINSTANCE.getOrgUnitProperty_Value();
 
 		/**
 		 * The meta object literal for the '<em><b>Project</b></em>' containment reference feature. <!-- begin-user-doc
@@ -647,7 +646,7 @@ public interface AccesscontrolPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference ORG_UNIT_PROPERTIES__PROJECT = eINSTANCE.getOrgUnitProperties_Project();
+		EReference ORG_UNIT_PROPERTY__PROJECT = eINSTANCE.getOrgUnitProperty_Project();
 
 	}
 

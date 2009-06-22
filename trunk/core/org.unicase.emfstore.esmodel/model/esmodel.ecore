@@ -341,14 +341,14 @@
           eType="#//accesscontrol/roles/Role" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="properties" upperBound="-1"
-          eType="#//accesscontrol/OrgUnitProperties" containment="true"/>
+          eType="#//accesscontrol/OrgUnitProperty" containment="true"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ACGroup" eSuperTypes="#//accesscontrol/ACOrgUnit">
       <eStructuralFeatures xsi:type="ecore:EReference" name="members" upperBound="-1"
           eType="#//accesscontrol/ACOrgUnit" eKeys="../../org.unicase.model/model/model.ecore#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="ACOrgUnitId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
-    <eClassifiers xsi:type="ecore:EClass" name="OrgUnitProperties">
+    <eClassifiers xsi:type="ecore:EClass" name="OrgUnitProperty">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="#//ProjectId"

@@ -165,26 +165,26 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 
 	/**
 	 * This keeps track of the one adapter used for all
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties} instances. <!-- begin-user-doc --> <!--
+	 * {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty} instances. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	protected OrgUnitPropertiesItemProvider orgUnitPropertiesItemProvider;
+	protected OrgUnitPropertyItemProvider orgUnitPropertyItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties}. <!--
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty}. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
-	public Adapter createOrgUnitPropertiesAdapter() {
-		if (orgUnitPropertiesItemProvider == null) {
-			orgUnitPropertiesItemProvider = new OrgUnitPropertiesItemProvider(this);
+	public Adapter createOrgUnitPropertyAdapter() {
+		if (orgUnitPropertyItemProvider == null) {
+			orgUnitPropertyItemProvider = new OrgUnitPropertyItemProvider(this);
 		}
 
-		return orgUnitPropertiesItemProvider;
+		return orgUnitPropertyItemProvider;
 	}
 
 	/**
@@ -289,8 +289,8 @@ public class AccesscontrolItemProviderAdapterFactory extends AccesscontrolAdapte
 			acGroupItemProvider.dispose();
 		if (acOrgUnitIdItemProvider != null)
 			acOrgUnitIdItemProvider.dispose();
-		if (orgUnitPropertiesItemProvider != null)
-			orgUnitPropertiesItemProvider.dispose();
+		if (orgUnitPropertyItemProvider != null)
+			orgUnitPropertyItemProvider.dispose();
 	}
 
 }
