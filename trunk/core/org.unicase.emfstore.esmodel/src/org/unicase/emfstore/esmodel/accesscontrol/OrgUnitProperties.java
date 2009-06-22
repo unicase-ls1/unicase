@@ -24,6 +24,9 @@ import org.unicase.emfstore.esmodel.ProjectId;
  * @generated
  */
 public interface OrgUnitProperties extends EObject {
+
+	public final static String ARRAY_SEPARATOR = "§";
+
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>

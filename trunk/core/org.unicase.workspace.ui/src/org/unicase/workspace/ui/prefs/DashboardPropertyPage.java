@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.viewers.ArrayContentProvider;
@@ -32,13 +33,17 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
-import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.dialogs.PropertyPage;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.workspace.ui.Activator;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
+import org.unicase.workspace.util.RecordingCommandWithResult;
 
 /**
  * A property page for the dashboard.
@@ -56,6 +61,9 @@ public class DashboardPropertyPage extends PropertyPage {
 	private static final String PUSHED_COMMENTS_PROVIDER = "Personal comments";
 	private HashMap<String, String> providerHints;
 	private AdapterFactoryLabelProvider labelProvider;
+	private Project project;
+	private ProjectSpaceImpl projectSpace;
+	private ArrayList<ModelElement> subscriptions;
 
 	/**
 	 * {@inheritDoc}
@@ -63,10 +71,16 @@ public class DashboardPropertyPage extends PropertyPage {
 	@Override
 	protected Control createContents(Composite parent) {
 
+		GridLayoutFactory.fillDefaults().applyTo(parent);
+		if (!init()) {
+			Label label = new Label(parent, SWT.WRAP);
+			label.setText("Could not determine the current project!");
+			return label;
+		}
+
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
-		GridLayoutFactory.fillDefaults().applyTo(parent);
 		TabFolder folder = new TabFolder(parent, SWT.TOP);
 
 		TabItem generalTab = new TabItem(folder, SWT.NONE);
@@ -93,16 +107,21 @@ public class DashboardPropertyPage extends PropertyPage {
 	}
 
 	private Control createSubscriptionProviderTab(TabFolder folder) {
+		if (subscriptions == null) {
+			subscriptions = new ArrayList<ModelElement>();
+		}
+
 		final Composite root = new Composite(folder, SWT.NONE);
 		GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(root);
 
 		Label subscriptionLabel = new Label(root, SWT.WRAP);
 		subscriptionLabel.setText("You are subscribed to the following elements:");
 
-		TableViewer elementTypes = new TableViewer(root);
-		elementTypes.setContentProvider(new ArrayContentProvider());
-		elementTypes.setLabelProvider(labelProvider);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(elementTypes.getControl());
+		final TableViewer elementsTable = new TableViewer(root);
+		elementsTable.setContentProvider(new ArrayContentProvider());
+		elementsTable.setLabelProvider(labelProvider);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(elementsTable.getControl());
+		elementsTable.setInput(subscriptions.toArray());
 
 		Composite buttonsComposite = new Composite(root, SWT.NONE);
 		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(buttonsComposite);
@@ -110,11 +129,17 @@ public class DashboardPropertyPage extends PropertyPage {
 		Button addME = new Button(buttonsComposite, SWT.PUSH);
 		addME.setText("Add");
 		addME.addSelectionListener(new SelectionAdapter() {
+			@SuppressWarnings("unchecked")
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
 				dialog.setBlockOnOpen(true);
 				dialog.setMultipleSelection(true);
+				dialog.setElements(project.getAllModelElements().toArray());
+				if (dialog.open() == Window.OK) {
+					subscriptions.addAll((List<? extends ModelElement>) Arrays.asList(dialog.getResult()));
+					elementsTable.setInput(subscriptions.toArray());
+				}
 			}
 		});
 
@@ -268,12 +293,14 @@ public class DashboardPropertyPage extends PropertyPage {
 		return root;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public void init(IWorkbench workbench) {
-		setPreferenceStore(Activator.getDefault().getPreferenceStore());
+	private boolean init() {
+		if (!(getElement() instanceof Project)) {
+			return false;
+		}
 
+		project = (Project) getElement();
+
+		projectSpace = (ProjectSpaceImpl) WorkspaceManager.getProjectSpace(project);
 		providerHints = new HashMap<String, String>();
 
 		providerHints.put(TASK_PROVIDER, "Shows notifications for tasks that have been assigned to you.");
@@ -285,6 +312,19 @@ public class DashboardPropertyPage extends PropertyPage {
 		providerHints.put(COMMENTS_PROVIDER,
 			"Shows notifications for new comments regarding your tasks or a discussion you participate in.");
 		providerHints.put(PUSHED_COMMENTS_PROVIDER, "Shows comments that were personally sent to you.");
+
+		ModelElementId[] subscriptionsIds = projectSpace.getModelElementIdArrayProperty("dashboardSubscriptions");
+		if (subscriptionsIds != null) {
+			subscriptions = new ArrayList<ModelElement>();
+			for (ModelElementId id : subscriptionsIds) {
+				ModelElement modelElement = project.getModelElement(id);
+				if (modelElement != null) {
+					subscriptions.add(modelElement);
+				}
+			}
+		}
+
+		return true;
 
 	}
 
@@ -300,7 +340,26 @@ public class DashboardPropertyPage extends PropertyPage {
 	 */
 	@Override
 	public boolean performOk() {
-		return super.performOk();
+
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain");
+		final RecordingCommandWithResult<Object> command = new RecordingCommandWithResult<Object>(domain) {
+
+			@Override
+			protected void doExecute() {
+				String prefix = "dashboard";
+				if (subscriptions != null) {
+					ArrayList<ModelElementId> subscriptionsIds = new ArrayList<ModelElementId>();
+					for (ModelElement me : subscriptions) {
+						subscriptionsIds.add(me.getModelElementId());
+					}
+					projectSpace.setProperty(prefix + "Subscriptions", subscriptionsIds.toArray(new ModelElementId[0]));
+				}
+			}
+		};
+		domain.getCommandStack().execute(command);
+
+		return true;
 	}
 
 }

@@ -726,7 +726,7 @@
               commandId="org.unicase.workspace.ui.projectProperties"
               contextId="org.eclipse.ui.contexts.window"
               schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-              sequence="Alt+Return">
+              sequence="Alt+Enter">
         </key>
      </extension>
      <extension
