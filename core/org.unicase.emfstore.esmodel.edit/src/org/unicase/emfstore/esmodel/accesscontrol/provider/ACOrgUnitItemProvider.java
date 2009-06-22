@@ -185,7 +185,7 @@ public class ACOrgUnitItemProvider extends IdentifiableElementItemProvider imple
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(AccesscontrolPackage.Literals.AC_ORG_UNIT__PROPERTIES,
-			AccesscontrolFactory.eINSTANCE.createOrgUnitProperties()));
+			AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
 	}
 
 	/**

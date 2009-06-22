@@ -278,10 +278,10 @@
             ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/ACGroup/members"/>
       </genClasses>
       <genClasses ecoreClass="esmodel.ecore#//accesscontrol/ACOrgUnitId"/>
-      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/OrgUnitProperties">
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/OrgUnitProperties/name"/>
-        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/OrgUnitProperties/value"/>
-        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/OrgUnitProperties/project"/>
+      <genClasses ecoreClass="esmodel.ecore#//accesscontrol/OrgUnitProperty">
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/OrgUnitProperty/name"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//accesscontrol/OrgUnitProperty/value"/>
+        <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//accesscontrol/OrgUnitProperty/project"/>
       </genClasses>
       <nestedGenPackages prefix="Roles" basePackage="org.unicase.emfstore.esmodel.accesscontrol"
           disposableProviderFactory="true" ecorePackage="esmodel.ecore#//accesscontrol/roles">

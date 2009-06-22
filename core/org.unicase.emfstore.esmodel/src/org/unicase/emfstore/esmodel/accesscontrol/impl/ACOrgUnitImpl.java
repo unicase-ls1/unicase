@@ -19,7 +19,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.model.impl.IdentifiableElementImpl;
 
@@ -97,7 +97,7 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OrgUnitProperties> properties;
+	protected EList<OrgUnitProperty> properties;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -239,9 +239,9 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 	 * 
 	 * @generated
 	 */
-	public EList<OrgUnitProperties> getProperties() {
+	public EList<OrgUnitProperty> getProperties() {
 		if (properties == null) {
-			properties = new EObjectContainmentEList.Resolving<OrgUnitProperties>(OrgUnitProperties.class, this,
+			properties = new EObjectContainmentEList.Resolving<OrgUnitProperty>(OrgUnitProperty.class, this,
 				AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES);
 		}
 		return properties;
@@ -288,7 +288,7 @@ public class ACOrgUnitImpl extends IdentifiableElementImpl implements ACOrgUnit 
 			return;
 		case AccesscontrolPackage.AC_ORG_UNIT__PROPERTIES:
 			getProperties().clear();
-			getProperties().addAll((Collection<? extends OrgUnitProperties>) newValue);
+			getProperties().addAll((Collection<? extends OrgUnitProperty>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

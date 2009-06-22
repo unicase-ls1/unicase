@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Org Unit Properties</b></em>'. <!--
@@ -21,15 +21,15 @@ import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertiesImpl#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertiesImpl#getValue <em>Value</em>}</li>
- * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertiesImpl#getProject <em>Project</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertyImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertyImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertyImpl#getProject <em>Project</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitProperties {
+public class OrgUnitPropertyImpl extends EObjectImpl implements OrgUnitProperty {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
@@ -85,7 +85,7 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 	 * 
 	 * @generated
 	 */
-	protected OrgUnitPropertiesImpl() {
+	protected OrgUnitPropertyImpl() {
 		super();
 	}
 
@@ -96,7 +96,7 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return AccesscontrolPackage.Literals.ORG_UNIT_PROPERTIES;
+		return AccesscontrolPackage.Literals.ORG_UNIT_PROPERTY;
 	}
 
 	/**
@@ -117,7 +117,7 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.ORG_UNIT_PROPERTIES__NAME,
+			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.ORG_UNIT_PROPERTY__NAME,
 				oldName, name));
 	}
 
@@ -139,7 +139,7 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 		String oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.ORG_UNIT_PROPERTIES__VALUE,
+			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.ORG_UNIT_PROPERTY__VALUE,
 				oldValue, value));
 	}
 
@@ -155,16 +155,16 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 			if (project != oldProject) {
 				InternalEObject newProject = (InternalEObject) project;
 				NotificationChain msgs = oldProject.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, null, null);
+					- AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT, null, null);
 				if (newProject.eInternalContainer() == null) {
 					msgs = newProject.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-						- AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, null, msgs);
+						- AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT, null, msgs);
 				}
 				if (msgs != null)
 					msgs.dispatch();
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
-						AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, oldProject, project));
+						AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT, oldProject, project));
 			}
 		}
 		return project;
@@ -189,7 +189,7 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 		project = newProject;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, oldProject, newProject);
+				AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT, oldProject, newProject);
 			if (msgs == null)
 				msgs = notification;
 			else
@@ -208,15 +208,15 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 			NotificationChain msgs = null;
 			if (project != null)
 				msgs = ((InternalEObject) project).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, null, msgs);
+					- AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT, null, msgs);
 			if (newProject != null)
 				msgs = ((InternalEObject) newProject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, null, msgs);
+					- AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT, null, msgs);
 			msgs = basicSetProject(newProject, msgs);
 			if (msgs != null)
 				msgs.dispatch();
 		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT,
+			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT,
 				newProject, newProject));
 	}
 
@@ -228,7 +228,7 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT:
 			return basicSetProject(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -242,11 +242,11 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__NAME:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__NAME:
 			return getName();
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__VALUE:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__VALUE:
 			return getValue();
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT:
 			if (resolve)
 				return getProject();
 			return basicGetProject();
@@ -262,13 +262,13 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__NAME:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__NAME:
 			setName((String) newValue);
 			return;
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__VALUE:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__VALUE:
 			setValue((String) newValue);
 			return;
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT:
 			setProject((ProjectId) newValue);
 			return;
 		}
@@ -283,13 +283,13 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__NAME:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__NAME:
 			setName(NAME_EDEFAULT);
 			return;
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__VALUE:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__VALUE:
 			setValue(VALUE_EDEFAULT);
 			return;
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT:
 			setProject((ProjectId) null);
 			return;
 		}
@@ -304,11 +304,11 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__NAME:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__VALUE:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__VALUE:
 			return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT:
 			return project != null;
 		}
 		return super.eIsSet(featureID);

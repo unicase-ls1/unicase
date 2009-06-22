@@ -107,7 +107,7 @@ public interface ACOrgUnit extends IdentifiableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Properties</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties}. <!-- begin-user-doc -->
+	 * {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Properties</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
@@ -119,6 +119,6 @@ public interface ACOrgUnit extends IdentifiableElement {
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<OrgUnitProperties> getProperties();
+	EList<OrgUnitProperty> getProperties();
 
 } // ACOrgUnit

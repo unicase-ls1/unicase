@@ -55,12 +55,12 @@ public interface AccesscontrolFactory extends EFactory {
 	ACOrgUnitId createACOrgUnitId();
 
 	/**
-	 * Returns a new object of class '<em>Org Unit Properties</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns a new object of class '<em>Org Unit Property</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return a new object of class '<em>Org Unit Properties</em>'.
+	 * @return a new object of class '<em>Org Unit Property</em>'.
 	 * @generated
 	 */
-	OrgUnitProperties createOrgUnitProperties();
+	OrgUnitProperty createOrgUnitProperty();
 
 	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->

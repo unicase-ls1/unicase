@@ -14,7 +14,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.UniqueIdentifier;
 
@@ -122,9 +122,9 @@ public class AccesscontrolSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES: {
-			OrgUnitProperties orgUnitProperties = (OrgUnitProperties) theEObject;
-			T result = caseOrgUnitProperties(orgUnitProperties);
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY: {
+			OrgUnitProperty orgUnitProperty = (OrgUnitProperty) theEObject;
+			T result = caseOrgUnitProperty(orgUnitProperty);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -188,16 +188,16 @@ public class AccesscontrolSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Org Unit Properties</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Org Unit Property</em>'. <!-- begin-user-doc
+	 * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc
+	 * -->
 	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Org Unit Properties</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Org Unit Property</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseOrgUnitProperties(OrgUnitProperties object) {
+	public T caseOrgUnitProperty(OrgUnitProperty object) {
 		return null;
 	}
 

@@ -24,23 +24,23 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties} object.
+ * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty} object.
  * <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
-public class OrgUnitPropertiesItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
+public class OrgUnitPropertyItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
-	public OrgUnitPropertiesItemProvider(AdapterFactory adapterFactory) {
+	public OrgUnitPropertyItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -67,9 +67,9 @@ public class OrgUnitPropertiesItemProvider extends ItemProviderAdapter implement
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrgUnitProperties_name_feature"), getString(
-			"_UI_PropertyDescriptor_description", "_UI_OrgUnitProperties_name_feature", "_UI_OrgUnitProperties_type"),
-			AccesscontrolPackage.Literals.ORG_UNIT_PROPERTIES__NAME, true, false, false,
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrgUnitProperty_name_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_OrgUnitProperty_name_feature", "_UI_OrgUnitProperty_type"),
+			AccesscontrolPackage.Literals.ORG_UNIT_PROPERTY__NAME, true, false, false,
 			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
@@ -80,10 +80,10 @@ public class OrgUnitPropertiesItemProvider extends ItemProviderAdapter implement
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrgUnitProperties_value_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_OrgUnitProperties_value_feature",
-				"_UI_OrgUnitProperties_type"), AccesscontrolPackage.Literals.ORG_UNIT_PROPERTIES__VALUE, true, false,
-			false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_OrgUnitProperty_value_feature"), getString(
+			"_UI_PropertyDescriptor_description", "_UI_OrgUnitProperty_value_feature", "_UI_OrgUnitProperty_type"),
+			AccesscontrolPackage.Literals.ORG_UNIT_PROPERTY__VALUE, true, false, false,
+			ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class OrgUnitPropertiesItemProvider extends ItemProviderAdapter implement
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(AccesscontrolPackage.Literals.ORG_UNIT_PROPERTIES__PROJECT);
+			childrenFeatures.add(AccesscontrolPackage.Literals.ORG_UNIT_PROPERTY__PROJECT);
 		}
 		return childrenFeatures;
 	}
@@ -117,13 +117,13 @@ public class OrgUnitPropertiesItemProvider extends ItemProviderAdapter implement
 	}
 
 	/**
-	 * This returns OrgUnitProperties.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This returns OrgUnitProperty.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/OrgUnitProperties"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/OrgUnitProperty"));
 	}
 
 	/**
@@ -133,9 +133,9 @@ public class OrgUnitPropertiesItemProvider extends ItemProviderAdapter implement
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((OrgUnitProperties) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_OrgUnitProperties_type")
-			: getString("_UI_OrgUnitProperties_type") + " " + label;
+		String label = ((OrgUnitProperty) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_OrgUnitProperty_type")
+			: getString("_UI_OrgUnitProperty_type") + " " + label;
 	}
 
 	/**
@@ -149,12 +149,12 @@ public class OrgUnitPropertiesItemProvider extends ItemProviderAdapter implement
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(OrgUnitProperties.class)) {
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__NAME:
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__VALUE:
+		switch (notification.getFeatureID(OrgUnitProperty.class)) {
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__NAME:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__VALUE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
-		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT:
+		case AccesscontrolPackage.ORG_UNIT_PROPERTY__PROJECT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -171,7 +171,7 @@ public class OrgUnitPropertiesItemProvider extends ItemProviderAdapter implement
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(AccesscontrolPackage.Literals.ORG_UNIT_PROPERTIES__PROJECT,
+		newChildDescriptors.add(createChildParameter(AccesscontrolPackage.Literals.ORG_UNIT_PROPERTY__PROJECT,
 			EsmodelFactory.eINSTANCE.createProjectId()));
 	}
 
