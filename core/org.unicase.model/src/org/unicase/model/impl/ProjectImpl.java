@@ -11,6 +11,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -251,11 +252,11 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * this methods implements the adapter interface which is needed by the navigator
 	 * 
-	 * @author helming
+	 * @author shterev
 	 */
 	@SuppressWarnings("unchecked")
 	public Object getAdapter(Class adapter) {
-		return null;
+		return Platform.getAdapterManager().getAdapter(this, adapter);
 	}
 
 	/**
