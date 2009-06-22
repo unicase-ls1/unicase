@@ -182,9 +182,11 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 		if ((sourceSpec.getIdentifier() != nextSpec.getIdentifier())
 				&& (nextSpec.getIdentifier() != start.getIdentifier())) {
 			List<ChangePackage> changes;
+			List<ChangePackage> backwardChanges;
 			try {
 				changes = connectionManager.getChanges(usersession
 						.getSessionId(), projectId, sourceSpec, nextSpec);
+
 			} catch (EmfStoreException e) {
 				String message = "Could not get changes from server";
 				WorkspaceUtil.logException(message, e);
@@ -201,7 +203,30 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 					changePackages.add(changePackage);
 				}else{
 					changePackage.reverse().apply(currentState);
-					changePackages.add(changePackage);
+					//changePackages.add(changePackage);
+				}
+			}
+			if(!isForward){
+
+				PrimaryVersionSpec tempSourceSpec = (PrimaryVersionSpec) EcoreUtil
+				.copy(sourceSpec);
+				tempSourceSpec.setIdentifier(tempSourceSpec.getIdentifier()-1);
+				PrimaryVersionSpec tempNextSpec = (PrimaryVersionSpec) EcoreUtil
+				.copy(nextSpec);
+				if(tempNextSpec.getIdentifier() > 0){
+					tempNextSpec.setIdentifier(tempNextSpec.getIdentifier()-1);
+				}else{
+					tempNextSpec.setIdentifier(0);
+				}
+				try {
+					backwardChanges = connectionManager.getChanges(usersession.getSessionId(), projectId, tempSourceSpec, tempNextSpec);
+				}catch (EmfStoreException e) {
+					String message = "Could not get changes from server";
+					WorkspaceUtil.logException(message, e);
+					throw new NoSuchElementException(message + ":\n" + e);
+				}
+				for (ChangePackage backwardChangePackage : backwardChanges){
+					changePackages.add(backwardChangePackage);
 				}
 			}
 		}
