@@ -5,6 +5,8 @@
  */
 package org.unicase.emfstore.esmodel.versioning;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
@@ -136,5 +138,10 @@ public interface ChangePackage extends EObject {
 	 * @return the reverse change package
 	 */
 	ChangePackage reverse();
+
+	/**
+	 * Retrieve a copy of all operations in the change package.
+	 */
+	List<AbstractOperation> getCopyOfOperations();
 
 } // ChangePackage
