@@ -26,22 +26,20 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test Default VersionIterator. 
+	 * @throws IteratorException IteratorException
 	 */
     @Test
-	public void defaultVersionIteratorTest(){
+	public void defaultVersionIteratorTest() throws IteratorException{
 		for (ProjectInfo pI : super.getProjectList()) {			
-			if (pI.getName().contains("DOLLI")) {
+			if (pI.getName().contains("01")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 30;
 				VersionIterator projectIt;
-				try {
-					projectIt = new VersionIterator(super.getUserSession(), pI.getProjectId(), stepLength);
-					while (projectIt.hasNext()) {
-						ProjectAnalysisData projectData = projectIt.next();
-						 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
-					}
-				} catch (IteratorException e) {
-					e.printStackTrace();
+
+				projectIt = new VersionIterator(super.getUserSession(), pI.getProjectId(), stepLength);
+				while (projectIt.hasNext()) {
+					ProjectAnalysisData projectData = projectIt.next();
+					 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
 				}
 			}
 		}
@@ -50,23 +48,22 @@ public class IteratorTest extends AnalyzersTest {
 	
 	/**
 	 * Test Default TimeIterator. 
+	 * @throws IteratorException IteratorException
 	 */
 	@Test
-	public void defaultTimeIteratorTest(){
+	public void defaultTimeIteratorTest() throws IteratorException{
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("-01")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 2;
 				TimeIterator projectIt;
-				try {
-					projectIt = new TimeIterator(super.getUserSession(), pI.getProjectId(), stepLength, Calendar.DATE);
-					while (projectIt.hasNext()) {
-						ProjectAnalysisData projectData = projectIt.next();
-						 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
-					}
-				} catch (IteratorException e) {
-					e.printStackTrace();
+
+				projectIt = new TimeIterator(super.getUserSession(), pI.getProjectId(), stepLength, Calendar.DATE);
+				while (projectIt.hasNext()) {
+					ProjectAnalysisData projectData = projectIt.next();
+					 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
 				}
+
 			}
 		}
 		assertTrue(true);
@@ -74,33 +71,94 @@ public class IteratorTest extends AnalyzersTest {
 	
 	/**
 	 * Test VersionIterator with given start and end.
+	 * @throws IteratorException IteratorException
 	 */
     @Test
-	public void versionIteratorTest(){
+	public void versionIteratorTest() throws IteratorException{
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("-01")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 3;
 				
-				try {
-					PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-					start.setIdentifier(3);
-					PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-					end.setIdentifier(24);
-					
-					VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
-					 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength,
-					 versionSpecQuery, true, false);
-					while (projectIt.hasNext()) {
-						ProjectAnalysisData projectData = projectIt.next();
-						 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
-					}
-				} catch (IteratorException e) {
-					e.printStackTrace();
+
+				PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				start.setIdentifier(3);
+				PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				end.setIdentifier(24);
+				
+				VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
+				 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength,
+				 versionSpecQuery, true, false);
+				while (projectIt.hasNext()) {
+					ProjectAnalysisData projectData = projectIt.next();
+					 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
 				}
 			}
 		}
 		assertTrue(true);
 	}		
+    
+	/**
+	 * Test Backward VersionIterator.
+	 * @throws IteratorException IteratorException.
+	 */
+    @Test
+	public void backwardIteratorTest() throws IteratorException{
+		for (ProjectInfo pI : super.getProjectList()) {			
+			if (pI.getName().contains("test")) {
+				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
+				int stepLength = 1;
+				int startPoint = 5;
+				int endPoint = 3;
+
+				PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				start.setIdentifier(startPoint);
+				PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				end.setIdentifier(endPoint);
+				
+				VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
+				 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength,
+				 versionSpecQuery, false, false);
+				while (projectIt.hasNext()) {
+					ProjectAnalysisData projectData = projectIt.next();
+					 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
+					if(projectData.getPrimaryVersionSpec().getIdentifier() != startPoint){ 
+						assertTrue(super.compareChangePackage(pI.getProjectId(), projectData, projectData.getPrimaryVersionSpec().getIdentifier()+stepLength, projectData.getPrimaryVersionSpec().getIdentifier(), false));
+					}
+				}
+			}
+		}
+	}		
 	
+	/**
+	 * Test Backward VersionIterator till version 0.
+	 * @throws IteratorException IteratorException.
+	 */
+    @Test
+	public void backwardTillZeroIteratorTest() throws IteratorException{
+		for (ProjectInfo pI : super.getProjectList()) {			
+			if (pI.getName().contains("test")) {
+				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
+				int stepLength = 1;
+				int startPoint = 5;
+				int endPoint = 0;
+
+				PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				start.setIdentifier(startPoint);
+				PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				end.setIdentifier(endPoint);
+				
+				VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
+				 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength,
+				 versionSpecQuery, false, false);
+				while (projectIt.hasNext()) {
+					ProjectAnalysisData projectData = projectIt.next();
+					 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
+					if(projectData.getPrimaryVersionSpec().getIdentifier() != startPoint){ 
+						assertTrue(super.compareChangePackage(pI.getProjectId(), projectData, projectData.getPrimaryVersionSpec().getIdentifier()+stepLength, projectData.getPrimaryVersionSpec().getIdentifier(), false));
+					}
+				}
+			}
+		}
+	}		
 }

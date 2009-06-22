@@ -5,12 +5,19 @@
  */
 package org.unicase.anaylzer.test;
 
+
+import java.util.Date;
 import java.util.List;
 
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
@@ -67,6 +74,59 @@ public class AnalyzersTest {
 		}
 	}
 	
+	/**
+	 * Compare the list of {@link ChangePackage}.
+	 * @param projectId ProjectId
+	 * @param data ProjectAnalysisData
+	 * @param startPoint the version number to start with 
+	 * @param endPoint the version number to end with
+	 * @param isForward true if iterate forwardly
+	 * @return true if the list of ChangePackage from the {@link ProjectAnalysisData} and the one got from {@link ConnectionManager}
+	 * are the equal.
+	 */
+	public boolean compareChangePackage(ProjectId projectId, ProjectAnalysisData data, int startPoint, int endPoint, boolean isForward){
+		List<ChangePackage> changePackageA = data.getChangePackages();
+		List<ChangePackage> changePackageB;
+		if(isForward){
+			PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			start.setIdentifier(startPoint);
+			PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			end.setIdentifier(endPoint);
+			try {
+				changePackageB = connectionManager.getChanges(userSession.getSessionId(), projectId, start, end);
+				return changePackageA.equals(changePackageB);
+			} catch (EmfStoreException e) {
+			}
+		}
+		else{
+			PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			start.setIdentifier(startPoint-1);
+			PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+			if(endPoint > 0){
+				end.setIdentifier(endPoint-1);
+			}else{
+				end.setIdentifier(0);
+			}
+			try {
+				changePackageB = connectionManager.getChanges(userSession.getSessionId(), projectId, start, end);
+				if(changePackageA.size() != changePackageB.size()){
+					return false;
+				}else{
+					int i = 0;
+					boolean dateIsEqual = true;
+					while(i<changePackageA.size() && dateIsEqual){
+						Date dateA = changePackageA.get(i).getLogMessage().getDate();
+						Date dateB = changePackageB.get(i).getLogMessage().getDate();
+						dateIsEqual = dateA.equals(dateB);
+						i++;
+					}
+					return dateIsEqual;
+				}
+			} catch (EmfStoreException e) {
+			}
+		}
+		return false;
+	}
 
 	/**
 	 * 
