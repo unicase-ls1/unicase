@@ -5,7 +5,9 @@
  */
 package org.unicase.emfstore.esmodel.versioning.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -15,6 +17,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -418,4 +421,11 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		return super.eIsSet(featureID);
 	}
 
+	public List<AbstractOperation> getCopyOfOperations() {
+		List<AbstractOperation> copiedOperations = new ArrayList<AbstractOperation>();
+		for (AbstractOperation operation : getOperations()) {
+			copiedOperations.add((AbstractOperation) EcoreUtil.copy(operation));
+		}
+		return copiedOperations;
+	}
 } // ChangePackageImpl
