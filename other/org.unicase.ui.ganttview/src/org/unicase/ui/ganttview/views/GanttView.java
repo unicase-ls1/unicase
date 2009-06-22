@@ -3,7 +3,6 @@ package org.unicase.ui.ganttview.views;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -35,6 +34,7 @@ import org.unicase.model.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.model.task.util.EstimateHelper;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.ganttview.util.GanttViewHelper;
@@ -186,7 +186,11 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	public void setInput(WorkPackage workPackage) {
 
 		GanttViewHelper.clearGantt(ganttChart, treeViewer.getTree());
-		recreateView(workPackage);
+
+		EList<WorkItem> workPackages = workPackage.getContainedWorkItems();
+		for (WorkItem workItem : workPackages) {
+			recreateView((WorkPackage) workItem);
+		}
 
 		treeViewer.setInput(workPackage);
 		workPackagesToGanttEvents.clear();
@@ -262,9 +266,13 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 			// TODO
 		}
 
-		float estimate = getEstimate(wp, null, new HashSet<WorkItem>(wp.getAllContainedWorkItems()));
-		float closedEstimate = getClosedEstimate(new HashSet<WorkItem>(wp.getAllContainedWorkItems()));
-		int completionStatus = (int) (closedEstimate / estimate) * 100;
+		// float estimate = getEstimate(wp, null, new HashSet<WorkItem>(wp.getAllContainedWorkItems())); // TODO rm this
+		// float closedEstimate = getClosedEstimate(new HashSet<WorkItem>(wp.getAllContainedWorkItems()));
+		// float estimate = wp.getAggregatedEstimate();
+		// float closedEstimate = wp.getClosedAggregatedEstimate();
+		float estimate = EstimateHelper.getAggregatedEstimate(wp);
+		float closedEstimate = EstimateHelper.getClosedAggregatedEstimate(wp);
+		int completionStatus = (int) ((closedEstimate / estimate) * 100);
 
 		GanttEvent result = new GanttEvent(ganttChart, eventName, startDate, endDate, completionStatus);
 		// ganttChart.reindex(result, ganttChart.getGanttComposite().getEvents().size() - 1);
@@ -297,6 +305,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 					childItem = recurisveWorkPackageToGanttEvent((WorkPackage) modelElement, false);
 				}
 				result.addScopeEvent(childItem);
+				result.setScope(true);
 			}
 		}
 

@@ -12,7 +12,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
@@ -22,12 +22,16 @@ public class ShowGanttViewHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		ModelElement me = ActionHelper.getModelElement(event);
+		Object obj = ActionHelper.getModelElement(event);
 
 		try {
 			GanttView ganttView = (GanttView) page.showView(GanttView.ID);
-			ganttView.setInput((WorkPackage) me);
 
+			if (obj instanceof Project) {
+				ganttView.setInput((Project) obj);
+			} else if (obj instanceof WorkPackage) {
+				ganttView.setInput((WorkPackage) obj);
+			}
 		} catch (PartInitException e) {
 			DialogHandler.showExceptionDialog(e);
 		}
