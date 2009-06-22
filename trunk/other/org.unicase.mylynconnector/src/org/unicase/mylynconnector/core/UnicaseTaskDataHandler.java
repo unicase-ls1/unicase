@@ -1,8 +1,5 @@
 package org.unicase.mylynconnector.core;
 
-import java.io.File;
-import java.net.MalformedURLException;
-import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -17,6 +14,7 @@ import org.eclipse.mylyn.tasks.core.TaskRepository;
 import org.eclipse.mylyn.tasks.core.data.AbstractTaskDataHandler;
 import org.eclipse.mylyn.tasks.core.data.TaskAttribute;
 import org.eclipse.mylyn.tasks.core.data.TaskAttributeMapper;
+import org.eclipse.mylyn.tasks.core.data.TaskAttributeMetaData;
 import org.eclipse.mylyn.tasks.core.data.TaskData;
 import org.unicase.model.ModelElement;
 import org.unicase.model.task.ActionItem;
@@ -42,21 +40,33 @@ public class UnicaseTaskDataHandler extends AbstractTaskDataHandler {
 	public boolean initializeTaskData(TaskRepository repository,
 			TaskData taskData, ITaskMapping initializationData,
 			IProgressMonitor monitor) throws CoreException {
-		
-		TaskAttribute attribute = taskData.getRoot().createAttribute(TaskAttribute.SUMMARY);
-		attribute.getMetaData().setReadOnly(false).setType(TaskAttribute.TYPE_SHORT_RICH_TEXT).setLabel("Summary:");
-	
-		attribute = taskData.getRoot().createAttribute(
-				TaskAttribute.DESCRIPTION);
-		attribute.getMetaData().setReadOnly(false).setType(
-				TaskAttribute.TYPE_LONG_RICH_TEXT).setLabel("Description:");
 
-		attribute = taskData.getRoot().createAttribute(
-				TaskAttribute.DATE_CREATION);
-		attribute.getMetaData().setReadOnly(false).setType(
-				TaskAttribute.TYPE_DATETIME).setLabel("Created:");
+		createAttribute(taskData, TaskAttribute.SUMMARY,
+				TaskAttribute.TYPE_SHORT_RICH_TEXT, true, "Summary", true);
+
+		createAttribute(taskData, TaskAttribute.TASK_KEY,
+				TaskAttribute.TYPE_SHORT_RICH_TEXT, true, "Taskkey", true);
+
+		createAttribute(taskData, TaskAttribute.DESCRIPTION,
+				TaskAttribute.TYPE_LONG_RICH_TEXT, true, "Description", true);
+
+		createAttribute(taskData, TaskAttribute.DATE_CREATION,
+				TaskAttribute.TYPE_DATE, true, "Created", true);
 
 		return true;
+	}
+
+	TaskAttribute createAttribute(TaskData data, String keyID, String attrType,
+			boolean isVisible, String label, boolean readOnly) {
+		TaskAttribute attr = data.getRoot().createAttribute(keyID);
+
+		TaskAttributeMetaData metaData = attr.getMetaData();
+		metaData.setType(attrType);
+		metaData.setKind(isVisible ? TaskAttribute.KIND_DEFAULT : null);
+		metaData.setLabel(label);
+		metaData.setReadOnly(readOnly);
+
+		return attr;
 	}
 
 	@Override
@@ -66,22 +76,28 @@ public class UnicaseTaskDataHandler extends AbstractTaskDataHandler {
 		return null;
 	}
 
+	@SuppressWarnings("restriction")
 	public TaskData getTaskData(TaskRepository taskRepository, String taskId) {
-		ModelElement modelElement = getModelElement(taskRepository, taskId);
+		ModelElement modelElement = getModelElement(taskRepository,
+				UnicaseConnectorUtil.convertTaskIdToMeId(taskId));
 		if (modelElement != null) {
 			TaskData taskData = new TaskData(
 					getAttributeMapper(taskRepository), taskRepository
 							.getConnectorKind(), taskRepository
 							.getRepositoryUrl(), taskId);
-			
+
 			try {
-				initializeTaskData(taskRepository, taskData,null, null);
+				initializeTaskData(taskRepository, taskData, null, null);
 			} catch (CoreException e) {
 				e.printStackTrace();
 			}
-			
+
 			TaskAttribute attribute = taskData.getRoot().createAttribute(
 					TaskAttribute.SUMMARY);
+			attribute.setValue(modelElement.getName());
+
+			attribute = taskData.getRoot().createAttribute(
+					TaskAttribute.TASK_KEY);
 			attribute.setValue(modelElement.getName());
 
 			attribute = taskData.getRoot().createAttribute(
@@ -120,7 +136,7 @@ public class UnicaseTaskDataHandler extends AbstractTaskDataHandler {
 		return commandWithResult.getTypedResult();
 	}
 
-	private ModelElement getModelElement(final TaskRepository taskRepository,
+	public ModelElement getModelElement(final TaskRepository taskRepository,
 			final String taskId) {
 		TransactionalEditingDomain domain = getDomain();
 		RecordingCommandWithResult<ModelElement> commandWithResult = new RecordingCommandWithResult<ModelElement>(
@@ -159,8 +175,7 @@ public class UnicaseTaskDataHandler extends AbstractTaskDataHandler {
 		return projectSpace;
 	}
 
-	private TransactionalEditingDomain getDomain() {
-		return TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+	public TransactionalEditingDomain getDomain() {
+		return UnicaseConnectorUtil.getDomain();
 	}
 }
