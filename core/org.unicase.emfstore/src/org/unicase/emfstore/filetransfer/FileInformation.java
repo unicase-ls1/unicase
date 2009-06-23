@@ -109,10 +109,13 @@ public class FileInformation implements Serializable {
 	 */
 	@Override
 	public String toString() {
-		String s = "";
-		s += "File attachment id: " + fileAttachmentId;
-		s += "\nFile version: " + fileVersion;
-		s += "\nFile name: " + fileName;
-		return s;
+		StringBuilder string = new StringBuilder();
+		string.append("File attachment id: ");
+		string.append(fileAttachmentId);
+		string.append("\nFile version: ");
+		string.append(fileVersion);
+		string.append("\nFile name: ");
+		string.append(fileName);
+		return string.toString();
 	}
 }

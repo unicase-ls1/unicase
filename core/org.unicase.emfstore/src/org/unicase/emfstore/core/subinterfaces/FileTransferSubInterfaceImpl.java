@@ -12,6 +12,7 @@ import java.io.IOException;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
+import org.unicase.emfstore.core.MonitorProvider;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
@@ -20,13 +21,14 @@ import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.emfstore.filetransfer.FilePartitionerUtil;
 import org.unicase.model.util.FileUtil;
 
-// REFACTORING STATUS: INCOMPLETE
 /**
  * The file transfer subinterface.
  * 
  * @author pfeifferc
  */
 public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
+
+	private static final String FILELOAD = "filetransfer";
 
 	/**
 	 * tmp folder for file uploads to server.
@@ -60,18 +62,20 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 * @throws FileTransferException if any error occurs reading the file
 	 */
 	public FileChunk readChunk(ProjectId projectId, FileInformation fileInformation) throws FileTransferException {
-		// check if folders exist, otherwise create
-		createDirectories(projectId);
-		// try to localize file that is to be downloaded
-		File file;
-		try {
-			file = findFile(fileInformation, projectId);
-			// fileInformation.setFileName(file.getName());
-		} catch (FileNotFoundException e) {
-			throw new FileTransferException("File can not be retrieved.", e);
+		synchronized (MonitorProvider.getInstance().getMonitor(FILELOAD)) {
+			// check if folders exist, otherwise create
+			createDirectories(projectId);
+			// try to localize file that is to be downloaded
+			File file;
+			try {
+				file = findFile(fileInformation, projectId);
+				// fileInformation.setFileName(file.getName());
+			} catch (FileNotFoundException e) {
+				throw new FileTransferException("File can not be retrieved.", e);
+			}
+			fileInformation.setFileName(file.getName());
+			return FilePartitionerUtil.readChunk(file, fileInformation);
 		}
-		fileInformation.setFileName(file.getName());
-		return FilePartitionerUtil.readChunk(file, fileInformation);
 	}
 
 	private File findFile(FileInformation fileInfo, ProjectId projectId) throws FileNotFoundException {
@@ -105,47 +109,49 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 * @return fileInformation containing the (new) file version
 	 * @throws FileTransferException if any error occurs writing to the file
 	 */
-	public synchronized FileInformation writeChunk(FileChunk fileChunk, ProjectId projectId)
-		throws FileTransferException {
-		// check if folders exist, otherwise create
-		createDirectories(projectId);
-		// folder for completed file uploads
-		File attachmentFolder = new File(getProjectAttachmentFolder(projectId));
-		// temp folder for storing incomplete file uploads
-		File attachmentTempFolder = new File(getProjectAttachmentTempFolder(projectId));
-		// if the data is null, this is treated as a request for assigning a file version
-		FileInformation fileInfo = fileChunk.getFileInformation();
-		if (fileChunk.getData() == null) {
-			System.out.println();
-			fileInfo.setFileVersion(getVersion(attachmentFolder, attachmentTempFolder, fileInfo.getFileAttachmentId()));
+	public FileInformation writeChunk(FileChunk fileChunk, ProjectId projectId) throws FileTransferException {
+		synchronized (MonitorProvider.getInstance().getMonitor(FILELOAD)) {
+			// check if folders exist, otherwise create
+			createDirectories(projectId);
+			// folder for completed file uploads
+			File attachmentFolder = new File(getProjectAttachmentFolder(projectId));
+			// temp folder for storing incomplete file uploads
+			File attachmentTempFolder = new File(getProjectAttachmentTempFolder(projectId));
+			// if the data is null, this is treated as a request for assigning a file version
+			FileInformation fileInfo = fileChunk.getFileInformation();
+			if (fileChunk.getData() == null) {
+				fileInfo.setFileVersion(getVersion(attachmentFolder, attachmentTempFolder, fileInfo
+					.getFileAttachmentId()));
+				try {
+					new File(createTempFileLocation(fileInfo, projectId)).createNewFile();
+				} catch (IOException e) {
+					throw new FileTransferException("Could not create the file on the server!", e);
+				}
+				return fileInfo;
+			}
+			// retrieve location for the temp file
+			File attachmentTempFile;
 			try {
-				new File(createTempFileLocation(fileInfo, projectId)).createNewFile();
-			} catch (IOException e) {
-				throw new FileTransferException("Could not create the file on the server!", e);
+				attachmentTempFile = findFileInTemp(fileInfo, projectId);
+			} catch (FileNotFoundException e) {
+				throw new FileTransferException(
+					"The file has either been removed from the server or is not accessible!", e);
+			}
+			// retrieve final location for file
+			File attachmentFile = new File(createFileLocation(projectId, attachmentTempFile));
+			// file reslicer for reslicing temp file
+			FilePartitionerUtil.writeChunk(attachmentTempFile, fileChunk);
+			// move file from temp folder to attachment folder if last file chunk is received
+			if (fileChunk.isLast()) {
+				try {
+					FileUtil.copyFile(attachmentTempFile, attachmentFile);
+					attachmentTempFile.delete();
+				} catch (IOException e) {
+					throw new FileTransferException("Could not move file to final destination!", e);
+				}
 			}
 			return fileInfo;
 		}
-		// retrieve location for the temp file
-		File attachmentTempFile;
-		try {
-			attachmentTempFile = findFileInTemp(fileInfo, projectId);
-		} catch (FileNotFoundException e) {
-			throw new FileTransferException("The file has either been removed from the server or is not accessible!", e);
-		}
-		// retrieve final location for file
-		File attachmentFile = new File(createFileLocation(projectId, attachmentTempFile));
-		// file reslicer for reslicing temp file
-		FilePartitionerUtil.writeChunk(attachmentTempFile, fileChunk);
-		// move file from temp folder to attachment folder if last file chunk is received
-		if (fileChunk.isLast()) {
-			try {
-				FileUtil.copyFile(attachmentTempFile, attachmentFile);
-				attachmentTempFile.delete();
-			} catch (IOException e) {
-				throw new FileTransferException("Could not move file to final destination!", e);
-			}
-		}
-		return fileInfo;
 	}
 
 	private String createFileLocation(ProjectId projectId, File attachmentTempFile) {
