@@ -5,11 +5,20 @@
  */
 package org.unicase.workspace.test.server;
 
+import org.junit.Test;
+
 /**
- * .
+ * Has to be implemented.
  * 
  * @author wesendon
  */
 public class InvalidAuthenticationTest {
 
+	/**
+	 * has to be implemented.
+	 */
+	@Test
+	public void doNothing() {
+
+	}
 }
