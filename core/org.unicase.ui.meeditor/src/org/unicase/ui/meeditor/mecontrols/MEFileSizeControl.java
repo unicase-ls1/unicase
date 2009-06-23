@@ -5,6 +5,10 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
+import java.text.DecimalFormat;
+
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
@@ -25,6 +29,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
  * @author pfeifferc
  */
 public class MEFileSizeControl extends AbstractMEControl {
+
 	private EAttribute attribute;
 
 	/**
@@ -46,31 +51,56 @@ public class MEFileSizeControl extends AbstractMEControl {
 	 */
 	public Control createControl(Composite parent, int style) {
 		Composite composite = getToolkit().createComposite(parent, style);
-		GridLayout gridLayout = new GridLayout(2, false);
+		GridLayout gridLayout = new GridLayout(1, false);
 		composite.setLayout(gridLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
 
 		final Text fileSize = new Text(composite, SWT.RIGHT);
-		Display.getDefault().syncExec(new Runnable() {
+		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
+		EMFDataBindingContext dbc = new EMFDataBindingContext();
+		UpdateValueStrategy strategy = new UpdateValueStrategy();
+		strategy.setConverter(new FileSizeConverter());
+		dbc.bindValue(SWTObservables.observeText(fileSize, SWT.FocusOut), model, null, strategy);
 
-			public void run() {
-				IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
-					attribute);
-				EMFDataBindingContext dbc = new EMFDataBindingContext();
-				dbc.bindValue(SWTObservables.observeText(fileSize, SWT.FocusOut), model, null, null);
-			}
-		});
 		fileSize.setEditable(false);
 		fileSize.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(fileSize);
 
-		final Text fileUnit = new Text(composite, style);
-		fileUnit.setText("bytes");
-		fileUnit.setEditable(false);
-		fileUnit.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(false, true).hint(60, 15).applyTo(fileUnit);
-
 		return parent;
+	}
+
+	/**
+	 * @author pfeifferc
+	 */
+	private final class FileSizeConverter implements IConverter {
+		public Object getToType() {
+			return String.class;
+		}
+
+		public Object getFromType() {
+			return double.class;
+		}
+
+		public Object convert(Object fromObject) {
+			if (fromObject == null) {
+				return fromObject;
+			}
+			double size = Integer.parseInt(fromObject.toString());
+			DecimalFormat format = new DecimalFormat("#0.00");
+			if (size < 1024) {
+				return (int) size + " byte";
+			}
+			if (size < 1024 * 1024) {
+				return format.format(size / 1024) + " kilobyte";
+			}
+			if (size < 1024 * 1024 * 1024) {
+				return format.format(size / (1024 * 1024)) + " megabyte";
+			}
+			if (size < 1024 * 1024 * 1024 * 1024) {
+				return format.format(size / (1024 * 1024 * 1024)) + " gigabyte";
+			}
+			return fromObject.toString();
+		}
 	}
 
 }
