@@ -292,7 +292,7 @@ public final class ActionHelper {
 	}
 
 	/**
-	 * . This opens the MEDiagram.
+	 * This method opens the MEDiagram.
 	 * 
 	 * @param diagram MEDiagram to open
 	 * @param withMEEditor If the diagram is open in the meeditor

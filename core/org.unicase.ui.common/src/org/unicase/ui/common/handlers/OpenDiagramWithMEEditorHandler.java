@@ -13,7 +13,7 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.util.ActionHelper;
 
 /**
- * . This a handler to open MEDiagrams with MEEditor. By default MEdiagrams are opened using diagram editor.
+ * This a handler to open MEDiagrams with MEEditor. By default MEdiagrams are opened using diagram editor.
  * 
  * @author hodaie
  */
