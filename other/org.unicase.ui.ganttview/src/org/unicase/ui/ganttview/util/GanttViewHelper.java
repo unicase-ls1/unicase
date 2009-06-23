@@ -9,9 +9,12 @@ package org.unicase.ui.ganttview.util;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.nebula.widgets.ganttchart.GanttChart;
 import org.eclipse.nebula.widgets.ganttchart.GanttComposite;
 import org.eclipse.swt.widgets.Tree;
+import org.unicase.model.task.WorkPackage;
 
 public final class GanttViewHelper {
 
@@ -39,6 +42,18 @@ public final class GanttViewHelper {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd.MM.yyyy");
 
 		return sdf.format(date.getTime());
+	}
+
+	public static EList<WorkPackage> getRootWorkPackages(EList<WorkPackage> flatWorkPackageList) {
+		EList<WorkPackage> result = new BasicEList<WorkPackage>();
+
+		for (WorkPackage workPackage : flatWorkPackageList) {
+			if (workPackage.getContainingWorkpackage() == null)
+				result.add(workPackage);
+		}
+
+		return result;
+
 	}
 
 }
