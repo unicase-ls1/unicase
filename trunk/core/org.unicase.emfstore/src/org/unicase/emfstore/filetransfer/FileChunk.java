@@ -20,6 +20,8 @@ public class FileChunk implements Serializable {
 	private FileInformation fileInformation;
 
 	/**
+	 * Default constructor.
+	 * 
 	 * @param fileInformation file information
 	 * @param end flag reserved for last chunk
 	 * @param data the actual data

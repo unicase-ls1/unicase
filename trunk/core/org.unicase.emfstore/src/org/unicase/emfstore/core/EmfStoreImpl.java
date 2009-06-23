@@ -30,12 +30,10 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
-import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.Project;
-
 
 /**
  * This is the main implementation of {@link EmfStore}.
@@ -193,11 +191,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 		throws EmfStoreException, RemoteException {
 		sanityCheckObjects(new Object[] { sessionId, projectId, fileInformation });
 		checkReadAccess(sessionId, projectId, null);
-		try {
-			return getSubInterface(FileTransferSubInterfaceImpl.class).readChunk(projectId, fileInformation);
-		} catch (FileTransferException e) {
-			throw new EmfStoreException(e);
-		}
+		return getSubInterface(FileTransferSubInterfaceImpl.class).readChunk(projectId, fileInformation);
 	}
 
 	/**
@@ -205,13 +199,9 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 */
 	public FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
 		throws EmfStoreException, RemoteException {
-		sanityCheckObjects(new Object[] { sessionId, projectId, fileChunk });
+		sanityCheckObjects(new Object[] { sessionId, projectId, fileChunk, fileChunk.getFileInformation() });
 		checkWriteAccess(sessionId, projectId, null);
-		try {
-			return getSubInterface(FileTransferSubInterfaceImpl.class).writeChunk(fileChunk, projectId);
-		} catch (FileTransferException e) {
-			throw new EmfStoreException(e);
-		}
+		return getSubInterface(FileTransferSubInterfaceImpl.class).writeChunk(fileChunk, projectId);
 	}
 
 }
