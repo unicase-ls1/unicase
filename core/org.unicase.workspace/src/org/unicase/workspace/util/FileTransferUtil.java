@@ -9,13 +9,12 @@ package org.unicase.workspace.util;
 import java.io.File;
 import java.io.IOException;
 
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
-import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.util.FileUtil;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.PendingFileTransfer;
 
 /**
  * Utility methods for the file transfer interface.
@@ -49,116 +48,95 @@ public final class FileTransferUtil {
 	}
 
 	/**
+	 * @param selectedFile file to copy
+	 * @param uUID unversioned file name
+	 * @param projectId project id
+	 * @throws IOException if any error occurs copying the file
+	 */
+	public static void copyUnversionedFileToCache(File selectedFile, String uUID, ProjectId projectId)
+		throws IOException {
+		FileTransferUtil.mkdirs(projectId);
+		File destination = new File(getCacheFolder(projectId) + File.separator + uUID);
+		FileUtil.copyFile(selectedFile, destination);
+	}
+
+	private static void mkdirs(ProjectId projectId) {
+		new File(getCacheFolder(projectId)).mkdirs();
+	}
+
+	/**
 	 * @param file file to be copied to cache
-	 * @param fileAttachment file attachment
 	 * @param fileInformation file information containing
+	 * @param projectId project id
 	 * @return the cached file
 	 * @throws IOException if any error occurs copying the file
 	 */
-	public static File copyFileToCache(File file, FileAttachment fileAttachment, FileInformation fileInformation)
+	public static File copyFileToCache(File file, FileInformation fileInformation, ProjectId projectId)
 		throws IOException {
-		new File(getCacheFolder(fileAttachment)).mkdirs();
-		File destination = new File(getCacheFolder(fileAttachment) + File.separator + fileAttachment.getIdentifier()
-			+ FILE_NAME_DELIMITER + fileInformation.getFileVersion() + FILE_NAME_DELIMITER + file.getName());
-
+		FileTransferUtil.mkdirs(projectId);
+		File destination = new File(getCacheFolder(projectId) + File.separator + constructFileName(fileInformation));
 		FileUtil.copyFile(file, destination);
 		return destination;
 	}
 
 	/**
-	 * @param projectSpace file attachment
-	 * @param fileVersionString file version
-	 * @return file name of the cached file
-	 */
-	public static String getFileNameOfCachedFile(ProjectSpace projectSpace, String fileVersionString) {
-		if (fileVersionString == null) {
-			return null;
-		}
-		int fileVersion = Integer.parseInt(fileVersionString);
-		for (File f : new File(getCacheFolder(projectSpace)).listFiles()) {
-			if (f.getName().startsWith(
-				projectSpace.getIdentifier() + FILE_NAME_DELIMITER + fileVersion + FILE_NAME_DELIMITER)) {
-				return f.getName();
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * @param fileAttachment file attachment for which to get the cache folder
+	 * @param projectId project id
 	 * @return the location of the cache folder
 	 */
-	public static String getCacheFolder(FileAttachment fileAttachment) {
+	public static String getCacheFolder(ProjectId projectId) {
 		return Configuration.getWorkspaceDirectory() + ATTACHMENT_FOLDER + File.separator + PROJECT_FOLDER_PREFIX
-			+ WorkspaceManager.getProjectSpace(fileAttachment).getProjectId().getId();
-	}
-
-	/**
-	 * @param projectSpace project space
-	 * @return the location of the cache folder
-	 */
-	public static String getCacheFolder(ProjectSpace projectSpace) {
-		return Configuration.getWorkspaceDirectory() + ATTACHMENT_FOLDER + File.separator + PROJECT_FOLDER_PREFIX
-			+ projectSpace.getProjectId().getId();
-	}
-
-	/**
-	 * @param file file
-	 * @param fileAttachmentId file attachment id
-	 * @return the file name. Removes fileAttachmendId and fileVersion strings from the file name.
-	 */
-	public static String getFileName(File file, String fileAttachmentId) {
-		String tmp = file.getName();
-		if (tmp.startsWith(fileAttachmentId)) {
-			tmp = tmp.substring(fileAttachmentId.length() + 1);
-			tmp = tmp.substring(tmp.indexOf(FILE_NAME_DELIMITER) + 1);
-		}
-		return tmp;
+			+ projectId.getId();
 	}
 
 	/**
 	 * Attempts to open the file linked to by the file attachment according to the operating system.
 	 * 
-	 * @param fileAttachment file attachment
+	 * @param fileInfo file information data object
+	 * @param projectId project id
 	 * @exception FileTransferException if any error occurs opening the file
 	 */
-	public static void openFile(FileAttachment fileAttachment) throws FileTransferException {
+	public static void openFile(FileInformation fileInfo, ProjectId projectId) throws FileTransferException {
 		String os = System.getProperty("os.name");
-		int version = Integer.parseInt(fileAttachment.getFileID());
 		try {
 			if (os.toLowerCase().contains("windows")) {
 				Runtime.getRuntime().exec(
 					"rundll32 SHELL32.DLL,ShellExec_RunDLL "
-						+ FileTransferUtil.getCachedFileLocation(fileAttachment, version));
+						+ FileTransferUtil.findCachedFile(constructFileNameWithOutFileName(fileInfo), new File(
+							getCacheFolder(projectId))));
 			} else if (os.toLowerCase().contains("mac os")) {
-				Runtime.getRuntime().exec("open " + FileTransferUtil.getCachedFileLocation(fileAttachment, version));
+				Runtime.getRuntime().exec(
+					"open "
+						+ FileTransferUtil.findCachedFile(constructFileNameWithOutFileName(fileInfo), new File(
+							getCacheFolder(projectId))));
 			} else {
-				throw new FileTransferException("Opening files is not yet supported for " + os + ". Please go to "
-					+ FileTransferUtil.getCachedFileLocation(fileAttachment, version) + " and open the file manually.");
+				throw new FileTransferException("Opening files is not yet supported for "
+					+ os
+					+ ". Please go to "
+					+ FileTransferUtil.findCachedFile(constructFileNameWithOutFileName(fileInfo),
+						new File(getCacheFolder(projectId))).getAbsolutePath() + " and open the file manually.");
 			}
 		} catch (IOException e) {
 			throw new FileTransferException("Could not open the specified file!");
 		}
 	}
 
-	/**
-	 * @param fileAttachment file attachment for which to get the cached file location
-	 * @param fileVersion and for the specific version
-	 * @return the location of the cached file
-	 */
-	public static String getCachedFileLocation(FileAttachment fileAttachment, int fileVersion) {
-		String f = findFile(new File(getCacheFolder(fileAttachment)), fileAttachment.getIdentifier(), fileVersion);
-		if (f == null) {
-			return null;
-		}
-		return getCacheFolder(fileAttachment) + File.separator + f;
+	private static String constructFileName(FileInformation fileInfo) {
+		return fileInfo.getFileAttachmentId() + FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER
+			+ fileInfo.getFileName();
 	}
 
-	private static String findFile(File folder, String fileAttachmentId, int fileVersion) {
-		if (folder.exists()) {
-			for (File f : folder.listFiles()) {
-				if (f.getName().startsWith(fileAttachmentId + FILE_NAME_DELIMITER + fileVersion + FILE_NAME_DELIMITER)) {
-					return f.getName();
+	/**
+	 * Returns null if the file could not be found.
+	 * 
+	 * @param startsWith the string the file should start with
+	 * @param folderToLookIn the folder to look in
+	 * @return the cached file
+	 */
+	public static File findCachedFile(String startsWith, File folderToLookIn) {
+		if (folderToLookIn.exists()) {
+			for (File file : folderToLookIn.listFiles()) {
+				if (file.getName().startsWith(startsWith)) {
+					return file;
 				}
 			}
 		}
@@ -166,16 +144,37 @@ public final class FileTransferUtil {
 	}
 
 	/**
-	 * @param fileName name of the file
-	 * @param fileAttachmentId file attachment id
-	 * @return the file name. Removes fileAttachmendId and fileVersion strings from the file name.
+	 * Returns the hypothetical location of the unversioned cached file.
+	 * 
+	 * @param transfer transfer
+	 * @param projectId project id
+	 * @return the location of the unversioned cached file
 	 */
-	public static String getFileName(String fileName, String fileAttachmentId) {
-		String tmp = fileName;
-		if (tmp.startsWith(fileAttachmentId)) {
-			tmp = tmp.substring(fileAttachmentId.length() + 1);
-			tmp = tmp.substring(tmp.indexOf(FILE_NAME_DELIMITER) + 1);
-		}
-		return tmp;
+	public static File getUnversionedCachedFile(PendingFileTransfer transfer, ProjectId projectId) {
+		return findCachedFile(transfer.getPreliminaryFileName(), new File(getCacheFolder(projectId)));
+	}
+
+	/**
+	 * @param fileInformation file information
+	 * @param projectId project id
+	 * @return the cached file
+	 */
+	public static File getCachedFile(FileInformation fileInformation, ProjectId projectId) {
+		return new File(getCacheFolder(projectId) + File.separator + constructFileName(fileInformation));
+	}
+
+	/**
+	 * Returns null if the file could not be found.
+	 * 
+	 * @param fileInformation file Information
+	 * @param projectId project id
+	 * @return the cached file
+	 */
+	public static File findCachedFile(FileInformation fileInformation, ProjectId projectId) {
+		return findCachedFile(constructFileNameWithOutFileName(fileInformation), new File(getCacheFolder(projectId)));
+	}
+
+	private static String constructFileNameWithOutFileName(FileInformation fileInfo) {
+		return fileInfo.getFileAttachmentId() + FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER;
 	}
 }
