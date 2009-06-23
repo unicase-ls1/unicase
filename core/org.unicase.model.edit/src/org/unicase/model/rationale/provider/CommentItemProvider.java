@@ -52,6 +52,7 @@ public class CommentItemProvider extends ModelElementItemProvider implements IEd
 
 			addSenderPropertyDescriptor(object);
 			addRecipientsPropertyDescriptor(object);
+			addCommentedElementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -78,6 +79,19 @@ public class CommentItemProvider extends ModelElementItemProvider implements IEd
 			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_Comment_recipients_feature"), getString(
 			"_UI_PropertyDescriptor_description", "_UI_Comment_recipients_feature", "_UI_Comment_type"),
 			RationalePackage.Literals.COMMENT__RECIPIENTS, false, false, true, null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Commented Element feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addCommentedElementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_Comment_commentedElement_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_Comment_commentedElement_feature", "_UI_Comment_type"),
+				RationalePackage.Literals.COMMENT__COMMENTED_ELEMENT, true, false, false, null, null, null));
 	}
 
 	/**
