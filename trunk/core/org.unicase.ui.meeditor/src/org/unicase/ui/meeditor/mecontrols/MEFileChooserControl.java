@@ -7,8 +7,11 @@ package org.unicase.ui.meeditor.mecontrols;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
+import org.eclipse.core.databinding.UpdateValueStrategy;
+import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
@@ -28,7 +31,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.exceptions.FileTransferException;
@@ -67,30 +70,23 @@ public class MEFileChooserControl extends AbstractMEControl {
 		Composite composite = getToolkit().createComposite(parent, style);
 
 		// Grid layout with three columns
-		GridLayout gridLayout = new GridLayout(3, false);
+		GridLayout gridLayout = new GridLayout(2, false);
 		composite.setLayout(gridLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
 
 		// Left column: file name
-		final Text fileName = new Text(composite, SWT.RIGHT);
-		fileName.setEditable(false);
+		final Link fileName = new Link(composite, SWT.RIGHT);
+		fileName.setLayoutData(new GridData(SWT.RIGHT, SWT.BEGINNING, true, false));
 		fileName.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(fileName);
-		// Display.getDefault().syncExec(new Runnable() {
+		GridDataFactory.fillDefaults().align(SWT.RIGHT, SWT.CENTER).grab(true, true).applyTo(fileName);
 
-		// public void run() {
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeText(fileName, SWT.FocusOut), model, null, null);
+		UpdateValueStrategy strategy = new UpdateValueStrategy();
+		strategy.setConverter(new LinkContentConverter());
+		dbc.bindValue(SWTObservables.observeText(fileName), model, null, strategy);
 
-		// }
-		// });
-
-		// Middle column: open/download file
-		Button open = new Button(composite, SWT.PUSH);
-		open.setLayoutData(new GridData(SWT.LEFT, SWT.CENTER, false, false));
-		open.setImage(Activator.getImageDescriptor("icons/page_go.png").createImage());
-		open.addSelectionListener(new TransferSelectionListener());
+		fileName.addSelectionListener(new TransferSelectionListener());
 
 		// Right column: button to open a dialog for uploading files
 		Button upload = new Button(composite, SWT.PUSH);
@@ -109,9 +105,13 @@ public class MEFileChooserControl extends AbstractMEControl {
 					fileInformation.setFileVersion(-1);
 					fileInformation.setFileName(fileDialog.getFileName());
 					fileInformation.setFileAttachmentId(((FileAttachment) getModelElement()).getIdentifier());
-					WorkspaceManager.getProjectSpace((FileAttachment) getModelElement()).addFileTransfer(
-						fileInformation,
-						new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()), true);
+					try {
+						WorkspaceManager.getProjectSpace((FileAttachment) getModelElement()).addFileTransfer(
+							fileInformation,
+							new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()), true);
+					} catch (FileTransferException e1) {
+						DialogHandler.showErrorDialog(e1.getMessage());
+					}
 				}
 			}
 		});
@@ -129,6 +129,23 @@ public class MEFileChooserControl extends AbstractMEControl {
 			FileTransferUtil.openFile(fileInfo, projectId);
 		} catch (FileTransferException e) {
 			DialogHandler.showErrorDialog(e.getMessage());
+		}
+	}
+
+	/**
+	 * @author pfeifferc
+	 */
+	private final class LinkContentConverter implements IConverter {
+		public Object getToType() {
+			return String.class;
+		}
+
+		public Object getFromType() {
+			return String.class;
+		}
+
+		public Object convert(Object fromObject) {
+			return "<a>" + fromObject.toString() + "</a>";
 		}
 	}
 
@@ -154,27 +171,30 @@ public class MEFileChooserControl extends AbstractMEControl {
 				FileInformation fileInformation = new FileInformation();
 				FileAttachment fileAttachment = (FileAttachment) getModelElement();
 				if (fileAttachment.getFileName() == null || fileAttachment.getFileID() == null) {
+					DialogHandler.showErrorDialog("There is no file attached to this file attachment!");
 					return;
 				}
 				fileInformation.setFileAttachmentId(fileAttachment.getIdentifier());
 				fileInformation.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
-				File cachedFile = FileTransferUtil.findCachedFile(fileInformation, WorkspaceManager.getProjectSpace(
-					fileAttachment).getProjectId());
+				fileInformation.setFileName(fileAttachment.getFileName());
+				File cachedFile;
 				try {
-					if (cachedFile != null) {
-						if (cachedFile.exists()) {
-							long supposedSize = fileAttachment.getFileSize();
-							int actualSize = new FileInputStream(cachedFile).available();
-							if (supposedSize != actualSize) {
-								MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Please wait!",
-									"File download has not yet been completed!");
-							} else {
-								MEFileChooserControl.this.openFile(fileInformation, WorkspaceManager.getProjectSpace(
-									fileAttachment).getProjectId());
-							}
-						}
+					cachedFile = FileTransferUtil.findCachedFile(fileInformation, WorkspaceManager.getProjectSpace(
+						fileAttachment).getProjectId());
+					long supposedSize = fileAttachment.getFileSize();
+					int actualSize = new FileInputStream(cachedFile).available();
+					if (supposedSize != actualSize) {
+						MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Please wait!",
+							"File download has not yet been completed!");
 					} else {
+						MEFileChooserControl.this.openFile(fileInformation, WorkspaceManager.getProjectSpace(
+							fileAttachment).getProjectId());
+					}
+				} catch (FileNotFoundException e1) {
+					try {
 						WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInformation, null, false);
+					} catch (FileTransferException e) {
+						DialogHandler.showErrorDialog(e.getMessage());
 					}
 				} catch (IOException e) {
 					DialogHandler.showErrorDialog("There was an error accessing the location of the downloaded file!");
