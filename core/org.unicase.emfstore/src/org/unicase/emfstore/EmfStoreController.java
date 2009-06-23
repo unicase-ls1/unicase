@@ -563,6 +563,7 @@ public class EmfStoreController implements IApplication, Runnable {
 			handler.stop(false);
 		}
 		logger.info("Server was stopped.");
+		instance = null;
 		wakeForTermination();
 	}
 
