@@ -1,82 +1,69 @@
 package org.unicase.ui.ganttview.views;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryContentProvider;
-import org.unicase.model.ModelElement;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.model.Project;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.ui.ganttview.util.GanttViewHelper;
 
-public class GanttTreeContentProvider extends TransactionalAdapterFactoryContentProvider {
+public class GanttTreeContentProvider extends AdapterFactoryContentProvider {
 	/**
 	 * default constructor.
 	 */
 	public GanttTreeContentProvider() {
-		super(WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain(), new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	@Override
 	public Object[] getElements(Object object) {
 
-		if (object instanceof Project) {
-			EList<WorkPackage> elementsForProject = getElementsForProject(object);
-			return elementsForProject.toArray(new Object[elementsForProject.size()]);
-		} else if (object instanceof WorkPackage) {
-			Set<ModelElement> elementsForWorkPackage = getElementsForWorkPackage(object);
-			return elementsForWorkPackage.toArray(new Object[elementsForWorkPackage.size()]);
-		} else {
-			return super.getElements(object);
+		Object[] elements = super.getElements(object);
+		EList<WorkPackage> result = new BasicEList<WorkPackage>();
+
+		if (object instanceof WorkPackage) {
+			for (Object element : elements) {
+				if (element instanceof WorkPackage) {
+					result.add((WorkPackage) element);
+				}
+			}
+		} else if (object instanceof Project) {
+			result.addAll(getElementsForProject(object));
 		}
+
+		return result.toArray(new Object[result.size()]);
 
 	}
 
 	private EList<WorkPackage> getElementsForProject(Object object) {
 		Project project = (Project) object;
 		EList<WorkPackage> dummyList = new BasicEList<WorkPackage>();
-		return project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkPackage(), dummyList);
+		project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkPackage(), dummyList);
 
+		EList<WorkPackage> result = GanttViewHelper.getRootWorkPackages(dummyList);
+
+		return result;
 	}
 
 	@Override
 	public Object[] getChildren(Object object) {
-		if (object instanceof WorkPackage) {
-			Set<ModelElement> elementsForWorkPackage = getElementsForWorkPackage(object);
-			return elementsForWorkPackage.toArray(new Object[elementsForWorkPackage.size()]);
-		} else {
-			return super.getChildren(object);
-		}
-	}
+		Object[] elements = super.getElements(object);
+		EList<WorkPackage> result = new BasicEList<WorkPackage>();
 
-	/**
-	 * . Returns all model elements being annotated by WorkItems contained in this WorkPackage.
-	 * 
-	 * @param object WorkPackage
-	 * @return
-	 */
-	private Set<ModelElement> getElementsForWorkPackage(Object object) {
-
-		Set<ModelElement> ret = new HashSet<ModelElement>();
-		WorkPackage workPackage = (WorkPackage) object;
-		List<WorkItem> containedWorkItems = workPackage.getContainedWorkItems();
-		for (WorkItem workItem : containedWorkItems) {
-			if (workItem instanceof WorkPackage) {
-				ret.add(workItem);
+		for (Object element : elements) {
+			if (element instanceof WorkPackage) {
+				result.add((WorkPackage) element);
 			}
 		}
-		return ret;
+
+		return result.toArray(new Object[result.size()]);
 	}
 
 	@Override
 	public boolean hasChildren(Object object) {
 		return (this.getChildren(object).length > 0);
 	}
+
 }

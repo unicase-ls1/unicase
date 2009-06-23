@@ -12,11 +12,11 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.Project;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.ganttview.views.GanttView;
+import org.unicase.workspace.WorkspaceManager;
 
 public class ShowGanttViewHandler extends AbstractHandler {
 
@@ -27,8 +27,10 @@ public class ShowGanttViewHandler extends AbstractHandler {
 		try {
 			GanttView ganttView = (GanttView) page.showView(GanttView.ID);
 
-			if (obj instanceof Project) {
-				ganttView.setInput((Project) obj);
+			// if obj == null, Project was selected
+			if (obj == null) {
+				ganttView.setInput(WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
+					.getProject());
 			} else if (obj instanceof WorkPackage) {
 				ganttView.setInput((WorkPackage) obj);
 			}
