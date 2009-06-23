@@ -51,9 +51,15 @@ public class MEFileSizeControl extends AbstractMEControl {
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
 
 		final Text fileSize = new Text(composite, SWT.RIGHT);
-		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
-		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeText(fileSize, SWT.FocusOut), model, null, null);
+		Display.getDefault().syncExec(new Runnable() {
+
+			public void run() {
+				IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
+					attribute);
+				EMFDataBindingContext dbc = new EMFDataBindingContext();
+				dbc.bindValue(SWTObservables.observeText(fileSize, SWT.FocusOut), model, null, null);
+			}
+		});
 		fileSize.setEditable(false);
 		fileSize.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(fileSize);
