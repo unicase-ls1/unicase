@@ -95,10 +95,10 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 			boolean isForward, boolean returnProjectDataCopy)
 			throws IteratorException {
 //		 LY: remove this if backward iterator is implemented
-		if (!isForward) {
-			throw new IllegalArgumentException(
-					"isForward=false not yet supported!");
-		}
+//		if (!isForward) {
+//			throw new IllegalArgumentException(
+//					"isForward=false not yet supported!");
+//		}
 		VersionSpec start = versionSpecQuery.getStart();
 		VersionSpec end = versionSpecQuery.getEnd();
 		

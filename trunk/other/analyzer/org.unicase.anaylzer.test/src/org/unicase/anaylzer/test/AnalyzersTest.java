@@ -86,7 +86,7 @@ public class AnalyzersTest {
 	 */
 	public boolean compareChangePackage(ProjectId projectId, ProjectAnalysisData data, int startPoint, int endPoint, boolean isForward){
 		List<ChangePackage> changePackageA = data.getChangePackages();
-		List<ChangePackage> changePackageB;
+		List<ChangePackage> changePackageB = null;
 		if(isForward){
 			PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 			start.setIdentifier(startPoint);
@@ -94,7 +94,6 @@ public class AnalyzersTest {
 			end.setIdentifier(endPoint);
 			try {
 				changePackageB = connectionManager.getChanges(userSession.getSessionId(), projectId, start, end);
-				return changePackageA.equals(changePackageB);
 			} catch (EmfStoreException e) {
 			}
 		}
@@ -109,23 +108,22 @@ public class AnalyzersTest {
 			}
 			try {
 				changePackageB = connectionManager.getChanges(userSession.getSessionId(), projectId, start, end);
-				if(changePackageA.size() != changePackageB.size()){
-					return false;
-				}else{
-					int i = 0;
-					boolean dateIsEqual = true;
-					while(i<changePackageA.size() && dateIsEqual){
-						Date dateA = changePackageA.get(i).getLogMessage().getDate();
-						Date dateB = changePackageB.get(i).getLogMessage().getDate();
-						dateIsEqual = dateA.equals(dateB);
-						i++;
-					}
-					return dateIsEqual;
-				}
 			} catch (EmfStoreException e) {
 			}
 		}
-		return false;
+		if(changePackageA.size() != changePackageB.size()){
+			return false;
+		}else{
+			int i = 0;
+			boolean dateIsEqual = true;
+			while(i<changePackageA.size() && dateIsEqual){
+				Date dateA = changePackageA.get(i).getLogMessage().getDate();
+				Date dateB = changePackageB.get(i).getLogMessage().getDate();
+				dateIsEqual = dateA.equals(dateB);
+				i++;
+			}
+			return dateIsEqual;
+		}
 	}
 
 	/**
