@@ -87,9 +87,7 @@ import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
-import org.unicase.workspace.filetransfer.FileDownloadJob;
 import org.unicase.workspace.filetransfer.FileTransferJob;
-import org.unicase.workspace.filetransfer.FileUploadJob;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.util.CommitObserver;
 import org.unicase.workspace.util.FileTransferUtil;
@@ -2154,13 +2152,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		});
 	}
 
-	private void downloadFileFromServer(PendingFileTransfer transfer, FileAttachment fileAttachment) {
-		new FileDownloadJob(transfer, fileAttachment).schedule();
-	}
-
-	private void uploadFileToServer(PendingFileTransfer transfer, FileAttachment fileAttachment) {
-		new FileUploadJob(transfer, fileAttachment).schedule();
-	}
+	// private void downloadFileFromServer(PendingFileTransfer transfer, FileAttachment fileAttachment) {
+	// new FileDownloadJob(transfer, fileAttachment).schedule();
+	// }
+	//
+	// private void uploadFileToServer(PendingFileTransfer transfer, FileAttachment fileAttachment) {
+	// new FileUploadJob(transfer, fileAttachment).schedule();
+	// }
 
 	/**
 	 * {@inheritDoc}
@@ -2171,25 +2169,26 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			if (stopTransfers()) {
 				// resumeTransfers();
 			}
+			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
-			e.printStackTrace();
-			// TODO MK remove
+			// END SUPRESS CATCH EXCEPTION
+			WorkspaceUtil.logException("Resuming file transfers failed!", e);
 		}
 	}
 
-	private void resumeTransfers() {
-		for (final PendingFileTransfer transfer : pendingFileTransfers) {
-			FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
-			if (fileAttachment == null) {
-				// TODO: mark for deletion?
-				continue;
-			} else if (transfer.isUpload()) {
-				uploadFileToServer(transfer, fileAttachment);
-			} else {
-				downloadFileFromServer(transfer, fileAttachment);
-			}
-		}
-	}
+	// private void resumeTransfers() {
+	// for (final PendingFileTransfer transfer : pendingFileTransfers) {
+	// FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
+	// if (fileAttachment == null) {
+	// // TODO: mark for deletion?
+	// continue;
+	// } else if (transfer.isUpload()) {
+	// uploadFileToServer(transfer, fileAttachment);
+	// } else {
+	// downloadFileFromServer(transfer, fileAttachment);
+	// }
+	// }
+	// }
 
 	private boolean stopTransfers() {
 		Job[] jobs = Job.getJobManager().find(FileTransferJob.class);

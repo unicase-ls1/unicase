@@ -6,7 +6,6 @@
 package org.unicase.workspace.filetransfer;
 
 import java.io.File;
-import java.rmi.RemoteException;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -90,7 +89,6 @@ public class FileUploadJob extends FileTransferJob {
 	 * @param fileChunk file chunk
 	 * @param monitor showing the progress of the transfer.
 	 * @throws EmfStoreException if any error occurs in the emf store
-	 * @throws RemoteException if any remote error occurs
 	 */
 	private void executeTransfer(IProgressMonitor monitor) throws EmfStoreException {
 		FileChunk fileChunk;
