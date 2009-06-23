@@ -2181,16 +2181,26 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void resumeTransfers() {
-		for (PendingFileTransfer transfer : pendingFileTransfers) {
-			if (transfer.isUpload()) {
-				uploadFileToServer(transfer, (FileAttachment) getProject().getModelElement(transfer.getAttachmentId()));
+		for (final PendingFileTransfer transfer : pendingFileTransfers) {
+			FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
+			if (fileAttachment == null) {
+				// if the file attachment
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("org.unicase.EditingDomain");
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					protected void doExecute() {
+						getPendingFileTransfers().remove(transfer);
+					}
+				});
+			} else if (transfer.isUpload()) {
+				uploadFileToServer(transfer, fileAttachment);
 			} else {
-				downloadFileFromServer(transfer, (FileAttachment) getProject().getModelElement(
-					transfer.getAttachmentId()));
+				downloadFileFromServer(transfer, fileAttachment);
 			}
 		}
-
 	}
 
 	private boolean stopTransfers() {
