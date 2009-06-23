@@ -13,7 +13,7 @@ import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.core.runtime.jobs.IJobChangeEvent;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.EList;
@@ -36,7 +36,6 @@ import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
@@ -68,7 +67,6 @@ import org.unicase.model.impl.IdentifiableElementImpl;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ModelValidationHelper;
 import org.unicase.model.util.ProjectChangeObserver;
-import org.unicase.model.util.SerializationException;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.OperationComposite;
@@ -91,12 +89,11 @@ import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.filetransfer.FileDownloadJob;
-import org.unicase.workspace.filetransfer.FileTransferObserver;
-import org.unicase.workspace.filetransfer.FileTransferObserverImpl;
+import org.unicase.workspace.filetransfer.FileTransferJob;
 import org.unicase.workspace.filetransfer.FileUploadJob;
-import org.unicase.workspace.filetransfer.IJobChangeListenerAdapter;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.util.CommitObserver;
+import org.unicase.workspace.util.FileTransferUtil;
 import org.unicase.workspace.util.LoginObserver;
 import org.unicase.workspace.util.UpdateObserver;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -1123,7 +1120,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 		}
 		for (FileAttachment fileAttachment : attachmentsToDownload) {
-			downloadFileFromServer(fileAttachment, new FileTransferObserverImpl());
+			PendingFileTransfer transfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
+			transfer.setAttachmentId(fileAttachment.getModelElementId());
+			transfer.setChunkNumber(0);
+			transfer.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
+			transfer.setFileName(fileAttachment.getFileName());
+			transfer.setPreliminaryFileName(null);
+			transfer.setUpload(false);
 		}
 	}
 
@@ -2094,104 +2097,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * {@inheritDoc}
-	 */
-	public void loginCompleted() {
-		// try {
-		// stop all running file transfers before resuming, to prevent redundant conflicting uploads
-		// if (stopTransfers()) {
-		// resumeTransfers();
-		// }
-		// } catch (RuntimeException e) {
-		// System.err.println(e.getMessage());
-		// TODO MK remove
-		// }
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void uploadFileToServer(File selectedFile, FileAttachment fileAttachment, FileTransferObserver observer) {
-		// start a new file upload job, starting at file chunk number 0 and file version -1
-		FileInformation fileInformation = new FileInformation(0, -1, selectedFile.getName(), fileAttachment
-			.getIdentifier());
-		uploadFileToServer(selectedFile, fileAttachment, fileInformation, observer);
-	}
-
-	private void uploadFileToServer(File selectedFile, final FileAttachment fileAttachment,
-		FileInformation fileInformation, final FileTransferObserver observer) {
-		// create new file upload job
-		final FileUploadJob fileUploadJob = new FileUploadJob(selectedFile, fileAttachment, fileInformation);
-		fileUploadJob.addJobChangeListener(new IJobChangeListenerAdapter() {
-
-			@Override
-			public void done(IJobChangeEvent event) {
-				observer.uploadFinished(fileUploadJob.getException(), fileAttachment, fileUploadJob
-					.getFileInformation(), fileUploadJob.getSize());
-			}
-		});
-		// execute file upload job
-		fileUploadJob.schedule();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void downloadFileFromServer(final FileAttachment fileAttachment, FileTransferObserver observer) {
-		// create new file information data object with the standard values (file version -1 means new download)
-		FileInformation fileInformation = new FileInformation(0, Integer.parseInt(fileAttachment.getFileID()),
-			fileAttachment.getIdentifier());
-		downloadFileFromServer(fileAttachment, fileInformation, observer);
-	}
-
-	private void downloadFileFromServer(final FileAttachment fileAttachment, FileInformation fileInformation,
-		final FileTransferObserver observer) {
-		final FileDownloadJob fileDownloadJob = new FileDownloadJob(fileAttachment, fileInformation);
-		fileDownloadJob.addJobChangeListener(new IJobChangeListenerAdapter() {
-
-			@Override
-			public void done(IJobChangeEvent event) {
-				observer.downloadFinished(fileDownloadJob.getException(), fileAttachment);
-			}
-		});
-		fileDownloadJob.schedule();
-	}
-
-	// /**
-	// * Resumes file transfers that have not been finished yet.
-	// */
-	// private void resumeTransfers() {
-	// FileAttachment fileAttachment;
-	// for (PendingFileTransfer transfer : getPendingFileTransfers()) {
-	// fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
-	// if (transfer.isUpload()) {
-	// FileInformation fileInformation = new FileInformation(transfer.getChunkNumber(), transfer
-	// .getFileVersion(), fileAttachment.getIdentifier());
-	// uploadFileToServer(null, fileAttachment, fileInformation, new FileTransferObserverImpl());
-	// } else {
-	// FileInformation fileInformation = new FileInformation(transfer.getChunkNumber(), transfer
-	// .getFileVersion(), fileAttachment.getIdentifier());
-	// downloadFileFromServer(fileAttachment, fileInformation, new FileTransferObserverImpl());
-	// }
-	// }
-	// }
-	//
-	// /**
-	// * Stops all file transfers.
-	// *
-	// * @return true if successful
-	// */
-	// private boolean stopTransfers() {
-	// Job[] jobs = Job.getJobManager().find(FileTransferJob.class);
-	// for (Job job : jobs) {
-	// if (!job.cancel()) {
-	// return false;
-	// }
-	// }
-	// return true;
-	// }
-
-	/**
-	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.workspace.ProjectSpace#addCommitObserver(org.unicase.workspace.util.CommitObserver)
 	 */
@@ -2200,186 +2105,93 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Sets a new OrgUnitProperty for the current user.
+	 * Adds a new OrgUnitProperty for the current user.
 	 * 
 	 * @param property the new property
-	 * @generated NOT
 	 */
-	public void setProperty(OrgUnitProperty property) {
-		// sanity checks
+	public void addProperty(OrgUnitProperty property) {
 		if (getUsersession() != null && getUsersession().getACUser() != null) {
-			// FIXME: replace with a hashmap
-			for (OrgUnitProperty prop : getUsersession().getACUser().getProperties()) {
-				if (prop.getName().equalsIgnoreCase(property.getName())) {
-					prop.setValue(property.getValue());
-					return;
-				}
-			}
-			getUsersession().getACUser().getProperties().add(property);
+			// getUsersession().getACUser().getProperties()
 		}
 	}
 
 	/**
-	 * Sets a new boolean property.
+	 * {@inheritDoc}
 	 * 
-	 * @param name the name of the property
-	 * @param value the new value
-	 * @generated NOT
+	 * @see org.unicase.workspace.ProjectSpace#addFileTransfer(org.unicase.model.attachment.FileAttachment,
+	 *      org.unicase.emfstore.filetransfer.FileInformation, boolean)
 	 */
-	public void setProperty(String name, boolean value) {
-		String newValue = null;
-		if (value) {
-			newValue = "true";
-		} else {
-			newValue = "false";
-		}
-		setProperty(name, newValue);
-	}
-
-	/**
-	 * Sets a new String property.
-	 * 
-	 * @param name the name of the property
-	 * @param value the new value
-	 * @generated NOT
-	 */
-	public void setProperty(String name, String value) {
-		OrgUnitProperty orgUnitProperties = AccesscontrolFactory.eINSTANCE.createOrgUnitProperty();
-		orgUnitProperties.setName(name);
-		orgUnitProperties.setValue(value);
-		orgUnitProperties.setProject((ProjectId) EcoreUtil.copy(getProjectId()));
-		setProperty(orgUnitProperties);
-	}
-
-	/**
-	 * Sets a new int property.
-	 * 
-	 * @param name the name of the property
-	 * @param value the new value
-	 * @generated NOT
-	 */
-	public void setProperty(String name, int value) {
-		setProperty(name, new Integer(value).toString());
-	}
-
-	/**
-	 * Sets a new String[] property.
-	 * 
-	 * @param name the name of the property
-	 * @param value the new value
-	 * @generated NOT
-	 */
-	public void setProperty(String name, String[] value) {
-		StringBuilder newValue = new StringBuilder();
-		for (String s : value) {
-			newValue.append(s);
-			newValue.append(OrgUnitProperty.ARRAY_SEPARATOR);
-		}
-		String ret = newValue.toString();
-		setProperty(name, ret.substring(0, ret.length() - 2));
-	}
-
-	/**
-	 * Sets a new ModelElementId[] property.
-	 * 
-	 * @param name the name of the property
-	 * @param value the new ModelElementId[] value
-	 * @generated NOT
-	 */
-	public void setProperty(String name, ModelElementId[] value) {
-		StringBuilder newValue = new StringBuilder();
-		try {
-			for (ModelElementId mid : value) {
-				newValue.append(ModelUtil.eObjectToString(mid));
-				newValue.append(OrgUnitProperty.ARRAY_SEPARATOR);
-			}
-		} catch (SerializationException e) {
-			return;
-		}
-		String ret = newValue.toString();
-		setProperty(name, ret.substring(0, ret.length() - 2));
-	}
-
-	/**
-	 * @param name the name of the property
-	 * @return the string value of the property or null if it doesn't exist
-	 */
-	public String getProperty(String name) {
-		// sanity checks
-		if (getUsersession() != null && getUsersession().getACUser() != null) {
-			// FIXME: replace with a hashmap
-			for (OrgUnitProperty p : getUsersession().getACUser().getProperties()) {
-				if (p.getName().equals(name)) {
-					return p.getValue();
-				}
-			}
-		}
-		return null;
-	}
-
-	/**
-	 * @param name the name of the property
-	 * @return the boolean value of the property or null if it doesn't exist
-	 */
-	public Boolean getBooleanProperty(String name) {
-		String value = getProperty(name);
-		if (value != null) {
-			Boolean b = new Boolean(value);
-			return b;
-		}
-		return null;
-	}
-
-	/**
-	 * @param name the name of the property
-	 * @return the int value of the property or null if it doesn't exist
-	 */
-	public Integer getIntegerProperty(String name) {
-		String value = getProperty(name);
-		if (value != null) {
+	public void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean upload) {
+		final PendingFileTransfer transfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
+		transfer.setAttachmentId(ModelUtil.createModelElementId(fileInformation.getFileAttachmentId()));
+		transfer.setChunkNumber(fileInformation.getChunkNumber());
+		transfer.setFileVersion(fileInformation.getFileVersion());
+		transfer.setFileName(fileInformation.getFileName());
+		transfer.setUpload(upload);
+		if (upload && selectedFile != null) {
+			String uUID = EcoreUtil.generateUUID();
+			transfer.setPreliminaryFileName(uUID);
 			try {
-				Integer b = new Integer(value);
-				return b;
-			} catch (NumberFormatException e) {
-
+				FileTransferUtil.copyUnversionedFileToCache(selectedFile, uUID, projectId);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
+		} else {
+			transfer.setPreliminaryFileName(null);
 		}
-		return null;
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				getPendingFileTransfers().add(transfer);
+			}
+		});
+	}
+
+	private void downloadFileFromServer(PendingFileTransfer transfer, FileAttachment fileAttachment) {
+		new FileDownloadJob(transfer, fileAttachment).schedule();
+	}
+
+	private void uploadFileToServer(PendingFileTransfer transfer, FileAttachment fileAttachment) {
+		new FileUploadJob(transfer, fileAttachment).schedule();
 	}
 
 	/**
-	 * @param name the name of the property
-	 * @return the array value of the property or null if it doesn't exist
+	 * {@inheritDoc}
 	 */
-	public String[] getStringArrayProperty(String name) {
-		String value = getProperty(name);
-		if (value != null) {
-			String[] split = value.split(OrgUnitProperty.ARRAY_SEPARATOR);
-			return split;
-		}
-		return null;
-	}
-
-	/**
-	 * @param name the name of the property
-	 * @return the modelelementid array value of the property or null if it doesn't exist
-	 */
-	public ModelElementId[] getModelElementIdArrayProperty(String name) {
-		String[] value = getStringArrayProperty(name);
-		if (value != null) {
-			ModelElementId[] mids = new ModelElementId[value.length];
-			for (int i = 0; i < value.length; i++) {
-				try {
-					mids[i] = (ModelElementId) ModelUtil.stringToEObject(value[i]);
-				} catch (SerializationException e) {
-					throw new IllegalArgumentException("EObject could not be deserialized!");
-				} catch (ClassCastException e) {
-					throw new IllegalArgumentException("EObject is not a ModelElementId!");
-				}
+	public void loginCompleted() {
+		try {
+			// stop all running file transfers before resuming, to prevent redundant conflicting uploads
+			if (stopTransfers()) {
+				resumeTransfers();
 			}
-			return mids;
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			// TODO MK remove
 		}
-		return null;
 	}
 
+	private void resumeTransfers() {
+		for (PendingFileTransfer transfer : pendingFileTransfers) {
+			if (transfer.isUpload()) {
+				uploadFileToServer(transfer, (FileAttachment) getProject().getModelElement(transfer.getAttachmentId()));
+			} else {
+				downloadFileFromServer(transfer, (FileAttachment) getProject().getModelElement(
+					transfer.getAttachmentId()));
+			}
+		}
+
+	}
+
+	private boolean stopTransfers() {
+		Job[] jobs = Job.getJobManager().find(FileTransferJob.class);
+		for (Job job : jobs) {
+			if (!job.cancel()) {
+				return false;
+			}
+		}
+		return true;
+	}
 } // ProjectContainerImpl
