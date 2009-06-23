@@ -19,6 +19,7 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
@@ -32,6 +33,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 
 	private static ChangePackageVisualizationHelper changePackageVisualizationHelper;
 	private boolean showRootNodes = true;
+	private static Project project;
 
 	/**
 	 * Default constructor.
@@ -40,6 +42,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 	 * @param activeProject the project.
 	 */
 	protected SCMContentProvider(TreeViewer treeViewer, Project activeProject) {
+		project = activeProject;
 	}
 
 	/**
@@ -195,6 +198,13 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		 */
 		@Override
 		protected Object[] getChildren(AbstractOperation op, TreeNode treeNode) {
+			
+			if(op instanceof CompositeOperation){
+				CompositeOperation cop = (CompositeOperation) op;
+				List<TreeNode> nodes = nodify(treeNode, cop.getSubOperations());
+				return nodes.toArray();
+			}
+			
 			List<EObject> mes = new ArrayList<EObject>();
 			ModelElement modelElement = changePackageVisualizationHelper.getModelElement(op.getModelElementId());
 			if(modelElement!=null){
@@ -258,6 +268,11 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		 */
 		@Override
 		protected Object[] getChildren(AbstractOperation op, TreeNode treeNode) {
+			if(op instanceof CompositeOperation){
+				CompositeOperation cop = (CompositeOperation) op;
+				List<TreeNode> nodes = nodify(treeNode, cop.getSubOperations());
+				return nodes.toArray();
+			}
 			Set<EObject> modelElements = changePackageVisualizationHelper.getAffectedElements(op);
 			List<TreeNode> nodes = nodify(treeNode, new ArrayList<EObject>(modelElements));
 			return nodes.toArray();
@@ -273,7 +288,13 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 			if(historyInfo.getChangePackage()==null){
 				return new Object[0];
 			}
-			Set<EObject> modelElements = changePackageVisualizationHelper.getAllModelElements(historyInfo.getChangePackage());
+			Set<EObject> modelElements = null;
+			if(historyInfo.getChangePackage().getLogMessage()==null){
+				ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays.asList(historyInfo.getChangePackage()), project);
+				modelElements = helper.getAllModelElements(historyInfo.getChangePackage());
+			}else{
+				modelElements = changePackageVisualizationHelper.getAllModelElements(historyInfo.getChangePackage());
+			}
 			List<TreeNode> nodes = nodify(treeNode, new ArrayList<EObject>(modelElements));
 			return nodes.toArray();
 
@@ -287,8 +308,13 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		@Override
 		protected Object[] getChildren(ModelElement modelElement, TreeNode treeNode) {
 			if (treeNode.getParent().getValue() instanceof HistoryInfo) {
-				ArrayList<EObject> operations = new ArrayList<EObject>(changePackageVisualizationHelper
-					.getOperations(modelElement,((HistoryInfo)treeNode.getParent().getValue()).getChangePackage()));
+				HistoryInfo historyInfo = (HistoryInfo) treeNode.getParent().getValue() ;
+				ChangePackageVisualizationHelper helper = changePackageVisualizationHelper;
+				if(historyInfo.getChangePackage().getLogMessage()==null){
+					helper = new ChangePackageVisualizationHelper(Arrays.asList(historyInfo.getChangePackage()), project);
+				}
+				ArrayList<EObject> operations = new ArrayList<EObject>(helper
+					.getOperations(modelElement,historyInfo.getChangePackage()));
 				List<TreeNode> nodes = nodify(treeNode, operations);
 				Collections.reverse(nodes);
 				return nodes.toArray();

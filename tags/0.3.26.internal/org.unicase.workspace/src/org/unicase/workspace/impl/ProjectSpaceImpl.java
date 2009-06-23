@@ -36,6 +36,7 @@ import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
@@ -896,19 +897,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		final ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 
-		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		// copy operations from projectspace
-		for (AbstractOperation abstractOperation : getOperations()) {
-			AbstractOperation copy = (AbstractOperation) EcoreUtil.copy(abstractOperation);
-			changePackage.getOperations().add(copy);
-		}
-		// copy events from projectspace
-		for (Event event : getEvents()) {
-			Event copy = (Event) EcoreUtil.copy(event);
-			changePackage.getEvents().add(copy);
-		}
-
-		changePackage.cannonize();
+		ChangePackage changePackage = getCannonizedLocalOperations();
 
 		notifyPreCommitObservers(changePackage);
 
@@ -936,6 +925,28 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		updateDirtyState();
 		return newBaseVersion;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#getCannonizedLocalOperations()
+	 */
+	public ChangePackage getCannonizedLocalOperations() {
+		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
+		// copy operations from projectspace
+		for (AbstractOperation abstractOperation : getOperations()) {
+			AbstractOperation copy = (AbstractOperation) EcoreUtil.copy(abstractOperation);
+			changePackage.getOperations().add(copy);
+		}
+		// copy events from projectspace
+		for (Event event : getEvents()) {
+			Event copy = (Event) EcoreUtil.copy(event);
+			changePackage.getEvents().add(copy);
+		}
+
+		changePackage.cannonize();
+		return changePackage;
 	}
 
 	private void notifyPostCommitObservers(PrimaryVersionSpec newBaseVersion) {
@@ -2120,5 +2131,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void addCommitObserver(CommitObserver observer) {
 		this.commitObservers.add(observer);
+	}
+
+	public void addProperty(OrgUnitProperties property) {
+		if (getUsersession() != null && getUsersession().getACUser() != null) {
+			// getUsersession().getACUser().getProperties()
+		}
 	}
 } // ProjectContainerImpl

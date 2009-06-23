@@ -17,7 +17,9 @@ import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsDescriptionProvider;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -35,6 +37,7 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 	private OperationsDescriptionProvider operationsDescriptionProvider;
 	private Project project;
 	private static final String ELEMENT_NOT_FOUND = "There is no sufficient information to display this element";
+	private static final String LOCAL_REVISION = "Local revision";
 
 	/**
 	 * Default constructor.
@@ -56,40 +59,18 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 	 */
 	@Override
 	public String getText(Object element) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
 		if (element instanceof TreeNode) {
 			Object value = ((TreeNode) element).getValue();
 			String ret = null;
 			if (value instanceof HistoryInfo) {
 				HistoryInfo historyInfo = (HistoryInfo) value;
-				String baseVersion = "";
-				if (historyInfo.getPrimerySpec().getIdentifier() == WorkspaceManager.getProjectSpace(project)
-					.getBaseVersion().getIdentifier()) {
-					baseVersion = "*";
-				}
-				StringBuilder builder = new StringBuilder();
-				builder.append(baseVersion);
-				builder.append("Version ");
-				builder.append(historyInfo.getPrimerySpec().getIdentifier());
-				LogMessage logMessage = null;
-
-				if (historyInfo.getLogMessage() != null) {
-					logMessage = historyInfo.getLogMessage();
-				} else if (historyInfo.getChangePackage()!=null && historyInfo.getChangePackage().getLogMessage() != null) {
-					logMessage = historyInfo.getChangePackage().getLogMessage();
-				}
-				if (logMessage != null) {
-					builder.append(" [");
-					builder.append(logMessage.getAuthor());
-					builder.append(" @ ");
-					builder.append(dateFormat.format(logMessage.getClientDate()));
-					builder.append("] ");
-					builder.append(logMessage.getMessage());
-				}
-				return builder.toString();
-
+				return getText(historyInfo);
 			} else if (value instanceof AbstractOperation) {
-				ret = operationsDescriptionProvider.getDescription((AbstractOperation) value);
+				if(value instanceof CompositeOperation){
+					ret = "Composite operation";
+				}else{
+					ret = operationsDescriptionProvider.getDescription((AbstractOperation) value);
+				}
 			} else if (value instanceof ModelElement) {
 				ret = ((ModelElement) value).getName();
 			} else if (value instanceof ModelElementId) {
@@ -112,6 +93,55 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 		return super.getText(element);
 	}
 
+	private String getText(HistoryInfo historyInfo) {
+		if (historyInfo.getChangePackage()!=null && historyInfo.getChangePackage().getLogMessage() == null){
+			return LOCAL_REVISION;
+		}
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd, HH:mm");
+		String baseVersion = "";
+		if (historyInfo.getPrimerySpec().getIdentifier() == WorkspaceManager.getProjectSpace(project)
+			.getBaseVersion().getIdentifier()) {
+			baseVersion = "*";
+		}
+		StringBuilder builder = new StringBuilder();
+		
+		if(!historyInfo.getTagSpecs().isEmpty()){
+			builder.append("[");
+			for(TagVersionSpec versionSpec : historyInfo.getTagSpecs()){
+				builder.append(versionSpec.getName());
+				builder.append(",");
+			}
+			builder.replace(builder.length()-1, builder.length(), "] ");
+		}
+		
+		builder.append(baseVersion);
+		builder.append("Version ");
+		builder.append(historyInfo.getPrimerySpec().getIdentifier());
+		LogMessage logMessage = null;
+
+		if (historyInfo.getLogMessage() != null) {
+			logMessage = historyInfo.getLogMessage();
+		} else if (historyInfo.getChangePackage()!=null && historyInfo.getChangePackage().getLogMessage() != null) {
+			logMessage = historyInfo.getChangePackage().getLogMessage();
+		}
+		if (logMessage != null) {
+			builder.append(" [");
+			builder.append(logMessage.getAuthor());
+			builder.append(" @ ");
+			builder.append(dateFormat.format(logMessage.getClientDate()));
+			builder.append("] ");
+			builder.append(logMessage.getMessage());
+		}
+		return builder.toString();
+	}
+
+	private TreeNode findTopParent(TreeNode node){
+		TreeNode n = node;
+		while(n.getParent()!=null){
+			n = n.getParent();
+		}
+		return n;
+	}
 	/**
 	 * {@inheritDoc}
 	 */
@@ -121,22 +151,32 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 			return null;
 		}
 		Object value = ((TreeNode)element).getValue();
+		
+		Font italic = JFaceResources.getFontRegistry().getItalic(JFaceResources.DIALOG_FONT);
+		Font bold = JFaceResources.getFontRegistry().getBold(JFaceResources.DIALOG_FONT);
+		
+		if(getText(findTopParent((TreeNode)element)).equals(LOCAL_REVISION)){
+			return italic;
+		}
 		if (value instanceof HistoryInfo) {
+			if(getText(element).equals(LOCAL_REVISION)){
+				return italic;
+			}
 			HistoryInfo historyInfo = (HistoryInfo) value;
 			if (historyInfo.getPrimerySpec().getIdentifier() == WorkspaceManager.getProjectSpace(project)
 				.getBaseVersion().getIdentifier()) {
-				return JFaceResources.getFontRegistry().getBold(JFaceResources.DIALOG_FONT);
+				return bold;
 			}
 		} else if(value instanceof ModelElementId) {
 			if(getText(element).equals(ELEMENT_NOT_FOUND)){
-				return JFaceResources.getFontRegistry().getItalic(JFaceResources.DIALOG_FONT);
+				return italic;
 			}
 		} 
 		if(((TreeNode)element).getParent()!=null && ((TreeNode)element).getParent().getValue() instanceof AbstractOperation){
 			AbstractOperation op = (AbstractOperation) ((TreeNode)element).getParent().getValue();
 			if((value instanceof ModelElementId && value.equals(op.getModelElementId()))
 				|| (value instanceof ModelElement && ((ModelElement)value).getModelElementId().equals(op.getModelElementId()))){
-				return JFaceResources.getFontRegistry().getBold(JFaceResources.DIALOG_FONT);
+				return bold;
 			}
 		}
 		return null;
