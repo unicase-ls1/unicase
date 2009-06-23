@@ -37,7 +37,7 @@ public final class FilePartitionerUtil {
 	public static synchronized void writeChunk(File file, FileChunk fileChunk) throws FileTransferException {
 		FileOutputStream fileOutputStream;
 		try {
-			fileOutputStream = new FileOutputStream(file, true);
+			fileOutputStream = new FileOutputStream(file);
 			fileOutputStream.getChannel().position(fileChunk.getChunkNumber() * CHUNK_SIZE);
 			fileOutputStream.write(fileChunk.getData());
 			// make sure everything is written instantly
@@ -81,7 +81,6 @@ public final class FilePartitionerUtil {
 			// + " | end: " + end);
 			fileInputStream.getChannel().close();
 			fileInputStream.close();
-			fileInformation.setFileName(file.getName());
 			fileInformation.setFileSize(absoluteSize);
 			return new FileChunk(fileInformation, end, data);
 		} catch (IOException e) {
