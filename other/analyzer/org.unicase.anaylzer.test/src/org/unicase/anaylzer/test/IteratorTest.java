@@ -31,15 +31,20 @@ public class IteratorTest extends AnalyzersTest {
     @Test
 	public void defaultVersionIteratorTest() throws IteratorException{
 		for (ProjectInfo pI : super.getProjectList()) {			
-			if (pI.getName().contains("01")) {
+			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
-				int stepLength = 30;
+				int stepLength = 1;
 				VersionIterator projectIt;
 
 				projectIt = new VersionIterator(super.getUserSession(), pI.getProjectId(), stepLength);
+				int tempIdentifier = 0;
 				while (projectIt.hasNext()) {
 					ProjectAnalysisData projectData = projectIt.next();
 					 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
+					 if(projectData.getPrimaryVersionSpec().getIdentifier() != 0){ 
+							assertTrue(super.compareChangePackage(pI.getProjectId(), projectData, tempIdentifier, projectData.getPrimaryVersionSpec().getIdentifier(), true));
+					}
+					 tempIdentifier = projectData.getPrimaryVersionSpec().getIdentifier();
 				}
 			}
 		}
@@ -53,20 +58,24 @@ public class IteratorTest extends AnalyzersTest {
 	@Test
 	public void defaultTimeIteratorTest() throws IteratorException{
 		for (ProjectInfo pI : super.getProjectList()) {			
-			if (pI.getName().contains("-01")) {
+			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
-				int stepLength = 2;
+				int stepLength = 1;
 				TimeIterator projectIt;
 
-				projectIt = new TimeIterator(super.getUserSession(), pI.getProjectId(), stepLength, Calendar.DATE);
+				projectIt = new TimeIterator(super.getUserSession(), pI.getProjectId(), stepLength, Calendar.MINUTE);
+				int tempIdentifier = 0;
 				while (projectIt.hasNext()) {
 					ProjectAnalysisData projectData = projectIt.next();
 					 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
+					 if(projectData.getPrimaryVersionSpec().getIdentifier() != 0){ 
+							assertTrue(super.compareChangePackage(pI.getProjectId(), projectData, tempIdentifier, projectData.getPrimaryVersionSpec().getIdentifier(), true));
+					}
+					 tempIdentifier = projectData.getPrimaryVersionSpec().getIdentifier();
 				}
 
 			}
 		}
-		assertTrue(true);
 	}	
 	
 	/**
@@ -74,28 +83,33 @@ public class IteratorTest extends AnalyzersTest {
 	 * @throws IteratorException IteratorException
 	 */
     @Test
-	public void versionIteratorTest() throws IteratorException{
+	public void OutofBoundVersionIteratorTest() throws IteratorException{
 		for (ProjectInfo pI : super.getProjectList()) {			
-			if (pI.getName().contains("-01")) {
+			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 3;
-				
+				int startPoint = 3;
+				int endPoint = 6;
 
 				PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-				start.setIdentifier(3);
+				start.setIdentifier(startPoint);
 				PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-				end.setIdentifier(24);
+				end.setIdentifier(endPoint);
 				
 				VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
 				 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength,
 				 versionSpecQuery, true, false);
+				 int tempIdentifier = startPoint;
 				while (projectIt.hasNext()) {
 					ProjectAnalysisData projectData = projectIt.next();
 					 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
+					 if(projectData.getPrimaryVersionSpec().getIdentifier() != startPoint){ 
+							assertTrue(super.compareChangePackage(pI.getProjectId(), projectData, tempIdentifier, projectData.getPrimaryVersionSpec().getIdentifier(), true));
+					}
+					tempIdentifier = projectData.getPrimaryVersionSpec().getIdentifier();
 				}
 			}
 		}
-		assertTrue(true);
 	}		
     
 	/**
@@ -119,12 +133,14 @@ public class IteratorTest extends AnalyzersTest {
 				VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
 				 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength,
 				 versionSpecQuery, false, false);
+				 int tempIdentifier = startPoint;
 				while (projectIt.hasNext()) {
 					ProjectAnalysisData projectData = projectIt.next();
 					 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
 					if(projectData.getPrimaryVersionSpec().getIdentifier() != startPoint){ 
-						assertTrue(super.compareChangePackage(pI.getProjectId(), projectData, projectData.getPrimaryVersionSpec().getIdentifier()+stepLength, projectData.getPrimaryVersionSpec().getIdentifier(), false));
+						assertTrue(super.compareChangePackage(pI.getProjectId(), projectData, tempIdentifier, projectData.getPrimaryVersionSpec().getIdentifier(), false));
 					}
+					tempIdentifier = projectData.getPrimaryVersionSpec().getIdentifier();
 				}
 			}
 		}
@@ -151,14 +167,52 @@ public class IteratorTest extends AnalyzersTest {
 				VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
 				 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength,
 				 versionSpecQuery, false, false);
+				 int tempIdentifier = startPoint;
 				while (projectIt.hasNext()) {
 					ProjectAnalysisData projectData = projectIt.next();
 					 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
 					if(projectData.getPrimaryVersionSpec().getIdentifier() != startPoint){ 
-						assertTrue(super.compareChangePackage(pI.getProjectId(), projectData, projectData.getPrimaryVersionSpec().getIdentifier()+stepLength, projectData.getPrimaryVersionSpec().getIdentifier(), false));
+						assertTrue(super.compareChangePackage(pI.getProjectId(), projectData, tempIdentifier, projectData.getPrimaryVersionSpec().getIdentifier(), false));
 					}
+					tempIdentifier = projectData.getPrimaryVersionSpec().getIdentifier();
 				}
 			}
 		}
-	}		
+	}	
+	/**
+	 * Test backward TimeIterator. 
+	 * @throws IteratorException IteratorException
+	 */
+	@Test
+	public void backwardTimeIteratorTest() throws IteratorException{
+		for (ProjectInfo pI : super.getProjectList()) {			
+			if (pI.getName().contains("test")) {
+				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
+				int stepLength = 1;
+				TimeIterator projectIt;
+				int startPoint = 5;
+				int endPoint = 1;
+
+				PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				start.setIdentifier(startPoint);
+				PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+				end.setIdentifier(endPoint);
+				
+				VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
+
+				projectIt = new TimeIterator(super.getUserSession(), pI.getProjectId(), stepLength, Calendar.MINUTE, versionSpecQuery, false, false);
+				int tempIdentifier = startPoint;
+				while (projectIt.hasNext()) {
+					ProjectAnalysisData projectData = projectIt.next();
+					 System.out.println("At Version: " + projectData.getPrimaryVersionSpec().getIdentifier());
+					 if(projectData.getPrimaryVersionSpec().getIdentifier() != startPoint){ 
+						assertTrue(super.compareChangePackage(pI.getProjectId(), projectData, tempIdentifier, projectData.getPrimaryVersionSpec().getIdentifier(), false));
+					}
+					tempIdentifier = projectData.getPrimaryVersionSpec().getIdentifier(); 
+				}
+
+			}
+		}
+	}	
+	
 }
