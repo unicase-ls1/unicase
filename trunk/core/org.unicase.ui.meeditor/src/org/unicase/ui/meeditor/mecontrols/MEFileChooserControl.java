@@ -15,8 +15,6 @@ import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -32,19 +30,19 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.filetransfer.FileTransferObserver;
 import org.unicase.workspace.util.FileTransferUtil;
 
 /**
  * @author pfeifferc
  */
-public class MEFileChooserControl extends AbstractMEControl implements FileTransferObserver {
+public class MEFileChooserControl extends AbstractMEControl {
 
 	private EAttribute attribute;
 
@@ -78,9 +76,15 @@ public class MEFileChooserControl extends AbstractMEControl implements FileTrans
 		fileName.setEditable(false);
 		fileName.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(fileName);
+		// Display.getDefault().syncExec(new Runnable() {
+
+		// public void run() {
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeText(fileName, SWT.FocusOut), model, null, null);
+
+		// }
+		// });
 
 		// Middle column: open/download file
 		Button open = new Button(composite, SWT.PUSH);
@@ -100,14 +104,14 @@ public class MEFileChooserControl extends AbstractMEControl implements FileTrans
 				final FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell());
 				fileDialog.open();
 				if (!fileDialog.getFileName().equals("")) {
-					Display.getCurrent().asyncExec(new Runnable() {
-
-						public void run() {
-							WorkspaceManager.getProjectSpace((FileAttachment) getModelElement()).uploadFileToServer(
-								new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()),
-								(FileAttachment) getModelElement(), MEFileChooserControl.this);
-						}
-					});
+					final FileInformation fileInformation = new FileInformation();
+					fileInformation.setChunkNumber(0);
+					fileInformation.setFileVersion(-1);
+					fileInformation.setFileName(fileDialog.getFileName());
+					fileInformation.setFileAttachmentId(((FileAttachment) getModelElement()).getIdentifier());
+					WorkspaceManager.getProjectSpace((FileAttachment) getModelElement()).addFileTransfer(
+						fileInformation,
+						new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()), true);
 				}
 			}
 		});
@@ -120,56 +124,9 @@ public class MEFileChooserControl extends AbstractMEControl implements FileTrans
 	/**
 	 * {@inheritDoc}
 	 */
-	public void downloadFinished(final Exception exception, final FileAttachment fileAttachment) {
-		Display.getDefault().asyncExec(new Runnable() {
-			public void run() {
-				if (exception != null) {
-					DialogHandler.showErrorDialog(exception.getMessage());
-				} else {
-					MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Download succeeded!",
-						"Download of the file " + fileAttachment.getFileName() + " has succeeded!");
-					openFile(fileAttachment);
-				}
-			}
-		});
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void uploadFinished(final Exception exception, final FileAttachment fileAttachment,
-		final FileInformation fileInformation, final int size) {
-		Display.getDefault().asyncExec(new Runnable() {
-			public void run() {
-				if (exception != null) {
-					DialogHandler.showErrorDialog(exception.getMessage());
-				} else {
-					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain");
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						@Override
-						protected void doExecute() {
-							if (Integer.parseInt(fileAttachment.getFileID()) < fileInformation.getFileVersion()) {
-								fileAttachment.setFileName(FileTransferUtil.getFileName(fileInformation.getFileName(),
-									fileAttachment.getIdentifier()));
-								fileAttachment.setFileID("" + fileInformation.getFileVersion());
-								fileAttachment.setFileSize(size);
-							}
-						}
-					});
-					MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Upload succeeded!",
-						"Upload of the file " + fileAttachment.getFileName() + " has succeeded!");
-				}
-			}
-		});
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void openFile(FileAttachment fileAttachment) {
+	public void openFile(FileInformation fileInfo, ProjectId projectId) {
 		try {
-			FileTransferUtil.openFile(fileAttachment);
+			FileTransferUtil.openFile(fileInfo, projectId);
 		} catch (FileTransferException e) {
 			DialogHandler.showErrorDialog(e.getMessage());
 		}
@@ -194,25 +151,30 @@ public class MEFileChooserControl extends AbstractMEControl implements FileTrans
 		 */
 		private final class TransferRunnable implements Runnable {
 			public void run() {
+				FileInformation fileInformation = new FileInformation();
 				FileAttachment fileAttachment = (FileAttachment) getModelElement();
-				String fileLocation = FileTransferUtil.getCachedFileLocation(fileAttachment, Integer
-					.parseInt(fileAttachment.getFileID()));
+				if (fileAttachment.getFileName() == null || fileAttachment.getFileID() == null) {
+					return;
+				}
+				fileInformation.setFileAttachmentId(fileAttachment.getIdentifier());
+				fileInformation.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
+				File cachedFile = FileTransferUtil.findCachedFile(fileInformation, WorkspaceManager.getProjectSpace(
+					fileAttachment).getProjectId());
 				try {
-					if (fileLocation != null) {
-						File file = new File(fileLocation);
-						if (file.exists()) {
+					if (cachedFile != null) {
+						if (cachedFile.exists()) {
 							long supposedSize = fileAttachment.getFileSize();
-							int actualSize = new FileInputStream(file).available();
+							int actualSize = new FileInputStream(cachedFile).available();
 							if (supposedSize != actualSize) {
 								MessageDialog.openInformation(Display.getDefault().getActiveShell(), "Please wait!",
 									"File download has not yet been completed!");
 							} else {
-								MEFileChooserControl.this.openFile(fileAttachment);
+								MEFileChooserControl.this.openFile(fileInformation, WorkspaceManager.getProjectSpace(
+									fileAttachment).getProjectId());
 							}
 						}
 					} else {
-						WorkspaceManager.getProjectSpace(fileAttachment).downloadFileFromServer(fileAttachment,
-							MEFileChooserControl.this);
+						WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInformation, null, false);
 					}
 				} catch (IOException e) {
 					DialogHandler.showErrorDialog("There was an error accessing the location of the downloaded file!");
