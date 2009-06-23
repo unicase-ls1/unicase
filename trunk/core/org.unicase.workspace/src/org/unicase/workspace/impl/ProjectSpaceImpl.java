@@ -54,7 +54,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.filetransfer.FileInformation;
@@ -1763,7 +1762,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				getOperations().addAll(ops);
 			}
 
-			OperationsCanonizer.canonize(getOperations());
 		}
 
 	}
@@ -1898,7 +1896,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				this.compositeOperation.getSubOperations().add(deleteOperation);
 			} else {
 				this.getOperations().add(deleteOperation);
-				OperationsCanonizer.canonize(getOperations());
 			}
 
 			deleteOperation = null;
@@ -2077,7 +2074,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void endCompositeOperation() {
 		this.getOperations().add(this.compositeOperation);
 		this.compositeOperation = null;
-		OperationsCanonizer.canonize(getOperations());
 		saveProjectSpaceOnly();
 		updateDirtyState();
 	}
