@@ -28,49 +28,6 @@ public class FileInformation implements Serializable {
 	private String fileName;
 
 	/**
-	 * @param chunkNumber chunk number
-	 * @param fileVersion file version
-	 * @param fileName file name
-	 * @param fileAttachmentId file attachment id
-	 */
-	public FileInformation(int chunkNumber, int fileVersion, String fileName, String fileAttachmentId) {
-		this.fileVersion = fileVersion;
-		this.fileName = fileName;
-		this.fileAttachmentId = fileAttachmentId;
-	}
-
-	/**
-	 * @param fileVersion file version
-	 * @param fileName file name
-	 * @param fileAttachmentId file attachment id
-	 */
-	public FileInformation(int fileVersion, String fileName, String fileAttachmentId) {
-		this.fileVersion = fileVersion;
-		this.fileName = fileName;
-		this.fileAttachmentId = fileAttachmentId;
-	}
-
-	/**
-	 * @param chunkNumber chunk number
-	 * @param fileVersion file version
-	 * @param fileAttachmentId file attachment id
-	 */
-	public FileInformation(int chunkNumber, int fileVersion, String fileAttachmentId) {
-		this.chunkNumber = chunkNumber;
-		this.fileVersion = fileVersion;
-		this.fileAttachmentId = fileAttachmentId;
-	}
-
-	/**
-	 * @param chunkNumber chunk number
-	 * @param fileVersion file version
-	 */
-	public FileInformation(int chunkNumber, int fileVersion) {
-		this.chunkNumber = chunkNumber;
-		this.fileVersion = fileVersion;
-	}
-
-	/**
 	 * Default constructor.
 	 */
 	public FileInformation() {
