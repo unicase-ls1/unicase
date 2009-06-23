@@ -5,7 +5,6 @@
  */
 package org.unicase.emfstore.core;
 
-import java.rmi.RemoteException;
 import java.util.List;
 
 import org.unicase.emfstore.EmfStore;
@@ -188,7 +187,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 * {@inheritDoc}
 	 */
 	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
-		throws EmfStoreException, RemoteException {
+		throws EmfStoreException {
 		sanityCheckObjects(new Object[] { sessionId, projectId, fileInformation });
 		checkReadAccess(sessionId, projectId, null);
 		return getSubInterface(FileTransferSubInterfaceImpl.class).readChunk(projectId, fileInformation);
@@ -198,7 +197,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	 * {@inheritDoc}
 	 */
 	public FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
-		throws EmfStoreException, RemoteException {
+		throws EmfStoreException {
 		sanityCheckObjects(new Object[] { sessionId, projectId, fileChunk, fileChunk.getFileInformation() });
 		checkWriteAccess(sessionId, projectId, null);
 		return getSubInterface(FileTransferSubInterfaceImpl.class).writeChunk(fileChunk, projectId);

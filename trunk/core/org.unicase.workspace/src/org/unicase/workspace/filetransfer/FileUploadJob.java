@@ -45,17 +45,12 @@ public class FileUploadJob extends FileTransferJob {
 		try {
 			// get values for the required fields
 			getAttributes();
-			versionFileUpload();
+			getVersionFromServer();
 			getCachedFileLocation();
 			// executes the file transfer (loop)
-			removePendingFileTransfer();
 			executeTransfer(monitor);
 			// set file attachment values
 		} catch (EmfStoreException e) {
-			setException(e);
-			System.out.println(e.getMessage());
-			return Status.CANCEL_STATUS;
-		} catch (RemoteException e) {
 			setException(e);
 			System.out.println(e.getMessage());
 			return Status.CANCEL_STATUS;
@@ -64,7 +59,7 @@ public class FileUploadJob extends FileTransferJob {
 		return Status.OK_STATUS;
 	}
 
-	private void versionFileUpload() throws EmfStoreException, RemoteException {
+	private void getVersionFromServer() throws EmfStoreException {
 		// if fileVersion is set to -1, request file version
 		if (getTransfer().getFileVersion() == -1) {
 			int version = getConnectionManager().uploadFileChunk(getSessionId(), getProjectId(),
@@ -97,7 +92,7 @@ public class FileUploadJob extends FileTransferJob {
 	 * @throws EmfStoreException if any error occurs in the emf store
 	 * @throws RemoteException if any remote error occurs
 	 */
-	private void executeTransfer(IProgressMonitor monitor) throws EmfStoreException, RemoteException {
+	private void executeTransfer(IProgressMonitor monitor) throws EmfStoreException {
 		FileChunk fileChunk;
 		setTotalWork(monitor);
 		monitor.worked(getFileInformation().getChunkNumber());
