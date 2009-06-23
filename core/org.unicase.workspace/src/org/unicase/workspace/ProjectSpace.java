@@ -25,13 +25,12 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
-import org.unicase.model.attachment.FileAttachment;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
-import org.unicase.workspace.filetransfer.FileTransferObserver;
 import org.unicase.workspace.util.CommitObserver;
 import org.unicase.workspace.util.UpdateObserver;
 
@@ -589,21 +588,11 @@ public interface ProjectSpace extends IdentifiableElement {
 	CompositeOperationHandle beginCompositeOperation();
 
 	/**
-	 * Uploads a file to the server.
-	 * 
-	 * @param selectedFile the selected file
-	 * @param fileAttachment the file attachment
-	 * @param fileTransferObserver file transfer observer interface
+	 * @param fileInformation file information data object
+	 * @param selectedFile file to upload
+	 * @param upload true if upload, false if download
 	 */
-	void uploadFileToServer(File selectedFile, FileAttachment fileAttachment, FileTransferObserver fileTransferObserver);
-
-	/**
-	 * Downloads a file from the server.
-	 * 
-	 * @param fileAttachment the file attachment
-	 * @param fileTransferObserver file transfer observer interface
-	 */
-	void downloadFileFromServer(FileAttachment fileAttachment, FileTransferObserver fileTransferObserver);
+	void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean upload);
 
 	/**
 	 * Add a commit observer to the project space.
