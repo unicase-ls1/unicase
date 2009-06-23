@@ -1120,13 +1120,21 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 		}
 		for (FileAttachment fileAttachment : attachmentsToDownload) {
-			PendingFileTransfer transfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
+			final PendingFileTransfer transfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
 			transfer.setAttachmentId(fileAttachment.getModelElementId());
 			transfer.setChunkNumber(0);
 			transfer.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
 			transfer.setFileName(fileAttachment.getFileName());
 			transfer.setPreliminaryFileName(null);
 			transfer.setUpload(false);
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					getPendingFileTransfers().add(transfer);
+				}
+			});
 		}
 	}
 
@@ -2165,7 +2173,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		try {
 			// stop all running file transfers before resuming, to prevent redundant conflicting uploads
 			if (stopTransfers()) {
-				resumeTransfers();
+				// resumeTransfers();
 			}
 		} catch (RuntimeException e) {
 			e.printStackTrace();
