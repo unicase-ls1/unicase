@@ -65,6 +65,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	private PartListener partListener;
 	private Workspace currentWorkspace;
 	private AdapterImpl workspaceListenerAdapter;
+	private boolean shouldRefresh;
 
 	/**
 	 * Constructor.
@@ -488,7 +489,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	 * {@inheritDoc}
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
-		if (modelElement.eContainer().equals(project)) {
+		if (shouldRefresh) {
 			viewer.refresh();
 		}
 	}
@@ -497,6 +498,10 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	 * {@inheritDoc}
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		shouldRefresh = false;
+		if (modelElement.eContainer().equals(project)) {
+			shouldRefresh = true;
+		}
 	}
 
 	/**
