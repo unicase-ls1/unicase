@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.navigator;
 
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -37,19 +39,23 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
+import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.WorkspacePackage;
 
 /**
  * The standard navigator tree view.
  * 
  * @author helming
  */
-public class TreeView extends ViewPart { // implements IShowInSource
+public class TreeView extends ViewPart implements ProjectChangeObserver { // implements IShowInSource
 
 	private static TreeViewer viewer;
 	private MenuManager menuMgr;
@@ -57,11 +63,36 @@ public class TreeView extends ViewPart { // implements IShowInSource
 	private boolean isLinkedWithEditor;
 	private Action linkWithEditor;
 	private PartListener partListener;
+	private Workspace currentWorkspace;
+	private AdapterImpl workspaceListenerAdapter;
 
 	/**
 	 * Constructor.
 	 */
 	public TreeView() {
+		currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+		for (ProjectSpace projectSpace : currentWorkspace.getProjectSpaces()) {
+			projectSpace.getProject().addProjectChangeObserver(this);
+		}
+		workspaceListenerAdapter = new AdapterImpl() {
+
+			@Override
+			public void notifyChanged(Notification msg) {
+				if ((msg.getFeatureID(Workspace.class)) == WorkspacePackage.WORKSPACE__PROJECT_SPACES) {
+					if (msg.getEventType() == Notification.ADD
+						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getNewValue())) {
+						ProjectSpace projectSpace = (ProjectSpace) msg.getNewValue();
+						projectSpace.getProject().addProjectChangeObserver(TreeView.this);
+					} else if (msg.getEventType() == Notification.REMOVE
+						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getOldValue())) {
+						ProjectSpace projectSpace = (ProjectSpace) msg.getOldValue();
+						projectSpace.getProject().removeProjectChangeObserver(TreeView.this);
+					}
+				}
+				super.notifyChanged(msg);
+			}
+		};
+		currentWorkspace.eAdapters().add(workspaceListenerAdapter);
 	}
 
 	/**
@@ -72,6 +103,10 @@ public class TreeView extends ViewPart { // implements IShowInSource
 	@Override
 	public void dispose() {
 		getSite().getPage().removePartListener(partListener);
+		for (ProjectSpace projectSpace : currentWorkspace.getProjectSpaces()) {
+			projectSpace.getProject().removeProjectChangeObserver(this);
+		}
+		currentWorkspace.eAdapters().remove(workspaceListenerAdapter);
 		super.dispose();
 	}
 
@@ -85,7 +120,7 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
 			.getLabelDecorator()));
 		viewer.setContentProvider(new TreeContentProvider());
-		viewer.setInput(WorkspaceManager.getInstance().getCurrentWorkspace());
+		viewer.setInput(currentWorkspace);
 
 		// this is for workaround for update problem in navigator
 		getSite().setSelectionProvider(viewer);
@@ -438,6 +473,36 @@ public class TreeView extends ViewPart { // implements IShowInSource
 		public void partVisible(IWorkbenchPartReference partRef) {
 		}
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void modelElementAdded(Project project, ModelElement modelElement) {
+		if (modelElement.eContainer().equals(project)) {
+			viewer.refresh();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
+		if (modelElement.eContainer().equals(project)) {
+			viewer.refresh();
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void notify(Notification notification, Project project, ModelElement modelElement) {
 	}
 
 }
