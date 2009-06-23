@@ -8,18 +8,20 @@ package org.unicase.workspace.filetransfer;
 
 import java.io.File;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.emfstore.filetransfer.FilePartitionerUtil;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
-import org.unicase.workspace.impl.WorkspaceFactoryImpl;
 
 /**
  * Job for the file download.
@@ -29,12 +31,13 @@ import org.unicase.workspace.impl.WorkspaceFactoryImpl;
 public abstract class FileTransferJob extends Job {
 
 	private ConnectionManager connectionManager;
-	private SessionId sessionId;
-	private ProjectId projectId;
-	private FileInformation fileInformation;
-	private FileAttachment fileAttachment;
 	private Exception exception;
 	private File file;
+	private FileAttachment fileAttachment;
+	private FileInformation fileInformation;
+	private PendingFileTransfer transfer;
+	private ProjectId projectId;
+	private SessionId sessionId;
 
 	/**
 	 * @param name of the job
@@ -44,23 +47,18 @@ public abstract class FileTransferJob extends Job {
 	}
 
 	/**
-	 * Adds a pending file transfer to the pending file transfers.
+	 * Sets a pending file transfer from the pending file transfers.
 	 * 
 	 * @param upload true if pending file transfer is upload
+	 * @param version version of the file
 	 */
-	protected void addPendingFileTransfer(final boolean upload) {
-		removePendingFileTransfer(upload);
+	protected void setPendingFileTransferVersion(final boolean upload, final int version) {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				PendingFileTransfer transfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
-				transfer.setAttachmentId(fileAttachment.getModelElementId());
-				transfer.setChunkNumber(fileInformation.getChunkNumber());
-				transfer.setFileVersion(fileInformation.getFileVersion());
-				transfer.setUpload(upload);
-				WorkspaceManager.getProjectSpace(fileAttachment).getPendingFileTransfers().add(transfer);
+				transfer.setFileVersion(version);
 				((ProjectSpaceImpl) WorkspaceManager.getProjectSpace(fileAttachment)).saveProjectSpaceOnly();
 			}
 		});
@@ -68,25 +66,14 @@ public abstract class FileTransferJob extends Job {
 
 	/**
 	 * Sets a pending file transfer from the pending file transfers.
-	 * 
-	 * @param upload true if pending file transfer is upload
 	 */
-	protected void setPendingFileTransfer(final boolean upload) {
+	protected void setPendingFileTransfer() {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				for (PendingFileTransfer transfer : WorkspaceManager.getProjectSpace(fileAttachment)
-					.getPendingFileTransfers()) {
-					if (transfer.getAttachmentId() != null
-						&& transfer.getAttachmentId().getId().equals(fileAttachment.getIdentifier())
-						&& transfer.isUpload() == upload
-						&& transfer.getFileVersion() == fileInformation.getFileVersion()) {
-						transfer.setChunkNumber(fileInformation.getChunkNumber());
-						break;
-					}
-				}
+				transfer.setChunkNumber(fileInformation.getChunkNumber());
 				((ProjectSpaceImpl) WorkspaceManager.getProjectSpace(fileAttachment)).saveProjectSpaceOnly();
 			}
 		});
@@ -94,25 +81,14 @@ public abstract class FileTransferJob extends Job {
 
 	/**
 	 * Removes a pending file transfer from the pending file transfers. *
-	 * 
-	 * @param upload true if pending file transfer is upload
 	 */
-	protected void removePendingFileTransfer(final boolean upload) {
+	protected void removePendingFileTransfer() {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				for (PendingFileTransfer transfer : WorkspaceManager.getProjectSpace(fileAttachment)
-					.getPendingFileTransfers()) {
-					if (transfer.getAttachmentId() != null
-						&& transfer.getAttachmentId().getId().equals(fileAttachment.getIdentifier())
-						&& transfer.isUpload() == upload
-						&& transfer.getFileVersion() == fileInformation.getFileVersion()) {
-						WorkspaceManager.getProjectSpace(fileAttachment).getPendingFileTransfers().remove(transfer);
-						break;
-					}
-				}
+				WorkspaceManager.getProjectSpace(fileAttachment).getPendingFileTransfers().remove(transfer);
 				((ProjectSpaceImpl) WorkspaceManager.getProjectSpace(fileAttachment)).saveProjectSpaceOnly();
 			}
 		});
@@ -120,8 +96,14 @@ public abstract class FileTransferJob extends Job {
 
 	/**
 	 * Gets the attributes required for the file transfer.
+	 * 
+	 * @throws FileTransferException if there are any null values in the attributes
 	 */
-	protected void getAttributes() {
+	protected void getAttributes() throws FileTransferException {
+		if (fileAttachment == null || fileAttachment.getModelElementId() == null) {
+			throw new FileTransferException(
+				"Cannot access important information to initiate file upload. Possibly, the file attachment has been deleted.");
+		}
 		// read values from file attachment
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
@@ -133,6 +115,38 @@ public abstract class FileTransferJob extends Job {
 				projectId = WorkspaceManager.getProjectSpace(fileAttachment).getProjectId();
 			}
 		});
+		if (sessionId == null || projectId == null || connectionManager == null) {
+			throw new FileTransferException(
+				"Cannot access important information to initiate file upload. Possibly, the file attachment has been deleted.");
+		}
+	}
+
+	/**
+	 * Sets the attributes required for the file transfer.
+	 */
+	protected void setAttributes() {
+		// read values from file attachment
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				if (fileAttachment.getFileID() == null || fileAttachment.getFileID().equals("")
+					|| Integer.parseInt(fileAttachment.getFileID()) <= fileInformation.getFileVersion()) {
+					fileAttachment.setFileName(fileInformation.getFileName());
+					fileAttachment.setFileID("" + fileInformation.getFileVersion());
+					fileAttachment.setFileSize(fileInformation.getFileSize());
+				}
+			}
+		});
+	}
+
+	/**
+	 * @param monitor monitor
+	 */
+	protected void setTotalWork(IProgressMonitor monitor) {
+		monitor.beginTask("Downloading ", (int) (Math.ceil(getFileInformation().getFileSize()) / FilePartitionerUtil
+			.getChunkSize()));
 	}
 
 	/**
@@ -205,10 +219,13 @@ public abstract class FileTransferJob extends Job {
 	}
 
 	/**
-	 * @param fileInformation file information data object
 	 */
-	protected void setFileInformation(FileInformation fileInformation) {
-		this.fileInformation = fileInformation;
+	protected void setFileInformation() {
+		this.fileInformation = new FileInformation();
+		fileInformation.setChunkNumber(transfer.getChunkNumber());
+		fileInformation.setFileName(transfer.getFileName());
+		fileInformation.setFileVersion(transfer.getFileVersion());
+		fileInformation.setFileAttachmentId(transfer.getAttachmentId().getId());
 	}
 
 	/**
@@ -237,5 +254,19 @@ public abstract class FileTransferJob extends Job {
 	 */
 	protected void setFile(File file) {
 		this.file = file;
+	}
+
+	/**
+	 * @param transfer transfer
+	 */
+	protected void setTransfer(PendingFileTransfer transfer) {
+		this.transfer = transfer;
+	}
+
+	/**
+	 * @return the transfer
+	 */
+	protected PendingFileTransfer getTransfer() {
+		return transfer;
 	}
 }

@@ -6,17 +6,17 @@
 package org.unicase.workspace.filetransfer;
 
 import java.io.File;
-import java.io.IOException;
 import java.rmi.RemoteException;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileChunk;
-import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.emfstore.filetransfer.FilePartitionerUtil;
 import org.unicase.model.attachment.FileAttachment;
+import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.util.FileTransferUtil;
 
 /**
@@ -24,20 +24,17 @@ import org.unicase.workspace.util.FileTransferUtil;
  */
 public class FileUploadJob extends FileTransferJob {
 
-	private int size;
-
 	/**
 	 * If the selectedFile is null, this means that the file transfer is to be resumed from cache.
 	 * 
-	 * @param selectedFile the file selected for upload
+	 * @param transfer the pending file transfer object
 	 * @param fileAttachment the file attachment which shall refer to the uploaded file (if upload succeeds)
-	 * @param fileInformation file information
 	 */
-	public FileUploadJob(File selectedFile, FileAttachment fileAttachment, FileInformation fileInformation) {
-		super("File Upload Job");
-		setFile(selectedFile);
+	public FileUploadJob(PendingFileTransfer transfer, FileAttachment fileAttachment) {
+		super("File Upload Job " + transfer.getFileName());
+		setTransfer(transfer);
 		setFileAttachment(fileAttachment);
-		setFileInformation(fileInformation);
+		setFileInformation();
 	}
 
 	/**
@@ -45,48 +42,51 @@ public class FileUploadJob extends FileTransferJob {
 	 */
 	@Override
 	protected IStatus run(IProgressMonitor monitor) {
-		// get values for the required fields
-		getAttributes();
-		// upload file chunks
 		try {
+			// get values for the required fields
+			getAttributes();
 			versionFileUpload();
-			getLocationOfFileToUpload();
-			size = FilePartitionerUtil.getFileSize(getFile());
-			// set the upload monitor
-			monitor.beginTask("Uploading "
-				+ FileTransferUtil.getFileName(getFile(), getFileInformation().getFileAttachmentId()),
-				FilePartitionerUtil.getNumberOfChunks(getFile()));
+			getCachedFileLocation();
 			// executes the file transfer (loop)
+			removePendingFileTransfer();
 			executeTransfer(monitor);
 			// set file attachment values
 		} catch (EmfStoreException e) {
 			setException(e);
+			System.out.println(e.getMessage());
 			return Status.CANCEL_STATUS;
-		} catch (IOException e) {
+		} catch (RemoteException e) {
 			setException(e);
+			System.out.println(e.getMessage());
 			return Status.CANCEL_STATUS;
 		}
+		setAttributes();
 		return Status.OK_STATUS;
 	}
 
 	private void versionFileUpload() throws EmfStoreException, RemoteException {
 		// if fileVersion is set to -1, request file version
-		if (getFileInformation().getFileVersion() == -1) {
-			getFileInformation().setFileVersion(
-				getConnectionManager().uploadFileChunk(getSessionId(), getProjectId(),
-					new FileChunk(getFileInformation(), false, null)).getFileVersion());
+		if (getTransfer().getFileVersion() == -1) {
+			int version = getConnectionManager().uploadFileChunk(getSessionId(), getProjectId(),
+				new FileChunk(getFileInformation(), false, null)).getFileVersion();
+			setPendingFileTransferVersion(true, version);
+			getFileInformation().setFileVersion(version);
 		}
 	}
 
-	private void getLocationOfFileToUpload() throws IOException {
-		// if the file is null, then the job is resuming
-		if (getFile() != null) {
-			// copy file to cache, so that it can be resumed from cache (consistency)
-			setFile(FileTransferUtil.copyFileToCache(getFile(), getFileAttachment(), getFileInformation()));
-		} else {
-			setFile(new File(FileTransferUtil.getCachedFileLocation(getFileAttachment(), getFileInformation()
-				.getFileVersion())));
+	private void getCachedFileLocation() throws FileTransferException {
+		File versionedCachedFile = FileTransferUtil.getCachedFile(getFileInformation(), getProjectId());
+		if (getTransfer().getPreliminaryFileName() != null) {
+			File unversionedCachedFile = FileTransferUtil.getUnversionedCachedFile(getTransfer(), getProjectId());
+			if (unversionedCachedFile == null) {
+				throw new FileTransferException("The cached file could not be found!");
+			}
+			unversionedCachedFile.renameTo(versionedCachedFile);
+		} else if (!versionedCachedFile.exists()) {
+			throw new FileTransferException("The cached file could not be found!");
 		}
+		setFile(versionedCachedFile);
+		getFileInformation().setFileSize(FilePartitionerUtil.getFileSize(getFile()));
 	}
 
 	/**
@@ -99,29 +99,15 @@ public class FileUploadJob extends FileTransferJob {
 	 */
 	private void executeTransfer(IProgressMonitor monitor) throws EmfStoreException, RemoteException {
 		FileChunk fileChunk;
-		addPendingFileTransfer(true);
+		setTotalWork(monitor);
 		monitor.worked(getFileInformation().getChunkNumber());
 		do {
 			fileChunk = FilePartitionerUtil.readChunk(getFile(), getFileInformation());
 			getConnectionManager().uploadFileChunk(getSessionId(), getProjectId(), fileChunk);
 			monitor.worked(1);
 			getFileInformation().setChunkNumber(getFileInformation().getChunkNumber() + 1);
-			setPendingFileTransfer(true);
+			setPendingFileTransfer();
 		} while (!fileChunk.isLast());
-		removePendingFileTransfer(true);
-	}
-
-	/**
-	 * @return the original file name of the uploaded file
-	 */
-	public String getUploadedFileName() {
-		return FileTransferUtil.getFileName(getFile(), getFileAttachment().getIdentifier());
-	}
-
-	/**
-	 * @return size
-	 */
-	public int getSize() {
-		return size;
+		removePendingFileTransfer();
 	}
 }

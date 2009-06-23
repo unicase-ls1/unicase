@@ -6,6 +6,7 @@
 
 package org.unicase.workspace.filetransfer;
 
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.attachment.FileAttachment;
 
@@ -17,17 +18,17 @@ import org.unicase.model.attachment.FileAttachment;
 public interface FileTransferObserver {
 
 	/**
-	 * @param exception that might have been thrown
-	 * @param fileAttachment for which the upload was finished
+	 * @param fileInfo file information
+	 * @param exception exception that might be thrown
+	 * @param projectId project id
 	 */
-	void downloadFinished(final Exception exception, final FileAttachment fileAttachment);
+	void downloadFinished(final FileInformation fileInfo, final Exception exception, final ProjectId projectId);
 
 	/**
 	 * @param exception that might have been thrown
 	 * @param fileAttachment for which the download was finished
 	 * @param fileInformation file information
-	 * @param size size
 	 */
 	void uploadFinished(final Exception exception, final FileAttachment fileAttachment,
-		final FileInformation fileInformation, final int size);
+		final FileInformation fileInformation);
 }
