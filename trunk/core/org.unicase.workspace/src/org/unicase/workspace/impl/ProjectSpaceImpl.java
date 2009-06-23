@@ -2142,7 +2142,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			try {
 				FileTransferUtil.copyUnversionedFileToCache(selectedFile, uUID, projectId);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
+				// TODO GUI
 				e.printStackTrace();
 			}
 		} else {
@@ -2181,20 +2181,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 	}
 
-	@SuppressWarnings("unused")
 	private void resumeTransfers() {
 		for (final PendingFileTransfer transfer : pendingFileTransfers) {
 			FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
 			if (fileAttachment == null) {
-				// if the file attachment
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
-					@Override
-					protected void doExecute() {
-						getPendingFileTransfers().remove(transfer);
-					}
-				});
+				// TODO: mark for deletion?
+				continue;
 			} else if (transfer.isUpload()) {
 				uploadFileToServer(transfer, fileAttachment);
 			} else {
