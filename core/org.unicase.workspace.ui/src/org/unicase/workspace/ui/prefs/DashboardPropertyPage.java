@@ -41,8 +41,6 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.util.RecordingCommandWithResult;
 
 /**
@@ -62,7 +60,7 @@ public class DashboardPropertyPage extends PropertyPage {
 	private HashMap<String, String> providerHints;
 	private AdapterFactoryLabelProvider labelProvider;
 	private Project project;
-	private ProjectSpaceImpl projectSpace;
+	//private ProjectSpaceImpl projectSpace;
 	private ArrayList<ModelElement> subscriptions;
 
 	/**
@@ -300,7 +298,7 @@ public class DashboardPropertyPage extends PropertyPage {
 
 		project = (Project) getElement();
 
-		projectSpace = (ProjectSpaceImpl) WorkspaceManager.getProjectSpace(project);
+		//projectSpace = (ProjectSpaceImpl) WorkspaceManager.getProjectSpace(project);
 		providerHints = new HashMap<String, String>();
 
 		providerHints.put(TASK_PROVIDER, "Shows notifications for tasks that have been assigned to you.");
@@ -313,16 +311,16 @@ public class DashboardPropertyPage extends PropertyPage {
 			"Shows notifications for new comments regarding your tasks or a discussion you participate in.");
 		providerHints.put(PUSHED_COMMENTS_PROVIDER, "Shows comments that were personally sent to you.");
 
-		ModelElementId[] subscriptionsIds = projectSpace.getModelElementIdArrayProperty("dashboardSubscriptions");
-		if (subscriptionsIds != null) {
-			subscriptions = new ArrayList<ModelElement>();
-			for (ModelElementId id : subscriptionsIds) {
-				ModelElement modelElement = project.getModelElement(id);
-				if (modelElement != null) {
-					subscriptions.add(modelElement);
-				}
-			}
-		}
+//		//ModelElementId[] subscriptionsIds = projectSpace.getModelElementIdArrayProperty("dashboardSubscriptions");
+//		if (subscriptionsIds != null) {
+//			subscriptions = new ArrayList<ModelElement>();
+//			for (ModelElementId id : subscriptionsIds) {
+//				ModelElement modelElement = project.getModelElement(id);
+//				if (modelElement != null) {
+//					subscriptions.add(modelElement);
+//				}
+//			}
+//		}
 
 		return true;
 
@@ -347,13 +345,13 @@ public class DashboardPropertyPage extends PropertyPage {
 
 			@Override
 			protected void doExecute() {
-				String prefix = "dashboard";
+				//String prefix = "dashboard";
 				if (subscriptions != null) {
 					ArrayList<ModelElementId> subscriptionsIds = new ArrayList<ModelElementId>();
 					for (ModelElement me : subscriptions) {
 						subscriptionsIds.add(me.getModelElementId());
 					}
-					projectSpace.setProperty(prefix + "Subscriptions", subscriptionsIds.toArray(new ModelElementId[0]));
+					//projectSpace.setProperty(prefix + "Subscriptions", subscriptionsIds.toArray(new ModelElementId[0]));
 				}
 			}
 		};
