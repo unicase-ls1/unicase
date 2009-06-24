@@ -5,6 +5,8 @@
  */
 package org.unicase.model.rationale;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
@@ -95,5 +97,23 @@ public interface Comment extends ModelElement, NonDomainElement {
 	 * @generated
 	 */
 	void setCommentedElement(ModelElement value);
+
+	/**
+	 * @return the parents of the comments thread.
+	 * @generated NOT
+	 */
+	List<ModelElement> getParents();
+
+	/**
+	 * @return the top parent of the comments thread.
+	 * @generated NOT
+	 */
+	ModelElement getFirstParent();
+
+	/**
+	 * @return the thread for this comment. Also includes the comment itself.
+	 * @generated NOT
+	 */
+	List<Comment> getThread();
 
 } // Comment

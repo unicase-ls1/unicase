@@ -22,6 +22,7 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.provider.AssignmentNotificationProvider;
+import org.unicase.workspace.notification.provider.CommentsNotificationProvider;
 import org.unicase.workspace.notification.provider.PushedNotificationProvider;
 import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
@@ -59,6 +60,7 @@ public final class NotificationGenerator {
 		result.addNotificationProvider(new TaskObjectNotificationProvider());
 
 		result.addNotificationProvider(new PushedNotificationProvider());
+		result.addNotificationProvider(new CommentsNotificationProvider());
 
 		return result;
 	}

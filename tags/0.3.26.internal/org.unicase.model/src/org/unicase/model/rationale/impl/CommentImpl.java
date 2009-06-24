@@ -5,7 +5,9 @@
  */
 package org.unicase.model.rationale.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -310,6 +312,34 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 			return basicGetCommentedElement() != null;
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ModelElement getFirstParent() {
+		ModelElement parent = this;
+		while (parent != null && parent instanceof Comment) {
+			parent = ((Comment) parent).getCommentedElement();
+		}
+		return parent;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<Comment> getThread() {
+		ArrayList<Comment> ret = new ArrayList<Comment>();
+		ret.add(this);
+		for (Comment reply : getComments()) {
+			ret.addAll(reply.getThread());
+		}
+		return ret;
+	}
+
+	public List<ModelElement> getParents() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } // CommentImpl
