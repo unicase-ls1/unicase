@@ -48,7 +48,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	public static final String ID = "org.unicase.ui.ganttview.views.GanttView";
 
 	private static final int SPACER = 2;
-	private static final int ONE_ROW_HEIGHT = 24;
+	private static final int ONE_ROW_HEIGHT = 25;
 
 	private GanttChart ganttChart;
 	private Composite parent;
@@ -100,10 +100,10 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		ganttChart.addGanttEventListener(this);
 
-		// ganttChart.getGanttComposite().setDrawHorizontalLinesOverride(true);
-		// ganttChart.getGanttComposite().setDrawVerticalLinesOverride(false);
-		// ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HEIGHT - SPACER);
-		// ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
+		ganttChart.getGanttComposite().setDrawHorizontalLinesOverride(true);
+		ganttChart.getGanttComposite().setDrawVerticalLinesOverride(false);
+		ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HEIGHT - SPACER);
+		ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
 		// ganttCpLeft.setGanttChart(ganttChart);
 
 		sashForm.setWeights(new int[] { 30, 70 });
