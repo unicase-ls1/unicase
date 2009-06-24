@@ -80,14 +80,30 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		// createTree(ganttCpLeft);
 		createTree(sashForm);
 
-		ganttChart = new GanttChart(sashForm, SWT.NONE, new ReadOnlySettings());
+		UnicaseSettings roSettings = new ReadOnlySettings();
+
+		// roSettings.setEventHeight(treeViewer.getTree().getItemHeight() + treeViewer.getTree().getGridLineWidth());
+		// treeViewer.getTree().getItem(0).getBounds().height
+		// roSettings.setEventHeight(treeViewer.getTree().getItem(0).getBounds().height);
+		// roSettings.setHeaderHeight(treeViewer.getTree().getHeaderHeight());
+		ganttChart = new GanttChart(sashForm, SWT.NONE, roSettings);
+
+		// System.out.println("treeViewer.getTree().getItemHeight(): " + treeViewer.getTree().getItemHeight());
+		// System.out.println("treeViewer.getTree().getGridLineWidth(): " + treeViewer.getTree().getGridLineWidth());
+		// System.out.println("treeViewer.getTree().computeSize(999, 999): " + treeViewer.getTree().computeSize(999,
+		// 999));
+		//
+		// System.out.println("roSettings.getEventHeight(): " + roSettings.getEventHeight());
+		// System.out.println("roSettings.getEventSpacer(): " + roSettings.getEventSpacer());
+		// System.out.println("roSettings.getEventsTopSpacer(): " + roSettings.getEventsTopSpacer());
+		// System.out.println("roSettings.getEventsBottomSpacer(): " + roSettings.getEventsBottomSpacer());
 
 		ganttChart.addGanttEventListener(this);
 
-		ganttChart.getGanttComposite().setDrawHorizontalLinesOverride(true);
-		ganttChart.getGanttComposite().setDrawVerticalLinesOverride(false);
-		ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HEIGHT - SPACER);
-		ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
+		// ganttChart.getGanttComposite().setDrawHorizontalLinesOverride(true);
+		// ganttChart.getGanttComposite().setDrawVerticalLinesOverride(false);
+		// ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HEIGHT - SPACER);
+		// ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
 		// ganttCpLeft.setGanttChart(ganttChart);
 
 		sashForm.setWeights(new int[] { 30, 70 });
@@ -267,6 +283,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		treeViewer.setInput(project);
 		treeViewer.expandAll();
+		// TODO rm
+		// System.out.println("treeViewer.getTree().getItemHeight() 2: " + treeViewer.getTree().getItemHeight());
+		// System.out.println("treeViewer.getTree().getGridLineWidth() 2: " + treeViewer.getTree().getGridLineWidth());
 	}
 
 	//
