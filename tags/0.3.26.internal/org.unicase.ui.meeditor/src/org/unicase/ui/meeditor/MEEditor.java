@@ -94,6 +94,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private TransactionalEditingDomain editingDomain;
 	private MEEditorPage mePage;
 	private METhreadPage commentsPage;
+	private MEDescriptionPage descriptionPage;
 
 	private Adapter eAdapter;
 
@@ -116,8 +117,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 			mePage = new MEEditorPage(this, "Edit", "Standard View", editingDomain, modelElement);
 		}
 		commentsPage = new METhreadPage(this, "Discussion", "Discussion", editingDomain, modelElement);
+		descriptionPage = new MEDescriptionPage(this, "Description", "Description", editingDomain, modelElement);
 		try {
 			addPage(mePage);
+			addPage(descriptionPage);
 			addPage(commentsPage);
 		} catch (PartInitException e) {
 			// JH Auto-generated catch block
