@@ -105,13 +105,9 @@ public class MEFileChooserControl extends AbstractMEControl {
 					fileInformation.setFileVersion(-1);
 					fileInformation.setFileName(fileDialog.getFileName());
 					fileInformation.setFileAttachmentId(((FileAttachment) getModelElement()).getIdentifier());
-					try {
-						WorkspaceManager.getProjectSpace((FileAttachment) getModelElement()).addFileTransfer(
-							fileInformation,
-							new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()), true);
-					} catch (FileTransferException e1) {
-						DialogHandler.showErrorDialog(e1.getMessage());
-					}
+					WorkspaceManager.getProjectSpace((FileAttachment) getModelElement()).addFileTransfer(
+						fileInformation,
+						new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()), true);
 				}
 			}
 		});
@@ -191,11 +187,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 							fileAttachment).getProjectId());
 					}
 				} catch (FileNotFoundException e1) {
-					try {
-						WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInformation, null, false);
-					} catch (FileTransferException e) {
-						DialogHandler.showErrorDialog(e.getMessage());
-					}
+					WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInformation, null, false);
 				} catch (IOException e) {
 					DialogHandler.showErrorDialog("There was an error accessing the location of the downloaded file!");
 				}
