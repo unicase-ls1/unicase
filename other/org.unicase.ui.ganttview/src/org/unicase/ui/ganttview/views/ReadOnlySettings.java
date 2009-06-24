@@ -1,8 +1,7 @@
 package org.unicase.ui.ganttview.views;
 
-import org.eclipse.nebula.widgets.ganttchart.DefaultSettings;
 
-public class ReadOnlySettings extends DefaultSettings {
+public class ReadOnlySettings extends UnicaseSettings {
 
 	@Override
 	public boolean allowCheckpointResizing() {
@@ -33,4 +32,5 @@ public class ReadOnlySettings extends DefaultSettings {
 	public boolean showResizeDateTipOnBorders() {
 		return false;
 	}
+
 }
