@@ -587,5 +587,20 @@
                      type="org.unicase.model.ModelElement">
                </propertyTester>
             </extension>
+            <extension
+                  point="org.eclipse.ui.popupMenus">
+               <objectContribution
+                     adaptable="false"
+                     id="org.unicase.classDiagram.ShowRelatedElementsAction"
+                     objectClass="org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart">
+                  <action
+                        class="org.unicase.model.classDiagram.part.ShowRelatedElementsAction"
+                        enablesFor="1"
+                        icon="icons/incomingLinksNavigatorGroup.gif"
+                        id="org.unicase.classDiagram.ShowRelatedElementsAction"
+                        label="Show related elements">
+                  </action>
+               </objectContribution>
+            </extension>
 
 </plugin>

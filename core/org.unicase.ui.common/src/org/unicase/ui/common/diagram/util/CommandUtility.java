@@ -56,7 +56,7 @@ public final class CommandUtility {
 	 * @param editParts The {@link EditPart}s whose CanonicalEditPolicies should be disabled
 	 * @return A compound command containing the toggle commands and the input command
 	 */
-	public static Command wrapInToggleCanonicalModeCommands(Command command, Set<EditPart> editParts) {
+	public static Command wrapInToggleCanonicalModeCommands(Command command, Set<? extends EditPart> editParts) {
 		CompoundCommand wrappingCompoundCommand = new CompoundCommand("");
 		CompoundCommand enableCommands = new CompoundCommand("Disable canonical mode");
 		CompoundCommand disableCommands = new CompoundCommand("Disable canonical mode");
