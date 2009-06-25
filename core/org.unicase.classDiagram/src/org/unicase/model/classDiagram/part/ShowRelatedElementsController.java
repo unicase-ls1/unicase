@@ -105,33 +105,40 @@ public class ShowRelatedElementsController {
 		 * @see org.eclipse.jface.viewers.ISelectionChangedListener#selectionChanged(org.eclipse.jface.viewers.SelectionChangedEvent)
 		 */
 		public void selectionChanged(SelectionChangedEvent event) {
-
 			if (!active) {
 				return;
 			}
 
+			try {
+				handleSelectionChanged(event);	
+			} catch (IllegalStateException e) {
+				setActive(false);
+			}
+		}
+
+		private void handleSelectionChanged(SelectionChangedEvent event) {
 			// BEGIN SANITY CHECKS
 			if (getObjectViewDescriptorMap().size() == 0) {
-				return;
+				throw new IllegalStateException();
 			}
 
 			Object diagram = EditPartUtility.getElement(getDiagramEditPart());
 			if (!(diagram instanceof MEDiagram)) {
-				return;
+				throw new IllegalStateException();
 			}
 
 			EditPart selectedEditPart = getSelectedEditPart(event);
 			if (selectedEditPart == null) {
-				return;
+				throw new IllegalStateException();
 			}
 
 			Set<EditPart> editParts = getRelatedEditParts();
 			if (editParts.size() == 0) {
-				return;
+				throw new IllegalStateException();
 			}
 
 			if (!editParts.contains(selectedEditPart) && !(selectedEditPart == getDiagramEditPart())) {
-				return;
+				throw new IllegalStateException();
 			}
 			// END SANITY CHECKS
 
@@ -142,9 +149,6 @@ public class ShowRelatedElementsController {
 			if (!(modeEnabled || modeKeyPressed)) {
 				setActive(false);
 			}
-			// EObject element = EditPartUtility.getElement(selectedEditPart);
-			// EditPart createdEditPart = getDiagramEditPart().findEditPart(null, element);
-			// getDiagramEditPart().getViewer().select(createdEditPart);
 		}
 
 		private AddRelatedElementsCommand createAddRelatedElementsCommand(EditPart selectedEditPart,
