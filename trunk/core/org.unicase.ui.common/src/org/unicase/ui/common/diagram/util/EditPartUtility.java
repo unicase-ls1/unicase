@@ -135,9 +135,9 @@ public final class EditPartUtility {
 		DiagramEditPart rootEditPart = null;
 		View view = getView(editPart);
 		if (view instanceof Node) {
-			rootEditPart = (DiagramEditPart) editPart.getParent();
+			rootEditPart = (DiagramEditPart) editPart.getRoot().getContents();
 		} else if (view instanceof Edge) {
-			rootEditPart = (DiagramEditPart) ((DiagramRootEditPart) editPart.getParent()).getContents();
+			rootEditPart = (DiagramEditPart) ((DiagramRootEditPart) editPart.getRoot()).getContents();
 		}
 		return rootEditPart;
 	}
@@ -162,4 +162,21 @@ public final class EditPartUtility {
 		return elements;
 	}
 
+	/**
+	 * Returns the elements of each {@link EditPart}'s model.
+	 * 
+	 * @param editParts The {@link EditPart}s which should be searched
+	 * @return A Collection of elements of Type classType
+	 */
+	@SuppressWarnings("unchecked")
+	public static Collection getElements(Collection<? extends EditPart> editParts) {
+		Set elements = new HashSet();
+		for (EditPart editPart : editParts) {
+			EObject element = EditPartUtility.getElement(editPart);
+			if (element != null) {
+				elements.add(element);	
+			}
+		}
+		return elements;
+	}
 }
