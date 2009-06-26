@@ -28,7 +28,7 @@ import org.unicase.workspace.util.FileTransferUtil;
 public class FileDownloadJob extends FileTransferJob {
 
 	/**
-	 * @param transfer transfer
+	 * @param transfer the transfer
 	 * @param fileAttachment file attachment for which the file is to be downloaded
 	 */
 	public FileDownloadJob(PendingFileTransfer transfer, FileAttachment fileAttachment) {
