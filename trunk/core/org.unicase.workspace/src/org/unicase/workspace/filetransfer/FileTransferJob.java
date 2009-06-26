@@ -24,7 +24,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
 /**
- * Job for the file download.
+ * Abstract class for the file transfer job encapsulating methods used for downloads and uploads.
  * 
  * @author pfeifferc
  */
@@ -40,7 +40,7 @@ public abstract class FileTransferJob extends Job {
 	private SessionId sessionId;
 
 	/**
-	 * @param name of the job
+	 * @param name of the transfer job
 	 */
 	public FileTransferJob(String name) {
 		super(name);
@@ -49,16 +49,38 @@ public abstract class FileTransferJob extends Job {
 	/**
 	 * Sets a pending file transfer from the pending file transfers.
 	 * 
-	 * @param upload true if pending file transfer is upload
 	 * @param version version of the file
 	 */
-	protected void setPendingFileTransferVersion(final boolean upload, final int version) {
+	protected void setPendingFileTransferVersion(final int version) {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			/**
+			 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+			 */
 			@Override
 			protected void doExecute() {
 				transfer.setFileVersion(version);
+				((ProjectSpaceImpl) WorkspaceManager.getProjectSpace(fileAttachment)).saveProjectSpaceOnly();
+			}
+		});
+	}
+
+	/**
+	 * Sets a pending file transfer from the pending file transfers.
+	 */
+	protected void removePendingFileTransferPreliminaryFileName() {
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			/**
+			 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+			 */
+			@Override
+			protected void doExecute() {
+				transfer.setPreliminaryFileName(null);
 				((ProjectSpaceImpl) WorkspaceManager.getProjectSpace(fileAttachment)).saveProjectSpaceOnly();
 			}
 		});
@@ -71,6 +93,10 @@ public abstract class FileTransferJob extends Job {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			/**
+			 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+			 */
 			@Override
 			protected void doExecute() {
 				transfer.setChunkNumber(fileInformation.getChunkNumber());
@@ -86,6 +112,10 @@ public abstract class FileTransferJob extends Job {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			/**
+			 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+			 */
 			@Override
 			protected void doExecute() {
 				WorkspaceManager.getProjectSpace(fileAttachment).getPendingFileTransfers().remove(transfer);
@@ -99,25 +129,24 @@ public abstract class FileTransferJob extends Job {
 	 * 
 	 * @throws FileTransferException if there are any null values in the attributes
 	 */
-	protected void getAttributes() throws FileTransferException {
-		if (fileAttachment == null || fileAttachment.getModelElementId() == null) {
-			throw new FileTransferException(
-				"Cannot access important information to initiate file upload. Possibly, the file attachment has been deleted.");
-		}
-		// read values from file attachment
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				connectionManager = WorkspaceManager.getInstance().getConnectionManager();
-				sessionId = WorkspaceManager.getProjectSpace(fileAttachment).getUsersession().getSessionId();
-				projectId = WorkspaceManager.getProjectSpace(fileAttachment).getProjectId();
-			}
-		});
-		if (sessionId == null || projectId == null || connectionManager == null) {
-			throw new FileTransferException(
-				"Cannot access important information to initiate file upload. Possibly, the file attachment has been deleted.");
+	protected void getConnectionAttributes() throws FileTransferException {
+		connectionManager = WorkspaceManager.getInstance().getConnectionManager();
+		projectId = WorkspaceManager.getProjectSpace(fileAttachment).getProjectId();
+		if (WorkspaceManager.getProjectSpace(fileAttachment).getUsersession() == null) {
+			throw new FileTransferException("Session ID is unknown. Please login first!");
+		} else {
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+				/**
+				 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+				 */
+				@Override
+				protected void doExecute() {
+					sessionId = WorkspaceManager.getProjectSpace(fileAttachment).getUsersession().getSessionId();
+				}
+			});
 		}
 	}
 
@@ -129,6 +158,10 @@ public abstract class FileTransferJob extends Job {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			/**
+			 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
+			 */
 			@Override
 			protected void doExecute() {
 				if (fileAttachment.getFileID() == null || fileAttachment.getFileID().equals("")
@@ -147,6 +180,23 @@ public abstract class FileTransferJob extends Job {
 	protected void setTotalWork(IProgressMonitor monitor) {
 		monitor.beginTask("Downloading ", (int) (Math.ceil(getFileInformation().getFileSize()) / FilePartitionerUtil
 			.getChunkSize()));
+	}
+
+	/**
+	 * Increments the chunk number by 1.
+	 */
+	protected void incrementChunkNumber() {
+		fileInformation.setChunkNumber(fileInformation.getChunkNumber() + 1);
+	}
+
+	/**
+	 * @param monitor progress monitor
+	 */
+	protected void initializeMonitor(IProgressMonitor monitor) {
+		// set monitor total work based on file size previously retrieved
+		setTotalWork(monitor);
+		// set progress based on how many file chunks that have already been sent
+		monitor.worked(getFileInformation().getChunkNumber());
 	}
 
 	/**
@@ -171,15 +221,6 @@ public abstract class FileTransferJob extends Job {
 	}
 
 	/**
-	 * Sets the connection manager.
-	 * 
-	 * @param connectionManager connection manager
-	 */
-	protected void setConnectionManager(ConnectionManager connectionManager) {
-		this.connectionManager = connectionManager;
-	}
-
-	/**
 	 * @return the session id
 	 */
 	protected SessionId getSessionId() {
@@ -187,28 +228,10 @@ public abstract class FileTransferJob extends Job {
 	}
 
 	/**
-	 * Sets the session id.
-	 * 
-	 * @param sessionId session id
-	 */
-	protected void setSessionId(SessionId sessionId) {
-		this.sessionId = sessionId;
-	}
-
-	/**
 	 * @return project id
 	 */
 	protected ProjectId getProjectId() {
 		return projectId;
-	}
-
-	/**
-	 * Sets the project id.
-	 * 
-	 * @param projectId project id
-	 */
-	protected void setProjectId(ProjectId projectId) {
-		this.projectId = projectId;
 	}
 
 	/**
@@ -226,13 +249,6 @@ public abstract class FileTransferJob extends Job {
 		fileInformation.setFileName(transfer.getFileName());
 		fileInformation.setFileVersion(transfer.getFileVersion());
 		fileInformation.setFileAttachmentId(transfer.getAttachmentId().getId());
-	}
-
-	/**
-	 * @return file attachment
-	 */
-	protected FileAttachment getFileAttachment() {
-		return fileAttachment;
 	}
 
 	/**

@@ -56,6 +56,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -87,7 +88,9 @@ import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
+import org.unicase.workspace.filetransfer.FileDownloadJob;
 import org.unicase.workspace.filetransfer.FileTransferJob;
+import org.unicase.workspace.filetransfer.FileUploadJob;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.util.CommitObserver;
 import org.unicase.workspace.util.FileTransferUtil;
@@ -1087,6 +1090,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			observer.updateCompleted();
 		}
 
+		// check for operations on file attachments: if version has been increased and file is required offline,
+		// download instantly.
 		// checkUpdatedFileAttachments(changes);
 
 		return resolvedVersion;
@@ -1132,6 +1137,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 					getPendingFileTransfers().add(transfer);
 				}
 			});
+			startFileTransfer(transfer);
 		}
 	}
 
@@ -2119,11 +2125,29 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	/**
 	 * {@inheritDoc}
+	 */
+	public void loginCompleted() {
+		try {
+			// stop all running file transfers before resuming, to prevent redundant conflicting uploads
+			// if (stopTransfers()) {
+			// resumeTransfers();
+			// }
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
+			// END SUPRESS CATCH EXCEPTION
+			WorkspaceUtil.logException("Resuming file transfers failed!", e);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
 	 * 
+	 * @throws FileTransferException
 	 * @see org.unicase.workspace.ProjectSpace#addFileTransfer(org.unicase.model.attachment.FileAttachment,
 	 *      org.unicase.emfstore.filetransfer.FileInformation, boolean)
 	 */
-	public void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean upload) {
+	public void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean upload)
+		throws FileTransferException {
 		final PendingFileTransfer transfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
 		transfer.setAttachmentId(ModelUtil.createModelElementId(fileInformation.getFileAttachmentId()));
 		transfer.setChunkNumber(fileInformation.getChunkNumber());
@@ -2136,8 +2160,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			try {
 				FileTransferUtil.copyUnversionedFileToCache(selectedFile, uUID, projectId);
 			} catch (IOException e) {
-				// TODO GUI
-				e.printStackTrace();
+				throw new FileTransferException("Could not copy the file " + selectedFile.getName()
+					+ " to the cache. Please ensure that you have the rights to do this and try again!", e);
 			}
 		} else {
 			transfer.setPreliminaryFileName(null);
@@ -2150,46 +2174,36 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				getPendingFileTransfers().add(transfer);
 			}
 		});
+		startFileTransfer(transfer);
 	}
 
-	// private void downloadFileFromServer(PendingFileTransfer transfer, FileAttachment fileAttachment) {
-	// new FileDownloadJob(transfer, fileAttachment).schedule();
-	// }
-	//
-	// private void uploadFileToServer(PendingFileTransfer transfer, FileAttachment fileAttachment) {
-	// new FileUploadJob(transfer, fileAttachment).schedule();
-	// }
-
-	/**
-	 * {@inheritDoc}
-	 */
-	public void loginCompleted() {
-		try {
-			// stop all running file transfers before resuming, to prevent redundant conflicting uploads
-			if (stopTransfers()) {
-				// resumeTransfers();
-			}
-			// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (RuntimeException e) {
-			// END SUPRESS CATCH EXCEPTION
-			WorkspaceUtil.logException("Resuming file transfers failed!", e);
+	private void startFileTransfer(final PendingFileTransfer transfer) {
+		FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
+		if (fileAttachment == null) {
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					getPendingFileTransfers().remove(transfer);
+				}
+			});
+		}
+		if (transfer.isUpload()) {
+			new FileUploadJob(transfer, fileAttachment).schedule();
+		} else {
+			new FileDownloadJob(transfer, fileAttachment).schedule();
 		}
 	}
 
-	// private void resumeTransfers() {
-	// for (final PendingFileTransfer transfer : pendingFileTransfers) {
-	// FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
-	// if (fileAttachment == null) {
-	// // TODO: mark for deletion?
-	// continue;
-	// } else if (transfer.isUpload()) {
-	// uploadFileToServer(transfer, fileAttachment);
-	// } else {
-	// downloadFileFromServer(transfer, fileAttachment);
-	// }
-	// }
-	// }
+	@SuppressWarnings("unused")
+	private void resumeTransfers() {
+		for (PendingFileTransfer transfer : pendingFileTransfers) {
+			startFileTransfer(transfer);
+		}
+	}
 
+	@SuppressWarnings("unused")
 	private boolean stopTransfers() {
 		Job[] jobs = Job.getJobManager().find(FileTransferJob.class);
 		for (Job job : jobs) {

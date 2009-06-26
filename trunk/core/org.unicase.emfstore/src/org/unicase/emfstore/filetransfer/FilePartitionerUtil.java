@@ -23,6 +23,9 @@ public final class FilePartitionerUtil {
 
 	private static final int CHUNK_SIZE = 100000;
 
+	private static final String COULD_NOT_FIND_THE_FILE = "Could not find the file!";
+	private static final String COULD_NOT_READ_THE_FILE = "Could not read the file!";
+
 	private FilePartitionerUtil() {
 
 	}
@@ -37,7 +40,9 @@ public final class FilePartitionerUtil {
 	public static synchronized void writeChunk(File file, FileChunk fileChunk) throws FileTransferException {
 		FileOutputStream fileOutputStream;
 		try {
-			fileOutputStream = new FileOutputStream(file);
+			// append mode on
+			fileOutputStream = new FileOutputStream(file, true);
+			// skips to the position where the file chunk should be written
 			fileOutputStream.getChannel().position(fileChunk.getChunkNumber() * CHUNK_SIZE);
 			fileOutputStream.write(fileChunk.getData());
 			// make sure everything is written instantly
@@ -45,7 +50,7 @@ public final class FilePartitionerUtil {
 			fileOutputStream.flush();
 			fileOutputStream.close();
 		} catch (FileNotFoundException e) {
-			throw new FileTransferException("Could not find file!", e);
+			throw new FileTransferException(COULD_NOT_FIND_THE_FILE, e);
 		} catch (IOException e) {
 			throw new FileTransferException("Could not write to the file!", e);
 		}
@@ -64,9 +69,9 @@ public final class FilePartitionerUtil {
 		boolean end = false;
 		byte[] data;
 		try {
-			// int numberOfChunks = getNumberOfChunks(file);
 			FileInputStream fileInputStream = new FileInputStream(file);
 			int absoluteSize = fileInputStream.available();
+			// start reading the chunk from the position specified by the chunk number and chunk size
 			fileInputStream.skip(fileInformation.getChunkNumber() * CHUNK_SIZE);
 			int remainingSize = fileInputStream.available();
 			// if the remaining size is chunk size or smaller, set end flag to true, which means this is the last chunk
@@ -77,14 +82,12 @@ public final class FilePartitionerUtil {
 				data = new byte[CHUNK_SIZE];
 			}
 			fileInputStream.read(data);
-			// System.out.println("Chunk number " + (fileInformation.getChunkNumber() + 1) + " of " + numberOfChunks
-			// + " | end: " + end);
 			fileInputStream.getChannel().close();
 			fileInputStream.close();
 			fileInformation.setFileSize(absoluteSize);
 			return new FileChunk(fileInformation, end, data);
 		} catch (IOException e) {
-			throw new FileTransferException("Could not read from file!", e);
+			throw new FileTransferException(COULD_NOT_READ_THE_FILE, e);
 		}
 	}
 
@@ -99,9 +102,9 @@ public final class FilePartitionerUtil {
 		try {
 			return (int) Math.ceil(new FileInputStream(file).available() / (float) CHUNK_SIZE);
 		} catch (FileNotFoundException e) {
-			throw new FileTransferException("Could not find file!", e);
+			throw new FileTransferException(COULD_NOT_FIND_THE_FILE, e);
 		} catch (IOException e) {
-			throw new FileTransferException("Could not read file!", e);
+			throw new FileTransferException(COULD_NOT_READ_THE_FILE, e);
 		}
 	}
 
@@ -114,9 +117,9 @@ public final class FilePartitionerUtil {
 		try {
 			return new FileInputStream(file).available();
 		} catch (FileNotFoundException e) {
-			throw new FileTransferException("Could not find file!", e);
+			throw new FileTransferException(COULD_NOT_FIND_THE_FILE, e);
 		} catch (IOException e) {
-			throw new FileTransferException("Could not read file!", e);
+			throw new FileTransferException(COULD_NOT_READ_THE_FILE, e);
 		}
 	}
 

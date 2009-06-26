@@ -22,10 +22,12 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 
 /**
+ * This class is responsible for displaying the file size of the FileAttachment file size attribute value.
+ * 
  * @author pfeifferc
  */
 public class MEFileSizeControl extends AbstractMEControl {
@@ -35,10 +37,10 @@ public class MEFileSizeControl extends AbstractMEControl {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param attribute The mail attribute
-	 * @param toolkit The swt toolkit
-	 * @param modelElement The user
-	 * @param editingDomain the edititng domain
+	 * @param attribute attribute
+	 * @param toolkit The SWT toolkit
+	 * @param modelElement the file attachment
+	 * @param editingDomain the editing domain
 	 */
 	public MEFileSizeControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement,
 		EditingDomain editingDomain) {
@@ -55,14 +57,16 @@ public class MEFileSizeControl extends AbstractMEControl {
 		composite.setLayout(gridLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
 
-		final Text fileSize = new Text(composite, SWT.RIGHT);
+		final Label fileSize = new Label(composite, SWT.RIGHT);
+
+		// bind the fileName widget to the correspondent file attachment attribute value
 		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		UpdateValueStrategy strategy = new UpdateValueStrategy();
+		// the converter sees to that the file size is displayed according to its magnitude
 		strategy.setConverter(new FileSizeConverter());
-		dbc.bindValue(SWTObservables.observeText(fileSize, SWT.FocusOut), model, null, strategy);
+		dbc.bindValue(SWTObservables.observeText(fileSize), model, null, strategy);
 
-		fileSize.setEditable(false);
 		fileSize.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(fileSize);
 
@@ -70,36 +74,42 @@ public class MEFileSizeControl extends AbstractMEControl {
 	}
 
 	/**
+	 * Converts the file size to be shown according to magnitude.
+	 * 
 	 * @author pfeifferc
 	 */
 	private final class FileSizeConverter implements IConverter {
+
+		/**
+		 * {@inheritDoc}
+		 */
 		public Object getToType() {
 			return String.class;
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public Object getFromType() {
 			return double.class;
 		}
 
+		/**
+		 * {@inheritDoc}
+		 */
 		public Object convert(Object fromObject) {
-			if (fromObject == null) {
-				return fromObject;
-			}
 			double size = Integer.parseInt(fromObject.toString());
+			String[] magnitude = { " byte", " kilobyte", " megabyte", " gigabyte", " terabyte", " petabyte" };
 			DecimalFormat format = new DecimalFormat("#0.00");
 			if (size < 1024) {
-				return (int) size + " byte";
+				return (int) size + magnitude[0];
 			}
-			if (size < 1024 * 1024) {
-				return format.format(size / 1024) + " kilobyte";
+			for (int i = 1; i < 6; i++) {
+				if (size < Math.pow(1024, i + 1)) {
+					return format.format(size / Math.pow(1024, i)) + magnitude[i];
+				}
 			}
-			if (size < 1024 * 1024 * 1024) {
-				return format.format(size / (1024 * 1024)) + " megabyte";
-			}
-			if (size < 1024 * 1024 * 1024 * 1024) {
-				return format.format(size / (1024 * 1024 * 1024)) + " gigabyte";
-			}
-			return fromObject.toString();
+			return "infinite";
 		}
 	}
 

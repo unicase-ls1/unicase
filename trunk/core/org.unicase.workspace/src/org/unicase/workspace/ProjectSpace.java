@@ -25,6 +25,7 @@ import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
@@ -591,8 +592,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @param fileInformation file information data object
 	 * @param selectedFile file to upload
 	 * @param upload true if upload, false if download
+	 * @throws FileTransferException if any error occurs adding the file transfer
 	 */
-	void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean upload);
+	void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean upload)
+		throws FileTransferException;
 
 	/**
 	 * Add a commit observer to the project space.

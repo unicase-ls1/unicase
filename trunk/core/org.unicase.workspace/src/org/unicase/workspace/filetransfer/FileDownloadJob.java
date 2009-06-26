@@ -21,6 +21,8 @@ import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.util.FileTransferUtil;
 
 /**
+ * File Download Job class is responsible for downloading files from the server in the Eclipse Worker thread.
+ * 
  * @author pfeifferc
  */
 public class FileDownloadJob extends FileTransferJob {
@@ -30,7 +32,7 @@ public class FileDownloadJob extends FileTransferJob {
 	 * @param fileAttachment file attachment for which the file is to be downloaded
 	 */
 	public FileDownloadJob(PendingFileTransfer transfer, FileAttachment fileAttachment) {
-		super("File Download Job " + transfer.getFileName());
+		super("File Download Job for: " + transfer.getFileName() + " version: " + transfer.getFileVersion());
 		setTransfer(transfer);
 		setFileAttachment(fileAttachment);
 		setFileInformation();
@@ -43,9 +45,12 @@ public class FileDownloadJob extends FileTransferJob {
 	protected IStatus run(IProgressMonitor monitor) {
 		try {
 			// read values from file attachment
-			getAttributes();
+			getConnectionAttributes();
 			// make sure that the local cache folder exists
 			createCacheFolder();
+			// set file that is to be written to
+			setFile(FileTransferUtil.constructCachedFile(getFileInformation(), getProjectId()));
+			// receive file chunks from server
 			executeTransfer(monitor);
 		} catch (EmfStoreException e) {
 			setException(e);
@@ -64,23 +69,25 @@ public class FileDownloadJob extends FileTransferJob {
 	 * @throws RemoteException
 	 */
 	private void executeTransfer(IProgressMonitor monitor) throws RemoteException, EmfStoreException {
+		// download file chunk to retrieve filesize (file chunk is discarded)
 		FileChunk fileChunk = getConnectionManager().downloadFileChunk(getSessionId(), getProjectId(),
 			getFileInformation());
 		getFileInformation().setFileSize(fileChunk.getFileSize());
-		setTotalWork(monitor);
-		monitor.worked(getFileInformation().getChunkNumber());
-		setFile(new File(FileTransferUtil.getCacheFolder(getProjectId()) + File.separator + fileChunk.getFileName()));
+		initializeMonitor(monitor);
 		do {
 			fileChunk = getConnectionManager().downloadFileChunk(getSessionId(), getProjectId(), getFileInformation());
 			FilePartitionerUtil.writeChunk(getFile(), fileChunk);
 			monitor.worked(1);
-			getFileInformation().setChunkNumber(getFileInformation().getChunkNumber() + 1);
+			incrementChunkNumber();
 			setPendingFileTransfer();
 		} while (!fileChunk.isLast());
 		removePendingFileTransfer();
 	}
 
+	/**
+	 * Creates the clientside cache folder.
+	 */
 	private void createCacheFolder() {
-		new File(FileTransferUtil.getCacheFolder(getProjectId())).mkdirs();
+		new File(FileTransferUtil.constructCacheFolder(getProjectId())).mkdirs();
 	}
 }
