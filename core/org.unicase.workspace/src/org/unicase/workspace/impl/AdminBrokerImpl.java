@@ -188,8 +188,8 @@ public class AdminBrokerImpl implements AdminBroker {
 	 * 
 	 * @see org.unicase.workspace.AdminBroker#createGroup(java.lang.String)
 	 */
-	public void createGroup(String name) throws EmfStoreException {
-		WorkspaceManager.getInstance().getAdminConnectionManager().createGroup(getSessionId(), name);
+	public ACOrgUnitId createGroup(String name) throws EmfStoreException {
+		return WorkspaceManager.getInstance().getAdminConnectionManager().createGroup(getSessionId(), name);
 
 	}
 
@@ -198,8 +198,8 @@ public class AdminBrokerImpl implements AdminBroker {
 	 * 
 	 * @see org.unicase.workspace.AdminBroker#createUser(java.lang.String)
 	 */
-	public void createUser(String name) throws EmfStoreException {
-		WorkspaceManager.getInstance().getAdminConnectionManager().createUser(getSessionId(), name);
+	public ACOrgUnitId createUser(String name) throws EmfStoreException {
+		return WorkspaceManager.getInstance().getAdminConnectionManager().createUser(getSessionId(), name);
 
 	}
 
