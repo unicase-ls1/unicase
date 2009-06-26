@@ -7,6 +7,7 @@
 package org.unicase.workspace.util;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -17,7 +18,10 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.PendingFileTransfer;
 
 /**
- * Utility methods for the file transfer interface.
+ * Utility methods for the file transfer interface. Important notice regarding the terminology used: construct means
+ * that the file or folder location is put together from different strings, i.e. the file or folder does not have to
+ * exists. find means that the method tries to localize the file. Failing in retrieving the file will throw an
+ * exception.
  * 
  * @author pfeifferc
  */
@@ -48,6 +52,8 @@ public final class FileTransferUtil {
 	}
 
 	/**
+	 * Copies the unversioned file to the clientside cache.
+	 * 
 	 * @param selectedFile file to copy
 	 * @param uUID unversioned file name
 	 * @param projectId project id
@@ -56,15 +62,13 @@ public final class FileTransferUtil {
 	public static void copyUnversionedFileToCache(File selectedFile, String uUID, ProjectId projectId)
 		throws IOException {
 		FileTransferUtil.mkdirs(projectId);
-		File destination = new File(getCacheFolder(projectId) + File.separator + uUID);
+		File destination = new File(constructCacheFolder(projectId) + File.separator + uUID);
 		FileUtil.copyFile(selectedFile, destination);
 	}
 
-	private static void mkdirs(ProjectId projectId) {
-		new File(getCacheFolder(projectId)).mkdirs();
-	}
-
 	/**
+	 * Copies the file to the clientside cache.
+	 * 
 	 * @param file file to be copied to cache
 	 * @param fileInformation file information containing
 	 * @param projectId project id
@@ -74,18 +78,10 @@ public final class FileTransferUtil {
 	public static File copyFileToCache(File file, FileInformation fileInformation, ProjectId projectId)
 		throws IOException {
 		FileTransferUtil.mkdirs(projectId);
-		File destination = new File(getCacheFolder(projectId) + File.separator + constructFileName(fileInformation));
+		File destination = new File(constructCacheFolder(projectId) + File.separator
+			+ constructFileName(fileInformation));
 		FileUtil.copyFile(file, destination);
 		return destination;
-	}
-
-	/**
-	 * @param projectId project id
-	 * @return the location of the cache folder
-	 */
-	public static String getCacheFolder(ProjectId projectId) {
-		return Configuration.getWorkspaceDirectory() + ATTACHMENT_FOLDER + File.separator + PROJECT_FOLDER_PREFIX
-			+ projectId.getId();
 	}
 
 	/**
@@ -101,19 +97,19 @@ public final class FileTransferUtil {
 			if (os.toLowerCase().contains("windows")) {
 				Runtime.getRuntime().exec(
 					"rundll32 SHELL32.DLL,ShellExec_RunDLL "
-						+ FileTransferUtil.findCachedFile(constructFileNameWithOutFileName(fileInfo), new File(
-							getCacheFolder(projectId))));
+						+ FileTransferUtil.findCachedFile(constructFileNameBasedOnAttachmentIdAndVersion(fileInfo),
+							new File(constructCacheFolder(projectId))));
 			} else if (os.toLowerCase().contains("mac os")) {
 				Runtime.getRuntime().exec(
 					"open "
-						+ FileTransferUtil.findCachedFile(constructFileNameWithOutFileName(fileInfo), new File(
-							getCacheFolder(projectId))));
+						+ FileTransferUtil.findCachedFile(constructFileNameBasedOnAttachmentIdAndVersion(fileInfo),
+							new File(constructCacheFolder(projectId))));
 			} else {
 				throw new FileTransferException("Opening files is not yet supported for "
 					+ os
 					+ ". Please go to "
-					+ FileTransferUtil.findCachedFile(constructFileNameWithOutFileName(fileInfo),
-						new File(getCacheFolder(projectId))).getAbsolutePath() + " and open the file manually.");
+					+ FileTransferUtil.findCachedFile(constructFileNameBasedOnAttachmentIdAndVersion(fileInfo),
+						new File(constructCacheFolder(projectId))).getAbsolutePath() + " and open the file manually.");
 			}
 		} catch (IOException e) {
 			throw new FileTransferException("Could not open the specified file!");
@@ -126,41 +122,35 @@ public final class FileTransferUtil {
 	}
 
 	/**
-	 * Returns null if the file could not be found.
+	 * Tries to find the file that starts with the specified string in the specified directory.
 	 * 
 	 * @param startsWith the string the file should start with
 	 * @param folderToLookIn the folder to look in
 	 * @return the cached file
+	 * @throws FileNotFoundException if the file could not be found
 	 */
-	public static File findCachedFile(String startsWith, File folderToLookIn) {
-		if (folderToLookIn.exists()) {
+	public static File findCachedFile(String startsWith, File folderToLookIn) throws FileNotFoundException {
+		if (folderToLookIn.exists() && folderToLookIn.isDirectory()) {
 			for (File file : folderToLookIn.listFiles()) {
 				if (file.getName().startsWith(startsWith)) {
 					return file;
 				}
 			}
 		}
-		return null;
+		throw new FileNotFoundException("Could not locate the file!");
 	}
 
 	/**
-	 * Returns the hypothetical location of the unversioned cached file.
+	 * Tries to find the file that is denoted by the transfer and the project identifier.
 	 * 
 	 * @param transfer transfer
 	 * @param projectId project id
 	 * @return the location of the unversioned cached file
+	 * @throws FileNotFoundException if the file could not be found
 	 */
-	public static File getUnversionedCachedFile(PendingFileTransfer transfer, ProjectId projectId) {
-		return findCachedFile(transfer.getPreliminaryFileName(), new File(getCacheFolder(projectId)));
-	}
-
-	/**
-	 * @param fileInformation file information
-	 * @param projectId project id
-	 * @return the cached file
-	 */
-	public static File getCachedFile(FileInformation fileInformation, ProjectId projectId) {
-		return new File(getCacheFolder(projectId) + File.separator + constructFileName(fileInformation));
+	public static File findUnversionedCachedFile(PendingFileTransfer transfer, ProjectId projectId)
+		throws FileNotFoundException {
+		return findCachedFile(transfer.getPreliminaryFileName(), new File(constructCacheFolder(projectId)));
 	}
 
 	/**
@@ -169,12 +159,41 @@ public final class FileTransferUtil {
 	 * @param fileInformation file Information
 	 * @param projectId project id
 	 * @return the cached file
+	 * @throws FileNotFoundException if the file could not be found
 	 */
-	public static File findCachedFile(FileInformation fileInformation, ProjectId projectId) {
-		return findCachedFile(constructFileNameWithOutFileName(fileInformation), new File(getCacheFolder(projectId)));
+	public static File findCachedFile(FileInformation fileInformation, ProjectId projectId)
+		throws FileNotFoundException {
+		return findCachedFile(constructFileNameBasedOnAttachmentIdAndVersion(fileInformation), new File(
+			constructCacheFolder(projectId)));
 	}
 
-	private static String constructFileNameWithOutFileName(FileInformation fileInfo) {
+	/**
+	 * Gets the cached folder location string.
+	 * 
+	 * @param projectId project id
+	 * @return the location of the cache folder
+	 */
+	public static String constructCacheFolder(ProjectId projectId) {
+		return Configuration.getWorkspaceDirectory() + ATTACHMENT_FOLDER + File.separator + PROJECT_FOLDER_PREFIX
+			+ projectId.getId();
+	}
+
+	/**
+	 * Gets the cached file location string.
+	 * 
+	 * @param fileInformation file information
+	 * @param projectId project id
+	 * @return the cached file
+	 */
+	public static File constructCachedFile(FileInformation fileInformation, ProjectId projectId) {
+		return new File(constructCacheFolder(projectId) + File.separator + constructFileName(fileInformation));
+	}
+
+	private static String constructFileNameBasedOnAttachmentIdAndVersion(FileInformation fileInfo) {
 		return fileInfo.getFileAttachmentId() + FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER;
+	}
+
+	private static void mkdirs(ProjectId projectId) {
+		new File(constructCacheFolder(projectId)).mkdirs();
 	}
 }
