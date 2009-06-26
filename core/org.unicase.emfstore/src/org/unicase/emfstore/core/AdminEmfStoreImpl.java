@@ -377,6 +377,9 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 			throw new InvalidInputException();
 		}
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
+		if (userExists(name)) {
+			throw new InvalidInputException("username already exists.");
+		}
 		ACUser acUser = AccesscontrolFactory.eINSTANCE.createACUser();
 		// acUser.setId(AccesscontrolFactory.eINSTANCE.createACOrgUnitId());
 		acUser.setName(name);
@@ -384,6 +387,15 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		getServerSpace().getUsers().add(acUser);
 		save();
 		return (ACOrgUnitId) EcoreUtil.copy(acUser.getId());
+	}
+
+	private boolean userExists(String name) {
+		for (ACUser user : getServerSpace().getUsers()) {
+			if (user.getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
