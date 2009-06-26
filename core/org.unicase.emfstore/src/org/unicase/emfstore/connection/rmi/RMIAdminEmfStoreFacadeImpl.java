@@ -179,15 +179,17 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	/**
 	 * {@inheritDoc}
 	 */
-	public void createGroup(String sessionId, String name) throws RemoteException, EmfStoreException {
-		adminEmfStore.createGroup((SessionId) SerializationUtil.stringToEObject(sessionId), name);
+	public String createGroup(String sessionId, String name) throws RemoteException, EmfStoreException {
+		return SerializationUtil.eObjectToString(adminEmfStore.createGroup((SessionId) SerializationUtil
+			.stringToEObject(sessionId), name));
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void createUser(String sessionId, String name) throws RemoteException, EmfStoreException {
-		adminEmfStore.createUser((SessionId) SerializationUtil.stringToEObject(sessionId), name);
+	public String createUser(String sessionId, String name) throws RemoteException, EmfStoreException {
+		return SerializationUtil.eObjectToString(adminEmfStore.createUser((SessionId) SerializationUtil
+			.stringToEObject(sessionId), name));
 	}
 
 	/**

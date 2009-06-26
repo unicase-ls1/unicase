@@ -77,9 +77,10 @@ public interface AdminEmfStore extends EmfStoreInterface {
 	 * 
 	 * @param sessionId the session id for authentication
 	 * @param name the name for the group
+	 * @return ACOrgUnitId
 	 * @throws EmfStoreException if any error in the EmfStore occurs
 	 */
-	void createGroup(SessionId sessionId, String name) throws EmfStoreException;
+	ACOrgUnitId createGroup(SessionId sessionId, String name) throws EmfStoreException;
 
 	/**
 	 * Deletes a group on the server.
@@ -145,9 +146,10 @@ public interface AdminEmfStore extends EmfStoreInterface {
 	 * 
 	 * @param sessionId the session id for authentication
 	 * @param name the user's name
+	 * @return ACOrgUnitId
 	 * @throws EmfStoreException if any in the EmfStore occurs
 	 */
-	void createUser(SessionId sessionId, String name) throws EmfStoreException;
+	ACOrgUnitId createUser(SessionId sessionId, String name) throws EmfStoreException;
 
 	/**
 	 * Deletes a user from the server.
