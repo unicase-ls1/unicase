@@ -67,9 +67,10 @@ public interface AdminBroker {
 	 * 
 	 * @see org.unicase.emfstore.AdminEmfStore#createGroup(org.unicase.emfstore.esmodel.SessionId, String)
 	 * @param name new name
+	 * @return ACOrgUnitId
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
 	 */
-	void createGroup(String name) throws EmfStoreException;
+	ACOrgUnitId createGroup(String name) throws EmfStoreException;
 
 	/**
 	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.
@@ -106,9 +107,10 @@ public interface AdminBroker {
 	 * 
 	 * @see org.unicase.emfstore.AdminEmfStore#createUser(org.unicase.emfstore.esmodel.SessionId, String)
 	 * @param name user's name
+	 * @return ACOrgUnitId
 	 * @throws EmfStoreException if an exceptions occurs on the server or on transport
 	 */
-	void createUser(String name) throws EmfStoreException;
+	ACOrgUnitId createUser(String name) throws EmfStoreException;
 
 	/**
 	 * Delegates call to method in {@link org.unicase.emfstore.AdminEmfStore}.

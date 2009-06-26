@@ -222,9 +222,10 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void createGroup(SessionId sessionId, String name) throws EmfStoreException {
+	public ACOrgUnitId createGroup(SessionId sessionId, String name) throws EmfStoreException {
 		try {
-			getFacade(sessionId).createGroup(SerializationUtil.eObjectToString(sessionId), name);
+			return (ACOrgUnitId) SerializationUtil.stringToEObject((getFacade(sessionId).createGroup(SerializationUtil
+				.eObjectToString(sessionId), name)));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -233,9 +234,10 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void createUser(SessionId sessionId, String name) throws EmfStoreException {
+	public ACOrgUnitId createUser(SessionId sessionId, String name) throws EmfStoreException {
 		try {
-			getFacade(sessionId).createUser(SerializationUtil.eObjectToString(sessionId), name);
+			return (ACOrgUnitId) SerializationUtil.stringToEObject(getFacade(sessionId).createUser(
+				SerializationUtil.eObjectToString(sessionId), name));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -265,14 +267,7 @@ public class RMIAdminConnectionManagerImpl implements AdminConnectionManager {
 		}
 	}
 
-	/**
-	 * Returns the RMI facade for a given server, identified by the session id.
-	 * 
-	 * @param sessionId sessionid
-	 * @return rmi facase
-	 * @throws EmfStoreException in case of failure
-	 */
-	protected RMIAdminEmfStoreFacade getFacade(SessionId sessionId) throws EmfStoreException {
+	private RMIAdminEmfStoreFacade getFacade(SessionId sessionId) throws EmfStoreException {
 		RMIAdminEmfStoreFacade facade = adminFacadeMap.get(sessionId);
 		if (facade == null) {
 			throw new UnknownSessionException(
