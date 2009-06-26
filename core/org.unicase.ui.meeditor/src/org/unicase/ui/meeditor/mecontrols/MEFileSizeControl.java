@@ -40,7 +40,7 @@ public class MEFileSizeControl extends AbstractMEControl {
 	 * @param attribute attribute
 	 * @param toolkit The SWT toolkit
 	 * @param modelElement the file attachment
-	 * @param editingDomain the editing domain
+	 * @param editingDomain the Editing Domain
 	 */
 	public MEFileSizeControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement,
 		EditingDomain editingDomain) {
