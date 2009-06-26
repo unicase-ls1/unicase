@@ -27,6 +27,7 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
@@ -113,21 +114,24 @@ public class ServerTests {
 		generatedProject = projectGenerator.generateProject();
 		projectsOnServerBeforeTest = 1;
 		initArguments();
-		setupUsers();
 	}
 
 	private static void setupUsers() throws EmfStoreException {
-		ACOrgUnitId orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "reader");
-		SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getReaderRole(),
-			getGeneratedProjectId());
+		try {
+			ACOrgUnitId orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "reader");
+			SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getReaderRole(),
+				getGeneratedProjectId());
 
-		orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "writer");
-		SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getWriterRole(),
-			getGeneratedProjectId());
+			orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "writer");
+			SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getWriterRole(),
+				getGeneratedProjectId());
 
-		orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "projectadmin");
-		SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getProjectAdminRole(),
-			getGeneratedProjectId());
+			orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "projectadmin");
+			SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getProjectAdminRole(),
+				getGeneratedProjectId());
+		} catch (InvalidInputException e) {
+			// do nothing, user already exists.
+		}
 	}
 
 	/**
@@ -145,6 +149,7 @@ public class ServerTests {
 	 */
 	protected static void login(ServerInfo serverInfo) throws EmfStoreException {
 		sessionId = login(serverInfo, "super", "super");
+		WorkspaceManager.getInstance().getAdminConnectionManager().initConnection(serverInfo, sessionId);
 	}
 
 	/**
@@ -195,6 +200,7 @@ public class ServerTests {
 			SetupHelper.createLogMessage("super", "a logmessage"), generatedProject);
 		generatedProjectId = projectInfo.getProjectId();
 		generatedProjectVersion = projectInfo.getVersion();
+		setupUsers();
 	}
 
 	/**
