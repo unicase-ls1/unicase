@@ -67,6 +67,10 @@ public final class FileUtil {
 	 * @throws IOException copy problem
 	 */
 	public static void copyFile(InputStream source, File destination) throws IOException {
+		if (source == null || destination == null) {
+			throw new IOException("Source or destination is null.");
+		}
+
 		FileOutputStream outputStream = null;
 
 		outputStream = new FileOutputStream(destination);
