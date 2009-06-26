@@ -16,6 +16,7 @@ import java.io.OutputStream;
 import java.util.Calendar;
 import java.util.Properties;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.EmfStoreController;
@@ -23,6 +24,8 @@ import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.SessionId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
@@ -38,6 +41,7 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.test.integration.forward.IntegrationTestHelper;
 
@@ -90,6 +94,47 @@ public class SetupHelper {
 			server.stop();
 		}
 
+	}
+
+	/**
+	 * Copies user.properties in server directory.
+	 * 
+	 * @param override true if old file should be deleted first.
+	 */
+	public static void addUserFileToServer(boolean override) {
+		try {
+			File file = new File(ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH_DEFAULT);
+			if (override && file.exists()) {
+				file.delete();
+			}
+			FileUtil.copyFile(SetupHelper.class.getResourceAsStream("user.properties"), file);
+		} catch (IOException e) {
+			// TODO: throw exception instead of catching?
+		}
+	}
+
+	/**
+	 * @param sessionId sessionId
+	 * @param username username
+	 * @return acorgunitid
+	 * @throws EmfStoreException in case of failure
+	 */
+	public static ACOrgUnitId createUserOnServer(SessionId sessionId, String username) throws EmfStoreException {
+		AdminConnectionManager adminConnectionManager = WorkspaceManager.getInstance().getAdminConnectionManager();
+		return adminConnectionManager.createUser(sessionId, username);
+	}
+
+	/**
+	 * @param sessionId sessionid
+	 * @param orgUnitId orgunitid
+	 * @param role role
+	 * @param projectId projectid, can be null, if role is serveradmin
+	 * @throws EmfStoreException in case of failure
+	 */
+	public static void setUsersRole(SessionId sessionId, ACOrgUnitId orgUnitId, EClass role, ProjectId projectId)
+		throws EmfStoreException {
+		AdminConnectionManager adminConnectionManager = WorkspaceManager.getInstance().getAdminConnectionManager();
+		adminConnectionManager.changeRole(sessionId, projectId, orgUnitId, role);
 	}
 
 	private static void copyDirectory(File sourceLocation, File targetLocation) throws IOException {
