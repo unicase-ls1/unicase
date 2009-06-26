@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
+import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
@@ -104,6 +105,7 @@ public class ServerTests {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws EmfStoreException {
+		SetupHelper.addUserFileToServer(false);
 		SetupHelper.startSever();
 		connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 		login(SetupHelper.getServerInfo());
@@ -111,6 +113,21 @@ public class ServerTests {
 		generatedProject = projectGenerator.generateProject();
 		projectsOnServerBeforeTest = 1;
 		initArguments();
+		setupUsers();
+	}
+
+	private static void setupUsers() throws EmfStoreException {
+		ACOrgUnitId orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "reader");
+		SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getReaderRole(),
+			getGeneratedProjectId());
+
+		orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "writer");
+		SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getWriterRole(),
+			getGeneratedProjectId());
+
+		orgUnitId = SetupHelper.createUserOnServer(getSessionId(), "projectadmin");
+		SetupHelper.setUsersRole(getSessionId(), orgUnitId, RolesPackage.eINSTANCE.getProjectAdminRole(),
+			getGeneratedProjectId());
 	}
 
 	/**
@@ -127,7 +144,18 @@ public class ServerTests {
 	 * @throws EmfStoreException in case of failure
 	 */
 	protected static void login(ServerInfo serverInfo) throws EmfStoreException {
-		sessionId = connectionManager.logIn("super", KeyStoreManager.getInstance().encrypt("super", serverInfo),
+		sessionId = login(serverInfo, "super", "super");
+	}
+
+	/**
+	 * @param serverInfo serverinfo
+	 * @param username username
+	 * @param password password
+	 * @return sessionId
+	 * @throws EmfStoreException in case of failure
+	 */
+	public static SessionId login(ServerInfo serverInfo, String username, String password) throws EmfStoreException {
+		return connectionManager.logIn(username, KeyStoreManager.getInstance().encrypt(password, serverInfo),
 			serverInfo, Configuration.getClientVersion());
 	}
 
