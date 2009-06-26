@@ -1,6 +1,7 @@
 package org.unicase.ui.ganttview.views;
 
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -54,8 +55,6 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	private Composite parent;
 	private TreeViewer treeViewer;
 
-	private Map<String, GanttEvent> workPackagesToGanttEvents;
-
 	/**
 	 * The constructor.
 	 */
@@ -74,8 +73,6 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		SashForm sashForm = new SashForm(ganttContainer, SWT.HORIZONTAL);
 
 		// GanttControlParent ganttCpLeft = new GanttControlParent(sashForm, SWT.NONE);
-
-		workPackagesToGanttEvents = new HashMap<String, GanttEvent>();
 
 		// createTree(ganttCpLeft);
 		createTree(sashForm);
@@ -113,11 +110,10 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		ganttContainer.setExpandVertical(true);
 		ganttContainer.setMinSize(999, 999);
 
+		// setInput() from here is called before ShowGanttViewHandler calls it
 		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-
 		if (projectSpace != null) {
-			Project inputProject = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-				.getProject();
+			Project inputProject = projectSpace.getProject();
 			if (inputProject != null) {
 				this.setInput(inputProject);
 			}
@@ -254,14 +250,17 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		GanttViewHelper.clearGantt(ganttChart, treeViewer.getTree());
 
+		Map<String, GanttEvent> mapWorkPackagesToGanttEvents = new HashMap<String, GanttEvent>();
+
 		EList<WorkItem> workItems = workPackage.getContainedWorkItems();
 		for (WorkItem workItem : workItems) {
 			if (workItem instanceof WorkPackage) {
-				recurisveWorkPackageToGanttEvent((WorkPackage) workItem, true);
+
+				recurisveWorkPackageToGanttEvent((WorkPackage) workItem, true, mapWorkPackagesToGanttEvents);
 			}
 		}
-
-		workPackagesToGanttEvents.clear();
+		connectSuccessors(mapWorkPackagesToGanttEvents);
+		mapWorkPackagesToGanttEvents.clear();
 
 		treeViewer.setInput(workPackage);
 		treeViewer.expandAll();
@@ -276,10 +275,11 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkPackage(), flatWorkItemList);
 
 		for (WorkPackage workPackage : GanttViewHelper.getRootWorkPackages(flatWorkItemList)) {
-			recurisveWorkPackageToGanttEvent(workPackage, true);
+			Map<String, GanttEvent> mapWorkPackagesToGanttEvents = new HashMap<String, GanttEvent>();
+			recurisveWorkPackageToGanttEvent(workPackage, true, mapWorkPackagesToGanttEvents);
+			connectSuccessors(mapWorkPackagesToGanttEvents);
+			mapWorkPackagesToGanttEvents.clear();
 		}
-
-		workPackagesToGanttEvents.clear();
 
 		treeViewer.setInput(project);
 		treeViewer.expandAll();
@@ -288,43 +288,17 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		// System.out.println("treeViewer.getTree().getGridLineWidth() 2: " + treeViewer.getTree().getGridLineWidth());
 	}
 
-	//
-	// private int getEstimate(ModelElement element, WorkPackage currentOpenME, Set<WorkItem> relativeWorkItems) {
-	//
-	// int estimate = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getEstimate(relativeWorkItems);
-	// if (element instanceof WorkItem) {
-	// estimate += ((WorkItem) element).getEstimate();
-	// }
-	// return estimate;
-	// }
-	//
-	// private int getClosedEstimate(Set<WorkItem> relativeWorkItems) {
-	// int closedEstimate = 0;
-	// Iterator<WorkItem> iterator = relativeWorkItems.iterator();
-	// while (iterator.hasNext()) {
-	// WorkItem workItem = iterator.next();
-	// if (workItem.getState().equals(MEState.CLOSED)) {
-	// closedEstimate += workItem.getEstimate();
-	// }
-	// }
-	// return closedEstimate;
-	// }
-
 	private int calculateProgress(WorkPackage wp) {
-		// TODO WorkPackages from ProjectGenerator result in int-overflow
 		int result = 0;
-		// float estimate = getEstimate(wp, null, new HashSet<WorkItem>(wp.getAllContainedWorkItems())); // TODO rm this
-		// float closedEstimate = getClosedEstimate(new HashSet<WorkItem>(wp.getAllContainedWorkItems()));
-		// float estimate = wp.getAggregatedEstimate();
-		// float closedEstimate = wp.getClosedAggregatedEstimate();
-		float estimate = EstimateHelper.getAggregatedEstimate(wp);
-		float closedEstimate = EstimateHelper.getClosedAggregatedEstimate(wp);
-		result = (int) ((closedEstimate / estimate) * 100);
+
+		int closedEstimate = wp.getClosedAggregatedEstimate();
+		int estimate = EstimateHelper.getAggregatedEstimate(wp);
+		result = (estimate == 0) ? 0 : (closedEstimate * 100) / estimate; // (x/0)=0
 
 		return result;
 	}
 
-	private GanttEvent workPackageToGanttEvent(WorkPackage wp) {
+	private GanttEvent workPackageToGanttEvent(WorkPackage wp, Map<String, GanttEvent> mapWorkPackagesToGanttEvents) {
 		Calendar startDate = Calendar.getInstance();
 		Calendar endDate = (Calendar) startDate.clone();
 
@@ -337,78 +311,66 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 			startDate.setTime(wp.getStartDate());
 		} else if (wp.getContainingWorkpackage() != null && wp.getContainingWorkpackage().getStartDate() != null) {
 			startDate.setTime(wp.getContainingWorkpackage().getStartDate());
-		} else {
-			// TODO
 		}
 		if (dend != null) {
 			endDate.setTime(wp.getDueDate());
 		} else if (wp.getContainingWorkpackage() != null && wp.getContainingWorkpackage().getDueDate() != null) {
 			endDate.setTime(wp.getContainingWorkpackage().getDueDate());
-		} else {
-			// TODO
 		}
 
 		GanttEvent result = new GanttEvent(ganttChart, eventName, startDate, endDate, calculateProgress(wp));
-		// ganttChart.reindex(result, ganttChart.getGanttComposite().getEvents().size() - 1);
 		result.setData(wp);
 
 		// TODO delete entries of this map if WorkPackages are deleted in the model
-		// ganttChart.setData(wp.getIdentifier(), result);
-		workPackagesToGanttEvents.put(wp.getIdentifier(), result);
+		mapWorkPackagesToGanttEvents.put(wp.getIdentifier(), result);
 
 		return result;
 	}
 
-	private GanttEvent recurisveWorkPackageToGanttEvent(WorkPackage wp, boolean isRootWorkPackage) {
-
-		GanttEvent result = workPackageToGanttEvent(wp);
+	private GanttEvent recurisveWorkPackageToGanttEvent(WorkPackage wp, boolean isRootWorkPackage,
+		Map<String, GanttEvent> mapWorkPackagesToGanttEvents) {
+		GanttEvent result = workPackageToGanttEvent(wp, mapWorkPackagesToGanttEvents);
 
 		Set<ModelElement> subModels = wp.getContainedElements();
 		if (subModels != null && !subModels.isEmpty()) {
-			// ModelElement[] subModelArray = (ModelElement[]) subModels.toArray();
-			// Arrays.sort(subModelArray);
-			// List<ModelElement> subModelList = new ArrayList<ModelElement>(subModels);
-			// Collections.sort(subModelList, c);
 			for (ModelElement modelElement : subModels) {
 				if (modelElement == null || !(modelElement instanceof WorkPackage)) {
 					continue;
 				}
-				GanttEvent childItem = workPackagesToGanttEvents.get(modelElement.getIdentifier());
-				// GanttEvent childItem = (GanttEvent) ganttChart.getData(modelElement.getIdentifier());
+
+				GanttEvent childItem = mapWorkPackagesToGanttEvents.get(modelElement.getIdentifier());
 				if (childItem == null) {
-					childItem = recurisveWorkPackageToGanttEvent((WorkPackage) modelElement, false);
+					childItem = recurisveWorkPackageToGanttEvent((WorkPackage) modelElement, false,
+						mapWorkPackagesToGanttEvents);
 				}
 				result.addScopeEvent(childItem);
 				result.setScope(true);
 			}
 		}
 
-		// Successors should only be added for children not for the root
-		if (isRootWorkPackage) {
-			return result;
-		}
+		return result;
+	}
 
-		EList<WorkItem> successors = wp.getSuccessors();
-		if (successors != null && !successors.isEmpty()) {
-			for (WorkItem workItem : successors) {
-				if (workItem == null || !(workItem instanceof WorkPackage)) {
-					continue;
-				}
+	private void connectSuccessors(Map<String, GanttEvent> mapWorkPackagesToGanttEvents) {
+		Collection<GanttEvent> ganttEvents = mapWorkPackagesToGanttEvents.values();
+		for (GanttEvent ganttEvent : ganttEvents) {
+			WorkPackage childWp = (WorkPackage) ganttEvent.getData();
+			EList<WorkItem> successors = childWp.getSuccessors();
+			if (successors != null && !successors.isEmpty()) {
+				for (WorkItem successor : successors) {
+					if (successor == null || !(successor instanceof WorkPackage)) {
+						continue;
+					}
 
-				// if (workPackagesToGanttEvents.containsKey(workItem.getIdentifier())) {
-				// ganttChart.addConnection(result, workPackagesToGanttEvents.get(workItem.getIdentifier()));
+					GanttEvent sourceGanttEvent = mapWorkPackagesToGanttEvents.get(childWp.getIdentifier());
+					GanttEvent targetGanttEvent = mapWorkPackagesToGanttEvents.get(successor.getIdentifier());
+					if (sourceGanttEvent != null && targetGanttEvent != null) {
+						ganttChart.addConnection(sourceGanttEvent, targetGanttEvent);
+					}
 
-				GanttEvent ge = workPackagesToGanttEvents.get(workItem.getIdentifier());
-				// GanttEvent ge = (GanttEvent) ganttChart.getData(workItem.getIdentifier());
-				if (ge != null) {
-					ganttChart.addConnection(result, ge);
-				} else {
-					ganttChart.addConnection(result, workPackageToGanttEvent((WorkPackage) workItem));
 				}
 			}
 		}
-
-		return result;
 	}
 
 	/**
