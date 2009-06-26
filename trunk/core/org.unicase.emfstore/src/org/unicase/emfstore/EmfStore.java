@@ -8,6 +8,7 @@ package org.unicase.emfstore;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
+import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -202,6 +203,26 @@ public interface EmfStore extends EmfStoreInterface {
 	 * @throws EmfStoreException if any error in the EmfStore occurs
 	 */
 	ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException;
+
+	/**
+	 * Exports a project history to the server. The project history elements such as version, projecstate etc will be
+	 * devided in several files on the server file system.
+	 * 
+	 * @param sessionId sessionid
+	 * @param projectHistory project history
+	 * @throws EmfStoreException in case of failure
+	 */
+	void exportProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory) throws EmfStoreException;
+
+	/**
+	 * Imports a given project history from the server. Caution if you try to import big projects from the server.
+	 * 
+	 * @param sessionId session id
+	 * @param projectId project id
+	 * @return a projecthistory
+	 * @throws EmfStoreException in case of failure
+	 */
+	ProjectHistory importProjectHistoryFromServer(SessionId sessionId, ProjectId projectId) throws EmfStoreException;
 
 	/**
 	 * Uploads a file chunk to the server.
