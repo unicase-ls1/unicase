@@ -93,7 +93,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 		// Right column: button to open a dialog for uploading files
 		Button upload = new Button(composite, SWT.PUSH);
-		upload.addSelectionListener(new UploadSelectionListener());
+		// upload.addSelectionListener(new UploadSelectionListener());
 		upload.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
 		upload.setImage(Activator.getImageDescriptor("icons/page_add.png").createImage());
 
@@ -220,6 +220,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 	 * 
 	 * @author pfeifferc
 	 */
+	@SuppressWarnings("unused")
 	private final class UploadSelectionListener implements SelectionListener {
 
 		/**
