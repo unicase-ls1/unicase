@@ -18,6 +18,7 @@ import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade;
 import org.unicase.emfstore.connection.rmi.SerializationUtil;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
+import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -243,6 +244,23 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void exportProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory)
+		throws EmfStoreException {
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ProjectHistory importProjectHistoryFromServer(SessionId sessionId, ProjectId projectId)
+		throws EmfStoreException {
+		throw new UnsupportedOperationException();
+
 	}
 
 	/**

@@ -14,6 +14,7 @@ import org.unicase.emfstore.core.subinterfaces.HistorySubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.ProjectSubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.UserSubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.VersionSubInterfaceImpl;
+import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
@@ -173,6 +174,28 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	public List<ProjectInfo> getProjectList(SessionId sessionId) throws EmfStoreException {
 		sanityCheckObject(sessionId);
 		return getSubInterface(ProjectSubInterfaceImpl.class).getProjectList(sessionId);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void exportProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory)
+		throws EmfStoreException {
+		sanityCheckObjects(new Object[] { sessionId, projectHistory });
+		checkServerAdminAccess(sessionId);
+		// TODO
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ProjectHistory importProjectHistoryFromServer(SessionId sessionId, ProjectId projectId)
+		throws EmfStoreException {
+		sanityCheckObjects(new Object[] { sessionId, projectId });
+		checkServerAdminAccess(sessionId);
+		// TODO
+		throw new UnsupportedOperationException();
 	}
 
 	/**
