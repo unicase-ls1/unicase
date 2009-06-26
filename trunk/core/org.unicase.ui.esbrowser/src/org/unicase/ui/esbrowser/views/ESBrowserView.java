@@ -151,7 +151,7 @@ public class ESBrowserView extends ViewPart {
 					element.getLastUsersession().setSessionId(null);
 					// reset the password in the RAM cache
 					if (!element.getLastUsersession().isSavePassword()) {
-						// element.getLastUsersession().setPassword(null);
+						element.getLastUsersession().setPassword(null);
 					}
 					element.setLastUsersession(null);
 					WorkspaceManager.getInstance().getCurrentWorkspace().save();
