@@ -90,7 +90,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 	/**
 	 * {@inheritDoc}
 	 */
-	public void createGroup(SessionId sessionId, String name) throws EmfStoreException {
+	public ACOrgUnitId createGroup(SessionId sessionId, String name) throws EmfStoreException {
 		if (sessionId == null || name == null) {
 			throw new InvalidInputException();
 		}
@@ -100,6 +100,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		acGroup.setDescription("");
 		getServerSpace().getGroups().add(acGroup);
 		save();
+		return (ACOrgUnitId) EcoreUtil.copy(acGroup.getId());
 	}
 
 	/**
@@ -371,7 +372,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 	/**
 	 * {@inheritDoc}
 	 */
-	public void createUser(SessionId sessionId, String name) throws EmfStoreException {
+	public ACOrgUnitId createUser(SessionId sessionId, String name) throws EmfStoreException {
 		if (sessionId == null || name == null) {
 			throw new InvalidInputException();
 		}
@@ -382,6 +383,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		acUser.setDescription(" ");
 		getServerSpace().getUsers().add(acUser);
 		save();
+		return (ACOrgUnitId) EcoreUtil.copy(acUser.getId());
 	}
 
 	/**

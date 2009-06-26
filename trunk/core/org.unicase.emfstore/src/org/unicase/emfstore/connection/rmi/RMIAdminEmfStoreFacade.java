@@ -168,10 +168,11 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	 * @see AdminEmfStore#createGroup(org.unicase.emfstore.esmodel.SessionId, String)
 	 * @param sessionId the session id
 	 * @param name the name
+	 * @return String id of created user
 	 * @throws RemoteException transport related exception
 	 * @throws EmfStoreException if an error in the EmfStore occurs
 	 */
-	void createGroup(String sessionId, String name) throws RemoteException, EmfStoreException;
+	String createGroup(String sessionId, String name) throws RemoteException, EmfStoreException;
 
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
@@ -191,10 +192,11 @@ public interface RMIAdminEmfStoreFacade extends Remote {
 	 * @see AdminEmfStore#createUser(org.unicase.emfstore.esmodel.SessionId, String)e
 	 * @param sessionId the session id
 	 * @param name the name
+	 * @return String
 	 * @throws RemoteException transport related exception
 	 * @throws EmfStoreException if an error in the EmfStore occurs
 	 */
-	void createUser(String sessionId, String name) throws RemoteException, EmfStoreException;
+	String createUser(String sessionId, String name) throws RemoteException, EmfStoreException;
 
 	/**
 	 * String typed implementation of method in {@link AdminEmfStore}.
