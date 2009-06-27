@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
@@ -22,8 +23,12 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.image.ImageFileFormat;
 import org.eclipse.gmf.runtime.diagram.ui.render.util.CopyToImageUtil;
+import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultModelElementRenderer;
@@ -145,8 +150,27 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 						protected void doExecute() {
 							try {
 								diagram.loadDiagramLayout();
-								util.copyToImage(diagram.getGmfdiagram(), new Path(tmpImage.toString()),
-									ImageFileFormat.SVG, new NullProgressMonitor(), PreferencesHint.USE_DEFAULTS);
+								/*
+								 * View view = diagram.getGmfdiagram(); XMLResource res = (XMLResource)
+								 * view.eResource(); String id = res.getID(view); DiagramEditor openedDiagramEditor =
+								 * DiagramEditorUtil.findOpenedDiagramEditorForID(id);
+								 */
+								Shell shell = new Shell();
+								try {
+
+									DiagramEditPart editPart = util.createDiagramEditPart(diagram.getGmfdiagram(),
+										shell, PreferencesHint.USE_DEFAULTS);
+									Assert.isNotNull(editPart);
+									util.copyToImage(editPart, new Path(tmpImage.toString()), ImageFileFormat.SVG,
+										new NullProgressMonitor());
+
+								} finally {
+									shell.dispose();
+								}
+								/*
+								 * util.copyToImage(diagram.getGmfdiagram(), new Path(tmpImage.toString()),
+								 * ImageFileFormat.SVG, new NullProgressMonitor(), PreferencesHint.USE_DEFAULTS);
+								 */
 							} catch (DiagramLoadException e) {
 								WorkspaceUtil.log("A diagram could not be loaded while exporting.", e, IStatus.WARNING);
 							} catch (CoreException e) {
