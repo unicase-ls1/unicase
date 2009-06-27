@@ -16,12 +16,18 @@ import org.eclipse.swt.graphics.Image;
  */
 public class Label extends WrappingLabel{
 
+	private void init()
+	{
+		setAlignment(PositionConstants.CENTER);
+		setTextWrap(true);
+		setTextJustification(PositionConstants.CENTER);
+	}
 	/**
 	 * Default constructor.
 	 */
 	public Label() {
 		super();
-		setAlignment(PositionConstants.CENTER);
+		init();		
 	}
 
 	/**
@@ -31,7 +37,7 @@ public class Label extends WrappingLabel{
 	 */
 	public Label(String s) {
 		super(s);
-		setAlignment(PositionConstants.CENTER);
+		init();
 	}
 
 	/**
@@ -41,7 +47,7 @@ public class Label extends WrappingLabel{
 	 */
 	public Label(Image i) {
 		super(i);
-		setAlignment(PositionConstants.CENTER);
+		init();
 	}
 
 	/**
@@ -52,7 +58,7 @@ public class Label extends WrappingLabel{
 	 */
 	public Label(String s, Image i) {
 		super(s, i);
-		setAlignment(PositionConstants.CENTER);
+		init();
 	}
 
 	/**
