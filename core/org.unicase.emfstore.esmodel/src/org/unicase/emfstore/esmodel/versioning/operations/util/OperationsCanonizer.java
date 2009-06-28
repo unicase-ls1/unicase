@@ -9,10 +9,12 @@ package org.unicase.emfstore.esmodel.versioning.operations.util;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.model.ModelElementId;
 
 /**
  * Canonizes a list of operations. Removes all operations that are not necessary to achieve the same result when the
@@ -38,6 +40,123 @@ public final class OperationsCanonizer {
 
 		foldComposites(operations);
 		foldAttributes(operations);
+		foldAttributesIntoCreates(operations);
+		foldAttributesIntoDeletes(operations);
+	}
+
+	private static void foldAttributesIntoCreates(List<AbstractOperation> operations) {
+
+		// look for suitable create operation
+		for (int i = 0; i < operations.size() - 1; i++) {
+
+			AbstractOperation opLeft = operations.get(i);
+			if (!(opLeft instanceof CreateDeleteOperation)) {
+				continue;
+			}
+			CreateDeleteOperation createOp = (CreateDeleteOperation) opLeft;
+
+			if (createOp.isDelete()) {
+				continue;
+			}
+
+			// found valid create operation, now looking for attribute operations for
+			// the new object
+			for (int j = i + 1; j < operations.size(); j++) {
+
+				AbstractOperation opRight = operations.get(j);
+
+				if (opRight instanceof AttributeOperation
+					&& opLeft.getModelElementId().equals(opRight.getModelElementId())) {
+
+					AttributeOperation attOp = (AttributeOperation) opRight;
+					// found an attribute change for the new object
+					// now merge it into the created object and discard the attribute operation
+					EStructuralFeature feature = createOp.getModelElement().eClass().getEStructuralFeature(
+						attOp.getFeatureName());
+					createOp.getModelElement().eSet(feature, attOp.getNewValue());
+
+					operations.remove(j); // remove attribute operation
+					j--; // reexamine the index after removal
+
+				}
+
+				// stop if a composite operation occurs, that contains an attribute operation on created object
+				if (opRight instanceof CompositeOperation) {
+
+					if (containsAttributeChangeTo((CompositeOperation) opRight, createOp.getModelElementId())) {
+						break;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	private static void foldAttributesIntoDeletes(List<AbstractOperation> operations) {
+
+		// look for suitable delete operation
+		for (int i = operations.size() - 1; i > 0 && i < operations.size(); i--) {
+
+			AbstractOperation opRight = operations.get(i);
+			if (!(opRight instanceof CreateDeleteOperation)) {
+				continue;
+			}
+			CreateDeleteOperation deleteOp = (CreateDeleteOperation) opRight;
+
+			if (!deleteOp.isDelete()) {
+				continue;
+			}
+
+			// found valid delete operation, now looking for attribute operations for
+			// the object
+			for (int j = i - 1; j >= 0; j--) {
+
+				AbstractOperation opLeft = operations.get(j);
+
+				if (opLeft instanceof AttributeOperation
+					&& opRight.getModelElementId().equals(opLeft.getModelElementId())) {
+
+					AttributeOperation attOp = (AttributeOperation) opLeft;
+					// found an attribute change for the object, that is deleted
+					// now merge it into the deleted object and discard the attribute operation
+					EStructuralFeature feature = deleteOp.getModelElement().eClass().getEStructuralFeature(
+						attOp.getFeatureName());
+					deleteOp.getModelElement().eSet(feature, attOp.getOldValue());
+
+					operations.remove(j); // remove attribute operation
+					i--; // keep main loop consistent
+
+				}
+
+				// stop if a composite operation occurs, that contains an attribute operation on created object
+				if (opLeft instanceof CompositeOperation) {
+
+					if (containsAttributeChangeTo((CompositeOperation) opLeft, deleteOp.getModelElementId())) {
+						break;
+					}
+
+				}
+
+			}
+
+		}
+
+	}
+
+	private static boolean containsAttributeChangeTo(CompositeOperation comp, ModelElementId modelElementId) {
+
+		for (AbstractOperation op : comp.getSubOperations()) {
+
+			if (op instanceof AttributeOperation && modelElementId.equals(op.getModelElementId())) {
+				return true;
+			}
+
+		}
+
+		return false;
 	}
 
 	private static void foldComposites(List<AbstractOperation> operations) {
