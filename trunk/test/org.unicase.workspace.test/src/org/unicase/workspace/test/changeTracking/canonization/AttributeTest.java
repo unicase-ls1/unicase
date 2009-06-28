@@ -15,6 +15,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
 import org.unicase.model.Project;
 import org.unicase.model.document.DocumentFactory;
@@ -655,7 +656,7 @@ public class AttributeTest extends CanonizationTest {
 	/**
 	 * Tests canonization for consecutive attribute changes and delete on orphans.
 	 */
-	// commented out, orphan behaviour is irrelevant at present
+	// commented out, orphan behaviour is irrelevant at present. This reversibility test currently fails.
 	// @Test
 	// public void changeAttributesAndDeleteOrphansComplex() {
 	//
@@ -811,6 +812,48 @@ public class AttributeTest extends CanonizationTest {
 		// expect attributes folding into create, and create and delete removed,
 		// as they would be directly adjacent to each other
 		assertEquals(operations.size(), 0);
+
+		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
+
+	}
+
+	/**
+	 * Tests canonization for create, attribute changes and delete.
+	 */
+	@Test
+	public void createChangeReferencesAndDelete() {
+
+		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase2);
+
+		Project originalProject = ModelUtil.clone(getProject());
+		clearOperations();
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase);
+		useCase.setName("someName");
+		useCase.getExtendedUseCases().add(useCase2);
+		getProject().deleteModelElement(useCase);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		// expect create, 1 attribute ops, 1 multiref op, the delete
+		assertEquals(operations.size(), 4);
+		OperationsCanonizer.canonize(operations);
+
+		// expect attributes folding into create, the multiref and delete remain
+		assertEquals(operations.size(), 3);
+		assertTrue(operations.get(0) instanceof CreateDeleteOperation);
+		assertTrue(operations.get(1) instanceof MultiReferenceOperation);
+		assertTrue(operations.get(2) instanceof CreateDeleteOperation);
+
+		// check the folding of the attribute
+		CreateDeleteOperation createOp = (CreateDeleteOperation) operations.get(0);
+		assertEquals("someName", createOp.getModelElement().getName());
+
+		// check reversibility
+		operations.get(2).reverse().apply(getProject());
+		operations.get(1).reverse().apply(getProject());
+		operations.get(0).reverse().apply(getProject());
 
 		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
 
