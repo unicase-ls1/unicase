@@ -14,11 +14,7 @@ import org.junit.runners.Suite;
  * @author koegel
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { 	
-	AttributeTest.class,
-	SingleReferenceTest.class
-					
-})
+@Suite.SuiteClasses( { AttributeTest.class })
 public class AllCanonizationTests {
 
 }
