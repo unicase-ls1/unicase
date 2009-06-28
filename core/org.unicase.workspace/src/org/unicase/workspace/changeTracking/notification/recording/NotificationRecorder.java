@@ -56,7 +56,8 @@ public class NotificationRecorder {
 	 * notification chains are recorded as a single sequence.
 	 */
 	public void stopRecording() {
-		if (recording == null || recording.empty()) {
+		// empty delete might actually happen
+		if (recording == null /* || recording.empty() */) {
 			throw new IllegalStateException("trying to close an empty recording");
 		}
 		if (lastNotificationHasFollowUps()) {
@@ -79,6 +80,9 @@ public class NotificationRecorder {
 	}
 
 	private boolean notificationHasFollowUps(NotificationInfo n) {
+		if (n == null) {
+			return false;
+		}
 		return n.hasNext();
 	}
 
