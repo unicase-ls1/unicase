@@ -70,11 +70,15 @@ public class GenericBidirectionalFilter implements NotificationFilter {
 				}
 
 			} else if (n.isRemoveEvent()) {
-
-				if (n.getOldValue() == m.getNotifier()) {
+				if (m.isRemoveManyEvent() && n.getOldValue() == m.getNotifier()) {
 					return true;
 				}
+				return false;
 
+				// generic case not valid any more to maintain index consistency during reverse operations
+				/*
+				 * if (n.getOldValue() == m.getNotifier()) { return true; }
+				 */
 			}
 
 		}
