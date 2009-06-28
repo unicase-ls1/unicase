@@ -13,6 +13,8 @@ import java.util.List;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
 import org.unicase.model.Project;
 import org.unicase.model.document.DocumentFactory;
@@ -290,6 +292,7 @@ public class AttributeTest extends CanonizationTest {
 		section.setDescription("desc 2");
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
 		OperationsCanonizer.canonize(operations);
 
 		for (int i = operations.size() - 1; i >= 0; i--) {
@@ -372,6 +375,415 @@ public class AttributeTest extends CanonizationTest {
 			AbstractOperation reverse = operations.get(i).reverse();
 			reverse.apply(getProject());
 		}
+
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+	}
+
+	/**
+	 * Tests canonization for create and consecutive attribute changes.
+	 */
+	@Test
+	public void createAndChangeAttributesSimple() {
+
+		Project originalProject = ModelUtil.clone(getProject());
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase);
+		useCase.setName("NameOfUseCase");
+		useCase.setDescription("DescriptionOfUseCase");
+
+		assertEquals("NameOfUseCase", useCase.getName());
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		// expecting a create and two attribute operations
+		assertEquals(operations.size(), 3);
+		OperationsCanonizer.canonize(operations);
+
+		// now expecting only the create with folded in attributes
+		assertEquals(operations.size(), 1);
+		assertTrue(operations.get(0) instanceof CreateDeleteOperation);
+
+		CreateDeleteOperation op = (CreateDeleteOperation) operations.get(0);
+
+		assertEquals(op.getModelElement().getName(), "NameOfUseCase");
+		assertEquals(op.getModelElement().getDescription(), "DescriptionOfUseCase");
+
+		// test if the create is reversible and re-reversible
+		Project expectedProject = ModelUtil.clone(getProject());
+		op.reverse().apply(getProject());
+
+		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
+
+		op.reverse().reverse().apply(getProject());
+
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+	}
+
+	/**
+	 * Tests canonization for create and consecutive attribute changes.
+	 */
+	@Test
+	public void createAndChangeAttributesComplex() {
+
+		Project originalProject = ModelUtil.clone(getProject());
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+
+		getProject().addModelElement(useCase);
+		getProject().addModelElement(useCase2);
+
+		useCase.setName("NameOfUseCase");
+		useCase.setDescription("DescriptionOfUseCase");
+
+		useCase2.setName("NameOfUseCase2");
+		useCase2.setDescription("DescriptionOfUseCase2");
+
+		assertEquals("NameOfUseCase", useCase.getName());
+		assertEquals("NameOfUseCase2", useCase2.getName());
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		// expecting a create and two attribute operations per usecase
+		assertEquals(operations.size(), 6);
+		OperationsCanonizer.canonize(operations);
+
+		// now expecting only the creates with folded in attributes
+		assertEquals(operations.size(), 2);
+		assertTrue(operations.get(0) instanceof CreateDeleteOperation);
+
+		CreateDeleteOperation op = (CreateDeleteOperation) operations.get(0);
+
+		assertEquals(op.getModelElement().getName(), "NameOfUseCase");
+		assertEquals(op.getModelElement().getDescription(), "DescriptionOfUseCase");
+
+		assertTrue(operations.get(1) instanceof CreateDeleteOperation);
+
+		CreateDeleteOperation op2 = (CreateDeleteOperation) operations.get(1);
+
+		assertEquals(op2.getModelElement().getName(), "NameOfUseCase2");
+		assertEquals(op2.getModelElement().getDescription(), "DescriptionOfUseCase2");
+
+		// test reversibility, too
+
+		op2.reverse().apply(getProject());
+		op.reverse().apply(getProject());
+
+		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
+
+	}
+
+	/**
+	 * Test the creation and completion of a composite operation, that contains attribute changes.
+	 * 
+	 * @throws InvalidHandleException if the test fails
+	 */
+	@Test
+	public void createAndAttributeChangesACA() throws InvalidHandleException {
+
+		Project originalProject = ModelUtil.clone(getProject());
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		getProject().addModelElement(section);
+		section.setName("Name");
+		section.setDescription("oldDescription");
+
+		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+		section.setDescription("newDescription");
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		section.getModelElements().add(useCase);
+		handle.end("sectionCreation", "description", section.getModelElementId());
+
+		section.setDescription("desc 2");
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		// expect create, 2 attribute ops, the composite, 1 attribute op
+		assertEquals(5, operations.size());
+		assertTrue(operations.get(0) instanceof CreateDeleteOperation);
+		assertTrue(operations.get(1) instanceof AttributeOperation);
+		assertTrue(operations.get(2) instanceof AttributeOperation);
+		assertTrue(operations.get(3) instanceof CompositeOperation);
+		assertTrue(operations.get(4) instanceof AttributeOperation);
+
+		OperationsCanonizer.canonize(operations);
+
+		// expect create, the composite and 1 attribute op
+		assertEquals(3, operations.size());
+		assertTrue(operations.get(0) instanceof CreateDeleteOperation);
+		assertTrue(operations.get(1) instanceof CompositeOperation);
+		assertTrue(operations.get(2) instanceof AttributeOperation);
+
+		Project expectedProject = ModelUtil.clone(getProject());
+
+		// test reversibility
+
+		for (int i = operations.size() - 1; i >= 0; i--) {
+			AbstractOperation reverse = operations.get(i).reverse();
+			reverse.apply(getProject());
+		}
+
+		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
+
+		// test redo
+		operations.get(0).apply(getProject());
+		operations.get(1).apply(getProject());
+		operations.get(2).apply(getProject());
+
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+	}
+
+	/**
+	 * Tests canonization for consecutive attribute changes followed by a delete.
+	 */
+	@Test
+	public void changeAttributesAndDeleteSimple() {
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase);
+		useCase.setName("originalName");
+		useCase.setDescription("originalDescription");
+
+		Project originalProject = ModelUtil.clone(getProject());
+
+		clearOperations();
+
+		useCase.setName("NameOfUseCase");
+		useCase.setDescription("DescriptionOfUseCase");
+
+		getProject().deleteModelElement(useCase);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		// expecting two attribute operations and a delete
+		assertEquals(operations.size(), 3);
+		OperationsCanonizer.canonize(operations);
+
+		// now expecting only the delete with folded in attributes
+		assertEquals(operations.size(), 1);
+		assertTrue(operations.get(0) instanceof CreateDeleteOperation);
+
+		CreateDeleteOperation op = (CreateDeleteOperation) operations.get(0);
+
+		assertTrue(op.isDelete());
+		assertEquals(op.getModelElement().getName(), "originalName");
+		assertEquals(op.getModelElement().getDescription(), "originalDescription");
+
+		// test if the delete is reversible and re-reversible
+		Project expectedProject = ModelUtil.clone(getProject());
+		op.reverse().apply(getProject());
+
+		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
+
+		op.reverse().reverse().apply(getProject());
+
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+	}
+
+	/**
+	 * Tests canonization for consecutive attribute changes and delete.
+	 */
+	@Test
+	public void changeAttributesAndDeleteComplex() {
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+
+		getProject().addModelElement(section);
+		section.getModelElements().add(useCase);
+		section.getModelElements().add(useCase2);
+
+		useCase.setName("originalName1");
+		useCase.setDescription("originalDescription1");
+
+		useCase2.setName("originalName2");
+		useCase2.setDescription("originalDescription2");
+
+		Project originalProject = ModelUtil.clone(getProject());
+
+		clearOperations();
+
+		useCase.setName("NameOfUseCase");
+		useCase.setDescription("DescriptionOfUseCase");
+
+		useCase2.setName("NameOfUseCase2");
+		useCase2.setDescription("DescriptionOfUseCase2");
+
+		assertEquals("NameOfUseCase", useCase.getName());
+		assertEquals("NameOfUseCase2", useCase2.getName());
+
+		getProject().deleteModelElement(useCase);
+		getProject().deleteModelElement(useCase2);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		// expecting two attribute operations and a delete per usecase
+		assertEquals(operations.size(), 6);
+		OperationsCanonizer.canonize(operations);
+
+		// now expecting only the deletes with folded in attributes
+		assertEquals(operations.size(), 2);
+		assertTrue(operations.get(0) instanceof CreateDeleteOperation);
+
+		CreateDeleteOperation op = (CreateDeleteOperation) operations.get(0);
+
+		assertEquals(op.getModelElement().getName(), "originalName1");
+		assertEquals(op.getModelElement().getDescription(), "originalDescription1");
+
+		assertTrue(operations.get(1) instanceof CreateDeleteOperation);
+
+		CreateDeleteOperation op2 = (CreateDeleteOperation) operations.get(1);
+
+		assertEquals(op2.getModelElement().getName(), "originalName2");
+		assertEquals(op2.getModelElement().getDescription(), "originalDescription2");
+
+		// test reversibility, too
+
+		op2.reverse().apply(getProject());
+		op.reverse().apply(getProject());
+
+		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
+
+	}
+
+	/**
+	 * Tests canonization for consecutive attribute changes and delete on orphans.
+	 */
+	// commented out, orphan behaviour is irrelevant at present
+	// @Test
+	// public void changeAttributesAndDeleteOrphansComplex() {
+	//
+	// UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+	// UseCase useCase2 = RequirementFactory.eINSTANCE.createUseCase();
+	//
+	// getProject().getModelElements().add(useCase);
+	// getProject().getModelElements().add(useCase2);
+	//
+	// useCase.setName("originalName1");
+	// useCase.setDescription("originalDescription1");
+	//
+	// useCase2.setName("originalName2");
+	// useCase2.setDescription("originalDescription2");
+	//
+	// Project originalProject = ModelUtil.clone(getProject());
+	//
+	// clearOperations();
+	//
+	// useCase.setName("NameOfUseCase");
+	// useCase.setDescription("DescriptionOfUseCase");
+	//
+	// useCase2.setName("NameOfUseCase2");
+	// useCase2.setDescription("DescriptionOfUseCase2");
+	//
+	// assertEquals("NameOfUseCase", useCase.getName());
+	// assertEquals("NameOfUseCase2", useCase2.getName());
+	//
+	// getProject().deleteModelElement(useCase);
+	// getProject().deleteModelElement(useCase2);
+	//
+	// List<AbstractOperation> operations = getProjectSpace().getOperations();
+	//
+	// // expecting two attribute operations and a delete per usecase
+	// assertEquals(operations.size(), 6);
+	// OperationsCanonizer.canonize(operations);
+	//
+	// // now expecting only the deletes with folded in attributes
+	// assertEquals(operations.size(), 2);
+	// assertTrue(operations.get(0) instanceof CreateDeleteOperation);
+	//
+	// CreateDeleteOperation op = (CreateDeleteOperation) operations.get(0);
+	//
+	// assertEquals(op.getModelElement().getName(), "originalName1");
+	// assertEquals(op.getModelElement().getDescription(), "originalDescription1");
+	//
+	// assertTrue(operations.get(1) instanceof CreateDeleteOperation);
+	//
+	// CreateDeleteOperation op2 = (CreateDeleteOperation) operations.get(1);
+	//
+	// assertEquals(op2.getModelElement().getName(), "originalName2");
+	// assertEquals(op2.getModelElement().getDescription(), "originalDescription2");
+	//
+	// // test reversibility, too
+	//
+	// op2.reverse().apply(getProject());
+	// op.reverse().apply(getProject());
+	//
+	// assertTrue(ModelUtil.areEqual(getProject(), originalProject));
+	//
+	// }
+	/**
+	 * Test the creation and completion of a composite operation, that contains attribute changes.
+	 * 
+	 * @throws InvalidHandleException if the test fails
+	 */
+	@Test
+	public void attributeChangesACAAndDelete() throws InvalidHandleException {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		getProject().addModelElement(section);
+		section.setName("originalName");
+		section.setDescription("originalDescription");
+
+		Project originalProject = ModelUtil.clone(getProject());
+		clearOperations();
+
+		section.setName("some new Name");
+
+		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+		section.setDescription("newDescription");
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		section.getModelElements().add(useCase);
+		handle.end("sectionCreation", "description", section.getModelElementId());
+
+		section.setDescription("desc 2");
+
+		getProject().deleteModelElement(section);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+
+		// expect 1 attribute op, the composite, 1 attribute op, the delete
+		assertEquals(4, operations.size());
+		assertTrue(operations.get(0) instanceof AttributeOperation);
+		assertTrue(operations.get(1) instanceof CompositeOperation);
+		assertTrue(operations.get(2) instanceof AttributeOperation);
+		assertTrue(operations.get(3) instanceof CreateDeleteOperation);
+
+		OperationsCanonizer.canonize(operations);
+
+		// expect 1 attribute op, the composite and the delete with folded in attribute
+		assertEquals(3, operations.size());
+		assertTrue(operations.get(0) instanceof AttributeOperation);
+		assertTrue(operations.get(1) instanceof CompositeOperation);
+		assertTrue(operations.get(2) instanceof CreateDeleteOperation);
+
+		CreateDeleteOperation delOp = (CreateDeleteOperation) operations.get(2);
+		assertTrue(delOp.isDelete());
+		// not folded, interfering composite was inbeetween
+		assertEquals("some new Name", delOp.getModelElement().getName());
+		// folded, value is oldValue from "newDescription"-> "desc 2"
+		assertEquals("newDescription", delOp.getModelElement().getDescription());
+
+		Project expectedProject = ModelUtil.clone(getProject());
+
+		// test reversibility
+
+		for (int i = operations.size() - 1; i >= 0; i--) {
+			AbstractOperation reverse = operations.get(i).reverse();
+			reverse.apply(getProject());
+		}
+
+		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
+
+		// test redo
+		operations.get(0).apply(getProject());
+		operations.get(1).apply(getProject());
+		operations.get(2).apply(getProject());
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
