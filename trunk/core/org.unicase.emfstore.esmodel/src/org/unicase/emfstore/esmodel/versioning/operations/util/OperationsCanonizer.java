@@ -6,6 +6,7 @@
 
 package org.unicase.emfstore.esmodel.versioning.operations.util;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -35,8 +36,25 @@ public final class OperationsCanonizer {
 	 */
 	public static void canonize(List<AbstractOperation> operations) {
 
-		// fold attribute operations
+		foldComposites(operations);
 		foldAttributes(operations);
+	}
+
+	private static void foldComposites(List<AbstractOperation> operations) {
+
+		List<CompositeOperation> emptyComposites = new LinkedList<CompositeOperation>();
+		for (AbstractOperation op : operations) {
+
+			if (!(op instanceof CompositeOperation)) {
+				continue;
+			}
+			CompositeOperation comp = (CompositeOperation) op;
+			OperationsCanonizer.canonize(comp.getSubOperations());
+			if (comp.getSubOperations().size() == 0) {
+				emptyComposites.add(comp);
+			}
+		}
+		operations.removeAll(emptyComposites);
 	}
 
 	private static void foldAttributes(List<AbstractOperation> operations) {
