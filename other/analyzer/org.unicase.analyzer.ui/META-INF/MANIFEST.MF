@@ -1,10 +1,13 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Ui Plug-in
-Bundle-SymbolicName: org.unicase.analyzer.ui
+Bundle-SymbolicName: org.unicase.analyzer.ui;singleton:=true
 Bundle-Version: 0.0.1.qualifier
 Bundle-Activator: org.unicase.analyzer.ui.Activator
 Require-Bundle: org.eclipse.ui,
- org.unicase.analyzer.edit
+ org.unicase.analyzer.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Import-Package: org.unicase.emfstore.esmodel,
+ org.unicase.workspace
+Export-Package: org.unicase.analyzer.ui
