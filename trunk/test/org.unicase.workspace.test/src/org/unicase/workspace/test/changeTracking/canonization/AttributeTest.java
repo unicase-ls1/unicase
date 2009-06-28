@@ -789,4 +789,31 @@ public class AttributeTest extends CanonizationTest {
 
 	}
 
+	/**
+	 * Tests canonization for create, attribute changes and delete.
+	 */
+	@Test
+	public void createChangeAttributeAndDelete() {
+
+		Project originalProject = ModelUtil.clone(getProject());
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase);
+		useCase.setName("someName");
+		useCase.setName("newName");
+		getProject().deleteModelElement(useCase);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		// expect create, 2 attribute ops, delete
+		assertEquals(operations.size(), 4);
+		OperationsCanonizer.canonize(operations);
+
+		// expect attributes folding into create, and create and delete removed,
+		// as they would be directly adjacent to each other
+		assertEquals(operations.size(), 0);
+
+		assertTrue(ModelUtil.areEqual(getProject(), originalProject));
+
+	}
+
 }
