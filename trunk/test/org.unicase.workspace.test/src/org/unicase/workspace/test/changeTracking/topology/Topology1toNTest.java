@@ -76,7 +76,7 @@ public class Topology1toNTest extends TopologyTest {
 		assertEquals(op.getIndex(), 0);
 
 	}
-	
+
 	/**
 	 * create orphan.
 	 * 
@@ -84,8 +84,7 @@ public class Topology1toNTest extends TopologyTest {
 	 * @throws UnsupportedNotificationException on test fail
 	 */
 	@Test
-	public void createContainmentOrphan() throws UnsupportedOperationException,
-		UnsupportedNotificationException {
+	public void createContainmentOrphan() throws UnsupportedOperationException, UnsupportedNotificationException {
 
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
@@ -93,21 +92,35 @@ public class Topology1toNTest extends TopologyTest {
 		getProject().addModelElement(actor);
 		getProject().addModelElement(section);
 		section.getModelElements().add(actor);
-		
+
 		clearOperations();
-		
+
 		getProject().addModelElement(actor);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
-		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
-		SingleReferenceOperation op = (SingleReferenceOperation) operations.get(0);
-		
-		assertEquals("leafSection", op.getFeatureName());
-		assertEquals(op.getModelElementId(), actor.getModelElementId());
 
-	}	
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
+			fail("composite operation expected");
+		}
+
+		assertEquals(2, operations.size());
+
+		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op0 = (MultiReferenceOperation) operations.get(0);
+		assertEquals(section.getModelElementId(), op0.getModelElementId());
+		assertEquals("modelElements", op0.getFeatureName());
+		assertEquals(op0.getReferencedModelElements().get(0), actor.getModelElementId());
+
+		assertTrue(operations.get(1) instanceof SingleReferenceOperation);
+		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(1);
+		assertEquals("leafSection", op1.getFeatureName());
+		assertEquals(op1.getModelElementId(), actor.getModelElementId());
+
+	}
 
 	/**
 	 * reverse orphan creation.
@@ -116,8 +129,7 @@ public class Topology1toNTest extends TopologyTest {
 	 * @throws UnsupportedNotificationException on test fail
 	 */
 	@Test
-	public void reverseContainmentOrphan() throws UnsupportedOperationException,
-		UnsupportedNotificationException {
+	public void reverseContainmentOrphan() throws UnsupportedOperationException, UnsupportedNotificationException {
 
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
@@ -125,10 +137,10 @@ public class Topology1toNTest extends TopologyTest {
 		getProject().addModelElement(actor);
 		getProject().addModelElement(section);
 		section.getModelElements().add(actor);
-		
+
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
-		
+
 		clearOperations();
 		// create orphan
 		getProject().addModelElement(actor);
@@ -136,18 +148,33 @@ public class Topology1toNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
-		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
-		SingleReferenceOperation op = (SingleReferenceOperation) operations.get(0);
-		
-		assertEquals("leafSection", op.getFeatureName());
-		assertEquals(op.getModelElementId(), actor.getModelElementId());
-		
+
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
+			fail("composite operation expected");
+		}
+
+		assertEquals(2, operations.size());
+
+		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op0 = (MultiReferenceOperation) operations.get(0);
+		assertEquals(section.getModelElementId(), op0.getModelElementId());
+		assertEquals("modelElements", op0.getFeatureName());
+		assertEquals(op0.getReferencedModelElements().get(0), actor.getModelElementId());
+
+		assertTrue(operations.get(1) instanceof SingleReferenceOperation);
+		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(1);
+		assertEquals("leafSection", op1.getFeatureName());
+		assertEquals(op1.getModelElementId(), actor.getModelElementId());
+
 		// test the reversibility of what has happened
-		op.reverse().apply(getProject());
-		
+		op1.reverse().apply(getProject());
+		op0.reverse().apply(getProject());
+
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-	}	
+	}
 
 	/**
 	 * reverse orphan creation.
@@ -166,10 +193,10 @@ public class Topology1toNTest extends TopologyTest {
 		getProject().addModelElement(section);
 		section.getModelElements().add(actor);
 		section.getModelElements().add(actor2);
-		
+
 		Project expectedProject = ModelUtil.clone(getProject());
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
-		
+
 		clearOperations();
 		// create orphan
 		getProject().addModelElement(actor);
@@ -177,21 +204,34 @@ public class Topology1toNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
-		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
-		SingleReferenceOperation op = (SingleReferenceOperation) operations.get(0);
-		
-		assertEquals("leafSection", op.getFeatureName());
-		assertEquals(op.getModelElementId(), actor.getModelElementId());
-		
+
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
+			fail("composite operation expected");
+		}
+
+		assertEquals(2, operations.size());
+
+		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op0 = (MultiReferenceOperation) operations.get(0);
+		assertEquals(section.getModelElementId(), op0.getModelElementId());
+		assertEquals("modelElements", op0.getFeatureName());
+		assertEquals(op0.getReferencedModelElements().get(0), actor.getModelElementId());
+
+		assertTrue(operations.get(1) instanceof SingleReferenceOperation);
+		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(1);
+		assertEquals("leafSection", op1.getFeatureName());
+		assertEquals(op1.getModelElementId(), actor.getModelElementId());
+
 		// test the reversibility of what has happened
-		op.reverse().apply(getProject());
-		
+		op1.reverse().apply(getProject());
+		op0.reverse().apply(getProject());
+
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 
-	}	
-	
-	
-	
+	}
+
 	/**
 	 * add an uncontained child to a non-empty containment feature.
 	 * 
@@ -201,23 +241,23 @@ public class Topology1toNTest extends TopologyTest {
 	@Test
 	public void containmentAddUncontainedChildToNonEmpty() throws UnsupportedOperationException,
 		UnsupportedNotificationException {
-	
+
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		Actor oldActor = RequirementFactory.eINSTANCE.createActor();
-	
+
 		getProject().addModelElement(actor);
 		getProject().addModelElement(oldActor);
 		getProject().addModelElement(section);
-	
+
 		section.getModelElements().add(oldActor);
-	
+
 		clearOperations();
-	
+
 		section.getModelElements().add(actor);
-	
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-	
+
 		assertEquals(1, operations.size());
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
@@ -227,7 +267,7 @@ public class Topology1toNTest extends TopologyTest {
 		assertEquals("modelElements", op.getFeatureName());
 		assertEquals(op.getModelElementId(), section.getModelElementId());
 		assertEquals(op.getIndex(), 1);
-	
+
 	}
 
 	/**
@@ -357,55 +397,61 @@ public class Topology1toNTest extends TopologyTest {
 	@Test
 	public void containmentAddSameFeatureContainedChildToNonEmpty() throws UnsupportedOperationException,
 		UnsupportedNotificationException {
-	
+
 		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
 		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		Actor actor1 = RequirementFactory.eINSTANCE.createActor();
 		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
-	
+
 		getProject().addModelElement(actor1);
 		getProject().addModelElement(actor2);
 		getProject().addModelElement(section1);
 		getProject().addModelElement(section2);
-	
+
 		section1.getModelElements().add(actor1);
 		section2.getModelElements().add(actor2);
-	
+
 		clearOperations();
-	
+
 		section1.getModelElements().add(actor2);
 		assertFalse(section2.getModelElements().contains(actor2));
 		assertTrue(section1.getModelElements().contains(actor2));
-	
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
-	
-		assertEquals(2, operations.size());
-	
-		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
-		// first op is: LeafSection change on actor2 (preserving old parent)
-		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(0);
+
+		assertEquals(3, operations.size());
+
+		// op is: maintain change in section2, preserving index of actor 2
+		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op0 = (MultiReferenceOperation) operations.get(0);
+		assertEquals(section2.getModelElementId(), op0.getModelElementId());
+		assertEquals("modelElements", op0.getFeatureName());
+		assertEquals(op0.getReferencedModelElements().get(0), actor2.getModelElementId());
+
+		assertTrue(operations.get(1) instanceof SingleReferenceOperation);
+		// op is: LeafSection change on actor2 (preserving old parent)
+		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(1);
 		assertEquals(op1.getOldValue(), section2.getModelElementId());
 		assertEquals(op1.getNewValue(), section1.getModelElementId());
 		assertEquals("leafSection", op1.getFeatureName());
-	
-		// second op is: Section2 welcomes its new child
-		assertTrue(operations.get(1) instanceof MultiReferenceOperation);
-		MultiReferenceOperation op2 = (MultiReferenceOperation) operations.get(1);
+
+		// op is: Section2 welcomes its new child
+		assertTrue(operations.get(2) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op2 = (MultiReferenceOperation) operations.get(2);
 		assertTrue(op2.isAdd());
 		assertEquals(1, op2.getReferencedModelElements().size());
 		assertEquals(actor2.getModelElementId(), op2.getReferencedModelElements().get(0));
 		assertEquals("modelElements", op2.getFeatureName());
 		assertEquals(op2.getModelElementId(), section1.getModelElementId());
 		assertEquals(op2.getIndex(), 1);
-	
+
 	}
 
 	/**
@@ -450,10 +496,9 @@ public class Topology1toNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 		// now expectation is: we get 4 messages preserving the info on former parents for the actors
@@ -550,10 +595,9 @@ public class Topology1toNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 		// now expectation is: we get 4 messages preserving the info on former parents for the actors
@@ -614,53 +658,59 @@ public class Topology1toNTest extends TopologyTest {
 	@Test
 	public void containmentAddDifferentFeatureContainedNChildToNonEmpty() throws UnsupportedOperationException,
 		UnsupportedNotificationException {
-	
+
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		WorkPackage pack = TaskFactory.eINSTANCE.createWorkPackage();
 		BugReport br = BugFactory.eINSTANCE.createBugReport();
-	
+
 		getProject().addModelElement(section);
 		getProject().addModelElement(pack);
 		getProject().addModelElement(br);
 		br.setLeafSection(section);
-	
+
 		assertTrue(section.getModelElements().contains(br));
-	
+
 		clearOperations();
-	
+
 		pack.getContainedWorkItems().add(br);
 		assertFalse(section.getModelElements().contains(br));
 		assertTrue(pack.getContainedWorkItems().contains(br));
-	
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
-		
-		assertEquals(2, operations.size());
-	
-		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
-		// first op is: LeafSection change on bug report (preserving old parent)
-		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(0);
+
+		assertEquals(3, operations.size());
+
+		// op is: maintain change in section, preserving index of actor 2
+		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op0 = (MultiReferenceOperation) operations.get(0);
+		assertEquals(section.getModelElementId(), op0.getModelElementId());
+		assertEquals("modelElements", op0.getFeatureName());
+		assertEquals(op0.getReferencedModelElements().get(0), br.getModelElementId());
+
+		assertTrue(operations.get(1) instanceof SingleReferenceOperation);
+		// op is: LeafSection change on bug report (preserving old parent)
+		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(1);
 		assertEquals(op1.getOldValue(), section.getModelElementId());
 		assertNull(op1.getNewValue());
 		assertEquals("leafSection", op1.getFeatureName());
-	
-		// second op is: Workpackage welcomes its new child
-		assertTrue(operations.get(1) instanceof MultiReferenceOperation);
-		MultiReferenceOperation op2 = (MultiReferenceOperation) operations.get(1);
+
+		// op is: Workpackage welcomes its new child
+		assertTrue(operations.get(2) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op2 = (MultiReferenceOperation) operations.get(2);
 		assertTrue(op2.isAdd());
 		assertEquals(1, op2.getReferencedModelElements().size());
 		assertEquals(br.getModelElementId(), op2.getReferencedModelElements().get(0));
 		assertEquals("containedWorkItems", op2.getFeatureName());
 		assertEquals(op2.getModelElementId(), pack.getModelElementId());
 		assertEquals(op2.getIndex(), 0);
-	
+
 	}
 
 	/**
@@ -672,42 +722,41 @@ public class Topology1toNTest extends TopologyTest {
 	@Test
 	public void containmentAddDifferentFeatureContained1ChildToNonEmpty() throws UnsupportedOperationException,
 		UnsupportedNotificationException {
-	
+
 		Issue issue = RationaleFactory.eINSTANCE.createIssue();
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		Solution solution = RationaleFactory.eINSTANCE.createSolution();
-	
+
 		getProject().addModelElement(issue);
 		getProject().addModelElement(section);
 		getProject().addModelElement(solution);
 		issue.setSolution(solution);
-	
+
 		clearOperations();
-	
+
 		section.getModelElements().add(solution);
 		assertTrue(section.getModelElements().contains(solution));
 		assertNull(issue.getSolution());
-	
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 		assertEquals(2, operations.size());
-	
+
 		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
-	
+
 		// first op is: solution loses its old parent
 		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(0);
 		assertEquals(solution.getModelElementId(), op1.getModelElementId());
 		assertEquals("issue", op1.getFeatureName());
 		assertEquals(op1.getOldValue(), issue.getModelElementId());
 		assertNull(op1.getNewValue());
-	
+
 		// second op is: section welcomes its new child
 		assertTrue(operations.get(1) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op2 = (MultiReferenceOperation) operations.get(1);
@@ -717,7 +766,7 @@ public class Topology1toNTest extends TopologyTest {
 		assertEquals(solution.getModelElementId(), op2.getReferencedModelElements().get(0));
 		assertEquals("modelElements", op2.getFeatureName());
 		assertEquals(op2.getIndex(), 0);
-	
+
 	}
 
 	/**
@@ -763,10 +812,9 @@ public class Topology1toNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 		// now expectation is: we get 4 messages preserving the info on former parents for the actors
@@ -827,18 +875,18 @@ public class Topology1toNTest extends TopologyTest {
 	@Test
 	public void containmentAddDifferentFeatureContainedNChildrenToNonEmpty() throws UnsupportedOperationException,
 		UnsupportedNotificationException {
-	
+
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		section.getModelElements().add(BugFactory.eINSTANCE.createBugReport());
-	
+
 		WorkPackage oldPack = TaskFactory.eINSTANCE.createWorkPackage();
 		WorkPackage oldPack2 = TaskFactory.eINSTANCE.createWorkPackage();
-	
+
 		BugReport br1 = BugFactory.eINSTANCE.createBugReport();
 		BugReport br2 = BugFactory.eINSTANCE.createBugReport();
 		BugReport br3 = BugFactory.eINSTANCE.createBugReport();
 		BugReport br4 = BugFactory.eINSTANCE.createBugReport();
-	
+
 		getProject().addModelElement(br1);
 		getProject().addModelElement(br2);
 		getProject().addModelElement(br3);
@@ -846,7 +894,7 @@ public class Topology1toNTest extends TopologyTest {
 		getProject().addModelElement(section);
 		getProject().addModelElement(oldPack);
 		getProject().addModelElement(oldPack2);
-	
+
 		BugReport[] actors = { br1, br2, br3, br4 };
 		oldPack.getContainedWorkItems().addAll(Arrays.asList(actors));
 		oldPack2.getContainedWorkItems().add(br4); // relocate to other section
@@ -855,57 +903,56 @@ public class Topology1toNTest extends TopologyTest {
 		assertTrue(oldPack.getContainedWorkItems().contains(br3));
 		assertTrue(oldPack2.getContainedWorkItems().contains(br4));
 		assertFalse(section.getModelElements().isEmpty()); // one item is there initially
-	
+
 		clearOperations();
-	
+
 		section.getModelElements().addAll(Arrays.asList(actors));
-	
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
-		}	
+		}
 		// now expectation is: we get 4 messages preserving the info on former parents for the actors
 		// and one additional one, indicating the new parent for all of them
 		assertEquals(5, operations.size());
-	
+
 		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
 		assertTrue(operations.get(1) instanceof SingleReferenceOperation);
 		assertTrue(operations.get(2) instanceof SingleReferenceOperation);
 		assertTrue(operations.get(3) instanceof SingleReferenceOperation);
-	
+
 		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(0);
 		SingleReferenceOperation op2 = (SingleReferenceOperation) operations.get(1);
 		SingleReferenceOperation op3 = (SingleReferenceOperation) operations.get(2);
 		SingleReferenceOperation op4 = (SingleReferenceOperation) operations.get(3);
-	
+
 		assertEquals(op1.getModelElementId(), br1.getModelElementId());
 		assertEquals(op2.getModelElementId(), br2.getModelElementId());
 		assertEquals(op3.getModelElementId(), br3.getModelElementId());
 		assertEquals(op4.getModelElementId(), br4.getModelElementId());
-	
+
 		assertEquals(op1.getFeatureName(), "containingWorkpackage");
 		assertEquals(op2.getFeatureName(), "containingWorkpackage");
 		assertEquals(op3.getFeatureName(), "containingWorkpackage");
 		assertEquals(op4.getFeatureName(), "containingWorkpackage");
-	
+
 		assertEquals(op1.getOldValue(), oldPack.getModelElementId());
 		assertEquals(op2.getOldValue(), oldPack.getModelElementId());
 		assertEquals(op3.getOldValue(), oldPack.getModelElementId());
 		assertEquals(op4.getOldValue(), oldPack2.getModelElementId());
-	
+
 		assertEquals(op1.getNewValue(), null);
 		assertEquals(op2.getNewValue(), null);
 		assertEquals(op3.getNewValue(), null);
 		assertEquals(op4.getNewValue(), null);
-	
+
 		assertTrue(operations.get(4) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op5 = (MultiReferenceOperation) operations.get(4);
-	
+
 		assertEquals(op5.getModelElementId(), section.getModelElementId());
 		assertEquals("modelElements", op5.getFeatureName());
 		assertTrue(op5.isAdd());
@@ -915,7 +962,7 @@ public class Topology1toNTest extends TopologyTest {
 		assertEquals(br3.getModelElementId(), op5.getReferencedModelElements().get(2));
 		assertEquals(br4.getModelElementId(), op5.getReferencedModelElements().get(3));
 		assertEquals(op5.getIndex(), 1);
-	
+
 	}
 
 	/**
@@ -951,10 +998,9 @@ public class Topology1toNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 		// now expectation is: we get 2 messages preserving the info on former parents for the solutions
@@ -1001,62 +1047,61 @@ public class Topology1toNTest extends TopologyTest {
 	@Test
 	public void containmentAddDifferentFeatureContained1ChildrenToNonEmpty() throws UnsupportedOperationException,
 		UnsupportedNotificationException {
-	
+
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		section.getModelElements().add(RationaleFactory.eINSTANCE.createSolution()); // prefill section
 		Issue issue1 = RationaleFactory.eINSTANCE.createIssue();
 		Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
 		Issue issue2 = RationaleFactory.eINSTANCE.createIssue();
 		Solution solution2 = RationaleFactory.eINSTANCE.createSolution();
-	
+
 		getProject().addModelElement(issue1);
 		getProject().addModelElement(issue2);
 		getProject().addModelElement(section);
 		getProject().addModelElement(solution1);
 		getProject().addModelElement(solution2);
-	
+
 		Solution[] solutions = { solution1, solution2 };
 		issue1.setSolution(solution1);
 		issue2.setSolution(solution2);
-	
+
 		clearOperations();
-	
+
 		section.getModelElements().addAll(Arrays.asList(solutions));
-	
+
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
-		}	
+		}
 		// now expectation is: we get 2 messages preserving the info on former parents for the solutions
 		// and one additional one, indicating the new parent for both of them
 		assertEquals(3, operations.size());
-	
+
 		assertTrue(operations.get(0) instanceof SingleReferenceOperation);
 		assertTrue(operations.get(1) instanceof SingleReferenceOperation);
-	
+
 		SingleReferenceOperation op1 = (SingleReferenceOperation) operations.get(0);
 		SingleReferenceOperation op2 = (SingleReferenceOperation) operations.get(1);
-	
+
 		assertEquals(op1.getModelElementId(), solution1.getModelElementId());
 		assertEquals(op2.getModelElementId(), solution2.getModelElementId());
-	
+
 		assertEquals(op1.getFeatureName(), "issue");
 		assertEquals(op2.getFeatureName(), "issue");
-	
+
 		assertEquals(op1.getOldValue(), issue1.getModelElementId());
 		assertEquals(op2.getOldValue(), issue2.getModelElementId());
-	
+
 		assertEquals(op1.getNewValue(), null);
 		assertEquals(op2.getNewValue(), null);
-	
+
 		assertTrue(operations.get(2) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op3 = (MultiReferenceOperation) operations.get(2);
-	
+
 		assertEquals(op3.getModelElementId(), section.getModelElementId());
 		assertEquals("modelElements", op3.getFeatureName());
 		assertTrue(op3.isAdd());
@@ -1064,7 +1109,7 @@ public class Topology1toNTest extends TopologyTest {
 		assertEquals(solution1.getModelElementId(), op3.getReferencedModelElements().get(0));
 		assertEquals(solution2.getModelElementId(), op3.getReferencedModelElements().get(1));
 		assertEquals(op3.getIndex(), 1);
-	
+
 	}
 
 	/**
@@ -1126,10 +1171,9 @@ public class Topology1toNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 		// now expectation is: we get 6 messages preserving the info on former parents for the solutions
@@ -1256,10 +1300,9 @@ public class Topology1toNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 		// now expectation is: we get 6 messages preserving the info on former parents for the solutions
@@ -1613,15 +1656,33 @@ public class Topology1toNTest extends TopologyTest {
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
+		// expecting a composite operation here
 		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
+			fail("composite operation expected");
+		}
+
+		assertEquals(2, operations.size());
+
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
-		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
-		assertFalse(op.isAdd());
-		assertEquals(1, op.getReferencedModelElements().size());
-		assertEquals(actor.getModelElementId(), op.getReferencedModelElements().get(0));
-		assertEquals("participatingActors", op.getFeatureName());
-		assertEquals(op.getModelElementId(), useCase.getModelElementId());
-		assertEquals(op.getIndex(), 0);
+		MultiReferenceOperation op0 = (MultiReferenceOperation) operations.get(0);
+		assertFalse(op0.isAdd());
+		assertEquals(1, op0.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), op0.getReferencedModelElements().get(0));
+		assertEquals("participatedUseCases", op0.getFeatureName());
+		assertEquals(op0.getModelElementId(), actor.getModelElementId());
+		assertEquals(op0.getIndex(), 0);
+
+		assertTrue(operations.get(1) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op1 = (MultiReferenceOperation) operations.get(1);
+		assertFalse(op1.isAdd());
+		assertEquals(1, op1.getReferencedModelElements().size());
+		assertEquals(actor.getModelElementId(), op1.getReferencedModelElements().get(0));
+		assertEquals("participatingActors", op1.getFeatureName());
+		assertEquals(op1.getModelElementId(), useCase.getModelElementId());
+		assertEquals(op1.getIndex(), 0);
 
 	}
 
@@ -1651,15 +1712,33 @@ public class Topology1toNTest extends TopologyTest {
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
+		// expecting a composite operation here
 		assertEquals(1, operations.size());
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
+			fail("composite operation expected");
+		}
+
+		assertEquals(2, operations.size());
+
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
-		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
-		assertFalse(op.isAdd());
-		assertEquals(1, op.getReferencedModelElements().size());
-		assertEquals(actor.getModelElementId(), op.getReferencedModelElements().get(0));
-		assertEquals("participatingActors", op.getFeatureName());
-		assertEquals(op.getModelElementId(), useCase.getModelElementId());
-		assertEquals(op.getIndex(), 1);
+		MultiReferenceOperation op0 = (MultiReferenceOperation) operations.get(0);
+		assertFalse(op0.isAdd());
+		assertEquals(1, op0.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), op0.getReferencedModelElements().get(0));
+		assertEquals("participatedUseCases", op0.getFeatureName());
+		assertEquals(op0.getModelElementId(), actor.getModelElementId());
+		assertEquals(op0.getIndex(), 0);
+
+		assertTrue(operations.get(1) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op1 = (MultiReferenceOperation) operations.get(1);
+		assertFalse(op1.isAdd());
+		assertEquals(1, op1.getReferencedModelElements().size());
+		assertEquals(actor.getModelElementId(), op1.getReferencedModelElements().get(0));
+		assertEquals("participatingActors", op1.getFeatureName());
+		assertEquals(op1.getModelElementId(), useCase.getModelElementId());
+		assertEquals(op1.getIndex(), 1);
 
 	}
 

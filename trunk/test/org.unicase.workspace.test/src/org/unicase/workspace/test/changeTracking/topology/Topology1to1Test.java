@@ -6,6 +6,7 @@
 package org.unicase.workspace.test.changeTracking.topology;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertSame;
 import static org.junit.Assert.assertTrue;
@@ -16,6 +17,7 @@ import java.util.List;
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
@@ -171,13 +173,11 @@ public class Topology1to1Test extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
-		
 
 		// please note: the perspective (operation called on containee) implies the following EMF notifications:
 
@@ -248,10 +248,9 @@ public class Topology1to1Test extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 
@@ -314,10 +313,9 @@ public class Topology1to1Test extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 
@@ -415,10 +413,9 @@ public class Topology1to1Test extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 
@@ -444,26 +441,6 @@ public class Topology1to1Test extends TopologyTest {
 
 	}
 
-	/**
-	 * Change an containment attribute from some reference to some other reference, and check resulting op.
-	 * 
-	 * @throws UnsupportedOperationException on test fail
-	 * @throws UnsupportedNotificationException on test fail
-	 */
-	/*
-	 * @Test public void containmentNullToValueContainedAlready1() throws UnsupportedOperationException,
-	 * UnsupportedNotificationException { Issue issue1 = RationaleFactory.eINSTANCE.createIssue(); Issue issue2 =
-	 * RationaleFactory.eINSTANCE.createIssue(); Solution solution1 = RationaleFactory.eINSTANCE.createSolution();
-	 * getProject().addModelElement(issue1); getProject().addModelElement(issue2);
-	 * getProject().addModelElement(solution1); issue1.setSolution(solution1); assertEquals(issue1.getSolution(),
-	 * solution1); clearOperations(); issue2.setSolution(solution1); assertSame(solution1, issue2.getSolution());
-	 * assertNull(issue1.getSolution()); List<AbstractOperation> operations = getProjectSpace().getOperations();
-	 * fail("not sure about the behaviour"); assertEquals(1, operations.size()); AbstractOperation op1 =
-	 * operations.get(0); assertEquals(true, op1 instanceof SingleReferenceOperation); SingleReferenceOperation refOp1 =
-	 * (SingleReferenceOperation) op1; // solution is getting its new parent assertEquals(issue1.getModelElementId(),
-	 * refOp1.getOldValue()); assertEquals(issue2.getModelElementId(), refOp1.getNewValue()); assertEquals("issue",
-	 * refOp1.getFeatureName()); assertEquals(solution1.getModelElementId(), refOp1.getModelElementId()); }
-	 */
 	/**
 	 * Change an containment attribute from some reference to some other reference, and check resulting op.
 	 * 
@@ -499,33 +476,43 @@ public class Topology1to1Test extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 
-		assertEquals(2, operations.size());
-		AbstractOperation op1 = operations.get(0);
-		AbstractOperation op2 = operations.get(1);
+		assertEquals(3, operations.size());
+
+		AbstractOperation op0 = operations.get(0);
+		AbstractOperation op1 = operations.get(1);
+		AbstractOperation op2 = operations.get(2);
+
+		assertEquals(true, op0 instanceof MultiReferenceOperation);
 		assertEquals(true, op1 instanceof SingleReferenceOperation);
 		assertEquals(true, op2 instanceof SingleReferenceOperation);
 
+		MultiReferenceOperation refOp0 = (MultiReferenceOperation) op0;
 		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
 		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
 
-		// please note: 2 ops are necessary, this is because the oldvalues are necessary for
-		// the ops to be reversible! we need to track the parent of issue 2!
+		// please note: 3 ops are necessary, this is because the oldvalues are necessary for
+		// the ops to be reversible! we also need track the index of issue 2 inside its former parent!
 
-		// first solution 2 is losing its old leaf section parent
+		// leaf section annouces loss of solution2 at index 0
+		assertEquals("modelElements", refOp0.getFeatureName());
+		assertEquals(leafSection.getModelElementId(), refOp0.getModelElementId());
+		assertFalse(refOp0.isAdd());
+		assertEquals(1, refOp0.getReferencedModelElements().size());
+		assertEquals(refOp0.getReferencedModelElements().get(0), solution2.getModelElementId());
 
+		// solution 2 is losing its old leaf section parent
 		assertEquals(leafSection.getModelElementId(), refOp1.getOldValue());
 		assertNull(refOp1.getNewValue());
 		assertEquals("leafSection", refOp1.getFeatureName());
 		assertEquals(solution2.getModelElementId(), refOp1.getModelElementId());
 
-		// second the issue 1 is getting its new child
+		// the issue 1 is getting its new child
 		assertEquals(solution1.getModelElementId(), refOp2.getOldValue());
 		assertEquals(solution2.getModelElementId(), refOp2.getNewValue());
 		assertEquals("solution", refOp2.getFeatureName());
@@ -567,30 +554,40 @@ public class Topology1to1Test extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 
-		assertEquals(3, operations.size());
-		AbstractOperation op1 = operations.get(0);
-		AbstractOperation op2 = operations.get(1);
-		AbstractOperation op3 = operations.get(2);
+		assertEquals(4, operations.size());
+		AbstractOperation op0 = operations.get(0);
+		AbstractOperation op1 = operations.get(1);
+		AbstractOperation op2 = operations.get(2);
+		AbstractOperation op3 = operations.get(3);
 
+		assertEquals(true, op0 instanceof MultiReferenceOperation);
 		assertEquals(true, op1 instanceof SingleReferenceOperation);
 		assertEquals(true, op2 instanceof SingleReferenceOperation);
 		assertEquals(true, op3 instanceof SingleReferenceOperation);
 
+		MultiReferenceOperation refOp0 = (MultiReferenceOperation) op0;
 		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
 		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
 		SingleReferenceOperation refOp3 = (SingleReferenceOperation) op3;
 
-		// please note: 3 ops are necessary from this perspective
+		// please note: 4 ops are necessary from this perspective
+		// 0. index inside old parent of solution 2 must be tracked (index inside leafsection.modelElements)
 		// 1. old solution of issue must be tracked
 		// 2. old parent of solution 2 must be tracked (the leafsection)
 		// 3. solution2 must announce its new issue
+
+		// leaf section annouces loss of solution2 at index 0
+		assertEquals("modelElements", refOp0.getFeatureName());
+		assertEquals(leafSection.getModelElementId(), refOp0.getModelElementId());
+		assertFalse(refOp0.isAdd());
+		assertEquals(1, refOp0.getReferencedModelElements().size());
+		assertEquals(refOp0.getReferencedModelElements().get(0), solution2.getModelElementId());
 
 		assertEquals(issue.getModelElementId(), refOp1.getModelElementId());
 		assertEquals("solution", refOp1.getFeatureName());
@@ -639,27 +636,37 @@ public class Topology1to1Test extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
 
-		assertEquals(2, operations.size());
-		AbstractOperation op1 = operations.get(0);
-		AbstractOperation op2 = operations.get(1);
+		assertEquals(3, operations.size());
+
+		AbstractOperation op0 = operations.get(0);
+		AbstractOperation op1 = operations.get(1);
+		AbstractOperation op2 = operations.get(2);
+
+		assertEquals(true, op0 instanceof MultiReferenceOperation);
 		assertEquals(true, op1 instanceof SingleReferenceOperation);
 		assertEquals(true, op2 instanceof SingleReferenceOperation);
 
+		MultiReferenceOperation refOp0 = (MultiReferenceOperation) op0;
 		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
 		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
 
-		// please note: 2 ops are necessary, this is because the oldvalues are necessary for
-		// the ops to be reversible! we need to track the parent of solution!
+		// please note: 3 ops are necessary, this is because the oldvalues are necessary for
+		// the ops to be reversible! we also need track the index of issue 2 inside its former parent!
+
+		// leaf section announces loss of solution2 at index 0
+		assertEquals("modelElements", refOp0.getFeatureName());
+		assertEquals(leafSection.getModelElementId(), refOp0.getModelElementId());
+		assertFalse(refOp0.isAdd());
+		assertEquals(1, refOp0.getReferencedModelElements().size());
+		assertEquals(refOp0.getReferencedModelElements().get(0), solution.getModelElementId());
 
 		// first solution is losing its old leaf section parent
-
 		assertEquals(solution.getModelElementId(), refOp1.getModelElementId());
 		assertEquals("leafSection", refOp1.getFeatureName());
 		assertEquals(leafSection.getModelElementId(), refOp1.getOldValue());
@@ -703,26 +710,39 @@ public class Topology1to1Test extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 		// expecting a composite operation here
 		assertEquals(1, operations.size());
-		if (operations.get(0) instanceof CompositeOperation){
-			operations = ((CompositeOperation)operations.get(0)).getSubOperations();	
-		}
-		else{
+		if (operations.get(0) instanceof CompositeOperation) {
+			operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+		} else {
 			fail("composite operation expected");
 		}
-		assertEquals(2, operations.size());
-		AbstractOperation op1 = operations.get(0);
-		AbstractOperation op2 = operations.get(1);
+		assertEquals(3, operations.size());
 
+		AbstractOperation op0 = operations.get(0);
+		AbstractOperation op1 = operations.get(1);
+		AbstractOperation op2 = operations.get(2);
+
+		assertEquals(true, op0 instanceof MultiReferenceOperation);
 		assertEquals(true, op1 instanceof SingleReferenceOperation);
 		assertEquals(true, op2 instanceof SingleReferenceOperation);
 
+		MultiReferenceOperation refOp0 = (MultiReferenceOperation) op0;
 		SingleReferenceOperation refOp1 = (SingleReferenceOperation) op1;
 		SingleReferenceOperation refOp2 = (SingleReferenceOperation) op2;
+
+		// please note: 3 ops are necessary, this is because the oldvalues are necessary for
+		// the ops to be reversible! we also need track the index of issue 2 inside its former parent!
 
 		// please note: 3 ops are necessary from this perspective
 		// 1. old solution of issue must be tracked
 		// 2. old parent of solution 2 must be tracked (the leafsection)
 		// 3. solution2 must announce its new issue
+
+		// leaf section announces loss of solution at index 0
+		assertEquals("modelElements", refOp0.getFeatureName());
+		assertEquals(leafSection.getModelElementId(), refOp0.getModelElementId());
+		assertFalse(refOp0.isAdd());
+		assertEquals(1, refOp0.getReferencedModelElements().size());
+		assertEquals(refOp0.getReferencedModelElements().get(0), solution.getModelElementId());
 
 		assertEquals(solution.getModelElementId(), refOp1.getModelElementId());
 		assertEquals("leafSection", refOp1.getFeatureName());
