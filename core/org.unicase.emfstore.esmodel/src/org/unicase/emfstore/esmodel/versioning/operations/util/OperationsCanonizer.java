@@ -42,6 +42,48 @@ public final class OperationsCanonizer {
 		foldAttributes(operations);
 		foldAttributesIntoCreates(operations);
 		foldAttributesIntoDeletes(operations);
+		foldCreatesAndDeletes(operations);
+	}
+
+	// neighbouring create and delete will be removed
+	private static void foldCreatesAndDeletes(List<AbstractOperation> operations) {
+
+		for (int i = 0; i < operations.size() - 1; i++) {
+
+			// look for a create operation
+			AbstractOperation opLeft = operations.get(i);
+			if (!(opLeft instanceof CreateDeleteOperation)) {
+				continue;
+			}
+			CreateDeleteOperation createOp = (CreateDeleteOperation) opLeft;
+
+			if (createOp.isDelete()) {
+				continue;
+			}
+
+			// ok, we got one, see if the next one is a matching delete
+			AbstractOperation opRight = operations.get(i + 1);
+			if (!(opRight instanceof CreateDeleteOperation)) {
+				continue;
+			}
+			CreateDeleteOperation deleteOp = (CreateDeleteOperation) opRight;
+
+			if (!deleteOp.isDelete()) {
+				continue;
+			}
+
+			// ok, we got a create followed by a delete, if they have matching ids, remove them
+
+			if (createOp.getModelElementId().equals(deleteOp.getModelElementId())) {
+				// remove both
+				operations.remove(i + 1);
+				operations.remove(i);
+				i = Math.max(0, i - 2); // reexamine the preceeding index
+
+			}
+
+		}
+
 	}
 
 	private static void foldAttributesIntoCreates(List<AbstractOperation> operations) {
