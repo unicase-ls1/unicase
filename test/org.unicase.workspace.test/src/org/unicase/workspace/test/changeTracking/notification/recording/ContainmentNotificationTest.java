@@ -22,10 +22,10 @@ import org.unicase.workspace.changeTracking.notification.recording.NotificationR
 
 /**
  * Tests the notification recording for attribute features.
+ * 
  * @author chodnick
- *
  */
-public class ContainmentNotificationTest extends NotificationTest{
+public class ContainmentNotificationTest extends NotificationTest {
 
 	/**
 	 * Change order within a list and check the generated notification.
@@ -36,77 +36,90 @@ public class ContainmentNotificationTest extends NotificationTest{
 		LeafSection section1 = DocumentFactory.eINSTANCE.createLeafSection();
 		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		
+
 		getProject().addModelElement(section1);
 		getProject().addModelElement(section2);
 		getProject().addModelElement(useCase);
-		
+
 		useCase.setName("testUseCase");
 		section1.getModelElements().add(useCase);
-		
+
 		// reattach usecase to another leaf section
-		//section2.getModelElements().add(useCase);
+		// section2.getModelElements().add(useCase);
 		useCase.setLeafSection(section2);
-		
+
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
-		
+
 		// exactly one SET notification is expected, resetting the leaf section
-		assertEquals(1, rec.size());
+		assertEquals(2, rec.size());
 
 		NotificationInfo n = rec.get(0);
+		assertSame(section1, n.getNotifier());
+		assertTrue(n.isRemoveEvent());
+		assertSame(n.getOldValue(), useCase);
+		assertEquals(n.getReference().getName(), "modelElements");
+
+		n = rec.get(1);
 		assertSame(useCase, n.getNotifier());
 		assertTrue(n.isSetEvent());
 		assertEquals(n.getOldValue(), section1);
 		assertEquals(n.getNewValue(), section2);
 		assertEquals(n.getReference().getName(), "leafSection");
-		
-		
+
 	}
-	
+
 	/**
 	 * Change order within a list and check the generated notification.
 	 */
 	@Test
 	public void moveOnDifferentFeatures() {
 
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();		
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		FunctionalRequirement req = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 		FunctionalRequirement child = RequirementFactory.eINSTANCE.createFunctionalRequirement();
-		
+
 		getProject().addModelElement(section);
 		getProject().addModelElement(req);
 		getProject().addModelElement(child);
-		
+
 		section.getModelElements().add(child);
-		
+
 		// reattach child to a functional requirement
-		//req.getRefiningRequirements().add(child);
+		// req.getRefiningRequirements().add(child);
 		child.setRefinedRequirement(req);
-		
+
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
-		
-		// exactly two SET notification is expected, resetting the leaf section to "null" and the refined req to "req"
-		assertEquals(2, rec.size());
+
+		// one REMOVE and two SET notification are expected, resetting the leaf section to "null" and the refined req to
+		// "req"
+		assertEquals(3, rec.size());
+
+		// check index maintaining remove
+		NotificationInfo n0 = rec.get(0);
+		assertSame(section, n0.getNotifier());
+		assertTrue(n0.isRemoveEvent());
+		assertEquals(n0.getReference().getName(), "modelElements");
+		assertSame(child, n0.getOldValue());
+		assertEquals(0, n0.getPosition());
 
 		// check first set
-		NotificationInfo n1 = rec.get(0);
+		NotificationInfo n1 = rec.get(1);
 		assertSame(child, n1.getNotifier());
 		assertTrue(n1.isSetEvent());
 		assertEquals(n1.getReference().getName(), "leafSection");
 		assertEquals(n1.getOldValue(), section);
 		assertEquals(n1.getNewValue(), null);
-		
+
 		// check second set
-		NotificationInfo n2 = rec.get(1);
+		NotificationInfo n2 = rec.get(2);
 		assertSame(child, n2.getNotifier());
 		assertTrue(n2.isSetEvent());
 		assertEquals(n2.getReference().getName(), "refinedRequirement");
 		assertEquals(n2.getOldValue(), null);
 		assertEquals(n2.getNewValue(), req);
-		
-	}	
-	
+
+	}
 
 }

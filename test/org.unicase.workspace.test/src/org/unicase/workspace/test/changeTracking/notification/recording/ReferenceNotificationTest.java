@@ -23,10 +23,10 @@ import org.unicase.workspace.changeTracking.notification.recording.NotificationR
 
 /**
  * Tests the notification recording for attribute features.
+ * 
  * @author chodnick
- *
  */
-public class ReferenceNotificationTest extends NotificationTest{
+public class ReferenceNotificationTest extends NotificationTest {
 
 	/**
 	 * Change an reference and check the generated notification.
@@ -34,23 +34,23 @@ public class ReferenceNotificationTest extends NotificationTest{
 	@Test
 	public void changeReference1toN() {
 
-		
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		
+
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(actor);
-		
+
 		actor.setName("testActor");
 		useCase.setName("testUseCase");
-		
+
 		// notifications from this operations are tested
 		useCase.setInitiatingActor(actor);
 
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
-		
-		// exactly one SET notification is expected with attribute feature "initiatingActor" on our useCase and newValue actor
+
+		// exactly one SET notification is expected with attribute feature "initiatingActor" on our useCase and newValue
+		// actor
 		assertEquals(1, rec.size());
 
 		NotificationInfo n = rec.get(0);
@@ -61,7 +61,7 @@ public class ReferenceNotificationTest extends NotificationTest{
 		assertSame(n.getNewValue(), actor);
 		assertEquals(n.getReference().getName(), "initiatingActor");
 		assertNull(n.getOldValue());
-		
+
 	}
 
 	/**
@@ -70,31 +70,31 @@ public class ReferenceNotificationTest extends NotificationTest{
 	@Ignore
 	public void changeReference1to1() {
 		fail("FIXME: MK where do we have 1:1 non-containment references?");
-	}	
-	
+	}
+
 	/**
 	 * Add an reference and check the generated notification.
 	 */
-	
+
 	@Test
-	public void addReferenceNto1(){
-	
+	public void addReferenceNto1() {
+
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		
+
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(actor);
-		
+
 		actor.setName("testActor");
 		useCase.setName("testUseCase");
-		
+
 		// notifications from this operations are tested
 		actor.getInitiatedUseCases().add(useCase);
 
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
-		
-		// exactly one ADD notification is expected 
+
+		// exactly one ADD notification is expected
 		assertEquals(1, rec.size());
 
 		NotificationInfo n = rec.get(0);
@@ -104,33 +104,32 @@ public class ReferenceNotificationTest extends NotificationTest{
 		assertTrue(n.isAddEvent());
 		assertSame(n.getNewValue(), useCase);
 		assertEquals(n.getReference().getName(), "initiatedUseCases");
-				
-		
+
 	}
-	
+
 	/**
 	 * Add a reference and check the generated notification.
 	 */
-	
+
 	@Test
-	public void addReferenceNtoN(){
-	
+	public void addReferenceNtoN() {
+
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		
+
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(actor);
-		
+
 		actor.setName("testActor");
 		useCase.setName("testUseCase");
-		
+
 		// notifications from this operations are tested
 		useCase.getParticipatingActors().add(actor);
 
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
-		
-		// exactly one ADD notification is expected 
+
+		// exactly one ADD notification is expected
 		assertEquals(1, rec.size());
 
 		NotificationInfo n = rec.get(0);
@@ -140,34 +139,33 @@ public class ReferenceNotificationTest extends NotificationTest{
 		assertTrue(n.isAddEvent());
 		assertSame(n.getNewValue(), actor);
 		assertEquals(n.getReference().getName(), "participatingActors");
-				
-	}	
-	
+
+	}
+
 	/**
 	 * Remove a reference and check the generated notification.
 	 */
-	
+
 	@Test
-	public void removeReferenceNto1(){
-	
+	public void removeReferenceNto1() {
+
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		
-		
+
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(actor);
-		
+
 		actor.setName("testActor");
 		useCase.setName("testUseCase");
-		
+
 		// notifications from this operations are tested
 		actor.getInitiatedUseCases().add(useCase);
 		actor.getInitiatedUseCases().remove(useCase);
 
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
-		
-		// exactly one REMOVE notification is expected from the actor 
+
+		// exactly one REMOVE notification is expected from the actor
 		assertEquals(1, rec.size());
 
 		NotificationInfo n = rec.get(0);
@@ -177,45 +175,53 @@ public class ReferenceNotificationTest extends NotificationTest{
 		assertTrue(n.isRemoveEvent());
 		assertSame(n.getOldValue(), useCase);
 		assertEquals(n.getReference().getName(), "initiatedUseCases");
-				
-		
+
 	}
-	
+
 	/**
 	 * Remove a reference and check the generated notification.
 	 */
-	
+
 	@Test
-	public void removeReferenceNtoN(){
-	
+	public void removeReferenceNtoN() {
+
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		
+
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(actor);
-		
+
 		actor.setName("testActor");
 		useCase.setName("testUseCase");
-		
+
 		// notifications from this operations are tested
 		useCase.getParticipatingActors().add(actor);
 		useCase.getParticipatingActors().remove(actor);
 
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
-		
-		// exactly one REMOVE notification is expected from useCase
-		assertEquals(1, rec.size());
+
+		// exactly two REMOVE notifications are expected
+		// actor loses its useCase (message needed to retain index of useCase)
+		// useCase loses its actor (message needed to retain index of actor)
+		assertEquals(2, rec.size());
 
 		NotificationInfo n = rec.get(0);
+		assertSame(actor, n.getNotifier());
+		assertTrue(n.isReferenceNotification());
+		assertTrue(n.isRemoveEvent());
+		assertSame(n.getOldValue(), useCase);
+		assertEquals(n.getReference().getName(), "participatedUseCases");
+		assertEquals(n.getPosition(), 0);
 
+		n = rec.get(1);
 		assertSame(useCase, n.getNotifier());
 		assertTrue(n.isReferenceNotification());
 		assertTrue(n.isRemoveEvent());
 		assertSame(n.getOldValue(), actor);
 		assertEquals(n.getReference().getName(), "participatingActors");
-				
-	}		
-	
+		assertEquals(n.getPosition(), 0);
+
+	}
 
 }

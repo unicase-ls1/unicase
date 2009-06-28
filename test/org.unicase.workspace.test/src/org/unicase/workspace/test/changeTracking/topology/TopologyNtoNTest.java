@@ -14,6 +14,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
@@ -198,10 +199,22 @@ public class TopologyNtoNTest extends TopologyTest {
 		useCase.getAnnotations().remove(mileStone);
 
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
-
 		assertEquals(1, operations.size());
+		assertTrue(operations.get(0) instanceof CompositeOperation);
+
+		operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
+		assertFalse(op.isAdd());
+		assertEquals(1, op.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), op.getReferencedModelElements().get(0));
+		assertEquals("annotatedModelElements", op.getFeatureName());
+		assertEquals(op.getModelElementId(), mileStone.getModelElementId());
+		assertEquals(op.getIndex(), 0);
+
+		assertTrue(operations.get(1) instanceof MultiReferenceOperation);
+		op = (MultiReferenceOperation) operations.get(1);
 		assertFalse(op.isAdd());
 		assertEquals(1, op.getReferencedModelElements().size());
 		assertEquals(mileStone.getModelElementId(), op.getReferencedModelElements().get(0));
@@ -238,8 +251,21 @@ public class TopologyNtoNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
+		assertTrue(operations.get(0) instanceof CompositeOperation);
+
+		operations = ((CompositeOperation) operations.get(0)).getSubOperations();
+
 		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
 		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
+		assertFalse(op.isAdd());
+		assertEquals(1, op.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), op.getReferencedModelElements().get(0));
+		assertEquals("annotatedModelElements", op.getFeatureName());
+		assertEquals(op.getModelElementId(), mileStone.getModelElementId());
+		assertEquals(op.getIndex(), 0);
+
+		assertTrue(operations.get(1) instanceof MultiReferenceOperation);
+		op = (MultiReferenceOperation) operations.get(1);
 		assertFalse(op.isAdd());
 		assertEquals(1, op.getReferencedModelElements().size());
 		assertEquals(mileStone.getModelElementId(), op.getReferencedModelElements().get(0));
