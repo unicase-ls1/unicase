@@ -18,6 +18,7 @@ import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 
 /**
  * @author liya
@@ -27,9 +28,10 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test Default VersionIterator. 
 	 * @throws IteratorException IteratorException
+	 * @throws EmfStoreException 
 	 */
     @Test
-	public void defaultVersionIteratorTest() throws IteratorException{
+	public void defaultVersionIteratorTest() throws IteratorException, EmfStoreException{
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
@@ -54,9 +56,10 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test Default TimeIterator. 
 	 * @throws IteratorException IteratorException
+	 * @throws EmfStoreException 
 	 */
 	@Test
-	public void defaultTimeIteratorTest() throws IteratorException{
+	public void defaultTimeIteratorTest() throws IteratorException, EmfStoreException{
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
@@ -81,9 +84,10 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test VersionIterator with given start and end.
 	 * @throws IteratorException IteratorException
+	 * @throws EmfStoreException 
 	 */
     @Test
-	public void OutofBoundVersionIteratorTest() throws IteratorException{
+	public void OutofBoundVersionIteratorTest() throws IteratorException, EmfStoreException{
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
@@ -115,9 +119,10 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test Backward VersionIterator.
 	 * @throws IteratorException IteratorException.
+	 * @throws EmfStoreException 
 	 */
     @Test
-	public void backwardIteratorTest() throws IteratorException{
+	public void backwardIteratorTest() throws IteratorException, EmfStoreException{
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
@@ -149,9 +154,10 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test Backward VersionIterator till version 0.
 	 * @throws IteratorException IteratorException.
+	 * @throws EmfStoreException 
 	 */
     @Test
-	public void backwardTillZeroIteratorTest() throws IteratorException{
+	public void backwardTillZeroIteratorTest() throws IteratorException, EmfStoreException{
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
@@ -182,9 +188,10 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test backward TimeIterator. 
 	 * @throws IteratorException IteratorException
+	 * @throws EmfStoreException 
 	 */
 	@Test
-	public void backwardTimeIteratorTest() throws IteratorException{
+	public void backwardTimeIteratorTest() throws IteratorException, EmfStoreException{
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());

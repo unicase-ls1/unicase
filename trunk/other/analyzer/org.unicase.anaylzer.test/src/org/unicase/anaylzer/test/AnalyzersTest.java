@@ -57,20 +57,18 @@ public class AnalyzersTest {
 
 	/**
 	 * Get the project list on the test server.
+	 * @throws EmfStoreException 
 	 */
 	@Before
-	public void setup() {
+	public void setup() throws EmfStoreException {
 		setupHelper.loginServer();
 		userSession = setupHelper.getUsersession();
 		connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 
-		try {
-			projectList = connectionManager.getProjectList(userSession.getSessionId());
-			if (projectList.size() == 0) {
-				System.out.println("no projects on server.");
-			}
-		} catch (EmfStoreException e) {
-			e.printStackTrace();
+
+		projectList = connectionManager.getProjectList(userSession.getSessionId());
+		if (projectList.size() == 0) {
+			System.out.println("no projects on server.");
 		}
 	}
 	
@@ -83,8 +81,9 @@ public class AnalyzersTest {
 	 * @param isForward true if iterate forwardly
 	 * @return true if the list of ChangePackage from the {@link ProjectAnalysisData} and the one got from {@link ConnectionManager}
 	 * are the equal.
+	 * @throws EmfStoreException 
 	 */
-	public boolean compareChangePackage(ProjectId projectId, ProjectAnalysisData data, int startPoint, int endPoint, boolean isForward){
+	public boolean compareChangePackage(ProjectId projectId, ProjectAnalysisData data, int startPoint, int endPoint, boolean isForward) throws EmfStoreException{
 		List<ChangePackage> changePackageA = data.getChangePackages();
 		List<ChangePackage> changePackageB = null;
 		if(isForward){
@@ -92,10 +91,9 @@ public class AnalyzersTest {
 			start.setIdentifier(startPoint);
 			PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 			end.setIdentifier(endPoint);
-			try {
-				changePackageB = connectionManager.getChanges(userSession.getSessionId(), projectId, start, end);
-			} catch (EmfStoreException e) {
-			}
+
+			changePackageB = connectionManager.getChanges(userSession.getSessionId(), projectId, start, end);
+
 		}
 		else{
 			PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
@@ -106,10 +104,9 @@ public class AnalyzersTest {
 			}else{
 				end.setIdentifier(0);
 			}
-			try {
-				changePackageB = connectionManager.getChanges(userSession.getSessionId(), projectId, start, end);
-			} catch (EmfStoreException e) {
-			}
+
+			changePackageB = connectionManager.getChanges(userSession.getSessionId(), projectId, start, end);
+
 		}
 		if(changePackageA.size() != changePackageB.size()){
 			return false;
