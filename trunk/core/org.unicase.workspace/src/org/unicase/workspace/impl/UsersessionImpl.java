@@ -267,8 +267,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	public void setPassword(String newPassword) {
 		if (newPassword != null) {
 			setPasswordGen(KeyStoreManager.getInstance().encrypt(newPassword, getServerInfo()));
+		} else {
+			setPasswordGen(null);
 		}
-		setPasswordGen(null);
 		if (isSavePassword()) {
 			if (!(newPassword.equals(persistentPassword))) {
 				setPersistentPassword(KeyStoreManager.getInstance().encrypt(newPassword, getServerInfo()));
