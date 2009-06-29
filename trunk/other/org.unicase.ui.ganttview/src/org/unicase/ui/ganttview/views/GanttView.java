@@ -49,7 +49,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	public static final String ID = "org.unicase.ui.ganttview.views.GanttView";
 
 	private static final int SPACER = 2;
-	private static final int ONE_ROW_HEIGHT = 25;
+	private static final int ONE_ROW_HEIGHT = 28;
 
 	private GanttChart ganttChart;
 	private Composite parent;
@@ -99,8 +99,8 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		ganttChart.getGanttComposite().setDrawHorizontalLinesOverride(true);
 		ganttChart.getGanttComposite().setDrawVerticalLinesOverride(false);
-		ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HEIGHT - SPACER);
-		ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
+		// ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HEIGHT - SPACER);
+		// ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
 		// ganttCpLeft.setGanttChart(ganttChart);
 
 		sashForm.setWeights(new int[] { 30, 70 });
@@ -137,7 +137,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		// As we want some air, we force each item height to be 24 pixels.
 		tree.addListener(SWT.MeasureItem, new Listener() {
 			public void handleEvent(Event event) {
-				event.height = ONE_ROW_HEIGHT;
+				event.height = ONE_ROW_HEIGHT - 4;
 			}
 		});
 
