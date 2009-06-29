@@ -48,6 +48,17 @@ public class MECommentWidget extends Composite {
 	 * @param composite the parent composite
 	 */
 	public MECommentWidget(Comment comment, Composite composite) {
+		this(comment, composite, true);
+	}
+
+	/**
+	 * Default constructor.
+	 * 
+	 * @param comment the comment object
+	 * @param composite the parent composite
+	 * @param enableReplies show/hide replies
+	 */
+	public MECommentWidget(Comment comment, Composite composite, boolean enableReplies) {
 		super(composite, SWT.NONE);
 		this.comment = comment;
 		replies = new ArrayList<MECommentWidget>();
@@ -62,32 +73,34 @@ public class MECommentWidget extends Composite {
 		localResources.add(titlebarColor);
 		commentTitleBar.setBackground(titlebarColor);
 
-		final ImageHyperlink toggleButton = new ImageHyperlink(commentTitleBar, SWT.TOP);
-		final int numReplies = MECommentsLinkControl.sizeOf(comment) - 1;
-		final Image expandedImage = Activator.getImageDescriptor("icons/expanded.png").createImage();
-		final Image collapsedImage = Activator.getImageDescriptor("icons/collapsed.png").createImage();
-		localResources.add(expandedImage);
-		localResources.add(collapsedImage);
-		if (numReplies > 0) {
-			toggleButton.setImage(expandedImage);
-		} else {
-			toggleButton.setImage(collapsedImage);
-		}
-		toggleButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseUp(MouseEvent e) {
-				if (MECommentWidget.this.comment.getComments().isEmpty()) {
-					return;
-				}
-				toggleReplies = !toggleReplies;
-				if (toggleReplies) {
-					toggleButton.setImage(expandedImage);
-				} else {
-					toggleButton.setImage(collapsedImage);
-				}
-				reloadReplies();
+		if (enableReplies) {
+			final ImageHyperlink toggleButton = new ImageHyperlink(commentTitleBar, SWT.TOP);
+			final int numReplies = MECommentsLinkControl.sizeOf(comment) - 1;
+			final Image expandedImage = Activator.getImageDescriptor("icons/expanded.png").createImage();
+			final Image collapsedImage = Activator.getImageDescriptor("icons/collapsed.png").createImage();
+			localResources.add(expandedImage);
+			localResources.add(collapsedImage);
+			if (numReplies > 0) {
+				toggleButton.setImage(expandedImage);
+			} else {
+				toggleButton.setImage(collapsedImage);
 			}
-		});
+			toggleButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseUp(MouseEvent e) {
+					if (MECommentWidget.this.comment.getComments().isEmpty()) {
+						return;
+					}
+					toggleReplies = !toggleReplies;
+					if (toggleReplies) {
+						toggleButton.setImage(expandedImage);
+					} else {
+						toggleButton.setImage(collapsedImage);
+					}
+					reloadReplies();
+				}
+			});
+		}
 
 		Label commentAuthor = new Label(commentTitleBar, SWT.WRAP);
 
@@ -151,7 +164,7 @@ public class MECommentWidget extends Composite {
 		GridLayoutFactory.fillDefaults().applyTo(inputComposite);
 		GridDataFactory.fillDefaults().grab(true, false).hint(-1, 0).applyTo(inputComposite);
 
-		if (!comment.getComments().isEmpty()) {
+		if (!comment.getComments().isEmpty() && enableReplies) {
 			reloadReplies();
 		}
 	}
