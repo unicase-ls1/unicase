@@ -3,6 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
+
 package org.unicase.emfstore.core.subinterfaces;
 
 import java.io.File;
@@ -78,17 +79,6 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		}
 	}
 
-	private File findFileInTemp(FileInformation fileInfo, ProjectId projectId) throws FileNotFoundException {
-		for (File f : new File(getProjectAttachmentTempFolder(projectId)).listFiles()) {
-			if (f.getName().startsWith(
-				fileInfo.getFileAttachmentId() + FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER)) {
-				return f;
-			}
-		}
-		throw new FileNotFoundException("Could not locate the specified file (" + fileInfo.getFileAttachmentId()
-			+ FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER + ") in the temp folder.");
-	}
-
 	/**
 	 * Writes a chunk to the file linked to the fileInformation in the fileChunk. If the data in the file chunk is null,
 	 * this is treated as a request for a file version.
@@ -112,10 +102,12 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				fileInfo.setFileVersion(getVersion(attachmentFolder, attachmentTempFolder, fileInfo
 					.getFileAttachmentId()));
 				try {
+					// create emtpy file in tmp folder so that the version is reserved
 					new File(constructTempFileLocation(fileInfo, projectId)).createNewFile();
 				} catch (IOException e) {
 					throw new FileTransferException("Could not create the file on the server!", e);
 				}
+				// return the new fileversion
 				return fileInfo;
 			}
 			// retrieve location for the temp file
@@ -140,6 +132,16 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				}
 			}
 			return fileInfo;
+		}
+	}
+
+	/**
+	 * Creates the file attachment and temporary file attachment folders.
+	 */
+	private void createDirectories(ProjectId projectId) {
+		File createFolders = new File(getProjectAttachmentTempFolder(projectId));
+		if (!createFolders.exists()) {
+			createFolders.mkdirs();
 		}
 	}
 
@@ -173,14 +175,15 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		return temp.substring(0, temp.indexOf(FILE_NAME_DELIMITER));
 	}
 
-	/**
-	 * Creates the file attachment and temporary file attachment folders.
-	 */
-	private void createDirectories(ProjectId projectId) {
-		File createFolders = new File(getProjectAttachmentTempFolder(projectId));
-		if (!createFolders.exists()) {
-			createFolders.mkdirs();
+	private File findFileInTemp(FileInformation fileInfo, ProjectId projectId) throws FileNotFoundException {
+		for (File f : new File(getProjectAttachmentTempFolder(projectId)).listFiles()) {
+			if (f.getName().startsWith(
+				fileInfo.getFileAttachmentId() + FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER)) {
+				return f;
+			}
 		}
+		throw new FileNotFoundException("Could not locate the specified file (" + fileInfo.getFileAttachmentId()
+			+ FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER + ") in the temp folder.");
 	}
 
 	private File findFile(FileInformation fileInfo, ProjectId projectId) throws FileNotFoundException {
