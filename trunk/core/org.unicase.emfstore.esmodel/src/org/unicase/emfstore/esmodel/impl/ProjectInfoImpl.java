@@ -252,18 +252,9 @@ public class ProjectInfoImpl extends EObjectImpl implements ProjectInfo {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated not
-	 */
-	public PrimaryVersionSpec getVersion() {
-		return (PrimaryVersionSpec) EcoreUtil.copy(getVersionGen());
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public PrimaryVersionSpec getVersionGen() {
+	public PrimaryVersionSpec getVersion() {
 		if (version != null && version.eIsProxy()) {
 			InternalEObject oldVersion = (InternalEObject) version;
 			version = (PrimaryVersionSpec) eResolveProxy(oldVersion);
