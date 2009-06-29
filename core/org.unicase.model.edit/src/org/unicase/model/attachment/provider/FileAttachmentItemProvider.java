@@ -130,8 +130,7 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	@Override
 	public String getText(Object object) {
 		String label = ((FileAttachment) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_FileAttachment_type")
-			: getString("_UI_FileAttachment_type") + " " + label;
+		return (label == null) ? "" : label;
 	}
 
 	/**
