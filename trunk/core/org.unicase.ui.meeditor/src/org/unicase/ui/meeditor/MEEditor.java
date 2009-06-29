@@ -24,10 +24,18 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
+import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.bug.BugReport;
+import org.unicase.model.organization.User;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.ui.common.MEEditorInput;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.accesscontrol.AccessControlHelper;
+import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
+import org.unicase.workspace.util.NoCurrentUserException;
+import org.unicase.workspace.util.OrgUnitHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -109,6 +117,29 @@ public class MEEditor extends SharedHeaderFormEditor {
 	@Override
 	protected void addPages() {
 		MEEditorInput editorInput = (MEEditorInput) getEditorInput();
+
+		if (modelElement instanceof User) {
+			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
+			try {
+				User user = OrgUnitHelper.getUser(projectSpace);
+				if (!modelElement.equals(user)) {
+					if (projectSpace.getUsersession() != null && projectSpace.getUsersession().getACUser() != null) {
+						AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
+						helper.checkProjectAdminAccess(projectSpace.getProjectId());
+					}
+				}
+			} catch (NoCurrentUserException e) {
+			} catch (CannotMatchUserInProjectException e) {
+			} catch (AccessControlException e) {
+				try {
+					addPage(new MEUserPage(this, "View", "Standard View", editingDomain, (User) modelElement));
+				} catch (PartInitException e1) {
+				}
+				return;
+			}
+
+		}
+
 		if (editorInput.getProblemFeature() != null) {
 			mePage = new MEEditorPage(this, "Edit", "Standard View", editingDomain, modelElement, editorInput
 				.getProblemFeature());
@@ -254,8 +285,9 @@ public class MEEditor extends SharedHeaderFormEditor {
 	public void setFocus() {
 
 		super.setFocus();
-		mePage.setFocus();
-
+		if (mePage != null) {
+			mePage.setFocus();
+		}
 	}
 
 	private String getLimitedTitle(String name) {
