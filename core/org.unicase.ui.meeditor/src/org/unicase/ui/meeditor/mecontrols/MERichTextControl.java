@@ -42,8 +42,11 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.swt.widgets.ToolItem;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.ui.meeditor.Activator;
+import org.unicase.ui.meeditor.MEEditor;
 
 /**
  * The standard widget for multi line text fields.
@@ -78,6 +81,8 @@ public class MERichTextControl extends AbstractMEControl {
 			}
 		};
 		getModelElement().eAdapters().add(eAdapter);
+
+		shoudShowExpand = true;
 	}
 
 	/**
@@ -101,6 +106,8 @@ public class MERichTextControl extends AbstractMEControl {
 	private StyledText text;
 
 	private TextViewer viewer;
+
+	private boolean shoudShowExpand;
 
 	private void createStyledText() {
 
@@ -148,11 +155,10 @@ public class MERichTextControl extends AbstractMEControl {
 
 	private void createToolBar() {
 		toolBar = new ToolBar(composite, SWT.NULL);
-		ToolItem item;
-		item = new ToolItem(toolBar, SWT.PUSH);
+		ToolItem bulletsItem = new ToolItem(toolBar, SWT.PUSH);
 		ImageDescriptor descriptor = Activator.getImageDescriptor("icons/bullet.jpg");
-		item.setImage(descriptor.createImage());
-		item.addSelectionListener(new SelectionAdapter() {
+		bulletsItem.setImage(descriptor.createImage());
+		bulletsItem.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent event) {
 				Point selectionRange = text.getSelectionRange();
@@ -171,6 +177,38 @@ public class MERichTextControl extends AbstractMEControl {
 			}
 		});
 
+		if (shoudShowExpand) {
+			ToolItem textItem = new ToolItem(toolBar, SWT.PUSH);
+			ImageDescriptor textImageDescriptor = Activator.getImageDescriptor("icons/text.png");
+			textItem.setImage(textImageDescriptor.createImage());
+			textItem.setToolTipText("Go to the description tab");
+			textItem.addSelectionListener(new SelectionAdapter() {
+				@Override
+				public void widgetSelected(SelectionEvent event) {
+					final IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+						.getActivePage().getActiveEditor();
+					if (activeEditor instanceof MEEditor) {
+						((MEEditor) activeEditor).setActivePage("Description");
+					}
+				}
+			});
+		}
+	}
+
+	/**
+	 * Sets if the expand toolbar button should be shown.
+	 * 
+	 * @param show if shown.
+	 */
+	public void setShowExpand(boolean show) {
+		shoudShowExpand = show;
+	}
+
+	/**
+	 * @return the toolbar.
+	 */
+	public ToolBar getToolbar() {
+		return toolBar;
 	}
 
 	/**
