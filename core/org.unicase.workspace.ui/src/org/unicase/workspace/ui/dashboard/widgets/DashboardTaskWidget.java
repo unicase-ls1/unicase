@@ -14,10 +14,11 @@ import java.util.Set;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.StyleRange;
-import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -112,18 +113,21 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 		DashboardToolbarAction taskView = new DashboardToolbarAction(toolbar, "table.png", 150);
 		taskView.setToolTipText("Open the Task View");
 		taskView.addHyperlinkListener(new HyperlinkAdapter() {
-			
 			@Override
 			public void linkActivated(HyperlinkEvent event) {
-				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				String viewId = "org.unicase.ui.taskview";
-				try {
-					page.showView(viewId);
-				} catch (PartInitException e) {
-					DialogHandler.showExceptionDialog(e);
-				}
+				openTaskView();
 			}
 		});
+	}
+
+	private void openTaskView() {
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		String viewId = "org.unicase.ui.taskview";
+		try {
+			page.showView(viewId);
+		} catch (PartInitException e) {
+			DialogHandler.showExceptionDialog(e);
+		}
 	}
 
 	/**
@@ -141,46 +145,21 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 
 		GridLayoutFactory.fillDefaults().applyTo(panel);
 
-		StyledText label = new StyledText(panel, SWT.WRAP | SWT.MULTI);
+		Link label = new Link(panel, SWT.WRAP);
+
 		StringBuilder string = new StringBuilder();
-		String string1 = "You currently have:\n";
-		string.append(string1);
-		final int aiSize = actionItems.size();
-		String string2 = "" + aiSize + "";
-		string.append(string2);
-		String string3 = " open ActionItem" + (aiSize == 1 ? "" : "s") + "\n";
-		string.append(string3);
-		final int brSize = bugReports.size();
-		String string4 = "" + brSize + "";
-		string.append(string4);
-		String string5 = " unresolved BugReport" + (brSize == 1 ? "" : "s") + "\n";
-		string.append(string5);
-		final int isSize = issues.size();
-		String string6 = "" + isSize + "";
-		string.append(string6);
-		String string7 = " open Issue" + (isSize == 1 ? "" : "s") + "";
-		string.append(string7);
+		string.append("You currently have:\n");
+		string.append(getCountLink(actionItems.size(), " open ActionItem"));
+		string.append(getCountLink(bugReports.size(), " unresolved BugReport"));
+		string.append(getCountLink(issues.size(), " open Issue"));
 		label.setText(string.toString());
 
-		StyleRange style = new StyleRange();
-		style.start = string1.length();
-		style.length = string2.length();
-		style.fontStyle = SWT.BOLD;
-		label.setStyleRange(style);
-
-		style = new StyleRange();
-		style.start = string1.length() + string2.length() + string3.length();
-		style.length = string4.length();
-		style.fontStyle = SWT.BOLD;
-		label.setStyleRange(style);
-
-		style = new StyleRange();
-		style.start = string1.length() + string2.length() + string3.length() + string4.length() + string5.length();
-		style.length = string6.length();
-		style.fontStyle = SWT.BOLD;
-		label.setStyleRange(style);
-
-		label.setEnabled(false);
+		label.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				openTaskView();
+			}
+		});
 
 		if (sprints.size() > 0) {
 			Label currentSprint = new Label(panel, SWT.WRAP);
@@ -190,6 +169,17 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 				URLHelper.getModelElementLink(panel, sprint, getDashboard().getProjectSpace(), 15);
 			}
 		}
+	}
+
+	private String getCountLink(int count, String label) {
+		StringBuilder string = new StringBuilder();
+		string.append(count > 0 ? "<a>" : "");
+		string.append(count);
+		string.append(count > 0 ? "</a>" : "");
+		string.append(label);
+		string.append(count == 1 ? "" : "s");
+		string.append("\n");
+		return string.toString();
 	}
 
 	private void addWorkPackage(WorkPackage containingWorkpackage) {
