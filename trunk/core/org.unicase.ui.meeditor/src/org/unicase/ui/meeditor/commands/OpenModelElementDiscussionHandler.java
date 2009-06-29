@@ -39,7 +39,12 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 		// This variable is already set, in the method which calls to execute
 		// this command.
 		Object o = HandlerUtil.getVariableChecked(event, ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE);
-		Object toggle = HandlerUtil.getVariableChecked(event, TOGGLE_ADD_COMMENT_VARIABLE);
+		Object toggle = null;
+		try {
+			toggle = HandlerUtil.getVariableChecked(event, TOGGLE_ADD_COMMENT_VARIABLE);
+		} catch (ExecutionException e) {
+			// if not set
+		}
 		ModelElement me = (ModelElement) o;
 
 		if (o != null) {
