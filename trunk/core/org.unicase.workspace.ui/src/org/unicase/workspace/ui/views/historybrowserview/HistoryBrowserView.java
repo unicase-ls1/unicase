@@ -55,7 +55,7 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
@@ -143,7 +143,7 @@ public class HistoryBrowserView extends ViewPart {
 
 		viewer = new TreeViewer(parent, SWT.NONE);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(viewer.getControl());
-		ColumnViewerToolTipSupport.enableFor(viewer); 
+		ColumnViewerToolTipSupport.enableFor(viewer);
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
@@ -171,22 +171,22 @@ public class HistoryBrowserView extends ViewPart {
 			public void run() {
 				viewer.expandToLevel(2);
 			}
-			
+
 		};
-		
+
 		expand.setImageDescriptor(Activator.getImageDescriptor("icons/expandall.gif"));
 		menuManager.add(expand);
-		
+
 		Action collapse = new Action() {
 			@Override
 			public void run() {
 				viewer.collapseAll();
 			}
-			
+
 		};
 		collapse.setImageDescriptor(Activator.getImageDescriptor("icons/collapseall.gif"));
 		menuManager.add(collapse);
-		
+
 		Action refresh = new Action() {
 			@Override
 			public void run() {
@@ -268,23 +268,23 @@ public class HistoryBrowserView extends ViewPart {
 		next.setImageDescriptor(Activator.getImageDescriptor("/icons/next.png"));
 		next.setToolTipText("Next " + (startOffset + 1) + " items");
 		menuManager.add(next);
-		
+
 		Action jumpTo = new Action() {
 			@Override
 			public void run() {
 				InputDialog inputDialog = new InputDialog(getSite().getShell(), "Go to revision", "Revision", "", null);
-				if(inputDialog.open() == Window.OK){
-					try{
+				if (inputDialog.open() == Window.OK) {
+					try {
 						int temp = Integer.parseInt(inputDialog.getValue());
 						currentEnd = temp;
 						refresh();
-					}catch(NumberFormatException e){
+					} catch (NumberFormatException e) {
 						MessageDialog.openError(getSite().getShell(), "Error", "A numeric value was expected!");
 						run();
 					}
 				}
 			}
-			
+
 		};
 		jumpTo.setImageDescriptor(Activator.getImageDescriptor("/icons/magnifier.png"));
 		jumpTo.setToolTipText("Go to revision...");
@@ -304,9 +304,9 @@ public class HistoryBrowserView extends ViewPart {
 
 			@Override
 			protected Object run() throws EmfStoreException {
-				try{
+				try {
 					loadContent(end);
-				}catch(InvalidVersionSpecException e){
+				} catch (InvalidVersionSpecException e) {
 					MessageDialog.openError(getShell(), "Invalid revision", "The requested revision was invalid");
 					currentEnd = projectSpace.getBaseVersion().getIdentifier();
 					refresh();
@@ -572,7 +572,7 @@ public class HistoryBrowserView extends ViewPart {
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode)obj).getValue();
+				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
 				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
 				checkout(versionSpec);
 			}
@@ -585,7 +585,7 @@ public class HistoryBrowserView extends ViewPart {
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode)obj).getValue();
+				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
 				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
 				InputDialog inputDialog = new InputDialog(getSite().getShell(), "Add tag",
 					"Please enter the tag's name.", "", null);
@@ -613,7 +613,7 @@ public class HistoryBrowserView extends ViewPart {
 			public void run() {
 				ISelection selection = viewer.getSelection();
 				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode)obj).getValue();
+				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
 				ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getShell(), tagLabelProvider);
 				dlg.setElements(historyInfo.getTagSpecs().toArray());
@@ -643,8 +643,8 @@ public class HistoryBrowserView extends ViewPart {
 				if (obj instanceof TreeNode) {
 					TreeNode node = (TreeNode) obj;
 					if (node.getValue() instanceof HistoryInfo
-						&& ((HistoryInfo)node.getValue()).getChangePackage()!=null
-						&& ((HistoryInfo)node.getValue()).getChangePackage().getLogMessage() != null) {
+						&& ((HistoryInfo) node.getValue()).getChangePackage() != null
+						&& ((HistoryInfo) node.getValue()).getChangePackage().getLogMessage() != null) {
 						AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
 						try {
 							helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
@@ -663,9 +663,15 @@ public class HistoryBrowserView extends ViewPart {
 		viewer.getControl().setMenu(menu);
 		getSite().registerContextMenu(menuMgr, viewer);
 	}
-	
-	public void highlightOperations(List<AbstractOperation> operations){
-		
+
+	/**
+	 * Highlights the given operations.
+	 * 
+	 * @param operations the operations
+	 */
+	public void highlightOperations(List<OperationId> operations) {
+		labelProvider.getHighlighted().clear();
+		labelProvider.getHighlighted().addAll(operations);
 	}
 
 }
