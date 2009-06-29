@@ -35,7 +35,6 @@ import org.unicase.model.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.model.task.util.EstimateHelper;
 import org.unicase.ui.ganttview.util.GanttViewHelper;
 import org.unicase.ui.stem.views.iterationplanningview.EMFColumnLabelProvider;
 import org.unicase.workspace.ProjectSpace;
@@ -99,8 +98,8 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		ganttChart.getGanttComposite().setDrawHorizontalLinesOverride(true);
 		ganttChart.getGanttComposite().setDrawVerticalLinesOverride(false);
-		// ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HEIGHT - SPACER);
-		// ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
+		ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HEIGHT - SPACER);
+		ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
 		// ganttCpLeft.setGanttChart(ganttChart);
 
 		sashForm.setWeights(new int[] { 30, 70 });
@@ -291,9 +290,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	private int calculateProgress(WorkPackage wp) {
 		int result = 0;
 
-		int closedEstimate = wp.getClosedAggregatedEstimate();
-		int estimate = EstimateHelper.getAggregatedEstimate(wp);
-		result = (estimate == 0) ? 0 : (closedEstimate * 100) / estimate; // (x/0)=0
+		// int closedEstimate = wp.getClosedAggregatedEstimate();
+		// int estimate = EstimateHelper.getAggregatedEstimate(wp);
+		// result = (estimate == 0) ? 0 : (closedEstimate * 100) / estimate; // (x/0)=0
 
 		return result;
 	}
