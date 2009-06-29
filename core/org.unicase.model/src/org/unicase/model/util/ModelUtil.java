@@ -15,10 +15,12 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -135,15 +137,89 @@ public final class ModelUtil {
 		if (object == null) {
 			return null;
 		}
+
 		Resource res = (new ResourceSetImpl()).createResource(VIRTUAL_URI);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		res.getContents().add(EcoreUtil.copy(object));
+
+		checkIfSelfContained(object);
+
+		EObject copy = EcoreUtil.copy(object);
+
+		res.getContents().add(copy);
+
 		try {
 			res.save(out, null);
 		} catch (IOException e) {
 			throw new SerializationException(e);
 		}
 		return out.toString();
+	}
+
+	@SuppressWarnings("unchecked")
+	private static Set<EObject> getNonTransientContents(EObject object) {
+		Set<EObject> result = new HashSet<EObject>();
+		if (object == null) {
+			return result;
+		}
+		for (EReference containmentReference : object.eClass().getEAllContainments()) {
+			if (!containmentReference.isTransient()) {
+				Object contentObject = object.eGet(containmentReference, true);
+				if (containmentReference.isMany()) {
+					EList<? extends EObject> contentList = (EList<? extends EObject>) contentObject;
+					for (EObject content : contentList) {
+						result.add(content);
+						result.addAll(getNonTransientContents(content));
+					}
+				} else {
+					EObject content = (EObject) contentObject;
+					if (content == null) {
+						continue;
+					}
+					result.add(content);
+					result.addAll(getNonTransientContents(content));
+				}
+			}
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	private static Set<EObject> getNonTransientCrossReferences(EObject object) {
+		Set<EObject> result = new HashSet<EObject>();
+		if (object == null) {
+			return result;
+		}
+		for (EReference reference : object.eClass().getEAllReferences()) {
+			if (!reference.isTransient()) {
+				Object referenceObject = object.eGet(reference, true);
+				if (reference.isMany()) {
+					EList<? extends EObject> referencesList = (EList<? extends EObject>) referenceObject;
+					result.addAll(referencesList);
+				} else {
+					EObject crossReference = (EObject) referenceObject;
+					if (crossReference == null) {
+						continue;
+					}
+					result.add(crossReference);
+				}
+			}
+		}
+		return result;
+	}
+
+	private static void checkIfSelfContained(EObject object) throws SerializationException {
+		// TODO: Should we allow eClass at all?
+		if (object instanceof EClass) {
+			return;
+		}
+		Set<EObject> allEObjects = getNonTransientContents(object);
+		allEObjects.add(object);
+		// check if only cross references to known elements exist
+		for (EObject content : allEObjects) {
+			if (!allEObjects.containsAll(getNonTransientCrossReferences(content))) {
+				throw new SerializationException(new IllegalStateException("Content is not self contained!"));
+			}
+		}
 	}
 
 	/**
