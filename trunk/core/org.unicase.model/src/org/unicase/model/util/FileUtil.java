@@ -71,9 +71,7 @@ public final class FileUtil {
 			throw new IOException("Source or destination is null.");
 		}
 
-		FileOutputStream outputStream = null;
-
-		outputStream = new FileOutputStream(destination);
+		FileOutputStream outputStream = new FileOutputStream(destination);
 
 		byte[] buffer = new byte[4096];
 		int read;

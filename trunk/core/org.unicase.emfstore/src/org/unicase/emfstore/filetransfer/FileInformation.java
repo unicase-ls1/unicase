@@ -110,12 +110,16 @@ public class FileInformation implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder string = new StringBuilder();
-		string.append("File attachment id: ");
+		string.append("FileAttachment Id: ");
 		string.append(fileAttachmentId);
-		string.append("\nFile version: ");
+		string.append("\nFile Version: ");
 		string.append(fileVersion);
-		string.append("\nFile name: ");
+		string.append("\nFile Name: ");
 		string.append(fileName);
+		string.append("\nCurrent Chunk Number: ");
+		string.append(chunkNumber);
+		string.append("\nTotal File (ALL chunks) Size: ");
+		string.append(fileSize);
 		return string.toString();
 	}
 }
