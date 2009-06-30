@@ -179,7 +179,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void exportProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory)
+	public ProjectId importProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory)
 		throws EmfStoreException {
 		sanityCheckObjects(new Object[] { sessionId, projectHistory });
 		checkServerAdminAccess(sessionId);
@@ -190,7 +190,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	/**
 	 * {@inheritDoc}
 	 */
-	public ProjectHistory importProjectHistoryFromServer(SessionId sessionId, ProjectId projectId)
+	public ProjectHistory exportProjectHistoryFromServer(SessionId sessionId, ProjectId projectId)
 		throws EmfStoreException {
 		sanityCheckObjects(new Object[] { sessionId, projectId });
 		checkServerAdminAccess(sessionId);
