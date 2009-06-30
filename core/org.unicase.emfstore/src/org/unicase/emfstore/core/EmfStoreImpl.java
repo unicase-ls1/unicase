@@ -183,8 +183,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 		throws EmfStoreException {
 		sanityCheckObjects(new Object[] { sessionId, projectHistory });
 		checkServerAdminAccess(sessionId);
-		// TODO
-		throw new UnsupportedOperationException();
+		return getSubInterface(ProjectSubInterfaceImpl.class).importProjectHistoryToServer(projectHistory);
 	}
 
 	/**
@@ -194,8 +193,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 		throws EmfStoreException {
 		sanityCheckObjects(new Object[] { sessionId, projectId });
 		checkServerAdminAccess(sessionId);
-		// TODO
-		throw new UnsupportedOperationException();
+		return getSubInterface(ProjectSubInterfaceImpl.class).exportProjectHistoryFromServer(projectId);
 	}
 
 	/**

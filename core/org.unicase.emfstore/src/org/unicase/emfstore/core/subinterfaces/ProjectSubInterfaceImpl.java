@@ -59,13 +59,21 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 * @throws EmfStoreException if project couldn't be found
 	 */
 	protected ProjectHistory getProject(ProjectId projectId) throws EmfStoreException {
+		ProjectHistory projectHistory = getProjectOrNull(projectId);
+		if (projectHistory != null) {
+			return projectHistory;
+		}
+		throw new InvalidProjectIdException("Project with the id:" + ((projectId == null) ? "null" : projectId)
+			+ " doesn't exist.");
+	}
+
+	private ProjectHistory getProjectOrNull(ProjectId projectId) {
 		for (ProjectHistory project : getServerSpace().getProjects()) {
 			if (project.getProjectId().equals(projectId)) {
 				return project;
 			}
 		}
-		throw new InvalidProjectIdException("Project with the id:" + ((projectId == null) ? "null" : projectId)
-			+ " doesn't exist.");
+		return null;
 	}
 
 	/**
@@ -179,6 +187,45 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			} catch (FatalEmfStoreException e) {
 				throw new StorageException(StorageException.NOSAVE);
 			}
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ProjectId importProjectHistoryToServer(ProjectHistory projectHistory) throws EmfStoreException {
+		synchronized (getMonitor()) {
+			ProjectHistory projectOrNull = getProjectOrNull(projectHistory.getProjectId());
+			if (projectOrNull != null) {
+				projectHistory.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
+			}
+			try {
+				for (Version version : projectHistory.getVersions()) {
+					if (version.getChanges() != null) {
+						getResourceHelper().createResourceForChangePackage(version.getChanges(),
+							version.getPrimarySpec(), projectHistory.getProjectId());
+					}
+					if (version.getProjectState() != null) {
+						getResourceHelper().createResourceForProject(version.getProjectState(),
+							version.getPrimarySpec(), projectHistory.getProjectId());
+					}
+					getResourceHelper().createResourceForVersion(version, projectHistory.getProjectId());
+				}
+				getResourceHelper().createResourceForProjectHistory(projectHistory);
+				getResourceHelper().saveAll();
+			} catch (FatalEmfStoreException e) {
+				throw new StorageException(StorageException.NOSAVE);
+			}
+			return (ProjectId) EcoreUtil.copy(projectHistory.getProjectId());
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public ProjectHistory exportProjectHistoryFromServer(ProjectId projectId) throws EmfStoreException {
+		synchronized (getMonitor()) {
+			return (ProjectHistory) EcoreUtil.copy(getProject(projectId));
 		}
 	}
 
