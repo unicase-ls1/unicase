@@ -5,8 +5,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
-import java.util.ArrayList;
-
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -15,11 +13,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
+import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.ToolBarManager;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
+import org.eclipse.swt.dnd.DND;
+import org.eclipse.swt.dnd.DropTarget;
+import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Cursor;
@@ -36,12 +38,15 @@ import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.WorkspaceManager;
 
+import java.util.ArrayList;
+
 /**
  * GUI Control for the ME reference multilinks.
  * 
  * @author helming
  */
 public class MEMultiLinkControl extends AbstractMEControl {
+
 	/**
 	 * Command to rebuild the links.
 	 * 
@@ -191,7 +196,17 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		rebuildLinkSection();
 
 		section.setClient(composite);
+		addDnDSupport();
 		return section;
+	}
+
+	private void addDnDSupport() {
+		DropTarget dropTarget = new DropTarget(section, DND.DROP_COPY);
+		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
+		dropTarget.setTransfer(transfers);
+		dropTarget
+			.addDropListener(new MEMultiLinkControlDropAdapter(getEditingDomain(), getModelElement(), eReference));
+
 	}
 
 	/**

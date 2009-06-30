@@ -5,9 +5,6 @@
  */
 package org.unicase.ui.common.dnd.dropadapters;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -24,6 +21,9 @@ import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * This is the super class for all model element specific drop adapters. We can consider this class as if ModelElement
@@ -227,10 +227,14 @@ public class MEDropAdapter {
 			}
 
 		} else {
+			if (theRef.isMany()) {
 
-			Object object = target.eGet(theRef);
-			EList<EObject> eList = (EList<EObject>) object;
-			eList.addAll(source);
+				Object object = target.eGet(theRef);
+				EList<EObject> eList = (EList<EObject>) object;
+				eList.addAll(source);
+			} else {
+				target.eSet(theRef, source.get(0));
+			}
 
 		}
 
