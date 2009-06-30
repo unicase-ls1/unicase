@@ -6,13 +6,6 @@
 
 package org.unicase.ui.common.dnd;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -39,6 +32,13 @@ import org.unicase.ui.common.dnd.dropadapters.MeetingDropAdapter;
 import org.unicase.ui.common.dnd.dropadapters.ProjectDropAdapter;
 import org.unicase.ui.common.dnd.dropadapters.WorkItemMeetingSectionDropAdapter;
 import org.unicase.ui.common.dnd.dropadapters.WorkPackageDropAdapter;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * This is the central drop adapter for unicase views. This class acts as a dispatcher. It has a map of (EClass,
@@ -162,6 +162,9 @@ public class UCDropAdapter extends DropTargetAdapter {
 		}
 
 		source = (List<ModelElement>) DragSourcePlaceHolder.getDragSource();
+		if (source.size() == 0) {
+			return false;
+		}
 
 		// take care that you cannot drop anything on project (project is not a
 		// ModelElement)
@@ -258,21 +261,22 @@ public class UCDropAdapter extends DropTargetAdapter {
 		Set<EClass> intersection = new HashSet<EClass>(dropAdapters.keySet());
 		intersection.retainAll(superClazz);
 
-		// check if intersection contains many classes, but if they are in an inheritance hierarchy keep only the deepest class.
+		// check if intersection contains many classes, but if they are in an inheritance hierarchy keep only the
+		// deepest class.
 		// This must be discussed as a potential modeling problem.
-		
-		if(intersection.size() > 1){
+
+		if (intersection.size() > 1) {
 			Set<EClass> toBeRemoved = new HashSet<EClass>();
-			for(EClass eClass1 : intersection){
-				for(EClass eClass2 : intersection){
-					if(!eClass2.equals(eClass1) && eClass2.isSuperTypeOf(eClass1)){
+			for (EClass eClass1 : intersection) {
+				for (EClass eClass2 : intersection) {
+					if (!eClass2.equals(eClass1) && eClass2.isSuperTypeOf(eClass1)) {
 						toBeRemoved.add(eClass2);
 					}
 				}
 			}
 			intersection.removeAll(toBeRemoved);
 		}
-		
+
 		if (intersection.size() > 1) {
 			throw new IllegalStateException("More than one drop adapter for this type found!");
 
