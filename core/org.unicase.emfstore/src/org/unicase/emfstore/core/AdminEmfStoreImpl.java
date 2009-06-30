@@ -95,12 +95,24 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 			throw new InvalidInputException();
 		}
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
+		if (groupExists(name)) {
+			throw new InvalidInputException("group already exists.");
+		}
 		ACGroup acGroup = AccesscontrolFactory.eINSTANCE.createACGroup();
 		acGroup.setName(name);
 		acGroup.setDescription("");
 		getServerSpace().getGroups().add(acGroup);
 		save();
 		return (ACOrgUnitId) EcoreUtil.copy(acGroup.getId());
+	}
+
+	private boolean groupExists(String name) {
+		for (ACGroup group : getServerSpace().getGroups()) {
+			if (group.getName().equals(name)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 	/**
