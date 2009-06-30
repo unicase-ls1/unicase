@@ -5,14 +5,6 @@
  */
 package org.unicase.ui.stem.views.statusview;
 
-import java.net.URL;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -24,7 +16,6 @@ import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
-import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.dnd.DND;
@@ -53,11 +44,20 @@ import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.MEClassLabelProvider;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.Activator;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.util.EventUtil;
+
+import java.net.URL;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * This view summarizes the the progress status of a model element according to its Openers, Annotations, and
@@ -537,9 +537,10 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 			}
 
 			public void drop(DropTargetEvent event) {
-				TreeSelection selection = (TreeSelection) event.data;
-				ModelElement me = (ModelElement) selection.getFirstElement();
-				setInput(me);
+				ModelElement me = ActionHelper.getSelectedModelElement();
+				if (me != null) {
+					setInput(me);
+				}
 			}
 
 			public void dragLeave(DropTargetEvent event) {
