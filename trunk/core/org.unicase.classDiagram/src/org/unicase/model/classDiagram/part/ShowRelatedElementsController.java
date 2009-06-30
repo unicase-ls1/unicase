@@ -110,7 +110,7 @@ public class ShowRelatedElementsController {
 			}
 
 			try {
-				handleSelectionChanged(event);	
+				handleSelectionChanged(event);
 			} catch (IllegalStateException e) {
 				setActive(false);
 			}
@@ -136,11 +136,11 @@ public class ShowRelatedElementsController {
 			if (editParts.size() == 0) {
 				throw new IllegalStateException();
 			}
-
-			if (!editParts.contains(selectedEditPart) && !(selectedEditPart == getDiagramEditPart())) {
-				throw new IllegalStateException();
-			}
 			// END SANITY CHECKS
+			
+			if (!editParts.contains(selectedEditPart)) {
+				selectedEditPart = getDiagramEditPart();
+			}
 
 			AddRelatedElementsCommand addCommand = createAddRelatedElementsCommand(selectedEditPart, editParts);
 
@@ -292,7 +292,8 @@ public class ShowRelatedElementsController {
 	}
 
 	/**
-	 * @return A {@link Map} containing a mapping from {@link EObject}s to {@link ViewDescriptor}s for all temporary diagram objects. 
+	 * @return A {@link Map} containing a mapping from {@link EObject}s to {@link ViewDescriptor}s for all temporary
+	 *         diagram objects.
 	 */
 	public Map<EObject, ViewDescriptor> getObjectViewDescriptorMap() {
 		return objectViewDescriptorMap;

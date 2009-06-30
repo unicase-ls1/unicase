@@ -33,6 +33,7 @@ import org.unicase.model.classDiagram.part.ShowRelatedElementsController;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.Class;
 import org.unicase.model.classes.impl.ClassImpl;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.commands.CommandFactory;
 import org.unicase.ui.common.diagram.commands.CreateConnectionViewCommandProvider;
 import org.unicase.ui.common.diagram.commands.CreateNodeViewCommandProvider;
@@ -41,13 +42,12 @@ import org.unicase.ui.common.diagram.util.ViewAdapter;
 
 /**
  * @author schroech
- *
  */
-public class ShowRelatedElementsCommand extends Command{
+public class ShowRelatedElementsCommand extends Command {
 
 	private final Map<EObject, ViewDescriptor> objectViewDescriptorMap = new HashMap<EObject, ViewDescriptor>();
 	private DiagramEditPart diagramEditPart;
-	
+
 	private final CompoundCommand cc = new CompoundCommand();
 
 	/**
@@ -57,16 +57,16 @@ public class ShowRelatedElementsCommand extends Command{
 	 */
 	public ShowRelatedElementsCommand(ShowRelatedElementsRequest request) {
 		super("Show related elements");
-		
+
 		// BEGIN SANITY CHECKS
 		if (request == null) {
-			throw new IllegalArgumentException("request may not be null");
+			throw new IllegalArgumentException();
 		}
-		
+
 		Object selectedShape = null;
 		List selectedShapes = request.getSelectedShapes();
 		if (selectedShapes.size() == 0) {
-			throw new IllegalArgumentException("who cares, gmf suppresses this anyway");
+			throw new IllegalArgumentException();
 		}
 
 		selectedShape = selectedShapes.get(0);
@@ -86,11 +86,11 @@ public class ShowRelatedElementsCommand extends Command{
 		}
 		// END SANITY CHECKS
 
-		
 		setDiagramEditPart(diagramEditPart);
 
-		Collection<Association> invisibleRelatedAssociations = getInvisibleRelatedAssociations(primaryClassEditPart);
 		Collection<Class> invisibleRelatedClasses = getInvisibleRelatedClasses(primaryClassEditPart);
+		Collection<Association> invisibleRelatedAssociations = getInvisibleRelatedAssociations(primaryClassEditPart,
+			invisibleRelatedClasses);
 
 		createClassCreationCommands(invisibleRelatedClasses);
 		createAssociationCreateCommands(invisibleRelatedAssociations);
@@ -163,16 +163,16 @@ public class ShowRelatedElementsCommand extends Command{
 		}
 
 		instance.getObjectViewDescriptorMap().putAll(getObjectViewDescriptorMap());
-		
+
 		cc.execute();
 
 		instance.setActive(true);
-		
+
 	}
 
 	/**
 	 * ShowRelatedElementsCommand are currently not undoable because ot it's "mode" based architecture.
-	 *  
+	 * 
 	 * @see org.eclipse.gef.commands.Command#canUndo()
 	 * @return false
 	 */
@@ -216,23 +216,46 @@ public class ShowRelatedElementsCommand extends Command{
 		return allRelatedClasses;
 	}
 
-	private static Collection<Association> getInvisibleRelatedAssociations(ClassEditPart classEditPart) {
+	private static Collection<Association> getInvisibleRelatedAssociations(ClassEditPart classEditPart,
+		Collection<Class> invisibleRelatedClasses) {
+		EObject element = EditPartUtility.getElement(classEditPart);
+		if (!(element instanceof org.unicase.model.classes.Class)) {
+			return Collections.EMPTY_LIST;
+		}
+
 		Set<Association> invisibleRelatedAssociations = new HashSet<Association>();
 
 		Collection<ConnectionEditPart> connectedConnectionEditParts = getConnectedConnectionEditParts(classEditPart);
 		Collection<Association> visibleRelatedAssociations = EditPartUtility.getElements(connectedConnectionEditParts,
 			Association.class);
 
-		Collection<Association> allRelatedAssociations = null;
-		EObject element = EditPartUtility.getElement(classEditPart);
-		if (!(element instanceof org.unicase.model.classes.Class)) {
-			return Collections.EMPTY_LIST;
-		}
-
-		allRelatedAssociations = getAllRelatedAssociations((org.unicase.model.classes.Class) element);
+		Collection<Association> allRelatedAssociations = getAllRelatedAssociations((org.unicase.model.classes.Class) element);
 
 		invisibleRelatedAssociations.addAll(allRelatedAssociations);
 		invisibleRelatedAssociations.removeAll(visibleRelatedAssociations);
+
+		for (Class invisibleClass : invisibleRelatedClasses) {
+			EList<Association> outgoingAssociations = invisibleClass.getOutgoingAssociations();
+			EList<Association> incomingAssociations = invisibleClass.getIncomingAssociations();
+
+			for (Association association : outgoingAssociations) {
+				Class target = association.getTarget();
+
+				if (((MEDiagram) EditPartUtility.getElement(EditPartUtility.getDiagramEditPart(classEditPart)))
+					.getElements().contains(target)) {
+					invisibleRelatedAssociations.add(association);
+				}
+			}
+
+			for (Association association : incomingAssociations) {
+				Class source = association.getSource();
+
+				if (((MEDiagram) EditPartUtility.getElement(EditPartUtility.getDiagramEditPart(classEditPart)))
+					.getElements().contains(source)) {
+					invisibleRelatedAssociations.add(association);
+				}
+			}
+		}
 
 		return invisibleRelatedAssociations;
 	}
@@ -336,7 +359,6 @@ public class ShowRelatedElementsCommand extends Command{
 
 		return viewAdapter;
 	}
-
 
 	private Map<EObject, ViewDescriptor> getObjectViewDescriptorMap() {
 		return objectViewDescriptorMap;
