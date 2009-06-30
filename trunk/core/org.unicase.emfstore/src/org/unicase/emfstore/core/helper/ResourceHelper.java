@@ -187,4 +187,24 @@ public class ResourceHelper {
 		}
 		// END SUPRESS CATCH EXCEPTION
 	}
+
+	/**
+	 * Saves all modified resources in the serverspace's resource set.
+	 * 
+	 * @throws FatalEmfStoreException in case of failure
+	 */
+	public void saveAll() throws FatalEmfStoreException {
+		for (Resource res : serverSpace.eResource().getResourceSet().getResources()) {
+			if (res.isLoaded() && res.isModified()) {
+				try {
+					res.save(null);
+					// BEGIN SUPRESS CATCH EXCEPTION
+				} catch (Exception e) {
+					throw new FatalEmfStoreException(StorageException.NOSAVE, e);
+				}
+				// END SUPRESS CATCH EXCEPTION
+			}
+		}
+
+	}
 }

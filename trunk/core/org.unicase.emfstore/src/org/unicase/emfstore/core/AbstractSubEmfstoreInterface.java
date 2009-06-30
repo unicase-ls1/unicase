@@ -29,7 +29,7 @@ public abstract class AbstractSubEmfstoreInterface {
 	 * Default constructor.
 	 * 
 	 * @param parentInterface parentInterface
-	 * @throws FatalEmfStoreException if serverspace is null
+	 * @throws FatalEmfStoreException if parent interface is null
 	 */
 	public AbstractSubEmfstoreInterface(AbstractEmfstoreInterface parentInterface) throws FatalEmfStoreException {
 		if (parentInterface == null) {
