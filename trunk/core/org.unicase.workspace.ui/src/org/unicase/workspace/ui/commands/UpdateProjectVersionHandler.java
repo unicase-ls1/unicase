@@ -23,9 +23,9 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
+import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.ui.dialogs.MergeDialog;
 import org.unicase.workspace.ui.dialogs.UpdateDialog;
-import org.unicase.workspace.util.UpdateObserver;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -139,7 +139,7 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.util.UpdateObserver#updateCompleted()
+	 * @see org.unicase.workspace.observers.UpdateObserver#updateCompleted()
 	 */
 	public void updateCompleted() {
 		ActionHelper.openDashboard();

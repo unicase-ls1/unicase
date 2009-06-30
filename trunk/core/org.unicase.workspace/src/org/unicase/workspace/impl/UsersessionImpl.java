@@ -38,7 +38,7 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
-import org.unicase.workspace.util.LoginObserver;
+import org.unicase.workspace.observers.LoginObserver;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Usersession</b></em>'. <!-- end-user-doc -->

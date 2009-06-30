@@ -22,8 +22,8 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
+import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.ui.dialogs.CommitDialog;
-import org.unicase.workspace.util.CommitObserver;
 
 /**
  * @author Hodaie
@@ -117,7 +117,7 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.util.CommitObserver#commitCompleted()
+	 * @see org.unicase.workspace.observers.CommitObserver#commitCompleted()
 	 */
 	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec versionSpec) {
 		ActionHelper.openDashboard();
