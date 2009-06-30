@@ -32,8 +32,8 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
-import org.unicase.workspace.util.CommitObserver;
-import org.unicase.workspace.util.UpdateObserver;
+import org.unicase.workspace.observers.CommitObserver;
+import org.unicase.workspace.observers.UpdateObserver;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project Container</b></em>'. <!-- end-user-doc

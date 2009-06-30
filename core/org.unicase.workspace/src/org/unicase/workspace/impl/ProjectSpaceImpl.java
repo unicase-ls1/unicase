@@ -92,10 +92,11 @@ import org.unicase.workspace.filetransfer.FileDownloadJob;
 import org.unicase.workspace.filetransfer.FileTransferJob;
 import org.unicase.workspace.filetransfer.FileUploadJob;
 import org.unicase.workspace.notification.NotificationGenerator;
-import org.unicase.workspace.util.CommitObserver;
+import org.unicase.workspace.observers.CommitObserver;
+import org.unicase.workspace.observers.ConflictResolver;
+import org.unicase.workspace.observers.LoginObserver;
+import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.util.FileTransferUtil;
-import org.unicase.workspace.util.LoginObserver;
-import org.unicase.workspace.util.UpdateObserver;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -2106,7 +2107,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.ProjectSpace#addCommitObserver(org.unicase.workspace.util.CommitObserver)
+	 * @see org.unicase.workspace.ProjectSpace#addCommitObserver(org.unicase.workspace.observers.CommitObserver)
 	 */
 	public void addCommitObserver(CommitObserver observer) {
 		this.commitObservers.add(observer);
@@ -2212,5 +2213,51 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 		}
 		return true;
+	}
+
+	/**
+	 * Merge the changes from current base version to given target version with the local operations.
+	 * 
+	 * @param target target version
+	 * @param conflictResolver a conflict resolver that will actually perform the conflict resolution
+	 * @throws EmfStoreException if the conncection to the server fails
+	 */
+	public void merge(PrimaryVersionSpec target, ConflictResolver conflictResolver) throws EmfStoreException {
+		// merge the conflicts
+		ChangePackage myCp = this.getCannonizedLocalOperations();
+		List<ChangePackage> theirCps = this.getChanges(getBaseVersion(), target);
+		conflictResolver.resolveConflicts(project, theirCps, myCp);
+
+		// revert the local operations and apply all their operations
+		this.revert();
+
+		// stop change recording
+		this.stopChangeRecording();
+
+		for (ChangePackage changePackage : theirCps) {
+			changePackage.apply(this.getProject());
+		}
+
+		// generate merge result and apply to local workspace
+		List<AbstractOperation> acceptedMine = conflictResolver.getAcceptedMine();
+		List<AbstractOperation> rejectedTheirs = conflictResolver.getRejectedTheirs();
+		List<AbstractOperation> mergeResult = new ArrayList<AbstractOperation>();
+		for (AbstractOperation operationToReverse : rejectedTheirs) {
+			mergeResult.add(0, operationToReverse.reverse());
+		}
+		mergeResult.addAll(acceptedMine);
+		for (AbstractOperation operation : mergeResult) {
+			operation.apply(getProject());
+		}
+
+		// set local operations and base version
+		this.getOperations().addAll(mergeResult);
+		this.setBaseVersion(target);
+
+		saveProjectSpaceOnly();
+
+		// start change recording
+		this.startChangeRecording();
+
 	}
 } // ProjectContainerImpl
