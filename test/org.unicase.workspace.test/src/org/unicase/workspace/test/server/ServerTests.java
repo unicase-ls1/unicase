@@ -12,6 +12,7 @@ import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
+import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -106,6 +107,7 @@ public class ServerTests {
 	 */
 	@BeforeClass
 	public static void setUpBeforeClass() throws EmfStoreException {
+		ServerConfiguration.setTesting(true);
 		SetupHelper.addUserFileToServer(false);
 		SetupHelper.startSever();
 		connectionManager = WorkspaceManager.getInstance().getConnectionManager();

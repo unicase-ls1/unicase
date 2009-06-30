@@ -195,7 +195,10 @@ public final class ServerConfiguration {
 
 	/**
 	 * Default filepath for spfv authentication.
+	 * 
+	 * @deprecated use {@link #getDefaultSPFVFilePath()}
 	 */
+	@Deprecated
 	public static final String AUTHENTICATION_SPFV_FILEPATH_DEFAULT = getConfDirectory() + "user.properties";
 
 	/**
@@ -371,6 +374,15 @@ public final class ServerConfiguration {
 		sb.append(System.getProperty("user.home"));
 		sb.append(File.separatorChar);
 		return sb.toString();
+	}
+
+	/**
+	 * Default filepath for spfv authentication.
+	 * 
+	 * @return path as string
+	 */
+	public static String getDefaultSPFVFilePath() {
+		return getConfDirectory() + "user.properties";
 	}
 
 	/**

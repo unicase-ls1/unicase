@@ -78,6 +78,7 @@ public class SetupHelper {
 		try {
 			ServerConfiguration.setTesting(true);
 			Properties properties = ServerConfiguration.getProperties();
+			// little hack, there is a flaw in server configuration
 			properties.setProperty(ServerConfiguration.RMI_ENCRYPTION, ServerConfiguration.FALSE);
 			EmfStoreController.runAsNewThread();
 		} catch (FatalEmfStoreException e) {
@@ -103,12 +104,14 @@ public class SetupHelper {
 	 */
 	public static void addUserFileToServer(boolean override) {
 		try {
-			File file = new File(ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH_DEFAULT);
+			File file = new File(ServerConfiguration.getProperties().getProperty(
+				ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH, ServerConfiguration.getDefaultSPFVFilePath()));
 			if (override && file.exists()) {
 				file.delete();
 			}
 			FileUtil.copyFile(SetupHelper.class.getResourceAsStream("user.properties"), file);
 		} catch (IOException e) {
+			e.printStackTrace();
 			// TODO: throw exception instead of catching?
 		}
 	}
