@@ -57,7 +57,7 @@ public class AnalyzersTest {
 
 	/**
 	 * Get the project list on the test server.
-	 * @throws EmfStoreException 
+	 * @throws EmfStoreException problems occur when connecting to the server.
 	 */
 	@Before
 	public void setup() throws EmfStoreException {
@@ -81,7 +81,7 @@ public class AnalyzersTest {
 	 * @param isForward true if iterate forwardly
 	 * @return true if the list of ChangePackage from the {@link ProjectAnalysisData} and the one got from {@link ConnectionManager}
 	 * are the equal.
-	 * @throws EmfStoreException 
+	 * @throws EmfStoreException problems occur when connecting to the server.
 	 */
 	public boolean compareChangePackage(ProjectId projectId, ProjectAnalysisData data, int startPoint, int endPoint, boolean isForward) throws EmfStoreException{
 		List<ChangePackage> changePackageA = data.getChangePackages();

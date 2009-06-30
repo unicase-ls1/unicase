@@ -6,7 +6,6 @@
 
 package org.unicase.analyzer.ui.wizards;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -14,10 +13,8 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 
-import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * @author liya
@@ -31,6 +28,8 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	private IteratorPage iteratorPage;
 	private ExporterPage exporterPage;
 	private AnalyzerPage analyzerPage;
+	private VersionIteratorPage versionIteratorPage;
+	private TimeIteratorPage timeIteratorPage;
 	
 	/** 
 	 * {@inheritDoc}
@@ -70,6 +69,10 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		}
 	}
 	
+    /** 
+     * {@inheritDoc}
+     * @see org.eclipse.jface.wizard.Wizard#addPages()
+     */
     @Override
 	public void addPages(){
     	
@@ -77,11 +80,19 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		addPage(analyzerPage);
 		iteratorPage = new IteratorPage("IteratorPage");
 		addPage(iteratorPage);
+		versionIteratorPage = new VersionIteratorPage("");
+		addPage(versionIteratorPage);
+		timeIteratorPage = new TimeIteratorPage("");
+		addPage(timeIteratorPage);
 		exporterPage = new ExporterPage("ExporterPage");
 		addPage(exporterPage);
 		
     }
 	
+    /** 
+     * {@inheritDoc}
+     * @see org.eclipse.jface.wizard.Wizard#canFinish()
+     */
     @Override
 	public boolean canFinish(){
     	return canFinish;
@@ -99,6 +110,41 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	public boolean isLoggedIn() {
 		return loggedIn;
+	}
+
+	/**
+	 * @return the versionIteratorPage
+	 */
+	public VersionIteratorPage getVersionIteratorPage() {
+		return versionIteratorPage;
+	}
+
+	/**
+	 * @return the timeIteratorPage
+	 */
+	public TimeIteratorPage getTimeIteratorPage() {
+		return timeIteratorPage;
+	}
+
+	/**
+	 * @return the iteratorPage
+	 */
+	public IteratorPage getIteratorPage() {
+		return iteratorPage;
+	}
+
+	/**
+	 * @return the exporterPage
+	 */
+	public ExporterPage getExporterPage() {
+		return exporterPage;
+	}
+
+	/**
+	 * @return the analyzerPage
+	 */
+	public AnalyzerPage getAnalyzerPage() {
+		return analyzerPage;
 	}
 
 

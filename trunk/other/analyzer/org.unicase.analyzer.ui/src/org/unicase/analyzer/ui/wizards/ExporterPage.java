@@ -28,6 +28,9 @@ public class ExporterPage extends WizardPage implements Listener {
 	private Text exportPath;
 	private Button exporterButton;
 
+	/**
+	 * @param pageName Name of the page
+	 */
 	protected ExporterPage(String pageName) {
 		super(pageName);
 		setTitle(PAGE_TITLE);
@@ -65,6 +68,10 @@ public class ExporterPage extends WizardPage implements Listener {
 
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
+	 */
 	public void handleEvent(Event event) {
 		// TODO Auto-generated method stub
 		
