@@ -10,7 +10,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.junit.Assert;
 import org.junit.Test;
 import org.unicase.emfstore.connection.rmi.SerializationUtil;
@@ -21,11 +20,8 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.workspace.test.SetupHelper;
 
@@ -182,12 +178,14 @@ public class ServerInterfaceTest extends ServerTests {
 	@Test
 	public void getChangesTest() throws EmfStoreException {
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		CreateDeleteOperation createCreateDeleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
-		createCreateDeleteOperation.setDelete(true);
-		ModelElement modelElement = (ModelElement) EcoreUtil.copy(getGeneratedProject().getModelElements().get(0));
-		createCreateDeleteOperation.setModelElementId(modelElement.getModelElementId());
-		createCreateDeleteOperation.setModelElement(modelElement);
-		changePackage.getOperations().add(createCreateDeleteOperation);
+		// CreateDeleteOperation createCreateDeleteOperation =
+		// OperationsFactory.eINSTANCE.createCreateDeleteOperation();
+		// createCreateDeleteOperation.setDelete(true);
+		//		
+		// ModelElement modelElement = (ModelElement) EcoreUtil.copy(getGeneratedProject().getModelElements().get(0));
+		// createCreateDeleteOperation.setModelElementId(modelElement.getModelElementId());
+		// createCreateDeleteOperation.setModelElement(modelElement);
+		// changePackage.getOperations().add(createCreateDeleteOperation);
 
 		PrimaryVersionSpec resolvedVersionSpec = getConnectionManager().resolveVersionSpec(getSessionId(),
 			getGeneratedProjectId(), VersionSpec.HEAD_VERSION);

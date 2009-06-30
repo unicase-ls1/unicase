@@ -15,6 +15,7 @@ import org.unicase.workspace.test.SetupHelper;
  * 
  * @author wesendon
  */
+// TODO: implementation has been postponed
 public class InvalidAuthenticationTest extends ServerTests {
 
 	/**
@@ -25,5 +26,6 @@ public class InvalidAuthenticationTest extends ServerTests {
 	@Test
 	public void doNothing() throws EmfStoreException {
 		SessionId login = login(SetupHelper.getServerInfo(), "reader", "foo");
+		login.getId();
 	}
 }

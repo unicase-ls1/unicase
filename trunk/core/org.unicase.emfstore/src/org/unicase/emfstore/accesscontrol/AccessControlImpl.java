@@ -61,8 +61,7 @@ public class AccessControlImpl implements AuthenticationControl, AuthorizationCo
 			authenticationControl = new LDAPVerifier();
 		} else if (property.equals(ServerConfiguration.AUTHENTICATION_SPFV)) {
 			authenticationControl = new SimplePropertyFileVerifyer(ServerConfiguration.getProperties().getProperty(
-				ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH,
-				ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH_DEFAULT));
+				ServerConfiguration.AUTHENTICATION_SPFV_FILEPATH, ServerConfiguration.getDefaultSPFVFilePath()));
 		} else {
 			throw new InvalidPropertyException();
 		}
