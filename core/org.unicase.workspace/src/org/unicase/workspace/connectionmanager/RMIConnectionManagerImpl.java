@@ -249,18 +249,28 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	/**
 	 * {@inheritDoc}
 	 */
-	public void exportProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory)
+	public ProjectHistory exportProjectHistoryFromServer(SessionId sessionId, ProjectId projectId)
 		throws EmfStoreException {
-		throw new UnsupportedOperationException();
+		try {
+			return (ProjectHistory) SerializationUtil.stringToEObject(getFacade(sessionId)
+				.exportProjectHistoryFromServer(SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(projectId)));
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
 	}
 
 	/**
 	 * {@inheritDoc}
 	 */
-	public ProjectHistory importProjectHistoryFromServer(SessionId sessionId, ProjectId projectId)
+	public ProjectId importProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory)
 		throws EmfStoreException {
-		throw new UnsupportedOperationException();
-
+		try {
+			return (ProjectId) SerializationUtil.stringToEObject(getFacade(sessionId).importProjectHistoryToServer(
+				SerializationUtil.eObjectToString(sessionId), SerializationUtil.eObjectToString(projectHistory)));
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
 	}
 
 	/**

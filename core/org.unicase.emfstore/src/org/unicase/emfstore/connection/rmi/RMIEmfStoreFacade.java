@@ -193,6 +193,29 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
+	 * @param sessionId sessionid
+	 * @param projectHistory projectHistory
+	 * @return projectId projectId
+	 * @throws EmfStoreException in case of failure
+	 * @throws RemoteException if rmi fails
+	 */
+	String importProjectHistoryToServer(String sessionId, String projectHistory) throws EmfStoreException,
+		RemoteException;
+
+	/**
+	 * String typed implementation of method in {@link EmfStore}.
+	 * 
+	 * @param sessionId sessionid
+	 * @param projectId projectid
+	 * @return projectHistory
+	 * @throws EmfStoreException in case of failure
+	 * @throws RemoteException if rmi fails
+	 */
+	String exportProjectHistoryFromServer(String sessionId, String projectId) throws EmfStoreException, RemoteException;
+
+	/**
+	 * String typed implementation of method in {@link EmfStore}.
+	 * 
 	 * @see org.unicase.emfstore.accesscontrol.AuthenticationControl#logIn(String, String)
 	 * @param username the user name
 	 * @param password the password

@@ -14,6 +14,7 @@ import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthenticationControl;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
+import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
@@ -246,6 +247,26 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 		LOGGER.debug("Client call on deleteProject RECEIVED.");
 		emfStore.deleteProject((SessionId) SerializationUtil.stringToEObject(sessionId), (ProjectId) SerializationUtil
 			.stringToEObject(projectId), deleteFiles);
+	}
+
+	/**
+	 *{@inheritDoc}
+	 */
+	public String exportProjectHistoryFromServer(String sessionId, String projectId) throws EmfStoreException,
+		RemoteException {
+		LOGGER.debug("Client call on exportProjectHistoryFromServer RECEIVED.");
+		return SerializationUtil.eObjectToString(emfStore.exportProjectHistoryFromServer((SessionId) SerializationUtil
+			.stringToEObject(sessionId), (ProjectId) SerializationUtil.stringToEObject(projectId)));
+	}
+
+	/**
+	 *{@inheritDoc}
+	 */
+	public String importProjectHistoryToServer(String sessionId, String projectHistory) throws EmfStoreException,
+		RemoteException {
+		LOGGER.debug("Client call on importProjectHistoryToServer RECEIVED.");
+		return SerializationUtil.eObjectToString(emfStore.importProjectHistoryToServer((SessionId) SerializationUtil
+			.stringToEObject(sessionId), (ProjectHistory) SerializationUtil.stringToEObject(projectHistory)));
 	}
 
 	/**

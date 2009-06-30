@@ -205,24 +205,26 @@ public interface EmfStore extends EmfStoreInterface {
 	ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException;
 
 	/**
-	 * Exports a project history to the server. The project history elements such as version, projecstate etc will be
-	 * devided in several files on the server file system.
+	 * Imports a project history to the server. The project history elements such as version, projecstate etc will be
+	 * devided in several files on the server file system. The server will try to use the specified project id, if it
+	 * already exists a new id is generated.
 	 * 
 	 * @param sessionId sessionid
 	 * @param projectHistory project history
+	 * @return projectId
 	 * @throws EmfStoreException in case of failure
 	 */
-	void exportProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory) throws EmfStoreException;
+	ProjectId importProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory) throws EmfStoreException;
 
 	/**
-	 * Imports a given project history from the server. Caution if you try to import big projects from the server.
+	 * Exports a given project history from the server. Caution if you try to export big projects from the server.
 	 * 
 	 * @param sessionId session id
 	 * @param projectId project id
 	 * @return a projecthistory
 	 * @throws EmfStoreException in case of failure
 	 */
-	ProjectHistory importProjectHistoryFromServer(SessionId sessionId, ProjectId projectId) throws EmfStoreException;
+	ProjectHistory exportProjectHistoryFromServer(SessionId sessionId, ProjectId projectId) throws EmfStoreException;
 
 	/**
 	 * Uploads a file chunk to the server.
