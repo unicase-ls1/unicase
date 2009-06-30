@@ -28,7 +28,7 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test Default VersionIterator. 
 	 * @throws IteratorException IteratorException
-	 * @throws EmfStoreException 
+	 * @throws EmfStoreException EmfStoreException
 	 */
     @Test
 	public void defaultVersionIteratorTest() throws IteratorException, EmfStoreException{
@@ -56,7 +56,7 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test Default TimeIterator. 
 	 * @throws IteratorException IteratorException
-	 * @throws EmfStoreException 
+	 * @throws EmfStoreException EmfStoreException
 	 */
 	@Test
 	public void defaultTimeIteratorTest() throws IteratorException, EmfStoreException{
@@ -84,10 +84,10 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test VersionIterator with given start and end.
 	 * @throws IteratorException IteratorException
-	 * @throws EmfStoreException 
+	 * @throws EmfStoreException EmfStoreException
 	 */
     @Test
-	public void OutofBoundVersionIteratorTest() throws IteratorException, EmfStoreException{
+	public void outofBoundVersionIteratorTest() throws IteratorException, EmfStoreException{
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
@@ -119,7 +119,7 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test Backward VersionIterator.
 	 * @throws IteratorException IteratorException.
-	 * @throws EmfStoreException 
+	 * @throws EmfStoreException EmfStoreException
 	 */
     @Test
 	public void backwardIteratorTest() throws IteratorException, EmfStoreException{
@@ -154,7 +154,7 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test Backward VersionIterator till version 0.
 	 * @throws IteratorException IteratorException.
-	 * @throws EmfStoreException 
+	 * @throws EmfStoreException EmfStoreException
 	 */
     @Test
 	public void backwardTillZeroIteratorTest() throws IteratorException, EmfStoreException{
@@ -188,7 +188,7 @@ public class IteratorTest extends AnalyzersTest {
 	/**
 	 * Test backward TimeIterator. 
 	 * @throws IteratorException IteratorException
-	 * @throws EmfStoreException 
+	 * @throws EmfStoreException EmfStoreException
 	 */
 	@Test
 	public void backwardTimeIteratorTest() throws IteratorException, EmfStoreException{

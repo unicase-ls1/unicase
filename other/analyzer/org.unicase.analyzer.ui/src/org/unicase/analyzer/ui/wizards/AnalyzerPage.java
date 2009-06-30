@@ -27,13 +27,16 @@ public class AnalyzerPage extends WizardPage {
 
 	private static final String PAGE_TITLE = "Registered Analyzers";
 	private static final String PAGE_DESCRIPTION = "Choose the analyzer.";
-	private boolean canFlipToNextPage;
+	//private boolean canFlipToNextPage;
 
+	/**
+	 * @param pageName Name of the page
+	 */
 	protected AnalyzerPage(String pageName) {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		canFlipToNextPage = false;
+		//canFlipToNextPage = false;
 	}
 
 	/** 
@@ -67,9 +70,6 @@ public class AnalyzerPage extends WizardPage {
 			 gd.horizontalSpan = ncol;
 			 analyzerButton.setLayoutData(gd);
 			 analyzerButton.setSelection(false);
-			 if(analyzerButton.getSelection()){
-				 canFlipToNextPage = true;
-			 }
 		    }
 		}
 		setControl(composite);
@@ -77,12 +77,20 @@ public class AnalyzerPage extends WizardPage {
 
 	}
 	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+	 */
 	@Override
 	public boolean canFlipToNextPage(){
 //		return canFlipToNextPage;
 		return true;
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
+	 */
 	@Override
 	public IWizardPage getNextPage() {		
 		return super.getNextPage();
