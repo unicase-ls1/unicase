@@ -6,6 +6,12 @@ Bundle-Version: 0.0.1
 Bundle-Activator: org.unicase.ui.linkrecommendation.Activator
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.unicase.model,
+ org.unicase.emfstore,
+ org.unicase.linkRecommendation
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
+Import-Package: org.eclipse.emf.edit.ui.provider,
+ org.unicase.ui.common
+Export-Package: org.unicase.ui.linkrecommendation
