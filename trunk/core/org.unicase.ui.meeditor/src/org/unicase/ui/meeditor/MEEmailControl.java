@@ -51,13 +51,13 @@ public class MEEmailControl extends AbstractMEControl {
 		GridLayout gridLayout = new GridLayout(2, false);
 		composite.setLayout(gridLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
-		final Text createControl = (Text) meAreaControl.createControl(composite, style);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(createControl);
+		final Text txtEmail = (Text) meAreaControl.createControl(composite, style);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(txtEmail);
 		final Action mail = new Action("Send email", SWT.PUSH) {
 
 			@Override
 			public void run() {
-				String email = createControl.getText();
+				String email = txtEmail.getText();
 				Program.launch("mailto:" + email);
 			}
 
