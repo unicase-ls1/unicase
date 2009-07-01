@@ -5,16 +5,8 @@
  */
 package org.unicase.model.util;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
-
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
@@ -29,6 +21,16 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 /**
  * Utility class for ModelElements.
@@ -349,4 +351,16 @@ public final class ModelUtil {
 		return false;
 	}
 
+	/**
+	 * This will add a new entry to error log view of eclipse.
+	 * 
+	 * @param message message
+	 * @param exception exception
+	 * @param statusInt severity. Use one of constants in org.eclipse.core.runtime.Status class.
+	 */
+	public static void log(String message, Exception exception, int statusInt) {
+		Status status = new Status(statusInt, Platform.getBundle("org.unicase.model").getSymbolicName(), statusInt,
+			message, exception);
+		Platform.getLog(Platform.getBundle("org.unicase.model")).log(status);
+	}
 }

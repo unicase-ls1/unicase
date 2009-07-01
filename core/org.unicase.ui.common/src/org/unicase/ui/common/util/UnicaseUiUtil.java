@@ -6,16 +6,13 @@
 
 package org.unicase.ui.common.util;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
@@ -26,8 +23,14 @@ import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
+import org.unicase.ui.common.dialogs.ErrorReportDialog;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Utility class for the unicase project.
@@ -69,45 +72,47 @@ public final class UnicaseUiUtil {
 		}
 		return result;
 	}
-	
+
 	/**
 	 * Shows a list of all MEs of meType in project.
+	 * 
 	 * @param shell shell
 	 * @param meType model element type
 	 * @param project project
 	 * @param multiSelection if multiple elements can be selected
 	 * @return selected elements
 	 */
-	public static Object[] showMESelectionDialog(Shell shell, EClass meType, Project project, boolean multiSelection){
-		List<? extends ModelElement> elements = project.getAllModelElementsbyClass(meType, new BasicEList<ModelElement>());
+	public static Object[] showMESelectionDialog(Shell shell, EClass meType, Project project, boolean multiSelection) {
+		List<? extends ModelElement> elements = project.getAllModelElementsbyClass(meType,
+			new BasicEList<ModelElement>());
 		return showMESelectionDialog(shell, elements, "Select " + meType.getName(), multiSelection);
 	}
-	
+
 	/**
 	 * Shows a list of model element types.
+	 * 
 	 * @param shell shell
 	 * @param showAbstractTypes if also abstract types are shown
 	 * @param showNonDomain If non domain elements are shown
 	 * @return selected model element type
 	 */
-	public static EClass showMETypeSelectionDialog(Shell shell, boolean showAbstractTypes, boolean showNonDomain){
-		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell.getShell(),
-			new MEClassLabelProvider());
+	public static EClass showMETypeSelectionDialog(Shell shell, boolean showAbstractTypes, boolean showNonDomain) {
+		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell.getShell(), new MEClassLabelProvider());
 		Set<EClass> eClazz;
-		if(showAbstractTypes){
+		if (showAbstractTypes) {
 			eClazz = ModelUtil.getAllMETypes(ModelPackage.eINSTANCE);
-		}else{
+		} else {
 			eClazz = ModelUtil.getNonAbstractMETypes(ModelPackage.eINSTANCE);
 		}
-		if(!showNonDomain){
+		if (!showNonDomain) {
 			Set<EClass> filteredEClass = new HashSet<EClass>();
-			//Filter out non domain
-			for(EClass eClass:eClazz){
-				if(!(NonDomainElement.class.isAssignableFrom(eClass.getInstanceClass()))){
+			// Filter out non domain
+			for (EClass eClass : eClazz) {
+				if (!(NonDomainElement.class.isAssignableFrom(eClass.getInstanceClass()))) {
 					filteredEClass.add(eClass);
 				}
 			}
-						
+
 			eClazz = filteredEClass;
 		}
 		dlg.setElements(eClazz.toArray());
@@ -142,4 +147,14 @@ public final class UnicaseUiUtil {
 
 		return false;
 	}
+
+	/**
+	 * @param status status
+	 */
+	public static void showReportErrorDialog(IStatus status) {
+		ErrorReportDialog dialog = new ErrorReportDialog(Display.getCurrent().getActiveShell(), status);
+		dialog.open();
+
+	}
+
 }

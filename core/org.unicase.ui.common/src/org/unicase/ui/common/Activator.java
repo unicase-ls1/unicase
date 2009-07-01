@@ -6,9 +6,14 @@
 
 package org.unicase.ui.common;
 
+import org.eclipse.core.runtime.ILogListener;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.unicase.ui.common.util.UnicaseUiUtil;
 
 /**
  * . The activator class controls the plug-in life cycle
@@ -39,6 +44,26 @@ public class Activator extends AbstractUIPlugin {
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
+		Platform.getLog(Platform.getBundle("org.unicase.model")).addLogListener(new ILogListener() {
+
+			public void logging(IStatus status, String plugin) {
+				if (status.getSeverity() == Status.ERROR) {
+					UnicaseUiUtil.showReportErrorDialog(status);
+				}
+
+			}
+
+		});
+
+		Platform.getLog(Platform.getBundle("org.unicase.workspace")).addLogListener(new ILogListener() {
+
+			public void logging(IStatus status, String plugin) {
+				if (status.getSeverity() == Status.ERROR) {
+					UnicaseUiUtil.showReportErrorDialog(status);
+				}
+			}
+
+		});
 	}
 
 	/**
