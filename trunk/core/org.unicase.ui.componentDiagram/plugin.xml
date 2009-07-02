@@ -10,6 +10,13 @@
       </fileTypes>
    </extension>
 
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <?gmfgen generated="true"?>
+      <parser
+         type="component_diagram"
+         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
+      </parser>
+   </extension>
 
    <extension point="org.eclipse.ui.editors">
       <?gmfgen generated="true"?>
@@ -315,6 +322,63 @@
          </specializationType>
       </metamodel>
    </extension>
+
+   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <?gmfgen generated="false"?>
+      <clientContext id="ComponentClientContext">
+           <enablement>
+            <and>
+               <instanceof
+                     value="org.unicase.model.ModelElement">
+               </instanceof>
+               <test
+                     property="org.unicase.ui.componentDiagram.isDiagramType"
+                     value="COMPONENT_DIAGRAM">
+               </test>
+            </and>
+         </enablement>
+      </clientContext> 
+      <binding context="ComponentClientContext">
+         <elementType ref="org.unicase.ui.componentDiagram.MEDiagram_99"/>
+         <elementType ref="org.unicase.ui.componentDiagram.ComponentService_2001"/>
+         <elementType ref="org.unicase.ui.componentDiagram.Component_2002"/>
+         <elementType ref="org.unicase.ui.componentDiagram.ComponentOfferedServices_4001"/>
+         <elementType ref="org.unicase.ui.componentDiagram.ComponentConsumedServices_4002"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+       </extension>
+      <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.unicase.ui.componentDiagram.part.DiagramTypeTester"
+            id="org.unicase.ui.componentDiagram.part.DiagramTypeTester"
+            namespace="org.unicase.ui.componentDiagram"
+            properties="isDiagramType"
+            type="org.unicase.model.ModelElement">
+      </propertyTester>
+   </extension>
+	   <extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.unicase.ui.componentDiagram.URIEditorInputPropertyTester"
+           type="org.eclipse.emf.common.ui.URIEditorInput"
+           namespace="org.unicase.ui.componentDiagram"
+           properties="isURIEditorInput"
+           class="org.unicase.ui.componentDiagram.part.ModelUriEditorInputTester">
+       </propertyTester>
+   </extension>
+
+	   <extension point="org.eclipse.core.expressions.propertyTesters">
+      <?gmfgen generated="true"?>
+       <propertyTester
+           id="org.unicase.ui.componentDiagram.DomainModelElementPropertyTester"
+           type="org.eclipse.emf.ecore.EObject"
+           namespace="org.unicase.ui.componentDiagram"
+           properties="isDomainModelElement"
+           class="org.unicase.ui.componentDiagram.part.ModelDomainModelElementTester">
+       </propertyTester>
+   </extension>
+
 	   <extension point="org.eclipse.ui.navigator.viewer">
       <?gmfgen generated="true"?>
       <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
@@ -440,64 +504,5 @@
          contextId="org.unicase.ui.componentDiagram.ui.diagramContext"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="F5"/>
-   </extension>
-   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-      <?gmfgen generated="false"?>
-      <clientContext id="ComponentClientContext">
-         <enablement>
-            <and>
-               <instanceof
-                     value="org.unicase.model.ModelElement">
-               </instanceof>
-               <test
-                     property="org.unicase.ui.componentDiagram.isDiagramType"
-                     value="COMPONENT_DIAGRAM">
-               </test>
-            </and>
-         </enablement>
-      </clientContext> 
-      <binding context="ComponentClientContext">
-         <elementType ref="org.unicase.ui.componentDiagram.MEDiagram_99"/>
-         <elementType ref="org.unicase.ui.componentDiagram.ComponentService_1001"/>
-         <elementType ref="org.unicase.ui.componentDiagram.Component_1002"/>
-         <elementType ref="org.unicase.ui.componentDiagram.ComponentOfferedServices_3001"/>
-         <elementType ref="org.unicase.ui.componentDiagram.ComponentConsumedServices_3002"/>
-         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
-      </binding>
-   </extension>
-   <extension
-         point="org.eclipse.core.expressions.propertyTesters">
-      <propertyTester
-            class="org.unicase.ui.componentDiagram.part.DiagramTypeTester"
-            id="org.unicase.ui.componentDiagram.part.DiagramTypeTester"
-            namespace="org.unicase.ui.componentDiagram"
-            properties="isDiagramType"
-            type="org.unicase.model.ModelElement">
-      </propertyTester>
-   </extension><extension point="org.eclipse.emf.ecore.extension_parser">
-      <?gmfgen generated="true"?>
-      <parser
-         type="component_diagram"
-         class="org.eclipse.gmf.runtime.emf.core.resources.GMFResourceFactory">
-      </parser>
-   </extension>
-   <extension point="org.eclipse.core.expressions.propertyTesters">
-      <?gmfgen generated="true"?>
-       <propertyTester
-           id="org.unicase.ui.componentDiagram.URIEditorInputPropertyTester"
-           type="org.eclipse.emf.common.ui.URIEditorInput"
-           namespace="org.unicase.ui.componentDiagram"
-           properties="isURIEditorInput"
-           class="org.unicase.ui.componentDiagram.part.ModelUriEditorInputTester">
-       </propertyTester>
-   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
-      <?gmfgen generated="true"?>
-       <propertyTester
-           id="org.unicase.ui.componentDiagram.DomainModelElementPropertyTester"
-           type="org.eclipse.emf.ecore.EObject"
-           namespace="org.unicase.ui.componentDiagram"
-           properties="isDomainModelElement"
-           class="org.unicase.ui.componentDiagram.part.ModelDomainModelElementTester">
-       </propertyTester>
    </extension>
 </plugin>
