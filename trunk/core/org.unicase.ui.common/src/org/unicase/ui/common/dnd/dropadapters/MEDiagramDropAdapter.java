@@ -51,6 +51,7 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 	 */
 	@Override
 	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
+		ActionHelper.openModelElement(target, this.getClass().getName());
 		ModelElement dropee = source.get(0);
 		IEditorPart iep = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if (iep instanceof DiagramDocumentEditor) {
@@ -58,8 +59,7 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 			DiagramEditPart editPart = dde.getDiagramEditPart();
 			editPart.getViewer().getEditDomain().getCommandStack().execute(
 				CommandFactory.createDiagramElementAddCommand(dropee, editPart, true));
-		}
-		ActionHelper.openModelElement(target, this.getClass().getName());
+		}		
 	}
 
 	/**
