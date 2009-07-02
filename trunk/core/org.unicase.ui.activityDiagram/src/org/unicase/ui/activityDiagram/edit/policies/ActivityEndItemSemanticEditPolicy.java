@@ -8,12 +8,14 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.ui.common.diagram.commands.DeleteFromModelCommand;
 
 /**
  * @generated
  */
-public class ActivityEndItemSemanticEditPolicy extends
-	org.unicase.ui.activityDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class ActivityEndItemSemanticEditPolicy
+		extends
+		org.unicase.ui.activityDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -26,7 +28,7 @@ public class ActivityEndItemSemanticEditPolicy extends
 		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
 			req.setElementToDestroy(view);
 		}
-		cc.add(getGEFWrapper(new DestroyElementCommand(req)));
+		cc.add(getGEFWrapper(new DeleteFromModelCommand(req)));
 		return cc.unwrap();
 	}
 
@@ -36,17 +38,21 @@ public class ActivityEndItemSemanticEditPolicy extends
 	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-			: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super.getCreateRelationshipCommand(req);
+				: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super
+				.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated NOT
 	 */
-	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (org.unicase.ui.activityDiagram.providers.ModelElementTypes.Transition_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionCreateCommand(req, req
-				.getSource(), req.getTarget(), (EObject) getHost().getModel()));
+	protected Command getStartCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (org.unicase.ui.activityDiagram.providers.ModelElementTypes.Transition_4001 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionCreateCommand(
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
 		}
 		return null;
 	}
@@ -54,10 +60,13 @@ public class ActivityEndItemSemanticEditPolicy extends
 	/**
 	 * @generated NOT
 	 */
-	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (org.unicase.ui.activityDiagram.providers.ModelElementTypes.Transition_4001 == req.getElementType()) {
-			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionCreateCommand(req, req
-				.getSource(), req.getTarget(), (EObject) getHost().getModel()));
+	protected Command getCompleteCreateRelationshipCommand(
+			CreateRelationshipRequest req) {
+		if (org.unicase.ui.activityDiagram.providers.ModelElementTypes.Transition_4001 == req
+				.getElementType()) {
+			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionCreateCommand(
+					req, req.getSource(), req.getTarget(), (EObject) getHost()
+							.getModel()));
 		}
 		return null;
 	}
@@ -69,10 +78,12 @@ public class ActivityEndItemSemanticEditPolicy extends
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(
+			ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case org.unicase.ui.activityDiagram.edit.parts.TransitionEditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionReorientCommand(req));
+			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionReorientCommand(
+					req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

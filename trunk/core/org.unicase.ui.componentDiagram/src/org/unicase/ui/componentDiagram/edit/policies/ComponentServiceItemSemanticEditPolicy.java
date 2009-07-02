@@ -7,6 +7,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.ui.common.diagram.commands.DeleteFromModelCommand;
 
 /**
  * @generated
@@ -25,7 +26,7 @@ public class ComponentServiceItemSemanticEditPolicy
 		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
 			req.setElementToDestroy(view);
 		}
-		cc.add(getGEFWrapper(new DestroyElementCommand(req)));
+		cc.add(getGEFWrapper(new DeleteFromModelCommand(req)));
 		return cc.unwrap();
 	}
 
