@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.usecaseDiagram.edit.commands;
+package org.unicase.ui.diagram.usecaseDiagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -13,13 +13,12 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.UseCase;
 
 /**
  * @generated
  */
-public class ActorInitiatedUseCasesReorientCommand extends EditElementCommand {
+public class UseCaseExtendedUseCasesReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -44,7 +43,7 @@ public class ActorInitiatedUseCasesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public ActorInitiatedUseCasesReorientCommand(
+	public UseCaseExtendedUseCasesReorientCommand(
 			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -58,7 +57,7 @@ public class ActorInitiatedUseCasesReorientCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof Actor) {
+		if (false == referenceOwner instanceof UseCase) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -74,11 +73,11 @@ public class ActorInitiatedUseCasesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof UseCase && newEnd instanceof Actor)) {
+		if (!(oldEnd instanceof UseCase && newEnd instanceof UseCase)) {
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistActorInitiatedUseCases_4002(getNewSource(),
+				.canExistUseCaseExtendedUseCases_4004(getNewSource(),
 						getOldTarget());
 	}
 
@@ -90,7 +89,7 @@ public class ActorInitiatedUseCasesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistActorInitiatedUseCases_4002(getOldSource(),
+				.canExistUseCaseExtendedUseCases_4004(getOldSource(),
 						getNewTarget());
 	}
 
@@ -117,8 +116,8 @@ public class ActorInitiatedUseCasesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getInitiatedUseCases().remove(getOldTarget());
-		getNewSource().getInitiatedUseCases().add(getOldTarget());
+		getOldSource().getExtendedUseCases().remove(getOldTarget());
+		getNewSource().getExtendedUseCases().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -126,23 +125,23 @@ public class ActorInitiatedUseCasesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getInitiatedUseCases().remove(getOldTarget());
-		getOldSource().getInitiatedUseCases().add(getNewTarget());
+		getOldSource().getExtendedUseCases().remove(getOldTarget());
+		getOldSource().getExtendedUseCases().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Actor getOldSource() {
-		return (Actor) referenceOwner;
+	protected UseCase getOldSource() {
+		return (UseCase) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Actor getNewSource() {
-		return (Actor) newEnd;
+	protected UseCase getNewSource() {
+		return (UseCase) newEnd;
 	}
 
 	/**

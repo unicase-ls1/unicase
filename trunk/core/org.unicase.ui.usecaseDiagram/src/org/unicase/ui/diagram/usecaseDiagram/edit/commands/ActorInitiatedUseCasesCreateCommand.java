@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.usecaseDiagram.edit.commands;
+package org.unicase.ui.diagram.usecaseDiagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -12,12 +12,13 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.UseCase;
 
 /**
  * @generated
  */
-public class UseCaseIncludedUseCasesCreateCommand extends EditElementCommand {
+public class ActorInitiatedUseCasesCreateCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -32,7 +33,7 @@ public class UseCaseIncludedUseCasesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public UseCaseIncludedUseCasesCreateCommand(
+	public ActorInitiatedUseCasesCreateCommand(
 			CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request.getLabel(), null, request);
 		this.source = source;
@@ -47,7 +48,7 @@ public class UseCaseIncludedUseCasesCreateCommand extends EditElementCommand {
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && false == source instanceof UseCase) {
+		if (source != null && false == source instanceof Actor) {
 			return false;
 		}
 		if (target != null && false == target instanceof UseCase) {
@@ -58,7 +59,7 @@ public class UseCaseIncludedUseCasesCreateCommand extends EditElementCommand {
 		}
 		// target may be null here but it's possible to check constraint
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateUseCaseIncludedUseCases_4003(getSource(), getTarget());
+				.canCreateActorInitiatedUseCases_4002(getSource(), getTarget());
 	}
 
 	/**
@@ -72,7 +73,7 @@ public class UseCaseIncludedUseCasesCreateCommand extends EditElementCommand {
 					"Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
-			getSource().getIncludedUseCases().add(getTarget());
+			getSource().getInitiatedUseCases().add(getTarget());
 		}
 		return CommandResult.newOKCommandResult();
 	}
@@ -80,8 +81,8 @@ public class UseCaseIncludedUseCasesCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	protected UseCase getSource() {
-		return (UseCase) source;
+	protected Actor getSource() {
+		return (Actor) source;
 	}
 
 	/**
