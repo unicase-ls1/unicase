@@ -36,6 +36,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.util.DynamicEObjectAdapter;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.workspace.WorkspaceManager;
@@ -169,6 +170,20 @@ public class CommandFactory {
 		//return null: a null command within a CompoundCommand is not executed.
 		return null;
 	}
+	/**
+	 * @param editPart The {@link EditPart} of the model element which should be deleted
+	 * @return A {@link DeleteCommand} wrapped in an {@link ICommandProxy}
+	 */
+	public static Command createDeleteFromModelCommand(EditPart editPart) {
+		DestroyElementRequest request = new DestroyElementRequest(WorkspaceManager.getInstance()
+			.getCurrentWorkspace().getEditingDomain(), EditPartUtility.getElement(editPart), false);
+		IElementType type = ElementTypeRegistry.getInstance().getElementType(request.getEditHelperContext());
+		if(type!=null){
+			return new ICommandProxy(new DeleteFromModelCommand(request));
+		}
+		//return null: a null command within a CompoundCommand is not executed.
+		return null;
+	}
 
 	/**
 	 * @param cc The {@link CompoundCommand} that should contain the {@link DeleteCommand}s
@@ -231,8 +246,21 @@ public class CommandFactory {
 	 */
 	public static Command createDiagramElementAddCommand(EObject object, EditPart editPart, boolean addReferences) {
 
-		EObject element = EditPartUtility.getElement(editPart);
-		DiagramElementAddRequest request = new DiagramElementAddRequest(element, ElementTypeRegistry.getInstance()
+		EObject model = EditPartUtility.getElement(editPart);
+		if(model instanceof MEDiagram){
+			return createDiagramElementAddCommand(object, (MEDiagram) model, addReferences);
+		}
+		return null;
+	}
+	/**
+	 * @param object The object
+	 * @param meDiagram The {@link MEDiagram}	
+	 * @param addReferences true if connecting references between nodes should also be added
+	 * @return The {@link Command}
+	 */
+	public static Command createDiagramElementAddCommand(EObject object, MEDiagram meDiagram, boolean addReferences) {
+
+		DiagramElementAddRequest request = new DiagramElementAddRequest(meDiagram, ElementTypeRegistry.getInstance()
 			.getElementType(object));
 
 		request.setNewElement(object);
