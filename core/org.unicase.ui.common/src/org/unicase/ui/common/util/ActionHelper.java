@@ -307,7 +307,7 @@ public final class ActionHelper {
 		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
 			id = "org.unicase.model.classDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
-			id = "org.unicase.ui.usecaseDiagram.part.ModelDiagramEditorID";
+			id = "org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
 			id = "org.unicase.ui.componentDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
