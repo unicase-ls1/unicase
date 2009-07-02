@@ -13,22 +13,22 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.unicase.model.ModelElement;
 
-public class SimilarityWrappedLabelProvider extends AdapterFactoryLabelProvider {
+public class RelevanceWrappedLabelProvider extends AdapterFactoryLabelProvider {
 
-	Map<ModelElement, Double> similarities;
+	Map<ModelElement, Double> relevanceValues;
 
-	public SimilarityWrappedLabelProvider(Map<ModelElement, Double> similarities) {
+	public RelevanceWrappedLabelProvider(Map<ModelElement, Double> relevanceVals) {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		this.similarities = similarities;
+		this.relevanceValues = relevanceVals;
 	}
 
 	@Override
 	public String getText(Object o) {
 		String text = super.getText(o);
 		if (o instanceof ModelElement) {
-			Double sim = similarities.get(o);
+			Double sim = relevanceValues.get(o);
 			if (sim != null)
-				return text + " (Similarity: " + formatDouble(sim) + ")";
+				return text + " (Relevance: " + formatDouble(sim) + ")";
 		}
 		return text;
 	}

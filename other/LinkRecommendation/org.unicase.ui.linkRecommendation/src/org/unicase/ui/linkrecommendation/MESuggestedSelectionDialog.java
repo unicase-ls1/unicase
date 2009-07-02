@@ -33,7 +33,7 @@ import org.unicase.ui.common.Activator;
 public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 
 	// This element is the element to which similarity is calculated
-	private ModelElement similarityReference;
+	private ModelElement reference;
 
 	// Needed for settings, but does not yet have a special purpose
 	private static final String DIALOG_SETTINGS = "STANDARD_DIALOG_SETTING";
@@ -42,18 +42,18 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	private Collection<ModelElement> resources;
 
 	// maps modelElement.hashCode() to the similarity factor of the element
-	private Map<ModelElement, Double> similarityMap;
+	private Map<ModelElement, Double> relevanceMap;
 
 	public MESuggestedSelectionDialog(Shell shell, boolean multi, String title, boolean blockOnOpen,
-		Collection<ModelElement> elements, ModelElement similarityReference) {
+		Collection<ModelElement> elements, ModelElement reference) {
 		super(shell, multi);
-		this.setDetailsLabelProvider(new SimilarityDetailsLabelProvider());
-		this.similarityReference = similarityReference;
+		this.setDetailsLabelProvider(new RelevanceDetailsLabelProvider());
+		this.reference = reference;
 		this.setTitle(title);
 		this.setBlockOnOpen(blockOnOpen);
 		this.setElements(elements);
 		this.setInitialPattern("**", NONE);
-		this.setListLabelProvider(new SimilarityWrappedLabelProvider(similarityMap));
+		this.setListLabelProvider(new RelevanceWrappedLabelProvider(relevanceMap));
 	}
 
 	/**
@@ -62,11 +62,11 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	 * @param elements the elements of the list.
 	 */
 	public void setElements(Collection<ModelElement> elements) {
-		similarityMap = new HashMap<ModelElement, Double>(elements.size());
+		relevanceMap = new HashMap<ModelElement, Double>(elements.size());
 		resources = elements;
 
-		if (similarityReference != null) {
-			similarityMap = RecommendationManager.getInstance().getMatchMap("dummy", similarityReference, elements);
+		if (reference != null) {
+			relevanceMap = RecommendationManager.getInstance().getMatchMap("dummy", reference, elements);
 		}
 	}
 
@@ -162,8 +162,8 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 		 */
 		public int compare(ModelElement o1, ModelElement o2) {
-			Double val1 = similarityMap.get(o1);
-			Double val2 = similarityMap.get(o2);
+			Double val1 = relevanceMap.get(o1);
+			Double val2 = relevanceMap.get(o2);
 
 			if (val1 == null && val2 == null)
 				return o1.getName().compareToIgnoreCase(o2.getName());
@@ -178,7 +178,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	}
 
 	/**
-	 * This class represents a filter by the ModelElements name.
+	 * This class represents a filter by the ModelElement's name.
 	 * 
 	 * @author henning femmer
 	 */
@@ -209,15 +209,15 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	 * 
 	 * @author henning femmer
 	 */
-	class SimilarityDetailsLabelProvider extends DateDetailsLabelProvider {
+	class RelevanceDetailsLabelProvider extends DateDetailsLabelProvider {
 		@Override
 		public String getText(Object element) {
 			if (element instanceof ModelElement) {
 				String text = super.getText(element);
 
-				Double sim = similarityMap.get(element);
+				Double sim = relevanceMap.get(element);
 				if (sim != null)
-					text = "Similarity: " + sim + ". " + text;
+					text = "Relevance: " + sim + ". " + text;
 				return text;
 			} else if (element == null) {
 				return "No item selected.";
