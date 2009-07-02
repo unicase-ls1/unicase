@@ -325,26 +325,6 @@
       </metamodel>
    </extension>
 
-	   <extension point="org.eclipse.core.expressions.propertyTesters">
-    <propertyTester
-	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     namespace="org.unicase.ui.common"
-	     properties="isDiagramType"
-	     type="org.unicase.model.ModelElement">
-    </propertyTester>
-   </extension>
-
-	   <extension point="org.eclipse.core.expressions.propertyTesters">
-    <propertyTester
-	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     namespace="org.unicase.ui.common"
-	     properties="isDiagramType"
-	     type="org.unicase.model.ModelElement">
-    </propertyTester>
-   </extension>
-
 	   <extension point="org.eclipse.ui.navigator.viewer">
       <?gmfgen generated="true"?>
       <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
@@ -505,23 +485,7 @@
             properties="isDiagramType"
             type="org.unicase.model.ModelElement">
       </propertyTester>
-   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
-    <propertyTester
-	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     namespace="org.unicase.ui.common"
-	     properties="isDiagramType"
-	     type="org.unicase.model.ModelElement">
-    </propertyTester>
-   </extension><extension point="org.eclipse.core.expressions.propertyTesters">
-    <propertyTester
-	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     namespace="org.unicase.ui.common"
-	     properties="isDiagramType"
-	     type="org.unicase.model.ModelElement">
-    </propertyTester>
-   </extension>
+   </extension>   
 <extension point="org.eclipse.core.expressions.propertyTesters">
       <?gmfgen generated="true"?>
        <propertyTester

@@ -354,7 +354,7 @@
                      value="org.unicase.model.ModelElement">
               </instanceof>
               <test
-                    property="org.unicase.ui.common.isDiagramType"
+                    property="org.unicase.ui.activityDiagram.isDiagramType"
                     value="ACTIVITY_DIAGRAM">
               </test>
             </and>
@@ -371,35 +371,16 @@
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
-   <extension point="org.eclipse.core.expressions.propertyTesters">
-	      <propertyTester
-	            class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	            id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	            namespace="org.unicase.ui.common"
-	            properties="isDiagramType"
-	            type="org.unicase.model.ModelElement">
-	      </propertyTester>
-	</extension>
-	   <extension point="org.eclipse.core.expressions.propertyTesters">
-    <propertyTester
-	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     namespace="org.unicase.ui.common"
-	     properties="isDiagramType"
-	     type="org.unicase.model.ModelElement">
-    </propertyTester>
-   </extension>
-
-	   <extension point="org.eclipse.core.expressions.propertyTesters">
-    <propertyTester
-	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
-	     namespace="org.unicase.ui.common"
-	     properties="isDiagramType"
-	     type="org.unicase.model.ModelElement">
-    </propertyTester>
-   </extension>
-
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.unicase.ui.activityDiagram.part.DiagramTypeTester"
+            id="org.unicase.ui.activityDiagram.part.DiagramTypeTester"
+            namespace="org.unicase.ui.activityDiagram"
+            properties="isDiagramType"
+            type="org.unicase.model.ModelElement">
+      </propertyTester>
+   </extension> 
 	   <extension point="org.eclipse.ui.navigator.viewer">
       <?gmfgen generated="true"?>
       <viewerContentBinding viewerId="org.eclipse.ui.navigator.ProjectExplorer">
