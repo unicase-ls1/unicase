@@ -7,4 +7,4 @@ Bundle-Activator: org.unicase.analyzer.unicaseanalyzers.Activator
 Require-Bundle: org.unicase.analyzer;bundle-version="0.0.1",
  org.eclipse.ui
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: J2SE-1.5

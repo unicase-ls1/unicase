@@ -34,6 +34,7 @@ public class Activator extends AbstractUIPlugin {
 	 * {@inheritDoc}
 	 * @see org.eclipse.core.runtime.Plugins#start(org.osgi.framework.BundleContext)
 	 */
+	// BEGIN SUPRESS CATCH EXCEPTION
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
@@ -50,6 +51,7 @@ public class Activator extends AbstractUIPlugin {
 		plugin = null;
 		super.stop(context);
 	}
+	// END SUPRESS CATCH EXCEPTION
 
 	/**
 	 * Returns the shared instance.
