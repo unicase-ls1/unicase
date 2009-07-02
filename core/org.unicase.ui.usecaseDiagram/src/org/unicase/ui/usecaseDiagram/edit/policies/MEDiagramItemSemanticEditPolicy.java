@@ -31,7 +31,7 @@ public class MEDiagramItemSemanticEditPolicy
 				req.setContainmentFeature(DiagramPackage.eINSTANCE
 						.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.ActorCreateCommand(
+			return getGEFWrapper(new org.unicase.ui.diagram.usecaseDiagram.edit.commands.ActorCreateCommand(
 					req));
 		}
 		if (org.unicase.ui.usecaseDiagram.providers.ModelElementTypes.UseCase_2002 == req
@@ -40,7 +40,7 @@ public class MEDiagramItemSemanticEditPolicy
 				req.setContainmentFeature(DiagramPackage.eINSTANCE
 						.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.ui.usecaseDiagram.edit.commands.UseCaseCreateCommand(
+			return getGEFWrapper(new org.unicase.ui.diagram.usecaseDiagram.edit.commands.UseCaseCreateCommand(
 					req));
 		}
 		return super.getCreateCommand(req);

@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.usecaseDiagram.edit.commands;
+package org.unicase.ui.diagram.usecaseDiagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -13,12 +13,14 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.UseCase;
 
 /**
  * @generated
  */
-public class UseCaseIncludedUseCasesReorientCommand extends EditElementCommand {
+public class ActorParticipatedUseCasesReorientCommand extends
+		EditElementCommand {
 
 	/**
 	 * @generated
@@ -43,7 +45,7 @@ public class UseCaseIncludedUseCasesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public UseCaseIncludedUseCasesReorientCommand(
+	public ActorParticipatedUseCasesReorientCommand(
 			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -57,7 +59,7 @@ public class UseCaseIncludedUseCasesReorientCommand extends EditElementCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		if (false == referenceOwner instanceof UseCase) {
+		if (false == referenceOwner instanceof Actor) {
 			return false;
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -73,11 +75,11 @@ public class UseCaseIncludedUseCasesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof UseCase && newEnd instanceof UseCase)) {
+		if (!(oldEnd instanceof UseCase && newEnd instanceof Actor)) {
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistUseCaseIncludedUseCases_4003(getNewSource(),
+				.canExistActorParticipatedUseCases_4001(getNewSource(),
 						getOldTarget());
 	}
 
@@ -89,7 +91,7 @@ public class UseCaseIncludedUseCasesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistUseCaseIncludedUseCases_4003(getOldSource(),
+				.canExistActorParticipatedUseCases_4001(getOldSource(),
 						getNewTarget());
 	}
 
@@ -116,8 +118,8 @@ public class UseCaseIncludedUseCasesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getIncludedUseCases().remove(getOldTarget());
-		getNewSource().getIncludedUseCases().add(getOldTarget());
+		getOldSource().getParticipatedUseCases().remove(getOldTarget());
+		getNewSource().getParticipatedUseCases().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -125,23 +127,23 @@ public class UseCaseIncludedUseCasesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getIncludedUseCases().remove(getOldTarget());
-		getOldSource().getIncludedUseCases().add(getNewTarget());
+		getOldSource().getParticipatedUseCases().remove(getOldTarget());
+		getOldSource().getParticipatedUseCases().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected UseCase getOldSource() {
-		return (UseCase) referenceOwner;
+	protected Actor getOldSource() {
+		return (Actor) referenceOwner;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected UseCase getNewSource() {
-		return (UseCase) newEnd;
+	protected Actor getNewSource() {
+		return (Actor) newEnd;
 	}
 
 	/**

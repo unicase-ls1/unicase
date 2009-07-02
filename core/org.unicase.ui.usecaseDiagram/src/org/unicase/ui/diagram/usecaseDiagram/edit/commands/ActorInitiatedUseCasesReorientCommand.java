@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.usecaseDiagram.edit.commands;
+package org.unicase.ui.diagram.usecaseDiagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -19,8 +19,7 @@ import org.unicase.model.requirement.UseCase;
 /**
  * @generated
  */
-public class ActorParticipatedUseCasesReorientCommand extends
-		EditElementCommand {
+public class ActorInitiatedUseCasesReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -45,7 +44,7 @@ public class ActorParticipatedUseCasesReorientCommand extends
 	/**
 	 * @generated
 	 */
-	public ActorParticipatedUseCasesReorientCommand(
+	public ActorInitiatedUseCasesReorientCommand(
 			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -79,7 +78,7 @@ public class ActorParticipatedUseCasesReorientCommand extends
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistActorParticipatedUseCases_4001(getNewSource(),
+				.canExistActorInitiatedUseCases_4002(getNewSource(),
 						getOldTarget());
 	}
 
@@ -91,7 +90,7 @@ public class ActorParticipatedUseCasesReorientCommand extends
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistActorParticipatedUseCases_4001(getOldSource(),
+				.canExistActorInitiatedUseCases_4002(getOldSource(),
 						getNewTarget());
 	}
 
@@ -118,8 +117,8 @@ public class ActorParticipatedUseCasesReorientCommand extends
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getParticipatedUseCases().remove(getOldTarget());
-		getNewSource().getParticipatedUseCases().add(getOldTarget());
+		getOldSource().getInitiatedUseCases().remove(getOldTarget());
+		getNewSource().getInitiatedUseCases().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -127,8 +126,8 @@ public class ActorParticipatedUseCasesReorientCommand extends
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getParticipatedUseCases().remove(getOldTarget());
-		getOldSource().getParticipatedUseCases().add(getNewTarget());
+		getOldSource().getInitiatedUseCases().remove(getOldTarget());
+		getOldSource().getInitiatedUseCases().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 

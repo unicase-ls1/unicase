@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.usecaseDiagram.edit.commands;
+package org.unicase.ui.diagram.usecaseDiagram.edit.commands;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -18,7 +18,7 @@ import org.unicase.model.requirement.UseCase;
 /**
  * @generated
  */
-public class UseCaseExtendedUseCasesReorientCommand extends EditElementCommand {
+public class UseCaseIncludedUseCasesReorientCommand extends EditElementCommand {
 
 	/**
 	 * @generated
@@ -43,7 +43,7 @@ public class UseCaseExtendedUseCasesReorientCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	public UseCaseExtendedUseCasesReorientCommand(
+	public UseCaseIncludedUseCasesReorientCommand(
 			ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
@@ -77,7 +77,7 @@ public class UseCaseExtendedUseCasesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistUseCaseExtendedUseCases_4004(getNewSource(),
+				.canExistUseCaseIncludedUseCases_4003(getNewSource(),
 						getOldTarget());
 	}
 
@@ -89,7 +89,7 @@ public class UseCaseExtendedUseCasesReorientCommand extends EditElementCommand {
 			return false;
 		}
 		return org.unicase.ui.usecaseDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistUseCaseExtendedUseCases_4004(getOldSource(),
+				.canExistUseCaseIncludedUseCases_4003(getOldSource(),
 						getNewTarget());
 	}
 
@@ -116,8 +116,8 @@ public class UseCaseExtendedUseCasesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientSource() throws ExecutionException {
-		getOldSource().getExtendedUseCases().remove(getOldTarget());
-		getNewSource().getExtendedUseCases().add(getOldTarget());
+		getOldSource().getIncludedUseCases().remove(getOldTarget());
+		getNewSource().getIncludedUseCases().add(getOldTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
@@ -125,8 +125,8 @@ public class UseCaseExtendedUseCasesReorientCommand extends EditElementCommand {
 	 * @generated
 	 */
 	protected CommandResult reorientTarget() throws ExecutionException {
-		getOldSource().getExtendedUseCases().remove(getOldTarget());
-		getOldSource().getExtendedUseCases().add(getNewTarget());
+		getOldSource().getIncludedUseCases().remove(getOldTarget());
+		getOldSource().getIncludedUseCases().add(getNewTarget());
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
