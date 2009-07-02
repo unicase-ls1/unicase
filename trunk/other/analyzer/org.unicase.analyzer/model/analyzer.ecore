@@ -13,4 +13,35 @@
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectId"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AnalyzerConfiguration">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="analyzerClass" eType="ecore:EClass platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EClass"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" eType="#//iterator/Iterator"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exporter" eType="#//exporter/Exporter"
+        containment="true"/>
+  </eClassifiers>
+  <eSubpackages name="iterator" nsURI="http://unicase.org/analyzer/iterator" nsPrefix="org.unicase.analyzer.iterator">
+    <eClassifiers xsi:type="ecore:EClass" name="Iterator">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepLength" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectId"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="forward" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="TimeIterator" eSuperTypes="#//iterator/Iterator">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="startDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="endDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="VersionIterator" eSuperTypes="#//iterator/Iterator">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="startVersion" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="endVersion" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/PrimaryVersionSpec"
+          containment="true"/>
+    </eClassifiers>
+  </eSubpackages>
+  <eSubpackages name="exporter" nsURI="http://unicase.org/analyzer/exporter" nsPrefix="org.unicase.analyzer.exporter">
+    <eClassifiers xsi:type="ecore:EClass" name="Exporter">
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    </eClassifiers>
+  </eSubpackages>
 </ecore:EPackage>
