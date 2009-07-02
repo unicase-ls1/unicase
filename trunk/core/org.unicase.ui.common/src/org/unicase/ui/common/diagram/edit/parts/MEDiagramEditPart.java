@@ -32,13 +32,13 @@ import org.unicase.ui.common.diagram.commands.CommandFactory;
  */
 public class MEDiagramEditPart extends DiagramEditPart {
 	/**
-	 * The Drag & Drop policy for diagrams. This class specifies what to with a DND on the diagram.
-	 * It provides a command for the DropTargetListener in class @link org.unicase.ui.common.diagram.part.ModelDiagramEditor
-	 * The provided command is a @link org.unicase.ui.common.diagram.commands.DiagramElementAddCommand.
+	 * The Drag & Drop policy for diagrams. This class specifies what to with a DND on the diagram. It provides a
+	 * command for the DropTargetListener in class @link org.unicase.ui.common.diagram.part.ModelDiagramEditor The
+	 * provided command is a @link org.unicase.ui.common.diagram.commands.DiagramElementAddCommand.
 	 * 
 	 * @author denglerm
 	 */
-	//dengler: document more detailed
+	// dengler: document more detailed
 	private final class DiagramDragDropEditPolicyExtension extends DiagramDragDropEditPolicy {
 		@SuppressWarnings("unchecked")
 		@Override
@@ -57,7 +57,7 @@ public class MEDiagramEditPart extends DiagramEditPart {
 
 		private Command createDropCommand(DropObjectsRequest dropRequest, List<ViewDescriptor> viewDescriptors) {
 			Command command = createViewsAndArrangeCommand(dropRequest, viewDescriptors);
-			if (command != null) {
+			if (command != null && dropRequest.getObjects().size() > 0) {
 
 				return command.chain(CommandFactory.createDiagramElementAddCommand((EObject) dropRequest.getObjects()
 					.iterator().next(), MEDiagramEditPart.this, true));
@@ -77,8 +77,7 @@ public class MEDiagramEditPart extends DiagramEditPart {
 	}
 
 	/**
-	 * This method installs the DND policy and a modified ContainerNodeEditPolicy.
-	 * {@inheritDoc}
+	 * This method installs the DND policy and a modified ContainerNodeEditPolicy. {@inheritDoc}
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
