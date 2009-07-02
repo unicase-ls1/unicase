@@ -33,10 +33,10 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 	private final EditPart editPart;
 
 	/**
-	 * Constructs a new command to destroy a model element.
+	 * Constructs a new command to delete an alement from the diagram.
 	 * 
 	 * @param request the destroy element request
-	 * @param editPart the editPart of the element to destroy
+	 * @param editPart the editPart of the element to delete from the diagram
 	 */
 	public DeleteFromDiagramCommand(DestroyElementRequest request, EditPart editPart) {
 		super(request);

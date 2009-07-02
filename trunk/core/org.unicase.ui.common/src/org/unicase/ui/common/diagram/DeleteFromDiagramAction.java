@@ -30,7 +30,7 @@ public class DeleteFromDiagramAction extends Action {
 	 * In case of a diagram node to be deleted: This method deletes the model element behind the node
 	 * from the diagram's elements (done by DeleteFromDiagramCommand) list, but not from the project.
 	 * 
-	 * In case of a diagram link to be deleted: The reference is deleted from the view and from the model.
+	 * In case of a diagram link to be deleted: The reference is deleted from the view _and_ from the model.
 	 * 
 	 * @see org.eclipse.jface.action#run()
 	 */
@@ -51,7 +51,7 @@ public class DeleteFromDiagramAction extends Action {
 			ccommand.add(new ICommandProxy(new DestroyReferenceCommand(req)));
 			// in case of a transition in state or activity diagram
 			if (view.getElement() != null) {
-				ccommand.add(CommandFactory.createDeleteFromDiagramCommand(selectedElement));
+				ccommand.add(CommandFactory.createDeleteFromModelCommand(selectedElement));
 			}
 
 		}
