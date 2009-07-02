@@ -438,10 +438,16 @@
    <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
       <?gmfgen generated="true"?>
       <clientContext id="URMLClientContext">
-         <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.unicase.ui.urmlDiagram.EditingDomain"/>
+		<enablement>
+            <and>
+               <instanceof
+                     value="org.unicase.model.ModelElement">
+               </instanceof>
+               <test
+                     property="org.unicase.ui.common.isDiagramType"
+                     value="URML_DIAGRAM">
+               </test>
+            </and>
          </enablement>
       </clientContext> 
       <binding context="URMLClientContext">
@@ -475,7 +481,13 @@
            class="org.unicase.ui.urmlDiagram.part.ModelUriEditorInputTester">
        </propertyTester>
    </extension>
-
+    <propertyTester
+	     class="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     id="org.unicase.ui.common.diagram.part.DiagramTypeTester"
+	     namespace="org.unicase.ui.common"
+	     properties="isDiagramType"
+	     type="org.unicase.model.ModelElement">
+    </propertyTester>
 	   <extension point="org.eclipse.core.expressions.propertyTesters">
       <?gmfgen generated="true"?>
        <propertyTester
