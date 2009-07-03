@@ -1098,8 +1098,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			observer.updateCompleted();
 		}
 
-		// check for operations on file attachments: if version has been increased and file is required offline,
-		// download instantly.
+		// check for operations on file attachments: if version has been increased and file is required offline, add to
+		// pending file transfers
 		// checkUpdatedFileAttachments(changes);
 
 		return resolvedVersion;
@@ -1145,7 +1145,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 					getPendingFileTransfers().add(transfer);
 				}
 			});
-			startFileTransfer(transfer);
 		}
 	}
 
@@ -2143,9 +2142,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void loginCompleted() {
 		try {
 			// stop all running file transfers before resuming, to prevent redundant conflicting uploads
-			// if (stopTransfers()) {
-			// resumeTransfers();
-			// }
+			if (stopTransfers()) {
+				resumeTransfers();
+			}
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
@@ -2162,15 +2161,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean upload)
 		throws FileTransferException {
-		final PendingFileTransfer transfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
-		transfer.setAttachmentId(ModelUtil.createModelElementId(fileInformation.getFileAttachmentId()));
-		transfer.setChunkNumber(fileInformation.getChunkNumber());
-		transfer.setFileVersion(fileInformation.getFileVersion());
-		transfer.setFileName(fileInformation.getFileName());
-		transfer.setUpload(upload);
+		final PendingFileTransfer tmpTransfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
+		tmpTransfer.setAttachmentId(ModelUtil.createModelElementId(fileInformation.getFileAttachmentId()));
+		tmpTransfer.setChunkNumber(fileInformation.getChunkNumber());
+		tmpTransfer.setFileVersion(fileInformation.getFileVersion());
+		tmpTransfer.setFileName(fileInformation.getFileName());
+		tmpTransfer.setUpload(upload);
 		if (upload && selectedFile != null) {
 			String uUID = EcoreUtil.generateUUID();
-			transfer.setPreliminaryFileName(uUID);
+			tmpTransfer.setPreliminaryFileName(uUID);
 			try {
 				FileTransferUtil.copyUnversionedFileToCache(selectedFile, uUID, projectId);
 			} catch (IOException e) {
@@ -2178,19 +2177,31 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 					+ " to the cache. Please ensure that you have the rights to do this and try again!", e);
 			}
 		} else {
-			transfer.setPreliminaryFileName(null);
+			tmpTransfer.setPreliminaryFileName(null);
+		}
+		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
+			if (transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId())
+				&& transfer.getFileVersion() == tmpTransfer.getFileVersion()) {
+				throw new FileTransferException("File Transfer Request already pending!");
+			}
 		}
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-				getPendingFileTransfers().add(transfer);
+				getPendingFileTransfers().add(tmpTransfer);
 			}
 		});
-		startFileTransfer(transfer);
+		startFileTransfer(tmpTransfer);
 	}
 
+	/**
+	 * Starts a file transfer job. Checks if the FileAttachment linked to it still exists, if not, the transfer is
+	 * removed.
+	 * 
+	 * @param transfer the transfer
+	 */
 	private void startFileTransfer(final PendingFileTransfer transfer) {
 		FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
 		if (fileAttachment == null) {
@@ -2210,14 +2221,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 	}
 
-	@SuppressWarnings("unused")
+	/**
+	 * Resumes the pending file transfers.
+	 */
 	private void resumeTransfers() {
-		for (PendingFileTransfer transfer : pendingFileTransfers) {
+		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
 			startFileTransfer(transfer);
 		}
 	}
 
-	@SuppressWarnings("unused")
+	/**
+	 * @return true if the pending file transfers could be stopped.
+	 */
 	private boolean stopTransfers() {
 		Job[] jobs = Job.getJobManager().find(FileTransferJob.class);
 		for (Job job : jobs) {

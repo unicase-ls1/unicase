@@ -5,16 +5,18 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
+import java.util.ArrayList;
+
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.jface.viewers.ILabelProviderListener;
-import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
@@ -23,6 +25,7 @@ import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.util.ModelElementChangeObserver;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 
@@ -39,7 +42,7 @@ public class MELinkControl extends AbstractMEControl {
 	private EReference reference;
 	private Hyperlink hyperlink;
 	private ILabelProvider labelProvider;
-	private ILabelProviderListener labelListener;
+	private ModelElementChangeObserver observer;
 
 	/**
 	 * Default constructor.
@@ -64,16 +67,29 @@ public class MELinkControl extends AbstractMEControl {
 		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
 		labelProvider = new MELinkLabelProvider();
-		labelListener = new ILabelProviderListener() {
-			public void labelProviderChanged(LabelProviderChangedEvent event) {
-				if (hyperlink != null) {
-					hyperlink.setText(labelProvider.getText(getModelElement()));
-					linkComposite.layout(true);
-					parent.getParent().layout(true);
-				}
+		ArrayList<ModelElement> list = new ArrayList<ModelElement>();
+		list.add((ModelElement) getModelElement());
+		observer = new ModelElementChangeObserver() {
+
+			@Override
+			protected void onNotify(Notification notification, ModelElement element) {
+				Display.getDefault().asyncExec(new Runnable() {
+
+					public void run() {
+						hyperlink.setText(labelProvider.getText(getModelElement()));
+						linkComposite.layout(true);
+						parent.getParent().layout(true);
+					}
+				});
+			}
+
+			@Override
+			protected void onElementDeleted(ModelElement element) {
+				// nothing to do
 			}
 		};
-		labelProvider.addListener(labelListener);
+		((ModelElement) getModelElement()).getProject().addProjectChangeObserver(observer);
+		observer.observeElement((ModelElement) getModelElement());
 		Image image = labelProvider.getImage(getModelElement());
 		ImageHyperlink imageHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
 		imageHyperlink.setImage(image);
@@ -102,7 +118,7 @@ public class MELinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		labelProvider.removeListener(labelListener);
+		((ModelElement) getModelElement()).getProject().removeProjectChangeObserver(observer);
 		labelProvider.dispose();
 		if (linkComposite != null) {
 			linkComposite.dispose();

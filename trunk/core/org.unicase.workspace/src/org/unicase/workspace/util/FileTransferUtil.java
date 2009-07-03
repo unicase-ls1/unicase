@@ -7,12 +7,16 @@
 package org.unicase.workspace.util;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.PendingFileTransfer;
@@ -49,6 +53,30 @@ public final class FileTransferUtil {
 
 	private FileTransferUtil() {
 
+	}
+
+	/**
+	 * Copies a file from cache to a new location.
+	 * 
+	 * @param source the file to be copied
+	 * @param destination the destination
+	 * @param monitor monitor
+	 * @throws IOException copy problem
+	 */
+	public static void copyFileFromCacheToNewLocation(File source, File destination, IProgressMonitor monitor)
+		throws IOException {
+		FileInputStream inputStream = new FileInputStream(source);
+		FileOutputStream outputStream = new FileOutputStream(destination);
+
+		monitor.beginTask("Copying file...", inputStream.available());
+		byte[] buffer = new byte[4096];
+		int read;
+		while ((read = inputStream.read(buffer)) != -1) {
+			outputStream.write(buffer, 0, read);
+			monitor.worked(4096);
+		}
+		inputStream.close();
+		outputStream.close();
 	}
 
 	/**
@@ -163,6 +191,23 @@ public final class FileTransferUtil {
 	 */
 	public static File findCachedFile(FileInformation fileInformation, ProjectId projectId)
 		throws FileNotFoundException {
+		return findCachedFile(constructFileNameBasedOnAttachmentIdAndVersion(fileInformation), new File(
+			constructCacheFolder(projectId)));
+	}
+
+	/**
+	 * Returns null if the file could not be found.
+	 * 
+	 * @param fileAttachment the file Attachment
+	 * @param projectId project id
+	 * @return the cached file
+	 * @throws FileNotFoundException if the file could not be found
+	 */
+	public static File findCachedFile(FileAttachment fileAttachment, ProjectId projectId) throws FileNotFoundException {
+		FileInformation fileInformation = new FileInformation();
+		fileInformation.setFileAttachmentId(fileAttachment.getIdentifier());
+		fileInformation.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
+		fileInformation.setFileName(fileAttachment.getFileName());
 		return findCachedFile(constructFileNameBasedOnAttachmentIdAndVersion(fileInformation), new File(
 			constructCacheFolder(projectId)));
 	}
