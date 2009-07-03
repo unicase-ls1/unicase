@@ -33,6 +33,7 @@ import org.unicase.model.Project;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.observers.CommitObserver;
+import org.unicase.workspace.observers.OperationListener;
 import org.unicase.workspace.observers.UpdateObserver;
 
 /**
@@ -612,8 +613,17 @@ public interface ProjectSpace extends IdentifiableElement {
 	ChangePackage getCannonizedLocalOperations();
 
 	/**
-	 * @return modified model elements cache.
+	 * @return modified model elements cache. This is class clients (e.g. dirty decorator) can ask to see if a model
+	 *         element has been modified.
 	 */
 	ModifiedModelElementsCache getModifiedModelElementsCache();
+
+	/**
+	 * Adds an OperationListener to list of operation listeners. OperationListeners are informed when ever an operation
+	 * is executed or undone.
+	 * 
+	 * @param operationListener operation listener
+	 */
+	void addOperationListener(OperationListener operationListener);
 
 } // ProjectContainer

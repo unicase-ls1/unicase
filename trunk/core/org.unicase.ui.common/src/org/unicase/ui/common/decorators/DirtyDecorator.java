@@ -15,7 +15,6 @@ import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.unicase.model.ModelElement;
-import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -52,7 +51,7 @@ public class DirtyDecorator implements ILightweightLabelDecorator {
 	private int quadrant;
 
 	/**
-	 * . The icon image location in the project folder
+	 * The icon image location in the project folder.
 	 */
 	private String dirtyPath = "icons/dirty.jpg"; // NON-NLS-1
 
@@ -62,7 +61,7 @@ public class DirtyDecorator implements ILightweightLabelDecorator {
 	private ImageDescriptor descriptor;
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.jface.viewers.ILightweightLabelDecorator#decorate(java.lang .Object,
 	 *      org.eclipse.jface.viewers.IDecoration)
@@ -82,13 +81,29 @@ public class DirtyDecorator implements ILightweightLabelDecorator {
 			if (ps.isDirty()) {
 				url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
 			}
-		} else if(element instanceof ModelEditPlugin){
-			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
-			if(activeProjectSpace.getModifiedModelElementsCache().isDirty((ModelElement)element)){
-				url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
-				
+		} else if (element instanceof ModelElement) {
+			boolean dirty = false;
+			ModelElement me = (ModelElement) element;
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+				.getActiveProjectSpace();
+			if (activeProjectSpace == null) {
+				return;
 			}
-			return;
+			// if ME is dirty show decoration
+			if (activeProjectSpace.getModifiedModelElementsCache().isDirty(me.getModelElementId())) {
+				dirty = true;
+
+			}
+			// if one of contained MEs within ME is dirty also show decoration
+			for (ModelElement containedME : me.getAllContainedModelElements()) {
+				if (activeProjectSpace.getModifiedModelElementsCache().isDirty(containedME.getModelElementId())) {
+					dirty = true;
+				}
+			}
+
+			if (dirty) {
+				url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
+			}
 		}
 
 		if (url == null) {
@@ -101,7 +116,7 @@ public class DirtyDecorator implements ILightweightLabelDecorator {
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse. jface.viewers.ILabelProviderListener)
 	 */
@@ -109,7 +124,7 @@ public class DirtyDecorator implements ILightweightLabelDecorator {
 	}
 
 	/**
-	 * . {@inheritDoc}
+	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
 	 */
