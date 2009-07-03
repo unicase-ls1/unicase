@@ -50,32 +50,35 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 		PrimaryVersionSpec base;
 		PrimaryVersionSpec target;
 		
+		PrimaryVersionSpec commitVersion = data.getPrimaryVersionSpec();
+		
 		ConflictDetector conflictDetector = new ConflictDetector();
 		
 		for(ChangePackage changePackage : data.getChangePackages()){
 			for(Event event : changePackage.getEvents()){
 				if(event instanceof UpdateEvent){
-					if(event instanceof UpdateEvent){
-						base = ((UpdateEvent) event).getBaseVersion();
-						target = ((UpdateEvent) event).getTargetVersion();
-						try {
-							ArrayList<ChangePackage> updateChanges = (ArrayList<ChangePackage>) it.getConnectionManager().getChanges(it.getUsersession().getSessionId(), 
-								it.getProjectId(), base, target);
-							if(conflictDetector.doConflict(changePackage, updateChanges)){
-								List<AbstractOperation> operationListA = changePackage.getOperations();
-								List<AbstractOperation> operationListB = new ArrayList<AbstractOperation>();
-								for(ChangePackage updateChange : updateChanges){
-									operationListB.addAll(updateChange.getOperations());
-								}
-								Set<AbstractOperation> conflictOpSet = conflictDetector.getAllConflictInvolvedOperations(operationListA, operationListB);
-								List<Object> line = addLine(conflictOpSet);
-								values.add(line);
+					base = ((UpdateEvent) event).getBaseVersion();
+					target = ((UpdateEvent) event).getTargetVersion();
+					if(target.getIdentifier() + 1 != commitVersion.getIdentifier()){
+						continue;
+					}
+					try {
+						ArrayList<ChangePackage> updateChanges = (ArrayList<ChangePackage>) it.getConnectionManager().getChanges(it.getUsersession().getSessionId(), 
+							it.getProjectId(), base, target);
+						if(conflictDetector.doConflict(changePackage, updateChanges)){
+							List<AbstractOperation> operationListA = changePackage.getOperations();
+							List<AbstractOperation> operationListB = new ArrayList<AbstractOperation>();
+							for(ChangePackage updateChange : updateChanges){
+								operationListB.addAll(updateChange.getOperations());
 							}
-						} catch (EmfStoreException e) {
-							String message = "Could not get changes from server";
-							WorkspaceUtil.logException(message, e);
-							throw new NoSuchElementException(message + ":\n" + e);
+							Set<AbstractOperation> conflictOpSet = conflictDetector.getAllConflictInvolvedOperations(operationListA, operationListB);
+							List<Object> line = addLine(conflictOpSet, commitVersion, base, target);
+							values.add(line);
 						}
+					} catch (EmfStoreException e) {
+						String message = "Could not get changes from server";
+						WorkspaceUtil.logException(message, e);
+						throw new NoSuchElementException(message + ":\n" + e);
 					}
 				}
 			}
@@ -84,9 +87,13 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 		return values;
 	}
 
-	private List<Object> addLine(Set<AbstractOperation> conflictOpSet) {
+	private List<Object> addLine(Set<AbstractOperation> conflictOpSet, PrimaryVersionSpec commitVersion, PrimaryVersionSpec base, PrimaryVersionSpec target) {
 		List<Object> line = new ArrayList<Object>();
 
+		line.add(commitVersion.getIdentifier());
+		line.add(base.getIdentifier());
+		line.add(target.getIdentifier());
+		
 		int abstractOp = conflictOpSet.size();
 		int composite = 0;
 		int createDelete = 0;
@@ -156,6 +163,9 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 	 */
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
+		names.add("Commit Version");
+		names.add("Updated source Version");
+		names.add("Updated target Version");
 		names.add("AbstractOperation #");
 		names.add("CompositeOperation #");	
 		names.add("CreateDeleteOperation #");
