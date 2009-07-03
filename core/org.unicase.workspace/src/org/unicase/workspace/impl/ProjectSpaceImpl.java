@@ -2180,7 +2180,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			tmpTransfer.setPreliminaryFileName(null);
 		}
 		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
-			if (transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId())
+			if (!transfer.isUpload() && transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId())
 				&& transfer.getFileVersion() == tmpTransfer.getFileVersion()) {
 				throw new FileTransferException("File Transfer Request already pending!");
 			}
