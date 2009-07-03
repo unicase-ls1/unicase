@@ -1,15 +1,15 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
-Bundle-SymbolicName: org.unicase.ui.stateDiagram; singleton:=true
+Bundle-SymbolicName:  org.unicase.ui.diagram.stateDiagram; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.unicase.ui.stateDiagram.part.ModelDiagramEditorPlugin
+Bundle-Activator: org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.unicase.ui.stateDiagram.edit.parts,
- org.unicase.ui.stateDiagram.part,
- org.unicase.ui.stateDiagram.providers
+Export-Package: org.unicase.ui.diagram.stateDiagram.edit.parts,
+ org.unicase.ui.diagram.stateDiagram.part,
+ org.unicase.ui.diagram.stateDiagram.providers
 Require-Bundle: org.eclipse.jface,
  org.eclipse.ui.views,
  org.eclipse.ui.navigator,
