@@ -611,4 +611,9 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	ChangePackage getCannonizedLocalOperations();
 
+	/**
+	 * @return modified model elements cache.
+	 */
+	ModifiedModelElementsCache getModifiedModelElementsCache();
+
 } // ProjectContainer
