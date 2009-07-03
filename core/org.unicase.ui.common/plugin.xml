@@ -344,6 +344,22 @@
      </decorator>
      <decorator
            adaptable="true"
+           class="org.unicase.ui.common.decorators.DirtyDecorator"
+           id="org.unicase.ui.common.decorators.MEDirtyDecorator"
+           label="ModelElement Dirty Decorator"
+           lightweight="true"
+           state="true">
+        <enablement>
+           <objectClass
+                 name="org.unicase.model.ModelElement">
+           </objectClass>
+        </enablement>
+        <description>
+           If the porject has local changes.
+        </description>
+     </decorator>
+     <decorator
+           adaptable="true"
            class="org.unicase.ui.common.decorators.ChildrenDecorator"
            id="org.unicase.ui.common.decorators.ChildrenDecorator"
            label="Children Decorator"

@@ -96,6 +96,7 @@ import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.observers.LoginObserver;
+import org.unicase.workspace.observers.OperationListener;
 import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.util.FileTransferUtil;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -338,6 +339,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	private ModifiedModelElementsCache modifiedModelElementsCache;
 
+	private List<OperationListener> operationListeners;
+
 	// begin of custom code
 	/**
 	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -347,6 +350,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	protected ProjectSpaceImpl() {
 		super();
 		this.commitObservers = new ArrayList<CommitObserver>();
+		this.operationListeners = new ArrayList<OperationListener>();
 	}
 
 	// end of custom code
@@ -1177,6 +1181,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		stopChangeRecording();
 		changePackage.reverse().apply(project);
+		// all operation in cp
 		startChangeRecording();
 
 		this.getOperations().clear();
@@ -1766,8 +1771,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				CompositeOperation op = OperationsFactory.eINSTANCE.createCompositeOperation();
 				op.getSubOperations().addAll(ops);
 				getOperations().add(op);
+				notifyOperationExecuted(op);
 			} else {
 				getOperations().addAll(ops);
+				notifyOperationExecuted(ops);
 			}
 
 		}
@@ -1843,6 +1850,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		AbstractOperation lastOperation = operations.get(operations.size() - 1);
 		stopChangeRecording();
 		lastOperation.reverse().apply(getProject());
+		notifyOperationUndone(lastOperation);
 		startChangeRecording();
 		operations.remove(lastOperation);
 		saveResourceSet();
@@ -1904,6 +1912,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				this.compositeOperation.getSubOperations().add(deleteOperation);
 			} else {
 				this.getOperations().add(deleteOperation);
+				notifyOperationExecuted(deleteOperation);
 			}
 
 			deleteOperation = null;
@@ -1967,12 +1976,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		addToResource(modelElement);
 		if (isRecording) {
 			appendCreator(modelElement);
-			CreateDeleteOperation createCreateDeleteOperation = createCreateDeleteOperation(modelElement, false);
+			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, false);
 			if (this.compositeOperation != null) {
-				this.compositeOperation.getSubOperations().add(createCreateDeleteOperation);
+				this.compositeOperation.getSubOperations().add(createDeleteOperation);
 			} else {
-
-				this.getOperations().add(createCreateDeleteOperation);
+				this.getOperations().add(createDeleteOperation);
+				notifyOperationExecuted(createDeleteOperation);
 			}
 			saveProjectSpaceOnly();
 		}
@@ -2093,6 +2102,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		stopChangeRecording();
 		recordingFinished();
 		this.compositeOperation.reverse().apply(getProject());
+		notifyOperationUndone(this.compositeOperation);
 		startChangeRecording();
 		this.compositeOperation = null;
 		updateDirtyState();
@@ -2272,7 +2282,40 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public ModifiedModelElementsCache getModifiedModelElementsCache() {
 		if (modifiedModelElementsCache == null) {
 			modifiedModelElementsCache = new ModifiedModelElementsCache();
+			this.addOperationListener(modifiedModelElementsCache);
 		}
 		return modifiedModelElementsCache;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @param operationListener
+	 */
+	public void addOperationListener(OperationListener operationListener) {
+		this.operationListeners.add(operationListener);
+	}
+
+	private void notifyOperationExecuted(AbstractOperation operation) {
+		for (OperationListener operationListener : operationListeners) {
+			operationListener.operationExecuted(operation);
+		}
+	}
+
+	private void notifyOperationExecuted(List<AbstractOperation> operations) {
+		for (OperationListener operationListener : operationListeners) {
+			for (AbstractOperation op : operations) {
+				operationListener.operationExecuted(op);
+			}
+
+		}
+
+	}
+
+	private void notifyOperationUndone(AbstractOperation operation) {
+		for (OperationListener operationListener : operationListeners) {
+			operationListener.operationUnDone(operation);
+		}
+	}
+
 } // ProjectContainerImpl

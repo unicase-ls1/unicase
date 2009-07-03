@@ -508,6 +508,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	 * {@inheritDoc}
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
+		viewer.refresh();
 	}
 
 }
