@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.analyzer.*;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.ProjectAnalysisData;
@@ -60,6 +61,7 @@ public class AnalyzerFactoryImpl extends EFactoryImpl implements AnalyzerFactory
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case AnalyzerPackage.PROJECT_ANALYSIS_DATA: return createProjectAnalysisData();
+			case AnalyzerPackage.ANALYZER_CONFIGURATION: return createAnalyzerConfiguration();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -73,6 +75,16 @@ public class AnalyzerFactoryImpl extends EFactoryImpl implements AnalyzerFactory
 	public ProjectAnalysisData createProjectAnalysisData() {
 		ProjectAnalysisDataImpl projectAnalysisData = new ProjectAnalysisDataImpl();
 		return projectAnalysisData;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public AnalyzerConfiguration createAnalyzerConfiguration() {
+		AnalyzerConfigurationImpl analyzerConfiguration = new AnalyzerConfigurationImpl();
+		return analyzerConfiguration;
 	}
 
 	/**

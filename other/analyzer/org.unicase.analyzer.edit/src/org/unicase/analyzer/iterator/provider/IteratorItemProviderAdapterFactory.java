@@ -1,9 +1,10 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
-package org.unicase.analyzer.provider;
+package org.unicase.analyzer.iterator.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,6 +12,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -22,7 +24,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.analyzer.util.AnalyzerAdapterFactory;
+
+import org.unicase.analyzer.iterator.util.IteratorAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -33,7 +36,7 @@ import org.unicase.analyzer.util.AnalyzerAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AnalyzerItemProviderAdapterFactory extends AnalyzerAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class IteratorItemProviderAdapterFactory extends IteratorAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -64,7 +67,7 @@ public class AnalyzerItemProviderAdapterFactory extends AnalyzerAdapterFactory i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnalyzerItemProviderAdapterFactory() {
+	public IteratorItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -73,49 +76,72 @@ public class AnalyzerItemProviderAdapterFactory extends AnalyzerAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.analyzer.ProjectAnalysisData} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.analyzer.iterator.VersionIterator} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProjectAnalysisDataItemProvider projectAnalysisDataItemProvider;
+	protected VersionIteratorItemProvider versionIteratorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.analyzer.ProjectAnalysisData}.
+	 * This creates an adapter for a {@link org.unicase.analyzer.iterator.VersionIterator}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createProjectAnalysisDataAdapter() {
-		if (projectAnalysisDataItemProvider == null) {
-			projectAnalysisDataItemProvider = new ProjectAnalysisDataItemProvider(this);
+	public Adapter createVersionIteratorAdapter() {
+		if (versionIteratorItemProvider == null) {
+			versionIteratorItemProvider = new VersionIteratorItemProvider(this);
 		}
 
-		return projectAnalysisDataItemProvider;
+		return versionIteratorItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.analyzer.AnalyzerConfiguration} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.analyzer.iterator.TimeIterator} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AnalyzerConfigurationItemProvider analyzerConfigurationItemProvider;
+	protected TimeIteratorItemProvider timeIteratorItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.analyzer.AnalyzerConfiguration}.
+	 * This creates an adapter for a {@link org.unicase.analyzer.iterator.TimeIterator}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createAnalyzerConfigurationAdapter() {
-		if (analyzerConfigurationItemProvider == null) {
-			analyzerConfigurationItemProvider = new AnalyzerConfigurationItemProvider(this);
+	public Adapter createTimeIteratorAdapter() {
+		if (timeIteratorItemProvider == null) {
+			timeIteratorItemProvider = new TimeIteratorItemProvider(this);
 		}
 
-		return analyzerConfigurationItemProvider;
+		return timeIteratorItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.analyzer.iterator.VersionSpecQuery} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected VersionSpecQueryItemProvider versionSpecQueryItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.analyzer.iterator.VersionSpecQuery}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createVersionSpecQueryAdapter() {
+		if (versionSpecQueryItemProvider == null) {
+			versionSpecQueryItemProvider = new VersionSpecQueryItemProvider(this);
+		}
+
+		return versionSpecQueryItemProvider;
 	}
 
 	/**
@@ -217,8 +243,9 @@ public class AnalyzerItemProviderAdapterFactory extends AnalyzerAdapterFactory i
 	 * @generated
 	 */
 	public void dispose() {
-		if (projectAnalysisDataItemProvider != null) projectAnalysisDataItemProvider.dispose();
-		if (analyzerConfigurationItemProvider != null) analyzerConfigurationItemProvider.dispose();
+		if (versionIteratorItemProvider != null) versionIteratorItemProvider.dispose();
+		if (timeIteratorItemProvider != null) timeIteratorItemProvider.dispose();
+		if (versionSpecQueryItemProvider != null) versionSpecQueryItemProvider.dispose();
 	}
 
 }

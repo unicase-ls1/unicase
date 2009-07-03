@@ -1,9 +1,10 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
-package org.unicase.analyzer.provider;
+package org.unicase.analyzer.exporters.provider;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -11,6 +12,7 @@ import java.util.Collection;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.edit.provider.ChangeNotifier;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
@@ -22,7 +24,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.INotifyChangedListener;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.analyzer.util.AnalyzerAdapterFactory;
+
+import org.unicase.analyzer.exporters.util.ExportersAdapterFactory;
 
 /**
  * This is the factory that is used to provide the interfaces needed to support Viewers.
@@ -33,7 +36,7 @@ import org.unicase.analyzer.util.AnalyzerAdapterFactory;
  * <!-- end-user-doc -->
  * @generated
  */
-public class AnalyzerItemProviderAdapterFactory extends AnalyzerAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
+public class ExportersItemProviderAdapterFactory extends ExportersAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
 	/**
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
@@ -64,7 +67,7 @@ public class AnalyzerItemProviderAdapterFactory extends AnalyzerAdapterFactory i
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnalyzerItemProviderAdapterFactory() {
+	public ExportersItemProviderAdapterFactory() {
 		supportedTypes.add(IEditingDomainItemProvider.class);
 		supportedTypes.add(IStructuredItemContentProvider.class);
 		supportedTypes.add(ITreeItemContentProvider.class);
@@ -73,49 +76,26 @@ public class AnalyzerItemProviderAdapterFactory extends AnalyzerAdapterFactory i
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.analyzer.ProjectAnalysisData} instances.
+	 * This keeps track of the one adapter used for all {@link org.unicase.analyzer.exporters.Exporter} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ProjectAnalysisDataItemProvider projectAnalysisDataItemProvider;
+	protected ExporterItemProvider exporterItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.analyzer.ProjectAnalysisData}.
+	 * This creates an adapter for a {@link org.unicase.analyzer.exporters.Exporter}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Adapter createProjectAnalysisDataAdapter() {
-		if (projectAnalysisDataItemProvider == null) {
-			projectAnalysisDataItemProvider = new ProjectAnalysisDataItemProvider(this);
+	public Adapter createExporterAdapter() {
+		if (exporterItemProvider == null) {
+			exporterItemProvider = new ExporterItemProvider(this);
 		}
 
-		return projectAnalysisDataItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.analyzer.AnalyzerConfiguration} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected AnalyzerConfigurationItemProvider analyzerConfigurationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.analyzer.AnalyzerConfiguration}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createAnalyzerConfigurationAdapter() {
-		if (analyzerConfigurationItemProvider == null) {
-			analyzerConfigurationItemProvider = new AnalyzerConfigurationItemProvider(this);
-		}
-
-		return analyzerConfigurationItemProvider;
+		return exporterItemProvider;
 	}
 
 	/**
@@ -217,8 +197,7 @@ public class AnalyzerItemProviderAdapterFactory extends AnalyzerAdapterFactory i
 	 * @generated
 	 */
 	public void dispose() {
-		if (projectAnalysisDataItemProvider != null) projectAnalysisDataItemProvider.dispose();
-		if (analyzerConfigurationItemProvider != null) analyzerConfigurationItemProvider.dispose();
+		if (exporterItemProvider != null) exporterItemProvider.dispose();
 	}
 
 }

@@ -1,18 +1,17 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
-package org.unicase.analyzer.util;
-
+package org.unicase.analyzer.iterator.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.analyzer.*;
-import org.unicase.analyzer.AnalyzerPackage;
-import org.unicase.analyzer.ProjectAnalysisData;
+
+import org.unicase.analyzer.iterator.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,17 +23,17 @@ import org.unicase.analyzer.ProjectAnalysisData;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.unicase.analyzer.AnalyzerPackage
+ * @see org.unicase.analyzer.iterator.IteratorPackage
  * @generated
  */
-public class AnalyzerSwitch<T> {
+public class IteratorSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static AnalyzerPackage modelPackage;
+	protected static IteratorPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -42,9 +41,9 @@ public class AnalyzerSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnalyzerSwitch() {
+	public IteratorSwitch() {
 		if (modelPackage == null) {
-			modelPackage = AnalyzerPackage.eINSTANCE;
+			modelPackage = IteratorPackage.eINSTANCE;
 		}
 	}
 
@@ -88,15 +87,22 @@ public class AnalyzerSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case AnalyzerPackage.PROJECT_ANALYSIS_DATA: {
-				ProjectAnalysisData projectAnalysisData = (ProjectAnalysisData)theEObject;
-				T result = caseProjectAnalysisData(projectAnalysisData);
+			case IteratorPackage.VERSION_ITERATOR: {
+				VersionIterator versionIterator = (VersionIterator)theEObject;
+				T result = caseVersionIterator(versionIterator);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case AnalyzerPackage.ANALYZER_CONFIGURATION: {
-				AnalyzerConfiguration analyzerConfiguration = (AnalyzerConfiguration)theEObject;
-				T result = caseAnalyzerConfiguration(analyzerConfiguration);
+			case IteratorPackage.TIME_ITERATOR: {
+				TimeIterator timeIterator = (TimeIterator)theEObject;
+				T result = caseTimeIterator(timeIterator);
+				if (result == null) result = caseVersionIterator(timeIterator);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case IteratorPackage.VERSION_SPEC_QUERY: {
+				VersionSpecQuery versionSpecQuery = (VersionSpecQuery)theEObject;
+				T result = caseVersionSpecQuery(versionSpecQuery);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -105,32 +111,47 @@ public class AnalyzerSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Project Analysis Data</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Version Iterator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Project Analysis Data</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Version Iterator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProjectAnalysisData(ProjectAnalysisData object) {
+	public T caseVersionIterator(VersionIterator object) {
 		return null;
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Time Iterator</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Configuration</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Time Iterator</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseAnalyzerConfiguration(AnalyzerConfiguration object) {
+	public T caseTimeIterator(TimeIterator object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Version Spec Query</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Version Spec Query</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseVersionSpecQuery(VersionSpecQuery object) {
 		return null;
 	}
 
@@ -149,4 +170,4 @@ public class AnalyzerSwitch<T> {
 		return null;
 	}
 
-} //AnalyzerSwitch
+} //IteratorSwitch

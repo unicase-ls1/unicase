@@ -1,35 +1,36 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
-package org.unicase.analyzer.util;
-
+package org.unicase.analyzer.exporters.util;
 
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
+
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
+
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.analyzer.*;
-import org.unicase.analyzer.AnalyzerPackage;
-import org.unicase.analyzer.ProjectAnalysisData;
+
+import org.unicase.analyzer.exporters.*;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.unicase.analyzer.AnalyzerPackage
+ * @see org.unicase.analyzer.exporters.ExportersPackage
  * @generated
  */
-public class AnalyzerAdapterFactory extends AdapterFactoryImpl {
+public class ExportersAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static AnalyzerPackage modelPackage;
+	protected static ExportersPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -37,9 +38,9 @@ public class AnalyzerAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnalyzerAdapterFactory() {
+	public ExportersAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = AnalyzerPackage.eINSTANCE;
+			modelPackage = ExportersPackage.eINSTANCE;
 		}
 	}
 
@@ -68,15 +69,11 @@ public class AnalyzerAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AnalyzerSwitch<Adapter> modelSwitch =
-		new AnalyzerSwitch<Adapter>() {
+	protected ExportersSwitch<Adapter> modelSwitch =
+		new ExportersSwitch<Adapter>() {
 			@Override
-			public Adapter caseProjectAnalysisData(ProjectAnalysisData object) {
-				return createProjectAnalysisDataAdapter();
-			}
-			@Override
-			public Adapter caseAnalyzerConfiguration(AnalyzerConfiguration object) {
-				return createAnalyzerConfigurationAdapter();
+			public Adapter caseExporter(Exporter object) {
+				return createExporterAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -99,30 +96,16 @@ public class AnalyzerAdapterFactory extends AdapterFactoryImpl {
 
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.analyzer.ProjectAnalysisData <em>Project Analysis Data</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.analyzer.exporters.Exporter <em>Exporter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.analyzer.ProjectAnalysisData
+	 * @see org.unicase.analyzer.exporters.Exporter
 	 * @generated
 	 */
-	public Adapter createProjectAnalysisDataAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.analyzer.AnalyzerConfiguration <em>Configuration</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.analyzer.AnalyzerConfiguration
-	 * @generated
-	 */
-	public Adapter createAnalyzerConfigurationAdapter() {
+	public Adapter createExporterAdapter() {
 		return null;
 	}
 
@@ -138,4 +121,4 @@ public class AnalyzerAdapterFactory extends AdapterFactoryImpl {
 		return null;
 	}
 
-} //AnalyzerAdapterFactory
+} //ExportersAdapterFactory

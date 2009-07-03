@@ -1,18 +1,17 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ * <copyright>
+ * </copyright>
+ *
+ * $Id$
  */
-package org.unicase.analyzer.util;
-
+package org.unicase.analyzer.exporters.util;
 
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.analyzer.*;
-import org.unicase.analyzer.AnalyzerPackage;
-import org.unicase.analyzer.ProjectAnalysisData;
+
+import org.unicase.analyzer.exporters.*;
 
 /**
  * <!-- begin-user-doc -->
@@ -24,17 +23,17 @@ import org.unicase.analyzer.ProjectAnalysisData;
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.unicase.analyzer.AnalyzerPackage
+ * @see org.unicase.analyzer.exporters.ExportersPackage
  * @generated
  */
-public class AnalyzerSwitch<T> {
+public class ExportersSwitch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static AnalyzerPackage modelPackage;
+	protected static ExportersPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -42,9 +41,9 @@ public class AnalyzerSwitch<T> {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AnalyzerSwitch() {
+	public ExportersSwitch() {
 		if (modelPackage == null) {
-			modelPackage = AnalyzerPackage.eINSTANCE;
+			modelPackage = ExportersPackage.eINSTANCE;
 		}
 	}
 
@@ -88,15 +87,9 @@ public class AnalyzerSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case AnalyzerPackage.PROJECT_ANALYSIS_DATA: {
-				ProjectAnalysisData projectAnalysisData = (ProjectAnalysisData)theEObject;
-				T result = caseProjectAnalysisData(projectAnalysisData);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case AnalyzerPackage.ANALYZER_CONFIGURATION: {
-				AnalyzerConfiguration analyzerConfiguration = (AnalyzerConfiguration)theEObject;
-				T result = caseAnalyzerConfiguration(analyzerConfiguration);
+			case ExportersPackage.EXPORTER: {
+				Exporter exporter = (Exporter)theEObject;
+				T result = caseExporter(exporter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -105,32 +98,17 @@ public class AnalyzerSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Project Analysis Data</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Exporter</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Project Analysis Data</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Exporter</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseProjectAnalysisData(ProjectAnalysisData object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Configuration</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Configuration</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseAnalyzerConfiguration(AnalyzerConfiguration object) {
+	public T caseExporter(Exporter object) {
 		return null;
 	}
 
@@ -149,4 +127,4 @@ public class AnalyzerSwitch<T> {
 		return null;
 	}
 
-} //AnalyzerSwitch
+} //ExportersSwitch
