@@ -114,6 +114,53 @@ public interface AnalyzerPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl <em>Configuration</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.analyzer.impl.AnalyzerConfigurationImpl
+	 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getAnalyzerConfiguration()
+	 * @generated
+	 */
+	int ANALYZER_CONFIGURATION = 1;
+
+	/**
+	 * The feature id for the '<em><b>Analyzer Class</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANALYZER_CONFIGURATION__ANALYZER_CLASS = 0;
+
+	/**
+	 * The feature id for the '<em><b>Iterator</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANALYZER_CONFIGURATION__ITERATOR = 1;
+
+	/**
+	 * The feature id for the '<em><b>Exporter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANALYZER_CONFIGURATION__EXPORTER = 2;
+
+	/**
+	 * The number of structural features of the '<em>Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANALYZER_CONFIGURATION_FEATURE_COUNT = 3;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.analyzer.ProjectAnalysisData <em>Project Analysis Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -166,6 +213,49 @@ public interface AnalyzerPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getProjectAnalysisData_ProjectId();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.analyzer.AnalyzerConfiguration <em>Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Configuration</em>'.
+	 * @see org.unicase.analyzer.AnalyzerConfiguration
+	 * @generated
+	 */
+	EClass getAnalyzerConfiguration();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerClass <em>Analyzer Class</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Analyzer Class</em>'.
+	 * @see org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerClass()
+	 * @see #getAnalyzerConfiguration()
+	 * @generated
+	 */
+	EReference getAnalyzerConfiguration_AnalyzerClass();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.AnalyzerConfiguration#getIterator <em>Iterator</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Iterator</em>'.
+	 * @see org.unicase.analyzer.AnalyzerConfiguration#getIterator()
+	 * @see #getAnalyzerConfiguration()
+	 * @generated
+	 */
+	EReference getAnalyzerConfiguration_Iterator();
+
+	/**
+	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.AnalyzerConfiguration#getExporter <em>Exporter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Exporter</em>'.
+	 * @see org.unicase.analyzer.AnalyzerConfiguration#getExporter()
+	 * @see #getAnalyzerConfiguration()
+	 * @generated
+	 */
+	EReference getAnalyzerConfiguration_Exporter();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -230,6 +320,40 @@ public interface AnalyzerPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PROJECT_ANALYSIS_DATA__PROJECT_ID = eINSTANCE.getProjectAnalysisData_ProjectId();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl <em>Configuration</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.analyzer.impl.AnalyzerConfigurationImpl
+		 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getAnalyzerConfiguration()
+		 * @generated
+		 */
+		EClass ANALYZER_CONFIGURATION = eINSTANCE.getAnalyzerConfiguration();
+
+		/**
+		 * The meta object literal for the '<em><b>Analyzer Class</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ANALYZER_CONFIGURATION__ANALYZER_CLASS = eINSTANCE.getAnalyzerConfiguration_AnalyzerClass();
+
+		/**
+		 * The meta object literal for the '<em><b>Iterator</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ANALYZER_CONFIGURATION__ITERATOR = eINSTANCE.getAnalyzerConfiguration_Iterator();
+
+		/**
+		 * The meta object literal for the '<em><b>Exporter</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference ANALYZER_CONFIGURATION__EXPORTER = eINSTANCE.getAnalyzerConfiguration_Exporter();
 
 	}
 

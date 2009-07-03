@@ -9,10 +9,16 @@ package org.unicase.analyzer.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.analyzer.exporters.ExportersPackage;
+import org.unicase.analyzer.exporters.impl.ExportersPackageImpl;
+import org.unicase.analyzer.iterator.IteratorPackage;
+import org.unicase.analyzer.iterator.impl.IteratorPackageImpl;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.model.ModelPackage;
@@ -30,6 +36,13 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	 * @generated
 	 */
 	private EClass projectAnalysisDataEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass analyzerConfigurationEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -90,11 +103,19 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		// Initialize simple dependencies
 		EsmodelPackage.eINSTANCE.eClass();
 
+		// Obtain or create and register interdependencies
+		IteratorPackageImpl theIteratorPackage = (IteratorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(IteratorPackage.eNS_URI) instanceof IteratorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(IteratorPackage.eNS_URI) : IteratorPackage.eINSTANCE);
+		ExportersPackageImpl theExportersPackage = (ExportersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExportersPackage.eNS_URI) instanceof ExportersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExportersPackage.eNS_URI) : ExportersPackage.eINSTANCE);
+
 		// Create package meta-data objects
 		theAnalyzerPackage.createPackageContents();
+		theIteratorPackage.createPackageContents();
+		theExportersPackage.createPackageContents();
 
 		// Initialize created meta-data
 		theAnalyzerPackage.initializePackageContents();
+		theIteratorPackage.initializePackageContents();
+		theExportersPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
 		theAnalyzerPackage.freeze();
@@ -152,6 +173,42 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getAnalyzerConfiguration() {
+		return analyzerConfigurationEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAnalyzerConfiguration_AnalyzerClass() {
+		return (EReference)analyzerConfigurationEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAnalyzerConfiguration_Iterator() {
+		return (EReference)analyzerConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getAnalyzerConfiguration_Exporter() {
+		return (EReference)analyzerConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public AnalyzerFactory getAnalyzerFactory() {
 		return (AnalyzerFactory)getEFactoryInstance();
 	}
@@ -180,6 +237,11 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		createEReference(projectAnalysisDataEClass, PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES);
 		createEReference(projectAnalysisDataEClass, PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC);
 		createEReference(projectAnalysisDataEClass, PROJECT_ANALYSIS_DATA__PROJECT_ID);
+
+		analyzerConfigurationEClass = createEClass(ANALYZER_CONFIGURATION);
+		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ANALYZER_CLASS);
+		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ITERATOR);
+		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__EXPORTER);
 	}
 
 	/**
@@ -206,9 +268,16 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
+		IteratorPackage theIteratorPackage = (IteratorPackage)EPackage.Registry.INSTANCE.getEPackage(IteratorPackage.eNS_URI);
+		ExportersPackage theExportersPackage = (ExportersPackage)EPackage.Registry.INSTANCE.getEPackage(ExportersPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage)EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI);
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage)EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+
+		// Add subpackages
+		getESubpackages().add(theIteratorPackage);
+		getESubpackages().add(theExportersPackage);
 
 		// Create type parameters
 
@@ -222,6 +291,11 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		initEReference(getProjectAnalysisData_ChangePackages(), theVersioningPackage.getChangePackage(), null, "changePackages", null, 0, -1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectAnalysisData_PrimaryVersionSpec(), theVersioningPackage.getPrimaryVersionSpec(), null, "primaryVersionSpec", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectAnalysisData_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(analyzerConfigurationEClass, AnalyzerConfiguration.class, "AnalyzerConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAnalyzerConfiguration_AnalyzerClass(), theEcorePackage.getEClass(), null, "analyzerClass", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnalyzerConfiguration_Iterator(), theIteratorPackage.getVersionIterator(), null, "iterator", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnalyzerConfiguration_Exporter(), theExportersPackage.getExporter(), null, "exporter", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

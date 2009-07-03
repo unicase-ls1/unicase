@@ -96,6 +96,29 @@ public class AnalyzerItemProviderAdapterFactory extends AnalyzerAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.analyzer.AnalyzerConfiguration} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AnalyzerConfigurationItemProvider analyzerConfigurationItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.analyzer.AnalyzerConfiguration}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAnalyzerConfigurationAdapter() {
+		if (analyzerConfigurationItemProvider == null) {
+			analyzerConfigurationItemProvider = new AnalyzerConfigurationItemProvider(this);
+		}
+
+		return analyzerConfigurationItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -195,6 +218,7 @@ public class AnalyzerItemProviderAdapterFactory extends AnalyzerAdapterFactory i
 	 */
 	public void dispose() {
 		if (projectAnalysisDataItemProvider != null) projectAnalysisDataItemProvider.dispose();
+		if (analyzerConfigurationItemProvider != null) analyzerConfigurationItemProvider.dispose();
 	}
 
 }
