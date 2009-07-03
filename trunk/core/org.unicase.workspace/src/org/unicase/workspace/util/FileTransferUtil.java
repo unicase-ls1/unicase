@@ -206,6 +206,9 @@ public final class FileTransferUtil {
 	public static File findCachedFile(FileAttachment fileAttachment, ProjectId projectId) throws FileNotFoundException {
 		FileInformation fileInformation = new FileInformation();
 		fileInformation.setFileAttachmentId(fileAttachment.getIdentifier());
+		if (fileAttachment.getFileID() == null || fileAttachment.getFileID().equals("")) {
+			throw new FileNotFoundException("File does not exist!");
+		}
 		fileInformation.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
 		fileInformation.setFileName(fileAttachment.getFileName());
 		return findCachedFile(constructFileNameBasedOnAttachmentIdAndVersion(fileInformation), new File(
