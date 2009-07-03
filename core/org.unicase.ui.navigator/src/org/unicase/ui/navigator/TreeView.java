@@ -29,6 +29,7 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorPart;
@@ -508,7 +509,15 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	 * {@inheritDoc}
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
-		viewer.refresh();
+		Display.getDefault().asyncExec(new Runnable() {
+
+			public void run() {
+
+				viewer.refresh();
+			}
+
+		});
+
 	}
 
 }
