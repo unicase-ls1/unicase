@@ -69,6 +69,7 @@ import org.unicase.model.util.ModelValidationHelper;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ModifiedModelElementsCache;
 import org.unicase.workspace.OperationComposite;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
@@ -334,6 +335,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	private NotificationRecorder notificationRecorder;
 
 	private List<CommitObserver> commitObservers;
+
+	private ModifiedModelElementsCache modifiedModelElementsCache;
 
 	// begin of custom code
 	/**
@@ -2259,5 +2262,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		// start change recording
 		this.startChangeRecording();
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#getModifiedModelElementsCache()
+	 */
+	public ModifiedModelElementsCache getModifiedModelElementsCache() {
+		if (modifiedModelElementsCache == null) {
+			modifiedModelElementsCache = new ModifiedModelElementsCache();
+		}
+		return modifiedModelElementsCache;
 	}
 } // ProjectContainerImpl

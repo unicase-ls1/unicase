@@ -14,7 +14,10 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
+import org.unicase.model.ModelElement;
+import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * . The decorator to show state of an element (blocked or open) shown in viewers
@@ -73,13 +76,18 @@ public class DirtyDecorator implements ILightweightLabelDecorator {
 		 */
 		URL url = null;
 
-		ProjectSpace me;
+		ProjectSpace ps;
 		if (element instanceof ProjectSpace) {
-			me = (ProjectSpace) element;
-			if (me.isDirty()) {
+			ps = (ProjectSpace) element;
+			if (ps.isDirty()) {
 				url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
 			}
-		} else {
+		} else if(element instanceof ModelEditPlugin){
+			ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+			if(activeProjectSpace.getModifiedModelElementsCache().isDirty((ModelElement)element)){
+				url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path(dirtyPath), null);
+				
+			}
 			return;
 		}
 
