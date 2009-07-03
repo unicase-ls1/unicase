@@ -36,6 +36,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.FileDialog;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.forms.widgets.FormToolkit;
@@ -45,7 +46,6 @@ import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.meeditor.Activator;
-import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.FileTransferUtil;
 
@@ -82,6 +82,12 @@ public class MEFileChooserControl extends AbstractMEControl {
 		GridLayout gridLayout = new GridLayout(3, false);
 		composite.setLayout(gridLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
+
+		if (WorkspaceManager.getProjectSpace((FileAttachment) getModelElement()).getProjectId() == null) {
+			Label label = new Label(composite, SWT.RIGHT);
+			label.setText("Please share your project. Otherwise the FileAttachment functionality will not be enabled.");
+			return parent;
+		}
 
 		// Left column: file name
 		Link fileName = new Link(composite, SWT.NONE);
@@ -281,14 +287,6 @@ public class MEFileChooserControl extends AbstractMEControl {
 				fileInfo.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
 				fileInfo.setFileName(fileAttachment.getFileName());
 				try {
-					for (PendingFileTransfer transfer : WorkspaceManager.getProjectSpace(fileAttachment)
-						.getPendingFileTransfers()) {
-						if (transfer.getAttachmentId().equals(fileInfo.getFileAttachmentId())
-							&& transfer.getFileVersion() == fileInfo.getFileVersion()) {
-							openInformation("Please observe:", "File transfer has not yet been completed!");
-							return;
-						}
-					}
 					// try to localize the cached file
 					FileTransferUtil.findCachedFile(fileInfo, WorkspaceManager.getProjectSpace(fileAttachment)
 						.getProjectId());
@@ -299,11 +297,11 @@ public class MEFileChooserControl extends AbstractMEControl {
 						// if file could not be found, initiate transfer
 						WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInfo, null, false);
 					} catch (FileTransferException e1) {
-						openInformation("Please observe:", "File transfer could not be added!");
+						openInformation("Please observe:", e1.getMessage());
 					}
-					openInformation("Please observe:", "File could not be found!");
 				}
 			}
+
 		}
 	}
 
@@ -341,13 +339,11 @@ public class MEFileChooserControl extends AbstractMEControl {
 					WorkspaceManager.getProjectSpace((FileAttachment) getModelElement()).addFileTransfer(
 						fileInformation,
 						new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()), true);
-					MessageDialog
-						.openInformation(
-							Display.getDefault().getActiveShell(),
-							"File Transfer Request Added",
-							"A file transfer request for the chosen file has been added and will be executed now, if connected, or next time a login is performed.");
+					openInformation(
+						"File Transfer Request Added",
+						"A file transfer request for the chosen file has been added and will be executed now, if connected, or next time a login is performed.");
 				} catch (FileTransferException e1) {
-					DialogHandler.showErrorDialog(e1.getMessage());
+					openInformation("File Transfer Exception:", e1.getMessage());
 				}
 			}
 		}
@@ -385,6 +381,10 @@ public class MEFileChooserControl extends AbstractMEControl {
 		}
 	}
 
+	private void openInformation(String title, String message) {
+		MessageDialog.openInformation(Display.getCurrent().getActiveShell(), title, message);
+	}
+
 	/**
 	 * @see org.unicase.ui.meeditor.mecontrols.AbstractMEControl#dispose()
 	 */
@@ -392,9 +392,5 @@ public class MEFileChooserControl extends AbstractMEControl {
 	public void dispose() {
 		dbc.dispose();
 		super.dispose();
-	}
-
-	private void openInformation(String title, String message) {
-		MessageDialog.openInformation(Display.getCurrent().getActiveShell(), title, message);
 	}
 }

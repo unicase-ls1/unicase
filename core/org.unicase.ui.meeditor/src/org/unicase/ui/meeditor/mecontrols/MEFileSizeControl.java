@@ -99,7 +99,7 @@ public class MEFileSizeControl extends AbstractMEControl {
 		 */
 		public Object convert(Object fromObject) {
 			double size = Integer.parseInt(fromObject.toString());
-			String[] magnitude = { " byte", " kilobyte", " megabyte", " gigabyte", " terabyte", " petabyte" };
+			String[] magnitude = { " byte", " Kilobyte", " Megabyte", " Gigabyte", " Terabyte", " petabyte" };
 			DecimalFormat format = new DecimalFormat("#0.00");
 			if (size < 1024) {
 				return (int) size + magnitude[0];
