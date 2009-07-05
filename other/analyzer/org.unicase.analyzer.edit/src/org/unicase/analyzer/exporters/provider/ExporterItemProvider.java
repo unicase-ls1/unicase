@@ -67,6 +67,7 @@ public class ExporterItemProvider
 			super.getPropertyDescriptors(object);
 
 			addFileNamePropertyDescriptor(object);
+			addOverwritePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -89,6 +90,28 @@ public class ExporterItemProvider
 				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Overwrite feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addOverwritePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Exporter_overwrite_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Exporter_overwrite_feature", "_UI_Exporter_type"),
+				 ExportersPackage.Literals.EXPORTER__OVERWRITE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
 				 null,
 				 null));
 	}
@@ -131,6 +154,7 @@ public class ExporterItemProvider
 
 		switch (notification.getFeatureID(Exporter.class)) {
 			case ExportersPackage.EXPORTER__FILE_NAME:
+			case ExportersPackage.EXPORTER__OVERWRITE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

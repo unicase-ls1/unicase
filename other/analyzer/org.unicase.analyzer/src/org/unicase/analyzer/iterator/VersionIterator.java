@@ -35,7 +35,7 @@ import org.unicase.workspace.Usersession;
  * @model
  * @generated
  */
-public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> {
+public interface VersionIterator extends EObject, Iterator {
 	/**
 	 * Returns the value of the '<em><b>Step Length</b></em>' attribute.
 	 * <!-- begin-user-doc -->

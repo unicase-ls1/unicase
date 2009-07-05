@@ -24,12 +24,13 @@ import org.unicase.analyzer.exporters.ExportersPackage;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.analyzer.exporters.impl.ExporterImpl#getFileName <em>File Name</em>}</li>
+ *   <li>{@link org.unicase.analyzer.exporters.impl.ExporterImpl#isOverwrite <em>Overwrite</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class ExporterImpl extends EObjectImpl implements Exporter {
+public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 	/**
 	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -49,6 +50,26 @@ public class ExporterImpl extends EObjectImpl implements Exporter {
 	 * @ordered
 	 */
 	protected String fileName = FILE_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isOverwrite() <em>Overwrite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOverwrite()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean OVERWRITE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isOverwrite() <em>Overwrite</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isOverwrite()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean overwrite = OVERWRITE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -95,11 +116,34 @@ public class ExporterImpl extends EObjectImpl implements Exporter {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isOverwrite() {
+		return overwrite;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setOverwrite(boolean newOverwrite) {
+		boolean oldOverwrite = overwrite;
+		overwrite = newOverwrite;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExportersPackage.EXPORTER__OVERWRITE, oldOverwrite, overwrite));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ExportersPackage.EXPORTER__FILE_NAME:
 				return getFileName();
+			case ExportersPackage.EXPORTER__OVERWRITE:
+				return isOverwrite() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -114,6 +158,9 @@ public class ExporterImpl extends EObjectImpl implements Exporter {
 		switch (featureID) {
 			case ExportersPackage.EXPORTER__FILE_NAME:
 				setFileName((String)newValue);
+				return;
+			case ExportersPackage.EXPORTER__OVERWRITE:
+				setOverwrite(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -130,6 +177,9 @@ public class ExporterImpl extends EObjectImpl implements Exporter {
 			case ExportersPackage.EXPORTER__FILE_NAME:
 				setFileName(FILE_NAME_EDEFAULT);
 				return;
+			case ExportersPackage.EXPORTER__OVERWRITE:
+				setOverwrite(OVERWRITE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -144,6 +194,8 @@ public class ExporterImpl extends EObjectImpl implements Exporter {
 		switch (featureID) {
 			case ExportersPackage.EXPORTER__FILE_NAME:
 				return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
+			case ExportersPackage.EXPORTER__OVERWRITE:
+				return overwrite != OVERWRITE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -160,6 +212,8 @@ public class ExporterImpl extends EObjectImpl implements Exporter {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (fileName: ");
 		result.append(fileName);
+		result.append(", overwrite: ");
+		result.append(overwrite);
 		result.append(')');
 		return result.toString();
 	}

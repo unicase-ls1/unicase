@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.exporters;
 
@@ -24,15 +23,6 @@ public interface ExportersFactory extends EFactory {
 	 * @generated
 	 */
 	ExportersFactory eINSTANCE = org.unicase.analyzer.exporters.impl.ExportersFactoryImpl.init();
-
-	/**
-	 * Returns a new object of class '<em>Exporter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Exporter</em>'.
-	 * @generated
-	 */
-	Exporter createExporter();
 
 	/**
 	 * Returns the package supported by this factory.

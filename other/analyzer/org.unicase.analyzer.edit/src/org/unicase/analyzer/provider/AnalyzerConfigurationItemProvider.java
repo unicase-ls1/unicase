@@ -173,11 +173,6 @@ public class AnalyzerConfigurationItemProvider
 			(createChildParameter
 				(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ITERATOR,
 				 IteratorFactory.eINSTANCE.createTimeIterator()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__EXPORTER,
-				 ExportersFactory.eINSTANCE.createExporter()));
 	}
 
 	/**
