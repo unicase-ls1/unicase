@@ -93,8 +93,27 @@ public final class NotificationHelper {
 	 * @return a HTML link as string
 	 */
 	public static String getHTMLLinkForModelElement(ModelElement modelElement, ProjectSpace projectSpace) {
+		String label = "null";
+		if (modelElement != null) {
+			label = modelElement.getName().replaceAll("\"", "\\'");
+		}
+		return getHTMLLinkForModelElement(modelElement, projectSpace, label);
+	}
+
+	/**
+	 * This method create a HTML link pointing to a model element for the message of Notifications.
+	 * 
+	 * @param modelElement The model element
+	 * @param projectSpace the project space
+	 * @param label the link's label
+	 * @return a HTML link as string
+	 */
+	public static String getHTMLLinkForModelElement(ModelElement modelElement, ProjectSpace projectSpace, String label) {
 		if (modelElement == null) {
 			return "";
+		}
+		if (label.length() > 53) {
+			label = label.substring(0, 50) + " ...";
 		}
 		StringBuilder ret = new StringBuilder("<a href=\"unicase://current:0/");
 		ret.append(projectSpace.getProjectName());
@@ -106,11 +125,9 @@ public final class NotificationHelper {
 		ret.append("%");
 		ret.append(modelElement.getIdentifier());
 		ret.append("\">");
-		if (name.length() > 53) {
-			name = name.substring(0, 50) + " ...";
-		}
-		ret.append(name);
+		ret.append(label);
 		ret.append("</a>");
 		return ret.toString();
 	}
+
 }

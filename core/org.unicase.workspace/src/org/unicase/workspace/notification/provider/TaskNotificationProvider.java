@@ -20,9 +20,7 @@ import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElement;
@@ -33,9 +31,6 @@ import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
-import org.unicase.workspace.notification.NotificationProvider;
-import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
@@ -43,50 +38,25 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * 
  * @author shterev
  */
-public class TaskNotificationProvider implements NotificationProvider {
+public class TaskNotificationProvider extends AbstractNotificationProvider {
 
-	private EClass clazz;
 	private Map<WorkItem, Date> reviewerItems;
 	private Map<WorkItem, Date> assigneeItems;
 	private Map<WorkItem, Date> readyForReviewItems;
+	private EClass clazz;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param assignmentClass the class of the assignment - e.g. ActionItem, BugReport, etc.
+	 * @param clazz the WorkItem class.
 	 */
-	public TaskNotificationProvider(EClass assignmentClass) {
-		this.clazz = assignmentClass;
-	}
+	public TaskNotificationProvider(EClass clazz) {
+		super();
+		this.clazz = clazz;
+		assigneeItems = new HashMap<WorkItem, Date>();
+		reviewerItems = new HashMap<WorkItem, Date>();
+		readyForReviewItems = new HashMap<WorkItem, Date>();
 
-	/**
-	 * Filters all unwanted operation and returns a reference operation if applicable.
-	 * 
-	 * @param operation abstract operation
-	 * @return the reference operation or null if there is no reference operation
-	 */
-	private ReferenceOperation getReferenceOperation(AbstractOperation operation) {
-		// filter all operations other than reference operations
-		if (!OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
-			return null;
-		}
-
-		ReferenceOperation referenceOperation = (ReferenceOperation) operation;
-
-		// filter remove reference operations
-		if (OperationsPackage.eINSTANCE.getMultiReferenceOperation().isInstance(referenceOperation)) {
-			MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) referenceOperation;
-			if (!multiReferenceOperation.isAdd()) {
-				return null;
-			}
-		}
-		if (OperationsPackage.eINSTANCE.getSingleReferenceOperation().isInstance(referenceOperation)) {
-			SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) referenceOperation;
-			if (singleReferenceOperation.getNewValue() == null) {
-				return null;
-			}
-		}
-		return referenceOperation;
 	}
 
 	/**
@@ -100,77 +70,9 @@ public class TaskNotificationProvider implements NotificationProvider {
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
-	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
-		String currentUsername) {
-
-		// sanity checks
-		List<ESNotification> result = new ArrayList<ESNotification>();
-		User user = null;
-		try {
-			user = OrgUnitHelper.getUser(projectSpace);
-		} catch (NoCurrentUserException e) {
-			return result;
-		} catch (CannotMatchUserInProjectException e) {
-			return result;
-		}
-
-		if (projectSpace == null || user == null) {
-			return result;
-		}
-
-		assigneeItems = new HashMap<WorkItem, Date>();
-		reviewerItems = new HashMap<WorkItem, Date>();
-		readyForReviewItems = new HashMap<WorkItem, Date>();
-
-		Project project = projectSpace.getProject();
-		for (ChangePackage changePackage : changePackages) {
-			for (AbstractOperation operation : changePackage.getOperations()) {
-				if (operation instanceof CompositeOperation) {
-					for (AbstractOperation op : ((CompositeOperation) operation).getSubOperations()) {
-						handleOperation(op, user, project);
-					}
-				} else {
-					handleOperation(operation, user, project);
-				}
-			}
-		}
-
-		HashMap<WorkItem, Date> workItems = new HashMap<WorkItem, Date>();
-		workItems.putAll(assigneeItems);
-		workItems.putAll(readyForReviewItems);
-		workItems.putAll(reviewerItems);
-
-		TaskChangeNotificationProvider changeNotificationProvider = new TaskChangeNotificationProvider(this.clazz);
-		changeNotificationProvider.addToFilter(workItems.keySet());
-		List<ESNotification> notifications = changeNotificationProvider.provideNotifications(projectSpace,
-			changePackages, currentUsername);
-		result.addAll(notifications);
-
-		if (!assigneeItems.isEmpty()) {
-			ESNotification notification = createNotification(projectSpace, user, assigneeItems,
-				"You have been assigned ", "assignment");
-			result.add(notification);
-		}
-		if (!readyForReviewItems.isEmpty()) {
-			ESNotification notification = createNotification(projectSpace, user, readyForReviewItems,
-				"You can now review ", "ready-for-review");
-			result.add(notification);
-		}
-		if (!reviewerItems.isEmpty()) {
-			ESNotification notification = createNotification(projectSpace, user, reviewerItems,
-				"You have been assigned to review ", "review");
-			result.add(notification);
-		}
-
-		return result;
-
-	}
-
-	private void handleOperation(AbstractOperation operation, User user, Project project) {
+	@Override
+	protected void handleOperation(AbstractOperation operation, User user, Project project) {
 		ModelElementId modelElementId = operation.getModelElementId();
 
 		ModelElement modelElement = project.getModelElement(modelElementId);
@@ -225,9 +127,7 @@ public class TaskNotificationProvider implements NotificationProvider {
 		if (featureName.equalsIgnoreCase("assignee")) {
 			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation).getNewValue();
 			ModelElement orgUnit = project.getModelElement(orgUnitId);
-			if (orgUnit != null
-				&& ((orgUnit instanceof User && orgUnit.equals(user)) || (orgUnit instanceof Group && groupsOfOrgUnit
-					.contains(orgUnit)))) {
+			if (orgUnit != null && (orgUnit.equals(user) || groupsOfOrgUnit.contains(orgUnit))) {
 				assigneeItems.put((WorkItem) modelElement, referenceOperation.getClientDate());
 			}
 		} else if (featureName.equalsIgnoreCase("assignments")
@@ -242,8 +142,48 @@ public class TaskNotificationProvider implements NotificationProvider {
 		}
 	}
 
-	private ESNotification createNotification(ProjectSpace projectSpace, User user, Map<WorkItem, Date> workItemMap,
-		String message, String taskType) {
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected List<ESNotification> createNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
+		String currentUsername) {
+
+		List<ESNotification> result = new ArrayList<ESNotification>();
+
+		HashMap<WorkItem, Date> workItems = new HashMap<WorkItem, Date>();
+		workItems.putAll(assigneeItems);
+		workItems.putAll(readyForReviewItems);
+		workItems.putAll(reviewerItems);
+
+		TaskChangeNotificationProvider changeNotificationProvider = new TaskChangeNotificationProvider(this.clazz);
+		changeNotificationProvider.addToFilter(workItems.keySet());
+		List<ESNotification> notifications = changeNotificationProvider.provideNotifications(projectSpace,
+			changePackages, currentUsername);
+		result.addAll(notifications);
+
+		if (!assigneeItems.isEmpty()) {
+			ESNotification notification = createSingleNotification(projectSpace, getUser(), assigneeItems,
+				"You have been assigned ", "assignment");
+			result.add(notification);
+		}
+		if (!readyForReviewItems.isEmpty()) {
+			ESNotification notification = createSingleNotification(projectSpace, getUser(), readyForReviewItems,
+				"You can now review ", "ready-for-review");
+			result.add(notification);
+		}
+		if (!reviewerItems.isEmpty()) {
+			ESNotification notification = createSingleNotification(projectSpace, getUser(), reviewerItems,
+				"You have been assigned to review ", "review");
+			result.add(notification);
+		}
+
+		return result;
+
+	}
+
+	private ESNotification createSingleNotification(ProjectSpace projectSpace, User user,
+		Map<WorkItem, Date> workItemMap, String message, String taskType) {
 		Set<WorkItem> workItems = workItemMap.keySet();
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("New " + taskType + " items");
