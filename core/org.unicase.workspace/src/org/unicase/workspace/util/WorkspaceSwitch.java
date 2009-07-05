@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.workspace.EventComposite;
+import org.unicase.workspace.NotificationComposite;
 import org.unicase.workspace.OperationComposite;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
@@ -142,6 +143,13 @@ public class WorkspaceSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
+		case WorkspacePackage.NOTIFICATION_COMPOSITE: {
+			NotificationComposite notificationComposite = (NotificationComposite) theEObject;
+			T result = caseNotificationComposite(notificationComposite);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -251,6 +259,20 @@ public class WorkspaceSwitch<T> {
 	 * @generated
 	 */
 	public T caseEventComposite(EventComposite object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Notification Composite</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Notification Composite</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseNotificationComposite(NotificationComposite object) {
 		return null;
 	}
 

@@ -67,6 +67,8 @@
         eType="#//PendingFileTransfer" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="eventComposite" eType="#//EventComposite"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="notificationComposite"
+        eType="#//NotificationComposite" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="OperationComposite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
@@ -88,6 +90,11 @@
   <eClassifiers xsi:type="ecore:EClass" name="EventComposite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="events" upperBound="-1"
         eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/events/Event"
+        containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="NotificationComposite">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
+        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

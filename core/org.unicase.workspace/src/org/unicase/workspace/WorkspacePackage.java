@@ -405,13 +405,22 @@ public interface WorkspacePackage extends EPackage {
 	int PROJECT_SPACE__EVENT_COMPOSITE = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
+	 * The feature id for the '<em><b>Notification Composite</b></em>' containment reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROJECT_SPACE__NOTIFICATION_COMPOSITE = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 15;
+
+	/**
 	 * The number of structural features of the '<em>Project Space</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 15;
+	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.OperationCompositeImpl
@@ -565,6 +574,34 @@ public interface WorkspacePackage extends EPackage {
 	 * @ordered
 	 */
 	int EVENT_COMPOSITE_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.workspace.impl.NotificationCompositeImpl
+	 * <em>Notification Composite</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.workspace.impl.NotificationCompositeImpl
+	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getNotificationComposite()
+	 * @generated
+	 */
+	int NOTIFICATION_COMPOSITE = 8;
+
+	/**
+	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_COMPOSITE__NOTIFICATIONS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Notification Composite</em>' class. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NOTIFICATION_COMPOSITE_FEATURE_COUNT = 1;
 
 	/**
 	 * Returns the meta object for class ' {@link org.unicase.workspace.Workspace <em>Workspace</em>}'. <!--
@@ -966,6 +1003,18 @@ public interface WorkspacePackage extends EPackage {
 	EReference getProjectSpace_EventComposite();
 
 	/**
+	 * Returns the meta object for the containment reference '
+	 * {@link org.unicase.workspace.ProjectSpace#getNotificationComposite <em>Notification Composite</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '<em>Notification Composite</em>'.
+	 * @see org.unicase.workspace.ProjectSpace#getNotificationComposite()
+	 * @see #getProjectSpace()
+	 * @generated
+	 */
+	EReference getProjectSpace_NotificationComposite();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.OperationComposite <em>Operation Composite</em>}
 	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1108,6 +1157,28 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getEventComposite_Events();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.workspace.NotificationComposite
+	 * <em>Notification Composite</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Notification Composite</em>'.
+	 * @see org.unicase.workspace.NotificationComposite
+	 * @generated
+	 */
+	EClass getNotificationComposite();
+
+	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.workspace.NotificationComposite#getNotifications <em>Notifications</em>}'. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Notifications</em>'.
+	 * @see org.unicase.workspace.NotificationComposite#getNotifications()
+	 * @see #getNotificationComposite()
+	 * @generated
+	 */
+	EReference getNotificationComposite_Notifications();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1427,6 +1498,14 @@ public interface WorkspacePackage extends EPackage {
 		EReference PROJECT_SPACE__EVENT_COMPOSITE = eINSTANCE.getProjectSpace_EventComposite();
 
 		/**
+		 * The meta object literal for the '<em><b>Notification Composite</b></em>' containment reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference PROJECT_SPACE__NOTIFICATION_COMPOSITE = eINSTANCE.getProjectSpace_NotificationComposite();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.OperationCompositeImpl
 		 * <em>Operation Composite</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -1539,6 +1618,24 @@ public interface WorkspacePackage extends EPackage {
 		 * @generated
 		 */
 		EReference EVENT_COMPOSITE__EVENTS = eINSTANCE.getEventComposite_Events();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.workspace.impl.NotificationCompositeImpl
+		 * <em>Notification Composite</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.workspace.impl.NotificationCompositeImpl
+		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getNotificationComposite()
+		 * @generated
+		 */
+		EClass NOTIFICATION_COMPOSITE = eINSTANCE.getNotificationComposite();
+
+		/**
+		 * The meta object literal for the '<em><b>Notifications</b></em>' containment reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference NOTIFICATION_COMPOSITE__NOTIFICATIONS = eINSTANCE.getNotificationComposite_Notifications();
 
 	}
 

@@ -71,6 +71,7 @@ import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.EventComposite;
 import org.unicase.workspace.ModifiedModelElementsCache;
+import org.unicase.workspace.NotificationComposite;
 import org.unicase.workspace.OperationComposite;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
@@ -123,6 +124,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getPendingFileTransfers <em>Pending File Transfers
  *             </em>}</li>
  *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getEventComposite <em>Event Composite</em>}</li>
+ *             <li>{@link org.unicase.workspace.impl.ProjectSpaceImpl#getNotificationComposite <em>Notification
+ *             Composite</em>}</li>
  *             </ul>
  *             </p>
  * @generated
@@ -328,6 +331,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @ordered
 	 */
 	protected EventComposite eventComposite;
+
+	/**
+	 * The cached value of the '{@link #getNotificationComposite() <em>Notification Composite</em>}' containment
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getNotificationComposite()
+	 * @generated
+	 * @ordered
+	 */
+	protected NotificationComposite notificationComposite;
 
 	private boolean initCompleted;
 
@@ -574,7 +587,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
-	 * @deprecated
 	 */
 	@Deprecated
 	public EList<Event> getEvents() {
@@ -987,6 +999,87 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		} else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE,
 				newEventComposite, newEventComposite));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationComposite getNotificationComposite() {
+		if (notificationComposite != null && notificationComposite.eIsProxy()) {
+			InternalEObject oldNotificationComposite = (InternalEObject) notificationComposite;
+			notificationComposite = (NotificationComposite) eResolveProxy(oldNotificationComposite);
+			if (notificationComposite != oldNotificationComposite) {
+				InternalEObject newNotificationComposite = (InternalEObject) notificationComposite;
+				NotificationChain msgs = oldNotificationComposite.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, null);
+				if (newNotificationComposite.eInternalContainer() == null) {
+					msgs = newNotificationComposite.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, oldNotificationComposite,
+						notificationComposite));
+			}
+		}
+		return notificationComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationComposite basicGetNotificationComposite() {
+		return notificationComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetNotificationComposite(NotificationComposite newNotificationComposite,
+		NotificationChain msgs) {
+		NotificationComposite oldNotificationComposite = notificationComposite;
+		notificationComposite = newNotificationComposite;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, oldNotificationComposite,
+				newNotificationComposite);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setNotificationComposite(NotificationComposite newNotificationComposite) {
+		if (newNotificationComposite != notificationComposite) {
+			NotificationChain msgs = null;
+			if (notificationComposite != null)
+				msgs = ((InternalEObject) notificationComposite).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, msgs);
+			if (newNotificationComposite != null)
+				msgs = ((InternalEObject) newNotificationComposite).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, null, msgs);
+			msgs = basicSetNotificationComposite(newNotificationComposite, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE, newNotificationComposite,
+				newNotificationComposite));
 	}
 
 	/**
@@ -1450,6 +1543,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return ((InternalEList<?>) getPendingFileTransfers()).basicRemove(otherEnd, msgs);
 		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			return basicSetEventComposite(null, msgs);
+		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
+			return basicSetNotificationComposite(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -1504,6 +1599,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			if (resolve)
 				return getEventComposite();
 			return basicGetEventComposite();
+		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
+			if (resolve)
+				return getNotificationComposite();
+			return basicGetNotificationComposite();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -1566,6 +1665,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			setEventComposite((EventComposite) newValue);
 			return;
+		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
+			setNotificationComposite((NotificationComposite) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -1623,6 +1725,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			setEventComposite((EventComposite) null);
 			return;
+		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
+			setNotificationComposite((NotificationComposite) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -1666,6 +1771,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			return pendingFileTransfers != null && !pendingFileTransfers.isEmpty();
 		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
 			return eventComposite != null;
+		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
+			return notificationComposite != null;
 		}
 		return super.eIsSet(featureID);
 	}

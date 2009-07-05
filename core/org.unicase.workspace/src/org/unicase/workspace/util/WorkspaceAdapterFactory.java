@@ -11,6 +11,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.workspace.EventComposite;
+import org.unicase.workspace.NotificationComposite;
 import org.unicase.workspace.OperationComposite;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
@@ -109,6 +110,11 @@ public class WorkspaceAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseEventComposite(EventComposite object) {
 			return createEventCompositeAdapter();
+		}
+
+		@Override
+		public Adapter caseNotificationComposite(NotificationComposite object) {
+			return createNotificationCompositeAdapter();
 		}
 
 		@Override
@@ -239,6 +245,20 @@ public class WorkspaceAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createEventCompositeAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.workspace.NotificationComposite
+	 * <em>Notification Composite</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we
+	 * can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.workspace.NotificationComposite
+	 * @generated
+	 */
+	public Adapter createNotificationCompositeAdapter() {
 		return null;
 	}
 

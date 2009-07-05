@@ -213,6 +213,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__LOCAL_OPERATIONS);
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__PENDING_FILE_TRANSFERS);
 			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__EVENT_COMPOSITE);
+			childrenFeatures.add(WorkspacePackage.Literals.PROJECT_SPACE__NOTIFICATION_COMPOSITE);
 		}
 		return childrenFeatures;
 	}
@@ -296,6 +297,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 		case WorkspacePackage.PROJECT_SPACE__LOCAL_OPERATIONS:
 		case WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS:
 		case WorkspacePackage.PROJECT_SPACE__EVENT_COMPOSITE:
+		case WorkspacePackage.PROJECT_SPACE__NOTIFICATION_COMPOSITE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -398,6 +400,9 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__EVENT_COMPOSITE,
 			WorkspaceFactory.eINSTANCE.createEventComposite()));
+
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__NOTIFICATION_COMPOSITE,
+			WorkspaceFactory.eINSTANCE.createNotificationComposite()));
 	}
 
 	/**

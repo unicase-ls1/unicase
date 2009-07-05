@@ -256,6 +256,29 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.workspace.NotificationComposite} instances.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected NotificationCompositeItemProvider notificationCompositeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.workspace.NotificationComposite}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createNotificationCompositeAdapter() {
+		if (notificationCompositeItemProvider == null) {
+			notificationCompositeItemProvider = new NotificationCompositeItemProvider(this);
+		}
+
+		return notificationCompositeItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -365,6 +388,8 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 			pendingFileTransferItemProvider.dispose();
 		if (eventCompositeItemProvider != null)
 			eventCompositeItemProvider.dispose();
+		if (notificationCompositeItemProvider != null)
+			notificationCompositeItemProvider.dispose();
 	}
 
 }
