@@ -26,9 +26,9 @@
          icon="icons/obj16/DiagramDiagramFile.gif"
          extensions="component_diagram"
          default="true"
-         class="org.unicase.ui.componentDiagram.part.ModelDiagramEditor"
-         matchingStrategy="org.unicase.ui.componentDiagram.part.ModelMatchingStrategy"
-         contributorClass="org.unicase.ui.componentDiagram.part.ModelDiagramActionBarContributor">
+         class="org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditor"
+         matchingStrategy="org.unicase.ui.diagram.componentDiagram.part.ModelMatchingStrategy"
+         contributorClass="org.unicase.ui.diagram.componentDiagram.part.ModelDiagramActionBarContributor">
       </editor>
    </extension>
    
@@ -48,7 +48,7 @@
   	     name="%newWizardName"
   	     icon="icons/obj16/DiagramDiagramFile.gif"
   	     category="org.eclipse.ui.Examples"
-  	     class="org.unicase.ui.componentDiagram.part.ModelCreationWizard"
+  	     class="org.unicase.ui.diagram.componentDiagram.part.ModelCreationWizard"
   	     id="org.unicase.ui.componentDiagram.part.ModelCreationWizardID">
   	  	 <description>%newWizardDesc</description>  
       </wizard>
@@ -59,9 +59,9 @@
       <objectContribution
             adaptable="false"
             id="org.unicase.ui.componentDiagram.LoadResource"
-            objectClass="org.unicase.ui.componentDiagram.edit.parts.MEDiagramEditPart">
+            objectClass="org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart">
          <action
-               class="org.unicase.ui.componentDiagram.part.ModelLoadResourceAction"
+               class="org.unicase.ui.diagram.componentDiagram.part.ModelLoadResourceAction"
                enablesFor="1"
                id="org.unicase.ui.componentDiagram.LoadResourceAction"
                label="%loadResourceActionLabel"
@@ -78,7 +78,7 @@
             objectClass="org.eclipse.core.resources.IFile">
          <action
                label="%initDiagramActionLabel"
-               class="org.unicase.ui.componentDiagram.part.ModelInitDiagramFileAction"
+               class="org.unicase.ui.diagram.componentDiagram.part.ModelInitDiagramFileAction"
                menubarPath="additions"
                enablesFor="1"
                id="org.unicase.ui.componentDiagram.InitDiagramAction">
@@ -128,7 +128,7 @@
 
    <extension point="org.eclipse.core.runtime.preferences">
       <?gmfgen generated="true"?>
-      <initializer class="org.unicase.ui.componentDiagram.preferences.DiagramPreferenceInitializer"/>
+      <initializer class="org.unicase.ui.diagram.componentDiagram.preferences.DiagramPreferenceInitializer"/>
    </extension>
 
    <extension point="org.eclipse.ui.preferencePages">
@@ -136,31 +136,31 @@
       <page
             id="org.unicase.diagram.general"
             name="%preference.page.title.org.unicase.diagram.general"
-            class="org.unicase.ui.componentDiagram.preferences.DiagramGeneralPreferencePage">
+            class="org.unicase.ui.diagram.componentDiagram.preferences.DiagramGeneralPreferencePage">
       </page>
       <page
             id="org.unicase.diagram.appearance"
             name="%preference.page.title.org.unicase.diagram.appearance"
             category="org.unicase.diagram.general"
-            class="org.unicase.ui.componentDiagram.preferences.DiagramAppearancePreferencePage">
+            class="org.unicase.ui.diagram.componentDiagram.preferences.DiagramAppearancePreferencePage">
       </page>
       <page
             id="org.unicase.diagram.connections"
             name="%preference.page.title.org.unicase.diagram.connections"
             category="org.unicase.diagram.general"
-            class="org.unicase.ui.componentDiagram.preferences.DiagramConnectionsPreferencePage">
+            class="org.unicase.ui.diagram.componentDiagram.preferences.DiagramConnectionsPreferencePage">
       </page>
       <page
             id="org.unicase.diagram.printing"
             name="%preference.page.title.org.unicase.diagram.printing"
             category="org.unicase.diagram.general"
-            class="org.unicase.ui.componentDiagram.preferences.DiagramPrintingPreferencePage">
+            class="org.unicase.ui.diagram.componentDiagram.preferences.DiagramPrintingPreferencePage">
       </page>
       <page
             id="org.unicase.diagram.rulersAndGrid"
             name="%preference.page.title.org.unicase.diagram.rulersAndGrid"
             category="org.unicase.diagram.general"
-            class="org.unicase.ui.componentDiagram.preferences.DiagramRulersAndGridPreferencePage">
+            class="org.unicase.ui.diagram.componentDiagram.preferences.DiagramRulersAndGridPreferencePage">
       </page>
       <page
             id="org.unicase.diagram.pathmaps"
@@ -174,7 +174,7 @@
       <?gmfgen generated="true"?>
       <propertyContributor
             contributorId="org.unicase.ui.componentDiagram"
-            labelProvider="org.unicase.ui.componentDiagram.sheet.ModelSheetLabelProvider">
+            labelProvider="org.unicase.ui.diagram.componentDiagram.sheet.ModelSheetLabelProvider">
          <propertyCategory category="domain"/>
          <propertyCategory category="visual"/>
          <propertyCategory category="extra"/>
@@ -225,10 +225,10 @@
          <propertySection
             id="property.section.domain" 
             tab="property.tab.domain"
-            class="org.unicase.ui.componentDiagram.sheet.ModelPropertySection">
+            class="org.unicase.ui.diagram.componentDiagram.sheet.ModelPropertySection">
             <input type="org.eclipse.gmf.runtime.notation.View"/>
             <input type="org.eclipse.gef.EditPart"/>
-            <input type="org.unicase.ui.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
+            <input type="org.unicase.ui.diagram.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
          </propertySection>
       </propertySections>
    </extension>
@@ -252,21 +252,21 @@
 
    <extension point="org.eclipse.gmf.runtime.emf.ui.modelingAssistantProviders">
       <?gmfgen generated="true"?>
-      <modelingAssistantProvider class="org.unicase.ui.componentDiagram.providers.ModelModelingAssistantProvider">
+      <modelingAssistantProvider class="org.unicase.ui.diagram.componentDiagram.providers.ModelModelingAssistantProvider">
          <Priority name="Lowest"/>
       </modelingAssistantProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.iconProviders">
       <?gmfgen generated="true"?>
-      <IconProvider class="org.unicase.ui.componentDiagram.providers.ModelIconProvider">
+      <IconProvider class="org.unicase.ui.diagram.componentDiagram.providers.ModelIconProvider">
          <Priority name="Low"/>
       </IconProvider>
    </extension>
 
    <extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
       <?gmfgen generated="true"?>
-      <ParserProvider class="org.unicase.ui.componentDiagram.providers.ModelParserProvider">
+      <ParserProvider class="org.unicase.ui.diagram.componentDiagram.providers.ModelParserProvider">
          <Priority name="Lowest"/>
       </ParserProvider>
    </extension>
@@ -279,7 +279,7 @@
                name="%metatype.name.MEDiagram_99"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="MEDiagram"
-               edithelper="org.unicase.ui.componentDiagram.edit.helpers.MEDiagramEditHelper">
+               edithelper="org.unicase.ui.diagram.componentDiagram.edit.helpers.MEDiagramEditHelper">
             <param name="semanticHint" value="99"/>
          </metamodelType>
       </metamodel>
@@ -289,7 +289,7 @@
                name="%metatype.name.ComponentService_2001"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="ComponentService"
-               edithelper="org.unicase.ui.componentDiagram.edit.helpers.ComponentServiceEditHelper">
+               edithelper="org.unicase.ui.diagram.componentDiagram.edit.helpers.ComponentServiceEditHelper">
             <param name="semanticHint" value="2001"/>
          </metamodelType>
       </metamodel>
@@ -299,7 +299,7 @@
                name="%metatype.name.Component_2002"
                kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
                eclass="Component"
-               edithelper="org.unicase.ui.componentDiagram.edit.helpers.ComponentEditHelper">
+               edithelper="org.unicase.ui.diagram.componentDiagram.edit.helpers.ComponentEditHelper">
             <param name="semanticHint" value="2002"/>
          </metamodelType>
       </metamodel>
@@ -350,7 +350,7 @@
       <extension
          point="org.eclipse.core.expressions.propertyTesters">
       <propertyTester
-            class="org.unicase.ui.componentDiagram.part.DiagramTypeTester"
+            class="org.unicase.ui.diagram.componentDiagram.part.DiagramTypeTester"
             id="org.unicase.ui.componentDiagram.part.DiagramTypeTester"
             namespace="org.unicase.ui.componentDiagram"
             properties="isDiagramType"
@@ -364,7 +364,7 @@
            type="org.eclipse.emf.common.ui.URIEditorInput"
            namespace="org.unicase.ui.componentDiagram"
            properties="isURIEditorInput"
-           class="org.unicase.ui.componentDiagram.part.ModelUriEditorInputTester">
+           class="org.unicase.ui.diagram.componentDiagram.part.ModelUriEditorInputTester">
        </propertyTester>
    </extension>
 
@@ -375,7 +375,7 @@
            type="org.eclipse.emf.ecore.EObject"
            namespace="org.unicase.ui.componentDiagram"
            properties="isDomainModelElement"
-           class="org.unicase.ui.componentDiagram.part.ModelDomainModelElementTester">
+           class="org.unicase.ui.diagram.componentDiagram.part.ModelDomainModelElementTester">
        </propertyTester>
    </extension>
 
@@ -401,8 +401,8 @@
             id="org.unicase.ui.componentDiagram.resourceContent" 
             name="%navigatorContentName" 
             priority="normal" 
-            contentProvider="org.unicase.ui.componentDiagram.navigator.ModelNavigatorContentProvider" 
-            labelProvider="org.unicase.ui.componentDiagram.navigator.ModelNavigatorLabelProvider"
+            contentProvider="org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorContentProvider" 
+            labelProvider="org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorLabelProvider"
             icon="icons/obj16/DiagramDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -411,24 +411,24 @@
     	          <instanceof value="org.eclipse.core.resources.IFile"/>
         	      <test property="org.eclipse.core.resources.extension" value="component_diagram"/>
                </and>
-               <instanceof value="org.unicase.ui.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
+               <instanceof value="org.unicase.ui.diagram.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
             </or>
          </triggerPoints>
          <possibleChildren>
             <or>
-         	   <instanceof value="org.unicase.ui.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
+         	   <instanceof value="org.unicase.ui.diagram.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
             </or>
          </possibleChildren>
          <commonSorter 
                id="org.unicase.ui.componentDiagram.navigatorSorter" 
-               class="org.unicase.ui.componentDiagram.navigator.ModelNavigatorSorter">
+               class="org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorSorter">
             <parentExpression>
                <or>
 	              <and>
     	             <instanceof value="org.eclipse.core.resources.IFile"/>
         	         <test property="org.eclipse.core.resources.extension" value="component_diagram"/>
                   </and>
-                  <instanceof value="org.unicase.ui.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
+                  <instanceof value="org.unicase.ui.diagram.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
                </or>
             </parentExpression>
          </commonSorter>
@@ -437,8 +437,8 @@
             id="org.unicase.ui.componentDiagram.domainResourceContent" 
             name="%domainNavigatorContentName" 
             priority="normal" 
-            contentProvider="org.unicase.ui.componentDiagram.navigator.ModelDomainNavigatorContentProvider" 
-            labelProvider="org.unicase.ui.componentDiagram.navigator.ModelDomainNavigatorLabelProvider"
+            contentProvider="org.unicase.ui.diagram.componentDiagram.navigator.ModelDomainNavigatorContentProvider" 
+            labelProvider="org.unicase.ui.diagram.componentDiagram.navigator.ModelDomainNavigatorLabelProvider"
             icon="icons/obj16/DiagramDiagramFile.gif"
             activeByDefault="true">
          <triggerPoints>
@@ -462,10 +462,10 @@
       </navigatorContent>
       <actionProvider
             id="org.unicase.ui.componentDiagram.navigatorActionProvider"
-            class="org.unicase.ui.componentDiagram.navigator.ModelNavigatorActionProvider">
+            class="org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorActionProvider">
          <enablement>
             <or>
-               <instanceof value="org.unicase.ui.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
+               <instanceof value="org.unicase.ui.diagram.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
             </or>
          </enablement>
       </actionProvider>
@@ -475,7 +475,7 @@
       <?gmfgen generated="true"?>
       <linkHelper
             id="org.unicase.ui.componentDiagram.navigatorLinkHelper"
-            class="org.unicase.ui.componentDiagram.navigator.ModelNavigatorLinkHelper">
+            class="org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorLinkHelper">
          <editorInputEnablement>
             <and>
                <instanceof value="org.eclipse.emf.common.ui.URIEditorInput"/>
@@ -483,7 +483,7 @@
             </and>
          </editorInputEnablement>
          <selectionEnablement>
-            <instanceof value="org.unicase.ui.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
+            <instanceof value="org.unicase.ui.diagram.componentDiagram.navigator.ModelAbstractNavigatorItem"/>
          </selectionEnablement>
       </linkHelper>
    </extension>
@@ -491,7 +491,7 @@
       <?gmfgen generated="true"?>
       <command
          categoryId="org.eclipse.ui.category.edit"
-         defaultHandler="org.unicase.ui.componentDiagram.part.ModelDiagramUpdateCommand"
+         defaultHandler="org.unicase.ui.diagram.componentDiagram.part.ModelDiagramUpdateCommand"
          description="%update.diagram.description"
          id="org.unicase.ui.componentDiagram.updateDiagram"
          name="%update.diagram.name"/>
