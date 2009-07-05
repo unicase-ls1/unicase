@@ -608,9 +608,10 @@ public interface ProjectSpace extends IdentifiableElement {
 	/**
 	 * Gathers all local operations and canonizes them.
 	 * 
+	 * @param canonized true if the operations should be canonized
 	 * @return the list of operations
 	 */
-	ChangePackage getCannonizedLocalOperations();
+	ChangePackage getLocalChangePackage(boolean canonized);
 
 	/**
 	 * @return modified model elements cache. This is class clients (e.g. dirty decorator) can ask to see if a model
