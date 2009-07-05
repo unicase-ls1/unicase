@@ -9,23 +9,24 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Set;
 
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
+import org.unicase.model.organization.Group;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
+import org.unicase.model.task.WorkItem;
+import org.unicase.workspace.PreferenceManager;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
-import org.unicase.workspace.notification.NotificationProvider;
-import org.unicase.workspace.util.NoCurrentUserException;
+import org.unicase.workspace.PropertyKey.DashboardKey;
 import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
@@ -33,9 +34,22 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * 
  * @author shterev
  */
-public class CommentsNotificationProvider implements NotificationProvider {
+public class CommentsNotificationProvider extends AbstractNotificationProvider {
 
-	private HashMap<Comment, Date> comments;
+	private HashMap<Comment, Date> personalComments;
+	private HashMap<Comment, Date> directReplies;
+	private HashMap<Comment, Date> threadReplies;
+	private HashMap<Comment, Date> taskComments;
+
+	/**
+	 * Default constructor.
+	 */
+	public CommentsNotificationProvider() {
+		personalComments = new HashMap<Comment, Date>();
+		directReplies = new HashMap<Comment, Date>();
+		threadReplies = new HashMap<Comment, Date>();
+		taskComments = new HashMap<Comment, Date>();
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -48,90 +62,145 @@ public class CommentsNotificationProvider implements NotificationProvider {
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
-	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
+	@Override
+	protected List<ESNotification> createNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
 		String currentUsername) {
-
-		// sanity checks
 		List<ESNotification> result = new ArrayList<ESNotification>();
-		User user = null;
-		try {
-			user = OrgUnitHelper.getUser(projectSpace);
-		} catch (NoCurrentUserException e) {
-			return result;
-		} catch (CannotMatchUserInProjectException e) {
-			return result;
-		}
-
-		if (projectSpace == null || user == null) {
-			return result;
-		}
-
-		Project project = projectSpace.getProject();
-		comments = new HashMap<Comment, Date>();
-		for (ChangePackage changePackage : changePackages) {
-			for (AbstractOperation operation : changePackage.getOperations()) {
-				if (operation instanceof CompositeOperation) {
-					for (AbstractOperation op : ((CompositeOperation) operation).getSubOperations()) {
-						handleOperation(op, user, project);
+		if (projectSpace.hasProperty(DashboardKey.COMMENTS_PROVIDER)) {
+			OrgUnitProperty commentsProviderProperty = PreferenceManager.INSTANCE.getProperty(projectSpace,
+				DashboardKey.COMMENTS_PROVIDER);
+			if (commentsProviderProperty.getBooleanProperty()) {
+				for (Comment comment : personalComments.keySet()) {
+					result.add(createPersonalCommentNotification(projectSpace, getUser(), comment));
+				}
+				for (Comment comment : directReplies.keySet()) {
+					result.add(createDirectReplyNotification(projectSpace, getUser(), comment));
+				}
+				for (Comment comment : taskComments.keySet()) {
+					result.add(createTaskCommentNotification(projectSpace, getUser(), comment));
+				}
+				OrgUnitProperty threadRepliesProperty = PreferenceManager.INSTANCE.getProperty(projectSpace,
+					DashboardKey.SHOW_CONTAINMENT_REPLIES);
+				if (threadRepliesProperty.getBooleanProperty()) {
+					for (Comment comment : threadReplies.keySet()) {
+						result.add(createThreadCommentNotification(projectSpace, getUser(), comment));
 					}
-				} else {
-					handleOperation(operation, user, project);
 				}
 			}
 		}
-
-		for (Comment comment : comments.keySet()) {
-			result.add(createNotification(projectSpace, user, comment));
-		}
 		return result;
-
 	}
 
-	private void handleOperation(AbstractOperation operation, User user, Project project) {
-		ModelElementId modelElementId = operation.getModelElementId();
-
-		ModelElement modelElement = project.getModelElement(modelElementId);
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void handleOperation(AbstractOperation operation, User user, Project project) {
+		ModelElement modelElement = project.getModelElement(operation.getModelElementId());
 		if (modelElement == null) {
 			// the ME was deleted from the project.
 			return;
 		}
 
-		Comment comment = extractComment(operation);
-		if (comment != null) {
-
+		if (operation instanceof CreateDeleteOperation && modelElement instanceof Comment) {
+			handleCreateDeleteOperation(operation, user, modelElement);
 		}
-
 	}
 
-	private Comment extractComment(AbstractOperation operation) {
-		if (operation instanceof CreateDeleteOperation) {
-			CreateDeleteOperation createOperation = (CreateDeleteOperation) operation;
-			if (createOperation.getModelElement() instanceof Comment) {
-				return (Comment) createOperation.getModelElement();
+	private void handleCreateDeleteOperation(AbstractOperation operation, User user, ModelElement modelElement) {
+		Comment localComment = (Comment) modelElement;
+		if (localComment.getCommentedElement() instanceof Comment
+			&& ((Comment) localComment.getCommentedElement()).getSender() != null
+			&& ((Comment) localComment.getCommentedElement()).getSender().equals(user)) {
+			directReplies.put(localComment, operation.getClientDate());
+			return;
+		}
+		if (localComment.getRecipients().contains(user)) {
+			personalComments.put(localComment, operation.getClientDate());
+			return;
+		}
+		ModelElement firstParent = localComment.getFirstParent();
+		Set<Group> groups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
+		if (firstParent instanceof WorkItem && ((WorkItem) firstParent).getAssignee().equals(user)
+			|| groups.contains(((WorkItem) firstParent).getAssignee())
+			|| ((WorkItem) firstParent).getReviewer().equals(user)) {
+			taskComments.put(localComment, operation.getClientDate());
+			return;
+		}
+		List<ModelElement> parents = localComment.getParents();
+		for (ModelElement me : parents) {
+			if (me instanceof Comment && ((Comment) me).getSender() != null && ((Comment) me).getSender().equals(user)) {
+				threadReplies.put(localComment, operation.getClientDate());
 			}
 		}
-		return null;
 	}
 
-	private ESNotification createNotification(ProjectSpace projectSpace, User user, Comment comment) {
+	private ESNotification createNotification(ProjectSpace projectSpace, User user, Comment comment, Date date) {
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
-		notification.setName("New comment");
+		notification.setName("New comment notification");
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(user.getName());
 		notification.setSeen(false);
-		notification.setSender(getName());
-		StringBuilder stringBuilder = new StringBuilder();
-		String text = stringBuilder.toString();
-		notification.setMessage(text);
-		Date date = comments.get(comment);
+		notification.setProvider(getName());
+		notification.getRelatedModelElements().add(comment.getModelElementId());
 		if (date == null) {
 			date = new Date();
 		}
 		notification.setCreationDate(date);
+		return notification;
+	}
+
+	private ESNotification createDirectReplyNotification(ProjectSpace projectSpace, User user, Comment comment) {
+		Date date = directReplies.get(comment);
+		ESNotification notification = createNotification(projectSpace, user, comment, date);
+		ModelElement rootElement = comment.getFirstParent();
+
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(comment.getSender(), projectSpace));
+		stringBuilder.append(" replied to a comment of yours in the discussion thread for ");
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(rootElement, projectSpace));
+		String text = stringBuilder.toString();
+		notification.setMessage(text);
+		return notification;
+	}
+
+	private ESNotification createPersonalCommentNotification(ProjectSpace projectSpace, User user, Comment comment) {
+		Date date = personalComments.get(comment);
+		ESNotification notification = createNotification(projectSpace, user, comment, date);
+
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(comment.getSender(), projectSpace));
+		stringBuilder.append(" sent you a comment: ");
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(comment, projectSpace));
+		String text = stringBuilder.toString();
+		notification.setMessage(text);
+		return notification;
+	}
+
+	private ESNotification createTaskCommentNotification(ProjectSpace projectSpace, User user, Comment comment) {
+		Date date = personalComments.get(comment);
+		ESNotification notification = createNotification(projectSpace, user, comment, date);
+
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(comment.getSender(), projectSpace));
+		stringBuilder.append(" commented on a WorkItem of yours: ");
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(comment.getFirstParent(), projectSpace));
+		String text = stringBuilder.toString();
+		notification.setMessage(text);
+		return notification;
+	}
+
+	private ESNotification createThreadCommentNotification(ProjectSpace projectSpace, User user, Comment comment) {
+		Date date = personalComments.get(comment);
+		ESNotification notification = createNotification(projectSpace, user, comment, date);
+
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(comment.getSender(), projectSpace));
+		stringBuilder.append(" commented in the thread for ");
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(comment.getFirstParent(), projectSpace));
+		String text = stringBuilder.toString();
+		notification.setMessage(text);
 		return notification;
 	}
 }
