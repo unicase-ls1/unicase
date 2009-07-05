@@ -1,18 +1,23 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.iterator;
 
+import java.util.Iterator;
+
 import org.eclipse.emf.ecore.EObject;
 
+import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.workspace.Usersession;
 
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Version Iterator</b></em>'.
+ * @implements Iterator
  * <!-- end-user-doc -->
  *
  * <p>
@@ -30,7 +35,7 @@ import org.unicase.emfstore.esmodel.ProjectId;
  * @model
  * @generated
  */
-public interface VersionIterator extends EObject {
+public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> {
 	/**
 	 * Returns the value of the '<em><b>Step Length</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -161,4 +166,62 @@ public interface VersionIterator extends EObject {
 	 */
 	void setVersionSpecQuery(VersionSpecQuery value);
 
+	public boolean hasNext();
+	
+	public ProjectAnalysisData next();
+	
+	public void remove();
+	
+	/**
+	 * By default, the iterator will go through from version 0 to Head version,
+	 * and the next() method will return the copy of ProjectAnalysisData instead
+	 * of ProjectAnalysisData.
+	 * 
+	 * @param usersession
+	 *            the session id for authentication
+	 * @param projectId
+	 *            the project id of the project to get
+	 * @param stepLength
+	 *            the step length for the iterator to go through to the next
+	 * @throws IteratorException
+	 *             if any error occurs
+	 * @generated NOT
+	 */
+
+	void init(Usersession usersession, ProjectId projectId,
+			int stepLength) throws IteratorException;
+	
+	/**
+	 * @param usersession
+	 *            the session id for authentication
+	 * @param projectId
+	 *            the project id of the project to get
+	 * @param stepLength
+	 *            the step length for the iterator to go through to the next
+	 * @param versionSpecQuery
+	 *            the version query for the iterator from start till the end
+	 * @param isForward
+	 *            the direction for the iterator go through, either
+	 *            forward(true) or backward(false) However, doesn't work for
+	 *            backward currently, will be solved in the near future
+	 * @param returnProjectDataCopy
+	 *            the next() method will return the copy of ProjectAnalysisData
+	 *            when it is set to true
+	 * @throws IteratorException
+	 *             if any error occurs
+	 * @generated NOT
+	 */
+
+	void init(Usersession usersession, ProjectId projectId,
+			int stepLength, VersionSpecQuery versionSpecQuery,
+			boolean isForward, boolean returnProjectDataCopy)
+			throws IteratorException;
+	
+	/**
+	 * Initialize the iterator, have to set at least ProjectId and StepLength to start the iterator, 
+	 * or choose to use other init() methods.
+	 * @param usersession got after login
+	 * @throws IteratorException if any error occurs
+	 */
+	void init(Usersession usersession)throws IteratorException;
 } // VersionIterator

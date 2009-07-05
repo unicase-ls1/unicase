@@ -1,12 +1,13 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.iterator.impl;
 
+import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 
@@ -14,8 +15,21 @@ import org.eclipse.emf.ecore.EClass;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.analyzer.iterator.TimeIterator;
+import org.unicase.analyzer.iterator.VersionSpecQuery;
+import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
+import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * <!-- begin-user-doc -->
@@ -92,6 +106,10 @@ public class TimeIteratorImpl extends VersionIteratorImpl implements TimeIterato
 	 * @ordered
 	 */
 	protected int stepLengthUnit = STEP_LENGTH_UNIT_EDEFAULT;
+
+	private DateVersionSpec dateSpec;
+
+	private DateVersionSpec endDateSpec;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -271,6 +289,128 @@ public class TimeIteratorImpl extends VersionIteratorImpl implements TimeIterato
 		result.append(stepLengthUnit);
 		result.append(')');
 		return result.toString();
+	}
+	
+	@Override
+	protected void updateSpecifier(PrimaryVersionSpec specifier, int stepLength, boolean isForward) {
+
+		if(dateSpec!=null){
+			Calendar calendar = Calendar.getInstance();
+			calendar.setTime(dateSpec.getDate());
+	
+			if (isForward) {
+				calendar.add(stepLengthUnit, stepLength);
+			} else {
+				calendar.add(stepLengthUnit, -stepLength);
+			}
+			dateSpec.setDate(calendar.getTime());
+			try {
+				PrimaryVersionSpec temp = this.getConnectionManager().resolveVersionSpec(getUsersession().getSessionId(),
+					getProjectId(), dateSpec);
+				specifier.setIdentifier(temp.getIdentifier());
+			} catch (EmfStoreException e) {
+				WorkspaceUtil.logException("Couldn't be resolved", e);
+			}
+		}
+	}
+
+	public void init(Usersession usersession, ProjectId projectId, int stepLength, int stepLengthUnit,
+		VersionSpecQuery versionSpecQuery, boolean isForward, boolean returnProjectDataCopy) throws IteratorException {
+
+		setForward(isForward);
+		setProjectId(projectId);
+		setReturnProjectDataCopy(returnProjectDataCopy);
+		setStepLength(stepLengthUnit);
+		setStepLengthUnit(stepLengthUnit);
+	    setVersionSpecQuery(versionSpecQuery);
+	    
+	    this.init(usersession);
+
+	}
+	
+
+	public void init(Usersession usersession, ProjectId projectId, int stepLength, int stepLengthUnit)
+		throws IteratorException {
+		
+		VersionSpecQuery versionSpecQuery = IteratorFactoryImpl.eINSTANCE.createVersionSpecQuery();
+		versionSpecQuery.setStartVersion(VersioningFactory.eINSTANCE
+			.createPrimaryVersionSpec());
+		versionSpecQuery.setEndVersion(VersioningFactory.eINSTANCE
+			.createHeadVersionSpec());
+		setVersionSpecQuery(versionSpecQuery);
+		setProjectId(projectId);
+		setStepLength(stepLength);
+		setStepLengthUnit(stepLengthUnit);
+		setReturnProjectDataCopy(true);
+		
+		setForward(true);
+		
+		this.init(usersession);
+	}
+	
+	
+	@Override
+	public void init(Usersession usersession) throws IteratorException {
+		super.init(usersession);
+		VersionSpec start = getVersionSpecQuery().getStartVersion();
+		VersionSpec end = getVersionSpecQuery().getEndVersion();
+		
+		this.dateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
+		this.endDateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
+		if (start instanceof DateVersionSpec && end instanceof DateVersionSpec) {
+			this.dateSpec = (DateVersionSpec) start;
+			this.endDateSpec = (DateVersionSpec) end;
+		} else {
+			HistoryQuery historyQuery = VersioningFactory.eINSTANCE.createHistoryQuery();
+			historyQuery.setSource(this.getStart());
+			historyQuery.setTarget(this.getEnd());
+			List<HistoryInfo> projectHistory = null;
+			try {
+				projectHistory = this.getConnectionManager().getHistoryInfo(usersession.getSessionId(), projectId,
+					historyQuery);
+			} catch (InvalidVersionSpecException e) {
+				throw new IteratorException("Could not get the history info.", e);
+			} catch (EmfStoreException e) {
+				throw new IteratorException("Cannot connect to server.", e);
+			}
+			setStartDate(projectHistory.get(projectHistory.size()-1).getLogMessage().getDate());
+			if(getStartDate() == null){
+				setStartDate(projectHistory.get(projectHistory.size()-1).getLogMessage().getClientDate());
+			}
+			setEndDate(projectHistory.get(0).getLogMessage().getDate());
+			if(getEndDate() == null){
+				setEndDate(projectHistory.get(0).getLogMessage().getClientDate());
+			}
+			this.dateSpec.setDate(getStartDate());
+			this.endDateSpec.setDate(getEndDate());
+		}
+
+		updateSpecifier(getSourceSpec(), stepLength, !isForward());
+
+		if (isForward()) {
+			if (getSourceSpec().compareTo(this.getStart()) < 0) {
+				getSourceSpec().setIdentifier(this.getStart().getIdentifier());
+			}
+		} else {
+			if (getSourceSpec().compareTo(this.getEnd()) > 0) {
+				getSourceSpec().setIdentifier(this.getEnd().getIdentifier());
+			}
+		}
+	}
+	
+	@Override
+	public boolean hasNext() {
+		if(super.hasNext()){
+			if(isForward()){
+				return dateSpec.getDate().before(endDateSpec.getDate());
+			}
+			else{
+				return dateSpec.getDate().after(endDateSpec.getDate());
+			}
+		}
+		else{
+			return false;		
+		}
 	}
 
 } //TimeIteratorImpl

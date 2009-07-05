@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.iterator.impl;
 
@@ -14,7 +13,11 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
-import org.unicase.analyzer.iterator.*;
+import org.unicase.analyzer.iterator.IteratorFactory;
+import org.unicase.analyzer.iterator.IteratorPackage;
+import org.unicase.analyzer.iterator.TimeIterator;
+import org.unicase.analyzer.iterator.VersionIterator;
+import org.unicase.analyzer.iterator.VersionSpecQuery;
 
 /**
  * <!-- begin-user-doc -->
