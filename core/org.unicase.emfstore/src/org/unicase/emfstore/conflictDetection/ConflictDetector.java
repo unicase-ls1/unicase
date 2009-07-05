@@ -10,6 +10,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
@@ -219,4 +220,50 @@ public class ConflictDetector {
 		}
 		return result;
 	}
+
+	/**
+	 * Filter the change packages that only operations involved in a conflict remain. Empty ChangePackages are removed
+	 * from the list.
+	 * 
+	 * @param myChanges my local change package
+	 * @param theirChanges the change packages from the repository
+	 */
+	public void filterToConflictInvolved(ChangePackage myChanges, List<ChangePackage> theirChanges) {
+		List<AbstractOperation> theirOperations = new ArrayList<AbstractOperation>();
+		for (ChangePackage theirChangePackage : theirChanges) {
+			for (AbstractOperation theirOperation : theirChangePackage.getOperations()) {
+				theirOperations.add(theirOperation);
+			}
+		}
+		EList<AbstractOperation> myOperations = myChanges.getOperations();
+		Set<AbstractOperation> allConflictInvolvedOperations = getAllConflictInvolvedOperations(myOperations,
+			theirOperations);
+
+		// filter my change package
+		Set<AbstractOperation> myOperationsToRemove = new HashSet<AbstractOperation>();
+		for (AbstractOperation myOperation : myOperations) {
+			if (!allConflictInvolvedOperations.contains(myOperation)) {
+				myOperationsToRemove.add(myOperation);
+			}
+		}
+		myOperations.removeAll(myOperationsToRemove);
+
+		// filter their change package
+		List<ChangePackage> changePackagesToRemove = new ArrayList<ChangePackage>();
+		for (ChangePackage theirChangePackage : theirChanges) {
+			Set<AbstractOperation> theirOperationsToRemove = new HashSet<AbstractOperation>();
+			EList<AbstractOperation> theirOperations2 = theirChangePackage.getOperations();
+			for (AbstractOperation theirOperation : theirOperations2) {
+				if (!allConflictInvolvedOperations.contains(theirOperation)) {
+					theirOperationsToRemove.add(theirOperation);
+				}
+			}
+			theirOperations2.removeAll(theirOperationsToRemove);
+			if (theirOperations2.size() == 0) {
+				changePackagesToRemove.add(theirChangePackage);
+			}
+		}
+		theirChanges.removeAll(changePackagesToRemove);
+	}
+
 }
