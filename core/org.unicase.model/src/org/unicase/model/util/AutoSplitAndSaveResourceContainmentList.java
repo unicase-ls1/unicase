@@ -34,7 +34,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implements List<T> {
 
 	private static final String ROOT_NAME = "root";
-	private static final int MAX_CAPACITY = 10;
+	private static final int MAX_CAPACITY = 30;
 	private final EList<T> list;
 	private Resource currentResource;
 	private int currentResourceElementCount;
@@ -66,12 +66,18 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 		if (eResource == null) {
 			URI fileURI = URI.createFileURI(path + File.separatorChar + ROOT_NAME + extension);
 			rootResource = resourceSet.createResource(fileURI);
+			rootResource.getContents().add(root);
+			saveResource(rootResource);
 		} else {
 			rootResource = eResource;
 		}
 
 		// init first resource
-		currentResource = createRandomResource(resourceSet, path);
+		initCurrentResource(resourceSet);
+	}
+
+	private void initCurrentResource(ResourceSet resourceSet) {
+		currentResource = createRandomResource(resourceSet, this.path);
 		currentResourceElementCount = 0;
 	}
 
@@ -107,7 +113,7 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 		if (o.eResource() != null) {
 			return;
 		}
-		if (currentResourceElementCount == MAX_CAPACITY) {
+		if (currentResourceElementCount > MAX_CAPACITY) {
 			currentResource = createRandomResource(resourceSet, path);
 			currentResourceElementCount = 0;
 		}
@@ -183,6 +189,7 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 			}
 			file.delete();
 		}
+		initCurrentResource(resourceSet);
 		saveResource(rootResource);
 	}
 
