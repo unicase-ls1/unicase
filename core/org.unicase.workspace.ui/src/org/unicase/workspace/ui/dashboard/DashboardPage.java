@@ -80,8 +80,8 @@ public class DashboardPage extends FormPage {
 		widgets = new ArrayList<AbstractDashboardWidget>();
 		widgets.add(new DashboardTaskWidget(this));
 		widgets.add(new DashboardEventWidget(this));
-//		widgets.add(new DashboardRelatedTasksWidget(this));
-		
+		// widgets.add(new DashboardRelatedTasksWidget(this));
+
 		form = managedForm.getForm();
 		toolkit = this.getEditor().getToolkit();
 		toolkit.decorateFormHeading(form.getForm());
@@ -160,7 +160,7 @@ public class DashboardPage extends FormPage {
 							entry = new UpdateDashboardEntry(DashboardPage.this, notificationsComposite, SWT.NONE, n,
 								projectSpace);
 						} else {
-							entry = new NotificationDashboardEntry(DashboardPage.this, notificationsComposite,
+							entry = new DashboardNotificationEntry(DashboardPage.this, notificationsComposite,
 								SWT.NONE, n, projectSpace);
 						}
 						GridDataFactory.fillDefaults().grab(true, false).applyTo(entry);
@@ -210,6 +210,6 @@ public class DashboardPage extends FormPage {
 			widget.dispose();
 		}
 		createWidgets();
-		widgetsComposite.layout(true);
+		widgetsComposite.layout();
 	}
 }
