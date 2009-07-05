@@ -874,7 +874,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		throws EmfStoreException {
 
 		// check if there are any changes
-		if (this.getOperations().size() == 0) {
+		if (!this.isDirty()) {
 			throw new NoLocalChangesException();
 		}
 
@@ -888,7 +888,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		final ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 
-		ChangePackage changePackage = getCannonizedLocalOperations();
+		ChangePackage changePackage = getLocalChangePackage(true);
 
 		notifyPreCommitObservers(changePackage);
 
@@ -901,7 +901,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			getBaseVersion(), changePackage, logMessage);
 
 		setBaseVersion(newBaseVersion);
-		getOperations().clear();
+		clearOperations();
 		getEvents().clear();
 
 		generateNotifications(changePackage);
@@ -918,12 +918,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return newBaseVersion;
 	}
 
+	private void clearOperations() {
+		getOperations().clear();
+	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.ProjectSpace#getCannonizedLocalOperations()
+	 * @see org.unicase.workspace.ProjectSpace#getLocalChangePackage()
 	 */
-	public ChangePackage getCannonizedLocalOperations() {
+	public ChangePackage getLocalChangePackage(boolean canonize) {
 		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
 		// copy operations from projectspace
 		for (AbstractOperation abstractOperation : getOperations()) {
@@ -936,7 +940,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			changePackage.getEvents().add(copy);
 		}
 
-		changePackage.cannonize();
+		if (canonize) {
+			changePackage.cannonize();
+		}
 		return changePackage;
 	}
 
@@ -1048,11 +1054,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		// detect conflicts
 		ConflictDetector conflictDetector = new ConflictDetector();
 		for (ChangePackage change : changes) {
-			ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-			EList<AbstractOperation> copiedOperations = changePackage.getOperations();
-			for (AbstractOperation operation : getOperations()) {
-				copiedOperations.add((AbstractOperation) EcoreUtil.copy(operation));
-			}
+			ChangePackage changePackage = getLocalChangePackage(false);
 			if (conflictDetector.doConflict(change, changePackage)) {
 				throw new ChangeConflictException(changes);
 			}
@@ -1149,23 +1151,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	public void revert() {
-
-		// revert all local changes
-		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		EList<AbstractOperation> copiedOperations = changePackage.getOperations();
-		for (AbstractOperation operation : getOperations()) {
-			copiedOperations.add((AbstractOperation) EcoreUtil.copy(operation));
+		while (isDirty()) {
+			undoLastOperation();
 		}
-		changePackage.getOperations().addAll(copiedOperations);
-		changePackage.cannonize();
-
-		stopChangeRecording();
-		changePackage.reverse().apply(project);
-		// all operation in cp
-		startChangeRecording();
-
-		this.getOperations().clear();
-		updateDirtyState();
 	}
 
 	/**
@@ -1190,7 +1178,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * Updates the dirty state of the project space.
 	 */
 	public void updateDirtyState() {
-		setDirty(getOperations().size() > 0);
+		setDirty(!getOperations().isEmpty());
 	}
 
 	/**
@@ -1583,7 +1571,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.setBaseVersion(createdProject.getVersion());
 		this.setLastUpdated(new Date());
 		this.setProjectId(createdProject.getProjectId());
-		this.getOperations().clear();
+		clearOperations();
 		this.saveProjectSpaceOnly();
 	}
 
@@ -1651,14 +1639,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void exportLocalChanges(String fileName) throws IOException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(URI.createFileURI(fileName));
-		ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		// copy operations from projectspace
-		for (AbstractOperation abstractOperation : getOperations()) {
-			AbstractOperation copy = (AbstractOperation) EcoreUtil.copy(abstractOperation);
-			changePackage.getOperations().add(copy);
-		}
-
-		resource.getContents().add(changePackage);
+		resource.getContents().add(getLocalChangePackage(false));
 		resource.save(null);
 	}
 
@@ -1679,10 +1660,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 
 		ChangePackage changePackage = (ChangePackage) directContents.get(0);
-		stopChangeRecording();
-		changePackage.apply(getProject());
-		startChangeRecording();
-		this.getOperations().addAll(changePackage.getOperations());
+		applyOperations(changePackage.getOperations());
 		saveResourceSet();
 
 	}
@@ -1700,7 +1678,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		notifyOperationUndone(lastOperation);
 		startChangeRecording();
 		operations.remove(lastOperation);
-		saveResourceSet();
+		saveProjectSpaceOnly();
 	}
 
 	/**
@@ -1765,20 +1743,18 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
+	 * @deprecated
 	 * @see org.unicase.workspace.ProjectSpace#applyMergeResult(java.util.List)
 	 */
+	@Deprecated
 	public void applyMergeResult(List<AbstractOperation> mergeResult, VersionSpec mergeTargetSpec)
 		throws EmfStoreException {
 		revert();
 		update(mergeTargetSpec);
 
-		stopChangeRecording();
-		for (AbstractOperation operation : mergeResult) {
-			operation.apply(getProject());
-		}
-		startChangeRecording();
-		getOperations().addAll(mergeResult);
-		saveResourceSet();
+		applyOperations(mergeResult);
+
+		saveProjectSpaceOnly();
 		updateDirtyState();
 	}
 
@@ -1918,18 +1894,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void merge(PrimaryVersionSpec target, ConflictResolver conflictResolver) throws EmfStoreException {
 		// merge the conflicts
-		ChangePackage myCp = this.getCannonizedLocalOperations();
+		ChangePackage myCp = this.getLocalChangePackage(true);
 		List<ChangePackage> theirCps = this.getChanges(getBaseVersion(), target);
 		conflictResolver.resolveConflicts(project, theirCps, myCp);
 
 		// revert the local operations and apply all their operations
 		this.revert();
 
-		// stop change recording
-		this.stopChangeRecording();
-
 		for (ChangePackage changePackage : theirCps) {
-			changePackage.apply(this.getProject());
+			applyOperations(changePackage.getOperations());
 		}
 
 		// generate merge result and apply to local workspace
@@ -1940,18 +1913,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			mergeResult.add(0, operationToReverse.reverse());
 		}
 		mergeResult.addAll(acceptedMine);
-		for (AbstractOperation operation : mergeResult) {
-			operation.apply(getProject());
-		}
 
-		// set local operations and base version
-		this.getOperations().addAll(mergeResult);
+		applyOperations(mergeResult);
+
 		this.setBaseVersion(target);
 
 		saveProjectSpaceOnly();
-
-		// start change recording
-		this.startChangeRecording();
 
 	}
 
@@ -2071,5 +2038,31 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public CompositeOperationHandle beginCompositeOperation() {
 		return this.changeTracker.beginCompositeOperation();
+	}
+
+	/**
+	 * Apply operation to the project.
+	 * 
+	 * @param operation the operation
+	 */
+	public void applyOperation(AbstractOperation operation) {
+		stopChangeRecording();
+		operation.apply(getProject());
+		addOperation(operation);
+		startChangeRecording();
+	}
+
+	/**
+	 * Apply a list of operations to the project.
+	 * 
+	 * @param operations the list of operations
+	 */
+	public void applyOperations(List<AbstractOperation> operations) {
+		stopChangeRecording();
+		for (AbstractOperation operation : operations) {
+			operation.apply(getProject());
+			addOperation(operation);
+		}
+		startChangeRecording();
 	}
 } // ProjectContainerImpl
