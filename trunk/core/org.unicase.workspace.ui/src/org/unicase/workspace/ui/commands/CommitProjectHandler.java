@@ -17,7 +17,6 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
@@ -120,7 +119,6 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	 * @see org.unicase.workspace.observers.CommitObserver#commitCompleted()
 	 */
 	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec versionSpec) {
-		ActionHelper.openDashboard();
 	}
 
 }

@@ -12,6 +12,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
+import org.eclipse.jface.preference.PreferenceDialog;
 import org.eclipse.jface.resource.JFaceResources;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
@@ -26,6 +27,10 @@ import org.eclipse.swt.layout.RowLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.dialogs.PreferencesUtil;
+import org.eclipse.ui.forms.events.HyperlinkAdapter;
+import org.eclipse.ui.forms.events.HyperlinkEvent;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.dashboard.DashboardPage;
 import org.unicase.workspace.ui.dashboard.DashboardToolbarAction;
 
@@ -97,7 +102,7 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 	 */
 	public Composite createWidget(final Composite parent) {
 		composite = new Composite(parent, SWT.NONE);
-		
+
 		composite.setBackgroundMode(SWT.INHERIT_FORCE);
 		composite.addPaintListener(this);
 
@@ -109,7 +114,7 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 		}
 		return composite;
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -117,12 +122,13 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 		GC gc = e.gc;
 		int x = composite.getClientArea().x;
 		int y = composite.getClientArea().y;
-		int width = composite.getSize().x;
+		int width = composite.getClientArea().width;
+		int height = composite.getClientArea().height;
 		gc.setAntialias(SWT.ON);
 		gc.setBackground(bg);
-		gc.fillRoundRectangle(x, y, composite.getSize().x - 1, composite.getSize().y - 1, 20, 20);
+		gc.fillRoundRectangle(x, y, width - 1, height - 1, 20, 20);
 		gc.setForeground(new Color(display, 20, 74, 180));
-		gc.drawRoundRectangle(x, y, composite.getSize().x - 1, composite.getSize().y - 1, 20, 20);
+		gc.drawRoundRectangle(x, y, width - 1, height - 1, 20, 20);
 		x += 15;
 		y += 10;
 		Font headerFont = JFaceResources.getBannerFont();
@@ -131,24 +137,25 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 		int lines = 1;
 		String[] words = title.split(" ");
 		String buffer = "";
-		for(String word : words){
-			if(gc.textExtent(buffer+" "+word).x <= width-30){
-				if(buffer!=""){
-					buffer += " "+word;
-				}else{
+		for (String word : words) {
+			if (gc.textExtent(buffer + " " + word).x <= width - 30) {
+				if (buffer != "") {
+					buffer += " " + word;
+				} else {
 					buffer = word;
 				}
-			}else{
-				gc.drawString(buffer, x+2, y);
+			} else {
+				gc.drawString(buffer, x + 2, y);
 				y += titleMetrics.getHeight();
 				buffer = word;
-				lines ++;
+				lines++;
 			}
 		}
-		gc.drawString(buffer, x+2, y);
+		gc.drawString(buffer, x + 2, y);
 		y += titleMetrics.getHeight() + 2;
-		gc.drawLine(x - 3, y, composite.getSize().x - 13, y);
-		GridLayoutFactory.fillDefaults().numColumns(2).extendedMargins(12, 12, 25+lines*titleMetrics.getHeight(), 5).applyTo(composite);
+		gc.drawLine(x - 3, y, width - 13, y);
+		GridLayoutFactory.fillDefaults().numColumns(2)
+			.extendedMargins(12, 12, 25 + lines * titleMetrics.getHeight(), 5).applyTo(composite);
 	}
 
 	/**
@@ -171,17 +178,17 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 		up.setToolTipText("Move widget up");
 		up.addMouseListener(downListener);
 
-		// String prefix = "org.unicase.dashboard.";
-		// DashboardToolbarAction settings = new DashboardToolbarAction(systemToolbar, "cog.png");
-		// settings.setToolTipText("Settings");
-		// settings.addHyperlinkListener(new HyperlinkAdapter() {
-		// @Override
-		// public void linkActivated(HyperlinkEvent e) {
-		// PreferenceDialog preferenceDialog = PreferencesUtil.createPreferenceDialogOn(composite.getShell(),
-		// prefix + getId(), null, null);
-		// preferenceDialog.open();
-		// }
-		// });
+		DashboardToolbarAction settings = new DashboardToolbarAction(systemToolbar, "cog.png");
+		settings.setToolTipText("Settings");
+		settings.addHyperlinkListener(new HyperlinkAdapter() {
+			@Override
+			public void linkActivated(HyperlinkEvent e) {
+				PreferenceDialog propertyDialog = PreferencesUtil.createPropertyDialogOn(Display.getCurrent()
+					.getActiveShell(), WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
+					.getProject(), "org.unicase.workspace.ui.dashboardWidgetProperties", null, null);
+				propertyDialog.open();
+			}
+		});
 	}
 
 	/**

@@ -5,12 +5,9 @@
  */
 package org.unicase.workspace.ui;
 
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
-import org.unicase.workspace.ui.prefs.DashboardDefaultPreferences;
-import org.unicase.workspace.ui.prefs.DashboardDefaultPreferences.DashboardPreferenceKey;
 
 /**
  * The activator class controls the plug-in life cycle.
@@ -72,16 +69,4 @@ public class Activator extends AbstractUIPlugin {
 		return imageDescriptorFromPlugin(PLUGIN_ID, path);
 	}
 	
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void initializeDefaultPreferences(IPreferenceStore store) {
-
-		// Dashboard
-		for (DashboardPreferenceKey key : DashboardPreferenceKey.values()) {
-			store.setDefault(key.toString(), DashboardDefaultPreferences.get(key));
-		}
-
-	}
 }
