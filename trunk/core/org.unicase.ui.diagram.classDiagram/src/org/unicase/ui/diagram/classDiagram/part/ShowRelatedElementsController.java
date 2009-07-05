@@ -41,9 +41,9 @@ import org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart;
 /**
  * @author schroech
  */
-public class ShowRelatedElementsController {
+public final class ShowRelatedElementsController {
 
-	private static final Map<EditPartViewer, ShowRelatedElementsController> viewerControllerMap = new HashMap<EditPartViewer, ShowRelatedElementsController>();
+	private static final Map<EditPartViewer, ShowRelatedElementsController> VIEWER_CONTROLLER_MAP = new HashMap<EditPartViewer, ShowRelatedElementsController>();
 
 	private EditPartViewer editPartViewer;
 	private final DiagramEditPart diagramEditPart;
@@ -280,7 +280,7 @@ public class ShowRelatedElementsController {
 	}
 
 	private static Map<EditPartViewer, ShowRelatedElementsController> getViewerControllerMap() {
-		return viewerControllerMap;
+		return VIEWER_CONTROLLER_MAP;
 	}
 
 	private void setModeKeyPressed(boolean modeKeyPressed) {
