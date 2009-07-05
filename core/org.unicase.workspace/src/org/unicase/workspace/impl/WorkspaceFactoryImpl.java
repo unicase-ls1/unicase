@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.unicase.workspace.EventComposite;
 import org.unicase.workspace.OperationComposite;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
@@ -22,12 +23,13 @@ import org.unicase.workspace.WorkspacePackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFactory {
 	/**
-	 * Creates the default factory implementation.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public static WorkspaceFactory init() {
@@ -44,8 +46,8 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 	}
 
 	/**
-	 * Creates an instance of the factory.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkspaceFactoryImpl() {
@@ -54,6 +56,7 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,6 +76,8 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 			return createWorkspaceModelVersion();
 		case WorkspacePackage.PENDING_FILE_TRANSFER:
 			return createPendingFileTransfer();
+		case WorkspacePackage.EVENT_COMPOSITE:
+			return createEventComposite();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -80,6 +85,7 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Workspace createWorkspace() {
@@ -89,6 +95,7 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ServerInfo createServerInfo() {
@@ -98,6 +105,7 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public Usersession createUsersession() {
@@ -107,6 +115,7 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ProjectSpace createProjectSpace() {
@@ -116,6 +125,7 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public OperationComposite createOperationComposite() {
@@ -125,6 +135,7 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkspaceModelVersion createWorkspaceModelVersion() {
@@ -134,6 +145,7 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public PendingFileTransfer createPendingFileTransfer() {
@@ -143,6 +155,17 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EventComposite createEventComposite() {
+		EventCompositeImpl eventComposite = new EventCompositeImpl();
+		return eventComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkspacePackage getWorkspacePackage() {
@@ -151,6 +174,7 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @deprecated
 	 * @generated
 	 */
