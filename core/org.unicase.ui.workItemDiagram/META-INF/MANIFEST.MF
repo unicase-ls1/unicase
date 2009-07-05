@@ -4,12 +4,12 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.unicase.ui.workItemDiagram; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.unicase.ui.workItemDiagram.part.ModelDiagramEditorPlugin
+Bundle-Activator: org.unicase.ui.diagram.workItemDiagram.part.ModelDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.unicase.ui.workItemDiagram.edit.parts,
- org.unicase.ui.workItemDiagram.part,
- org.unicase.ui.workItemDiagram.providers
+Export-Package: org.unicase.ui.diagram.workItemDiagram.edit.parts,
+ org.unicase.ui.diagram.workItemDiagram.part,
+ org.unicase.ui.diagram.workItemDiagram.providers
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.core.expressions,
