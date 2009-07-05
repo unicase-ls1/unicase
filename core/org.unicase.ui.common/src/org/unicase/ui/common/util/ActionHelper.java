@@ -39,6 +39,7 @@ import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.rationale.Comment;
 import org.unicase.ui.common.commands.AltKeyDoubleClickAction;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
@@ -145,6 +146,12 @@ public final class ActionHelper {
 			return;
 		}
 
+		if(me instanceof Comment){
+			ModelElement modelElement = ((Comment)me).getFirstParent();
+			openDiscussion(modelElement, false);
+			return;
+		}
+		
 		boolean openWithMeDiagram = false;
 		if (me instanceof MEDiagram) {
 			openWithMeDiagram = true;
