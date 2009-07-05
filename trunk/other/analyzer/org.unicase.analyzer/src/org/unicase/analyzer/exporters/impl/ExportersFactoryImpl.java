@@ -60,20 +60,9 @@ public class ExportersFactoryImpl extends EFactoryImpl implements ExportersFacto
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ExportersPackage.EXPORTER: return createExporter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Exporter createExporter() {
-		ExporterImpl exporter = new ExporterImpl();
-		return exporter;
 	}
 
 	/**

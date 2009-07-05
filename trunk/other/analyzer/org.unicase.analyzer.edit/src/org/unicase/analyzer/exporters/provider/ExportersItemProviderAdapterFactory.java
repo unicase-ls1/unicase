@@ -76,29 +76,6 @@ public class ExportersItemProviderAdapterFactory extends ExportersAdapterFactory
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.analyzer.exporters.Exporter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ExporterItemProvider exporterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.analyzer.exporters.Exporter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createExporterAdapter() {
-		if (exporterItemProvider == null) {
-			exporterItemProvider = new ExporterItemProvider(this);
-		}
-
-		return exporterItemProvider;
-	}
-
-	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -197,7 +174,6 @@ public class ExportersItemProviderAdapterFactory extends ExportersAdapterFactory
 	 * @generated
 	 */
 	public void dispose() {
-		if (exporterItemProvider != null) exporterItemProvider.dispose();
 	}
 
 }

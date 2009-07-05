@@ -45,8 +45,9 @@
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="exporters" nsURI="http://unicase.org/analyzer/exporters" nsPrefix="org.unicase.analyzer.exporters">
-    <eClassifiers xsi:type="ecore:EClass" name="Exporter">
+    <eClassifiers xsi:type="ecore:EClass" name="Exporter" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="overwrite" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

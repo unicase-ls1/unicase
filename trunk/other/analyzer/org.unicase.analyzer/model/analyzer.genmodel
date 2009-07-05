@@ -41,6 +41,7 @@
         ecorePackage="analyzer.ecore#//exporters">
       <genClasses ecoreClass="analyzer.ecore#//exporters/Exporter">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//exporters/Exporter/fileName"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//exporters/Exporter/overwrite"/>
       </genClasses>
     </nestedGenPackages>
   </genPackages>

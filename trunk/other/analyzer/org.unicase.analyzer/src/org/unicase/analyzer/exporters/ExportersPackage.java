@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.exporters;
 
@@ -78,13 +77,22 @@ public interface ExportersPackage extends EPackage {
 	int EXPORTER__FILE_NAME = 0;
 
 	/**
+	 * The feature id for the '<em><b>Overwrite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPORTER__OVERWRITE = 1;
+
+	/**
 	 * The number of structural features of the '<em>Exporter</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPORTER_FEATURE_COUNT = 1;
+	int EXPORTER_FEATURE_COUNT = 2;
 
 
 	/**
@@ -107,6 +115,17 @@ public interface ExportersPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getExporter_FileName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.analyzer.exporters.Exporter#isOverwrite <em>Overwrite</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Overwrite</em>'.
+	 * @see org.unicase.analyzer.exporters.Exporter#isOverwrite()
+	 * @see #getExporter()
+	 * @generated
+	 */
+	EAttribute getExporter_Overwrite();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -147,6 +166,14 @@ public interface ExportersPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute EXPORTER__FILE_NAME = eINSTANCE.getExporter_FileName();
+
+		/**
+		 * The meta object literal for the '<em><b>Overwrite</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute EXPORTER__OVERWRITE = eINSTANCE.getExporter_Overwrite();
 
 	}
 

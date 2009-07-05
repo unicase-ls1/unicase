@@ -143,6 +143,15 @@ public class ExportersPackageImpl extends EPackageImpl implements ExportersPacka
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getExporter_Overwrite() {
+		return (EAttribute)exporterEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ExportersFactory getExportersFactory() {
 		return (ExportersFactory)getEFactoryInstance();
 	}
@@ -168,6 +177,7 @@ public class ExportersPackageImpl extends EPackageImpl implements ExportersPacka
 		// Create classes and their features
 		exporterEClass = createEClass(EXPORTER);
 		createEAttribute(exporterEClass, EXPORTER__FILE_NAME);
+		createEAttribute(exporterEClass, EXPORTER__OVERWRITE);
 	}
 
 	/**
@@ -203,8 +213,9 @@ public class ExportersPackageImpl extends EPackageImpl implements ExportersPacka
 		// Add supertypes to classes
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(exporterEClass, Exporter.class, "Exporter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(exporterEClass, Exporter.class, "Exporter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getExporter_FileName(), theEcorePackage.getEString(), "fileName", null, 0, 1, Exporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getExporter_Overwrite(), theEcorePackage.getEBoolean(), "overwrite", null, 0, 1, Exporter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } //ExportersPackageImpl
