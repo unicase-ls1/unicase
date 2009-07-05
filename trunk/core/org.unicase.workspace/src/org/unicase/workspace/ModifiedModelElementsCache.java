@@ -11,16 +11,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.ModelElementId;
+import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.OperationListener;
 
 /**
+ * Caches all modified elements.
+ * 
  * @author hodaie
  */
-public class ModifiedModelElementsCache implements OperationListener {
+public class ModifiedModelElementsCache implements OperationListener, CommitObserver {
 
-	private Map<ModelElementId, List<AbstractOperation>> modifiedMEs = new HashMap<ModelElementId, List<AbstractOperation>>();
+	private Map<ModelElementId, List<AbstractOperation>> modifiedMEs;
+
+	/**
+	 * Constructor.
+	 */
+	public ModifiedModelElementsCache() {
+		modifiedMEs = new HashMap<ModelElementId, List<AbstractOperation>>();
+	}
 
 	/**
 	 * If this model element has been modified.
@@ -70,6 +82,26 @@ public class ModifiedModelElementsCache implements OperationListener {
 			}
 		}
 
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.observers.CommitObserver#commitCompleted(org.unicase.workspace.ProjectSpace,
+	 *      org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec)
+	 */
+	public void commitCompleted(ProjectSpace projectSpace, PrimaryVersionSpec newRevision) {
+		modifiedMEs.clear();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.observers.CommitObserver#inspectChanges(org.unicase.workspace.ProjectSpace,
+	 *      org.unicase.emfstore.esmodel.versioning.ChangePackage)
+	 */
+	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
+		return true;
 	}
 
 }

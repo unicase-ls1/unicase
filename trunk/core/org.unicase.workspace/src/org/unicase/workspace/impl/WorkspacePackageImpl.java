@@ -17,6 +17,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.ModelPackage;
+import org.unicase.workspace.EventComposite;
 import org.unicase.workspace.OperationComposite;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
@@ -29,50 +30,65 @@ import org.unicase.workspace.WorkspacePackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
+ * 
  * @generated
  */
 public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass workspaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass serverInfoEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass usersessionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass projectSpaceEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass operationCompositeEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass workspaceModelVersionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private EClass pendingFileTransferEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass eventCompositeEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -93,17 +109,18 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
-	 * <p>This method is used to initialize {@link WorkspacePackage#eINSTANCE} when that field is accessed.
-	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
-	 * <!-- begin-user-doc
+	 * <p>
+	 * This method is used to initialize {@link WorkspacePackage#eINSTANCE} when that field is accessed. Clients should
+	 * not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
+	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
@@ -139,6 +156,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getWorkspace() {
@@ -147,6 +165,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_ProjectSpaces() {
@@ -155,6 +174,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_ServerInfos() {
@@ -163,6 +183,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_Usersessions() {
@@ -171,6 +192,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getWorkspace_ActiveProjectSpace() {
@@ -179,6 +201,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getServerInfo() {
@@ -187,6 +210,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_Name() {
@@ -195,6 +219,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_Url() {
@@ -203,6 +228,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_Port() {
@@ -211,6 +237,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getServerInfo_ProjectInfos() {
@@ -219,6 +246,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getServerInfo_LastUsersession() {
@@ -227,6 +255,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getServerInfo_CertificateAlias() {
@@ -235,6 +264,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getUsersession() {
@@ -243,6 +273,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_Username() {
@@ -251,6 +282,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_Password() {
@@ -259,6 +291,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUsersession_SessionId() {
@@ -267,6 +300,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_PersistentPassword() {
@@ -275,6 +309,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUsersession_ServerInfo() {
@@ -283,6 +318,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getUsersession_SavePassword() {
@@ -291,6 +327,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getUsersession_ACUser() {
@@ -299,6 +336,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getProjectSpace() {
@@ -307,6 +345,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Project() {
@@ -315,6 +354,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_ProjectId() {
@@ -323,6 +363,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_ProjectName() {
@@ -331,6 +372,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_ProjectDescription() {
@@ -339,6 +381,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Events() {
@@ -347,6 +390,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Usersession() {
@@ -355,6 +399,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_LastUpdated() {
@@ -363,6 +408,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_BaseVersion() {
@@ -371,6 +417,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_ResourceCount() {
@@ -379,6 +426,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_Dirty() {
@@ -387,6 +435,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getProjectSpace_OldLogMessages() {
@@ -395,6 +444,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_LocalOperations() {
@@ -403,6 +453,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_Notifications() {
@@ -411,6 +462,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getProjectSpace_PendingFileTransfers() {
@@ -419,6 +471,16 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getProjectSpace_EventComposite() {
+		return (EReference) projectSpaceEClass.getEStructuralFeatures().get(14);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getOperationComposite() {
@@ -427,6 +489,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getOperationComposite_Operations() {
@@ -435,6 +498,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getWorkspaceModelVersion() {
@@ -443,6 +507,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getWorkspaceModelVersion_ModelReleaseNumber() {
@@ -451,6 +516,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EClass getPendingFileTransfer() {
@@ -459,6 +525,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EReference getPendingFileTransfer_AttachmentId() {
@@ -467,6 +534,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPendingFileTransfer_FileVersion() {
@@ -475,6 +543,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPendingFileTransfer_ChunkNumber() {
@@ -483,6 +552,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPendingFileTransfer_Upload() {
@@ -491,6 +561,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPendingFileTransfer_FileName() {
@@ -499,6 +570,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public EAttribute getPendingFileTransfer_PreliminaryFileName() {
@@ -507,6 +579,25 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getEventComposite() {
+		return eventCompositeEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getEventComposite_Events() {
+		return (EReference) eventCompositeEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public WorkspaceFactory getWorkspaceFactory() {
@@ -515,14 +606,15 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package.  This method is
-	 * guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
+	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void createPackageContents() {
@@ -569,6 +661,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		createEReference(projectSpaceEClass, PROJECT_SPACE__LOCAL_OPERATIONS);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__NOTIFICATIONS);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__PENDING_FILE_TRANSFERS);
+		createEReference(projectSpaceEClass, PROJECT_SPACE__EVENT_COMPOSITE);
 
 		operationCompositeEClass = createEClass(OPERATION_COMPOSITE);
 		createEReference(operationCompositeEClass, OPERATION_COMPOSITE__OPERATIONS);
@@ -583,18 +676,22 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		createEAttribute(pendingFileTransferEClass, PENDING_FILE_TRANSFER__UPLOAD);
 		createEAttribute(pendingFileTransferEClass, PENDING_FILE_TRANSFER__FILE_NAME);
 		createEAttribute(pendingFileTransferEClass, PENDING_FILE_TRANSFER__PRELIMINARY_FILE_NAME);
+
+		eventCompositeEClass = createEClass(EVENT_COMPOSITE);
+		createEReference(eventCompositeEClass, EVENT_COMPOSITE__EVENTS);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model.  This
-	 * method is guarded to have no affect on any invocation but its first.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
+	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void initializePackageContents() {
@@ -729,6 +826,9 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEReference(getProjectSpace_PendingFileTransfers(), this.getPendingFileTransfer(), null,
 			"pendingFileTransfers", null, 0, -1, ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectSpace_EventComposite(), this.getEventComposite(), null, "eventComposite", null, 0, 1,
+			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(operationCompositeEClass, OperationComposite.class, "OperationComposite", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -762,6 +862,12 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEAttribute(getPendingFileTransfer_PreliminaryFileName(), ecorePackage.getEString(), "preliminaryFileName",
 			null, 0, 1, PendingFileTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(eventCompositeEClass, EventComposite.class, "EventComposite", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getEventComposite_Events(), theEventsPackage.getEvent(), null, "events", null, 0, -1,
+			EventComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

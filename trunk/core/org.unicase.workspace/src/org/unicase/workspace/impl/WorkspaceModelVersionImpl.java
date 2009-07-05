@@ -17,10 +17,10 @@ import org.unicase.workspace.WorkspacePackage;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.workspace.impl.WorkspaceModelVersionImpl#getModelReleaseNumber <em>Model Release Number</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.WorkspaceModelVersionImpl#getModelReleaseNumber <em>Model Release Number</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @generated
  */
 public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceModelVersion {
@@ -46,6 +46,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	protected WorkspaceModelVersionImpl() {
@@ -54,6 +55,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -63,6 +65,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public int getModelReleaseNumber() {
@@ -71,6 +74,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public void setModelReleaseNumber(int newModelReleaseNumber) {
@@ -84,6 +88,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,6 +102,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -111,6 +117,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,6 +132,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,6 +146,7 @@ public class WorkspaceModelVersionImpl extends EObjectImpl implements WorkspaceM
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override

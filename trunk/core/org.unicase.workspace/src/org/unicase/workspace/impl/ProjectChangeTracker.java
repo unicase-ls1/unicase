@@ -74,7 +74,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			} else {
 				projectSpace.addOperation(createDeleteOperation);
 			}
-			projectSpace.saveProjectSpaceOnly();
 		}
 	}
 
@@ -99,14 +98,13 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 
 			if (this.compositeOperation != null) {
 				this.compositeOperation.getSubOperations().add(deleteOperation);
+				projectSpace.saveResource(compositeOperation.eResource());
 			} else {
 				projectSpace.addOperation(deleteOperation);
 			}
-
+			projectSpace.notifyOperationExecuted(deleteOperation);
 			deleteOperation = null;
 
-			projectSpace.saveProjectSpaceOnly();
-			projectSpace.updateDirtyState();
 			Resource resource = modelElement.eResource();
 			if (resource != null) {
 				resource.getContents().remove(modelElement);
@@ -159,7 +157,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 		}
 		// notificationRecorder;
 		isRecording = true;
-		projectSpace.updateDirtyState();
 	}
 
 	/**
@@ -171,13 +168,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (isRecording) {
 			notificationRecorder.record(notification);
-
 			if (notificationRecorder.isRecordingComplete()) {
 				recordingFinished();
 			}
-			// MK: maybe skip save if we are within a delete operation
-			projectSpace.saveProjectSpaceOnly();
-			projectSpace.updateDirtyState();
 		}
 		save(modelElement);
 	}
@@ -216,6 +209,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			for (AbstractOperation op : ops) {
 				if (op instanceof ReferenceOperation) {
 					deleteOperation.getSubOperations().add((ReferenceOperation) op);
+					projectSpace.saveResource(deleteOperation.eResource());
 				} else {
 					WorkspaceUtil.log("NON-REFERNCE OP AS SUBOP OF A DELETE OPERATION DETECTED: "
 						+ op.getClass().getCanonicalName(), null, 0);
@@ -224,15 +218,15 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 
 		} else if (compositeOperation != null) {
 			compositeOperation.getSubOperations().addAll(ops);
+			projectSpace.saveResource(deleteOperation.eResource());
 		} else {
 			if (ops.size() > 1) {
 				CompositeOperation op = OperationsFactory.eINSTANCE.createCompositeOperation();
 				op.getSubOperations().addAll(ops);
 				projectSpace.addOperation(op);
-			} else {
-				projectSpace.addOperations(ops);
+			} else if (ops.size() == 1) {
+				projectSpace.addOperation(ops.get(0));
 			}
-
 		}
 
 	}
@@ -241,12 +235,9 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 * Aborts the current composite operation.
 	 */
 	public void abortCompositeOperation() {
-		stopChangeRecording();
 		recordingFinished();
-		this.compositeOperation.reverse().apply(projectSpace.getProject());
-		startChangeRecording();
+		projectSpace.undoLastOperation();
 		this.compositeOperation = null;
-		projectSpace.updateDirtyState();
 	}
 
 	/**
@@ -329,10 +320,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 * Completes the current composite operation.
 	 */
 	public void endCompositeOperation() {
-		projectSpace.addOperation(this.compositeOperation);
+		projectSpace.notifyOperationExecuted(compositeOperation);
 		this.compositeOperation = null;
-		projectSpace.saveProjectSpaceOnly();
-		projectSpace.updateDirtyState();
 	}
 
 	/**
@@ -345,6 +334,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			throw new IllegalStateException("Can only have one composite at once!");
 		}
 		this.compositeOperation = OperationsFactory.eINSTANCE.createCompositeOperation();
+		projectSpace.addOperation(this.compositeOperation);
 		CompositeOperationHandle handle = new CompositeOperationHandle(this, compositeOperation);
 		return handle;
 	}

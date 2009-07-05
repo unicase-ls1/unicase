@@ -233,6 +233,29 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.workspace.EventComposite} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected EventCompositeItemProvider eventCompositeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.workspace.EventComposite}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createEventCompositeAdapter() {
+		if (eventCompositeItemProvider == null) {
+			eventCompositeItemProvider = new EventCompositeItemProvider(this);
+		}
+
+		return eventCompositeItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -340,6 +363,8 @@ public class WorkspaceItemProviderAdapterFactory extends WorkspaceAdapterFactory
 			workspaceModelVersionItemProvider.dispose();
 		if (pendingFileTransferItemProvider != null)
 			pendingFileTransferItemProvider.dispose();
+		if (eventCompositeItemProvider != null)
+			eventCompositeItemProvider.dispose();
 	}
 
 }

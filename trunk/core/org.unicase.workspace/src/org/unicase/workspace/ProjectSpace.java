@@ -389,6 +389,32 @@ public interface ProjectSpace extends IdentifiableElement {
 	EList<PendingFileTransfer> getPendingFileTransfers();
 
 	/**
+	 * Returns the value of the '<em><b>Event Composite</b></em>' containment reference. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Event Composite</em>' containment reference isn't clear, there really should be more
+	 * of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Event Composite</em>' containment reference.
+	 * @see #setEventComposite(EventComposite)
+	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_EventComposite()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EventComposite getEventComposite();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getEventComposite <em>Event Composite</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Event Composite</em>' containment reference.
+	 * @see #getEventComposite()
+	 * @generated
+	 */
+	void setEventComposite(EventComposite value);
+
+	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
 	 * 
 	 * @return new base version
