@@ -1356,7 +1356,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			List<ESNotification> newNotifications = NotificationGenerator.getInstance(this).generateNotifications(
 				changes, this.getUsersession().getUsername());
 			this.getNotifications().addAll(newNotifications);
-			saveProjectSpaceOnly();
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
@@ -1917,7 +1916,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		notifyOperationUndone(lastOperation);
 		startChangeRecording();
 		operations.remove(lastOperation);
-		saveProjectSpaceOnly();
 	}
 
 	/**
