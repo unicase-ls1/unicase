@@ -415,6 +415,32 @@ public interface ProjectSpace extends IdentifiableElement {
 	void setEventComposite(EventComposite value);
 
 	/**
+	 * Returns the value of the '<em><b>Notification Composite</b></em>' containment reference. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Notification Composite</em>' containment reference isn't clear, there really should be
+	 * more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Notification Composite</em>' containment reference.
+	 * @see #setNotificationComposite(NotificationComposite)
+	 * @see org.unicase.workspace.WorkspacePackage#getProjectSpace_NotificationComposite()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	NotificationComposite getNotificationComposite();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.workspace.ProjectSpace#getNotificationComposite
+	 * <em>Notification Composite</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Notification Composite</em>' containment reference.
+	 * @see #getNotificationComposite()
+	 * @generated
+	 */
+	void setNotificationComposite(NotificationComposite value);
+
+	/**
 	 * <!-- begin-user-doc --> Commit the all pending changes of the project.
 	 * 
 	 * @return new base version

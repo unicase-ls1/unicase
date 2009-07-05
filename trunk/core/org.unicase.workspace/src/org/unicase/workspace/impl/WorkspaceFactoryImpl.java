@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 import org.unicase.workspace.EventComposite;
+import org.unicase.workspace.NotificationComposite;
 import org.unicase.workspace.OperationComposite;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
@@ -78,6 +79,8 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 			return createPendingFileTransfer();
 		case WorkspacePackage.EVENT_COMPOSITE:
 			return createEventComposite();
+		case WorkspacePackage.NOTIFICATION_COMPOSITE:
+			return createNotificationComposite();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -161,6 +164,16 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 	public EventComposite createEventComposite() {
 		EventCompositeImpl eventComposite = new EventCompositeImpl();
 		return eventComposite;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationComposite createNotificationComposite() {
+		NotificationCompositeImpl notificationComposite = new NotificationCompositeImpl();
+		return notificationComposite;
 	}
 
 	/**

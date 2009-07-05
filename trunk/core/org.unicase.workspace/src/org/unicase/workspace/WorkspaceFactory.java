@@ -87,6 +87,14 @@ public interface WorkspaceFactory extends EFactory {
 	EventComposite createEventComposite();
 
 	/**
+	 * Returns a new object of class '<em>Notification Composite</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Notification Composite</em>'.
+	 * @generated
+	 */
+	NotificationComposite createNotificationComposite();
+
+	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.
