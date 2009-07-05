@@ -1,12 +1,15 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.iterator;
 
 import java.util.Date;
+
+import org.unicase.analyzer.exceptions.IteratorException;
+import org.unicase.emfstore.esmodel.ProjectId;
+import org.unicase.workspace.Usersession;
 
 /**
  * <!-- begin-user-doc -->
@@ -104,5 +107,36 @@ public interface TimeIterator extends VersionIterator {
 	 * @generated
 	 */
 	void setStepLengthUnit(int value);
+	
+	/**
+	 * By default, the iterator will go through from version 0 to Head version, and the next() method will return the
+	 * copy of ProjectAnalysisData instead of ProjectAnalysisData.
+	 * 
+	 * @param usersession the session id for authentication
+	 * @param projectId the project id of the project to get
+	 * @param stepLength the step length for the iterator to go through to the next
+	 * @param stepLengthUnit the unit of time step length based on Calendar's static field, e.g. Calendar.SECOND
+	 * @throws IteratorException if any error occurs
+	 * @generated NOT
+	 */
+	void init(Usersession usersession, ProjectId projectId, int stepLength, int stepLengthUnit)
+		throws IteratorException;
+	
+	/**
+	 * @param usersession the session id for authentication
+	 * @param projectId the project id of the project to get
+	 * @param stepLength the step length for the iterator to go through to the next
+	 * @param stepLengthUnit the unit of time step length based on Calendar's static field, e.g. Calendar.SECOND
+	 * @param versionSpecQuery
+	 *        the version query for the iterator from start till the end
+	 * @param isForward the direction for the iterator go through, either forward(true) or backward(false). However,
+	 *            doesn't work for backward currently, will be solved in the near future
+	 * @param returnProjectDataCopy the next() method will return the copy of ProjectAnalysisData when it is set to true
+	 * @throws IteratorException if any error occurs
+	 * @generated NOT
+	 */
+	void init(Usersession usersession, ProjectId projectId, int stepLength, int stepLengthUnit,
+		VersionSpecQuery versionSpecQuery, boolean isForward, boolean returnProjectDataCopy) throws IteratorException;
+
 
 } // TimeIterator
