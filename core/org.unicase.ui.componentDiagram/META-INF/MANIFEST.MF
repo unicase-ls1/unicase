@@ -4,12 +4,12 @@ Bundle-Name: %pluginName
 Bundle-SymbolicName: org.unicase.ui.componentDiagram; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
-Bundle-Activator: org.unicase.ui.componentDiagram.part.ModelDiagramEditorPlugin
+Bundle-Activator: org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
-Export-Package: org.unicase.ui.componentDiagram.edit.parts,
- org.unicase.ui.componentDiagram.part,
- org.unicase.ui.componentDiagram.providers
+Export-Package: org.unicase.ui.diagram.componentDiagram.edit.parts,
+ org.unicase.ui.diagram.componentDiagram.part,
+ org.unicase.ui.diagram.componentDiagram.providers
 Require-Bundle: org.eclipse.jface,
  org.eclipse.ui.views,
  org.eclipse.ui.navigator,
