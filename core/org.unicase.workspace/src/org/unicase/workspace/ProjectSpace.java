@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -32,6 +33,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
+import org.unicase.workspace.exceptions.PropertyNotFoundException;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.OperationListener;
 import org.unicase.workspace.observers.UpdateObserver;
@@ -626,5 +628,27 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @param operationListener operation listener
 	 */
 	void addOperationListener(OperationListener operationListener);
+
+	/**
+	 * @param name the name of the property
+	 * @return the string value of the property or null if it doesn't exist
+	 * @throws PropertyNotFoundException if no property exists for this key
+	 * @generated NOT
+	 */
+	OrgUnitProperty getProperty(PropertyKey name) throws PropertyNotFoundException;
+
+	/**
+	 * Sets a new OrgUnitProperty for the current user.
+	 * 
+	 * @param property the new property
+	 * @generated NOT
+	 */
+	void setProperty(OrgUnitProperty property);
+
+	/**
+	 * @return if the the property is set.
+	 * @param key the property key.
+	 */
+	boolean hasProperty(PropertyKey key);
 
 } // ProjectContainer

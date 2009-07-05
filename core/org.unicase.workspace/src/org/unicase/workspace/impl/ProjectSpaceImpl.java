@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -36,6 +37,7 @@ import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
@@ -68,6 +70,7 @@ import org.unicase.workspace.ModifiedModelElementsCache;
 import org.unicase.workspace.OperationComposite;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.PropertyKey;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
@@ -79,6 +82,7 @@ import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
+import org.unicase.workspace.exceptions.PropertyNotFoundException;
 import org.unicase.workspace.filetransfer.FileDownloadJob;
 import org.unicase.workspace.filetransfer.FileTransferJob;
 import org.unicase.workspace.filetransfer.FileUploadJob;
@@ -322,6 +326,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	private ProjectChangeTracker changeTracker;
 
+	private HashMap<String, OrgUnitProperty> propertyMap;
+
 	// begin of custom code
 	/**
 	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -332,6 +338,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		super();
 		this.commitObservers = new ArrayList<CommitObserver>();
 		this.operationListeners = new ArrayList<OperationListener>();
+		this.propertyMap = new HashMap<String, OrgUnitProperty>();
 	}
 
 	// end of custom code
@@ -904,8 +911,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		clearOperations();
 		getEvents().clear();
 
-		generateNotifications(changePackage);
-
 		saveProjectSpaceOnly();
 
 		if (commitObserver != null) {
@@ -968,12 +973,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				WorkspaceUtil.logException("CommitObserver failed with exception", e);
 			}
 		}
-	}
-
-	private void generateNotifications(ChangePackage changePackage) {
-		ArrayList<ChangePackage> changes = new ArrayList<ChangePackage>();
-		changes.add(changePackage);
-		generateNotifications(changes);
 	}
 
 	/**
@@ -1134,8 +1133,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	private void generateNotifications(List<ChangePackage> changes) {
 		// generate notifications from change packages, ignore all exception if any
 		try {
-			List<ESNotification> newNotifications = NotificationGenerator.getInstance().generateNotifications(changes,
-				this.getUsersession().getUsername(), this);
+			List<ESNotification> newNotifications = NotificationGenerator.getInstance(this).generateNotifications(
+				changes, this.getUsersession().getUsername());
 			this.getNotifications().addAll(newNotifications);
 			saveProjectSpaceOnly();
 			// BEGIN SUPRESS CATCH EXCEPTION
@@ -1193,6 +1192,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.getProject().addProjectChangeObserver(this.changeTracker);
 		if (getUsersession() != null) {
 			getUsersession().addLoginObserver(this);
+			ACUser acUser = getUsersession().getACUser();
+			if (acUser != null) {
+				for (OrgUnitProperty p : acUser.getProperties()) {
+					propertyMap.put(p.getName(), p);
+				}
+			}
 		}
 		startChangeRecording();
 
@@ -1768,17 +1773,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Adds a new OrgUnitProperty for the current user.
-	 * 
-	 * @param property the new property
-	 */
-	public void addProperty(OrgUnitProperty property) {
-		if (getUsersession() != null && getUsersession().getACUser() != null) {
-			// getUsersession().getACUser().getProperties()
-		}
-	}
-
-	/**
 	 * {@inheritDoc}
 	 */
 	public void loginCompleted() {
@@ -2064,5 +2058,50 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			addOperation(operation);
 		}
 		startChangeRecording();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public OrgUnitProperty getProperty(PropertyKey name) throws PropertyNotFoundException {
+		return getProperty(name.toString());
+	}
+
+	/**
+	 * getter for a string argument - see {@link #setProperty(OrgUnitProperty)}.
+	 */
+	private OrgUnitProperty getProperty(String name) throws PropertyNotFoundException {
+		// sanity checks
+		if (getUsersession() != null && getUsersession().getACUser() != null) {
+			OrgUnitProperty orgUnitProperty = propertyMap.get(name);
+			if (orgUnitProperty != null) {
+				return orgUnitProperty;
+			}
+		}
+		throw new PropertyNotFoundException();
+	}
+
+	/**
+	 *{@inheritDoc}
+	 */
+	public void setProperty(OrgUnitProperty property) {
+		// sanity checks
+		if (getUsersession() != null && getUsersession().getACUser() != null) {
+			try {
+				OrgUnitProperty prop = getProperty(property.getName());
+				prop.setValue(property.getValue());
+			} catch (PropertyNotFoundException e) {
+				getUsersession().getACUser().getProperties().add(property);
+				propertyMap.put(property.getName(), property);
+				WorkspaceManager.getInstance().getCurrentWorkspace().save();
+			}
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean hasProperty(PropertyKey key) {
+		return propertyMap.containsKey(key);
 	}
 } // ProjectContainerImpl
