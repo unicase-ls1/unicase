@@ -1,7 +1,7 @@
-# Tracing options for the org.unicase.ui.workItemDiagram plug-in
+# Tracing options for the org.unicase.ui.diagram.workItemDiagram plug-in
 
 # Common issues
-org.unicase.ui.workItemDiagram/debug=false
+org.unicase.ui.diagram.workItemDiagram/debug=false
 
 # Visual IDs
-org.unicase.ui.workItemDiagram/debug/visualID=false
+org.unicase.ui.diagram.workItemDiagram/debug/visualID=false
