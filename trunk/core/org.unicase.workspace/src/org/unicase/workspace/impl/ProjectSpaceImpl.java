@@ -49,11 +49,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
@@ -66,7 +62,6 @@ import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.impl.IdentifiableElementImpl;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ModelValidationHelper;
-import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ModifiedModelElementsCache;
@@ -77,12 +72,7 @@ import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.changeTracking.NotificationToOperationConverter;
-import org.unicase.workspace.changeTracking.notification.NotificationInfo;
-import org.unicase.workspace.changeTracking.notification.filter.FilterStack;
-import org.unicase.workspace.changeTracking.notification.filter.NotificationFilter;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecorder;
-import org.unicase.workspace.changeTracking.notification.recording.NotificationRecordingHint;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.IllegalProjectSpaceStateException;
@@ -128,10 +118,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *             </p>
  * @generated
  */
-public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, ProjectChangeObserver,
-	LoginObserver {
-
-	private static final String UNKOWN_CREATOR = "unknown";
+public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, LoginObserver {
 
 	/**
 	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
@@ -323,23 +310,17 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	protected EList<PendingFileTransfer> pendingFileTransfers;
 
-	private boolean isRecording;
-
-	private CreateDeleteOperation deleteOperation;
-
 	private boolean initCompleted;
 
 	private boolean isTransient;
-
-	private CompositeOperation compositeOperation;
-
-	private NotificationRecorder notificationRecorder;
 
 	private List<CommitObserver> commitObservers;
 
 	private ModifiedModelElementsCache modifiedModelElementsCache;
 
 	private List<OperationListener> operationListeners;
+
+	private ProjectChangeTracker changeTracker;
 
 	// begin of custom code
 	/**
@@ -1193,7 +1174,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	public void stopChangeRecording() {
-		this.isRecording = false;
+		this.changeTracker.stopChangeRecording();
 	}
 
 	/**
@@ -1202,15 +1183,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	public void startChangeRecording() {
-		if (notificationRecorder == null) {
-			notificationRecorder = new NotificationRecorder();
-		}
-		// notificationRecorder;
-		isRecording = true;
-		updateDirtyState();
+		this.changeTracker.startChangeRecording();
 	}
 
-	private void updateDirtyState() {
+	/**
+	 * Updates the dirty state of the project space.
+	 */
+	public void updateDirtyState() {
 		setDirty(getOperations().size() > 0);
 	}
 
@@ -1222,7 +1201,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void init() {
 		initCompleted = true;
-		this.getProject().addProjectChangeObserver(this);
+		this.changeTracker = new ProjectChangeTracker(this);
+		this.getProject().addProjectChangeObserver(this.changeTracker);
 		if (getUsersession() != null) {
 			getUsersession().addLoginObserver(this);
 		}
@@ -1636,7 +1616,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 	}
 
-	private void saveResource(Resource resource) {
+	/**
+	 * Save the given resource that is part of the project space resource set.
+	 * 
+	 * @param resource the resource
+	 */
+	public void saveResource(Resource resource) {
 		try {
 			if (resource == null) {
 				if (!isTransient) {
@@ -1655,143 +1640,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 						"An error in the data was detected during save! Self-healing fixed the problem.", e);
 				}
 			}
-		}
-	}
-
-	/**
-	 * Add model element to a resource, assign a new resource if necessary.
-	 * 
-	 * @param modelElement the model element
-	 * @generated NOT
-	 */
-	private void addToResource(final ModelElement modelElement) {
-		if (isTransient) {
-			return;
-		}
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
-				addElementToResouce(modelElement);
-			}
-		});
-
-	}
-
-	private void checkIfFileExists(String newfileName) {
-		if (new File(newfileName).exists()) {
-			throw new IllegalStateException("File fragment \"" + newfileName
-				+ "\" already exists - ProjectSpace corrupted.");
-		}
-	}
-
-	private void addElementToResouce(final ModelElement modelElement) {
-		Resource oldResource = modelElement.eResource();
-		URI oldUri = oldResource.getURI();
-		if (!oldUri.isFile()) {
-			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
-		}
-		String oldFileName = oldUri.toFileString();
-		if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) {
-			String newfileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar
-				+ getResourceCount() + ".ucf";
-			setResourceCount(getResourceCount() + 1);
-			checkIfFileExists(newfileName);
-			URI fileURI = URI.createFileURI(newfileName);
-			Resource newResource = oldResource.getResourceSet().createResource(fileURI);
-			newResource.getContents().add(modelElement);
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
-	 */
-	public void notify(Notification notification, Project project, ModelElement modelElement) {
-		if (isRecording) {
-			notificationRecorder.record(notification);
-
-			if (notificationRecorder.isRecordingComplete()) {
-				recordingFinished();
-			}
-			// MK: maybe skip save if we are within a delete operation
-			saveProjectSpaceOnly();
-			updateDirtyState();
-		}
-		save(modelElement);
-	}
-
-	private void recordingFinished() {
-
-		// canonize recorded notifications
-		NotificationFilter f = FilterStack.DEFAULT;
-		f.filter(notificationRecorder.getRecording());
-
-		// create operations from "valid" notifications, log invalid ones, accumulate the ops
-		List<AbstractOperation> ops = new LinkedList<AbstractOperation>();
-		List<NotificationInfo> rec = notificationRecorder.getRecording().asMutableList();
-		for (NotificationInfo n : rec) {
-			if (!n.isValid()) {
-				WorkspaceUtil.log("INVALID NOTIFICATION MESSAGE DETECTED: " + n.getValidationMessage(), null, 0);
-				continue;
-			} else {
-				AbstractOperation op = NotificationToOperationConverter.convert(n);
-				if (op != null) {
-					ops.add(op);
-				} else {
-					// we should never get here, this would indicate a consistency error,
-					// n.isValid() should have been false
-					WorkspaceUtil.log("INVALID NOTIFICATION CLASSIFICATION,"
-						+ " notification is valid, but cannot be converted to an operation: " + n.toString(), null, 0);
-					continue;
-				}
-			}
-		}
-
-		// add resulting operations as suboperations to composite, delete or top-level operations
-		// handle delete, verify reference operations only
-		if (deleteOperation != null) {
-			// check, that all ops are reference ops
-			for (AbstractOperation op : ops) {
-				if (op instanceof ReferenceOperation) {
-					deleteOperation.getSubOperations().add((ReferenceOperation) op);
-				} else {
-					WorkspaceUtil.log("NON-REFERNCE OP AS SUBOP OF A DELETE OPERATION DETECTED: "
-						+ op.getClass().getCanonicalName(), null, 0);
-				}
-			}
-
-		} else if (compositeOperation != null) {
-			compositeOperation.getSubOperations().addAll(ops);
-		} else {
-			if (ops.size() > 1) {
-				CompositeOperation op = OperationsFactory.eINSTANCE.createCompositeOperation();
-				op.getSubOperations().addAll(ops);
-				getOperations().add(op);
-				notifyOperationExecuted(op);
-			} else {
-				getOperations().addAll(ops);
-				notifyOperationExecuted(ops);
-			}
-
-		}
-
-	}
-
-	private void save(ModelElement modelElement) {
-		Resource resource = modelElement.eResource();
-		if (resource == null) {
-			String message = "Save failed: ModelElement \"" + modelElement.getIdentifier() + "\" has no resource!";
-			WorkspaceUtil.logException(message, new IllegalStateException(message));
-			return;
-		}
-		try {
-			resource.save(Configuration.getResourceSaveOptions());
-		} catch (IOException e) {
-			String message = "Save failed: ModelElement \"" + modelElement.getIdentifier();
-			WorkspaceUtil.logException(message, e);
 		}
 	}
 
@@ -1891,68 +1739,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
-	 */
-	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
-		if (isRecording) {
-
-			notificationRecorder.stopRecording();
-			recordingFinished();
-
-			if (deleteOperation == null) {
-				throw new IllegalStateException("DeleteCompleted called without previous delete start call");
-			}
-			deleteOperation.setDelete(true);
-			deleteOperation.setModelElement(ModelUtil.clone(modelElement));
-			deleteOperation.setModelElementId(modelElement.getModelElementId());
-
-			if (this.compositeOperation != null) {
-				this.compositeOperation.getSubOperations().add(deleteOperation);
-			} else {
-				this.getOperations().add(deleteOperation);
-				notifyOperationExecuted(deleteOperation);
-			}
-
-			deleteOperation = null;
-
-			saveProjectSpaceOnly();
-			updateDirtyState();
-			Resource resource = modelElement.eResource();
-			if (resource != null) {
-				resource.getContents().remove(modelElement);
-				saveResource(resource);
-			}
-			for (ModelElement child : modelElement.getAllContainedModelElements()) {
-				Resource childResource = child.eResource();
-				if (childResource != null) {
-					childResource.getContents().remove(child);
-					saveResource(childResource);
-				}
-			}
-
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
-	 */
-	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
-		if (isRecording) {
-			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
-			deleteOperation.setClientDate(new Date());
-
-			notificationRecorder.newRecording(NotificationRecordingHint.DELETE);
-
-		}
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.unicase.workspace.ProjectSpace#resolve(org.unicase.emfstore.esmodel.url.ModelElementUrlFragment)
 	 */
 	public ModelElement resolve(ModelElementUrlFragment modelElementUrlFragment) throws MEUrlResolutionException {
@@ -1962,80 +1748,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			throw new MEUrlResolutionException();
 		}
 		return modelElement;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
-	 */
-	public void modelElementAdded(Project project, ModelElement modelElement) {
-		checkForCrossReferences(modelElement);
-		addToResource(modelElement);
-		if (isRecording) {
-			appendCreator(modelElement);
-			CreateDeleteOperation createDeleteOperation = createCreateDeleteOperation(modelElement, false);
-			if (this.compositeOperation != null) {
-				this.compositeOperation.getSubOperations().add(createDeleteOperation);
-			} else {
-				this.getOperations().add(createDeleteOperation);
-				notifyOperationExecuted(createDeleteOperation);
-			}
-			saveProjectSpaceOnly();
-		}
-	}
-
-	private void checkForCrossReferences(ModelElement modelElement) {
-		if (modelElement.getCrossReferencedModelElements().size() > 0) {
-			IllegalStateException exception = new IllegalStateException(
-				"ModelElements may not contain cross references to other model elements when added to project!");
-			WorkspaceUtil.logException(exception.getMessage(), exception);
-			throw exception;
-		}
-		for (ModelElement child : modelElement.getAllContainedModelElements()) {
-			checkForCrossReferences(child);
-		}
-	}
-
-	/**
-	 * Appends the creator's name and the creation date.
-	 * 
-	 * @param modelElement the model element.
-	 */
-	private void appendCreator(ModelElement modelElement) {
-		stopChangeRecording();
-		if (modelElement.getCreator() == null || modelElement.getCreator().equals("")) {
-			Usersession usersession = getUsersession();
-			// used when the project has not been shared yet
-			// and there is practically no possible way of
-			// knowing who the creator was...
-			String creator = UNKOWN_CREATOR;
-			if (usersession != null) {
-				creator = usersession.getACUser().getName();
-			}
-			modelElement.setCreator(creator);
-		}
-		if (modelElement.getCreationDate() == null) {
-			modelElement.setCreationDate(new Date());
-		}
-		startChangeRecording();
-	}
-
-	/**
-	 * Create a CreateDeleteOperation.
-	 * 
-	 * @param modelElement the model element to delete or create
-	 * @param delete whether the element is deleted or created
-	 * @return the operation
-	 */
-	private CreateDeleteOperation createCreateDeleteOperation(ModelElement modelElement, boolean delete) {
-		CreateDeleteOperation createDeleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
-		createDeleteOperation.setDelete(delete);
-		createDeleteOperation.setModelElement((ModelElement) EcoreUtil.copy(modelElement));
-		createDeleteOperation.setModelElementId(modelElement.getModelElementId());
-		createDeleteOperation.setClientDate(new Date());
-		return createDeleteOperation;
 	}
 
 	/**
@@ -2068,52 +1780,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		getOperations().addAll(mergeResult);
 		saveResourceSet();
 		updateDirtyState();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.ProjectSpace#beginCompositeOperation()
-	 */
-	public CompositeOperationHandle beginCompositeOperation() {
-		if (this.compositeOperation != null) {
-			throw new IllegalStateException("Can only have one composite at once!");
-		}
-		this.compositeOperation = OperationsFactory.eINSTANCE.createCompositeOperation();
-		CompositeOperationHandle handle = new CompositeOperationHandle(this, compositeOperation);
-		return handle;
-	}
-
-	/**
-	 * Completes the current composite operation.
-	 */
-	public void endCompositeOperation() {
-		this.getOperations().add(this.compositeOperation);
-		this.compositeOperation = null;
-		saveProjectSpaceOnly();
-		updateDirtyState();
-	}
-
-	/**
-	 * Aborts the current composite operation.
-	 */
-	public void abortCompositeOperation() {
-		stopChangeRecording();
-		recordingFinished();
-		this.compositeOperation.reverse().apply(getProject());
-		notifyOperationUndone(this.compositeOperation);
-		startChangeRecording();
-		this.compositeOperation = null;
-		updateDirtyState();
-	}
-
-	/**
-	 * Returns the notification recorder of the project space.
-	 * 
-	 * @return the notification recorder
-	 */
-	public NotificationRecorder getNotificationRecorder() {
-		return notificationRecorder;
 	}
 
 	/**
@@ -2311,26 +1977,99 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.operationListeners.add(operationListener);
 	}
 
-	private void notifyOperationExecuted(AbstractOperation operation) {
-		for (OperationListener operationListener : operationListeners) {
-			operationListener.operationExecuted(operation);
-		}
-	}
-
-	private void notifyOperationExecuted(List<AbstractOperation> operations) {
-		for (OperationListener operationListener : operationListeners) {
-			for (AbstractOperation op : operations) {
-				operationListener.operationExecuted(op);
-			}
-
-		}
-
-	}
-
 	private void notifyOperationUndone(AbstractOperation operation) {
 		for (OperationListener operationListener : operationListeners) {
 			operationListener.operationUnDone(operation);
 		}
 	}
 
+	private void notifyOperationExecuted(AbstractOperation operation) {
+		for (OperationListener operationListener : operationListeners) {
+			operationListener.operationExecuted(operation);
+		}
+	}
+
+	/**
+	 * Add operation to the project spaces local operations.
+	 * 
+	 * @param operation the operation
+	 */
+	public void addOperation(AbstractOperation operation) {
+		this.getOperations().add(operation);
+		this.notifyOperationExecuted(operation);
+	}
+
+	/**
+	 * Add operations to the project spaces local operations.
+	 * 
+	 * @param operations the list of operations
+	 */
+	public void addOperations(List<AbstractOperation> operations) {
+		this.getOperations().addAll(operations);
+		for (AbstractOperation operation : operations) {
+			this.notifyOperationExecuted(operation);
+		}
+	}
+
+	/**
+	 * Add model element to a resource, assign a new resource if necessary.
+	 * 
+	 * @param modelElement the model element
+	 * @generated NOT
+	 */
+	public void addToResource(final ModelElement modelElement) {
+		if (isTransient) {
+			return;
+		}
+		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				addElementToResouce(modelElement);
+			}
+		});
+	}
+
+	private void addElementToResouce(final ModelElement modelElement) {
+		Resource oldResource = modelElement.eResource();
+		URI oldUri = oldResource.getURI();
+		if (!oldUri.isFile()) {
+			throw new IllegalStateException("Project contains ModelElements that are not part of a file resource.");
+		}
+		String oldFileName = oldUri.toFileString();
+		if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) {
+			String newfileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar
+				+ getResourceCount() + ".ucf";
+			setResourceCount(getResourceCount() + 1);
+			checkIfFileExists(newfileName);
+			URI fileURI = URI.createFileURI(newfileName);
+			Resource newResource = oldResource.getResourceSet().createResource(fileURI);
+			newResource.getContents().add(modelElement);
+		}
+	}
+
+	private void checkIfFileExists(String newfileName) {
+		if (new File(newfileName).exists()) {
+			throw new IllegalStateException("File fragment \"" + newfileName
+				+ "\" already exists - ProjectSpace corrupted.");
+		}
+	}
+
+	/**
+	 * Get the current nofitication recorder.
+	 * 
+	 * @return the recorder
+	 */
+	public NotificationRecorder getNotificationRecorder() {
+		return this.changeTracker.getNotificationRecorder();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.ProjectSpace#beginCompositeOperation()
+	 */
+	public CompositeOperationHandle beginCompositeOperation() {
+		return this.changeTracker.beginCompositeOperation();
+	}
 } // ProjectContainerImpl

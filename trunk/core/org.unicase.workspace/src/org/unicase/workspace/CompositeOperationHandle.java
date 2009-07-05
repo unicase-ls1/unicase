@@ -10,7 +10,7 @@ import java.util.Date;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.model.ModelElementId;
 import org.unicase.workspace.exceptions.InvalidHandleException;
-import org.unicase.workspace.impl.ProjectSpaceImpl;
+import org.unicase.workspace.impl.ProjectChangeTracker;
 
 /**
  * A handle to control a composite operation during recording.
@@ -20,17 +20,17 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
 public class CompositeOperationHandle {
 
 	private boolean isValid;
-	private final ProjectSpaceImpl projectSpace;
 	private final CompositeOperation compositeOperation;
+	private final ProjectChangeTracker changeTracker;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param projectSpace the project space
+	 * @param changeTracker the change tracker this composite is tracked on
 	 * @param compositeOperation the composite operation to be handled
 	 */
-	public CompositeOperationHandle(ProjectSpaceImpl projectSpace, CompositeOperation compositeOperation) {
-		this.projectSpace = projectSpace;
+	public CompositeOperationHandle(ProjectChangeTracker changeTracker, CompositeOperation compositeOperation) {
+		this.changeTracker = changeTracker;
 		this.compositeOperation = compositeOperation;
 		isValid = true;
 	}
@@ -51,7 +51,7 @@ public class CompositeOperationHandle {
 	 */
 	public void abort() throws InvalidHandleException {
 		checkAndCloseHandle();
-		projectSpace.abortCompositeOperation();
+		changeTracker.abortCompositeOperation();
 	}
 
 	private void checkAndCloseHandle() throws InvalidHandleException {
@@ -76,6 +76,6 @@ public class CompositeOperationHandle {
 		compositeOperation.setClientDate(new Date());
 		compositeOperation.setReversed(false);
 		compositeOperation.setModelElementId(modelElementId);
-		projectSpace.endCompositeOperation();
+		changeTracker.endCompositeOperation();
 	}
 }
