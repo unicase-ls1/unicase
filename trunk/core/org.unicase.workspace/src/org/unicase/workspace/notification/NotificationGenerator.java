@@ -9,8 +9,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
@@ -20,9 +22,12 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.workspace.PreferenceManager;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.notification.provider.AssignmentNotificationProvider;
+import org.unicase.workspace.PropertyKey.DashboardKey;
+import org.unicase.workspace.notification.provider.CommentsNotificationProvider;
 import org.unicase.workspace.notification.provider.PushedNotificationProvider;
+import org.unicase.workspace.notification.provider.TaskNotificationProvider;
 import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -31,48 +36,84 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * Singleton class to generate notifications from change packages.
  * 
  * @author koegel
+ * @author shterev
  */
 public final class NotificationGenerator {
 
-	private static NotificationGenerator instance;
+	private static HashMap<ProjectSpace, NotificationGenerator> instances;
 
 	private List<NotificationProvider> providers;
 
+	private ProjectSpace projectSpace;
+
 	/**
 	 * Constructor.
+	 * 
+	 * @param projectSpace the project space.
 	 */
-	public NotificationGenerator() {
+	private NotificationGenerator(ProjectSpace projectSpace) {
 		providers = new ArrayList<NotificationProvider>();
+
+		this.projectSpace = projectSpace;
+		// update provider must be first in list
+		addNotificationProvider(new UpdateNotificationProvider());
+
+		addTaskProviders(projectSpace);
+
+		addNotificationProvider(new TaskObjectNotificationProvider());
+
+		addNotificationProvider(new PushedNotificationProvider());
+		addNotificationProvider(new CommentsNotificationProvider());
 	}
 
-	private static NotificationGenerator createSingletonInstance() {
-		NotificationGenerator result = new NotificationGenerator();
-		// update provider must be first in list
-		result.addNotificationProvider(new UpdateNotificationProvider());
+	private void addTaskProviders(ProjectSpace projectSpace) {
 
-		TaskPackage taskPackage = TaskPackage.eINSTANCE;
-		result.addNotificationProvider(new AssignmentNotificationProvider(taskPackage.getActionItem()));
-		result.addNotificationProvider(new AssignmentNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
-		result.addNotificationProvider(new AssignmentNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
-		result.addNotificationProvider(new AssignmentNotificationProvider(taskPackage.getWorkPackage()));
+		if (projectSpace.hasProperty(DashboardKey.SHOW_AI_TASKS)) {
+			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_AI_TASKS);
+			if (property.getBooleanProperty()) {
+				addNotificationProvider(new TaskNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
+			}
+		}
 
-		result.addNotificationProvider(new TaskObjectNotificationProvider());
+		if (projectSpace.hasProperty(DashboardKey.SHOW_BR_TASKS)) {
+			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_BR_TASKS);
+			if (property.getBooleanProperty()) {
+				addNotificationProvider(new TaskNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
+			}
+		}
 
-		result.addNotificationProvider(new PushedNotificationProvider());
+		if (projectSpace.hasProperty(DashboardKey.SHOW_ISSUE_TASKS)) {
+			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace,
+				DashboardKey.SHOW_ISSUE_TASKS);
+			if (property.getBooleanProperty()) {
+				addNotificationProvider(new TaskNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
+			}
+		}
 
-		return result;
+		if (projectSpace.hasProperty(DashboardKey.SHOW_WP_TASKS)) {
+			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_WP_TASKS);
+			if (property.getBooleanProperty()) {
+				addNotificationProvider(new TaskNotificationProvider(TaskPackage.eINSTANCE.getWorkPackage()));
+			}
+		}
 	}
 
 	/**
 	 * Get the instance of the {@link NotificationGenerator} singleton.
 	 * 
+	 * @param projectSpace the projetspace
 	 * @return the singleton instance
 	 */
-	public static NotificationGenerator getInstance() {
-		if (instance == null) {
-			instance = createSingletonInstance();
+	public static NotificationGenerator getInstance(ProjectSpace projectSpace) {
+		if (instances == null) {
+			instances = new HashMap<ProjectSpace, NotificationGenerator>();
 		}
-		return instance;
+		NotificationGenerator notificationGenerator = instances.get(projectSpace);
+		if (notificationGenerator == null) {
+			notificationGenerator = new NotificationGenerator(projectSpace);
+			instances.put(projectSpace, notificationGenerator);
+		}
+		return notificationGenerator;
 	}
 
 	/**
@@ -81,12 +122,10 @@ public final class NotificationGenerator {
 	 * 
 	 * @param changePackages a list of change packages
 	 * @param currentUsername the name of the current user
-	 * @param projectSpace the current project space
 	 * @return a list of notification
 	 */
-	public List<ESNotification> generateNotifications(List<ChangePackage> changePackages, String currentUsername,
-		ProjectSpace projectSpace) {
-		return generateNotifications(changePackages, currentUsername, projectSpace, true);
+	public List<ESNotification> generateNotifications(List<ChangePackage> changePackages, String currentUsername) {
+		return generateNotifications(changePackages, currentUsername, true);
 	}
 
 	/**
@@ -94,12 +133,11 @@ public final class NotificationGenerator {
 	 * 
 	 * @param changePackages a list of change packages
 	 * @param currentUsername the name of the current user
-	 * @param projectSpace the current project space
 	 * @param createGenerationEvent true if an event should be generated about the notifications
 	 * @return a list of notification
 	 */
 	public List<ESNotification> generateNotifications(List<ChangePackage> changePackages, String currentUsername,
-		ProjectSpace projectSpace, boolean createGenerationEvent) {
+		boolean createGenerationEvent) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
 
 		// rectify client date if neccessary
