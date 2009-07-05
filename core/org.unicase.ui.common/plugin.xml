@@ -503,7 +503,7 @@
                enablesFor="1"
                icon="icons/delete_edit.gif"
                id="org.unicase.ui.common.diagram.DeleteFromDiagramAction"
-               label="Delete From Diagram">
+               label="Delete from Diagram">
          </action>
       </objectContribution>
        <objectContribution
