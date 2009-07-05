@@ -305,17 +305,17 @@ public final class ActionHelper {
 
 		String id = null;
 		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
-			id = "org.unicase.model.classDiagram.part.ModelDiagramEditorID";
+			id = "org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
 			id = "org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
-			id = "org.unicase.ui.componentDiagram.part.ModelDiagramEditorID";
+			id = "org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
-			id = "org.unicase.ui.stateDiagram.part.ModelDiagramEditorID";
+			id = "org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
-			id = "org.unicase.ui.activityDiagram.part.ModelDiagramEditorID";
+			id = "org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.WORKITEM_DIAGRAM)) {
-			id = "org.unicase.ui.workItemDiagram.part.ModelDiagramEditorID";
+			id = "org.unicase.ui.diagram.workItemDiagram.part.ModelDiagramEditorID";
 		}		
 
 		if (id == null) {
