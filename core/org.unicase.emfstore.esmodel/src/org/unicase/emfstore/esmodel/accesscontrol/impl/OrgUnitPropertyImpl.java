@@ -8,12 +8,15 @@ package org.unicase.emfstore.esmodel.accesscontrol.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
+import org.unicase.model.util.ModelUtil;
+import org.unicase.model.util.SerializationException;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Org Unit Properties</b></em>'. <!--
@@ -333,4 +336,115 @@ public class OrgUnitPropertyImpl extends EObjectImpl implements OrgUnitProperty 
 		return result.toString();
 	}
 
-} // OrgUnitPropertiesImpl
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setValue(boolean value) {
+		String newValue = null;
+		if (value) {
+			newValue = "true";
+		} else {
+			newValue = "false";
+		}
+		setValue(newValue);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setValue(int value) {
+		setValue(new Integer(value).toString());
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setValue(String[] value) {
+		if (value.length == 0) {
+			setValue("");
+			return;
+		}
+		StringBuilder newValue = new StringBuilder();
+		for (String s : value) {
+			newValue.append(s);
+			newValue.append(OrgUnitProperty.ARRAY_SEPARATOR);
+		}
+		String ret = newValue.toString();
+		setValue(ret.substring(0, ret.length() - 2));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void setValue(EObject[] value) {
+		String[] newValue = new String[value.length];
+		try {
+			for (int i = 0; i < value.length; i++) {
+				newValue[i] = ModelUtil.eObjectToString(value[i]);
+			}
+			setValue(newValue);
+		} catch (SerializationException e) {
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Boolean getBooleanProperty() {
+		String value = getValue();
+		if (value != null) {
+			Boolean b = new Boolean(value);
+			return b;
+		}
+		throw new IllegalStateException("Existing key without value!");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public Integer getIntegerProperty() {
+		String value = getValue();
+		if (value != null) {
+			Integer b = new Integer(value);
+			return b;
+		}
+		throw new IllegalStateException("Existing key without value!");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public String[] getStringArrayProperty() {
+		String value = getValue();
+		if (value != null) {
+			if (value.equals("")) {
+				return new String[0];
+			}
+			String[] split = value.split(OrgUnitProperty.ARRAY_SEPARATOR);
+			return split;
+		}
+		throw new IllegalStateException("Existing key without value!");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public EObject[] getEObjectArrayProperty() {
+		String[] value = getStringArrayProperty();
+		if (value != null && value.length > 0) {
+			EObject[] eobjects = new EObject[value.length];
+			for (int i = 0; i < value.length; i++) {
+				try {
+					eobjects[i] = ModelUtil.stringToEObject(value[i]);
+				} catch (SerializationException e) {
+					throw new IllegalArgumentException("EObject could not be deserialized!");
+				} catch (ClassCastException e) {
+					throw new IllegalArgumentException("EObject is not a ModelElementId!");
+				}
+			}
+			return eobjects;
+		}
+		return new EObject[0];
+	}
+
+} // OrgUnitPropertyImpl

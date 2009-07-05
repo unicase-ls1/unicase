@@ -25,7 +25,7 @@ import org.unicase.emfstore.esmodel.ProjectId;
  */
 public interface OrgUnitProperty extends EObject {
 
-	public final static String ARRAY_SEPARATOR = "§";
+	public final static String ARRAY_SEPARATOR = "%%";
 
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
@@ -103,5 +103,58 @@ public interface OrgUnitProperty extends EObject {
 	 * @generated
 	 */
 	void setProject(ProjectId value);
+
+	/**
+	 * Sets a new boolean property.
+	 * 
+	 * @param name the name of the property
+	 * @param value the new value
+	 * @generated NOT
+	 */
+	void setValue(boolean value);
+
+	/**
+	 * Sets a new int property.
+	 * 
+	 * @param value the new value
+	 * @generated NOT
+	 */
+	void setValue(int value);
+
+	/**
+	 * Sets a new String[] property.
+	 * 
+	 * @param value the new value
+	 * @generated NOT
+	 */
+	void setValue(String[] value);
+
+	/**
+	 * Sets a new EObject[] property.
+	 * 
+	 * @param value the new EObject[] value
+	 * @generated NOT
+	 */
+	void setValue(EObject[] value);
+
+	/**
+	 * @return the boolean value of the property or null if it doesn't exist
+	 */
+	Boolean getBooleanProperty();
+
+	/**
+	 * @return the int value of the property or null if it doesn't exist
+	 */
+	Integer getIntegerProperty();
+
+	/**
+	 * @return the array value of the property or null if it doesn't exist
+	 */
+	String[] getStringArrayProperty();
+
+	/**
+	 * @return the EObject array value of the property or null if it doesn't exist
+	 */
+	EObject[] getEObjectArrayProperty();
 
 } // OrgUnitProperties
