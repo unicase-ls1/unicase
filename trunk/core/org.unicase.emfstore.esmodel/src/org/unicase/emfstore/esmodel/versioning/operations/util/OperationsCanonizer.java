@@ -252,7 +252,7 @@ public final class OperationsCanonizer {
 			}
 			// if the remaining leftOp is a noop, remove it altogether
 			if ((attOpLeft.getNewValue() == null && attOpLeft.getOldValue() == null)
-				|| attOpLeft.getNewValue().equals(attOpLeft.getOldValue())) {
+				|| (attOpLeft.getNewValue() != null && attOpLeft.getNewValue().equals(attOpLeft.getOldValue()))) {
 				operations.remove(i);
 				i--; // reexamine the index after removal
 			}
