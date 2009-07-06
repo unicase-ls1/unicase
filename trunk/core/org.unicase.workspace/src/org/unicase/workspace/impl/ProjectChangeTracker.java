@@ -218,7 +218,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 
 		} else if (compositeOperation != null) {
 			compositeOperation.getSubOperations().addAll(ops);
-			projectSpace.saveResource(deleteOperation.eResource());
+			projectSpace.saveResource(compositeOperation.eResource());
 		} else {
 			if (ops.size() > 1) {
 				CompositeOperation op = OperationsFactory.eINSTANCE.createCompositeOperation();

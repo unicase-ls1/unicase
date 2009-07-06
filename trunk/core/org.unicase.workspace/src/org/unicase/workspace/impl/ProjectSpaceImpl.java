@@ -1235,6 +1235,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			this.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
 			operationComposite = getLocalOperations();
 		}
+		if (isTransient) {
+			return operationComposite.getOperations();
+		}
 		if (operationsList == null) {
 			operationsList = new AutoSplitAndSaveResourceContainmentList<AbstractOperation>(operationComposite,
 				operationComposite.getOperations(), this.eResource().getResourceSet(), Configuration
