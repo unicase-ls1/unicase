@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+
+<plugin>
+
+  <extension point="org.eclipse.emf.ecore.generated_package">
+    <package 
+       uri = "http://unicase.org/model" 
+       class = "org.unicase.model.ModelPackage"
+       genModel = "model/model.genmodel" />
+  </extension>
+  <extension
+        point="org.eclipse.emf.validation.constraintProviders">
+     <category
+           id="org.unicase.model"
+           name="Unicase">
+     </category>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/task">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemAssigneeConstraint"
+                 id="org.unicase.model.task.ActionItemAssignee"
+                 lang="Java"
+                 mode="Batch"
+                 name="ActionItem Assignee Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 A {0} has been found to have no Assignee.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemWorkpackageConstraint"
+                 id="org.unicase.model.task.ActionItemWorkpackage"
+                 lang="Java"
+                 mode="Batch"
+                 name="ActionItem Workpackage Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is not contained in a workpackage.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.task.validation.ActionItemActivityConstraint"
+                 id="org.unicase.model.task.ActionItemActivity"
+                 lang="Java"
+                 mode="Batch"
+                 name="ActionItem Activity Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 The activity of {0} is not set.
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+     <constraintProvider
+           cache="true"
+           mode="Batch">
+        <package
+              namespaceUri="http://unicase.org/model/requirement">
+        </package>
+        <constraints
+              categories="org.unicase.model">
+           <constraint
+                 class="org.unicase.model.requirement.validation.UsecaseRequirementConstraint"
+                 id="org.unicase.model.requirement.UsecaseRequirement"
+                 lang="Java"
+                 mode="Batch"
+                 name="Usecase Requirement Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is not linked to a functional requirement.
+              </message>
+           </constraint>
+           <constraint
+                 class="org.unicase.model.requirement.validation.UsecaseIdentifiedClassConstraint"
+                 id="org.unicase.model.requirement.UsecaseIdentifiedClass"
+                 lang="Java"
+                 mode="Batch"
+                 name="Usecase Identified Class Constraint"
+                 severity="WARNING"
+                 statusCode="1">
+              <message>
+                 {0} is not connected to any identified classes.
+              </message>
+           </constraint>
+        </constraints>
+     </constraintProvider>
+  </extension>
+  <extension
+        point="org.eclipse.emf.validation.constraintBindings">
+     <clientContext
+           default="false"
+           id="org.unicase.model.validation">
+        <selector
+              class="org.unicase.model.validation.ValidationClientSelector">
+        </selector>
+     </clientContext>
+     <binding
+           context="org.unicase.model.validation">
+        <category
+              ref="org.unicase.model">
+        </category>
+     </binding>
+  </extension>
+  <extension
+        id="validation.marker"
+        name="Unicase Validation Marker"
+        point="org.eclipse.core.resources.markers">
+     <persistent
+           value="false">
+     </persistent>
+     <super
+           type="org.eclipse.core.resources.problemmarker">
+     </super>
+     <super
+           type="org.eclipse.emf.ecore.diagnostic">
+     </super>
+  </extension>
+  
+
+
+</plugin>
