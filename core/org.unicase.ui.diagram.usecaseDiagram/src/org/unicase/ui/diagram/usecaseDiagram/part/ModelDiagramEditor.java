@@ -155,10 +155,10 @@ public class ModelDiagramEditor extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public boolean isSaveAsAllowed() {
-		return true;
+		return false;
 	}
 
 	/**

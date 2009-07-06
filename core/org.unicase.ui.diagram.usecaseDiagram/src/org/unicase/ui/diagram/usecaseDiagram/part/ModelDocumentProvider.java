@@ -42,6 +42,7 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.part.FileEditorInput;
+import org.unicase.ui.diagram.usecaseDiagram.part.ModelDocumentProvider.ResourceSetInfo;
 
 /**
  * @generated
@@ -119,22 +120,23 @@ public class ModelDocumentProvider extends
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	private long computeModificationStamp(ResourceSetInfo info) {
 		int result = 0;
-		for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = info
-				.getLoadedResourcesIterator(); it.hasNext();) {
-			Resource nextResource = (Resource) it.next();
-			IFile file = WorkspaceSynchronizer.getFile(nextResource);
-			if (file != null) {
-				if (file.getLocation() != null) {
-					result += file.getLocation().toFile().lastModified();
-				} else {
-					result += file.getModificationStamp();
-				}
-			}
-		}
+		// for (Iterator it = info.getResourceSet().getResources().iterator();
+		// it
+		// .hasNext();) {
+		// Resource nextResource = (Resource) it.next();
+		// IFile file = WorkspaceSynchronizer.getFile(nextResource);
+		// if (file != null) {
+		// if (file.getLocation() != null) {
+		// result += file.getLocation().toFile().lastModified();
+		// } else {
+		// result += file.getModificationStamp();
+		// }
+		// }
+		// }
 		return result;
 	}
 
@@ -747,16 +749,16 @@ public class ModelDocumentProvider extends
 		}
 
 		/**
-		 * @generated
+		 * @generated NOT
 		 */
 		public void dispose() {
-			stopResourceListening();
-			getResourceSet().eAdapters().remove(myResourceSetListener);
-			for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it
-					.hasNext();) {
-				Resource resource = (Resource) it.next();
-				resource.unload();
-			}
+			//stopResourceListening();
+			//getResourceSet().eAdapters().remove(myResourceSetListener);
+			//for (Iterator/*<org.eclipse.emf.ecore.resource.Resource>*/it = getLoadedResourcesIterator(); it
+			//		.hasNext();) {
+			//	Resource resource = (Resource) it.next();
+			//	resource.unload();
+			//}
 		}
 
 		/**
