@@ -1,7 +1,0 @@
-Manifest-Version: 1.0
-Bundle-ManifestVersion: 2
-Bundle-Name: FindReference Plug-in
-Bundle-SymbolicName: org.unicase.ui.findReference
-Bundle-Version: 0.3.18.qualifier
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Require-Bundle: org.unicase.workspace;bundle-version="0.3.18.qualifier"
