@@ -1,0 +1,79 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Dmitry Stadnik (Borland) - initial API and implementation
+ */
+
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+
+«DEFINE extensions FOR gmfgen::GenDiagram-»
+
+   <extension point="org.eclipse.core.runtime.preferences">
+      «EXPAND xpt::Common::xmlGeneratedTag»
+      <initializer class="«EXPAND xpt::diagram::preferences::PreferenceInitializer::qualifiedClassName»"/>
+   </extension>
+
+«IF preferencePages.size() > 0-»
+   <extension point="org.eclipse.ui.preferencePages">
+      «EXPAND xpt::Common::xmlGeneratedTag»
+«FOREACH preferencePages AS page-»
+«EXPAND preferencePage FOR page-»
+«ENDFOREACH-»
+   </extension>
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE preferencePage FOR gmfgen::GenPreferencePage-»
+      <page
+            id="«iD»"
+            name="%preference.page.title.«iD»"
+«IF null != parent-»
+            category="«parent.iD»"
+«ENDIF-»
+            class="«EXPAND qualifiedClassName»">
+      </page>
+«FOREACH children AS page-»
+«EXPAND preferencePage FOR page-»
+«ENDFOREACH-»
+«ENDDEFINE»
+
+«DEFINE qualifiedClassName FOR gmfgen::GenPreferencePage»
+«ERROR "Unknown preference page: " + this»
+«ENDDEFINE»
+
+«DEFINE qualifiedClassName FOR gmfgen::GenCustomPreferencePage»«qualifiedClassName»«ENDDEFINE»
+
+«DEFINE qualifiedClassName FOR gmfgen::GenStandardPreferencePage-»
+«IF gmfgen::StandardPreferencePages::General.value == kind.value-»
+«EXPAND xpt::diagram::preferences::GeneralPreferencePage::qualifiedClassName FOR getDiagram()-»
+«ELSEIF gmfgen::StandardPreferencePages::Appearance.value == kind.value-»
+«EXPAND xpt::diagram::preferences::AppearancePreferencePage::qualifiedClassName FOR getDiagram()-»
+«ELSEIF gmfgen::StandardPreferencePages::Connections.value == kind.value-»
+«EXPAND xpt::diagram::preferences::ConnectionsPreferencePage::qualifiedClassName FOR getDiagram()-»
+«ELSEIF gmfgen::StandardPreferencePages::Printing.value == kind.value-»
+«EXPAND xpt::diagram::preferences::PrintingPreferencePage::qualifiedClassName FOR getDiagram()-»
+«ELSEIF gmfgen::StandardPreferencePages::RulersAndGrid.value == kind.value-»
+«EXPAND xpt::diagram::preferences::RulersAndGridPreferencePage::qualifiedClassName FOR getDiagram()-»
+«ELSEIF gmfgen::StandardPreferencePages::Pathmaps.value == kind.value-»
+org.eclipse.gmf.runtime.emf.ui.preferences.PathmapsPreferencePage«ELSE-»
+«ERROR "Unknown preference page: " + this»
+«ENDIF-»
+«ENDDEFINE»
+
+«DEFINE i18n FOR gmfgen::GenDiagram-»
+
+# Preferences
+«EXPAND internal_i18n FOREACH preferencePages»
+«ENDDEFINE»
+
+«DEFINE internal_i18n FOR gmfgen::GenPreferencePage-»
+preference.page.title.«iD»=«name»
+«EXPAND internal_i18n FOREACH children-»
+«ENDDEFINE»
