@@ -36,8 +36,7 @@ public class «documentProviderClassName» extends org.unicase.ui.common.diagram.p
 	«EXPAND isDeleted-»
 	
 	«EXPAND getResourceSetInfo-»
-	
-	«EXPAND disposeElementInfo-»
+	«REM»Removed method disposeElementInfo «ENDREM»
 	«IF null == editorGen.application-»
 
 		«EXPAND doValidateState-»
