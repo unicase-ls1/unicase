@@ -599,6 +599,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return events;
 	}
 
+	// begin of custom code
 	/**
 	 * Get the events that have been logged for this project space.
 	 * 
@@ -607,6 +608,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public List<Event> getEventsFromComposite() {
 		// check if operation composite exists
 		EventComposite eventComposite = this.getEventComposite();
+		if (isTransient) {
+			if (eventComposite == null) {
+				eventComposite = WorkspaceFactory.eINSTANCE.createEventComposite();
+				this.setEventComposite(eventComposite);
+			}
+			return eventComposite.getEvents();
+		}
 		if (eventComposite == null) {
 			eventComposite = WorkspaceFactory.eINSTANCE.createEventComposite();
 			// migration code: existing events in the event feature are added to the composite
@@ -626,6 +634,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		return eventList;
 	}
+
+	// end of custom code
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -923,6 +933,13 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public List<ESNotification> getNotificationsFromComposite() {
 		// check if operation composite exists
 		NotificationComposite notificationComposite = this.getNotificationComposite();
+		if (isTransient) {
+			if (notificationComposite == null) {
+				notificationComposite = WorkspaceFactory.eINSTANCE.createNotificationComposite();
+				this.setNotificationComposite(notificationComposite);
+			}
+			return notificationComposite.getNotifications();
+		}
 		if (notificationComposite == null) {
 			notificationComposite = WorkspaceFactory.eINSTANCE.createNotificationComposite();
 			// migration code: existing notifications in the notification feature are added to the composite
