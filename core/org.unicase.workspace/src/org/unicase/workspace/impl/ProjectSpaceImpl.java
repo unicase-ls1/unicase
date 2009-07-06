@@ -1167,6 +1167,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		ChangePackage changePackage = getLocalChangePackage(true);
 
+		if (changePackage.getOperations().isEmpty()) {
+			for (AbstractOperation operation : getOperations()) {
+				notifyOperationUndone(operation);
+			}
+			getOperations().clear();
+			updateDirtyState();
+			throw new NoLocalChangesException();
+		}
+
 		notifyPreCommitObservers(changePackage);
 
 		if (commitObserver != null && !commitObserver.inspectChanges(this, changePackage)) {
