@@ -1973,13 +1973,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @see org.unicase.workspace.ProjectSpace#undoLastOperation()
 	 */
 	public void undoLastOperation() {
-		List<AbstractOperation> operations = this.getOperations();
-		AbstractOperation lastOperation = operations.get(operations.size() - 1);
-		stopChangeRecording();
-		lastOperation.reverse().apply(getProject());
-		notifyOperationUndone(lastOperation);
-		startChangeRecording();
-		operations.remove(lastOperation);
+		if (!this.getOperations().isEmpty()) {
+			List<AbstractOperation> operations = this.getOperations();
+			AbstractOperation lastOperation = operations.get(operations.size() - 1);
+			stopChangeRecording();
+			lastOperation.reverse().apply(getProject());
+			notifyOperationUndone(lastOperation);
+			startChangeRecording();
+			operations.remove(lastOperation);
+		}
+		updateDirtyState();
 	}
 
 	/**
