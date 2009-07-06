@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Workspace Test
+Bundle-SymbolicName: org.unicase.workspace.test
+Bundle-Version: 0.3.18.internal
+Bundle-Activator: org.unicase.workspace.test.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.unicase.workspace,
+ org.junit4
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
