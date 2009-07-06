@@ -2349,8 +2349,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			} catch (PropertyNotFoundException e) {
 				getUsersession().getACUser().getProperties().add(property);
 				propertyMap.put(property.getName(), property);
-				WorkspaceManager.getInstance().getCurrentWorkspace().save();
 			}
+			WorkspaceManager.getInstance().getCurrentWorkspace().save();
 		}
 	}
 
@@ -2358,6 +2358,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * {@inheritDoc}
 	 */
 	public boolean hasProperty(PropertyKey key) {
-		return propertyMap.containsKey(key);
+		return propertyMap.containsKey(key.toString());
 	}
 } // ProjectContainerImpl
