@@ -22,12 +22,15 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.workspace.ProjectSpace;
 
 /**
- * ...
+ * Tests conflict detection behaviour on attributes.
  * 
  * @author chodnick
  */
 public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 
+	/**
+	 * Tests if overwriting of attributes is detected as conflict.
+	 */
 	@Test
 	public void conflictAttribute() {
 
