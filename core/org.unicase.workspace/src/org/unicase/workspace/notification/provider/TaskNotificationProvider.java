@@ -21,6 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.model.ModelElement;
@@ -40,9 +41,9 @@ import org.unicase.workspace.util.OrgUnitHelper;
  */
 public class TaskNotificationProvider extends AbstractNotificationProvider {
 
-	private Map<WorkItem, Date> reviewerItems;
-	private Map<WorkItem, Date> assigneeItems;
-	private Map<WorkItem, Date> readyForReviewItems;
+	private Map<WorkItem, AbstractOperation> reviewerItems;
+	private Map<WorkItem, AbstractOperation> assigneeItems;
+	private Map<WorkItem, AbstractOperation> readyForReviewItems;
 	private EClass clazz;
 
 	/**
@@ -53,9 +54,9 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 	public TaskNotificationProvider(EClass clazz) {
 		super();
 		this.clazz = clazz;
-		assigneeItems = new HashMap<WorkItem, Date>();
-		reviewerItems = new HashMap<WorkItem, Date>();
-		readyForReviewItems = new HashMap<WorkItem, Date>();
+		assigneeItems = new HashMap<WorkItem, AbstractOperation>();
+		reviewerItems = new HashMap<WorkItem, AbstractOperation>();
+		readyForReviewItems = new HashMap<WorkItem, AbstractOperation>();
 
 	}
 
@@ -94,10 +95,10 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 				AttributeOperation op = (AttributeOperation) operation;
 				WorkItem workItem = (WorkItem) modelElement;
 				if (op.getNewValue().equals(new Boolean(true)) && workItem.getReviewer().equals(user)) {
-					readyForReviewItems.put(workItem, op.getClientDate());
+					readyForReviewItems.put(workItem, op);
 				} else if (op.getNewValue().equals(new Boolean(false))
 					&& (workItem.getAssignee().equals(user) || groupsOfOrgUnit.contains(workItem.getAssignee()))) {
-					assigneeItems.put(workItem, op.getClientDate());
+					assigneeItems.put(workItem, op);
 				}
 			}
 		}
@@ -109,14 +110,14 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation).getNewValue();
 			ModelElement orgUnit = project.getModelElement(orgUnitId);
 			if (orgUnit != null && orgUnit instanceof User && orgUnit.equals(user)) {
-				reviewerItems.put((WorkItem) modelElement, referenceOperation.getClientDate());
+				reviewerItems.put((WorkItem) modelElement, referenceOperation);
 			}
 		} else if (featureName.equalsIgnoreCase("workItemsToReview") && modelElement.equals(user)) {
 			EList<ModelElementId> wiIds = ((MultiReferenceOperation) referenceOperation).getReferencedModelElements();
 			for (ModelElementId wiId : wiIds) {
 				ModelElement wi = project.getModelElement(wiId);
 				if (wi != null) {
-					reviewerItems.put((WorkItem) wi, referenceOperation.getClientDate());
+					reviewerItems.put((WorkItem) wi, referenceOperation);
 				}
 			}
 		}
@@ -128,7 +129,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation).getNewValue();
 			ModelElement orgUnit = project.getModelElement(orgUnitId);
 			if (orgUnit != null && (orgUnit.equals(user) || groupsOfOrgUnit.contains(orgUnit))) {
-				assigneeItems.put((WorkItem) modelElement, referenceOperation.getClientDate());
+				assigneeItems.put((WorkItem) modelElement, referenceOperation);
 			}
 		} else if (featureName.equalsIgnoreCase("assignments")
 			&& (modelElement.equals(user) || groupsOfOrgUnit.contains(modelElement))) {
@@ -136,7 +137,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			for (ModelElementId wiId : wiIds) {
 				ModelElement wi = project.getModelElement(wiId);
 				if (wi != null) {
-					assigneeItems.put((WorkItem) wi, referenceOperation.getClientDate());
+					assigneeItems.put((WorkItem) wi, referenceOperation);
 				}
 			}
 		}
@@ -151,7 +152,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 
 		List<ESNotification> result = new ArrayList<ESNotification>();
 
-		HashMap<WorkItem, Date> workItems = new HashMap<WorkItem, Date>();
+		HashMap<WorkItem, AbstractOperation> workItems = new HashMap<WorkItem, AbstractOperation>();
 		workItems.putAll(assigneeItems);
 		workItems.putAll(readyForReviewItems);
 		workItems.putAll(reviewerItems);
@@ -183,7 +184,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 	}
 
 	private ESNotification createSingleNotification(ProjectSpace projectSpace, User user,
-		Map<WorkItem, Date> workItemMap, String message, String taskType) {
+		Map<WorkItem, AbstractOperation> workItemMap, String message, String taskType) {
 		Set<WorkItem> workItems = workItemMap.keySet();
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("New " + taskType + " items");
@@ -218,9 +219,12 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 		String text = stringBuilder.toString();
 		notification.setMessage(text);
 		Date date = workItems.iterator().next().getCreationDate();
+		ArrayList<OperationId> ops = new ArrayList<OperationId>();
 		for (WorkItem workItem : workItems) {
 			notification.getRelatedModelElements().add(workItem.getModelElementId());
-			Date newDate = workItemMap.get(workItem);
+			AbstractOperation abstractOperation = workItemMap.get(workItem);
+			ops.add(abstractOperation.getOperationId());
+			Date newDate = abstractOperation.getClientDate();
 			if (newDate != null && newDate.after(date)) {
 				date = newDate;
 			}
@@ -229,6 +233,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			date = new Date();
 		}
 		notification.setCreationDate(date);
+		notification.getRelatedOperations().addAll(ops);
 		return notification;
 	}
 }
