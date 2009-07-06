@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            id="org.unicase.docExport.exportDocument"
+            name="exportDocument">
+      </command>
+      <command
+            defaultHandler="org.unicase.docExport.handlers.CallTemplateEditor"
+            id="org.unicase.docExport.callTemplateEditor"
+            name="Call Template Editor">
+      </command>
+      <command
+            defaultHandler="org.unicase.docExport.handlers.SelectTemplate"
+            id="org.unicase.docExport.selectTemplate"
+            name="select template">
+      </command>
+      <command
+            defaultHandler="org.unicase.docExport.handlers.SelectRenderer"
+            id="org.unicase.docExport.selectRenderer"
+            name="select renderer">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="org.unicase.docExport.commands.ExportDocument"
+            commandId="org.unicase.docExport.exportDocument">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.ui.common.commands.annotateActionitemSeperator">
+         <command
+               commandId="org.unicase.docExport.exportDocument"
+               label="Export Meeting"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <iterate
+                     ifEmpty="false">
+                  <instanceof
+                        value="org.unicase.model.meeting.Meeting">
+                  </instanceof>
+               </iterate>
+            </visibleWhen>
+         </command>
+         <command
+               commandId="org.unicase.docExport.exportDocument"
+               icon="icons/export.gif"
+               label="Export Document"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.unicase.docExport.editors.TemplateEditor"
+            default="false"
+            id="org.unicase.docExport.editors.TemplateEditor"
+            name="Template Editor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.unicase.docExport.exportModel.ExportModelPackage"
+            genModel="model/exportModel.genmodel"
+            uri="http://unicase.org/docExport/exportModel">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.unicase.docExport.exportModel.renderers.RenderersPackage"
+            genModel="model/exportModel.genmodel"
+            uri="http://unicase.org/docExport/exportModel/renderers">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersPackage"
+            genModel="model/exportModel.genmodel"
+            uri="http://unicase.org/docExport/exportModel/renderers/defaultRenderers">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage"
+            genModel="model/exportModel.genmodel"
+            uri="http://unicase.org/docExport/exportModel/renderers/specialRenderers">
+      </package>
+   </extension>
+   <extension
+         point="org.eclipse.emf.ecore.generated_package">
+      <package
+            class="org.unicase.docExport.exportModel.renderers.options.OptionsPackage"
+            genModel="model/exportModel.genmodel"
+            uri="http://unicase.org/docExport/exportModel/renderers/options">
+      </package>
+   </extension>
+
+</plugin>

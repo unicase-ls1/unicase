@@ -1,0 +1,110 @@
+package org.unicase.ui.common.handlers;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
+import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.IHandler;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.window.Window;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.dialogs.ElementListSelectionDialog;
+import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
+import org.unicase.ui.common.commands.ActionHelper;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
+
+/**
+ * This is the (ShortcutCommand)-Handler to select Modelelements out of a list
+ * of elements..
+ * 
+ * @author Hamid
+ */
+
+public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
+
+	private Project project;
+
+	/**
+	 * Default constructor.
+	 */
+	public OpenMEShortcutHandler() {
+
+	}
+
+	/**
+	 * Opens a element selection dialog. {@inheritDoc}
+	 */
+	public Object execute(ExecutionEvent event) throws ExecutionException {
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+				.getShell();
+		ProjectSpace projectSpace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getActiveProjectSpace();
+
+		if (projectSpace == null) {
+			MessageDialog.openInformation(shell, "Information",
+					"You must select the Project");
+		} else {
+
+			project = projectSpace.getProject();
+			List<ModelElement> modelElements = new ArrayList<ModelElement>();
+			modelElements.addAll(project.getAllModelElements());
+			showShortcutDialog(shell, modelElements, "Open Model Element",
+					"   Enter model element name prefix or pattern (e.g. *Trun?)");
+		}
+
+		return null;
+	}
+
+	/**
+	 * This shows a standard dialog with some given initial contents to select
+	 * model elements.
+	 * 
+	 * @param shell
+	 *            The parent shell
+	 * @param initialContent
+	 *            The list of model elements to select from
+	 * @param title
+	 *            The title of the dialog
+	 * @param message
+	 *            the message of the dialog
+	 * @return The selected elements
+	 */
+	public Object[] showShortcutDialog(Shell shell,
+			Collection<?> initialContent, String title, String message) {
+
+		// adapterFactory an adapter factory that yield adapters that
+		// implement the various item label provider interfaces.
+
+		ILabelProvider renderer = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+				shell.getShell(), renderer);
+		Object[] items = initialContent.toArray(new Object[initialContent
+				.size()]);
+		dialog.setElements(items);
+
+		dialog.setTitle(title);
+		dialog.setBlockOnOpen(true);
+		dialog.setMultipleSelection(false);
+		dialog.setMessage(message);
+		Object[] result = new Object[0];
+		if (dialog.open() == Window.OK) {
+			result = dialog.getResult();
+		}
+
+		ModelElement mod = (ModelElement) dialog.getFirstResult();
+		ActionHelper.openModelElement(mod, "org.unicase.ui.OpenMEShortcut");
+		return result;
+	}
+
+}
