@@ -31,6 +31,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 
 /**
@@ -56,11 +57,18 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 		this.operationsDescriptionProvider = new OperationsDescriptionProvider(project);
 		this.project = project;
 		this.highlighted = new ArrayList<OperationId>();
+
+		baseRevision = Activator.getImageDescriptor("icons/HistoryInfo_base.png").createImage();
+		currentRevision = Activator.getImageDescriptor("icons/HistoryInfo_current.png").createImage();
+		headRevision = Activator.getImageDescriptor("icons/HistoryInfo_head.png").createImage();
 	}
 
 	private AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	private ChangePackageVisualizationHelper changePackageVisualizationHelper;
+	private Image baseRevision;
+	private Image currentRevision;
+	private Image headRevision;
 
 	/**
 	 * {@inheritDoc}
@@ -221,6 +229,17 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 			if (value instanceof ModelElementId) {
 				return adapterFactoryLabelProvider.getImage(changePackageVisualizationHelper
 					.getModelElement((ModelElementId) value));
+			} else if (value instanceof HistoryInfo) {
+				String text = getText(element);
+				if (text.equals(LOCAL_REVISION)) {
+					return currentRevision;
+				}
+				if (text.matches("\\[.*BASE.*\\].*")) {
+					return baseRevision;
+				}
+				if (text.matches("\\[.*HEAD.*\\].*")) {
+					return headRevision;
+				}
 			}
 			return adapterFactoryLabelProvider.getImage(value);
 		}
@@ -256,5 +275,16 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 	 */
 	public List<OperationId> getHighlighted() {
 		return highlighted;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void dispose() {
+		super.dispose();
+		headRevision.dispose();
+		currentRevision.dispose();
+		baseRevision.dispose();
 	}
 }
