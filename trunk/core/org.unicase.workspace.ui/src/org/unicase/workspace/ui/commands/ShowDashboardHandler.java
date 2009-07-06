@@ -8,6 +8,8 @@ package org.unicase.workspace.ui.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
@@ -37,10 +39,12 @@ public class ShowDashboardHandler extends AbstractHandler {
 
 		ProjectSpace projectSpace = null;
 		try {
-			Object o = HandlerUtil.getVariableChecked(event, DASHBOARD_CONTEXT_VARIABLE);
+			Object o = HandlerUtil.getVariableChecked(event,
+					DASHBOARD_CONTEXT_VARIABLE);
 			projectSpace = (ProjectSpace) o;
 		} catch (ExecutionException e) {
-			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
+					.getActiveProjectSpace();
 		}
 
 		if (projectSpace == null) {
@@ -50,23 +54,35 @@ public class ShowDashboardHandler extends AbstractHandler {
 
 		if (projectSpace.getUsersession() == null) {
 			// do not open when the project is not shared yet
-			MessageDialog.openWarning(Display.getCurrent().getActiveShell(), "No dashboard available",
-				"You can't open the dashboard because your project is not shared yet");
+			MessageDialog
+					.openWarning(Display.getCurrent().getActiveShell(),
+							"No dashboard available",
+							"You can't open the dashboard because your project is not shared yet");
 			return null;
 		}
 
-		DashboardEditorInput input = new DashboardEditorInput(projectSpace);
-		try {
-			IEditorPart openEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(
-				input, DASHBOARD_ID, true);
-			if (openEditor instanceof DashboardEditor) {
-				((DashboardEditor) openEditor).refresh();
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		final ProjectSpace ps = projectSpace;
+		final RecordingCommand command = new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				DashboardEditorInput input = new DashboardEditorInput(ps);
+				try {
+					IEditorPart openEditor = PlatformUI.getWorkbench()
+							.getActiveWorkbenchWindow().getActivePage()
+							.openEditor(input, DASHBOARD_ID, true);
+					if (openEditor instanceof DashboardEditor) {
+						((DashboardEditor) openEditor).refresh();
+					}
+				} catch (PartInitException e) {
+					WorkspaceUtil.logException(e.getMessage(), e);
+				}
 			}
-		} catch (PartInitException e) {
-			WorkspaceUtil.logException(e.getMessage(), e);
-		}
+		};
+		domain.getCommandStack().execute(command);
 
 		return null;
 	}
-
 }

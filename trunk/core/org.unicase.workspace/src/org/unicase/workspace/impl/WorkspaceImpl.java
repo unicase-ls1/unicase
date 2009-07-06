@@ -295,18 +295,18 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 				.getProjectId(), sourceSpec, targetSpec);
 			List<ESNotification> newNotifications = NotificationGenerator.getInstance(projectSpace)
 				.generateNotifications(changes, usersession.getUsername());
-			projectSpace.getNotifications().addAll(newNotifications);
+			projectSpace.getNotificationsFromComposite().addAll(newNotifications);
 			projectSpace.eResource().save(null);
 		} catch (EmfStoreException e) {
-			projectSpace.getNotifications().clear();
+			projectSpace.getNotificationsFromComposite().clear();
 			WorkspaceUtil.logException("Creating notifications failed!", e);
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
-			projectSpace.getNotifications().clear();
+			projectSpace.getNotificationsFromComposite().clear();
 			WorkspaceUtil.logException("Creating notifications failed!", e);
 		} catch (IOException e) {
-			projectSpace.getNotifications().clear();
+			projectSpace.getNotificationsFromComposite().clear();
 			WorkspaceUtil.logException("Creating notifications failed!", e);
 		}
 

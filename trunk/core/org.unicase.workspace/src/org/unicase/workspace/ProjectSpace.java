@@ -703,4 +703,11 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	boolean hasProperty(PropertyKey key);
 
+	/**
+	 * Return all notifications that have been generated for this project space.
+	 * 
+	 * @return a list of notifications ordered by time
+	 */
+	List<ESNotification> getNotificationsFromComposite();
+
 } // ProjectContainer

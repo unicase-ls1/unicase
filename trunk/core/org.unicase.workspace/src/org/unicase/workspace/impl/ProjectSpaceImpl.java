@@ -360,6 +360,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	private HashMap<String, OrgUnitProperty> propertyMap;
 
+	private AutoSplitAndSaveResourceContainmentList<ESNotification> notificationList;
+
 	// begin of custom code
 	/**
 	 * Constructor. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -902,13 +904,44 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
+	 * @deprecated
 	 */
+	@Deprecated
 	public EList<ESNotification> getNotifications() {
 		if (notifications == null) {
 			notifications = new EObjectContainmentEList.Resolving<ESNotification>(ESNotification.class, this,
 				WorkspacePackage.PROJECT_SPACE__NOTIFICATIONS);
 		}
 		return notifications;
+	}
+
+	/**
+	 * Get the events that have been logged for this project space.
+	 * 
+	 * @return a list of events ordered by creation time
+	 */
+	public List<ESNotification> getNotificationsFromComposite() {
+		// check if operation composite exists
+		NotificationComposite notificationComposite = this.getNotificationComposite();
+		if (notificationComposite == null) {
+			notificationComposite = WorkspaceFactory.eINSTANCE.createNotificationComposite();
+			// migration code: existing notifications in the notification feature are added to the composite
+			notificationList = new AutoSplitAndSaveResourceContainmentList<ESNotification>(notificationComposite,
+				notificationComposite.getNotifications(), this.eResource().getResourceSet(), Configuration
+					.getWorkspaceDirectory()
+					+ "ps-" + getIdentifier() + File.separatorChar + "notifications", ".nff");
+			this.setNotificationComposite(notificationComposite);
+			if (getNotifications().size() > 0) {
+				notificationList.addAll(getNotifications());
+				saveProjectSpaceOnly();
+			}
+		}
+		if (notificationList == null) {
+			eventList = new AutoSplitAndSaveResourceContainmentList<Event>(eventComposite, eventComposite.getEvents(),
+				this.eResource().getResourceSet(), Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier()
+					+ File.separatorChar + "events", ".eff");
+		}
+		return notificationList;
 	}
 
 	/**
@@ -1288,7 +1321,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		final List<ChangePackage> cps = changes;
 		for (ChangePackage change : cps) {
-			applyOperations(change.getOperations());
+			applyOperations(change.getCopyOfOperations());
 		}
 
 		setBaseVersion(resolvedVersion);
@@ -1355,7 +1388,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		try {
 			List<ESNotification> newNotifications = NotificationGenerator.getInstance(this).generateNotifications(
 				changes, this.getUsersession().getUsername());
-			this.getNotifications().addAll(newNotifications);
+			this.getNotificationsFromComposite().addAll(newNotifications);
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
@@ -1369,7 +1402,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @generated NOT
 	 */
 	public void revert() {
-		while (isDirty()) {
+		while (!getOperations().isEmpty()) {
 			undoLastOperation();
 		}
 	}

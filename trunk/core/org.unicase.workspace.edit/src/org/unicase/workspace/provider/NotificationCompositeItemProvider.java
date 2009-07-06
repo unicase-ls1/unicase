@@ -20,7 +20,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.workspace.NotificationComposite;
 import org.unicase.workspace.WorkspacePackage;
 
@@ -135,31 +135,7 @@ public class NotificationCompositeItemProvider extends ItemProviderAdapter imple
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
-			OperationsFactory.eINSTANCE.createCompositeOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
-			OperationsFactory.eINSTANCE.createCreateDeleteOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
-			OperationsFactory.eINSTANCE.createAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
-			OperationsFactory.eINSTANCE.createSingleReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
-			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
-			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.NOTIFICATION_COMPOSITE__NOTIFICATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
+			NotificationFactory.eINSTANCE.createESNotification()));
 	}
 
 	/**

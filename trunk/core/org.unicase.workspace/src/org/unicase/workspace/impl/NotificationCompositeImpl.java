@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.workspace.NotificationComposite;
 import org.unicase.workspace.WorkspacePackage;
 
@@ -39,7 +39,7 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<AbstractOperation> notifications;
+	protected EList<ESNotification> notifications;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -65,9 +65,9 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 	 * 
 	 * @generated
 	 */
-	public EList<AbstractOperation> getNotifications() {
+	public EList<ESNotification> getNotifications() {
 		if (notifications == null) {
-			notifications = new EObjectContainmentEList.Resolving<AbstractOperation>(AbstractOperation.class, this,
+			notifications = new EObjectContainmentEList.Resolving<ESNotification>(ESNotification.class, this,
 				WorkspacePackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS);
 		}
 		return notifications;
@@ -112,7 +112,7 @@ public class NotificationCompositeImpl extends EObjectImpl implements Notificati
 		switch (featureID) {
 		case WorkspacePackage.NOTIFICATION_COMPOSITE__NOTIFICATIONS:
 			getNotifications().clear();
-			getNotifications().addAll((Collection<? extends AbstractOperation>) newValue);
+			getNotifications().addAll((Collection<? extends ESNotification>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
