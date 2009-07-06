@@ -38,11 +38,19 @@ public final class OperationsCanonizer {
 	 */
 	public static void canonize(List<AbstractOperation> operations) {
 
-		foldComposites(operations);
-		foldAttributes(operations);
-		foldAttributesIntoCreates(operations);
-		foldAttributesIntoDeletes(operations);
-		foldCreatesAndDeletes(operations);
+		try {
+			foldComposites(operations);
+			foldAttributes(operations);
+			foldAttributesIntoCreates(operations);
+			foldAttributesIntoDeletes(operations);
+			foldCreatesAndDeletes(operations);
+
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
+			// fixme MK: use model logger
+		}
+		// END SUPRESS CATCH EXCEPTION
+
 	}
 
 	// neighbouring create and delete will be removed
