@@ -1,0 +1,27 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: unicase Emf Store Plug-in
+Bundle-SymbolicName: org.unicase.emfstore;singleton:=true
+Bundle-Version: 0.3.4.internal
+Bundle-Activator: org.unicase.emfstore.Activator
+Bundle-Vendor: unicase.org
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf,
+ org.eclipse.gmf.runtime.notation,
+ org.apache.commons.logging;bundle-version="1.0.4",
+ org.eclipse.emf.ecore.xmi;bundle-version="2.4.0",
+ org.unicase.emfstore.esmodel;bundle-version="0.3.4.internal";visibility:=reexport,
+ org.unicase.model;bundle-version="0.3.4.internal";visibility:=reexport,
+ edu.tum.cs.cope.migration.execution;bundle-version="0.1.32"
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ClassPath: bin/,
+ conf/
+Export-Package: org.unicase.emfstore,
+ org.unicase.emfstore.accesscontrol,
+ org.unicase.emfstore.accesscontrol.authentication,
+ org.unicase.emfstore.conflictDetection,
+ org.unicase.emfstore.connection,
+ org.unicase.emfstore.connection.rmi,
+ org.unicase.emfstore.exceptions,
+ org.unicase.emfstore.storage
+Bundle-ActivationPolicy: lazy

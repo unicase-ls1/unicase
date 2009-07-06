@@ -1,0 +1,24 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: unicase Workspace Plug-in
+Bundle-SymbolicName: org.unicase.workspace; singleton:=true
+Bundle-Version: 0.3.4.internal
+Bundle-ClassPath: .
+Bundle-Vendor: unicase.org
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: org.unicase.workspace,
+ org.unicase.workspace.accesscontrol,
+ org.unicase.workspace.connectionmanager,
+ org.unicase.workspace.exceptions,
+ org.unicase.workspace.impl,
+ org.unicase.workspace.util
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.change;visibility:=reexport,
+ org.eclipse.emf.transaction,
+ org.eclipse.emf.ecore.xmi,
+ org.unicase.emfstore;bundle-version="0.3.4.internal";visibility:=reexport,
+ edu.tum.cs.cope.migration.execution;bundle-version="0.1.32"
+Bundle-ActivationPolicy: lazy
+Bundle-Activator: org.unicase.workspace.Activator
