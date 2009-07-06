@@ -27,6 +27,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.PropertyKey.DashboardKey;
 import org.unicase.workspace.notification.provider.CommentsNotificationProvider;
 import org.unicase.workspace.notification.provider.PushedNotificationProvider;
+import org.unicase.workspace.notification.provider.SubscriptionNotificationProvider;
 import org.unicase.workspace.notification.provider.TaskNotificationProvider;
 import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
@@ -60,10 +61,30 @@ public final class NotificationGenerator {
 
 		addTaskProviders(projectSpace);
 
-		addNotificationProvider(new TaskObjectNotificationProvider());
+		if (projectSpace.hasProperty(DashboardKey.TASK_TRACE_PROVIDER)) {
+			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace,
+				DashboardKey.TASK_TRACE_PROVIDER);
+			if (property.getBooleanProperty()) {
+				addNotificationProvider(new TaskObjectNotificationProvider());
+			}
+		}
 
+		if (projectSpace.hasProperty(DashboardKey.COMMENTS_PROVIDER)) {
+			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace,
+				DashboardKey.COMMENTS_PROVIDER);
+			if (property.getBooleanProperty()) {
+				addNotificationProvider(new CommentsNotificationProvider());
+			}
+		}
+
+		if (projectSpace.hasProperty(DashboardKey.SUBSCRIPTION_PROVIDER)) {
+			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace,
+				DashboardKey.SUBSCRIPTION_PROVIDER);
+			if (property.getBooleanProperty()) {
+				addNotificationProvider(new SubscriptionNotificationProvider());
+			}
+		}
 		addNotificationProvider(new PushedNotificationProvider());
-		addNotificationProvider(new CommentsNotificationProvider());
 	}
 
 	private void addTaskProviders(ProjectSpace projectSpace) {
