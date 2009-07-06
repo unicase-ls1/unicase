@@ -8,6 +8,7 @@ package org.unicase.ui.tom.gestures;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.core.internal.commands.SendToBackCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
@@ -25,6 +26,7 @@ import org.unicase.ui.tom.commands.CreateNodeAndConnectionCommand;
 import org.unicase.ui.tom.commands.CreateNodeCommand;
 import org.unicase.ui.tom.commands.CreateSecondaryNodeCommand;
 import org.unicase.ui.tom.commands.OrderBackCommand;
+import org.unicase.ui.tom.tools.TouchUtility;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
@@ -61,9 +63,9 @@ public class CreateNodeGesture extends CreateGesture implements Gesture {
 		MultiTouch multiTouch = getCreationTouch().getMultiTouch();
 		List<Touch> activeTouches = multiTouch.getActiveTouches();
 
-		EditPart editPart = findCardinalTouchedEditPart(multiTouch
-				.getActiveTouches());
-		EditPart nodeEditPart = EditPartUtility.traverseToNodeEditPart(editPart);
+		PointList currentPositions = TouchUtility.pointListOfCurrentPositions(multiTouch.getActiveTouches());
+		
+		EditPart nodeEditPart = findCardinalTouchedNodeEditPart(currentPositions);
 		if (nodeEditPart == null) {
 			nodeEditPart = getDiagramEditPart();
 		}

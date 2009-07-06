@@ -6,14 +6,11 @@
 package org.unicase.ui.tom.commands;
 
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
-import org.eclipse.gmf.runtime.diagram.core.internal.commands.SendToBackCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
@@ -23,8 +20,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.ui.internal.registry.ViewDescriptor;
-import org.unicase.ui.common.diagram.util.DynamicViewDescriptorAdapter;
 
 /**
  * @author schroech
@@ -89,7 +84,13 @@ public class CreateNodeCommand extends AbstractCommand{
 		if (request instanceof CreateViewAndElementRequest) {
 			ViewAndElementDescriptor descriptor = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor();
 			View view = (View) descriptor.getAdapter(View.class);
+			if (view == null) {
+				return null;
+			}
 			EObject element = view.getElement();
+			if (element == null) {
+				return null;
+			}
 			EditPart foundEditPart = targetEditPart.findEditPart(null, element);
 			
 			return foundEditPart;
