@@ -14,9 +14,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.NodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
@@ -161,7 +166,64 @@ public final class EditPartUtility {
 		}
 		return elements;
 	}
+	
+	/**
+	 * 
+	 * @param touchedEditPart
+	 *            The editPart being examined
+	 * @return The next {@link ShapeNodeEditPart} or {@link DiagramEditPart} in
+	 *         the {@link EditPart} hierarchy or null, if such doesn't exist
+	 */
+	public static INodeEditPart traverseToNodeEditPart(EditPart touchedEditPart) {
+		EditPart primaryEditPart = touchedEditPart;
+		while (primaryEditPart != null) {
+			if ((primaryEditPart instanceof ShapeNodeEditPart)
+					|| (primaryEditPart instanceof ConnectionNodeEditPart)) {
+				break;
+			}
+			primaryEditPart = primaryEditPart.getParent();
+		}
+		return (INodeEditPart) primaryEditPart;
+	}
 
+	/**
+	 * 
+	 * @param touchedEditPart
+	 *            The editPart being examined
+	 * @return The next {@link ShapeNodeEditPart}, {@link DiagramEditPart} or
+	 *         {@link CompartmentEditPart} in the {@link EditPart} hierarchy or
+	 *         null, if such doesn't exist
+	 */
+	public static CompartmentEditPart traverseToCompartmentEditPart(EditPart touchedEditPart) {
+		EditPart secondaryEditPart = touchedEditPart;
+		while (secondaryEditPart != null) {
+			if (secondaryEditPart instanceof CompartmentEditPart){
+				break;
+			}
+			secondaryEditPart = secondaryEditPart.getParent();
+		}
+		return (CompartmentEditPart) secondaryEditPart;
+	}
+
+	/**
+	 * Traverses the {@link EditPart} hierarchy upwards to the next {@link EditPart} matching the specified type.
+	 * @param <T> A class type extending {@link IGraphicalEditPart}
+	 * @param touchedEditPart The EditPart being the root of the search. May not be null. 
+	 * @param classType The class type extending {@link IGraphicalEditPart}. May not be null.
+	 * @return An {@link IGraphicalEditPart} if found, null otherwise.
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends IGraphicalEditPart> T traverseToEditPartOfType(
+			EditPart touchedEditPart, Class<T> classType) {
+		EditPart classTypeEditPart = touchedEditPart;
+		while (classTypeEditPart != null
+				&& !(classType.isInstance(classTypeEditPart))) {
+			classTypeEditPart = classTypeEditPart.getParent();
+		}
+
+		return (T) classTypeEditPart;
+	}
+	
 	/**
 	 * Returns the elements of each {@link EditPart}'s model.
 	 * 
