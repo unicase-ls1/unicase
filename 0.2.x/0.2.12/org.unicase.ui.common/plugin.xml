@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.emf.ecore.content_parser">
+      <parser
+            class="org.unicase.ui.common.diagram.MEDiagramResource"
+            contentTypeIdentifier="MEDiagram">
+      </parser>
+   </extension>
+  <extension
+        point="org.eclipse.ui.handlers">
+         <handler
+           class="org.unicase.ui.common.commands.DeleteModelelementHandler"
+           commandId="org.unicase.ui.common.deleteModelelement">
+     </handler>
+         <handler
+               class="org.unicase.ui.common.commands.NewDocumentHandler"
+               commandId="org.unicase.ui.common.newDocument">
+         </handler>
+         <handler
+               class="org.unicase.ui.common.commands.OpenDiagramWithMEEditorHandler"
+               commandId="org.unicase.ui.common.openDiagramWithMEEditor">
+         </handler>
+    </extension>
+   <extension
+        point="org.eclipse.ui.commands">
+     
+     <category
+           id="org.unicase.ui.common.modifyModelelement"
+           name="Modify Modelelement">
+     </category>
+     <command
+           categoryId="org.unicase.ui.common.modifyModelelement"
+           id="org.unicase.ui.common.deleteModelelement"
+           name="Delete Modelelement">
+     </command>
+     <command
+           categoryId="org.unicase.ui.common.modifyModelelement"
+           id="org.unicase.ui.common.newDocument"
+           name="New Document">
+     </command>
+     <command
+           categoryId="org.unicase.ui.common.modifyModelelement"
+           id="org.unicase.ui.common.openDiagramWithMEEditor"
+           name="Open with MEEditor">
+     </command>
+     <command
+           id="org.unicase.ui.common.validate"
+           name="Validate">
+     </command>
+     <command
+           categoryId="org.unicase.ui.common.modifyModelelement"
+           id="org.unicase.ui.common.openDiagramWithMEEditor"
+           name="Quick open modelelement">
+     </command>
+     <command
+           defaultHandler="org.unicase.ui.common.handlers.OpenMEShortcutHandler"
+           id="org.unicase.ui.common.handlers.open_me_ID"
+           name="OpenMEShortcutCommand">
+     </command>
+   
+  </extension>
+   <extension
+        point="org.eclipse.ui.menus">
+     <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.edit.scmCommands">
+        <command
+              commandId="org.unicase.ui.common.openDiagramWithMEEditor"
+              label="Open with MEEditor"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false">
+                 <reference
+                       definitionId="org.unicase.ui.common.commands.MEDiagram">
+                 </reference>
+              </iterate>
+           </visibleWhen>
+        </command>
+      
+        <command
+              commandId="org.unicase.ui.common.deleteModelelement"
+              icon="icons/delete.gif"
+              label="Delete"
+              style="push">
+                <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false">
+                 <instanceof
+                       value="org.unicase.model.ModelElement">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.newDocument"
+              icon="icons/Document.gif"
+              label="New Document"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false">
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <separator
+              name="org.unicase.ui.common.commands.modifyCommands">
+        </separator>
+        
+     </menuContribution>
+    
+  </extension>
+  <extension
+        point="org.eclipse.ui.commands">
+     <command
+           categoryId="org.unicase.ui.common.commands.addAnnotations"
+           defaultHandler="org.unicase.ui.common.commands.AddAnnotationHandler"
+           id="org.unicase.ui.common.commands.annotateActionItem"
+           name="annotateActionItem">
+     </command>
+     <command
+           categoryId="org.unicase.ui.common.commands.addAnnotations"
+           defaultHandler="org.unicase.ui.common.commands.AddAnnotationHandler"
+           id="org.unicase.ui.common.commands.annotateIssue"
+           name="annotateIssue">
+     </command>
+     <command
+           categoryId="org.unicase.ui.common.commands.addAnnotations"
+           defaultHandler="org.unicase.ui.common.commands.AddAnnotationHandler"
+           id="org.unicase.ui.common.commands.annotateComment"
+           name="annotateComment">
+     </command>
+     <category
+           id="org.unicase.ui.common.commands.addAnnotations"
+           name="Add Annotations">
+     </category>
+  </extension>
+  <extension
+        point="org.eclipse.ui.menus">
+     <menuContribution
+           locationURI="popup:org.unicase.ui.navigator.viewer?after=org.unicase.workspace.edit.scmCommands">
+        <menu
+              label="Add Annotations">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false">
+                 <reference
+                       definitionId="org.unicase.ui.common.commands.modelElement">
+                 </reference>
+              </iterate>
+           </visibleWhen>
+           <command
+                 commandId="org.unicase.ui.common.commands.annotateActionItem"
+                 icon="icons/AnnotateWithActionItem.gif"
+                 label="Add Action Item"
+                 style="push">
+           </command>
+           <command
+                 commandId="org.unicase.ui.common.commands.annotateIssue"
+                 icon="icons/Issue.gif"
+                 label="Add Issue"
+                 style="push">
+           </command>
+           <command
+                 commandId="org.unicase.ui.common.commands.annotateComment"
+                 icon="icons/Comment.gif"
+                 label="Add Comment"
+                 style="push">
+           </command>
+        </menu>
+        <separator
+              name="org.unicase.ui.common.commands.annotateActionItemSeperator"
+              visible="true">
+      	 </separator>
+        
+     </menuContribution>
+     <menuContribution
+           locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
+        <command
+              commandId="org.unicase.ui.common.commands.annotateActionItem"
+              icon="icons/AnnotateWithActionItem.gif"
+              label="Add Action Item"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <with
+                    variable="activeModelelement">
+                 <reference
+                       definitionId="org.unicase.ui.common.commands.modelElementNotSection">
+                 </reference>
+              </with>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.commands.annotateIssue"
+              icon="icons/Issue.gif"
+              label="Add Issue"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <with
+                    variable="activeModelelement">
+                 <reference
+                       definitionId="org.unicase.ui.common.commands.modelElementNotSection">
+                 </reference>
+              </with>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.commands.annotateComment"
+              icon="icons/Comment.gif"
+              label="Add Comment"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <with
+                    variable="activeModelelement">
+                 <reference
+                       definitionId="org.unicase.ui.common.commands.modelElementNotSection">
+                 </reference>
+              </with>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.deleteModelelement"
+              icon="icons/delete.gif"
+              label="Delete"
+              style="push">
+        </command>
+     </menuContribution> 
+  </extension>
+  <extension
+        point="org.eclipse.core.expressions.definitions">
+     <definition
+           id="org.unicase.ui.common.commands.modelElementNotSection">
+        <and>
+           <instanceof
+                 value="org.unicase.model.ModelElement">
+           </instanceof>
+           <not>
+              <instanceof
+                    value="org.unicase.model.document.Section">
+              </instanceof>
+           </not>
+        </and>
+     </definition>
+     <definition
+           id="org.unicase.ui.common.commands.modelElement">
+        <instanceof
+              value="org.unicase.model.ModelElement">
+        </instanceof>
+     </definition>
+     <definition
+           id="org.unicase.ui.common.commands.MEDiagram">
+        <instanceof
+              value="org.unicase.model.diagram.MEDiagram">
+        </instanceof>
+     </definition>
+  </extension>
+    <extension
+        point="org.eclipse.ui.decorators">
+     <decorator
+           adaptable="true"
+           class="org.unicase.ui.common.decorators.StateDecorator"
+           id="org.unicase.ui.common.decorators.StateDecorator"
+           label="State Decorator"
+           lightweight="true"
+           state="true">
+        <enablement>
+           <objectClass
+                 name="org.unicase.model.ModelElement">
+           </objectClass>
+        </enablement>
+     </decorator>
+     <decorator
+           adaptable="true"
+           class="org.unicase.ui.common.decorators.VersionDecorator"
+           id="org.unicase.ui.common.decorators.VersionDecorator"
+           label="Version Decorator"
+           lightweight="true"
+           state="true">
+        <enablement>
+           <objectClass
+                 name="org.unicase.workspace.ProjectSpace">
+           </objectClass>
+        </enablement>
+     </decorator>
+     <decorator
+           adaptable="true"
+           class="org.unicase.ui.common.decorators.DirtyDecorator"
+           id="org.unicase.ui.common.decorators.DirtyDecorator"
+           label="Dirty Decorator"
+           lightweight="true"
+           state="true">
+        <enablement>
+           <objectClass
+                 name="org.unicase.workspace.ProjectSpace">
+           </objectClass>
+        </enablement>
+     </decorator>
+  </extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="ModelClientContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.unicase.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="ModelClientContext">
+		 <elementType ref="org.unicase.classDiagram.MEDiagram_88"/>
+         <elementType ref="org.unicase.classDiagram.Class_2001"/>
+         <elementType ref="org.unicase.classDiagram.Package_2002"/>
+         <elementType ref="org.unicase.classDiagram.Attribute_3001"/>
+         <elementType ref="org.unicase.classDiagram.Method_3002"/>
+         <elementType ref="org.unicase.classDiagram.Association_4001"/>
+         <elementType ref="org.unicase.classDiagram.Association_4002"/>
+         <elementType ref="org.unicase.classDiagram.Association_4003"/>
+         <elementType ref="org.unicase.classDiagram.Association_4004"/>
+         <elementType ref="org.unicase.classDiagram.ClassSubClasses_4005"/>
+		 <elementType ref="org.unicase.classDiagram.Dependency_4006"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+    <extension
+          point="org.eclipse.ui.perspectives">
+       <perspective
+             class="org.unicase.ui.common.perspectives.UnicasePerspective"
+             icon="icons/unicase.png"
+             id="org.unicase.ui.common.perspectives.UnicasePerspective"
+             name="Unicase Perspective">
+       </perspective>
+    </extension>
+    <extension
+      point="org.eclipse.ui.perspectiveExtensions">
+   <perspectiveExtension
+         targetID="org.unicase.ui.common.perspectives.UnicasePerspective">
+      <viewShortcut
+            id="org.unicase.ui.navigator.viewer">
+      </viewShortcut>
+   </perspectiveExtension>
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="org.unicase.ui.treeview.views.IterationPlanningView"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.eclipse.ui.views.ProblemView">
+         </view>
+         <view
+               id="org.unicase.ui.treeview.views.StatusView"
+               minimized="false"
+               relationship="stack"
+               relative="org.eclipse.ui.views.ProblemView">
+         </view>
+      </perspectiveExtension>
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="org.unicase.ui.repository.views.RepositoryView"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.eclipse.ui.views.ProblemView">
+         </view>
+      </perspectiveExtension>
+      <perspectiveExtension
+            targetID="org.eclipse.jdt.ui.JavaPerspective">
+         <view
+               id="org.unicase.ui.navigator.viewer"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.eclipse.ui.navigator.ProjectExplorer"
+               standalone="false">
+         </view>
+      </perspectiveExtension>
+      <perspectiveExtension
+            targetID="org.unicase.ui.common.perspectives.UnicasePerspective">
+         <viewShortcut
+               id="org.unicase.ui.repository.views.RepositoryView">
+         </viewShortcut>
+         <viewShortcut
+               id="org.unicase.ui.taskview">
+         </viewShortcut>
+         <viewShortcut
+               id="org.unicase.ui.test.modelTestView">
+         </viewShortcut>
+         <viewShortcut
+               id="org.unicase.ui.treeview.views.IterationPlanningView">
+         </viewShortcut>
+         <viewShortcut
+               id="org.unicase.ui.treeview.views.StatusView">
+         </viewShortcut>
+        <!-- <showInPart
+               id="org.unicase.ui.treeview.views.StatusView">
+         </showInPart> -->
+       <!--  <view
+               id="org.unicase.ui.navigator.viewer"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.eclipse.ui.navigator.ProjectExplorer"
+               standalone="false">
+         </view>
+         <view
+               id="org.unicase.ui.treeview.views.StatusView"
+               minimized="false"
+               relationship="stack"
+               relative="org.eclipse.ui.views.TaskList">
+         </view>
+         <view
+               id="org.unicase.ui.treeview.views.IterationPlanningView"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.unicase.ui.treeview.views.StatusView">
+         </view>
+         <view
+               id="org.unicase.ui.repository.views.RepositoryView"
+               ratio="0.5"
+               relationship="stack"
+               relative="org.unicase.ui.treeview.views.StatusView">
+         </view> -->
+      </perspectiveExtension>
+       </extension>
+    <extension
+          point="org.eclipse.ui.ide.markerSupport">
+    </extension>
+    <extension
+          point="org.eclipse.ui.bindings">
+       <key
+             commandId="org.unicase.ui.common.handlers.open_me_ID"
+             contextId="org.eclipse.ui.contexts.window"
+             schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+             sequence="Alt+M">
+       </key>
+    </extension>
+</plugin>
