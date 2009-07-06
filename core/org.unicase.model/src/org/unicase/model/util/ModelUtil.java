@@ -5,6 +5,17 @@
  */
 package org.unicase.model.util;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
@@ -21,16 +32,6 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Iterator;
-import java.util.Set;
 
 /**
  * Utility class for ModelElements.
@@ -362,5 +363,18 @@ public final class ModelUtil {
 		Status status = new Status(statusInt, Platform.getBundle("org.unicase.model").getSymbolicName(), statusInt,
 			message, exception);
 		Platform.getLog(Platform.getBundle("org.unicase.model")).log(status);
+	}
+
+	/**
+	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * 
+	 * @param message the message
+	 * @param exception the exception
+	 */
+	public static void logException(String message, IllegalStateException exception) {
+		Status status = new Status(IStatus.ERROR, Platform.getBundle("org.unicase.model").getSymbolicName(),
+			IStatus.ERROR, message, exception);
+		Platform.getLog(Platform.getBundle("org.unicase.model")).log(status);
+
 	}
 }
