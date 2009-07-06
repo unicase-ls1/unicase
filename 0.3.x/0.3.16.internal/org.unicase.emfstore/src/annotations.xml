@@ -1,0 +1,18 @@
+<persistence-mapping xmlns="http://www.eclipse.org/emft/teneo" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
+<!-- Template for TestAction persistence mapping. -->
+
+<epackage namespace-uri="http://www.eclipse.org/gmf/runtime/1.0.1/notation">
+
+<eclass name="ShapeStyle">
+<entity extends="LineStyle"/>
+</eclass>
+<eclass name="DiagramStyle">
+<entity extends="PageStyle"/>
+</eclass>
+<eclass name="ConnectorStyle">
+<entity extends="RoutingStyle"/>
+</eclass>
+</epackage>
+
+</persistence-mapping>
