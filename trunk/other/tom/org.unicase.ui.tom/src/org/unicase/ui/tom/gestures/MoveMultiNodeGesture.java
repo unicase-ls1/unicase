@@ -14,6 +14,7 @@ import java.util.Map;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
@@ -57,10 +58,8 @@ public class MoveMultiNodeGesture extends AbstractMoveGesture{
 			}
 		}
 
-		EditPart touchedEditPart = findTouchedEditPartExcludingDiagram(touch);
-		touchedEditPart = getPrimaryEditPart(touchedEditPart);
-
-		if (touchedEditPart instanceof NodeEditPart) {
+		EditPart touchedEditPart = findTouchedNodeEditPart(touch.getPosition());
+		if (touchedEditPart != null) {
 			getCandidateTouches().add(touch);
 		}
 	}

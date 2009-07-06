@@ -15,6 +15,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ShowRelatedElementsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.swt.widgets.Display;
+import org.unicase.model.classDiagram.edit.commands.ShowRelatedElementsCommand;
+import org.unicase.ui.common.diagram.requests.ShowRelatedElementsModeRequest;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 
 /**
@@ -39,15 +42,22 @@ public class DiscoveryModeActivationCommand extends AbstractCommand {
 	* @see org.unicase.ui.tom.commands.AbstractCommand#createRequest()
 	*/
 	@Override
-	public Request createRequest() {
-		EObject element = EditPartUtility.getElement(getTouchedEditPart());
-		
+	public Request createRequest() {			
 		ShowRelatedElementsRequest showRelatedElementsRequest = new ShowRelatedElementsRequest(
 				Collections.singletonList(getTouchedEditPart()),
-				Collections.singletonList(ElementTypeRegistry.getInstance().getElementType(element)),
+				null,
 				false,
-				1,
-				ExpansionType.OUTGOING);
+				0,
+				ExpansionType.BOTH);
+
+			
+//		ShowRelatedElementsModeRequest showRelatedElementsRequest = new ShowRelatedElementsModeRequest(
+//				Collections.singletonList(getTouchedEditPart()),
+//				null,
+//				false,
+//				0,
+//				ExpansionType.BOTH, 
+//				true);
 		
 		return showRelatedElementsRequest;
 	}
@@ -65,8 +75,26 @@ public class DiscoveryModeActivationCommand extends AbstractCommand {
 	*/
 	@Override
 	public Command getCommand() {
-		Command command = touchedEditPart.getCommand(getRequest());
+		ShowRelatedElementsCommand command = null;
+		try {
+			command = new ShowRelatedElementsCommand((ShowRelatedElementsRequest) getRequest());	
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	
 		return command;
+	}
+	
+	public void execute() {
+		Runnable runner = new Runnable(){
+
+			public void run() {
+				org.eclipse.gef.commands.Command command = getCommand();
+				getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(command);
+			}		
+		};
+	
+		Display.getDefault().asyncExec(runner);
 	}
 
 }

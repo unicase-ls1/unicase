@@ -17,17 +17,18 @@ import org.eclipse.swt.widgets.Display;
 
 /**
  * @author schroech
- *
+ * 
  */
 public class MoveCanvasAction extends AbstractAction {
 
 	private Viewport scrollableViewport;
 	private Point lastPosition;
-
+	private boolean couldExecute;
 	/**
 	 * Default constructor.
 	 * 
-	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
+	 * @param diagramEditPart
+	 *            The {@link DiagramEditPart} on which this operation operates
 	 */
 	public MoveCanvasAction(DiagramEditPart diagramEditPart) {
 		super(diagramEditPart);
@@ -35,13 +36,12 @@ public class MoveCanvasAction extends AbstractAction {
 		EditPart parent = diagramEditPart.getParent();
 		IFigure figure = ((AbstractGraphicalEditPart) parent).getFigure();
 
-		if (figure instanceof  Viewport) {
-			scrollableViewport = (Viewport) figure;	
+		if (figure instanceof Viewport) {
+			scrollableViewport = (Viewport) figure;
 		}
 	}
 
-
-	public void prepareMove(Point point){
+	public void prepareMove(Point point) {
 		lastPosition = point;
 	}
 
@@ -50,36 +50,76 @@ public class MoveCanvasAction extends AbstractAction {
 	 */
 	public void updateMove(final Point position) {
 
-		Runnable runnable = new Runnable(){
-			public void run(){
-				RangeModel horizontalRangeModel = scrollableViewport.getHorizontalRangeModel();
-				if (horizontalRangeModel.getExtent() < (horizontalRangeModel.getMaximum() - horizontalRangeModel.getMinimum())) {
+		Runnable runnable = new Runnable() {
+			public void run() {
+				RangeModel horizontalRangeModel = scrollableViewport
+						.getHorizontalRangeModel();
+				if (horizontalRangeModel.getExtent() < (horizontalRangeModel
+						.getMaximum() - horizontalRangeModel.getMinimum())) {
 
 					int currentPos = horizontalRangeModel.getValue();
-					int offset = position.x - lastPosition.x; 
-					scrollableViewport.setHorizontalLocation(currentPos - offset);
+					int offset = position.x - lastPosition.x;
+					scrollableViewport.setHorizontalLocation(currentPos
+							- offset);
 				}
 
-
-				RangeModel verticalRangeModel = scrollableViewport.getVerticalRangeModel();
-				if (verticalRangeModel.getExtent() < (verticalRangeModel.getMaximum() - verticalRangeModel.getMinimum())) {
+				RangeModel verticalRangeModel = scrollableViewport
+						.getVerticalRangeModel();
+				if (verticalRangeModel.getExtent() < (verticalRangeModel
+						.getMaximum() - verticalRangeModel.getMinimum())) {
 
 					int currentPos = verticalRangeModel.getValue();
-					int offset = position.y - lastPosition.y; 
+					int offset = position.y - lastPosition.y;
 					scrollableViewport.setVerticalLocation(currentPos - offset);
 				}
 			}
 		};
-		
+
 		Display.getDefault().syncExec(runnable);
 
-		lastPosition = position;	
+		lastPosition = position;
 	}
 
+	public boolean couldExecute() {
+		setCouldExecute(false);
+		
+		Runnable runnable = new Runnable() {
+			public void run() {
+				RangeModel horizontalRangeModel = scrollableViewport
+						.getHorizontalRangeModel();
+				if (horizontalRangeModel.getExtent() < (horizontalRangeModel
+						.getMaximum() - horizontalRangeModel.getMinimum())) {
+					setCouldExecute(true);
+					return;
+				}
+
+				RangeModel verticalRangeModel = scrollableViewport
+						.getVerticalRangeModel();
+				if (verticalRangeModel.getExtent() < (verticalRangeModel
+						.getMaximum() - verticalRangeModel.getMinimum())) {
+					setCouldExecute(true);
+					return;
+				}
+				
+			}
+		};
+
+		Display.getDefault().syncExec(runnable);
+		
+		return getCouldExecute();
+	}
 
 	public void execute() {
 		// TODO Auto-generated method stub
-		
+
+	}
+
+	public void setCouldExecute(boolean couldExecute) {
+		this.couldExecute = couldExecute;
+	}
+
+	public boolean getCouldExecute() {
+		return couldExecute;
 	}
 
 }

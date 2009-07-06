@@ -39,7 +39,6 @@ public class TUIOTouch extends SingleTouch implements Touch{
 	
 	    screenSize = new Dimension(screenWidth,screenHeight);
 	   
-		setTouchDownDate(new Date(cursor.getUpdateTime()));
 		path = new PointList();
 	}
 
@@ -62,7 +61,7 @@ public class TUIOTouch extends SingleTouch implements Touch{
 	}
 
 	public void update() {
-		// TODO Auto-generated method stub
+		
 	}
 
 	public PointList getPath() {

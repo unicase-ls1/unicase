@@ -16,6 +16,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.CreateDefaultConnectionCommand;
 import org.unicase.ui.tom.commands.CreateDefaultNodeAndConnectionCommand;
@@ -126,12 +127,10 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 		if (multiTouches.size() > 1) {
 
 			EditPart targetEditPart = findCardinalTouchedEditPart(targetMultiTouch.getActiveTouches());
-			targetEditPart = getPrimaryEditPart(targetEditPart);
+			targetEditPart = EditPartUtility.traverseToNodeEditPart(targetEditPart);
 
-			if (targetEditPart == null) {
-				return possibleSourceMultiTouches;
-			}
-			if(targetEditPart.equals(getDiagramEditPart())) {
+			
+			if(targetEditPart == null) {
 				for (MultiTouch multiTouch : multiTouches) {
 
 					if (multiTouch.equals(targetMultiTouch)) {
@@ -139,10 +138,9 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 					}
 
 					EditPart editPart = findCardinalTouchedEditPart(multiTouch.getActiveTouches());
-					editPart = getPrimaryEditPart(editPart);
+					editPart = EditPartUtility.traverseToNodeEditPart(editPart);
 
-					if (editPart != null
-							&& !editPart.equals(getDiagramEditPart())) {
+					if (editPart != null) {
 						possibleSourceMultiTouches.add(multiTouch);
 					}
 				}	
@@ -154,10 +152,9 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 					}
 
 					EditPart editPart = findCardinalTouchedEditPart(multiTouch.getActiveTouches());
-					editPart = getPrimaryEditPart(editPart);
+					editPart = EditPartUtility.traverseToNodeEditPart(editPart);
 
-					if (editPart != null
-							&& editPart.equals(getDiagramEditPart())) {
+					if (editPart == null) {
 						possibleSourceMultiTouches.add(multiTouch);
 					}
 				}

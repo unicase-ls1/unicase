@@ -7,8 +7,6 @@ Bundle-Activator: org.unicase.ui.tom.Activator
 Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.unicase.model.edit;bundle-version="0.0.1",
- org.unicase.workspace.edit;bundle-version="0.0.1",
  org.unicase.ui.meeditor;bundle-version="0.0.1",
  org.eclipse.emf.common.ui;bundle-version="2.4.0",
  org.eclipse.ui.console,
@@ -16,9 +14,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ui.ide;bundle-version="3.4.0",
  org.eclipse.gmf;bundle-version="1.0.0",
  org.eclipse.gmf.runtime.diagram.ui.resources.editor;bundle-version="1.1.0",
- org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.1.0"
+ org.eclipse.gmf.runtime.diagram.ui;bundle-version="1.1.0",
+ org.unicase.classDiagram
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.gmf.runtime.diagram.ui.render.editparts
 Export-Package: org.unicase.ui.tom,
+ org.unicase.ui.tom.handler,
  org.unicase.ui.tom.tools

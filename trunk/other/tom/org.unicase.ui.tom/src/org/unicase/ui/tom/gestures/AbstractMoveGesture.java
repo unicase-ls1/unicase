@@ -16,8 +16,12 @@ import org.unicase.ui.tom.touches.SingleTouch;
  * @author schroech
  *
  */
+
+
 public abstract class AbstractMoveGesture extends AbstractContinuousGesture {
 
+	private static AbstractMoveGesture executingMoveGesture;
+	
 	private SingleTouch moveTouch;
 	private List<SingleTouch> candidateTouches;
 
@@ -57,6 +61,7 @@ public abstract class AbstractMoveGesture extends AbstractContinuousGesture {
 		
 		setMoveTouch(null);
 		getCandidateTouches().clear();	
+		setExecutingMoveGesture(null);
 	}
 
 	/**
@@ -71,6 +76,14 @@ public abstract class AbstractMoveGesture extends AbstractContinuousGesture {
 	 */
 	public List<SingleTouch> getCandidateTouches() {
 		return candidateTouches;
+	}
+
+	public static void setExecutingMoveGesture(AbstractMoveGesture executingMoveGesture) {
+		AbstractMoveGesture.executingMoveGesture = executingMoveGesture;
+	}
+
+	public static AbstractMoveGesture getExecutingMoveGesture() {
+		return executingMoveGesture;
 	}
 
 }

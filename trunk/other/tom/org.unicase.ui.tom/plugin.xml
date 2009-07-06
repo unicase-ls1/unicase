@@ -7,7 +7,7 @@
              commandId="org.unicase.ui.tom.handlers.enableMultiTouchMode"
              contextId="org.eclipse.ui.contexts.window"
              schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
-             sequence="Alt+Shift+M">
+             sequence="Alt+Ctrl+M">
        </key>
     </extension>
    <extension
@@ -20,7 +20,7 @@
            <command
                  commandId="org.unicase.ui.tom.handlers.enableMultiTouchMode"
                  icon="icons/ModelElement.png"
-                 style="push"
+                 style="toggle"
                  tooltip="Enable multi touch mode">
            </command>
         </toolbar>

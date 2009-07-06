@@ -9,16 +9,22 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.diagram.core.internal.commands.SendToBackCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.AbstractCommand;
 import org.unicase.ui.tom.commands.CreateDefaultNodeCommand;
 import org.unicase.ui.tom.commands.CreateNodeAndConnectionCommand;
 import org.unicase.ui.tom.commands.CreateNodeCommand;
 import org.unicase.ui.tom.commands.CreateSecondaryNodeCommand;
+import org.unicase.ui.tom.commands.OrderBackCommand;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
@@ -50,52 +56,68 @@ public class CreateNodeGesture extends CreateGesture implements Gesture {
 			return;
 		}
 
-		AbstractCommand command;
+		CreateNodeCommand createNodeCommand;
 
 		MultiTouch multiTouch = getCreationTouch().getMultiTouch();
 		List<Touch> activeTouches = multiTouch.getActiveTouches();
 
 		EditPart editPart = findCardinalTouchedEditPart(multiTouch
 				.getActiveTouches());
-		GraphicalEditPart graphicalEditPart = getPrimaryEditPart(editPart);
-
+		EditPart nodeEditPart = EditPartUtility.traverseToNodeEditPart(editPart);
+		if (nodeEditPart == null) {
+			nodeEditPart = getDiagramEditPart();
+		}
+		
 		switch (activeTouches.size()) {
 		case 0:
 			return;
 		case 1:
 			try {
-				command = new CreateDefaultNodeCommand(
+				createNodeCommand = new CreateDefaultNodeCommand(
 						getDiagramEditPart(),
-						graphicalEditPart,
+						(GraphicalEditPart) nodeEditPart,
 						multiTouch.getPosition());
 			}
 			catch (IllegalArgumentException e) {
-				command = new CreateDefaultNodeCommand(
+				createNodeCommand = new CreateDefaultNodeCommand(
 						getDiagramEditPart(),
 						getDiagramEditPart(), 
 						multiTouch.getPosition());
 			}
 			
+			createNodeCommand.execute();	
+			
 			break;
 		case 2:
 			try {
-				command = new CreateSecondaryNodeCommand(
+				createNodeCommand = new CreateSecondaryNodeCommand(
 						getDiagramEditPart(),
-						graphicalEditPart, 
+						(GraphicalEditPart) nodeEditPart, 
 						multiTouch.getPosition());	
 			} catch (IllegalArgumentException e) {
-				command = new CreateSecondaryNodeCommand(
+				createNodeCommand = new CreateSecondaryNodeCommand(
 						getDiagramEditPart(),
 						getDiagramEditPart(), 
 						multiTouch.getPosition());
 			}
+			
+			createNodeCommand.execute();	
+			
+			GraphicalEditPart createdEditPart = (GraphicalEditPart) createNodeCommand.getCreatedEditPart();
+			if (createdEditPart != null) {
+				OrderBackCommand sendToBackCommand = new OrderBackCommand(
+						getDiagramEditPart(),
+						createdEditPart);
+				
+				sendToBackCommand.execute();				
+			}
+
 			
 			break;
 		default:
 			return;
 		}
-
-		command.execute();	
+		
 		setCanExecute(false);
 
 	}
@@ -120,9 +142,9 @@ public class CreateNodeGesture extends CreateGesture implements Gesture {
 
 		EditPart editPart = findCardinalTouchedEditPart(multiTouch
 				.getActiveTouches());
-		editPart = getPrimaryEditPart(editPart);
+		editPart = EditPartUtility.traverseToNodeEditPart(editPart);
 
-		if (editPart == null) {
+		if (editPart != null) {
 			return;
 		}
 

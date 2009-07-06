@@ -7,6 +7,7 @@ package org.unicase.ui.tom.actions;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 
 /**
  * @author schroech
@@ -14,7 +15,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
  */
 public abstract class SelectionAction extends AbstractAction {
 
-	private GraphicalEditPart targetEditPart;
+	private org.eclipse.gef.GraphicalEditPart targetEditPart;
 
 	/**
 	 * Default constructor.
@@ -22,7 +23,7 @@ public abstract class SelectionAction extends AbstractAction {
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
 	 * @param targetEditPart The {@link GraphicalEditPart} being selected / deselected
 	 */
-	public SelectionAction(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart) {
+	public SelectionAction(DiagramEditPart diagramEditPart, org.eclipse.gef.GraphicalEditPart targetEditPart) {
 		super(diagramEditPart);
 		setTargetEditPart(targetEditPart);
 	}
@@ -30,14 +31,14 @@ public abstract class SelectionAction extends AbstractAction {
 	/**
 	 * @return The {@link GraphicalEditPart} being selected / deselected
 	 */
-	public GraphicalEditPart getTargetEditPart() {
+	public org.eclipse.gef.GraphicalEditPart getTargetEditPart() {
 		return targetEditPart;
 	}
 
 	/**
 	 * @param targetEditPart The {@link GraphicalEditPart} being selected / deselected
 	 */
-	public void setTargetEditPart(GraphicalEditPart targetEditPart) {
+	public void setTargetEditPart(org.eclipse.gef.GraphicalEditPart targetEditPart) {
 		this.targetEditPart = targetEditPart;
 	}
 
