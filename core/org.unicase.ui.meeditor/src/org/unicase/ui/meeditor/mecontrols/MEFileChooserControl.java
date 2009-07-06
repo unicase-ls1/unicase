@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 
+import org.eclipse.core.databinding.Binding;
 import org.eclipse.core.databinding.UpdateValueStrategy;
 import org.eclipse.core.databinding.conversion.IConverter;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -58,6 +59,8 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 	private EMFDataBindingContext dbc;
 
+	private Binding binding;
+
 	/**
 	 * Default constructor.
 	 * 
@@ -102,7 +105,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 		UpdateValueStrategy strategy = new UpdateValueStrategy();
 		// the converter sees to that the file name is surrouned by hyperlink html tags, so that it is underlined
 		strategy.setConverter(new FileNameLinkContentConverter());
-		dbc.bindValue(SWTObservables.observeText(fileName), model, null, strategy);
+		binding = dbc.bindValue(SWTObservables.observeText(fileName), model, null, strategy);
 		// add a listener for initiation of file downloads or to open files, respectively
 		DownloadSelectionListener downloadSelectionListener = new DownloadSelectionListener();
 		fileName.addSelectionListener(downloadSelectionListener);
@@ -391,6 +394,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 	@Override
 	public void dispose() {
 		dbc.dispose();
+		binding.dispose();
 		super.dispose();
 	}
 }
