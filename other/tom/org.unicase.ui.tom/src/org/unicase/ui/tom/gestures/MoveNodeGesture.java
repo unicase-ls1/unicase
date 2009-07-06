@@ -15,7 +15,10 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemsAwareFreeFormLayer;
+import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.operations.MoveNodeOperation;
 import org.unicase.ui.tom.tools.TouchConstants;
@@ -30,135 +33,133 @@ import org.unicase.ui.tom.touches.Touch;
  */
 /**
  * @author schroech
- *
+ * 
  */
 public class MoveNodeGesture extends AbstractMoveGesture {
 
-	private MoveNodeOperation moveNodeOperation; 
+	private MoveNodeOperation moveNodeOperation;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
-	 * @param diagramEditPart The {@link DiagramEditPart}
+	 * @param dispatch
+	 *            The {@link TouchDispatch} at which the gesture will register
+	 *            for touch events
+	 * @param diagramEditPart
+	 *            The {@link DiagramEditPart}
 	 */
 	public MoveNodeGesture(TouchDispatch dispatch) {
 		super(dispatch);
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.tom.gestures.Gesture#execute()
 	 */
 	public void execute() {
 		if (isExecuting()) {
 			return;
 		}
-		
 		setAcceptsAdditionalTouches(false);
 		setExecuting(true);
-		
+		setExecutingMoveGesture(this);
+
 		Point firstPoint = getMoveTouch().getPath().getFirstPoint();
-		
-		EditPart editPart = findTouchedEditPartExcluding(Collections.EMPTY_LIST, firstPoint);
-		GraphicalEditPart primaryEditPart = getPrimaryEditPart(editPart);
 
-		setMoveNodeOperation(new MoveNodeOperation(getDiagramEditPart(), primaryEditPart));
-		
-		getMoveNodeOperation().prepare(firstPoint);	 
+		INodeEditPart primaryEditPart = findTouchedNodeEditPart(firstPoint);
+		if (primaryEditPart == null) {
+			return;
+			// throw new IllegalStateException();
+		}
+
+		MoveNodeOperation moveNodeOperation = new MoveNodeOperation(
+				getDiagramEditPart(), primaryEditPart);
+
+		setMoveNodeOperation(moveNodeOperation);
+
+		getMoveNodeOperation().prepare(firstPoint);
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.ui.tom.gestures.AbstractGesture#findTouchedEditPartExcluding(org.unicase.ui.tom.touches.Touch, java.util.Collection)
-	 */
-	@SuppressWarnings("unchecked")
-	@Override
-	public EditPart findTouchedEditPartExcluding(Touch touch, Collection exclusions) {
-		EditPart touchedEditPart = super.findTouchedEditPartExcluding(
-				touch, 
-				exclusions);
-
-		if (touchedEditPart != null) {
-			return touchedEditPart;
-		}
-
-		List children = getNodeLayer().getChildren();
-		List nodes = null;
-		for (Object child: children) {
-			if (child instanceof BorderItemsAwareFreeFormLayer) {
-				nodes = ((BorderItemsAwareFreeFormLayer)child).getChildren();
-			}
-		}
-
-		for (Object node : nodes) {
-			if (node instanceof Figure) {
-				if (TouchUtility.shapeContainsPoint(
-						(Figure) node,
-						touch.getPosition())) {
-					EditPart editPart = findFigureEditPart((Figure) node);
-					return editPart;
-				}
-			}
-		}
-
-		return null;
-	}
-
-
-	/** 
-	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.SingleTouch)
 	 */
 	@Override
-	public void handleSingleTouchAdded(SingleTouch touch) {		
+	public void handleSingleTouchAdded(SingleTouch touch) {
 		if (!(acceptsAdditionalTouches())) {
 			return;
 		}
 
-		EditPart touchedEditPart = findTouchedEditPartExcludingDiagram(touch);
-		touchedEditPart = getPrimaryEditPart(touchedEditPart);
-
+		if (!(touch.getPosition().equals(touch.getPath().getFirstPoint()))) {
+			throw new IllegalStateException();
+		}
+		
+		EditPart touchedEditPart = findTouchedNodeEditPart(touch.getPosition());
 		if (touchedEditPart != null) {
 			getCandidateTouches().add(touch);
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchChanged(org.unicase.ui.tom.touches.SingleTouch)
 	 */
 	@Override
 	public void handleSingleTouchChanged(SingleTouch touch) {
 		if (isExecuting()) {
-			getMoveNodeOperation().update(touch.getPosition());
+			if (touch == getMoveTouch()) {
+				getMoveNodeOperation().update(touch.getPosition());
+			}
 			return;
 		}
 
-		if (getCandidateTouches().contains(touch)) {
-			if (touchMoved(touch, TouchConstants.TOUCH_MOVEMENT_THRESHOLD)) {
-				setMoveTouch(touch);
-				setCanExecute(true);
-			}
+		if (getExecutingMoveGesture() != null) {
+			return;
 		}
+
+		if (!getCandidateTouches().contains(touch)) {
+			return;
+		}
+
+		if (!touchMoved(touch, TouchConstants.TOUCH_MOVEMENT_THRESHOLD)) {
+			return;
+		}
+
+		setMoveTouch(touch);
+		getCandidateTouches().remove(touch);
+		setCanExecute(true);
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchRemoved(org.unicase.ui.tom.touches.SingleTouch)
 	 */
 	@Override
 	public void handleSingleTouchRemoved(SingleTouch touch) {
 		if (touch == getMoveTouch()) {
-			getMoveNodeOperation().finish();
-			
+			if (isExecuting()) {
+				getMoveNodeOperation().finish();
+
+				setExecuting(false);
+				setExecutingMoveGesture(null);
+				setAcceptsAdditionalTouches(true);
+			}
+
 			setCanExecute(false);
-			setExecuting(false);
+			setMoveTouch(null);
+
 		}
+		
+		getCandidateTouches().remove(touch);
 	}
 
 	/**
-	 * @param moveCommand The {@link MoveNodeOperation}
+	 * @param moveCommand
+	 *            The {@link MoveNodeOperation}
 	 */
 	protected void setMoveNodeOperation(MoveNodeOperation moveCommand) {
 		this.moveNodeOperation = moveCommand;
@@ -171,14 +172,19 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 		return moveNodeOperation;
 	}
 
-	/** 
-	* {@inheritDoc}
-	* @see org.unicase.ui.tom.gestures.Gesture#getMandatoryTouches()
-	*/
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.tom.gestures.Gesture#getMandatoryTouches()
+	 */
 	public List<MultiTouch> getMandatoryTouches() {
+		if (getMoveTouch() == null) {
+			return Collections.emptyList();
+		}
 		List<MultiTouch> mandatoryTouches = new ArrayList<MultiTouch>();
 		mandatoryTouches.add(getMoveTouch().getMultiTouch());
 		return mandatoryTouches;
+
 	}
 
 }

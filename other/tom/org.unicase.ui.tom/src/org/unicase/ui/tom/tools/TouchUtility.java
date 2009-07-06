@@ -23,6 +23,15 @@ public final class TouchUtility {
 	private TouchUtility() {
 	}
 	
+	public static PointList pointListOfCurrentPositions(Collection<Touch> touches){
+		PointList pointList = new PointList();
+		for (Touch touch : touches) {
+			Point position = touch.getPosition();
+			pointList.addPoint(position);
+		}
+		return pointList;
+	}
+	                                                              
 	/**
 	 * @param touches The touches being evaluated
 	 * @return

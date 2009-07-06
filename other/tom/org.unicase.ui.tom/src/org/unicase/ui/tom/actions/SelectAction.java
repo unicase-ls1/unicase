@@ -7,6 +7,7 @@ package org.unicase.ui.tom.actions;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -21,7 +22,7 @@ public class SelectAction extends SelectionAction{
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
 	 * @param targetEditPart The {@link GraphicalEditPart} being selected / deselected
 	 */
-	public SelectAction(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart) {
+	public SelectAction(DiagramEditPart diagramEditPart, org.eclipse.gef.GraphicalEditPart targetEditPart) {
 		super(diagramEditPart, targetEditPart);
 	}
 
@@ -36,6 +37,6 @@ public class SelectAction extends SelectionAction{
 			}
 		};
 		
-		Display.getDefault().syncExec(runnable);
+		Display.getDefault().asyncExec(runnable);
 	}
 }

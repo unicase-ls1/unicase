@@ -10,13 +10,19 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.CreateDefaultConnectionCommand;
+import org.unicase.ui.tom.commands.CreateSecondaryConnectionCommand;
 import org.unicase.ui.tom.commands.Executable;
+import org.unicase.ui.tom.tools.TouchUtility;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
 
@@ -69,29 +75,30 @@ public class CreateConnectionGesture extends CreateGesture {
 			EditPart targetEditPart = null;
 			EditPart sourceEditPart = null;
 
-			targetEditPart = findCardinalTouchedEditPartExcludingDiagram(targetMultiTouch.getActiveTouches());
-			targetEditPart = getPrimaryEditPart(targetEditPart);
 			
-			sourceEditPart = findCardinalTouchedEditPartExcludingDiagram(sourceMultiTouch.getActiveTouches());
-			sourceEditPart = getPrimaryEditPart(sourceEditPart);
+			PointList targetPointList = TouchUtility.pointListOfCurrentPositions(targetMultiTouch.getActiveTouches());
+			targetEditPart = findCardinalTouchedNodeEditPart(targetPointList);
+			
+			PointList sourcePointList = TouchUtility.pointListOfCurrentPositions(sourceMultiTouch.getActiveTouches());
+			sourceEditPart = findCardinalTouchedNodeEditPart(sourcePointList);
 			
 			if (targetEditPart == null
 					&& sourceEditPart == null) {
 				throw new IllegalStateException();
 			}
 
-			command = new CreateDefaultConnectionCommand(
-					getDiagramEditPart(),
-					sourceEditPart, 
-					targetEditPart);
-
-			if(sourceMultiTouch.getActiveTouches().size() == 2) {
-				IElementType type = ElementTypeRegistry.getInstance().getType("org.unicase.classDiagram.ClassSubClasses_4005");
-				if (type != null) {
-					((CreateDefaultConnectionCommand) command).setElementType(type);
-				}
+			if (targetMultiTouch.getActiveTouches().size() == 1) {
+				command = new CreateDefaultConnectionCommand(
+						getDiagramEditPart(),
+						sourceEditPart, 
+						targetEditPart);	
+			}else if (targetMultiTouch.getActiveTouches().size() == 2) {
+				command = new CreateSecondaryConnectionCommand(
+						getDiagramEditPart(),
+						sourceEditPart, 
+						targetEditPart);
 			}
-			
+						
 			command.execute();
 
 		} finally {
@@ -121,9 +128,9 @@ public class CreateConnectionGesture extends CreateGesture {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleSingleTouchRemoved(SingleTouch touch) {
-		if (!(touch.getLifeSpan() < CREATION_TOUCH_LIFESPAN)) {
-			return;
-		}
+//		if (!(touch.getLifeSpan() < CREATION_TOUCH_LIFESPAN)) {
+//			return;
+//		}
 
 		MultiTouch multiTouch = touch.getMultiTouch();
 
@@ -132,8 +139,10 @@ public class CreateConnectionGesture extends CreateGesture {
 			return;
 		}
 
-		EditPart targetEditPart = findCardinalTouchedEditPartExcludingDiagram(multiTouch.getActiveTouches());
-		targetEditPart = getPrimaryEditPart(targetEditPart);
+		PointList targetPointList = TouchUtility.pointListOfCurrentPositions(multiTouch.getActiveTouches());
+		EditPart targetEditPart = findCardinalTouchedNodeEditPart(targetPointList);
+		
+		targetEditPart = EditPartUtility.traverseToNodeEditPart(targetEditPart);
 		if (targetEditPart == null) {
 			return;
 		}
@@ -166,9 +175,9 @@ public class CreateConnectionGesture extends CreateGesture {
 		List<MultiTouch> possibleSourceMultiTouches = new ArrayList<MultiTouch>();
 
 		if (multiTouches.size() > 1) {
-
-			EditPart targetEditPart = findCardinalTouchedEditPartExcludingDiagram(targetMultiTouch.getActiveTouches());
-			targetEditPart = getPrimaryEditPart(targetEditPart);
+			
+			PointList targetPointList = TouchUtility.pointListOfCurrentPositions(targetMultiTouch.getActiveTouches());
+			EditPart targetEditPart = findCardinalTouchedNodeEditPart(targetPointList);
 
 			if (targetEditPart == null) {
 				return Collections.EMPTY_LIST;
@@ -180,8 +189,8 @@ public class CreateConnectionGesture extends CreateGesture {
 					continue;
 				}
 
-				EditPart editPart = findCardinalTouchedEditPartExcludingDiagram(multiTouch.getActiveTouches());
-				editPart = getPrimaryEditPart(editPart);
+				PointList pointList = TouchUtility.pointListOfCurrentPositions(multiTouch.getActiveTouches());
+				EditPart editPart = findCardinalTouchedNodeEditPart(targetPointList);
 
 				if (editPart != null) {
 					possibleSourceMultiTouches.add(multiTouch);

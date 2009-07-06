@@ -7,8 +7,8 @@ import org.eclipse.draw2d.geometry.PointList;
 
 public abstract class SingleTouch extends AbstractTouch{
 
-	private Date touchUpDate;
-	private Date touchDownDate;
+	private Date touchUpDate = new Date(-1);
+	private Date touchDownDate = new Date(-1);
 
 	
 	public SingleTouch() {

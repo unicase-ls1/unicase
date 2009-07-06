@@ -1,6 +1,7 @@
 package org.unicase.ui.tom;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -66,6 +67,7 @@ public abstract class TouchDispatch extends TouchNotifierImpl{
 		if (!canvasViewport.getClientArea().contains(touch.getPosition())) {
 			return;
 		}
+		touch.setTouchDownDate(new Date());
 		
 		assignMultiTouch(touch);
 
@@ -107,6 +109,8 @@ public abstract class TouchDispatch extends TouchNotifierImpl{
 			return;
 		}
 		
+		touch.setTouchUpDate(new Date());
+		
 		getRemovedTouches().add(touch);
 		
 		MultiTouch multiTouch = touch.getMultiTouch();
@@ -130,6 +134,9 @@ public abstract class TouchDispatch extends TouchNotifierImpl{
 	 * @param touch The {@link Touch} to update 
 	 */
 	void updateTouch(Touch touch){
+		if (!getActiveSingleTouches().contains(touch)) {
+			return;
+		}
 		MultiTouch multiTouch = touch.getMultiTouch();
 		List<Touch> activeTouches = multiTouch.getActiveTouches();
 		if (activeTouches.size() > 1) {

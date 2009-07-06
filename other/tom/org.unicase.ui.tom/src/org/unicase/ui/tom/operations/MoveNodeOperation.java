@@ -8,6 +8,7 @@ package org.unicase.ui.tom.operations;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Display;
 
@@ -21,8 +22,8 @@ public class MoveNodeOperation extends MoveOperation{
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
 	 * @param targetEditPart The {@link IGraphicalEditPart} to be moved
 	 */
-	public MoveNodeOperation(DiagramEditPart diagramEditPart, IGraphicalEditPart targetEditPart) {
-		super(diagramEditPart, targetEditPart);
+	public MoveNodeOperation(DiagramEditPart diagramEditPart, INodeEditPart targetEditPart) {
+		super(diagramEditPart, (IGraphicalEditPart) targetEditPart);
 	}
 	
 	/** 

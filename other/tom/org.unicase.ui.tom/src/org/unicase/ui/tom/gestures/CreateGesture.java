@@ -19,7 +19,7 @@ public abstract class CreateGesture extends AbstractGesture{
 	 * The maximum time the creation touch is allowed to remain on 
 	 * the table before it is no longer classified as the creation touch.
 	 */
-	protected static final long CREATION_TOUCH_LIFESPAN = 100;
+	protected static final long CREATION_TOUCH_LIFESPAN = 400;
 
 	private Touch creationTouch;
 

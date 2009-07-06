@@ -1,8 +1,10 @@
 package org.unicase.ui.tom.commands;
 
 import java.util.Collections;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.ui.dialogs.ExpansionType;
@@ -10,6 +12,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ShowRelatedElementsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.unicase.model.classDiagram.edit.commands.AddRelatedElementsCommand;
+import org.unicase.model.classDiagram.edit.commands.ShowRelatedElementsCommand;
+import org.unicase.model.classDiagram.part.ShowRelatedElementsController;
+import org.unicase.ui.common.diagram.requests.ShowRelatedElementsModeRequest;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 
 public class DiscoveryModeDeactivationCommand extends AbstractCommand {
@@ -33,12 +39,14 @@ public class DiscoveryModeDeactivationCommand extends AbstractCommand {
 	public Request createRequest() {
 		EObject element = EditPartUtility.getElement(getTouchedEditPart());
 		
-		ShowRelatedElementsRequest showRelatedElementsRequest = new ShowRelatedElementsRequest(
+
+		ShowRelatedElementsRequest showRelatedElementsRequest = new ShowRelatedElementsModeRequest(
 				Collections.singletonList(getTouchedEditPart()),
-				Collections.singletonList(ElementTypeRegistry.getInstance().getElementType(element)),
+				null,
 				false,
-				1,
-				ExpansionType.OUTGOING);
+				0,
+				ExpansionType.BOTH, 
+				false);
 		
 		return showRelatedElementsRequest;
 	}
@@ -56,7 +64,11 @@ public class DiscoveryModeDeactivationCommand extends AbstractCommand {
 	*/
 	@Override
 	public Command getCommand() {
-		Command command = touchedEditPart.getCommand(getRequest());
+		ShowRelatedElementsCommand command;
+		ShowRelatedElementsController instance = ShowRelatedElementsController.getInstance(getDiagramEditPart().getViewer());
+		Set<EditPart> relatedEditParts = instance.getRelatedEditParts();
+		command = new ShowRelatedElementsCommand((ShowRelatedElementsRequest) getRequest());
+		
 		return command;
 	}
 

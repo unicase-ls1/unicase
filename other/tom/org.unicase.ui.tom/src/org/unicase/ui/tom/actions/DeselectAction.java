@@ -21,7 +21,7 @@ public class DeselectAction extends SelectionAction {
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
 	 * @param targetEditPart The {@link GraphicalEditPart} being selected / deselected
 	 */
-	public DeselectAction(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart) {
+	public DeselectAction(DiagramEditPart diagramEditPart, org.eclipse.gef.GraphicalEditPart targetEditPart) {
 		super(diagramEditPart, targetEditPart);
 	}
 

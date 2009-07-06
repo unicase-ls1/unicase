@@ -8,18 +8,23 @@ package org.unicase.ui.tom.gestures;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
+import org.eclipse.swt.widgets.Display;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.DiscoveryModeActivationCommand;
 import org.unicase.ui.tom.commands.DiscoveryModeDeactivationCommand;
+import org.unicase.ui.tom.tools.TouchUtility;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
+import org.unicase.ui.tom.touches.Touch;
 
 /**
  * @author schroech
- *
+ * 
  */
 public class DiscoveryGesture extends AbstractContinuousGesture {
 
@@ -29,93 +34,113 @@ public class DiscoveryGesture extends AbstractContinuousGesture {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
+	 * @param dispatch
+	 *            The {@link TouchDispatch} at which the gesture will register
+	 *            for touch events
 	 */
 	public DiscoveryGesture(TouchDispatch dispatch) {
 		super(dispatch);
 	}
 
-	/** 
-	* {@inheritDoc}
-	* @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.SingleTouch)
-	*/
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.SingleTouch)
+	 */
 	@Override
 	public void handleSingleTouchAdded(SingleTouch touch) {
 		if (!(acceptsAdditionalTouches())) {
 			return;
 		}
 
-		EditPart currentlyTouchedEditPart = findTouchedEditPartExcludingDiagram(touch);
-		currentlyTouchedEditPart = getPrimaryEditPart(currentlyTouchedEditPart);
+		List<Touch> activeTouches = touch.getMultiTouch().getActiveTouches();
+		if (activeTouches.size() < 4) {
+			return;
+		}
 
+		PointList pointList = TouchUtility
+				.pointListOfCurrentPositions(activeTouches);
+
+		INodeEditPart currentlyTouchedEditPart = findCardinalTouchedNodeEditPart(pointList);
 		if (currentlyTouchedEditPart == null) {
 			return;
 		}
 
-		if (touch.getMultiTouch().getActiveTouches().size() > 3) {
-			setActivationTouch(touch.getMultiTouch());
-			setTouchedEditPart(currentlyTouchedEditPart);
-			setCanExecute(true);
-			return;
-		}
+		setActivationTouch(touch.getMultiTouch());
+		setTouchedEditPart(currentlyTouchedEditPart);
+		setCanExecute(true);
+		return;
 	}
 
-	/** 
-	* {@inheritDoc}
-	* @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchChanged(org.unicase.ui.tom.touches.SingleTouch)
-	*/
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchChanged(org.unicase.ui.tom.touches.SingleTouch)
+	 */
 	@Override
 	public void handleSingleTouchChanged(SingleTouch touch) {
-		
+
 	}
 
-	/** 
-	* {@inheritDoc}
-	* @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchRemoved(org.unicase.ui.tom.touches.SingleTouch)
-	*/
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchRemoved(org.unicase.ui.tom.touches.SingleTouch)
+	 */
 	@Override
 	public void handleSingleTouchRemoved(SingleTouch touch) {
-		if (touch.getMultiTouch() == getActivationTouch()) {
-			
-			if (touch.getMultiTouch().getActiveTouches().size() < 4) {
-				DiscoveryModeDeactivationCommand command = new DiscoveryModeDeactivationCommand(getDiagramEditPart(), (GraphicalEditPart) getTouchedEditPart());
-				command.execute();
-				
-				setExecuting(false);				
-				setCanExecute(false);
-				
-				setTouchedEditPart(null);
-				setActivationTouch(null);
-			}
+
+		if (!isExecuting()) {
+			return;
 		}
+
+		if (touch.getMultiTouch() != getActivationTouch()) {
+			return;
+		}
+
+		if (!(touch.getMultiTouch().getActiveTouches().size() < 4)) {
+			return;
+		}
+
+		DiscoveryModeDeactivationCommand command = new DiscoveryModeDeactivationCommand(
+				getDiagramEditPart(), (GraphicalEditPart) getTouchedEditPart());
+		command.execute();
+
+		setExecuting(false);
+		setCanExecute(false);
+
+		setTouchedEditPart(null);
+		setActivationTouch(null);
 	}
 
-	/** 
-	* {@inheritDoc}
-	* @see org.unicase.ui.tom.gestures.Gesture#execute()
-	*/
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.tom.gestures.Gesture#execute()
+	 */
 	public void execute() {
 		if (!(canExecute())) {
 			return;
 		}
-	
+
 		setExecuting(true);
-		
-		DiscoveryModeActivationCommand command = new DiscoveryModeActivationCommand(getDiagramEditPart(), (GraphicalEditPart) getTouchedEditPart());
+
+		DiscoveryModeActivationCommand command = new DiscoveryModeActivationCommand(
+				getDiagramEditPart(), (GraphicalEditPart) getTouchedEditPart());
 		command.execute();
 	}
 
-	
-	/** 
-	* {@inheritDoc}
-	* @see org.unicase.ui.tom.gestures.Gesture#getMandatoryTouches()
-	*/
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.tom.gestures.Gesture#getMandatoryTouches()
+	 */
 	public List<MultiTouch> getMandatoryTouches() {
 		List<MultiTouch> mandatoryTouches = new ArrayList<MultiTouch>();
-		
+
 		mandatoryTouches.add(getActivationTouch());
-		
-		return mandatoryTouches; 
+
+		return mandatoryTouches;
 	}
 
 	public void setActivationTouch(MultiTouch activationTouch) {
