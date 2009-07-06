@@ -145,7 +145,7 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.part.Model
 		}
 		return super.getEditingDomain();
 	}
-
+	
 	/**
 	 * @generated
 	 */
@@ -176,6 +176,25 @@ public class ModelDiagramEditor extends org.unicase.ui.common.diagram.part.Model
 		return false;
 	}
 
+	/**
+	 * @see org.unicase.ui.common.diagram.part.ModelDiagramEditor#doSave(org.eclipse.core.runtime.IProgressMonitor)
+	 */
+	@Override
+	public void doSave(IProgressMonitor progressMonitor) {
+		//Do not save while discovery mode is active, since layout information is invalid at this point.
+		ShowRelatedElementsController instance = ShowRelatedElementsController.getInstance(getDiagramGraphicalViewer());
+		if (instance == null) {
+			return;
+		}
+
+		boolean active = instance.isActive();
+		if (active) {
+			return;
+		}
+		
+		super.doSave(progressMonitor);
+	}
+	
 	/**
 	 * @generated
 	 */

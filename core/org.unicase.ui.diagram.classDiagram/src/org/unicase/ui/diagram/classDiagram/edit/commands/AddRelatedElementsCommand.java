@@ -266,7 +266,6 @@ public class AddRelatedElementsCommand extends Command {
 
 	/**
 	 * @see org.eclipse.gef.commands.Command#canUndo()
-	 * 
 	 * @return false
 	 */
 	@Override
@@ -291,7 +290,8 @@ public class AddRelatedElementsCommand extends Command {
 	}
 
 	/**
-	 * @return The {@link Class}es which were added to the diagram by this command. Returns null if called before command execution.
+	 * @return The {@link Class}es which were added to the diagram by this command. Returns null if called before
+	 *         command execution.
 	 */
 	public Class getAddedClass() {
 		return addedClass;
@@ -302,7 +302,8 @@ public class AddRelatedElementsCommand extends Command {
 	}
 
 	/**
-	 * @return @return The {@link Association}s which were added to the diagram by this command. Returns null if called before command execution.
+	 * @return @return The {@link Association}s which were added to the diagram by this command. Returns null if called
+	 *         before command execution.
 	 */
 	public Set<Association> getAddedAssociations() {
 		return addedAssociations;
@@ -313,7 +314,8 @@ public class AddRelatedElementsCommand extends Command {
 	}
 
 	/**
-	 * @return @return The {@link EObject}s which were deleted from the diagram by this command. Returns null if called before command execution.
+	 * @return @return The {@link EObject}s which were deleted from the diagram by this command. Returns null if called
+	 *         before command execution.
 	 */
 	public Set<EObject> getDeletedNodes() {
 		return deletedNodes;
