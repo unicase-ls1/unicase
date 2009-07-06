@@ -333,8 +333,6 @@ public class CreateDeleteOperationTest extends OperationTest {
 		assertEquals(useCaseClone, oldActor.getInitiatedUseCases().get(0));
 		assertEquals(useCaseClone, newActor.getParticipatedUseCases().get(0));
 		assertEquals(useCaseClone, otherActor.getParticipatedUseCases().get(0));
-
-		assertEquals(6, operations.size());
 	}
 
 	/**
