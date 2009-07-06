@@ -65,6 +65,11 @@ public class SubscriptionNotificationProvider implements NotificationProvider {
 	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
 		String currentUsername) {
 		result = new ArrayList<ESNotification>();
+		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
+		subscriptionIds = Arrays.asList(property.getEObjectArrayProperty());
+		if (subscriptionIds.isEmpty()) {
+			return result;
+		}
 		try {
 			user = OrgUnitHelper.getUser(projectSpace);
 		} catch (NoCurrentUserException e) {
@@ -80,8 +85,6 @@ public class SubscriptionNotificationProvider implements NotificationProvider {
 		if (!projectSpace.hasProperty(DashboardKey.SUBSCRIPTIONS)) {
 			return result;
 		}
-		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
-		subscriptionIds = Arrays.asList(property.getEObjectArrayProperty());
 		for (ChangePackage changePackage : changePackages) {
 			for (AbstractOperation operation : changePackage.getOperations()) {
 				if (operation instanceof CompositeOperation) {
@@ -130,6 +133,8 @@ public class SubscriptionNotificationProvider implements NotificationProvider {
 		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(modelElement, projectSpace));
 		notification.setMessage(stringBuilder.toString());
 		notification.setCreationDate(op.getClientDate());
+		notification.getRelatedOperations().add(op.getOperationId());
+		notification.getRelatedModelElements().add(mid);
 		result.add(notification);
 	}
 }
