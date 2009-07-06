@@ -53,7 +53,7 @@ import org.unicase.ui.tom.tools.TouchSelectConnectionEditPartTracker;
  * @generated
  */
 public class AssociationName2EditPart extends
-		org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart {
+		org.unicase.ui.diagram.classDiagram.edit.parts.AssociationName2EditPart {
 
 	public AssociationName2EditPart(View view) {
 		super(view);

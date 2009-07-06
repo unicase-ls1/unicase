@@ -52,7 +52,7 @@ import org.eclipse.swt.graphics.Image;
  */
 public class AssociationSourceMultiplicity3EditPart
 		extends
-		org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart {
+		org.unicase.ui.diagram.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart {
 
 	public AssociationSourceMultiplicity3EditPart(View view) {
 		super(view);

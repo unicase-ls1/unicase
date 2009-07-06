@@ -11,7 +11,7 @@ import org.unicase.ui.tom.TouchController;
 import org.unicase.ui.tom.classDiagram.edit.policies.TouchResizableShapeEditPolicy;
 
 public class ClassEditPart extends
-		org.unicase.model.classDiagram.edit.parts.ClassEditPart {
+		org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart {
 
 	public ClassEditPart(View view) {
 		super(view);

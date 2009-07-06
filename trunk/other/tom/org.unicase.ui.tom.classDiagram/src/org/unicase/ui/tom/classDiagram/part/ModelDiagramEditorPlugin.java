@@ -39,6 +39,6 @@ import org.unicase.model.task.provider.TaskItemProviderAdapterFactory;
 /**
  * @generated
  */
-public class ModelDiagramEditorPlugin extends org.unicase.model.classDiagram.part.ModelDiagramEditorPlugin {
+public class ModelDiagramEditorPlugin extends org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorPlugin {
 
 }
