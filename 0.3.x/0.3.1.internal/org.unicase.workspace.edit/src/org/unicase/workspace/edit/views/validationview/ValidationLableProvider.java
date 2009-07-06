@@ -1,0 +1,58 @@
+package org.unicase.workspace.edit.views.validationview;
+
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.emf.validation.model.IConstraintStatus;
+import org.eclipse.jface.viewers.ColumnLabelProvider;
+import org.eclipse.swt.graphics.Image;
+import org.unicase.model.ModelElement;
+
+/**
+ * Lableprovider for validation view.
+ * 
+ * @author wesendon
+ */
+public class ValidationLableProvider extends ColumnLabelProvider {
+
+	private AdapterFactoryLabelProvider adapterFactoryLabelProvider;
+
+	/**
+	 * Default constructor.
+	 */
+	public ValidationLableProvider() {
+		super();
+		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Image getImage(Object object) {
+		if (object instanceof IConstraintStatus) {
+			EObject target = ((IConstraintStatus) object).getTarget();
+			if (target instanceof ModelElement) {
+				return adapterFactoryLabelProvider.getImage(target);
+			}
+		}
+		return super.getImage(object);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public String getText(Object object) {
+		if (object instanceof IConstraintStatus) {
+			EObject target = ((IConstraintStatus) object).getTarget();
+			if (target instanceof ModelElement) {
+				return adapterFactoryLabelProvider.getText(target);
+			}
+		}
+		return super.getText(object);
+	}
+
+}
