@@ -913,7 +913,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 		initEClass(notificationCompositeEClass, NotificationComposite.class, "NotificationComposite", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNotificationComposite_Notifications(), theOperationsPackage.getAbstractOperation(), null,
+		initEReference(getNotificationComposite_Notifications(), theNotificationPackage.getESNotification(), null,
 			"notifications", null, 0, -1, NotificationComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

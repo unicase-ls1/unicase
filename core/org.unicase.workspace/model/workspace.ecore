@@ -94,7 +94,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NotificationComposite">
     <eStructuralFeatures xsi:type="ecore:EReference" name="notifications" upperBound="-1"
-        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
+        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//notification/ESNotification"
         containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

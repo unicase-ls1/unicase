@@ -7,7 +7,7 @@ package org.unicase.workspace;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.notification.ESNotification;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Notification Composite</b></em>'. <!--
@@ -26,7 +26,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 public interface NotificationComposite extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Notifications</b></em>' containment reference list. The list contents are of
-	 * type {@link org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation}. <!-- begin-user-doc -->
+	 * type {@link org.unicase.emfstore.esmodel.notification.ESNotification}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Notifications</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...
@@ -38,6 +38,6 @@ public interface NotificationComposite extends EObject {
 	 * @model containment="true" resolveProxies="true"
 	 * @generated
 	 */
-	EList<AbstractOperation> getNotifications();
+	EList<ESNotification> getNotifications();
 
 } // NotificationComposite
