@@ -31,6 +31,8 @@ import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.unicase.model.classes.Class;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
@@ -137,7 +139,7 @@ public final class ShowRelatedElementsController {
 				throw new IllegalStateException();
 			}
 			// END SANITY CHECKS
-			
+
 			if (!editParts.contains(selectedEditPart)) {
 				selectedEditPart = getDiagramEditPart();
 			}
@@ -146,7 +148,7 @@ public final class ShowRelatedElementsController {
 
 			getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(addCommand);
 
-			if (!(modeEnabled || modeKeyPressed)) {
+			if (!(isModeEnabled() || modeKeyPressed)) {
 				setActive(false);
 			}
 		}
@@ -157,7 +159,7 @@ public final class ShowRelatedElementsController {
 			if (selectedEditPart == getDiagramEditPart()) {
 				addCommand = new AddRelatedElementsCommand(selectedEditPart, editParts, diagramEditPart);
 			} else {
-				if (modeEnabled || modeKeyPressed) {
+				if (isModeEnabled() || modeKeyPressed) {
 					addCommand = new AddRelatedElementsCommand(selectedEditPart, Collections
 						.singletonList(selectedEditPart), getDiagramEditPart());
 				} else {
@@ -257,22 +259,51 @@ public final class ShowRelatedElementsController {
 	}
 
 	private void startListening() {
-		if (getEditPartViewer() == null) {
-			return;
-		}
+		Runnable addListenersRunner = new Runnable() {
+			public void run() {
+				EditPartViewer viewer = getEditPartViewer();
+				if (viewer == null) {
+					return;
+				}
 
-		getEditPartViewer().addSelectionChangedListener(selectionChangeListener);
-		getEditPartViewer().getControl().addKeyListener(modifierKeyListener);
-		getEditPartViewer().getControl().addDisposeListener(viewerDisposeListener);
+				viewer.addSelectionChangedListener(selectionChangeListener);
+
+				Control control = viewer.getControl();
+				if (control == null) {
+					return;
+				}
+				control.addKeyListener(modifierKeyListener);
+				control.addDisposeListener(viewerDisposeListener);
+			}
+		};
+
+		Display.getDefault().syncExec(addListenersRunner);
 	}
 
 	private void stopListening() {
 		if (getEditPartViewer() == null) {
 			return;
 		}
-		getEditPartViewer().removeSelectionChangedListener(selectionChangeListener);
-		getEditPartViewer().getControl().removeKeyListener(modifierKeyListener);
-		getEditPartViewer().getControl().removeDisposeListener(viewerDisposeListener);
+
+		Runnable removeListenersRunner = new Runnable() {
+			public void run() {
+				EditPartViewer viewer = getEditPartViewer();
+				if (viewer == null) {
+					return;
+				}
+
+				viewer.removeSelectionChangedListener(selectionChangeListener);
+
+				Control control = viewer.getControl();
+				if (control == null) {
+					return;
+				}
+				control.removeKeyListener(modifierKeyListener);
+				control.removeDisposeListener(viewerDisposeListener);
+			}
+		};
+
+		Display.getDefault().syncExec(removeListenersRunner);
 	}
 
 	private EditPartViewer getEditPartViewer() {
@@ -326,5 +357,19 @@ public final class ShowRelatedElementsController {
 
 	private void setEditPartViewer(EditPartViewer editPartViewer) {
 		this.editPartViewer = editPartViewer;
+	}
+
+	/**
+	 * @param modeEnabled Set to <code>true</code> to enable discovery mode, <code>false</code> otherwise.
+	 */
+	public void setModeEnabled(boolean modeEnabled) {
+		this.modeEnabled = modeEnabled;
+	}
+
+	/**
+	 * @return <code>true</code> if discovery mode is enabled, <code>false</code> otherwise.
+	 */
+	public boolean isModeEnabled() {
+		return modeEnabled;
 	}
 }

@@ -35,6 +35,7 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.commands.CommandFactory;
 import org.unicase.ui.common.diagram.commands.CreateConnectionViewCommandProvider;
 import org.unicase.ui.common.diagram.commands.CreateNodeViewCommandProvider;
+import org.unicase.ui.common.diagram.requests.ShowRelatedElementsModeRequest;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.common.diagram.util.ViewAdapter;
 import org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart;
@@ -47,6 +48,7 @@ public class ShowRelatedElementsCommand extends Command {
 
 	private final Map<EObject, ViewDescriptor> objectViewDescriptorMap = new HashMap<EObject, ViewDescriptor>();
 	private DiagramEditPart diagramEditPart;
+	private boolean enableMode;
 
 	private final CompoundCommand cc = new CompoundCommand();
 
@@ -86,6 +88,10 @@ public class ShowRelatedElementsCommand extends Command {
 		}
 		// END SANITY CHECKS
 
+		if (request instanceof ShowRelatedElementsModeRequest) {
+			enableMode = ((ShowRelatedElementsModeRequest)request).isEnable();
+		}
+		
 		setDiagramEditPart(diagramEditPart);
 
 		Collection<Class> invisibleRelatedClasses = getInvisibleRelatedClasses(primaryClassEditPart);
@@ -159,6 +165,7 @@ public class ShowRelatedElementsCommand extends Command {
 			.getViewer());
 
 		if (instance.isActive()) {
+			instance.setModeEnabled(enableMode);
 			return;
 		}
 

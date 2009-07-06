@@ -65,6 +65,9 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 			ShowRelatedElementsController instance = ShowRelatedElementsController.getInstance(getHost().getViewer());
 			Collection<? extends EObject> relatedModelElements = instance.getRelatedNodeElements();
 			result.addAll(relatedModelElements);
+			
+			relatedModelElements = instance.getRelatedEdges();
+			result.addAll(relatedModelElements);
 		}
 
 		return result;
