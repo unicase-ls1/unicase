@@ -154,8 +154,18 @@ public class ErrorReportDialog extends MessageDialog {
 		sb.append(detailText);
 
 		String message = sb.toString();
-		Program.launch(message);
+
+		boolean successful = false;
+
+		successful = Program.launch(message);
+
+		if (!successful) {
+			MessageDialog
+				.openInformation(
+					getShell(),
+					"Error",
+					"An error occured when trying to launch your email client. You can click on details button to copy the problem description and then send it to unicase-bugs@in.tum.de ");
+		}
 
 	}
-
 }

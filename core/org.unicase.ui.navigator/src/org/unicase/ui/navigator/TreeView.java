@@ -50,13 +50,15 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
+import org.unicase.workspace.observers.ModifiedModelElementsCachListener;
 
 /**
  * The standard navigator tree view.
  * 
  * @author helming
  */
-public class TreeView extends ViewPart implements ProjectChangeObserver { // implements IShowInSource
+public class TreeView extends ViewPart implements ProjectChangeObserver, ModifiedModelElementsCachListener { // implements
+	// IShowInSource
 
 	private static TreeViewer viewer;
 	private MenuManager menuMgr;
@@ -75,6 +77,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 		currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		for (ProjectSpace projectSpace : currentWorkspace.getProjectSpaces()) {
 			projectSpace.getProject().addProjectChangeObserver(this);
+			projectSpace.getModifiedModelElementsCache().addModifiedModelElementsCacheListener(TreeView.this);
 		}
 		workspaceListenerAdapter = new AdapterImpl() {
 
@@ -85,10 +88,14 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getNewValue())) {
 						ProjectSpace projectSpace = (ProjectSpace) msg.getNewValue();
 						projectSpace.getProject().addProjectChangeObserver(TreeView.this);
+						projectSpace.getModifiedModelElementsCache().addModifiedModelElementsCacheListener(
+							TreeView.this);
 					} else if (msg.getEventType() == Notification.REMOVE
 						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getOldValue())) {
 						ProjectSpace projectSpace = (ProjectSpace) msg.getOldValue();
 						projectSpace.getProject().removeProjectChangeObserver(TreeView.this);
+						projectSpace.getModifiedModelElementsCache().removeModifiedModelElementsCacheListener(
+							TreeView.this);
 					}
 				}
 				super.notifyChanged(msg);
@@ -515,6 +522,14 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	 * {@inheritDoc}
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.observers.ModifiedModelElementsCachListener#modifiedModelElementsCacheUpdated()
+	 */
+	public void modifiedModelElementsCacheUpdated() {
 		Display.getDefault().asyncExec(new Runnable() {
 
 			public void run() {
