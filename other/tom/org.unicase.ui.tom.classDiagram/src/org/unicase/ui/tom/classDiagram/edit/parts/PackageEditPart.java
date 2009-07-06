@@ -28,7 +28,7 @@ import org.unicase.ui.tom.classDiagram.edit.policies.TouchResizableShapeEditPoli
 /**
  * @generated
  */
-public class PackageEditPart extends org.unicase.model.classDiagram.edit.parts.PackageEditPart {
+public class PackageEditPart extends org.unicase.ui.diagram.classDiagram.edit.parts.PackageEditPart {
 
 	public PackageEditPart(View view) {
 		super(view);

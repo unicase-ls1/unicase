@@ -14,12 +14,12 @@ import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Text;
 
-public class ModelEditPartFactory extends org.unicase.model.classDiagram.edit.parts.ModelEditPartFactory {
+public class ModelEditPartFactory extends org.unicase.ui.diagram.classDiagram.edit.parts.ModelEditPartFactory {
 
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
-			switch (org.unicase.model.classDiagram.part.ModelVisualIDRegistry
+			switch (org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
 					.getVisualID(view)) {
 
 			case org.unicase.ui.tom.classDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
@@ -58,51 +58,51 @@ public class ModelEditPartFactory extends org.unicase.model.classDiagram.edit.pa
 				return new org.unicase.ui.tom.classDiagram.edit.parts.DependencyEditPart(
 						view);
 				
-			case org.unicase.model.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationNameEditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationNameEditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationSourceMultiplicityEditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationTargetMultiplicityEditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.AssociationName2EditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationName2EditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationName2EditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationSourceMultiplicity2EditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationTargetMultiplicity2EditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationName3EditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationName3EditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationName4EditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationName4EditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationSourceMultiplicity4EditPart(
 						view);
 
-			case org.unicase.model.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart.VISUAL_ID:
+			case org.unicase.ui.diagram.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart.VISUAL_ID:
 				return new org.unicase.ui.tom.classDiagram.edit.parts.AssociationTargetMultiplicity4EditPart(
 						view);
 			}

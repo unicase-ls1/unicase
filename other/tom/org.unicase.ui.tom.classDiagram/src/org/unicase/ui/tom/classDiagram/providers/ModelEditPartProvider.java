@@ -12,13 +12,13 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPar
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.classDiagram.part.ModelDiagramEditor;
+import org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditor;
 import org.unicase.ui.tom.TouchController;
 
 /**
  * @generated
  */
-public class ModelEditPartProvider extends org.unicase.model.classDiagram.providers.ModelEditPartProvider {
+public class ModelEditPartProvider extends org.unicase.ui.diagram.classDiagram.providers.ModelEditPartProvider {
 
 	/**
 	 * @generated

@@ -51,7 +51,7 @@ import org.eclipse.swt.graphics.Image;
  * @generated
  */
 public class AssociationName3EditPart extends
-		org.unicase.model.classDiagram.edit.parts.AssociationName3EditPart {
+		org.unicase.ui.diagram.classDiagram.edit.parts.AssociationName3EditPart {
 
 	public AssociationName3EditPart(View view) {
 		super(view);

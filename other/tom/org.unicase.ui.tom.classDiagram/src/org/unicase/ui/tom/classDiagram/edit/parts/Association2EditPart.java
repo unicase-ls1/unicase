@@ -18,7 +18,7 @@ import org.unicase.ui.tom.tools.TouchSelectConnectionEditPartTracker;
 /**
  * @generated
  */
-public class Association2EditPart extends org.unicase.model.classDiagram.edit.parts.Association2EditPart implements
+public class Association2EditPart extends org.unicase.ui.diagram.classDiagram.edit.parts.Association2EditPart implements
 		ITreeBranchEditPart {
 
 	public Association2EditPart(View view) {
