@@ -11,7 +11,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -28,6 +30,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ProjectChangeNotifier;
 import org.unicase.model.util.ProjectChangeObserver;
 
@@ -249,9 +252,13 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		return super.eIsSet(featureID);
 	}
 
+	// begin of custom code
+
 	/**
-	 * this methods implements the adapter interface which is needed by the navigator
+	 * this methods implements the adapter interface which is needed by the navigator.
 	 * 
+	 * @param adapter the adapter class
+	 * @return the adapter
 	 * @author shterev
 	 */
 	@SuppressWarnings("unchecked")
@@ -260,9 +267,9 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * {@inheritDoc}
 	 * 
-	 * @generated NOT {@inheritDoc}
+	 * @generated NOT
 	 * @see org.unicase.model.Project#contains(org.unicase.model.ModelElement)
 	 */
 	public boolean contains(ModelElement modelElement) {
@@ -320,9 +327,30 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		if (this.modelElementCache.containsKey(modelElement.getModelElementId())) {
 			throw new IllegalStateException("ModelElement is already in the project!");
 		}
+		checkForCrossReferences(modelElement);
 		addModelElementAndChildrenToCache(modelElement);
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
-			projectChangeObserver.modelElementAdded(project, modelElement);
+			try {
+				projectChangeObserver.modelElementAdded(project, modelElement);
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException ex) {
+				// END SUPRESS CATCH EXCEPTION
+				Platform.getLog(Platform.getBundle("org.unicase.model")).log(
+					new Status(IStatus.ERROR, "org.unicase.model", "Project Change Observer threw an exception: "
+						+ projectChangeObserver.getClass().toString(), ex));
+			}
+		}
+	}
+
+	private void checkForCrossReferences(ModelElement modelElement) {
+		if (modelElement.getCrossReferencedModelElements().size() > 0) {
+			String message = "ModelElements may not contain cross references to other model elements when added to project!";
+			IllegalStateException exception = new IllegalStateException(message);
+			ModelUtil.logException(message, exception);
+			throw exception;
+		}
+		for (ModelElement child : modelElement.getAllContainedModelElements()) {
+			checkForCrossReferences(child);
 		}
 	}
 
@@ -340,9 +368,19 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
 	 */
 	public void handleEMFNotification(Notification notification, Project project, ModelElement modelElement) {
+
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
-			projectChangeObserver.notify(notification, project, modelElement);
+			try {
+				projectChangeObserver.notify(notification, project, modelElement);
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException ex) {
+				// END SUPRESS CATCH EXCEPTION
+				Platform.getLog(Platform.getBundle("org.unicase.model")).log(
+					new Status(IStatus.ERROR, "org.unicase.model", "Project Change Observer threw an exception: "
+						+ projectChangeObserver.getClass().toString(), ex));
+			}
 		}
+
 	}
 
 	/**
@@ -397,12 +435,26 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		return element == modelElement;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.Project#deleteModelElement(org.unicase.model.ModelElement)
+	 */
 	public void deleteModelElement(ModelElement modelElement) {
 		if (!this.contains(modelElement)) {
 			throw new IllegalArgumentException("Cannot delete a model element that is not contained in this project.");
 		}
+
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
-			projectChangeObserver.modelElementDeleteStarted(this, modelElement);
+			try {
+				projectChangeObserver.modelElementDeleteStarted(this, modelElement);
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException ex) {
+				// END SUPRESS CATCH EXCEPTION
+				Platform.getLog(Platform.getBundle("org.unicase.model")).log(
+					new Status(IStatus.ERROR, "org.unicase.model", "Project Change Observer threw an exception: "
+						+ projectChangeObserver.getClass().toString(), ex));
+			}
 		}
 
 		deleteOutgoingCrossReferences(modelElement);
@@ -430,9 +482,16 @@ public class ProjectImpl extends EObjectImpl implements Project {
 		handleModelElementDeleted(modelElement);
 
 		for (ProjectChangeObserver projectChangeObserver : this.observers) {
-			projectChangeObserver.modelElementDeleteCompleted(this, modelElement);
+			try {
+				projectChangeObserver.modelElementDeleteCompleted(this, modelElement);
+				// BEGIN SUPRESS CATCH EXCEPTION
+			} catch (RuntimeException ex) {
+				// END SUPRESS CATCH EXCEPTION
+				Platform.getLog(Platform.getBundle("org.unicase.model")).log(
+					new Status(IStatus.ERROR, "org.unicase.model", "Project Change Observer threw an exception: "
+						+ projectChangeObserver.getClass().toString(), ex));
+			}
 		}
-
 	}
 
 	private void deleteOutgoingCrossReferences(ModelElement modelElement) {
