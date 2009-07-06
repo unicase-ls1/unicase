@@ -954,9 +954,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 		}
 		if (notificationList == null) {
-			eventList = new AutoSplitAndSaveResourceContainmentList<Event>(eventComposite, eventComposite.getEvents(),
-				this.eResource().getResourceSet(), Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier()
-					+ File.separatorChar + "events", ".eff");
+			notificationList = new AutoSplitAndSaveResourceContainmentList<ESNotification>(notificationComposite,
+				notificationComposite.getNotifications(), this.eResource().getResourceSet(), Configuration
+					.getWorkspaceDirectory()
+					+ "ps-" + getIdentifier() + File.separatorChar + "notifications", ".nff");
 		}
 		return notificationList;
 	}
