@@ -82,6 +82,12 @@ public abstract class ConflictDetectionTest {
 
 	}
 
+	/**
+	 * Clones a project pace including the project.
+	 * 
+	 * @param ps the projectspace to clone
+	 * @return the new projectspace
+	 */
 	public ProjectSpace cloneProjectSpace(ProjectSpace ps) {
 
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
