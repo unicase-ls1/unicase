@@ -7,18 +7,14 @@ package org.unicase.ui.tom.commands;
 
 import java.util.Collections;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.ui.dialogs.ExpansionType;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ShowRelatedElementsRequest;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.model.classDiagram.edit.commands.ShowRelatedElementsCommand;
-import org.unicase.ui.common.diagram.requests.ShowRelatedElementsModeRequest;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
+import org.unicase.ui.diagram.classDiagram.edit.commands.ShowRelatedElementsCommand;
 
 /**
  * @author schroech

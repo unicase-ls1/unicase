@@ -11,12 +11,10 @@ import org.eclipse.gmf.runtime.common.ui.dialogs.ExpansionType;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.ShowRelatedElementsRequest;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.unicase.model.classDiagram.edit.commands.AddRelatedElementsCommand;
-import org.unicase.model.classDiagram.edit.commands.ShowRelatedElementsCommand;
-import org.unicase.model.classDiagram.part.ShowRelatedElementsController;
 import org.unicase.ui.common.diagram.requests.ShowRelatedElementsModeRequest;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
+import org.unicase.ui.diagram.classDiagram.edit.commands.ShowRelatedElementsCommand;
+import org.unicase.ui.diagram.classDiagram.part.ShowRelatedElementsController;
 
 public class DiscoveryModeDeactivationCommand extends AbstractCommand {
 
