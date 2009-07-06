@@ -1,0 +1,98 @@
+/*
+ * Copyright (c) 2007 Borland Software Corporation
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *    Artem Tikhomirov (Borland) - initial API and implementation
+ */
+«IMPORT "http://www.eclipse.org/gmf/2008/GenModel"»
+«IMPORT "http://www.eclipse.org/emf/2002/Ecore"»
+
+«DEFINE Class FOR gmfgen::GenPropertySheet»
+	«EXPAND xpt::Common::copyright FOR editorGen-»
+package «packageName»;
+
+«EXPAND xpt::Common::generatedClassComment»
+public class «labelProviderClassName» extends «EXPAND extendsList» {
+
+«EXPAND cons»
+«EXPAND getTextMethod»
+«EXPAND getImageMethod»
+«EXPAND unwrapMethods»
+
+«EXPAND additions»
+}
+«ENDDEFINE»
+
+«DEFINE extendsList FOR gmfgen::GenPropertySheet»org.eclipse.jface.viewers.DecoratingLabelProvider«ENDDEFINE»
+
+«DEFINE cons FOR gmfgen::GenPropertySheet»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public «labelProviderClassName»() {
+		super(new org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider(«editorGen.plugin.getActivatorQualifiedClassName()».getInstance().getItemProvidersAdapterFactory()), null);
+	}
+«ENDDEFINE»
+
+«DEFINE getTextMethod FOR gmfgen::GenPropertySheet»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public String getText(Object element) {
+		Object selected = unwrap(element); 
+«IF editorGen.navigator != null-»
+		if (selected instanceof «editorGen.navigator.getNavigatorGroupQualifiedClassName()») {
+			return ((«editorGen.navigator.getNavigatorGroupQualifiedClassName()») selected).getGroupName();
+		}
+«ENDIF-»
+		return super.getText(selected);
+	}
+«ENDDEFINE»
+
+«DEFINE getImageMethod FOR gmfgen::GenPropertySheet»
+	«EXPAND xpt::Common::generatedMemberComment»
+	public org.eclipse.swt.graphics.Image getImage(Object element) {
+		return super.getImage(unwrap(element));
+	}
+«ENDDEFINE»
+
+«DEFINE unwrapMethods FOR gmfgen::GenPropertySheet»
+	«EXPAND xpt::Common::generatedMemberComment»
+	private Object unwrap(Object element) {
+		if (element instanceof org.eclipse.jface.viewers.IStructuredSelection) {
+			return unwrap(((org.eclipse.jface.viewers.IStructuredSelection) element).getFirstElement());
+		}
+		if (element instanceof org.eclipse.gef.EditPart) {
+			return unwrapEditPart((org.eclipse.gef.EditPart) element);
+		}
+		if (element instanceof org.eclipse.core.runtime.IAdaptable) {
+			org.eclipse.gmf.runtime.notation.View view = (org.eclipse.gmf.runtime.notation.View) ((org.eclipse.core.runtime.IAdaptable) element).getAdapter(org.eclipse.gmf.runtime.notation.View.class);
+			if (view != null) {
+				return unwrapView(view);
+			}
+		}
+		return element;
+	}
+	«EXPAND unwrapEditPartMethod»
+	«EXPAND unwrapViewMethod»
+«ENDDEFINE»
+
+«DEFINE unwrapEditPartMethod FOR gmfgen::GenPropertySheet»
+	«EXPAND xpt::Common::generatedMemberComment»
+	private Object unwrapEditPart(org.eclipse.gef.EditPart p) {
+		if (p.getModel() instanceof org.eclipse.gmf.runtime.notation.View) {
+			return unwrapView((org.eclipse.gmf.runtime.notation.View) p.getModel());
+		}
+		return p.getModel();
+	}
+«ENDDEFINE»
+
+«DEFINE unwrapViewMethod FOR gmfgen::GenPropertySheet»
+	«EXPAND xpt::Common::generatedMemberComment»
+	private Object unwrapView(org.eclipse.gmf.runtime.notation.View view) {
+		return view.getElement() == null ? view : view.getElement();
+	}
+«ENDDEFINE»
+
+«DEFINE additions FOR gmfgen::GenPropertySheet»«ENDDEFINE»
