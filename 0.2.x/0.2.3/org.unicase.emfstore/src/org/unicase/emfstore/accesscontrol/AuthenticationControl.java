@@ -1,0 +1,38 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
+ * </copyright>
+ *
+ * $Id$
+ */
+package org.unicase.emfstore.accesscontrol;
+
+import org.unicase.emfstore.esmodel.ClientVersionInfo;
+import org.unicase.emfstore.esmodel.SessionId;
+
+/**
+ * Controler for the Authentication of users.
+ * 
+ * @author koegel
+ * 
+ */
+public interface AuthenticationControl {
+	
+	/**
+	 * Log into the server given by server info.
+	 * 
+	 * @param username
+	 *            the user name
+	 * @param password
+	 *            the password
+	 * @param clientVersionInfo
+	 *            the client's version
+	 * @return a session id that can be used for later authentication
+	 * @throws AccessControlException
+	 *             if any error in the EmfStore occurs
+	 * 
+	 * @generated NOT
+	 */
+	SessionId logIn(String username, String password,
+					ClientVersionInfo clientVersionInfo) throws AccessControlException;
+	
+}

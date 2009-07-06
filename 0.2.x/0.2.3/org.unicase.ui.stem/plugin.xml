@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            name="Unicase"
+            id="org.unicase">
+      </category>
+      <view
+            name="Iteration Planning"
+            icon="icons/IterationPlanning.gif"
+            category="org.unicase"
+            class="org.unicase.ui.stem.views.iterationplanningview.IterationPlanningView"
+            id="org.unicase.ui.treeview.views.IterationPlanningView">
+      </view>
+      <view
+            allowMultiple="false"
+            category="org.unicase"
+            class="org.unicase.ui.stem.views.statusview.StatusView"
+            icon="icons/StatusView.gif"
+            id="org.unicase.ui.treeview.views.StatusView"
+            name="Status View"
+            restorable="true">
+      </view>
+      <view
+            category="org.unicase"
+            class="org.unicase.ui.stem.views.historybrowserview.HistoryBrowserView"
+            icon="icons/historyview.png"
+            id="org.unicase.ui.stem.HistoryBrowserView"
+            name="History Browser"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.help.contexts">
+      <contexts
+            file="contexts.xml">
+      </contexts>
+   </extension>
+
+</plugin>
