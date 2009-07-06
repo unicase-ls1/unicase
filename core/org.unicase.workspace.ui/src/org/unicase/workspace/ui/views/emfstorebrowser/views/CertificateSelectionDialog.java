@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.esbrowser.views;
+package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
 import java.security.cert.X509Certificate;
 

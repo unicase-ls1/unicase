@@ -3,14 +3,14 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.esbrowser.provider;
+package org.unicase.workspace.ui.views.emfstorebrowser.provider;
 
 import org.eclipse.jface.viewers.StyledCellLabelProvider;
 import org.eclipse.jface.viewers.StyledString;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.ui.esbrowser.Activator;
 import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.ui.Activator;
 
 /**
  * Label provider for the ESBrowser TreeViewer.
