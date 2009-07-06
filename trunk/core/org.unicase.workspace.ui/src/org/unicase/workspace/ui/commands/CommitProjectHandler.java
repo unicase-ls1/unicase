@@ -102,6 +102,11 @@ public class CommitProjectHandler extends ServerRequestCommandHandler implements
 	 * {@inheritDoc}
 	 */
 	public boolean inspectChanges(ProjectSpace projectSpace, ChangePackage changePackage) {
+		if (changePackage.getOperations().isEmpty()) {
+			MessageDialog.openInformation(shell, "No local changes",
+				"Your local changes were mutually exclusive.\nThe are no changes pending for commit.");
+			return false;
+		}
 		CommitDialog commitDialog = new CommitDialog(shell, changePackage);
 		int returnCode = commitDialog.open();
 		if (returnCode == Window.OK) {
