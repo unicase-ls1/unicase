@@ -180,14 +180,17 @@ public class AutoSplitAndSaveResourceContainmentList<T extends EObject> implemen
 	public void clear() {
 		list.clear();
 		File dir = new File(path);
-		for (File file : dir.listFiles()) {
-			if (file.isDirectory() || !file.getName().endsWith(extension)) {
-				continue;
+		File[] listFiles = dir.listFiles();
+		if (listFiles != null) {
+			for (File file : listFiles) {
+				if (file.isDirectory() || !file.getName().endsWith(extension)) {
+					continue;
+				}
+				if (file.getName().endsWith(ROOT_NAME + extension)) {
+					continue;
+				}
+				file.delete();
 			}
-			if (file.getName().endsWith(ROOT_NAME + extension)) {
-				continue;
-			}
-			file.delete();
 		}
 		initCurrentResource(resourceSet);
 		saveResource(rootResource);
