@@ -5,15 +5,6 @@
  */
 package org.unicase.workspace.impl;
 
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.List;
-
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -99,6 +90,15 @@ import org.unicase.workspace.observers.OperationListener;
 import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.util.FileTransferUtil;
 import org.unicase.workspace.util.WorkspaceUtil;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Project Container</b></em>'.
@@ -1435,6 +1435,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		while (!getOperations().isEmpty()) {
 			undoLastOperation();
 		}
+		updateDirtyState();
 	}
 
 	/**
