@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.esbrowser.views;
+package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
 import java.util.ArrayList;
 
@@ -48,16 +48,16 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.ui.esbrowser.Activator;
-import org.unicase.ui.esbrowser.dialogs.admin.ManageOrgUnitsDialog;
-import org.unicase.ui.esbrowser.provider.ESBrowserContentProvider;
-import org.unicase.ui.esbrowser.provider.ESBrowserLabelProvider;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
+import org.unicase.workspace.ui.Activator;
+import org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.ManageOrgUnitsDialog;
+import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserContentProvider;
+import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserLabelProvider;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.WorkspaceUtil;
 
