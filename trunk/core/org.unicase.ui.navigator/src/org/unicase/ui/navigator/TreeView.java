@@ -482,7 +482,13 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		if (modelElement.eContainer().equals(project)) {
-			viewer.refresh();
+			Runnable runnable = new Runnable() {
+				public void run() {
+					viewer.refresh();
+				}
+			};
+
+			Display.getDefault().asyncExec(runnable);
 		}
 	}
 
