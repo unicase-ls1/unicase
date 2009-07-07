@@ -6,11 +6,16 @@
 
 package org.unicase.analyzer.ui.wizards;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -18,15 +23,20 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+import org.unicase.analyzer.AnalyzerFactory;
+import org.unicase.analyzer.DataAnalyzer;
 
 /**
  * @author liya
  *
  */
-public class AnalyzerPage extends WizardPage {
+public class AnalyzerPage extends WizardPage implements Listener {
 
 	private static final String PAGE_TITLE = "Registered Analyzers";
 	private static final String PAGE_DESCRIPTION = "Choose the analyzer.";
+	private List<Button> analyzerButton = new ArrayList<Button>();
 	//private boolean canFlipToNextPage;
 
 	/**
@@ -64,12 +74,15 @@ public class AnalyzerPage extends WizardPage {
 		        // For each member of the extension ...
 		 for (int j = 0; j < elements.length; j++) {
 		     IConfigurationElement element = elements[j];
-		     Button analyzerButton = new Button(composite, SWT.RADIO);
-		     analyzerButton.setText(element.getAttribute("class"));
+		     int count = i*elements.length + j;
+		     Button button = new Button(composite, SWT.RADIO);
+		     button.setText(element.getAttribute("class"));
 			 gd = new GridData(GridData.FILL_HORIZONTAL);
 			 gd.horizontalSpan = ncol;
-			 analyzerButton.setLayoutData(gd);
-			 analyzerButton.setSelection(false);
+			 button.setLayoutData(gd);
+			 button.setSelection(false);			 
+			 analyzerButton.add(button);
+			 analyzerButton.get(count).addListener(SWT.SELECTED, this);
 		    }
 		}
 		setControl(composite);
@@ -92,7 +105,42 @@ public class AnalyzerPage extends WizardPage {
 	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
 	 */
 	@Override
-	public IWizardPage getNextPage() {		
+	public IWizardPage getNextPage() {	
+		for(Button button : analyzerButton){
+			if(button.getSelection()){
+				try {
+					Class c = Class.forName(button.getText());			
+					DataAnalyzer analyzer;
+					analyzer = (DataAnalyzer) c.getConstructors()[0].newInstance();
+					ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
+					//FIXME analyzer can not be set
+//					wizard.getAnalyzerConfig().setAnalyzerClass(analyzer);
+					
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				
+			}
+		}
 		return super.getNextPage();
+	}
+
+	public void handleEvent(Event event) {
 	}
 }

@@ -57,15 +57,30 @@ public class ExporterPage extends WizardPage implements Listener {
 		exporterButton.setSelection(false);
 		exporterButton.addListener(SWT.Selection, this);
 		
-		new Label (composite, SWT.NONE).setText("Step Length:");	
+		new Label (composite, SWT.NONE).setText("Exporter Path:");	
 		exportPath = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		exportPath.setLayoutData(gd);
 		exportPath.addListener(SWT.KeyUp, this);
 		
+		exporterButton = new Button(composite, SWT.PUSH);
+	    exporterButton.setText("Save Configuration");
+	    gd = new GridData(GridData.FILL_HORIZONTAL);
+		gd.horizontalSpan = ncol;
+		exporterButton.setLayoutData(gd);
+		exporterButton.setSelection(false);
+		exporterButton.addListener(SWT.Selection, this);
+		
+		((ProjectAnalyzerWizard)getWizard()).setCanFinish(true);
 		setControl(composite);
 		setPageComplete(true);
 
+	}
+	private static boolean isTextNonEmpty(Text t)
+	{
+		String s = t.getText();
+		if ((s!=null) && (s.trim().length() >0)) return true;
+		return false;
 	}
 
 	/** 
@@ -73,8 +88,9 @@ public class ExporterPage extends WizardPage implements Listener {
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		// TODO Auto-generated method stub
-		
+		if(event.widget == exporterButton){
+			((ProjectAnalyzerWizard)getWizard()).setCanFinish(true);
+		}
+		getWizard().getContainer().updateButtons();
 	}
-
 }

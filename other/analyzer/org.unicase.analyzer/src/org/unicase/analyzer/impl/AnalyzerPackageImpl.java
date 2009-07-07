@@ -14,7 +14,9 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.AnalyzerPackage;
+import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.analyzer.TwoDDataAnalyzer;
 import org.unicase.analyzer.exporters.ExportersPackage;
 import org.unicase.analyzer.exporters.impl.ExportersPackageImpl;
 import org.unicase.analyzer.iterator.IteratorPackage;
@@ -43,6 +45,20 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	 * @generated
 	 */
 	private EClass analyzerConfigurationEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass dataAnalyzerEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass twoDDataAnalyzerEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -209,6 +225,24 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getDataAnalyzer() {
+		return dataAnalyzerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getTwoDDataAnalyzer() {
+		return twoDDataAnalyzerEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public AnalyzerFactory getAnalyzerFactory() {
 		return (AnalyzerFactory)getEFactoryInstance();
 	}
@@ -242,6 +276,10 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ANALYZER_CLASS);
 		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ITERATOR);
 		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__EXPORTER);
+
+		dataAnalyzerEClass = createEClass(DATA_ANALYZER);
+
+		twoDDataAnalyzerEClass = createEClass(TWO_DDATA_ANALYZER);
 	}
 
 	/**
@@ -273,7 +311,6 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage)EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI);
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage)EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theIteratorPackage);
@@ -284,6 +321,7 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
+		twoDDataAnalyzerEClass.getESuperTypes().add(this.getDataAnalyzer());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectAnalysisDataEClass, ProjectAnalysisData.class, "ProjectAnalysisData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -293,9 +331,13 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		initEReference(getProjectAnalysisData_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(analyzerConfigurationEClass, AnalyzerConfiguration.class, "AnalyzerConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAnalyzerConfiguration_AnalyzerClass(), theEcorePackage.getEClass(), null, "analyzerClass", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnalyzerConfiguration_AnalyzerClass(), this.getDataAnalyzer(), null, "analyzerClass", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAnalyzerConfiguration_Iterator(), theIteratorPackage.getVersionIterator(), null, "iterator", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAnalyzerConfiguration_Exporter(), theExportersPackage.getExporter(), null, "exporter", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(dataAnalyzerEClass, DataAnalyzer.class, "DataAnalyzer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(twoDDataAnalyzerEClass, TwoDDataAnalyzer.class, "TwoDDataAnalyzer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

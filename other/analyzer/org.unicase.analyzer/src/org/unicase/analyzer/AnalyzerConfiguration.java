@@ -40,12 +40,12 @@ public interface AnalyzerConfiguration extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Analyzer Class</em>' containment reference.
-	 * @see #setAnalyzerClass(EClass)
+	 * @see #setAnalyzerClass(DataAnalyzer)
 	 * @see org.unicase.analyzer.AnalyzerPackage#getAnalyzerConfiguration_AnalyzerClass()
 	 * @model containment="true"
 	 * @generated
 	 */
-	EClass getAnalyzerClass();
+	DataAnalyzer getAnalyzerClass();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerClass <em>Analyzer Class</em>}' containment reference.
@@ -55,7 +55,7 @@ public interface AnalyzerConfiguration extends EObject {
 	 * @see #getAnalyzerClass()
 	 * @generated
 	 */
-	void setAnalyzerClass(EClass value);
+	void setAnalyzerClass(DataAnalyzer value);
 
 	/**
 	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference.

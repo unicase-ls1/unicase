@@ -161,11 +161,6 @@ public class AnalyzerConfigurationItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ANALYZER_CLASS,
-				 EcoreFactory.eINSTANCE.createEClass()));
-
-		newChildDescriptors.add
-			(createChildParameter
 				(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ITERATOR,
 				 IteratorFactory.eINSTANCE.createVersionIterator()));
 

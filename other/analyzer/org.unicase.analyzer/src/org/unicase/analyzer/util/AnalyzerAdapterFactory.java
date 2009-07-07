@@ -10,9 +10,13 @@ import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.analyzer.*;
+import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerPackage;
+import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.analyzer.TwoDDataAnalyzer;
 
 /**
  * <!-- begin-user-doc -->
@@ -79,6 +83,14 @@ public class AnalyzerAdapterFactory extends AdapterFactoryImpl {
 				return createAnalyzerConfigurationAdapter();
 			}
 			@Override
+			public Adapter caseDataAnalyzer(DataAnalyzer object) {
+				return createDataAnalyzerAdapter();
+			}
+			@Override
+			public Adapter caseTwoDDataAnalyzer(TwoDDataAnalyzer object) {
+				return createTwoDDataAnalyzerAdapter();
+			}
+			@Override
 			public Adapter defaultCase(EObject object) {
 				return createEObjectAdapter();
 			}
@@ -123,6 +135,34 @@ public class AnalyzerAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createAnalyzerConfigurationAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.analyzer.DataAnalyzer <em>Data Analyzer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.analyzer.DataAnalyzer
+	 * @generated
+	 */
+	public Adapter createDataAnalyzerAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.analyzer.TwoDDataAnalyzer <em>Two DData Analyzer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.analyzer.TwoDDataAnalyzer
+	 * @generated
+	 */
+	public Adapter createTwoDDataAnalyzerAdapter() {
 		return null;
 	}
 
