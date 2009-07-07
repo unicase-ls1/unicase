@@ -2240,6 +2240,16 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
+	 * {@inheritDoc}
+	 * 
+	 * @param operationListner
+	 */
+	public void removeOperationListener(OperationListener operationListner) {
+		this.operationListeners.remove(operationListner);
+
+	}
+
+	/**
 	 * Notify the operation observer that an operation has just completed.
 	 * 
 	 * @param operation the operation

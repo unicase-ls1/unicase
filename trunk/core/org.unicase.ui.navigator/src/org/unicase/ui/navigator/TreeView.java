@@ -39,6 +39,7 @@ import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.util.ProjectChangeObserver;
@@ -50,14 +51,14 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.observers.ModifiedModelElementsCachListener;
+import org.unicase.workspace.observers.SimpleOperationListener;
 
 /**
  * The standard navigator tree view.
  * 
  * @author helming
  */
-public class TreeView extends ViewPart implements ProjectChangeObserver, ModifiedModelElementsCachListener { // implements
+public class TreeView extends ViewPart implements ProjectChangeObserver { // implements
 	// IShowInSource
 
 	private static TreeViewer viewer;
@@ -69,15 +70,17 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, Modifie
 	private Workspace currentWorkspace;
 	private AdapterImpl workspaceListenerAdapter;
 	private boolean shouldRefresh;
+	private SimpleOperationListener simpleOperationListener;
 
 	/**
 	 * Constructor.
 	 */
 	public TreeView() {
+		createOperationListener();
 		currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		for (ProjectSpace projectSpace : currentWorkspace.getProjectSpaces()) {
 			projectSpace.getProject().addProjectChangeObserver(this);
-			projectSpace.getModifiedModelElementsCache().addModifiedModelElementsCacheListener(TreeView.this);
+			projectSpace.addOperationListener(simpleOperationListener);
 		}
 		workspaceListenerAdapter = new AdapterImpl() {
 
@@ -88,20 +91,37 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, Modifie
 						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getNewValue())) {
 						ProjectSpace projectSpace = (ProjectSpace) msg.getNewValue();
 						projectSpace.getProject().addProjectChangeObserver(TreeView.this);
-						projectSpace.getModifiedModelElementsCache().addModifiedModelElementsCacheListener(
-							TreeView.this);
+						projectSpace.addOperationListener(simpleOperationListener);
 					} else if (msg.getEventType() == Notification.REMOVE
 						&& WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(msg.getOldValue())) {
 						ProjectSpace projectSpace = (ProjectSpace) msg.getOldValue();
 						projectSpace.getProject().removeProjectChangeObserver(TreeView.this);
-						projectSpace.getModifiedModelElementsCache().removeModifiedModelElementsCacheListener(
-							TreeView.this);
+						projectSpace.removeOperationListener(simpleOperationListener);
 					}
 				}
 				super.notifyChanged(msg);
 			}
 		};
 		currentWorkspace.eAdapters().add(workspaceListenerAdapter);
+
+	}
+
+	private void createOperationListener() {
+		simpleOperationListener = new SimpleOperationListener() {
+
+			@Override
+			public void operationPerformed(AbstractOperation operation) {
+				Display.getDefault().asyncExec(new Runnable() {
+
+					public void run() {
+
+						viewer.refresh();
+					}
+
+				});
+			}
+
+		};
 	}
 
 	/**
@@ -522,23 +542,6 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, Modifie
 	 * {@inheritDoc}
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.observers.ModifiedModelElementsCachListener#modifiedModelElementsCacheUpdated()
-	 */
-	public void modifiedModelElementsCacheUpdated() {
-		Display.getDefault().asyncExec(new Runnable() {
-
-			public void run() {
-
-				viewer.refresh();
-			}
-
-		});
-
 	}
 
 }
