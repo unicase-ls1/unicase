@@ -451,12 +451,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 		// preserve original resource for all involved model elements
 		EList<ModelElement> elements = this.getElements();
-		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
-		for (ModelElement modelElement : elements) {
-			if (modelElement.eResource() != modelElement.eContainer().eResource()) {
-				resourceMap.put(modelElement, modelElement.eResource());
-			}
-		}
+		Map<ModelElement, Resource> resourceMap = preserveOldResources(elements);
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -500,14 +495,29 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		setGmfdiagram(gmfDiagram);
 
 		// restore old resource for all model elements
+		restoreOldResources(elements, resourceMap, diagramResource, elementsResource);
+		gmfDiagram.setElement(this);
+		// MK change this
+		saveAllResources();
+	}
+
+	private void restoreOldResources(EList<ModelElement> elements, Map<ModelElement, Resource> resourceMap,
+		Resource diagramResource, Resource elementsResource) {
 		diagramResource.getContents().remove(gmfdiagram);
 		elementsResource.getContents().removeAll(elements);
 		for (ModelElement modelElement : resourceMap.keySet()) {
 			resourceMap.get(modelElement).getContents().add(modelElement);
 		}
-		gmfDiagram.setElement(this);
-		// MK change this
-		saveAllResources();
+	}
+
+	private Map<ModelElement, Resource> preserveOldResources(EList<ModelElement> elements) {
+		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
+		for (ModelElement modelElement : elements) {
+			if (modelElement.eResource() != modelElement.eContainer().eResource()) {
+				resourceMap.put(modelElement, modelElement.eResource());
+			}
+		}
+		return resourceMap;
 	}
 
 	private void saveAllResources() {
@@ -532,12 +542,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		getGmfdiagram().setElement(null);
 		// preserve original resource for all involved model elements
 		EList<ModelElement> elements = this.getElements();
-		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
-		for (ModelElement modelElement : elements) {
-			if (modelElement.eResource() != modelElement.eContainer().eResource()) {
-				resourceMap.put(modelElement, modelElement.eResource());
-			}
-		}
+		Map<ModelElement, Resource> resourceMap = preserveOldResources(elements);
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -555,12 +560,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 			throw new DiagramStoreException("Diagram resource save failed.", e);
 		}
 
-		// restore old resource for all model elements
-		diagramResource.getContents().remove(gmfdiagram);
-		elementsResource.getContents().removeAll(elements);
-		for (ModelElement modelElement : resourceMap.keySet()) {
-			resourceMap.get(modelElement).getContents().add(modelElement);
-		}
+		restoreOldResources(elements, resourceMap, diagramResource, elementsResource);
 
 		getGmfdiagram().setElement(this);
 
