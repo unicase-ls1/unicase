@@ -6,20 +6,25 @@
 package org.unicase.workspace.impl;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
@@ -52,6 +57,7 @@ import org.unicase.workspace.observers.LoginObserver;
  * <li>{@link org.unicase.workspace.impl.UsersessionImpl#getServerInfo <em>Server Info</em>}</li>
  * <li>{@link org.unicase.workspace.impl.UsersessionImpl#isSavePassword <em>Save Password</em>}</li>
  * <li>{@link org.unicase.workspace.impl.UsersessionImpl#getACUser <em>AC User</em>}</li>
+ * <li>{@link org.unicase.workspace.impl.UsersessionImpl#getChangedProperties <em>Changed Properties</em>}</li>
  * </ul>
  * </p>
  * 
@@ -173,6 +179,16 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * @ordered
 	 */
 	protected ACUser acUser;
+
+	/**
+	 * The cached value of the '{@link #getChangedProperties() <em>Changed Properties</em>}' containment reference list.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getChangedProperties()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<OrgUnitProperty> changedProperties;
 
 	private List<LoginObserver> loginObservers;
 
@@ -509,6 +525,19 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 				newACUser));
 	}
 
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<OrgUnitProperty> getChangedProperties() {
+		if (changedProperties == null) {
+			changedProperties = new EObjectContainmentEList.Resolving<OrgUnitProperty>(OrgUnitProperty.class, this,
+				WorkspacePackage.USERSESSION__CHANGED_PROPERTIES);
+		}
+		return changedProperties;
+	}
+
 	// begin of custom code
 	/**
 	 * <!-- begin-user-doc --> Return whether session is logged in.
@@ -595,6 +624,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		switch (featureID) {
 		case WorkspacePackage.USERSESSION__AC_USER:
 			return basicSetACUser(null, msgs);
+		case WorkspacePackage.USERSESSION__CHANGED_PROPERTIES:
+			return ((InternalEList<?>) getChangedProperties()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -639,6 +670,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			if (resolve)
 				return getACUser();
 			return basicGetACUser();
+		case WorkspacePackage.USERSESSION__CHANGED_PROPERTIES:
+			return getChangedProperties();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -648,6 +681,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -671,6 +705,10 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			return;
 		case WorkspacePackage.USERSESSION__AC_USER:
 			setACUser((ACUser) newValue);
+			return;
+		case WorkspacePackage.USERSESSION__CHANGED_PROPERTIES:
+			getChangedProperties().clear();
+			getChangedProperties().addAll((Collection<? extends OrgUnitProperty>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -705,6 +743,9 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		case WorkspacePackage.USERSESSION__AC_USER:
 			setACUser((ACUser) null);
 			return;
+		case WorkspacePackage.USERSESSION__CHANGED_PROPERTIES:
+			getChangedProperties().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -732,6 +773,8 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 			return savePassword != SAVE_PASSWORD_EDEFAULT;
 		case WorkspacePackage.USERSESSION__AC_USER:
 			return acUser != null;
+		case WorkspacePackage.USERSESSION__CHANGED_PROPERTIES:
+			return changedProperties != null && !changedProperties.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

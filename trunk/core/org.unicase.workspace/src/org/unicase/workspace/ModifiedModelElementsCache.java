@@ -5,6 +5,12 @@
  */
 package org.unicase.workspace;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -12,12 +18,6 @@ import org.unicase.model.ModelElementId;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.ModifiedModelElementsCachListener;
 import org.unicase.workspace.observers.OperationListener;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * Caches all modified elements.

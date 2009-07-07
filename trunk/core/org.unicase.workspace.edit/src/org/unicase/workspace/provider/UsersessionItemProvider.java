@@ -154,6 +154,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(WorkspacePackage.Literals.USERSESSION__AC_USER);
+			childrenFeatures.add(WorkspacePackage.Literals.USERSESSION__CHANGED_PROPERTIES);
 		}
 		return childrenFeatures;
 	}
@@ -214,6 +215,7 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case WorkspacePackage.USERSESSION__AC_USER:
+		case WorkspacePackage.USERSESSION__CHANGED_PROPERTIES:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}
@@ -232,6 +234,9 @@ public class UsersessionItemProvider extends ItemProviderAdapter implements IEdi
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.USERSESSION__AC_USER,
 			AccesscontrolFactory.eINSTANCE.createACUser()));
+
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.USERSESSION__CHANGED_PROPERTIES,
+			AccesscontrolFactory.eINSTANCE.createOrgUnitProperty()));
 	}
 
 	/**
