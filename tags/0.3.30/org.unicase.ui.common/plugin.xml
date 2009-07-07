@@ -52,7 +52,7 @@
            name="Quick open modelelement">
      </command>
      <command
-           categoryId="org.unicase.workspace.edit.project"
+           categoryId="org.unicase.workspace.ui.project"
            defaultHandler="org.unicase.ui.common.handlers.OpenMEShortcutHandler"
            id="org.unicase.ui.common.handlers.open_me_ID"
            name="Open Modelelements Selectiondialog">
@@ -417,9 +417,6 @@
          </viewShortcut>
          <viewShortcut
                id="org.unicase.ui.taskview">
-         </viewShortcut>
-         <viewShortcut
-               id="org.unicase.ui.test.modelTestView">
          </viewShortcut>
          <viewShortcut
                id="org.unicase.ui.treeview.views.IterationPlanningView">
