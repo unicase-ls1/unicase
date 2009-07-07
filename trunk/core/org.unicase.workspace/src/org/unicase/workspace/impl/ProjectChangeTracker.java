@@ -208,7 +208,6 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			for (AbstractOperation op : ops) {
 				if (op instanceof ReferenceOperation) {
 					deleteOperation.getSubOperations().add((ReferenceOperation) op);
-					projectSpace.saveResource(deleteOperation.eResource());
 				} else {
 					WorkspaceUtil.log("NON-REFERNCE OP AS SUBOP OF A DELETE OPERATION DETECTED: "
 						+ op.getClass().getCanonicalName(), null, 0);
