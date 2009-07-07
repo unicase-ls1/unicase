@@ -29,6 +29,7 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorPart;
@@ -40,6 +41,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
@@ -490,7 +492,11 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		if (shouldRefresh) {
-			viewer.refresh();
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					viewer.refresh();
+				}
+			});
 		}
 	}
 
@@ -499,7 +505,8 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		shouldRefresh = false;
-		if (modelElement.eContainer().equals(project)) {
+		if (modelElement.eContainer().equals(project)
+			&& DocumentPackage.eINSTANCE.getCompositeSection().isInstance(modelElement)) {
 			shouldRefresh = true;
 		}
 	}
