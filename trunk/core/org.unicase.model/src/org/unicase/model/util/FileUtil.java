@@ -71,7 +71,9 @@ public final class FileUtil {
 			throw new IOException("Source or destination is null.");
 		}
 
-		(new File(destination.getParent())).mkdirs();
+		if (destination.getParentFile() != null) {
+			destination.getParentFile().mkdirs();
+		}
 		FileOutputStream outputStream = new FileOutputStream(destination);
 
 		byte[] buffer = new byte[4096];
