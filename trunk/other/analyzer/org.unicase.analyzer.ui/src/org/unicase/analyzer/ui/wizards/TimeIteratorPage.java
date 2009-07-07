@@ -9,11 +9,15 @@ package org.unicase.analyzer.ui.wizards;
 import java.util.Calendar;
 import java.util.Date;
 
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.nebula.widgets.cdatetime.CDT;
+import org.eclipse.swt.nebula.widgets.cdatetime.CDateTime;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
@@ -23,6 +27,12 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.analyzer.AnalyzerConfiguration;
+import org.unicase.analyzer.iterator.IteratorFactory;
+import org.unicase.analyzer.iterator.TimeIterator;
+import org.unicase.analyzer.iterator.VersionSpecQuery;
+import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 
 /**
  * @author liya
@@ -33,24 +43,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	private static final String PAGE_TITLE = "Iterator";
 	private static final String PAGE_DESCRIPTION = "Configure your TimeIterator.";
 	private static final String[] UNITS = {"Year", "Month", "Day", "Hour", "Minute", "Second"};
-	private static final String[] DATES ={ "1", "2", "3", "4", "5", "6", "7", "8", "9",
-		"10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-		"21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31"};
-	private static final String[] MONTHS= {"January", "February", "March", "April", "May",
-		"June", "July", "August", "September", "October", "November", "December" };
-
-	private static final String[] YEARS;
-	private static final int STARTING_YEAR;
-	
-	static {
-		Calendar cal = Calendar.getInstance();
-		cal.setTime(new Date());
-		STARTING_YEAR = cal.get(Calendar.YEAR);
-		YEARS = new String[3];
-		for (int i = 0; i < 3; i++) {
-			YEARS[i] = String.valueOf(STARTING_YEAR - i);
-		}
-	}
+	private static final int[] CALENDAR_FIELDS = {1, 2, 5, 10, 12, 13}; 
 	
 	private boolean canFlipToNextPage;
 	
@@ -62,12 +55,9 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	private Button backwardButton;
 	private Button returnCopyButton;
 	private Label stepUnitLabel;
-	private Combo startDate;
-	private Combo startMonth;
-	private Combo startYear;
-	private Combo endDate;
-	private Combo endMonth;
-	private Combo endYear;
+	private CDateTime startDate;
+	private CDateTime endDate;
+
 
 	/**
 	 * @param pageName Name of the page
@@ -91,11 +81,16 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		int ncol = 4;
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
+		
+		AnalyzerConfiguration conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
 		 
 		 new Label (composite, SWT.NONE).setText("Step Length:");	
 		stepText = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		stepText.setLayoutData(gd);
+		if(conf.getIterator() != null){
+			stepText.setText(Integer.toString(conf.getIterator().getStepLength()));
+		}
 		stepText.addListener(SWT.KeyUp, this);
 		
 		stepUnitLabel = new Label (composite, SWT.NONE);
@@ -103,6 +98,9 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		stepUnit = new Combo(composite, SWT.BORDER | SWT.READ_ONLY);
 		stepUnit.setLayoutData(new GridData(GridData.END));
 		stepUnit.setItems(UNITS);
+		if(conf.getIterator() != null){			
+			stepUnit.select(indexOf(((TimeIterator) conf.getIterator()).getStepLengthUnit()));
+		}
 		stepUnit.addListener(SWT.Selection, this);
 		
 		 
@@ -123,33 +121,16 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		new Label (group, SWT.NONE).setText("Start:");		
 		gd = new GridData();
 		gd.horizontalAlignment = GridData.BEGINNING;	
-		startDate = new Combo(group, SWT.BORDER | SWT.READ_ONLY);
-		startDate.setLayoutData(gd);
-		startDate.setItems(DATES);
-
-		startMonth = new Combo(group, SWT.BORDER | SWT.READ_ONLY);
-		startMonth.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		startMonth.setItems(MONTHS);
-
-		startYear = new Combo(group, SWT.BORDER | SWT.READ_ONLY);
-		startYear.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		startYear.setItems(YEARS);
-
+		startDate = new CDateTime(group, CDT.BORDER);
+		startDate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		startDate.setPattern("dd.MM.yyyy HH:mm");
 		
 		new Label (group, SWT.NONE).setText("End:");		
 		gd = new GridData();
 		gd.horizontalAlignment = GridData.BEGINNING;	
-		endDate = new Combo(group, SWT.BORDER | SWT.READ_ONLY);
-		endDate.setLayoutData(gd);
-		endDate.setItems(DATES);
-
-		endMonth = new Combo(group, SWT.BORDER | SWT.READ_ONLY);
-		endMonth.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		endMonth.setItems(MONTHS);
-
-		endYear = new Combo(group, SWT.BORDER | SWT.READ_ONLY);
-		endYear.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
-		endYear.setItems(YEARS);
+		endDate = new CDateTime(group, CDT.BORDER);
+		endDate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		endDate.setPattern("dd.MM.yyyy HH:mm");
 		
 		gd = new GridData();
 		gd.horizontalAlignment = GridData.BEGINNING;	
@@ -179,6 +160,14 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	}
 	
 	
+	private int indexOf(int stepLengthUnit) {
+		for(int i=0; i<CALENDAR_FIELDS.length; i++){
+			if(stepLengthUnit == CALENDAR_FIELDS[i])
+				return i;
+		}
+		return 0;
+	}
+
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
@@ -194,6 +183,37 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public IWizardPage getNextPage() {
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+		.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
+				TimeIterator timeIterator = IteratorFactory.eINSTANCE.createTimeIterator();
+				timeIterator.setStepLength(Integer.valueOf(stepText.getText()));
+				timeIterator.setStepLengthUnit(CALENDAR_FIELDS[stepUnit.getSelectionIndex()]);
+				
+				if(!defaultButton.getSelection()){
+					timeIterator.setStartDate(startDate.getSelection());
+					timeIterator.setEndDate(endDate.getSelection());					
+					
+					VersionSpecQuery query = IteratorFactory.eINSTANCE.createVersionSpecQuery();
+					DateVersionSpec startVer = VersioningFactory.eINSTANCE.createDateVersionSpec();
+					startVer.setDate(startDate.getSelection());
+					DateVersionSpec endVer = VersioningFactory.eINSTANCE.createDateVersionSpec();
+					endVer.setDate(endDate.getSelection());
+					query.setStartVersion(startVer);
+					query.setEndVersion(endVer);
+					timeIterator.setVersionSpecQuery(query);
+					timeIterator.setForward(forwardButton.getSelection());
+					timeIterator.setReturnProjectDataCopy(returnCopyButton.getSelection());
+				}
+				wizard.setVersionIterator(timeIterator);
+				wizard.getAnalyzerConfig().setIterator(timeIterator);
+				
+			}
+		});
+		
 		ExporterPage page = ((ProjectAnalyzerWizard)getWizard()).getExporterPage();
 		return page;
 	}

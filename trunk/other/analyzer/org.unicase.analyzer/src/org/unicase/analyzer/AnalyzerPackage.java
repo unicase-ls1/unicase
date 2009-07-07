@@ -161,6 +161,45 @@ public interface AnalyzerPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.unicase.analyzer.DataAnalyzer <em>Data Analyzer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.analyzer.DataAnalyzer
+	 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getDataAnalyzer()
+	 * @generated
+	 */
+	int DATA_ANALYZER = 2;
+
+	/**
+	 * The number of structural features of the '<em>Data Analyzer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_ANALYZER_FEATURE_COUNT = 0;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.analyzer.TwoDDataAnalyzer <em>Two DData Analyzer</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.analyzer.TwoDDataAnalyzer
+	 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getTwoDDataAnalyzer()
+	 * @generated
+	 */
+	int TWO_DDATA_ANALYZER = 3;
+
+	/**
+	 * The number of structural features of the '<em>Two DData Analyzer</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TWO_DDATA_ANALYZER_FEATURE_COUNT = DATA_ANALYZER_FEATURE_COUNT + 0;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.analyzer.ProjectAnalysisData <em>Project Analysis Data</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -256,6 +295,26 @@ public interface AnalyzerPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getAnalyzerConfiguration_Exporter();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.analyzer.DataAnalyzer <em>Data Analyzer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Data Analyzer</em>'.
+	 * @see org.unicase.analyzer.DataAnalyzer
+	 * @generated
+	 */
+	EClass getDataAnalyzer();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.analyzer.TwoDDataAnalyzer <em>Two DData Analyzer</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Two DData Analyzer</em>'.
+	 * @see org.unicase.analyzer.TwoDDataAnalyzer
+	 * @generated
+	 */
+	EClass getTwoDDataAnalyzer();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -354,6 +413,26 @@ public interface AnalyzerPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ANALYZER_CONFIGURATION__EXPORTER = eINSTANCE.getAnalyzerConfiguration_Exporter();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.analyzer.DataAnalyzer <em>Data Analyzer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.analyzer.DataAnalyzer
+		 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getDataAnalyzer()
+		 * @generated
+		 */
+		EClass DATA_ANALYZER = eINSTANCE.getDataAnalyzer();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.analyzer.TwoDDataAnalyzer <em>Two DData Analyzer</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.analyzer.TwoDDataAnalyzer
+		 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getTwoDDataAnalyzer()
+		 * @generated
+		 */
+		EClass TWO_DDATA_ANALYZER = eINSTANCE.getTwoDDataAnalyzer();
 
 	}
 

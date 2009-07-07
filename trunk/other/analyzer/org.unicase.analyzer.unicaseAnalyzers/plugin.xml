@@ -4,19 +4,10 @@
    <extension
          point="org.unicase.analyzer.analyzer">
       <client_analyzer
-            class="org.unicase.analyzer.dataanalyzer.PotentialConflictAnalyzer">
+            class="org.unicase.analyzer.unicaseanalyzers.CommitReadEventAnalyzer">
       </client_analyzer>
       <client_analyzer
-            class="org.unicase.analyzer.dataanalyzer.UpdateReadEventAnalyzer">
-      </client_analyzer>
-      <client_analyzer
-            class="org.unicase.analyzer.dataanalyzer.CommitReadEventAnalyzer">
-      </client_analyzer>
-      <client_analyzer
-            class="org.unicase.analyzer.dataanalyzer.DetectionAnalyzer">
-      </client_analyzer>
-      <client_analyzer
-            class="org.unicase.analyzer.dataanalyzer.CountAnalyzer">
+            class="org.unicase.analyzer.unicaseanalyzers.VersionWriter">
       </client_analyzer>
    </extension>
 

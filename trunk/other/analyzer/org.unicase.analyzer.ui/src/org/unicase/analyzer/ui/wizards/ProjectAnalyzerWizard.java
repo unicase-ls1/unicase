@@ -6,6 +6,17 @@
 
 package org.unicase.analyzer.ui.wizards;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -13,8 +24,17 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 
+import org.unicase.analyzer.AnalyzerConfiguration;
+import org.unicase.analyzer.AnalyzerFactory;
+import org.unicase.analyzer.DataAnalyzer;
+import org.unicase.analyzer.exporters.Exporter;
+import org.unicase.analyzer.iterator.IteratorFactory;
+import org.unicase.analyzer.iterator.TimeIterator;
+import org.unicase.analyzer.iterator.VersionIterator;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.Workspace;
 
 /**
  * @author liya
@@ -23,6 +43,7 @@ import org.unicase.workspace.Usersession;
 public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 
 	
+	private static final String PATH = Configuration.getWorkspaceDirectory() + "analyzerProfile.apf";
 	private boolean canFinish;
 	private boolean loggedIn;
 	private IteratorPage iteratorPage;
@@ -31,6 +52,12 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	private VersionIteratorPage versionIteratorPage;
 	private TimeIteratorPage timeIteratorPage;
 	
+	private VersionIterator versionIterator;
+	private Exporter exporter;
+	private DataAnalyzer analyzer;
+	private AnalyzerConfiguration analyzerConfig;
+	
+	
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
@@ -38,7 +65,13 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	@Override
 	public boolean performFinish() {
 		// TODO Auto-generated method stub
-		return false;
+		try {
+			analyzerConfig.eResource().save(null);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return true;
 	}
 
 	/** 
@@ -47,9 +80,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		
-		canFinish = false;
-		
-		
+				
 		Object firstElement;
 		if (!selection.isEmpty()) {
 			firstElement = selection.getFirstElement();
@@ -67,9 +98,52 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		} else {
 			throw new IllegalArgumentException("Nothing selected!");
 		}
+		canFinish = false;
+		
+		initConfig();
 	}
 	
-    /** 
+    private void initConfig() {
+    	ResourceSet resourceSet = new ResourceSetImpl();
+
+		// register an editing domain on the resource
+		final TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
+			.createEditingDomain(resourceSet);
+		TransactionalEditingDomain.Registry.INSTANCE.add("org.unicase.EditingDomain", domain);
+		domain.setID("org.unicase.EditingDomain");
+
+		URI fileURI = URI.createFileURI(PATH);
+		File analyzerFile = new File(PATH);
+
+		final Resource resource;
+		if(!analyzerFile.exists()){
+			
+			resource = resourceSet.createResource(fileURI);
+			analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					resource.getContents().add(analyzerConfig);
+				}
+			});
+			try {
+				resource.save(null);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else{
+			resource = resourceSet.getResource(fileURI, true);
+			EList<EObject> directContents = resource.getContents();
+			// MK cast
+			analyzerConfig = (AnalyzerConfiguration) directContents.get(0);
+		}		
+//		analyzerConfig.setAnalyzerClass(analyzer);
+//		analyzerConfig.setExporter(exporter);
+//		analyzerConfig.setIterator(versionIterator);
+	}
+
+	/** 
      * {@inheritDoc}
      * @see org.eclipse.jface.wizard.Wizard#addPages()
      */
@@ -145,6 +219,62 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	public AnalyzerPage getAnalyzerPage() {
 		return analyzerPage;
+	}
+
+	/**
+	 * @return the versionIterator
+	 */
+	public VersionIterator getVersionIterator() {
+		return versionIterator;
+	}
+
+	/**
+	 * @param versionIterator the versionIterator to set
+	 */
+	public void setVersionIterator(VersionIterator versionIterator) {
+		this.versionIterator = versionIterator;
+	}
+
+	/**
+	 * @return the exporter
+	 */
+	public Exporter getExporter() {
+		return exporter;
+	}
+
+	/**
+	 * @param exporter the exporter to set
+	 */
+	public void setExporter(Exporter exporter) {
+		this.exporter = exporter;
+	}
+
+	/**
+	 * @return the analyzer
+	 */
+	public DataAnalyzer getAnalyzer() {
+		return analyzer;
+	}
+
+	/**
+	 * @param analyzer the analyzer to set
+	 */
+	public void setAnalyzer(DataAnalyzer analyzer) {
+		this.analyzer = analyzer;
+	}
+
+	/**
+	 * @return the analyzerConfig
+	 */
+	public AnalyzerConfiguration getAnalyzerConfig() {
+		return analyzerConfig;
+	}
+
+	/**
+	 * @param analyzerConfig the analyzerConfig to set
+	 */
+	public void setAnalyzerConfig(AnalyzerConfiguration analyzerConfig) {
+		this.analyzerConfig = analyzerConfig;
 	}
 
 

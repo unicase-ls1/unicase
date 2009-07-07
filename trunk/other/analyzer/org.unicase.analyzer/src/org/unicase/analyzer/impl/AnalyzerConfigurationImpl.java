@@ -1,8 +1,7 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.analyzer.impl;
 
@@ -18,6 +17,7 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerPackage;
 
+import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.exporters.Exporter;
 
 import org.unicase.analyzer.iterator.VersionIterator;
@@ -46,7 +46,7 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	 * @generated
 	 * @ordered
 	 */
-	protected EClass analyzerClass;
+	protected DataAnalyzer analyzerClass;
 
 	/**
 	 * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference.
@@ -92,7 +92,7 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getAnalyzerClass() {
+	public DataAnalyzer getAnalyzerClass() {
 		return analyzerClass;
 	}
 
@@ -101,8 +101,8 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetAnalyzerClass(EClass newAnalyzerClass, NotificationChain msgs) {
-		EClass oldAnalyzerClass = analyzerClass;
+	public NotificationChain basicSetAnalyzerClass(DataAnalyzer newAnalyzerClass, NotificationChain msgs) {
+		DataAnalyzer oldAnalyzerClass = analyzerClass;
 		analyzerClass = newAnalyzerClass;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS, oldAnalyzerClass, newAnalyzerClass);
@@ -116,7 +116,7 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAnalyzerClass(EClass newAnalyzerClass) {
+	public void setAnalyzerClass(DataAnalyzer newAnalyzerClass) {
 		if (newAnalyzerClass != analyzerClass) {
 			NotificationChain msgs = null;
 			if (analyzerClass != null)
@@ -261,7 +261,7 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS:
-				setAnalyzerClass((EClass)newValue);
+				setAnalyzerClass((DataAnalyzer)newValue);
 				return;
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
 				setIterator((VersionIterator)newValue);
@@ -282,7 +282,7 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	public void eUnset(int featureID) {
 		switch (featureID) {
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS:
-				setAnalyzerClass((EClass)null);
+				setAnalyzerClass((DataAnalyzer)null);
 				return;
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
 				setIterator((VersionIterator)null);

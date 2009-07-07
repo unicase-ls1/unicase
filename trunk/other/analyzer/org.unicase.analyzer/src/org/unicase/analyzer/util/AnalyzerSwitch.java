@@ -10,9 +10,13 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+
 import org.unicase.analyzer.*;
+import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerPackage;
+import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.analyzer.TwoDDataAnalyzer;
 
 /**
  * <!-- begin-user-doc -->
@@ -100,6 +104,19 @@ public class AnalyzerSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case AnalyzerPackage.DATA_ANALYZER: {
+				DataAnalyzer dataAnalyzer = (DataAnalyzer)theEObject;
+				T result = caseDataAnalyzer(dataAnalyzer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
+			case AnalyzerPackage.TWO_DDATA_ANALYZER: {
+				TwoDDataAnalyzer twoDDataAnalyzer = (TwoDDataAnalyzer)theEObject;
+				T result = caseTwoDDataAnalyzer(twoDDataAnalyzer);
+				if (result == null) result = caseDataAnalyzer(twoDDataAnalyzer);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			default: return defaultCase(theEObject);
 		}
 	}
@@ -131,6 +148,36 @@ public class AnalyzerSwitch<T> {
 	 * @generated
 	 */
 	public T caseAnalyzerConfiguration(AnalyzerConfiguration object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Data Analyzer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Data Analyzer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseDataAnalyzer(DataAnalyzer object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Two DData Analyzer</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Two DData Analyzer</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseTwoDDataAnalyzer(TwoDDataAnalyzer object) {
 		return null;
 	}
 

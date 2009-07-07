@@ -18,6 +18,8 @@
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//AnalyzerConfiguration/iterator"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//AnalyzerConfiguration/exporter"/>
     </genClasses>
+    <genClasses image="false" ecoreClass="analyzer.ecore#//DataAnalyzer"/>
+    <genClasses image="false" ecoreClass="analyzer.ecore#//TwoDDataAnalyzer"/>
     <nestedGenPackages prefix="Iterator" basePackage="org.unicase.analyzer" disposableProviderFactory="true"
         ecorePackage="analyzer.ecore#//iterator">
       <genClasses ecoreClass="analyzer.ecore#//iterator/VersionIterator">
