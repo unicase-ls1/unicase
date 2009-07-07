@@ -114,7 +114,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DIAGRAM_LAYOUT_EDEFAULT = null;
+	protected static final String DIAGRAM_LAYOUT_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute. <!-- begin-user-doc -->
@@ -465,6 +465,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		elementsResource.getContents().addAll(elements);
 
 		String diagramLayout = getDiagramLayout();
+		if (diagramLayout == DIAGRAM_LAYOUT_EDEFAULT) {
+			return;
+		}
 		if (diagramLayout == null) {
 			throw new DiagramLoadException("Diagram string is null, load failed.");
 		}
