@@ -35,6 +35,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="savePassword" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="ACUser" eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//accesscontrol/ACUser"
         containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="changedProperties" upperBound="-1"
+        eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//accesscontrol/OrgUnitProperty"
+        containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ProjectSpace" eSuperTypes="../../org.unicase.model/model/model.ecore#//IdentifiableElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"

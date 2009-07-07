@@ -7,11 +7,13 @@ package org.unicase.workspace;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -32,6 +34,7 @@ import org.unicase.workspace.observers.LoginObserver;
  * <li>{@link org.unicase.workspace.Usersession#getServerInfo <em>Server Info</em>}</li>
  * <li>{@link org.unicase.workspace.Usersession#isSavePassword <em>Save Password</em>}</li>
  * <li>{@link org.unicase.workspace.Usersession#getACUser <em>AC User</em>}</li>
+ * <li>{@link org.unicase.workspace.Usersession#getChangedProperties <em>Changed Properties</em>}</li>
  * </ul>
  * </p>
  * 
@@ -221,6 +224,22 @@ public interface Usersession extends EObject {
 	 * @generated
 	 */
 	void setACUser(ACUser value);
+
+	/**
+	 * Returns the value of the '<em><b>Changed Properties</b></em>' containment reference list. The list contents are
+	 * of type {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty}. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Changed Properties</em>' containment reference list isn't clear, there really should
+	 * be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Changed Properties</em>' containment reference list.
+	 * @see org.unicase.workspace.WorkspacePackage#getUsersession_ChangedProperties()
+	 * @model containment="true" resolveProxies="true"
+	 * @generated
+	 */
+	EList<OrgUnitProperty> getChangedProperties();
 
 	// begin of custom code
 	/**

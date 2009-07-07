@@ -248,13 +248,22 @@ public interface WorkspacePackage extends EPackage {
 	int USERSESSION__AC_USER = 6;
 
 	/**
+	 * The feature id for the '<em><b>Changed Properties</b></em>' containment reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USERSESSION__CHANGED_PROPERTIES = 7;
+
+	/**
 	 * The number of structural features of the '<em>Usersession</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int USERSESSION_FEATURE_COUNT = 7;
+	int USERSESSION_FEATURE_COUNT = 8;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.ProjectSpaceImpl <em>Project Space</em>}' class.
@@ -824,6 +833,18 @@ public interface WorkspacePackage extends EPackage {
 	EReference getUsersession_ACUser();
 
 	/**
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.workspace.Usersession#getChangedProperties <em>Changed Properties</em>}'. <!-- begin-user-doc
+	 * --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference list '<em>Changed Properties</em>'.
+	 * @see org.unicase.workspace.Usersession#getChangedProperties()
+	 * @see #getUsersession()
+	 * @generated
+	 */
+	EReference getUsersession_ChangedProperties();
+
+	/**
 	 * Returns the meta object for class ' {@link org.unicase.workspace.ProjectSpace <em>Project Space</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1366,6 +1387,14 @@ public interface WorkspacePackage extends EPackage {
 		 * @generated
 		 */
 		EReference USERSESSION__AC_USER = eINSTANCE.getUsersession_ACUser();
+
+		/**
+		 * The meta object literal for the '<em><b>Changed Properties</b></em>' containment reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference USERSESSION__CHANGED_PROPERTIES = eINSTANCE.getUsersession_ChangedProperties();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.ProjectSpaceImpl <em>Project Space</em>}'

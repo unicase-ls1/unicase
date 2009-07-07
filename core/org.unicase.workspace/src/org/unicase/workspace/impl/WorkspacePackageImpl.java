@@ -347,6 +347,15 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * 
 	 * @generated
 	 */
+	public EReference getUsersession_ChangedProperties() {
+		return (EReference) usersessionEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getProjectSpace() {
 		return projectSpaceEClass;
 	}
@@ -680,6 +689,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		createEReference(usersessionEClass, USERSESSION__SERVER_INFO);
 		createEAttribute(usersessionEClass, USERSESSION__SAVE_PASSWORD);
 		createEReference(usersessionEClass, USERSESSION__AC_USER);
+		createEReference(usersessionEClass, USERSESSION__CHANGED_PROPERTIES);
 
 		projectSpaceEClass = createEClass(PROJECT_SPACE);
 		createEReference(projectSpaceEClass, PROJECT_SPACE__PROJECT);
@@ -821,6 +831,9 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEReference(getUsersession_ACUser(), theAccesscontrolPackage.getACUser(), null, "ACUser", null, 0, 1,
 			Usersession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getUsersession_ChangedProperties(), theAccesscontrolPackage.getOrgUnitProperty(), null,
+			"changedProperties", null, 0, -1, Usersession.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(projectSpaceEClass, ProjectSpace.class, "ProjectSpace", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

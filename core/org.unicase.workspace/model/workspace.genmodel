@@ -33,6 +33,7 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//Usersession/serverInfo"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute workspace.ecore#//Usersession/savePassword"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//Usersession/ACUser"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference workspace.ecore#//Usersession/changedProperties"/>
     </genClasses>
     <genClasses ecoreClass="workspace.ecore#//ProjectSpace">
       <genFeatures children="true" createChild="true" propertySortChoices="true" ecoreFeature="ecore:EReference workspace.ecore#//ProjectSpace/project"/>
