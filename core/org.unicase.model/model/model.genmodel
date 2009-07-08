@@ -538,6 +538,8 @@
         <genFeatures property="Readonly" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileSize"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/requiredOffline"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/fileType"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/downloading"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//attachment/FileAttachment/uploading"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Profile" basePackage="org.unicase.model" disposableProviderFactory="true"

@@ -18,6 +18,8 @@ import org.unicase.model.Attachment;
  * <li>{@link org.unicase.model.attachment.FileAttachment#getFileSize <em>File Size</em>}</li>
  * <li>{@link org.unicase.model.attachment.FileAttachment#isRequiredOffline <em>Required Offline</em>}</li>
  * <li>{@link org.unicase.model.attachment.FileAttachment#getFileType <em>File Type</em>}</li>
+ * <li>{@link org.unicase.model.attachment.FileAttachment#isDownloading <em>Downloading</em>}</li>
+ * <li>{@link org.unicase.model.attachment.FileAttachment#isUploading <em>Uploading</em>}</li>
  * </ul>
  * </p>
  * 
@@ -184,5 +186,57 @@ public interface FileAttachment extends Attachment {
 	 * @generated
 	 */
 	void setFileType(FileAttachmentType value);
+
+	/**
+	 * Returns the value of the '<em><b>Downloading</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Downloading</em>' attribute isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Downloading</em>' attribute.
+	 * @see #setDownloading(boolean)
+	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_Downloading()
+	 * @model
+	 * @generated
+	 */
+	boolean isDownloading();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#isDownloading <em>Downloading</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Downloading</em>' attribute.
+	 * @see #isDownloading()
+	 * @generated
+	 */
+	void setDownloading(boolean value);
+
+	/**
+	 * Returns the value of the '<em><b>Uploading</b></em>' attribute. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Uploading</em>' attribute isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Uploading</em>' attribute.
+	 * @see #setUploading(boolean)
+	 * @see org.unicase.model.attachment.AttachmentPackage#getFileAttachment_Uploading()
+	 * @model
+	 * @generated
+	 */
+	boolean isUploading();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.attachment.FileAttachment#isUploading <em>Uploading</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Uploading</em>' attribute.
+	 * @see #isUploading()
+	 * @generated
+	 */
+	void setUploading(boolean value);
 
 } // FileAttachment

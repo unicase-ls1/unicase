@@ -363,13 +363,29 @@ public interface AttachmentPackage extends EPackage {
 	int FILE_ATTACHMENT__FILE_TYPE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Downloading</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTACHMENT__DOWNLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Uploading</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTACHMENT__UPLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>File Attachment</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_ATTACHMENT_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 6;
+	int FILE_ATTACHMENT_FEATURE_COUNT = ModelPackage.ATTACHMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.attachment.FileAttachmentType <em>File Attachment Type</em>}
@@ -479,6 +495,28 @@ public interface AttachmentPackage extends EPackage {
 	EAttribute getFileAttachment_FileType();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.attachment.FileAttachment#isDownloading
+	 * <em>Downloading</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Downloading</em>'.
+	 * @see org.unicase.model.attachment.FileAttachment#isDownloading()
+	 * @see #getFileAttachment()
+	 * @generated
+	 */
+	EAttribute getFileAttachment_Downloading();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.attachment.FileAttachment#isUploading
+	 * <em>Uploading</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Uploading</em>'.
+	 * @see org.unicase.model.attachment.FileAttachment#isUploading()
+	 * @see #getFileAttachment()
+	 * @generated
+	 */
+	EAttribute getFileAttachment_Uploading();
+
+	/**
 	 * Returns the meta object for enum '{@link org.unicase.model.attachment.FileAttachmentType
 	 * <em>File Attachment Type</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -584,6 +622,22 @@ public interface AttachmentPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute FILE_ATTACHMENT__FILE_TYPE = eINSTANCE.getFileAttachment_FileType();
+
+		/**
+		 * The meta object literal for the '<em><b>Downloading</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute FILE_ATTACHMENT__DOWNLOADING = eINSTANCE.getFileAttachment_Downloading();
+
+		/**
+		 * The meta object literal for the '<em><b>Uploading</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute FILE_ATTACHMENT__UPLOADING = eINSTANCE.getFileAttachment_Uploading();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.attachment.FileAttachmentType
