@@ -28,6 +28,7 @@ public final class Configuration {
 	private static final String PROJECT_FOLDER = "project";
 	private static final String PS = "ps-";
 	private static final String UPF = ".upf";
+	private static final String PLUGIN_BASEDIR = "pluginData";
 	private static boolean testing;
 
 	private Configuration() {
@@ -284,5 +285,14 @@ public final class Configuration {
 	 */
 	public static boolean isTesting() {
 		return testing;
+	}
+
+	/**
+	 * Return the path of the plugin data directory inside the unicase workspace (trailing file separator included).
+	 * 
+	 * @return the plugin data directory absolute path as string
+	 */
+	public static String getPluginDataBaseDirectory() {
+		return getWorkspaceDirectory() + PLUGIN_BASEDIR + File.separatorChar;
 	}
 }
