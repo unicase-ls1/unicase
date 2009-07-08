@@ -114,7 +114,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String DIAGRAM_LAYOUT_EDEFAULT = "";
+	protected static final String DIAGRAM_LAYOUT_EDEFAULT = null;
 
 	/**
 	 * The cached value of the '{@link #getDiagramLayout() <em>Diagram Layout</em>}' attribute. <!-- begin-user-doc -->

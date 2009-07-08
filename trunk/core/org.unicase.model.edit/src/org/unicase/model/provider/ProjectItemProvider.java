@@ -5,6 +5,10 @@
  */
 package org.unicase.model.provider;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -37,10 +41,6 @@ import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
-
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.Project} object. <!-- begin-user-doc --> <!--

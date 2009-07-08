@@ -308,6 +308,24 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * 
 	 * @generated
 	 */
+	public EAttribute getFileAttachment_Downloading() {
+		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getFileAttachment_Uploading() {
+		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EEnum getFileAttachmentType() {
 		return fileAttachmentTypeEEnum;
 	}
@@ -350,6 +368,8 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_SIZE);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__REQUIRED_OFFLINE);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_TYPE);
+		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__DOWNLOADING);
+		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__UPLOADING);
 
 		// Create enums
 		fileAttachmentTypeEEnum = createEEnum(FILE_ATTACHMENT_TYPE);
@@ -413,6 +433,12 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		initEAttribute(getFileAttachment_FileType(), this.getFileAttachmentType(), "fileType", null, 0, 1,
+			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileAttachment_Downloading(), ecorePackage.getEBoolean(), "downloading", null, 0, 1,
+			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getFileAttachment_Uploading(), ecorePackage.getEBoolean(), "uploading", null, 0, 1,
 			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 
