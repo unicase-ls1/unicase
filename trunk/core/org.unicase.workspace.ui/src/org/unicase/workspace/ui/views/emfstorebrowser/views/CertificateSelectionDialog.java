@@ -52,6 +52,7 @@ public class CertificateSelectionDialog extends ElementListSelectionDialog {
 	 */
 	public CertificateSelectionDialog(Shell parent, ILabelProvider renderer) {
 		super(parent, renderer);
+		setShellStyle(SWT.CLOSE | SWT.TITLE | SWT.MIN | SWT.MAX);
 	}
 
 	/**
