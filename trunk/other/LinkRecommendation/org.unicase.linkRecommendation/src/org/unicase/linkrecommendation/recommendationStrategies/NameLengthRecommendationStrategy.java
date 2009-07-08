@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -14,8 +14,11 @@ import org.unicase.linkrecommendation.matchingStrategies.NameLengthMatcher;
  */
 public class NameLengthRecommendationStrategy extends AbstractRecommendationStrategy {
 
+	/**
+	 * Contructor for this dummy strategy.
+	 */
 	public NameLengthRecommendationStrategy() {
 		super(0.2);
-		this.addMEComparator(new NameLengthMatcher());
+		this.addMEMatcher(new NameLengthMatcher());
 	}
 }
