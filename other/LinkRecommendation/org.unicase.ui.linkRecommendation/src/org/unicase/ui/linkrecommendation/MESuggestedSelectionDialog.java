@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -15,7 +15,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.widgets.Composite;
@@ -28,6 +27,9 @@ import org.unicase.model.ModelElement;
 import org.unicase.ui.common.Activator;
 
 /**
+ * This Dialog represents the possibility to select an element from a list where the list is sorted and additional
+ * information can be provided.
+ * 
  * @author Henning Femmer
  */
 public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
@@ -44,6 +46,16 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	// maps modelElement.hashCode() to the similarity factor of the element
 	private Map<ModelElement, Double> relevanceMap;
 
+	/**
+	 * The constructor.
+	 * 
+	 * @param shell The shell.
+	 * @param multi Can multiple elments be selected?
+	 * @param title The title of the dialog
+	 * @param blockOnOpen block
+	 * @param elements The elements, which can be selected.
+	 * @param reference The element, to which the selection is made and to which other elements are compared.
+	 */
 	public MESuggestedSelectionDialog(Shell shell, boolean multi, String title, boolean blockOnOpen,
 		Collection<ModelElement> elements, ModelElement reference) {
 		super(shell, multi);
@@ -71,8 +83,10 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	}
 
 	/**
-	 * Creates a List and adds it underneath the regular list
+	 * Does nothing.
 	 * 
+	 * @param parent parent composite
+	 * @return null
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#createExtendedContentArea(org.eclipse.swt.widgets.Composite)
 	 */
 	@Override
@@ -81,14 +95,23 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	}
 
 	/**
+	 * Creates and returns a ModelElementRecommendationAndNameFilter.
+	 * 
+	 * @return the filter
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#createFilter()
 	 */
 	@Override
 	protected ItemsFilter createFilter() {
-		return new ModelElementRecommendationAndNameFilter();
+		return new BasicFilter();
 	}
 
 	/**
+	 * Adds the elements to the content.
+	 * 
+	 * @param contentProvider AbstractContentProvider
+	 * @param itemsFilter ItemsFilter
+	 * @param progressMonitor ProgressMonitor
+	 * @throws CoreException CoreException
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#fillContentProvider(org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.AbstractContentProvider,
 	 *      org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.ItemsFilter, org.eclipse.core.runtime.IProgressMonitor)
 	 */
@@ -106,6 +129,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 
 	/**
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#getDialogSettings()
+	 * @return returns the settings
 	 */
 	@Override
 	protected IDialogSettings getDialogSettings() {
@@ -117,31 +141,35 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	}
 
 	/**
-	 * Used to check duplicates
+	 * Used to check duplicates.
 	 * 
+	 * @param item the item
+	 * @return the ModelElement's name or the toString if element is not a ModelElement
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#getElementName(java.lang.Object)
 	 */
 	@Override
 	public String getElementName(Object item) {
-		if (item instanceof ModelElement)
+		if (item instanceof ModelElement) {
 			return ((ModelElement) item).getName();
-		else
+		} else {
 			return item.toString();
+		}
 	}
 
 	/**
-	 * Compares the names of ModelElements
+	 * Compares the names of ModelElements.
 	 * 
+	 * @return a new RelevanceMapComparator
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#getItemsComparator()
 	 */
 	@Override
 	protected Comparator<ModelElement> getItemsComparator() {
-		return new ElementSimilarityComparator();
+		return new RelevanceMapComparator();
 	}
 
 	/**
-	 * Is not very restrictive...
-	 * 
+	 * @param item the Item to validate
+	 * @return Status.OK_STATUS
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#validateItem(java.lang.Object)
 	 */
 	@Override
@@ -150,11 +178,11 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	}
 
 	/**
-	 * This class compares ModelElements with the similarityMap
+	 * This class compares ModelElements with the similarityMap.
 	 * 
 	 * @author henning femmer
 	 */
-	class ElementSimilarityComparator implements Comparator<ModelElement> {
+	class RelevanceMapComparator implements Comparator<ModelElement> {
 		/**
 		 * If both elements got a suggestion their suggestion values are compared, the higher, the better. if just one
 		 * got a suggestion, it is preferred. if none, alphabetical comparison is used. {@inheritDoc}
@@ -165,39 +193,53 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 			Double val1 = relevanceMap.get(o1);
 			Double val2 = relevanceMap.get(o2);
 
-			if (val1 == null && val2 == null)
+			if (val1 == null && val2 == null) {
 				return o1.getName().compareToIgnoreCase(o2.getName());
-			else if (val1 == null)
+			} else if (val1 == null) {
 				return 1;
-			else if (val2 == null)
+			} else if (val2 == null) {
 				return -1;
-			else
+			} else {
 				return val2.compareTo(val1);
+			}
 		}
 
 	}
 
 	/**
-	 * This class represents a filter by the ModelElement's name.
+	 * This class represents a very basic filter.
 	 * 
 	 * @author henning femmer
 	 */
-	class ModelElementRecommendationAndNameFilter extends ItemsFilter {
+	class BasicFilter extends ItemsFilter {
+		/**
+		 * Matches ModelElement's toString Methods.
+		 * 
+		 * @param item an item
+		 * @return a bool
+		 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.ItemsFilter#matchItem(java.lang.Object)
+		 */
 		@Override
 		public boolean matchItem(Object item) {
-			if (item instanceof ModelElement) {
-				// this should be the regular case, since all elements are ModelElements
-
-				// sometime elements don't have a name and cause bad nullpointerexceptions...
-				if (((ModelElement) item).getName() != null) {
-					return matches(((ModelElement) item).getName());
-				} else {
-					return false;
-				}
-			} else
-				return matches(item.toString());
+			// if (item instanceof ModelElement) {
+			// // this should be the regular case, since all elements are ModelElements
+			//
+			// // sometime elements don't have a name and cause bad nullpointerexceptions...
+			// if (((ModelElement) item).getName() != null) {
+			// return matches(((ModelElement) item).getName());
+			// } else {
+			// return false;
+			// }
+			// } else {
+			return matches(item.toString());
+			// }
 		}
 
+		/**
+		 * @param item the item
+		 * @return (item!=null)
+		 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.ItemsFilter#isConsistentItem(java.lang.Object)
+		 */
 		@Override
 		public boolean isConsistentItem(Object item) {
 			return (item != null);
@@ -205,19 +247,27 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	}
 
 	/**
-	 * This label-provider returns the elements similarityRate
+	 * This label-provider returns the elements relevance and dateDetails.
 	 * 
 	 * @author henning femmer
 	 */
 	class RelevanceDetailsLabelProvider extends DateDetailsLabelProvider {
+		/**
+		 * Creates the details.
+		 * 
+		 * @param element the selected element
+		 * @return a string with date details and relevance if provided
+		 * @see org.unicase.ui.linkrecommendation.MESuggestedSelectionDialog.DateDetailsLabelProvider#getText(java.lang.Object)
+		 */
 		@Override
 		public String getText(Object element) {
 			if (element instanceof ModelElement) {
 				String text = super.getText(element);
 
 				Double sim = relevanceMap.get(element);
-				if (sim != null)
+				if (sim != null) {
 					text = "Relevance: " + sim + ". " + text;
+				}
 				return text;
 			} else if (element == null) {
 				return "No item selected.";
@@ -228,13 +278,15 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	}
 
 	/**
-	 * This label-provider returns the elements date with certain details
+	 * This label-provider returns the elements date with certain details.
 	 * 
 	 * @author henning femmer
 	 */
 	class DateDetailsLabelProvider extends LabelProvider {
 
 		/**
+		 * @param element the element
+		 * @return a string containing the DateDetails of the element
 		 * @see org.eclipse.jface.viewers.LabelProvider#getText(java.lang.Object)
 		 */
 		@Override
@@ -254,10 +306,12 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	}
 
 	/**
-	 * Tried to create a fake history to push certain values to the top No success.
+	 * Tried to create a fake history to push certain values to the top- No success.
 	 * 
+	 * @deprecated
 	 * @author henning femmer
 	 */
+	@Deprecated
 	private class FakeSelectionHistory extends SelectionHistory {
 		/*
 		 * @see
@@ -278,9 +332,9 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		protected void storeItemToMemento(Object item, IMemento element) {
 			if (item instanceof ModelElement) {
 				element.putString("resource", ((ModelElement) item).getName());
-			} else if (item instanceof EList) {
-				EList<EObject> eList = (EList<EObject>) item;
-				for (EObject me : eList) {
+			} else if (item instanceof EList<?>) {
+				EList<Object> eList = (EList<Object>) item;
+				for (Object me : eList) {
 					if (me instanceof ModelElement) {
 						element.putString("resource", ((ModelElement) me).getName());
 					}
@@ -294,10 +348,10 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		/**
 		 * This method was meant to push an element in the history, but is not working in this case.
 		 * 
-		 * @param item
-		 * @param value
+		 * @param item the item
+		 * @param value the value
 		 */
-		protected void pushValue(Object item, int value) {
+		public void pushValue(Object item, int value) {
 			for (int i = 0; i < value; i++) {
 				this.accessed(item);
 			}

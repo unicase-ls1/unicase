@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -14,27 +14,59 @@ import java.util.TreeSet;
 import org.unicase.linkrecommendation.matchingStrategies.MEMatcher;
 import org.unicase.model.ModelElement;
 
+/**
+ * This class creates stands for a RecommendationStategy, that collects different strategies and returns the arithmetic
+ * mean of the values.
+ * 
+ * @author Henning Femmer
+ */
 public abstract class AbstractRecommendationStrategy {
-	Collection<MEMatcher> comparators;
-	double threshold;
+	private Collection<MEMatcher> matchers;
+	private double threshold;
 
+	/**
+	 * The constructor.
+	 * 
+	 * @param threshold the initial threshold
+	 */
 	public AbstractRecommendationStrategy(double threshold) {
-		comparators = new TreeSet<MEMatcher>();
+		matchers = new TreeSet<MEMatcher>();
 		this.threshold = threshold;
 	}
 
-	public void addMEComparator(MEMatcher comparatorStrategy) {
-		comparators.add(comparatorStrategy);
+	/**
+	 * Adds a matcher.
+	 * 
+	 * @param matchingStrategy the strategy
+	 */
+	public void addMEMatcher(MEMatcher matchingStrategy) {
+		matchers.add(matchingStrategy);
 	}
 
-	public boolean removeMEComparator(MEMatcher comparatorStrategy) {
-		return comparators.remove(comparatorStrategy);
+	/**
+	 * Removes a matcher.
+	 * 
+	 * @param matchingStrategy the strategy
+	 * @return true if successfull, false otherwise
+	 */
+	public boolean removeMEMatcher(MEMatcher matchingStrategy) {
+		return matchers.remove(matchingStrategy);
 	}
 
+	/**
+	 * Sets the threshold.
+	 * 
+	 * @param threshold the new threshold
+	 */
 	public void setThreshold(double threshold) {
 		this.threshold = threshold;
 	}
 
+	/**
+	 * Gets the threshold.
+	 * 
+	 * @return the threshold
+	 */
 	public double getThreshold() {
 		return threshold;
 	}
@@ -49,13 +81,13 @@ public abstract class AbstractRecommendationStrategy {
 	 */
 	public Map<ModelElement, Double> getMatchingMap(ModelElement base, Collection<ModelElement> elements) {
 		HashMap<ModelElement, Double> hm = new HashMap<ModelElement, Double>(elements.size());
-		double csLength = comparators.size();
+		double csLength = matchers.size();
 
-		try {
+		if(csLength>0) {
 			for (ModelElement me : elements) {
 				double sum = 0;
 
-				for (MEMatcher cs : comparators) {
+				for (MEMatcher cs : matchers) {
 					sum += cs.getMatchingValue(base, me);
 				}
 				sum /= csLength;
@@ -64,9 +96,6 @@ public abstract class AbstractRecommendationStrategy {
 					hm.put(me, sum);
 				}
 			}
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 
 		return hm;
