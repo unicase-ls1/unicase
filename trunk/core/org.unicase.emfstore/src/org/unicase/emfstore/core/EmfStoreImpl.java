@@ -11,6 +11,7 @@ import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.accesscontrol.AuthorizationControl;
 import org.unicase.emfstore.core.subinterfaces.FileTransferSubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.HistorySubInterfaceImpl;
+import org.unicase.emfstore.core.subinterfaces.ProjectPropertiesSubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.ProjectSubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.UserSubInterfaceImpl;
 import org.unicase.emfstore.core.subinterfaces.VersionSubInterfaceImpl;
@@ -21,6 +22,7 @@ import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
@@ -222,6 +224,16 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 		sanityCheckObjects(new Object[] { sessionId, projectId, fileChunk, fileChunk.getFileInformation() });
 		checkWriteAccess(sessionId, projectId, null);
 		return getSubInterface(FileTransferSubInterfaceImpl.class).writeChunk(fileChunk, projectId);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void transmitProperty(SessionId sessionId, OrgUnitProperty changedProperty, ACUser user,
+		ProjectId projectId) throws EmfStoreException {
+		sanityCheckObjects(new Object[] { projectId, user, changedProperty });
+		checkWriteAccess(sessionId, projectId, null);
+		getSubInterface(ProjectPropertiesSubInterfaceImpl.class).setProperties(changedProperty, user, projectId);
 	}
 
 }

@@ -14,6 +14,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
@@ -248,5 +249,15 @@ public interface EmfStore extends EmfStoreInterface {
 	 * @throws EmfStoreException if any error occurs in the EmfStore
 	 */
 	FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
+		throws EmfStoreException;
+
+	/**
+	 * @param sessionId session id
+	 * @param changedProperty the property that has been changed client-side
+	 * @param tmpUser the respective user
+	 * @param projectId the project id
+	 * @throws EmfStoreException if any error occurs in the EmfStore
+	 */
+	void transmitProperty(SessionId sessionId, OrgUnitProperty changedProperty, ACUser tmpUser, ProjectId projectId)
 		throws EmfStoreException;
 }

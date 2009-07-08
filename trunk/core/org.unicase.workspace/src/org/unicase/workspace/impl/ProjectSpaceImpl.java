@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -966,7 +967,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * 
 	 * @generated
 	 */
-	public EList<PendingFileTransfer> getPendingFileTransfers() {
+	public synchronized EList<PendingFileTransfer> getPendingFileTransfers() {
 		if (pendingFileTransfers == null) {
 			pendingFileTransfers = new EObjectContainmentEList.Resolving<PendingFileTransfer>(
 				PendingFileTransfer.class, this, WorkspacePackage.PROJECT_SPACE__PENDING_FILE_TRANSFERS);
@@ -2110,9 +2111,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			tmpTransfer.setPreliminaryFileName(null);
 		}
 		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
-			if (!transfer.isUpload() && transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId())
-				&& transfer.getFileVersion() == tmpTransfer.getFileVersion()) {
-				throw new FileTransferException("File Transfer Request already pending!");
+			if ((!transfer.isUpload() && transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId()) && transfer
+				.getFileVersion() == tmpTransfer.getFileVersion())
+				|| (transfer.isUpload() && transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId()))) {
+				throw new FileTransferException("File transfer already pending!");
 			}
 		}
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
@@ -2155,9 +2157,25 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * Resumes the pending file transfers.
 	 */
 	private void resumeTransfers() {
-		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
-			startFileTransfer(transfer);
+		ArrayList<Job> jobs = new ArrayList<Job>();
+		Iterator<PendingFileTransfer> iterator = getPendingFileTransfers().listIterator();
+		while (iterator.hasNext()) {
+			PendingFileTransfer transfer = iterator.next();
+			FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
+			if (fileAttachment == null) {
+				iterator.remove();
+				continue;
+			}
+			if (transfer.isUpload()) {
+				jobs.add(new FileUploadJob(transfer, fileAttachment));
+			} else {
+				jobs.add(new FileDownloadJob(transfer, fileAttachment));
+			}
+			for (Job job : jobs) {
+				job.schedule();
+			}
 		}
+
 	}
 
 	/**
@@ -2393,6 +2411,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				getUsersession().getACUser().getProperties().add(property);
 				propertyMap.put(property.getName(), property);
 			}
+			// the properties that have been altered are retained in a separate list
+			// for (OrgUnitProperty changedProperty : getUsersession().getChangedProperties()) {
+			// if (changedProperty.getName().equals(property.getName())) {
+			// changedProperty.setValue(property.getValue());
+			// WorkspaceManager.getInstance().getCurrentWorkspace().save();
+			// return;
+			// }
+			// }
+			// getUsersession().getChangedProperties().add(property);
 			WorkspaceManager.getInstance().getCurrentWorkspace().save();
 		}
 	}
@@ -2402,5 +2429,39 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public boolean hasProperty(PropertyKey key) {
 		return propertyMap.containsKey(key.toString());
+	}
+
+	@SuppressWarnings("unused")
+	private void transmitProperties() {
+		for (OrgUnitProperty changedProperty : getUsersession().getChangedProperties()) {
+			try {
+				WorkspaceManager.getInstance().getConnectionManager().transmitProperty(getUsersession().getSessionId(),
+					changedProperty, getUsersession().getACUser(), getProjectId());
+			} catch (EmfStoreException e) {
+				WorkspaceUtil.logException("Transmission of properties failed with exception", e);
+			}
+		}
+	}
+
+	/**
+	 *{@inheritDoc}
+	 */
+	public void removePendingFileUpload(String fileAttachmentId) {
+		final Iterator<PendingFileTransfer> iterator = getPendingFileTransfers().listIterator();
+		while (iterator.hasNext()) {
+			PendingFileTransfer transfer = iterator.next();
+			if (transfer.isUpload() && transfer.getAttachmentId().getId().equals(fileAttachmentId)) {
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("org.unicase.EditingDomain");
+				domain.getCommandStack().execute(new RecordingCommand(domain) {
+					@Override
+					protected void doExecute() {
+						iterator.remove();
+					}
+				});
+				return;
+			}
+		}
+		return;
 	}
 } // ProjectContainerImpl

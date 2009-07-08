@@ -153,13 +153,14 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @param object object
+	 * @generated NOT
+	 * @return label
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((FileAttachment) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_FileAttachment_type")
-			: getString("_UI_FileAttachment_type") + " " + label;
+		return (label == null) ? "" : label;
 	}
 
 	/**

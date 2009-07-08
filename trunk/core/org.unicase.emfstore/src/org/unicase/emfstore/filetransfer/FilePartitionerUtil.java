@@ -9,8 +9,8 @@ package org.unicase.emfstore.filetransfer;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.RandomAccessFile;
 
 import org.unicase.emfstore.exceptions.FileTransferException;
 
@@ -21,8 +21,10 @@ import org.unicase.emfstore.exceptions.FileTransferException;
  */
 public final class FilePartitionerUtil {
 
+	// chunk size. consider that changing this value means that old file transfers will fail.
 	private static final int CHUNK_SIZE = 100000;
 
+	// error messages
 	private static final String COULD_NOT_FIND_THE_FILE = "Could not find the file!";
 	private static final String COULD_NOT_READ_THE_FILE = "Could not read the file!";
 
@@ -38,17 +40,13 @@ public final class FilePartitionerUtil {
 	 * @throws FileTransferException if any error occurs writing to the file.
 	 */
 	public static synchronized void writeChunk(File file, FileChunk fileChunk) throws FileTransferException {
-		FileOutputStream fileOutputStream;
 		try {
-			// append mode on
-			fileOutputStream = new FileOutputStream(file, true);
+			RandomAccessFile randomAccessFile = new RandomAccessFile(file, "rws");
 			// skips to the position where the file chunk should be written
-			fileOutputStream.getChannel().position(fileChunk.getChunkNumber() * CHUNK_SIZE);
-			fileOutputStream.write(fileChunk.getData());
+			randomAccessFile.skipBytes(fileChunk.getChunkNumber() * CHUNK_SIZE);
+			randomAccessFile.write(fileChunk.getData());
 			// make sure everything is written instantly
-			fileOutputStream.getChannel().close();
-			fileOutputStream.flush();
-			fileOutputStream.close();
+			randomAccessFile.close();
 		} catch (FileNotFoundException e) {
 			throw new FileTransferException(COULD_NOT_FIND_THE_FILE, e);
 		} catch (IOException e) {
@@ -75,7 +73,7 @@ public final class FilePartitionerUtil {
 			fileInputStream.skip(fileInformation.getChunkNumber() * CHUNK_SIZE);
 			int remainingSize = fileInputStream.available();
 			// if the remaining size is chunk size or smaller, set end flag to true, which means this is the last chunk
-			if (remainingSize <= CHUNK_SIZE) {
+			if (remainingSize <= CHUNK_SIZE && remainingSize >= 0) {
 				end = true;
 				data = new byte[remainingSize];
 			} else {

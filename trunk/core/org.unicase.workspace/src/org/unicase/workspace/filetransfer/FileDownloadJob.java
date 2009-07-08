@@ -36,6 +36,9 @@ public class FileDownloadJob extends FileTransferJob {
 		setTransfer(transfer);
 		setFileAttachment(fileAttachment);
 		setFileInformation();
+		if (!fileAttachment.isRequiredOffline()) {
+			setUser(true);
+		}
 	}
 
 	/**
@@ -80,6 +83,7 @@ public class FileDownloadJob extends FileTransferJob {
 			monitor.worked(1);
 			incrementChunkNumber();
 			setPendingFileTransfer();
+			checkCancelled();
 		} while (!fileChunk.isLast());
 		removePendingFileTransfer();
 	}

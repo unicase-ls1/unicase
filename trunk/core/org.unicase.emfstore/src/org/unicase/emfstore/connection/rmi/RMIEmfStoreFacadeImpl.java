@@ -19,6 +19,8 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
+import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
@@ -296,5 +298,16 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 		LOGGER.debug("Client call on downloadFileChunk RECEIVED.");
 		return emfStore.downloadFileChunk((SessionId) SerializationUtil.stringToEObject(sessionId),
 			(ProjectId) SerializationUtil.stringToEObject(projectId), fileInformation);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void transmitProperty(String sessionId, String changedProperty, String user, String projectId)
+		throws EmfStoreException, RemoteException {
+		LOGGER.debug("Client call on transmitProperty RECEIVED.");
+		emfStore.transmitProperty((SessionId) SerializationUtil.stringToEObject(sessionId),
+			(OrgUnitProperty) SerializationUtil.stringToEObject(changedProperty), (ACUser) SerializationUtil
+				.stringToEObject(user), (ProjectId) SerializationUtil.stringToEObject(projectId));
 	}
 }

@@ -38,6 +38,7 @@ public abstract class FileTransferJob extends Job {
 	private PendingFileTransfer transfer;
 	private ProjectId projectId;
 	private SessionId sessionId;
+	private boolean cancelled;
 
 	/**
 	 * @param name of the transfer job
@@ -120,6 +121,11 @@ public abstract class FileTransferJob extends Job {
 			protected void doExecute() {
 				WorkspaceManager.getProjectSpace(fileAttachment).getPendingFileTransfers().remove(transfer);
 				((ProjectSpaceImpl) WorkspaceManager.getProjectSpace(fileAttachment)).saveProjectSpaceOnly();
+				if (transfer.isUpload()) {
+					fileAttachment.setUploading(false);
+				} else {
+					fileAttachment.setDownloading(false);
+				}
 			}
 		});
 	}
@@ -178,8 +184,17 @@ public abstract class FileTransferJob extends Job {
 	 * @param monitor monitor
 	 */
 	protected void setTotalWork(IProgressMonitor monitor) {
-		monitor.beginTask("Downloading ", (int) (Math.ceil(getFileInformation().getFileSize()) / FilePartitionerUtil
+		monitor.beginTask("Transfering ", (int) (Math.ceil(getFileInformation().getFileSize()) / FilePartitionerUtil
 			.getChunkSize()));
+	}
+
+	/**
+	 * @see org.eclipse.core.runtime.jobs.Job#canceling()
+	 */
+	@Override
+	protected void canceling() {
+		cancelled = true;
+		super.canceling();
 	}
 
 	/**
@@ -210,6 +225,8 @@ public abstract class FileTransferJob extends Job {
 	 * @param e exception thrown
 	 */
 	protected void setException(Exception e) {
+		// TODO: remove
+		e.printStackTrace();
 		this.exception = e;
 	}
 
@@ -284,5 +301,17 @@ public abstract class FileTransferJob extends Job {
 	 */
 	protected PendingFileTransfer getTransfer() {
 		return transfer;
+	}
+
+	/**
+	 * @throws FileTransferException if the job execution has been halted
+	 */
+	protected void checkCancelled() throws FileTransferException {
+		if (cancelled) {
+			throw new FileTransferException("File transfer has been cancelled!");
+		}
+		if (!WorkspaceManager.getProjectSpace(fileAttachment).getPendingFileTransfers().contains(getTransfer())) {
+			throw new FileTransferException("File transfer has been cancelled!");
+		}
 	}
 }

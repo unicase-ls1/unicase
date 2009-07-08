@@ -70,9 +70,8 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			File file;
 			try {
 				file = findFile(fileInformation, projectId);
-				// fileInformation.setFileName(file.getName());
 			} catch (FileNotFoundException e) {
-				throw new FileTransferException("File can not be retrieved.", e);
+				throw new FileTransferException(e.getMessage(), e);
 			}
 			fileInformation.setFileName(file.getName());
 			return FilePartitionerUtil.readChunk(file, fileInformation);
@@ -193,8 +192,9 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 				return f;
 			}
 		}
-		throw new FileNotFoundException("Could not locate the specified file (" + fileInfo.getFileAttachmentId()
-			+ FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER + ") in the cache folder.");
+		throw new FileNotFoundException("File " + fileInfo.getFileName() + " for FileAttachment "
+			+ fileInfo.getFileAttachmentId() + " in version " + fileInfo.getFileVersion()
+			+ " could not be located in the cache folder.");
 	}
 
 	private String constructFileLocation(ProjectId projectId, File attachmentTempFile) {

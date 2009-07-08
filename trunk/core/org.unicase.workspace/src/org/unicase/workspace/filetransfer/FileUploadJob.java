@@ -33,10 +33,11 @@ public class FileUploadJob extends FileTransferJob {
 	 * @param fileAttachment the file attachment which shall refer to the uploaded file (if upload succeeds)
 	 */
 	public FileUploadJob(PendingFileTransfer transfer, FileAttachment fileAttachment) {
-		super("File Download Job for: " + transfer.getFileName());
+		super("File Upload Job for: " + transfer.getFileName());
 		setTransfer(transfer);
 		setFileAttachment(fileAttachment);
 		setFileInformation();
+		setUser(true);
 	}
 
 	/**
@@ -81,8 +82,8 @@ public class FileUploadJob extends FileTransferJob {
 	 * @throws FileTransferException if any error occurs retrieving the file
 	 */
 	private void getCachedFileLocation() throws FileTransferException {
-		String message = "The location of the file " + getTransfer().getFileName() + " in version "
-			+ getTransfer().getFileVersion() + " could not be located!";
+		String message = "The file " + getTransfer().getFileName() + " in version " + getTransfer().getFileVersion()
+			+ " could not be located!";
 		File versionedCachedFile = FileTransferUtil.constructCachedFile(getFileInformation(), getProjectId());
 		// if the file transfer has a non-null preliminary file name, then the file has not been versioned yet. thus,
 		// request a new file version from the server and rename the unversioned cached file
@@ -120,6 +121,7 @@ public class FileUploadJob extends FileTransferJob {
 			monitor.worked(1);
 			incrementChunkNumber();
 			setPendingFileTransfer();
+			checkCancelled();
 		} while (!fileChunk.isLast());
 		removePendingFileTransfer();
 	}
