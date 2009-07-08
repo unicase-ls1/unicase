@@ -5,6 +5,11 @@
  */
 package org.unicase.workspace;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -32,11 +37,6 @@ import org.unicase.workspace.exceptions.PropertyNotFoundException;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.OperationListener;
 import org.unicase.workspace.observers.UpdateObserver;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.Date;
-import java.util.List;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project Container</b></em>'. <!-- end-user-doc
@@ -716,5 +716,12 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @param operationListner operation listener
 	 */
 	void removeOperationListener(OperationListener operationListner);
+
+	/**
+	 * Removes a pending file transfer.
+	 * 
+	 * @param fileAttachmentId file attachment id
+	 */
+	void removePendingFileUpload(String fileAttachmentId);
 
 } // ProjectContainer

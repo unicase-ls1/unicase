@@ -270,4 +270,14 @@ public interface RMIEmfStoreFacade extends Remote {
 	FileChunk downloadFileChunk(String sessionId, String projectId, FileInformation fileInformation)
 		throws EmfStoreException, RemoteException;
 
+	/**
+	 * @param sessionId session id
+	 * @param projectId project id
+	 * @param changedProperty the property that has been changed
+	 * @param user the ACUser
+	 * @throws EmfStoreException if any error occurs in the EmfStore
+	 * @throws RemoteException if any remote error occurs
+	 */
+	void transmitProperty(String sessionId, String changedProperty, String user, String projectId)
+		throws EmfStoreException, RemoteException;
 }

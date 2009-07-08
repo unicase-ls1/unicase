@@ -24,6 +24,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
+import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
@@ -367,5 +368,20 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 */
 	protected Map<SessionId, RMIEmfStoreFacade> getFacadeMap() {
 		return facadeMap;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public void transmitProperty(SessionId sessionId, OrgUnitProperty changedProperty, ACUser user, ProjectId projectId)
+		throws EmfStoreException, ConnectionException {
+		RMIEmfStoreFacade facade = getFacade(sessionId);
+		try {
+			facade.transmitProperty(SerializationUtil.eObjectToString(sessionId), SerializationUtil
+				.eObjectToString(changedProperty), SerializationUtil.eObjectToString(user), SerializationUtil
+				.eObjectToString(projectId));
+		} catch (RemoteException e) {
+			throw new ConnectionException(REMOTE, e);
+		}
 	}
 }
