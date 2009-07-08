@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.4"?>
 
-<product name="Unicase" id="org.unicase.client.product" application="org.unicase.client.application" version="0.3.24.internal" useFeatures="false">
+<product name="Unicase" id="org.unicase.client.product" application="org.unicase.client.application" version="0.3.30" useFeatures="false">
 
    <aboutInfo>
       <image path="about.png"/>
@@ -42,7 +42,6 @@
       <plugin id="edu.tum.cs.cope.migration"/>
       <plugin id="edu.tum.cs.cope.migration.execution"/>
       <plugin id="javax.servlet"/>
-      <plugin id="javax.xml"/>
       <plugin id="net.sourceforge.lpg.lpgjavaruntime"/>
       <plugin id="org.apache.ant"/>
       <plugin id="org.apache.batik.bridge"/>
@@ -59,9 +58,9 @@
       <plugin id="org.apache.batik.xml"/>
       <plugin id="org.apache.commons.codec"/>
       <plugin id="org.apache.commons.logging"/>
+      <plugin id="org.apache.log4j"/>
       <plugin id="org.apache.xerces"/>
       <plugin id="org.apache.xml.resolver"/>
-      <plugin id="org.apache.xml.serializer"/>
       <plugin id="org.codehaus.groovy"/>
       <plugin id="org.eclipse.ant.core"/>
       <plugin id="org.eclipse.compare"/>
@@ -210,16 +209,19 @@
       <plugin id="org.unicase.model"/>
       <plugin id="org.unicase.model.edit"/>
       <plugin id="org.unicase.model.migrator"/>
+      <plugin id="org.unicase.ui.activityDiagram"/>
       <plugin id="org.unicase.ui.common"/>
       <plugin id="org.unicase.ui.componentDiagram"/>
       <plugin id="org.unicase.ui.esbrowser"/>
       <plugin id="org.unicase.ui.meeditor"/>
       <plugin id="org.unicase.ui.navigator"/>
+      <plugin id="org.unicase.ui.stateDiagram"/>
       <plugin id="org.unicase.ui.stem"/>
       <plugin id="org.unicase.ui.tableview"/>
       <plugin id="org.unicase.ui.usecaseDiagram"/>
       <plugin id="org.unicase.workspace"/>
       <plugin id="org.unicase.workspace.edit"/>
+      <plugin id="org.unicase.workspace.ui"/>
       <plugin id="org.w3c.css.sac"/>
       <plugin id="org.w3c.dom.smil"/>
       <plugin id="org.w3c.dom.svg"/>
