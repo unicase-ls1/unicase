@@ -16,6 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.ResourceLocator;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.ecore.EcoreFactory;
 
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -24,6 +25,7 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
@@ -69,8 +71,54 @@ public class AnalyzerConfigurationItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addAnalyzerNamePropertyDescriptor(object);
+			addExporterNamePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Analyzer Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addAnalyzerNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AnalyzerConfiguration_analyzerName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AnalyzerConfiguration_analyzerName_feature", "_UI_AnalyzerConfiguration_type"),
+				 AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ANALYZER_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Exporter Name feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addExporterNamePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_AnalyzerConfiguration_exporterName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_AnalyzerConfiguration_exporterName_feature", "_UI_AnalyzerConfiguration_type"),
+				 AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__EXPORTER_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -85,9 +133,7 @@ public class AnalyzerConfigurationItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ANALYZER_CLASS);
 			childrenFeatures.add(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__ITERATOR);
-			childrenFeatures.add(AnalyzerPackage.Literals.ANALYZER_CONFIGURATION__EXPORTER);
 		}
 		return childrenFeatures;
 	}
@@ -124,7 +170,10 @@ public class AnalyzerConfigurationItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		return getString("_UI_AnalyzerConfiguration_type");
+		String label = ((AnalyzerConfiguration)object).getAnalyzerName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_AnalyzerConfiguration_type") :
+			getString("_UI_AnalyzerConfiguration_type") + " " + label;
 	}
 
 	/**
@@ -139,9 +188,11 @@ public class AnalyzerConfigurationItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(AnalyzerConfiguration.class)) {
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS:
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME:
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER_NAME:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}

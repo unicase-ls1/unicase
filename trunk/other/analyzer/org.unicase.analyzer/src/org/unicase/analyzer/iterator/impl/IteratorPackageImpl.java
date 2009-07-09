@@ -197,6 +197,15 @@ public class IteratorPackageImpl extends EPackageImpl implements IteratorPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getVersionIterator_Default() {
+		return (EAttribute)versionIteratorEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getTimeIterator() {
 		return timeIteratorEClass;
 	}
@@ -289,6 +298,7 @@ public class IteratorPackageImpl extends EPackageImpl implements IteratorPackage
 		createEAttribute(versionIteratorEClass, VERSION_ITERATOR__FORWARD);
 		createEAttribute(versionIteratorEClass, VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY);
 		createEReference(versionIteratorEClass, VERSION_ITERATOR__VERSION_SPEC_QUERY);
+		createEAttribute(versionIteratorEClass, VERSION_ITERATOR__DEFAULT);
 
 		timeIteratorEClass = createEClass(TIME_ITERATOR);
 		createEAttribute(timeIteratorEClass, TIME_ITERATOR__START_DATE);
@@ -342,6 +352,7 @@ public class IteratorPackageImpl extends EPackageImpl implements IteratorPackage
 		initEAttribute(getVersionIterator_Forward(), ecorePackage.getEBoolean(), "forward", null, 0, 1, VersionIterator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getVersionIterator_ReturnProjectDataCopy(), theEcorePackage.getEBoolean(), "returnProjectDataCopy", null, 0, 1, VersionIterator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getVersionIterator_VersionSpecQuery(), this.getVersionSpecQuery(), null, "versionSpecQuery", null, 0, 1, VersionIterator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getVersionIterator_Default(), theEcorePackage.getEBoolean(), "default", null, 0, 1, VersionIterator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(timeIteratorEClass, TimeIterator.class, "TimeIterator", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTimeIterator_StartDate(), ecorePackage.getEDate(), "startDate", null, 0, 1, TimeIterator.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -9,12 +9,18 @@ package org.unicase.analyzer.ui.wizards;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.unicase.analyzer.AnalyzerConfiguration;
+import org.unicase.analyzer.iterator.TimeIterator;
+import org.unicase.analyzer.iterator.VersionIterator;
+import org.unicase.workspace.WorkspaceFactory;
 
 /**
  * @author liya
@@ -50,6 +56,7 @@ public class IteratorPage extends WizardPage implements Listener {
 		getWizard().getContainer().updateButtons();
 
 	}
+	
 	
 	/** 
 	 * {@inheritDoc}
@@ -89,20 +96,56 @@ public class IteratorPage extends WizardPage implements Listener {
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
 		
+		AnalyzerConfiguration conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+		
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
 		
 		versionIteratorButton = new Button(composite, SWT.RADIO);
 		 versionIteratorButton.setText("Version Iterator");
 		 versionIteratorButton.setLayoutData(gd);
-		 versionIteratorButton.setSelection(false);
-		 versionIteratorButton.addListener(SWT.Selection, this);
+		 versionIteratorButton.addSelectionListener(new SelectionListener() {
+
+				public void widgetDefaultSelected(SelectionEvent e) {
+					canFlipToNextPage = true;
+					getWizard().getContainer().updateButtons();
+				}
+
+				public void widgetSelected(SelectionEvent e) {
+					canFlipToNextPage = true;
+					getWizard().getContainer().updateButtons();
+
+				}
+
+			});
+		 //versionIteratorButton.addListener(SWT.Selection, this);
 		 
 		 timeIteratorButton = new Button(composite, SWT.RADIO);
 		 timeIteratorButton.setText("Time Iterator");		 
 		 timeIteratorButton.setLayoutData(gd);
-		 timeIteratorButton.setSelection(false);
-		 timeIteratorButton.addListener(SWT.Selection, this);
+		 if(conf.getIterator() != null){
+			 if(conf.getIterator() instanceof TimeIterator){
+				 timeIteratorButton.setSelection(true);
+			 }else{
+				 versionIteratorButton.setSelection(true);
+			 }
+		 }
+		 
+		 timeIteratorButton.addSelectionListener(new SelectionListener() {
+
+				public void widgetDefaultSelected(SelectionEvent e) {
+					canFlipToNextPage = true;
+					getWizard().getContainer().updateButtons();
+				}
+
+				public void widgetSelected(SelectionEvent e) {
+					canFlipToNextPage = true;
+					getWizard().getContainer().updateButtons();
+
+				}
+
+			});
+		// timeIteratorButton.addListener(SWT.Selection, this);
 		 
 		 setControl(composite);
 		 setPageComplete(true);

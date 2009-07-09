@@ -114,13 +114,22 @@ public interface IteratorPackage extends EPackage {
 	int VERSION_ITERATOR__VERSION_SPEC_QUERY = 4;
 
 	/**
+	 * The feature id for the '<em><b>Default</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VERSION_ITERATOR__DEFAULT = 5;
+
+	/**
 	 * The number of structural features of the '<em>Version Iterator</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int VERSION_ITERATOR_FEATURE_COUNT = 5;
+	int VERSION_ITERATOR_FEATURE_COUNT = 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.analyzer.iterator.impl.TimeIteratorImpl <em>Time Iterator</em>}' class.
@@ -176,6 +185,15 @@ public interface IteratorPackage extends EPackage {
 	 * @ordered
 	 */
 	int TIME_ITERATOR__VERSION_SPEC_QUERY = VERSION_ITERATOR__VERSION_SPEC_QUERY;
+
+	/**
+	 * The feature id for the '<em><b>Default</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TIME_ITERATOR__DEFAULT = VERSION_ITERATOR__DEFAULT;
 
 	/**
 	 * The feature id for the '<em><b>Start Date</b></em>' attribute.
@@ -315,6 +333,17 @@ public interface IteratorPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getVersionIterator_VersionSpecQuery();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.analyzer.iterator.VersionIterator#isDefault <em>Default</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Default</em>'.
+	 * @see org.unicase.analyzer.iterator.VersionIterator#isDefault()
+	 * @see #getVersionIterator()
+	 * @generated
+	 */
+	EAttribute getVersionIterator_Default();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.analyzer.iterator.TimeIterator <em>Time Iterator</em>}'.
@@ -462,6 +491,14 @@ public interface IteratorPackage extends EPackage {
 		 * @generated
 		 */
 		EReference VERSION_ITERATOR__VERSION_SPEC_QUERY = eINSTANCE.getVersionIterator_VersionSpecQuery();
+
+		/**
+		 * The meta object literal for the '<em><b>Default</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute VERSION_ITERATOR__DEFAULT = eINSTANCE.getVersionIterator_Default();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.analyzer.iterator.impl.TimeIteratorImpl <em>Time Iterator</em>}' class.

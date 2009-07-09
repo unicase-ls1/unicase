@@ -14,9 +14,9 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference analyzer.ecore#//ProjectAnalysisData/projectId"/>
     </genClasses>
     <genClasses ecoreClass="analyzer.ecore#//AnalyzerConfiguration">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//AnalyzerConfiguration/analyzerClass"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//AnalyzerConfiguration/iterator"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//AnalyzerConfiguration/exporter"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//AnalyzerConfiguration/analyzerName"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//AnalyzerConfiguration/exporterName"/>
     </genClasses>
     <genClasses image="false" ecoreClass="analyzer.ecore#//DataAnalyzer"/>
     <genClasses image="false" ecoreClass="analyzer.ecore#//TwoDDataAnalyzer"/>
@@ -28,6 +28,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//iterator/VersionIterator/forward"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//iterator/VersionIterator/returnProjectDataCopy"/>
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//iterator/VersionIterator/versionSpecQuery"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//iterator/VersionIterator/default"/>
       </genClasses>
       <genClasses ecoreClass="analyzer.ecore#//iterator/TimeIterator">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//iterator/TimeIterator/startDate"/>

@@ -20,9 +20,9 @@ import org.unicase.analyzer.iterator.VersionIterator;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerClass <em>Analyzer Class</em>}</li>
  *   <li>{@link org.unicase.analyzer.AnalyzerConfiguration#getIterator <em>Iterator</em>}</li>
- *   <li>{@link org.unicase.analyzer.AnalyzerConfiguration#getExporter <em>Exporter</em>}</li>
+ *   <li>{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerName <em>Analyzer Name</em>}</li>
+ *   <li>{@link org.unicase.analyzer.AnalyzerConfiguration#getExporterName <em>Exporter Name</em>}</li>
  * </ul>
  * </p>
  *
@@ -31,32 +31,6 @@ import org.unicase.analyzer.iterator.VersionIterator;
  * @generated
  */
 public interface AnalyzerConfiguration extends EObject {
-	/**
-	 * Returns the value of the '<em><b>Analyzer Class</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Analyzer Class</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Analyzer Class</em>' containment reference.
-	 * @see #setAnalyzerClass(DataAnalyzer)
-	 * @see org.unicase.analyzer.AnalyzerPackage#getAnalyzerConfiguration_AnalyzerClass()
-	 * @model containment="true"
-	 * @generated
-	 */
-	DataAnalyzer getAnalyzerClass();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerClass <em>Analyzer Class</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Analyzer Class</em>' containment reference.
-	 * @see #getAnalyzerClass()
-	 * @generated
-	 */
-	void setAnalyzerClass(DataAnalyzer value);
-
 	/**
 	 * Returns the value of the '<em><b>Iterator</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -84,29 +58,55 @@ public interface AnalyzerConfiguration extends EObject {
 	void setIterator(VersionIterator value);
 
 	/**
-	 * Returns the value of the '<em><b>Exporter</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Analyzer Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Exporter</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Analyzer Name</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Exporter</em>' containment reference.
-	 * @see #setExporter(Exporter)
-	 * @see org.unicase.analyzer.AnalyzerPackage#getAnalyzerConfiguration_Exporter()
-	 * @model containment="true"
+	 * @return the value of the '<em>Analyzer Name</em>' attribute.
+	 * @see #setAnalyzerName(String)
+	 * @see org.unicase.analyzer.AnalyzerPackage#getAnalyzerConfiguration_AnalyzerName()
+	 * @model
 	 * @generated
 	 */
-	Exporter getExporter();
+	String getAnalyzerName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.analyzer.AnalyzerConfiguration#getExporter <em>Exporter</em>}' containment reference.
+	 * Sets the value of the '{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerName <em>Analyzer Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Exporter</em>' containment reference.
-	 * @see #getExporter()
+	 * @param value the new value of the '<em>Analyzer Name</em>' attribute.
+	 * @see #getAnalyzerName()
 	 * @generated
 	 */
-	void setExporter(Exporter value);
+	void setAnalyzerName(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Exporter Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Exporter Name</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Exporter Name</em>' attribute.
+	 * @see #setExporterName(String)
+	 * @see org.unicase.analyzer.AnalyzerPackage#getAnalyzerConfiguration_ExporterName()
+	 * @model
+	 * @generated
+	 */
+	String getExporterName();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.analyzer.AnalyzerConfiguration#getExporterName <em>Exporter Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Exporter Name</em>' attribute.
+	 * @see #getExporterName()
+	 * @generated
+	 */
+	void setExporterName(String value);
 
 } // AnalyzerConfiguration

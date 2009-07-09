@@ -27,7 +27,7 @@ import org.unicase.analyzer.DataAnalyzer;
 public class VersionWriter implements DataAnalyzer {
 
 	/** 
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
+	 * @return @see org.unicase.analyzer.DataAnalyzer#getName()
 	 * 
 	 */
 	public List<String> getName() {
@@ -38,7 +38,7 @@ public class VersionWriter implements DataAnalyzer {
 
 	/**
 	 * @param data {@link ProjectAnalysisData}
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
+	 * @return @see org.unicase.analyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
 	 */
 	public List<Object> getValue(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();

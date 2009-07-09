@@ -14,6 +14,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.nebula.widgets.cdatetime.CDT;
@@ -88,7 +90,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		stepText = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		stepText.setLayoutData(gd);
-		if(conf.getIterator() != null){
+		if(conf.getIterator() != null && conf.getIterator() instanceof TimeIterator){
 			stepText.setText(Integer.toString(conf.getIterator().getStepLength()));
 		}
 		stepText.addListener(SWT.KeyUp, this);
@@ -98,7 +100,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		stepUnit = new Combo(composite, SWT.BORDER | SWT.READ_ONLY);
 		stepUnit.setLayoutData(new GridData(GridData.END));
 		stepUnit.setItems(UNITS);
-		if(conf.getIterator() != null){			
+		if(conf.getIterator() != null && conf.getIterator() instanceof TimeIterator){			
 			stepUnit.select(indexOf(((TimeIterator) conf.getIterator()).getStepLengthUnit()));
 		}
 		stepUnit.addListener(SWT.Selection, this);
@@ -110,6 +112,20 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		 gd.horizontalSpan = ncol;
 		 defaultButton.setLayoutData(gd);
 		 defaultButton.setSelection(false);
+		 defaultButton.addSelectionListener(new SelectionListener() {
+
+				public void widgetDefaultSelected(SelectionEvent e) {
+					canFlipToNextPage = true;
+					getWizard().getContainer().updateButtons();
+				}
+
+				public void widgetSelected(SelectionEvent e) {
+					canFlipToNextPage = true;
+					getWizard().getContainer().updateButtons();
+
+				}
+
+			});
 		 defaultButton.addListener(SWT.Selection, this);
 		 
 		 group = new Group(composite, SWT.BORDER);
@@ -138,6 +154,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		forwardButton.setText("Forward");
 		forwardButton.setLayoutData(gd);
 		forwardButton.setSelection(false); 
+		
 		forwardButton.addListener(SWT.Selection, this);
 		
 		backwardButton = new Button(group, SWT.RADIO);
@@ -190,8 +207,11 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 			protected void doExecute() {
 				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
 				TimeIterator timeIterator = IteratorFactory.eINSTANCE.createTimeIterator();
+				
+				timeIterator.setProjectId(wizard.getSelectedProjectID());
 				timeIterator.setStepLength(Integer.valueOf(stepText.getText()));
 				timeIterator.setStepLengthUnit(CALENDAR_FIELDS[stepUnit.getSelectionIndex()]);
+				timeIterator.setDefault(defaultButton.getSelection());
 				
 				if(!defaultButton.getSelection()){
 					timeIterator.setStartDate(startDate.getSelection());

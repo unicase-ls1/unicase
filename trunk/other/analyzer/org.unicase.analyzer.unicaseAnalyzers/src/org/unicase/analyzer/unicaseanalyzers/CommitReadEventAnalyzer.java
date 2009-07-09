@@ -274,4 +274,12 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 		
 	}
 
+
+	@Override
+	public List<List<Object>> get2DValue(ProjectAnalysisData data,
+			org.unicase.analyzer.iterator.VersionIterator it) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }

@@ -5,6 +5,7 @@
  */
 package org.unicase.analyzer;
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -124,31 +125,31 @@ public interface AnalyzerPackage extends EPackage {
 	int ANALYZER_CONFIGURATION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Analyzer Class</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int ANALYZER_CONFIGURATION__ANALYZER_CLASS = 0;
-
-	/**
 	 * The feature id for the '<em><b>Iterator</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANALYZER_CONFIGURATION__ITERATOR = 1;
+	int ANALYZER_CONFIGURATION__ITERATOR = 0;
 
 	/**
-	 * The feature id for the '<em><b>Exporter</b></em>' containment reference.
+	 * The feature id for the '<em><b>Analyzer Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANALYZER_CONFIGURATION__EXPORTER = 2;
+	int ANALYZER_CONFIGURATION__ANALYZER_NAME = 1;
+
+	/**
+	 * The feature id for the '<em><b>Exporter Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ANALYZER_CONFIGURATION__EXPORTER_NAME = 2;
 
 	/**
 	 * The number of structural features of the '<em>Configuration</em>' class.
@@ -264,17 +265,6 @@ public interface AnalyzerPackage extends EPackage {
 	EClass getAnalyzerConfiguration();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerClass <em>Analyzer Class</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Analyzer Class</em>'.
-	 * @see org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerClass()
-	 * @see #getAnalyzerConfiguration()
-	 * @generated
-	 */
-	EReference getAnalyzerConfiguration_AnalyzerClass();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.AnalyzerConfiguration#getIterator <em>Iterator</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -286,15 +276,26 @@ public interface AnalyzerPackage extends EPackage {
 	EReference getAnalyzerConfiguration_Iterator();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.AnalyzerConfiguration#getExporter <em>Exporter</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerName <em>Analyzer Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Exporter</em>'.
-	 * @see org.unicase.analyzer.AnalyzerConfiguration#getExporter()
+	 * @return the meta object for the attribute '<em>Analyzer Name</em>'.
+	 * @see org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerName()
 	 * @see #getAnalyzerConfiguration()
 	 * @generated
 	 */
-	EReference getAnalyzerConfiguration_Exporter();
+	EAttribute getAnalyzerConfiguration_AnalyzerName();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.analyzer.AnalyzerConfiguration#getExporterName <em>Exporter Name</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Exporter Name</em>'.
+	 * @see org.unicase.analyzer.AnalyzerConfiguration#getExporterName()
+	 * @see #getAnalyzerConfiguration()
+	 * @generated
+	 */
+	EAttribute getAnalyzerConfiguration_ExporterName();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.analyzer.DataAnalyzer <em>Data Analyzer</em>}'.
@@ -391,14 +392,6 @@ public interface AnalyzerPackage extends EPackage {
 		EClass ANALYZER_CONFIGURATION = eINSTANCE.getAnalyzerConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Analyzer Class</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference ANALYZER_CONFIGURATION__ANALYZER_CLASS = eINSTANCE.getAnalyzerConfiguration_AnalyzerClass();
-
-		/**
 		 * The meta object literal for the '<em><b>Iterator</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -407,12 +400,20 @@ public interface AnalyzerPackage extends EPackage {
 		EReference ANALYZER_CONFIGURATION__ITERATOR = eINSTANCE.getAnalyzerConfiguration_Iterator();
 
 		/**
-		 * The meta object literal for the '<em><b>Exporter</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Analyzer Name</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference ANALYZER_CONFIGURATION__EXPORTER = eINSTANCE.getAnalyzerConfiguration_Exporter();
+		EAttribute ANALYZER_CONFIGURATION__ANALYZER_NAME = eINSTANCE.getAnalyzerConfiguration_AnalyzerName();
+
+		/**
+		 * The meta object literal for the '<em><b>Exporter Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ANALYZER_CONFIGURATION__EXPORTER_NAME = eINSTANCE.getAnalyzerConfiguration_ExporterName();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.analyzer.DataAnalyzer <em>Data Analyzer</em>}' class.

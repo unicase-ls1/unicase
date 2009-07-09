@@ -8,6 +8,7 @@ package org.unicase.analyzer.ui.wizards;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -15,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -25,12 +27,16 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 
 import org.unicase.analyzer.AnalyzerConfiguration;
+import org.unicase.analyzer.AnalyzerController;
 import org.unicase.analyzer.AnalyzerFactory;
+import org.unicase.analyzer.AnalyzerModelController;
 import org.unicase.analyzer.DataAnalyzer;
+import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.Exporter;
 import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.analyzer.iterator.VersionIterator;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -43,7 +49,7 @@ import org.unicase.workspace.Workspace;
 public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 
 	
-	private static final String PATH = Configuration.getWorkspaceDirectory() + "analyzerProfile.apf";
+	private static final String PATH = Configuration.getPluginDataBaseDirectory() + "analyzerProfile.conf";
 	private boolean canFinish;
 	private boolean loggedIn;
 	private IteratorPage iteratorPage;
@@ -54,8 +60,10 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	
 	private VersionIterator versionIterator;
 	private Exporter exporter;
-	private DataAnalyzer analyzer;
+	private ArrayList<DataAnalyzer> analyzers;
 	private AnalyzerConfiguration analyzerConfig;
+	private Usersession selectedUsersession;
+	private ProjectId selectedProjectID;
 	
 	
 	/** 
@@ -64,7 +72,17 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		// TODO Auto-generated method stub
+		// pass to AnalyzerController
+		try {
+			versionIterator.init(selectedUsersession);
+			@SuppressWarnings("unused")
+			AnalyzerModelController analyzerController = new AnalyzerModelController(versionIterator, analyzers, exporter);
+			
+		} catch (IteratorException e1) {
+			e1.printStackTrace();
+		}
+		
+		
 		try {
 			analyzerConfig.eResource().save(null);
 		} catch (IOException e) {
@@ -85,7 +103,9 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		if (!selection.isEmpty()) {
 			firstElement = selection.getFirstElement();
 			if (firstElement instanceof ProjectSpace) {
-				Usersession selectedUsersession = ((ProjectSpace) firstElement).getUsersession();
+				ProjectSpace selectedProject = (ProjectSpace)firstElement;
+				selectedProjectID = (ProjectId) EcoreUtil.copy(selectedProject.getProjectId());
+				selectedUsersession = ((ProjectSpace) firstElement).getUsersession();
 				if (!selectedUsersession.isLoggedIn()) {
 					loggedIn = false;
 					MessageDialog.openError(Display.getCurrent().getActiveShell(), "Login required", "Log in first!");
@@ -249,19 +269,6 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		this.exporter = exporter;
 	}
 
-	/**
-	 * @return the analyzer
-	 */
-	public DataAnalyzer getAnalyzer() {
-		return analyzer;
-	}
-
-	/**
-	 * @param analyzer the analyzer to set
-	 */
-	public void setAnalyzer(DataAnalyzer analyzer) {
-		this.analyzer = analyzer;
-	}
 
 	/**
 	 * @return the analyzerConfig
@@ -275,6 +282,34 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	public void setAnalyzerConfig(AnalyzerConfiguration analyzerConfig) {
 		this.analyzerConfig = analyzerConfig;
+	}
+
+	/**
+	 * @return the analyzers
+	 */
+	public ArrayList<DataAnalyzer> getAnalyzers() {
+		return analyzers;
+	}
+
+	/**
+	 * @param analyzers the analyzers to set
+	 */
+	public void setAnalyzers(ArrayList<DataAnalyzer> analyzers) {
+		this.analyzers = analyzers;
+	}
+
+	/**
+	 * @return the selectedProjectID
+	 */
+	public ProjectId getSelectedProjectID() {
+		return selectedProjectID;
+	}
+
+	/**
+	 * @param selectedProjectID the selectedProjectID to set
+	 */
+	public void setSelectedProjectID(ProjectId selectedProjectID) {
+		this.selectedProjectID = selectedProjectID;
 	}
 
 
