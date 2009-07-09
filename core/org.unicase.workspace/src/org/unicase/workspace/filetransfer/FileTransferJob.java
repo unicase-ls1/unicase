@@ -225,8 +225,6 @@ public abstract class FileTransferJob extends Job {
 	 * @param e exception thrown
 	 */
 	protected void setException(Exception e) {
-		// TODO: remove
-		e.printStackTrace();
 		this.exception = e;
 	}
 
