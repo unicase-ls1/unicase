@@ -14,12 +14,10 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" eType="ecore:EClass platform:/plugin/org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectId"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="AnalyzerConfiguration">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="analyzerClass" eType="#//DataAnalyzer"
-        containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" eType="#//iterator/VersionIterator"
         containment="true"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="exporter" eType="#//exporters/Exporter"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="analyzerName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exporterName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="DataAnalyzer" abstract="true" interface="true"/>
   <eClassifiers xsi:type="ecore:EClass" name="TwoDDataAnalyzer" abstract="true" interface="true"

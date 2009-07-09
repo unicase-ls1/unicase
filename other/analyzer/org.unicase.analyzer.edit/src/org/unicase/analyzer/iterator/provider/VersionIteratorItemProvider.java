@@ -74,6 +74,7 @@ public class VersionIteratorItemProvider
 			addStepLengthPropertyDescriptor(object);
 			addForwardPropertyDescriptor(object);
 			addReturnProjectDataCopyPropertyDescriptor(object);
+			addDefaultPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -136,6 +137,28 @@ public class VersionIteratorItemProvider
 				 getString("_UI_VersionIterator_returnProjectDataCopy_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_VersionIterator_returnProjectDataCopy_feature", "_UI_VersionIterator_type"),
 				 IteratorPackage.Literals.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Default feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addDefaultPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VersionIterator_default_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VersionIterator_default_feature", "_UI_VersionIterator_type"),
+				 IteratorPackage.Literals.VERSION_ITERATOR__DEFAULT,
 				 true,
 				 false,
 				 false,
@@ -213,6 +236,7 @@ public class VersionIteratorItemProvider
 			case IteratorPackage.VERSION_ITERATOR__STEP_LENGTH:
 			case IteratorPackage.VERSION_ITERATOR__FORWARD:
 			case IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY:
+			case IteratorPackage.VERSION_ITERATOR__DEFAULT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:

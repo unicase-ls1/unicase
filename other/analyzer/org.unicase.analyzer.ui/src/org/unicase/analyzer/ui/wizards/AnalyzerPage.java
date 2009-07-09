@@ -15,7 +15,8 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -25,6 +26,7 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
+import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.DataAnalyzer;
 
@@ -61,6 +63,9 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		int ncol = 4;
 	    gl.numColumns = ncol;
 	    composite.setLayout(gl);
+	    
+	    AnalyzerConfiguration conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+	    
 	    IExtensionRegistry registry = Platform.getExtensionRegistry();
 		IExtensionPoint extensionPoint =
 		    registry.getExtensionPoint("org.unicase.analyzer.analyzer");
@@ -75,12 +80,18 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		 for (int j = 0; j < elements.length; j++) {
 		     IConfigurationElement element = elements[j];
 		     int count = i*elements.length + j;
-		     Button button = new Button(composite, SWT.RADIO);
+		     Button button = new Button(composite, SWT.CHECK);
 		     button.setText(element.getAttribute("class"));
 			 gd = new GridData(GridData.FILL_HORIZONTAL);
 			 gd.horizontalSpan = ncol;
 			 button.setLayoutData(gd);
-			 button.setSelection(false);			 
+			 if(conf.getAnalyzerName() != null){
+				 if(conf.getAnalyzerName().equals(button.getText())){
+					 button.setSelection(true);
+				 }
+			 }else{
+				 button.setSelection(false);
+			 }			 
 			 analyzerButton.add(button);
 			 analyzerButton.get(count).addListener(SWT.SELECTED, this);
 		    }
@@ -106,16 +117,27 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public IWizardPage getNextPage() {	
-		for(Button button : analyzerButton){
+		final ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
+		for(final Button button : analyzerButton){
 			if(button.getSelection()){
 				try {
 					Class c = Class.forName(button.getText());			
-					DataAnalyzer analyzer;
-					analyzer = (DataAnalyzer) c.getConstructors()[0].newInstance();
-					ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
-					//FIXME analyzer can not be set
-//					wizard.getAnalyzerConfig().setAnalyzerClass(analyzer);
+					DataAnalyzer analyzer = (DataAnalyzer) c.getConstructors()[0].newInstance();
+					final ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
+					analyzers.add(analyzer);
+					wizard.setAnalyzers(analyzers);
 					
+					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("org.unicase.EditingDomain");
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+						@Override
+						protected void doExecute() {
+							
+							//FIXME should set a list of analyzer names
+							wizard.getAnalyzerConfig().setAnalyzerName(button.getText());
+						}
+					});
+
 				} catch (IllegalArgumentException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

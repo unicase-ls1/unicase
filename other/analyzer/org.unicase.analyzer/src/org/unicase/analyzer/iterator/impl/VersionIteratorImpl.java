@@ -50,6 +50,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *   <li>{@link org.unicase.analyzer.iterator.impl.VersionIteratorImpl#isForward <em>Forward</em>}</li>
  *   <li>{@link org.unicase.analyzer.iterator.impl.VersionIteratorImpl#isReturnProjectDataCopy <em>Return Project Data Copy</em>}</li>
  *   <li>{@link org.unicase.analyzer.iterator.impl.VersionIteratorImpl#getVersionSpecQuery <em>Version Spec Query</em>}</li>
+ *   <li>{@link org.unicase.analyzer.iterator.impl.VersionIteratorImpl#isDefault <em>Default</em>}</li>
  * </ul>
  * </p>
  *
@@ -135,6 +136,26 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 	 * @ordered
 	 */
 	protected VersionSpecQuery versionSpecQuery;
+
+	/**
+	 * The default value of the '{@link #isDefault() <em>Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDefault()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DEFAULT_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDefault() <em>Default</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isDefault()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean default_ = DEFAULT_EDEFAULT;
 
 	private Usersession usersession;
 
@@ -337,6 +358,27 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean isDefault() {
+		return default_;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setDefault(boolean newDefault) {
+		boolean oldDefault = default_;
+		default_ = newDefault;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_ITERATOR__DEFAULT, oldDefault, default_));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -366,6 +408,8 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 				return isReturnProjectDataCopy() ? Boolean.TRUE : Boolean.FALSE;
 			case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
 				return getVersionSpecQuery();
+			case IteratorPackage.VERSION_ITERATOR__DEFAULT:
+				return isDefault() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -392,6 +436,9 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 				return;
 			case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
 				setVersionSpecQuery((VersionSpecQuery)newValue);
+				return;
+			case IteratorPackage.VERSION_ITERATOR__DEFAULT:
+				setDefault(((Boolean)newValue).booleanValue());
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -420,6 +467,9 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 			case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
 				setVersionSpecQuery((VersionSpecQuery)null);
 				return;
+			case IteratorPackage.VERSION_ITERATOR__DEFAULT:
+				setDefault(DEFAULT_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -442,6 +492,8 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 				return returnProjectDataCopy != RETURN_PROJECT_DATA_COPY_EDEFAULT;
 			case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
 				return versionSpecQuery != null;
+			case IteratorPackage.VERSION_ITERATOR__DEFAULT:
+				return default_ != DEFAULT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -462,6 +514,8 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 		result.append(forward);
 		result.append(", returnProjectDataCopy: ");
 		result.append(returnProjectDataCopy);
+		result.append(", default: ");
+		result.append(default_);
 		result.append(')');
 		return result.toString();
 	}
@@ -475,19 +529,11 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 	}
 
 	public void init(Usersession usersession, ProjectId projectId, int stepLength) throws IteratorException {
-		
-		VersionSpecQuery versionSpecQuery = IteratorFactoryImpl.eINSTANCE.createVersionSpecQuery();
-		versionSpecQuery.setStartVersion(VersioningFactory.eINSTANCE
-			.createPrimaryVersionSpec());
-		versionSpecQuery.setEndVersion(VersioningFactory.eINSTANCE
-			.createHeadVersionSpec());
-		setVersionSpecQuery(versionSpecQuery);
+				
 		setProjectId(projectId);
 		setStepLength(stepLength);
 		
-		setReturnProjectDataCopy(true);
-		
-		setForward(true);
+		defaultSet();
 		
 		this.init(usersession);
 		
@@ -608,6 +654,18 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 	public void remove() {
 		throw new UnsupportedOperationException();		
 	}
+	
+	private void defaultSet(){
+		
+		VersionSpecQuery versionSpecQuery = IteratorFactoryImpl.eINSTANCE.createVersionSpecQuery();
+		versionSpecQuery.setStartVersion(VersioningFactory.eINSTANCE
+			.createPrimaryVersionSpec());
+		versionSpecQuery.setEndVersion(VersioningFactory.eINSTANCE
+			.createHeadVersionSpec());
+		setVersionSpecQuery(versionSpecQuery);
+		setReturnProjectDataCopy(true);		
+		setForward(true);
+	}
 
 	public void init(Usersession usersession) throws IteratorException {
 		
@@ -615,6 +673,10 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 		this.connectionManager = WorkspaceManager.getInstance()
 		.getConnectionManager();
 		
+		//default iterator will start from reversion 0 till the HEAD
+		if(isDefault()){
+			defaultSet();
+		}
 		VersionSpec start = versionSpecQuery.getStartVersion();
 		VersionSpec end = versionSpecQuery.getEndVersion();
 		

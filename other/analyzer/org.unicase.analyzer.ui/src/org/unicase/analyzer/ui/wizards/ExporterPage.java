@@ -6,6 +6,10 @@
 
 package org.unicase.analyzer.ui.wizards;
 
+import java.io.IOException;
+
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -16,6 +20,9 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.analyzer.AnalyzerConfiguration;
+import org.unicase.analyzer.exporters.ExportersFactory;
+import org.unicase.analyzer.exporters.impl.CSVExporter;
 
 /**
  * @author liya
@@ -49,18 +56,23 @@ public class ExporterPage extends WizardPage implements Listener {
 	    gl.numColumns = ncol;
 	    composite.setLayout(gl);
 	    
+	    AnalyzerConfiguration conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+	    
 	    exporterButton = new Button(composite, SWT.RADIO);
 	    exporterButton.setText("CVS Exporter");
 	    gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
 		exporterButton.setLayoutData(gd);
-		exporterButton.setSelection(false);
+		exporterButton.setSelection(true);
 		exporterButton.addListener(SWT.Selection, this);
 		
 		new Label (composite, SWT.NONE).setText("Exporter Path:");	
 		exportPath = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		exportPath.setLayoutData(gd);
+		if(conf.getExporterName() != null){
+			exportPath.setText(conf.getExporterName());
+		}
 		exportPath.addListener(SWT.KeyUp, this);
 		
 		exporterButton = new Button(composite, SWT.PUSH);
@@ -79,10 +91,13 @@ public class ExporterPage extends WizardPage implements Listener {
 	private static boolean isTextNonEmpty(Text t)
 	{
 		String s = t.getText();
-		if ((s!=null) && (s.trim().length() >0)) return true;
+		if ((s!=null) && (s.trim().length() >0)) {
+			return true;
+		}
 		return false;
 	}
 
+	
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
@@ -91,6 +106,33 @@ public class ExporterPage extends WizardPage implements Listener {
 		if(event.widget == exporterButton){
 			((ProjectAnalyzerWizard)getWizard()).setCanFinish(true);
 		}
+		setPageComplete(isComplete());
+
 		getWizard().getContainer().updateButtons();
+	}
+
+	private boolean isComplete() {
+		if(isTextNonEmpty(exportPath)){
+			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+			.getEditingDomain("org.unicase.EditingDomain");
+			domain.getCommandStack().execute(new RecordingCommand(domain) {
+				@Override
+				protected void doExecute() {
+					ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
+					try {
+						CSVExporter exporter = new CSVExporter(exportPath.getText());
+						wizard.setExporter(exporter);
+						wizard.getAnalyzerConfig().setExporterName(exportPath.getText());
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					//wizard.getExporter().setFileName(exportPath.getText());
+				}
+			});
+			return true;
+		}else{
+		return false;
+		}
 	}
 }

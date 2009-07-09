@@ -6,6 +6,7 @@
 package org.unicase.analyzer.impl;
 
 
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
@@ -198,7 +199,7 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAnalyzerConfiguration_AnalyzerClass() {
+	public EReference getAnalyzerConfiguration_Iterator() {
 		return (EReference)analyzerConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -207,8 +208,8 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAnalyzerConfiguration_Iterator() {
-		return (EReference)analyzerConfigurationEClass.getEStructuralFeatures().get(1);
+	public EAttribute getAnalyzerConfiguration_AnalyzerName() {
+		return (EAttribute)analyzerConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -216,8 +217,8 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getAnalyzerConfiguration_Exporter() {
-		return (EReference)analyzerConfigurationEClass.getEStructuralFeatures().get(2);
+	public EAttribute getAnalyzerConfiguration_ExporterName() {
+		return (EAttribute)analyzerConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -273,9 +274,9 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		createEReference(projectAnalysisDataEClass, PROJECT_ANALYSIS_DATA__PROJECT_ID);
 
 		analyzerConfigurationEClass = createEClass(ANALYZER_CONFIGURATION);
-		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ANALYZER_CLASS);
 		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ITERATOR);
-		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__EXPORTER);
+		createEAttribute(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ANALYZER_NAME);
+		createEAttribute(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__EXPORTER_NAME);
 
 		dataAnalyzerEClass = createEClass(DATA_ANALYZER);
 
@@ -311,6 +312,7 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage)EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI);
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage)EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theIteratorPackage);
@@ -331,9 +333,9 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		initEReference(getProjectAnalysisData_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(analyzerConfigurationEClass, AnalyzerConfiguration.class, "AnalyzerConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAnalyzerConfiguration_AnalyzerClass(), this.getDataAnalyzer(), null, "analyzerClass", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getAnalyzerConfiguration_Iterator(), theIteratorPackage.getVersionIterator(), null, "iterator", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAnalyzerConfiguration_Exporter(), theExportersPackage.getExporter(), null, "exporter", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAnalyzerConfiguration_AnalyzerName(), theEcorePackage.getEString(), "analyzerName", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAnalyzerConfiguration_ExporterName(), theEcorePackage.getEString(), "exporterName", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataAnalyzerEClass, DataAnalyzer.class, "DataAnalyzer", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 

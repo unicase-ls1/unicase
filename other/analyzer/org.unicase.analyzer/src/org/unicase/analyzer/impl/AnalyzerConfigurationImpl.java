@@ -29,25 +29,15 @@ import org.unicase.analyzer.iterator.VersionIterator;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl#getAnalyzerClass <em>Analyzer Class</em>}</li>
  *   <li>{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl#getIterator <em>Iterator</em>}</li>
- *   <li>{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl#getExporter <em>Exporter</em>}</li>
+ *   <li>{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl#getAnalyzerName <em>Analyzer Name</em>}</li>
+ *   <li>{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl#getExporterName <em>Exporter Name</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerConfiguration {
-	/**
-	 * The cached value of the '{@link #getAnalyzerClass() <em>Analyzer Class</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getAnalyzerClass()
-	 * @generated
-	 * @ordered
-	 */
-	protected DataAnalyzer analyzerClass;
-
 	/**
 	 * The cached value of the '{@link #getIterator() <em>Iterator</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -59,14 +49,44 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	protected VersionIterator iterator;
 
 	/**
-	 * The cached value of the '{@link #getExporter() <em>Exporter</em>}' containment reference.
+	 * The default value of the '{@link #getAnalyzerName() <em>Analyzer Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getExporter()
+	 * @see #getAnalyzerName()
 	 * @generated
 	 * @ordered
 	 */
-	protected Exporter exporter;
+	protected static final String ANALYZER_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getAnalyzerName() <em>Analyzer Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getAnalyzerName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String analyzerName = ANALYZER_NAME_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #getExporterName() <em>Exporter Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExporterName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String EXPORTER_NAME_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getExporterName() <em>Exporter Name</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getExporterName()
+	 * @generated
+	 * @ordered
+	 */
+	protected String exporterName = EXPORTER_NAME_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -85,49 +105,6 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	@Override
 	protected EClass eStaticClass() {
 		return AnalyzerPackage.Literals.ANALYZER_CONFIGURATION;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public DataAnalyzer getAnalyzerClass() {
-		return analyzerClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetAnalyzerClass(DataAnalyzer newAnalyzerClass, NotificationChain msgs) {
-		DataAnalyzer oldAnalyzerClass = analyzerClass;
-		analyzerClass = newAnalyzerClass;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS, oldAnalyzerClass, newAnalyzerClass);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setAnalyzerClass(DataAnalyzer newAnalyzerClass) {
-		if (newAnalyzerClass != analyzerClass) {
-			NotificationChain msgs = null;
-			if (analyzerClass != null)
-				msgs = ((InternalEObject)analyzerClass).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS, null, msgs);
-			if (newAnalyzerClass != null)
-				msgs = ((InternalEObject)newAnalyzerClass).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS, null, msgs);
-			msgs = basicSetAnalyzerClass(newAnalyzerClass, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS, newAnalyzerClass, newAnalyzerClass));
 	}
 
 	/**
@@ -178,8 +155,8 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Exporter getExporter() {
-		return exporter;
+	public String getAnalyzerName() {
+		return analyzerName;
 	}
 
 	/**
@@ -187,14 +164,11 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetExporter(Exporter newExporter, NotificationChain msgs) {
-		Exporter oldExporter = exporter;
-		exporter = newExporter;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER, oldExporter, newExporter);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
+	public void setAnalyzerName(String newAnalyzerName) {
+		String oldAnalyzerName = analyzerName;
+		analyzerName = newAnalyzerName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME, oldAnalyzerName, analyzerName));
 	}
 
 	/**
@@ -202,18 +176,20 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExporter(Exporter newExporter) {
-		if (newExporter != exporter) {
-			NotificationChain msgs = null;
-			if (exporter != null)
-				msgs = ((InternalEObject)exporter).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER, null, msgs);
-			if (newExporter != null)
-				msgs = ((InternalEObject)newExporter).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER, null, msgs);
-			msgs = basicSetExporter(newExporter, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER, newExporter, newExporter));
+	public String getExporterName() {
+		return exporterName;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setExporterName(String newExporterName) {
+		String oldExporterName = exporterName;
+		exporterName = newExporterName;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER_NAME, oldExporterName, exporterName));
 	}
 
 	/**
@@ -224,12 +200,8 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS:
-				return basicSetAnalyzerClass(null, msgs);
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
 				return basicSetIterator(null, msgs);
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
-				return basicSetExporter(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -242,12 +214,12 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS:
-				return getAnalyzerClass();
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
 				return getIterator();
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
-				return getExporter();
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME:
+				return getAnalyzerName();
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER_NAME:
+				return getExporterName();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -260,14 +232,14 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS:
-				setAnalyzerClass((DataAnalyzer)newValue);
-				return;
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
 				setIterator((VersionIterator)newValue);
 				return;
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
-				setExporter((Exporter)newValue);
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME:
+				setAnalyzerName((String)newValue);
+				return;
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER_NAME:
+				setExporterName((String)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -281,14 +253,14 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS:
-				setAnalyzerClass((DataAnalyzer)null);
-				return;
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
 				setIterator((VersionIterator)null);
 				return;
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
-				setExporter((Exporter)null);
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME:
+				setAnalyzerName(ANALYZER_NAME_EDEFAULT);
+				return;
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER_NAME:
+				setExporterName(EXPORTER_NAME_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -302,14 +274,32 @@ public class AnalyzerConfigurationImpl extends EObjectImpl implements AnalyzerCo
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_CLASS:
-				return analyzerClass != null;
 			case AnalyzerPackage.ANALYZER_CONFIGURATION__ITERATOR:
 				return iterator != null;
-			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER:
-				return exporter != null;
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__ANALYZER_NAME:
+				return ANALYZER_NAME_EDEFAULT == null ? analyzerName != null : !ANALYZER_NAME_EDEFAULT.equals(analyzerName);
+			case AnalyzerPackage.ANALYZER_CONFIGURATION__EXPORTER_NAME:
+				return EXPORTER_NAME_EDEFAULT == null ? exporterName != null : !EXPORTER_NAME_EDEFAULT.equals(exporterName);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (analyzerName: ");
+		result.append(analyzerName);
+		result.append(", exporterName: ");
+		result.append(exporterName);
+		result.append(')');
+		return result.toString();
 	}
 
 } //AnalyzerConfigurationImpl

@@ -55,7 +55,7 @@
                   
                </documentation>
                <appInfo>
-                  <meta.attribute kind="java" basedOn=":org.unicase.analyzer.dataanalyzer.DataAnalyzer"/>
+                  <meta.attribute kind="java" basedOn=":org.unicase.analyzer.DataAnalyzer"/>
                </appInfo>
             </annotation>
          </attribute>

@@ -7,9 +7,14 @@
 package org.unicase.analyzer.ui.wizards;
 
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -20,6 +25,14 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.analyzer.AnalyzerConfiguration;
+import org.unicase.analyzer.iterator.IteratorFactory;
+import org.unicase.analyzer.iterator.TimeIterator;
+import org.unicase.analyzer.iterator.VersionIterator;
+import org.unicase.analyzer.iterator.VersionSpecQuery;
+import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 
 /**
  * @author liya
@@ -61,10 +74,15 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
 		 
+		AnalyzerConfiguration conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+		
 		 new Label (composite, SWT.NONE).setText("Step Length:");	
 		stepText = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		stepText.setLayoutData(gd);
+		if(conf.getIterator() != null){
+			stepText.setText(Integer.toString(conf.getIterator().getStepLength()));
+		}
 		stepText.addListener(SWT.KeyUp, this);
 		
 		 
@@ -73,7 +91,27 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		 gd = new GridData(GridData.FILL_HORIZONTAL);
 		 gd.horizontalSpan = ncol;
 		 defaultButton.setLayoutData(gd);
-		 defaultButton.setSelection(false);
+		 if(conf.getIterator() != null){
+			 defaultButton.setSelection(conf.getIterator().isDefault());
+			}
+		 else{
+			 defaultButton.setSelection(false);
+		 }
+		 defaultButton.addSelectionListener(new SelectionListener() {
+
+		
+				public void widgetDefaultSelected(SelectionEvent e) {
+					canFlipToNextPage = true;
+					getWizard().getContainer().updateButtons();
+				}
+
+				public void widgetSelected(SelectionEvent e) {
+					canFlipToNextPage = true;
+					getWizard().getContainer().updateButtons();
+
+				}
+
+			});
 		 defaultButton.addListener(SWT.Selection, this);
 		 
 		 group = new Group(composite, SWT.BORDER);
@@ -137,6 +175,36 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public IWizardPage getNextPage() {
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+		.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
+				VersionIterator versionIterator = IteratorFactory.eINSTANCE.createVersionIterator();
+				
+				versionIterator.setProjectId(wizard.getSelectedProjectID());
+				versionIterator.setStepLength(Integer.valueOf(stepText.getText()));
+				versionIterator.setDefault(defaultButton.getSelection());
+				
+				if(!defaultButton.getSelection()){					
+					VersionSpecQuery query = IteratorFactory.eINSTANCE.createVersionSpecQuery();
+					PrimaryVersionSpec startVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+					startVer.setIdentifier(Integer.valueOf(startText.getText()));
+					PrimaryVersionSpec endVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+					endVer.setIdentifier(Integer.valueOf(endText.getText()));
+					query.setStartVersion(startVer);
+					query.setEndVersion(endVer);
+					versionIterator.setVersionSpecQuery(query);
+					versionIterator.setForward(forwardButton.getSelection());
+					versionIterator.setReturnProjectDataCopy(returnCopyButton.getSelection());
+				}
+				wizard.setVersionIterator(versionIterator);
+				wizard.getAnalyzerConfig().setIterator((VersionIterator)EcoreUtil.copy(versionIterator));
+				
+			}
+		});
+		
 		ExporterPage page = ((ProjectAnalyzerWizard)getWizard()).getExporterPage();
 		return page;
 	}

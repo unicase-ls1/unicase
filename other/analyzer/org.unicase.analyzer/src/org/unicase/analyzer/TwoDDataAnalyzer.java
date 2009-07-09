@@ -6,7 +6,7 @@
 package org.unicase.analyzer;
 
 import java.util.List;
-
+import org.unicase.analyzer.iterator.VersionIterator;;
 
 /**
  * <!-- begin-user-doc -->
