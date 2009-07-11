@@ -76,9 +76,11 @@ public class MELinkControl extends AbstractMEControl {
 				Display.getDefault().asyncExec(new Runnable() {
 
 					public void run() {
-						hyperlink.setText(labelProvider.getText(getModelElement()));
-						linkComposite.layout(true);
-						parent.getParent().layout(true);
+						if (!hyperlink.isDisposed()) {
+							hyperlink.setText(labelProvider.getText(getModelElement()));
+							linkComposite.layout(true);
+							parent.getParent().layout(true);
+						}
 					}
 				});
 			}

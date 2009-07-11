@@ -124,7 +124,9 @@ public abstract class FileTransferJob extends Job {
 				if (transfer.isUpload()) {
 					fileAttachment.setUploading(false);
 				} else {
-					fileAttachment.setDownloading(false);
+					if (fileInformation.getFileVersion() == Integer.parseInt(fileAttachment.getFileID())) {
+						fileAttachment.setDownloading(false);
+					}
 				}
 			}
 		});

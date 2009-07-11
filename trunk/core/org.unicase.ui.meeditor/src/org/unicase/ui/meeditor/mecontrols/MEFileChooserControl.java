@@ -63,15 +63,13 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 	private EAttribute attribute;
 
-	private EMFDataBindingContext dbc;
-
 	private FileAttachment fileAttachment;
-
-	private EMFDataBindingContext dbc2;
 
 	private UploadSelectionListener uploadListener;
 
 	private RemoveTransferSelectionListener removeListener;
+
+	private EMFDataBindingContext dbc;
 
 	/**
 	 * Default constructor.
@@ -92,13 +90,16 @@ public class MEFileChooserControl extends AbstractMEControl {
 	 * {@inheritDoc}
 	 */
 	public Control createControl(Composite parent, int style) {
-		Composite composite = getToolkit().createComposite(parent, style);
 
+		// COMPOSITE FOR WIDGETS
+
+		Composite composite = getToolkit().createComposite(parent, style);
 		// Grid layout with two columns
-		GridLayout gridLayout = new GridLayout(3, false);
+		GridLayout gridLayout = new GridLayout(4, false);
 		composite.setLayout(gridLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
 
+		// check if project is shared. if not, display label with error message
 		if (WorkspaceManager.getProjectSpace(fileAttachment).getProjectId() == null) {
 			Label label = new Label(composite, SWT.RIGHT);
 			label.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_RED));
@@ -106,47 +107,63 @@ public class MEFileChooserControl extends AbstractMEControl {
 			return parent;
 		}
 
-		// Left column: file name
+		// ADDING WIDGETS AND SETTING LAYOUT DATA
+
+		// Column 1: downloadPending, icon to display status of cached file
+		Label downloadPending = new Label(composite, SWT.NONE);
+		downloadPending.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+
+		// Column 2: file name
 		Link fileName = new Link(composite, SWT.NONE);
 		fileName.setLayoutData(new GridData(SWT.NONE, SWT.BEGINNING, true, true));
 		fileName.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).hint(300, 15).grab(true, true).applyTo(fileName);
 
-		// bind the fileName widget to the correspondent file attachment attribute value
-		IObservableValue model = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
-		dbc = new EMFDataBindingContext();
-		// update strategy with specific converter added
-		UpdateValueStrategy strategy = new UpdateValueStrategy();
-		// the converter sees to that the file name is surrouned by hyperlink html tags, so that it is underlined
-		strategy.setConverter(new FileNameLinkContentConverter());
-		dbc.bindValue(SWTObservables.observeText(fileName), model, null, strategy);
-		// add a listener for initiation of file downloads or to open files, respectively
-		DownloadSelectionListener downloadSelectionListener = new DownloadSelectionListener();
-		fileName.addSelectionListener(downloadSelectionListener);
-
-		// Middle column: file name
+		// Column 3: save as button
 		Button saveAs = new Button(composite, SWT.RIGHT);
 		saveAs.setText("Save as... ");
 		saveAs.setLayoutData(new GridData(SWT.RIGHT, SWT.BEGINNING, false, false));
 		saveAs.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).grab(false, false).applyTo(saveAs);
+
+		// Column 4: button to open a dialog for uploading files
+		Button upload = new Button(composite, SWT.PUSH);
+		upload.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
+
+		// ADDING LISTENERS AND TOOLTIPS TO THE WIDGETS
+
+		// initialize listeners
+		uploadListener = new UploadSelectionListener();
+		removeListener = new RemoveTransferSelectionListener();
+		DownloadSelectionListener downloadSelectionListener = new DownloadSelectionListener();
+		// add listeners
 		saveAs.addSelectionListener(new SaveAsSelectionListener());
 		saveAs.setToolTipText("As modifying of cached files is not endorsed "
 			+ "(the changes simply won't be uploaded until you do so manually), "
 			+ "\nyou can choose to save a copy of the downloaded file at another location.");
-		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).grab(false, false).applyTo(saveAs);
+		fileName.addSelectionListener(downloadSelectionListener);
 
-		// Right column: button to open a dialog for uploading files
-		final Button upload = new Button(composite, SWT.PUSH);
-		uploadListener = new UploadSelectionListener();
-		removeListener = new RemoveTransferSelectionListener();
-		upload.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
-		dbc2 = new EMFDataBindingContext();
+		// ECLIPSE DATABINDING: BIND WIDGETS TO ATTRIBUTES
+
+		// data binding context
+		dbc = new EMFDataBindingContext();
+		// file name binding
+		IObservableValue model1 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
+		UpdateValueStrategy strategy1 = new UpdateValueStrategy();
+		strategy1.setConverter(new FileNameLinkContentConverter());
+		dbc.bindValue(SWTObservables.observeText(fileName), model1, null, strategy1);
+		// upload binding
 		IObservableValue model2 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
 			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Uploading());
-		// update strategy with specific converter added
 		UpdateValueStrategy strategy2 = new UpdateValueStrategy();
 		strategy2.setConverter(new UploadImageConverter(upload));
-		dbc2.bindValue(SWTObservables.observeImage(upload), model2, null, strategy2);
+		dbc.bindValue(SWTObservables.observeImage(upload), model2, null, strategy2);
+		// download binding
+		IObservableValue model3 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
+			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Downloading());
+		UpdateValueStrategy strategy = new UpdateValueStrategy();
+		strategy.setConverter(new DownloadImageConverter(downloadPending, saveAs));
+		dbc.bindValue(SWTObservables.observeImage(downloadPending), model3, null, strategy);
 
 		return parent;
 	}
@@ -159,6 +176,75 @@ public class MEFileChooserControl extends AbstractMEControl {
 			FileTransferUtil.openFile(fileInfo, projectId);
 		} catch (FileTransferException e) {
 			DialogHandler.showErrorDialog(e.getMessage());
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	private final class DownloadImageConverter implements IConverter {
+
+		private Label downloadPending;
+		private Button saveAs;
+
+		public DownloadImageConverter(Label downloadPending, Button saveAs) {
+			this.downloadPending = downloadPending;
+			this.saveAs = saveAs;
+		}
+
+		public Object getToType() {
+			return Image.class;
+		}
+
+		public Object getFromType() {
+			return Boolean.class;
+		}
+
+		public Object convert(Object fromObject) {
+			if (fileAttachment.getFileID() == null) {
+				return setToolTipAndSaveAsStatus("There is no file attached to this file attachment.", false);
+			}
+			File cachedFile;
+			try {
+				cachedFile = FileTransferUtil.findCachedFile(fileAttachment, WorkspaceManager.getProjectSpace(
+					fileAttachment).getProjectId());
+				FileInputStream fileInputStream = new FileInputStream(cachedFile);
+				int size = fileInputStream.available();
+				fileInputStream.close();
+				if (size == fileAttachment.getFileSize()) {
+					return setToolTipAndSaveAsStatus(
+						"The download has succeeded. \nYou can open or save the file at another location at any time.",
+						true);
+				} else {
+					if (fileAttachment.isDownloading()) {
+						return setToolTipAndSaveAsStatus(
+							"A download request is pending. \nPlease wait for it to be finished.", false);
+					} else {
+						return setToolTipAndSaveAsStatus(
+							"Please login and click the file name \nto initiate the download of the file.", false);
+					}
+				}
+			} catch (FileNotFoundException e) {
+				if (fileAttachment.isDownloading()) {
+					return setToolTipAndSaveAsStatus(
+						"A download request is pending. \nPlease wait for it to be finished.", false);
+				} else {
+					return setToolTipAndSaveAsStatus(
+						"Please login and click the file name \nto initiate the download of the file.", false);
+				}
+			} catch (IOException e) {
+				return setToolTipAndSaveAsStatus("Could not locate the file in the cache.", false);
+			}
+		}
+
+		private Object setToolTipAndSaveAsStatus(String toolTipText, boolean enabled) {
+			saveAs.setEnabled(enabled);
+			downloadPending.setToolTipText(toolTipText);
+			if (enabled) {
+				return Activator.getImageDescriptor("icons/drive_go.png").createImage();
+			} else {
+				return Activator.getImageDescriptor("icons/drive_error.png").createImage();
+			}
 		}
 	}
 
@@ -194,6 +280,29 @@ public class MEFileChooserControl extends AbstractMEControl {
 					.setToolTipText("If you wish to cancel the pending upload and upload another file, \nplease click this button.");
 				return Activator.getImageDescriptor("icons/delete.png").createImage();
 			}
+		}
+	}
+
+	/**
+	 * Converts the content of the file name attribute value to a hyperlink.
+	 * 
+	 * @author pfeifferc
+	 */
+	private final class FileNameLinkContentConverter implements IConverter {
+
+		public Object getToType() {
+			return String.class;
+		}
+
+		public Object getFromType() {
+			return String.class;
+		}
+
+		public Object convert(Object fromObject) {
+			if (fromObject == null) {
+				return "There is no file attached.";
+			}
+			return "<a>" + fromObject.toString() + "</a>";
 		}
 	}
 
@@ -286,53 +395,15 @@ public class MEFileChooserControl extends AbstractMEControl {
 	}
 
 	/**
-	 * Converts the content of the file name attribute value to a hyperlink.
-	 * 
-	 * @author pfeifferc
-	 */
-	private final class FileNameLinkContentConverter implements IConverter {
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public Object getToType() {
-			return String.class;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public Object getFromType() {
-			return String.class;
-		}
-
-		/**
-		 * {@inheritDoc}
-		 */
-		public Object convert(Object fromObject) {
-			if (fromObject == null) {
-				return "";
-			}
-			return "<a>" + fromObject.toString() + "</a>";
-		}
-	}
-
-	/**
 	 * Transfer selection listener.
 	 * 
 	 * @author pfeifferc
 	 */
 	private final class DownloadSelectionListener implements SelectionListener {
 
-		/**
-		 * {@inheritDoc}
-		 */
 		public void widgetDefaultSelected(SelectionEvent e) {
 		}
 
-		/**
-		 * {@inheritDoc}
-		 */
 		public void widgetSelected(SelectionEvent e) {
 			Display.getCurrent().asyncExec(new DownloadRunnable());
 		}
@@ -342,20 +413,14 @@ public class MEFileChooserControl extends AbstractMEControl {
 		 */
 		private final class DownloadRunnable implements Runnable {
 
-			/**
-			 * {@inheritDoc}
-			 */
 			public void run() {
-				// check if the file attachment attributes are set, otherwise return error dialog
-				if (fileAttachment.getFileName() == null || fileAttachment.getFileID() == null) {
-					DialogHandler.showErrorDialog("There is no file attached to this file attachment!");
+				FileInformation fileInfo;
+				try {
+					fileInfo = getFileInformationForFileAttachment();
+				} catch (FileTransferException e2) {
+					openInformation("Please observe:", e2.getMessage());
 					return;
 				}
-				// set information needed for transfer
-				FileInformation fileInfo = new FileInformation();
-				fileInfo.setFileAttachmentId(fileAttachment.getIdentifier());
-				fileInfo.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
-				fileInfo.setFileName(fileAttachment.getFileName());
 				try {
 					// try to localize the cached file
 					File cachedFile = FileTransferUtil.findCachedFile(fileInfo, WorkspaceManager.getProjectSpace(
@@ -373,6 +438,14 @@ public class MEFileChooserControl extends AbstractMEControl {
 					try {
 						// if file could not be found, initiate transfer
 						WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInfo, null, false);
+						TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+							.getEditingDomain("org.unicase.EditingDomain");
+						domain.getCommandStack().execute(new RecordingCommand(domain) {
+							@Override
+							protected void doExecute() {
+								fileAttachment.setDownloading(true);
+							}
+						});
 					} catch (FileTransferException e1) {
 						openInformation("Please observe:", e1.getMessage());
 					}
@@ -391,16 +464,10 @@ public class MEFileChooserControl extends AbstractMEControl {
 	 */
 	private final class UploadSelectionListener implements SelectionListener {
 
-		/**
-		 * {@inheritDoc}
-		 */
 		public void widgetDefaultSelected(SelectionEvent e) {
 			// nothing to do
 		}
 
-		/**
-		 * {@inheritDoc}
-		 */
 		public void widgetSelected(SelectionEvent e) {
 			// open a file dialog
 			final FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell());
@@ -441,12 +508,22 @@ public class MEFileChooserControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		if (dbc != null) {
-			dbc.dispose();
-		}
-		if (dbc2 != null) {
-			dbc2.dispose();
-		}
+		dbc.dispose();
 		super.dispose();
+	}
+
+	private FileInformation getFileInformationForFileAttachment() throws FileTransferException {
+		// check if the file attachment attributes are set, otherwise return error dialog
+		if (fileAttachment.getFileName() == null || fileAttachment.getFileID() == null) {
+			String message = "There is no file attached to this file attachment!";
+			DialogHandler.showErrorDialog(message);
+			throw new FileTransferException(message);
+		}
+		// set information needed for transfer
+		FileInformation fileInfo = new FileInformation();
+		fileInfo.setFileAttachmentId(fileAttachment.getIdentifier());
+		fileInfo.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
+		fileInfo.setFileName(fileAttachment.getFileName());
+		return fileInfo;
 	}
 }
