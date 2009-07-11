@@ -2,7 +2,7 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.workItemDiagram"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.diagram.workItemDiagram"
     modelID="WorkItem"
     diagramFileExtension="workitem_diagram"
     dynamicTemplates="true"
@@ -286,7 +286,7 @@
     </preferencePages>
   </diagram>
   <plugin
-      iD="org.unicase.ui.workItemDiagram"/>
+      iD="org.unicase.ui.diagram.workItemDiagram"/>
   <editor/>
   <navigator>
     <childReferences
