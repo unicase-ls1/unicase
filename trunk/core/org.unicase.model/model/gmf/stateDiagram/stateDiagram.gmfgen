@@ -2,7 +2,7 @@
 <gmfgen:GenEditorGenerator xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.stateDiagram"
+    xmlns:gmfgen="http://www.eclipse.org/gmf/2008/GenModel" packageNamePrefix="org.unicase.ui.diagram.stateDiagram"
     modelID="State"
     sameFileForDiagramAndModel="true"
     diagramFileExtension="state_diagram"
@@ -330,7 +330,7 @@
     </preferencePages>
   </diagram>
   <plugin
-      iD="org.unicase.ui.stateDiagram"/>
+      iD="org.unicase.ui.diagram.stateDiagram"/>
   <editor/>
   <navigator>
     <childReferences
