@@ -196,8 +196,6 @@ public final class FileTransferUtil {
 	}
 
 	/**
-	 * Returns null if the file could not be found.
-	 * 
 	 * @param fileAttachment the file Attachment
 	 * @param projectId project id
 	 * @return the cached file
