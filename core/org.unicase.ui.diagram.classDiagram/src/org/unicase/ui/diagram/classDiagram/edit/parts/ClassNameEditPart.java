@@ -50,6 +50,7 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.unicase.ui.common.diagram.OnFirstCharTextDirectEditManager;
 
 /**
  * @generated
@@ -92,6 +93,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE,
@@ -99,6 +101,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE,
 				new NonResizableEditPolicy() {
 
+					@Override
 					protected List createSelectionHandles() {
 						List handles = new ArrayList();
 						NonResizableHandleKit.addMoveHandle(
@@ -106,10 +109,12 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 						return handles;
 					}
 
+					@Override
 					public Command getCommand(Request request) {
 						return null;
 					}
 
+					@Override
 					public boolean understandsRequest(Request request) {
 						return false;
 					}
@@ -174,6 +179,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -181,6 +187,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -318,19 +325,20 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
+	 * @return A {@link TextDirectEditManager}
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new TextDirectEditManager(
+			setManager(new OnFirstCharTextDirectEditManager(
 					this,
-					TextDirectEditManager.getTextCellEditorClass(this),
+					OnFirstCharTextDirectEditManager.getTextCellEditorClass(this),
 					org.unicase.ui.diagram.classDiagram.edit.parts.ModelEditPartFactory
 							.getTextCellEditorLocator(this)));
 		}
 		return manager;
 	}
-
+	
 	/**
 	 * @generated
 	 */
@@ -369,6 +377,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performDirectEditRequest(Request request) {
 		final Request theRequest = request;
 		try {
@@ -403,6 +412,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -451,6 +461,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
 				NotationPackage.eINSTANCE.getFontStyle());
@@ -465,6 +476,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -472,6 +484,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -489,6 +502,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -502,10 +516,12 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
+				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -524,6 +540,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addNotationalListeners() {
 		super.addNotationalListeners();
 		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
@@ -532,6 +549,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeNotationalListeners() {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
@@ -540,6 +558,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -583,6 +602,7 @@ public class ClassNameEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;

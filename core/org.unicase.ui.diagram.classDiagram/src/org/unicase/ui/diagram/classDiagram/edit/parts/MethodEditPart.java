@@ -50,6 +50,7 @@ import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
+import org.unicase.ui.common.diagram.OnFirstCharTextDirectEditManager;
 
 /**
  * @generated
@@ -92,6 +93,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public DragTracker getDragTracker(Request request) {
 		if (request instanceof SelectionRequest
 				&& ((SelectionRequest) request).getLastButtonPressed() == 3) {
@@ -103,6 +105,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(
@@ -175,6 +178,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -182,6 +186,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -313,14 +318,16 @@ public class MethodEditPart extends CompartmentEditPart implements
 		return parser;
 	}
 
+
 	/**
-	 * @generated
+	 * @generated NOT
+	 * @return A {@link TextDirectEditManager}
 	 */
 	protected DirectEditManager getManager() {
 		if (manager == null) {
-			setManager(new TextDirectEditManager(
+			setManager(new OnFirstCharTextDirectEditManager(
 					this,
-					TextDirectEditManager.getTextCellEditorClass(this),
+					OnFirstCharTextDirectEditManager.getTextCellEditorClass(this),
 					org.unicase.ui.diagram.classDiagram.edit.parts.ModelEditPartFactory
 							.getTextCellEditorLocator(this)));
 		}
@@ -365,6 +372,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void performDirectEditRequest(Request request) {
 		final Request theRequest = request;
 		try {
@@ -399,6 +407,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -447,6 +456,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(
 				NotationPackage.eINSTANCE.getFontStyle());
@@ -461,6 +471,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -468,6 +479,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -485,6 +497,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -498,10 +511,12 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
+				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -520,6 +535,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addNotationalListeners() {
 		super.addNotationalListeners();
 		addListenerFilter("PrimaryView", this, getPrimaryView()); //$NON-NLS-1$
@@ -528,6 +544,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeNotationalListeners() {
 		super.removeNotationalListeners();
 		removeListenerFilter("PrimaryView"); //$NON-NLS-1$
@@ -542,6 +559,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	 * @generated NOT
 	 * @param event The notification to be handled
 	 */
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -591,6 +609,7 @@ public class MethodEditPart extends CompartmentEditPart implements
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
