@@ -68,6 +68,71 @@ public class AttributeTest extends CanonizationTest {
 	}
 
 	/**
+	 * Tests canonization for consecutive attribute changes on a single feature.
+	 */
+	@Test
+	public void consecutiveAttributeChangeSingleFeatureToNull() {
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase);
+		useCase.setName("oldName");
+
+		Project expectedProject = ModelUtil.clone(getProject());
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+		clearOperations();
+
+		useCase.setName("A");
+		useCase.setName("B");
+		useCase.setName("C");
+		useCase.setName(null);
+
+		assertEquals(null, useCase.getName());
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		OperationsCanonizer.canonize(operations);
+		assertEquals(operations.size(), 1);
+
+		AttributeOperation reverse = (AttributeOperation) operations.get(0).reverse();
+		reverse.apply(getProject());
+
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+	}
+
+	/**
+	 * Tests canonization for consecutive attribute changes on a single feature.
+	 */
+	@Test
+	public void consecutiveAttributeChangeSingleFeatureNullToValue() {
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase);
+		useCase.setName(null);
+
+		Project expectedProject = ModelUtil.clone(getProject());
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+		clearOperations();
+
+		useCase.setName("A");
+		useCase.setName("B");
+		useCase.setName("C");
+
+		assertEquals("C", useCase.getName());
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		OperationsCanonizer.canonize(operations);
+		assertEquals(operations.size(), 1);
+
+		AttributeOperation reverse = (AttributeOperation) operations.get(0).reverse();
+		reverse.apply(getProject());
+
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+	}
+
+	/**
 	 * Tests canonization for consecutive attribute changes, resulting in a noop.
 	 */
 	@Test
@@ -88,6 +153,37 @@ public class AttributeTest extends CanonizationTest {
 		useCase.setName("oldName");
 
 		assertEquals("oldName", useCase.getName());
+
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		// should not have created any operations, we were just resetting the name to its original value
+		OperationsCanonizer.canonize(operations);
+		assertEquals(operations.size(), 0);
+
+	}
+
+	/**
+	 * Tests canonization for consecutive attribute changes, resulting in a noop.
+	 */
+	@Test
+	public void attributeChangeNoOpNull() {
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase);
+		useCase.setName(null);
+
+		Project expectedProject = ModelUtil.clone(getProject());
+		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
+
+		clearOperations();
+
+		useCase.setName("A");
+		useCase.setName("B");
+		useCase.setName("C");
+		useCase.setName(null);
+
+		assertEquals(null, useCase.getName());
 
 		assertTrue(ModelUtil.areEqual(getProject(), expectedProject));
 

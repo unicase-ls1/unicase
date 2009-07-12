@@ -12,7 +12,7 @@ import java.util.Set;
 
 import org.junit.Test;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
-import org.unicase.emfstore.conflictDetection.FineGrainedConflictDetectionStrategy;
+import org.unicase.emfstore.conflictDetection.IndexSensitiveConflictDetectionStrategy;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.Project;
 import org.unicase.model.document.DocumentFactory;
@@ -54,7 +54,7 @@ public class ConflictDetectionAttributeTest extends ConflictDetectionTest {
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
 
-		ConflictDetector cd = new ConflictDetector(new FineGrainedConflictDetectionStrategy());
+		ConflictDetector cd = new ConflictDetector(new IndexSensitiveConflictDetectionStrategy());
 		Set<AbstractOperation> conflicts = cd.getConflicting(ops1, ops2);
 
 		assertEquals(conflicts.size(), 1);
