@@ -6,39 +6,44 @@
 package org.unicase.ui.tom.gestures;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.touches.SingleTouch;
 
 /**
  * @author schroech
- *
+ * 
  */
-
 
 public abstract class AbstractMoveGesture extends AbstractContinuousGesture {
 
 	private static AbstractMoveGesture executingMoveGesture;
-	
+
 	private SingleTouch moveTouch;
-	private List<SingleTouch> candidateTouches;
+	private EditPart moveEditPart;
+	private Map<SingleTouch, EditPart> candidateTouchEditPartMap = new HashMap<SingleTouch, EditPart>();
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param dispatch The {@link TouchDispatch} at which the gesture will register for touch events
-	 * @param diagramEditPart The {@link DiagramEditPart}
+	 * @param dispatch
+	 *            The {@link TouchDispatch} at which the gesture will register
+	 *            for touch events
+	 * @param diagramEditPart
+	 *            The {@link DiagramEditPart}
 	 */
 	public AbstractMoveGesture(TouchDispatch dispatch) {
 		super(dispatch);
-		
-		setCandidateTouches(new ArrayList<SingleTouch>());
 	}
 
 	/**
-	 * @param moveTouch The moving touch
+	 * @param moveTouch
+	 *            The moving touch
 	 */
 	public void setMoveTouch(SingleTouch moveTouch) {
 		this.moveTouch = moveTouch;
@@ -50,40 +55,54 @@ public abstract class AbstractMoveGesture extends AbstractContinuousGesture {
 	public SingleTouch getMoveTouch() {
 		return moveTouch;
 	}
-	
-	/** 
-	* {@inheritDoc}
-	* @see org.unicase.ui.tom.gestures.AbstractMomentaryGesture#reset()
-	*/
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.tom.gestures.AbstractMomentaryGesture#reset()
+	 */
 	@Override
 	public void reset() {
 		super.reset();
-		
+
 		setMoveTouch(null);
-		getCandidateTouches().clear();	
+		getCandidateTouchEditPartMap().clear();
 		setExecutingMoveGesture(null);
 	}
 
 	/**
-	 * @param candidateTouches The possible move touches
+	 * @param candidateTouches
+	 *            The possible move touches
 	 */
-	public void setCandidateTouches(List<SingleTouch> candidateTouches) {
-		this.candidateTouches = candidateTouches;
-	}
 
 	/**
 	 * @return The possible move touches
 	 */
-	public List<SingleTouch> getCandidateTouches() {
-		return candidateTouches;
-	}
 
-	public static void setExecutingMoveGesture(AbstractMoveGesture executingMoveGesture) {
+	public static void setExecutingMoveGesture(
+			AbstractMoveGesture executingMoveGesture) {
 		AbstractMoveGesture.executingMoveGesture = executingMoveGesture;
 	}
 
 	public static AbstractMoveGesture getExecutingMoveGesture() {
 		return executingMoveGesture;
+	}
+
+	public void setCandidateTouchEditPartMap(
+			Map<SingleTouch, EditPart> candidateTouchEditPartMap) {
+		this.candidateTouchEditPartMap = candidateTouchEditPartMap;
+	}
+
+	public Map<SingleTouch, EditPart> getCandidateTouchEditPartMap() {
+		return candidateTouchEditPartMap;
+	}
+
+	public void setMoveEditPart(EditPart moveEditPart) {
+		this.moveEditPart = moveEditPart;
+	}
+
+	public EditPart getMoveEditPart() {
+		return moveEditPart;
 	}
 
 }

@@ -36,6 +36,21 @@ public class MultiTouch extends AbstractTouch{
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.tom.touches.Touch#getPosition()
 	 */
+	public Point getAbsolutePosition() {
+		PointList allPositions = new PointList();
+		
+		for (Touch activeTouch : activeTouches) {
+			Point position = activeTouch.getAbsolutePosition();
+			allPositions.addPoint(position);
+		}
+		
+		return allPositions.getBounds().getCenter();
+	}
+	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.Touch#getPosition()
+	 */
 	public Point getPosition() {
 		PointList allPositions = new PointList();
 		
@@ -91,6 +106,32 @@ public class MultiTouch extends AbstractTouch{
 		return lastUpTouch.getTouchUpDate();
 	}
 
+	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.Touch#getX()
+	 */
+	public int getAbsoluteX() {
+		PointList points = new PointList();
+		for (Touch activeTouch : getActiveTouches()) {
+			points.addPoint(activeTouch.getAbsolutePosition());
+		}
+		return points.getMidpoint().x;
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.ui.tom.touches.Touch#getY()
+	 */
+	public int getAbsoluteY() {
+		PointList points = new PointList();
+		for (Touch activeTouch : getActiveTouches()) {
+			points.addPoint(activeTouch.getPosition());
+		}
+
+		return points.getMidpoint().y;
+	}
+	
 	/** 
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.tom.touches.Touch#getX()

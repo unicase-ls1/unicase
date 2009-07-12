@@ -395,6 +395,8 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 				for (Gesture gesture : getGestures()) {
 					gesture.setDiagramEditPart(null);
 				}
+				
+				getClaimedTouches().clear();
 			}
 		}
 

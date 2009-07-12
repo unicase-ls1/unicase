@@ -1,26 +1,28 @@
 package org.unicase.ui.tom.gestures;
 
 import java.util.ArrayList;
-import java.lang.Math; 
+import java.util.Collections;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.impl.EStructuralFeatureImpl;
 import org.eclipse.emf.edit.command.SetCommand;
-import org.eclipse.gef.EditPart;
+import org.eclipse.gef.NodeEditPart;
+import org.eclipse.gef.RequestConstants;
+import org.eclipse.gef.commands.Command;
+import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
+import org.unicase.ui.tom.commands.SwitchConnectionEndsCommand;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
@@ -33,7 +35,8 @@ public class ChangeConnectionTypeGesture extends AbstractContinuousGesture {
 	private int originalAssociationTypeValue = -1;
 	private int currentAssociationTypeValue = -1;
 	private Point changeConnectionTouchFirstPoint;
-	
+	private boolean hasFlipped;
+
 	public ChangeConnectionTypeGesture(TouchDispatch dispatch) {
 		super(dispatch);
 		setCandidateTouchObjectMap(new HashMap<SingleTouch, Association>());
@@ -50,12 +53,12 @@ public class ChangeConnectionTypeGesture extends AbstractContinuousGesture {
 		if (touchedEditPart == null) {
 			return;
 		}
-		
+
 		EObject element = EditPartUtility.getElement(touchedEditPart);
 		if (!(element instanceof Association)) {
 			return;
 		}
-		
+
 		getCandidateTouchObjectMap().put(touch, (Association) element);
 	}
 
@@ -65,34 +68,86 @@ public class ChangeConnectionTypeGesture extends AbstractContinuousGesture {
 			if (touch != getChangeConnectionTouch()) {
 				return;
 			}
-					
-			if (originalAssociationTypeValue == -1) {
-				originalAssociationTypeValue = getAssociationToChange().getType().getValue();
-				changeConnectionTouchFirstPoint = touch.getPath().getFirstPoint();
-				currentAssociationTypeValue = getAssociationToChange().getType().getValue();
+
+			NodeEditPart targetEditPart = (NodeEditPart) getDiagramEditPart()
+					.findEditPart(null, getAssociationToChange().getTarget());
+			NodeEditPart sourceEditPart = (NodeEditPart) getDiagramEditPart()
+					.findEditPart(null, getAssociationToChange().getSource());
+			Set<ConnectionEditPart> connectionEditParts = EditPartUtility
+					.findConnectionEditParts(sourceEditPart, Collections
+							.singleton((EObject) getAssociationToChange()));
+
+			if (connectionEditParts.size() != 1) {
+				return;
 			}
-			
+
+			ConnectionEditPart associationEditPart = null;
+			for (ConnectionEditPart connectionEditPart : connectionEditParts) {
+				associationEditPart = connectionEditPart;
+			}
+
+			if (!hasFlipped()) {
+				Object model = associationEditPart.getFigure();
+				if (model instanceof Connection) {
+					ConnectionAnchor targetAnchor = ((Connection) model)
+							.getTargetAnchor();
+					Point targetReferencePoint = targetAnchor
+							.getReferencePoint();
+
+					ConnectionAnchor sourceAnchor = ((Connection) model)
+							.getSourceAnchor();
+					Point sourceReferencePoint = sourceAnchor
+							.getReferencePoint();
+
+					Point firstPoint = getChangeConnectionTouch().getPath()
+							.getFirstPoint();
+
+					if (targetReferencePoint.getDistance(firstPoint) < sourceReferencePoint
+							.getDistance(firstPoint)) {
+						SwitchConnectionEndsCommand switchCommand = new SwitchConnectionEndsCommand(
+								getDiagramEditPart(), associationEditPart);
+						switchCommand.execute();
+						setHasFlipped(true);
+					}
+				}
+			}
+
+			if (originalAssociationTypeValue == -1) {
+				originalAssociationTypeValue = getAssociationToChange()
+						.getType().getValue();
+				changeConnectionTouchFirstPoint = touch.getPath()
+						.getFirstPoint();
+				currentAssociationTypeValue = getAssociationToChange()
+						.getType().getValue();
+			}
+
 			Point lastPoint = touch.getPosition();
-			
+
 			double singleDragDistance = 30;
-			double distance = changeConnectionTouchFirstPoint.getDistance(lastPoint);
+			double distance = changeConnectionTouchFirstPoint
+					.getDistance(lastPoint);
 			distance = distance / singleDragDistance;
 			distance = Math.floor(distance);
 
 			int multiples = (int) distance;
-			
+
 			int newAssociationTypeValue = (originalAssociationTypeValue + multiples) % 4;
-			
+
 			if (currentAssociationTypeValue == newAssociationTypeValue) {
 				return;
 			}
-			
-			AssociationType associationType = AssociationType.get(newAssociationTypeValue);
-			
-			EStructuralFeature structuralFeature = getAssociationToChange().eClass().getEStructuralFeature("type");
-			SetCommand command = new SetCommand(getDiagramEditPart().getEditingDomain(), associationToChange, structuralFeature, associationType);
-			getDiagramEditPart().getEditingDomain().getCommandStack().execute(command);
-			
+
+			AssociationType associationType = AssociationType
+					.get(newAssociationTypeValue);
+
+			EStructuralFeature structuralFeature = getAssociationToChange()
+					.eClass().getEStructuralFeature("type");
+			SetCommand command = new SetCommand(getDiagramEditPart()
+					.getEditingDomain(), associationToChange,
+					structuralFeature, associationType);
+			getDiagramEditPart().getEditingDomain().getCommandStack().execute(
+					command);
+
 			currentAssociationTypeValue = newAssociationTypeValue;
 		} else {
 			Association association = getCandidateTouchObjectMap().get(touch);
@@ -108,7 +163,7 @@ public class ChangeConnectionTypeGesture extends AbstractContinuousGesture {
 
 			setChangeConnectionTouch(touch);
 			setAssociationToChange(association);
-			
+
 			setCanExecute(true);
 		}
 
@@ -121,12 +176,13 @@ public class ChangeConnectionTypeGesture extends AbstractContinuousGesture {
 				setChangeConnectionTouch(null);
 				setAssociationToChange(null);
 				originalAssociationTypeValue = -1;
-				
+
 				setExecuting(false);
+				setHasFlipped(false);
 				setCanExecute(false);
 			}
 		}
-		
+
 	}
 
 	public void execute() {
@@ -154,7 +210,8 @@ public class ChangeConnectionTypeGesture extends AbstractContinuousGesture {
 		return changeConnectionTouch;
 	}
 
-	public void setCandidateTouchObjectMap(Map<SingleTouch, Association> candidateTouchObjectMap) {
+	public void setCandidateTouchObjectMap(
+			Map<SingleTouch, Association> candidateTouchObjectMap) {
 		this.candidateTouchObjectMap = candidateTouchObjectMap;
 	}
 
@@ -168,6 +225,14 @@ public class ChangeConnectionTypeGesture extends AbstractContinuousGesture {
 
 	public Association getAssociationToChange() {
 		return associationToChange;
+	}
+
+	public void setHasFlipped(boolean hasFlipped) {
+		this.hasFlipped = hasFlipped;
+	}
+
+	public boolean hasFlipped() {
+		return hasFlipped;
 	}
 
 }

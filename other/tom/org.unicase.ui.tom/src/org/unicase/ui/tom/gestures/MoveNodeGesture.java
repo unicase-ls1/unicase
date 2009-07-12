@@ -6,26 +6,20 @@
 package org.unicase.ui.tom.gestures;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
-import org.eclipse.draw2d.Figure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemsAwareFreeFormLayer;
-import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
+import org.unicase.ui.tom.operations.AltMoveNodeOperation;
 import org.unicase.ui.tom.operations.MoveNodeOperation;
 import org.unicase.ui.tom.tools.TouchConstants;
-import org.unicase.ui.tom.tools.TouchUtility;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
-import org.unicase.ui.tom.touches.Touch;
 
 /**
  * @author schroech
@@ -37,8 +31,8 @@ import org.unicase.ui.tom.touches.Touch;
  */
 public class MoveNodeGesture extends AbstractMoveGesture {
 
-	private MoveNodeOperation moveNodeOperation;
-
+	private AltMoveNodeOperation moveNodeOperation;
+	
 	/**
 	 * Default constructor.
 	 * 
@@ -65,19 +59,14 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 		setExecuting(true);
 		setExecutingMoveGesture(this);
 
-		Point firstPoint = getMoveTouch().getPath().getFirstPoint();
 
-		INodeEditPart primaryEditPart = findTouchedNodeEditPart(firstPoint);
-		if (primaryEditPart == null) {
-			return;
-			// throw new IllegalStateException();
-		}
-
-		MoveNodeOperation moveNodeOperation = new MoveNodeOperation(
-				getDiagramEditPart(), primaryEditPart);
+		AltMoveNodeOperation moveNodeOperation = new AltMoveNodeOperation(
+				getDiagramEditPart(), (INodeEditPart) getMoveEditPart());
 
 		setMoveNodeOperation(moveNodeOperation);
 
+		Point firstPoint = getMoveTouch().getPath().getFirstPoint().getCopy();
+		
 		getMoveNodeOperation().prepare(firstPoint);
 	}
 
@@ -91,14 +80,10 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 		if (!(acceptsAdditionalTouches())) {
 			return;
 		}
-
-		if (!(touch.getPosition().equals(touch.getPath().getFirstPoint()))) {
-			throw new IllegalStateException();
-		}
 		
-		EditPart touchedEditPart = findTouchedNodeEditPart(touch.getPosition());
+		NodeEditPart touchedEditPart = findTouchedNodeEditPart(touch.getPosition());
 		if (touchedEditPart != null) {
-			getCandidateTouches().add(touch);
+			getCandidateTouchEditPartMap().put(touch, touchedEditPart);
 		}
 	}
 
@@ -111,7 +96,8 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 	public void handleSingleTouchChanged(SingleTouch touch) {
 		if (isExecuting()) {
 			if (touch == getMoveTouch()) {
-				getMoveNodeOperation().update(touch.getPosition());
+				Point position = getMoveTouch().getPosition().getCopy();				
+				getMoveNodeOperation().update(position);
 			}
 			return;
 		}
@@ -120,7 +106,7 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 			return;
 		}
 
-		if (!getCandidateTouches().contains(touch)) {
+		if (!getCandidateTouchEditPartMap().containsKey(touch)) {
 			return;
 		}
 
@@ -128,8 +114,13 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 			return;
 		}
 
+		EditPart editPart = getCandidateTouchEditPartMap().get(touch);
+		
+		setMoveEditPart(editPart);
 		setMoveTouch(touch);
-		getCandidateTouches().remove(touch);
+		
+		getCandidateTouchEditPartMap().remove(touch);
+		
 		setCanExecute(true);
 	}
 
@@ -154,21 +145,21 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 
 		}
 		
-		getCandidateTouches().remove(touch);
+		getCandidateTouchEditPartMap().remove(touch);
 	}
 
 	/**
 	 * @param moveCommand
 	 *            The {@link MoveNodeOperation}
 	 */
-	protected void setMoveNodeOperation(MoveNodeOperation moveCommand) {
+	protected void setMoveNodeOperation(AltMoveNodeOperation moveCommand) {
 		this.moveNodeOperation = moveCommand;
 	}
 
 	/**
 	 * @return The {@link MoveNodeOperation}
 	 */
-	protected MoveNodeOperation getMoveNodeOperation() {
+	protected AltMoveNodeOperation getMoveNodeOperation() {
 		return moveNodeOperation;
 	}
 

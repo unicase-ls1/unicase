@@ -54,13 +54,13 @@ public class MoveMultiNodeGesture extends AbstractMoveGesture{
 		List<Touch> activeTouches = touch.getMultiTouch().getActiveTouches();
 		if (activeTouches.size() > 1) {
 			for (Touch activeTouch : activeTouches) {
-				getCandidateTouches().remove(activeTouch);
+		//		getCandidateTouches().remove(activeTouch);
 			}
 		}
 
 		EditPart touchedEditPart = findTouchedNodeEditPart(touch.getPosition());
 		if (touchedEditPart != null) {
-			getCandidateTouches().add(touch);
+//			getCandidateTouches().add(touch);
 		}
 	}
 
@@ -79,14 +79,14 @@ public class MoveMultiNodeGesture extends AbstractMoveGesture{
 			return;
 		}
 
-		if (getCandidateTouches().contains(touch)) {
-			if (touchMoved(touch, TouchConstants.TOUCH_MOVEMENT_THRESHOLD)){
-				setMoveTouch(touch);
-				getCandidateTouches().remove(touch);
-				setCanExecute(true);
-				return;
-			}
-		}
+//		if (getCandidateTouches().contains(touch)) {
+//			if (touchMoved(touch, TouchConstants.TOUCH_MOVEMENT_THRESHOLD)){
+//				setMoveTouch(touch);
+//				getCandidateTouches().remove(touch);
+//				setCanExecute(true);
+//				return;
+//			}
+//		}
 	}
 
 	/** 
@@ -95,7 +95,7 @@ public class MoveMultiNodeGesture extends AbstractMoveGesture{
 	 */
 	@Override
 	public void handleSingleTouchRemoved(SingleTouch touch) {
-		getCandidateTouches().remove(touch);
+//		getCandidateTouches().remove(touch);
 		if (getMoveTouch() == touch) {
 			setMoveTouch(null);
 			setCanExecute(false);

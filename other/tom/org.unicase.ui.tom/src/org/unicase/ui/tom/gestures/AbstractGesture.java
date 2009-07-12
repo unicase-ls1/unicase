@@ -120,22 +120,22 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	public GraphicalEditPart findTouchedEditPart(Point position) {
 		GraphicalEditPart editPart;
 
+		editPart = findTouchedLabelEditPart(position);
+		if (editPart != null) {
+			return editPart;
+		}
+		
+		editPart = findTouchedConnectionEditPart(position);
+		if (editPart != null) {
+			return editPart;
+		}
+		
 		editPart = findTouchedCompartmentEditPart(position);
 		if (editPart != null) {
 			return editPart;
 		}
 
 		editPart = findTouchedNodeEditPart(position);
-		if (editPart != null) {
-			return editPart;
-		}
-
-		editPart = findTouchedLabelEditPart(position);
-		if (editPart != null) {
-			return editPart;
-		}
-
-		editPart = findTouchedConnectionEditPart(position);
 		if (editPart != null) {
 			return editPart;
 		}
@@ -211,7 +211,7 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return (INodeEditPart) foundEditPart;
 	}
 
-	public CompartmentEditPart findTouchedCompartmentEditPart(Point point) {
+	public CompartmentEditPart findTouchedCompartmentEditPart(final Point point) {
 		EditPart foundEditPart;
 		foundEditPart = findTouchedEditPartAtAbsoluteCoordinates(point);
 		while (foundEditPart != null) {
@@ -225,12 +225,14 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return (CompartmentEditPart) foundEditPart;
 	}
 
+	/**
+	 * @return
+	 */
 	public EditPart findTouchedEditPartAtAbsoluteCoordinates(Point point) {
 
-		getDiagramEditPart().getFigure().translateToRelative(point);
-
+		Point relativePoint = new Point(point);
 		return findTouchedEditPartAtRelativeCoordinatesExcluding(Collections.emptyList(),
-				point);
+				relativePoint);
 	}
 
 	/**
