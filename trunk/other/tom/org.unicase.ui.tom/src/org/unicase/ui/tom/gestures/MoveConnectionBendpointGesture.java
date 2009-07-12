@@ -65,7 +65,7 @@ public class MoveConnectionBendpointGesture extends AbstractMoveGesture
 		ConnectionEditPart editPart = findTouchedConnectionEditPart(position);
 
 		if (editPart != null) {
-			getCandidateTouches().add(touch);
+			getCandidateTouchEditPartMap().put(touch, editPart);
 		}
 	}
 
@@ -82,17 +82,21 @@ public class MoveConnectionBendpointGesture extends AbstractMoveGesture
 
 		if (isExecuting()) {
 			if (touch == getMoveTouch()) {
-				getMoveConnectionBendpointCommand().update(
-						getMoveTouch().getPosition());
+				Point point = getMoveTouch().getPosition().getCopy();
+				TouchDispatch.getInstance().translateToEditor(point);
+				getMoveConnectionBendpointCommand().update(point);
 			}
 			return;
 		}
 
 		if (getExecutingMoveGesture() == null) {
-			if (getCandidateTouches().contains(touch)) {
+			if (getCandidateTouchEditPartMap().containsKey(touch)) {
 				if (touchMoved(touch, TouchConstants.TOUCH_MOVEMENT_THRESHOLD)) {
+					EditPart editPart = getCandidateTouchEditPartMap().get(
+							touch);
 					setMoveTouch(touch);
-					getCandidateTouches().remove(touch);
+					setMoveEditPart(editPart);
+					getCandidateTouchEditPartMap().remove(touch);
 					setCanExecute(true);
 					return;
 				}
@@ -115,7 +119,7 @@ public class MoveConnectionBendpointGesture extends AbstractMoveGesture
 		if (touch != getMoveTouch()) {
 			return;
 		}
-		
+
 		getMoveConnectionBendpointCommand().finish();
 
 		setExecuting(false);
@@ -147,19 +151,18 @@ public class MoveConnectionBendpointGesture extends AbstractMoveGesture
 	 * @see org.unicase.ui.tom.gestures.MomentaryGesture#finish()
 	 */
 	public void execute() {
-		Point firstPoint = getMoveTouch().getPath().getFirstPoint().getCopy();
-
-		ConnectionEditPart editPart = findTouchedConnectionEditPart(firstPoint);
-
-		if (editPart != null) {
-
-			setMoveConnectionBendpointCommand(new MoveConnectionBendpointOperation(
-					getDiagramEditPart(), editPart));
-			getMoveConnectionBendpointCommand().prepare(firstPoint);
-
-			setExecuting(true);
-			setExecutingMoveGesture(this);
+		if (!canExecute()) {
+			return;
 		}
+		setMoveConnectionBendpointCommand(new MoveConnectionBendpointOperation(
+				getDiagramEditPart(), (ConnectionEditPart) getMoveEditPart()));
+		
+		Point firstPoint = getMoveTouch().getPath().getFirstPoint().getCopy();
+		TouchDispatch.getInstance().translateToEditor(firstPoint);
+		getMoveConnectionBendpointCommand().prepare(firstPoint);
+
+		setExecuting(true);
+		setExecutingMoveGesture(this);
 	}
 
 	/**

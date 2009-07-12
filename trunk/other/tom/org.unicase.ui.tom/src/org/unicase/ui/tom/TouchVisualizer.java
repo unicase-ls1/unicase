@@ -30,13 +30,12 @@ import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.Touch;
 
-public class TouchVisualizer extends TouchAdapterImpl{
+public class TouchVisualizer extends TouchAdapterImpl {
 
-	private Map<Touch,TouchFigure> touchMap;
+	private Map<Touch, TouchFigure> touchMap;
 	private Map<MultiTouch, Color> colorMap;
 
 	private FreeformViewport freeformViewport;
-	private Viewport canvasViewport;
 
 	private ModelDiagramEditor activeEditor;
 
@@ -49,11 +48,11 @@ public class TouchVisualizer extends TouchAdapterImpl{
 
 	private static final class ColorSwitch {
 		static int colorIndex = 0;
-		
-		protected static Color getNext(){
+
+		protected static Color getNext() {
 			colorIndex++;
 			colorIndex %= 5;
-			
+
 			switch (colorIndex) {
 			case 0:
 				return ColorConstants.lightBlue;
@@ -63,35 +62,32 @@ public class TouchVisualizer extends TouchAdapterImpl{
 				return ColorConstants.lightGreen;
 			case 3:
 				return ColorConstants.yellow;
-			case 4: 
+			case 4:
 				return ColorConstants.red;
 			default:
 				return ColorConstants.black;
 			}
 		}
 	}
-	
-	private void addTouch(Touch addedTouch){
+
+	private void addTouch(Touch addedTouch) {
 
 		MultiTouch multiTouch = addedTouch.getMultiTouch();
 		Color color = colorMap.get(multiTouch);
-		
+
 		if (color == null) {
 			color = ColorSwitch.getNext();
-			colorMap.put(multiTouch, color);	
+			colorMap.put(multiTouch, color);
 		}
-		
-		TouchFigure touchFigure = new TouchFigure(addedTouch, color);
-		
-		touchMap.put(addedTouch,touchFigure);
-		freeformViewport.add(touchFigure);
-		
-		Rectangle clientArea = canvasViewport.getClientArea();
 
-		Point point = new Point(
-				addedTouch.getX()-touchFigure.getSize().width/2+clientArea.x,
-				addedTouch.getY()-touchFigure.getSize().height/2+clientArea.y);
-		
+		TouchFigure touchFigure = new TouchFigure(addedTouch, color);
+
+		touchMap.put(addedTouch, touchFigure);
+		freeformViewport.add(touchFigure);
+
+		Point point = new Point(addedTouch.getX() - touchFigure.getSize().width
+				/ 2, addedTouch.getY() - touchFigure.getSize().height / 2);
+
 		touchFigure.setLocation(point);
 	}
 
@@ -102,7 +98,7 @@ public class TouchVisualizer extends TouchAdapterImpl{
 		touchMap.clear();
 	}
 
-	private void removeTouch(Touch removedTouch){
+	private void removeTouch(Touch removedTouch) {
 		TouchFigure touchFigure = touchMap.get(removedTouch);
 		freeformViewport.remove(touchFigure);
 		touchMap.remove(removedTouch);
@@ -112,41 +108,45 @@ public class TouchVisualizer extends TouchAdapterImpl{
 
 		private int innerCircleDiameter;
 		private int outerCircleDiameter;
-		
-		public TouchFigure(Touch touch, Color color){
+
+		public TouchFigure(Touch touch, Color color) {
 			super();
-			
+
 			outerCircleDiameter = TouchConstants.MULTITOUCH_DIAMETER;
 			innerCircleDiameter = TouchConstants.TOUCH_DIAMETER;
-			
-			setMaximumSize(new Dimension(outerCircleDiameter,outerCircleDiameter));
-			setMinimumSize(new Dimension(outerCircleDiameter,outerCircleDiameter));
 
-			setSize(new Dimension(outerCircleDiameter,outerCircleDiameter));
+			setMaximumSize(new Dimension(outerCircleDiameter,
+					outerCircleDiameter));
+			setMinimumSize(new Dimension(outerCircleDiameter,
+					outerCircleDiameter));
+
+			setSize(new Dimension(outerCircleDiameter, outerCircleDiameter));
 
 			setBackgroundColor(color);
 			setForegroundColor(color);
 		}
-		
+
 		/**
 		 * Fills the ellipse.
+		 * 
 		 * @see org.eclipse.draw2d.Shape#fillShape(org.eclipse.draw2d.Graphics)
 		 */
 		protected void fillShape(Graphics graphics) {
-			
+
 			Rectangle r = Rectangle.SINGLETON;
 			r.setBounds(getBounds());
-			r.x += outerCircleDiameter/2 - innerCircleDiameter /2;
-			r.y += outerCircleDiameter/2 - innerCircleDiameter /2;
-			
+			r.x += outerCircleDiameter / 2 - innerCircleDiameter / 2;
+			r.y += outerCircleDiameter / 2 - innerCircleDiameter / 2;
+
 			r.width = innerCircleDiameter;
 			r.height = innerCircleDiameter;
-			
+
 			graphics.fillOval(r);
 		}
 
 		/**
 		 * Outlines the ellipse.
+		 * 
 		 * @see org.eclipse.draw2d.Shape#outlineShape(org.eclipse.draw2d.Graphics)
 		 */
 		protected void outlineShape(Graphics graphics) {
@@ -156,14 +156,14 @@ public class TouchVisualizer extends TouchAdapterImpl{
 			r.height--;
 			r.shrink((lineWidth - 1) / 2, (lineWidth - 1) / 2);
 			graphics.drawOval(r);
-			
+
 			r.setBounds(getBounds());
-			r.x += outerCircleDiameter/2 - innerCircleDiameter /2;
-			r.y += outerCircleDiameter/2 - innerCircleDiameter /2;
-			
+			r.x += outerCircleDiameter / 2 - innerCircleDiameter / 2;
+			r.y += outerCircleDiameter / 2 - innerCircleDiameter / 2;
+
 			r.width = innerCircleDiameter;
 			r.height = innerCircleDiameter;
-			
+
 			r.width--;
 			r.height--;
 			r.shrink((lineWidth - 1) / 2, (lineWidth - 1) / 2);
@@ -172,30 +172,30 @@ public class TouchVisualizer extends TouchAdapterImpl{
 
 	}
 
-	public void handleTouchAdded(Touch addedTouch){
+	public void handleTouchAdded(Touch addedTouch) {
 		if (activeEditor == null) {
 			return;
 		}
-		//		Display current = Display.getDefault();
+		// Display current = Display.getDefault();
 		//
-		//		if (current == null) {
-		//			return;
-		//		}
+		// if (current == null) {
+		// return;
+		// }
 		//
-		//		RunnableWithResult<org.eclipse.swt.graphics.Rectangle> runnable 
-		//			= new RunnableWithResult.Impl<org.eclipse.swt.graphics.Rectangle>(){
-		//			public void run() {
-		//				setResult(shell.getBounds());
-		//			}
-		//		};
+		// RunnableWithResult<org.eclipse.swt.graphics.Rectangle> runnable
+		// = new RunnableWithResult.Impl<org.eclipse.swt.graphics.Rectangle>(){
+		// public void run() {
+		// setResult(shell.getBounds());
+		// }
+		// };
 		//
-		//		current.syncExec(runnable);
+		// current.syncExec(runnable);
 		//
-		//		org.eclipse.swt.graphics.Rectangle result = runnable.getResult();
+		// org.eclipse.swt.graphics.Rectangle result = runnable.getResult();
 
-		//		if (result.contains(addedTouch.getPosition().getSWTPoint())) {
+		// if (result.contains(addedTouch.getPosition().getSWTPoint())) {
 		addTouch(addedTouch);
-		//		}
+		// }
 	}
 
 	public void handleTouchChanged(Touch changedTouch) {
@@ -206,11 +206,10 @@ public class TouchVisualizer extends TouchAdapterImpl{
 		if (touchFigure == null) {
 			return;
 		}
-		org.eclipse.draw2d.geometry.Rectangle clientArea = canvasViewport.getClientArea();
 
-		Point point = new Point(
-				changedTouch.getX()-touchFigure.getSize().width/2 + clientArea.x,
-				changedTouch.getY()-touchFigure.getSize().height/2 + clientArea.y);
+		Point point = new Point(changedTouch.getX()
+				- touchFigure.getSize().width / 2,
+				changedTouch.getY() - touchFigure.getSize().height / 2);
 
 		touchFigure.setLocation(point);
 	}
@@ -219,36 +218,34 @@ public class TouchVisualizer extends TouchAdapterImpl{
 		if (activeEditor == null) {
 			return;
 		}
-		removeTouch(removedTouch);		
+		removeTouch(removedTouch);
 	}
 
 	public void setActiveEditor(ModelDiagramEditor activeEditor) {
 		this.activeEditor = activeEditor;
-		
+
 		if (activeEditor == null) {
 			removeAllTouches();
 
 			freeformViewport = null;
-			canvasViewport = null;
-		}else{
+		} else {
 			FigureCanvas canvas;
 			ModelDiagramEditor activeModelDiagramEditor;
 			GraphicalViewer graphicalViewer;
 
 			activeModelDiagramEditor = (ModelDiagramEditor) getActiveEditor();
-			graphicalViewer = (GraphicalViewer)activeModelDiagramEditor.getAdapter(GraphicalViewer.class);
+			graphicalViewer = (GraphicalViewer) activeModelDiagramEditor
+					.getAdapter(GraphicalViewer.class);
 			if (graphicalViewer != null) {
-				canvas = (FigureCanvas)graphicalViewer.getControl();
+				canvas = (FigureCanvas) graphicalViewer.getControl();
 
-				LightweightSystem activeLightweightSystem = canvas.getLightweightSystem();
+				LightweightSystem activeLightweightSystem = canvas
+						.getLightweightSystem();
 				IFigure rootFigure = activeLightweightSystem.getRootFigure();
 
 				if (rootFigure != null) {
-					freeformViewport = (FreeformViewport) rootFigure.getChildren().get(0);
-				}
-				
-				if (canvas != null) {
-					canvasViewport = canvas.getViewport();
+					freeformViewport = (FreeformViewport) rootFigure
+							.getChildren().get(0);
 				}
 			}
 		}

@@ -9,76 +9,105 @@ import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tum.tuio.TuioCursor;
 import org.unicase.ui.tum.tuio.TuioPoint;
 
-public class TUIOTouch extends SingleTouch implements Touch{
+public class TUIOTouch extends SingleTouch implements Touch {
 
 	private TuioCursor cursor;
-	private Dimension screenSize; 
-	private PointList path;
-	
-	public TUIOTouch(TuioCursor cursor) {
+	private Dimension screenSize;
+	private final PointList path = new PointList();
+	private final PointList absolutePath = new PointList();
+
+	public TUIOTouch(TuioCursor cursor, Dimension screenSize) {
 		super();
-		this.cursor = cursor;	
-		
-		GraphicsEnvironment ge = GraphicsEnvironment.getLocalGraphicsEnvironment();
-		GraphicsDevice[] gs = ge.getScreenDevices();
-		
-		int i;
-		if (gs.length > 1) {
-			i = 1;
-		}else{
-			i = 0;
-		}
-			
-		DisplayMode dm = gs[i].getDisplayMode();
-		
-	    int screenWidth = dm.getWidth();
-	    int screenHeight = dm.getHeight();
-	
-	    screenSize = new Dimension(screenWidth,screenHeight);
-	   
-		path = new PointList();
+		this.cursor = cursor;
+		this.screenSize = screenSize;
 	}
 
 	public Point getPosition() {
-		Point position = new Point(getX(),
-				getY());
+		Point position = new Point(getX(), getY());
 		return position;
 	}
 
 	public int getX() {
-		int xPos = (int) (cursor.getX() * screenSize.getWidth());
-		xPos -= 57;
+		int xPos = (int) (cursor.getX() * screenSize.getWidth()
+				- TouchDispatch.getInstance().getEditorBounds().x 
+				+ TouchDispatch.getInstance().getViewportOffset().x
+				);
 		return xPos;
 	}
 
 	public int getY() {
-		int yPos = (int) (cursor.getY() * screenSize.getHeight());
-		yPos -= 112;
+		int yPos = (int) (cursor.getY() * screenSize.getHeight()
+				- TouchDispatch.getInstance().getEditorBounds().y 
+				+ TouchDispatch.getInstance().getViewportOffset().y
+				);
 		return yPos;
 	}
 
 	public void update() {
-		
+
 	}
 
+	public PointList getAbsolutePath() {
+		List<TuioPoint> tuioPath = cursor.getPath();
+
+		int tuioPathCount = tuioPath.size();
+		int pathCount = absolutePath.size();
+
+		for (int i = (tuioPathCount - pathCount) - 1; i >= 0
+				&& i < tuioPathCount; i++) {
+			absolutePath
+					.addPoint(
+							(int) (tuioPath.get(i).getX()
+									* screenSize.getWidth()),
+							(int) (tuioPath.get(i).getY()
+									* screenSize.getHeight()));
+		}
+
+		return absolutePath;
+	}
+	
 	public PointList getPath() {
 		List<TuioPoint> tuioPath = cursor.getPath();
-		
+
 		int tuioPathCount = tuioPath.size();
 		int pathCount = path.size();
-		
-		for (int i = (tuioPathCount - pathCount) - 1;
-			i >= 0 && i < tuioPathCount;
-			i++) {
-			path.addPoint(tuioPath.get(i).getScreenX((int) screenSize.getWidth())- 57,
-					tuioPath.get(i).getScreenY((int) screenSize.getHeight())-112);
+
+		for (int i = (tuioPathCount - pathCount) - 1; i >= 0
+				&& i < tuioPathCount; i++) {
+			path
+					.addPoint(
+							(int) (tuioPath.get(i).getX()
+									* screenSize.getWidth()
+									- TouchDispatch.getInstance()
+											.getEditorBounds().x + TouchDispatch
+									.getInstance().getViewportOffset().x),
+							(int) (tuioPath.get(i).getY()
+									* screenSize.getHeight()
+									- TouchDispatch.getInstance()
+											.getEditorBounds().y + TouchDispatch
+									.getInstance().getViewportOffset().y));
 		}
-		
+
 		return path;
 	}
 
-}
+	public Point getAbsolutePosition() {
+		Point position = new Point(getAbsoluteX(), getAbsoluteY());
+		return position;
+	}
 
+	public int getAbsoluteX() {
+		int xPos = (int) (cursor.getX() * screenSize.getWidth());
+		return xPos;
+	}
+
+	public int getAbsoluteY() {
+		int yPos = (int) (cursor.getY() * screenSize.getHeight());
+		return yPos;
+	}
+	
+}

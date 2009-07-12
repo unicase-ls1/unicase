@@ -6,7 +6,9 @@
 package org.unicase.ui.tom.gestures;
 
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
@@ -26,6 +28,7 @@ import org.unicase.ui.tom.touches.SingleTouch;
 public class MoveCanvasGesture extends AbstractMoveGesture {
 
 	private MoveCanvasAction moveCanvasAction;
+	private Set<SingleTouch> candidateTouches = new HashSet<SingleTouch>();
 
 	/**
 	 * Default constructor.
@@ -75,7 +78,8 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 
 		if (isExecuting()) {
 			if (touch == getMoveTouch()) {
-				getMoveCanvasAction().updateMove(touch.getPosition());
+				Point point = touch.getAbsolutePosition().getCopy();
+				getMoveCanvasAction().updateMove(point);
 			}
 			return;
 		}
@@ -143,16 +147,6 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.tom.gestures.AbstractGesture#reset()
-	 */
-	@Override
-	public void reset() {
-		super.reset();
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
 	 * @see org.unicase.ui.tom.gestures.MomentaryGesture#finish()
 	 */
 	public void execute() {
@@ -162,8 +156,8 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 
 		setExecuting(true);
 
-		Point firstPoint = ((SingleTouch) getMoveTouch()).getPath()
-				.getFirstPoint();
+		Point firstPoint = ((SingleTouch) getMoveTouch()).getAbsolutePath()
+				.getFirstPoint().getCopy();
 		getMoveCanvasAction().prepareMove(firstPoint);
 	}
 
@@ -178,5 +172,13 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 		} else {
 			return Collections.singletonList(getMoveTouch().getMultiTouch());
 		}
+	}
+
+	public void setCandidateTouches(Set<SingleTouch> candidateTouches) {
+		this.candidateTouches = candidateTouches;
+	}
+
+	public Set<SingleTouch> getCandidateTouches() {
+		return candidateTouches;
 	}
 }

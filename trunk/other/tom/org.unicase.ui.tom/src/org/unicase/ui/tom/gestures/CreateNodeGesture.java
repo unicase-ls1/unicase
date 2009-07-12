@@ -8,21 +8,15 @@ package org.unicase.ui.tom.gestures;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.core.internal.commands.SendToBackCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
-import org.unicase.ui.tom.commands.AbstractCommand;
+import org.unicase.ui.tom.actions.SelectAction;
 import org.unicase.ui.tom.commands.CreateDefaultNodeCommand;
-import org.unicase.ui.tom.commands.CreateNodeAndConnectionCommand;
 import org.unicase.ui.tom.commands.CreateNodeCommand;
 import org.unicase.ui.tom.commands.CreateSecondaryNodeCommand;
 import org.unicase.ui.tom.commands.OrderBackCommand;
@@ -63,63 +57,66 @@ public class CreateNodeGesture extends CreateGesture implements Gesture {
 		MultiTouch multiTouch = getCreationTouch().getMultiTouch();
 		List<Touch> activeTouches = multiTouch.getActiveTouches();
 
-		PointList currentPositions = TouchUtility.pointListOfCurrentPositions(multiTouch.getActiveTouches());
-		
+		PointList currentPositions = TouchUtility
+				.pointListOfCurrentPositions(multiTouch.getActiveTouches());
+
 		EditPart nodeEditPart = findCardinalTouchedNodeEditPart(currentPositions);
 		if (nodeEditPart == null) {
 			nodeEditPart = getDiagramEditPart();
 		}
-		
+
+		Point position = multiTouch.getPosition().getCopy();
+		TouchDispatch.getInstance().translateToEditor(position);
+
 		switch (activeTouches.size()) {
 		case 0:
 			return;
 		case 1:
 			try {
 				createNodeCommand = new CreateDefaultNodeCommand(
-						getDiagramEditPart(),
-						(GraphicalEditPart) nodeEditPart,
-						multiTouch.getPosition());
-			}
-			catch (IllegalArgumentException e) {
+						getDiagramEditPart(), (GraphicalEditPart) nodeEditPart,
+						position);
+			} catch (IllegalArgumentException e) {
 				createNodeCommand = new CreateDefaultNodeCommand(
-						getDiagramEditPart(),
-						getDiagramEditPart(), 
-						multiTouch.getPosition());
+						getDiagramEditPart(), getDiagramEditPart(), position);
 			}
-			
-			createNodeCommand.execute();	
-			
+
+			createNodeCommand.execute();
+
 			break;
 		case 2:
 			try {
+
 				createNodeCommand = new CreateSecondaryNodeCommand(
-						getDiagramEditPart(),
-						(GraphicalEditPart) nodeEditPart, 
-						multiTouch.getPosition());	
+						getDiagramEditPart(), (GraphicalEditPart) nodeEditPart,
+						position);
 			} catch (IllegalArgumentException e) {
 				createNodeCommand = new CreateSecondaryNodeCommand(
-						getDiagramEditPart(),
-						getDiagramEditPart(), 
-						multiTouch.getPosition());
-			}
-			
-			createNodeCommand.execute();	
-			
-			GraphicalEditPart createdEditPart = (GraphicalEditPart) createNodeCommand.getCreatedEditPart();
-			if (createdEditPart != null) {
-				OrderBackCommand sendToBackCommand = new OrderBackCommand(
-						getDiagramEditPart(),
-						createdEditPart);
-				
-				sendToBackCommand.execute();				
+						getDiagramEditPart(), getDiagramEditPart(), position);
 			}
 
-			
+			createNodeCommand.execute();
+
+			GraphicalEditPart createdEditPart = (GraphicalEditPart) createNodeCommand
+					.getCreatedEditPart();
+			if (createdEditPart != null) {
+				OrderBackCommand sendToBackCommand = new OrderBackCommand(
+						getDiagramEditPart(), createdEditPart);
+
+				sendToBackCommand.execute();
+			}
+
 			break;
 		default:
 			return;
 		}
 		
+		GraphicalEditPart createdEditPart = (GraphicalEditPart) createNodeCommand.getCreatedEditPart();
+		if (createdEditPart != null) {
+			SelectAction selectAction = new SelectAction(getDiagramEditPart(), createdEditPart);
+			selectAction.execute();
+		}
+
 		setCanExecute(false);
 
 	}

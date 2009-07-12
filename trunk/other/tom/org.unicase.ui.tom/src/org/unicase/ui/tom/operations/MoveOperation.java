@@ -69,8 +69,6 @@ public abstract class MoveOperation extends AbstractOperation {
 	 */
 	protected MouseEvent createMouseEventAtPosition(Point position) {
 		
-		getDiagramEditPart().getFigure().translateToRelative(position);
-		
 		org.eclipse.swt.widgets.Event event = new org.eclipse.swt.widgets.Event();
 		event.x = position.x;
 		event.y = position.y;

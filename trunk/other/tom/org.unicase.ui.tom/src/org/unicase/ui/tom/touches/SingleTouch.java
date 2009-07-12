@@ -15,7 +15,7 @@ public abstract class SingleTouch extends AbstractTouch{
 	}
 	
 	public abstract PointList getPath();
-	
+	public abstract PointList getAbsolutePath();
 
 	public void setTouchUpDate(Date touchUpDate) {
 		this.touchUpDate = touchUpDate;

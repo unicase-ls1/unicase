@@ -10,11 +10,14 @@ public interface Touch{
 	void setMultiTouch(MultiTouch multiTouch);
 	MultiTouch getMultiTouch();
 	
-	Point getPosition();
-	
-	int getX();
 
-	int getY();	
+	Point getPosition();
+	int getX();
+	int getY();
+	
+	Point getAbsolutePosition();
+	int getAbsoluteX();
+	int getAbsoluteY();
 
 	Date getTouchUpDate();	
 	Date getTouchDownDate();

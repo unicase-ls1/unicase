@@ -35,7 +35,7 @@ public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
 			//discard the cursor
 		}
 		
-		TUIOTouch touch = new TUIOTouch(tuioCursor);
+		TUIOTouch touch = new TUIOTouch(tuioCursor, getScreenSize());
 		
 		try {
 			addTouch(touch);	
