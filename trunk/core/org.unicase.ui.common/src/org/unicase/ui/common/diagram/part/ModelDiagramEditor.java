@@ -18,10 +18,16 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gef.KeyHandler;
 import org.eclipse.gef.KeyStroke;
 import org.eclipse.gef.LayerConstants;
+import org.eclipse.gef.Request;
+import org.eclipse.gmf.runtime.diagram.ui.internal.parts.DiagramGraphicalViewerKeyHandler;
+import org.eclipse.gmf.runtime.diagram.ui.internal.parts.DirectEditKeyHandler;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.swt.SWT;
@@ -29,6 +35,7 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IWorkbench;
@@ -45,6 +52,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 /**
  * @author denglerm This class is a superclass for the generated ModelDiagramEditor in each diagram.
  */
+@SuppressWarnings("restriction")
 public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 	/**
@@ -276,6 +284,51 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 		primaryLayer.addLayoutListener(layoutChangeListener);	
 	}
+	
+	/**
+	 * @author schroech
+	 *
+	 */
+	private class OnEnterDirectEditKeyHandler extends DirectEditKeyHandler {
+
+		public OnEnterDirectEditKeyHandler(GraphicalViewer viewer) {
+			super(viewer);
+		}
+		
+		@Override
+		public boolean keyPressed(KeyEvent event) {
+			if (isEnterKey(event)) {
+				// Create a Direct Edit Request and cache the character typed
+				Request request = new Request(RequestConstants.REQ_DIRECT_EDIT);
+				getFocusPart().performRequest(request);
+				return true;
+			}
+			return super.keyPressed(event);
+		}
+
+		private boolean isEnterKey(KeyEvent event) {
+			if (event.keyCode == 13) {
+				return true;	
+			} 
+			return false;
+		}
+		
+	}
+	
+    /**
+     * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor#configureGraphicalViewer()
+     */
+    @Override
+	protected void configureGraphicalViewer() {
+        super.configureGraphicalViewer();
+
+        IDiagramGraphicalViewer viewer = getDiagramGraphicalViewer();
+
+        KeyHandler viewerKeyHandler = new DiagramGraphicalViewerKeyHandler(viewer)
+            .setParent(getKeyHandler());
+        viewer.setKeyHandler(new OnEnterDirectEditKeyHandler(viewer)
+            .setParent(viewerKeyHandler));
+    }
 	
 	/**
 	 *	We implement our own save method, so return always false. {@inheritDoc}

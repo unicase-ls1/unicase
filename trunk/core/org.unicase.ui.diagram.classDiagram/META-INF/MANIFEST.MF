@@ -10,7 +10,8 @@ Bundle-Localization: plugin
 Export-Package: org.unicase.ui.diagram.classDiagram.edit.commands,
  org.unicase.ui.diagram.classDiagram.edit.parts,
  org.unicase.ui.diagram.classDiagram.part,
- org.unicase.ui.diagram.classDiagram.providers
+ org.unicase.ui.diagram.classDiagram.providers,
+ org.unicase.ui.diagram.classDiagram.unicase
 Require-Bundle: org.eclipse.jface;visibility:=reexport,
  org.eclipse.ui.views;visibility:=reexport,
  org.eclipse.ui.navigator;visibility:=reexport,
