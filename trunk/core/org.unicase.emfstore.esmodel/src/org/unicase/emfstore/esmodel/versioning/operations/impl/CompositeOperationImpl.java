@@ -33,6 +33,8 @@ import org.unicase.model.Project;
  * <ul>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#getSubOperations <em>Sub
  * Operations</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#getMainOperation <em>Main
+ * Operation</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#getCompositeName <em>
  * Composite Name</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.versioning.operations.impl.CompositeOperationImpl#getCompositeDescription
@@ -70,6 +72,16 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 	 * @ordered
 	 */
 	protected EList<AbstractOperation> subOperations;
+
+	/**
+	 * The cached value of the '{@link #getMainOperation() <em>Main Operation</em>}' reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #getMainOperation()
+	 * @generated
+	 * @ordered
+	 */
+	protected AbstractOperation mainOperation;
 
 	/**
 	 * The default value of the '{@link #getCompositeName() <em>Composite Name</em>}' attribute. <!-- begin-user-doc -->
@@ -158,6 +170,46 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 				OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS);
 		}
 		return subOperations;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public AbstractOperation getMainOperation() {
+		if (mainOperation != null && mainOperation.eIsProxy()) {
+			InternalEObject oldMainOperation = (InternalEObject) mainOperation;
+			mainOperation = (AbstractOperation) eResolveProxy(oldMainOperation);
+			if (mainOperation != oldMainOperation) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION, oldMainOperation, mainOperation));
+			}
+		}
+		return mainOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public AbstractOperation basicGetMainOperation() {
+		return mainOperation;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setMainOperation(AbstractOperation newMainOperation) {
+		AbstractOperation oldMainOperation = mainOperation;
+		mainOperation = newMainOperation;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION, oldMainOperation, mainOperation));
 	}
 
 	/**
@@ -264,6 +316,10 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 		switch (featureID) {
 		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
 			return getSubOperations();
+		case OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION:
+			if (resolve)
+				return getMainOperation();
+			return basicGetMainOperation();
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
 			return getCompositeName();
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION:
@@ -286,6 +342,9 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
 			getSubOperations().clear();
 			getSubOperations().addAll((Collection<? extends AbstractOperation>) newValue);
+			return;
+		case OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION:
+			setMainOperation((AbstractOperation) newValue);
 			return;
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
 			setCompositeName((String) newValue);
@@ -311,6 +370,9 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
 			getSubOperations().clear();
 			return;
+		case OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION:
+			setMainOperation((AbstractOperation) null);
+			return;
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
 			setCompositeName(COMPOSITE_NAME_EDEFAULT);
 			return;
@@ -334,6 +396,8 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 		switch (featureID) {
 		case OperationsPackage.COMPOSITE_OPERATION__SUB_OPERATIONS:
 			return subOperations != null && !subOperations.isEmpty();
+		case OperationsPackage.COMPOSITE_OPERATION__MAIN_OPERATION:
+			return mainOperation != null;
 		case OperationsPackage.COMPOSITE_OPERATION__COMPOSITE_NAME:
 			return COMPOSITE_NAME_EDEFAULT == null ? compositeName != null : !COMPOSITE_NAME_EDEFAULT
 				.equals(compositeName);

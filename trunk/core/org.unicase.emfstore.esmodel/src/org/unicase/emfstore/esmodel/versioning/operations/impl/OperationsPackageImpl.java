@@ -316,8 +316,8 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * 
 	 * @generated
 	 */
-	public EAttribute getCompositeOperation_CompositeName() {
-		return (EAttribute) compositeOperationEClass.getEStructuralFeatures().get(1);
+	public EReference getCompositeOperation_MainOperation() {
+		return (EReference) compositeOperationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -325,7 +325,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * 
 	 * @generated
 	 */
-	public EAttribute getCompositeOperation_CompositeDescription() {
+	public EAttribute getCompositeOperation_CompositeName() {
 		return (EAttribute) compositeOperationEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -334,8 +334,17 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 	 * 
 	 * @generated
 	 */
-	public EAttribute getCompositeOperation_Reversed() {
+	public EAttribute getCompositeOperation_CompositeDescription() {
 		return (EAttribute) compositeOperationEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getCompositeOperation_Reversed() {
+		return (EAttribute) compositeOperationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -663,6 +672,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 
 		compositeOperationEClass = createEClass(COMPOSITE_OPERATION);
 		createEReference(compositeOperationEClass, COMPOSITE_OPERATION__SUB_OPERATIONS);
+		createEReference(compositeOperationEClass, COMPOSITE_OPERATION__MAIN_OPERATION);
 		createEAttribute(compositeOperationEClass, COMPOSITE_OPERATION__COMPOSITE_NAME);
 		createEAttribute(compositeOperationEClass, COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION);
 		createEAttribute(compositeOperationEClass, COMPOSITE_OPERATION__REVERSED);
@@ -779,6 +789,9 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeOperation_SubOperations(), this.getAbstractOperation(), null, "subOperations", null,
 			0, -1, CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getCompositeOperation_MainOperation(), this.getAbstractOperation(), null, "mainOperation", null,
+			0, 1, CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getCompositeOperation_CompositeName(), ecorePackage.getEString(), "compositeName", null, 0, 1,
 			CompositeOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
