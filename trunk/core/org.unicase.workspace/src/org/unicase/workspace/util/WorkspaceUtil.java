@@ -52,6 +52,16 @@ public final class WorkspaceUtil {
 	 * Log a warning to the error log.
 	 * 
 	 * @param message the message
+	 * @param e the exception
+	 */
+	public static void logWarning(String message, Exception e) {
+		log(message, e, IStatus.WARNING);
+	}
+
+	/**
+	 * Log a warning to the error log.
+	 * 
+	 * @param message the message
 	 * @param exception the exception or null f not applicable
 	 * @param statusInt the status constant as defined in {@link IStatus}
 	 */
