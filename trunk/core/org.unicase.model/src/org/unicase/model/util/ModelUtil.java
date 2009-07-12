@@ -371,10 +371,17 @@ public final class ModelUtil {
 	 * @param message the message
 	 * @param exception the exception
 	 */
-	public static void logException(String message, IllegalStateException exception) {
-		Status status = new Status(IStatus.ERROR, Platform.getBundle("org.unicase.model").getSymbolicName(),
-			IStatus.ERROR, message, exception);
-		Platform.getLog(Platform.getBundle("org.unicase.model")).log(status);
+	public static void logException(String message, Exception exception) {
+		log(message, exception, IStatus.ERROR);
+	}
 
+	/**
+	 * Log an exception to the platform log. This will create a popup in the ui.
+	 * 
+	 * @param message the message
+	 * @param exception the exception
+	 */
+	public static void logWarning(String message, Exception exception) {
+		log(message, exception, IStatus.WARNING);
 	}
 }
