@@ -45,6 +45,33 @@ public interface CompositeOperation extends AbstractOperation {
 	EList<AbstractOperation> getSubOperations();
 
 	/**
+	 * Returns the value of the '<em><b>Main Operation</b></em>' reference. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Main Operation</em>' reference isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Main Operation</em>' reference.
+	 * @see #setMainOperation(AbstractOperation)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage#getCompositeOperation_MainOperation()
+	 * @model
+	 * @generated
+	 */
+	AbstractOperation getMainOperation();
+
+	/**
+	 * Sets the value of the '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getMainOperation
+	 * <em>Main Operation</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Main Operation</em>' reference.
+	 * @see #getMainOperation()
+	 * @generated
+	 */
+	void setMainOperation(AbstractOperation value);
+
+	/**
 	 * Returns the value of the '<em><b>Composite Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Composite Name</em>' attribute isn't clear, there really should be more of a

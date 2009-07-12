@@ -192,12 +192,20 @@ public interface OperationsPackage extends EPackage {
 	int COMPOSITE_OPERATION__SUB_OPERATIONS = ABSTRACT_OPERATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Main Operation</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_OPERATION__MAIN_OPERATION = ABSTRACT_OPERATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Composite Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_OPERATION__COMPOSITE_NAME = ABSTRACT_OPERATION_FEATURE_COUNT + 1;
+	int COMPOSITE_OPERATION__COMPOSITE_NAME = ABSTRACT_OPERATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Composite Description</b></em>' attribute. <!-- begin-user-doc --> <!--
@@ -206,7 +214,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION = ABSTRACT_OPERATION_FEATURE_COUNT + 2;
+	int COMPOSITE_OPERATION__COMPOSITE_DESCRIPTION = ABSTRACT_OPERATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Reversed</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -214,7 +222,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_OPERATION__REVERSED = ABSTRACT_OPERATION_FEATURE_COUNT + 3;
+	int COMPOSITE_OPERATION__REVERSED = ABSTRACT_OPERATION_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Composite Operation</em>' class. <!-- begin-user-doc --> <!--
@@ -223,7 +231,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPOSITE_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 4;
+	int COMPOSITE_OPERATION_FEATURE_COUNT = ABSTRACT_OPERATION_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl
@@ -1323,6 +1331,18 @@ public interface OperationsPackage extends EPackage {
 	EReference getCompositeOperation_SubOperations();
 
 	/**
+	 * Returns the meta object for the reference '
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getMainOperation
+	 * <em>Main Operation</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Main Operation</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getMainOperation()
+	 * @see #getCompositeOperation()
+	 * @generated
+	 */
+	EReference getCompositeOperation_MainOperation();
+
+	/**
 	 * Returns the meta object for the attribute '
 	 * {@link org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation#getCompositeName
 	 * <em>Composite Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1817,6 +1837,14 @@ public interface OperationsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference COMPOSITE_OPERATION__SUB_OPERATIONS = eINSTANCE.getCompositeOperation_SubOperations();
+
+		/**
+		 * The meta object literal for the '<em><b>Main Operation</b></em>' reference feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference COMPOSITE_OPERATION__MAIN_OPERATION = eINSTANCE.getCompositeOperation_MainOperation();
 
 		/**
 		 * The meta object literal for the '<em><b>Composite Name</b></em>' attribute feature. <!-- begin-user-doc -->

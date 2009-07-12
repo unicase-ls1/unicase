@@ -105,6 +105,8 @@
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/CompositeOperation">
           <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/CompositeOperation/subOperations"/>
+          <genFeatures notify="false" createChild="false" propertySortChoices="true"
+              ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/CompositeOperation/mainOperation"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/CompositeOperation/compositeName"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/CompositeOperation/compositeDescription"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/CompositeOperation/reversed"/>

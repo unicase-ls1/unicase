@@ -138,6 +138,7 @@
       <eClassifiers xsi:type="ecore:EClass" name="CompositeOperation" eSuperTypes="#//versioning/operations/AbstractOperation">
         <eStructuralFeatures xsi:type="ecore:EReference" name="subOperations" upperBound="-1"
             eType="#//versioning/operations/AbstractOperation" containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="mainOperation" eType="#//versioning/operations/AbstractOperation"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="compositeName" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="compositeDescription"
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

@@ -52,11 +52,25 @@ public class CompositeOperationItemProvider extends AbstractOperationItemProvide
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addMainOperationPropertyDescriptor(object);
 			addCompositeNamePropertyDescriptor(object);
 			addCompositeDescriptionPropertyDescriptor(object);
 			addReversedPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
+	}
+
+	/**
+	 * This adds a property descriptor for the Main Operation feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addMainOperationPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_CompositeOperation_mainOperation_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_CompositeOperation_mainOperation_feature",
+				"_UI_CompositeOperation_type"), OperationsPackage.Literals.COMPOSITE_OPERATION__MAIN_OPERATION, true,
+			false, true, null, null, null));
 	}
 
 	/**
