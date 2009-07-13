@@ -26,7 +26,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsDescriptionProvider;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
@@ -43,7 +42,6 @@ public class ChangePackageVisualizationHelper {
 	private Map<ModelElementId, ModelElement> modelElementMap;
 	private Map<ChangePackage, Set<ModelElementId>> touchedModelElements;
 	private List<ChangePackage> changePackages;
-	private OperationsDescriptionProvider operationDescriptionProvider;
 
 	/**
 	 * Constructor.
@@ -52,7 +50,6 @@ public class ChangePackageVisualizationHelper {
 	 * @param project a project
 	 */
 	public ChangePackageVisualizationHelper(List<ChangePackage> changePackages, Project project) {
-		this.operationDescriptionProvider = new OperationsDescriptionProvider(project);
 		this.modelElementMap = new HashMap<ModelElementId, ModelElement>();
 		this.touchedModelElements = new HashMap<ChangePackage, Set<ModelElementId>>();
 		for (ChangePackage changePackage : changePackages) {
@@ -280,12 +277,127 @@ public class ChangePackageVisualizationHelper {
 	}
 
 	/**
-	 * Returns a verbose description for an operation.
-	 * 
-	 * @param op the operation to provide description for
-	 * @return the description
+	 * @param op the operation to generate a description for
+	 * @return the description for given operation
 	 */
 	public String getDescription(AbstractOperation op) {
-		return operationDescriptionProvider.getDescription(op);
+
+		// choose method to call based on operation type
+		// anyone a better idea how to do this?
+		if (op instanceof AttributeOperation) {
+			return getDescriptionAttributeOperation((AttributeOperation) op);
+		}
+		if (op instanceof SingleReferenceOperation) {
+			return getDescriptionSingleReferenceOperation((SingleReferenceOperation) op);
+		}
+		if (op instanceof MultiReferenceOperation) {
+			return getDescriptionMultiReferenceOperation((MultiReferenceOperation) op);
+		}
+		if (op instanceof CreateDeleteOperation) {
+			return getDescriptionCreateDeleteOperation((CreateDeleteOperation) op);
+		}
+		if (op instanceof MultiReferenceMoveOperation) {
+			return getDescriptionMultiReferenceMoveOperation((MultiReferenceMoveOperation) op);
+		}
+
+		return getDescriptionUnknownOperation(op);
+
+	}
+
+	private String getDescriptionMultiReferenceMoveOperation(MultiReferenceMoveOperation op) {
+
+		ModelElement elem = getModelElement(op.getReferencedModelElementId());
+		String elemName = op.getReferencedModelElementId().toString();
+
+		if (elem != null) {
+			elemName = elem.eClass().getName() + " '" + elem.getName() + "'";
+		}
+
+		return "Reordered " + op.getFeatureName() + ", moved " + elemName + " from " + op.getOldIndex() + " to "
+			+ op.getNewIndex();
+	}
+
+	private String getDescriptionCreateDeleteOperation(CreateDeleteOperation op) {
+
+		if (op.isDelete()) {
+			return "Deleted " + op.getModelElement().eClass().getName() + " '" + op.getModelElement().getName() + "'";
+		} else {
+			return "Created " + op.getModelElement().eClass().getName() + " '" + op.getModelElement().getName() + "'";
+		}
+
+	}
+
+	private String getDescriptionMultiReferenceOperation(MultiReferenceOperation op) {
+
+		String elemNames = getModelElementClassesAndNames(op.getReferencedModelElements());
+
+		if (op.isAdd()) {
+			// if adding to or removing from modelElements -> attach/detach operation in main tree
+			if (op.getFeatureName().equals("modelElements")) {
+				return "Attached " + elemNames;
+			} else {
+				return "Added " + elemNames + " to " + op.getFeatureName();
+			}
+
+		} else {
+
+			if (op.getFeatureName().equals("modelElements")) {
+				return "Detached " + elemNames;
+			} else {
+				return "Removed " + elemNames + " from " + op.getFeatureName();
+			}
+		}
+
+	}
+
+	private String getDescriptionSingleReferenceOperation(SingleReferenceOperation op) {
+
+		ModelElement oldElement = getModelElement(op.getOldValue());
+		ModelElement newElement = getModelElement(op.getNewValue());
+
+		String oldName = (oldElement == null) ? "none" : oldElement.getName();
+		String newName = (newElement == null) ? "none" : newElement.getName();
+
+		// changing leafSections means relocating the item
+		if (op.getFeatureName().equals("leafSection")) {
+			return "Relocated from '" + oldName + "' to '" + newName + "'";
+		}
+		// generic changing text
+		else {
+			return "Changed " + op.getFeatureName() + " from '" + oldName + "' to '" + newName + "'";
+		}
+
+	}
+
+	private String getDescriptionAttributeOperation(AttributeOperation op) {
+		return "Changed " + op.getFeatureName() + " from '" + op.getOldValue() + "' to '" + op.getNewValue() + "'";
+	}
+
+	private String getDescriptionUnknownOperation(AbstractOperation op) {
+		return op.getClass().getSimpleName() + " " + op.getDescription();
+	}
+
+	/**
+	 * Returns a comma separated list of class names and model names. {id1, id2} will become
+	 * "Comment 'some comment', LeafSection 'section title'"
+	 * 
+	 * @param idList the list of model element IDs to return the names for
+	 * @return
+	 */
+	private String getModelElementClassesAndNames(EList<ModelElementId> idList) {
+
+		StringBuilder sb = new StringBuilder();
+		for (ModelElementId id : idList) {
+
+			if (getModelElement(id) != null) {
+				sb.append(getModelElement(id).eClass().getName() + " '" + getModelElement(id).getName() + "'");
+				sb.append(", ");
+			}
+		}
+		if (sb.length() > 2) {
+			sb.delete(sb.length() - 2, sb.length());
+		}
+
+		return sb.toString();
 	}
 }
