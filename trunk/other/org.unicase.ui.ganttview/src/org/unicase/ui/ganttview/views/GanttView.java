@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.ganttview.views;
 
 import java.util.Calendar;
@@ -40,6 +45,9 @@ import org.unicase.ui.stem.views.iterationplanningview.EMFColumnLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
+/**
+ * @author fabisiew, max
+ */
 public class GanttView extends ViewPart implements IGanttEventListener {
 
 	/**
@@ -63,6 +71,8 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 	/**
 	 * This is a callback that will allow us to create the viewer and initialize it.
+	 * 
+	 * @param parent Composite this View is placed in
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
@@ -71,36 +81,17 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		ScrolledComposite ganttContainer = new ScrolledComposite(this.parent, SWT.V_SCROLL);
 		SashForm sashForm = new SashForm(ganttContainer, SWT.HORIZONTAL);
 
-		// GanttControlParent ganttCpLeft = new GanttControlParent(sashForm, SWT.NONE);
-
-		// createTree(ganttCpLeft);
 		createTree(sashForm);
 
 		UnicaseSettings roSettings = new ReadOnlySettings();
 
-		// roSettings.setEventHeight(treeViewer.getTree().getItemHeight() + treeViewer.getTree().getGridLineWidth());
-		// treeViewer.getTree().getItem(0).getBounds().height
-		// roSettings.setEventHeight(treeViewer.getTree().getItem(0).getBounds().height);
-		// roSettings.setHeaderHeight(treeViewer.getTree().getHeaderHeight());
 		ganttChart = new GanttChart(sashForm, SWT.NONE, roSettings);
-
-		// System.out.println("treeViewer.getTree().getItemHeight(): " + treeViewer.getTree().getItemHeight());
-		// System.out.println("treeViewer.getTree().getGridLineWidth(): " + treeViewer.getTree().getGridLineWidth());
-		// System.out.println("treeViewer.getTree().computeSize(999, 999): " + treeViewer.getTree().computeSize(999,
-		// 999));
-		//
-		// System.out.println("roSettings.getEventHeight(): " + roSettings.getEventHeight());
-		// System.out.println("roSettings.getEventSpacer(): " + roSettings.getEventSpacer());
-		// System.out.println("roSettings.getEventsTopSpacer(): " + roSettings.getEventsTopSpacer());
-		// System.out.println("roSettings.getEventsBottomSpacer(): " + roSettings.getEventsBottomSpacer());
-
 		ganttChart.addGanttEventListener(this);
 
 		ganttChart.getGanttComposite().setDrawHorizontalLinesOverride(true);
 		ganttChart.getGanttComposite().setDrawVerticalLinesOverride(false);
 		ganttChart.getGanttComposite().setFixedRowHeightOverride(ONE_ROW_HEIGHT - SPACER);
 		ganttChart.getGanttComposite().setEventSpacerOverride(SPACER);
-		// ganttCpLeft.setGanttChart(ganttChart);
 
 		sashForm.setWeights(new int[] { 30, 70 });
 
@@ -166,8 +157,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				if (tree.getSelectionCount() == 0)
+				if (tree.getSelectionCount() == 0) {
 					return;
+				}
 
 				// set the selection
 				TreeItem sel = tree.getSelection()[0];
@@ -192,8 +184,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 					WorkPackage wp = (WorkPackage) element;
 
-					if (wp.getStartDate() == null)
+					if (wp.getStartDate() == null) {
 						return "";
+					}
 
 					Calendar startDate = Calendar.getInstance();
 					startDate.setTime(wp.getStartDate());
@@ -215,8 +208,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 					WorkPackage wp = (WorkPackage) element;
 
-					if (wp.getDueDate() == null)
+					if (wp.getDueDate() == null) {
 						return "";
+					}
 
 					Calendar endDate = Calendar.getInstance();
 					endDate.setTime(wp.getDueDate());
@@ -245,6 +239,11 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		});
 	}
 
+	/**
+	 * Set model for this view.
+	 * 
+	 * @param workPackage single root-WorkPackge
+	 */
 	public void setInput(WorkPackage workPackage) {
 
 		GanttViewHelper.clearGantt(ganttChart, treeViewer.getTree());
@@ -266,6 +265,11 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 	}
 
+	/**
+	 * Set model for this view.
+	 * 
+	 * @param project single Project
+	 */
 	public void setInput(Project project) {
 
 		GanttViewHelper.clearGantt(ganttChart, treeViewer.getTree());
@@ -282,9 +286,6 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		treeViewer.setInput(project);
 		treeViewer.expandAll();
-		// TODO rm
-		// System.out.println("treeViewer.getTree().getItemHeight() 2: " + treeViewer.getTree().getItemHeight());
-		// System.out.println("treeViewer.getTree().getGridLineWidth() 2: " + treeViewer.getTree().getGridLineWidth());
 	}
 
 	private int calculateProgress(WorkPackage wp) {
@@ -380,31 +381,62 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 	}
 
+	/**
+	 * TODO .
+	 * 
+	 * @param arg0 a GanttEvent
+	 * @param arg1 a MouseEvent
+	 */
 	public void eventDoubleClicked(GanttEvent arg0, MouseEvent arg1) {
-		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * TODO .
+	 * 
+	 * @param arg0 a Calendar
+	 * @param arg1 a List
+	 */
+	@SuppressWarnings("unchecked")
 	public void eventHeaderSelected(Calendar arg0, List arg1) {
-		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * TODO .
+	 * 
+	 * @param arg0 a List
+	 */
+	@SuppressWarnings("unchecked")
 	public void eventPropertiesSelected(List arg0) {
-		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * TODO .
+	 * 
+	 * @param arg0 a GanttEvent
+	 * @param arg1 a List
+	 * @param arg2 a MouseEvent
+	 */
+	@SuppressWarnings("unchecked")
 	public void eventSelected(GanttEvent arg0, List arg1, MouseEvent arg2) {
-		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * TODO .
+	 * 
+	 * @param arg0 a List
+	 * @param arg1 a MouseEvent
+	 */
+	@SuppressWarnings("unchecked")
 	public void eventsDeleteRequest(List arg0, MouseEvent arg1) {
-		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * Called after moving a bar.
+	 * 
+	 * @param arg0 a List
+	 * @param arg1 a MouseEvent
+	 */
+	@SuppressWarnings("unchecked")
 	public void eventsMoveFinished(List arg0, MouseEvent arg1) {
 
 		Object eventObject = arg0.get(0);
@@ -416,13 +448,25 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		GanttEvent ganttEvent = (GanttEvent) eventObject;
 		WorkPackage wp = (WorkPackage) ganttEvent.getData();
 		// TODO: Modify WorkPackage
-
 	}
 
+	/**
+	 * TODO .
+	 * 
+	 * @param arg0 a List
+	 * @param arg1 a MouseEvent
+	 */
+	@SuppressWarnings("unchecked")
 	public void eventsMoved(List arg0, MouseEvent arg1) {
-		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * Called after resizing a bar.
+	 * 
+	 * @param arg0 GanttEvent at index 0
+	 * @param arg1 unused MouseEvent
+	 */
+	@SuppressWarnings("unchecked")
 	public void eventsResizeFinished(List arg0, MouseEvent arg1) {
 		Object eventObject = arg0.get(0);
 
@@ -437,34 +481,45 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 		Calendar endDate = ganttEvent.getRevisedEnd() == null ? ganttEvent.getEndDate() : ganttEvent.getRevisedEnd();
 
 		WorkPackage wp = (WorkPackage) ganttEvent.getData();
-
-		// wp.setStartDate(startDate.getTime());
-		// wp.setDueDate(endDate.getTime());
-		// TODO: Modify WorkPackage
-
 	}
 
+	/**
+	 * TODO .
+	 * 
+	 * @param arg0 a List
+	 * @param arg1 a MouseEvent
+	 */
+	@SuppressWarnings("unchecked")
 	public void eventsResized(List arg0, MouseEvent arg1) {
-		// TODO Auto-generated method stub
 	}
 
+	/**
+	 * TODO .
+	 * 
+	 * @param arg0 a List
+	 */
 	public void lastDraw(GC arg0) {
-		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * TODO .
+	 */
 	public void zoomReset() {
-		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * TODO .
+	 * 
+	 * @param arg0 an integer
+	 */
 	public void zoomedIn(int arg0) {
-		// TODO Auto-generated method stub
-
 	}
 
+	/**
+	 * TODO .
+	 * 
+	 * @param arg0 an integer
+	 */
 	public void zoomedOut(int arg0) {
-		// TODO Auto-generated method stub
-
 	}
 }
