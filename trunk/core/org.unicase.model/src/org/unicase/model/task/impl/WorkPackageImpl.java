@@ -8,6 +8,7 @@ package org.unicase.model.task.impl;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -26,9 +27,11 @@ import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
+import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.model.task.util.MEState;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Work Package</b></em>'. <!-- end-user-doc -->
@@ -1007,5 +1010,57 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 			}
 		}
 		return ret;
+	}
+
+	public int getAggregatedEstimate() {
+		int result = 0;
+		Iterator<WorkItem> iterator = this.getAllContainedWorkItems().iterator();
+		while (iterator.hasNext()) {
+			WorkItem workItem = iterator.next();
+			if (workItem instanceof Checkable) {
+				result += workItem.getEstimate();
+			}
+		}
+		return result;
+	}
+
+	public int getAllTasks() {
+		int result = 0;
+		Iterator<WorkItem> iterator = this.getAllContainedWorkItems().iterator();
+		while (iterator.hasNext()) {
+			WorkItem workItem = iterator.next();
+			if (workItem instanceof Checkable) {
+				result++;
+			}
+		}
+		return result;
+	}
+
+	public int getClosedAggregatedEstimate() {
+		int result = 0;
+		Iterator<WorkItem> iterator = this.getAllContainedWorkItems().iterator();
+		while (iterator.hasNext()) {
+			WorkItem workItem = iterator.next();
+			if (workItem instanceof Checkable) {
+				if (workItem.getState().equals(MEState.CLOSED)) {
+					result += workItem.getEstimate();
+				}
+			}
+		}
+		return result;
+	}
+
+	public int getClosedTasks() {
+		int result = 0;
+		Iterator<WorkItem> iterator = this.getAllContainedWorkItems().iterator();
+		while (iterator.hasNext()) {
+			WorkItem workItem = iterator.next();
+			if (workItem instanceof Checkable) {
+				if (workItem.getState().equals(MEState.CLOSED)) {
+					result++;
+				}
+			}
+		}
+		return result;
 	}
 } // WorkPackageImpl

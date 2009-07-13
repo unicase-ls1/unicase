@@ -40,6 +40,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.model.task.util.EstimateHelper;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.model.util.ProjectChangeObserver;
@@ -314,18 +315,22 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		lblProjectName.setText(WorkspaceManager.getProjectSpace(input).getProjectName());
 		lblProjectName.pack(true);
 
-		// get number of all Openers for this model element
-		// in a hierarchical manner
-		Set<ModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(input);
-
+		int tasks;
+		int estimate;
+		int closedTasks;
+		int closedEstimate;
 		if (input instanceof WorkPackage) {
-			removeNotContainedTasks(leafOpeners, (WorkPackage) input);
+			WorkPackage wp = (WorkPackage) input;
+			tasks = wp.getAllTasks();
+			estimate = wp.getAggregatedEstimate();
+			closedTasks = wp.getClosedTasks();
+			closedEstimate = wp.getClosedAggregatedEstimate();
+		} else {
+			tasks = EstimateHelper.getAllTasks(input);
+			estimate = EstimateHelper.getAggregatedEstimate(input);
+			closedTasks = EstimateHelper.getClosedTasks(input);
+			closedEstimate = EstimateHelper.getClosedAggregatedEstimate(input);
 		}
-
-		int tasks = leafOpeners.size();
-		int estimate = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getEstimate(input);
-		int closedTasks = getClosedTasks(leafOpeners);
-		int closedEstimate = getClosedEstimate(leafOpeners);
 
 		lblProgressName.setText(closedTasks + "/" + tasks);
 		lblEstimateProgressName.setText(closedEstimate + "/" + estimate);
@@ -333,6 +338,10 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		lblEstimateProgressName.pack(true);
 		sectionComposite.layout(true);
 
+		Set<ModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(input);
+		if (input instanceof WorkPackage) {
+			removeNotContainedTasks(leafOpeners, (WorkPackage) input);
+		}
 		Date latestDueDate = getLatestDueDate(leafOpeners);
 		if (latestDueDate != null) {
 			lblLatestDueDateName.setText(latestDueDate.toString());
@@ -408,33 +417,6 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		List<WorkItem> allContainedWorkItems = input2.getAllContainedWorkItems();
 		leafOpeners.retainAll(allContainedWorkItems);
 
-	}
-
-	private int getClosedEstimate(Set<ModelElement> leafOpeners) {
-		int estimate = 0;
-		Iterator<ModelElement> iterator = leafOpeners.iterator();
-		while (iterator.hasNext()) {
-			ModelElement next = iterator.next();
-			if (next instanceof WorkItem) {
-				if (next.getState().equals(MEState.CLOSED)) {
-					estimate = estimate + ((WorkItem) next).getEstimate();
-				}
-			}
-		}
-		return estimate;
-	}
-
-	private int getClosedTasks(Set<ModelElement> leafOpeners) {
-		int closedTasks = 0;
-		Iterator<ModelElement> iterator = leafOpeners.iterator();
-		while (iterator.hasNext()) {
-			ModelElement next = iterator.next();
-			// JH: change to workItem
-			if (next.getState().equals(MEState.CLOSED)) {
-				closedTasks++;
-			}
-		}
-		return closedTasks;
 	}
 
 	private Date getLatestDueDate(Set<ModelElement> leafOpeners) {

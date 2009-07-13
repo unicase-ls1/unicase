@@ -106,4 +106,24 @@ public interface WorkPackage extends WorkItem {
 	 */
 	List<WorkItem> getAllContainedWorkItems();
 
+	/**
+	 * @return the sum of estimates of all closed items beneath this WorkPackage
+	 */
+	int getClosedAggregatedEstimate();
+
+	/**
+	 * @return the sum of estimates of all items beneath this WorkPackage and the WorkPackage itself
+	 */
+	int getAggregatedEstimate();
+
+	/**
+	 * @return the number of all closed tasks beneath this WorkPackage
+	 */
+	int getClosedTasks();
+
+	/**
+	 * @return the number of all tasks beneath this WorkPackage
+	 */
+	int getAllTasks();
+
 } // WorkPackage

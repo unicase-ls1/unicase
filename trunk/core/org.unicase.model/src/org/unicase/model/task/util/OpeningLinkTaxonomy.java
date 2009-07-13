@@ -170,39 +170,6 @@ public class OpeningLinkTaxonomy {
 	}
 
 	/**
-	 * Returns an aggregate of estimate for closed work items relating to this model element.
-	 * 
-	 * @param input model element
-	 * @return estimate of closed work items
-	 */
-	public int getClosedEstimate(ModelElement input) {
-		Set<ModelElement> leafOpeners = getLeafOpeners(input);
-		Set<WorkItem> closedWorkItems = new HashSet<WorkItem>();
-		Iterator<ModelElement> iterator = leafOpeners.iterator();
-		while (iterator.hasNext()) {
-			ModelElement me = iterator.next();
-			if (me instanceof WorkItem) {
-				WorkItem workItem = (WorkItem) me;
-				if (workItem.getState().equals(MEState.CLOSED)) {
-					closedWorkItems.add(workItem);
-				}
-			}
-		}
-		return getEstimate(closedWorkItems);
-	}
-
-	/**
-	 * Returns estimate of all leaf openers of this model element, which are contained in this work package.
-	 * 
-	 * @param workPackage WorkPackage that contains related leaf openers
-	 * @param modelElement ModelElement to compute estimate of its leaf openers
-	 * @return estimate of relative leaf openers for this model element
-	 */
-	public int getRelativeEstimate(WorkPackage workPackage, ModelElement modelElement) {
-		return getEstimate(getRelativeWorkItems(workPackage, modelElement));
-	}
-
-	/**
 	 * Returns work items of this model element, which are contained in this work package.
 	 * 
 	 * @param workPackage WorkPackage that contains related work items

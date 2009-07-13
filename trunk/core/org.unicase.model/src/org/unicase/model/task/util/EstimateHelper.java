@@ -12,11 +12,17 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.task.WorkItem;
 
 /**
- * EstimateHelper for calculating estimates of ModelElements.
+ * EstimateHelper for computing numbers/estimates of a ModelElements LeafOpeners. LeafOpeners are a subset of all tasks
+ * in the OpeningLinkTaxonomy that a ModelElements needs to be closed in order to be closed itself. See also:
+ * TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(ModelElement)
  * 
  * @author hohenegg
  */
 public final class EstimateHelper {
+	private static final byte ALL = 1;
+	private static final byte CLOSED = 2;
+	private static final byte AGGREGATE = 4;
+	private static final byte COUNT = 8;
 
 	private EstimateHelper() {
 		// Added to satisfy checkstyle. Nothing to do here.
@@ -24,104 +30,77 @@ public final class EstimateHelper {
 
 	/**
 	 * @param me the ModelElement you want to aggregate the estimate for
-	 * @return the sum of estimates of all closed items beneath this WorkPackage
+	 * @return the aggregated estimates of all closed WorkItems
 	 */
 	public static int getClosedAggregatedEstimate(ModelElement me) {
-		return genericCounter(me, new ClosedAggregator());
+		return genericCounter(me, AGGREGATE, CLOSED);
 	}
 
 	/**
-	 * @param me the ModelElement you want to count closed Tasks for
-	 * @return the number of all closed tasks beneath the ModelElement
+	 * @param me the ModelElement you want to count closed tasks for
+	 * @return the number of all closed tasks in the set of LeafOpeners
 	 */
 	public static int getClosedTasks(ModelElement me) {
-		return genericCounter(me, new ClosedIncrementor());
+		return genericCounter(me, COUNT, CLOSED);
 	}
 
 	/**
 	 * @param me the ModelElement you want to aggregate the estimate for
-	 * @return the sum of estimates of all items beneath this WorkPackage and the WorkPackage itself
+	 * @return the aggregated estimates of all WorkItems
 	 */
 	public static int getAggregatedEstimate(ModelElement me) {
-		return genericCounter(me, new AllAggregator());
+		return genericCounter(me, AGGREGATE, ALL);
+		// return genericCounter(me, new AllAggregator());
 	}
 
 	/**
-	 * @param me the ModelElement you want to count open Tasks for
-	 * @return the number of all open tasks beneath the ModelElement
+	 * @param me the ModelElement you want to count tasks for
+	 * @return the number of all tasks in the set of LeafOpeners
 	 */
-	public static int getOpenTasks(ModelElement me) {
-		return genericCounter(me, new AllIncrementor());
+	public static int getAllTasks(ModelElement me) {
+		return genericCounter(me, COUNT, ALL);
 	}
 
 	/**
-	 * Superclass for the two different operations that can be done here.
+	 * Iterate over all LeafOpeners of a ModelElement with matching state and return the aggregated estimate/number of
+	 * iterations.
 	 */
-	private static interface FunctionPointer {
-		int execute(WorkItem workItem, int currentResult);
-	}
-
-	/**
-	 * Class that provides only one operation for incrementing a number depending on the state (OPEN/CLOSED) of a
-	 * WorkItem.
-	 */
-	private static class ClosedIncrementor implements FunctionPointer {
-		public int execute(WorkItem workItem, int currentResult) {
-			if (workItem.getState().equals(MEState.CLOSED)) {
-				currentResult++;
-			}
-			return currentResult;
-		}
-	}
-
-	/**
-	 * Increments for all WorkItems independent of their state.
-	 */
-	private static class AllIncrementor implements FunctionPointer {
-		public int execute(WorkItem workItem, int currentResult) {
-			currentResult++;
-			return currentResult;
-		}
-	}
-
-	/**
-	 * Class that provides only one operation for adding the estimate of a WorkItem to a given number, considering only
-	 * CLOSED WorkItems.
-	 */
-	private static class ClosedAggregator implements FunctionPointer {
-		public int execute(WorkItem workItem, int currentResult) {
-			if (workItem.getState().equals(MEState.CLOSED)) {
-				currentResult += workItem.getEstimate();
-			}
-			return currentResult;
-		}
-	}
-
-	/**
-	 * Class that provides only one operation for adding the estimate of a WorkItem to a given number.
-	 */
-	private static class AllAggregator implements FunctionPointer {
-		public int execute(WorkItem workItem, int currentResult) {
-			currentResult += workItem.getEstimate();
-			return currentResult;
-		}
-	}
-
-	/**
-	 * Iterate over all LeafOpeners of a ModelElement and execute a given operation. This methods exists to prevent
-	 * redundancy.
-	 */
-	private static int genericCounter(ModelElement me, FunctionPointer operation) {
+	private static int genericCounter(ModelElement me, int operation, int state) {
 		int result = 0;
 
 		Set<ModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(me);
+
+		if (operation == COUNT && state == ALL) {
+			// In this case .size() is probably faster
+			return leafOpeners.size();
+		}
+
 		Iterator<ModelElement> iterator = leafOpeners.iterator();
+
 		while (iterator.hasNext()) {
 			ModelElement nextMe = iterator.next();
-			if (me instanceof WorkItem) {
+
+			if (state == CLOSED && !(nextMe.getState().equals(MEState.CLOSED))) {
+				continue;
+			}
+
+			// Only WorkItems have estimates
+			if (operation == AGGREGATE && !(nextMe instanceof WorkItem)) {
+				continue;
+			}
+
+			switch (operation) {
+			case COUNT:
+				result++;
+				break;
+
+			case AGGREGATE:
 				WorkItem workItem = (WorkItem) nextMe;
-				// result = operation.execute(state, workItem, result);
-				result = operation.execute(workItem, result);
+				result += workItem.getEstimate();
+				break;
+
+			default:
+				continue;
 			}
 		}
 
