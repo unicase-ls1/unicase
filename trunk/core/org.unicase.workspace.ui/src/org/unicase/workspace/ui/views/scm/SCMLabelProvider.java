@@ -26,7 +26,6 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
-import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsDescriptionProvider;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
@@ -41,7 +40,6 @@ import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
  */
 public class SCMLabelProvider extends ColumnLabelProvider {
 
-	private OperationsDescriptionProvider operationsDescriptionProvider;
 	private Project project;
 	private List<OperationId> highlighted;
 	private static final String ELEMENT_NOT_FOUND = "There is no sufficient information to display this element";
@@ -54,7 +52,6 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 	 */
 	public SCMLabelProvider(Project project) {
 		super();
-		this.operationsDescriptionProvider = new OperationsDescriptionProvider(project);
 		this.project = project;
 		this.highlighted = new ArrayList<OperationId>();
 
@@ -85,7 +82,7 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				if (value instanceof CompositeOperation) {
 					ret = "Composite operation";
 				} else {
-					ret = operationsDescriptionProvider.getDescription((AbstractOperation) value);
+					ret = changePackageVisualizationHelper.getDescription((AbstractOperation) value);
 				}
 			} else if (value instanceof ModelElement) {
 				ret = ((ModelElement) value).getName();
