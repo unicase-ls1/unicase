@@ -8,7 +8,6 @@ package org.unicase.ui.tom.operations;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.swt.events.MouseEvent;
 
 /**
@@ -37,7 +36,6 @@ public abstract class MoveOperation extends AbstractOperation {
 	
 	/**
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
-	 * @param targetEditPart The {@link IGraphicalEditPart} to be moved
 	 */
 	public MoveOperation(DiagramEditPart diagramEditPart) {
 		super(diagramEditPart);

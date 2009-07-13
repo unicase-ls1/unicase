@@ -8,7 +8,6 @@ package org.unicase.ui.tom.operations;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Display;
 
@@ -18,7 +17,10 @@ import org.eclipse.swt.widgets.Display;
  */
 public class MoveConnectionBendpointOperation extends MoveOperation{
 	
-	IGraphicalEditPart targetEditPart;
+	/**
+	 * The {@link ConnectionEditPart} whose bendpoint this operation moves.
+	 */
+	private ConnectionEditPart targetEditPart;
 	
 	/**
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
@@ -30,17 +32,17 @@ public class MoveConnectionBendpointOperation extends MoveOperation{
 	}
 
 	/**
-	 * @param targetEditPart The {@link IGraphicalEditPart} to be moved
+	 * @param targetEditPart The {@link ConnectionEditPart} to be moved
 	 */
-	public void setTargetEditPart(IGraphicalEditPart targetEditPart) {
+	public void setTargetEditPart(ConnectionEditPart targetEditPart) {
 		this.targetEditPart = targetEditPart;
 	}
 
 	/**
 	 * @return
-	 * The {@link IGraphicalEditPart} to be moved
+	 * The {@link ConnectionEditPart} to be moved
 	 */
-	public IGraphicalEditPart getTargetEditPart() {
+	public ConnectionEditPart getTargetEditPart() {
 		return targetEditPart;
 	}
 	

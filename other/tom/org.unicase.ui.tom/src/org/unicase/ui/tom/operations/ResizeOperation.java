@@ -13,6 +13,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 
+/**
+ * @author schroech
+ *
+ */
 public class ResizeOperation extends AbstractOperation {
 
 	private INodeEditPart targetEditPart;
