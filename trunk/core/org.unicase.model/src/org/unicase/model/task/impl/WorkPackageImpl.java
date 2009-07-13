@@ -1063,4 +1063,8 @@ public class WorkPackageImpl extends AnnotationImpl implements WorkPackage {
 		}
 		return result;
 	}
+
+	public int getRemainingEstimate() {
+		return this.getAggregatedEstimate() - this.getClosedAggregatedEstimate();
+	}
 } // WorkPackageImpl

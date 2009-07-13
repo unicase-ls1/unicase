@@ -126,4 +126,9 @@ public interface WorkPackage extends WorkItem {
 	 */
 	int getAllTasks();
 
+	/**
+	 * @return the sum of estimates of all open items beneath this WorkPackage and the WorkPackage itself
+	 */
+	int getRemainingEstimate();
+
 } // WorkPackage

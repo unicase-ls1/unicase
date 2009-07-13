@@ -184,6 +184,15 @@ public class TestEstimateComputation extends TestCase {
 	}
 
 	/**
+	 * Get aggregated estimate of all open tasks with and without leafOpeners.
+	 */
+	@Test
+	public void testGetRemainingEstimate() {
+		assertEquals(estimatesSum + leafOpenerEstimatesSum, EstimateHelper.getRemainingEstimate(wpRoot));
+		assertEquals(estimatesSum, wpRoot.getRemainingEstimate());
+	}
+
+	/**
 	 * This tests and documents the overflow behavior with extreme values for estimates.
 	 */
 	@Test
