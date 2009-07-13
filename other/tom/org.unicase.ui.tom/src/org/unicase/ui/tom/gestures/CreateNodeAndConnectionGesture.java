@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.Utility;
-import org.unicase.ui.tom.commands.CreateDefaultConnectionCommand;
 import org.unicase.ui.tom.commands.CreateDefaultNodeAndConnectionCommand;
 import org.unicase.ui.tom.commands.CreateNodeAndConnectionCommand;
 import org.unicase.ui.tom.commands.Executable;

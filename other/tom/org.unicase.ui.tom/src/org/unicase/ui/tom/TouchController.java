@@ -1,8 +1,5 @@
 package org.unicase.ui.tom;
 
-import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;

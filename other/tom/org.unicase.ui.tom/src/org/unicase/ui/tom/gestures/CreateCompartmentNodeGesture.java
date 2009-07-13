@@ -15,7 +15,6 @@ import org.unicase.ui.tom.commands.CreateSecondaryNodeCommand;
 import org.unicase.ui.tom.tools.TouchUtility;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
-import org.unicase.ui.tom.touches.Touch;
 
 /**
  * @author schroech

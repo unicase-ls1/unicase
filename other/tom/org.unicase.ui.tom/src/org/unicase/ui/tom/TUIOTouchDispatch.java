@@ -6,7 +6,6 @@ import java.util.Map;
 
 import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.TUIOTouch;
-import org.unicase.ui.tom.touches.Touch;
 import org.unicase.ui.tum.tuio.TuioClient;
 import org.unicase.ui.tum.tuio.TuioCursor;
 import org.unicase.ui.tum.tuio.TuioListener;
