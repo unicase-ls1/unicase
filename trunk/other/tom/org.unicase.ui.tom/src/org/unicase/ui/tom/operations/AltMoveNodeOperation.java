@@ -1,5 +1,9 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.operations;
-
 
 import java.util.List;
 
@@ -7,10 +11,19 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+//BEGIN IGNORE IMPORT
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+//END IGNORE IMPORT
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 
+/**
+ * A {@link MoveOperation} moving {@link INodeEditPart}s.
+ * Allows the simultaneous movement of multiple {@link INodeEditPart}s.
+ *  
+ * @author schroech
+ *
+ */
 public class AltMoveNodeOperation extends MoveOperation {
 
 	private List<INodeEditPart> targetEditParts;
@@ -19,8 +32,8 @@ public class AltMoveNodeOperation extends MoveOperation {
 	/**
 	 * @param diagramEditPart
 	 *            The {@link DiagramEditPart} on which this operation operates
-	 * @param targetEditPart
-	 *            The {@link IGraphicalEditPart} to be moved
+	 * @param targetEditParts
+	 *            The {@link IGraphicalEditPart}s to be moved
 	 */
 	public AltMoveNodeOperation(DiagramEditPart diagramEditPart,
 			List<INodeEditPart> targetEditParts) {
@@ -28,6 +41,10 @@ public class AltMoveNodeOperation extends MoveOperation {
 		setTargetEditParts(targetEditParts);
 	}
 
+	/** 
+	* {@inheritDoc}
+	* @see org.unicase.ui.tom.operations.MoveOperation#finish()
+	*/
 	@Override
 	public void finish() {
 		eraseEditPartFeedback();
@@ -41,11 +58,19 @@ public class AltMoveNodeOperation extends MoveOperation {
 
 	}
 
+	/** 
+	* {@inheritDoc}
+	* @see org.unicase.ui.tom.operations.MoveOperation#prepare(org.eclipse.draw2d.geometry.Point)
+	*/
 	@Override
 	public void prepare(Point point) {
 		setPosition(point);
 	}
 
+	/** 
+	* {@inheritDoc}
+	* @see org.unicase.ui.tom.operations.MoveOperation#update(org.eclipse.draw2d.geometry.Point)
+	*/
 	@Override
 	public void update(Point point) {
 
@@ -94,10 +119,13 @@ public class AltMoveNodeOperation extends MoveOperation {
 		return request;
 	}
 
-	public void setTargetEditParts(List<INodeEditPart> targetEditParts) {
+	private void setTargetEditParts(List<INodeEditPart> targetEditParts) {
 		this.targetEditParts = targetEditParts;
 	}
 
+	/**
+	 * @return The {@link INodeEditPart}s this {@link Operation} is moving
+	 */
 	public List<INodeEditPart> getTargetEditParts() {
 		return targetEditParts;
 	}

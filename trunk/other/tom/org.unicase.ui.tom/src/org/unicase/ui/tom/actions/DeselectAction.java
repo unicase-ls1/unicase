@@ -5,8 +5,8 @@
  */
 package org.unicase.ui.tom.actions;
 
+import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.swt.widgets.Display;
 
 /**
@@ -21,7 +21,7 @@ public class DeselectAction extends SelectionAction {
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
 	 * @param targetEditPart The {@link GraphicalEditPart} being selected / deselected
 	 */
-	public DeselectAction(DiagramEditPart diagramEditPart, org.eclipse.gef.GraphicalEditPart targetEditPart) {
+	public DeselectAction(DiagramEditPart diagramEditPart, GraphicalEditPart targetEditPart) {
 		super(diagramEditPart, targetEditPart);
 	}
 

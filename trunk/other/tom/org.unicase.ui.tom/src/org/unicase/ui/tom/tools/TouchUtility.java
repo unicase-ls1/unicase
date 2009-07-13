@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.tools;
 
 import java.util.ArrayList;
@@ -24,6 +29,12 @@ public final class TouchUtility {
 	private TouchUtility() {
 	}
 	
+	/**
+	 * Returns the current positions of the input {@link SingleTouch}es as a {@link PointList}. 
+	 * 
+	 * @param touches A {@link Collection} of {@link SingleTouch}es. May not be null.
+	 * @return A {@link PointList}. May be empty. 
+	 */
 	public static PointList pointListOfCurrentPositions(Collection<SingleTouch> touches){
 		PointList pointList = new PointList();
 		for (Touch touch : touches) {

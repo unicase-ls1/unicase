@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.tom.tools;
 
 import org.eclipse.draw2d.Connection;
@@ -10,19 +15,34 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.gef.ui.internal.tools.SelectConnectionEditPartTracker;
 
+/**
+ * @author schroech
+ *
+ */
 @SuppressWarnings("restriction")
 public class TouchSelectConnectionEditPartTracker extends
 		SelectConnectionEditPartTracker {
 	
-	public final static int TOUCH_DIAMETER = 30;
+	/**
+	 * The diameter of a touch.
+	 */
+	public static final int TOUCH_DIAMETER = 30;
 	
+	/**
+	 * Default constructor. 
+	 * 
+	 * @param owner The {@link ConnectionEditPart} this tracker operates on
+	 */
 	public TouchSelectConnectionEditPartTracker(ConnectionEditPart owner) {
 		super(owner);
 	}
 
 	/** 
 	 * @see org.eclipse.gef.tools.AbstractTool#handleButtonDown(int)
-	 * Resembles the superclass implementation
+	 * Resembles the superclass implementation while taking the touch diameter into account 
+	 * 
+	 *	@param button which button went down
+ 	 *	@return <code>true</code> if the buttonDown was handled
 	 * 
 	 */
 	protected boolean handleButtonDown(int button) {
