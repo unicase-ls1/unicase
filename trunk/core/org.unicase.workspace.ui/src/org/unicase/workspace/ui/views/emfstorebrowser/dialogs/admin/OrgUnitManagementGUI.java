@@ -33,9 +33,9 @@ public class OrgUnitManagementGUI {
 	// it can refresh its list viewer on property changes
 	private TabContent activeTabContent;
 
-	private TabContent projectsTabContents;
-	private TabContent groupsTabContents;
-	private TabContent usersTabContents;
+	private ProjectTabContent projectsTabContents;
+	private GroupTabContent groupsTabContents;
+	private UserTabContent usersTabContents;
 
 	/**
 	 * Constructor.
@@ -134,19 +134,19 @@ public class OrgUnitManagementGUI {
 	private void initTabFolder(AdminBroker adminBroker, PropertiesForm frm) {
 
 		TabItem projectsTab = new TabItem(tabFolder, SWT.NONE);
-		projectsTabContents = new TabContent("Projects", adminBroker, frm);
+		projectsTabContents = new ProjectTabContent("Projects", adminBroker, frm);
 		projectsTab.setControl(projectsTabContents.createContents(tabFolder));
-		projectsTab.setText(projectsTabContents.getName());
+		projectsTab.setText("Projects");
 
 		TabItem groupsTab = new TabItem(tabFolder, SWT.NONE);
-		groupsTabContents = new TabContent("Groups", adminBroker, frm);
+		groupsTabContents = new GroupTabContent("Groups", adminBroker, frm);
 		groupsTab.setControl(groupsTabContents.createContents(tabFolder));
-		groupsTab.setText(groupsTabContents.getName());
+		groupsTab.setText("Groups");
 
 		TabItem usersTab = new TabItem(tabFolder, SWT.NONE);
-		usersTabContents = new TabContent("Users", adminBroker, frm);
+		usersTabContents = new UserTabContent("Users", adminBroker, frm);
 		usersTab.setControl(usersTabContents.createContents(tabFolder));
-		usersTab.setText(usersTabContents.getName());
+		usersTab.setText("Users");
 
 		tabFolder.setSelection(projectsTab);
 
