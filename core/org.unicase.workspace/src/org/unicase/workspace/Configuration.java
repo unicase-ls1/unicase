@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.osgi.framework.Bundle;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
@@ -22,6 +23,7 @@ import org.unicase.emfstore.esmodel.EsmodelFactory;
  */
 public final class Configuration {
 
+	private static final String TRANSACTIONAL_EDITINGDOMAIN_ID = "org.unicase.EditingDomain";
 	private static final String MODEL_VERSION_FILENAME = "modelReleaseNumber";
 	private static final String UPS = ".ups";
 	private static final String UOC = ".uoc";
@@ -294,5 +296,14 @@ public final class Configuration {
 	 */
 	public static String getPluginDataBaseDirectory() {
 		return getWorkspaceDirectory() + PLUGIN_BASEDIR + File.separatorChar;
+	}
+
+	/**
+	 * Retrieve the unicase editing domain. Will return null until the domain is initialized by the WorkspaceManager.
+	 * 
+	 * @return the unicase workspace editing domain
+	 */
+	public static TransactionalEditingDomain getEditingDomain() {
+		return TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(TRANSACTIONAL_EDITINGDOMAIN_ID);
 	}
 }

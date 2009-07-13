@@ -7,7 +7,6 @@
 package org.unicase.workspace.ui.commands;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.RecordingCommandWithResult;
 
@@ -29,19 +28,17 @@ public class ProjectHasLocalChangesTester extends PropertyTester {
 		if (receiver instanceof ProjectSpace
 				&& expectedValue instanceof Boolean) {
 			final ProjectSpace projectSpace = (ProjectSpace) receiver;
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
-			RecordingCommandWithResult<Boolean> command = new RecordingCommandWithResult<Boolean>(
-					domain) {
+
+			RecordingCommandWithResult<Boolean> command = new RecordingCommandWithResult<Boolean>() {
 				@Override
-				protected void doExecute() {
+				protected Boolean doRun() {
 					Boolean hasLocalChanges = new Boolean(projectSpace
 							.isDirty());
-					this.setTypedResult(hasLocalChanges.equals(expectedValue));
+					return hasLocalChanges.equals(expectedValue);
 				}
 			};
-			domain.getCommandStack().execute(command);
-			return command.getTypedResult();
+
+			return command.run();
 		}
 		return false;
 	}
