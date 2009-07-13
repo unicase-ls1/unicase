@@ -15,7 +15,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.RecordingCommandWithResult;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 // MK: document whats this exactly does
 /**
@@ -29,7 +29,7 @@ public class RevertHandler extends AbstractHandler {
 	 * @author helming
 	 */
 	private final class RevertCommand extends
-			RecordingCommandWithResult<Boolean> {
+			UnicaseCommandWithResult<Boolean> {
 		private final ProgressMonitorDialog progressDialog;
 		private final ProjectSpace projectSpace;
 

@@ -10,7 +10,7 @@ import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
-import org.unicase.workspace.util.RecordingCommandWithResult;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * This property tester checks if current user has administrative rights upon a
@@ -31,7 +31,7 @@ public class IsAdminTester extends PropertyTester {
 		if (receiver instanceof ProjectSpace
 				&& expectedValue instanceof Boolean) {
 			final ProjectSpace projectSpace = (ProjectSpace) receiver;
-			RecordingCommandWithResult<Boolean> command = new RecordingCommandWithResult<Boolean>() {
+			UnicaseCommandWithResult<Boolean> command = new UnicaseCommandWithResult<Boolean>() {
 				@Override
 				protected Boolean doRun() {
 					Usersession usersession = projectSpace.getUsersession();

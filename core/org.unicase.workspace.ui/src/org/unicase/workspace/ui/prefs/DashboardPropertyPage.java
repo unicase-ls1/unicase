@@ -51,7 +51,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.PropertyKey;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.PropertyKey.DashboardKey;
-import org.unicase.workspace.util.RecordingCommandWithResult;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * A property page for the dashboard.
@@ -66,7 +66,7 @@ public class DashboardPropertyPage extends PropertyPage {
 	 * @author Shterev
 	 */
 	private final class SavePropertiesCommand extends
-			RecordingCommandWithResult<Object> {
+			UnicaseCommandWithResult<Object> {
 
 		@Override
 		protected Object doRun() {
@@ -619,7 +619,7 @@ public class DashboardPropertyPage extends PropertyPage {
 	 */
 	@Override
 	public boolean performOk() {
-		final RecordingCommandWithResult<Object> command = new SavePropertiesCommand();
+		final UnicaseCommandWithResult<Object> command = new SavePropertiesCommand();
 		command.run();
 		return true;
 	}
