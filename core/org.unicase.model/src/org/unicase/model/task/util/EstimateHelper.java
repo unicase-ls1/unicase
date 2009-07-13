@@ -29,6 +29,14 @@ public final class EstimateHelper {
 	}
 
 	/**
+	 * @param me the ModelElement which you want the remaining estimate for
+	 * @return the aggregated estimates of all open WorkItems
+	 */
+	public static int getRemainingEstimate(ModelElement me) {
+		return getAggregatedEstimate(me) - getClosedAggregatedEstimate(me);
+	}
+
+	/**
 	 * @param me the ModelElement you want to aggregate the estimate for
 	 * @return the aggregated estimates of all closed WorkItems
 	 */
