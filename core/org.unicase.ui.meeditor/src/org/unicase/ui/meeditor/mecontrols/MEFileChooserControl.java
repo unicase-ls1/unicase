@@ -157,13 +157,13 @@ public class MEFileChooserControl extends AbstractMEControl {
 			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Uploading());
 		UpdateValueStrategy strategy2 = new UpdateValueStrategy();
 		strategy2.setConverter(new UploadImageConverter(upload));
-		dbc.bindValue(SWTObservables.observeImage(upload), model2, null, strategy2);
+		// dbc.bindValue(SWTObservables.observeImage(upload), model2, null, strategy2);
 		// download binding
 		IObservableValue model3 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
 			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Downloading());
 		UpdateValueStrategy strategy = new UpdateValueStrategy();
 		strategy.setConverter(new DownloadImageConverter(downloadPending, saveAs));
-		dbc.bindValue(SWTObservables.observeImage(downloadPending), model3, null, strategy);
+		// dbc.bindValue(SWTObservables.observeImage(downloadPending), model3, null, strategy);
 
 		return parent;
 	}
