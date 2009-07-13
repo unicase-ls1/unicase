@@ -8,7 +8,6 @@ package org.unicase.workspace.ui.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.window.Window;
@@ -29,38 +28,44 @@ public class RevertHandler extends AbstractHandler {
 	 * 
 	 * @author helming
 	 */
-	private final class RevertCommand extends RecordingCommandWithResult<Boolean> {
+	private final class RevertCommand extends
+			RecordingCommandWithResult<Boolean> {
 		private final ProgressMonitorDialog progressDialog;
 		private final ProjectSpace projectSpace;
 
-		private RevertCommand(TransactionalEditingDomain domain, ProgressMonitorDialog progressDialog,
-			ProjectSpace projectSpace) {
-			super(domain);
+		private RevertCommand(ProgressMonitorDialog progressDialog,
+				ProjectSpace projectSpace) {
 			this.progressDialog = progressDialog;
 			this.projectSpace = projectSpace;
 		}
 
 		@Override
-		protected void doExecute() {
-			MessageDialog dialog = new MessageDialog(null, "Confirmation", null,
-				"Do you really want to revert all your changes on project " + projectSpace.getProjectName(),
-				MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+		protected Boolean doRun() {
+			Boolean resultValue = false;
+			MessageDialog dialog = new MessageDialog(null, "Confirmation",
+					null,
+					"Do you really want to revert all your changes on project "
+							+ projectSpace.getProjectName(),
+					MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 			int result = dialog.open();
 			if (result == Window.OK) {
 				progressDialog.open();
-				progressDialog.getProgressMonitor().beginTask("Revert project...", 100);
+				progressDialog.getProgressMonitor().beginTask(
+						"Revert project...", 100);
 				progressDialog.getProgressMonitor().worked(10);
 				// BEGIN SUPRESS CATCH EXCEPTION
 				try {
 					projectSpace.revert();
-					setTypedResult(true);
+					resultValue = true;
 				} catch (RuntimeException e) {
 					DialogHandler.showExceptionDialog(e);
+				} finally {
+					// END SUPRESS CATCH EXCEPTION
+					progressDialog.getProgressMonitor().done();
+					progressDialog.close();
 				}
-				// END SUPRESS CATCH EXCEPTION
-				progressDialog.getProgressMonitor().done();
-				progressDialog.close();
 			}
+			return resultValue;
 		}
 	}
 
@@ -75,14 +80,11 @@ public class RevertHandler extends AbstractHandler {
 		if (projectSpace == null) {
 			DialogHandler.showErrorDialog("No Project selected.");
 		}
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow().getShell());
-		RevertCommand command = new RevertCommand(domain, progressDialog, projectSpace);
-		domain.getCommandStack().execute(command);
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		RevertCommand command = new RevertCommand(progressDialog, projectSpace);
 
-		if (command.getTypedResult()) {
+		if (command.run()) {
 			MessageDialog.openInformation(null, "Revert", "Reverted project ");
 		}
 		return null;

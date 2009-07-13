@@ -6,7 +6,7 @@
 package org.unicase.workspace.util;
 
 import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.unicase.workspace.Configuration;
 
 /**
  * Recording command that can buffer a result for later retrieval.
@@ -19,12 +19,10 @@ public abstract class RecordingCommandWithResult<T> extends RecordingCommand {
 	private T result;
 
 	/**
-	 * Constructor.
-	 * 
-	 * @param domain the editing domain
+	 * Constructor. The editing domain needs to be initialized by the workspace manager before using this constructor.
 	 */
-	public RecordingCommandWithResult(TransactionalEditingDomain domain) {
-		super(domain);
+	public RecordingCommandWithResult() {
+		super(Configuration.getEditingDomain());
 	}
 
 	/**
@@ -33,24 +31,26 @@ public abstract class RecordingCommandWithResult<T> extends RecordingCommand {
 	 * @see org.eclipse.emf.transaction.RecordingCommand#doExecute()
 	 */
 	@Override
-	protected abstract void doExecute();
-
-	/**
-	 * Get the result with the correct type.
-	 * 
-	 * @return the result
-	 */
-	public T getTypedResult() {
-		return result;
+	protected final void doExecute() {
+		this.result = doRun();
 	}
 
 	/**
-	 * Set the result with the correct type.
+	 * The actual action that is being executed.
 	 * 
-	 * @param result the result
+	 * @return the result
 	 */
-	protected void setTypedResult(T result) {
-		this.result = result;
+	protected abstract T doRun();
+
+	/**
+	 * Executes the command on the workspaces editing domain. Will throw an illegal state exception if the editing
+	 * domain is not initialized.
+	 * 
+	 * @return the result
+	 */
+	public T run() {
+		this.execute();
+		return this.result;
 	}
 
 }

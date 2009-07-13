@@ -7,7 +7,6 @@
 package org.unicase.workspace.ui.commands;
 
 import org.eclipse.core.expressions.PropertyTester;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.util.RecordingCommandWithResult;
@@ -22,24 +21,23 @@ public class ProjectIsSharedTester extends PropertyTester {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],
-	 *      java.lang.Object)
+	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object,
+	 *      java.lang.String, java.lang.Object[], java.lang.Object)
 	 */
-	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
-		if (receiver instanceof ProjectSpace && expectedValue instanceof Boolean) {
+	public boolean test(Object receiver, String property, Object[] args,
+			final Object expectedValue) {
+		if (receiver instanceof ProjectSpace
+				&& expectedValue instanceof Boolean) {
 			final ProjectSpace projectSpace = (ProjectSpace) receiver;
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			RecordingCommandWithResult<Boolean> command = new RecordingCommandWithResult<Boolean>(domain) {
+			RecordingCommandWithResult<Boolean> command = new RecordingCommandWithResult<Boolean>() {
 				@Override
-				protected void doExecute() {
+				protected Boolean doRun() {
 					Usersession usersession = projectSpace.getUsersession();
 					Boolean isShared = new Boolean(usersession != null);
-					this.setTypedResult(isShared.equals(expectedValue));
+					return isShared.equals(expectedValue);
 				}
 			};
-			domain.getCommandStack().execute(command);
-			return command.getTypedResult();
+			return command.run();
 		}
 		return false;
 	}

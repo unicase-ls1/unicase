@@ -79,11 +79,19 @@ public class CommitNotificationsTray extends DialogTray {
 
 	/**
 	 * Default constructor.
+	 * 
+	 * @param commitDialog
+	 *            the commit dialog
 	 */
 	public CommitNotificationsTray(CommitDialog commitDialog) {
 		this.commitDialog = commitDialog;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.jface.dialogs.DialogTray#createContents(org.eclipse.swt.widgets.Composite)
+	 */
 	@Override
 	protected Control createContents(Composite parent) {
 
@@ -105,7 +113,7 @@ public class CommitNotificationsTray extends DialogTray {
 		title.setText("Notify users about the changes you have made:");
 
 		final Text search = new Text(root, SWT.SEARCH);// | SWT.ICON_CANCEL |
-														// SWT.ICON_SEARCH);
+		// SWT.ICON_SEARCH);
 		search.setMessage("search for a notification");
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(search);
 		search.addModifyListener(new ModifyListener() {
@@ -186,6 +194,9 @@ public class CommitNotificationsTray extends DialogTray {
 		return root;
 	}
 
+	/**
+	 * Dispose the tray.
+	 */
 	public void dispose() {
 		if (comment != null) {
 			comment.dispose();
@@ -194,10 +205,16 @@ public class CommitNotificationsTray extends DialogTray {
 		}
 	}
 
+	/**
+	 * The commit notification dialog.
+	 * 
+	 * @author shtervg
+	 * 
+	 */
 	private final class CommitNotificationDialog extends TitleAreaDialog {
 
 		private List<User> users;
-		protected AbstractOperation operation;
+		private AbstractOperation operation;
 		private ProjectSpace projectSpace;
 		private Text commentText;
 
@@ -355,7 +372,7 @@ public class CommitNotificationsTray extends DialogTray {
 	}
 
 	/**
-	 * Filter for the notifications table
+	 * Filter for the notifications table.
 	 * 
 	 * @author Shterev
 	 */
