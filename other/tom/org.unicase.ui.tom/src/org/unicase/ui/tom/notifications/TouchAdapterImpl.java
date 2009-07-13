@@ -1,18 +1,18 @@
 package org.unicase.ui.tom.notifications;
 
-import org.unicase.ui.tom.touches.Touch;
+import org.unicase.ui.tom.touches.SingleTouch;
 
 public abstract class TouchAdapterImpl implements TouchAdapter {
 
-	public void notifyChanged(TouchNotification notification) {
+	public void notifyChanged(SingleTouchNotification notification) {
 		switch (notification.getEventType()) {
-		case TouchNotification.touchAdded:
+		case SingleTouchNotification.touchAdded:
 			handleTouchAdded(notification.getTouch());
 			break;
-		case TouchNotification.touchRemoved:
+		case SingleTouchNotification.touchRemoved:
 			handleTouchRemoved(notification.getTouch());
 			break;
-		case TouchNotification.touchChanged:
+		case SingleTouchNotification.touchChanged:
 			handleTouchChanged(notification.getTouch());
 			break;
 		default:
@@ -20,9 +20,9 @@ public abstract class TouchAdapterImpl implements TouchAdapter {
 		}
 	}
 	
-	public abstract void handleTouchAdded(Touch touch);
+	public abstract void handleTouchAdded(SingleTouch touch);
 
-	public abstract void handleTouchRemoved(Touch touch);
+	public abstract void handleTouchRemoved(SingleTouch touch);
 	
-	public abstract void handleTouchChanged(Touch touch);
+	public abstract void handleTouchChanged(SingleTouch touch);
 }

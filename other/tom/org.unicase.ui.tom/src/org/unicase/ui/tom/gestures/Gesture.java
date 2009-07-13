@@ -25,6 +25,8 @@ public interface Gesture extends GestureNotifier{
 	 */
 	boolean canExecute();
 	
+	void setCanExecute(boolean canExecute);
+	
 	/**
 	 * Executes the gesture.
 	 */

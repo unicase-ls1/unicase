@@ -6,6 +6,6 @@ public interface TouchNotifier {
 
 	Set<TouchAdapter> getAdapters();
 	
-	void notifyAdapters(TouchNotification notification);
+	void notifyAdapters(SingleTouchNotification notification);
 	
 }

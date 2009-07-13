@@ -1,5 +1,8 @@
 package org.unicase.ui.tom.operations;
 
+
+import java.util.List;
+
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.commands.Command;
@@ -11,6 +14,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 
 public class AltMoveNodeOperation extends MoveOperation {
 
+	private List<INodeEditPart> targetEditParts;
 	private ChangeBoundsRequest changeBoundsRequest;
 
 	/**
@@ -20,18 +24,22 @@ public class AltMoveNodeOperation extends MoveOperation {
 	 *            The {@link IGraphicalEditPart} to be moved
 	 */
 	public AltMoveNodeOperation(DiagramEditPart diagramEditPart,
-			INodeEditPart targetEditPart) {
-		super(diagramEditPart, (IGraphicalEditPart) targetEditPart);
+			List<INodeEditPart> targetEditParts) {
+		super(diagramEditPart);
+		setTargetEditParts(targetEditParts);
 	}
 
 	@Override
 	public void finish() {
 		eraseEditPartFeedback();
 
-		Command command = getTargetEditPart().getCommand(
-				getChangeBoundsRequest());
-		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack()
-				.execute(command);
+		for (INodeEditPart targetEditPart : getTargetEditParts()) {
+			Command command = targetEditPart
+					.getCommand(getChangeBoundsRequest());
+			getDiagramEditPart().getDiagramEditDomain()
+					.getDiagramCommandStack().execute(command);
+		}
+
 	}
 
 	@Override
@@ -45,20 +53,25 @@ public class AltMoveNodeOperation extends MoveOperation {
 		int horizontalDelta = point.x - getPosition().x;
 		int verticalDelta = point.y - getPosition().y;
 
-		getChangeBoundsRequest().setMoveDelta(new Point(horizontalDelta,
-				verticalDelta));
+		getChangeBoundsRequest().setMoveDelta(
+				new Point(horizontalDelta, verticalDelta));
 
 		showEditPartFeedback();
 	}
 
 	private void eraseEditPartFeedback() {
-		getTargetEditPart().eraseSourceFeedback(getChangeBoundsRequest());
-		getTargetEditPart().eraseTargetFeedback(getChangeBoundsRequest());
+		for (INodeEditPart targetEditPart : getTargetEditParts()) {
+			targetEditPart.eraseSourceFeedback(getChangeBoundsRequest());
+			targetEditPart.eraseTargetFeedback(getChangeBoundsRequest());
+		}
+
 	}
 
 	private void showEditPartFeedback() {
-		getTargetEditPart().showSourceFeedback(getChangeBoundsRequest());
-		getTargetEditPart().showTargetFeedback(getChangeBoundsRequest());
+		for (INodeEditPart targetEditPart : getTargetEditParts()) {
+			targetEditPart.showSourceFeedback(getChangeBoundsRequest());
+			targetEditPart.showTargetFeedback(getChangeBoundsRequest());
+		}
 	}
 
 	private ChangeBoundsRequest getChangeBoundsRequest() {
@@ -69,16 +82,24 @@ public class AltMoveNodeOperation extends MoveOperation {
 	}
 
 	private ChangeBoundsRequest createChangeBoundsRequest() {
-		if (getTargetEditPart() == null) {
+		if (getTargetEditParts() == null || getTargetEditParts().size() == 0) {
 			return null;
 		}
 
 		ChangeBoundsRequest request = new ChangeBoundsRequest(
 				RequestConstants.REQ_MOVE);
-		request.setEditParts(getTargetEditPart());
+		request.setEditParts(getTargetEditParts());
 		request.getExtendedData().clear();
 		request.setConstrainedMove(false);
 
 		return request;
+	}
+
+	public void setTargetEditParts(List<INodeEditPart> targetEditParts) {
+		this.targetEditParts = targetEditParts;
+	}
+
+	public List<INodeEditPart> getTargetEditParts() {
+		return targetEditParts;
 	}
 }

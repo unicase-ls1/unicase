@@ -8,6 +8,7 @@ package org.unicase.ui.tom.operations;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.widgets.Display;
 
@@ -17,14 +18,32 @@ import org.eclipse.swt.widgets.Display;
  */
 public class MoveConnectionBendpointOperation extends MoveOperation{
 	
+	IGraphicalEditPart targetEditPart;
+	
 	/**
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
 	 * @param targetEditPart The {@link ConnectionEditPart} to be moved
 	 */
 	public MoveConnectionBendpointOperation(DiagramEditPart diagramEditPart, ConnectionEditPart targetEditPart) {
-		super(diagramEditPart, targetEditPart);
+		super(diagramEditPart);
+		setTargetEditPart(targetEditPart);
 	}
 
+	/**
+	 * @param targetEditPart The {@link IGraphicalEditPart} to be moved
+	 */
+	public void setTargetEditPart(IGraphicalEditPart targetEditPart) {
+		this.targetEditPart = targetEditPart;
+	}
+
+	/**
+	 * @return
+	 * The {@link IGraphicalEditPart} to be moved
+	 */
+	public IGraphicalEditPart getTargetEditPart() {
+		return targetEditPart;
+	}
+	
 	/** 
 	* {@inheritDoc}
 	* @see org.unicase.ui.tom.operations.Operation#finish()

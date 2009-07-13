@@ -1,13 +1,13 @@
 package org.unicase.ui.tom.notifications;
 
-import org.unicase.ui.tom.touches.Touch;
+import org.unicase.ui.tom.touches.SingleTouch;
 
-public class TouchNotificationImpl implements TouchNotification {
+public class SingleTouchNotificationImpl implements SingleTouchNotification {
 
 	private int eventType;
-	private Touch touch;
+	private SingleTouch touch;
 	
-	public TouchNotificationImpl(Touch touch, int eventType) {
+	public SingleTouchNotificationImpl(SingleTouch touch, int eventType) {
 		super();
 		
 		setTouch(touch);
@@ -22,11 +22,11 @@ public class TouchNotificationImpl implements TouchNotification {
 		this.eventType = eventType;
 	}
 
-	public void setTouch(Touch touch) {
+	public void setTouch(SingleTouch touch) {
 		this.touch = touch;
 	}
 
-	public Touch getTouch() {
+	public SingleTouch getTouch() {
 		return touch;
 	}
 

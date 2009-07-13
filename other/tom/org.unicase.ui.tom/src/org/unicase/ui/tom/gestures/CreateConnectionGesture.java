@@ -17,8 +17,10 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.swt.widgets.Display;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
+import org.unicase.ui.tom.Utility;
 import org.unicase.ui.tom.commands.CreateDefaultConnectionCommand;
 import org.unicase.ui.tom.commands.CreateSecondaryConnectionCommand;
 import org.unicase.ui.tom.commands.Executable;
@@ -104,6 +106,8 @@ public class CreateConnectionGesture extends CreateGesture {
 		} finally {
 			setCanExecute(false);			
 		}
+		
+		Utility.beep(1);
 	}
 
 	/** 
@@ -128,14 +132,16 @@ public class CreateConnectionGesture extends CreateGesture {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleSingleTouchRemoved(SingleTouch touch) {
-//		if (!(touch.getLifeSpan() < CREATION_TOUCH_LIFESPAN)) {
-//			return;
-//		}
+		if (!(touch.getLifeSpan() < CREATION_TOUCH_LIFESPAN)) {
+			setCreationTouch(null);
+			setCanExecute(false);
+			return;
+		}
 
 		MultiTouch multiTouch = touch.getMultiTouch();
 
-		int numberOfTouches = multiTouch.getActiveTouches().size();
-		if (numberOfTouches == 0) {
+		int numberOfTouches = multiTouch.getAllTouches().size();
+		if (numberOfTouches > 3 || numberOfTouches < 2) {
 			return;
 		}
 

@@ -3,17 +3,9 @@ package org.unicase.ui.tom.touches;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
-import org.unicase.ui.tom.TouchDispatch;
-import org.unicase.ui.tom.notifications.TouchAdapter;
-import org.unicase.ui.tom.notifications.TouchNotification;
-import org.unicase.ui.tom.notifications.TouchNotificationImpl;
-import org.unicase.ui.tom.notifications.TouchNotifier;
-import org.unicase.ui.tom.notifications.TouchNotifierImpl;
-import org.unicase.ui.tom.tools.TouchUtility;
 
 /**
  * @author schroech
@@ -21,17 +13,10 @@ import org.unicase.ui.tom.tools.TouchUtility;
  */
 public class MultiTouch extends AbstractTouch{
 
-	private List<Touch> activeTouches;
-	private List<Touch> removedTouches;
-
-	/**
-	 * Default constructor. 
-	 */
-	public MultiTouch() {
-		setActiveTouches(new ArrayList<Touch>());
-		setRemovedTouches(new ArrayList<Touch>());
-	}
-
+	private final List<SingleTouch> activeTouches = new ArrayList<SingleTouch>();
+	private final List<SingleTouch> removedTouches = new ArrayList<SingleTouch>();
+	private boolean isClaimed;
+	
 	/** 
 	 * {@inheritDoc}
 	 * @see org.unicase.ui.tom.touches.Touch#getPosition()
@@ -54,9 +39,16 @@ public class MultiTouch extends AbstractTouch{
 	public Point getPosition() {
 		PointList allPositions = new PointList();
 		
-		for (Touch activeTouch : activeTouches) {
-			Point position = activeTouch.getPosition();
-			allPositions.addPoint(position);
+		if (activeTouches.size() == 0) {
+			for (Touch removedTouch : removedTouches) {
+				Point position = removedTouch.getPosition();
+				allPositions.addPoint(position);
+			}
+		}else{
+			for (Touch activeTouch : activeTouches) {
+				Point position = activeTouch.getPosition();
+				allPositions.addPoint(position);
+			}
 		}
 		
 		return allPositions.getBounds().getCenter();
@@ -157,38 +149,39 @@ public class MultiTouch extends AbstractTouch{
 		return points.getMidpoint().y;
 	}
 
-	public void addTouch(Touch touch){
+	public void addTouch(SingleTouch touch){
 		activeTouches.add(touch);
 		touch.setMultiTouch(this);
 	}
 
-	public void removeTouch(Touch touch){
+	public void removeTouch(SingleTouch touch){
 		if (activeTouches.contains(touch)) {
 			activeTouches.remove(touch);
 			removedTouches.add(touch);
 		}
 	}
 
-	/**
-	 * @param activeTouches
-	 */
-	private void setActiveTouches(List<Touch> activeTouches) {
-		this.activeTouches = activeTouches;
-	}
-
-
-	public List<Touch> getActiveTouches() {
+	public List<SingleTouch> getActiveTouches() {
 		return activeTouches;
 	}
 
-
-	private void setRemovedTouches(List<Touch> removedTouches) {
-		this.removedTouches = removedTouches;
+	public List<SingleTouch> getRemovedTouches() {
+		return removedTouches;
+	}
+	
+	public List<SingleTouch> getAllTouches() {
+		List<SingleTouch>allTouches = new ArrayList<SingleTouch>();
+		allTouches.addAll(getRemovedTouches());
+		allTouches.addAll(getActiveTouches());
+		return allTouches;
 	}
 
+	public void setClaimed(boolean isClaimed) {
+		this.isClaimed = isClaimed;
+	}
 
-	public List<Touch> getRemovedTouches() {
-		return removedTouches;
+	public boolean isClaimed() {
+		return isClaimed;
 	}
 
 }

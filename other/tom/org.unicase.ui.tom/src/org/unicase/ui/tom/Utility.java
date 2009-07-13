@@ -32,9 +32,21 @@ public class Utility {
 			public void run(){
 				try {
 					IWorkbench workbench = PlatformUI.getWorkbench();
+					if (workbench == null) {
+						return;
+					}
 					IWorkbenchWindow activeWorkbenchWindow = workbench.getActiveWorkbenchWindow();
+					if (activeWorkbenchWindow == null) {
+						return;
+					}
 					IWorkbenchPage activePage = activeWorkbenchWindow.getActivePage();
+					if (activePage == null) {
+						return;
+					}
 					IEditorPart activeEditor = activePage.getActiveEditor();
+					if (activeEditor == null) {
+						return;
+					}
 					setResult(activeEditor);
 				} catch (Exception e) {
 					e.printStackTrace();

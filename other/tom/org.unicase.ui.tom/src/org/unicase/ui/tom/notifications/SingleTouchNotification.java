@@ -1,8 +1,8 @@
 package org.unicase.ui.tom.notifications;
 
-import org.unicase.ui.tom.touches.Touch;
+import org.unicase.ui.tom.touches.SingleTouch;
 
-public interface TouchNotification {
+public interface SingleTouchNotification {
 	
 	int touchAdded = 0;
 	
@@ -14,5 +14,5 @@ public interface TouchNotification {
 	
 	int getEventType();
 	
-	Touch getTouch();
+	SingleTouch getTouch();
 }

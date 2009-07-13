@@ -1,7 +1,7 @@
 package org.unicase.ui.tom;
 
-import java.lang.reflect.Method;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.draw2d.ColorConstants;
@@ -11,41 +11,60 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LightweightSystem;
 import org.eclipse.draw2d.Shape;
-import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.GraphicalViewer;
-import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IPageListener;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
+import org.eclipse.swt.graphics.Device;
 import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
+import org.unicase.ui.tom.notifications.MultiTouchAdapterImpl;
+import org.unicase.ui.tom.notifications.SingleTouchNotification;
 import org.unicase.ui.tom.notifications.TouchAdapterImpl;
 import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
+import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
 
-public class TouchVisualizer extends TouchAdapterImpl {
+public class TouchVisualizer {
 
-	private Map<Touch, TouchFigure> touchMap;
-	private Map<MultiTouch, Color> colorMap;
+	private final Map<SingleTouch, TouchFigure> touchMap = new HashMap<SingleTouch, TouchFigure>();
+	private Map<MultiTouch, Color> colorMap = new HashMap<MultiTouch, Color>();;
 
 	private FreeformViewport freeformViewport;
 
 	private ModelDiagramEditor activeEditor;
+	private final MySingleTouchAdapterImpl singleTouchAdapter = new MySingleTouchAdapterImpl();
+	private final MyMultiTouchAdapterImpl multiTouchAdapter = new MyMultiTouchAdapterImpl();
 
-	public TouchVisualizer() {
+	private class MyMultiTouchAdapterImpl extends MultiTouchAdapterImpl {
 
-		touchMap = new HashMap<Touch, TouchFigure>();
-		colorMap = new HashMap<MultiTouch, Color>();
-
+		@Override
+		public void handleTouchClaimed(MultiTouch touch) {
+			handleMultiTouchClaimed(touch);
+		}
+		
 	}
+	
+	private class MySingleTouchAdapterImpl extends TouchAdapterImpl {
 
+		@Override
+		public void handleTouchAdded(SingleTouch touch) {
+			handleSingleTouchAdded(touch);
+		}
+
+		@Override
+		public void handleTouchChanged(SingleTouch touch) {
+			handleSingleTouchChanged(touch);
+		}
+
+		@Override
+		public void handleTouchRemoved(SingleTouch touch) {
+			handleSingleTouchRemoved(touch);
+		}
+		
+	}
+	
 	private static final class ColorSwitch {
 		static int colorIndex = 0;
 
@@ -70,7 +89,7 @@ public class TouchVisualizer extends TouchAdapterImpl {
 		}
 	}
 
-	private void addTouch(Touch addedTouch) {
+	private void addTouch(SingleTouch addedTouch) {
 
 		MultiTouch multiTouch = addedTouch.getMultiTouch();
 		Color color = colorMap.get(multiTouch);
@@ -171,34 +190,29 @@ public class TouchVisualizer extends TouchAdapterImpl {
 		}
 
 	}
-
-	public void handleTouchAdded(Touch addedTouch) {
+	
+	public void handleMultiTouchClaimed(MultiTouch claimedTouch) {
+		List<SingleTouch> activeTouches = claimedTouch.getActiveTouches();
+		for (Touch touch : activeTouches) {
+			TouchFigure touchFigure = touchMap.get(touch);
+			if (touchFigure == null) {
+				continue;
+			}
+			Color someColor = ColorConstants.lightGray;
+			Color gray = new Color(someColor.getDevice(), 230, 230, 230);
+			touchFigure.setForegroundColor(gray);
+			touchFigure.setBackgroundColor(gray);			
+		}
+	}
+	
+	public void handleSingleTouchAdded(SingleTouch addedTouch) {
 		if (activeEditor == null) {
 			return;
 		}
-		// Display current = Display.getDefault();
-		//
-		// if (current == null) {
-		// return;
-		// }
-		//
-		// RunnableWithResult<org.eclipse.swt.graphics.Rectangle> runnable
-		// = new RunnableWithResult.Impl<org.eclipse.swt.graphics.Rectangle>(){
-		// public void run() {
-		// setResult(shell.getBounds());
-		// }
-		// };
-		//
-		// current.syncExec(runnable);
-		//
-		// org.eclipse.swt.graphics.Rectangle result = runnable.getResult();
-
-		// if (result.contains(addedTouch.getPosition().getSWTPoint())) {
 		addTouch(addedTouch);
-		// }
 	}
 
-	public void handleTouchChanged(Touch changedTouch) {
+	public void handleSingleTouchChanged(Touch changedTouch) {
 		if (activeEditor == null) {
 			return;
 		}
@@ -214,7 +228,7 @@ public class TouchVisualizer extends TouchAdapterImpl {
 		touchFigure.setLocation(point);
 	}
 
-	public void handleTouchRemoved(Touch removedTouch) {
+	public void handleSingleTouchRemoved(Touch removedTouch) {
 		if (activeEditor == null) {
 			return;
 		}
@@ -253,5 +267,13 @@ public class TouchVisualizer extends TouchAdapterImpl {
 
 	public ModelDiagramEditor getActiveEditor() {
 		return activeEditor;
+	}
+
+	public TouchAdapterImpl getSingleTouchAdapter() {
+		return singleTouchAdapter;
+	}
+
+	public MyMultiTouchAdapterImpl getMultiTouchAdapter() {
+		return multiTouchAdapter;
 	}
 }

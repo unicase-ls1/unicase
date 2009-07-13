@@ -18,7 +18,6 @@ import org.eclipse.swt.events.MouseEvent;
 public abstract class MoveOperation extends AbstractOperation {
 
 	private DragTracker dragTracker;
-	private IGraphicalEditPart targetEditPart;
 	private Point position;
 	
 	/**
@@ -40,24 +39,8 @@ public abstract class MoveOperation extends AbstractOperation {
 	 * @param diagramEditPart The {@link DiagramEditPart} on which this operation operates
 	 * @param targetEditPart The {@link IGraphicalEditPart} to be moved
 	 */
-	public MoveOperation(DiagramEditPart diagramEditPart, IGraphicalEditPart targetEditPart) {
+	public MoveOperation(DiagramEditPart diagramEditPart) {
 		super(diagramEditPart);
-		setTargetEditPart(targetEditPart);
-	}
-
-	/**
-	 * @param targetEditPart The {@link IGraphicalEditPart} to be moved
-	 */
-	public void setTargetEditPart(IGraphicalEditPart targetEditPart) {
-		this.targetEditPart = targetEditPart;
-	}
-
-	/**
-	 * @return
-	 * The {@link IGraphicalEditPart} to be moved
-	 */
-	public IGraphicalEditPart getTargetEditPart() {
-		return targetEditPart;
 	}
 
 	/**

@@ -10,7 +10,9 @@ public interface Touch{
 	void setMultiTouch(MultiTouch multiTouch);
 	MultiTouch getMultiTouch();
 	
-
+	void setClaimed(boolean claimed); 
+	boolean isClaimed();
+	
 	Point getPosition();
 	int getX();
 	int getY();

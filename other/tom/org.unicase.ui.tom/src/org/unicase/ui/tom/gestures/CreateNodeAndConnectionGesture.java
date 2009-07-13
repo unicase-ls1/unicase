@@ -12,16 +12,19 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
+import org.unicase.ui.tom.Utility;
 import org.unicase.ui.tom.commands.CreateDefaultConnectionCommand;
 import org.unicase.ui.tom.commands.CreateDefaultNodeAndConnectionCommand;
 import org.unicase.ui.tom.commands.CreateNodeAndConnectionCommand;
 import org.unicase.ui.tom.commands.Executable;
+import org.unicase.ui.tom.tools.TouchUtility;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
 
@@ -50,6 +53,8 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 			return;
 		}
 
+		Utility.beep(1);
+		
 		try {
 			Executable command = null;
 
@@ -72,8 +77,11 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 			Point targetPoint = null;
 			Point sourcePoint = null;
 
-			targetEditPart = findCardinalTouchedEditPartExcludingDiagram(targetMultiTouch.getActiveTouches());
-			sourceEditPart = findCardinalTouchedEditPartExcludingDiagram(sourceMultiTouch.getActiveTouches());
+			PointList targetPointList = TouchUtility.pointListOfCurrentPositions(targetMultiTouch.getActiveTouches());
+			targetEditPart = findCardinalTouchedNodeEditPart(targetPointList);
+			
+			PointList sourcePointList = TouchUtility.pointListOfCurrentPositions(sourceMultiTouch.getActiveTouches());
+			sourceEditPart = findCardinalTouchedNodeEditPart(sourcePointList);
 
 			if (targetEditPart == null
 					&& sourceEditPart == null) {
@@ -196,8 +204,8 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 
 		MultiTouch multiTouch = touch.getMultiTouch();
 
-		int numberOfTouches = multiTouch.getActiveTouches().size();
-		if (numberOfTouches == 0) {
+		int numberOfTouches = multiTouch.getAllTouches().size();
+		if (numberOfTouches > 3 || numberOfTouches < 2) {
 			return;
 		}
 

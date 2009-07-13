@@ -40,7 +40,7 @@ import org.unicase.ui.tom.notifications.GestureNotification;
 import org.unicase.ui.tom.notifications.GestureNotificationImpl;
 import org.unicase.ui.tom.notifications.GestureNotifierImpl;
 import org.unicase.ui.tom.notifications.TouchAdapter;
-import org.unicase.ui.tom.notifications.TouchNotification;
+import org.unicase.ui.tom.notifications.SingleTouchNotification;
 import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
@@ -281,7 +281,7 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		} 
 	}
 	
-	public EditPart findCardinalTouchedEditPart(Collection<Touch> touches) {
+	public EditPart findCardinalTouchedEditPart(Collection<SingleTouch> touches) {
 		return findCardinalTouchedEditPartExcluding(touches,
 				Collections.EMPTY_LIST);
 	}
@@ -293,7 +293,7 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	 */
 	@SuppressWarnings("unchecked")
 	public EditPart findCardinalTouchedEditPartExcluding(
-			Collection<Touch> touches, Collection exclusions) {
+			Collection<? extends Touch> touches, Collection exclusions) {
 
 		Set<EditPart> directlyTouchedEditParts = findTouchedEditPartsExcluding(
 				touches, exclusions);
@@ -343,7 +343,7 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	}
 
 	public Set<EditPart> findTouchedEditPartsExcluding(
-			Collection<Touch> touches, Collection exclusions) {
+			Collection<? extends Touch> touches, Collection exclusions) {
 		Set<EditPart> editParts = new HashSet<EditPart>();
 
 		for (Touch touch : touches) {
@@ -359,7 +359,7 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 		return editParts;
 	}
 
-	public EditPart findEditPartAtCenterExcluding(Collection<Touch> touches,
+	public EditPart findEditPartAtCenterExcluding(Collection<?extends Touch> touches,
 			Collection exclusions) {
 		PointList points = new PointList();
 
@@ -544,20 +544,20 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.tom.notifications.TouchAdapter#notifyChanged(org.unicase.ui.tom.notifications.TouchNotification)
+	 * @see org.unicase.ui.tom.notifications.TouchAdapter#notifyChanged(org.unicase.ui.tom.notifications.SingleTouchNotification)
 	 */
-	public void notifyChanged(TouchNotification notification) {
+	public void notifyChanged(SingleTouchNotification notification) {
 		int eventType = notification.getEventType();
 		Touch touch = notification.getTouch();
 		if (touch instanceof SingleTouch) {
 			switch (eventType) {
-			case TouchNotification.touchAdded:
+			case SingleTouchNotification.touchAdded:
 				handleSingleTouchAdded((SingleTouch) touch);
 				break;
-			case TouchNotification.touchRemoved:
+			case SingleTouchNotification.touchRemoved:
 				handleSingleTouchRemoved((SingleTouch) touch);
 				break;
-			case TouchNotification.touchChanged:
+			case SingleTouchNotification.touchChanged:
 				handleSingleTouchChanged((SingleTouch) touch);
 				break;
 			default:
@@ -593,11 +593,11 @@ public abstract class AbstractGesture extends GestureNotifierImpl implements
 	public void setDispatch(TouchDispatch dispatch) {
 		if (dispatch != this.dispatch) {
 			if (this.dispatch != null) {
-				this.dispatch.getAdapters().remove(this);
+				this.dispatch.getSingleTouchNotifier().getAdapters().remove(this);
 			}
 			this.dispatch = dispatch;
 			if (this.dispatch != null) {
-				this.dispatch.getAdapters().add(this);
+				this.dispatch.getSingleTouchNotifier().getAdapters().add(this);
 			}
 		}
 	}

@@ -12,7 +12,6 @@ import java.util.List;
 import java.util.Set;
 
 import org.eclipse.draw2d.FigureCanvas;
-import org.eclipse.draw2d.LightweightSystem;
 import org.eclipse.draw2d.Viewport;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
@@ -20,8 +19,11 @@ import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.swt.events.ControlEvent;
 import org.eclipse.swt.widgets.Control;
 import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
-import org.unicase.ui.tom.notifications.TouchNotification;
-import org.unicase.ui.tom.notifications.TouchNotificationImpl;
+import org.unicase.ui.tom.notifications.MultiTouchNotification;
+import org.unicase.ui.tom.notifications.MultiTouchNotificationImpl;
+import org.unicase.ui.tom.notifications.MultiTouchNotifierImpl;
+import org.unicase.ui.tom.notifications.SingleTouchNotification;
+import org.unicase.ui.tom.notifications.SingleTouchNotificationImpl;
 import org.unicase.ui.tom.notifications.TouchNotifierImpl;
 import org.unicase.ui.tom.tools.TouchUtility;
 import org.unicase.ui.tom.touches.MultiTouch;
@@ -32,13 +34,14 @@ import org.unicase.ui.tom.touches.Touch;
  * @author schroech
  * 
  */
-public abstract class TouchDispatch extends TouchNotifierImpl {
+public abstract class TouchDispatch {
 
-	private List<MultiTouch> activeMultiTouches;
-	private List<MultiTouch> removedMultiTouches;
+	private final List<MultiTouch> claimedTouches = new ArrayList<MultiTouch>();
+	private final List<MultiTouch> activeMultiTouches = new ArrayList<MultiTouch>();
+	private final List<MultiTouch> removedMultiTouches = new ArrayList<MultiTouch>();
 
-	private List<SingleTouch> activeSingleTouches;
-	private List<SingleTouch> removedSingleTouches;
+	private final List<SingleTouch> activeSingleTouches = new ArrayList<SingleTouch>();
+	private final List<SingleTouch> removedSingleTouches = new ArrayList<SingleTouch>();
 
 	private Viewport canvasViewport;
 
@@ -51,6 +54,9 @@ public abstract class TouchDispatch extends TouchNotifierImpl {
 
 	private ViewportOffsetListener viewportOffsetListener = new ViewportOffsetListener();
 
+	private final TouchNotifierImpl singleTouchNotifier = new TouchNotifierImpl();
+	private final MultiTouchNotifierImpl multiTouchNotifier = new MultiTouchNotifierImpl();
+
 	/**
 	 * Singleton instance.
 	 */
@@ -60,6 +66,9 @@ public abstract class TouchDispatch extends TouchNotifierImpl {
 
 		public void propertyChange(PropertyChangeEvent evt) {
 			updateViewportOffset();
+			for (SingleTouch touch : getActiveSingleTouches()) {
+				updateTouch(touch);
+			}
 		}
 
 	}
@@ -95,11 +104,6 @@ public abstract class TouchDispatch extends TouchNotifierImpl {
 	 */
 	protected TouchDispatch() {
 		super();
-		setActiveSingleTouches(new ArrayList<SingleTouch>());
-		setRemovedTouches(new ArrayList<SingleTouch>());
-
-		setActiveMultiTouches(new ArrayList<MultiTouch>());
-		setRemovedMultiTouches(new ArrayList<MultiTouch>());
 	}
 
 	/**
@@ -124,13 +128,13 @@ public abstract class TouchDispatch extends TouchNotifierImpl {
 
 		getActiveSingleTouches().add(touch);
 
-		notifyAdapters(new TouchNotificationImpl(touch,
-				TouchNotification.touchAdded));
-		notifyAdapters(new TouchNotificationImpl(touch,
-				TouchNotification.touchPropagated));
+		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
+				touch, SingleTouchNotification.touchAdded));
+		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
+				touch, SingleTouchNotification.touchPropagated));
 	}
 
-	private void assignMultiTouch(Touch touch) {
+	private void assignMultiTouch(SingleTouch touch) {
 		Set<Touch> directNeighbors = TouchUtility.findDirectNeighbors(touch,
 				getActiveSingleTouches());
 
@@ -142,7 +146,7 @@ public abstract class TouchDispatch extends TouchNotifierImpl {
 		} else {
 			for (Touch neighbor : directNeighbors) {
 				MultiTouch multiTouch = neighbor.getMultiTouch();
-				if (multiTouch != null) {
+				if (multiTouch != null && !multiTouch.isClaimed()) {
 					multiTouch.addTouch(touch);
 					break;
 				}
@@ -170,18 +174,20 @@ public abstract class TouchDispatch extends TouchNotifierImpl {
 		MultiTouch multiTouch = touch.getMultiTouch();
 		multiTouch.removeTouch(touch);
 
-		List<Touch> activeTouches = multiTouch.getActiveTouches();
+		List<SingleTouch> activeTouches = multiTouch.getActiveTouches();
 		if (activeTouches.size() == 0) {
-			if (getActiveMultiTouches().contains(multiTouch)) {
-				getActiveMultiTouches().remove(multiTouch);
-				getRemovedMultiTouches().add(multiTouch);
-			}
+			getActiveMultiTouches().remove(multiTouch);
+			getRemovedMultiTouches().add(multiTouch);
 		}
 
-		notifyAdapters(new TouchNotificationImpl(touch,
-				TouchNotification.touchRemoved));
-		notifyAdapters(new TouchNotificationImpl(touch,
-				TouchNotification.touchPropagated));
+		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
+				touch, SingleTouchNotification.touchRemoved));
+		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
+				touch, SingleTouchNotification.touchPropagated));
+		
+		if (activeTouches.size() == 0) {
+			getClaimedTouches().remove(multiTouch);
+		}
 	}
 
 	/**
@@ -190,23 +196,23 @@ public abstract class TouchDispatch extends TouchNotifierImpl {
 	 * @param touch
 	 *            The {@link Touch} to update
 	 */
-	void updateTouch(Touch touch) {
+	void updateTouch(SingleTouch touch) {
 		if (!getActiveSingleTouches().contains(touch)) {
 			return;
 		}
-		
+
 		Point position = touch.getPosition().getCopy();
 		translateToAbsolute(position);
-		
+
 		if (!getEditorBounds().contains(position)) {
 			System.out.println("Touch out of client area");
 			System.out.println("Client area:" + getEditorBounds());
 			System.out.println("Touch position:" + touch.getPosition());
 			return;
 		}
-		
+
 		MultiTouch multiTouch = touch.getMultiTouch();
-		List<Touch> activeTouches = multiTouch.getActiveTouches();
+		List<SingleTouch> activeTouches = multiTouch.getActiveTouches();
 		if (activeTouches.size() > 1) {
 			Set<Touch> directMultiTouchNeighbors = TouchUtility
 					.findDirectNeighbors(touch, activeTouches);
@@ -215,10 +221,10 @@ public abstract class TouchDispatch extends TouchNotifierImpl {
 			}
 		}
 
-		notifyAdapters(new TouchNotificationImpl(touch,
-				TouchNotification.touchChanged));
-		notifyAdapters(new TouchNotificationImpl(touch,
-				TouchNotification.touchPropagated));
+		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
+				touch, SingleTouchNotification.touchChanged));
+		singleTouchNotifier.notifyAdapters(new SingleTouchNotificationImpl(
+				touch, SingleTouchNotification.touchPropagated));
 	}
 
 	/**
@@ -228,32 +234,16 @@ public abstract class TouchDispatch extends TouchNotifierImpl {
 		return instance;
 	}
 
-	public void setActiveSingleTouches(List<SingleTouch> touches) {
-		this.activeSingleTouches = touches;
-	}
-
 	public List<SingleTouch> getActiveSingleTouches() {
 		return activeSingleTouches;
-	}
-
-	public void setRemovedTouches(List<SingleTouch> removedTouches) {
-		this.removedSingleTouches = removedTouches;
 	}
 
 	public List<SingleTouch> getRemovedTouches() {
 		return removedSingleTouches;
 	}
 
-	public void setActiveMultiTouches(List<MultiTouch> activeMultiTouches) {
-		this.activeMultiTouches = activeMultiTouches;
-	}
-
 	public List<MultiTouch> getActiveMultiTouches() {
 		return activeMultiTouches;
-	}
-
-	public void setRemovedMultiTouches(List<MultiTouch> removedMultiTouches) {
-		this.removedMultiTouches = removedMultiTouches;
 	}
 
 	public List<MultiTouch> getRemovedMultiTouches() {
@@ -290,7 +280,8 @@ public abstract class TouchDispatch extends TouchNotifierImpl {
 			canvasViewport = null;
 			getActiveMultiTouches().clear();
 			getActiveSingleTouches().clear();
-			
+			getClaimedTouches().clear();
+
 		} else {
 			FigureCanvas canvas;
 			ModelDiagramEditor activeModelDiagramEditor;
@@ -435,6 +426,31 @@ public abstract class TouchDispatch extends TouchNotifierImpl {
 
 	public Point getViewportOffset() {
 		return viewportOffset;
+	}
+
+	public TouchNotifierImpl getSingleTouchNotifier() {
+		return singleTouchNotifier;
+	}
+
+	public MultiTouchNotifierImpl getMultiTouchNotifier() {
+		return multiTouchNotifier;
+	}
+
+	public boolean claimTouch(MultiTouch touch) {
+		if (touch.isClaimed()) {
+			return false;
+		}
+
+		touch.setClaimed(true);
+		getClaimedTouches().add(touch);
+		multiTouchNotifier.notifyAdapters(new MultiTouchNotificationImpl(touch,
+				MultiTouchNotification.touchClaimed));
+
+		return true;
+	}
+
+	public List<MultiTouch> getClaimedTouches() {
+		return claimedTouches;
 	}
 
 }
