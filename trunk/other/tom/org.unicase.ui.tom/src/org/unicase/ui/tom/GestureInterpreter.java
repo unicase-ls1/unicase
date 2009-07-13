@@ -28,14 +28,10 @@ import org.unicase.ui.tom.gestures.MoveConnectionBendpointGesture;
 import org.unicase.ui.tom.gestures.MoveNodeGesture;
 import org.unicase.ui.tom.gestures.ResizeGesture;
 import org.unicase.ui.tom.gestures.SelectGesture;
-import org.unicase.ui.tom.notifications.GestureAdapter;
-import org.unicase.ui.tom.notifications.GestureNotification;
 import org.unicase.ui.tom.notifications.SingleTouchNotification;
-import org.unicase.ui.tom.notifications.SingleTouchNotificationImpl;
 import org.unicase.ui.tom.notifications.TouchAdapter;
 import org.unicase.ui.tom.notifications.TouchNotifierImpl;
 import org.unicase.ui.tom.touches.MultiTouch;
-import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
 
 /**

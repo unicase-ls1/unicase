@@ -8,19 +8,16 @@ package org.unicase.ui.tom.gestures;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
-import org.eclipse.swt.widgets.Display;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.DiscoveryModeActivationCommand;
 import org.unicase.ui.tom.commands.DiscoveryModeDeactivationCommand;
 import org.unicase.ui.tom.tools.TouchUtility;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
-import org.unicase.ui.tom.touches.Touch;
 
 /**
  * @author schroech

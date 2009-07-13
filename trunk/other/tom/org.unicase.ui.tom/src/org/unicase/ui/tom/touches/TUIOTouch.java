@@ -1,10 +1,6 @@
 package org.unicase.ui.tom.touches;
 
 import java.awt.Dimension;
-import java.awt.DisplayMode;
-import java.awt.GraphicsDevice;
-import java.awt.GraphicsEnvironment;
-import java.util.Date;
 import java.util.List;
 
 import org.eclipse.draw2d.geometry.Point;

@@ -14,9 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.gef.NodeEditPart;
-import org.eclipse.gef.RequestConstants;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
@@ -25,7 +22,6 @@ import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.commands.SwitchConnectionEndsCommand;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
-import org.unicase.ui.tom.touches.Touch;
 
 public class ChangeConnectionTypeGesture extends AbstractContinuousGesture {
 

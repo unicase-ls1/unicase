@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.tom.gestures;
 
-import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 
 /**

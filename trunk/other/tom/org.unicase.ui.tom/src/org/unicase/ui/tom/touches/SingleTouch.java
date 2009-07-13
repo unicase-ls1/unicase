@@ -1,7 +1,6 @@
 package org.unicase.ui.tom.touches;
 
 import java.util.Date;
-import java.util.List;
 
 import org.eclipse.draw2d.geometry.PointList;
 

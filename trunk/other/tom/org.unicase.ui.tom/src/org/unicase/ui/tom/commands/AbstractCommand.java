@@ -6,6 +6,7 @@
 package org.unicase.ui.tom.commands;
 
 import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.unicase.ui.tom.operations.AbstractOperation;
 

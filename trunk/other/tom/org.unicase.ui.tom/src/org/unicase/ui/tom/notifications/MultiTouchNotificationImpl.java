@@ -1,7 +1,6 @@
 package org.unicase.ui.tom.notifications;
 
 import org.unicase.ui.tom.touches.MultiTouch;
-import org.unicase.ui.tom.touches.Touch;
 
 public class MultiTouchNotificationImpl implements MultiTouchNotification {
 
