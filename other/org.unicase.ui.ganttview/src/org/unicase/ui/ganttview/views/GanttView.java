@@ -290,9 +290,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	private int calculateProgress(WorkPackage wp) {
 		int result = 0;
 
-		// int closedEstimate = wp.getClosedAggregatedEstimate();
-		// int estimate = EstimateHelper.getAggregatedEstimate(wp);
-		// result = (estimate == 0) ? 0 : (closedEstimate * 100) / estimate; // (x/0)=0
+		int closedEstimate = wp.getClosedAggregatedEstimate();
+		int estimate = wp.getAggregatedEstimate();
+		result = (estimate == 0) ? 0 : (closedEstimate * 100) / estimate; // (x/0)=0
 
 		return result;
 	}
