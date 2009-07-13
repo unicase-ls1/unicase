@@ -94,7 +94,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 		// COMPOSITE FOR WIDGETS
 
 		Composite composite = getToolkit().createComposite(parent, style);
-		// Grid layout with two columns
+		// Grid layout with four columns
 		GridLayout gridLayout = new GridLayout(4, false);
 		composite.setLayout(gridLayout);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.CENTER).grab(true, true).applyTo(composite);
@@ -153,12 +153,16 @@ public class MEFileChooserControl extends AbstractMEControl {
 		strategy1.setConverter(new FileNameLinkContentConverter());
 		dbc.bindValue(SWTObservables.observeText(fileName), model1, null, strategy1);
 		// upload binding
+		// TODO: eclipse 3.4 compatibility
+		@SuppressWarnings("unused")
 		IObservableValue model2 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
 			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Uploading());
 		UpdateValueStrategy strategy2 = new UpdateValueStrategy();
 		strategy2.setConverter(new UploadImageConverter(upload));
 		// dbc.bindValue(SWTObservables.observeImage(upload), model2, null, strategy2);
 		// download binding
+		// TODO: eclipse 3.4 compatibility
+		@SuppressWarnings("unused")
 		IObservableValue model3 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
 			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Downloading());
 		UpdateValueStrategy strategy = new UpdateValueStrategy();
@@ -515,9 +519,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 	private FileInformation getFileInformationForFileAttachment() throws FileTransferException {
 		// check if the file attachment attributes are set, otherwise return error dialog
 		if (fileAttachment.getFileName() == null || fileAttachment.getFileID() == null) {
-			String message = "There is no file attached to this file attachment!";
-			DialogHandler.showErrorDialog(message);
-			throw new FileTransferException(message);
+			throw new FileTransferException("There is no file attached to this file attachment!");
 		}
 		// set information needed for transfer
 		FileInformation fileInfo = new FileInformation();
