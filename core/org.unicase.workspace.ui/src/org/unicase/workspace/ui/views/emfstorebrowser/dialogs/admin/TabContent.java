@@ -11,7 +11,6 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -25,11 +24,7 @@ import org.eclipse.swt.dnd.DragSourceListener;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
-import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.TabFolder;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -43,181 +38,120 @@ import org.unicase.workspace.AdminBroker;
 /**
  * This class sets the contents of tabs on the left side of OrgUnitManagmentGUI.
  * 
- * @author Hodaie
+ * @author Hodaie, gurcankarakoc
  */
-public class TabContent {
+public abstract class TabContent {
 
-	private ListViewer listViewer;
-	private String tabName;
+	/**
+	 * ListViewer lists the element in the tabs.
+	 */
+	protected ListViewer listViewer;
 
-	// AdminBroker is needed to communicate with server.
-	private AdminBroker adminBroker;
+	/**
+	 * 
+	 */
+	protected String tabName;
 
-	// used to set input to properties form and update its
-	// table viewer upon deletion of OrgUnits
-	private PropertiesForm frm;
+	/**
+	 * The type of the current tab.
+	 */
+	public TabContent tab;
+
+	/**
+	 * AdminBroker is needed to communicate with server.
+	 */
+	protected AdminBroker adminBroker;
+
+	/**
+	 * used to set input to properties form and update its table viewer upon.
+	 * deletion of OrgUnits.
+	 */
+	protected PropertiesForm form;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param tabName tab name
-	 * @param adminBroker AdminBroker
-	 * @param frm ProperitesForm
+	 * @param tabName
+	 *            tab name
+	 * @param adminBroker
+	 *            AdminBroker
+	 * @param frm
+	 *            ProperitesForm
 	 */
-	public TabContent(String tabName, AdminBroker adminBroker, PropertiesForm frm) {
+	public TabContent(String tabName, AdminBroker adminBroker,
+			PropertiesForm frm) {
 		this.tabName = tabName;
 		this.adminBroker = adminBroker;
-		this.frm = frm;
+		this.form = frm;
 
 	}
 
 	/**
 	 * Creates contents of each tab.
 	 * 
-	 * @param tabFolder parent
+	 * @param tabFolder
+	 *            parent
 	 * @return contents composite
 	 */
-	public Composite createContents(TabFolder tabFolder) {
+	protected abstract Composite createContents(TabFolder tabFolder);
 
-		Composite tabContents = new Composite(tabFolder, SWT.NONE);
-		tabContents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-
-		tabContents.setLayout(new GridLayout(2, false));
-
-		initList(tabContents);
-
-		if (!tabName.equals("Projects")) {
-			createButtons(tabContents);
-		}
-
-		return tabContents;
-
-	}
-
-	private void initList(Composite tabPage) {
+	/**
+	 * @param tabPage
+	 *            is the Composite.
+	 */
+	protected void initList(Composite tabPage) {
 
 		listViewer = new ListViewer(tabPage, SWT.V_SCROLL | SWT.BORDER);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gridData.horizontalSpan = 2;
 		listViewer.getList().setLayoutData(gridData);
 
-		listViewer.setLabelProvider(new ListLabelProvider());
-		listViewer.setContentProvider(new ListContentProvider());
+		listViewer.setLabelProvider(new TabLabelProvider());
+		listViewer.setContentProvider(new TabContentProvider(tab, adminBroker));
 		listViewer.setInput(new Object());
 
 		listViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
-				frm.setInput(getSelectedItem(event));
+				form.setInput(getSelectedItem(event));
 			}
+
 		});
 
 		addDragNDropSupport();
 
 	}
 
-	private void createButtons(Composite tabContents) {
-		// Create and configure the "New" button
-		Button btnNew = new Button(tabContents, SWT.PUSH);
-		if (this.tabName.equals("Users")) {
-			btnNew.setText("New User");
-		} else {
-			btnNew.setText("New Group");
-		}
-
-		btnNew.addSelectionListener(new SelectionAdapter() {
-			// create a new OrgUnit
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				newOrgUnit();
-			}
-
-		});
-
-		// Create and configure the "Delete" button
-		Button btnDelete = new Button(tabContents, SWT.PUSH);
-		if (this.tabName.equals("Users")) {
-			btnDelete.setText("Delete User");// User");
-		} else {
-			btnDelete.setText("Delete Group");
-		}
-
-		btnDelete.addSelectionListener(new SelectionAdapter() {
-			// Remove the selection and refresh the view
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-
-				deleteOrgUnit();
-				// If form input is a project, and from users of groups tab one
-				// of participants of this project is deleted, then the table
-				// viewer on project properties must be updated.
-				// Accordingly, if a group is open and one of its users is
-				// deleted, or if a user is open and one of its groups is
-				// deleted.
-				frm.getTableViewer().refresh();
-			}
-		});
-
-	}
+	/**
+	 * @param tabContents
+	 *            is the Composite.
+	 */
+	public abstract void createButtons(Composite tabContents);
 
 	/**
 	 * Delete OrgUnit and refresh properties form if needed.
 	 */
-	private void deleteOrgUnit() {
-
-		ACOrgUnit ou = (ACOrgUnit) ((IStructuredSelection) listViewer.getSelection()).getFirstElement();
-		if (ou == null) {
-			return;
-		}
-
-		try {
-			if (ou instanceof ACGroup) {
-
-				adminBroker.deleteGroup(((ACGroup) ou).getId());
-
-			} else {
-				adminBroker.deleteUser(((ACUser) ou).getId());
-			}
-		} catch (EmfStoreException e) {
-
-			DialogHandler.showExceptionDialog(e);
-		}
-
-		listViewer.refresh();
-		if (frm.getCurrentInput() instanceof ACOrgUnit && ((ACOrgUnit) frm.getCurrentInput()).equals(ou)) {
-			frm.setInput(null);
-		}
-
-	}
-
-	private void newOrgUnit() {
-		try {
-			if (tabName.equals("Users")) {
-
-				adminBroker.createUser("New User");
-
-			} else {
-				adminBroker.createGroup("New Group");
-			}
-		} catch (EmfStoreException e) {
-
-			DialogHandler.showExceptionDialog(e);
-		}
-		listViewer.refresh();
-	}
+	protected abstract void deleteOrgUnit();
 
 	/**
-	 * This is used during first creation of tab folder to set initial input to properties form.
+	 * You can create a new user or group in this method.
+	 */
+	protected abstract void newOrgUnit();
+
+	/**
+	 * This is used during first creation of tab folder to set initial input to
+	 * properties form.
 	 */
 	public void viewStarted() {
-		if (frm.getCurrentInput() == null) {
-			frm.setInput((EObject) listViewer.getElementAt(0));
+		if (form.getCurrentInput() == null) {
+			form.setInput((EObject) listViewer.getElementAt(0));
 		}
 
 	}
 
 	private void addDragNDropSupport() {
 		int ops = DND.DROP_COPY;
-		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
+				.getTransfer() };
 
 		DragSourceListener dragListener = new DragSourceListener() {
 			public void dragFinished(DragSourceEvent event) {
@@ -271,7 +205,7 @@ public class TabContent {
 	}
 
 	private void doDrop(ACOrgUnit orgUnit) {
-		EObject currentInput = frm.getCurrentInput();
+		EObject currentInput = form.getCurrentInput();
 		if (currentInput == null) {
 			return;
 		}
@@ -279,7 +213,8 @@ public class TabContent {
 			if (currentInput instanceof ProjectInfo) {
 				ProjectInfo projectInfo = (ProjectInfo) currentInput;
 
-				adminBroker.removeParticipant(projectInfo.getProjectId(), orgUnit.getId());
+				adminBroker.removeParticipant(projectInfo.getProjectId(),
+						orgUnit.getId());
 
 			} else if (currentInput instanceof ACGroup) {
 				ACGroup group = (ACGroup) currentInput;
@@ -287,7 +222,8 @@ public class TabContent {
 
 			} else if (currentInput instanceof ACUser) {
 				ACUser user = (ACUser) currentInput;
-				adminBroker.removeGroup(user.getId(), ((ACGroup) orgUnit).getId());
+				adminBroker.removeGroup(user.getId(), ((ACGroup) orgUnit)
+						.getId());
 			}
 		} catch (EmfStoreException e) {
 			DialogHandler.showExceptionDialog(e);
@@ -297,13 +233,13 @@ public class TabContent {
 	/**
 	 * @return name of this tab
 	 */
-	public String getName() {
+	private String getName() {
 		return tabName;
 	}
 
 	/**
-	 * This is called from user and group properties composites in order to update ListViewer, For example when name of
-	 * an OrgUnit is changed.
+	 * This is called from user and group properties composites in order to
+	 * update ListViewer, For example when name of an OrgUnit is changed.
 	 * 
 	 * @return listViewer
 	 */
@@ -342,29 +278,17 @@ public class TabContent {
 	}
 
 	/**
-	 * This is the LabelProvider for ListViewer.
-	 * 
-	 * @author Hodaie
-	 */
-	private class ListLabelProvider extends AdapterFactoryLabelProvider {
-
-		public ListLabelProvider() {
-
-			super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		}
-
-	}// ListLabelProvider
-
-	/**
 	 * This is the ContentProvider for ListViewer.
 	 * 
 	 * @author Hodaie
 	 */
+	@SuppressWarnings("unused")
 	private class ListContentProvider extends AdapterFactoryContentProvider {
 
 		public ListContentProvider() {
 
-			super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			super(new ComposedAdapterFactory(
+					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		}
 
 		@Override
@@ -376,7 +300,8 @@ public class TabContent {
 					// return a list of Projects in project space
 					List<ProjectInfo> projectInfos = new ArrayList<ProjectInfo>();
 					projectInfos.addAll(adminBroker.getProjectInfos());
-					result = projectInfos.toArray(new ProjectInfo[projectInfos.size()]);
+					result = projectInfos.toArray(new ProjectInfo[projectInfos
+							.size()]);
 
 				} else if (tabName.equals("Groups")) {
 					// return a list of Groups in project space

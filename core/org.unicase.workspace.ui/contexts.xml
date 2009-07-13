@@ -9,4 +9,10 @@
 			</enablement>
 		</topic>
 	</context>
+	<context  id="help_import_wizard_page_one" >
+        <description>You can choose between different import sources. If you click on one of the items you will have several options to enter, depending on the import source you chosed.</description>
+   </context>
+   	<context  id="help_import_ldap" >
+        <description>An example LDAP-url looks like: "ldap://yourldapserver.com". Optionally you can specify the port with adding ":389" at the end. A common base looks like "dc=informatik,dc=tu-muenchen,dc=de".</description>
+   </context>
 </contexts>
