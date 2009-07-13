@@ -9,7 +9,7 @@ package org.unicase.workspace.ui.commands;
 import org.eclipse.core.expressions.PropertyTester;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.util.RecordingCommandWithResult;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * Property tester to test if a project is Shared with a server already.
@@ -29,7 +29,7 @@ public class ProjectIsSharedTester extends PropertyTester {
 		if (receiver instanceof ProjectSpace
 				&& expectedValue instanceof Boolean) {
 			final ProjectSpace projectSpace = (ProjectSpace) receiver;
-			RecordingCommandWithResult<Boolean> command = new RecordingCommandWithResult<Boolean>() {
+			UnicaseCommandWithResult<Boolean> command = new UnicaseCommandWithResult<Boolean>() {
 				@Override
 				protected Boolean doRun() {
 					Usersession usersession = projectSpace.getUsersession();

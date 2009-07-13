@@ -11,7 +11,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.RecordingCommandWithResult;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -36,7 +36,7 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 		// context.
 		setModelElement(ActionHelper.getModelElement(event));
 		setProjectSpace(ActionHelper.getProjectSpace(event));
-		final RecordingCommandWithResult<Object> command = new RecordingCommandWithResult<Object>() {
+		final UnicaseCommandWithResult<Object> command = new UnicaseCommandWithResult<Object>() {
 
 			@Override
 			protected Object doRun() {

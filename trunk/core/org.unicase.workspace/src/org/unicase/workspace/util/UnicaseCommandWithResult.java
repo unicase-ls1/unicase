@@ -14,14 +14,14 @@ import org.unicase.workspace.Configuration;
  * @author koegel
  * @param <T>
  */
-public abstract class RecordingCommandWithResult<T> extends RecordingCommand {
+public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
 
 	private T result;
 
 	/**
 	 * Constructor. The editing domain needs to be initialized by the workspace manager before using this constructor.
 	 */
-	public RecordingCommandWithResult() {
+	public UnicaseCommandWithResult() {
 		super(Configuration.getEditingDomain());
 	}
 

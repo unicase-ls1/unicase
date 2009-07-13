@@ -8,7 +8,7 @@ package org.unicase.workspace.ui.commands;
 
 import org.eclipse.core.expressions.PropertyTester;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.util.RecordingCommandWithResult;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**
  * Property tester to test if a project space has local changes.
@@ -29,7 +29,7 @@ public class ProjectHasLocalChangesTester extends PropertyTester {
 				&& expectedValue instanceof Boolean) {
 			final ProjectSpace projectSpace = (ProjectSpace) receiver;
 
-			RecordingCommandWithResult<Boolean> command = new RecordingCommandWithResult<Boolean>() {
+			UnicaseCommandWithResult<Boolean> command = new UnicaseCommandWithResult<Boolean>() {
 				@Override
 				protected Boolean doRun() {
 					Boolean hasLocalChanges = new Boolean(projectSpace
