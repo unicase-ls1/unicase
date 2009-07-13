@@ -8,8 +8,8 @@ package org.unicase.workspace.ui.dialogs;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -17,6 +17,8 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TreeViewerColumn;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.DisposeEvent;
+import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.SelectionEvent;
@@ -28,13 +30,13 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.changes.DetailedChangesComposite;
@@ -54,6 +56,7 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 	private ChangePackage changes;
 	private EList<String> oldLogMessages;
 	private HashMap<AbstractOperation, ArrayList<ESNotification>> operationsMap;
+	private CommitNotificationsTray notificationsTray;
 
 	/**
 	 * Constructor.
@@ -65,6 +68,7 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 		super(parentShell);
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE);
 		this.changes = changes;
+		notificationsTray = new CommitNotificationsTray(this);
 	}
 
 	/**
@@ -94,10 +98,9 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 			txtLogMsg);
 		String logMsg = "";
 		LogMessage logMessage = changes.getLogMessage();
-		if (logMessage!=null && logMessage.getMessage()!=null) {
+		if (logMessage != null && logMessage.getMessage() != null) {
 			logMsg = logMessage.getMessage();
-		}
-		else if (oldLogMessages != null && oldLogMessages.size() > 0) {
+		} else if (oldLogMessages != null && oldLogMessages.size() > 0) {
 			logMsg = oldLogMessages.get(oldLogMessages.size() - 1);
 		}
 		txtLogMsg.setText(logMsg);
@@ -185,10 +188,15 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 
 		super.configureShell(newShell);
 		newShell.setText("Commit");
-		Rectangle area = Display.getCurrent().getClientArea();
+		Rectangle area = newShell.getShell().getParent().getClientArea();
 		int width = area.width * 2 / 3;
 		int height = area.height * 2 / 3;
 		newShell.setBounds((area.width - width) / 2, (area.height - height) / 2, width, height);
+		newShell.addDisposeListener(new DisposeListener() {
+			public void widgetDisposed(DisposeEvent e) {
+				notificationsTray.dispose();
+			}
+		});
 	}
 
 	/**
@@ -226,22 +234,58 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 	}
 
 	/**
-	 * handles the pressing of Ctrl+ENTER: OKpressed() is called.
-	 * {@inheritDoc}
+	 * handles the pressing of Ctrl+ENTER: OKpressed() is called. {@inheritDoc}
+	 * 
 	 * @see org.eclipse.swt.events.KeyListener#keyPressed(org.eclipse.swt.events.KeyEvent)
 	 */
 	public void keyPressed(KeyEvent e) {
-		if(e.keyCode == SWT.CR && (e.stateMask & SWT.CTRL) != 0) {
+		if (e.keyCode == SWT.CR && (e.stateMask & SWT.CTRL) != 0) {
 			this.okPressed();
 		}
 	}
 
 	/**
-	 * does nothing.
-	 * {@inheritDoc}
+	 * does nothing. {@inheritDoc}
+	 * 
 	 * @see org.eclipse.swt.events.KeyListener#keyReleased(org.eclipse.swt.events.KeyEvent)
 	 */
 	public void keyReleased(KeyEvent e) {
 		// nothing to do
 	}
+
+	@Override
+	protected void createButtonsForButtonBar(Composite parent) {
+		// final String notifyUsers = "Notify users";
+		// final Button notificationsButton = createButton(parent, 2138, notifyUsers + " >>", false);
+		// notificationsButton.addSelectionListener(new SelectionAdapter() {
+		// private boolean isOpen;
+		//
+		// @Override
+		// public void widgetSelected(SelectionEvent e) {
+		// if (!isOpen) {
+		// openTray(notificationsTray);
+		// notificationsButton.setText(notifyUsers + " <<");
+		// Rectangle bounds = getShell().getBounds();
+		// bounds.x -= 100;
+		// getShell().setBounds(bounds);
+		// } else {
+		// closeTray();
+		// notificationsButton.setText(notifyUsers + " >>");
+		// Rectangle bounds = getShell().getBounds();
+		// bounds.x += 100;
+		// getShell().setBounds(bounds);
+		// }
+		// isOpen = !isOpen;
+		// }
+		// });
+		super.createButtonsForButtonBar(parent);
+	}
+
+	/**
+	 * @return the operations.
+	 */
+	public List<AbstractOperation> getOperations() {
+		return changes.getOperations();
+	}
+
 }
