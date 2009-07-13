@@ -12,6 +12,7 @@ import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IOvalAnchorableFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IPolygonAnchorableFigure;
+import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
 
 /**
@@ -23,7 +24,7 @@ public final class TouchUtility {
 	private TouchUtility() {
 	}
 	
-	public static PointList pointListOfCurrentPositions(Collection<Touch> touches){
+	public static PointList pointListOfCurrentPositions(Collection<SingleTouch> touches){
 		PointList pointList = new PointList();
 		for (Touch touch : touches) {
 			Point position = touch.getPosition();

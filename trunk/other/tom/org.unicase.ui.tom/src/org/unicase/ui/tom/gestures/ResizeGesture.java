@@ -141,6 +141,14 @@ public class ResizeGesture extends AbstractContinuousGesture {
 	@Override
 	public void handleSingleTouchRemoved(SingleTouch touch) {
 
+		if (touch == firstTouch || touch == secondTouch) {
+			if (isExecuting()) {
+				getOperation().finish();
+				setExecuting(false);
+			}
+			setCanExecute(false);
+		}
+		
 		Set<INodeEditPart> nodesForTouch = MapUtility.getKeysForObject(
 				editPartTouchesMap, touch);
 		if (nodesForTouch.size() != 1) {
@@ -164,15 +172,6 @@ public class ResizeGesture extends AbstractContinuousGesture {
 				set.remove(touch);
 			}
 		}
-
-		if (isExecuting()) {
-
-			if (touch == firstTouch || touch == secondTouch) {
-				getOperation().finish();
-				setExecuting(false);
-			}
-		}
-
 	}
 
 	/** 
@@ -204,6 +203,8 @@ public class ResizeGesture extends AbstractContinuousGesture {
 				secondTouch.getPath().getFirstPoint());
 		
 		getOperation().update(firstTouch.getPosition(), secondTouch.getPosition());
+		
+		setCanExecute(false);
 	}
 
 

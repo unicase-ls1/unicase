@@ -6,17 +6,23 @@
 package org.unicase.ui.tom.gestures;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.NodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.operations.AltMoveNodeOperation;
-import org.unicase.ui.tom.operations.MoveNodeOperation;
 import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
@@ -31,16 +37,14 @@ import org.unicase.ui.tom.touches.SingleTouch;
  */
 public class MoveNodeGesture extends AbstractMoveGesture {
 
-	private AltMoveNodeOperation moveNodeOperation;
-	
+	private Map<SingleTouch, AltMoveNodeOperation> touchOperationMap = new HashMap<SingleTouch, AltMoveNodeOperation>();
+
 	/**
 	 * Default constructor.
 	 * 
 	 * @param dispatch
 	 *            The {@link TouchDispatch} at which the gesture will register
 	 *            for touch events
-	 * @param diagramEditPart
-	 *            The {@link DiagramEditPart}
 	 */
 	public MoveNodeGesture(TouchDispatch dispatch) {
 		super(dispatch);
@@ -51,23 +55,52 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 	 * 
 	 * @see org.unicase.ui.tom.gestures.Gesture#execute()
 	 */
+	@SuppressWarnings("unchecked")
 	public void execute() {
-		if (isExecuting()) {
-			return;
-		}
-		setAcceptsAdditionalTouches(false);
-		setExecuting(true);
-		setExecutingMoveGesture(this);
+		List<INodeEditPart> editPartsToMove;
 
+		List selectedEditParts = getDiagramEditPart().getViewer()
+				.getSelectedEditParts();
+		
+		List <INodeEditPart>selectedNodeEditParts = new ArrayList<INodeEditPart>();
+		for (Object object : selectedEditParts) {
+			INodeEditPart nodeEditPart = null;
+			if (object instanceof ConnectionEditPart) {
+				continue;
+			}
+		
+			if (object instanceof CompartmentEditPart) {
+				nodeEditPart = EditPartUtility.traverseToNodeEditPart((EditPart) object);
+				if (nodeEditPart == null) {
+					continue;
+				}
+			}
+			
+			selectedNodeEditParts.add(nodeEditPart);
+		}
+		
+		if (selectedEditParts.contains(getMoveEditPart())) {
+			editPartsToMove = new ArrayList<INodeEditPart>();
+			for (Object object : selectedEditParts) {
+				if (object instanceof INodeEditPart) {
+					editPartsToMove.add((INodeEditPart) object);
+				}
+			}
+		} else {
+			editPartsToMove = Collections
+					.singletonList((INodeEditPart) getMoveEditPart());
+		}
 
 		AltMoveNodeOperation moveNodeOperation = new AltMoveNodeOperation(
-				getDiagramEditPart(), (INodeEditPart) getMoveEditPart());
+				getDiagramEditPart(), editPartsToMove);
 
-		setMoveNodeOperation(moveNodeOperation);
-
+		touchOperationMap.put(getMoveTouch(), moveNodeOperation);
 		Point firstPoint = getMoveTouch().getPath().getFirstPoint().getCopy();
+		moveNodeOperation.prepare(firstPoint);
 		
-		getMoveNodeOperation().prepare(firstPoint);
+		setMoveEditPart(null);
+		setMoveTouch(null);
+		setCanExecute(false);
 	}
 
 	/**
@@ -77,14 +110,23 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 	 */
 	@Override
 	public void handleSingleTouchAdded(SingleTouch touch) {
-		if (!(acceptsAdditionalTouches())) {
+		NodeEditPart touchedEditPart = findTouchedNodeEditPart(touch
+				.getPosition());
+
+		if (touchedEditPart == null) {
 			return;
 		}
-		
-		NodeEditPart touchedEditPart = findTouchedNodeEditPart(touch.getPosition());
-		if (touchedEditPart != null) {
-			getCandidateTouchEditPartMap().put(touch, touchedEditPart);
+
+		Collection<AltMoveNodeOperation> operations = touchOperationMap
+				.values();
+		for (AltMoveNodeOperation altMoveNodeOperation : operations) {
+			if (altMoveNodeOperation.getTargetEditParts().contains(
+					touchedEditPart)) {
+				return;
+			}
 		}
+
+		getCandidateTouchEditPartMap().put(touch, touchedEditPart);
 	}
 
 	/**
@@ -94,15 +136,10 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 	 */
 	@Override
 	public void handleSingleTouchChanged(SingleTouch touch) {
-		if (isExecuting()) {
-			if (touch == getMoveTouch()) {
-				Point position = getMoveTouch().getPosition().getCopy();				
-				getMoveNodeOperation().update(position);
-			}
-			return;
-		}
-
-		if (getExecutingMoveGesture() != null) {
+		if (touchOperationMap.containsKey(touch)) {
+			AltMoveNodeOperation operation = touchOperationMap.get(touch);
+			Point position = touch.getPosition().getCopy();
+			operation.update(position);
 			return;
 		}
 
@@ -115,13 +152,19 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 		}
 
 		EditPart editPart = getCandidateTouchEditPartMap().get(touch);
-		
+
 		setMoveEditPart(editPart);
 		setMoveTouch(touch);
-		
+
 		getCandidateTouchEditPartMap().remove(touch);
-		
+
 		setCanExecute(true);
+	}
+
+	@Override
+	public void reset() {
+		super.reset();
+		touchOperationMap.clear();
 	}
 
 	/**
@@ -131,36 +174,18 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 	 */
 	@Override
 	public void handleSingleTouchRemoved(SingleTouch touch) {
-		if (touch == getMoveTouch()) {
-			if (isExecuting()) {
-				getMoveNodeOperation().finish();
-
-				setExecuting(false);
-				setExecutingMoveGesture(null);
-				setAcceptsAdditionalTouches(true);
-			}
-
-			setCanExecute(false);
-			setMoveTouch(null);
-
+		if (touchOperationMap.containsKey(touch)) {
+			AltMoveNodeOperation moveNodeOperation = touchOperationMap
+					.get(touch);
+			moveNodeOperation.finish();
+			touchOperationMap.remove(touch);
 		}
-		
+
+		if (touch == getMoveTouch()) {
+			setMoveTouch(null);
+		}
+
 		getCandidateTouchEditPartMap().remove(touch);
-	}
-
-	/**
-	 * @param moveCommand
-	 *            The {@link MoveNodeOperation}
-	 */
-	protected void setMoveNodeOperation(AltMoveNodeOperation moveCommand) {
-		this.moveNodeOperation = moveCommand;
-	}
-
-	/**
-	 * @return The {@link MoveNodeOperation}
-	 */
-	protected AltMoveNodeOperation getMoveNodeOperation() {
-		return moveNodeOperation;
 	}
 
 	/**
@@ -169,13 +194,17 @@ public class MoveNodeGesture extends AbstractMoveGesture {
 	 * @see org.unicase.ui.tom.gestures.Gesture#getMandatoryTouches()
 	 */
 	public List<MultiTouch> getMandatoryTouches() {
-		if (getMoveTouch() == null) {
-			return Collections.emptyList();
-		}
-		List<MultiTouch> mandatoryTouches = new ArrayList<MultiTouch>();
-		mandatoryTouches.add(getMoveTouch().getMultiTouch());
-		return mandatoryTouches;
 
+		List<MultiTouch> mandatoryTouches = new ArrayList<MultiTouch>();
+		if (getMoveTouch() != null) {
+			mandatoryTouches.add(getMoveTouch().getMultiTouch());
+		}
+
+//		for (SingleTouch touch : touchOperationMap.keySet()) {
+//			mandatoryTouches.add(touch.getMultiTouch());
+//		}
+
+		return mandatoryTouches;
 	}
 
 }

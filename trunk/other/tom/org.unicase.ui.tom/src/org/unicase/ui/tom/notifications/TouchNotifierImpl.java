@@ -37,9 +37,9 @@ public class TouchNotifierImpl implements TouchNotifier {
 
 	/** 
 	* {@inheritDoc}
-	* @see org.unicase.ui.tom.notifications.TouchNotifier#notifyAdapters(org.unicase.ui.tom.notifications.TouchNotification)
+	* @see org.unicase.ui.tom.notifications.TouchNotifier#notifyAdapters(org.unicase.ui.tom.notifications.SingleTouchNotification)
 	*/
-	public void notifyAdapters(TouchNotification notification) {
+	public void notifyAdapters(SingleTouchNotification notification) {
 		Set<TouchAdapter> adapters = getAdapters();
 		if (adapters != null && deliver())
 		{

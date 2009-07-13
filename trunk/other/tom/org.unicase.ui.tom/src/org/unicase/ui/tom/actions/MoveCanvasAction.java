@@ -24,6 +24,8 @@ public class MoveCanvasAction extends AbstractAction {
 	private Viewport scrollableViewport;
 	private Point lastPosition;
 	private boolean couldExecute;
+	private static boolean executing;
+
 	/**
 	 * Default constructor.
 	 * 
@@ -50,6 +52,14 @@ public class MoveCanvasAction extends AbstractAction {
 	 */
 	public void updateMove(final Point position) {
 
+		if (executing) {
+			return;
+		}
+
+		if (lastPosition.equals(position)) {
+			return;
+		}
+
 		Runnable runnable = new Runnable() {
 			public void run() {
 				RangeModel horizontalRangeModel = scrollableViewport
@@ -75,14 +85,19 @@ public class MoveCanvasAction extends AbstractAction {
 			}
 		};
 
-		Display.getDefault().syncExec(runnable);
+		executing = true;
+		try {
+			Display.getDefault().syncExec(runnable);
+		} finally {
+			executing = false;
+		}
 
 		lastPosition = position;
 	}
 
 	public boolean couldExecute() {
 		setCouldExecute(false);
-		
+
 		Runnable runnable = new Runnable() {
 			public void run() {
 				RangeModel horizontalRangeModel = scrollableViewport
@@ -100,12 +115,12 @@ public class MoveCanvasAction extends AbstractAction {
 					setCouldExecute(true);
 					return;
 				}
-				
+
 			}
 		};
 
 		Display.getDefault().syncExec(runnable);
-		
+
 		return getCouldExecute();
 	}
 

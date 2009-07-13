@@ -30,7 +30,8 @@ public final class TouchController implements IPartListener{
 		visualizer = new TouchVisualizer();
 		interpreter = new GestureInterpreter(dispatcher);
 
-		dispatcher.getAdapters().add(visualizer);
+		dispatcher.getSingleTouchNotifier().getAdapters().add(visualizer.getSingleTouchAdapter());
+		dispatcher.getMultiTouchNotifier().getAdapters().add(visualizer.getMultiTouchAdapter());
 	}
 
 	public static TouchController getInstance() {

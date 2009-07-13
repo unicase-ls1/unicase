@@ -13,17 +13,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.draw2d.FigureCanvas;
-import org.eclipse.draw2d.FreeformViewport;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LightweightSystem;
-import org.eclipse.draw2d.Viewport;
-import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
-import org.eclipse.ocl.util.CollectionUtil;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.IWorkbenchWindow;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
 import org.unicase.ui.common.util.CollectionFilter;
 import org.unicase.ui.tom.gestures.ChangeConnectionTypeGesture;
@@ -40,11 +30,12 @@ import org.unicase.ui.tom.gestures.ResizeGesture;
 import org.unicase.ui.tom.gestures.SelectGesture;
 import org.unicase.ui.tom.notifications.GestureAdapter;
 import org.unicase.ui.tom.notifications.GestureNotification;
+import org.unicase.ui.tom.notifications.SingleTouchNotification;
+import org.unicase.ui.tom.notifications.SingleTouchNotificationImpl;
 import org.unicase.ui.tom.notifications.TouchAdapter;
-import org.unicase.ui.tom.notifications.TouchNotification;
-import org.unicase.ui.tom.notifications.TouchNotificationImpl;
 import org.unicase.ui.tom.notifications.TouchNotifierImpl;
 import org.unicase.ui.tom.touches.MultiTouch;
+import org.unicase.ui.tom.touches.SingleTouch;
 import org.unicase.ui.tom.touches.Touch;
 
 /**
@@ -52,11 +43,10 @@ import org.unicase.ui.tom.touches.Touch;
  * 
  */
 public class GestureInterpreter extends TouchNotifierImpl implements
-		TouchAdapter, GestureAdapter {
+		TouchAdapter {
 
 	private TouchDispatch dispatch;
 	private List<Gesture> gestures;
-	private Set<MultiTouch> claimedTouches;
 
 	private ModelDiagramEditor activeEditor;
 
@@ -66,7 +56,6 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 	public GestureInterpreter(TouchDispatch dispatch) {
 		setDispatch(dispatch);
 		setGestures(new ArrayList<Gesture>());
-		setClaimedTouches(new HashSet<MultiTouch>());
 
 		Gesture resizeGesture = new ResizeGesture(dispatch);
 		addGesture(resizeGesture);
@@ -101,12 +90,12 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 		Gesture createConnectionGesture = new CreateConnectionGesture(dispatch);
 		addGesture(createConnectionGesture);
 
-		Gesture changeConnectionTypeGesture = new ChangeConnectionTypeGesture(dispatch);
+		Gesture changeConnectionTypeGesture = new ChangeConnectionTypeGesture(
+				dispatch);
 		addGesture(changeConnectionTypeGesture);
-		
-		
+
 		moveNodeGesture.getRestrictingGestures().add(resizeGesture);
-		
+
 		createNodeGesture.getRestrictingGestures().add(
 				createNodeAndConnectionGesture);
 		createNodeGesture.getRestrictingGestures().add(createConnectionGesture);
@@ -123,7 +112,7 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 
 		moveConnectionBendpointGesture.getRestrictingGestures().add(
 				changeConnectionTypeGesture);
-		
+
 		selectGesture.setPriority(8);
 		resizeGesture.setPriority(7);
 		moveNodeGesture.setPriority(6);
@@ -146,21 +135,11 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 
 	public void addGesture(Gesture gesture) {
 		getGestures().add(gesture);
-		gesture.getAdapters().add(this);
 	}
 
-	public void notifyChanged(TouchNotification notification) {
+	public void notifyChanged(SingleTouchNotification notification) {
 		switch (notification.getEventType()) {
-		case TouchNotification.touchAdded:
-			handleTouchAdded(notification.getTouch());
-			break;
-		case TouchNotification.touchRemoved:
-			handleTouchRemoved(notification.getTouch());
-			break;
-		case TouchNotification.touchChanged:
-			handleTouchChanged(notification.getTouch());
-			break;
-		case TouchNotification.touchPropagated:
+		case SingleTouchNotification.touchPropagated:
 			handleTouchPropagated(notification.getTouch());
 		default:
 			break;
@@ -172,12 +151,12 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 		if (executableGestures.size() == 0) {
 			return;
 		}
-		
+
 		List<SelectGesture> selectGestures = filterSelectGestures(executableGestures);
 		for (SelectGesture selectGesture : selectGestures) {
-			selectGesture.execute();	
+			selectGesture.execute();
 		}
-		
+
 		executableGestures.removeAll(selectGestures);
 		if (executableGestures.size() == 0) {
 			return;
@@ -206,6 +185,10 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 			gesture.execute();
 		}
 
+		for (Gesture gesture : gestures) {
+			gesture.setCanExecute(false);
+		}
+		
 		if (getDispatch().getActiveSingleTouches().size() == 0) {
 			for (Gesture gesture : getGestures()) {
 				gesture.reset();
@@ -213,8 +196,10 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 		}
 	}
 
-	private List<SelectGesture> filterSelectGestures(List<Gesture> executableGestures) {
-		List<SelectGesture> selectGestures = CollectionFilter.filter(executableGestures, SelectGesture.class);
+	private List<SelectGesture> filterSelectGestures(
+			List<Gesture> executableGestures) {
+		List<SelectGesture> selectGestures = CollectionFilter.filter(
+				executableGestures, SelectGesture.class);
 		return selectGestures;
 	}
 
@@ -223,14 +208,11 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 			if (gesture instanceof SelectGesture) {
 				continue;
 			}
-			if (gesture instanceof MoveNodeGesture) {
-				continue;
-			}
 
 			List<MultiTouch> mandatoryTouches = gesture.getMandatoryTouches();
-			// List<MultiTouch> optionalTouches = gesture.getOptionalTouches();
-			claimedTouches.addAll(mandatoryTouches);
-			// claimedTouches.addAll(optionalTouches);
+			for (MultiTouch multiTouch : mandatoryTouches) {
+				getDispatch().claimTouch(multiTouch);	
+			}
 		}
 	}
 
@@ -274,18 +256,23 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 		return collisionFreeGestures;
 	}
 
-	private List<Gesture> extractGesturesWithUnclaimedMandatoryTouches(List<Gesture> gestures) {
+	private List<Gesture> extractGesturesWithUnclaimedMandatoryTouches(
+			List<Gesture> gestures) {
 		List<Gesture> unclaimedGestures = new ArrayList<Gesture>();
 		for (Gesture gesture : gestures) {
 			List<MultiTouch> mandatoryTouches = gesture.getMandatoryTouches();
 			if (mandatoryTouches == null) {
 				return Collections.emptyList();
 			}
-			Set<MultiTouch> claimedTouches = getClaimedTouches();
-			if (claimedTouches == null) {
-				return Collections.emptyList();
-			}
-
+			
+//			List<MultiTouch> removedMultiTouches = getDispatch().getRemovedMultiTouches();
+//			boolean disjoint = Collections.disjoint(removedMultiTouches,
+//					mandatoryTouches);
+//			if (!disjoint) {
+//				throw new IllegalStateException("Removed touch declared mandatory");
+//			}
+			
+			List<MultiTouch> claimedTouches = getDispatch().getClaimedTouches();
 			boolean disjoint = Collections.disjoint(claimedTouches,
 					mandatoryTouches);
 			if (disjoint) {
@@ -306,56 +293,14 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 		return executableGestures;
 	}
 
-	public void handleTouchAdded(Touch touch) {
-		// don't do anything
-	}
-
-	public void handleTouchChanged(Touch touch) {
-		// don't do anything
-	}
-
-	public void handleTouchRemoved(Touch touch) {
-		notifyAdapters(new TouchNotificationImpl(touch,
-				TouchNotification.touchRemoved));
-	}
-
-	public void notifyChanged(GestureNotification notification) {
-		switch (notification.getEventType()) {
-		case GestureNotification.gestureExecutionChange:
-			handleGestureExecutionChanged(notification.getGesture());
-			break;
-		case GestureNotification.gestureAcceptanceChange:
-			handleGestureAcceptanceChanged(notification.getGesture());
-		default:
-			break;
-		}
-
-	}
-
-	private void handleGestureAcceptanceChanged(Gesture gesture) {
-		if (!gesture.acceptsAdditionalTouches()) {
-			for (Gesture currentGesture : getGestures()) {
-				if (currentGesture.acceptsAdditionalTouches()) {
-					return;
-				}
-			}
-			System.out.println("There are no more gestures accepting touches");
-			Utility.beep(1);
-		}
-	}
-
-	public void handleGestureExecutionChanged(Gesture gesture) {
-		// Do nothing
-	}
-
 	public void setDispatch(TouchDispatch dispatch) {
 		if (dispatch != this.dispatch) {
 			if (this.dispatch != null) {
-				this.dispatch.getAdapters().remove(this);
+				this.dispatch.getSingleTouchNotifier().getAdapters().remove(this);
 			}
 			this.dispatch = dispatch;
 			if (this.dispatch != null) {
-				this.dispatch.getAdapters().add(this);
+				this.dispatch.getSingleTouchNotifier().getAdapters().add(this);
 			}
 		}
 	}
@@ -370,14 +315,6 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 
 	public List<Gesture> getGestures() {
 		return gestures;
-	}
-
-	public void setClaimedTouches(Set<MultiTouch> claimedTouches) {
-		this.claimedTouches = claimedTouches;
-	}
-
-	public Set<MultiTouch> getClaimedTouches() {
-		return claimedTouches;
 	}
 
 	public void setActiveEditor(ModelDiagramEditor activeEditor) {
@@ -395,8 +332,7 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 				for (Gesture gesture : getGestures()) {
 					gesture.setDiagramEditPart(null);
 				}
-				
-				getClaimedTouches().clear();
+
 			}
 		}
 

@@ -9,7 +9,7 @@ public abstract class SingleTouch extends AbstractTouch{
 
 	private Date touchUpDate = new Date(-1);
 	private Date touchDownDate = new Date(-1);
-
+	
 	
 	public SingleTouch() {
 	}
@@ -34,4 +34,12 @@ public abstract class SingleTouch extends AbstractTouch{
 	}
 	
 	public abstract void update();
+
+	public void setClaimed(boolean claimed) {
+		getMultiTouch().setClaimed(claimed);
+	}
+	
+	public boolean isClaimed() {
+		return getMultiTouch().isClaimed();
+	}
 }

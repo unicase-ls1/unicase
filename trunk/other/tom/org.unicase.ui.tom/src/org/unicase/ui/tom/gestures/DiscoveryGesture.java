@@ -53,7 +53,7 @@ public class DiscoveryGesture extends AbstractContinuousGesture {
 			return;
 		}
 
-		List<Touch> activeTouches = touch.getMultiTouch().getActiveTouches();
+		List<SingleTouch> activeTouches = touch.getMultiTouch().getActiveTouches();
 		if (activeTouches.size() < 4) {
 			return;
 		}

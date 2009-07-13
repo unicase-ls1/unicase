@@ -155,7 +155,7 @@ public class ChangeConnectionTypeGesture extends AbstractContinuousGesture {
 				return;
 			}
 
-			List<Touch> activeTouches = touch.getMultiTouch()
+			List<SingleTouch> activeTouches = touch.getMultiTouch()
 					.getActiveTouches();
 			if (activeTouches.size() != 2) {
 				return;

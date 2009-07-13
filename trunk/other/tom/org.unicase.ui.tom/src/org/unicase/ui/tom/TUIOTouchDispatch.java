@@ -71,7 +71,7 @@ public class TUIOTouchDispatch extends TouchDispatch implements TuioListener{
 		if (getActiveEditor() == null) {
 			return;
 		}
-		Touch touch = touchMap.get(tuioCursor);
+		SingleTouch touch = touchMap.get(tuioCursor);
 		if (touch != null) {
 			try {
 				updateTouch(touch);	
