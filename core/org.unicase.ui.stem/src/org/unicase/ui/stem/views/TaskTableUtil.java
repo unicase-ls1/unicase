@@ -11,7 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Tree;
 import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
-import org.unicase.ui.stem.views.iterationplanningview.EMFColumnLabelProvider;
+import org.unicase.ui.stem.views.iterationplanningview.WorkPackageColumnLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
@@ -41,7 +41,7 @@ public abstract class TaskTableUtil {
 		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(treeViewer, SWT.NONE);
 		tclmWorkItem.getColumn().setText("WorkItem");
 		tclmWorkItem.getColumn().setWidth(300);
-		EMFColumnLabelProvider emfColumnLabelProvider = new EMFColumnLabelProvider();
+		WorkPackageColumnLabelProvider emfColumnLabelProvider = new WorkPackageColumnLabelProvider();
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
 		new TreeViewerColumnSorter(treeViewer, tclmWorkItem, emfColumnLabelProvider);
 

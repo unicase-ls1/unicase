@@ -290,7 +290,7 @@ public class IterationPlanningView extends ViewPart {
 		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(viewer, SWT.NONE);
 		tclmWorkItem.getColumn().setText("WorkItem");
 		tclmWorkItem.getColumn().setWidth(400);
-		EMFColumnLabelProvider emfColumnLabelProvider = new EMFColumnLabelProvider();
+		WorkPackageColumnLabelProvider emfColumnLabelProvider = new WorkPackageColumnLabelProvider();
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
 		new TreeViewerColumnSorter(viewer, tclmWorkItem, emfColumnLabelProvider);
 

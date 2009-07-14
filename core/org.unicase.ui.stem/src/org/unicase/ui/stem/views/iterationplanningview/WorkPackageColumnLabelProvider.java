@@ -5,13 +5,9 @@
  */
 package org.unicase.ui.stem.views.iterationplanningview;
 
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.ui.IDecoratorManager;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.model.task.ActivityType;
+import org.unicase.ui.common.EMFColumnLabelProvider;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.statusview.NotAssigned;
 
@@ -20,21 +16,15 @@ import org.unicase.ui.stem.views.statusview.NotAssigned;
  * 
  * @author Helming
  */
-public class EMFColumnLabelProvider extends IterationPlanningLabelProvider {
+public class WorkPackageColumnLabelProvider extends EMFColumnLabelProvider {
 
-	private DecoratingLabelProvider decoratingLabelProvider;
 	private Image backlogImage;
 
 	/**
 	 * . Constructor
 	 */
-	public EMFColumnLabelProvider() {
+	public WorkPackageColumnLabelProvider() {
 		super();
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-		decoratingLabelProvider = new DecoratingLabelProvider(new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)), decoratorManager
-			.getLabelDecorator());
-
 		backlogImage = Activator.getImageDescriptor("icons/backlog.png").createImage();
 
 	}
@@ -50,9 +40,8 @@ public class EMFColumnLabelProvider extends IterationPlanningLabelProvider {
 		if (element instanceof ActivityType) {
 			return backlogImage;
 		}
-		Image image = decoratingLabelProvider.getImage(element);
-		decoratingLabelProvider.getLabelDecorator().decorateImage(image, element);
-		return image;
+
+		return super.getImage(element);
 	}
 
 	/**
@@ -80,7 +69,7 @@ public class EMFColumnLabelProvider extends IterationPlanningLabelProvider {
 		if (element instanceof ActivityType) {
 			return ((ActivityType) element).getLiteral();
 		}
-		return decoratingLabelProvider.getText(element);
+		return super.getText(element);
 	}
 
 }

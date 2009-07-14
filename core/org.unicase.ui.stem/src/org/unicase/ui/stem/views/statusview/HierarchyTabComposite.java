@@ -32,7 +32,7 @@ import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
-import org.unicase.ui.stem.views.iterationplanningview.EMFColumnLabelProvider;
+import org.unicase.ui.stem.views.iterationplanningview.WorkPackageColumnLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
 import org.unicase.ui.stem.views.statusview.dnd.HierarchyTabDropAdapter;
@@ -136,7 +136,7 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(viewer, SWT.NONE);
 		tclmWorkItem.getColumn().setText("WorkItem");
 		tclmWorkItem.getColumn().setWidth(300);
-		EMFColumnLabelProvider emfColumnLabelProvider = new EMFColumnLabelProvider();
+		WorkPackageColumnLabelProvider emfColumnLabelProvider = new WorkPackageColumnLabelProvider();
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
 		new TreeViewerColumnSorter(viewer, tclmWorkItem, emfColumnLabelProvider);
 
