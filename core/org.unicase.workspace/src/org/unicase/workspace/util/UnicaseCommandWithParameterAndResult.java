@@ -13,15 +13,17 @@ import org.unicase.workspace.Configuration;
  * 
  * @author koegel
  * @param <T> result type
+ * @param <U> parameter type
  */
-public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
+public abstract class UnicaseCommandWithParameterAndResult<T, U> extends RecordingCommand {
 
 	private T result;
+	private U parameter;
 
 	/**
 	 * Constructor. The editing domain needs to be initialized by the workspace manager before using this constructor.
 	 */
-	public UnicaseCommandWithResult() {
+	public UnicaseCommandWithParameterAndResult() {
 		super(Configuration.getEditingDomain());
 	}
 
@@ -32,22 +34,25 @@ public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
 	 */
 	@Override
 	protected final void doExecute() {
-		this.result = doRun();
+		this.result = doRun(parameter);
 	}
 
 	/**
 	 * The actual action that is being executed.
 	 * 
+	 * @param parameter the parameter
 	 * @return the result
 	 */
-	protected abstract T doRun();
+	protected abstract T doRun(U parameter);
 
 	/**
 	 * Executes the command on the workspaces editing domain.
 	 * 
+	 * @param parameter the parameter
 	 * @return the result
 	 */
-	public T run() {
+	public T run(U parameter) {
+		this.parameter = parameter;
 		// this.execute();
 		Configuration.getEditingDomain().getCommandStack().execute(this);
 		return this.result;
