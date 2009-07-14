@@ -40,8 +40,8 @@ import org.unicase.model.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.common.EMFColumnLabelProvider;
 import org.unicase.ui.ganttview.util.GanttViewHelper;
-import org.unicase.ui.stem.views.iterationplanningview.EMFColumnLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -115,7 +115,6 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 
 		treeViewer = new TreeViewer(parent, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.FULL_SELECTION);
 		treeViewer.setContentProvider(new GanttTreeContentProvider());
-		treeViewer.setLabelProvider(new GanttTreeLabelProvider());
 
 		final Tree tree = treeViewer.getTree();
 
@@ -291,9 +290,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	private int calculateProgress(WorkPackage wp) {
 		int result = 0;
 
-		int closedEstimate = wp.getClosedAggregatedEstimate();
-		int estimate = wp.getAggregatedEstimate();
-		result = (estimate == 0) ? 0 : (closedEstimate * 100) / estimate; // (x/0)=0
+		// int closedEstimate = wp.getClosedAggregatedEstimate();
+		// int estimate = wp.getAggregatedEstimate();
+		// result = (estimate == 0) ? 0 : (closedEstimate * 100) / estimate; // (x/0)=0
 
 		return result;
 	}

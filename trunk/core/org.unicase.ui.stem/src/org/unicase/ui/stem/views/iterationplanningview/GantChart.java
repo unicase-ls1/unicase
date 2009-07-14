@@ -110,7 +110,7 @@ public class GantChart {
 		TreeViewerColumn tclmWorkItem = new TreeViewerColumn(viewer, SWT.NONE);
 		tclmWorkItem.getColumn().setText("WorkItem");
 		tclmWorkItem.getColumn().setWidth(400);
-		EMFColumnLabelProvider emfColumnLabelProvider = new EMFColumnLabelProvider();
+		WorkPackageColumnLabelProvider emfColumnLabelProvider = new WorkPackageColumnLabelProvider();
 		tclmWorkItem.setLabelProvider(emfColumnLabelProvider);
 
 		viewer.setContentProvider(new GantItemProvider());
