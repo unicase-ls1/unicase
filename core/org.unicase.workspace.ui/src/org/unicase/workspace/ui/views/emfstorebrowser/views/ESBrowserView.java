@@ -11,7 +11,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.command.DeleteCommand;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IMenuListener;
@@ -49,6 +48,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.AdminBroker;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
@@ -59,6 +59,7 @@ import org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.ManageOrgUni
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserContentProvider;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserLabelProvider;
 import org.unicase.workspace.util.EventUtil;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -68,6 +69,40 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class ESBrowserView extends ViewPart {
 	/**
+	 * Action to delete project on server.
+	 * 
+	 * @author koegel
+	 * 
+	 */
+	private final class DeleteProjectOnServerAction extends Action {
+		@Override
+		public void run() {
+			ISelection selection = viewer.getSelection();
+			Object obj = ((IStructuredSelection) selection).getFirstElement();
+			ProjectInfo projectInfo = ((ProjectInfo) obj);
+			MessageDialogWithToggle dialog = MessageDialogWithToggle
+					.openOkCancelConfirm(PlatformUI.getWorkbench().getDisplay()
+							.getActiveShell(), "Delete "
+							+ projectInfo.getName(),
+							"Are you sure you want to delete \'"
+									+ projectInfo.getName() + "\'",
+							"Delete project contents (cannot be undone)",
+							false, null, null);
+			if (dialog.getReturnCode() == MessageDialog.OK) {
+				Usersession session = contentProvider.getProjectServerMap()
+						.get(projectInfo).getLastUsersession();
+				try {
+					session.deleteProject(projectInfo.getProjectId(), dialog
+							.getToggleState());
+				} catch (EmfStoreException e) {
+					DialogHandler.showExceptionDialog(e);
+				}
+				viewer.refresh();
+			}
+		}
+	}
+
+	/**
 	 * Action to show properties.
 	 * 
 	 * @author helming
@@ -76,14 +111,19 @@ public class ESBrowserView extends ViewPart {
 		@Override
 		public void run() {
 			ISelection selection = viewer.getSelection();
-			ProjectInfo projectInfo = ((ProjectInfo) ((IStructuredSelection) selection).getFirstElement());
-			Usersession session = contentProvider.getProjectServerMap().get(projectInfo).getLastUsersession();
+			ProjectInfo projectInfo = ((ProjectInfo) ((IStructuredSelection) selection)
+					.getFirstElement());
+			Usersession session = contentProvider.getProjectServerMap().get(
+					projectInfo).getLastUsersession();
 			int revision;
 			try {
-				revision = session.resolveVersionSpec(VersioningFactory.eINSTANCE.createHeadVersionSpec(),
-					projectInfo.getProjectId()).getIdentifier();
-				MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Project information",
-					"Current revision: " + revision + "\nProjectId: " + projectInfo.getProjectId().getId());
+				revision = session.resolveVersionSpec(
+						VersioningFactory.eINSTANCE.createHeadVersionSpec(),
+						projectInfo.getProjectId()).getIdentifier();
+				MessageDialog.openInformation(Display.getCurrent()
+						.getActiveShell(), "Project information",
+						"Current revision: " + revision + "\nProjectId: "
+								+ projectInfo.getProjectId().getId());
 			} catch (EmfStoreException e) {
 				DialogHandler.showExceptionDialog(e);
 			}
@@ -99,11 +139,14 @@ public class ESBrowserView extends ViewPart {
 		@Override
 		public void run() {
 			ISelection selection = viewer.getSelection();
-			ServerInfo serverInfo = ((ServerInfo) ((IStructuredSelection) selection).getFirstElement());
-			EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
+			ServerInfo serverInfo = ((ServerInfo) ((IStructuredSelection) selection)
+					.getFirstElement());
+			EList<ProjectSpace> projectSpaces = WorkspaceManager.getInstance()
+					.getCurrentWorkspace().getProjectSpaces();
 			ArrayList<ProjectSpace> usedSpaces = new ArrayList<ProjectSpace>();
 			for (ProjectSpace projectSpace : projectSpaces) {
-				if (projectSpace.getUsersession().getServerInfo().equals(serverInfo)) {
+				if (projectSpace.getUsersession().getServerInfo().equals(
+						serverInfo)) {
 					usedSpaces.add(projectSpace);
 				}
 			}
@@ -112,14 +155,20 @@ public class ESBrowserView extends ViewPart {
 				for (ProjectSpace pSpace : usedSpaces) {
 					message += "\n" + pSpace.getProjectName();
 				}
-				DialogHandler.showErrorDialog("Cannot delete \'" + serverInfo.getName()
-					+ "\' because it is currently used by the following projects: \n" + message);
+				DialogHandler
+						.showErrorDialog("Cannot delete \'"
+								+ serverInfo.getName()
+								+ "\' because it is currently used by the following projects: \n"
+								+ message);
 			} else {
-				if (MessageDialog.openQuestion(Display.getCurrent().getActiveShell(), "Confirm deletion",
-					"Are you sure you want to delete \'" + serverInfo.getName() + "\'")) {
-					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain");
-					domain.getCommandStack().execute(DeleteCommand.create(domain, serverInfo));
+				if (MessageDialog.openQuestion(Display.getCurrent()
+						.getActiveShell(), "Confirm deletion",
+						"Are you sure you want to delete \'"
+								+ serverInfo.getName() + "\'")) {
+					TransactionalEditingDomain domain = Configuration
+							.getEditingDomain();
+					domain.getCommandStack().execute(
+							DeleteCommand.create(domain, serverInfo));
 					WorkspaceManager.getInstance().getCurrentWorkspace().save();
 					viewer.refresh();
 				}
@@ -138,11 +187,9 @@ public class ESBrowserView extends ViewPart {
 			ISelection selection = viewer.getSelection();
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			final ServerInfo element = (ServerInfo) obj;
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					try {
 						element.getLastUsersession().logout();
 					} catch (EmfStoreException e) {
@@ -156,7 +203,7 @@ public class ESBrowserView extends ViewPart {
 					element.setLastUsersession(null);
 					WorkspaceManager.getInstance().getCurrentWorkspace().save();
 				}
-			});
+			}.run();
 			viewer.refresh(obj);
 		}
 	}
@@ -167,38 +214,57 @@ public class ESBrowserView extends ViewPart {
 	 * @author helming
 	 */
 	private final class ProjectCheckoutAction extends Action {
+		/**
+		 * Command for checkout.
+		 * 
+		 * @author koegel
+		 * 
+		 */
+		private final class CheckoutCommand extends UnicaseCommand {
+			private final ProgressMonitorDialog progressDialog;
+			private final ProjectInfo element;
+
+			private CheckoutCommand(ProgressMonitorDialog progressDialog,
+					ProjectInfo element) {
+				this.progressDialog = progressDialog;
+				this.element = element;
+			}
+
+			@Override
+			protected void doRun() {
+				try {
+					progressDialog.open();
+					progressDialog.getProgressMonitor().beginTask(
+							"Checkout project...", 100);
+					progressDialog.getProgressMonitor().worked(10);
+					ProjectSpace projectSpace = contentProvider
+							.getProjectServerMap().get(element)
+							.getLastUsersession().checkout(element);
+					WorkspaceUtil.logCheckout(projectSpace, projectSpace
+							.getBaseVersion());
+					ActionHelper.openDashboard(projectSpace);
+				} catch (EmfStoreException e) {
+					DialogHandler.showExceptionDialog(e);
+					// BEGIN SUPRESS CATCH EXCEPTION
+				} catch (RuntimeException e) {
+					DialogHandler.showExceptionDialog(e);
+					// END SUPRESS CATCH EXCEPTION
+				} finally {
+					progressDialog.getProgressMonitor().done();
+					progressDialog.close();
+				}
+			}
+		}
+
 		@Override
 		public void run() {
 			ISelection selection = viewer.getSelection();
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			final ProjectInfo element = (ProjectInfo) obj;
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell());
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				@Override
-				protected void doExecute() {
-					try {
-						progressDialog.open();
-						progressDialog.getProgressMonitor().beginTask("Checkout project...", 100);
-						progressDialog.getProgressMonitor().worked(10);
-						ProjectSpace projectSpace = contentProvider.getProjectServerMap().get(element)
-							.getLastUsersession().checkout(element);
-						WorkspaceUtil.logCheckout(projectSpace, projectSpace.getBaseVersion());
-						ActionHelper.openDashboard(projectSpace);
-					} catch (EmfStoreException e) {
-						DialogHandler.showExceptionDialog(e);
-						// BEGIN SUPRESS CATCH EXCEPTION
-					} catch (Exception e) {
-						DialogHandler.showExceptionDialog(e);
-						// END SUPRESS CATCH EXCEPTION
-					} finally {
-						progressDialog.getProgressMonitor().done();
-						progressDialog.close();
-					}
-				}
-			});
+			final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+							.getShell());
+			new CheckoutCommand(progressDialog, element).run();
 		}
 	}
 
@@ -221,15 +287,16 @@ public class ESBrowserView extends ViewPart {
 	 * The constructor.
 	 */
 	public ESBrowserView() {
-		WorkspaceManager.getInstance().getCurrentWorkspace().eAdapters().add(new AdapterImpl() {
-			@Override
-			public void notifyChanged(Notification msg) {
-				if (msg.getNewValue() instanceof ServerInfo) {
-					viewer.refresh();
-				}
-				super.notifyChanged(msg);
-			}
-		});
+		WorkspaceManager.getInstance().getCurrentWorkspace().eAdapters().add(
+				new AdapterImpl() {
+					@Override
+					public void notifyChanged(Notification msg) {
+						if (msg.getNewValue() instanceof ServerInfo) {
+							viewer.refresh();
+						}
+						super.notifyChanged(msg);
+					}
+				});
 	}
 
 	/**
@@ -250,10 +317,12 @@ public class ESBrowserView extends ViewPart {
 			public int compare(Viewer viewer, Object e1, Object e2) {
 				if (e1 instanceof ServerInfo && e2 instanceof ServerInfo) {
 					return ((ServerInfo) e1).getName().toLowerCase().compareTo(
-						((ServerInfo) e2).getName().toLowerCase());
-				} else if (e1 instanceof ProjectInfo && e2 instanceof ProjectInfo) {
-					return ((ProjectInfo) e1).getName().toLowerCase().compareTo(
-						((ProjectInfo) e2).getName().toLowerCase());
+							((ServerInfo) e2).getName().toLowerCase());
+				} else if (e1 instanceof ProjectInfo
+						&& e2 instanceof ProjectInfo) {
+					return ((ProjectInfo) e1).getName().toLowerCase()
+							.compareTo(
+									((ProjectInfo) e2).getName().toLowerCase());
 				}
 
 				return super.compare(viewer, e1, e2);
@@ -263,7 +332,8 @@ public class ESBrowserView extends ViewPart {
 
 		// This is a trick to show add repository action in context menu
 		// whenever user right click on white area of ESBrowser.
-		// It checks where has the user just right clicked, and if it is not the tree then set the tree selection to
+		// It checks where has the user just right clicked, and if it is not the
+		// tree then set the tree selection to
 		// none.
 		viewer.getTree().addMouseListener(new MouseListener() {
 			public void mouseDoubleClick(MouseEvent e) {
@@ -283,7 +353,8 @@ public class ESBrowserView extends ViewPart {
 			}
 		});
 
-		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(), "org.unicase.repositoryview.viewer");
+		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
+				"org.unicase.repositoryview.viewer");
 		makeActions();
 		hookContextMenu();
 		hookDoubleClickAction();
@@ -309,7 +380,8 @@ public class ESBrowserView extends ViewPart {
 	}
 
 	private void fillContextMenu(IMenuManager manager) {
-		ESBrowserContentProvider provider = (ESBrowserContentProvider) viewer.getContentProvider();
+		ESBrowserContentProvider provider = (ESBrowserContentProvider) viewer
+				.getContentProvider();
 		AccessControlHelper accessControl = provider.getAccesscontrolHelper();
 		ISelection selection = viewer.getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
@@ -374,100 +446,103 @@ public class ESBrowserView extends ViewPart {
 				if (selection.isEmpty()) {
 					return;
 				}
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
 				viewer.collapseToLevel(obj, -1);
 				viewer.expandToLevel(obj, -1);
 			}
 		};
 		serverLogin.setText("Login...");
-		serverLogin.setToolTipText("Click to login with the last used username");
-		serverLogin.setImageDescriptor(Activator.getImageDescriptor("icons/serverLogin.png"));
+		serverLogin
+				.setToolTipText("Click to login with the last used username");
+		serverLogin.setImageDescriptor(Activator
+				.getImageDescriptor("icons/serverLogin.png"));
 
 		projectCheckout = new ProjectCheckoutAction();
 		projectCheckout.setText("Checkout");
 		projectCheckout.setToolTipText("Click to checkout this project");
-		projectCheckout.setImageDescriptor(PlatformUI.getWorkbench().getSharedImages().getImageDescriptor(
-			ISharedImages.IMG_TOOL_FORWARD));
+		projectCheckout.setImageDescriptor(PlatformUI.getWorkbench()
+				.getSharedImages().getImageDescriptor(
+						ISharedImages.IMG_TOOL_FORWARD));
 
 		serverChangeSession = new ChangeSessionAction();
-		serverChangeSession.setToolTipText("Click to login with a different username");
-		serverChangeSession.setImageDescriptor(Activator.getImageDescriptor("icons/serverLoginAs.png"));
+		serverChangeSession
+				.setToolTipText("Click to login with a different username");
+		serverChangeSession.setImageDescriptor(Activator
+				.getImageDescriptor("icons/serverLoginAs.png"));
 
 		serverAddProject = new Action() {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
 				ServerInfo serverInfo = ((ServerInfo) obj);
 				if (serverInfo.getLastUsersession().isLoggedIn()) {
-					CreateProjectDialog dialog = new CreateProjectDialog(PlatformUI.getWorkbench().getDisplay()
-						.getActiveShell(), serverInfo.getLastUsersession());
+					CreateProjectDialog dialog = new CreateProjectDialog(
+							PlatformUI.getWorkbench().getDisplay()
+									.getActiveShell(), serverInfo
+									.getLastUsersession());
 					dialog.open();
 					viewer.refresh(obj);
 				}
 			}
 		};
 		serverAddProject.setText("Create new project");
-		serverAddProject.setToolTipText("Click to create new project on the server");
-		serverAddProject.setImageDescriptor(Activator.getImageDescriptor("icons/projectAdd.png"));
+		serverAddProject
+				.setToolTipText("Click to create new project on the server");
+		serverAddProject.setImageDescriptor(Activator
+				.getImageDescriptor("icons/projectAdd.png"));
 
-		serverDeleteProject = new Action() {
-			@Override
-			public void run() {
-				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
-				ProjectInfo projectInfo = ((ProjectInfo) obj);
-				MessageDialogWithToggle dialog = MessageDialogWithToggle.openOkCancelConfirm(PlatformUI.getWorkbench()
-					.getDisplay().getActiveShell(), "Delete " + projectInfo.getName(),
-					"Are you sure you want to delete \'" + projectInfo.getName() + "\'",
-					"Delete project contents (cannot be undone)", false, null, null);
-				if (dialog.getReturnCode() == MessageDialog.OK) {
-					Usersession session = contentProvider.getProjectServerMap().get(projectInfo).getLastUsersession();
-					try {
-						session.deleteProject(projectInfo.getProjectId(), dialog.getToggleState());
-					} catch (EmfStoreException e) {
-						DialogHandler.showExceptionDialog(e);
-					}
-					viewer.refresh();
-				}
-			}
-		};
+		serverDeleteProject = new DeleteProjectOnServerAction();
 		serverDeleteProject.setText("Delete on server");
 		serverDeleteProject.setToolTipText("Delete this project on the server");
-		serverDeleteProject.setImageDescriptor(org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif"));
+		serverDeleteProject.setImageDescriptor(org.unicase.ui.common.Activator
+				.getImageDescriptor("icons/delete.gif"));
 
 		serverProperties = new Action() {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection).getFirstElement();
+				Object obj = ((IStructuredSelection) selection)
+						.getFirstElement();
 				ServerInfo serverInfo = ((ServerInfo) obj);
-				NewRepositoryWizard wizard = new NewRepositoryWizard(ESBrowserView.this);
-				wizard.init(getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) getSite()
-					.getWorkbenchWindow().getSelectionService().getSelection(), serverInfo);
-				WizardDialog dialog = new WizardDialog(getSite().getWorkbenchWindow().getShell(), wizard);
+				NewRepositoryWizard wizard = new NewRepositoryWizard(
+						ESBrowserView.this);
+				wizard.init(getSite().getWorkbenchWindow().getWorkbench(),
+						(IStructuredSelection) getSite().getWorkbenchWindow()
+								.getSelectionService().getSelection(),
+						serverInfo);
+				WizardDialog dialog = new WizardDialog(getSite()
+						.getWorkbenchWindow().getShell(), wizard);
 				dialog.create();
 				dialog.open();
 			}
 		};
 		serverProperties.setText("Edit");
-		serverProperties.setToolTipText("Click to modify the server properties");
-		serverProperties.setImageDescriptor(Activator.getImageDescriptor("icons/serverEdit.png"));
+		serverProperties
+				.setToolTipText("Click to modify the server properties");
+		serverProperties.setImageDescriptor(Activator
+				.getImageDescriptor("icons/serverEdit.png"));
 
 		addRepository = new Action() {
 			@Override
 			public void run() {
-				NewRepositoryWizard wizard = new NewRepositoryWizard(ESBrowserView.this);
-				wizard.init(getSite().getWorkbenchWindow().getWorkbench(), (IStructuredSelection) getSite()
-					.getWorkbenchWindow().getSelectionService().getSelection());
-				WizardDialog dialog = new WizardDialog(getSite().getWorkbenchWindow().getShell(), wizard);
+				NewRepositoryWizard wizard = new NewRepositoryWizard(
+						ESBrowserView.this);
+				wizard.init(getSite().getWorkbenchWindow().getWorkbench(),
+						(IStructuredSelection) getSite().getWorkbenchWindow()
+								.getSelectionService().getSelection());
+				WizardDialog dialog = new WizardDialog(getSite()
+						.getWorkbenchWindow().getShell(), wizard);
 				dialog.create();
 				dialog.open();
 			}
 		};
 		addRepository.setText("New repository...");
 		addRepository.setToolTipText("Click to add new repository");
-		addRepository.setImageDescriptor(Activator.getImageDescriptor("icons/serverAdd.png"));
+		addRepository.setImageDescriptor(Activator
+				.getImageDescriptor("icons/serverAdd.png"));
 
 		manageOrgUnits = new Action() {
 			@Override
@@ -475,12 +550,13 @@ public class ESBrowserView extends ViewPart {
 				ManageOrgUnitsDialog dialog;
 				try {
 					ISelection selection = viewer.getSelection();
-					Object obj = ((IStructuredSelection) selection).getFirstElement();
+					Object obj = ((IStructuredSelection) selection)
+							.getFirstElement();
 					ServerInfo serverInfo = ((ServerInfo) obj);
 					session = serverInfo.getLastUsersession();
 					AdminBroker adminBroker = session.getAdminBroker();
-					dialog = new ManageOrgUnitsDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(),
-						adminBroker);
+					dialog = new ManageOrgUnitsDialog(PlatformUI.getWorkbench()
+							.getDisplay().getActiveShell(), adminBroker);
 					dialog.create();
 					dialog.open();
 				} catch (EmfStoreException e) {
@@ -489,15 +565,18 @@ public class ESBrowserView extends ViewPart {
 			}
 		};
 		manageOrgUnits.setText("Manage Users/Groups...");
-		manageOrgUnits.setImageDescriptor(Activator.getImageDescriptor("icons/Group.gif"));
+		manageOrgUnits.setImageDescriptor(Activator
+				.getImageDescriptor("icons/Group.gif"));
 
 		deleteAction = new DeleteAction();
 		deleteAction.setText("Delete");
-		deleteAction.setImageDescriptor(org.unicase.ui.common.Activator.getImageDescriptor("icons/delete.gif"));
+		deleteAction.setImageDescriptor(org.unicase.ui.common.Activator
+				.getImageDescriptor("icons/delete.gif"));
 
 		projectProperties = new PropertiesAction();
 		projectProperties.setText("Properties");
-		projectProperties.setImageDescriptor(Activator.getImageDescriptor("icons/info.png"));
+		projectProperties.setImageDescriptor(Activator
+				.getImageDescriptor("icons/info.png"));
 
 	}
 
@@ -515,7 +594,8 @@ public class ESBrowserView extends ViewPart {
 	@Override
 	public void setFocus() {
 		viewer.getControl().setFocus();
-		EventUtil.logFocusEvent("org.unicase.ui.repository.views.RepositoryView");
+		EventUtil
+				.logFocusEvent("org.unicase.ui.repository.views.RepositoryView");
 	}
 
 	/**

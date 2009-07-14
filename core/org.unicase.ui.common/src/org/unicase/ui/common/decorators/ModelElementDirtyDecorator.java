@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.common.decorators;
 
+import java.net.URL;
+
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -15,8 +17,6 @@ import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 import org.unicase.model.ModelElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
-
-import java.net.URL;
 
 /**
  * The decorator to show dirty state of an element shown in viewers.

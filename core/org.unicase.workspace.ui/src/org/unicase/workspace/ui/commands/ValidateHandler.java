@@ -14,14 +14,13 @@ import org.eclipse.core.resources.IWorkspace;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.validation.model.EvaluationMode;
 import org.eclipse.emf.validation.service.IBatchValidator;
 import org.eclipse.emf.validation.service.ModelValidationService;
 import org.unicase.model.validation.ValidationClientSelector;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Handler to validate the project.
@@ -36,19 +35,13 @@ public class ValidateHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				validateWithoutCommand(projectSpace);
 			}
-
-		});
+		}.run();
 		return null;
 	}
 
@@ -56,8 +49,8 @@ public class ValidateHandler extends AbstractHandler {
 
 		ValidationClientSelector.setRunning(true);
 
-		IBatchValidator validator = (IBatchValidator) ModelValidationService.getInstance().newValidator(
-			EvaluationMode.BATCH);
+		IBatchValidator validator = (IBatchValidator) ModelValidationService
+				.getInstance().newValidator(EvaluationMode.BATCH);
 		validator.setIncludeLiveConstraints(true);
 
 		IStatus status = validator.validate(projectSpace);
@@ -88,8 +81,10 @@ public class ValidateHandler extends AbstractHandler {
 			for (IStatus stat : status.getChildren()) {
 				try {
 					IMarker marker = resource.createMarker(markerType);
-					marker.setAttribute(IMarker.MESSAGE, "unicase: " + stat.getMessage());
-					marker.setAttribute(IMarker.SEVERITY, IMarker.SEVERITY_WARNING);
+					marker.setAttribute(IMarker.MESSAGE, "unicase: "
+							+ stat.getMessage());
+					marker.setAttribute(IMarker.SEVERITY,
+							IMarker.SEVERITY_WARNING);
 				} catch (CoreException e) {
 					e.printStackTrace();
 				}

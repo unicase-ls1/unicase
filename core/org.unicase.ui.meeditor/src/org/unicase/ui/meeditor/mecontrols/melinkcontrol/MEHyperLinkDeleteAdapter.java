@@ -7,9 +7,6 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.unicase.model.ModelElement;
@@ -47,14 +44,10 @@ public class MEHyperLinkDeleteAdapter extends MouseAdapter {
 	 */
 	@Override
 	public void mouseUp(MouseEvent e) {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
-		RecordingCommand command = null;
 		if (reference.isContainment() && opposite instanceof NonDomainElement) {
-			command = new DeleteModelElementCommand(domain, (ModelElement) opposite);
+			new DeleteModelElementCommand((ModelElement) opposite).run();
 		} else {
-			command = new DeleteReferenceCommand(domain, (ModelElement) modelElement, reference,
-				(ModelElement) opposite);
+			new DeleteReferenceCommand((ModelElement) modelElement, reference, (ModelElement) opposite).run();
 		}
-		domain.getCommandStack().execute(command);
 	}
 }

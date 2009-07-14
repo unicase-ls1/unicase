@@ -32,8 +32,6 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.emf.ecore.xmi.DanglingHREFException;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -99,6 +97,7 @@ import org.unicase.workspace.observers.LoginObserver;
 import org.unicase.workspace.observers.OperationListener;
 import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.util.FileTransferUtil;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -1402,14 +1401,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			transfer.setFileName(fileAttachment.getFileName());
 			transfer.setPreliminaryFileName(null);
 			transfer.setUpload(false);
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					getPendingFileTransfers().add(transfer);
 				}
-			});
+			}.run();
 		}
 	}
 
@@ -2117,14 +2114,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				throw new FileTransferException("File transfer already pending!");
 			}
 		}
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				getPendingFileTransfers().add(tmpTransfer);
 			}
-		});
+		}.run();
 		startFileTransfer(tmpTransfer);
 	}
 
@@ -2137,14 +2132,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	private void startFileTransfer(final PendingFileTransfer transfer) {
 		FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
 		if (fileAttachment == null) {
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					getPendingFileTransfers().remove(transfer);
 				}
-			});
+			}.run();
 		}
 		if (transfer.isUpload()) {
 			new FileUploadJob(transfer, fileAttachment).schedule();
@@ -2311,13 +2304,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		if (isTransient) {
 			return;
 		}
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				addElementToResouce(modelElement);
 			}
-		});
+		}.run();
 	}
 
 	private void addElementToResouce(final ModelElement modelElement) {
@@ -2451,14 +2443,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		while (iterator.hasNext()) {
 			PendingFileTransfer transfer = iterator.next();
 			if (transfer.isUpload() && transfer.getAttachmentId().getId().equals(fileAttachmentId)) {
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
+				new UnicaseCommand() {
 					@Override
-					protected void doExecute() {
+					protected void doRun() {
 						iterator.remove();
 					}
-				});
+				}.run();
 				return;
 			}
 		}

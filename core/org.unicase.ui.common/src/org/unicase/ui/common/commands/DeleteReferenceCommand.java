@@ -8,9 +8,8 @@ package org.unicase.ui.common.commands;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.ModelElement;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Command to delete a reference.
@@ -18,7 +17,7 @@ import org.unicase.model.ModelElement;
  * @author helming
  * @author shterev
  */
-public final class DeleteReferenceCommand extends RecordingCommand {
+public final class DeleteReferenceCommand extends UnicaseCommand {
 	private EReference reference;
 	private ModelElement modelElement;
 	private ModelElement opposite;
@@ -26,14 +25,12 @@ public final class DeleteReferenceCommand extends RecordingCommand {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param domain the domain
 	 * @param modelElement the initiating {@link ModelElement}
 	 * @param reference the reference
 	 * @param opposite the element on the other side - the element to be removed.
 	 */
-	public DeleteReferenceCommand(TransactionalEditingDomain domain, ModelElement modelElement, EReference reference,
+	public DeleteReferenceCommand(ModelElement modelElement, EReference reference,
 		ModelElement opposite) {
-		super(domain);
 		this.modelElement = modelElement;
 		this.reference = reference;
 		this.opposite = opposite;
@@ -43,7 +40,7 @@ public final class DeleteReferenceCommand extends RecordingCommand {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void doExecute() {
+	protected void doRun() {
 		Object object = modelElement.eGet(reference);
 
 		if (reference.isContainer()) {

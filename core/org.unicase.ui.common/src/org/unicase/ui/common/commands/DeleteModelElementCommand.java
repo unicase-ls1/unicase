@@ -8,8 +8,6 @@ package org.unicase.ui.common.commands;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.IEditorReference;
@@ -17,6 +15,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Command to delete a modelelement.
@@ -24,17 +23,15 @@ import org.unicase.ui.common.exceptions.DialogHandler;
  * @author helming
  * @author shterev
  */
-public final class DeleteModelElementCommand extends RecordingCommand {
+public final class DeleteModelElementCommand extends UnicaseCommand {
 	private final ModelElement me;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param domain the domain
 	 * @param me the {@link ModelElement} to be deleted.
 	 */
-	public DeleteModelElementCommand(TransactionalEditingDomain domain, ModelElement me) {
-		super(domain);
+	public DeleteModelElementCommand(ModelElement me) {
 		this.me = me;
 	}
 
@@ -42,7 +39,7 @@ public final class DeleteModelElementCommand extends RecordingCommand {
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected void doExecute() {
+	protected void doRun() {
 		// check if this model element is already opened in an editor
 		// and if yes, prompt to close editor.
 		if (closeEditor(me)) {

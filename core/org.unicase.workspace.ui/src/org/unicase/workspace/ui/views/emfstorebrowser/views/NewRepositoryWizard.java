@@ -5,8 +5,6 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
@@ -16,6 +14,7 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Wizard for adding a new repository.
@@ -38,7 +37,8 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param view callback to the repository view
+	 * @param view
+	 *            callback to the repository view
 	 */
 	public NewRepositoryWizard(ESBrowserView view) {
 		super();
@@ -57,8 +57,10 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @param workbench the workbench
-	 * @param selection the selection
+	 * @param workbench
+	 *            the workbench
+	 * @param selection
+	 *            the selection
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
 		this.workbench = workbench;
@@ -69,11 +71,15 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 	/**
 	 *{@inheritDoc}
 	 * 
-	 * @param workbench the workbench
-	 * @param selection the selection
-	 * @param serverInfo the serverInfo that would be modified
+	 * @param workbench
+	 *            the workbench
+	 * @param selection
+	 *            the selection
+	 * @param serverInfo
+	 *            the serverInfo that would be modified
 	 */
-	public void init(IWorkbench workbench, IStructuredSelection selection, ServerInfo serverInfo) {
+	public void init(IWorkbench workbench, IStructuredSelection selection,
+			ServerInfo serverInfo) {
 		init(workbench, selection);
 		this.serverInfo = serverInfo;
 		this.edit = true;
@@ -93,24 +99,24 @@ public class NewRepositoryWizard extends Wizard implements INewWizard {
 	@Override
 	public boolean performFinish() {
 		if (this.getContainer().getCurrentPage().canFlipToNextPage()) {
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					// save serverInfo to workspace
-					Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+					Workspace workspace = WorkspaceManager.getInstance()
+							.getCurrentWorkspace();
 					if (!NewRepositoryWizard.this.edit) {
-						workspace.getServerInfos().add(NewRepositoryWizard.this.serverInfo);
+						workspace.getServerInfos().add(
+								NewRepositoryWizard.this.serverInfo);
 					}
 					workspace.save();
 				}
-			});
+			}.run();
 			view.getViewer().refresh();
 			dispose();
 		} else {
-			MessageDialog.openError(workbench.getActiveWorkbenchWindow().getShell(), "Error",
-				"Field(s) were left blank!");
+			MessageDialog.openError(workbench.getActiveWorkbenchWindow()
+					.getShell(), "Error", "Field(s) were left blank!");
 			return false;
 		}
 		return true;

@@ -6,6 +6,11 @@
 
 package org.unicase.ui.common.util;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
@@ -26,11 +31,6 @@ import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.dialogs.ErrorReportDialog;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * Utility class for the unicase project.

@@ -16,7 +16,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.LayoutListener;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.KeyHandler;
@@ -47,6 +46,7 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 import org.unicase.ui.common.diagram.DeleteFromDiagramAction;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -116,20 +116,17 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	 */
 	@Override
 	public void doSave(IProgressMonitor progressMonitor) {
-		getEditingDomain().getCommandStack().execute(new RecordingCommand(getEditingDomain()) {
-
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				try {
 					((MEDiagram) ModelDiagramEditor.this.getDiagram().eContainer()).saveDiagramLayout();
-
 				} catch (DiagramStoreException e) {
 					// dengler: handle exception
 					WorkspaceUtil.logException("Saving diagram failed", e);
 				}
 			}
-
-		});
+		}.run();
 	}
 //dengler: document
 	/**

@@ -12,16 +12,13 @@ import org.unicase.workspace.Configuration;
  * Recording command that can buffer a result for later retrieval.
  * 
  * @author koegel
- * @param <T>
  */
-public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
-
-	private T result;
+public abstract class UnicaseCommand extends RecordingCommand {
 
 	/**
 	 * Constructor. The editing domain needs to be initialized by the workspace manager before using this constructor.
 	 */
-	public UnicaseCommandWithResult() {
+	public UnicaseCommand() {
 		super(Configuration.getEditingDomain());
 	}
 
@@ -32,25 +29,20 @@ public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
 	 */
 	@Override
 	protected final void doExecute() {
-		this.result = doRun();
+		doRun();
 	}
 
 	/**
 	 * The actual action that is being executed.
-	 * 
-	 * @return the result
 	 */
-	protected abstract T doRun();
+	protected abstract void doRun();
 
 	/**
 	 * Executes the command on the workspaces editing domain.
-	 * 
-	 * @return the result
 	 */
-	public T run() {
+	public void run() {
 		// this.execute();
 		Configuration.getEditingDomain().getCommandStack().execute(this);
-		return this.result;
 	}
 
 }

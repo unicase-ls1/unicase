@@ -8,7 +8,6 @@ package org.unicase.ui.common.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.model.ModelElement;
@@ -54,10 +53,7 @@ public class DeleteModelelementHandler extends AbstractHandler {
 	}
 
 	private void deleteModelElement(final ModelElement me) {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new DeleteModelElementCommand(domain, me));
-
+		new DeleteModelElementCommand(me).run();
 	}
 
 }

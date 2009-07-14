@@ -11,8 +11,6 @@ import java.io.IOException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
@@ -21,6 +19,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Handler for import project menu item.
@@ -32,7 +31,8 @@ public class ImportProjectHandler extends AbstractHandler {
 	/**
 	 * These filter names are used to filter which files are displayed.
 	 */
-	public static final String[] FILTER_NAMES = { "Unicase Project Files (*.ucp)", "All Files (*.*)" };
+	public static final String[] FILTER_NAMES = {
+			"Unicase Project Files (*.ucp)", "All Files (*.*)" };
 
 	/**
 	 * These filter extensions are used to filter which files are displayed.
@@ -45,7 +45,8 @@ public class ImportProjectHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setFilterNames(ImportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ImportProjectHandler.FILTER_EXTS);
 		String fn = dialog.open();
@@ -61,19 +62,19 @@ public class ImportProjectHandler extends AbstractHandler {
 		}
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask("Import project...", 100);
+					progressDialog.getProgressMonitor().beginTask(
+							"Import project...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+					Workspace currentWorkspace = WorkspaceManager.getInstance()
+							.getCurrentWorkspace();
 					currentWorkspace.importProject(absoluteFileName);
 
 				} catch (IOException e) {
@@ -83,9 +84,10 @@ public class ImportProjectHandler extends AbstractHandler {
 					progressDialog.close();
 				}
 			}
-		});
+		}.run();
 
-		MessageDialog.openInformation(null, "Import", "Imported project from file: " + absoluteFileName);
+		MessageDialog.openInformation(null, "Import",
+				"Imported project from file: " + absoluteFileName);
 		return null;
 	}
 

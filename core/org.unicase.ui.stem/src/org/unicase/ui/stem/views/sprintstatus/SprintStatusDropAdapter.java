@@ -8,8 +8,6 @@ package org.unicase.ui.stem.views.sprintstatus;
 
 import java.util.List;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
@@ -18,6 +16,7 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.workspace.util.EventUtil;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * This is the drop adapter for User tab in Status view.
@@ -57,17 +56,13 @@ public class SprintStatusDropAdapter extends DropTargetAdapter {
 	 */
 	@Override
 	public void drop(DropTargetEvent event) {
-
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				EventUtil.logStatusViewDropEvent(target, source, "Unknown", "Sprint status view");
 				reassignWorkItem(target, (OrgUnit) source);
 			}
-
-		});
+		}.run();
 
 	}
 

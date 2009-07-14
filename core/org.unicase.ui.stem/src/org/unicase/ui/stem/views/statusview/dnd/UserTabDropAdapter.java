@@ -7,13 +7,12 @@
 package org.unicase.ui.stem.views.statusview.dnd;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.workspace.util.EventUtil;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * This is the drop adapter for User tab in Status view.
@@ -60,11 +59,9 @@ public class UserTabDropAdapter extends AbstractDropAdapter {
 	@Override
 	public void drop(DropTargetEvent event) {
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				EventUtil.logStatusViewDropEvent(getCurrentOpenME(), getDragSource(), "Unknown", "UserTab");
 				if (!(getDropTarget() instanceof OrgUnit)) {
 					// target is NotAssigned
@@ -77,7 +74,7 @@ public class UserTabDropAdapter extends AbstractDropAdapter {
 
 			}
 
-		});
+		}.run();
 
 	}
 

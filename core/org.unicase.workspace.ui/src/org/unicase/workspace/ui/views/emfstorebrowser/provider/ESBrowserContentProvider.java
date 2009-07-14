@@ -10,8 +10,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
@@ -25,6 +23,7 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.accesscontrol.AccessControlHelper;
 import org.unicase.workspace.provider.WorkspaceItemProviderAdapterFactory;
 import org.unicase.workspace.ui.dialogs.LoginDialog;
+import org.unicase.workspace.util.UnicaseCommandWithResult;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -41,7 +40,8 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param usersession the usersession used for logging in
+	 * @param usersession
+	 *            the usersession used for logging in
 	 */
 	public ESBrowserContentProvider(Usersession usersession) {
 		super(new WorkspaceItemProviderAdapterFactory());
@@ -49,7 +49,8 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * @return the HashMap mapping ProjectInfos with their corresponding ServerInfo parents
+	 * @return the HashMap mapping ProjectInfos with their corresponding
+	 *         ServerInfo parents
 	 */
 	public HashMap<ProjectInfo, ServerInfo> getProjectServerMap() {
 		return projectServerMap;
@@ -73,22 +74,22 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 			return ((Workspace) object).getServerInfos().toArray();
 		} else if (object instanceof ServerInfo) {
 			final ServerInfo serverInfo = (ServerInfo) object;
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			ContentProviderRecordingCommand command = new ContentProviderRecordingCommand(session, serverInfo, domain);
-			domain.getCommandStack().execute(command);
+
+			List<ProjectInfo> pis = new ContentProviderRecordingCommand(
+					session, serverInfo).run();
 			Display.getDefault().asyncExec(new Runnable() {
 				public void run() {
-					PlatformUI.getWorkbench().getDecoratorManager().update("org.unicase.ui.esbrowser.LoginDecorator");
+					PlatformUI.getWorkbench().getDecoratorManager().update(
+							"org.unicase.ui.esbrowser.LoginDecorator");
 				}
 			});
-			List<ProjectInfo> pis = command.getResult();
 			for (ProjectInfo pi : pis) {
 				projectServerMap.put(pi, serverInfo);
 			}
 			return pis.toArray();
 		}
-		throw new IllegalStateException("Received parent node of unkown type: " + object.getClass());
+		throw new IllegalStateException("Received parent node of unkown type: "
+				+ object.getClass());
 	}
 
 	/**
@@ -111,37 +112,39 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	/**
-	 * The {@link RecordingCommand} for the ContentProvider.
+	 * The {@link UnicaseCommandWithResult} for the ContentProvider.
 	 * 
 	 * @author shterev
 	 */
-	private class ContentProviderRecordingCommand extends RecordingCommand {
+	private class ContentProviderRecordingCommand extends
+			UnicaseCommandWithResult<List<ProjectInfo>> {
 
 		private ServerInfo serverInfo;
 		private Usersession session;
 		private List<ProjectInfo> result = new ArrayList<ProjectInfo>();
 
-		public ContentProviderRecordingCommand(Usersession usersession, ServerInfo serverInfo,
-			TransactionalEditingDomain domain) {
-			super(domain);
+		public ContentProviderRecordingCommand(Usersession usersession,
+				ServerInfo serverInfo) {
 			this.serverInfo = serverInfo;
 			this.session = usersession;
 		}
 
 		@Override
-		protected void doExecute() {
+		protected List<ProjectInfo> doRun() {
 			session = serverInfo.getLastUsersession();
 
-			// if no usersession has been set yet or if the current one is not logged in
+			// if no usersession has been set yet or if the current one is not
+			// logged in
 			if (session == null || !session.isLoggedIn()) {
-				LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench().getDisplay().getActiveShell(), session,
-					serverInfo);
+				LoginDialog dialog = new LoginDialog(PlatformUI.getWorkbench()
+						.getDisplay().getActiveShell(), session, serverInfo);
 				dialog.open();
 
-				// the login has been canceled and the project list should be cleared since the user is no longer logged
+				// the login has been canceled and the project list should be
+				// cleared since the user is no longer logged
 				// in
 				if (dialog.getReturnCode() == Window.CANCEL) {
-					return;
+					return result;
 				}
 				session = dialog.getSession();
 				try {
@@ -153,7 +156,8 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 			if (session != null && session.isLoggedIn()) {
 				try {
 					serverInfo.getProjectInfos().clear();
-					serverInfo.getProjectInfos().addAll(session.getRemoteProjectList());
+					serverInfo.getProjectInfos().addAll(
+							session.getRemoteProjectList());
 					WorkspaceManager.getInstance().getCurrentWorkspace().save();
 					result = serverInfo.getProjectInfos();
 					accessControl = new AccessControlHelper(session);
@@ -161,6 +165,7 @@ public class ESBrowserContentProvider extends AdapterFactoryContentProvider {
 					DialogHandler.showExceptionDialog(e);
 				}
 			}
+			return result;
 		}
 
 		/**

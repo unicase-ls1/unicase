@@ -11,8 +11,6 @@ import java.io.IOException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
@@ -20,6 +18,7 @@ import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Exports the current workspace.
@@ -34,7 +33,8 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
@@ -51,19 +51,19 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 		}
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow().getShell());
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask("Export workspace...", 100);
+					progressDialog.getProgressMonitor().beginTask(
+							"Export workspace...", 100);
 					progressDialog.getProgressMonitor().worked(10);
-					WorkspaceManager.getInstance().getCurrentWorkspace().exportWorkSpace(absoluteFileName);
+					WorkspaceManager.getInstance().getCurrentWorkspace()
+							.exportWorkSpace(absoluteFileName);
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 				} finally {
@@ -71,8 +71,9 @@ public class ExportWorkSpaceHandler extends AbstractHandler {
 					progressDialog.close();
 				}
 			}
-		});
-		MessageDialog.openInformation(null, "Export", "Exported workspace to file " + fileName);
+		}.run();
+		MessageDialog.openInformation(null, "Export",
+				"Exported workspace to file " + fileName);
 		return null;
 	}
 

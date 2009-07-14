@@ -20,8 +20,6 @@ import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -50,6 +48,7 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.FileTransferUtil;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author pfeifferc
@@ -317,14 +316,12 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 		public void widgetSelected(SelectionEvent e) {
 			WorkspaceManager.getProjectSpace(fileAttachment).removePendingFileUpload(fileAttachment.getIdentifier());
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					fileAttachment.setUploading(false);
 				}
-			});
+			}.run();
 		}
 
 		public void widgetDefaultSelected(SelectionEvent e) {
@@ -442,14 +439,12 @@ public class MEFileChooserControl extends AbstractMEControl {
 					try {
 						// if file could not be found, initiate transfer
 						WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInfo, null, false);
-						TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-							.getEditingDomain("org.unicase.EditingDomain");
-						domain.getCommandStack().execute(new RecordingCommand(domain) {
+						new UnicaseCommand() {
 							@Override
-							protected void doExecute() {
+							protected void doRun() {
 								fileAttachment.setDownloading(true);
 							}
-						});
+						}.run();
 					} catch (FileTransferException e1) {
 						openInformation("Please observe:", e1.getMessage());
 					}
@@ -488,14 +483,12 @@ public class MEFileChooserControl extends AbstractMEControl {
 					// adds a pending file upload request
 					WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInformation,
 						new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()), true);
-					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain");
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
+					new UnicaseCommand() {
 						@Override
-						protected void doExecute() {
+						protected void doRun() {
 							fileAttachment.setUploading(true);
 						}
-					});
+					}.run();
 				} catch (FileTransferException e1) {
 					openInformation("File Transfer Exception:", e1.getMessage());
 				}

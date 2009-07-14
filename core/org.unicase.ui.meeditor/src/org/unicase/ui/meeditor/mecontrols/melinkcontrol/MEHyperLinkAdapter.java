@@ -5,8 +5,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
@@ -14,6 +12,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -47,17 +46,15 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	@Override
 	public void linkActivated(HyperlinkEvent event) {
 		ActionHelper.openModelElement(target, "org.unicase.ui.meeditor");
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 					.getActiveProjectSpace();
 				WorkspaceUtil.logTraceEvent(activeProjectSpace, source.getModelElementId(), target.getModelElementId(),
 					featureName);
 			}
-		});
+		}.run();
 		super.linkActivated(event);
 	}
 }
