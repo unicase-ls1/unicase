@@ -10,8 +10,6 @@ import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
@@ -29,6 +27,7 @@ import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.OrgUnitHelper;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Note that in methods dropXXOnYY(), YY actually means the currentOpenME and not drop target!
@@ -48,11 +47,9 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	 */
 	@Override
 	public void drop(final DropTargetEvent event) {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				// TODO: Log source view.
 				EventUtil.logStatusViewDropEvent(currentOpenME, dragSource, "Unknown", "FlatTab");
 				if (currentOpenME instanceof WorkPackage) {
@@ -66,9 +63,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 
 				}
 			}
-
-		});
-
+		}.run();
 	}
 
 	/**

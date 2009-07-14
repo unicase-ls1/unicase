@@ -10,8 +10,8 @@ import java.util.EventObject;
 
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.command.CommandStackListener;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
+import org.unicase.workspace.Configuration;
 
 /**
  * @author Hodaie This is the temporary implementation for redo action in navigator. Currently we have a problem with
@@ -27,8 +27,7 @@ public class UndoAction extends Action implements CommandStackListener {
 	 * . Constructor
 	 */
 	public UndoAction() {
-		this.commandStack = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain")
-			.getCommandStack();
+		this.commandStack = Configuration.getEditingDomain().getCommandStack();
 		commandStack.addCommandStackListener(this);
 
 	}

@@ -43,13 +43,13 @@ public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
 	protected abstract T doRun();
 
 	/**
-	 * Executes the command on the workspaces editing domain. Will throw an illegal state exception if the editing
-	 * domain is not initialized.
+	 * Executes the command on the workspaces editing domain.
 	 * 
 	 * @return the result
 	 */
 	public T run() {
-		this.execute();
+		// this.execute();
+		Configuration.getEditingDomain().getCommandStack().execute(this);
 		return this.result;
 	}
 

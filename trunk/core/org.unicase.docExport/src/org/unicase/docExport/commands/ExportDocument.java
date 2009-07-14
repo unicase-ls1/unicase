@@ -9,8 +9,6 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.swt.widgets.MessageBox;
@@ -21,6 +19,7 @@ import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersFactory;
 import org.unicase.model.ModelElement;
 import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -53,11 +52,9 @@ public class ExportDocument extends AbstractHandler {
 
 		final Shell shell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				ExportDialog dialog;
 				try {
 					dialog = new ExportDialog(shell, DefaultRenderersFactory.eINSTANCE.createDefaultDocumentRenderer(),
@@ -72,7 +69,7 @@ public class ExportDocument extends AbstractHandler {
 				}
 
 			}
-		});
+		}.run();
 
 		return null;
 

@@ -20,8 +20,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.image.ImageFileFormat;
@@ -44,6 +42,7 @@ import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramLoadException;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -140,12 +139,10 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 				public void run() {
 					final CopyToImageUtil util = new CopyToImageUtil();
 
-					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-						.getEditingDomain("org.unicase.EditingDomain");
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
+					new UnicaseCommand() {
 
 						@Override
-						protected void doExecute() {
+						protected void doRun() {
 							try {
 								diagram.loadDiagramLayout();
 								/*
@@ -175,7 +172,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 								WorkspaceUtil.log("Exception while loading the diagram.", e, IStatus.WARNING);
 							}
 						}
-					});
+					}.run();
 				}
 			});
 

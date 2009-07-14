@@ -7,8 +7,6 @@ package org.unicase.workspace.util;
 
 import java.util.Calendar;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.emfstore.esmodel.versioning.events.AnnotationEvent;
 import org.unicase.emfstore.esmodel.versioning.events.DNDEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
@@ -42,14 +40,12 @@ public abstract class EventUtil {
 			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
 
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					activeProjectSpace.addEvent(pluginFocusEvent);
 				}
-			});
+			}.run();
 
 		}
 	}
@@ -67,14 +63,12 @@ public abstract class EventUtil {
 			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
 
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					activeProjectSpace.addEvent(presentationSwitchEvent);
 				}
-			});
+			}.run();
 
 		}
 
@@ -93,14 +87,12 @@ public abstract class EventUtil {
 			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
 
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					activeProjectSpace.addEvent(annotationEvent);
 				}
-			});
+			}.run();
 
 		}
 
@@ -125,14 +117,12 @@ public abstract class EventUtil {
 			.getActiveProjectSpace();
 		if (activeProjectSpace != null) {
 
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					activeProjectSpace.addEvent(dndEvent);
 				}
-			});
+			}.run();
 
 		}
 	}

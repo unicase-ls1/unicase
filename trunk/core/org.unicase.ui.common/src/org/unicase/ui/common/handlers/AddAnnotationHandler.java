@@ -9,8 +9,6 @@ package org.unicase.ui.common.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
@@ -18,6 +16,7 @@ import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.util.EventUtil;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * . This is a generic handler to add different types of Annotations to a ModelElement
@@ -76,14 +75,12 @@ public class AddAnnotationHandler extends AbstractHandler {
 			result = null;
 		}
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				project.addModelElement(result);
 			}
-		});
+		}.run();
 
 		return result;
 	}
@@ -95,15 +92,12 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * @param annotation
 	 */
 	private void attachAnnotation(final ModelElement me, final Annotation annotation) {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				me.getAnnotations().add(annotation);
 			}
-		});
-
+		}.run();
 	}
 
 	/**

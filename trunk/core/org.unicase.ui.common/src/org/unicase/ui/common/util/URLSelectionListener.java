@@ -9,8 +9,6 @@ import java.net.MalformedURLException;
 import java.util.Date;
 import java.util.HashMap;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
@@ -22,6 +20,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -79,14 +78,13 @@ public final class URLSelectionListener implements SelectionListener{
 		readEvent.setReadView("org.unicase.ui.meeditor");
 		readEvent.setSourceView(source);
 		readEvent.setTimestamp(new Date());
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
+			
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				projectSpace.addEvent(readEvent);
 			}
-		});
+		}.run();
 	}
 	
 	/**

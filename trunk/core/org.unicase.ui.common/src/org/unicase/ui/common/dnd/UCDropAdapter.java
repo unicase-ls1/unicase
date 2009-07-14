@@ -6,6 +6,13 @@
 
 package org.unicase.ui.common.dnd;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -32,13 +39,6 @@ import org.unicase.ui.common.dnd.dropadapters.MeetingDropAdapter;
 import org.unicase.ui.common.dnd.dropadapters.ProjectDropAdapter;
 import org.unicase.ui.common.dnd.dropadapters.WorkItemMeetingSectionDropAdapter;
 import org.unicase.ui.common.dnd.dropadapters.WorkPackageDropAdapter;
-
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * This is the central drop adapter for unicase views. This class acts as a dispatcher. It has a map of (EClass,

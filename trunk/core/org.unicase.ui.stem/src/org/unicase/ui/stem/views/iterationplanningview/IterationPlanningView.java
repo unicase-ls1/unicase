@@ -11,7 +11,6 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.dialogs.DialogSettings;
@@ -44,6 +43,7 @@ import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
@@ -366,8 +366,7 @@ public class IterationPlanningView extends ViewPart {
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
 
 		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
-		viewer.addDropSupport(dndOperations, transfers, new UCDropAdapter(TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain"), viewer));
+		viewer.addDropSupport(dndOperations, transfers, new UCDropAdapter(Configuration.getEditingDomain(), viewer));
 
 	}
 

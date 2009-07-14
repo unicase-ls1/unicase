@@ -22,8 +22,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.DelegatingWrapperItemProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.ErrorDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ColumnViewer;
@@ -45,6 +43,7 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -117,18 +116,16 @@ public final class ActionHelper {
 		EObject obj = factory.create(clazz);
 		ModelElement me = (ModelElement) obj;
 		final StringBuffer creator = new StringBuffer();
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				Usersession usersession = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
 					.getUsersession();
 				if (usersession != null) {
 					creator.append(usersession.getACUser().getName());
 				}
 			}
-		});
+		}.run();
 		me.setCreator(creator.toString());
 		me.setCreationDate(new Date());
 		return me;
@@ -157,11 +154,9 @@ public final class ActionHelper {
 			openWithMeDiagram = true;
 		}
 		final boolean isDiagram = openWithMeDiagram;
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 					.getActiveProjectSpace();
 				String readView;
@@ -172,7 +167,7 @@ public final class ActionHelper {
 				}
 				WorkspaceUtil.logReadEvent(activeProjectSpace, me.getModelElementId(), sourceView, readView);
 			}
-		});
+		}.run();
 
 		if (openWithMeDiagram) {
 			openMEDiagram((MEDiagram) me, false);
@@ -260,17 +255,16 @@ public final class ActionHelper {
 		}
 
 		// TODO: at some point add validation markings in diagrams
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
+			
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 					.getActiveProjectSpace();
 				String readView = "org.unicase.ui.meeditor.MEEditor";
 				WorkspaceUtil.logReadEvent(activeProjectSpace, me.getModelElementId(), sourceView, readView);
 			}
-		});
+		}.run();
 
 		openAndMarkMEWithMEEditor(me, problemFeature);
 	}

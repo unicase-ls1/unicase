@@ -8,8 +8,6 @@ package org.unicase.ui.stem.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
@@ -18,6 +16,7 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.statusview.StatusView;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * This is handler for assign work item to users on user tab of status view.
@@ -46,17 +45,13 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 		final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
 			.getProject();
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				WorkItem workItem = assignWorkItem(currentOpenME, user, project);
 				ActionHelper.openModelElement(workItem, statusView.getSite().getId());
 			}
-
-		});
+		}.run();
 
 		return null;
 	}

@@ -23,9 +23,6 @@ import org.eclipse.emf.ecore.xmi.DOMHandler;
 import org.eclipse.emf.ecore.xmi.DOMHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.core.services.ViewService;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -33,6 +30,7 @@ import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramLoadException;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
@@ -102,21 +100,18 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 
 	private void initialize() {
 
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(meDiagram);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				try {
 					meDiagram.loadDiagramLayout();
 				} catch (DiagramLoadException e) {
 					if (!(e.getCause() instanceof NullPointerException)) {
 						WorkspaceUtil.logException("Loading diagram layout failed", e);
 					}
-
 				}
-
 			}
-		});
+		}.run();
 		if (meDiagram.getGmfdiagram() == null) {
 			createNewGMFDiagram();
 
@@ -146,14 +141,12 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 		// JH: Build switch for different diagram types
 		diagram = ViewService.createDiagram(meDiagram, id, new PreferencesHint("org.unicase.ui.stateDiagram"));
 		diagram.setElement(meDiagram);
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(meDiagram);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				meDiagram.setGmfdiagram(diagram);
-
 			}
-		});
+		}.run();
 	}
 
 	/**

@@ -27,6 +27,7 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
 import org.unicase.workspace.ui.dashboard.widgets.AbstractDashboardWidget;
@@ -56,13 +57,16 @@ public class DashboardPage extends FormPage {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param editor the editor
-	 * @param id the page id
-	 * @param title the title
+	 * @param editor
+	 *            the editor
+	 * @param id
+	 *            the page id
+	 * @param title
+	 *            the title
 	 */
 	public DashboardPage(DashboardEditor editor, String id, String title) {
 		super(editor, id, title);
-		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
+		domain = Configuration.getEditingDomain();
 	}
 
 	/**
@@ -98,15 +102,18 @@ public class DashboardPage extends FormPage {
 		globalSash.setSashWidth(4);
 
 		notificationsComposite = toolkit.createComposite(globalSash, SWT.NONE);
-		notificationsComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
+		notificationsComposite.setBackground(Display.getCurrent()
+				.getSystemColor(SWT.COLOR_WHITE));
 		notificationsComposite.setBackgroundMode(SWT.INHERIT_FORCE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).spacing(0, 0).applyTo(notificationsComposite);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(notificationsComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false)
+				.spacing(0, 0).applyTo(notificationsComposite);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(
+				notificationsComposite);
 
 		widgetsComposite = toolkit.createComposite(globalSash, SWT.NONE);
 		widgetsComposite.setBackgroundMode(SWT.INHERIT_FORCE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).extendedMargins(5, 5, 6, 0).applyTo(
-			widgetsComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false)
+				.extendedMargins(5, 5, 6, 0).applyTo(widgetsComposite);
 		GridDataFactory.fillDefaults().applyTo(widgetsComposite);
 
 		int[] topWeights = { 80, 20 };
@@ -116,7 +123,8 @@ public class DashboardPage extends FormPage {
 
 		createNotifications();
 
-		// is it just me, or this should be done by the sash form itself?, Shterev 20090401
+		// is it just me, or this should be done by the sash form itself?,
+		// Shterev 20090401
 		notificationsComposite.addControlListener(new ControlAdapter() {
 			@Override
 			public void controlResized(ControlEvent e) {
@@ -130,12 +138,14 @@ public class DashboardPage extends FormPage {
 	private void createWidgets() {
 		for (AbstractDashboardWidget widget : widgets) {
 			Composite widgetComposite = widget.createWidget(widgetsComposite);
-			GridDataFactory.fillDefaults().grab(true, false).applyTo(widgetComposite);
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(
+					widgetComposite);
 		}
 	}
 
 	private void logFocusEvent() {
-		final PluginFocusEvent focusEvent = EventsFactory.eINSTANCE.createPluginFocusEvent();
+		final PluginFocusEvent focusEvent = EventsFactory.eINSTANCE
+				.createPluginFocusEvent();
 		focusEvent.setPluginId(DashboardEditor.ID);
 		focusEvent.setTimestamp(new Date());
 		focusEvent.setStartDate(new Date());
@@ -156,14 +166,19 @@ public class DashboardPage extends FormPage {
 				for (ESNotification n : notifications) {
 					if (!n.isSeen()) {
 						AbstractDashboardEntry entry;
-						if (n.getSender() != null && n.getSender().equals(UpdateNotificationProvider.NAME)) {
-							entry = new UpdateDashboardEntry(DashboardPage.this, notificationsComposite, SWT.NONE, n,
-								projectSpace);
+						if (n.getSender() != null
+								&& n.getSender().equals(
+										UpdateNotificationProvider.NAME)) {
+							entry = new UpdateDashboardEntry(
+									DashboardPage.this, notificationsComposite,
+									SWT.NONE, n, projectSpace);
 						} else {
-							entry = new DashboardNotificationEntry(DashboardPage.this, notificationsComposite,
-								SWT.NONE, n, projectSpace);
+							entry = new DashboardNotificationEntry(
+									DashboardPage.this, notificationsComposite,
+									SWT.NONE, n, projectSpace);
 						}
-						GridDataFactory.fillDefaults().grab(true, false).applyTo(entry);
+						GridDataFactory.fillDefaults().grab(true, false)
+								.applyTo(entry);
 					}
 				}
 			}

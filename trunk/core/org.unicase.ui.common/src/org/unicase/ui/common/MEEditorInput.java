@@ -8,9 +8,6 @@ package org.unicase.ui.common;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.jface.dialogs.MessageDialog;
@@ -23,6 +20,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The {@link IEditorInput} for the {@link MEEditor}.
@@ -62,13 +60,12 @@ public class MEEditorInput implements IEditorInput {
 
 			}
 			final String finalName = newName;
-			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					modelElement.setName(finalName);
 				}
-			});
+			}.run();
 		}
 	}
 

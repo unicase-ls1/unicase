@@ -8,8 +8,6 @@ package org.unicase.workspace.ui.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
@@ -20,6 +18,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.dashboard.DashboardEditor;
 import org.unicase.workspace.ui.dashboard.DashboardEditorInput;
+import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -61,13 +60,11 @@ public class ShowDashboardHandler extends AbstractHandler {
 			return null;
 		}
 
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
 		final ProjectSpace ps = projectSpace;
-		final RecordingCommand command = new RecordingCommand(domain) {
+		new UnicaseCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				DashboardEditorInput input = new DashboardEditorInput(ps);
 				try {
 					IEditorPart openEditor = PlatformUI.getWorkbench()
@@ -80,8 +77,7 @@ public class ShowDashboardHandler extends AbstractHandler {
 					WorkspaceUtil.logException(e.getMessage(), e);
 				}
 			}
-		};
-		domain.getCommandStack().execute(command);
+		}.run();
 
 		return null;
 	}

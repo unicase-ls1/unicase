@@ -9,8 +9,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.MenuManager;
@@ -47,11 +45,13 @@ import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.MEEditor;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.observers.SimpleOperationListener;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The standard navigator tree view.
@@ -380,17 +380,13 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 				return;
 			}
 		}
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(projectSpace);
-
 			}
-
-		});
+		}.run();
 
 	}
 
@@ -400,8 +396,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 
 		viewer.addDragSupport(dndOperations, transfers, new UCDragAdapter(viewer));
 
-		viewer.addDropSupport(dndOperations, transfers, new UCDropAdapter(TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain"), viewer));
+		viewer.addDropSupport(dndOperations, transfers, new UCDropAdapter(Configuration.getEditingDomain(), viewer));
 
 	}
 

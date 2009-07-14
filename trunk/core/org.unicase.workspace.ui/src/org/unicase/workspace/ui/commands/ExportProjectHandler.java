@@ -11,8 +11,6 @@ import java.io.IOException;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.swt.SWT;
@@ -21,6 +19,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Handler for export project menu item.
@@ -35,7 +34,8 @@ public class ExportProjectHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.SAVE);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
 		dialog.setFilterNames(ImportProjectHandler.FILTER_NAMES);
 		dialog.setFilterExtensions(ImportProjectHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
@@ -54,16 +54,15 @@ public class ExportProjectHandler extends AbstractHandler {
 		final String absoluteFileName = stringBuilder.toString();
 
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
-		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
-			.getActiveWorkbenchWindow().getShell());
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
+				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				try {
 					progressDialog.open();
-					progressDialog.getProgressMonitor().beginTask("Export project...", 100);
+					progressDialog.getProgressMonitor().beginTask(
+							"Export project...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.exportProject(absoluteFileName);
 				} catch (IOException e) {
@@ -77,8 +76,9 @@ public class ExportProjectHandler extends AbstractHandler {
 				}
 				// END SUPRESS CATCH EXCEPTION
 			}
-		});
-		MessageDialog.openInformation(null, "Export", "Exported project to file " + fileName);
+		}.run();
+		MessageDialog.openInformation(null, "Export",
+				"Exported project to file " + fileName);
 		return null;
 	}
 

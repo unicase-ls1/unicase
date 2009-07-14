@@ -10,8 +10,6 @@ import java.net.URL;
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -20,7 +18,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
-import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * . The decorator to show state of an element (blocked or open) shown in viewers
@@ -95,22 +93,18 @@ public class StateDecorator implements ILightweightLabelDecorator {
 			return;
 		}
 
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
-
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				try {
 					status = me.getMEState().getStatus();
 				} catch (CircularDependencyException e) {
 					return;
 
 				}
-
 			}
-
-		});
+		}.run();
 
 		if (status.equals(MEState.OPEN)) {
 			// explicitly turn off for bugreports

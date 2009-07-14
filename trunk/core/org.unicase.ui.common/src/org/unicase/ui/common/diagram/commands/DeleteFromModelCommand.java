@@ -8,7 +8,6 @@ package org.unicase.ui.common.diagram.commands;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
@@ -36,8 +35,7 @@ public class DeleteFromModelCommand extends DestroyElementCommand{
 	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		TransactionalEditingDomain domain = getEditingDomain();
-		domain.getCommandStack().execute(new DeleteModelElementCommand(domain, (ModelElement) getElementToDestroy()));
+		new DeleteModelElementCommand((ModelElement) getElementToDestroy()).run();
 		return CommandResult.newOKCommandResult();
 	}
 

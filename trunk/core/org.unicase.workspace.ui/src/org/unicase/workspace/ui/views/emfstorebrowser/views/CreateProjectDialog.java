@@ -5,8 +5,6 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.views;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
@@ -22,6 +20,7 @@ import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Create project dialog.
@@ -37,8 +36,10 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent the parent shell
-	 * @param session the target usersession
+	 * @param parent
+	 *            the parent shell
+	 * @param session
+	 *            the target usersession
 	 */
 	public CreateProjectDialog(Shell parent, Usersession session) {
 		super(parent);
@@ -67,8 +68,8 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		projectdesc.setSize(150, 60);
 
 		Point defaultMargins = LayoutConstants.getMargins();
-		GridLayoutFactory.fillDefaults().numColumns(2).margins(defaultMargins.x, defaultMargins.y).generateLayout(
-			contents);
+		GridLayoutFactory.fillDefaults().numColumns(2).margins(
+				defaultMargins.x, defaultMargins.y).generateLayout(contents);
 
 		return contents;
 	}
@@ -78,20 +79,19 @@ public class CreateProjectDialog extends TitleAreaDialog {
 	 */
 	@Override
 	public void okPressed() {
-		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				try {
-					session.createProject(projetname.getText(), projectdesc.getText());
+					session.createProject(projetname.getText(), projectdesc
+							.getText());
 				} catch (AccessControlException e) {
 					DialogHandler.showExceptionDialog(e);
 				} catch (EmfStoreException e) {
 					DialogHandler.showExceptionDialog(e);
 				}
 			}
-		});
+		}.run();
 		close();
 	}
 
