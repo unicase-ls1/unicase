@@ -21,7 +21,6 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.analyzer.AnalyzerConfiguration;
-import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.exporters.impl.CSVExporter;
 
 /**
@@ -83,7 +82,7 @@ public class ExporterPage extends WizardPage implements Listener {
 		exporterButton.setSelection(false);
 		exporterButton.addListener(SWT.Selection, this);
 		
-		((ProjectAnalyzerWizard)getWizard()).setCanFinish(true);
+		((ProjectAnalyzerWizard)getWizard()).setCanFinish(isPageComplete());
 		setControl(composite);
 		setPageComplete(true);
 
@@ -106,12 +105,18 @@ public class ExporterPage extends WizardPage implements Listener {
 		if(event.widget == exporterButton){
 			((ProjectAnalyzerWizard)getWizard()).setCanFinish(true);
 		}
-		setPageComplete(isComplete());
+		setPageComplete(isPageComplete());
 
 		getWizard().getContainer().updateButtons();
 	}
 
-	private boolean isComplete() {
+	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
+	 */
+	@Override
+	public boolean isPageComplete() {
 		if(isTextNonEmpty(exportPath)){
 			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 			.getEditingDomain("org.unicase.EditingDomain");
@@ -127,7 +132,6 @@ public class ExporterPage extends WizardPage implements Listener {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					//wizard.getExporter().setFileName(exportPath.getText());
 				}
 			});
 			return true;

@@ -9,8 +9,6 @@ package org.unicase.analyzer.ui.wizards;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -19,8 +17,6 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.iterator.TimeIterator;
-import org.unicase.analyzer.iterator.VersionIterator;
-import org.unicase.workspace.WorkspaceFactory;
 
 /**
  * @author liya
@@ -83,6 +79,13 @@ public class IteratorPage extends WizardPage implements Listener {
 	public boolean canFlipToNextPage() {
 		return canFlipToNextPage;
 	}
+	
+    /**
+     * @param canFlipToNextPage true if can flip to next page
+     */
+    public void setCanFlipToNextPage(boolean canFlipToNextPage) {
+		this.canFlipToNextPage = canFlipToNextPage;
+	}
 
 	/** 
 	 * {@inheritDoc}
@@ -104,21 +107,7 @@ public class IteratorPage extends WizardPage implements Listener {
 		versionIteratorButton = new Button(composite, SWT.RADIO);
 		 versionIteratorButton.setText("Version Iterator");
 		 versionIteratorButton.setLayoutData(gd);
-		 versionIteratorButton.addSelectionListener(new SelectionListener() {
-
-				public void widgetDefaultSelected(SelectionEvent e) {
-					canFlipToNextPage = true;
-					getWizard().getContainer().updateButtons();
-				}
-
-				public void widgetSelected(SelectionEvent e) {
-					canFlipToNextPage = true;
-					getWizard().getContainer().updateButtons();
-
-				}
-
-			});
-		 //versionIteratorButton.addListener(SWT.Selection, this);
+		 versionIteratorButton.addListener(SWT.Selection, this);
 		 
 		 timeIteratorButton = new Button(composite, SWT.RADIO);
 		 timeIteratorButton.setText("Time Iterator");		 
@@ -131,25 +120,25 @@ public class IteratorPage extends WizardPage implements Listener {
 			 }
 		 }
 		 
-		 timeIteratorButton.addSelectionListener(new SelectionListener() {
-
-				public void widgetDefaultSelected(SelectionEvent e) {
-					canFlipToNextPage = true;
-					getWizard().getContainer().updateButtons();
-				}
-
-				public void widgetSelected(SelectionEvent e) {
-					canFlipToNextPage = true;
-					getWizard().getContainer().updateButtons();
-
-				}
-
-			});
-		// timeIteratorButton.addListener(SWT.Selection, this);
+		 timeIteratorButton.addListener(SWT.Selection, this);
 		 
+		 setCanFlipToNextPage(isPageComplete());
 		 setControl(composite);
 		 setPageComplete(true);
 
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
+	 */
+	@Override
+	public boolean isPageComplete() {
+		if(timeIteratorButton.getSelection() || versionIteratorButton.getSelection()){
+			return true;
+		}
+		return false;
+		
 	}
 
 }

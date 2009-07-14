@@ -25,22 +25,19 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
+import org.eclipse.ui.PlatformUI;
 
 import org.unicase.analyzer.AnalyzerConfiguration;
-import org.unicase.analyzer.AnalyzerController;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.AnalyzerModelController;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.Exporter;
-import org.unicase.analyzer.iterator.IteratorFactory;
-import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.Workspace;
 
 /**
  * @author liya
@@ -124,43 +121,50 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	}
 	
     private void initConfig() {
-    	ResourceSet resourceSet = new ResourceSetImpl();
+//      ResourceSet resourceSet = new ResourceSetImpl();
 
 		// register an editing domain on the resource
-		final TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
-			.createEditingDomain(resourceSet);
-		TransactionalEditingDomain.Registry.INSTANCE.add("org.unicase.EditingDomain", domain);
-		domain.setID("org.unicase.EditingDomain");
-
-		URI fileURI = URI.createFileURI(PATH);
-		File analyzerFile = new File(PATH);
-
-		final Resource resource;
-		if(!analyzerFile.exists()){
-			
-			resource = resourceSet.createResource(fileURI);
-			analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				@Override
-				protected void doExecute() {
-					resource.getContents().add(analyzerConfig);
-				}
-			});
-			try {
-				resource.save(null);
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+//		final TransactionalEditingDomain domain = TransactionalEditingDomain.Factory.INSTANCE
+//			.createEditingDomain(resourceSet);
+//		TransactionalEditingDomain.Registry.INSTANCE.add("org.unicase.EditingDomain", domain);
+//		domain.setID("org.unicase.EditingDomain");
+    	PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+			public void run() {
+				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(
+						"org.unicase.EditingDomain");
+				
+				ResourceSet resourceSet = domain.getResourceSet();
+		
+				URI fileURI = URI.createFileURI(PATH);
+				File analyzerFile = new File(PATH);
+		
+				final Resource resource;
+				if(!analyzerFile.exists()){
+					
+					resource = resourceSet.createResource(fileURI);
+					analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+						@Override
+						protected void doExecute() {
+							resource.getContents().add(analyzerConfig);
+						}
+					});
+					try {
+						resource.save(null);
+					} catch (IOException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+				}else{
+					
+					resource = resourceSet.getResource(fileURI, true);
+					EList<EObject> directContents = resource.getContents();
+					// MK cast
+					analyzerConfig = (AnalyzerConfiguration) directContents.get(0);
+		
+				}	
 			}
-		}else{
-			resource = resourceSet.getResource(fileURI, true);
-			EList<EObject> directContents = resource.getContents();
-			// MK cast
-			analyzerConfig = (AnalyzerConfiguration) directContents.get(0);
-		}		
-//		analyzerConfig.setAnalyzerClass(analyzer);
-//		analyzerConfig.setExporter(exporter);
-//		analyzerConfig.setIterator(versionIterator);
+    	});
 	}
 
 	/** 

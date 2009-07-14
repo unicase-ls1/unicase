@@ -27,7 +27,6 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.unicase.analyzer.AnalyzerConfiguration;
-import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.DataAnalyzer;
 
 /**
@@ -39,7 +38,8 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	private static final String PAGE_TITLE = "Registered Analyzers";
 	private static final String PAGE_DESCRIPTION = "Choose the analyzer.";
 	private List<Button> analyzerButton = new ArrayList<Button>();
-	//private boolean canFlipToNextPage;
+	private boolean canFlipToNextPage;
+
 
 	/**
 	 * @param pageName Name of the page
@@ -48,7 +48,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		//canFlipToNextPage = false;
+		canFlipToNextPage = false;
 	}
 
 	/** 
@@ -93,9 +93,11 @@ public class AnalyzerPage extends WizardPage implements Listener {
 				 button.setSelection(false);
 			 }			 
 			 analyzerButton.add(button);
-			 analyzerButton.get(count).addListener(SWT.SELECTED, this);
+			 analyzerButton.get(count).addListener(SWT.CHECK, this);
 		    }
 		}
+		
+		setCanFlipToNextPage(isPageComplete());
 		setControl(composite);
 		setPageComplete(true);
 
@@ -103,23 +105,15 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	
 	/** 
 	 * {@inheritDoc}
-	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
 	 */
 	@Override
-	public boolean canFlipToNextPage(){
-//		return canFlipToNextPage;
-		return true;
-	}
-
-	/** 
-	 * {@inheritDoc}
-	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
-	 */
-	@Override
-	public IWizardPage getNextPage() {	
+	@SuppressWarnings("unchecked")
+	public boolean isPageComplete() {
 		final ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 		for(final Button button : analyzerButton){
 			if(button.getSelection()){
+	
 				try {
 					Class c = Class.forName(button.getText());			
 					DataAnalyzer analyzer = (DataAnalyzer) c.getConstructors()[0].newInstance();
@@ -133,7 +127,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 						@Override
 						protected void doExecute() {
 							
-							//FIXME should set a list of analyzer names
+							//TODO should set a list of analyzer names
 							wizard.getAnalyzerConfig().setAnalyzerName(button.getText());
 						}
 					});
@@ -157,12 +151,49 @@ public class AnalyzerPage extends WizardPage implements Listener {
 					// TODO Auto-generated catch block
 					e1.printStackTrace();
 				}
-				
+				return true;
 			}
 		}
+		return false;
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
+	 */
+	@Override
+	public boolean canFlipToNextPage(){
+		return canFlipToNextPage;
+	}
+	
+    /**
+     * @param canFlipToNextPage true if can flip to next page
+     */	
+	public void setCanFlipToNextPage(boolean canFlipToNextPage) {
+		this.canFlipToNextPage = canFlipToNextPage;
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
+	 */
+
+	@Override
+	public IWizardPage getNextPage() {	
+		setCanFlipToNextPage(isPageComplete());
 		return super.getNextPage();
 	}
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
+	 */
 	public void handleEvent(Event event) {
+		if(event.widget instanceof Button){
+			if(((Button) event.widget).getSelection()) {
+				canFlipToNextPage = true;
+			}
+		}
+		getWizard().getContainer().updateButtons();
 	}
 }
