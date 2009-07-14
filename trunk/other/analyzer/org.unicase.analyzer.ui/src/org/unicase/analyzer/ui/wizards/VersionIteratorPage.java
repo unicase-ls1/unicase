@@ -154,12 +154,37 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		returnCopyButton.setSelection(false);
 		returnCopyButton.addListener(SWT.Selection, this);
 		
+		setCanFlipToNextPage(isPageComplete());
 		setControl(composite);
 		setPageComplete(true);
 		
 	}
+
+	private static boolean isTextNonEmpty(Text t)
+	{
+		String s = t.getText();
+		if ((s!=null) && (s.trim().length() >0)) {
+			return true;
+		}
+		return false;
+	}
 	
-	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
+	 */
+	@Override
+	public boolean isPageComplete() {
+		if(isTextNonEmpty(stepText) && defaultButton.getSelection()){
+			getNextPage();
+			return true;
+		}else if(isTextNonEmpty(stepText) && isTextNonEmpty(startText)
+				&& isTextNonEmpty(endText) && (forwardButton.getSelection() || backwardButton.getSelection())){
+			getNextPage();
+			return true;
+		}
+		return super.isPageComplete();
+	}
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
@@ -167,6 +192,13 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 	@Override
 	public boolean canFlipToNextPage() {
 		return canFlipToNextPage;
+	}
+	
+    /**
+     * @param canFlipToNextPage true if can flip to next page
+     */
+	public void setCanFlipToNextPage(boolean canFlipToNextPage) {
+		this.canFlipToNextPage = canFlipToNextPage;
 	}
 	
 	/** 
@@ -221,6 +253,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 				control.setEnabled(!defaultButton.getSelection());
 			}
 		}
+		setCanFlipToNextPage(isPageComplete());
 		getWizard().getContainer().updateButtons();
 	}
 
