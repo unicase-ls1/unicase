@@ -12,7 +12,7 @@ import org.unicase.workspace.Configuration;
  * Recording command that can buffer a result for later retrieval.
  * 
  * @author koegel
- * @param <T>
+ * @param <T> result type
  */
 public abstract class UnicaseCommandWithResult<T> extends RecordingCommand {
 
