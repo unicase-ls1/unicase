@@ -70,10 +70,6 @@ public class MoveConnectionBendpointGesture extends AbstractMoveGesture
 	 */
 	@Override
 	public void handleSingleTouchChanged(SingleTouch touch) {
-		if (!acceptsAdditionalTouches()) {
-			return;
-		}
-
 		if (isExecuting()) {
 			if (touch == getMoveTouch()) {
 				Point point = getMoveTouch().getPosition().getCopy();
@@ -145,9 +141,6 @@ public class MoveConnectionBendpointGesture extends AbstractMoveGesture
 	 * @see org.unicase.ui.tom.gestures.MomentaryGesture#finish()
 	 */
 	public void execute() {
-		if (!canExecute()) {
-			return;
-		}
 		setMoveConnectionBendpointCommand(new MoveConnectionBendpointOperation(
 				getDiagramEditPart(), (ConnectionEditPart) getMoveEditPart()));
 		

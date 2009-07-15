@@ -43,10 +43,6 @@ public class CreateNodeGesture extends CreateGesture implements Gesture {
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#execute()
 	 */
 	public void execute() {
-		if (!canExecute()) {
-			return;
-		}
-
 		CreateNodeCommand createNodeCommand = null;
 
 		MultiTouch multiTouch = getCreationTouch().getMultiTouch();
@@ -138,8 +134,7 @@ public class CreateNodeGesture extends CreateGesture implements Gesture {
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchChanged(org.unicase.ui.tom.touches.SingleTouch)
 	 */
 	public void handleSingleTouchChanged(SingleTouch touch) {
-		setCreationTouch(touch);
-		setCanExecute(true);
+		//do nothing
 	}
 
 	/**
@@ -148,7 +143,6 @@ public class CreateNodeGesture extends CreateGesture implements Gesture {
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#handleSingleTouchAdded(org.unicase.ui.tom.touches.SingleTouch)
 	 */
 	public void handleSingleTouchAdded(SingleTouch touch) {
-		setCreationTouch(touch);
-		setCanExecute(true);
+		//do nothing
 	}
 }

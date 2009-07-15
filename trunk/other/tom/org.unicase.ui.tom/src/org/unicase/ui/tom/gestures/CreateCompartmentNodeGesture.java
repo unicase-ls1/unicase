@@ -69,10 +69,6 @@ public class CreateCompartmentNodeGesture extends CreateNodeGesture {
 	 * @see org.unicase.ui.tom.gestures.AbstractGesture#execute()
 	 */
 	public void execute() {
-		if (!canExecute()) {
-			return;
-		}
-
 		CreateNodeCommand createNodeCommand;
 
 		MultiTouch multiTouch = getCreationTouch().getMultiTouch();

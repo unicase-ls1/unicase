@@ -148,10 +148,6 @@ public class MoveCanvasGesture extends AbstractMoveGesture {
 	 * @see org.unicase.ui.tom.gestures.MomentaryGesture#finish()
 	 */
 	public void execute() {
-		if (!(canExecute())) {
-			return;
-		}
-
 		setExecuting(true);
 
 		Point firstPoint = ((SingleTouch) getMoveTouch()).getAbsolutePath()
