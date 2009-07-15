@@ -148,6 +148,10 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 			return;
 		}
 
+		for (Gesture gesture : gestures) {
+			gesture.setCanExecute(false);
+		}
+		
 		List<SelectGesture> selectGestures = filterSelectGestures(executableGestures);
 		for (SelectGesture selectGesture : selectGestures) {
 			selectGesture.execute();
@@ -181,9 +185,6 @@ public class GestureInterpreter extends TouchNotifierImpl implements
 			gesture.execute();
 		}
 
-		for (Gesture gesture : gestures) {
-			gesture.setCanExecute(false);
-		}
 		
 		if (getDispatch().getActiveSingleTouches().size() == 0) {
 			for (Gesture gesture : getGestures()) {

@@ -96,10 +96,6 @@ public class SelectGesture extends AbstractGesture implements Gesture {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void handleSingleTouchAdded(SingleTouch touch) {
-		if (!(acceptsAdditionalTouches())) {
-			return;
-		}
-
 		if (touch.getMultiTouch().getActiveTouches().size() > 1) {
 			return;
 		}

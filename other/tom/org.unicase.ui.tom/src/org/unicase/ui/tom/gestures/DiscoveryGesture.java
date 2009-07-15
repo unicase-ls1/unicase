@@ -116,10 +116,6 @@ public class DiscoveryGesture extends AbstractContinuousGesture {
 	 * @see org.unicase.ui.tom.gestures.Gesture#execute()
 	 */
 	public void execute() {
-		if (!(canExecute())) {
-			return;
-		}
-
 		setExecuting(true);
 
 		DiscoveryModeActivationCommand command = new DiscoveryModeActivationCommand(

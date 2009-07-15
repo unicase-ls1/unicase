@@ -48,9 +48,6 @@ public class CreateNodeAndConnectionGesture extends CreateGesture {
 	 * @see org.unicase.ui.tom.gestures.Gesture#execute()
 	 */
 	public void execute() {
-		if (!canExecute()) {
-			return;
-		}
 
 		Utility.beep(1);
 		

@@ -48,9 +48,6 @@ public class CreateConnectionGesture extends CreateGesture {
 	 * @see org.unicase.ui.tom.gestures.Gesture#execute()
 	 */
 	public void execute() {
-		if (!canExecute()) {
-			return;
-		}
 
 		try {
 			Executable command = null;

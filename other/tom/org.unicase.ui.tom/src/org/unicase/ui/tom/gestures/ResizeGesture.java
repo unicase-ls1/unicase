@@ -15,6 +15,7 @@ import java.util.Set;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart;
 import org.unicase.ui.tom.TouchDispatch;
 import org.unicase.ui.tom.operations.ResizeOperation;
+import org.unicase.ui.tom.tools.MapUtility;
 import org.unicase.ui.tom.tools.TouchConstants;
 import org.unicase.ui.tom.touches.MultiTouch;
 import org.unicase.ui.tom.touches.SingleTouch;
@@ -34,25 +35,6 @@ public class ResizeGesture extends AbstractContinuousGesture {
 	 */
 	public ResizeGesture(TouchDispatch dispatch) {
 		super(dispatch);
-	}
-
-	private static final class MapUtility {
-
-		@SuppressWarnings("unchecked")
-		public static <K, V> Set<K> getKeysForObject(Map<K, Set<V>> map,
-				V object) {
-			Set<K> keysForObject = new HashSet<K>();
-			Set<K> keySet = map.keySet();
-
-			for (K key : keySet) {
-				Set set = map.get(key);
-				if (set.contains(object)) {
-					keysForObject.add(key);
-				}
-			}
-
-			return keysForObject;
-		}
 	}
 
 	private INodeEditPart targetEditPart;
