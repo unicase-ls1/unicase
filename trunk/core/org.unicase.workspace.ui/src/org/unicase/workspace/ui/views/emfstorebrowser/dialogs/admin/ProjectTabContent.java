@@ -18,18 +18,24 @@ import org.unicase.workspace.AdminBroker;
 public class ProjectTabContent extends TabContent {
 
 	/**
-	 * @param string the name of tab.
-	 * @param adminBroker AdminBroker is needed to communicate with server.
-	 * @param frm used to set input to properties form and update its table viewer upon. deletion of OrgUnits.
+	 * @param string
+	 *            the name of tab.
+	 * @param adminBroker
+	 *            AdminBroker is needed to communicate with server.
+	 * @param frm
+	 *            used to set input to properties form and update its table
+	 *            viewer upon. deletion of OrgUnits.
 	 */
-	public ProjectTabContent(String string, AdminBroker adminBroker, PropertiesForm frm) {
+	public ProjectTabContent(String string, AdminBroker adminBroker,
+			PropertiesForm frm) {
 		super(string, adminBroker, frm);
-		this.tab = this;
+		this.setTab(this);
 	}
 
 	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createButtons(org.eclipse.swt.widgets.Composite)
-	 * @param tabContents doesn't need in this tab.
+	 * @param tabContents
+	 *            doesn't need in this tab.
 	 */
 	@Override
 	public void createButtons(Composite tabContents) {
@@ -39,7 +45,8 @@ public class ProjectTabContent extends TabContent {
 
 	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createContents(org.eclipse.swt.widgets.TabFolder)
-	 * @param tabFolder TabFolder.
+	 * @param tabFolder
+	 *            TabFolder.
 	 * @return Composite.
 	 */
 	@Override
