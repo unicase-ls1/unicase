@@ -5,12 +5,7 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
@@ -45,28 +40,28 @@ public abstract class TabContent {
 	/**
 	 * ListViewer lists the element in the tabs.
 	 */
-	protected ListViewer listViewer;
+	private ListViewer listViewer;
 
 	/**
 	 * 
 	 */
-	protected String tabName;
+	private String tabName;
 
 	/**
 	 * The type of the current tab.
 	 */
-	public TabContent tab;
+	private TabContent tab;
 
 	/**
 	 * AdminBroker is needed to communicate with server.
 	 */
-	protected AdminBroker adminBroker;
+	private AdminBroker adminBroker;
 
 	/**
 	 * used to set input to properties form and update its table viewer upon.
 	 * deletion of OrgUnits.
 	 */
-	protected PropertiesForm form;
+	private PropertiesForm form;
 
 	/**
 	 * Constructor.
@@ -278,48 +273,80 @@ public abstract class TabContent {
 	}
 
 	/**
-	 * This is the ContentProvider for ListViewer.
 	 * 
-	 * @author Hodaie
+	 * @return the name of the tab.
 	 */
-	@SuppressWarnings("unused")
-	private class ListContentProvider extends AdapterFactoryContentProvider {
+	public String getTabName() {
+		return tabName;
+	}
 
-		public ListContentProvider() {
+	/**
+	 * 
+	 * @param tabName
+	 *            set the name of current tab.
+	 */
+	public void setTabName(String tabName) {
+		this.tabName = tabName;
+	}
 
-			super(new ComposedAdapterFactory(
-					ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		}
+	/**
+	 * 
+	 * @return get the type of the current tab.
+	 */
+	public TabContent getTab() {
+		return tab;
+	}
 
-		@Override
-		public Object[] getElements(Object object) {
+	/**
+	 * 
+	 * @param tab
+	 *            set the type of current tab.
+	 */
+	public void setTab(TabContent tab) {
+		this.tab = tab;
+	}
 
-			Object[] result = new Object[0];
-			try {
-				if (tabName.equals("Projects")) {
-					// return a list of Projects in project space
-					List<ProjectInfo> projectInfos = new ArrayList<ProjectInfo>();
-					projectInfos.addAll(adminBroker.getProjectInfos());
-					result = projectInfos.toArray(new ProjectInfo[projectInfos
-							.size()]);
+	/**
+	 * 
+	 * @return get the AdminBroker.
+	 */
+	public AdminBroker getAdminBroker() {
+		return adminBroker;
+	}
 
-				} else if (tabName.equals("Groups")) {
-					// return a list of Groups in project space
-					List<ACGroup> groups = new ArrayList<ACGroup>();
-					groups.addAll(adminBroker.getGroups());
-					result = groups.toArray(new ACGroup[groups.size()]);
-				} else if (tabName.equals("Users")) {
-					// return a list of Users in project space
-					List<ACUser> users = new ArrayList<ACUser>();
-					users.addAll(adminBroker.getUsers());
-					result = users.toArray(new ACUser[users.size()]);
-				}
-			} catch (EmfStoreException e) {
-				DialogHandler.showExceptionDialog(e);
-			}
-			return result;
-		}
+	/**
+	 * 
+	 * @param adminBroker
+	 *            set the AdminBroker.
+	 */
+	public void setAdminBroker(AdminBroker adminBroker) {
+		this.adminBroker = adminBroker;
+	}
 
-	}// ListContentProvider
+	/**
+	 * 
+	 * @return get the PropertiesForm.
+	 */
+	public PropertiesForm getForm() {
+		return form;
+	}
+
+	/**
+	 * 
+	 * @param form
+	 *            set the PropertiesForm.
+	 */
+	public void setForm(PropertiesForm form) {
+		this.form = form;
+	}
+
+	/**
+	 * 
+	 * @param listViewer
+	 *            set the ListViewer.
+	 */
+	public void setListViewer(ListViewer listViewer) {
+		this.listViewer = listViewer;
+	}
 
 }

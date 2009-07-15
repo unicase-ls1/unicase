@@ -28,18 +28,24 @@ import org.unicase.workspace.AdminBroker;
 public class GroupTabContent extends TabContent {
 
 	/**
-	 * @param string the name of tab.
-	 * @param adminBroker AdminBroker is needed to communicate with server.
-	 * @param frm used to set input to properties form and update its table viewer upon. deletion of OrgUnits.
+	 * @param string
+	 *            the name of tab.
+	 * @param adminBroker
+	 *            AdminBroker is needed to communicate with server.
+	 * @param frm
+	 *            used to set input to properties form and update its table
+	 *            viewer upon. deletion of OrgUnits.
 	 */
-	public GroupTabContent(String string, AdminBroker adminBroker, PropertiesForm frm) {
+	public GroupTabContent(String string, AdminBroker adminBroker,
+			PropertiesForm frm) {
 		super(string, adminBroker, frm);
-		this.tab = this;
+		this.setTab(this);
 	}
 
 	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createButtons(org.eclipse.swt.widgets.Composite)
-	 * @param tabContent is the Composite.
+	 * @param tabContent
+	 *            is the Composite.
 	 */
 	@Override
 	public void createButtons(Composite tabContent) {
@@ -47,28 +53,14 @@ public class GroupTabContent extends TabContent {
 		Button btnNew = new Button(tabContent, SWT.PUSH);
 		btnNew.setText("New Group");
 
-		Button importButton = new Button(tabContent, SWT.PUSH);
-		importButton.setText("import");
-
 		btnNew.addSelectionListener(new SelectionAdapter() {
 			// create a new OrgUnit
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				newOrgUnit();
-				form.getTableViewer().refresh();
+				getForm().getTableViewer().refresh();
 			}
 
-		});
-
-		importButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				AcUserImportWizard wizard = new AcUserImportWizard(adminBroker, listViewer);
-				WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
-				dialog.create();
-				dialog.open();
-				// PlatformUI.getWorkbench().getHelpSystem().setHelp(dialog.getShell(), "help_import_wizard_page_one");
-			}
 		});
 
 		// Create and configure the "Delete" button
@@ -91,11 +83,27 @@ public class GroupTabContent extends TabContent {
 			}
 		});
 
+		Button importButton = new Button(tabContent, SWT.PUSH);
+		importButton.setText("Import Group");
+
+		importButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				AcUserImportWizard wizard = new AcUserImportWizard(
+						getAdminBroker(), getListViewer());
+				WizardDialog dialog = new WizardDialog(Display.getCurrent()
+						.getActiveShell(), wizard);
+				dialog.create();
+				dialog.open();
+			}
+		});
+
 	}
 
 	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createContents(org.eclipse.swt.widgets.TabFolder)
-	 * @param tabFolder TabFolder.
+	 * @param tabFolder
+	 *            TabFolder.
 	 * @return Composite.
 	 */
 	@Override
@@ -117,12 +125,12 @@ public class GroupTabContent extends TabContent {
 	@Override
 	protected void newOrgUnit() {
 		try {
-			adminBroker.createGroup("New Group");
+			getAdminBroker().createGroup("New Group");
 		} catch (EmfStoreException e) {
 
 			DialogHandler.showExceptionDialog(e);
 		}
-		listViewer.refresh();
+		getListViewer().refresh();
 
 	}
 
@@ -132,21 +140,23 @@ public class GroupTabContent extends TabContent {
 	@Override
 	protected void deleteOrgUnit() {
 
-		ACGroup ou = (ACGroup) ((IStructuredSelection) listViewer.getSelection()).getFirstElement();
+		ACGroup ou = (ACGroup) ((IStructuredSelection) getListViewer()
+				.getSelection()).getFirstElement();
 		if (ou == null) {
 			return;
 		}
 
 		try {
-			adminBroker.deleteGroup(ou.getId());
+			getAdminBroker().deleteGroup(ou.getId());
 		} catch (EmfStoreException e) {
 
 			DialogHandler.showExceptionDialog(e);
 		}
 
-		listViewer.refresh();
-		if (form.getCurrentInput() instanceof ACOrgUnit && form.getCurrentInput().equals(ou)) {
-			form.setInput(null);
+		getListViewer().refresh();
+		if (getForm().getCurrentInput() instanceof ACOrgUnit
+				&& getForm().getCurrentInput().equals(ou)) {
+			getForm().setInput(null);
 		}
 
 	}

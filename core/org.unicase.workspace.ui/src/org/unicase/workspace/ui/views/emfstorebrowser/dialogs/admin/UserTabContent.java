@@ -28,18 +28,24 @@ import org.unicase.workspace.AdminBroker;
 public class UserTabContent extends TabContent {
 
 	/**
-	 * @param string the name of tab.
-	 * @param adminBroker AdminBroker is needed to communicate with server.
-	 * @param frm used to set input to properties form and update its table viewer upon. deletion of OrgUnits.
+	 * @param string
+	 *            the name of tab.
+	 * @param adminBroker
+	 *            AdminBroker is needed to communicate with server.
+	 * @param frm
+	 *            used to set input to properties form and update its table
+	 *            viewer upon. deletion of OrgUnits.
 	 */
-	public UserTabContent(String string, AdminBroker adminBroker, PropertiesForm frm) {
+	public UserTabContent(String string, AdminBroker adminBroker,
+			PropertiesForm frm) {
 		super(string, adminBroker, frm);
-		this.tab = this;
+		this.setTab(this);
 	}
 
 	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createButtons(org.eclipse.swt.widgets.Composite)
-	 * @param tabContent Composite.
+	 * @param tabContent
+	 *            Composite.
 	 */
 	@Override
 	public void createButtons(Composite tabContent) {
@@ -47,27 +53,14 @@ public class UserTabContent extends TabContent {
 		Button btnNew = new Button(tabContent, SWT.PUSH);
 		btnNew.setText("New User");
 
-		Button importButton = new Button(tabContent, SWT.PUSH);
-		importButton.setText("import");
-
 		btnNew.addSelectionListener(new SelectionAdapter() {
 			// create a new OrgUnit
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				newOrgUnit();
-				form.getTableViewer().refresh();
+				getForm().getTableViewer().refresh();
 			}
 
-		});
-
-		importButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				AcUserImportWizard wizard = new AcUserImportWizard(adminBroker, listViewer);
-				WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
-				dialog.create();
-				dialog.open();
-			}
 		});
 
 		// Create and configure the "Delete" button
@@ -80,15 +73,24 @@ public class UserTabContent extends TabContent {
 			public void widgetSelected(SelectionEvent e) {
 
 				deleteOrgUnit();
-				// If form input is a project, and from users of groups tab one
-				// of participants of this project is deleted, then the table
-				// viewer on project properties must be updated.
-				// Accordingly, if a group is open and one of its users is
-				// deleted, or if a user is open and one of its groups is
-				// deleted.
-				// form.getTableViewer().refresh();
 			}
 		});
+
+		Button importButton = new Button(tabContent, SWT.PUSH);
+		importButton.setText("Import User");
+
+		importButton.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				AcUserImportWizard wizard = new AcUserImportWizard(
+						getAdminBroker(), getListViewer());
+				WizardDialog dialog = new WizardDialog(Display.getCurrent()
+						.getActiveShell(), wizard);
+				dialog.create();
+				dialog.open();
+			}
+		});
+
 	}
 
 	/**
@@ -97,13 +99,13 @@ public class UserTabContent extends TabContent {
 	@Override
 	protected void newOrgUnit() {
 		try {
-			adminBroker.createUser("New User");
+			getAdminBroker().createUser("New User");
 
 		} catch (EmfStoreException e) {
 
 			DialogHandler.showExceptionDialog(e);
 		}
-		listViewer.refresh();
+		getListViewer().refresh();
 
 	}
 
@@ -113,21 +115,23 @@ public class UserTabContent extends TabContent {
 	@Override
 	protected void deleteOrgUnit() {
 
-		ACUser ou = (ACUser) ((IStructuredSelection) listViewer.getSelection()).getFirstElement();
+		ACUser ou = (ACUser) ((IStructuredSelection) getListViewer()
+				.getSelection()).getFirstElement();
 		if (ou == null) {
 			return;
 		}
 
 		try {
-			adminBroker.deleteUser(ou.getId());
+			getAdminBroker().deleteUser(ou.getId());
 		} catch (EmfStoreException e) {
 
 			DialogHandler.showExceptionDialog(e);
 		}
 
-		listViewer.refresh();
-		if (form.getCurrentInput() instanceof ACOrgUnit && form.getCurrentInput().equals(ou)) {
-			form.setInput(null);
+		getListViewer().refresh();
+		if (getForm().getCurrentInput() instanceof ACOrgUnit
+				&& getForm().getCurrentInput().equals(ou)) {
+			getForm().setInput(null);
 		}
 
 	}
@@ -135,7 +139,8 @@ public class UserTabContent extends TabContent {
 	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createContents(org.eclipse.swt.widgets.TabFolder)
 	 * @return Composite.
-	 * @param tabFolder TabFolder.
+	 * @param tabFolder
+	 *            TabFolder.
 	 */
 	@Override
 	protected Composite createContents(TabFolder tabFolder) {
