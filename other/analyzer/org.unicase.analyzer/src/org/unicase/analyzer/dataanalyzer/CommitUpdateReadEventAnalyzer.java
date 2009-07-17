@@ -27,10 +27,11 @@ import org.unicase.model.ModelElementId;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
+ * Check the time of the Commit, update, and read event for the same ME.
  * @author liya
  *
  */
-public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
+public class CommitUpdateReadEventAnalyzer implements TwoDDataAnalyzer {
 
 	/**
 	 * @param data {@link ProjectAnalysisData}
@@ -61,7 +62,12 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 					else{
 						base = ((CheckoutEvent) event).getBaseVersion();
 						target = EsModelUtil.clone(base);
-						target.setIdentifier(base.getIdentifier()- 20); //just consider the last 20 revisions
+						if(base.getIdentifier()- 20 > 0){
+							target.setIdentifier(base.getIdentifier()- 20); //just consider the last 20 revisions
+						}
+						else{
+							target.setIdentifier(0);
+						}
 					}
 					try {
 						List<ChangePackage> updateChanges = it.getConnectionManager().getChanges(it.getUsersession().getSessionId(), 
@@ -102,8 +108,9 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 		List<Object> line = new ArrayList<Object>();
 		line.add(meId);
 		line.add(user);
-		line.add(commitMap.get(meId));
-		line.add(readEvent.getTimestamp());
+		line.add(commitMap.get(meId));//commit time
+		line.add(meIdMap.get(meId));//update time
+		line.add(readEvent.getTimestamp());//read time
 		
 		long time = readEvent.getTimestamp().getTime() - commitMap.get(meId).getTime();
 		Date diff = new Date(time);		
@@ -124,6 +131,7 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 		names.add("ModelElementId");	
 		names.add("User");
 		names.add("Commit Time");
+		names.add("Update Time");
 		names.add("Read Time");
 		names.add("Commit-Read Time Difference");
 		names.add("Update-Commit Time Difference");
