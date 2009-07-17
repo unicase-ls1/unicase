@@ -80,7 +80,12 @@ public class UpdateReadEventAnalyzer implements TwoDDataAnalyzer {
 					else{
 						base = ((CheckoutEvent) event).getBaseVersion();
 						target = EsModelUtil.clone(base);
-						target.setIdentifier(base.getIdentifier()- 20); //just consider the last 20 revisions
+						if(base.getIdentifier()- 20 > 0){
+							target.setIdentifier(base.getIdentifier()- 20); //just consider the last 20 revisions
+						}
+						else{
+							target.setIdentifier(0);
+						}
 					}
 					try {
 						List<ChangePackage> updateChanges = it.getConnectionManager().getChanges(it.getUsersession().getSessionId(), 

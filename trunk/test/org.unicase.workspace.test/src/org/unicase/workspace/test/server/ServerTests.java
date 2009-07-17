@@ -172,7 +172,7 @@ public class ServerTests {
 	@AfterClass
 	public static void tearDownAfterClass() {
 		SetupHelper.stopServer();
-		SetupHelper.cleanupServer();
+		// SetupHelper.cleanupServer();
 	}
 
 	/**

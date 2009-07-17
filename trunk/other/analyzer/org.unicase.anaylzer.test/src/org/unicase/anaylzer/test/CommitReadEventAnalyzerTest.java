@@ -7,14 +7,18 @@ package org.unicase.anaylzer.test;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.StringTokenizer;
 
 import org.junit.Test;
 import org.unicase.analyzer.AnalyzerController;
 import org.unicase.analyzer.VersionIterator;
-import org.unicase.analyzer.dataanalyzer.CommitReadEventAnalyzer;
+import org.unicase.analyzer.dataanalyzer.CommitUpdateReadEventAnalyzer;
 import org.unicase.analyzer.dataanalyzer.DataAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporter.CSVExporter;
@@ -44,18 +48,18 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 
 
 	/**
-	 * CommitReadEventAnalyzer for DOLLI2.
+	 * CommitReadEventAnalyzer for multiUserTest project.
 	 */
 	@Test
-	public void dolli2Test(){
+	public void multiUserTest(){
 		for (ProjectInfo pI : super.getProjectList()) {			
-			if (pI.getName().contains("DOLLI2")) {
+			if (pI.getName().contains("multi")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 1;
 				try {
 					 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength);
 					ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
-					analyzers.add(new CommitReadEventAnalyzer());
+					analyzers.add(new CommitUpdateReadEventAnalyzer());
 					@SuppressWarnings("unused")
 					AnalyzerController anacontrol = new AnalyzerController(projectIt, analyzers, exporter);					
 				} catch (IteratorException e) {
@@ -66,5 +70,32 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 		assertTrue(true);
 	}
 	
+	private String [][] readExport(int rowNum, int colNum) throws IOException{
+		String [][] elements = new String [rowNum][colNum];
+		 
+		File file = new File("Exports/export_commit.dat");
+	 
+		BufferedReader bufRdr  = new BufferedReader(new FileReader(file));
+		String line = null;
+		int row = 0;
+		int col = 0;
+	 
+		//read each line of text file
+		String readLine = bufRdr.readLine();
+		while(readLine != null && (row < rowNum))
+		{	
+			StringTokenizer st = new StringTokenizer(line,",");
+			while (st.hasMoreTokens())
+			{
+				//get next token and store it in the array
+				elements[row][col] = st.nextToken();
+				col++;
+			}
+			col = 0;
+			row++;
+		}return elements;
+	}
+	
+	//private boolean compareTruth(String [][])
 	
 }

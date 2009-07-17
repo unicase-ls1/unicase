@@ -10,12 +10,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -38,6 +37,7 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author liya
@@ -83,8 +83,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		try {
 			analyzerConfig.eResource().save(null);
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			WorkspaceUtil.log("Could not save the resource!", e, IStatus.WARNING);
 		}
 		return true;
 	}
@@ -132,8 +131,6 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			public void run() {
 				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(
 						"org.unicase.EditingDomain");
-				
-				ResourceSet resourceSet = domain.getResourceSet();
 		
 				URI fileURI = URI.createFileURI(PATH);
 				File analyzerFile = new File(PATH);
@@ -141,7 +138,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 				final Resource resource;
 				if(!analyzerFile.exists()){
 					
-					resource = resourceSet.createResource(fileURI);
+					resource = domain.getResourceSet().createResource(fileURI);
 					analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
 					domain.getCommandStack().execute(new RecordingCommand(domain) {
 						@Override
@@ -149,15 +146,14 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 							resource.getContents().add(analyzerConfig);
 						}
 					});
-					try {
-						resource.save(null);
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
+//					try {
+//						resource.save(null);
+//					} catch (IOException e) {
+//						WorkspaceUtil.log("Could not save the resource!", e, IStatus.WARNING);
+//					}
 				}else{
 					
-					resource = resourceSet.getResource(fileURI, true);
+					resource = domain.getResourceSet().getResource(fileURI, true);
 					EList<EObject> directContents = resource.getContents();
 					// MK cast
 					analyzerConfig = (AnalyzerConfiguration) directContents.get(0);
