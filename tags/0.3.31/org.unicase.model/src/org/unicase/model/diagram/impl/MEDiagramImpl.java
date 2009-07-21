@@ -465,6 +465,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		elementsResource.getContents().addAll(elements);
 
 		String diagramLayout = getDiagramLayout();
+		if (diagramLayout == DIAGRAM_LAYOUT_EDEFAULT) {
+			return;
+		}
 		if (diagramLayout == null) {
 			throw new DiagramLoadException("Diagram string is null, load failed.");
 		}
