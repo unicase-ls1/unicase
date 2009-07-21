@@ -160,18 +160,6 @@ public class ModelDocumentProvider extends org.unicase.ui.common.diagram.part.Mo
 	 * @generated
 	 */
 	@Override
-	protected void disposeElementInfo(Object element, ElementInfo info) {
-		if (info instanceof ResourceSetInfo) {
-			ResourceSetInfo resourceSetInfo = (ResourceSetInfo) info;
-			resourceSetInfo.dispose();
-		}
-		super.disposeElementInfo(element, info);
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
 	protected void doValidateState(Object element, Object computationContext) throws CoreException {
 		ResourceSetInfo info = getResourceSetInfo(element);
 		if (info != null) {
