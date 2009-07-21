@@ -8,6 +8,7 @@
             locationURI="popup:org.unicase.ui.navigator.viewer?before=additions">
          <command
                commandId="org.unicase.analyzer.ui.analyzer"
+               icon="icon/analysis.png"
                label="Analyze Project"
                style="push">
             <visibleWhen
