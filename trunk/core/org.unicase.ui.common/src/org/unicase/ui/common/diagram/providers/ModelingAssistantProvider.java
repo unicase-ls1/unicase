@@ -40,7 +40,7 @@ public abstract class ModelingAssistantProvider extends org.eclipse.gmf.runtime.
 		}
 		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
 		Collection elements = new HashSet();
-		for (Iterator it = ((MEDiagram) diagram.getElement()).getElements().iterator(); it.hasNext();) {
+		for (Iterator it = ((MEDiagram) diagram.getElement()).getProject().getAllModelElements().iterator(); it.hasNext();) {
 			EObject element = (EObject) it.next();
 			if (isApplicableElement(element, types)) {
 				elements.add(element);
