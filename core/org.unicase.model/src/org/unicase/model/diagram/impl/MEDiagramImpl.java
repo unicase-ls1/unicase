@@ -29,6 +29,8 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.unicase.model.ModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
@@ -441,6 +443,33 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	private static final URI VIRTUAL_DIAGRAM_URI = URI.createURI("virtual.diagram.uri");
 	private static final URI VIRTUAL_DIAGRAM_ELEMENTS_URI = URI.createURI("virtual.diagram.elements.uri");
 
+	/*
+	 * This method removes nodes and edges that are no longer contained in the model. This can happen if diagram
+	 * elements are deleted after a diagram is closed.
+	 */
+	private void syncDiagramLayout(Diagram gmfDiagram) {
+		for (int i = 0; i < gmfDiagram.getPersistedChildren().size(); i++) {
+			Node node = (Node) gmfDiagram.getPersistedChildren().get(i);
+			if (node.getElement() != null && !this.getElements().contains(node.getElement())) {
+				gmfDiagram.getPersistedChildren().remove(node);
+				i--;
+			}
+		}
+		for (int i = 0; i < gmfDiagram.getPersistedEdges().size(); i++) {
+			Edge edge = (Edge) gmfDiagram.getPersistedEdges().get(i);
+			if (edge.getElement() != null && !this.getElements().contains(edge.getElement())) {
+				gmfDiagram.getPersistedEdges().remove(edge);
+				if (edge.getSource() != null) {
+					edge.getSource().getSourceEdges().remove(edge);
+				}
+				if (edge.getTarget() != null) {
+					edge.getTarget().getTargetEdges().remove(edge);
+				}
+				i--;
+			}
+		}
+	}
+
 	/**
 	 * Load a gmf diagram from a String.
 	 * 
@@ -490,6 +519,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 
 		}
 		Diagram gmfDiagram = (Diagram) diagramResource.getContents().get(0);
+		this.syncDiagramLayout(gmfDiagram);
 		EcoreUtil.resolveAll(gmfDiagram);
 
 		setGmfdiagram(gmfDiagram);
