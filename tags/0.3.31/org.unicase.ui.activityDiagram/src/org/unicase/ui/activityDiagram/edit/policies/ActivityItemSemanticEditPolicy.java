@@ -46,7 +46,7 @@ public class ActivityItemSemanticEditPolicy extends
 	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (org.unicase.ui.activityDiagram.providers.ModelElementTypes.Transition_4001 == req.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.activityDiagram.edit.commands.TransitionCreateCommand(req, req
-				.getSource(), req.getTarget()));
+				.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		return null;
 	}
