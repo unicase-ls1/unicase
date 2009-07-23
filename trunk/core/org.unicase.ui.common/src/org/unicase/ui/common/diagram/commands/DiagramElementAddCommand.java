@@ -87,8 +87,8 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 					}
 				}
 				else if (object instanceof org.unicase.model.activity.Transition) {
-					if (childHolder.getElements().contains(((org.unicase.model.state.Transition) object).getSource())
-						&& childHolder.getElements().contains(((org.unicase.model.state.Transition) object).getTarget())) {
+					if (childHolder.getElements().contains(((org.unicase.model.activity.Transition) object).getSource())
+						&& childHolder.getElements().contains(((org.unicase.model.activity.Transition) object).getTarget())) {
 						childHolder.getElements().add(object);
 					}
 				}
