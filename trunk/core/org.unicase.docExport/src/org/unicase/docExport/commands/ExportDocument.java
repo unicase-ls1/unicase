@@ -8,19 +8,15 @@ package org.unicase.docExport.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.runtime.IStatus;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.swt.widgets.MessageBox;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersFactory;
 import org.unicase.model.ModelElement;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.workspace.util.UnicaseCommand;
-import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * The handler for the document export command.
@@ -56,18 +52,9 @@ public class ExportDocument extends AbstractHandler {
 			@Override
 			protected void doRun() {
 				ExportDialog dialog;
-				try {
-					dialog = new ExportDialog(shell, DefaultRenderersFactory.eINSTANCE.createDefaultDocumentRenderer(),
-						modelElement);
-					dialog.open();
-				} catch (TemplatesFileNotFoundException e) {
-					WorkspaceUtil.log("The templates file could not be found or created", e, IStatus.ERROR);
-
-					MessageBox messageBox = new MessageBox(shell);
-					messageBox.setMessage("Couldn't find any Template");
-					messageBox.open();
-				}
-
+				dialog = new ExportDialog(shell, DefaultRenderersFactory.eINSTANCE.createDefaultDocumentRenderer(),
+					modelElement);
+				dialog.open();
 			}
 		}.run();
 

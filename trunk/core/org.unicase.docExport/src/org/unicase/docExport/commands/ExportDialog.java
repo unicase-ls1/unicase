@@ -78,17 +78,15 @@ public class ExportDialog extends TitleAreaDialog {
 	 * @param modelElement the modelElement which shall be exported to a document
 	 * @throws TemplatesFileNotFoundException no access to the templates files.
 	 */
-	public ExportDialog(Shell parentShell, DocumentRenderer docRenderer, ModelElement modelElement)
-		throws TemplatesFileNotFoundException {
+	public ExportDialog(Shell parentShell, DocumentRenderer docRenderer, ModelElement modelElement) {
 		super(parentShell);
 
-		platformShell = parentShell;
-
-		setHelpAvailable(false);
 		this.docRenderer = docRenderer;
-		this.docWriters = DocWriterRegistry.getDocWriters();
-		this.templates = TemplateRegistry.getAllTemplates();
 		this.modelElement = modelElement;
+
+		platformShell = parentShell;
+		setHelpAvailable(false);
+
 	}
 
 	/**
@@ -96,6 +94,18 @@ public class ExportDialog extends TitleAreaDialog {
 	 */
 	@Override
 	protected Control createDialogArea(Composite parent) {
+
+		this.docWriters = DocWriterRegistry.getDocWriters();
+		try {
+			this.templates = TemplateRegistry.getAllTemplates();
+		} catch (TemplatesFileNotFoundException e1) {
+			MessageBox finished = new MessageBox(ExportDialog.platformShell, SWT.OK | SWT.ERROR);
+			finished.setText("Error");
+			finished.setMessage("Export templates could not be loaded");
+			finished.open();
+			close();
+		}
+
 		GridLayout layout0 = new GridLayout();
 		layout0.numColumns = 1;
 		parent.setLayout(layout0);
