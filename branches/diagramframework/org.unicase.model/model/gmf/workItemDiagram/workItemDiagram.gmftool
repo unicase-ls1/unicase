@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gmftool:ToolRegistry xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:gmftool="http://www.eclipse.org/gmf/2005/ToolDefinition">
+  <palette
+      title="Component Palette">
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Successor"
+        description="">
+      <smallIcon
+          xsi:type="gmftool:BundleImage"
+          path="/icons/full/obj16/Successor.gif"
+          bundle="org.unicase.model.edit"/>
+    </tools>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="BugReport"
+        description=""/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="ActionItem"
+        description=""/>
+    <tools
+        xsi:type="gmftool:CreationTool"
+        title="Issue"
+        description=""/>
+  </palette>
+</gmftool:ToolRegistry>
