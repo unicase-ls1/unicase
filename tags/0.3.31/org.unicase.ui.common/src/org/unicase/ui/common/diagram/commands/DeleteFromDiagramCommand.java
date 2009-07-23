@@ -5,53 +5,41 @@
  */
 package org.unicase.ui.common.diagram.commands;
 
-/******************************************************************************
- * Copyright (c) 2005, 2006 IBM Corporation and others. All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is
- * available at http://www.eclipse.org/legal/epl-v10.html Contributors: IBM Corporation - initial API and implementation
- ****************************************************************************/
-import java.util.Collection;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.notation.View;
 import org.unicase.model.ModelElement;
+import org.unicase.model.classes.Association;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
-import org.unicase.ui.common.util.UnicaseUiUtil;
 
+// dengler: refactor use of edit part request and variables
 /**
- * Command to remove a model element from the diagram, not from the model, using the EMF action protocol.
+ * Command to remove a model element from the diagram elements list, not from the model.
  * 
  * @author denglerm
- * @author ldamus
- * @author Christian W. Damus (cdamus)
  */
 public class DeleteFromDiagramCommand extends DestroyElementCommand {
 
 	/**
-	 * The element to be destroyed.
+	 * The element's EditPart.
 	 */
-	private final EObject elementToDestroy;
 	private final EditPart editPart;
 
 	/**
-	 * Constructs a new command to destroy a model element.
+	 * Constructs a new command to delete an element from the diagram.
 	 * 
 	 * @param request the destroy element request
-	 * @param editPart the editPart of the element to destroy
+	 * @param editPart the editPart of the element to delete from the diagram
 	 */
 	public DeleteFromDiagramCommand(DestroyElementRequest request, EditPart editPart) {
 		super(request);
-		this.elementToDestroy = request.getElementToDestroy();
 		this.editPart = editPart;
 	}
 
@@ -61,39 +49,33 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		EObject destructee = getElementToDestroy();
-
-		// only destroy attached elements
-		if ((destructee != null) && (destructee.eResource() != null)) {
-			MEDiagramEditPart me = (MEDiagramEditPart) EditPartUtility.getDiagramEditPart(this.editPart);
-			MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
-			diag.getElements().remove(this.elementToDestroy);
-			// tear down incoming references
-			tearDownReferences(destructee);
-
-			// in case it was cross-resource-contained
-			Resource res = destructee.eResource();
-			if (res != null) {
-				res.getContents().remove(destructee);
-			}
+		ModelElement destructee = null;
+		if (this.getElementToDestroy() instanceof ModelElement) {
+			destructee = (ModelElement) this.getElementToDestroy();
+		} else {
+			return CommandResult.newErrorCommandResult("Element to delete is no ModelElement");
 		}
-
+		EditPart diagramEditPart = EditPartUtility.getDiagramEditPart(this.editPart);
+		MEDiagram diag = (MEDiagram) EditPartUtility.getElement(diagramEditPart);
+		diag.getElements().remove(destructee);
+		// tear down references
+		tearDownReferences(destructee, diag);
+		
 		return CommandResult.newOKCommandResult();
 	}
 
 	/**
-	 * Tears down references to the object that we are destroying, from all other objects in the resource set.
+	 * Remove references (e.g. associations in class diagram) from the element to other diagram elements.
 	 * 
 	 * @param destructee the object being destroyed
+	 * @param diag the MEDiagram
 	 */
-	protected void tearDownReferences(EObject destructee) {
-		MEDiagramEditPart me = (MEDiagramEditPart) EditPartUtility.getDiagramEditPart(this.editPart);
-		MEDiagram diag = (MEDiagram) ((View) me.getModel()).getElement();
-		Collection<EObject> diagramNodeReferences = UnicaseUiUtil.getDiagramNodeReferences((ModelElement) destructee);
-		for (EObject object : diagramNodeReferences) {
-			if (diag.getElements().contains(object)) {
-				diag.getElements().remove(object);
-			}
+	protected void tearDownReferences(ModelElement destructee, MEDiagram diag) {
+		Set<ModelElement> diagramNodeReferences = destructee.getCrossReferencedModelElements();
+		for (ModelElement object : diagramNodeReferences) {
+			if(object instanceof Association || object instanceof org.unicase.model.state.Transition ||
+				object instanceof org.unicase.model.activity.Transition ){
+			diag.getElements().remove(object);}
 		}
 	}
 }
