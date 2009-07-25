@@ -23,8 +23,8 @@
       <editor
          id="org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/DiagramDiagramFile.gif"
-         extensions="model_diagram"
+         icon="full/obj16/ClassDiagram.png"
+         extensions="Class"
          default="true"
          class="org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditor"
          matchingStrategy="org.unicase.ui.diagram.classDiagram.part.ModelMatchingStrategy"
@@ -238,7 +238,7 @@
       <?gmfgen generated="true"?>
       <viewProvider class="org.unicase.ui.diagram.classDiagram.providers.ModelViewProvider">
          <Priority name="Lowest"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Model"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="Class"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints=""/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints=""/>
       </viewProvider>
@@ -555,7 +555,7 @@
          </instanceof>
          <test
                property="org.unicase.classDiagram.isDiagramType"
-               value="CLASS_DIAGRAM">
+               value="ClassDiagram">
          </test>
       </and>
          </enablement>

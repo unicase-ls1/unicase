@@ -120,24 +120,8 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 	}
 
 	private void createNewGMFDiagram() {
-		String id = null;
-		if (meDiagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
-			id = "UseCase";
-		} else if (meDiagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
-			id = "Model";
-		} else if (meDiagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
-			id = "Component";
-		} else if (meDiagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
-			id = "State";
-		} else if (meDiagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
-			id = "Activity";
-		} else if (meDiagram.getType().equals(DiagramType.WORKITEM_DIAGRAM)) {
-			id = "WorkItem";
-		}		
-
-		if (id == null) {
-			throw new RuntimeException("Unsupported diagram type");
-		}
+		String id = meDiagram.getType().getName();
+		
 		// JH: Build switch for different diagram types
 		diagram = ViewService.createDiagram(meDiagram, id, new PreferencesHint("org.unicase.ui.stateDiagram"));
 		diagram.setElement(meDiagram);

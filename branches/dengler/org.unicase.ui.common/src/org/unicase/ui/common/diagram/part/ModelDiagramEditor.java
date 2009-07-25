@@ -217,6 +217,14 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 		deregisterFocusListener();
 	}
+	
+	/**
+	 * find better solution. Title is set from MEDiagramEditPart
+	 */
+	public void setTabTitle(String title)
+	{
+		this.setPartName(title);
+	}
 
 	private void deregisterFocusListener(){
 		IDiagramGraphicalViewer diagramGraphicalViewer = getDiagramGraphicalViewer();

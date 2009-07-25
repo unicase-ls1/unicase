@@ -16,8 +16,8 @@
       <editor
          id="org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/DiagramDiagramFile.gif"
-         extensions="useCase_diagram"
+         icon="full/obj16/UsecaseDiagram.gif"
+         extensions="UseCase"
          default="true"
          class="org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditor"
          matchingStrategy="org.unicase.ui.diagram.usecaseDiagram.part.ModelMatchingStrategy"
@@ -478,7 +478,7 @@
                </instanceof>
                <test
                      property="org.unicase.ui.diagram.usecaseDiagram.isDiagramType"
-                     value="USECASE_DIAGRAM">
+                     value="UseCaseDiagram">
                </test>
             </and>
          </enablement>

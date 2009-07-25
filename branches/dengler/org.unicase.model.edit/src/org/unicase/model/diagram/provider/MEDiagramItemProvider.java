@@ -142,18 +142,14 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 	public Object getImage(Object object) {
 		String imgStr = "full/obj16/MEDiagram";
 		DiagramType type = ((MEDiagram) object).getType();
-		if (type == DiagramType.CLASS_DIAGRAM) {
-			imgStr = "full/obj16/ClassDiagram.png";
-		} else if (type == DiagramType.USECASE_DIAGRAM) {
-			imgStr = "full/obj16/UsecaseDiagram.gif";
-		} else if (type == DiagramType.COMPONENT_DIAGRAM) {
-			imgStr = "full/obj16/ComponentDiagram.gif";
-		} else if (type == DiagramType.STATE_DIAGRAM) {
-			imgStr = "full/obj16/StateDiagram.gif";
-		} else if (type == DiagramType.ACTIVITY_DIAGRAM) {
-			imgStr = "full/obj16/ActivityDiagram.gif";
-		}
-
+		imgStr = type.getIcon();/*
+								 * if (type == DiagramType.CLASS_DIAGRAM) { imgStr = "full/obj16/ClassDiagram.png"; }
+								 * else if (type == DiagramType.USECASE_DIAGRAM) { imgStr =
+								 * "full/obj16/UsecaseDiagram.gif"; } else if (type == DiagramType.COMPONENT_DIAGRAM) {
+								 * imgStr = "full/obj16/ComponentDiagram.gif"; } else if (type ==
+								 * DiagramType.STATE_DIAGRAM) { imgStr = "full/obj16/StateDiagram.gif"; } else if (type
+								 * == DiagramType.ACTIVITY_DIAGRAM) { imgStr = "full/obj16/ActivityDiagram.gif"; }
+								 */
 		return overlayImage(object, getResourceLocator().getImage(imgStr));
 	}
 

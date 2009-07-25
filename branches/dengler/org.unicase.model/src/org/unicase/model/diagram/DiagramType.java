@@ -5,10 +5,17 @@
  */
 package org.unicase.model.diagram;
 
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IExtensionRegistry;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.Enumerator;
 
 /**
@@ -17,7 +24,7 @@ import org.eclipse.emf.common.util.Enumerator;
  * 
  * @see org.unicase.model.diagram.DiagramPackage#getDiagramType()
  * @model
- * @generated
+ * @generated NOT
  */
 public enum DiagramType implements Enumerator {
 	/**
@@ -27,7 +34,7 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	CLASS_DIAGRAM(0, "CLASS_DIAGRAM", "CLASS_DIAGRAM"),
+	CLASS_DIAGRAM(0, "CLASS_DIAGRAM", "CLASS_DIAGRAM", "", ""),
 
 	/**
 	 * The '<em><b>USECASE DIAGRAM</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -36,7 +43,7 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	USECASE_DIAGRAM(1, "USECASE_DIAGRAM", "USECASE_DIAGRAM"),
+	USECASE_DIAGRAM(1, "USECASE_DIAGRAM", "USECASE_DIAGRAM", "", ""),
 
 	/**
 	 * The '<em><b>COMPONENT DIAGRAM</b></em>' literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -45,31 +52,31 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	COMPONENT_DIAGRAM(2, "COMPONENT_DIAGRAM", "COMPONENT_DIAGRAM"), /**
-	 * The '<em><b>STATE DIAGRAM</b></em>' literal
-	 * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	COMPONENT_DIAGRAM(2, "COMPONENT_DIAGRAM", "COMPONENT_DIAGRAM", "", ""), /**
+	 * The '<em><b>STATE DIAGRAM</b></em>'
+	 * literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #STATE_DIAGRAM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	STATE_DIAGRAM(3, "STATE_DIAGRAM", "STATE_DIAGRAM"), /**
-	 * The '<em><b>ACTIVITY DIAGRAM</b></em>' literal object. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	STATE_DIAGRAM(3, "STATE_DIAGRAM", "STATE_DIAGRAM", "", ""), /**
+	 * The '<em><b>ACTIVITY DIAGRAM</b></em>' literal
+	 * object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #ACTIVITY_DIAGRAM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	ACTIVITY_DIAGRAM(4, "ACTIVITY_DIAGRAM", "ACTIVITY_DIAGRAM"), /**
-	 * The '<em><b>WORKITEM DIAGRAM</b></em>' literal
-	 * object. <!-- begin-user-doc --> <!-- end-user-doc -->
+	ACTIVITY_DIAGRAM(4, "ACTIVITY_DIAGRAM", "ACTIVITY_DIAGRAM", "", ""), /**
+	 * The '<em><b>WORKITEM DIAGRAM</b></em>'
+	 * literal object. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see #WORKITEM_DIAGRAM_VALUE
 	 * @generated
 	 * @ordered
 	 */
-	WORKITEM_DIAGRAM(5, "WORKITEM_DIAGRAM", "WORKITEM_DIAGRAM");
+	WORKITEM_DIAGRAM(5, "WORKITEM_DIAGRAM", "WORKITEM_DIAGRAM", "", ""), ;
 
 	/**
 	 * The '<em><b>CLASS DIAGRAM</b></em>' literal value. <!-- begin-user-doc -->
@@ -176,6 +183,7 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 */
 	public static final List<DiagramType> VALUES = Collections.unmodifiableList(Arrays.asList(VALUES_ARRAY));
+	public static List<DiagramType> DYNVALUES;
 
 	/**
 	 * Returns the '<em><b>Type</b></em>' literal with the specified literal value. <!-- begin-user-doc --> <!--
@@ -184,8 +192,9 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 */
 	public static DiagramType get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			DiagramType result = VALUES_ARRAY[i];
+		INIT();
+		for (int i = 0; i < DYNVALUES.size(); ++i) {
+			DiagramType result = DYNVALUES.get(i);
 			if (result.toString().equals(literal)) {
 				return result;
 			}
@@ -199,13 +208,66 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 */
 	public static DiagramType getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
-			DiagramType result = VALUES_ARRAY[i];
+		INIT();
+		for (int i = 0; i < DYNVALUES.size(); ++i) {
+			DiagramType result = DYNVALUES.get(i);
 			if (result.getName().equals(name)) {
 				return result;
 			}
 		}
 		return null;
+	}
+
+	static boolean initialized = false;
+
+	@SuppressWarnings("unchecked")
+	public static void INIT() {
+		if (initialized) {
+			return;
+		}
+		try {
+			DiagramType.DYNVALUES = new ArrayList<DiagramType>();
+			Constructor con = DiagramType.class.getDeclaredConstructors()[0];
+			Method[] methods = con.getClass().getDeclaredMethods();
+			for (Method m : methods) {
+				if (m.getName().equals("acquireConstructorAccessor")) {
+					m.setAccessible(true);
+					m.invoke(con, new Object[0]);
+				}
+			}
+			Field[] fields = con.getClass().getDeclaredFields();
+			Object ca = null;
+			for (Field f : fields) {
+				if (f.getName().equals("constructorAccessor")) {
+					f.setAccessible(true);
+					ca = f.get(con);
+				}
+			}
+			Method m = ca.getClass().getMethod("newInstance", new Class[] { Object[].class });
+			m.setAccessible(true);
+
+			IExtensionRegistry reg = Platform.getExtensionRegistry();
+			IConfigurationElement[] extensions = reg.getConfigurationElementsFor("org.eclipse.ui.editors");
+			int j = 0;
+			for (int i = 0; i < extensions.length; i++) {
+				IConfigurationElement element = extensions[i];
+				String classid = element.getAttribute("id");
+				if (classid.contains("ModelDiagramEditor")) {
+					String name = element.getAttribute("extensions");
+					String literal = name + "Diagram";
+					String icon = element.getAttribute("icon");
+					DiagramType v = (DiagramType) m.invoke(ca, new Object[] { new Object[] { name, j, j, name, literal,
+						classid, icon } });
+					DiagramType.DYNVALUES.add(v);
+					j++;
+				}
+			}
+			initialized = true;
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	/**
@@ -215,21 +277,8 @@ public enum DiagramType implements Enumerator {
 	 * @generated
 	 */
 	public static DiagramType get(int value) {
-		switch (value) {
-		case CLASS_DIAGRAM_VALUE:
-			return CLASS_DIAGRAM;
-		case USECASE_DIAGRAM_VALUE:
-			return USECASE_DIAGRAM;
-		case COMPONENT_DIAGRAM_VALUE:
-			return COMPONENT_DIAGRAM;
-		case STATE_DIAGRAM_VALUE:
-			return STATE_DIAGRAM;
-		case ACTIVITY_DIAGRAM_VALUE:
-			return ACTIVITY_DIAGRAM;
-		case WORKITEM_DIAGRAM_VALUE:
-			return WORKITEM_DIAGRAM;
-		}
-		return null;
+		INIT();
+		return DYNVALUES.get(value);
 	}
 
 	/**
@@ -246,6 +295,10 @@ public enum DiagramType implements Enumerator {
 	 */
 	private final String name;
 
+	private final String editorClassID;
+
+	private final String icon;
+
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -258,10 +311,13 @@ public enum DiagramType implements Enumerator {
 	 * 
 	 * @generated
 	 */
-	private DiagramType(int value, String name, String literal) {
+
+	private DiagramType(int value, String name, String literal, String editorClassID, String icon) {
 		this.value = value;
 		this.name = name;
 		this.literal = literal;
+		this.editorClassID = editorClassID;
+		this.icon = icon;
 	}
 
 	/**
@@ -300,6 +356,20 @@ public enum DiagramType implements Enumerator {
 	@Override
 	public String toString() {
 		return literal;
+	}
+
+	/**
+	 * @return the editorClassID
+	 */
+	public String getEditorClassID() {
+		return editorClassID;
+	}
+
+	/**
+	 * @return the icon
+	 */
+	public String getIcon() {
+		return icon;
 	}
 
 } // DiagramType

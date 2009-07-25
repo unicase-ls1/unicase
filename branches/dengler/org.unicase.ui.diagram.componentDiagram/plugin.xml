@@ -23,8 +23,8 @@
       <editor
          id="org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/DiagramDiagramFile.gif"
-         extensions="component_diagram"
+         icon="full/obj16/ComponentDiagram.gif"
+         extensions="Component"
          default="true"
          class="org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditor"
          matchingStrategy="org.unicase.ui.diagram.componentDiagram.part.ModelMatchingStrategy"
@@ -333,7 +333,7 @@
                </instanceof>
                <test
                      property="org.unicase.ui.diagram.componentDiagram.isDiagramType"
-                     value="COMPONENT_DIAGRAM">
+                     value="ComponentDiagram">
                </test>
             </and>
          </enablement>
