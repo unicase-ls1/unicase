@@ -71,9 +71,10 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	}
 
 	private Object[] getDiagramTypes() {
-		Object[] ret = new Object[DiagramType.values().length];
+		DiagramType.INIT();
+		Object[] ret = new Object[DiagramType.DYNVALUES.size()];
 		int i = 0;
-		for (DiagramType diagramType : DiagramType.values()) {
+		for (DiagramType diagramType : DiagramType.DYNVALUES) {
 			MEDiagram createMEDiagram = DiagramFactory.eINSTANCE.createMEDiagram();
 			createMEDiagram.setType(diagramType);
 			createMEDiagram.setName(diagramType.getLiteral());

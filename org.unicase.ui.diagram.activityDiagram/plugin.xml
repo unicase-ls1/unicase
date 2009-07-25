@@ -23,8 +23,8 @@
       <editor
          id="org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/DiagramDiagramFile.gif"
-         extensions="activity_diagram"
+         icon="full/obj16/ActivityDiagram.gif"
+         extensions="Activity"
          default="true"
          class="org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditor"
          matchingStrategy="org.unicase.ui.diagram.activityDiagram.part.ModelMatchingStrategy"
@@ -355,7 +355,7 @@
               </instanceof>
               <test
                     property="org.unicase.ui.diagram.activityDiagram.isDiagramType"
-                    value="ACTIVITY_DIAGRAM">
+                    value="ActivityDiagram">
               </test>
             </and>
          </enablement>

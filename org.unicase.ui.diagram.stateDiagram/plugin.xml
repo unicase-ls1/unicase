@@ -23,8 +23,8 @@
       <editor
          id=" org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorID"
          name="%editorName"
-         icon="icons/obj16/DiagramDiagramFile.gif"
-         extensions="state_diagram"
+         icon="full/obj16/StateDiagram.gif"
+         extensions="State"
          default="true"
          class="org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditor"
          matchingStrategy="org.unicase.ui.diagram.stateDiagram.part.ModelMatchingStrategy"
@@ -462,7 +462,7 @@
               </instanceof>
               <test
                     property=" org.unicase.ui.diagram.stateDiagram.isDiagramType"
-                    value="STATE_DIAGRAM">
+                    value="StateDiagram">
               </test>
            </and>
          </enablement>

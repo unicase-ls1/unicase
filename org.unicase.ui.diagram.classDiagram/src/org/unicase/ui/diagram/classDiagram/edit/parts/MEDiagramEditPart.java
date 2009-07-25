@@ -20,7 +20,7 @@ public class MEDiagramEditPart extends org.unicase.ui.common.diagram.edit.parts.
 	/**
 	 * @generated
 	 */
-	public final static String MODEL_ID = "Model"; //$NON-NLS-1$
+	public final static String MODEL_ID = "Class"; //$NON-NLS-1$
 
 	/**
 	 * @generated

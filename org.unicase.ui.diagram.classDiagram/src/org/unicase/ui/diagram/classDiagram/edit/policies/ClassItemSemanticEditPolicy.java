@@ -19,6 +19,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelations
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.unicase.ui.common.diagram.commands.DeleteFromModelCommand;
 
 /**
  * @generated
@@ -39,7 +40,7 @@ public class ClassItemSemanticEditPolicy
 		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
 			req.setElementToDestroy(view);
 		}
-		cc.add(getGEFWrapper(new DestroyElementCommand(req)));
+		cc.add(getGEFWrapper(new DeleteFromModelCommand(req)));
 		return cc.unwrap();
 	}
 

@@ -35,7 +35,6 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
 import org.unicase.model.ModelElement;
-import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.common.commands.AltKeyDoubleClickAction;
@@ -304,24 +303,8 @@ public final class ActionHelper {
 			return;
 		}
 
-		String id = null;
-		if (diagram.getType().equals(DiagramType.CLASS_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.USECASE_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.usecaseDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.COMPONENT_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.STATE_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.ACTIVITY_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorID";
-		} else if (diagram.getType().equals(DiagramType.WORKITEM_DIAGRAM)) {
-			id = "org.unicase.ui.diagram.workItemDiagram.part.ModelDiagramEditorID";
-		}		
-
-		if (id == null) {
-			throw new RuntimeException("Unsupported diagram type");
-		}
+		String id = diagram.getType().getEditorClassID();
+		
 		URI uri = EcoreUtil.getURI(diagram);
 		uri.appendFragment(diagram.eResource().getURIFragment(diagram));
 		URIEditorInput input = new URIEditorInput(uri, diagram.getName());

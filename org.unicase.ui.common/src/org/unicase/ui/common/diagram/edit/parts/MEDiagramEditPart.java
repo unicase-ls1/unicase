@@ -23,8 +23,13 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.commands.CommandFactory;
+import org.unicase.ui.common.diagram.part.ModelDiagramEditor;
+import org.unicase.ui.common.diagram.util.EditPartUtility;
 
 /**
  * @author denglerm This class is a superclass for the generated MEDiagramEditPart in each diagram plugin. It adds DND
@@ -95,6 +100,11 @@ public class MEDiagramEditPart extends DiagramEditPart {
 	 */
 	@Override
 	protected void handleNotificationEvent(Notification event) {
+		IEditorPart iep = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		if (iep instanceof ModelDiagramEditor) {
+			ModelDiagramEditor de = (ModelDiagramEditor) iep;
+			de.setTabTitle(((MEDiagram)(EditPartUtility.getElement(this))).getName());
+		}
 		Object feature = event.getFeature();
 		if (DiagramPackage.eINSTANCE.getMEDiagram_Elements().equals(feature)) {
 			this.updateView();
