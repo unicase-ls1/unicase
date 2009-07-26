@@ -18,14 +18,16 @@ import javax.naming.directory.BasicAttributes;
 import javax.naming.directory.DirContext;
 import javax.naming.directory.InitialDirContext;
 
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author deser
  */
-public class LdapOrgUnitImport extends ImportSource {
+public class LdapImportSource extends ImportSource {
 
 	private static final String DEFAULT_CTX = "com.sun.jndi.ldap.LdapCtxFactory";
 
@@ -48,7 +50,7 @@ public class LdapOrgUnitImport extends ImportSource {
 	/**
 	 * Simple class for a LDAP-connection to import users and groups.
 	 */
-	public LdapOrgUnitImport() {
+	public LdapImportSource() {
 	}
 
 	/**
@@ -75,22 +77,29 @@ public class LdapOrgUnitImport extends ImportSource {
 	}
 
 	/**
+	 * Returns the children of a given object (which is of the type ImportItemWrapper in this case). One special thing
+	 * about this method is, that it does not only return the children objects, but also sets the correct reference (the
+	 * children) of the given object. This is important as otherwise displaying the items on a TreeViewer correctly
+	 * would fail, as the getParent()-method wouldn't return the right result.
+	 * 
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getChildren(java.lang.Object)
 	 * @param arg0 the object to get the children from.
 	 * @return the children, which have the correct references to their parent (the given object).
 	 */
 	@Override
 	public Object[] getChildren(Object arg0) {
+		// This method-chaining is necessary! Why? Otherwise the reference to the given object (arg0) wouldn't be
+		// available when the ContentProvider (ImportSource in our case) calls his getParent()-method.
 		return setChildOrgUnits(arg0).getChildOrgUnits().toArray();
 	}
 
-	private ImportWrapper setChildOrgUnits(Object arg0) {
+	private ImportItemWrapper setChildOrgUnits(Object arg0) {
 		try {
-			ImportWrapper wrappedObject = (ImportWrapper) arg0;
+			ImportItemWrapper wrappedObject = (ImportItemWrapper) arg0;
 			String str = (String) wrappedObject.getSourceObj();
 			NamingEnumeration<NameClassPair> list = dirContext.list(str);
 
-			ArrayList<ImportWrapper> arrayList = new ArrayList<ImportWrapper>();
+			ArrayList<ImportItemWrapper> arrayList = new ArrayList<ImportItemWrapper>();
 
 			while (list.hasMore()) {
 
@@ -125,14 +134,16 @@ public class LdapOrgUnitImport extends ImportSource {
 					}
 				}
 
-				arrayList.add(new ImportWrapper(nameInNamespace, orgUnit, wrappedObject));
+				// Here we set the parent object of every child we add. We couldn't do this in the getChildren-method,
+				// because in this case we would lose the wrappedObject - it would vanish, as it is just a parameter!
+				arrayList.add(new ImportItemWrapper(nameInNamespace, orgUnit, wrappedObject));
 			}
 
 			wrappedObject.setChildOrgUnits(arrayList);
+			// As we return the wrapped object, it still exists, when getParent() of ImportSource is called.
 			return wrappedObject;
 		} catch (NamingException e) {
-			e.printStackTrace();
-			// DialogHandler.showErrorDialog("");
+			WorkspaceUtil.logException(e.getMessage(), e);
 		}
 		return null;
 	}
@@ -145,10 +156,9 @@ public class LdapOrgUnitImport extends ImportSource {
 	@Override
 	public Object[] getElements(Object arg0) {
 		try {
-			NamingEnumeration<NameClassPair> list = dirContext
-				.list(properties.getProperty(LdapOrgUnitImport.LDAP_BASE));
+			NamingEnumeration<NameClassPair> list = dirContext.list(properties.getProperty(LdapImportSource.LDAP_BASE));
 
-			ArrayList<ImportWrapper> arrayList = new ArrayList<ImportWrapper>();
+			ArrayList<ImportItemWrapper> arrayList = new ArrayList<ImportItemWrapper>();
 
 			while (list.hasMore()) {
 
@@ -177,15 +187,14 @@ public class LdapOrgUnitImport extends ImportSource {
 					}
 				}
 
-				arrayList.add(new ImportWrapper(nameInNamespace, orgUnit));
+				arrayList.add(new ImportItemWrapper(nameInNamespace, orgUnit));
 
 			}
 
 			return arrayList.toArray();
 
 		} catch (NamingException e) {
-			e.printStackTrace();
-			// DialogHandler.showExceptionDialog("");
+			WorkspaceUtil.logException(e.getMessage(), e);
 		}
 		return null;
 	}
@@ -249,7 +258,7 @@ public class LdapOrgUnitImport extends ImportSource {
 		try {
 			dirContext = new InitialDirContext(properties);
 		} catch (NamingException e) {
-			e.printStackTrace();
+			WorkspaceUtil.logException(e.getMessage(), e);
 			throw new CorruptedSourceException("Couldn't connect to server!");
 		}
 
@@ -263,6 +272,24 @@ public class LdapOrgUnitImport extends ImportSource {
 	public String getMessage() {
 		return "Import from " + properties.getProperty(Context.PROVIDER_URL) + " with base: "
 			+ properties.getProperty(LDAP_BASE);
+	}
+
+	/**
+	 * Disposes any created resources.
+	 */
+	public void dispose() {
+		// Nothing to dispose
+	}
+
+	/**
+	 * Called when the input changes.
+	 * 
+	 * @param arg0 the viewer
+	 * @param arg1 the old input
+	 * @param arg2 the new input
+	 */
+	public void inputChanged(Viewer arg0, Object arg1, Object arg2) {
+		// Nothing to change
 	}
 
 }

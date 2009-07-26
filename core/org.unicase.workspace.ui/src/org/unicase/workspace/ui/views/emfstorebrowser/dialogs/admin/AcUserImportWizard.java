@@ -13,7 +13,7 @@ import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.wizard.Wizard;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportController;
-import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportWrapper;
+import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportItemWrapper;
 
 /**
  * @author deser, karakoc
@@ -58,7 +58,7 @@ public class AcUserImportWizard extends Wizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		ArrayList<ImportWrapper> wrappedOrgUnits = ((AcUserImportPageTwo) this
+		ArrayList<ImportItemWrapper> wrappedOrgUnits = ((AcUserImportPageTwo) this
 				.getPages()[1]).getCheckedItems();
 		if (wrappedOrgUnits.size() > 0) {
 			ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(

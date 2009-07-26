@@ -19,9 +19,9 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.workspace.ui.Activator;
-import org.unicase.workspace.ui.views.emfstorebrowser.acimport.CSVUserImport;
+import org.unicase.workspace.ui.views.emfstorebrowser.acimport.CSVImportSource;
 import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource;
-import org.unicase.workspace.ui.views.emfstorebrowser.acimport.LdapOrgUnitImport;
+import org.unicase.workspace.ui.views.emfstorebrowser.acimport.LdapImportSource;
 
 /**
  * With this page the import source can be selected (via radio buttons).
@@ -44,8 +44,8 @@ public class AcUserImportPageOne extends WizardPage {
 	private void initSources() {
 		list = new ArrayList<ImportSource>();
 
-		list.add(new CSVUserImport());
-		list.add(new LdapOrgUnitImport());
+		list.add(new CSVImportSource());
+		list.add(new LdapImportSource());
 	}
 
 	/**
@@ -79,15 +79,17 @@ public class AcUserImportPageOne extends WizardPage {
 					if (isCurrentrlySelected) {
 						AcUserImportPageTwo nextPage = (AcUserImportPageTwo) getNextPage();
 						AcUserImportWizard wizard = (AcUserImportWizard) getWizard();
+
 						wizard.getController().setImportSource(src);
 
 						if (src.init(getShell())) {
 							ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(getShell());
 							progressMonitorDialog.open();
 							progressMonitorDialog.getProgressMonitor().beginTask("loading", IProgressMonitor.UNKNOWN);
-							nextPage.init();
+							nextPage.init(src);
 							progressMonitorDialog.close();
 							setPageComplete(true);
+							getContainer().showPage(getNextPage());
 						}
 					}
 				}

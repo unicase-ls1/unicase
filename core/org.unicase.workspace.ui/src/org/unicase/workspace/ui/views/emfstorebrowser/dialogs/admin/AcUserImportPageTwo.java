@@ -21,9 +21,9 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
-import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportContentProvider;
+import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportItemWrapper;
 import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportLabelProvider;
-import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportWrapper;
+import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource;
 
 /**
  * @author deser, karakoc
@@ -31,7 +31,7 @@ import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportWrapper;
 public class AcUserImportPageTwo extends WizardPage {
 
 	private TreeViewer tv;
-	private ArrayList<ImportWrapper> wrappedOrgUnits;
+	private ArrayList<ImportItemWrapper> wrappedOrgUnits;
 
 	/**
 	 * Page for displaying the OrgUnits that can be imported.
@@ -40,7 +40,7 @@ public class AcUserImportPageTwo extends WizardPage {
 	 * @param message
 	 */
 	public AcUserImportPageTwo() {
-		super("Page two");
+		super("PAGE_TWO");
 	}
 
 	/**
@@ -112,9 +112,9 @@ public class AcUserImportPageTwo extends WizardPage {
 	/**
 	 * @return Returns all items, that are checked in the tree.
 	 */
-	public ArrayList<ImportWrapper> getCheckedItems() {
+	public ArrayList<ImportItemWrapper> getCheckedItems() {
 		// first clear old checked items
-		wrappedOrgUnits = new ArrayList<ImportWrapper>();
+		wrappedOrgUnits = new ArrayList<ImportItemWrapper>();
 		this.traverse(tv.getTree());
 		return this.wrappedOrgUnits;
 	}
@@ -144,7 +144,7 @@ public class AcUserImportPageTwo extends WizardPage {
 		TreeItem[] items = item.getItems();
 		for (int i = 0; i < items.length; i++) {
 			if (items[i].getChecked()) {
-				this.wrappedOrgUnits.add((ImportWrapper) items[i].getData());
+				this.wrappedOrgUnits.add((ImportItemWrapper) items[i].getData());
 			}
 			traverse(items[i]);
 		}
@@ -155,7 +155,7 @@ public class AcUserImportPageTwo extends WizardPage {
 		TreeItem[] items = tree.getItems();
 		for (int i = 0; i < items.length; i++) {
 			if (items[i].getChecked()) {
-				this.wrappedOrgUnits.add((ImportWrapper) items[i].getData());
+				this.wrappedOrgUnits.add((ImportItemWrapper) items[i].getData());
 			}
 			traverse(items[i]);
 		}
@@ -165,13 +165,13 @@ public class AcUserImportPageTwo extends WizardPage {
 	/**
 	 * Initializes the page, i.e. this method is not called at the time this class gets instantiated but later, when the
 	 * page is going to get displayed.
+	 * 
+	 * @param src the selected ImportSource
 	 */
-	public void init() {
+	public void init(ImportSource src) {
 		AcUserImportWizard wizard = (AcUserImportWizard) getWizard();
 
-		// TODO progress monitor!
-
-		tv.setContentProvider(new ImportContentProvider(wizard.getController()));
+		tv.setContentProvider(src);
 		tv.setLabelProvider(new ImportLabelProvider(wizard.getController()));
 		tv.setInput(new Object()); // argument is a non-null that will be ignored
 
