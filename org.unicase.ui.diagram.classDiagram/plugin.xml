@@ -9,7 +9,7 @@
          extension="model_diagram">
       </fileTypes>
    </extension>
-
+clientco
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <?gmfgen generated="true"?>
       <parser
@@ -547,7 +547,7 @@
 	
 </extension><extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
       <?gmfgen generated="false"?>
-      <clientContext id="ModelClientContext">
+      <clientContext id="ClassClientContext">
 		 <enablement>
       <and>
          <instanceof
@@ -560,7 +560,7 @@
       </and>
          </enablement>
       </clientContext> 
-      <binding context="ModelClientContext">
+      <binding context="ClassClientContext">
          <elementType ref="org.unicase.classDiagram.MEDiagram_88"/>
          <elementType ref="org.unicase.classDiagram.Class_2001"/>
          <elementType ref="org.unicase.classDiagram.Package_2002"/>
