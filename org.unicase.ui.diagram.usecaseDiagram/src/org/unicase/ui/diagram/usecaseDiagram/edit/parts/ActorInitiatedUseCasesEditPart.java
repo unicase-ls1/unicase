@@ -83,7 +83,6 @@ public class ActorInitiatedUseCasesEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public InitiateFigure() {
-			this.setForegroundColor(ColorConstants.black);
 
 		}
 

@@ -1,6 +1,5 @@
 package org.unicase.ui.diagram.usecaseDiagram.edit.parts;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
@@ -83,8 +82,6 @@ public class ActorParticipatedUseCasesEditPart extends ConnectionNodeEditPart
 		 * @generated
 		 */
 		public ParticipateFigure() {
-			this.setForegroundColor(ColorConstants.black);
-
 		}
 
 	}

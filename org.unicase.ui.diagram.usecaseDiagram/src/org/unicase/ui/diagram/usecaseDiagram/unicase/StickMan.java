@@ -19,7 +19,7 @@ public class StickMan extends ShadowShape {
 	 * . The constructor
 	 */
 	public StickMan() {
-		this(false, ColorConstants.white, ColorConstants.black);
+		this(false, ColorConstants.white, ColorConstants.gray);
 	}
 
 	/**

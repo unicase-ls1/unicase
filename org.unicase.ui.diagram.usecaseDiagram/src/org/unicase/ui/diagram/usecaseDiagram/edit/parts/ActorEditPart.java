@@ -262,8 +262,6 @@ public class ActorEditPart extends ShapeNodeEditPart {
 
 			fFigureActorFigure_name = new Label();
 
-			fFigureActorFigure_name.setFont(FFIGUREACTORFIGURE_NAME_FONT);
-
 			GridData constraintFFigureActorFigure_name = new GridData();
 			constraintFFigureActorFigure_name.verticalAlignment = GridData.CENTER;
 			constraintFFigureActorFigure_name.horizontalAlignment = GridData.CENTER;
@@ -305,11 +303,5 @@ public class ActorEditPart extends ShapeNodeEditPart {
 		}
 
 	}
-
-	/**
-	 * @generated
-	 */
-	static final Font FFIGUREACTORFIGURE_NAME_FONT = new Font(Display
-			.getCurrent(), "Arial", 12, SWT.BOLD);
 
 }
