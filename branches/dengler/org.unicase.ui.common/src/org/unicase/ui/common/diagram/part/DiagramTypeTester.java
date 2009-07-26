@@ -38,7 +38,8 @@ public class DiagramTypeTester extends PropertyTester {
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		//START Sanity checks
 		if (!(receiver instanceof MEDiagram)) {
-			throw new IllegalArgumentException();
+			//throw new IllegalArgumentException();
+			return false;
 		}
 
 		if (!(property.equals("isDiagramType"))) {
