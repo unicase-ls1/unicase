@@ -72,20 +72,8 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 			return false;
 		}
 		DiagramType type = diagram.getType();
-		String clientContextID = "ModelClientContext";
-		if (type == DiagramType.USECASE_DIAGRAM) {
-			clientContextID = "UseCaseClientContext";
-		} else if (type == DiagramType.COMPONENT_DIAGRAM) {
-			clientContextID = "ComponentClientContext";
-		} else if (type == DiagramType.CLASS_DIAGRAM) {
-			clientContextID = "ModelClientContext";
-		} else if (type == DiagramType.STATE_DIAGRAM) {
-			clientContextID = "StateClientContext";
-		} else if (type == DiagramType.ACTIVITY_DIAGRAM) {
-			clientContextID = "ActivityClientContext";
-		} else if (type == DiagramType.WORKITEM_DIAGRAM) {
-			clientContextID = "WorkItemClientContext";
-		}	
+		String clientContextID = type.getName()+"ClientContext";
+		
 		IClientContext cc = ClientContextManager.getInstance().getClientContext(clientContextID);
 		if (cc == null) {
 			return false;
