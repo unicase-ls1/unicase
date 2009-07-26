@@ -14,6 +14,7 @@ import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Shell;
@@ -22,49 +23,48 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author gurcankarakoc, deser
  */
 
-public class CSVUserImport extends ImportSource {
+public class CSVImportSource extends ImportSource {
 
-	private HashMap<String, ImportWrapper> groupMap = new HashMap<String, ImportWrapper>();
+	private HashMap<String, ImportItemWrapper> groupMap = new HashMap<String, ImportItemWrapper>();
 
-	private ArrayList<ImportWrapper> groups;
-	private ArrayList<ImportWrapper> users;
+	private ArrayList<ImportItemWrapper> groups;
+	private ArrayList<ImportItemWrapper> users;
 
 	private String absFileName;
 
 	/**
 	 * Constructor.
 	 */
-	public CSVUserImport() {
+	public CSVImportSource() {
 	}
 
 	/**
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getChildren(java.lang.Object)
-	 * @param ob
-	 *            the object to get the children from
+	 * @param ob the object to get the children from
 	 * @return the children of the given object
 	 */
 	@Override
 	public Object[] getChildren(Object ob) {
-		ImportWrapper importWrapper = setParentsOfChildOrgUnits(ob);
+		ImportItemWrapper importWrapper = setParentsOfChildOrgUnits(ob);
 		if (importWrapper != null && importWrapper.getChildOrgUnits() != null) {
 			return importWrapper.getChildOrgUnits().toArray();
 		}
 		return null;
 	}
 
-	private ImportWrapper setParentsOfChildOrgUnits(Object arg0) {
-		((ImportWrapper) arg0).setParentOrgUnit(((ImportWrapper) arg0));
-		return ((ImportWrapper) arg0);
+	private ImportItemWrapper setParentsOfChildOrgUnits(Object arg0) {
+		((ImportItemWrapper) arg0).setParentOrgUnit(((ImportItemWrapper) arg0));
+		return ((ImportItemWrapper) arg0);
 	}
 
 	/**
-	 * @param ob
-	 *            the object to get the root elements from
+	 * @param ob the object to get the root elements from
 	 * @return the list of groups, which were read from the specified file.
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getElements(java.lang.Object)
 	 */
@@ -84,18 +84,16 @@ public class CSVUserImport extends ImportSource {
 
 	/**
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#init()
-	 * @param shell
-	 *            the shell, which holds the dialog for file selection
+	 * @param shell the shell, which holds the dialog for file selection
 	 * @return if a file was selected and successfully handled
 	 */
 	@Override
 	public boolean init(Shell shell) {
 		// clear old data
-		groups = new ArrayList<ImportWrapper>();
-		users = new ArrayList<ImportWrapper>();
+		groups = new ArrayList<ImportItemWrapper>();
+		users = new ArrayList<ImportItemWrapper>();
 
-		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), SWT.OPEN);
+		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), SWT.OPEN);
 		dialog.setText("Choose import file");
 		String fn = dialog.open();
 		if (fn == null) {
@@ -132,19 +130,18 @@ public class CSVUserImport extends ImportSource {
 
 				ACUser user = AccesscontrolFactory.eINSTANCE.createACUser();
 				user.setName(userName);
-				ImportWrapper userImportWrapper = new ImportWrapper(null, user);
+				ImportItemWrapper userImportWrapper = new ImportItemWrapper(null, user);
 				users.add(userImportWrapper);
 
-				ImportWrapper importWrapper = null;
-				ArrayList<ImportWrapper> childOrgUnits;
+				ImportItemWrapper importWrapper = null;
+				ArrayList<ImportItemWrapper> childOrgUnits;
 				if (groupMap.get(groupName) == null) {
-					ACGroup group = AccesscontrolFactory.eINSTANCE
-							.createACGroup();
-					importWrapper = new ImportWrapper(null, group);
+					ACGroup group = AccesscontrolFactory.eINSTANCE.createACGroup();
+					importWrapper = new ImportItemWrapper(null, group);
 					group.setName(groupName);
 					groups.add(importWrapper);
 					groupMap.put(groupName, importWrapper);
-					childOrgUnits = new ArrayList<ImportWrapper>();
+					childOrgUnits = new ArrayList<ImportItemWrapper>();
 				} else {
 					importWrapper = groupMap.get(groupName);
 					childOrgUnits = importWrapper.getChildOrgUnits();
@@ -161,17 +158,16 @@ public class CSVUserImport extends ImportSource {
 			isr.close();
 
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			WorkspaceUtil.logException(e.getMessage(), e);
 			DialogHandler.showExceptionDialog("File not found", e);
 			return false;
 		} catch (IOException e) {
-			e.printStackTrace();
+			WorkspaceUtil.logException(e.getMessage(), e);
 			DialogHandler.showExceptionDialog("An I/O-exception occured", e);
 			return false;
 		} catch (ArrayIndexOutOfBoundsException e) {
-			e.printStackTrace();
-			DialogHandler.showExceptionDialog("ArrayIndexOutOfBoundsException",
-					e);
+			WorkspaceUtil.logException(e.getMessage(), e);
+			DialogHandler.showExceptionDialog("ArrayIndexOutOfBoundsException", e);
 			return false;
 		}
 
@@ -185,5 +181,23 @@ public class CSVUserImport extends ImportSource {
 	@Override
 	public String getMessage() {
 		return "Importing from file: " + this.absFileName;
+	}
+
+	/**
+	 * Disposes any created resources.
+	 */
+	public void dispose() {
+		// Nothing to dispose
+	}
+
+	/**
+	 * Called when the input changes.
+	 * 
+	 * @param arg0 the viewer
+	 * @param arg1 the old input
+	 * @param arg2 the new input
+	 */
+	public void inputChanged(Viewer arg0, Object arg1, Object arg2) {
+		// Nothing to change
 	}
 }

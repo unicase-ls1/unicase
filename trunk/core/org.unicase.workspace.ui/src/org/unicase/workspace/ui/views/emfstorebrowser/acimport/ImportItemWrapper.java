@@ -10,14 +10,19 @@ import java.util.ArrayList;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 
 /**
+ * This class is necessary for at least some import sources, e.g. LDAP. If we do not have more information then a
+ * (textual) reference to a specific entry of the source (e.g. an UID in the case of LDAP) then we can save this
+ * reference in the sourceObj-field of this class, using it later on to create appropriate ACOrgUnits.
+ * 
  * @author deser
  */
-public class ImportWrapper {
+public class ImportItemWrapper {
 
-	private Object sourceObj;
+	private Object sourceObj; // holds a (textual or any other) reference to a source object. Most likely a String is
+								// needed here
 	private ACOrgUnit orgUnit;
-	private ImportWrapper parentOrgUnit;
-	private ArrayList<ImportWrapper> childOrgUnits;
+	private ImportItemWrapper parentOrgUnit;
+	private ArrayList<ImportItemWrapper> childOrgUnits;
 
 	/**
 	 * @param sourceObj A specific object, which can be used for example to identify an import source. For example in
@@ -25,7 +30,7 @@ public class ImportWrapper {
 	 *            LDAP entry.
 	 * @param orgUnit An orgUnit which is the actual object that gets imported later on.
 	 */
-	public ImportWrapper(Object sourceObj, ACOrgUnit orgUnit) {
+	public ImportItemWrapper(Object sourceObj, ACOrgUnit orgUnit) {
 		super();
 		this.sourceObj = sourceObj;
 		this.orgUnit = orgUnit;
@@ -36,7 +41,7 @@ public class ImportWrapper {
 	 * @param orgUnit An orgUnit which is the actual object that gets imported later on.
 	 * @param parentOrgUnit The parent orgUnit of this object.
 	 */
-	public ImportWrapper(Object sourceObj, ACOrgUnit orgUnit, ImportWrapper parentOrgUnit) {
+	public ImportItemWrapper(Object sourceObj, ACOrgUnit orgUnit, ImportItemWrapper parentOrgUnit) {
 		super();
 		this.sourceObj = sourceObj;
 		this.orgUnit = orgUnit;
@@ -60,28 +65,28 @@ public class ImportWrapper {
 	/**
 	 * @param parentOrgUnit the parent orgUnit of this (wrapped) orgUnit
 	 */
-	public void setParentOrgUnit(ImportWrapper parentOrgUnit) {
+	public void setParentOrgUnit(ImportItemWrapper parentOrgUnit) {
 		this.parentOrgUnit = parentOrgUnit;
 	}
 
 	/**
 	 * @return the parent orgUnit of this (wrapped) orgUnit
 	 */
-	public ImportWrapper getParentOrgUnit() {
+	public ImportItemWrapper getParentOrgUnit() {
 		return parentOrgUnit;
 	}
 
 	/**
 	 * @param childOrgUnits the children of this (wrapped) orgUnit
 	 */
-	public void setChildOrgUnits(ArrayList<ImportWrapper> childOrgUnits) {
+	public void setChildOrgUnits(ArrayList<ImportItemWrapper> childOrgUnits) {
 		this.childOrgUnits = childOrgUnits;
 	}
 
 	/**
 	 * @return the children of this (wrapped) orgUnit
 	 */
-	public ArrayList<ImportWrapper> getChildOrgUnits() {
+	public ArrayList<ImportItemWrapper> getChildOrgUnits() {
 		return childOrgUnits;
 	}
 

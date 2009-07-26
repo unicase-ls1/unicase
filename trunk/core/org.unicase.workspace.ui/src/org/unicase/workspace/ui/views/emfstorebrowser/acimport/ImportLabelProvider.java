@@ -36,7 +36,6 @@ public class ImportLabelProvider implements ILabelProvider {
 		this.setSource(controller.getImportSource());
 		this.listeners = new ArrayList<ILabelProviderListener>();
 
-		// TODO!
 		this.userImage = Activator.getImageDescriptor("icons/user.png").createImage();
 		this.groupImage = Activator.getImageDescriptor("icons/Group.gif").createImage();
 	}
@@ -48,7 +47,7 @@ public class ImportLabelProvider implements ILabelProvider {
 	 * @return Image
 	 */
 	public Image getImage(Object arg0) {
-		ACOrgUnit orgUnit = ((ImportWrapper) arg0).getOrgUnit();
+		ACOrgUnit orgUnit = ((ImportItemWrapper) arg0).getOrgUnit();
 		if (orgUnit instanceof ACUser) {
 			return userImage;
 		}
@@ -65,7 +64,7 @@ public class ImportLabelProvider implements ILabelProvider {
 	 * @return String
 	 */
 	public String getText(Object arg0) {
-		return ((ImportWrapper) arg0).getOrgUnit().getName();
+		return ((ImportItemWrapper) arg0).getOrgUnit().getName();
 	}
 
 	/**

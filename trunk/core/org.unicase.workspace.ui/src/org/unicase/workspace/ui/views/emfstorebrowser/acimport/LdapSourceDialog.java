@@ -34,14 +34,14 @@ public class LdapSourceDialog extends TitleAreaDialog {
 	private boolean isOkPressed;
 	private Text serverName;
 	private Text ldapBase;
-	private final LdapOrgUnitImport ldapImport;
+	private final LdapImportSource ldapImport;
 	private boolean isInitFinished;
 
 	/**
 	 * @param parentShell the parent shell
 	 * @param ldapImport LDAP import
 	 */
-	public LdapSourceDialog(Shell parentShell, LdapOrgUnitImport ldapImport) {
+	public LdapSourceDialog(Shell parentShell, LdapImportSource ldapImport) {
 		super(parentShell);
 		this.ldapImport = ldapImport;
 		this.setTitle("LDAP import");
@@ -93,7 +93,7 @@ public class LdapSourceDialog extends TitleAreaDialog {
 		Properties serverProperties = new Properties();
 
 		serverProperties.put(Context.PROVIDER_URL, serverName.getText());
-		serverProperties.put(LdapOrgUnitImport.LDAP_BASE, ldapBase.getText());
+		serverProperties.put(LdapImportSource.LDAP_BASE, ldapBase.getText());
 
 		this.ldapImport.setProperties(serverProperties);
 		try {
