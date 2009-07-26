@@ -87,7 +87,6 @@ public class UseCaseIncludedUseCasesEditPart extends ConnectionNodeEditPart
 		 */
 		public DashedLineOpenArrow() {
 			this.setLineStyle(Graphics.LINE_DASH);
-			this.setForegroundColor(ColorConstants.black);
 
 			setTargetDecoration(createTargetDecoration());
 		}

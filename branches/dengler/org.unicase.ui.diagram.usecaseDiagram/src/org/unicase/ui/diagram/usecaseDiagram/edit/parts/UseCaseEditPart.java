@@ -231,7 +231,6 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
-			this.setForegroundColor(ColorConstants.black);
 			createContents();
 		}
 
@@ -241,8 +240,6 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		private void createContents() {
 
 			fUseCaseFigure_name = new Label();
-
-			fUseCaseFigure_name.setFont(FUSECASEFIGURE_NAME_FONT);
 
 			this.add(fUseCaseFigure_name);
 
@@ -275,11 +272,5 @@ public class UseCaseEditPart extends ShapeNodeEditPart {
 		}
 
 	}
-
-	/**
-	 * @generated
-	 */
-	static final Font FUSECASEFIGURE_NAME_FONT = new Font(Display.getCurrent(),
-			"Arial", 12, SWT.BOLD);
 
 }
