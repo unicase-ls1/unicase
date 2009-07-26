@@ -1,6 +1,5 @@
 package org.unicase.ui.diagram.activityDiagram.edit.parts;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.StackLayout;
@@ -52,13 +51,14 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.diagram.activityDiagram.edit.policies.ActivityItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.diagram.activityDiagram.edit.policies.ActivityItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -68,19 +68,21 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -109,7 +111,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart) {
 			((org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getActivityFigureName());
+				.setLabel(getPrimaryShape().getActivityFigureName());
 			return true;
 		}
 		return false;
@@ -126,6 +128,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
 		if (addFixedChild(childEditPart)) {
 			return;
@@ -136,6 +139,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
 		if (removeFixedChild(childEditPart)) {
 			return;
@@ -146,6 +150,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
 
 		return super.getContentPaneFor(editPart);
@@ -155,19 +160,17 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-				.DPtoLP(40), getMapMode().DPtoLP(40));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(40), getMapMode().DPtoLP(40));
 		return result;
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model so you may
+	 * safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -178,8 +181,9 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated
+	 * figure.
+	 * 
 	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
@@ -195,6 +199,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -205,9 +210,10 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
-				.getType(org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart.VISUAL_ID));
+			.getType(org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -229,9 +235,8 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
-			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8),
-					getMapMode().DPtoLP(8)));
-			this.setForegroundColor(ColorConstants.black);
+			this.setCornerDimensions(new Dimension(getMapMode().DPtoLP(8), getMapMode().DPtoLP(8)));
+
 			createContents();
 		}
 
@@ -254,6 +259,7 @@ public class ActivityEditPart extends ShapeNodeEditPart {
 		/**
 		 * @generated
 		 */
+		@Override
 		protected boolean useLocalCoordinates() {
 			return myUseLocalCoordinates;
 		}
