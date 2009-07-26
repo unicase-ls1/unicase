@@ -16,14 +16,14 @@ import org.eclipse.swt.graphics.Color;
  */
 public class StickMan extends ShadowShape {
 	/**
-	 * . The constructor
+	 * The constructor.
 	 */
 	public StickMan() {
-		this(false, ColorConstants.white, ColorConstants.gray);
+		this(true);
 	}
 
 	/**
-	 * . The constructor
+	 * The constructor.
 	 * 
 	 * @param is3D true for 3D appearance
 	 * @param backgroundColor the background color
@@ -34,6 +34,18 @@ public class StickMan extends ShadowShape {
 		setKeepingProportions(true);
 		setW2HRatio(BASE_W / BASE_H);
 	}
+	
+	/**
+	 * The constructor.
+	 * 
+	 * @param is3D true for 3D appearance
+	 */
+	public StickMan(boolean is3D) {
+		super(is3D);
+		setKeepingProportions(true);
+		setW2HRatio(BASE_W / BASE_H);
+	}
+	
 
 	/**
 	 * @param graphics The Graphics object

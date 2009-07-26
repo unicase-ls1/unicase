@@ -24,7 +24,7 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	private static final Insets SHADOW_INSETS = new Insets(0, 0, SHADOW_SIZE, SHADOW_SIZE);
 
 	/**
-	 * . The constructor
+	 * The constructor.
 	 * 
 	 * @param is3D true for 3D appearance
 	 * @param backgroundColor the background color
@@ -34,6 +34,11 @@ public abstract class ShadowShape extends AbstractProportionalShape {
 	public ShadowShape(boolean is3D, Color backgroundColor, Color foregroundColor) {
 		setForegroundColor(foregroundColor);
 		setBackgroundColor(backgroundColor);
+		myBorder = new ShadowBorder();
+		setBorder(myBorder);
+		set3D(is3D);
+	}
+	public ShadowShape(boolean is3D) {
 		myBorder = new ShadowBorder();
 		setBorder(myBorder);
 		set3D(is3D);
