@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model"
+    nsURI="http://unicase.org/testspecmodel" nsPrefix="org.unicase.testspec.model">
+  <eClassifiers xsi:type="ecore:EClass" name="TestProtocol" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//ModelElement">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="testReport" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="testDescription" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="localTestCases" eType="#//LogicalTestCase"
+        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="concreteParameter" upperBound="-1"
+        eType="#//ConcreteParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="testState" eType="#//EnumState"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EnumState">
+    <eLiterals name="passed"/>
+    <eLiterals name="failed" value="1"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="LogicalTestCase">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="tcDescription" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="precondition" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="postcondition" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+        defaultValueLiteral=""/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="infrastructure" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testProtocol" upperBound="-1"
+        eType="#//TestProtocol"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testStep" upperBound="-1"
+        eType="#//TestStep" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="nonFunctionalRequirement"
+        eType="ecore:EClass platform:/plugin/org.unicase.model/model/model.ecore#//requirement/NonFunctionalRequirement"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="functionalRequirement"
+        eType="ecore:EClass platform:/plugin/org.unicase.model/model/model.ecore#//requirement/FunctionalRequirement"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="EnumType">
+    <eLiterals name="unit"/>
+    <eLiterals name="system" value="1"/>
+    <eLiterals name="integration" value="2"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="ConcreteParameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="parameter" eType="#//Parameter"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Parameter">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="range" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="TestStep">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="outputParameter" upperBound="-1"
+        eType="#//OutputParameter" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="inputparameter" upperBound="-1"
+        eType="#//InputParameter" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="InputParameter" eSuperTypes="#//Parameter"/>
+  <eClassifiers xsi:type="ecore:EClass" name="OutputParameter" eSuperTypes="#//Parameter"/>
+</ecore:EPackage>
