@@ -106,6 +106,10 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 
 	}
 
+	/**
+	 * We need to refresh the Navigator on every Operation so that dirty decorators on individual model elements are
+	 * updated. The refresh happens asynchronously and currently is no performance problem.
+	 */
 	private void createOperationListener() {
 		simpleOperationListener = new SimpleOperationListener() {
 
@@ -144,7 +148,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
-		viewer = new TreeViewer(parent);
+		viewer = new TreeViewer(parent, SWT.SINGLE);
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
 		viewer.setLabelProvider(new DecoratingLabelProvider(new TreeLabelProvider(), decoratorManager
 			.getLabelDecorator()));
