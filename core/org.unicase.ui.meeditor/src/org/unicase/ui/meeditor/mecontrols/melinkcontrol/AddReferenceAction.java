@@ -7,6 +7,7 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -14,6 +15,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -62,12 +64,12 @@ public class AddReferenceAction extends Action {
 			EObject eObject = null;
 
 			// don't the instances that are already linked
-			if (isMultiReference() && object instanceof EList) {
+			if (eReference.isMany() && object instanceof EList) {
 				eList = (EList<EObject>) object;
 				for (EObject ref : eList) {
 					allElements.remove(ref);
 				}
-			} else if (!isMultiReference() && object instanceof EObject) {
+			} else if (!eReference.isMany() && object instanceof EObject) {
 				eObject = (EObject) object;
 				allElements.remove(eObject);
 			}
@@ -77,13 +79,24 @@ public class AddReferenceAction extends Action {
 				allElements.removeAll(modelElement.eContents());
 			}
 
-			dlg.setMultipleSelection(isMultiReference());
+			// take care of circular references
+			if (eReference.isContainment()) {
+				Iterator<ModelElement> iter = allElements.iterator();
+				while (iter.hasNext()) {
+					ModelElement me = iter.next();
+					if (EcoreUtil.isAncestor(me, modelElement)) {
+						iter.remove();
+					}
+				}
+			}
+
+			dlg.setMultipleSelection(eReference.isMany());
 			dlg.setElements(allElements.toArray());
 			dlg.setTitle("Select Elements");
 			dlg.setBlockOnOpen(true);
 			if (dlg.open() == Window.OK) {
 
-				if (isMultiReference()) {
+				if (eReference.isMany()) {
 					Object[] results = dlg.getResult();
 					ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 						.getActiveWorkbenchWindow().getShell());
@@ -161,10 +174,6 @@ public class AddReferenceAction extends Action {
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
 		domain.getCommandStack().execute(new AddReferenceCommand(domain));
 
-	}
-
-	private boolean isMultiReference() {
-		return eReference.getUpperBound() == -1;
 	}
 
 }

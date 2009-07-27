@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
+import java.util.ArrayList;
+
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -37,8 +39,6 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.WorkspaceManager;
-
-import java.util.ArrayList;
 
 /**
  * GUI Control for the ME reference multilinks.
@@ -133,6 +133,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 
 	private Composite scrollClient;
 
+	private DropTarget sectionDropTarget;
+
 	/**
 	 * Default constructor. Default constructor.
 	 * 
@@ -201,11 +203,11 @@ public class MEMultiLinkControl extends AbstractMEControl {
 	}
 
 	private void addDnDSupport() {
-		DropTarget dropTarget = new DropTarget(section, DND.DROP_COPY);
+		sectionDropTarget = new DropTarget(section, DND.DROP_COPY);
 		Transfer[] transfers = new Transfer[] { LocalTransfer.getInstance() };
-		dropTarget.setTransfer(transfers);
-		dropTarget
-			.addDropListener(new MEMultiLinkControlDropAdapter(getEditingDomain(), getModelElement(), eReference));
+		sectionDropTarget.setTransfer(transfers);
+		sectionDropTarget.addDropListener(new MEMultiLinkControlDropAdapter(getEditingDomain(), getModelElement(),
+			eReference));
 
 	}
 
@@ -239,6 +241,7 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		for (MELinkControl link : linkControls) {
 			link.dispose();
 		}
+		sectionDropTarget.dispose();
 
 	}
 
