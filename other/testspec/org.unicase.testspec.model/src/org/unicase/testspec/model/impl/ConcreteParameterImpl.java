@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.model.impl.ModelElementImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.unicase.testspec.model.ConcreteParameter;
@@ -32,7 +33,7 @@ import org.unicase.testspec.model.Parameter;
  *
  * @generated
  */
-public class ConcreteParameterImpl extends EObjectImpl implements ConcreteParameter {
+public class ConcreteParameterImpl extends ModelElementImpl implements ConcreteParameter {
 	/**
 	 * The default value of the '{@link #getValue() <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->

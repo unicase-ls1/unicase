@@ -39,7 +39,6 @@
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//ConcreteParameter/parameter"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//Parameter">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Parameter/name"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Parameter/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//Parameter/range"/>
     </genClasses>
