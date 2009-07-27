@@ -241,8 +241,9 @@ public class MEMultiLinkControl extends AbstractMEControl {
 		for (MELinkControl link : linkControls) {
 			link.dispose();
 		}
-		sectionDropTarget.dispose();
-
+		if (sectionDropTarget != null) {
+			sectionDropTarget.dispose();
+		}
 	}
 
 }

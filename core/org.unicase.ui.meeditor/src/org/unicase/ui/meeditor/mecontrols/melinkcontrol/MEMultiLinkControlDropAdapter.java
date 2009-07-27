@@ -57,7 +57,6 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 	 * @see org.eclipse.swt.dnd.DropTargetListener#dragEnter(org.eclipse.swt.dnd.DropTargetEvent)
 	 */
 	public void dragEnter(DropTargetEvent event) {
-		event.detail = DND.DROP_COPY;
 	}
 
 	/**
