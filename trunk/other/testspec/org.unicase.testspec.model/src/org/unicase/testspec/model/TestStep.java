@@ -8,6 +8,7 @@ package org.unicase.testspec.model;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.unicase.model.ModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -28,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface TestStep extends EObject {
+public interface TestStep extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Exception</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -56,7 +57,7 @@ public interface TestStep extends EObject {
 	void setException(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Output Parameter</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Output Parameter</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.testspec.model.OutputParameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -64,9 +65,9 @@ public interface TestStep extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Output Parameter</em>' containment reference list.
+	 * @return the value of the '<em>Output Parameter</em>' reference list.
 	 * @see org.unicase.testspec.model.ModelPackage#getTestStep_OutputParameter()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	EList<OutputParameter> getOutputParameter();

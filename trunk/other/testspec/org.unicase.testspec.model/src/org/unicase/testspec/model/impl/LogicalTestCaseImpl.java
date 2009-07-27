@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.testspec.model.LogicalTestCase;
@@ -52,7 +53,7 @@ import org.unicase.testspec.model.TestStep;
  *
  * @generated
  */
-public class LogicalTestCaseImpl extends EObjectImpl implements LogicalTestCase {
+public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTestCase {
 	/**
 	 * The default value of the '{@link #getTcDescription() <em>Tc Description</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -164,7 +165,7 @@ public class LogicalTestCaseImpl extends EObjectImpl implements LogicalTestCase 
 	protected EList<TestProtocol> testProtocol;
 
 	/**
-	 * The cached value of the '{@link #getTestStep() <em>Test Step</em>}' containment reference list.
+	 * The cached value of the '{@link #getTestStep() <em>Test Step</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTestStep()
@@ -336,7 +337,7 @@ public class LogicalTestCaseImpl extends EObjectImpl implements LogicalTestCase 
 	 */
 	public EList<TestStep> getTestStep() {
 		if (testStep == null) {
-			testStep = new EObjectContainmentEList<TestStep>(TestStep.class, this, ModelPackage.LOGICAL_TEST_CASE__TEST_STEP);
+			testStep = new EObjectResolvingEList<TestStep>(TestStep.class, this, ModelPackage.LOGICAL_TEST_CASE__TEST_STEP);
 		}
 		return testStep;
 	}
@@ -415,20 +416,6 @@ public class LogicalTestCaseImpl extends EObjectImpl implements LogicalTestCase 
 		functionalRequirement = newFunctionalRequirement;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT, oldFunctionalRequirement, functionalRequirement));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
-				return ((InternalEList<?>)getTestStep()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**

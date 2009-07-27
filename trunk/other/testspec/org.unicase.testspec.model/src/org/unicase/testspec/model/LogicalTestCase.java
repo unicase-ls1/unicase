@@ -8,6 +8,7 @@ package org.unicase.testspec.model;
 
 import org.eclipse.emf.common.util.EList;
 
+import org.unicase.model.ModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.NonFunctionalRequirement;
@@ -36,7 +37,7 @@ import org.unicase.model.requirement.NonFunctionalRequirement;
  * @model
  * @generated
  */
-public interface LogicalTestCase extends EObject {
+public interface LogicalTestCase extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Tc Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -185,7 +186,7 @@ public interface LogicalTestCase extends EObject {
 	EList<TestProtocol> getTestProtocol();
 
 	/**
-	 * Returns the value of the '<em><b>Test Step</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Test Step</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.testspec.model.TestStep}.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -193,9 +194,9 @@ public interface LogicalTestCase extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Test Step</em>' containment reference list.
+	 * @return the value of the '<em>Test Step</em>' reference list.
 	 * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase_TestStep()
-	 * @model containment="true"
+	 * @model
 	 * @generated
 	 */
 	EList<TestStep> getTestStep();

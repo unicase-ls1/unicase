@@ -6,6 +6,7 @@
  */
 package org.unicase.testspec.model;
 
+import org.unicase.model.ModelElement;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -25,7 +26,7 @@ import org.eclipse.emf.ecore.EObject;
  * @model
  * @generated
  */
-public interface ConcreteParameter extends EObject {
+public interface ConcreteParameter extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->

@@ -354,7 +354,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameter_Name() {
+	public EAttribute getParameter_Type() {
 		return (EAttribute)parameterEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -363,17 +363,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getParameter_Type() {
-		return (EAttribute)parameterEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getParameter_Range() {
-		return (EAttribute)parameterEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)parameterEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -499,7 +490,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEReference(concreteParameterEClass, CONCRETE_PARAMETER__PARAMETER);
 
 		parameterEClass = createEClass(PARAMETER);
-		createEAttribute(parameterEClass, PARAMETER__NAME);
 		createEAttribute(parameterEClass, PARAMETER__TYPE);
 		createEAttribute(parameterEClass, PARAMETER__RANGE);
 
@@ -551,6 +541,10 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		// Add supertypes to classes
 		testProtocolEClass.getESuperTypes().add(theModelPackage_1.getModelElement());
+		logicalTestCaseEClass.getESuperTypes().add(theModelPackage_1.getModelElement());
+		concreteParameterEClass.getESuperTypes().add(theModelPackage_1.getModelElement());
+		parameterEClass.getESuperTypes().add(theModelPackage_1.getModelElement());
+		testStepEClass.getESuperTypes().add(theModelPackage_1.getModelElement());
 		inputParameterEClass.getESuperTypes().add(this.getParameter());
 		outputParameterEClass.getESuperTypes().add(this.getParameter());
 
@@ -569,7 +563,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEAttribute(getLogicalTestCase_Postcondition(), theEcorePackage.getEString(), "postcondition", "", 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLogicalTestCase_Infrastructure(), theEcorePackage.getEString(), "infrastructure", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLogicalTestCase_TestProtocol(), this.getTestProtocol(), null, "testProtocol", null, 0, -1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLogicalTestCase_TestStep(), this.getTestStep(), null, "testStep", null, 0, -1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLogicalTestCase_TestStep(), this.getTestStep(), null, "testStep", null, 0, -1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLogicalTestCase_NonFunctionalRequirement(), theRequirementPackage.getNonFunctionalRequirement(), null, "nonFunctionalRequirement", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLogicalTestCase_FunctionalRequirement(), theRequirementPackage.getFunctionalRequirement(), null, "functionalRequirement", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -577,14 +571,13 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEAttribute(getConcreteParameter_Value(), theEcorePackage.getEString(), "value", null, 0, 1, ConcreteParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getConcreteParameter_Parameter(), this.getParameter(), null, "parameter", null, 0, 1, ConcreteParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(parameterEClass, Parameter.class, "Parameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getParameter_Name(), theEcorePackage.getEString(), "name", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(parameterEClass, Parameter.class, "Parameter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParameter_Type(), theEcorePackage.getEString(), "type", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getParameter_Range(), theEcorePackage.getEString(), "range", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(testStepEClass, TestStep.class, "TestStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestStep_Exception(), theEcorePackage.getEString(), "exception", null, 0, 1, TestStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestStep_OutputParameter(), this.getOutputParameter(), null, "outputParameter", null, 0, -1, TestStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestStep_OutputParameter(), this.getOutputParameter(), null, "outputParameter", null, 0, -1, TestStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestStep_Inputparameter(), this.getInputParameter(), null, "inputparameter", null, 0, -1, TestStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(inputParameterEClass, InputParameter.class, "InputParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

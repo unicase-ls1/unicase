@@ -20,8 +20,10 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
+import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.testspec.model.InputParameter;
 import org.unicase.testspec.model.ModelPackage;
 import org.unicase.testspec.model.OutputParameter;
@@ -42,7 +44,7 @@ import org.unicase.testspec.model.TestStep;
  *
  * @generated
  */
-public class TestStepImpl extends EObjectImpl implements TestStep {
+public class TestStepImpl extends ModelElementImpl implements TestStep {
 	/**
 	 * The default value of the '{@link #getException() <em>Exception</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -64,7 +66,7 @@ public class TestStepImpl extends EObjectImpl implements TestStep {
 	protected String exception = EXCEPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOutputParameter() <em>Output Parameter</em>}' containment reference list.
+	 * The cached value of the '{@link #getOutputParameter() <em>Output Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getOutputParameter()
@@ -130,7 +132,7 @@ public class TestStepImpl extends EObjectImpl implements TestStep {
 	 */
 	public EList<OutputParameter> getOutputParameter() {
 		if (outputParameter == null) {
-			outputParameter = new EObjectContainmentEList<OutputParameter>(OutputParameter.class, this, ModelPackage.TEST_STEP__OUTPUT_PARAMETER);
+			outputParameter = new EObjectResolvingEList<OutputParameter>(OutputParameter.class, this, ModelPackage.TEST_STEP__OUTPUT_PARAMETER);
 		}
 		return outputParameter;
 	}
@@ -155,8 +157,6 @@ public class TestStepImpl extends EObjectImpl implements TestStep {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ModelPackage.TEST_STEP__OUTPUT_PARAMETER:
-				return ((InternalEList<?>)getOutputParameter()).basicRemove(otherEnd, msgs);
 			case ModelPackage.TEST_STEP__INPUTPARAMETER:
 				return ((InternalEList<?>)getInputparameter()).basicRemove(otherEnd, msgs);
 		}

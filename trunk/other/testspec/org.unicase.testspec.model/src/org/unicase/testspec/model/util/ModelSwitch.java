@@ -101,24 +101,32 @@ public class ModelSwitch<T> {
 			case ModelPackage.LOGICAL_TEST_CASE: {
 				LogicalTestCase logicalTestCase = (LogicalTestCase)theEObject;
 				T result = caseLogicalTestCase(logicalTestCase);
+				if (result == null) result = caseModelElement(logicalTestCase);
+				if (result == null) result = caseIdentifiableElement(logicalTestCase);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ModelPackage.CONCRETE_PARAMETER: {
 				ConcreteParameter concreteParameter = (ConcreteParameter)theEObject;
 				T result = caseConcreteParameter(concreteParameter);
+				if (result == null) result = caseModelElement(concreteParameter);
+				if (result == null) result = caseIdentifiableElement(concreteParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ModelPackage.PARAMETER: {
 				Parameter parameter = (Parameter)theEObject;
 				T result = caseParameter(parameter);
+				if (result == null) result = caseModelElement(parameter);
+				if (result == null) result = caseIdentifiableElement(parameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
 			case ModelPackage.TEST_STEP: {
 				TestStep testStep = (TestStep)theEObject;
 				T result = caseTestStep(testStep);
+				if (result == null) result = caseModelElement(testStep);
+				if (result == null) result = caseIdentifiableElement(testStep);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -126,6 +134,8 @@ public class ModelSwitch<T> {
 				InputParameter inputParameter = (InputParameter)theEObject;
 				T result = caseInputParameter(inputParameter);
 				if (result == null) result = caseParameter(inputParameter);
+				if (result == null) result = caseModelElement(inputParameter);
+				if (result == null) result = caseIdentifiableElement(inputParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -133,6 +143,8 @@ public class ModelSwitch<T> {
 				OutputParameter outputParameter = (OutputParameter)theEObject;
 				T result = caseOutputParameter(outputParameter);
 				if (result == null) result = caseParameter(outputParameter);
+				if (result == null) result = caseModelElement(outputParameter);
+				if (result == null) result = caseIdentifiableElement(outputParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}

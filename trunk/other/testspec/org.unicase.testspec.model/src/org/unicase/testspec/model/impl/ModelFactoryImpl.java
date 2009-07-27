@@ -64,7 +64,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 			case ModelPackage.TEST_PROTOCOL: return createTestProtocol();
 			case ModelPackage.LOGICAL_TEST_CASE: return createLogicalTestCase();
 			case ModelPackage.CONCRETE_PARAMETER: return createConcreteParameter();
-			case ModelPackage.PARAMETER: return createParameter();
 			case ModelPackage.TEST_STEP: return createTestStep();
 			case ModelPackage.INPUT_PARAMETER: return createInputParameter();
 			case ModelPackage.OUTPUT_PARAMETER: return createOutputParameter();
@@ -135,16 +134,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public ConcreteParameter createConcreteParameter() {
 		ConcreteParameterImpl concreteParameter = new ConcreteParameterImpl();
 		return concreteParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public Parameter createParameter() {
-		ParameterImpl parameter = new ParameterImpl();
-		return parameter;
 	}
 
 	/**
