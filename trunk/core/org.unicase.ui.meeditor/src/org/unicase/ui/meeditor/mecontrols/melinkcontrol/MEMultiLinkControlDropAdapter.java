@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -22,8 +24,6 @@ import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
-
-import java.util.List;
 
 /**
  * @author Hodaie
@@ -176,7 +176,6 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 
 		// do not drop an element on itself
 		if (target == dropee) {
-			event.detail = DND.DROP_NONE;
 			return false;
 		}
 
@@ -186,21 +185,23 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 		// lost
 		// (this creates an island)
 		if (EcoreUtil.isAncestor(dropee, target)) {
-			event.detail = DND.DROP_NONE;
 			return false;
 		}
 
+		// only project admins are allowed to change document structure
 		ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(target);
 		Usersession userSession = projectSpace.getUsersession();
 		if (dropee instanceof Section && !UnicaseUiUtil.isProjectAdmin(userSession, projectSpace)) {
-			event.detail = DND.DROP_NONE;
 			return false;
 		}
 
+		// for the case of multi selection (not implemented yet) only allow drop, if all droppees come from the same
+		// container
 		if (!haveSameEContainer(source)) {
 			return false;
 		}
 
+		// drop only allowed elements
 		if (!reference.getEReferenceType().isSuperTypeOf(dropee.eClass())) {
 			return false;
 		}
