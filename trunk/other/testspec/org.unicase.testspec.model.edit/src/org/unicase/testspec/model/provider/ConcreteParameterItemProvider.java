@@ -26,6 +26,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.testspec.model.ConcreteParameter;
 import org.unicase.testspec.model.ModelPackage;
 
@@ -36,7 +37,7 @@ import org.unicase.testspec.model.ModelPackage;
  * @generated
  */
 public class ConcreteParameterItemProvider
-	extends ItemProviderAdapter
+	extends ModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -133,7 +134,7 @@ public class ConcreteParameterItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ConcreteParameter)object).getValue();
+		String label = ((ConcreteParameter)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ConcreteParameter_type") :
 			getString("_UI_ConcreteParameter_type") + " " + label;
