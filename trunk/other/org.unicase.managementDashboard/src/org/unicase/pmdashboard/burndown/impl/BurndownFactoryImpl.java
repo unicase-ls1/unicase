@@ -1,8 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- * 
- *
- * $Id$
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.pmdashboard.burndown.impl;
 
@@ -13,8 +12,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-
-import org.unicase.pmdashboard.burndown.*;
+import org.unicase.pmdashboard.burndown.BurndownData;
+import org.unicase.pmdashboard.burndown.BurndownDay;
+import org.unicase.pmdashboard.burndown.BurndownFactory;
+import org.unicase.pmdashboard.burndown.BurndownPackage;
 
 /**
  * <!-- begin-user-doc -->
