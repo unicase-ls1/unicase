@@ -147,6 +147,7 @@ public final class BurndownDataGenerator {
 		TimeIterator steps = this.getTimeIterator(target);
 		WorkPackage workPackage = sprintAsWorkPackage(target);
 		
+		// TODO don't generate the already stored days
 		Calendar currentDate = Calendar.getInstance();
 		currentDate.setTime(workPackage.getStartDate());
 		
