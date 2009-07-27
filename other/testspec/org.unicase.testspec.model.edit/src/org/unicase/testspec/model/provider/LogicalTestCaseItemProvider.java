@@ -28,6 +28,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.testspec.model.LogicalTestCase;
 import org.unicase.testspec.model.ModelFactory;
 import org.unicase.testspec.model.ModelPackage;
@@ -39,7 +40,7 @@ import org.unicase.testspec.model.ModelPackage;
  * @generated
  */
 public class LogicalTestCaseItemProvider
-	extends ItemProviderAdapter
+	extends ModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -304,7 +305,7 @@ public class LogicalTestCaseItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LogicalTestCase)object).getTcDescription();
+		String label = ((LogicalTestCase)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_LogicalTestCase_type") :
 			getString("_UI_LogicalTestCase_type") + " " + label;

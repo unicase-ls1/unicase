@@ -28,6 +28,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.testspec.model.ModelFactory;
 import org.unicase.testspec.model.ModelPackage;
 import org.unicase.testspec.model.TestStep;
@@ -39,7 +40,7 @@ import org.unicase.testspec.model.TestStep;
  * @generated
  */
 public class TestStepItemProvider
-	extends ItemProviderAdapter
+	extends ModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
@@ -144,7 +145,7 @@ public class TestStepItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TestStep)object).getException();
+		String label = ((TestStep)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_TestStep_type") :
 			getString("_UI_TestStep_type") + " " + label;
