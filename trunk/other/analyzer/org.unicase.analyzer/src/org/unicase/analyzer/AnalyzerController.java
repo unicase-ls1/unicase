@@ -46,9 +46,7 @@ public class AnalyzerController {
 		
 		//flag is used for switching different ways of exporting, depends on different analyzers
 		DataAnalyzer analyzer = analyzers.get(0);
-			if(analyzer instanceof DetectionAnalyzer){
-				this.flag = 1;
-			}else if(analyzer instanceof TwoDDataAnalyzer){
+			if(analyzer instanceof TwoDDataAnalyzer){
 				this.flag = 2;
 			}else if(analyzer instanceof DataAnalyzer){
 				this.flag = 3;
@@ -69,34 +67,32 @@ public class AnalyzerController {
 	private void runAnalysis(Exporter exporter) throws IOException {
 		writeHeader(exporter);
 		switch(flag){
-		case 1:
-			ArrayList<Object> line = new ArrayList<Object>();
+		case 2:
+			List<List<Object>> lines = new ArrayList<List<Object>>();
+			ProjectAnalysisData data = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
 			while(projectIterator.hasNext()) {
-				ProjectAnalysisData data = projectIterator.next();
-				line.clear();
+				data = projectIterator.next();
+				lines.clear();
 				for(DataAnalyzer analyzer : analyzers) {
+					if(analyzer.isExportOnce()){
 					DetectionAnalyzer detectionAnalyzer = (DetectionAnalyzer)analyzer;
 					detectionAnalyzer.analyzeData(data, projectIterator);
+					}else{
+						lines = ((TwoDDataAnalyzer)analyzer).get2DValue(data, projectIterator);
+						exporter.export(lines);
+					}
 				}
 			}
 			for(DataAnalyzer analyzer : analyzers) {
-				if(analyzer instanceof DetectionAnalyzer){
-					((DetectionAnalyzer) analyzer).runAnalysis(exporter);
-				}
-			}return;
-		case 2:
-			List<List<Object>> lines = new ArrayList<List<Object>>();
-			while(projectIterator.hasNext()) {
-				ProjectAnalysisData data = projectIterator.next();
-				for(DataAnalyzer analyzer : analyzers) {
-					lines = ((TwoDDataAnalyzer)analyzer).get2DValue(data, projectIterator);
+				if(analyzer.isExportOnce()){
+					lines = ((DetectionAnalyzer) analyzer).get2DValue(data, projectIterator);
 					exporter.export(lines);
 				}
 			}return;
 		case 3:
-			line = new ArrayList<Object>();
+			List<Object> line = new ArrayList<Object>();
 			while(projectIterator.hasNext()) {
-				ProjectAnalysisData data = projectIterator.next();
+				data = projectIterator.next();
 				line.clear();
 				for(DataAnalyzer analyzer : analyzers) {
 					for(Object obj : analyzer.getValue(data)) {

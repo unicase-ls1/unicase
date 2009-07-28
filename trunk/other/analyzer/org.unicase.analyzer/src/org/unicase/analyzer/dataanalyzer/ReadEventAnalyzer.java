@@ -120,5 +120,14 @@ public class ReadEventAnalyzer implements DataAnalyzer {
 		}
 		exporter.writeLine(line);
 	}
+	
+	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
+	 */
+	public boolean isExportOnce() {
+		return false;
+	}
 
 }

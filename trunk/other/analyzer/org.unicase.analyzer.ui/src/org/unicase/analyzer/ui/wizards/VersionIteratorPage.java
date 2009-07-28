@@ -7,9 +7,14 @@
 package org.unicase.analyzer.ui.wizards;
 
 
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
+import org.eclipse.emf.databinding.edit.EMFEditObservables;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -52,6 +57,8 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 	private Button forwardButton;
 	private Button backwardButton;
 	private Button returnCopyButton;
+	
+	private VersionIterator versionIterator;
 	/**
 	 * @param pageName Name of the page
 	 */
@@ -60,12 +67,14 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
 		canFlipToNextPage = false;
+		versionIterator = IteratorFactory.eINSTANCE.createVersionIterator();
 	}
 
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
+	@SuppressWarnings("cast")
 	public void createControl(Composite parent) {
 		GridData gd;
 		Composite composite = new Composite(parent, SWT.NULL);
@@ -80,9 +89,18 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		stepText = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		stepText.setLayoutData(gd);
-		if(conf.getIterator() != null){
-			stepText.setText(Integer.toString(conf.getIterator().getStepLength()));
+		EAttribute attribute = null;
+		for(int i=0; i<versionIterator.eClass().getEAllAttributes().size(); i++){
+			if(versionIterator.eClass().getEAllAttributes().get(i).getName().equals("stepLength")){
+				attribute = versionIterator.eClass().getEAllAttributes().get(i);
+			}
 		}
+		IObservableValue model = EMFEditObservables.observeValue(((ProjectAnalyzerWizard) getWizard()).getDomain(),versionIterator, attribute);
+		EMFDataBindingContext dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeText(stepText, SWT.FocusOut), model, null, null);
+//		if(conf.getIterator() != null){
+//			stepText.setText(Integer.toString(conf.getIterator().getStepLength()));
+//		}
 		stepText.addListener(SWT.KeyUp, this);
 		
 		 
@@ -210,10 +228,10 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 		.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
 			@Override
 			protected void doExecute() {
 				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
-				VersionIterator versionIterator = IteratorFactory.eINSTANCE.createVersionIterator();
 				
 				versionIterator.setProjectId(wizard.getSelectedProjectID());
 				versionIterator.setStepLength(Integer.valueOf(stepText.getText()));
@@ -232,7 +250,8 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 					versionIterator.setReturnProjectDataCopy(returnCopyButton.getSelection());
 				}
 				wizard.setVersionIterator(versionIterator);
-				wizard.getAnalyzerConfig().setIterator((VersionIterator)EcoreUtil.copy(versionIterator));
+				wizard.getAnalyzerConfig().setIterator(versionIterator);
+				//wizard.getAnalyzerConfig().setIterator((VersionIterator)EcoreUtil.copy(versionIterator));
 				
 			}
 		});

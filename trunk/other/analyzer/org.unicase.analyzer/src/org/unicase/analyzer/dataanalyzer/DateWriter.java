@@ -81,4 +81,13 @@ public class DateWriter implements DataAnalyzer {
 		}
 	}
 
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
+	 */
+	public boolean isExportOnce() {
+		return false;
+	}
+
 }

@@ -34,4 +34,9 @@ public interface DataAnalyzer extends EObject {
 	 * @return the names of the columns
 	 */
 	List<String> getName();
+	
+	/**
+	 * @return true if just export once
+	 */
+	boolean isExportOnce();
 } // DataAnalyzer

@@ -47,6 +47,9 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 
 	
 	private static final String PATH = Configuration.getPluginDataBaseDirectory() + "analyzerProfile.conf";
+	private static final String DOMAIN_ID = "org.unicase.EditingDomain";
+	private TransactionalEditingDomain domain;
+	private Resource resource;
 	private boolean canFinish;
 	private boolean loggedIn;
 	private IteratorPage iteratorPage;
@@ -69,15 +72,21 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		// pass to AnalyzerController
-		try {
-			versionIterator.init(selectedUsersession);
-			@SuppressWarnings("unused")
-			AnalyzerModelController analyzerController = new AnalyzerModelController(versionIterator, analyzers, exporter);
-			
-		} catch (IteratorException e1) {
-			e1.printStackTrace();
-		}
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+			// pass to AnalyzerController
+				try {
+					versionIterator.init(selectedUsersession);
+					@SuppressWarnings("unused")
+					AnalyzerModelController analyzerController = new AnalyzerModelController(versionIterator, analyzers, exporter);
+
+				} catch (IteratorException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}); 
 		
 		
 		try {
@@ -128,14 +137,15 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 //		TransactionalEditingDomain.Registry.INSTANCE.add("org.unicase.EditingDomain", domain);
 //		domain.setID("org.unicase.EditingDomain");
     	PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+
 			public void run() {
-				TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(
-						"org.unicase.EditingDomain");
+				
+				domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(
+						DOMAIN_ID);
 		
 				URI fileURI = URI.createFileURI(PATH);
 				File analyzerFile = new File(PATH);
 		
-				final Resource resource;
 				if(!analyzerFile.exists()){
 					
 					resource = domain.getResourceSet().createResource(fileURI);
@@ -146,11 +156,11 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 							resource.getContents().add(analyzerConfig);
 						}
 					});
-//					try {
-//						resource.save(null);
-//					} catch (IOException e) {
-//						WorkspaceUtil.log("Could not save the resource!", e, IStatus.WARNING);
-//					}
+					try {
+						resource.save(null);
+					} catch (IOException e) {
+						WorkspaceUtil.log("Could not save the resource!", e, IStatus.WARNING);
+					}
 				}else{
 					
 					resource = domain.getResourceSet().getResource(fileURI, true);
@@ -310,6 +320,34 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	public void setSelectedProjectID(ProjectId selectedProjectID) {
 		this.selectedProjectID = selectedProjectID;
+	}
+
+	/**
+	 * @return the resource
+	 */
+	public Resource getResource() {
+		return resource;
+	}
+
+	/**
+	 * @param resource the resource to set
+	 */
+	public void setResource(Resource resource) {
+		this.resource = resource;
+	}
+
+	/**
+	 * @return the domain
+	 */
+	public TransactionalEditingDomain getDomain() {
+		return domain;
+	}
+
+	/**
+	 * @param domain the domain to set
+	 */
+	public void setDomain(TransactionalEditingDomain domain) {
+		this.domain = domain;
 	}
 
 

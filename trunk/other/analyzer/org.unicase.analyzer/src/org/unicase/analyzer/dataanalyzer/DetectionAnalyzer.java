@@ -5,7 +5,6 @@
  */
 package org.unicase.analyzer.dataanalyzer;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -16,7 +15,6 @@ import java.util.NoSuchElementException;
 import org.eclipse.emf.common.util.BasicEList;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.VersionIterator;
-import org.unicase.analyzer.exporter.Exporter;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -40,7 +38,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author liya
  *
  */
-public class DetectionAnalyzer implements DataAnalyzer {
+public class DetectionAnalyzer implements TwoDDataAnalyzer {
 
 	private List<String> users;
 	private List<Date> update;
@@ -54,7 +52,6 @@ public class DetectionAnalyzer implements DataAnalyzer {
 	 * Constructor of DetectionAnalyzer. A special analyzer for detecting the 
 	 * update time and read time for each user, after a modelElement has been modified.
 	 * @param funcRequirement given FunctionalRequirement for detecting.
-	 * @param it VersionIterator.
 	 */
 	public DetectionAnalyzer(String funcRequirement, VersionIterator it){
 		
@@ -65,27 +62,8 @@ public class DetectionAnalyzer implements DataAnalyzer {
 		this.view = new ArrayList<String>();
 		this.diff = new ArrayList<Date>();
 		
-		List<User> userElist = new ArrayList<User>();
-		try {
-			Project project = it.getConnectionManager().getProject(it.getUsersession().getSessionId(), it.getProjectId(), VersioningFactory.eINSTANCE.createHeadVersionSpec());
-			userElist = project.getAllModelElementsbyClass(OrganizationFactory.eINSTANCE.createUser().eClass(), new BasicEList<User>());
-			for(User user : userElist){
-				this.users.add(user.getName());
-			}
-		} catch (EmfStoreException e) {
-			String message = "Could not get changes from server";
-			WorkspaceUtil.logException(message, e);
-			throw new NoSuchElementException(message + ":\n" + e);
-		}
+		getUsers(it);
 		
-		for(int i=0; i<users.size();i++){
-			update.add(null);
-			read.add(null);
-			view.add(null);
-			diff.add(null);
-		}
-		
-	
 	}
 	/**
 	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
@@ -101,13 +79,28 @@ public class DetectionAnalyzer implements DataAnalyzer {
 		return names;
 	}
 
-	/**
-	 * @param data {@link ProjectAnalysisData}
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
-	 */
-	public List<Object> getValue(ProjectAnalysisData data) {
-		List<Object> values = this.getValue();
-		return values;
+	private void getUsers(VersionIterator it){
+		
+		List<User> userList = new ArrayList<User>();
+		try {
+			Project project = it.getConnectionManager().getProject(it.getUsersession().getSessionId(), it.getProjectId(), VersioningFactory.eINSTANCE.createHeadVersionSpec());
+			userList = project.getAllModelElementsbyClass(OrganizationFactory.eINSTANCE.createUser().eClass(), new BasicEList<User>());
+			for(User user : userList){
+				this.users.add(user.getName());
+			}
+		} catch (EmfStoreException e) {
+			String message = "Could not get changes from server";
+			WorkspaceUtil.logException(message, e);
+			throw new NoSuchElementException(message + ":\n" + e);
+		}
+		
+		for(int i=0; i<users.size();i++){
+			update.add(null);
+			read.add(null);
+			view.add(null);
+			diff.add(null);
+		}
+		
 	}
 
 	/**
@@ -116,7 +109,7 @@ public class DetectionAnalyzer implements DataAnalyzer {
 	 * @param it VersionIterator
 	 */
 	public void analyzeData(ProjectAnalysisData data, VersionIterator it){
-		
+
 		Map<ModelElementId, Date> meIdMap = null;//Map for the ModelElement candidates
 		
 		for(ChangePackage change : data.getChangePackages()){
@@ -200,56 +193,56 @@ public class DetectionAnalyzer implements DataAnalyzer {
 			diff.set(index, diffDate);
 		}
 	}
-	/**
-	 * Export the analysis result to the given exporter.
-	 * @param exporter Exporter
-	 * @throws IOException @see {@link IOException}
-	 */
-	public void runAnalysis(Exporter exporter) throws IOException {
-		
-		List<Object> values =  getValue();
-		int columnsNumber = getName().size();
-		int linesNumber = values.size()/columnsNumber;
-		
-		for(int i = 0; i < linesNumber; i++){
-			List<Object> line = new ArrayList<Object>();
-			for(int j = 0; j < columnsNumber; j++){
-				line.add(values.get(i*columnsNumber+j));
-			}
-			exporter.writeLine(line);
-		}
-	}
 	
-	// Store the 2 dimensional table as an 1 dimensional array
-	private List<Object> getValue() {
-		List<Object> values = new ArrayList<Object>();
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.dataanalyzer.TwoDDataAnalyzer#get2DValue(org.unicase.analyzer.ProjectAnalysisData, org.unicase.analyzer.VersionIterator)
+	 */
+	public List<List<Object>> get2DValue(ProjectAnalysisData data, VersionIterator it) {
+		List<List<Object>> values = new ArrayList<List<Object>>();	
 
 		for(String user : users){
+			List<Object> line = new ArrayList<Object>();
 			int index = users.indexOf(user);
 					
-			values.add(user);
+			line.add(user);
 			if(update.get(index) != null){
-				values.add(update.get(index));
+				line.add(update.get(index));
 			}else{
-				values.add("-");
+				line.add("-");
 			}
 			if(read.get(index) != null){
-				values.add(read.get(index));
+				line.add(read.get(index));
 			}else{
-				values.add("-");
+				line.add("-");
 			}
 			if(view.get(index) != null){
-				values.add(view.get(index));
+				line.add(view.get(index));
 			}else{
-				values.add("-");
+				line.add("-");
 			}
 			if(diff.get(index) != null){
-				values.add(diff.get(index).getTime());
+				line.add(diff.get(index).getTime());
 			}else{
-				values.add("-");
+				line.add("-");
 			}
+			values.add(line);
 		}
 		return values;
+	}
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
+	 */
+	public List<Object> getValue(ProjectAnalysisData data) {
+		throw new UnsupportedOperationException();
+	}
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
+	 */
+	public boolean isExportOnce() {
+		return true;
 	}
 
 }

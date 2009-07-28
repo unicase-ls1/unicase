@@ -9,7 +9,6 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -23,6 +22,8 @@ import org.unicase.analyzer.dataanalyzer.DataAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporter.CSVExporter;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.model.ModelElementId;
+import org.unicase.model.Project;
 
 /**
  * @author liya
@@ -35,39 +36,39 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 	
 	/**
 	 * Define your export file name here.
+	 * @throws IOException when exporter could not 
 	 */
-	public CommitReadEventAnalyzerTest() {
+	public CommitReadEventAnalyzerTest() throws IOException {
 		super();
 		this.export = new File("Exports/export_commit.dat");
-		try {
-			this.exporter = new CSVExporter(export);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+		this.exporter = new CSVExporter(export);
+		 
 	}
 
 
 	/**
 	 * CommitReadEventAnalyzer for multiUserTest project.
+	 * @throws IOException fail to write to the exporter file
+	 * @throws IteratorException fail to run iterator on the project
 	 */
 	@Test
-	public void multiUserTest(){
+	public void multiUserTest() throws IOException, IteratorException{
 		for (ProjectInfo pI : super.getProjectList()) {			
 			if (pI.getName().contains("multi")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 1;
-				try {
-					 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength);
-					ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
-					analyzers.add(new CommitUpdateReadEventAnalyzer());
-					@SuppressWarnings("unused")
-					AnalyzerController anacontrol = new AnalyzerController(projectIt, analyzers, exporter);					
-				} catch (IteratorException e) {
-					e.printStackTrace();
-				}
+
+				VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength);
+				ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
+				analyzers.add(new CommitUpdateReadEventAnalyzer());
+				@SuppressWarnings("unused")
+				AnalyzerController anacontrol = new AnalyzerController(projectIt, analyzers, exporter);
+				String [][] elements = readExport(100, 7);
+				assertTrue(compareTruth(elements, projectIt.getCurrentState()));
+
 			}
 		}
-		assertTrue(true);
+		
 	}
 	
 	private String [][] readExport(int rowNum, int colNum) throws IOException{
@@ -76,13 +77,13 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 		File file = new File("Exports/export_commit.dat");
 	 
 		BufferedReader bufRdr  = new BufferedReader(new FileReader(file));
+
 		String line = null;
 		int row = 0;
 		int col = 0;
 	 
 		//read each line of text file
-		String readLine = bufRdr.readLine();
-		while(readLine != null && (row < rowNum))
+		while((line = bufRdr.readLine()) != null && row<rowNum)
 		{	
 			StringTokenizer st = new StringTokenizer(line,",");
 			while (st.hasMoreTokens())
@@ -96,6 +97,24 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 		}return elements;
 	}
 	
-	//private boolean compareTruth(String [][])
+	private boolean compareTruth(String [][] elements, Project project){
+		if(elements[1][1].equals("super")){
+			//super assigned all the tasks to others and did not read at the beginning
+			return false;
+		}else if(elements[1][1].equals("sugar")){
+			for(int i=1; i<100&&elements[i][0]!=null; i++){
+				if(elements[i][1].equals("sugar")){
+					for(int j=0; j<project.getAllModelElements().size(); j++){
+						ModelElementId meId = project.getAllModelElements().get(j).getModelElementId();
+						if(elements[i][0].contains(meId.getId())){
+							//sugar only read "Check needed material"
+							return project.getModelElement(meId).getName().equals("Check needed material");
+						}
+					}					
+				}
+			}
+		}
+		return false;
+	}
 	
 }

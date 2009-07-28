@@ -39,7 +39,7 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 	 */
 	public DetectionAnalyzerTest() {
 		super();
-		this.export = new File("Exports/export_SEE_test.dat");
+		this.export = new File("Exports/export_detection_test.dat");
 		try {
 			this.exporter = new CSVExporter(export);
 		} catch (IOException e) {
@@ -54,21 +54,21 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 	@Test
 	public void see01Test(){
 		for (ProjectInfo pI : super.getProjectList()) {			
-			if (pI.getName().contains("-01")) {
+			if (pI.getName().contains("multi")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 1;
 				try {
 					PrimaryVersionSpec start = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-					start.setIdentifier(16);
+					start.setIdentifier(1);
 					PrimaryVersionSpec end = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-					end.setIdentifier(25);
+					end.setIdentifier(7);
 
 					VersionSpecQuery versionSpecQuery = new VersionSpecQuery(start, end);
 
 					 VersionIterator projectIt = new VersionIterator(getUserSession(), pI.getProjectId(), stepLength,
 					 versionSpecQuery, true, false);
 					ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
-					analyzers.add(new DetectionAnalyzer("Attributes", projectIt));
+					analyzers.add(new DetectionAnalyzer("Dish type", projectIt));
 					@SuppressWarnings("unused")
 					AnalyzerController anacontrol = new AnalyzerController(projectIt, analyzers, exporter);					
 				} catch (IteratorException e) {
