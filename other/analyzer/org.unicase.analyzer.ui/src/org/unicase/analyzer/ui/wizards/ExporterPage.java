@@ -8,8 +8,12 @@ package org.unicase.analyzer.ui.wizards;
 
 import java.io.IOException;
 
+import org.eclipse.core.databinding.observable.value.IObservableValue;
+import org.eclipse.emf.databinding.EMFDataBindingContext;
+import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -21,6 +25,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.analyzer.AnalyzerConfiguration;
+import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.exporters.impl.CSVExporter;
 
 /**
@@ -33,6 +38,7 @@ public class ExporterPage extends WizardPage implements Listener {
 	private static final String PAGE_DESCRIPTION = "Choose your exporter for the analysis result.";
 	private Text exportPath;
 	private Button exporterButton;
+	private TransactionalEditingDomain editingDomain;
 
 	/**
 	 * @param pageName Name of the page
@@ -41,6 +47,7 @@ public class ExporterPage extends WizardPage implements Listener {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
+		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 	}
 
 	/** 
@@ -69,9 +76,19 @@ public class ExporterPage extends WizardPage implements Listener {
 		exportPath = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		exportPath.setLayoutData(gd);
-		if(conf.getExporterName() != null){
-			exportPath.setText(conf.getExporterName());
-		}
+		
+		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf, AnalyzerPackage.eINSTANCE.getAnalyzerConfiguration_ExporterName());
+		EMFDataBindingContext dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeText(exportPath, SWT.FocusOut), modelObservable, null, null);
+//		
+//		
+//		if(conf.getExporterName() != null){
+//			
+//			
+//			exportPath.setText(conf.getExporterName());
+//		}
+		
+		
 		exportPath.addListener(SWT.KeyUp, this);
 		
 		exporterButton = new Button(composite, SWT.PUSH);
