@@ -129,7 +129,7 @@ public class MECommentWidget extends Composite {
 		if (comment.getDescription() != null) {
 			userComment.setText(comment.getDescription());
 		}
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(userComment);
+		GridDataFactory.fillDefaults().hint(200, -1).grab(true, false).applyTo(userComment);
 
 		ImageHyperlink replyButton = new ImageHyperlink(toolbar, SWT.TOP);
 		if (comment.eContainer() != null) {

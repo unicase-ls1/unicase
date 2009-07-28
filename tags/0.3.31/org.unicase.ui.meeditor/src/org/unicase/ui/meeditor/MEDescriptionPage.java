@@ -33,6 +33,7 @@ public class MEDescriptionPage extends FormPage {
 
 	private ScrolledForm form;
 	private Composite body;
+	private MERichTextControl textControl;
 
 	/**
 	 * Default constructor.
@@ -74,11 +75,11 @@ public class MEDescriptionPage extends FormPage {
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(body);
 
 		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
-		MERichTextControl textControl = new MERichTextControl(ModelPackage.eINSTANCE.getModelElement_Description(),
-			domain, modelElement, toolkit);
+		textControl = new MERichTextControl(ModelPackage.eINSTANCE.getModelElement_Description(), domain, modelElement,
+			toolkit);
 		textControl.setShowExpand(false);
 		Control textWidget = textControl.createControl(body, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(textWidget);
+		GridDataFactory.fillDefaults().grab(true, true).hint(200, -1).applyTo(textWidget);
 	}
 
 	/**
@@ -86,6 +87,9 @@ public class MEDescriptionPage extends FormPage {
 	 */
 	@Override
 	public void dispose() {
+		if (textControl != null) {
+			textControl.dispose();
+		}
 		super.dispose();
 	}
 
