@@ -20,8 +20,8 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.testspec.model.TestStep#getException <em>Exception</em>}</li>
- *   <li>{@link org.unicase.testspec.model.TestStep#getOutputParameter <em>Output Parameter</em>}</li>
- *   <li>{@link org.unicase.testspec.model.TestStep#getInputparameter <em>Inputparameter</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestStep#getInputParameter <em>Input Parameter</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestStep#getOutputParamter <em>Output Paramter</em>}</li>
  * </ul>
  * </p>
  *
@@ -57,35 +57,35 @@ public interface TestStep extends ModelElement {
 	void setException(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Output Parameter</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.testspec.model.OutputParameter}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Output Parameter</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Output Parameter</em>' reference list.
-	 * @see org.unicase.testspec.model.ModelPackage#getTestStep_OutputParameter()
-	 * @model
-	 * @generated
-	 */
-	EList<OutputParameter> getOutputParameter();
-
-	/**
-	 * Returns the value of the '<em><b>Inputparameter</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Input Parameter</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.testspec.model.InputParameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Inputparameter</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Input Parameter</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Inputparameter</em>' containment reference list.
-	 * @see org.unicase.testspec.model.ModelPackage#getTestStep_Inputparameter()
-	 * @model containment="true"
+	 * @return the value of the '<em>Input Parameter</em>' reference list.
+	 * @see org.unicase.testspec.model.ModelPackage#getTestStep_InputParameter()
+	 * @model
 	 * @generated
 	 */
-	EList<InputParameter> getInputparameter();
+	EList<InputParameter> getInputParameter();
+
+	/**
+	 * Returns the value of the '<em><b>Output Paramter</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.testspec.model.OutputParameter}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Output Paramter</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Output Paramter</em>' reference list.
+	 * @see org.unicase.testspec.model.ModelPackage#getTestStep_OutputParamter()
+	 * @model
+	 * @generated
+	 */
+	EList<OutputParameter> getOutputParamter();
 
 } // TestStep

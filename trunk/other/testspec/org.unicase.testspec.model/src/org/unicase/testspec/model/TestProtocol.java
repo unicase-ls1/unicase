@@ -20,9 +20,9 @@ import org.unicase.model.ModelElement;
  * <ul>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestReport <em>Test Report</em>}</li>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestDescription <em>Test Description</em>}</li>
- *   <li>{@link org.unicase.testspec.model.TestProtocol#getLocalTestCases <em>Local Test Cases</em>}</li>
- *   <li>{@link org.unicase.testspec.model.TestProtocol#getConcreteParameter <em>Concrete Parameter</em>}</li>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestState <em>Test State</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestProtocol#getConcreteParamter <em>Concrete Paramter</em>}</li>
  * </ul>
  * </p>
  *
@@ -84,46 +84,46 @@ public interface TestProtocol extends ModelElement {
 	void setTestDescription(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Local Test Cases</b></em>' containment reference.
+	 * Returns the value of the '<em><b>Test Case</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Local Test Cases</em>' containment reference isn't clear,
+	 * If the meaning of the '<em>Test Case</em>' reference isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Local Test Cases</em>' containment reference.
-	 * @see #setLocalTestCases(LogicalTestCase)
-	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_LocalTestCases()
+	 * @return the value of the '<em>Test Case</em>' containment reference.
+	 * @see #setTestCase(LogicalTestCase)
+	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_TestCase()
 	 * @model containment="true"
 	 * @generated
 	 */
-	LogicalTestCase getLocalTestCases();
+	LogicalTestCase getTestCase();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.testspec.model.TestProtocol#getLocalTestCases <em>Local Test Cases</em>}' containment reference.
+	 * Sets the value of the '{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Local Test Cases</em>' containment reference.
-	 * @see #getLocalTestCases()
+	 * @param value the new value of the '<em>Test Case</em>' containment reference.
+	 * @see #getTestCase()
 	 * @generated
 	 */
-	void setLocalTestCases(LogicalTestCase value);
+	void setTestCase(LogicalTestCase value);
 
 	/**
-	 * Returns the value of the '<em><b>Concrete Parameter</b></em>' containment reference list.
+	 * Returns the value of the '<em><b>Concrete Paramter</b></em>' reference list.
 	 * The list contents are of type {@link org.unicase.testspec.model.ConcreteParameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Concrete Parameter</em>' containment reference list isn't clear,
+	 * If the meaning of the '<em>Concrete Paramter</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Concrete Parameter</em>' containment reference list.
-	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_ConcreteParameter()
-	 * @model containment="true"
+	 * @return the value of the '<em>Concrete Paramter</em>' reference list.
+	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_ConcreteParamter()
+	 * @model
 	 * @generated
 	 */
-	EList<ConcreteParameter> getConcreteParameter();
+	EList<ConcreteParameter> getConcreteParamter();
 
 	/**
 	 * Returns the value of the '<em><b>Test State</b></em>' attribute.

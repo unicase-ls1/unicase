@@ -37,8 +37,8 @@ import org.unicase.testspec.model.TestStep;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.testspec.model.impl.TestStepImpl#getException <em>Exception</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.TestStepImpl#getOutputParameter <em>Output Parameter</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.TestStepImpl#getInputparameter <em>Inputparameter</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestStepImpl#getInputParameter <em>Input Parameter</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestStepImpl#getOutputParamter <em>Output Paramter</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,24 +66,24 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 	protected String exception = EXCEPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getOutputParameter() <em>Output Parameter</em>}' reference list.
+	 * The cached value of the '{@link #getInputParameter() <em>Input Parameter</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getOutputParameter()
+	 * @see #getInputParameter()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<OutputParameter> outputParameter;
+	protected EList<InputParameter> inputParameter;
 
 	/**
-	 * The cached value of the '{@link #getInputparameter() <em>Inputparameter</em>}' containment reference list.
+	 * The cached value of the '{@link #getOutputParamter() <em>Output Paramter</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getInputparameter()
+	 * @see #getOutputParamter()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<InputParameter> inputparameter;
+	protected EList<OutputParameter> outputParamter;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -130,11 +130,11 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<OutputParameter> getOutputParameter() {
-		if (outputParameter == null) {
-			outputParameter = new EObjectResolvingEList<OutputParameter>(OutputParameter.class, this, ModelPackage.TEST_STEP__OUTPUT_PARAMETER);
+	public EList<InputParameter> getInputParameter() {
+		if (inputParameter == null) {
+			inputParameter = new EObjectResolvingEList<InputParameter>(InputParameter.class, this, ModelPackage.TEST_STEP__INPUT_PARAMETER);
 		}
-		return outputParameter;
+		return inputParameter;
 	}
 
 	/**
@@ -142,25 +142,11 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<InputParameter> getInputparameter() {
-		if (inputparameter == null) {
-			inputparameter = new EObjectContainmentEList<InputParameter>(InputParameter.class, this, ModelPackage.TEST_STEP__INPUTPARAMETER);
+	public EList<OutputParameter> getOutputParamter() {
+		if (outputParamter == null) {
+			outputParamter = new EObjectResolvingEList<OutputParameter>(OutputParameter.class, this, ModelPackage.TEST_STEP__OUTPUT_PARAMTER);
 		}
-		return inputparameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelPackage.TEST_STEP__INPUTPARAMETER:
-				return ((InternalEList<?>)getInputparameter()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
+		return outputParamter;
 	}
 
 	/**
@@ -173,10 +159,10 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 		switch (featureID) {
 			case ModelPackage.TEST_STEP__EXCEPTION:
 				return getException();
-			case ModelPackage.TEST_STEP__OUTPUT_PARAMETER:
-				return getOutputParameter();
-			case ModelPackage.TEST_STEP__INPUTPARAMETER:
-				return getInputparameter();
+			case ModelPackage.TEST_STEP__INPUT_PARAMETER:
+				return getInputParameter();
+			case ModelPackage.TEST_STEP__OUTPUT_PARAMTER:
+				return getOutputParamter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -193,13 +179,13 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 			case ModelPackage.TEST_STEP__EXCEPTION:
 				setException((String)newValue);
 				return;
-			case ModelPackage.TEST_STEP__OUTPUT_PARAMETER:
-				getOutputParameter().clear();
-				getOutputParameter().addAll((Collection<? extends OutputParameter>)newValue);
+			case ModelPackage.TEST_STEP__INPUT_PARAMETER:
+				getInputParameter().clear();
+				getInputParameter().addAll((Collection<? extends InputParameter>)newValue);
 				return;
-			case ModelPackage.TEST_STEP__INPUTPARAMETER:
-				getInputparameter().clear();
-				getInputparameter().addAll((Collection<? extends InputParameter>)newValue);
+			case ModelPackage.TEST_STEP__OUTPUT_PARAMTER:
+				getOutputParamter().clear();
+				getOutputParamter().addAll((Collection<? extends OutputParameter>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -216,11 +202,11 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 			case ModelPackage.TEST_STEP__EXCEPTION:
 				setException(EXCEPTION_EDEFAULT);
 				return;
-			case ModelPackage.TEST_STEP__OUTPUT_PARAMETER:
-				getOutputParameter().clear();
+			case ModelPackage.TEST_STEP__INPUT_PARAMETER:
+				getInputParameter().clear();
 				return;
-			case ModelPackage.TEST_STEP__INPUTPARAMETER:
-				getInputparameter().clear();
+			case ModelPackage.TEST_STEP__OUTPUT_PARAMTER:
+				getOutputParamter().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -236,10 +222,10 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 		switch (featureID) {
 			case ModelPackage.TEST_STEP__EXCEPTION:
 				return EXCEPTION_EDEFAULT == null ? exception != null : !EXCEPTION_EDEFAULT.equals(exception);
-			case ModelPackage.TEST_STEP__OUTPUT_PARAMETER:
-				return outputParameter != null && !outputParameter.isEmpty();
-			case ModelPackage.TEST_STEP__INPUTPARAMETER:
-				return inputparameter != null && !inputparameter.isEmpty();
+			case ModelPackage.TEST_STEP__INPUT_PARAMETER:
+				return inputParameter != null && !inputParameter.isEmpty();
+			case ModelPackage.TEST_STEP__OUTPUT_PARAMTER:
+				return outputParamter != null && !outputParamter.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

@@ -197,31 +197,31 @@ public interface ModelPackage extends EPackage {
 	int TEST_PROTOCOL__TEST_DESCRIPTION = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Local Test Cases</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEST_PROTOCOL__LOCAL_TEST_CASES = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Concrete Parameter</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEST_PROTOCOL__CONCRETE_PARAMETER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
 	 * The feature id for the '<em><b>Test State</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_PROTOCOL__TEST_STATE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int TEST_PROTOCOL__TEST_STATE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Test Case</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_PROTOCOL__TEST_CASE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Concrete Paramter</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_PROTOCOL__CONCRETE_PARAMTER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Test Protocol</em>' class.
@@ -396,31 +396,13 @@ public interface ModelPackage extends EPackage {
 	int LOGICAL_TEST_CASE__INFRASTRUCTURE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The feature id for the '<em><b>Test Protocol</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOGICAL_TEST_CASE__TEST_PROTOCOL = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
-
-	/**
-	 * The feature id for the '<em><b>Test Step</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOGICAL_TEST_CASE__TEST_STEP = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
-
-	/**
 	 * The feature id for the '<em><b>Non Functional Requirement</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Functional Requirement</b></em>' reference.
@@ -429,7 +411,16 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+	int LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Test Step</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOGICAL_TEST_CASE__TEST_STEP = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Logical Test Case</em>' class.
@@ -438,7 +429,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 9;
+	int LOGICAL_TEST_CASE_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.testspec.model.impl.ConcreteParameterImpl <em>Concrete Parameter</em>}' class.
@@ -858,22 +849,22 @@ public interface ModelPackage extends EPackage {
 	int TEST_STEP__EXCEPTION = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Output Parameter</b></em>' reference list.
+	 * The feature id for the '<em><b>Input Parameter</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP__OUTPUT_PARAMETER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TEST_STEP__INPUT_PARAMETER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Inputparameter</b></em>' containment reference list.
+	 * The feature id for the '<em><b>Output Paramter</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP__INPUTPARAMETER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int TEST_STEP__OUTPUT_PARAMTER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Test Step</em>' class.
@@ -1228,26 +1219,26 @@ public interface ModelPackage extends EPackage {
 	EAttribute getTestProtocol_TestDescription();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.testspec.model.TestProtocol#getLocalTestCases <em>Local Test Cases</em>}'.
+	 * Returns the meta object for the containment reference '{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Local Test Cases</em>'.
-	 * @see org.unicase.testspec.model.TestProtocol#getLocalTestCases()
+	 * @return the meta object for the containment reference '<em>Test Case</em>'.
+	 * @see org.unicase.testspec.model.TestProtocol#getTestCase()
 	 * @see #getTestProtocol()
 	 * @generated
 	 */
-	EReference getTestProtocol_LocalTestCases();
+	EReference getTestProtocol_TestCase();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.testspec.model.TestProtocol#getConcreteParameter <em>Concrete Parameter</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.testspec.model.TestProtocol#getConcreteParamter <em>Concrete Paramter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Concrete Parameter</em>'.
-	 * @see org.unicase.testspec.model.TestProtocol#getConcreteParameter()
+	 * @return the meta object for the reference list '<em>Concrete Paramter</em>'.
+	 * @see org.unicase.testspec.model.TestProtocol#getConcreteParamter()
 	 * @see #getTestProtocol()
 	 * @generated
 	 */
-	EReference getTestProtocol_ConcreteParameter();
+	EReference getTestProtocol_ConcreteParamter();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.testspec.model.TestProtocol#getTestState <em>Test State</em>}'.
@@ -1324,17 +1315,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getLogicalTestCase_Infrastructure();
-
-	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.testspec.model.LogicalTestCase#getTestProtocol <em>Test Protocol</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Test Protocol</em>'.
-	 * @see org.unicase.testspec.model.LogicalTestCase#getTestProtocol()
-	 * @see #getLogicalTestCase()
-	 * @generated
-	 */
-	EReference getLogicalTestCase_TestProtocol();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.testspec.model.LogicalTestCase#getTestStep <em>Test Step</em>}'.
@@ -1455,26 +1435,26 @@ public interface ModelPackage extends EPackage {
 	EAttribute getTestStep_Exception();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.testspec.model.TestStep#getOutputParameter <em>Output Parameter</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.testspec.model.TestStep#getInputParameter <em>Input Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Output Parameter</em>'.
-	 * @see org.unicase.testspec.model.TestStep#getOutputParameter()
+	 * @return the meta object for the reference list '<em>Input Parameter</em>'.
+	 * @see org.unicase.testspec.model.TestStep#getInputParameter()
 	 * @see #getTestStep()
 	 * @generated
 	 */
-	EReference getTestStep_OutputParameter();
+	EReference getTestStep_InputParameter();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.testspec.model.TestStep#getInputparameter <em>Inputparameter</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.testspec.model.TestStep#getOutputParamter <em>Output Paramter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference list '<em>Inputparameter</em>'.
-	 * @see org.unicase.testspec.model.TestStep#getInputparameter()
+	 * @return the meta object for the reference list '<em>Output Paramter</em>'.
+	 * @see org.unicase.testspec.model.TestStep#getOutputParamter()
 	 * @see #getTestStep()
 	 * @generated
 	 */
-	EReference getTestStep_Inputparameter();
+	EReference getTestStep_OutputParamter();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.testspec.model.InputParameter <em>Input Parameter</em>}'.
@@ -1565,20 +1545,20 @@ public interface ModelPackage extends EPackage {
 		EAttribute TEST_PROTOCOL__TEST_DESCRIPTION = eINSTANCE.getTestProtocol_TestDescription();
 
 		/**
-		 * The meta object literal for the '<em><b>Local Test Cases</b></em>' containment reference feature.
+		 * The meta object literal for the '<em><b>Test Case</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_PROTOCOL__LOCAL_TEST_CASES = eINSTANCE.getTestProtocol_LocalTestCases();
+		EReference TEST_PROTOCOL__TEST_CASE = eINSTANCE.getTestProtocol_TestCase();
 
 		/**
-		 * The meta object literal for the '<em><b>Concrete Parameter</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Concrete Paramter</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_PROTOCOL__CONCRETE_PARAMETER = eINSTANCE.getTestProtocol_ConcreteParameter();
+		EReference TEST_PROTOCOL__CONCRETE_PARAMTER = eINSTANCE.getTestProtocol_ConcreteParamter();
 
 		/**
 		 * The meta object literal for the '<em><b>Test State</b></em>' attribute feature.
@@ -1637,14 +1617,6 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute LOGICAL_TEST_CASE__INFRASTRUCTURE = eINSTANCE.getLogicalTestCase_Infrastructure();
-
-		/**
-		 * The meta object literal for the '<em><b>Test Protocol</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOGICAL_TEST_CASE__TEST_PROTOCOL = eINSTANCE.getLogicalTestCase_TestProtocol();
 
 		/**
 		 * The meta object literal for the '<em><b>Test Step</b></em>' reference list feature.
@@ -1741,20 +1713,20 @@ public interface ModelPackage extends EPackage {
 		EAttribute TEST_STEP__EXCEPTION = eINSTANCE.getTestStep_Exception();
 
 		/**
-		 * The meta object literal for the '<em><b>Output Parameter</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Input Parameter</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_STEP__OUTPUT_PARAMETER = eINSTANCE.getTestStep_OutputParameter();
+		EReference TEST_STEP__INPUT_PARAMETER = eINSTANCE.getTestStep_InputParameter();
 
 		/**
-		 * The meta object literal for the '<em><b>Inputparameter</b></em>' containment reference list feature.
+		 * The meta object literal for the '<em><b>Output Paramter</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_STEP__INPUTPARAMETER = eINSTANCE.getTestStep_Inputparameter();
+		EReference TEST_STEP__OUTPUT_PARAMTER = eINSTANCE.getTestStep_OutputParamter();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.testspec.model.impl.InputParameterImpl <em>Input Parameter</em>}' class.
