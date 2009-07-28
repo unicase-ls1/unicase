@@ -1,5 +1,6 @@
 package org.unicase.ui.diagram.activityDiagram.edit.parts;
 
+import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.StackLayout;
@@ -105,7 +106,7 @@ public class ForkEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(40), getMapMode().DPtoLP(40));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(8), getMapMode().DPtoLP(40));
 		return result;
 	}
 
@@ -156,7 +157,8 @@ public class ForkEditPart extends ShapeNodeEditPart {
 		 * @generated
 		 */
 		public ForkFigure() {
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(10), getMapMode().DPtoLP(10)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(4), getMapMode().DPtoLP(10)));
+			this.setBackgroundColor(ColorConstants.black);
 		}
 
 		/**
