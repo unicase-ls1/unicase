@@ -41,6 +41,7 @@ import org.unicase.model.requirement.impl.RequirementFactoryImpl;
 import org.unicase.ui.meeditor.ControlFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
+import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
 
 /**
@@ -262,6 +263,10 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 		IItemPropertyDescriptor pDescriptorDescription = adapterFactoryItemDelegator.getPropertyDescriptor(
 			getModelElement(), "description");
 		textControlDescription = cFactory.createControl(pDescriptorDescription);
+		if (textControlDescription instanceof MERichTextControl) {
+			MERichTextControl meRichTextControl = (MERichTextControl) textControlDescription;
+			meRichTextControl.setShowExpand(false);
+		}
 		cDescription = textControlDescription.createControl(textComposite, parentStyle);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.TOP).hint(250, 150).grab(true, false).applyTo(cDescription);
 
