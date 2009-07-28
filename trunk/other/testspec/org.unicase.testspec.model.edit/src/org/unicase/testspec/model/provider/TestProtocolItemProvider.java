@@ -71,6 +71,8 @@ public class TestProtocolItemProvider
 			addTestReportPropertyDescriptor(object);
 			addTestDescriptionPropertyDescriptor(object);
 			addTestStatePropertyDescriptor(object);
+			addTestCasePropertyDescriptor(object);
+			addConcreteParamterPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -142,34 +144,47 @@ public class TestProtocolItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Test Case feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(ModelPackage.Literals.TEST_PROTOCOL__LOCAL_TEST_CASES);
-			childrenFeatures.add(ModelPackage.Literals.TEST_PROTOCOL__CONCRETE_PARAMETER);
-		}
-		return childrenFeatures;
+	protected void addTestCasePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TestProtocol_testCase_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestProtocol_testCase_feature", "_UI_TestProtocol_type"),
+				 ModelPackage.Literals.TEST_PROTOCOL__TEST_CASE,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
+	 * This adds a property descriptor for the Concrete Paramter feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	protected void addConcreteParamterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TestProtocol_concreteParamter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestProtocol_concreteParamter_feature", "_UI_TestProtocol_type"),
+				 ModelPackage.Literals.TEST_PROTOCOL__CONCRETE_PARAMTER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -187,14 +202,11 @@ public class TestProtocolItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TestProtocol)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_TestProtocol_type") :
-			getString("_UI_TestProtocol_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
@@ -214,10 +226,6 @@ public class TestProtocolItemProvider
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ModelPackage.TEST_PROTOCOL__LOCAL_TEST_CASES:
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMETER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -232,16 +240,6 @@ public class TestProtocolItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.TEST_PROTOCOL__LOCAL_TEST_CASES,
-				 ModelFactory.eINSTANCE.createLogicalTestCase()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.TEST_PROTOCOL__CONCRETE_PARAMETER,
-				 ModelFactory.eINSTANCE.createConcreteParameter()));
 	}
 
 	/**

@@ -69,6 +69,8 @@ public class TestStepItemProvider
 			super.getPropertyDescriptors(object);
 
 			addExceptionPropertyDescriptor(object);
+			addInputParameterPropertyDescriptor(object);
+			addOutputParamterPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -96,34 +98,47 @@ public class TestStepItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * This adds a property descriptor for the Input Parameter feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if (childrenFeatures == null) {
-			super.getChildrenFeatures(object);
-			childrenFeatures.add(ModelPackage.Literals.TEST_STEP__OUTPUT_PARAMETER);
-			childrenFeatures.add(ModelPackage.Literals.TEST_STEP__INPUTPARAMETER);
-		}
-		return childrenFeatures;
+	protected void addInputParameterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TestStep_inputParameter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestStep_inputParameter_feature", "_UI_TestStep_type"),
+				 ModelPackage.Literals.TEST_STEP__INPUT_PARAMETER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
+	 * This adds a property descriptor for the Output Paramter feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	@Override
-	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper feature to use for
-		// adding (see {@link AddCommand}) it as a child.
-
-		return super.getChildFeature(object, child);
+	protected void addOutputParamterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TestStep_outputParamter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestStep_outputParamter_feature", "_UI_TestStep_type"),
+				 ModelPackage.Literals.TEST_STEP__OUTPUT_PARAMTER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
@@ -141,14 +156,11 @@ public class TestStepItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((TestStep)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_TestStep_type") :
-			getString("_UI_TestStep_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
@@ -166,10 +178,6 @@ public class TestStepItemProvider
 			case ModelPackage.TEST_STEP__EXCEPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
-			case ModelPackage.TEST_STEP__OUTPUT_PARAMETER:
-			case ModelPackage.TEST_STEP__INPUTPARAMETER:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -184,16 +192,6 @@ public class TestStepItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.TEST_STEP__OUTPUT_PARAMETER,
-				 ModelFactory.eINSTANCE.createOutputParameter()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ModelPackage.Literals.TEST_STEP__INPUTPARAMETER,
-				 ModelFactory.eINSTANCE.createInputParameter()));
 	}
 
 	/**
