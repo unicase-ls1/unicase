@@ -191,5 +191,13 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 	public List<Object> getValue(ProjectAnalysisData data) {
 		throw new UnsupportedOperationException();
 	}
+	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
+	 */
+	public boolean isExportOnce() {
+		return false;
+	}
 
 }

@@ -67,17 +67,29 @@ public class AnalyzerModelController {
 		switch(flag){
 		case 2:
 			List<List<Object>> lines = new ArrayList<List<Object>>();
+			ProjectAnalysisData data = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
 			while(projectIterator.hasNext()) {
-				ProjectAnalysisData data = projectIterator.next();
+				data = projectIterator.next();
+				lines.clear();
 				for(DataAnalyzer analyzer : analyzers) {
-					lines = ((TwoDDataAnalyzer)analyzer).get2DValue(data, projectIterator);
+					if(analyzer.isExportOnce()){
+					((TwoDDataAnalyzer) analyzer).analyzeData(data, projectIterator);
+					}else{
+						lines = ((TwoDDataAnalyzer)analyzer).get2DValue(data, projectIterator);
+						exporter.export(lines);
+					}
+				}
+			}
+			for(DataAnalyzer analyzer : analyzers) {
+				if(analyzer.isExportOnce()){
+					lines = ((TwoDDataAnalyzer) analyzer).get2DValue(data, projectIterator);
 					exporter.export(lines);
 				}
 			}return;
 		case 3:
 			List<Object> line = new ArrayList<Object>();
 			while(projectIterator.hasNext()) {
-				ProjectAnalysisData data = projectIterator.next();
+				data = projectIterator.next();
 				line.clear();
 				for(DataAnalyzer analyzer : analyzers) {
 					for(Object obj : analyzer.getValue(data)) {

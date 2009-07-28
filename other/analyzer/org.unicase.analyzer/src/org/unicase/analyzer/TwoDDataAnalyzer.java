@@ -27,4 +27,12 @@ public interface TwoDDataAnalyzer extends DataAnalyzer {
 	 * @return values 2D table of values
 	 */
 	List<List<Object>> get2DValue(ProjectAnalysisData data, VersionIterator it);
+	
+	/**
+	 * Analyze the data. 
+	 * @param data {@link ProjectAnalysisData}
+	 * @param it {@link VersionIterator}
+	 */
+	void analyzeData(ProjectAnalysisData data, VersionIterator it);
+	
 } // TwoDDataAnalyzer

@@ -146,4 +146,13 @@ public class CommitUpdateReadEventAnalyzer implements TwoDDataAnalyzer {
 		throw new UnsupportedOperationException();
 	}
 
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
+	 */
+	public boolean isExportOnce() {
+		return false;
+	}
+
 }

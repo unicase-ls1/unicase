@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.analyzer.VersionIterator;
 import org.unicase.analyzer.TwoDDataAnalyzer;
+import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -37,17 +37,18 @@ import org.unicase.model.ModelElementId;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
+ * Check the time of the Commit, update, and read event for the same ME.
  * @author liya
  *
  */
-public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
+public class CommitUpdateReadEventAnalyzer implements TwoDDataAnalyzer {
 
-	/**
-	 * @param data {@link ProjectAnalysisData}
-	 * @param it {@link VersionIterator}
-	 * @return @see org.unicase.analyzer.dataanalyzer.TwoDDataAnalyzer#get2DValue(org.unicase.analyzer.ProjectAnalysisData, org.unicase.analyzer.VersionIterator)
-	 *
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.TwoDDataAnalyzer#get2DValue(org.unicase.analyzer.ProjectAnalysisData, org.unicase.analyzer.iterator.VersionIterator)
 	 */
+	@Override
 	public List<List<Object>> get2DValue(ProjectAnalysisData data, VersionIterator it) {
 		List<List<Object>> values = new ArrayList<List<Object>>();
 		
@@ -71,7 +72,12 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 					else{
 						base = ((CheckoutEvent) event).getBaseVersion();
 						target = EsModelUtil.clone(base);
-						target.setIdentifier(base.getIdentifier()- 20); //just consider the last 20 revisions
+						if(base.getIdentifier()- 20 > 0){
+							target.setIdentifier(base.getIdentifier()- 20); //just consider the last 20 revisions
+						}
+						else{
+							target.setIdentifier(0);
+						}
 					}
 					try {
 						List<ChangePackage> updateChanges = it.getConnectionManager().getChanges(it.getUsersession().getSessionId(), 
@@ -112,8 +118,9 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 		List<Object> line = new ArrayList<Object>();
 		line.add(meId);
 		line.add(user);
-		line.add(commitMap.get(meId));
-		line.add(readEvent.getTimestamp());
+		line.add(commitMap.get(meId));//commit time
+		line.add(meIdMap.get(meId));//update time
+		line.add(readEvent.getTimestamp());//read time
 		
 		long time = readEvent.getTimestamp().getTime() - commitMap.get(meId).getTime();
 		Date diff = new Date(time);		
@@ -126,29 +133,46 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 		return line;
 	}
 
-	/**
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.DataAnalyzer#getName()
 	 */
+	@Override
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
 		names.add("ModelElementId");	
 		names.add("User");
 		names.add("Commit Time");
+		names.add("Update Time");
 		names.add("Read Time");
 		names.add("Commit-Read Time Difference");
 		names.add("Update-Commit Time Difference");
 		return names;
 	}
 
-	/**
-	 * @param data {@link ProjectAnalysisData}
-	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
 	 */
+	@Override
 	public List<Object> getValue(ProjectAnalysisData data) {
 		throw new UnsupportedOperationException();
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
+	 */
+	@Override
+	public boolean isExportOnce() {
+		return false;
+	}
+
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eAllContents()
+	 */
 	@Override
 	public TreeIterator<EObject> eAllContents() {
 		// TODO Auto-generated method stub
@@ -156,6 +180,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eClass()
+	 */
 	@Override
 	public EClass eClass() {
 		// TODO Auto-generated method stub
@@ -163,6 +191,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eContainer()
+	 */
 	@Override
 	public EObject eContainer() {
 		// TODO Auto-generated method stub
@@ -170,6 +202,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eContainingFeature()
+	 */
 	@Override
 	public EStructuralFeature eContainingFeature() {
 		// TODO Auto-generated method stub
@@ -177,6 +213,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eContainmentFeature()
+	 */
 	@Override
 	public EReference eContainmentFeature() {
 		// TODO Auto-generated method stub
@@ -184,6 +224,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eContents()
+	 */
 	@Override
 	public EList<EObject> eContents() {
 		// TODO Auto-generated method stub
@@ -191,6 +235,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eCrossReferences()
+	 */
 	@Override
 	public EList<EObject> eCrossReferences() {
 		// TODO Auto-generated method stub
@@ -198,6 +246,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature)
+	 */
 	@Override
 	public Object eGet(EStructuralFeature feature) {
 		// TODO Auto-generated method stub
@@ -205,6 +257,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eGet(org.eclipse.emf.ecore.EStructuralFeature, boolean)
+	 */
 	@Override
 	public Object eGet(EStructuralFeature feature, boolean resolve) {
 		// TODO Auto-generated method stub
@@ -212,6 +268,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eIsProxy()
+	 */
 	@Override
 	public boolean eIsProxy() {
 		// TODO Auto-generated method stub
@@ -219,6 +279,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eIsSet(org.eclipse.emf.ecore.EStructuralFeature)
+	 */
 	@Override
 	public boolean eIsSet(EStructuralFeature feature) {
 		// TODO Auto-generated method stub
@@ -226,6 +290,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eResource()
+	 */
 	@Override
 	public Resource eResource() {
 		// TODO Auto-generated method stub
@@ -233,6 +301,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eSet(org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
+	 */
 	@Override
 	public void eSet(EStructuralFeature feature, Object newValue) {
 		// TODO Auto-generated method stub
@@ -240,6 +312,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.ecore.EObject#eUnset(org.eclipse.emf.ecore.EStructuralFeature)
+	 */
 	@Override
 	public void eUnset(EStructuralFeature feature) {
 		// TODO Auto-generated method stub
@@ -247,6 +323,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.common.notify.Notifier#eAdapters()
+	 */
 	@Override
 	public EList<Adapter> eAdapters() {
 		// TODO Auto-generated method stub
@@ -254,6 +334,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.common.notify.Notifier#eDeliver()
+	 */
 	@Override
 	public boolean eDeliver() {
 		// TODO Auto-generated method stub
@@ -261,6 +345,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.common.notify.Notifier#eNotify(org.eclipse.emf.common.notify.Notification)
+	 */
 	@Override
 	public void eNotify(Notification notification) {
 		// TODO Auto-generated method stub
@@ -268,6 +356,10 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.emf.common.notify.Notifier#eSetDeliver(boolean)
+	 */
 	@Override
 	public void eSetDeliver(boolean deliver) {
 		// TODO Auto-generated method stub
@@ -275,11 +367,15 @@ public class CommitReadEventAnalyzer implements TwoDDataAnalyzer {
 	}
 
 
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.TwoDDataAnalyzer#analyzeData(org.unicase.analyzer.ProjectAnalysisData, org.unicase.analyzer.iterator.VersionIterator)
+	 */
 	@Override
-	public List<List<Object>> get2DValue(ProjectAnalysisData data,
+	public void analyzeData(ProjectAnalysisData data,
 			org.unicase.analyzer.iterator.VersionIterator it) {
 		// TODO Auto-generated method stub
-		return null;
+		
 	}
 
 }

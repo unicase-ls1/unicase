@@ -738,16 +738,10 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 		return end;
 	}
 
-	/**
-	 * @return the connectionManager
-	 */
 	public ConnectionManager getConnectionManager() {
 		return connectionManager;
 	}
 
-	/**
-	 * @return the usersession
-	 */
 	public Usersession getUsersession() {
 		return usersession;
 	}

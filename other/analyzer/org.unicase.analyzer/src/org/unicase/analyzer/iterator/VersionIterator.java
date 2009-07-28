@@ -13,6 +13,7 @@ import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,7 +37,7 @@ import org.unicase.workspace.Usersession;
  * @model
  * @generated
  */
-public interface VersionIterator extends EObject, Iterator {
+public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> {
 	/**
 	 * Returns the value of the '<em><b>Step Length</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -251,4 +252,14 @@ public interface VersionIterator extends EObject, Iterator {
 	 * @throws IteratorException if any error occurs
 	 */
 	void init(Usersession usersession)throws IteratorException;
+	
+	/**
+	 * @return the connectionManager
+	 */
+	ConnectionManager getConnectionManager();
+
+	/**
+	 * @return the usersession
+	 */
+	Usersession getUsersession() ;
 } // VersionIterator

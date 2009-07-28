@@ -6,8 +6,6 @@
 
 package org.unicase.analyzer.ui.wizards;
 
-import java.util.Calendar;
-import java.util.Date;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -179,8 +177,9 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	
 	private int indexOf(int stepLengthUnit) {
 		for(int i=0; i<CALENDAR_FIELDS.length; i++){
-			if(stepLengthUnit == CALENDAR_FIELDS[i])
+			if(stepLengthUnit == CALENDAR_FIELDS[i]) {
 				return i;
+			}
 		}
 		return 0;
 	}

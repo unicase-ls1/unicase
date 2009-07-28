@@ -48,5 +48,12 @@ public class CountAnalyzer implements DataAnalyzer {
 		values.add(data.getProjectState().getModelElementsByClass(eclass, new BasicEList<ModelElement>()).size());
 		return values;
 	}
+	/** 
+	 * {@inheritDoc}
+	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
+	 */
+	public boolean isExportOnce() {
+		return false;
+	}
 
 }
