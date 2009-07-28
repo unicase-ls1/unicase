@@ -44,10 +44,9 @@ import org.unicase.testspec.model.TestStep;
  *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getPrecondition <em>Precondition</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getPostcondition <em>Postcondition</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getInfrastructure <em>Infrastructure</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getTestProtocol <em>Test Protocol</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getTestStep <em>Test Step</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getNonFunctionalRequirement <em>Non Functional Requirement</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getFunctionalRequirement <em>Functional Requirement</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getTestStep <em>Test Step</em>}</li>
  * </ul>
  * </p>
  *
@@ -155,26 +154,6 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	protected String infrastructure = INFRASTRUCTURE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTestProtocol() <em>Test Protocol</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTestProtocol()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TestProtocol> testProtocol;
-
-	/**
-	 * The cached value of the '{@link #getTestStep() <em>Test Step</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTestStep()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<TestStep> testStep;
-
-	/**
 	 * The cached value of the '{@link #getNonFunctionalRequirement() <em>Non Functional Requirement</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -193,6 +172,16 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	 * @ordered
 	 */
 	protected FunctionalRequirement functionalRequirement;
+
+	/**
+	 * The cached value of the '{@link #getTestStep() <em>Test Step</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestStep()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<TestStep> testStep;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -323,18 +312,6 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TestProtocol> getTestProtocol() {
-		if (testProtocol == null) {
-			testProtocol = new EObjectResolvingEList<TestProtocol>(TestProtocol.class, this, ModelPackage.LOGICAL_TEST_CASE__TEST_PROTOCOL);
-		}
-		return testProtocol;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EList<TestStep> getTestStep() {
 		if (testStep == null) {
 			testStep = new EObjectResolvingEList<TestStep>(TestStep.class, this, ModelPackage.LOGICAL_TEST_CASE__TEST_STEP);
@@ -436,16 +413,14 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 				return getPostcondition();
 			case ModelPackage.LOGICAL_TEST_CASE__INFRASTRUCTURE:
 				return getInfrastructure();
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_PROTOCOL:
-				return getTestProtocol();
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
-				return getTestStep();
 			case ModelPackage.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
 				if (resolve) return getNonFunctionalRequirement();
 				return basicGetNonFunctionalRequirement();
 			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				if (resolve) return getFunctionalRequirement();
 				return basicGetFunctionalRequirement();
+			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
+				return getTestStep();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -474,19 +449,15 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 			case ModelPackage.LOGICAL_TEST_CASE__INFRASTRUCTURE:
 				setInfrastructure((String)newValue);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_PROTOCOL:
-				getTestProtocol().clear();
-				getTestProtocol().addAll((Collection<? extends TestProtocol>)newValue);
-				return;
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
-				getTestStep().clear();
-				getTestStep().addAll((Collection<? extends TestStep>)newValue);
-				return;
 			case ModelPackage.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
 				setNonFunctionalRequirement((NonFunctionalRequirement)newValue);
 				return;
 			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				setFunctionalRequirement((FunctionalRequirement)newValue);
+				return;
+			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
+				getTestStep().clear();
+				getTestStep().addAll((Collection<? extends TestStep>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -515,17 +486,14 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 			case ModelPackage.LOGICAL_TEST_CASE__INFRASTRUCTURE:
 				setInfrastructure(INFRASTRUCTURE_EDEFAULT);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_PROTOCOL:
-				getTestProtocol().clear();
-				return;
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
-				getTestStep().clear();
-				return;
 			case ModelPackage.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
 				setNonFunctionalRequirement((NonFunctionalRequirement)null);
 				return;
 			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				setFunctionalRequirement((FunctionalRequirement)null);
+				return;
+			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
+				getTestStep().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -549,14 +517,12 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 				return POSTCONDITION_EDEFAULT == null ? postcondition != null : !POSTCONDITION_EDEFAULT.equals(postcondition);
 			case ModelPackage.LOGICAL_TEST_CASE__INFRASTRUCTURE:
 				return INFRASTRUCTURE_EDEFAULT == null ? infrastructure != null : !INFRASTRUCTURE_EDEFAULT.equals(infrastructure);
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_PROTOCOL:
-				return testProtocol != null && !testProtocol.isEmpty();
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
-				return testStep != null && !testStep.isEmpty();
 			case ModelPackage.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
 				return nonFunctionalRequirement != null;
 			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				return functionalRequirement != null;
+			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
+				return testStep != null && !testStep.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

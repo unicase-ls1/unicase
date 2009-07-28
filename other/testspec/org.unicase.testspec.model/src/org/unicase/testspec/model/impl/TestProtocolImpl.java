@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
@@ -38,9 +39,9 @@ import org.unicase.testspec.model.TestProtocol;
  * <ul>
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestReport <em>Test Report</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestDescription <em>Test Description</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getLocalTestCases <em>Local Test Cases</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getConcreteParameter <em>Concrete Parameter</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestState <em>Test State</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestCase <em>Test Case</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getConcreteParamter <em>Concrete Paramter</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,26 +89,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	protected String testDescription = TEST_DESCRIPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getLocalTestCases() <em>Local Test Cases</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getLocalTestCases()
-	 * @generated
-	 * @ordered
-	 */
-	protected LogicalTestCase localTestCases;
-
-	/**
-	 * The cached value of the '{@link #getConcreteParameter() <em>Concrete Parameter</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConcreteParameter()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConcreteParameter> concreteParameter;
-
-	/**
 	 * The default value of the '{@link #getTestState() <em>Test State</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -126,6 +107,26 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * @ordered
 	 */
 	protected EnumState testState = TEST_STATE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getTestCase() <em>Test Case</em>}' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestCase()
+	 * @generated
+	 * @ordered
+	 */
+	protected LogicalTestCase testCase;
+
+	/**
+	 * The cached value of the '{@link #getConcreteParamter() <em>Concrete Paramter</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getConcreteParamter()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<ConcreteParameter> concreteParamter;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -193,8 +194,8 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LogicalTestCase getLocalTestCases() {
-		return localTestCases;
+	public LogicalTestCase getTestCase() {
+		return testCase;
 	}
 
 	/**
@@ -202,11 +203,11 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetLocalTestCases(LogicalTestCase newLocalTestCases, NotificationChain msgs) {
-		LogicalTestCase oldLocalTestCases = localTestCases;
-		localTestCases = newLocalTestCases;
+	public NotificationChain basicSetTestCase(LogicalTestCase newTestCase, NotificationChain msgs) {
+		LogicalTestCase oldTestCase = testCase;
+		testCase = newTestCase;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__LOCAL_TEST_CASES, oldLocalTestCases, newLocalTestCases);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__TEST_CASE, oldTestCase, newTestCase);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
@@ -217,18 +218,18 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setLocalTestCases(LogicalTestCase newLocalTestCases) {
-		if (newLocalTestCases != localTestCases) {
+	public void setTestCase(LogicalTestCase newTestCase) {
+		if (newTestCase != testCase) {
 			NotificationChain msgs = null;
-			if (localTestCases != null)
-				msgs = ((InternalEObject)localTestCases).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackage.TEST_PROTOCOL__LOCAL_TEST_CASES, null, msgs);
-			if (newLocalTestCases != null)
-				msgs = ((InternalEObject)newLocalTestCases).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackage.TEST_PROTOCOL__LOCAL_TEST_CASES, null, msgs);
-			msgs = basicSetLocalTestCases(newLocalTestCases, msgs);
+			if (testCase != null)
+				msgs = ((InternalEObject)testCase).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackage.TEST_PROTOCOL__TEST_CASE, null, msgs);
+			if (newTestCase != null)
+				msgs = ((InternalEObject)newTestCase).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackage.TEST_PROTOCOL__TEST_CASE, null, msgs);
+			msgs = basicSetTestCase(newTestCase, msgs);
 			if (msgs != null) msgs.dispatch();
 		}
 		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__LOCAL_TEST_CASES, newLocalTestCases, newLocalTestCases));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__TEST_CASE, newTestCase, newTestCase));
 	}
 
 	/**
@@ -236,11 +237,25 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<ConcreteParameter> getConcreteParameter() {
-		if (concreteParameter == null) {
-			concreteParameter = new EObjectContainmentEList<ConcreteParameter>(ConcreteParameter.class, this, ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMETER);
+	public EList<ConcreteParameter> getConcreteParamter() {
+		if (concreteParamter == null) {
+			concreteParamter = new EObjectResolvingEList<ConcreteParameter>(ConcreteParameter.class, this, ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMTER);
 		}
-		return concreteParameter;
+		return concreteParamter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
+				return basicSetTestCase(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
@@ -270,34 +285,18 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * @generated
 	 */
 	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelPackage.TEST_PROTOCOL__LOCAL_TEST_CASES:
-				return basicSetLocalTestCases(null, msgs);
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMETER:
-				return ((InternalEList<?>)getConcreteParameter()).basicRemove(otherEnd, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case ModelPackage.TEST_PROTOCOL__TEST_REPORT:
 				return getTestReport();
 			case ModelPackage.TEST_PROTOCOL__TEST_DESCRIPTION:
 				return getTestDescription();
-			case ModelPackage.TEST_PROTOCOL__LOCAL_TEST_CASES:
-				return getLocalTestCases();
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMETER:
-				return getConcreteParameter();
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
 				return getTestState();
+			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
+				return getTestCase();
+			case ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMTER:
+				return getConcreteParamter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -317,15 +316,15 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 			case ModelPackage.TEST_PROTOCOL__TEST_DESCRIPTION:
 				setTestDescription((String)newValue);
 				return;
-			case ModelPackage.TEST_PROTOCOL__LOCAL_TEST_CASES:
-				setLocalTestCases((LogicalTestCase)newValue);
-				return;
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMETER:
-				getConcreteParameter().clear();
-				getConcreteParameter().addAll((Collection<? extends ConcreteParameter>)newValue);
-				return;
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
 				setTestState((EnumState)newValue);
+				return;
+			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
+				setTestCase((LogicalTestCase)newValue);
+				return;
+			case ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMTER:
+				getConcreteParamter().clear();
+				getConcreteParamter().addAll((Collection<? extends ConcreteParameter>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -345,14 +344,14 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 			case ModelPackage.TEST_PROTOCOL__TEST_DESCRIPTION:
 				setTestDescription(TEST_DESCRIPTION_EDEFAULT);
 				return;
-			case ModelPackage.TEST_PROTOCOL__LOCAL_TEST_CASES:
-				setLocalTestCases((LogicalTestCase)null);
-				return;
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMETER:
-				getConcreteParameter().clear();
-				return;
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
 				setTestState(TEST_STATE_EDEFAULT);
+				return;
+			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
+				setTestCase((LogicalTestCase)null);
+				return;
+			case ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMTER:
+				getConcreteParamter().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -370,12 +369,12 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 				return TEST_REPORT_EDEFAULT == null ? testReport != null : !TEST_REPORT_EDEFAULT.equals(testReport);
 			case ModelPackage.TEST_PROTOCOL__TEST_DESCRIPTION:
 				return TEST_DESCRIPTION_EDEFAULT == null ? testDescription != null : !TEST_DESCRIPTION_EDEFAULT.equals(testDescription);
-			case ModelPackage.TEST_PROTOCOL__LOCAL_TEST_CASES:
-				return localTestCases != null;
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMETER:
-				return concreteParameter != null && !concreteParameter.isEmpty();
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
 				return testState != TEST_STATE_EDEFAULT;
+			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
+				return testCase != null;
+			case ModelPackage.TEST_PROTOCOL__CONCRETE_PARAMTER:
+				return concreteParamter != null && !concreteParamter.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
