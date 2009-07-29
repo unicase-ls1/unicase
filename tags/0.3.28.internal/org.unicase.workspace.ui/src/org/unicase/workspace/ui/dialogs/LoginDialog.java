@@ -12,6 +12,8 @@ import org.eclipse.jface.dialogs.TitleAreaDialog;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.layout.LayoutConstants;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.FocusEvent;
+import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.ModifyEvent;
@@ -139,6 +141,14 @@ public class LoginDialog extends TitleAreaDialog implements SelectionListener {
 		pass.setText("Password:");
 		txtPassword = new Text(contents, SWT.PASSWORD | SWT.BORDER);
 		txtPassword.setSize(150, 20);
+		txtPassword.addFocusListener(new FocusListener() {
+			public void focusLost(FocusEvent e) {
+				keyTest=true;
+			}
+			public void focusGained(FocusEvent e) {
+				keyTest=true;
+			}
+		});
 		txtPassword.addKeyListener(new KeyListener() {
 
 			public void keyPressed(KeyEvent e) {
