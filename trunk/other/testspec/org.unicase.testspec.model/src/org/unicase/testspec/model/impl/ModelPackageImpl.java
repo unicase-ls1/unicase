@@ -192,17 +192,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTestProtocol_TestDescription() {
-		return (EAttribute)testProtocolEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getTestProtocol_TestCase() {
-		return (EReference)testProtocolEClass.getEStructuralFeatures().get(3);
+		return (EReference)testProtocolEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -211,7 +202,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getTestProtocol_ConcreteParamter() {
-		return (EReference)testProtocolEClass.getEStructuralFeatures().get(4);
+		return (EReference)testProtocolEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -220,7 +211,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EAttribute getTestProtocol_TestState() {
-		return (EAttribute)testProtocolEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)testProtocolEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -237,7 +228,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLogicalTestCase_TcDescription() {
+	public EAttribute getLogicalTestCase_Type() {
 		return (EAttribute)logicalTestCaseEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -246,7 +237,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLogicalTestCase_Type() {
+	public EAttribute getLogicalTestCase_Precondition() {
 		return (EAttribute)logicalTestCaseEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -255,7 +246,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLogicalTestCase_Precondition() {
+	public EAttribute getLogicalTestCase_Postcondition() {
 		return (EAttribute)logicalTestCaseEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -264,7 +255,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLogicalTestCase_Postcondition() {
+	public EAttribute getLogicalTestCase_Infrastructure() {
 		return (EAttribute)logicalTestCaseEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -273,17 +264,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLogicalTestCase_Infrastructure() {
-		return (EAttribute)logicalTestCaseEClass.getEStructuralFeatures().get(4);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getLogicalTestCase_TestStep() {
-		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(7);
+		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -292,7 +274,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getLogicalTestCase_NonFunctionalRequirement() {
-		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(5);
+		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -301,7 +283,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	public EReference getLogicalTestCase_FunctionalRequirement() {
-		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(6);
+		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -460,13 +442,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Create classes and their features
 		testProtocolEClass = createEClass(TEST_PROTOCOL);
 		createEAttribute(testProtocolEClass, TEST_PROTOCOL__TEST_REPORT);
-		createEAttribute(testProtocolEClass, TEST_PROTOCOL__TEST_DESCRIPTION);
 		createEAttribute(testProtocolEClass, TEST_PROTOCOL__TEST_STATE);
 		createEReference(testProtocolEClass, TEST_PROTOCOL__TEST_CASE);
 		createEReference(testProtocolEClass, TEST_PROTOCOL__CONCRETE_PARAMTER);
 
 		logicalTestCaseEClass = createEClass(LOGICAL_TEST_CASE);
-		createEAttribute(logicalTestCaseEClass, LOGICAL_TEST_CASE__TC_DESCRIPTION);
 		createEAttribute(logicalTestCaseEClass, LOGICAL_TEST_CASE__TYPE);
 		createEAttribute(logicalTestCaseEClass, LOGICAL_TEST_CASE__PRECONDITION);
 		createEAttribute(logicalTestCaseEClass, LOGICAL_TEST_CASE__POSTCONDITION);
@@ -541,13 +521,11 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(testProtocolEClass, TestProtocol.class, "TestProtocol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestProtocol_TestReport(), theEcorePackage.getEString(), "testReport", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTestProtocol_TestDescription(), theEcorePackage.getEString(), "testDescription", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTestProtocol_TestState(), this.getEnumState(), "testState", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestProtocol_TestCase(), this.getLogicalTestCase(), null, "testCase", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestProtocol_ConcreteParamter(), this.getConcreteParameter(), null, "concreteParamter", null, 0, -1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(logicalTestCaseEClass, LogicalTestCase.class, "LogicalTestCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLogicalTestCase_TcDescription(), theEcorePackage.getEString(), "tcDescription", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLogicalTestCase_Type(), theEcorePackage.getEString(), "type", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLogicalTestCase_Precondition(), theEcorePackage.getEString(), "precondition", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLogicalTestCase_Postcondition(), theEcorePackage.getEString(), "postcondition", "", 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

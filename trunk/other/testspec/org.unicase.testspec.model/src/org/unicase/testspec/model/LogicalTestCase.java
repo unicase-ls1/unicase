@@ -21,7 +21,6 @@ import org.unicase.model.requirement.NonFunctionalRequirement;
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getTcDescription <em>Tc Description</em>}</li>
  *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getType <em>Type</em>}</li>
  *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getPrecondition <em>Precondition</em>}</li>
  *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getPostcondition <em>Postcondition</em>}</li>
@@ -37,32 +36,6 @@ import org.unicase.model.requirement.NonFunctionalRequirement;
  * @generated
  */
 public interface LogicalTestCase extends ModelElement {
-	/**
-	 * Returns the value of the '<em><b>Tc Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Tc Description</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Tc Description</em>' attribute.
-	 * @see #setTcDescription(String)
-	 * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase_TcDescription()
-	 * @model
-	 * @generated
-	 */
-	String getTcDescription();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.testspec.model.LogicalTestCase#getTcDescription <em>Tc Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Tc Description</em>' attribute.
-	 * @see #getTcDescription()
-	 * @generated
-	 */
-	void setTcDescription(String value);
-
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->

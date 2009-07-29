@@ -79,7 +79,7 @@ public class TestStepItemProvider
 	 * This adds a property descriptor for the Exception feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addExceptionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
@@ -90,7 +90,7 @@ public class TestStepItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_TestStep_exception_feature", "_UI_TestStep_type"),
 				 ModelPackage.Literals.TEST_STEP__EXCEPTION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,

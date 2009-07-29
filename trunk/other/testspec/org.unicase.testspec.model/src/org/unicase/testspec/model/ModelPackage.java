@@ -188,22 +188,13 @@ public interface ModelPackage extends EPackage {
 	int TEST_PROTOCOL__TEST_REPORT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Test Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TEST_PROTOCOL__TEST_DESCRIPTION = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
 	 * The feature id for the '<em><b>Test State</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_PROTOCOL__TEST_STATE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int TEST_PROTOCOL__TEST_STATE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Test Case</b></em>' containment reference.
@@ -212,7 +203,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_PROTOCOL__TEST_CASE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int TEST_PROTOCOL__TEST_CASE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Concrete Paramter</b></em>' reference list.
@@ -221,7 +212,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_PROTOCOL__CONCRETE_PARAMTER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int TEST_PROTOCOL__CONCRETE_PARAMTER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Test Protocol</em>' class.
@@ -230,7 +221,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_PROTOCOL_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int TEST_PROTOCOL_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl <em>Logical Test Case</em>}' class.
@@ -351,22 +342,13 @@ public interface ModelPackage extends EPackage {
 	int LOGICAL_TEST_CASE__COMMENTS = org.unicase.model.ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
-	 * The feature id for the '<em><b>Tc Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int LOGICAL_TEST_CASE__TC_DESCRIPTION = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__TYPE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int LOGICAL_TEST_CASE__TYPE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Precondition</b></em>' attribute.
@@ -375,7 +357,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__PRECONDITION = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int LOGICAL_TEST_CASE__PRECONDITION = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Postcondition</b></em>' attribute.
@@ -384,7 +366,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__POSTCONDITION = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int LOGICAL_TEST_CASE__POSTCONDITION = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Infrastructure</b></em>' attribute.
@@ -393,7 +375,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__INFRASTRUCTURE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int LOGICAL_TEST_CASE__INFRASTRUCTURE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Non Functional Requirement</b></em>' reference.
@@ -402,7 +384,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Functional Requirement</b></em>' reference.
@@ -411,7 +393,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Test Step</b></em>' reference list.
@@ -420,7 +402,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__TEST_STEP = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int LOGICAL_TEST_CASE__TEST_STEP = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Logical Test Case</em>' class.
@@ -429,7 +411,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+	int LOGICAL_TEST_CASE_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.testspec.model.impl.ConcreteParameterImpl <em>Concrete Parameter</em>}' class.
@@ -1208,17 +1190,6 @@ public interface ModelPackage extends EPackage {
 	EAttribute getTestProtocol_TestReport();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.testspec.model.TestProtocol#getTestDescription <em>Test Description</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Test Description</em>'.
-	 * @see org.unicase.testspec.model.TestProtocol#getTestDescription()
-	 * @see #getTestProtocol()
-	 * @generated
-	 */
-	EAttribute getTestProtocol_TestDescription();
-
-	/**
 	 * Returns the meta object for the containment reference '{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1260,17 +1231,6 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getLogicalTestCase();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.testspec.model.LogicalTestCase#getTcDescription <em>Tc Description</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Tc Description</em>'.
-	 * @see org.unicase.testspec.model.LogicalTestCase#getTcDescription()
-	 * @see #getLogicalTestCase()
-	 * @generated
-	 */
-	EAttribute getLogicalTestCase_TcDescription();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.testspec.model.LogicalTestCase#getType <em>Type</em>}'.
@@ -1537,14 +1497,6 @@ public interface ModelPackage extends EPackage {
 		EAttribute TEST_PROTOCOL__TEST_REPORT = eINSTANCE.getTestProtocol_TestReport();
 
 		/**
-		 * The meta object literal for the '<em><b>Test Description</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute TEST_PROTOCOL__TEST_DESCRIPTION = eINSTANCE.getTestProtocol_TestDescription();
-
-		/**
 		 * The meta object literal for the '<em><b>Test Case</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1577,14 +1529,6 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass LOGICAL_TEST_CASE = eINSTANCE.getLogicalTestCase();
-
-		/**
-		 * The meta object literal for the '<em><b>Tc Description</b></em>' attribute feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EAttribute LOGICAL_TEST_CASE__TC_DESCRIPTION = eINSTANCE.getLogicalTestCase_TcDescription();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
