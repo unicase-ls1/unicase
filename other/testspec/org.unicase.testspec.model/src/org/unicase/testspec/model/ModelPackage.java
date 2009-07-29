@@ -396,13 +396,13 @@ public interface ModelPackage extends EPackage {
 	int LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Test Step</b></em>' reference list.
+	 * The feature id for the '<em><b>Step</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__TEST_STEP = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int LOGICAL_TEST_CASE__STEP = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The number of structural features of the '<em>Logical Test Case</em>' class.
@@ -1277,17 +1277,6 @@ public interface ModelPackage extends EPackage {
 	EAttribute getLogicalTestCase_Infrastructure();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.testspec.model.LogicalTestCase#getTestStep <em>Test Step</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Test Step</em>'.
-	 * @see org.unicase.testspec.model.LogicalTestCase#getTestStep()
-	 * @see #getLogicalTestCase()
-	 * @generated
-	 */
-	EReference getLogicalTestCase_TestStep();
-
-	/**
 	 * Returns the meta object for the reference '{@link org.unicase.testspec.model.LogicalTestCase#getNonFunctionalRequirement <em>Non Functional Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1308,6 +1297,17 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getLogicalTestCase_FunctionalRequirement();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.testspec.model.LogicalTestCase#getStep <em>Step</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Step</em>'.
+	 * @see org.unicase.testspec.model.LogicalTestCase#getStep()
+	 * @see #getLogicalTestCase()
+	 * @generated
+	 */
+	EReference getLogicalTestCase_Step();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.testspec.model.ConcreteParameter <em>Concrete Parameter</em>}'.
@@ -1563,14 +1563,6 @@ public interface ModelPackage extends EPackage {
 		EAttribute LOGICAL_TEST_CASE__INFRASTRUCTURE = eINSTANCE.getLogicalTestCase_Infrastructure();
 
 		/**
-		 * The meta object literal for the '<em><b>Test Step</b></em>' reference list feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference LOGICAL_TEST_CASE__TEST_STEP = eINSTANCE.getLogicalTestCase_TestStep();
-
-		/**
 		 * The meta object literal for the '<em><b>Non Functional Requirement</b></em>' reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1585,6 +1577,14 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT = eINSTANCE.getLogicalTestCase_FunctionalRequirement();
+
+		/**
+		 * The meta object literal for the '<em><b>Step</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference LOGICAL_TEST_CASE__STEP = eINSTANCE.getLogicalTestCase_Step();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.testspec.model.impl.ConcreteParameterImpl <em>Concrete Parameter</em>}' class.

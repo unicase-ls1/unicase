@@ -27,7 +27,7 @@ import org.unicase.model.requirement.NonFunctionalRequirement;
  *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getInfrastructure <em>Infrastructure</em>}</li>
  *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getNonFunctionalRequirement <em>Non Functional Requirement</em>}</li>
  *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getFunctionalRequirement <em>Functional Requirement</em>}</li>
- *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getTestStep <em>Test Step</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getStep <em>Step</em>}</li>
  * </ul>
  * </p>
  *
@@ -142,22 +142,6 @@ public interface LogicalTestCase extends ModelElement {
 	void setInfrastructure(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Test Step</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.testspec.model.TestStep}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Test Step</em>' containment reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Test Step</em>' reference list.
-	 * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase_TestStep()
-	 * @model
-	 * @generated
-	 */
-	EList<TestStep> getTestStep();
-
-	/**
 	 * Returns the value of the '<em><b>Non Functional Requirement</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
@@ -208,5 +192,21 @@ public interface LogicalTestCase extends ModelElement {
 	 * @generated
 	 */
 	void setFunctionalRequirement(FunctionalRequirement value);
+
+	/**
+	 * Returns the value of the '<em><b>Step</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.testspec.model.TestStep}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Step</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Step</em>' reference list.
+	 * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase_Step()
+	 * @model
+	 * @generated
+	 */
+	EList<TestStep> getStep();
 
 } // LogicalTestCase
