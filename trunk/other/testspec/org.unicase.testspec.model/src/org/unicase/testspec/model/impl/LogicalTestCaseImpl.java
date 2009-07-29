@@ -45,7 +45,7 @@ import org.unicase.testspec.model.TestStep;
  *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getInfrastructure <em>Infrastructure</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getNonFunctionalRequirement <em>Non Functional Requirement</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getFunctionalRequirement <em>Functional Requirement</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getTestStep <em>Test Step</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getStep <em>Step</em>}</li>
  * </ul>
  * </p>
  *
@@ -153,14 +153,14 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	protected FunctionalRequirement functionalRequirement;
 
 	/**
-	 * The cached value of the '{@link #getTestStep() <em>Test Step</em>}' reference list.
+	 * The cached value of the '{@link #getStep() <em>Step</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getTestStep()
+	 * @see #getStep()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<TestStep> testStep;
+	protected EList<TestStep> step;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -270,18 +270,6 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<TestStep> getTestStep() {
-		if (testStep == null) {
-			testStep = new EObjectResolvingEList<TestStep>(TestStep.class, this, ModelPackage.LOGICAL_TEST_CASE__TEST_STEP);
-		}
-		return testStep;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public NonFunctionalRequirement getNonFunctionalRequirement() {
 		if (nonFunctionalRequirement != null && nonFunctionalRequirement.eIsProxy()) {
 			InternalEObject oldNonFunctionalRequirement = (InternalEObject)nonFunctionalRequirement;
@@ -358,6 +346,18 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EList<TestStep> getStep() {
+		if (step == null) {
+			step = new EObjectResolvingEList<TestStep>(TestStep.class, this, ModelPackage.LOGICAL_TEST_CASE__STEP);
+		}
+		return step;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -375,8 +375,8 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				if (resolve) return getFunctionalRequirement();
 				return basicGetFunctionalRequirement();
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
-				return getTestStep();
+			case ModelPackage.LOGICAL_TEST_CASE__STEP:
+				return getStep();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -408,9 +408,9 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				setFunctionalRequirement((FunctionalRequirement)newValue);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
-				getTestStep().clear();
-				getTestStep().addAll((Collection<? extends TestStep>)newValue);
+			case ModelPackage.LOGICAL_TEST_CASE__STEP:
+				getStep().clear();
+				getStep().addAll((Collection<? extends TestStep>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -442,8 +442,8 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				setFunctionalRequirement((FunctionalRequirement)null);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
-				getTestStep().clear();
+			case ModelPackage.LOGICAL_TEST_CASE__STEP:
+				getStep().clear();
 				return;
 		}
 		super.eUnset(featureID);
@@ -469,8 +469,8 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 				return nonFunctionalRequirement != null;
 			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				return functionalRequirement != null;
-			case ModelPackage.LOGICAL_TEST_CASE__TEST_STEP:
-				return testStep != null && !testStep.isEmpty();
+			case ModelPackage.LOGICAL_TEST_CASE__STEP:
+				return step != null && !step.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

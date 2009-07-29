@@ -80,7 +80,7 @@ public class TestProtocolItemProvider
 	 * This adds a property descriptor for the Test Report feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addTestReportPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add

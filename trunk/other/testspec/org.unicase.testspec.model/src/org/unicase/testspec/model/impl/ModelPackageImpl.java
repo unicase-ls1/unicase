@@ -264,15 +264,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLogicalTestCase_TestStep() {
-		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EReference getLogicalTestCase_NonFunctionalRequirement() {
 		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(4);
 	}
@@ -284,6 +275,15 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	public EReference getLogicalTestCase_FunctionalRequirement() {
 		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getLogicalTestCase_Step() {
+		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -453,7 +453,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEAttribute(logicalTestCaseEClass, LOGICAL_TEST_CASE__INFRASTRUCTURE);
 		createEReference(logicalTestCaseEClass, LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT);
 		createEReference(logicalTestCaseEClass, LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT);
-		createEReference(logicalTestCaseEClass, LOGICAL_TEST_CASE__TEST_STEP);
+		createEReference(logicalTestCaseEClass, LOGICAL_TEST_CASE__STEP);
 
 		concreteParameterEClass = createEClass(CONCRETE_PARAMETER);
 		createEAttribute(concreteParameterEClass, CONCRETE_PARAMETER__VALUE);
@@ -532,7 +532,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEAttribute(getLogicalTestCase_Infrastructure(), theEcorePackage.getEString(), "infrastructure", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLogicalTestCase_NonFunctionalRequirement(), theRequirementPackage.getNonFunctionalRequirement(), null, "nonFunctionalRequirement", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLogicalTestCase_FunctionalRequirement(), theRequirementPackage.getFunctionalRequirement(), null, "functionalRequirement", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLogicalTestCase_TestStep(), this.getTestStep(), null, "testStep", null, 0, -1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getLogicalTestCase_Step(), this.getTestStep(), null, "step", null, 0, -1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(concreteParameterEClass, ConcreteParameter.class, "ConcreteParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConcreteParameter_Value(), theEcorePackage.getEString(), "value", null, 0, 1, ConcreteParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
