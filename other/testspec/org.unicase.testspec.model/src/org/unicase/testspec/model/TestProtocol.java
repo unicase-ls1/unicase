@@ -19,7 +19,6 @@ import org.unicase.model.ModelElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestReport <em>Test Report</em>}</li>
- *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestDescription <em>Test Description</em>}</li>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestState <em>Test State</em>}</li>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}</li>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getConcreteParamter <em>Concrete Paramter</em>}</li>
@@ -56,32 +55,6 @@ public interface TestProtocol extends ModelElement {
 	 * @generated
 	 */
 	void setTestReport(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Test Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Test Description</em>' attribute isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Test Description</em>' attribute.
-	 * @see #setTestDescription(String)
-	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_TestDescription()
-	 * @model
-	 * @generated
-	 */
-	String getTestDescription();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.testspec.model.TestProtocol#getTestDescription <em>Test Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Test Description</em>' attribute.
-	 * @see #getTestDescription()
-	 * @generated
-	 */
-	void setTestDescription(String value);
 
 	/**
 	 * Returns the value of the '<em><b>Test Case</b></em>' containment reference.

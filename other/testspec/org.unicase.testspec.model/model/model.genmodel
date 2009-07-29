@@ -18,13 +18,11 @@
     </genEnums>
     <genClasses ecoreClass="model.ecore#//TestProtocol">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//TestProtocol/testReport"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//TestProtocol/testDescription"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//TestProtocol/testState"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//TestProtocol/testCase"/>
       <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference model.ecore#//TestProtocol/concreteParamter"/>
     </genClasses>
     <genClasses ecoreClass="model.ecore#//LogicalTestCase">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//LogicalTestCase/tcDescription"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//LogicalTestCase/type"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//LogicalTestCase/precondition"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//LogicalTestCase/postcondition"/>

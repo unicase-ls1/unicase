@@ -39,7 +39,6 @@ import org.unicase.testspec.model.TestStep;
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getTcDescription <em>Tc Description</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getType <em>Type</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getPrecondition <em>Precondition</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getPostcondition <em>Postcondition</em>}</li>
@@ -53,26 +52,6 @@ import org.unicase.testspec.model.TestStep;
  * @generated
  */
 public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTestCase {
-	/**
-	 * The default value of the '{@link #getTcDescription() <em>Tc Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTcDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String TC_DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getTcDescription() <em>Tc Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTcDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String tcDescription = TC_DESCRIPTION_EDEFAULT;
-
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -200,27 +179,6 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	@Override
 	protected EClass eStaticClass() {
 		return ModelPackage.Literals.LOGICAL_TEST_CASE;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getTcDescription() {
-		return tcDescription;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTcDescription(String newTcDescription) {
-		String oldTcDescription = tcDescription;
-		tcDescription = newTcDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LOGICAL_TEST_CASE__TC_DESCRIPTION, oldTcDescription, tcDescription));
 	}
 
 	/**
@@ -403,8 +361,6 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.LOGICAL_TEST_CASE__TC_DESCRIPTION:
-				return getTcDescription();
 			case ModelPackage.LOGICAL_TEST_CASE__TYPE:
 				return getType();
 			case ModelPackage.LOGICAL_TEST_CASE__PRECONDITION:
@@ -434,9 +390,6 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.LOGICAL_TEST_CASE__TC_DESCRIPTION:
-				setTcDescription((String)newValue);
-				return;
 			case ModelPackage.LOGICAL_TEST_CASE__TYPE:
 				setType((String)newValue);
 				return;
@@ -471,9 +424,6 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.LOGICAL_TEST_CASE__TC_DESCRIPTION:
-				setTcDescription(TC_DESCRIPTION_EDEFAULT);
-				return;
 			case ModelPackage.LOGICAL_TEST_CASE__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
@@ -507,8 +457,6 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.LOGICAL_TEST_CASE__TC_DESCRIPTION:
-				return TC_DESCRIPTION_EDEFAULT == null ? tcDescription != null : !TC_DESCRIPTION_EDEFAULT.equals(tcDescription);
 			case ModelPackage.LOGICAL_TEST_CASE__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 			case ModelPackage.LOGICAL_TEST_CASE__PRECONDITION:
@@ -537,9 +485,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (tcDescription: ");
-		result.append(tcDescription);
-		result.append(", type: ");
+		result.append(" (type: ");
 		result.append(type);
 		result.append(", precondition: ");
 		result.append(precondition);

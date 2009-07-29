@@ -38,7 +38,6 @@ import org.unicase.testspec.model.TestProtocol;
  * The following features are implemented:
  * <ul>
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestReport <em>Test Report</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestDescription <em>Test Description</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestState <em>Test State</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestCase <em>Test Case</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getConcreteParamter <em>Concrete Paramter</em>}</li>
@@ -67,26 +66,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * @ordered
 	 */
 	protected String testReport = TEST_REPORT_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #getTestDescription() <em>Test Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTestDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final String TEST_DESCRIPTION_EDEFAULT = null;
-
-	/**
-	 * The cached value of the '{@link #getTestDescription() <em>Test Description</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getTestDescription()
-	 * @generated
-	 * @ordered
-	 */
-	protected String testDescription = TEST_DESCRIPTION_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getTestState() <em>Test State</em>}' attribute.
@@ -166,27 +145,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 		testReport = newTestReport;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__TEST_REPORT, oldTestReport, testReport));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public String getTestDescription() {
-		return testDescription;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTestDescription(String newTestDescription) {
-		String oldTestDescription = testDescription;
-		testDescription = newTestDescription;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__TEST_DESCRIPTION, oldTestDescription, testDescription));
 	}
 
 	/**
@@ -289,8 +247,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 		switch (featureID) {
 			case ModelPackage.TEST_PROTOCOL__TEST_REPORT:
 				return getTestReport();
-			case ModelPackage.TEST_PROTOCOL__TEST_DESCRIPTION:
-				return getTestDescription();
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
 				return getTestState();
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
@@ -312,9 +268,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 		switch (featureID) {
 			case ModelPackage.TEST_PROTOCOL__TEST_REPORT:
 				setTestReport((String)newValue);
-				return;
-			case ModelPackage.TEST_PROTOCOL__TEST_DESCRIPTION:
-				setTestDescription((String)newValue);
 				return;
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
 				setTestState((EnumState)newValue);
@@ -341,9 +294,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 			case ModelPackage.TEST_PROTOCOL__TEST_REPORT:
 				setTestReport(TEST_REPORT_EDEFAULT);
 				return;
-			case ModelPackage.TEST_PROTOCOL__TEST_DESCRIPTION:
-				setTestDescription(TEST_DESCRIPTION_EDEFAULT);
-				return;
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
 				setTestState(TEST_STATE_EDEFAULT);
 				return;
@@ -367,8 +317,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 		switch (featureID) {
 			case ModelPackage.TEST_PROTOCOL__TEST_REPORT:
 				return TEST_REPORT_EDEFAULT == null ? testReport != null : !TEST_REPORT_EDEFAULT.equals(testReport);
-			case ModelPackage.TEST_PROTOCOL__TEST_DESCRIPTION:
-				return TEST_DESCRIPTION_EDEFAULT == null ? testDescription != null : !TEST_DESCRIPTION_EDEFAULT.equals(testDescription);
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
 				return testState != TEST_STATE_EDEFAULT;
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
@@ -391,8 +339,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (testReport: ");
 		result.append(testReport);
-		result.append(", testDescription: ");
-		result.append(testDescription);
 		result.append(", testState: ");
 		result.append(testState);
 		result.append(')');

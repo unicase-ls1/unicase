@@ -69,7 +69,6 @@ public class TestProtocolItemProvider
 			super.getPropertyDescriptors(object);
 
 			addTestReportPropertyDescriptor(object);
-			addTestDescriptionPropertyDescriptor(object);
 			addTestStatePropertyDescriptor(object);
 			addTestCasePropertyDescriptor(object);
 			addConcreteParamterPropertyDescriptor(object);
@@ -92,29 +91,7 @@ public class TestProtocolItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_TestProtocol_testReport_feature", "_UI_TestProtocol_type"),
 				 ModelPackage.Literals.TEST_PROTOCOL__TEST_REPORT,
 				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Test Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTestDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TestProtocol_testDescription_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TestProtocol_testDescription_feature", "_UI_TestProtocol_type"),
-				 ModelPackage.Literals.TEST_PROTOCOL__TEST_DESCRIPTION,
 				 true,
-				 false,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -222,7 +199,6 @@ public class TestProtocolItemProvider
 
 		switch (notification.getFeatureID(TestProtocol.class)) {
 			case ModelPackage.TEST_PROTOCOL__TEST_REPORT:
-			case ModelPackage.TEST_PROTOCOL__TEST_DESCRIPTION:
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

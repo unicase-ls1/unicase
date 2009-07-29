@@ -68,7 +68,6 @@ public class LogicalTestCaseItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addTcDescriptionPropertyDescriptor(object);
 			addTypePropertyDescriptor(object);
 			addPreconditionPropertyDescriptor(object);
 			addPostconditionPropertyDescriptor(object);
@@ -77,28 +76,6 @@ public class LogicalTestCaseItemProvider
 			addFunctionalRequirementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
-	}
-
-	/**
-	 * This adds a property descriptor for the Tc Description feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addTcDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_tcDescription_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_tcDescription_feature", "_UI_LogicalTestCase_type"),
-				 ModelPackage.Literals.LOGICAL_TEST_CASE__TC_DESCRIPTION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
 	}
 
 	/**
@@ -127,7 +104,7 @@ public class LogicalTestCaseItemProvider
 	 * This adds a property descriptor for the Precondition feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addPreconditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
@@ -138,7 +115,7 @@ public class LogicalTestCaseItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_precondition_feature", "_UI_LogicalTestCase_type"),
 				 ModelPackage.Literals.LOGICAL_TEST_CASE__PRECONDITION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -149,7 +126,7 @@ public class LogicalTestCaseItemProvider
 	 * This adds a property descriptor for the Postcondition feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addPostconditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
@@ -160,7 +137,7 @@ public class LogicalTestCaseItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_postcondition_feature", "_UI_LogicalTestCase_type"),
 				 ModelPackage.Literals.LOGICAL_TEST_CASE__POSTCONDITION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -171,7 +148,7 @@ public class LogicalTestCaseItemProvider
 	 * This adds a property descriptor for the Infrastructure feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addInfrastructurePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
@@ -182,7 +159,7 @@ public class LogicalTestCaseItemProvider
 				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_infrastructure_feature", "_UI_LogicalTestCase_type"),
 				 ModelPackage.Literals.LOGICAL_TEST_CASE__INFRASTRUCTURE,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -297,7 +274,6 @@ public class LogicalTestCaseItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(LogicalTestCase.class)) {
-			case ModelPackage.LOGICAL_TEST_CASE__TC_DESCRIPTION:
 			case ModelPackage.LOGICAL_TEST_CASE__TYPE:
 			case ModelPackage.LOGICAL_TEST_CASE__PRECONDITION:
 			case ModelPackage.LOGICAL_TEST_CASE__POSTCONDITION:
