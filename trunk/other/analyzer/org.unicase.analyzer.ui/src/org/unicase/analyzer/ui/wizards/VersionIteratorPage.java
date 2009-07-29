@@ -10,8 +10,6 @@ package org.unicase.analyzer.ui.wizards;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
-import org.eclipse.emf.ecore.EAttribute;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.swt.SWTObservables;
@@ -31,13 +29,10 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.analyzer.AnalyzerConfiguration;
-import org.unicase.analyzer.iterator.IteratorFactory;
+import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.analyzer.iterator.VersionIterator;
-import org.unicase.analyzer.iterator.VersionSpecQuery;
-import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
 /**
  * @author liya
@@ -59,6 +54,8 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 	private Button returnCopyButton;
 	
 	private VersionIterator versionIterator;
+	private TransactionalEditingDomain editingDomain;
+	private AnalyzerConfiguration conf;
 	/**
 	 * @param pageName Name of the page
 	 */
@@ -66,15 +63,15 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		canFlipToNextPage = false;
-		versionIterator = IteratorFactory.eINSTANCE.createVersionIterator();
+		canFlipToNextPage = false;	
+		
+		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 	}
 
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
-	@SuppressWarnings("cast")
 	public void createControl(Composite parent) {
 		GridData gd;
 		Composite composite = new Composite(parent, SWT.NULL);
@@ -82,25 +79,18 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		int ncol = 4;
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
-		 
-		AnalyzerConfiguration conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
 		
+		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
 		 new Label (composite, SWT.NONE).setText("Step Length:");	
 		stepText = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		stepText.setLayoutData(gd);
-		EAttribute attribute = null;
-		for(int i=0; i<versionIterator.eClass().getEAllAttributes().size(); i++){
-			if(versionIterator.eClass().getEAllAttributes().get(i).getName().equals("stepLength")){
-				attribute = versionIterator.eClass().getEAllAttributes().get(i);
-			}
+		if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
+			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_StepLength());
+			EMFDataBindingContext dbc = new EMFDataBindingContext();
+			dbc.bindValue(SWTObservables.observeText(stepText, SWT.FocusOut), modelObservable, null, null);
 		}
-		IObservableValue model = EMFEditObservables.observeValue(((ProjectAnalyzerWizard) getWizard()).getDomain(),versionIterator, attribute);
-		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeText(stepText, SWT.FocusOut), model, null, null);
-//		if(conf.getIterator() != null){
-//			stepText.setText(Integer.toString(conf.getIterator().getStepLength()));
-//		}
+
 		stepText.addListener(SWT.KeyUp, this);
 		
 		 
@@ -109,12 +99,18 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		 gd = new GridData(GridData.FILL_HORIZONTAL);
 		 gd.horizontalSpan = ncol;
 		 defaultButton.setLayoutData(gd);
-		 if(conf.getIterator() != null){
-			 defaultButton.setSelection(conf.getIterator().isDefault());
-			}
-		 else{
-			 defaultButton.setSelection(false);
+		 if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
+			 IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Default());
+			 EMFDataBindingContext dbc = new EMFDataBindingContext();
+			 dbc.bindValue(SWTObservables.observeSelection(defaultButton), modelObservable, null, null);
 		 }
+		 
+//		 if(conf.getIterator() != null){
+//			 defaultButton.setSelection(conf.getIterator().isDefault());
+//			}
+//		 else{
+//			 defaultButton.setSelection(false);
+//		 }
 		 defaultButton.addSelectionListener(new SelectionListener() {
 
 		
@@ -136,18 +132,29 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		group.setLayout(new GridLayout(2,false));
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
+		
 		group.setLayoutData(gd);
 		
 		new Label (group, SWT.NONE).setText("Start:");	
 		startText = new Text(group, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
-		startText.setLayoutData(gd);
+		startText.setLayoutData(gd);		
+		if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
+			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator().getVersionSpecQuery().getStartVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
+			EMFDataBindingContext dbc = new EMFDataBindingContext();
+			dbc.bindValue(SWTObservables.observeText(startText, SWT.FocusOut), modelObservable, null, null);
+		}
 		startText.addListener(SWT.KeyUp, this);
 		
 		new Label (group, SWT.NONE).setText("End:");	
 		endText = new Text(group, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		endText.setLayoutData(gd);
+		if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
+			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator().getVersionSpecQuery().getEndVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
+			EMFDataBindingContext dbc = new EMFDataBindingContext();
+			dbc.bindValue(SWTObservables.observeText(endText, SWT.FocusOut), modelObservable, null, null);
+		}
 		endText.addListener(SWT.KeyUp, this);
 		
 		gd = new GridData();
@@ -156,12 +163,20 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		forwardButton.setText("Forward");
 		forwardButton.setLayoutData(gd);
 		forwardButton.setSelection(false); 
+		if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
+			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Forward());
+			EMFDataBindingContext dbc = new EMFDataBindingContext();
+			dbc.bindValue(SWTObservables.observeSelection(forwardButton), modelObservable, null, null);
+		}
 		forwardButton.addListener(SWT.Selection, this);
 		
 		backwardButton = new Button(group, SWT.RADIO);
 		backwardButton.setText("Backward");		 
 		backwardButton.setLayoutData(new GridData(GridData.END));
 		backwardButton.setSelection(false);
+//		modelObservable = EMFEditObservables.observeValue(editingDomain, versionIterator, IteratorPackage.eINSTANCE.getVersionIterator_Forward());
+//		dbc = new EMFDataBindingContext();
+//		dbc.bindValue(SWTObservables.observeSelection(backwardButton), modelObservable, null, null);
 		backwardButton.addListener(SWT.Selection, this);
 		
 		returnCopyButton = new Button(group, SWT.CHECK);
@@ -170,6 +185,11 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		gd.horizontalSpan = ncol;
 		returnCopyButton.setLayoutData(gd);
 		returnCopyButton.setSelection(false);
+		if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
+			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_ReturnProjectDataCopy());
+			EMFDataBindingContext dbc = new EMFDataBindingContext();
+			dbc.bindValue(SWTObservables.observeSelection(returnCopyButton), modelObservable, null, null);
+		}
 		returnCopyButton.addListener(SWT.Selection, this);
 		
 		setCanFlipToNextPage(isPageComplete());
@@ -233,29 +253,27 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 			protected void doExecute() {
 				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
 				
-				versionIterator.setProjectId(wizard.getSelectedProjectID());
-				versionIterator.setStepLength(Integer.valueOf(stepText.getText()));
-				versionIterator.setDefault(defaultButton.getSelection());
-				
-				if(!defaultButton.getSelection()){					
-					VersionSpecQuery query = IteratorFactory.eINSTANCE.createVersionSpecQuery();
-					PrimaryVersionSpec startVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-					startVer.setIdentifier(Integer.valueOf(startText.getText()));
-					PrimaryVersionSpec endVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-					endVer.setIdentifier(Integer.valueOf(endText.getText()));
-					query.setStartVersion(startVer);
-					query.setEndVersion(endVer);
-					versionIterator.setVersionSpecQuery(query);
-					versionIterator.setForward(forwardButton.getSelection());
-					versionIterator.setReturnProjectDataCopy(returnCopyButton.getSelection());
-				}
-				wizard.setVersionIterator(versionIterator);
-				wizard.getAnalyzerConfig().setIterator(versionIterator);
+				conf.getIterator().setProjectId(wizard.getSelectedProjectID());
+//				versionIterator.setStepLength(Integer.valueOf(stepText.getText()));
+//				versionIterator.setDefault(defaultButton.getSelection());
+//				
+//				if(!defaultButton.getSelection()){					
+//					PrimaryVersionSpec startVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+//					startVer.setIdentifier(Integer.valueOf(startText.getText()));
+//					PrimaryVersionSpec endVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+//					endVer.setIdentifier(Integer.valueOf(endText.getText()));
+//					versionQuery.setStartVersion(startVer);
+//					versionQuery.setEndVersion(endVer);
+//					versionIterator.setVersionSpecQuery(versionQuery);
+//					versionIterator.setForward(forwardButton.getSelection());
+//					versionIterator.setReturnProjectDataCopy(returnCopyButton.getSelection());
+//				}
+//				wizard.setVersionIterator(versionIterator);
+//				wizard.getAnalyzerConfig().setIterator(versionIterator);
 				//wizard.getAnalyzerConfig().setIterator((VersionIterator)EcoreUtil.copy(versionIterator));
 				
 			}
 		});
-		
 		ExporterPage page = ((ProjectAnalyzerWizard)getWizard()).getExporterPage();
 		return page;
 	}
