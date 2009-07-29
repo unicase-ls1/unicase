@@ -6,6 +6,8 @@
 
 package org.unicase.analyzer.ui.wizards;
 
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -16,7 +18,13 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.unicase.analyzer.AnalyzerConfiguration;
+import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.TimeIterator;
+import org.unicase.analyzer.iterator.VersionIterator;
+import org.unicase.analyzer.iterator.VersionSpecQuery;
+import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 
 /**
  * @author liya
@@ -30,6 +38,8 @@ public class IteratorPage extends WizardPage implements Listener {
 	private Button versionIteratorButton;
 	private Button timeIteratorButton;
 	
+	private AnalyzerConfiguration conf;
+	private TransactionalEditingDomain editingDomain;
 	/**
 	 * @param pageName Name of the page
 	 */
@@ -38,6 +48,7 @@ public class IteratorPage extends WizardPage implements Listener {
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
 		canFlipToNextPage = false;
+		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 	}
 
 	/** 
@@ -62,9 +73,42 @@ public class IteratorPage extends WizardPage implements Listener {
 	public IWizardPage getNextPage() {
 		if(versionIteratorButton.getSelection()){
 			VersionIteratorPage page = ((ProjectAnalyzerWizard)getWizard()).getVersionIteratorPage();
+			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+				@Override
+				protected void doExecute() {
+					conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+					if(conf.getIterator() == null || conf.getIterator() instanceof TimeIterator){
+						PrimaryVersionSpec startVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+						PrimaryVersionSpec endVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+						VersionSpecQuery versionQuery = IteratorFactory.eINSTANCE.createVersionSpecQuery();
+						versionQuery.setStartVersion(startVer);
+						versionQuery.setEndVersion(endVer);
+						VersionIterator versionIterator = IteratorFactory.eINSTANCE.createVersionIterator();
+						versionIterator.setVersionSpecQuery(versionQuery);
+						conf.setIterator(versionIterator);
+					}
+				}
+			});
 			return page;
+			
 		}else if(timeIteratorButton.getSelection()){
 			TimeIteratorPage page = ((ProjectAnalyzerWizard)getWizard()).getTimeIteratorPage();
+			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {			
+				@Override
+				protected void doExecute() {
+					conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+					if(conf.getIterator() == null ||  !(conf.getIterator() instanceof TimeIterator) ){
+						DateVersionSpec startVer = VersioningFactory.eINSTANCE.createDateVersionSpec();
+						DateVersionSpec endVer = VersioningFactory.eINSTANCE.createDateVersionSpec();
+						VersionSpecQuery versionQuery = IteratorFactory.eINSTANCE.createVersionSpecQuery();
+						versionQuery.setStartVersion(startVer);
+						versionQuery.setEndVersion(endVer);
+						TimeIterator timeIterator = IteratorFactory.eINSTANCE.createTimeIterator();
+						timeIterator.setVersionSpecQuery(versionQuery);
+						conf.setIterator(timeIterator);
+					}
+				}
+			});
 			return page;
 		}else{
 			return super.getNextPage();
@@ -99,7 +143,7 @@ public class IteratorPage extends WizardPage implements Listener {
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
 		
-		AnalyzerConfiguration conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
 		
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;

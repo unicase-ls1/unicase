@@ -19,9 +19,17 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.SWTError;
+import org.eclipse.swt.browser.Browser;
+import org.eclipse.swt.browser.ProgressEvent;
+import org.eclipse.swt.browser.ProgressListener;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.ProgressBar;
+import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.eclipse.ui.PlatformUI;
@@ -29,6 +37,7 @@ import org.eclipse.ui.PlatformUI;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.AnalyzerModelController;
+import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.Exporter;
@@ -77,10 +86,42 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			protected void doExecute() {
 			// pass to AnalyzerController
 				try {
-					versionIterator.init(selectedUsersession);
+					analyzerConfig.getIterator().init(selectedUsersession);
 					@SuppressWarnings("unused")
-					AnalyzerModelController analyzerController = new AnalyzerModelController(versionIterator, analyzers, exporter);
+					AnalyzerModelController analyzerController = new AnalyzerModelController(analyzerConfig.getIterator(), analyzers, exporter);
 
+					//TODO adding progress bar 
+//					Display display = new Display();
+//					final Shell shell = new Shell(display);
+//					shell.setText("Progress of analyzing:");
+//					shell.setActive();
+//					final ProgressBar progressBar = new ProgressBar(shell, SWT.NONE);
+//					GridDataFactory.fillDefaults().grab(true, false).applyTo(progressBar);
+//
+//					final Browser browser;
+//					try {
+//						browser = new Browser(shell, SWT.NONE);
+//					} catch (SWTError e) {
+//						System.out.println("Could not instantiate Browser: " + e.getMessage());
+//						display.dispose();
+//						return;
+//					}
+//					GridDataFactory.fillDefaults().grab(true, true).applyTo(browser);
+//					browser.addProgressListener(new ProgressListener() {
+//						public void changed(ProgressEvent event) {
+//							if (event.total == 0) {
+//								return;
+//							}
+//							int ratio = event.current * 100 / event.total;
+//							progressBar.setSelection(ratio);
+//						}
+//
+//						public void completed(ProgressEvent event) {
+//							progressBar.setSelection(0);
+//						}
+//					});
+//					shell.open();
+					
 				} catch (IteratorException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -136,9 +177,9 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 //			.createEditingDomain(resourceSet);
 //		TransactionalEditingDomain.Registry.INSTANCE.add("org.unicase.EditingDomain", domain);
 //		domain.setID("org.unicase.EditingDomain");
-    	PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
-
-			public void run() {
+//    	PlatformUI.getWorkbench().getDisplay().syncExec(new Runnable() {
+//
+//			public void run() {
 				
 				domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain(
 						DOMAIN_ID);
@@ -146,6 +187,9 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 				URI fileURI = URI.createFileURI(PATH);
 				File analyzerFile = new File(PATH);
 		
+				@SuppressWarnings("unused")
+				AnalyzerPackage analyzePackage = AnalyzerPackage.eINSTANCE;
+				
 				if(!analyzerFile.exists()){
 					
 					resource = domain.getResourceSet().createResource(fileURI);
@@ -156,21 +200,20 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 							resource.getContents().add(analyzerConfig);
 						}
 					});
-					try {
-						resource.save(null);
-					} catch (IOException e) {
-						WorkspaceUtil.log("Could not save the resource!", e, IStatus.WARNING);
-					}
+//					try {
+//						resource.save(null);
+//					} catch (IOException e) {
+//						WorkspaceUtil.log("Could not save the resource!", e, IStatus.WARNING);
+//					}
 				}else{
 					
 					resource = domain.getResourceSet().getResource(fileURI, true);
 					EList<EObject> directContents = resource.getContents();
 					// MK cast
-					analyzerConfig = (AnalyzerConfiguration) directContents.get(0);
-		
+					analyzerConfig = (AnalyzerConfiguration) directContents.get(0);		
 				}	
-			}
-    	});
+//			}
+//    	});
 	}
 
 	/** 
