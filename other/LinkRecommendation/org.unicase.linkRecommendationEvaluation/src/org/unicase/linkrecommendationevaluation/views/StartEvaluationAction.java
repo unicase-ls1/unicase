@@ -65,7 +65,6 @@ public class StartEvaluationAction extends Action{
 				.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getActionItem(), new BasicEList<ActionItem>());
 			
 				for(ActionItem item : myList){
-					
 					evaluate(item);
 				}
 			}
@@ -86,22 +85,22 @@ public class StartEvaluationAction extends Action{
 		System.out.println("\nRecommendations: ");
 		
 //		Collection<ModelElement> posEl = getPossibleElements(ae);
-		Map<ModelElement, Double>relevanceMap = RecommendationManager.getInstance().getMatchMap("words", ae, posEl);
-		
-		double foundAndRec =0, foundNotRec =0;
-		for(ModelElement el : relevantElements) {
-			if(relevanceMap.get(el)!=null) {
-				foundAndRec++;
-			}
-			else {
-				foundNotRec++;
-			}	
-		}
-		double precision = foundAndRec/relevanceMap.size();
-		double recall = foundAndRec/relevantElements.size();
-		
-		System.out.println("Precision:"+precision);
-		System.out.println("Recall:"+recall);
+//		Map<ModelElement, Double>relevanceMap = RecommendationManager.getInstance().getMatchMap("words", ae, posEl);
+//		
+//		double foundAndRec =0, foundNotRec =0;
+//		for(ModelElement el : relevantElements) {
+//			if(relevanceMap.get(el)!=null) {
+//				foundAndRec++;
+//			}
+//			else {
+//				foundNotRec++;
+//			}	
+//		}
+//		double precision = foundAndRec/relevanceMap.size();
+//		double recall = foundAndRec/relevantElements.size();
+//		
+//		System.out.println("Precision:"+precision);
+//		System.out.println("Recall:"+recall);
 	}
 	
 	private Collection<ModelElement> getPossibleElements(ModelElement modelElement,EReference eReference) {

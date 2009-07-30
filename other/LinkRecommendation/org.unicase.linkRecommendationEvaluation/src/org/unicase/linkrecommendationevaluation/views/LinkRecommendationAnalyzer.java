@@ -29,13 +29,17 @@ import org.unicase.model.task.TaskPackage;
 
 public class LinkRecommendationAnalyzer implements DataAnalyzer{
 	
+	private List<EReference> relevantReferences;
+	private Double threshold;
+	
 	public void LinkRecommendationAnalyzer(){
 		//Thats how to get a reference
 		// Have one place where you define all relevant reference for the evaluation
 		//like this
-		List<EReference> relevantReferences = new ArrayList<EReference>();
+		relevantReferences = new ArrayList<EReference>();
 		
 		relevantReferences.add(ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements());
+		threshold = 0.1;
 	}
 	
 	public List<String> getName() {
@@ -49,47 +53,70 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer{
 	}
 
 	public List<Object> getValue(ProjectAnalysisData data) {
-		EList<ChangePackage> changePackages = data.getChangePackages();
-		List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
-		for(ChangePackage changePackage: changePackages){
-			
-			operations.addAll(changePackage.getOperations());
-		}
-		for(AbstractOperation operation: operations){
-			if(operation instanceof ReferenceOperation);
-		}
+//		EList<ChangePackage> changePackages = data.getChangePackages();
+//		List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
+//		for(ChangePackage changePackage: changePackages){
+//			
+//			operations.addAll(changePackage.getOperations());
+//		}
+//		for(AbstractOperation operation: operations){
+//			if(operation instanceof ReferenceOperation);
+//		}
+//		
+		List<Object> results = new ArrayList<Object>();
+		results.add("foo");
+		results.add("bar");
 		
 		Project project = data.getProjectState();
 		EList<ModelElement> allModelElements = project.getAllModelElements();
 		
-		
 		for(ModelElement modelElement: allModelElements){
-		modelElement.eClass().getEReferences();
-		int upperBound = eReference.getUpperBound();
-		//TODO: Distinguish between single and multi ref
-		Object existing = modelElement.eGet(eReference);
-		EClass clazz = eReference.getEReferenceType();
-		Collection<ModelElement> candidates = modelElement.getProject().getAllModelElementsbyClass(clazz,
-			new BasicEList<ModelElement>());
-		Map<ModelElement, Double>relevanceMap = RecommendationManager.getInstance().getMatchMap(ae, posEl);
-		
-		double foundAndRec =0, foundNotRec =0;
-		for(ModelElement el : candidates) {
-			if(relevanceMap.get(el)!=null) {
-				foundAndRec++;
+			List<EReference> refs = modelElement.eClass().getEReferences();
+			
+			for(EReference eReference : refs) {
+				if (!relevantReferences.contains(eReference)) {
+					continue;
+				}
+				
+				Object existing = modelElement.eGet(eReference);
+				List<ModelElement> correctMEs = new ArrayList<ModelElement>();
+				
+				if (existing instanceof EList) {
+					EList<ModelElement> eList = (EList<ModelElement>) existing;
+					correctMEs.addAll(eList);
+				} else if (existing instanceof EObject) {
+					ModelElement eObject = (ModelElement) existing;
+					correctMEs.add(eObject);
+				}
+				
+				EClass clazz = eReference.getEReferenceType();
+				Collection<ModelElement> candidates = modelElement.getProject().getAllModelElementsbyClass(clazz,
+					new BasicEList<ModelElement>());
+				
+				Map<ModelElement, Double>relevanceMap = RecommendationManager.getInstance().getMatchMap(modelElement, candidates);
+				
+				double foundAndRec =0, foundNotRec =0;
+				for(ModelElement el : correctMEs) {
+					Double val = relevanceMap.get(el);
+					if(val!=null && val>=threshold) {
+						foundAndRec++;
+					}
+					else {
+						foundNotRec++;
+					}	
+				}
+				//TODO: relevance map. size is wrong, just take elements above threshold.
+				double precision = foundAndRec/relevanceMap.size();
+				double recall = foundAndRec/candidates.size();
+				
+				results.add(precision);
+				results.add(recall);
 			}
-			else {
-				foundNotRec++;
-			}	
 		}
-		double precision = foundAndRec/relevanceMap.size();
-		double recall = foundAndRec/candidates.size();
 		
-		System.out.println("Precision:"+precision);
-		System.out.println("Recall:"+recall);
-		}
+		return results;
 	}
-
+	
 	public TreeIterator<EObject> eAllContents() {
 		// TODO Auto-generated method stub
 		return null;
@@ -179,8 +206,9 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer{
 		// TODO Auto-generated method stub
 		
 	}
-	
 
-	
-	
+	public boolean isExportOnce() {
+		// TODO Auto-generated method stub
+		return false;
+	}	
 }
