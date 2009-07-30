@@ -12,13 +12,11 @@ import org.unicase.analyzer.ProjectAnalysisData;
 
 /**
  * @author liya
- *
  */
 public class VersionWriter implements DataAnalyzer {
 
-	/** 
+	/**
 	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
-	 * 
 	 */
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
@@ -35,9 +33,10 @@ public class VersionWriter implements DataAnalyzer {
 		values.add(data.getPrimaryVersionSpec().getIdentifier());
 		return values;
 	}
-	
-	/** 
+
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
 	 */
 	public boolean isExportOnce() {

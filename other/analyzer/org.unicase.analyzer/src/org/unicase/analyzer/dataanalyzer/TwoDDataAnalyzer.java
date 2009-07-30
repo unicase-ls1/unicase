@@ -12,10 +12,9 @@ import org.unicase.analyzer.VersionIterator;
 
 /**
  * @author liya
- *
  */
 public interface TwoDDataAnalyzer extends DataAnalyzer {
-	
+
 	/**
 	 * Returns the specified values of the given ProjectAnalysisData.
 	 * 

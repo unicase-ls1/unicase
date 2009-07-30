@@ -12,7 +12,6 @@ import java.util.List;
 
 /**
  * @author liya
- *
  */
 public class CSVExporter implements Exporter {
 
@@ -25,11 +24,10 @@ public class CSVExporter implements Exporter {
 	private FileWriter fileWriter;
 
 	/**
-	 * This constructor sets the targetFile, in which the data shall be saved.
-	 * The OVERWRITE flag is set to false by default.
+	 * This constructor sets the targetFile, in which the data shall be saved. The OVERWRITE flag is set to false by
+	 * default.
 	 * 
-	 * @param targetFile
-	 *            the target file
+	 * @param targetFile the target file
 	 * @throws IOException @see {@link IOException}
 	 */
 	public CSVExporter(File targetFile) throws IOException {
@@ -39,27 +37,24 @@ public class CSVExporter implements Exporter {
 	/**
 	 * This constructor sets the targetFile, in which the data shall be saved.
 	 * 
-	 * @param targetFile
-	 *            the target file
-	 * @param isOverwrite
-	 *            if true, existing files will be overwritten, otherwise it will
-	 *            be appended.
+	 * @param targetFile the target file
+	 * @param isOverwrite if true, existing files will be overwritten, otherwise it will be appended.
 	 * @throws IOException @see {@link IOException}
 	 */
 	public CSVExporter(File targetFile, boolean isOverwrite) throws IOException {
 		this.targetFile = targetFile;
 		this.isOVERWRITE = isOverwrite;
-		
-		if(isOverwrite) {
+
+		if (isOverwrite) {
 			initFileWriter(true);
 			closeFileWriter();
 		}
 	}
-	
+
 	private void initFileWriter() throws IOException {
 		initFileWriter(isOVERWRITE);
 	}
-	
+
 	private void initFileWriter(boolean isOverwrite) throws IOException {
 		if (!targetFile.exists()) {
 			targetFile.createNewFile();
@@ -74,9 +69,8 @@ public class CSVExporter implements Exporter {
 	private String getColumnValue(Object column) {
 		return column.toString();
 	}
-	
+
 	/**
-	 * 
 	 * @see org.unicase.analyzer.exporter.Exporter#export(java.util.List)
 	 * @param lines 2D List
 	 * @throws IOException @see {@link IOException}

@@ -8,8 +8,10 @@ package org.unicase.analyzer.ui.wizards;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -19,21 +21,12 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.jface.layout.GridDataFactory;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
-import org.eclipse.swt.SWT;
-import org.eclipse.swt.SWTError;
-import org.eclipse.swt.browser.Browser;
-import org.eclipse.swt.browser.ProgressEvent;
-import org.eclipse.swt.browser.ProgressListener;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.ProgressBar;
-import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.eclipse.ui.PlatformUI;
-
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.AnalyzerModelController;
@@ -84,52 +77,27 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
-			// pass to AnalyzerController
 				try {
-					analyzerConfig.getIterator().init(selectedUsersession);
-					@SuppressWarnings("unused")
-					AnalyzerModelController analyzerController = new AnalyzerModelController(analyzerConfig.getIterator(), analyzers, exporter);
-
-					//TODO adding progress bar 
-//					Display display = new Display();
-//					final Shell shell = new Shell(display);
-//					shell.setText("Progress of analyzing:");
-//					shell.setActive();
-//					final ProgressBar progressBar = new ProgressBar(shell, SWT.NONE);
-//					GridDataFactory.fillDefaults().grab(true, false).applyTo(progressBar);
-//
-//					final Browser browser;
-//					try {
-//						browser = new Browser(shell, SWT.NONE);
-//					} catch (SWTError e) {
-//						System.out.println("Could not instantiate Browser: " + e.getMessage());
-//						display.dispose();
-//						return;
-//					}
-//					GridDataFactory.fillDefaults().grab(true, true).applyTo(browser);
-//					browser.addProgressListener(new ProgressListener() {
-//						public void changed(ProgressEvent event) {
-//							if (event.total == 0) {
-//								return;
-//							}
-//							int ratio = event.current * 100 / event.total;
-//							progressBar.setSelection(ratio);
-//						}
-//
-//						public void completed(ProgressEvent event) {
-//							progressBar.setSelection(0);
-//						}
-//					});
-//					shell.open();
-					
+					// pass to AnalyzerController
+					analyzerConfig.getIterator().init(selectedUsersession);			
+					setNeedsProgressMonitor(true);
+					getContainer().run(true, true, new IRunnableWithProgress(){ 
+					    public void run(IProgressMonitor monitor) { 
+					        monitor.beginTask("Analyzing...", 1); 
+					        @SuppressWarnings("unused")
+							AnalyzerModelController analyzerController = new AnalyzerModelController(analyzerConfig.getIterator(), analyzers, exporter); 
+					        monitor.done(); 
+					    } 
+					});				
 				} catch (IteratorException e) {
-					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
+					e.printStackTrace();
+				} catch (InterruptedException e) {
 					e.printStackTrace();
 				}
 			}
-		}); 
-		
-		
+		}); 				
 		try {
 			analyzerConfig.eResource().save(null);
 		} catch (IOException e) {

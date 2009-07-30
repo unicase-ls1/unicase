@@ -28,7 +28,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
 public class TimeIterator extends VersionIterator {
 
 	private DateVersionSpec dateSpec;
-	
+
 	private DateVersionSpec endDateSpec;
 
 	private int stepLengthUnit;
@@ -47,10 +47,8 @@ public class TimeIterator extends VersionIterator {
 	public TimeIterator(Usersession usersession, ProjectId projectId, int stepLength, int stepLengthUnit)
 		throws IteratorException {
 
-		this(usersession, projectId, stepLength, stepLengthUnit,
-			new VersionSpecQuery(VersioningFactory.eINSTANCE
-				.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE
-				.createHeadVersionSpec()), true, true);
+		this(usersession, projectId, stepLength, stepLengthUnit, new VersionSpecQuery(VersioningFactory.eINSTANCE
+			.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE.createHeadVersionSpec()), true, true);
 	}
 
 	/**
@@ -58,8 +56,7 @@ public class TimeIterator extends VersionIterator {
 	 * @param projectId the project id of the project to get
 	 * @param stepLength the step length for the iterator to go through to the next
 	 * @param stepLengthUnit the unit of time step length based on Calendar's static field, e.g. Calendar.SECOND
-	 * @param versionSpecQuery
-	 *        the version query for the iterator from start till the end
+	 * @param versionSpecQuery the version query for the iterator from start till the end
 	 * @param isForward the direction for the iterator go through, either forward(true) or backward(false). However,
 	 *            doesn't work for backward currently, will be solved in the near future
 	 * @param returnProjectDataCopy the next() method will return the copy of ProjectAnalysisData when it is set to true
@@ -70,10 +67,10 @@ public class TimeIterator extends VersionIterator {
 		VersionSpecQuery versionSpecQuery, boolean isForward, boolean returnProjectDataCopy) throws IteratorException {
 
 		super(usersession, projectId, stepLength, versionSpecQuery, isForward, returnProjectDataCopy);
-		
+
 		VersionSpec start = versionSpecQuery.getStart();
 		VersionSpec end = versionSpecQuery.getEnd();
-		
+
 		this.stepLengthUnit = stepLengthUnit;
 
 		this.dateSpec = VersioningFactory.eINSTANCE.createDateVersionSpec();
@@ -94,12 +91,12 @@ public class TimeIterator extends VersionIterator {
 			} catch (EmfStoreException e) {
 				throw new IteratorException("Cannot connect to server.", e);
 			}
-			Date dateStart = projectHistory.get(projectHistory.size()-1).getLogMessage().getDate();
-			if(dateStart == null){
-				dateStart = projectHistory.get(projectHistory.size()-1).getLogMessage().getClientDate();
+			Date dateStart = projectHistory.get(projectHistory.size() - 1).getLogMessage().getDate();
+			if (dateStart == null) {
+				dateStart = projectHistory.get(projectHistory.size() - 1).getLogMessage().getClientDate();
 			}
 			Date dateEnd = projectHistory.get(0).getLogMessage().getDate();
-			if(dateEnd == null){
+			if (dateEnd == null) {
 				dateEnd = projectHistory.get(0).getLogMessage().getClientDate();
 			}
 			this.dateSpec.setDate(dateStart);
@@ -119,38 +116,36 @@ public class TimeIterator extends VersionIterator {
 		}
 
 	}
-	
-	
 
 	/**
 	 * @return @see org.unicase.analyzer.VersionIterator#hasNext()
 	 */
 	@Override
 	public boolean hasNext() {
-		if(super.hasNext()){
-			if(isForward()){
+		if (super.hasNext()) {
+			if (isForward()) {
 				return dateSpec.getDate().before(endDateSpec.getDate());
-			}
-			else{
+			} else {
 				return dateSpec.getDate().after(endDateSpec.getDate());
 			}
-		}
-		else{
-			return false;		
+		} else {
+			return false;
 		}
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
-	 * @see org.unicase.analyzer.VersionIterator#updateSpecifier(org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec, int, boolean)
+	 * 
+	 * @see org.unicase.analyzer.VersionIterator#updateSpecifier(org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec,
+	 *      int, boolean)
 	 */
 	@Override
 	protected void updateSpecifier(PrimaryVersionSpec specifier, int stepLength, boolean isForward) {
 
-		if(dateSpec!=null){
+		if (dateSpec != null) {
 			Calendar calendar = Calendar.getInstance();
 			calendar.setTime(dateSpec.getDate());
-	
+
 			if (isForward) {
 				calendar.add(stepLengthUnit, stepLength);
 			} else {
@@ -158,15 +153,15 @@ public class TimeIterator extends VersionIterator {
 			}
 			dateSpec.setDate(calendar.getTime());
 			try {
-				PrimaryVersionSpec temp = this.getConnectionManager().resolveVersionSpec(getUsersession().getSessionId(),
-					getProjectId(), dateSpec);
+				PrimaryVersionSpec temp = this.getConnectionManager().resolveVersionSpec(
+					getUsersession().getSessionId(), getProjectId(), dateSpec);
 				specifier.setIdentifier(temp.getIdentifier());
 			} catch (EmfStoreException e) {
 				WorkspaceUtil.logException("Couldn't be resolved", e);
 			}
 		}
 	}
-	
+
 	/**
 	 * @return {@link DateVersionSpec}
 	 */

@@ -19,7 +19,6 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 
 /**
  * @author liya
- *
  */
 public class DateWriter implements DataAnalyzer {
 
@@ -27,21 +26,21 @@ public class DateWriter implements DataAnalyzer {
 	private Date date;
 	private DateFormat format;
 	private Calendar calendar;
+
 	/**
 	 * Constructor of DateWriter.
+	 * 
 	 * @param projectIterator VersionIterator
 	 */
-	public DateWriter(VersionIterator projectIterator){
+	public DateWriter(VersionIterator projectIterator) {
 		this.projectIterator = projectIterator;
 		this.date = new Date();
 		this.format = new SimpleDateFormat("EEE d MMM yyyy HH:mm:ss Z");
 		this.calendar = Calendar.getInstance();
 	}
-	
-	
+
 	/**
 	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
-	 * 
 	 */
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
@@ -55,15 +54,14 @@ public class DateWriter implements DataAnalyzer {
 	 */
 	public List<Object> getValue(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
-		if(projectIterator instanceof TimeIterator){
+		if (projectIterator instanceof TimeIterator) {
 			TimeIterator it = (TimeIterator) projectIterator;
 			calendar.setTime(it.getDateSpec().getDate());
-		}
-		else{
+		} else {
 			List<ChangePackage> changepackages = data.getChangePackages();
-			if(data.getChangePackages() != null && data.getChangePackages().size() != 0) {
-				ChangePackage changePackage = changepackages.get(changepackages.size()-1);
-				if( changePackage !=null) {
+			if (data.getChangePackages() != null && data.getChangePackages().size() != 0) {
+				ChangePackage changePackage = changepackages.get(changepackages.size() - 1);
+				if (changePackage != null) {
 					setTime(changePackage);
 				}
 			}
@@ -72,18 +70,18 @@ public class DateWriter implements DataAnalyzer {
 		values.add(format.format(date));
 		return values;
 	}
-	
-	private void setTime(ChangePackage changePackage){
-		if(changePackage.getLogMessage() != null) {
-			if(changePackage.getLogMessage().getDate() != null) {
+
+	private void setTime(ChangePackage changePackage) {
+		if (changePackage.getLogMessage() != null) {
+			if (changePackage.getLogMessage().getDate() != null) {
 				calendar.setTime(changePackage.getLogMessage().getDate());
 			}
 		}
 	}
 
-
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
 	 */
 	public boolean isExportOnce() {
