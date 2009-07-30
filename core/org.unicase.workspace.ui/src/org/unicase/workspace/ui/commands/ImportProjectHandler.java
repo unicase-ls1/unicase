@@ -117,11 +117,21 @@ public class ImportProjectHandler extends AbstractHandler {
 		return absoluteFileName;
 	}
 
+	/**
+	 * Shows a dialog so that user can provide a name for imported project.
+	 * Suggests a default name.
+	 * 
+	 * @param initialValue
+	 * @return
+	 */
 	private String showProjectNameDialog(String initialValue) {
 
 		int extensionIndex = initialValue.length();
 		if (initialValue.contains(".")) {
 			extensionIndex = initialValue.lastIndexOf(".");
+		}
+		if (initialValue.contains("@")) {
+			extensionIndex = initialValue.lastIndexOf("@");
 		}
 		initialValue = initialValue.substring(0, extensionIndex);
 
