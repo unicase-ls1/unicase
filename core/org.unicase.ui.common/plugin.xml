@@ -166,6 +166,12 @@
               icon="icons/Comment.png"
               label="Add Comment"
               style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false">
+              </iterate>
+           </visibleWhen>
         </command>
         <separator
               name="org.unicase.ui.common.commands.annotateActionItemSeperator"
