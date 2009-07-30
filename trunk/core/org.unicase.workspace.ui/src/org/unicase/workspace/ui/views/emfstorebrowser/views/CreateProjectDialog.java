@@ -18,8 +18,13 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.ModelFactory;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.impl.WorkspaceImpl;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -29,8 +34,8 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class CreateProjectDialog extends TitleAreaDialog {
 
-	private Text projetname;
-	private Text projectdesc;
+	private Text txtProjectName;
+	private Text txtProjectDesc;
 	private Usersession session;
 
 	/**
@@ -59,13 +64,13 @@ public class CreateProjectDialog extends TitleAreaDialog {
 
 		Label name = new Label(contents, SWT.NULL);
 		name.setText("Name:");
-		projetname = new Text(contents, SWT.SINGLE | SWT.BORDER);
-		projetname.setSize(150, 20);
+		txtProjectName = new Text(contents, SWT.SINGLE | SWT.BORDER);
+		txtProjectName.setSize(150, 20);
 
 		Label desc = new Label(contents, SWT.NULL);
 		desc.setText("Description:");
-		projectdesc = new Text(contents, SWT.MULTI | SWT.BORDER);
-		projectdesc.setSize(150, 60);
+		txtProjectDesc = new Text(contents, SWT.MULTI | SWT.BORDER);
+		txtProjectDesc.setSize(150, 60);
 
 		Point defaultMargins = LayoutConstants.getMargins();
 		GridLayoutFactory.fillDefaults().numColumns(2).margins(
@@ -83,14 +88,21 @@ public class CreateProjectDialog extends TitleAreaDialog {
 			@Override
 			protected void doRun() {
 				try {
-					session.createProject(projetname.getText(), projectdesc
-							.getText());
+
+					if (session != null) {
+						session.createProject(txtProjectName.getText(),
+								txtProjectDesc.getText());
+					} else {
+						createLocalProject();
+					}
+
 				} catch (AccessControlException e) {
 					DialogHandler.showExceptionDialog(e);
 				} catch (EmfStoreException e) {
 					DialogHandler.showExceptionDialog(e);
 				}
 			}
+
 		}.run();
 		close();
 	}
@@ -103,4 +115,22 @@ public class CreateProjectDialog extends TitleAreaDialog {
 		close();
 	}
 
+	private void createLocalProject() {
+		WorkspaceImpl workspace = (WorkspaceImpl) WorkspaceManager
+				.getInstance().getCurrentWorkspace();
+
+		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
+				.createProjectSpace();
+		projectSpace.setProject(ModelFactory.eINSTANCE.createProject());
+		projectSpace.setProjectName(txtProjectName.getText());
+		projectSpace.setProjectDescription(txtProjectDesc.getText());
+		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE
+				.createOperationComposite());
+
+		projectSpace.initResources((workspace).getWorkspaceResourceSet());
+
+		workspace.addProjectSpace(projectSpace);
+		workspace.save();
+
+	}
 }

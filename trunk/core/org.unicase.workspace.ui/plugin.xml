@@ -223,6 +223,12 @@
            id="org.unicase.workspace.ui.projectProperties"
            name="properties">
      </command>
+     <command
+           categoryId="org.unicase.workspace.ui.project"
+           defaultHandler="org.unicase.workspace.ui.commands.NewLocalProjectHandler"
+           id="org.unicase.workspace.ui.NewLocalProject"
+           name="NewLocalProject">
+     </command>
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -352,6 +358,22 @@
               name="org.unicase.workspace.ui.otherCommands"
               visible="true">
         </separator>
+        <command
+              commandId="org.unicase.workspace.ui.NewLocalProject"
+              icon="icons/serverAdd.png"
+              label="New Project..."
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="true"
+                    operator="or">
+                 <instanceof
+                       value="org.unicase.workspace.ProjectSpace">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
         <menu
               icon="icons/export.gif"
               label="Export">

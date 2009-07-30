@@ -552,7 +552,12 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 		return projectSpace;
 	}
 
-	private void addProjectSpace(ProjectSpace projectSpace) {
+	/**
+	 * Adds a new ProjectSpace to workspace.
+	 * 
+	 * @param projectSpace project space
+	 */
+	public void addProjectSpace(ProjectSpace projectSpace) {
 		getProjectSpaces().add(projectSpace);
 		projectToProjectSpaceMap.put(projectSpace.getProject(), projectSpace);
 	}
