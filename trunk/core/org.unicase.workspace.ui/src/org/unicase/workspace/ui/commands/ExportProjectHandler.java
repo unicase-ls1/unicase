@@ -29,16 +29,35 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class ExportProjectHandler extends AbstractHandler {
 
 	/**
+	 * These filter names are used to filter which files are displayed.
+	 */
+	public static final String[] FILTER_NAMES = {
+			"Unicase Project Files (*.ucp)", "All Files (*.*)" };
+
+	/**
+	 * These filter extensions are used to filter which files are displayed.
+	 */
+	public static final String[] FILTER_EXTS = { "*.ucp", "*.*" };
+
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
+
+		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
+
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
-		dialog.setFilterNames(ImportProjectHandler.FILTER_NAMES);
-		dialog.setFilterExtensions(ImportProjectHandler.FILTER_EXTS);
+		dialog.setFilterNames(ExportProjectHandler.FILTER_NAMES);
+		dialog.setFilterExtensions(ExportProjectHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
+		String initialFileName = projectSpace.getProjectName() + "@"
+				+ projectSpace.getBaseVersion().getIdentifier() + ".ucp";
+		dialog.setFileName(initialFileName);
+
+		// dialog
 		String fn = dialog.open();
 		if (fn == null) {
 			return null;
@@ -53,7 +72,6 @@ public class ExportProjectHandler extends AbstractHandler {
 		stringBuilder.append(fileName);
 		final String absoluteFileName = stringBuilder.toString();
 
-		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(
 				PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell());
 		new UnicaseCommand() {
@@ -81,5 +99,4 @@ public class ExportProjectHandler extends AbstractHandler {
 				"Exported project to file " + fileName);
 		return null;
 	}
-
 }

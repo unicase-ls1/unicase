@@ -30,6 +30,17 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class ExportProjectSpaceHandler extends AbstractHandler {
 
 	/**
+	 * These filter names are used to filter which files are displayed.
+	 */
+	public static final String[] FILTER_NAMES = {
+			"Unicase change package (*.ucc)", "All Files (*.*)" };
+
+	/**
+	 * These filter extensions are used to filter which files are displayed.
+	 */
+	public static final String[] FILTER_EXTS = { "*.ucc", "*.*" };
+
+	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
@@ -38,9 +49,15 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
 		FileDialog dialog = new FileDialog(PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getShell(), SWT.SAVE);
-		dialog.setFilterNames(ExportChangesHandler.FILTER_NAMES);
-		dialog.setFilterExtensions(ExportChangesHandler.FILTER_EXTS);
+		dialog.setFilterNames(ExportProjectSpaceHandler.FILTER_NAMES);
+		dialog.setFilterExtensions(ExportProjectSpaceHandler.FILTER_EXTS);
 		dialog.setOverwrite(true);
+		String initialFilename = "projectspace_"
+				+ projectSpace.getProjectName() + "@"
+				+ projectSpace.getBaseVersion().getIdentifier() + ".ucc";
+
+		dialog.setFileName(initialFilename);
+
 		String fn = dialog.open();
 		if (fn == null) {
 			return null;
@@ -80,5 +97,4 @@ public class ExportProjectSpaceHandler extends AbstractHandler {
 				"Exported projectspace to file " + fileName);
 		return null;
 	}
-
 }
