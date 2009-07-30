@@ -85,7 +85,7 @@ public class StartEvaluationAction extends Action{
 		}
 		System.out.println("\nRecommendations: ");
 		
-		Collection<ModelElement> posEl = getPossibleElements(ae);
+//		Collection<ModelElement> posEl = getPossibleElements(ae);
 		Map<ModelElement, Double>relevanceMap = RecommendationManager.getInstance().getMatchMap("words", ae, posEl);
 		
 		double foundAndRec =0, foundNotRec =0;
