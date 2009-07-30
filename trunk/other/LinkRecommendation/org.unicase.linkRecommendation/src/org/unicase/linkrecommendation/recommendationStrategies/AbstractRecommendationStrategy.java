@@ -83,7 +83,7 @@ public abstract class AbstractRecommendationStrategy {
 		HashMap<ModelElement, Double> hm = new HashMap<ModelElement, Double>(elements.size());
 		double csLength = matchers.size();
 
-		if(csLength>0) {
+		if (csLength > 0) {
 			for (ModelElement me : elements) {
 				double sum = 0;
 

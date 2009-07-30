@@ -7,10 +7,12 @@
 package org.unicase.linkrecommendation;
 
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.unicase.linkrecommendation.recommendationStrategies.AbstractRecommendationStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.NameLengthRecommendationStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.WordFrequencyRecommendationStrategy;
 import org.unicase.model.ModelElement;
 
 /**
@@ -40,6 +42,8 @@ public class RecommendationManager {
 	public AbstractRecommendationStrategy createRecommendationStrategy(String type) {
 		if (type == "dummy") {
 			return new NameLengthRecommendationStrategy();
+		} else if (type == "words") {
+			return new WordFrequencyRecommendationStrategy(1);
 		} else {
 			return null;
 		}
@@ -56,6 +60,11 @@ public class RecommendationManager {
 	public Map<ModelElement, Double> getMatchMap(final String type, final ModelElement base,
 		final Collection<ModelElement> elements) {
 		AbstractRecommendationStrategy strategy = createRecommendationStrategy(type);
-		return strategy.getMatchingMap(base, elements);
+
+		if (strategy != null) {
+			return strategy.getMatchingMap(base, elements);
+		}
+
+		return new HashMap<ModelElement, Double>();
 	}
 }
