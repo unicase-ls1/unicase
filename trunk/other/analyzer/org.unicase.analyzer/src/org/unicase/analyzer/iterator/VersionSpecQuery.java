@@ -6,35 +6,32 @@
 package org.unicase.analyzer.iterator;
 
 import org.eclipse.emf.ecore.EObject;
-
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 
 /**
- * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Version Spec Query</b></em>'.
- * <!-- end-user-doc -->
- *
+ * <!-- begin-user-doc --> A representation of the model object '<em><b>Version Spec Query</b></em>'. <!-- end-user-doc
+ * -->
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.analyzer.iterator.VersionSpecQuery#getEndVersion <em>End Version</em>}</li>
- *   <li>{@link org.unicase.analyzer.iterator.VersionSpecQuery#getStartVersion <em>Start Version</em>}</li>
+ * <li>{@link org.unicase.analyzer.iterator.VersionSpecQuery#getEndVersion <em>End Version</em>}</li>
+ * <li>{@link org.unicase.analyzer.iterator.VersionSpecQuery#getStartVersion <em>Start Version</em>}</li>
  * </ul>
  * </p>
- *
+ * 
  * @see org.unicase.analyzer.iterator.IteratorPackage#getVersionSpecQuery()
  * @model
  * @generated
  */
 public interface VersionSpecQuery extends EObject {
 	/**
-	 * Returns the value of the '<em><b>End Version</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>End Version</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>End Version</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>End Version</em>' containment reference isn't clear, there really should be more of a
+	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>End Version</em>' containment reference.
 	 * @see #setEndVersion(VersionSpec)
 	 * @see org.unicase.analyzer.iterator.IteratorPackage#getVersionSpecQuery_EndVersion()
@@ -44,9 +41,9 @@ public interface VersionSpecQuery extends EObject {
 	VersionSpec getEndVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionSpecQuery#getEndVersion <em>End Version</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionSpecQuery#getEndVersion <em>End Version</em>}'
+	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>End Version</em>' containment reference.
 	 * @see #getEndVersion()
 	 * @generated
@@ -54,13 +51,13 @@ public interface VersionSpecQuery extends EObject {
 	void setEndVersion(VersionSpec value);
 
 	/**
-	 * Returns the value of the '<em><b>Start Version</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Start Version</b></em>' containment reference. <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Start Version</em>' containment reference isn't clear,
-	 * there really should be more of a description here...
+	 * If the meaning of the '<em>Start Version</em>' containment reference isn't clear, there really should be more of
+	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * 
 	 * @return the value of the '<em>Start Version</em>' containment reference.
 	 * @see #setStartVersion(VersionSpec)
 	 * @see org.unicase.analyzer.iterator.IteratorPackage#getVersionSpecQuery_StartVersion()
@@ -70,9 +67,9 @@ public interface VersionSpecQuery extends EObject {
 	VersionSpec getStartVersion();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionSpecQuery#getStartVersion <em>Start Version</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionSpecQuery#getStartVersion
+	 * <em>Start Version</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @param value the new value of the '<em>Start Version</em>' containment reference.
 	 * @see #getStartVersion()
 	 * @generated

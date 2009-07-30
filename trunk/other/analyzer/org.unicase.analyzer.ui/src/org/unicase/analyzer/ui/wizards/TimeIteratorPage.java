@@ -32,12 +32,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.analyzer.AnalyzerConfiguration;
-import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.analyzer.iterator.TimeIterator;
-import org.unicase.analyzer.iterator.VersionSpecQuery;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 
 /**
  * @author liya

@@ -7,21 +7,21 @@ package org.unicase.analyzer.exceptions;
 
 /**
  * @author koegel
- *
  */
 @SuppressWarnings("serial")
 public class IteratorException extends Exception {
 
-	/**{@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * 
 	 * @see Exception#Exception(String, Throwable).
-	 * 
 	 */
 	public IteratorException(String message, Throwable cause) {
 		super(message, cause);
 	}
 
-	/**{@inheritDoc}
+	/**
+	 * {@inheritDoc}
 	 * 
 	 * @see Exception#Exception(String)
 	 */
@@ -29,7 +29,9 @@ public class IteratorException extends Exception {
 		super(message);
 	}
 
-	/**{@inheritDoc}
+	/**
+	 * {@inheritDoc}
+	 * 
 	 * @see Exception#Exception(Throwable)
 	 */
 	public IteratorException(Throwable cause) {

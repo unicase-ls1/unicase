@@ -28,7 +28,6 @@ import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author liya
- * 
  */
 
 public class VersionIterator implements Iterator<ProjectAnalysisData> {
@@ -46,79 +45,56 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 	private final boolean returnProjectDataCopy;
 
 	/**
-	 * By default, the iterator will go through from version 0 to Head version,
-	 * and the next() method will return the copy of ProjectAnalysisData instead
-	 * of ProjectAnalysisData.
+	 * By default, the iterator will go through from version 0 to Head version, and the next() method will return the
+	 * copy of ProjectAnalysisData instead of ProjectAnalysisData.
 	 * 
-	 * @param usersession
-	 *            the session id for authentication
-	 * @param projectId
-	 *            the project id of the project to get
-	 * @param stepLength
-	 *            the step length for the iterator to go through to the next
-	 * @throws IteratorException
-	 *             if any error occurs
+	 * @param usersession the session id for authentication
+	 * @param projectId the project id of the project to get
+	 * @param stepLength the step length for the iterator to go through to the next
+	 * @throws IteratorException if any error occurs
 	 * @generated NOT
 	 */
 
-	public VersionIterator(Usersession usersession, ProjectId projectId,
-			int stepLength) throws IteratorException {
-		
+	public VersionIterator(Usersession usersession, ProjectId projectId, int stepLength) throws IteratorException {
+
 		this(usersession, projectId, stepLength, new VersionSpecQuery(VersioningFactory.eINSTANCE
-			.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE
-			.createHeadVersionSpec()), true, true);
+			.createPrimaryVersionSpec(), VersioningFactory.eINSTANCE.createHeadVersionSpec()), true, true);
 	}
 
 	/**
-	 * @param usersession
-	 *            the session id for authentication
-	 * @param projectId
-	 *            the project id of the project to get
-	 * @param stepLength
-	 *            the step length for the iterator to go through to the next
-	 * @param versionSpecQuery
-	 *            the version query for the iterator from start till the end
-	 * @param isForward
-	 *            the direction for the iterator go through, either
-	 *            forward(true) or backward(false) However, doesn't work for
-	 *            backward currently, will be solved in the near future
-	 * @param returnProjectDataCopy
-	 *            the next() method will return the copy of ProjectAnalysisData
-	 *            when it is set to true
-	 * @throws IteratorException
-	 *             if any error occurs
+	 * @param usersession the session id for authentication
+	 * @param projectId the project id of the project to get
+	 * @param stepLength the step length for the iterator to go through to the next
+	 * @param versionSpecQuery the version query for the iterator from start till the end
+	 * @param isForward the direction for the iterator go through, either forward(true) or backward(false) However,
+	 *            doesn't work for backward currently, will be solved in the near future
+	 * @param returnProjectDataCopy the next() method will return the copy of ProjectAnalysisData when it is set to true
+	 * @throws IteratorException if any error occurs
 	 * @generated NOT
 	 */
 
-	public VersionIterator(Usersession usersession, ProjectId projectId,
-			int stepLength, VersionSpecQuery versionSpecQuery,
-			boolean isForward, boolean returnProjectDataCopy)
-			throws IteratorException {
-//		 LY: remove this if backward iterator is implemented
-//		if (!isForward) {
-//			throw new IllegalArgumentException(
-//					"isForward=false not yet supported!");
-//		}
+	public VersionIterator(Usersession usersession, ProjectId projectId, int stepLength,
+		VersionSpecQuery versionSpecQuery, boolean isForward, boolean returnProjectDataCopy) throws IteratorException {
+		// LY: remove this if backward iterator is implemented
+		// if (!isForward) {
+		// throw new IllegalArgumentException(
+		// "isForward=false not yet supported!");
+		// }
 		VersionSpec start = versionSpecQuery.getStart();
 		VersionSpec end = versionSpecQuery.getEnd();
-		
+
 		this.usersession = usersession;
 		this.projectId = projectId;
 		this.stepLength = stepLength;
 		this.returnProjectDataCopy = returnProjectDataCopy;
-		this.connectionManager = WorkspaceManager.getInstance()
-				.getConnectionManager();
+		this.connectionManager = WorkspaceManager.getInstance().getConnectionManager();
 		this.isForward = isForward;
 		try {
-			this.start = this.connectionManager.resolveVersionSpec(usersession
-					.getSessionId(), projectId, start);
-			this.end = this.connectionManager.resolveVersionSpec(usersession
-					.getSessionId(), projectId, end);
-			this.currentState = this.connectionManager.getProject(usersession
-					.getSessionId(), projectId, this.start);
+			this.start = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectId, start);
+			this.end = this.connectionManager.resolveVersionSpec(usersession.getSessionId(), projectId, end);
+			this.currentState = this.connectionManager.getProject(usersession.getSessionId(), projectId, this.start);
 		} catch (InvalidVersionSpecException e) {
-			throw new IteratorException(
-					"Could not resolve start or end version.", e);
+			throw new IteratorException("Could not resolve start or end version.", e);
 		} catch (EmfStoreException e) {
 			throw new IteratorException("Cannot connect to server.", e);
 		}
@@ -126,13 +102,11 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 		// sanity checks
 		if (isForward) {
 			if (this.start.compareTo(this.end) >= 0) {
-				throw new IteratorException(
-						"Start must be before end if foward is set to true!");
+				throw new IteratorException("Start must be before end if foward is set to true!");
 			}
 		} else {
 			if (this.start.compareTo(this.end) <= 0) {
-				throw new IteratorException(
-						"Start must be after end if foward is set to false!");
+				throw new IteratorException("Start must be after end if foward is set to false!");
 			}
 		}
 
@@ -172,20 +146,18 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 	 * @see java.util.Iterator#next()
 	 */
 	public ProjectAnalysisData next() {
-		ProjectAnalysisData projectdata = AnalyzerFactory.eINSTANCE
-				.createProjectAnalysisData();
+		ProjectAnalysisData projectdata = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
 
 		if (!hasNext()) {
 			throw new NoSuchElementException("There is no more Versions.");
 		}
 
 		if ((sourceSpec.getIdentifier() != nextSpec.getIdentifier())
-				&& (nextSpec.getIdentifier() != start.getIdentifier())) {
+			&& (nextSpec.getIdentifier() != start.getIdentifier())) {
 			List<ChangePackage> changes;
 			List<ChangePackage> backwardChanges;
 			try {
-				changes = connectionManager.getChanges(usersession
-						.getSessionId(), projectId, sourceSpec, nextSpec);
+				changes = connectionManager.getChanges(usersession.getSessionId(), projectId, sourceSpec, nextSpec);
 
 			} catch (EmfStoreException e) {
 				String message = "Could not get changes from server";
@@ -193,45 +165,42 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 				throw new NoSuchElementException(message + ":\n" + e);
 			}
 
-			List<ChangePackage> changePackages = projectdata
-					.getChangePackages();
-			
+			List<ChangePackage> changePackages = projectdata.getChangePackages();
+
 			for (ChangePackage changePackage : changes) {
-				
-				if(isForward){
+
+				if (isForward) {
 					changePackage.apply(currentState);
 					changePackages.add(changePackage);
-				}else{
+				} else {
 					changePackage.reverse().apply(currentState);
-					//changePackages.add(changePackage);
+					// changePackages.add(changePackage);
 				}
 			}
-			if(!isForward){
+			if (!isForward) {
 
-				PrimaryVersionSpec tempSourceSpec = (PrimaryVersionSpec) EcoreUtil
-				.copy(sourceSpec);
-				tempSourceSpec.setIdentifier(tempSourceSpec.getIdentifier()-1);
-				PrimaryVersionSpec tempNextSpec = (PrimaryVersionSpec) EcoreUtil
-				.copy(nextSpec);
-				if(tempNextSpec.getIdentifier() > 0){
-					tempNextSpec.setIdentifier(tempNextSpec.getIdentifier()-1);
-				}else{
+				PrimaryVersionSpec tempSourceSpec = (PrimaryVersionSpec) EcoreUtil.copy(sourceSpec);
+				tempSourceSpec.setIdentifier(tempSourceSpec.getIdentifier() - 1);
+				PrimaryVersionSpec tempNextSpec = (PrimaryVersionSpec) EcoreUtil.copy(nextSpec);
+				if (tempNextSpec.getIdentifier() > 0) {
+					tempNextSpec.setIdentifier(tempNextSpec.getIdentifier() - 1);
+				} else {
 					tempNextSpec.setIdentifier(0);
 				}
 				try {
-					backwardChanges = connectionManager.getChanges(usersession.getSessionId(), projectId, tempSourceSpec, tempNextSpec);
-				}catch (EmfStoreException e) {
+					backwardChanges = connectionManager.getChanges(usersession.getSessionId(), projectId,
+						tempSourceSpec, tempNextSpec);
+				} catch (EmfStoreException e) {
 					String message = "Could not get changes from server";
 					WorkspaceUtil.logException(message, e);
 					throw new NoSuchElementException(message + ":\n" + e);
 				}
-				for (ChangePackage backwardChangePackage : backwardChanges){
+				for (ChangePackage backwardChangePackage : backwardChanges) {
 					changePackages.add(backwardChangePackage);
 				}
 			}
 		}
-		PrimaryVersionSpec nextSpecCopy = (PrimaryVersionSpec) EcoreUtil
-				.copy(nextSpec);
+		PrimaryVersionSpec nextSpecCopy = (PrimaryVersionSpec) EcoreUtil.copy(nextSpec);
 		projectdata.setPrimaryVersionSpec(nextSpecCopy);
 
 		ProjectId projectIdCopy = (ProjectId) EcoreUtil.copy(projectId);
@@ -251,20 +220,20 @@ public class VersionIterator implements Iterator<ProjectAnalysisData> {
 		}
 	}
 
-	/**Updates the PrimaryVersionSpec.
+	/**
+	 * Updates the PrimaryVersionSpec.
 	 * 
 	 * @param specifier {@link PrimaryVersionSpec}
-	 * @param stepLength int 
+	 * @param stepLength int
 	 * @param isForward boolean
 	 */
-	protected void updateSpecifier(PrimaryVersionSpec specifier,
-			int stepLength, boolean isForward) {
+	protected void updateSpecifier(PrimaryVersionSpec specifier, int stepLength, boolean isForward) {
 		int currentIdentifier = specifier.getIdentifier();
 		if (isForward) {
 			specifier.setIdentifier(currentIdentifier + stepLength);
 		} else {
 			specifier.setIdentifier(currentIdentifier - stepLength);
-			
+
 		}
 	}
 

@@ -31,7 +31,6 @@ import org.eclipse.swt.widgets.Text;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.analyzer.iterator.TimeIterator;
-import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
 /**
@@ -53,7 +52,6 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 	private Button backwardButton;
 	private Button returnCopyButton;
 	
-	private VersionIterator versionIterator;
 	private TransactionalEditingDomain editingDomain;
 	private AnalyzerConfiguration conf;
 	/**
@@ -251,26 +249,8 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 
 			@Override
 			protected void doExecute() {
-				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
-				
+				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();				
 				conf.getIterator().setProjectId(wizard.getSelectedProjectID());
-//				versionIterator.setStepLength(Integer.valueOf(stepText.getText()));
-//				versionIterator.setDefault(defaultButton.getSelection());
-//				
-//				if(!defaultButton.getSelection()){					
-//					PrimaryVersionSpec startVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-//					startVer.setIdentifier(Integer.valueOf(startText.getText()));
-//					PrimaryVersionSpec endVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-//					endVer.setIdentifier(Integer.valueOf(endText.getText()));
-//					versionQuery.setStartVersion(startVer);
-//					versionQuery.setEndVersion(endVer);
-//					versionIterator.setVersionSpecQuery(versionQuery);
-//					versionIterator.setForward(forwardButton.getSelection());
-//					versionIterator.setReturnProjectDataCopy(returnCopyButton.getSelection());
-//				}
-//				wizard.setVersionIterator(versionIterator);
-//				wizard.getAnalyzerConfig().setIterator(versionIterator);
-				//wizard.getAnalyzerConfig().setIterator((VersionIterator)EcoreUtil.copy(versionIterator));
 				
 			}
 		});

@@ -511,6 +511,7 @@
         </menu>
         <menu
               icon="icons/createrepos.gif"
+              id="org.unicase.workspace.ui.Other"
               label="Other...">
            <command
                  commandId="org.unicase.workspace.ui.deleteProject"

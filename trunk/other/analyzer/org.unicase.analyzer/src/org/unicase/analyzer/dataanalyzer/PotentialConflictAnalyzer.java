@@ -34,44 +34,44 @@ import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author liya
- *
  */
 public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 
 	/**
-	 * @see org.unicase.analyzer.dataanalyzer.TwoDDataAnalyzer#get2DValue(org.unicase.analyzer.ProjectAnalysisData, org.unicase.analyzer.VersionIterator)
+	 * @see org.unicase.analyzer.dataanalyzer.TwoDDataAnalyzer#get2DValue(org.unicase.analyzer.ProjectAnalysisData,
+	 *      org.unicase.analyzer.VersionIterator)
 	 * @param data {@link ProjectAnalysisData}
 	 * @param it {@link VersionIterator}
-	 * 
 	 * @return 2D list
 	 */
 	public List<List<Object>> get2DValue(ProjectAnalysisData data, VersionIterator it) {
 		List<List<Object>> values = new ArrayList<List<Object>>();
 		PrimaryVersionSpec base;
 		PrimaryVersionSpec target;
-		
+
 		PrimaryVersionSpec commitVersion = data.getPrimaryVersionSpec();
-		
+
 		ConflictDetector conflictDetector = new ConflictDetector();
-		
-		for(ChangePackage changePackage : data.getChangePackages()){
-			for(Event event : changePackage.getEvents()){
-				if(event instanceof UpdateEvent){
+
+		for (ChangePackage changePackage : data.getChangePackages()) {
+			for (Event event : changePackage.getEvents()) {
+				if (event instanceof UpdateEvent) {
 					base = ((UpdateEvent) event).getBaseVersion();
 					target = ((UpdateEvent) event).getTargetVersion();
-					if(target.getIdentifier() + 1 != commitVersion.getIdentifier()){
+					if (target.getIdentifier() + 1 != commitVersion.getIdentifier()) {
 						continue;
 					}
 					try {
-						ArrayList<ChangePackage> updateChanges = (ArrayList<ChangePackage>) it.getConnectionManager().getChanges(it.getUsersession().getSessionId(), 
-							it.getProjectId(), base, target);
-						if(conflictDetector.doConflict(changePackage, updateChanges)){
+						ArrayList<ChangePackage> updateChanges = (ArrayList<ChangePackage>) it.getConnectionManager()
+							.getChanges(it.getUsersession().getSessionId(), it.getProjectId(), base, target);
+						if (conflictDetector.doConflict(changePackage, updateChanges)) {
 							List<AbstractOperation> operationListA = changePackage.getOperations();
 							List<AbstractOperation> operationListB = new ArrayList<AbstractOperation>();
-							for(ChangePackage updateChange : updateChanges){
+							for (ChangePackage updateChange : updateChanges) {
 								operationListB.addAll(updateChange.getOperations());
 							}
-							Set<AbstractOperation> conflictOpSet = conflictDetector.getAllConflictInvolvedOperations(operationListA, operationListB);
+							Set<AbstractOperation> conflictOpSet = conflictDetector.getAllConflictInvolvedOperations(
+								operationListA, operationListB);
 							List<Object> line = addLine(conflictOpSet, commitVersion, base, target);
 							values.add(line);
 						}
@@ -83,17 +83,18 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 				}
 			}
 		}
-		
+
 		return values;
 	}
 
-	private List<Object> addLine(Set<AbstractOperation> conflictOpSet, PrimaryVersionSpec commitVersion, PrimaryVersionSpec base, PrimaryVersionSpec target) {
+	private List<Object> addLine(Set<AbstractOperation> conflictOpSet, PrimaryVersionSpec commitVersion,
+		PrimaryVersionSpec base, PrimaryVersionSpec target) {
 		List<Object> line = new ArrayList<Object>();
 
 		line.add(commitVersion.getIdentifier());
 		line.add(base.getIdentifier());
 		line.add(target.getIdentifier());
-		
+
 		int abstractOp = conflictOpSet.size();
 		int composite = 0;
 		int createDelete = 0;
@@ -106,37 +107,37 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 		int reference = 0;
 		int multiReference = 0;
 		int singleReference = 0;
-		
-		for(AbstractOperation op : conflictOpSet){
-			if(op instanceof CompositeOperation){				
-				composite ++;
+
+		for (AbstractOperation op : conflictOpSet) {
+			if (op instanceof CompositeOperation) {
+				composite++;
 				continue;
-			}else if(op instanceof CreateDeleteOperation){								
-				createDelete  ++;
+			} else if (op instanceof CreateDeleteOperation) {
+				createDelete++;
 				continue;
-			}else if(op instanceof FeatureOperation){
-				feature  ++;
-				if(op instanceof AttributeOperation){
-					attribute  ++;
-					if(op instanceof DiagramLayoutOperation){	
-						diagramLayout  ++;
+			} else if (op instanceof FeatureOperation) {
+				feature++;
+				if (op instanceof AttributeOperation) {
+					attribute++;
+					if (op instanceof DiagramLayoutOperation) {
+						diagramLayout++;
 					}
 					continue;
-				}else if(op instanceof MultiAttributeMoveOperation){	
-					multiAttributeMove  ++;
+				} else if (op instanceof MultiAttributeMoveOperation) {
+					multiAttributeMove++;
 					continue;
-				}else if(op instanceof MultiAttributeOperation){	
-					multiAttribute  ++;
+				} else if (op instanceof MultiAttributeOperation) {
+					multiAttribute++;
 					continue;
-				}else if(op instanceof MultiReferenceMoveOperation){					
-					multiReferenceMove  ++;
+				} else if (op instanceof MultiReferenceMoveOperation) {
+					multiReferenceMove++;
 					continue;
-				}else if(op instanceof ReferenceOperation){					
-					reference  ++;
-					if(op instanceof MultiReferenceOperation){
-						multiReference  ++;
-					}else if(op instanceof SingleReferenceOperation){
-						singleReference  ++;
+				} else if (op instanceof ReferenceOperation) {
+					reference++;
+					if (op instanceof MultiReferenceOperation) {
+						multiReference++;
+					} else if (op instanceof SingleReferenceOperation) {
+						singleReference++;
 					}
 				}
 			}
@@ -153,7 +154,7 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 		line.add(reference);
 		line.add(multiReference);
 		line.add(singleReference);
-		
+
 		return line;
 	}
 
@@ -167,7 +168,7 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 		names.add("Updated source Version");
 		names.add("Updated target Version");
 		names.add("AbstractOperation #");
-		names.add("CompositeOperation #");	
+		names.add("CompositeOperation #");
 		names.add("CreateDeleteOperation #");
 		names.add("FeatureOperation #");
 		names.add("AttributeOperation #");
@@ -183,7 +184,6 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 
 	/**
 	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
-	 * 
 	 * @param data {@link ProjectAnalysisData}
 	 * @return list
 	 * @throws UnsupportedOperationException
@@ -191,9 +191,10 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 	public List<Object> getValue(ProjectAnalysisData data) {
 		throw new UnsupportedOperationException();
 	}
-	
-	/** 
+
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
 	 */
 	public boolean isExportOnce() {

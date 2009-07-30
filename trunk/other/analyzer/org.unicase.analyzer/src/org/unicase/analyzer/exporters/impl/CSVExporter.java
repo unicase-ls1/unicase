@@ -13,7 +13,6 @@ import java.util.List;
 
 /**
  * @author liya
- *
  */
 public class CSVExporter extends ExporterImpl {
 
@@ -24,11 +23,9 @@ public class CSVExporter extends ExporterImpl {
 	private FileWriter fileWriter;
 
 	/**
-	 * This constructor sets the targetFile, in which the data shall be saved.
-	 * The overwrite is set to false by default.
+	 * This constructor sets the targetFile, in which the data shall be saved. The overwrite is set to false by default.
 	 * 
-	 * @param fileName
-	 *            the name of target file
+	 * @param fileName the name of target file
 	 * @throws IOException @see {@link IOException}
 	 */
 	public CSVExporter(String fileName) throws IOException {
@@ -38,11 +35,8 @@ public class CSVExporter extends ExporterImpl {
 	/**
 	 * This constructor sets the targetFile, in which the data shall be saved.
 	 * 
-	 * @param fileName
-	 *            the name of target file
-	 * @param overwrite
-	 *            if true, existing files will be overwritten, otherwise it will
-	 *            be appended.
+	 * @param fileName the name of target file
+	 * @param overwrite if true, existing files will be overwritten, otherwise it will be appended.
 	 * @throws IOException @see {@link IOException}
 	 */
 	public CSVExporter(String fileName, boolean overwrite) throws IOException {
@@ -50,17 +44,17 @@ public class CSVExporter extends ExporterImpl {
 		setFileName(fileName);
 		targetFile = new File(fileName);
 		setOverwrite(overwrite);
-		
-		if(overwrite) {
+
+		if (overwrite) {
 			initFileWriter(true);
 			closeFileWriter();
 		}
 	}
-	
+
 	private void initFileWriter() throws IOException {
 		initFileWriter(isOverwrite());
 	}
-	
+
 	private void initFileWriter(boolean overwrite) throws IOException {
 		if (!targetFile.exists()) {
 			targetFile.createNewFile();
@@ -75,9 +69,8 @@ public class CSVExporter extends ExporterImpl {
 	private String getColumnValue(Object column) {
 		return column.toString();
 	}
-	
+
 	/**
-	 * 
 	 * @see org.unicase.analyzer.exporters.Exporter#export(java.util.List)
 	 * @param lines 2D List
 	 * @throws IOException @see {@link IOException}

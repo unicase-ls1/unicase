@@ -15,27 +15,26 @@ import org.unicase.model.ModelElement;
 
 /**
  * @author liya
- *
  */
 public class CountAnalyzer implements DataAnalyzer {
 
 	private EClass eclass;
-	
+
 	/**
-	 * Constructor of CountAnalyzer. A analyzer which can count
-	 * the number of modelElements of a given EClass.
+	 * Constructor of CountAnalyzer. A analyzer which can count the number of modelElements of a given EClass.
+	 * 
 	 * @param eclass EClass
 	 */
-	public CountAnalyzer(EClass eclass){
+	public CountAnalyzer(EClass eclass) {
 		this.eclass = eclass;
 	}
+
 	/**
 	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
-	 * 
 	 */
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
-		names.add(eclass.getName()+'#');
+		names.add(eclass.getName() + '#');
 		return names;
 	}
 
@@ -48,8 +47,10 @@ public class CountAnalyzer implements DataAnalyzer {
 		values.add(data.getProjectState().getModelElementsByClass(eclass, new BasicEList<ModelElement>()).size());
 		return values;
 	}
-	/** 
+
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
 	 */
 	public boolean isExportOnce() {

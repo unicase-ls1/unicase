@@ -11,7 +11,6 @@ import org.unicase.analyzer.ProjectAnalysisData;
 
 /**
  * @author liya
- *
  */
 public interface DataAnalyzer {
 
@@ -29,7 +28,7 @@ public interface DataAnalyzer {
 	 * @return the names of the columns
 	 */
 	List<String> getName();
-	
+
 	/**
 	 * @return true if just export once
 	 */
