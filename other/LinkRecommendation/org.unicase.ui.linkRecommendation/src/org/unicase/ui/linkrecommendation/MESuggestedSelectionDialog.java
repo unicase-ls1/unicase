@@ -16,6 +16,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.IDialogSettings;
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -46,6 +47,8 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	// maps modelElement.hashCode() to the similarity factor of the element
 	private Map<ModelElement, Double> relevanceMap;
 
+	private ILabelProvider labelProvider;
+
 	/**
 	 * The constructor.
 	 * 
@@ -59,27 +62,20 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	public MESuggestedSelectionDialog(Shell shell, boolean multi, String title, boolean blockOnOpen,
 		Collection<ModelElement> elements, ModelElement reference) {
 		super(shell, multi);
-		this.setDetailsLabelProvider(new RelevanceDetailsLabelProvider());
 		this.reference = reference;
-		this.setTitle(title);
-		this.setBlockOnOpen(blockOnOpen);
-		this.setElements(elements);
-		this.setInitialPattern("**", NONE);
-		this.setListLabelProvider(new RelevanceWrappedLabelProvider(relevanceMap));
-	}
+		setTitle(title);
+		setBlockOnOpen(blockOnOpen);
+		setInitialPattern("**", NONE);
 
-	/**
-	 * Sets the elements of the list.
-	 * 
-	 * @param elements the elements of the list.
-	 */
-	public void setElements(Collection<ModelElement> elements) {
 		relevanceMap = new HashMap<ModelElement, Double>(elements.size());
 		resources = elements;
-
 		if (reference != null) {
-			relevanceMap = RecommendationManager.getInstance().getMatchMap("dummy", reference, elements);
+			relevanceMap = RecommendationManager.getInstance().getMatchMap("words", reference, elements);
 		}
+
+		labelProvider = new RelevanceWrappedLabelProvider(relevanceMap);
+		setListLabelProvider(labelProvider);
+		setDetailsLabelProvider(new RelevanceDetailsLabelProvider());
 	}
 
 	/**
@@ -149,8 +145,9 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	 */
 	@Override
 	public String getElementName(Object item) {
+
 		if (item instanceof ModelElement) {
-			return ((ModelElement) item).getName();
+			return labelProvider.getText(item);
 		} else {
 			return item.toString();
 		}
@@ -190,11 +187,19 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 		 */
 		public int compare(ModelElement o1, ModelElement o2) {
-			Double val1 = relevanceMap.get(o1);
-			Double val2 = relevanceMap.get(o2);
+			Double val1, val2;
+
+			val1 = relevanceMap.get(o1);
+			val2 = relevanceMap.get(o2);
 
 			if (val1 == null && val2 == null) {
-				return o1.getName().compareToIgnoreCase(o2.getName());
+				String n1 = o1.getName();
+				String n2 = o2.getName();
+				if (n1 != null && n2 != null) {
+					return o1.getName().compareToIgnoreCase(o2.getName());
+				} else {
+					return 0;
+				}
 			} else if (val1 == null) {
 				return 1;
 			} else if (val2 == null) {
@@ -221,28 +226,23 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		 */
 		@Override
 		public boolean matchItem(Object item) {
-			// if (item instanceof ModelElement) {
-			// // this should be the regular case, since all elements are ModelElements
-			//
-			// // sometime elements don't have a name and cause bad nullpointerexceptions...
-			// if (((ModelElement) item).getName() != null) {
-			// return matches(((ModelElement) item).getName());
-			// } else {
-			// return false;
-			// }
-			// } else {
-			return matches(item.toString());
-			// }
+			String pattern = this.getPattern();
+			String label = labelProvider.getText(item);
+			if (pattern == null || pattern.equals("*") || pattern.equals("")) {
+				return true;
+			}
+
+			return matches(label);
 		}
 
 		/**
 		 * @param item the item
-		 * @return (item!=null)
+		 * @return true
 		 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.ItemsFilter#isConsistentItem(java.lang.Object)
 		 */
 		@Override
 		public boolean isConsistentItem(Object item) {
-			return (item != null);
+			return true;
 		}
 	}
 
@@ -263,7 +263,6 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		public String getText(Object element) {
 			if (element instanceof ModelElement) {
 				String text = super.getText(element);
-
 				Double sim = relevanceMap.get(element);
 				if (sim != null) {
 					text = "Relevance: " + sim + ". " + text;
