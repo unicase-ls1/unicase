@@ -488,7 +488,7 @@ public class ESBrowserView extends ViewPart {
 				}
 			}
 		};
-		serverAddProject.setText("Create new project");
+		serverAddProject.setText("Create new project...");
 		serverAddProject
 				.setToolTipText("Click to create new project on the server");
 		serverAddProject.setImageDescriptor(Activator
