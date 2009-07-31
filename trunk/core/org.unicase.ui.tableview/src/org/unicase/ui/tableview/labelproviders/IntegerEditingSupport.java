@@ -58,7 +58,14 @@ public class IntegerEditingSupport extends EditingSupport {
 	 */
 	@Override
 	protected boolean canEdit(Object element) {
-		return feature.getEType().equals(EcorePackage.Literals.EINT);
+		if (element instanceof EObject) {
+			EObject eObject = (EObject) element;
+			return feature.getEType().equals(EcorePackage.Literals.EINT)
+				&& eObject.eClass().getEAllStructuralFeatures().contains(feature);
+		} else {
+			return false;
+		}
+
 	}
 
 	/**
@@ -82,14 +89,14 @@ public class IntegerEditingSupport extends EditingSupport {
 		if (element instanceof EObject) {
 			EObject eObject = (EObject) element;
 			if (!eObject.eClass().getEAllStructuralFeatures().contains(feature)) {
-				return null;
+				return "";
 			}
 			Object value = eObject.eGet(feature);
 			if (value != null && value instanceof Integer) {
 				return value.toString();
 			}
 		}
-		return null;
+		return "";
 	}
 
 	/**
