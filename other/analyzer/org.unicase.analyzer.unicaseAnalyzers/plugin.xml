@@ -4,7 +4,7 @@
    <extension
          point="org.unicase.analyzer.analyzer">
       <client_analyzer
-            class="org.unicase.analyzer.unicaseanalyzers.CommitReadEventAnalyzer">
+            class="org.unicase.analyzer.unicaseanalyzers.DateWriter">
       </client_analyzer>
       <client_analyzer
             class="org.unicase.analyzer.unicaseanalyzers.VersionWriter">
