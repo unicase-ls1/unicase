@@ -5,6 +5,14 @@
  */
 package org.unicase.ui.stem.views.statusview;
 
+import java.net.URL;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -52,14 +60,6 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.util.EventUtil;
 
-import java.net.URL;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 /**
  * This view summarizes the the progress status of a model element according to its Openers, Annotations, and
  * corresponding Assignables. The view contains a top part showing name, description and project of input model element,
@@ -90,7 +90,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	private HierarchyTabComposite hierarchyTabComposite;
 	private UserTabComposite userTabComposite;
 	private ActivityTabComposite activityTabComposite;
-	private Label lblLatestDueDateName;
+	private Label lblLatestDueDateValue;
 	private Composite dropComposite;
 	private ProgressBar pbEstimate;
 	private Label lblProgressName;
@@ -257,9 +257,9 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		Label lbllastDueDate = new Label(descComposite, SWT.NONE);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(false, false).applyTo(lbllastDueDate);
 		lbllastDueDate.setText("Latest Due Date:");
-		lblLatestDueDateName = new Label(descComposite, SWT.NONE);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(false, false).applyTo(lblLatestDueDateName);
-		lblLatestDueDateName.setText("");
+		lblLatestDueDateValue = new Label(descComposite, SWT.NONE);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).grab(true, false).applyTo(lblLatestDueDateValue);
+		lblLatestDueDateValue.setText("");
 
 		// Right Composite
 		progressComposite = new Composite(sectionComposite, SWT.NONE);
@@ -344,8 +344,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		}
 		Date latestDueDate = getLatestDueDate(leafOpeners);
 		if (latestDueDate != null) {
-			lblLatestDueDateName.setText(latestDueDate.toString());
-			lblLatestDueDateName.pack(true);
+			lblLatestDueDateValue.setText(latestDueDate.toString());
 		}
 
 		// if this model element has no set progress
@@ -395,8 +394,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		lblEstimateProgressName.pack(true);
 		sectionComposite.layout(true);
 
-		lblLatestDueDateName.setText("");
-		lblLatestDueDateName.pack(true);
+		lblLatestDueDateValue.setText("");
 
 		pbTasks.setMaximum(10);
 		pbEstimate.setMaximum(10);
