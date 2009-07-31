@@ -10,9 +10,6 @@ import java.util.List;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.CheckboxCellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
@@ -24,6 +21,7 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Editing support for a checkbox column.
@@ -106,13 +104,12 @@ public class WorkItemDoneOrResolvedEditingSupport extends EditingSupport {
 		if (!(element instanceof Checkable) || !(value instanceof Boolean)) {
 			return;
 		}
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(element);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				doSetValue(element, value);
 			}
-		});
+		}.run();
 
 		getViewer().refresh();
 	}
