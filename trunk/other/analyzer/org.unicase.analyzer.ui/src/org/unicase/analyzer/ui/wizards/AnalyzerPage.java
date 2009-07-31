@@ -10,7 +10,6 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -21,8 +20,6 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -98,28 +95,29 @@ public class AnalyzerPage extends WizardPage implements Listener {
 				 button.setSelection(false);
 			 }			 
 			 analyzerButton.add(button);
-			// analyzerButton.get(count).addListener(SWT.CHECK, this);
-			 analyzerButton.get(count).addSelectionListener(new SelectionListener(){
-
-				public void widgetDefaultSelected(SelectionEvent e) {
-					widgetSelected(e);
-					
-				}
-
-				public void widgetSelected(SelectionEvent e) {
-					try {
-						DataAnalyzer analyzer = (DataAnalyzer)element.createExecutableExtension("class");
-						analyzers.add(analyzer);
-						canFlipToNextPage = true;
-						getWizard().getContainer().updateButtons();
-
-					} catch (CoreException e1) {
-						// TODO Auto-generated catch block
-						e1.printStackTrace();
-					}					
-				}
-				 
-			 });
+			 analyzerButton.get(count).addListener(SWT.CHECK, this);
+//			 analyzerButton.get(count).addSelectionListener(new SelectionListener(){
+//
+//				public void widgetDefaultSelected(SelectionEvent e) {
+//					
+//				}
+//
+//				public void widgetSelected(SelectionEvent e) {
+//					try {
+//						DataAnalyzer analyzer = (DataAnalyzer)element.createExecutableExtension("class");
+//						if(!analyzers.contains(analyzer)){
+//							analyzers.add(analyzer);
+//						}
+//						canFlipToNextPage = true;
+//						getWizard().getContainer().updateButtons();
+//
+//					} catch (CoreException e1) {
+//						// TODO Auto-generated catch block
+//						e1.printStackTrace();
+//					}					
+//				}
+//				 
+//			 });
 		    }
 		}
 		
@@ -141,10 +139,19 @@ public class AnalyzerPage extends WizardPage implements Listener {
 			if(button.getSelection()){
 	
 				try {
-					//Class c = Class.forName(button.getText());			
-					//DataAnalyzer analyzer = (DataAnalyzer) c.getConstructors()[0].newInstance();
+					Class c = Class.forName(button.getText());			
+					DataAnalyzer analyzer = (DataAnalyzer) c.getConstructors()[0].newInstance();
 					final ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
-					//analyzers.add(analyzer);
+					// Not add the same analyzer into the analyzer list
+					boolean add = true;
+					for(DataAnalyzer ana : analyzers){
+						if( ana.getClass().equals(analyzer.getClass()) ){
+							add = false;
+						}
+					}
+					if(add){
+						analyzers.add(analyzer);
+					}
 					wizard.setAnalyzers(analyzers);
 					
 					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
@@ -162,6 +169,18 @@ public class AnalyzerPage extends WizardPage implements Listener {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InstantiationException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (IllegalAccessException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (InvocationTargetException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
