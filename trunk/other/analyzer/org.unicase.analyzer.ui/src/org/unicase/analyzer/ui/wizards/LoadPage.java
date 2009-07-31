@@ -6,6 +6,14 @@
 package org.unicase.analyzer.ui.wizards;
 
 
+import java.io.File;
+
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -16,9 +24,13 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.analyzer.AnalyzerConfiguration;
+import org.unicase.analyzer.AnalyzerFactory;
+import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.workspace.Configuration;
 
 /**
@@ -30,6 +42,8 @@ public class LoadPage extends WizardPage implements Listener {
 	private static final String PAGE_TITLE = "Load Configuration";
 	private static final String PAGE_DESCRIPTION = "Load a configuration for your analyze.";
 	private Text configurationPath;
+	private TransactionalEditingDomain editingDomain;
+	private AnalyzerConfiguration analyzerConfig;
 
 	/**
 	 * @param pageName Name of the page
@@ -38,6 +52,7 @@ public class LoadPage extends WizardPage implements Listener {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
+		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 	}
 
 	/** 
@@ -78,6 +93,44 @@ public class LoadPage extends WizardPage implements Listener {
 	}
 	
 	
+	private void initConfig(String path){
+
+		URI fileURI = URI.createFileURI(path);
+		File analyzerFile = new File(path);
+
+		@SuppressWarnings("unused")
+		AnalyzerPackage analyzePackage = AnalyzerPackage.eINSTANCE;
+				
+		final Resource resource;
+		if(!analyzerFile.exists()){
+			
+			resource = editingDomain.getResourceSet().createResource(fileURI);
+			analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
+			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+				@Override
+				protected void doExecute() {
+					resource.getContents().add(analyzerConfig);
+				}
+			});
+
+		}else{
+			
+			resource = editingDomain.getResourceSet().getResource(fileURI, true);
+			EList<EObject> directContents = resource.getContents();
+			// MK cast
+			analyzerConfig = (AnalyzerConfiguration) directContents.get(0);		
+		}
+		
+		((ProjectAnalyzerWizard) getWizard()).setAnalyzerConfig(analyzerConfig);
+	}
+	
+	@Override
+	public boolean isPageComplete() {
+		if(configurationPath.getText() != null){
+			initConfig(configurationPath.getText());
+		}
+		return super.isPageComplete();
+	}
 	
 	/**
 	 * Listener for the file location selection.
@@ -88,7 +141,7 @@ public class LoadPage extends WizardPage implements Listener {
 		 */
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			DirectoryDialog fd = new DirectoryDialog(((Button) e.widget).getParent().getShell());
+			FileDialog fd = new FileDialog(((Button) e.widget).getParent().getShell());
 			fd.setText("select the folder where you want to save the analyzed results ");
 			final String path = Configuration.getPluginDataBaseDirectory();
 			fd.setFilterPath(path);
@@ -100,20 +153,20 @@ public class LoadPage extends WizardPage implements Listener {
 		}
 	}
 
-
-
 	/**
-	 * @return the configurationPath
+	 * @return the analyzerConfig
 	 */
-	public Text getConfigurationPath() {
-		return configurationPath;
+	public AnalyzerConfiguration getAnalyzerConfig() {
+		return analyzerConfig;
 	}
 
 	/**
-	 * @param configurationPath the configurationPath to set
+	 * @param analyzerConfig the analyzerConfig to set
 	 */
-	public void setConfigurationPath(Text configurationPath) {
-		this.configurationPath = configurationPath;
+	public void setAnalyzerConfig(AnalyzerConfiguration analyzerConfig) {
+		this.analyzerConfig = analyzerConfig;
 	}
+
+
 
 }

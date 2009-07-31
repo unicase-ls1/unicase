@@ -74,7 +74,9 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
 	 */
 	@Override
+	
 	public boolean performFinish() {
+		domain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@Override
 			protected void doExecute() {
@@ -134,8 +136,8 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			throw new IllegalArgumentException("Nothing selected!");
 		}
 		canFinish = false;
-		
-		initConfig();
+		analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
+//		initConfig();
 	}
 	
     private void initConfig() {
@@ -193,6 +195,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	public void addPages(){
     	
     	loadPage = new LoadPage("LoadPage");
+    	addPage(loadPage);
     	analyzerPage = new AnalyzerPage("AnalyzerPage");
 		addPage(analyzerPage);
 		iteratorPage = new IteratorPage("IteratorPage");
