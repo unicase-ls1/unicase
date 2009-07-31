@@ -16,10 +16,13 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
@@ -27,6 +30,7 @@ import org.eclipse.swt.widgets.Text;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.exporters.impl.CSVExporter;
+
 
 /**
  * @author liya
@@ -91,6 +95,10 @@ public class ExporterPage extends WizardPage implements Listener {
 		
 		exportPath.addListener(SWT.KeyUp, this);
 		
+		Button selectFileLocation = new Button(composite, SWT.PUSH);
+		selectFileLocation.setText("Browse");
+		selectFileLocation.addSelectionListener(new FileLocationSelectionListener());
+		
 		exporterButton = new Button(composite, SWT.PUSH);
 	    exporterButton.setText("Save Configuration");
 	    gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -154,6 +162,25 @@ public class ExporterPage extends WizardPage implements Listener {
 			return true;
 		}else{
 		return false;
+		}
+	}
+	
+	/**
+	 * Listener for the file location selection.
+	 */
+	class FileLocationSelectionListener extends SelectionAdapter {
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public void widgetSelected(SelectionEvent e) {
+			DirectoryDialog fd = new DirectoryDialog(((Button) e.widget).getParent().getShell());
+			fd.setText("select the folder where you want to save the analyzed results ");
+			String selected = fd.open();
+
+			if (selected != null) {
+				exportPath.setText(selected);
+			}
 		}
 	}
 }

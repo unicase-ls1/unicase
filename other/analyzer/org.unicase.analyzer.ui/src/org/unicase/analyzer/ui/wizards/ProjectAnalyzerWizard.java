@@ -66,6 +66,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	private AnalyzerConfiguration analyzerConfig;
 	private Usersession selectedUsersession;
 	private ProjectId selectedProjectID;
+	private LoadPage loadPage;
 	
 	
 	/** 
@@ -191,6 +192,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
     @Override
 	public void addPages(){
     	
+    	loadPage = new LoadPage("LoadPage");
     	analyzerPage = new AnalyzerPage("AnalyzerPage");
 		addPage(analyzerPage);
 		iteratorPage = new IteratorPage("IteratorPage");
