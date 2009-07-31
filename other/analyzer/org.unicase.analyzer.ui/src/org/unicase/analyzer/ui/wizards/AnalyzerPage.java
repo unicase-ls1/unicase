@@ -10,6 +10,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -20,6 +21,8 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -39,6 +42,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	private static final String PAGE_DESCRIPTION = "Choose the analyzer.";
 	private List<Button> analyzerButton = new ArrayList<Button>();
 	private boolean canFlipToNextPage;
+	private ArrayList<DataAnalyzer> analyzers;
 
 
 	/**
@@ -65,6 +69,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	    composite.setLayout(gl);
 	    
 	    AnalyzerConfiguration conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+	    analyzers = new ArrayList<DataAnalyzer>();
 	    
 	    IExtensionRegistry registry = Platform.getExtensionRegistry();
 		IExtensionPoint extensionPoint =
@@ -78,7 +83,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		          extension.getConfigurationElements();
 		        // For each member of the extension ...
 		 for (int j = 0; j < elements.length; j++) {
-		     IConfigurationElement element = elements[j];
+		     final IConfigurationElement element = elements[j];
 		     int count = i*elements.length + j;
 		     Button button = new Button(composite, SWT.CHECK);
 		     button.setText(element.getAttribute("class"));
@@ -93,7 +98,28 @@ public class AnalyzerPage extends WizardPage implements Listener {
 				 button.setSelection(false);
 			 }			 
 			 analyzerButton.add(button);
-			 analyzerButton.get(count).addListener(SWT.CHECK, this);
+			// analyzerButton.get(count).addListener(SWT.CHECK, this);
+			 analyzerButton.get(count).addSelectionListener(new SelectionListener(){
+
+				public void widgetDefaultSelected(SelectionEvent e) {
+					widgetSelected(e);
+					
+				}
+
+				public void widgetSelected(SelectionEvent e) {
+					try {
+						DataAnalyzer analyzer = (DataAnalyzer)element.createExecutableExtension("class");
+						analyzers.add(analyzer);
+						canFlipToNextPage = true;
+						getWizard().getContainer().updateButtons();
+
+					} catch (CoreException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}					
+				}
+				 
+			 });
 		    }
 		}
 		
@@ -110,15 +136,15 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	@Override
 	@SuppressWarnings("unchecked")
 	public boolean isPageComplete() {
-		final ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
+		//final ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 		for(final Button button : analyzerButton){
 			if(button.getSelection()){
 	
 				try {
-					Class c = Class.forName(button.getText());			
-					DataAnalyzer analyzer = (DataAnalyzer) c.getConstructors()[0].newInstance();
+					//Class c = Class.forName(button.getText());			
+					//DataAnalyzer analyzer = (DataAnalyzer) c.getConstructors()[0].newInstance();
 					final ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
-					analyzers.add(analyzer);
+					//analyzers.add(analyzer);
 					wizard.setAnalyzers(analyzers);
 					
 					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
@@ -138,18 +164,6 @@ public class AnalyzerPage extends WizardPage implements Listener {
 				} catch (SecurityException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (ClassNotFoundException e1) {
-					// TODO Auto-generated catch block
-					e1.printStackTrace();
 				}
 				return true;
 			}
