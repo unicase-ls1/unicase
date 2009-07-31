@@ -13,7 +13,6 @@ import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.common.util.BasicEList;
@@ -335,9 +334,10 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException ex) {
 				// END SUPRESS CATCH EXCEPTION
-				Platform.getLog(Platform.getBundle("org.unicase.model")).log(
-					new Status(IStatus.ERROR, "org.unicase.model", "Project Change Observer threw an exception: "
-						+ projectChangeObserver.getClass().toString(), ex));
+
+				ModelUtil.log("Project Change Observer threw an exception: "
+					+ projectChangeObserver.getClass().getName(), ex, IStatus.ERROR);
+
 			}
 		}
 	}
@@ -375,9 +375,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException ex) {
 				// END SUPRESS CATCH EXCEPTION
-				Platform.getLog(Platform.getBundle("org.unicase.model")).log(
-					new Status(IStatus.ERROR, "org.unicase.model", "Project Change Observer threw an exception: "
-						+ projectChangeObserver.getClass().toString(), ex));
+				ModelUtil.log("Project Change Observer threw an exception: "
+					+ projectChangeObserver.getClass().getName(), ex, IStatus.ERROR);
 			}
 		}
 
@@ -451,9 +450,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException ex) {
 				// END SUPRESS CATCH EXCEPTION
-				Platform.getLog(Platform.getBundle("org.unicase.model")).log(
-					new Status(IStatus.ERROR, "org.unicase.model", "Project Change Observer threw an exception: "
-						+ projectChangeObserver.getClass().toString(), ex));
+				ModelUtil.log("Project Change Observer threw an exception: "
+					+ projectChangeObserver.getClass().getName(), ex, IStatus.ERROR);
 			}
 		}
 
@@ -487,9 +485,8 @@ public class ProjectImpl extends EObjectImpl implements Project {
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException ex) {
 				// END SUPRESS CATCH EXCEPTION
-				Platform.getLog(Platform.getBundle("org.unicase.model")).log(
-					new Status(IStatus.ERROR, "org.unicase.model", "Project Change Observer threw an exception: "
-						+ projectChangeObserver.getClass().toString(), ex));
+				ModelUtil.log("Project Change Observer threw an exception: "
+					+ projectChangeObserver.getClass().getName(), ex, IStatus.ERROR);
 			}
 		}
 	}
