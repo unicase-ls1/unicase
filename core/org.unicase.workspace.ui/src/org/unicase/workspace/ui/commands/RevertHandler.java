@@ -16,6 +16,7 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 // MK: document whats this exactly does
 /**
@@ -28,8 +29,7 @@ public class RevertHandler extends AbstractHandler {
 	 * 
 	 * @author helming
 	 */
-	private final class RevertCommand extends
-			UnicaseCommandWithResult<Boolean> {
+	private final class RevertCommand extends UnicaseCommandWithResult<Boolean> {
 		private final ProgressMonitorDialog progressDialog;
 		private final ProjectSpace projectSpace;
 
@@ -59,6 +59,8 @@ public class RevertHandler extends AbstractHandler {
 					resultValue = true;
 				} catch (RuntimeException e) {
 					DialogHandler.showExceptionDialog(e);
+					WorkspaceUtil.logException("RuntimeException in "
+							+ RevertHandler.class.getName(), e);
 				} finally {
 					// END SUPRESS CATCH EXCEPTION
 					progressDialog.getProgressMonitor().done();

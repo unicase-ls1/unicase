@@ -20,6 +20,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Share a project with the server.
@@ -42,11 +43,15 @@ public class ShareProjectHandler extends ServerRequestCommandHandler {
 	 */
 	@Override
 	protected void initUsersession() {
-		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
-		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell, new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-		Workspace currentWorkspace = WorkspaceManager.getInstance().getCurrentWorkspace();
-		Collection<Usersession> allSessions = currentWorkspace.getUsersessions();
+		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+				.getShell();
+		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell,
+				new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		Workspace currentWorkspace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace();
+		Collection<Usersession> allSessions = currentWorkspace
+				.getUsersessions();
 		dlg.setElements(allSessions.toArray());
 		dlg.setTitle("Select Usersession");
 		dlg.setBlockOnOpen(true);
@@ -71,6 +76,8 @@ public class ShareProjectHandler extends ServerRequestCommandHandler {
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			DialogHandler.showExceptionDialog(e);
+			WorkspaceUtil.logException("RuntimeException in "
+					+ ShareProjectHandler.class.getName(), e);
 			// throw e;
 		}
 		// END SUPRESS CATCH EXCEPTION
@@ -81,9 +88,11 @@ public class ShareProjectHandler extends ServerRequestCommandHandler {
 	 * @param projectSpace
 	 * @throws EmfStoreException
 	 */
-	private void createProject(ProjectSpace projectSpace) throws EmfStoreException {
+	private void createProject(ProjectSpace projectSpace)
+			throws EmfStoreException {
 		projectSpace.shareProject(getUsersession());
-		MessageDialog.openInformation(getShell(), null, "Your project was successfully shared!");
+		MessageDialog.openInformation(getShell(), null,
+				"Your project was successfully shared!");
 	}
 
 }
