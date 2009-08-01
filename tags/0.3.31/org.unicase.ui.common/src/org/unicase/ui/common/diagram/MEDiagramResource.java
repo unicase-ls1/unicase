@@ -33,6 +33,7 @@ import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramLoadException;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.WorkspaceUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
@@ -109,7 +110,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 					meDiagram.loadDiagramLayout();
 				} catch (DiagramLoadException e) {
 					if (!(e.getCause() instanceof NullPointerException)) {
-						e.printStackTrace();
+						WorkspaceUtil.logException("Loading diagram layout failed", e);
 					}
 
 				}
