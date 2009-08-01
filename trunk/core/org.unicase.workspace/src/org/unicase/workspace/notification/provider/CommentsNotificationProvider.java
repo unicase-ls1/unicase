@@ -24,9 +24,9 @@ import org.unicase.model.organization.Group;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.task.WorkItem;
-import org.unicase.workspace.PreferenceManager;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.PropertyKey.DashboardKey;
+import org.unicase.workspace.preferences.DashboardKey;
+import org.unicase.workspace.preferences.PreferenceManager;
 import org.unicase.workspace.util.OrgUnitHelper;
 
 /**

@@ -37,6 +37,7 @@ import org.unicase.workspace.exceptions.PropertyNotFoundException;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.OperationListener;
 import org.unicase.workspace.observers.UpdateObserver;
+import org.unicase.workspace.preferences.PropertyKey;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Project Container</b></em>'. <!-- end-user-doc

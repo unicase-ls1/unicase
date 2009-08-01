@@ -22,15 +22,15 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.bug.BugPackage;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.workspace.PreferenceManager;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.PropertyKey.DashboardKey;
 import org.unicase.workspace.notification.provider.CommentsNotificationProvider;
 import org.unicase.workspace.notification.provider.PushedNotificationProvider;
 import org.unicase.workspace.notification.provider.SubscriptionNotificationProvider;
 import org.unicase.workspace.notification.provider.TaskNotificationProvider;
 import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
+import org.unicase.workspace.preferences.DashboardKey;
+import org.unicase.workspace.preferences.PreferenceManager;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -58,64 +58,47 @@ public final class NotificationGenerator {
 		this.projectSpace = projectSpace;
 		// update provider must be first in list
 		addNotificationProvider(new UpdateNotificationProvider());
+		addNotificationProvider(new PushedNotificationProvider());
 
 		addTaskProviders(projectSpace);
 
-		if (projectSpace.hasProperty(DashboardKey.TASK_TRACE_PROVIDER)) {
-			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace,
-				DashboardKey.TASK_TRACE_PROVIDER);
-			if (property.getBooleanProperty()) {
-				addNotificationProvider(new TaskObjectNotificationProvider());
-			}
+		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace,
+			DashboardKey.TASK_TRACE_PROVIDER);
+		if (property.getBooleanProperty()) {
+			addNotificationProvider(new TaskObjectNotificationProvider());
 		}
 
-		if (projectSpace.hasProperty(DashboardKey.COMMENTS_PROVIDER)) {
-			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace,
-				DashboardKey.COMMENTS_PROVIDER);
-			if (property.getBooleanProperty()) {
-				addNotificationProvider(new CommentsNotificationProvider());
-			}
+		property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.COMMENTS_PROVIDER);
+		if (property.getBooleanProperty()) {
+			addNotificationProvider(new CommentsNotificationProvider());
 		}
 
-		if (projectSpace.hasProperty(DashboardKey.SUBSCRIPTION_PROVIDER)) {
-			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace,
-				DashboardKey.SUBSCRIPTION_PROVIDER);
-			if (property.getBooleanProperty()) {
-				addNotificationProvider(new SubscriptionNotificationProvider());
-			}
+		property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTION_PROVIDER);
+		if (property.getBooleanProperty()) {
+			addNotificationProvider(new SubscriptionNotificationProvider());
 		}
-		addNotificationProvider(new PushedNotificationProvider());
 	}
 
 	private void addTaskProviders(ProjectSpace projectSpace) {
 
-		if (projectSpace.hasProperty(DashboardKey.SHOW_AI_TASKS)) {
-			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_AI_TASKS);
-			if (property.getBooleanProperty()) {
-				addNotificationProvider(new TaskNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
-			}
+		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_AI_TASKS);
+		if (property.getBooleanProperty()) {
+			addNotificationProvider(new TaskNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
 		}
 
-		if (projectSpace.hasProperty(DashboardKey.SHOW_BR_TASKS)) {
-			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_BR_TASKS);
-			if (property.getBooleanProperty()) {
-				addNotificationProvider(new TaskNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
-			}
+		property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_BR_TASKS);
+		if (property.getBooleanProperty()) {
+			addNotificationProvider(new TaskNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
 		}
 
-		if (projectSpace.hasProperty(DashboardKey.SHOW_ISSUE_TASKS)) {
-			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace,
-				DashboardKey.SHOW_ISSUE_TASKS);
-			if (property.getBooleanProperty()) {
-				addNotificationProvider(new TaskNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
-			}
+		property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_ISSUE_TASKS);
+		if (property.getBooleanProperty()) {
+			addNotificationProvider(new TaskNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
 		}
 
-		if (projectSpace.hasProperty(DashboardKey.SHOW_WP_TASKS)) {
-			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_WP_TASKS);
-			if (property.getBooleanProperty()) {
-				addNotificationProvider(new TaskNotificationProvider(TaskPackage.eINSTANCE.getWorkPackage()));
-			}
+		property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_WP_TASKS);
+		if (property.getBooleanProperty()) {
+			addNotificationProvider(new TaskNotificationProvider(TaskPackage.eINSTANCE.getWorkPackage()));
 		}
 	}
 
