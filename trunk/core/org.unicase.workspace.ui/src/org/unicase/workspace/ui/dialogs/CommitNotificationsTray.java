@@ -6,6 +6,7 @@
 package org.unicase.workspace.ui.dialogs;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
@@ -80,8 +81,7 @@ public class CommitNotificationsTray extends DialogTray {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param commitDialog
-	 *            the commit dialog
+	 * @param commitDialog the commit dialog
 	 */
 	public CommitNotificationsTray(CommitDialog commitDialog) {
 		this.commitDialog = commitDialog;
@@ -96,8 +96,7 @@ public class CommitNotificationsTray extends DialogTray {
 	protected Control createContents(Composite parent) {
 
 		notifications = new ArrayList<ESNotification>();
-		comment = Activator.getImageDescriptor("icons/comment.png")
-				.createImage();
+		comment = Activator.getImageDescriptor("icons/comment.png").createImage();
 		add = Activator.getImageDescriptor("icons/add.png").createImage();
 		remove = Activator.getImageDescriptor("icons/remove.png").createImage();
 
@@ -106,8 +105,7 @@ public class CommitNotificationsTray extends DialogTray {
 		Composite root = new Composite(parent, SWT.NONE);
 
 		GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(root);
-		GridDataFactory.fillDefaults().hint(80, -1).grab(true, true).applyTo(
-				root);
+		GridDataFactory.fillDefaults().hint(80, -1).grab(true, true).applyTo(root);
 
 		Label title = new Label(root, SWT.WRAP);
 		title.setText("Notify users about the changes you have made:");
@@ -130,8 +128,7 @@ public class CommitNotificationsTray extends DialogTray {
 			@Override
 			public String getText(Object element) {
 				ESNotification notification = (ESNotification) element;
-				return notification.getDetails() + "["
-						+ notification.getRecipient() + "]";
+				return notification.getDetails() + "[" + notification.getRecipient() + "]";
 			}
 
 			@Override
@@ -140,28 +137,24 @@ public class CommitNotificationsTray extends DialogTray {
 			}
 		};
 		notificationsTable.setLabelProvider(notificationLabelProvider);
-		notificationsTable
-				.addSelectionChangedListener(new ISelectionChangedListener() {
+		notificationsTable.addSelectionChangedListener(new ISelectionChangedListener() {
 
-					public void selectionChanged(SelectionChangedEvent event) {
-						if (notificationsTable.getSelection().isEmpty()) {
-							removeButton.setEnabled(false);
-						} else {
-							removeButton.setEnabled(true);
-						}
-					}
-				});
+			public void selectionChanged(SelectionChangedEvent event) {
+				if (notificationsTable.getSelection().isEmpty()) {
+					removeButton.setEnabled(false);
+				} else {
+					removeButton.setEnabled(true);
+				}
+			}
+		});
 
 		notificationsTable.setFilters(new ViewerFilter[] { searchFilter });
 
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(
-				notificationsTable.getControl());
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(notificationsTable.getControl());
 
 		Composite toolbar = new Composite(root, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(2).spacing(0, 0).applyTo(
-				toolbar);
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.END).applyTo(
-				toolbar);
+		GridLayoutFactory.fillDefaults().numColumns(2).spacing(0, 0).applyTo(toolbar);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.END).applyTo(toolbar);
 
 		addButton = new ImageHyperlink(toolbar, SWT.TOP);
 		addButton.setImage(add);
@@ -171,8 +164,7 @@ public class CommitNotificationsTray extends DialogTray {
 			@Override
 			public void linkActivated(HyperlinkEvent e) {
 
-				CommitNotificationDialog dialog = new CommitNotificationDialog(
-						commitDialog.getShell());
+				CommitNotificationDialog dialog = new CommitNotificationDialog(commitDialog.getShell());
 				dialog.open();
 			}
 		});
@@ -184,14 +176,20 @@ public class CommitNotificationsTray extends DialogTray {
 		removeButton.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
 			public void linkActivated(HyperlinkEvent e) {
-				StructuredSelection selection = (StructuredSelection) notificationsTable
-						.getSelection();
+				StructuredSelection selection = (StructuredSelection) notificationsTable.getSelection();
 				notifications.removeAll(selection.toList());
 				notificationsTable.setInput(notifications);
 			}
 		});
 
 		return root;
+	}
+
+	/**
+	 * @return the pushed notifications.
+	 */
+	public List<ESNotification> getNotifications() {
+		return notifications;
 	}
 
 	/**
@@ -209,7 +207,6 @@ public class CommitNotificationsTray extends DialogTray {
 	 * The commit notification dialog.
 	 * 
 	 * @author shtervg
-	 * 
 	 */
 	private final class CommitNotificationDialog extends TitleAreaDialog {
 
@@ -226,41 +223,33 @@ public class CommitNotificationsTray extends DialogTray {
 		protected Control createDialogArea(Composite parent) {
 			setTitle("Create new notification");
 			setMessage("Select the users you want to notify and the operation you want to notify them about");
-			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
-					.getActiveProjectSpace();
+			projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 
 			final AdapterFactoryLabelProvider userLabelProvider = new AdapterFactoryLabelProvider(
-					new ComposedAdapterFactory(
-							ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 			Composite root = new Composite(parent, SWT.NONE);
-			GridLayoutFactory.fillDefaults().numColumns(3).margins(10, 5)
-					.applyTo(root);
+			GridLayoutFactory.fillDefaults().numColumns(3).margins(10, 5).applyTo(root);
 			GridDataFactory.fillDefaults().grab(true, true).applyTo(root);
 
 			users = new ArrayList<User>();
 			Label userLabel = new Label(root, SWT.WRAP);
 			userLabel.setText("Users");
 			final TableViewer userViewer = new TableViewer(root);
-			GridDataFactory.fillDefaults().hint(-1, 50).grab(true, false)
-					.applyTo(userViewer.getTable());
+			GridDataFactory.fillDefaults().hint(50, -1).grab(true, false).applyTo(userViewer.getTable());
 			userViewer.setLabelProvider(userLabelProvider);
 			userViewer.setContentProvider(new ArrayContentProvider());
+			userViewer.getTable().getHorizontalBar().setVisible(false);
 			Button userButton = new Button(root, SWT.PUSH);
-			GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
-					.applyTo(userButton);
+			GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(userButton);
 			userButton.setText("Select users");
 			userButton.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					ElementListSelectionDialog dialog = new ElementListSelectionDialog(
-							getShell(), userLabelProvider);
+					ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), userLabelProvider);
 					dialog.setMultipleSelection(true);
-					dialog.setElements(projectSpace.getProject()
-							.getAllModelElementsbyClass(
-									OrganizationPackage.eINSTANCE.getUser(),
-									new BasicEList<User>())
-							.toArray(new User[0]));
+					dialog.setElements(projectSpace.getProject().getAllModelElementsbyClass(
+						OrganizationPackage.eINSTANCE.getUser(), new BasicEList<User>()).toArray(new User[0]));
 					if (dialog.open() == IDialogConstants.OK_ID) {
 						users.clear();
 						Object[] result = dialog.getResult();
@@ -275,22 +264,20 @@ public class CommitNotificationsTray extends DialogTray {
 			Label operationLabel = new Label(root, SWT.WRAP);
 			operationLabel.setText("Operation");
 			final TableViewer operationViewer = new TableViewer(root);
-			GridDataFactory.fillDefaults().hint(-1, 14).grab(true, false)
-					.applyTo(operationViewer.getTable());
+			operationViewer.getTable().getHorizontalBar().setVisible(false);
+			operationViewer.getTable().getVerticalBar().setVisible(false);
+			GridDataFactory.fillDefaults().hint(50, 15).grab(true, false).applyTo(operationViewer.getTable());
 			operationViewer.setLabelProvider(userLabelProvider);
 			operationViewer.setContentProvider(new ArrayContentProvider());
 			Button operationButton = new Button(root, SWT.PUSH);
-			GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
-					.applyTo(operationButton);
+			GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(operationButton);
 			operationButton.setText("Select operation");
 			operationButton.addSelectionListener(new SelectionAdapter() {
 				@Override
 				public void widgetSelected(SelectionEvent e) {
-					ElementListSelectionDialog dialog = new ElementListSelectionDialog(
-							getShell(), userLabelProvider);
+					ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), userLabelProvider);
 					dialog.setMultipleSelection(false);
-					dialog.setElements(commitDialog.getOperations().toArray(
-							new AbstractOperation[0]));
+					dialog.setElements(commitDialog.getOperations().toArray(new AbstractOperation[0]));
 					if (dialog.open() == IDialogConstants.OK_ID) {
 						Object result = dialog.getFirstResult();
 						operationViewer.setInput(new Object[] { result });
@@ -302,8 +289,7 @@ public class CommitNotificationsTray extends DialogTray {
 			Label commentLabel = new Label(root, SWT.WRAP);
 			commentLabel.setText("Comment");
 			commentText = new Text(root, SWT.BORDER);
-			GridDataFactory.fillDefaults().span(2, 1).grab(true, false)
-					.applyTo(commentText);
+			GridDataFactory.fillDefaults().span(2, 1).grab(true, false).applyTo(commentText);
 
 			return root;
 		}
@@ -315,42 +301,34 @@ public class CommitNotificationsTray extends DialogTray {
 				currentUser = OrgUnitHelper.getUser(projectSpace);
 
 				for (User user : users) {
-					ESNotification notification = NotificationFactory.eINSTANCE
-							.createESNotification();
+					ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 					notification.setProvider("Pushed notifications provider");
-					notification.setCreationDate(operation.getClientDate());
 					notification.setName("Pushed name");
-					ProjectId projectIdCopy = (ProjectId) EcoreUtil
-							.copy(projectSpace.getProjectId());
+					ProjectId projectIdCopy = (ProjectId) EcoreUtil.copy(projectSpace.getProjectId());
 					notification.setProject(projectIdCopy);
 					notification.setSender(currentUser.getName());
 					notification.setRecipient(user.getName());
 					String text = commentText.getText();
 					notification.setDetails(text == null ? "" : text);
 					notification.setSeen(false);
-
+					notification.setCreationDate(new Date());
 					StringBuilder msgBuilder = new StringBuilder();
-					msgBuilder.append(currentUser);
-					msgBuilder
-							.append(" sent you a notification about this change: ");
-					ModelElementId modelElementIdCopy = (ModelElementId) EcoreUtil
-							.copy(operation.getModelElementId());
+					msgBuilder.append(URLHelper
+						.getHTMLLinkForModelElement(currentUser, projectSpace, URLHelper.DEFAULT));
+					msgBuilder.append(" sent you a notification about this change: ");
+					ModelElementId modelElementIdCopy = (ModelElementId) EcoreUtil.copy(operation.getModelElementId());
 					msgBuilder.append(operation.getDescription());
 					msgBuilder.append(" in ");
-					msgBuilder.append(URLHelper.getHTMLLinkForModelElement(
-							modelElementIdCopy, projectSpace, URLHelper.UNLTD));
+					msgBuilder.append(URLHelper.getHTMLLinkForModelElement(modelElementIdCopy, projectSpace,
+						URLHelper.UNLTD));
 					notification.setMessage(msgBuilder.toString());
 
-					notification.getRelatedModelElements().add(
-							modelElementIdCopy);
-					if (OperationsPackage.eINSTANCE.getReferenceOperation()
-							.isInstance(operation)) {
+					notification.getRelatedModelElements().add(modelElementIdCopy);
+					if (OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(operation)) {
 						ReferenceOperation referenceOp = (ReferenceOperation) operation;
-						Set<ModelElementId> otherInvolvedModelElements = referenceOp
-								.getOtherInvolvedModelElements();
+						Set<ModelElementId> otherInvolvedModelElements = referenceOp.getOtherInvolvedModelElements();
 						for (ModelElementId id : otherInvolvedModelElements) {
-							ModelElementId idCopy = (ModelElementId) EcoreUtil
-									.copy(id);
+							ModelElementId idCopy = (ModelElementId) EcoreUtil.copy(id);
 							notification.getRelatedModelElements().add(idCopy);
 						}
 					}
@@ -360,11 +338,9 @@ public class CommitNotificationsTray extends DialogTray {
 				}
 
 			} catch (NoCurrentUserException e) {
-				DialogHandler
-						.showErrorDialog("You don't seem to have a valid user");
+				DialogHandler.showErrorDialog("You don't seem to have a valid user");
 			} catch (CannotMatchUserInProjectException e) {
-				DialogHandler
-						.showErrorDialog("You don't seem to have a valid user");
+				DialogHandler.showErrorDialog("You don't seem to have a valid user");
 			}
 			notificationsTable.setInput(notifications.toArray());
 			close();
@@ -383,16 +359,14 @@ public class CommitNotificationsTray extends DialogTray {
 		/**
 		 * Sets the search term.
 		 * 
-		 * @param text
-		 *            the term.
+		 * @param text the term.
 		 */
 		public void setText(String text) {
 			this.text = text;
 		}
 
 		@Override
-		public boolean select(Viewer viewer, Object parentElement,
-				Object element) {
+		public boolean select(Viewer viewer, Object parentElement, Object element) {
 			if (notificationLabelProvider.getText(element).contains(text)) {
 				return true;
 			}

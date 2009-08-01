@@ -169,7 +169,8 @@ public class DashboardPage extends FormPage {
 		notificationsComposite = toolkit.createComposite(body, SWT.NONE);
 		notificationsComposite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		notificationsComposite.setBackgroundMode(SWT.INHERIT_FORCE);
-		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).spacing(0, 0).applyTo(notificationsComposite);
+		GridLayoutFactory.fillDefaults().numColumns(1).equalWidth(false).spacing(0, 0).margins(5, 5).applyTo(
+			notificationsComposite);
 		data = new FormData();
 		data.top = new FormAttachment(0, 0);
 		data.bottom = new FormAttachment(100, 0);
