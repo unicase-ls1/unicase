@@ -112,7 +112,7 @@ public class DashboardEditorInput implements IEditorInput {
 	 * @return the list of all notifications in the current project space.
 	 */
 	public List<ESNotification> getNotifications() {
-		List<ESNotification> originalNotifications = getProjectSpace().getNotifications();
+		List<ESNotification> originalNotifications = getProjectSpace().getNotificationsFromComposite();
 		ArrayList<ESNotification> notifications = new ArrayList<ESNotification>();
 		notifications.addAll(originalNotifications);
 		Collections.sort(notifications, new Comparator<ESNotification>() {

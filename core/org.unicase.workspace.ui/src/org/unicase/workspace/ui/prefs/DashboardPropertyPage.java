@@ -46,11 +46,11 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
-import org.unicase.workspace.PreferenceManager;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.PropertyKey;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.PropertyKey.DashboardKey;
+import org.unicase.workspace.preferences.DashboardKey;
+import org.unicase.workspace.preferences.PreferenceManager;
+import org.unicase.workspace.preferences.PropertyKey;
 import org.unicase.workspace.util.UnicaseCommandWithResult;
 
 /**

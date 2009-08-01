@@ -110,7 +110,7 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 		composite = new Composite(parent, SWT.NONE);
 
 		composite.setBackgroundMode(SWT.INHERIT_FORCE);
-		GridLayoutFactory.fillDefaults().numColumns(2).extendedMargins(12, 12, 40, 5).applyTo(composite);
+		GridLayoutFactory.fillDefaults().numColumns(2).extendedMargins(12, 12, 47, 5).applyTo(composite);
 
 		createContentPanel();
 		createToolbar();
