@@ -466,9 +466,19 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		Resource elementsResource = resourceSet.createResource(VIRTUAL_DIAGRAM_ELEMENTS_URI);
 		elementsResource.getContents().addAll(elements);
 
-		String diagramLayout = getDiagramLayout();
 		if (diagramLayout == DIAGRAM_LAYOUT_EDEFAULT) {
 			return;
+		}
+		/*
+		 * Visual ID's of UseCase diagram were different in the past, e.g. UseCase had ID 1001, now it's 2001. For this
+		 * reason: Check for the old and incompatible layout information and set it to an empty string.
+		 */
+		if (this.getType() == DiagramType.USECASE_DIAGRAM) {
+			if (this.diagramLayout.contains("type=1001") || this.diagramLayout.contains("type=1002")) {
+				this.setDiagramLayout(DIAGRAM_LAYOUT_EDEFAULT);
+				throw new DiagramLoadException("UseCase diagram layout string was incompatible with current version"
+					+ ", load failed.");
+			}
 		}
 		if (diagramLayout == null) {
 			throw new DiagramLoadException("Diagram string is null, load failed.");
