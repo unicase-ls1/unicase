@@ -69,13 +69,19 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 
 	/**
 	 * Default constructor.
-	 * 
-	 * @param dashboard the dashboard
 	 */
-	public DashboardTaskWidget(DashboardPage dashboard) {
-		super(dashboard);
-		this.ps = dashboard.getProjectSpace();
+	public DashboardTaskWidget() {
+		super();
 		setTitle("Tasks overview");
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setDashboard(DashboardPage dashboard) {
+		super.setDashboard(dashboard);
+		this.ps = dashboard.getProjectSpace();
 		try {
 			user = OrgUnitHelper.getUser(ps);
 

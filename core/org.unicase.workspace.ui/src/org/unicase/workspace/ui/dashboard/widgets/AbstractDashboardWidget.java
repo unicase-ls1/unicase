@@ -81,17 +81,23 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 
 	/**
 	 * Default constructor.
-	 * 
-	 * @param dashboard the dashboard.
 	 */
-	public AbstractDashboardWidget(DashboardPage dashboard) {
+	public AbstractDashboardWidget() {
 		display = Display.getCurrent();
 		bg = new Color(display, 233, 244, 255);
-		this.dashboard = dashboard;
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 		title = "";
+	}
+
+	/**
+	 * Sets the dashboard for this widget.
+	 * 
+	 * @param dashboard the dashboard.
+	 */
+	public void setDashboard(DashboardPage dashboard) {
+		this.dashboard = dashboard;
 	}
 
 	/**
@@ -104,7 +110,7 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 		composite = new Composite(parent, SWT.NONE);
 
 		composite.setBackgroundMode(SWT.INHERIT_FORCE);
-		composite.addPaintListener(this);
+		GridLayoutFactory.fillDefaults().numColumns(2).extendedMargins(12, 12, 40, 5).applyTo(composite);
 
 		createContentPanel();
 		createToolbar();
@@ -112,6 +118,7 @@ public abstract class AbstractDashboardWidget implements PaintListener {
 		for (Control c : composite.getChildren()) {
 			c.setBackground(bg);
 		}
+		composite.addPaintListener(this);
 		return composite;
 	}
 
