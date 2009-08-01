@@ -30,7 +30,6 @@ import org.unicase.ui.common.util.ModelElementTooltip;
 import org.unicase.ui.common.util.URLHelper;
 import org.unicase.ui.common.util.URLSelectionListener;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.ui.dashboard.DashboardPage;
 
 /**
  * A dashboard widget displaying the upcoming events.
@@ -43,11 +42,9 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 
 	/**
 	 * Default constructor.
-	 * 
-	 * @param dashboard the dashboard
 	 */
-	public DashboardEventWidget(DashboardPage dashboard) {
-		super(dashboard);
+	public DashboardEventWidget() {
+		super();
 		setTitle("Upcoming events");
 	}
 

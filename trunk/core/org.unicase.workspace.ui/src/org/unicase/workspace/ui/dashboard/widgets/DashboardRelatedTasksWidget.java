@@ -52,13 +52,18 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 
 	/**
 	 * Default constructor.
-	 * 
-	 * @param dashboard the dashboard
 	 */
-	public DashboardRelatedTasksWidget(DashboardPage dashboard) {
-		super(dashboard);
+	public DashboardRelatedTasksWidget() {
+		super();
 		setTitle("Tasks that might be related to you");
+	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public void setDashboard(DashboardPage dashboard) {
+		super.setDashboard(dashboard);
 		this.ps = dashboard.getProjectSpace();
 		relatedTasks = new HashSet<WorkItem>();
 		try {
@@ -74,20 +79,20 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 					workItems.add(wi);
 				}
 			}
-			
+
 			Set<FunctionalRequirement> frs = new HashSet<FunctionalRequirement>();
-			for(WorkItem wi : workItems){
-				for(ModelElement me : wi.getAnnotatedModelElements()){
-					if(me instanceof FunctionalRequirement){
+			for (WorkItem wi : workItems) {
+				for (ModelElement me : wi.getAnnotatedModelElements()) {
+					if (me instanceof FunctionalRequirement) {
 						frs.add((FunctionalRequirement) me);
 					}
 				}
 			}
-			
+
 			allWI.removeAll(workItems);
-			for(WorkItem wi : allWI){
-				for(ModelElement me : wi.getAnnotatedModelElements()){
-					if(me instanceof FunctionalRequirement && frs.contains(me)){
+			for (WorkItem wi : allWI) {
+				for (ModelElement me : wi.getAnnotatedModelElements()) {
+					if (me instanceof FunctionalRequirement && frs.contains(me)) {
 						relatedTasks.add(wi);
 					}
 				}
@@ -100,36 +105,36 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 	}
 
 	private boolean applies(WorkItem wi) {
-		return applies(TaskPackage.eINSTANCE.getWorkItem_Assignee(),wi) ||
-		applies(TaskPackage.eINSTANCE.getWorkItem_Participants(),wi) ||
-		applies(TaskPackage.eINSTANCE.getWorkItem_Reviewer(),wi);
+		return applies(TaskPackage.eINSTANCE.getWorkItem_Assignee(), wi)
+			|| applies(TaskPackage.eINSTANCE.getWorkItem_Participants(), wi)
+			|| applies(TaskPackage.eINSTANCE.getWorkItem_Reviewer(), wi);
 	}
-	
+
 	@SuppressWarnings("unchecked")
-	private boolean applies(EReference reference, WorkItem wi){
+	private boolean applies(EReference reference, WorkItem wi) {
 		Object value = wi.eGet(reference);
-		if(value == null){
+		if (value == null) {
 			return false;
 		}
-		if(reference.getUpperBound() == -1 && value instanceof List){
-			List<OrgUnit> orgUnits = (List<OrgUnit>)value;
-			for(OrgUnit orgUnit : orgUnits){
-				if(applies(orgUnit)){
+		if (reference.getUpperBound() == -1 && value instanceof List) {
+			List<OrgUnit> orgUnits = (List<OrgUnit>) value;
+			for (OrgUnit orgUnit : orgUnits) {
+				if (applies(orgUnit)) {
 					return true;
 				}
 			}
-		}else{
+		} else {
 			OrgUnit orgUnit = (OrgUnit) value;
 			return applies(orgUnit);
 		}
 		return false;
 	}
-	
-	private boolean applies(OrgUnit orgUnit){
-		if(orgUnit instanceof User && orgUnit.equals(user)){
+
+	private boolean applies(OrgUnit orgUnit) {
+		if (orgUnit instanceof User && orgUnit.equals(user)) {
 			return true;
 		}
-		if(orgUnit instanceof Group && groups.contains(orgUnit)){
+		if (orgUnit instanceof Group && groups.contains(orgUnit)) {
 			return true;
 		}
 		return false;
@@ -158,8 +163,7 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 				link.setData(wi);
 				ModelElementTooltip.enableFor(link);
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(URLHelper.getHTMLLinkForModelElement(wi, getDashboard()
-					.getProjectSpace(), 20));
+				stringBuilder.append(URLHelper.getHTMLLinkForModelElement(wi, getDashboard().getProjectSpace(), 20));
 				link.setText(stringBuilder.toString());
 				link.addSelectionListener(URLSelectionListener.getInstance(getDashboard().getProjectSpace()));
 				GridDataFactory.fillDefaults()

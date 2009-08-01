@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.2"?>
 <plugin>
+   <extension-point id="org.unicase.workspace.ui.dashboard.widgets" name="Dashboard Widgets" schema="schema/dashboardWidgets.exsd"/>
   <extension
          point="org.eclipse.ui.editors">
       <editor
@@ -859,4 +860,22 @@
         </enablement>
      </decorator>
   </extension>
+   <extension
+         point="org.unicase.workspace.ui.dashboard.widgets">
+      <widget
+            class="org.unicase.workspace.ui.dashboard.widgets.DashboardEventWidget"
+            name="Events Widget"
+            position="2">
+      </widget>
+      <widget
+            class="org.unicase.workspace.ui.dashboard.widgets.DashboardTaskWidget"
+            name="Task Widget"
+            position="1">
+      </widget>
+      <widget
+            class="org.unicase.workspace.ui.dashboard.widgets.DashboardRelatedTasksWidget"
+            name="Related Tasks Widget"
+            position="3">
+      </widget>
+   </extension>
 </plugin>
