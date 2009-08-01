@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?eclipse version="3.0"?>
+<?eclipse version="3.2"?>
 
 <!--
  <copyright>
@@ -9,7 +9,7 @@
 -->
 
 <plugin>
-
+   <extension-point id="org.unicase.workspace.notification.providers" name="Notification Providers" schema="schema/notificationProviders.exsd"/>
   <extension point="org.eclipse.emf.ecore.generated_package">
     <package 
        uri = "http://unicase.org/workspace" 
@@ -21,6 +21,50 @@
      <editingDomain
            id="org.unicase.workspace.editingDomain">
      </editingDomain>
+  </extension>
+  <extension
+        point="org.unicase.workspace.notification.providers">
+     <provider
+           class="org.unicase.workspace.notification.provider.UpdateNotificationProvider"
+           id="org.unicase.workspace.notification.provider.UpdateNotificationProvider"
+           name="Update Notifications">
+     </provider>
+     <provider
+           after="org.unicase.workspace.notification.provider.UpdateNotificationProvider"
+           class="org.unicase.workspace.notification.provider.PushedNotificationProvider"
+           id="org.unicase.workspace.notification.provider.PushedNotificationProvider"
+           name="Pushed Notifications">
+     </provider>
+     <provider
+           after="org.unicase.workspace.notification.provider.PushedNotificationProvider"
+           class="org.unicase.workspace.notification.provider.TaskNotificationProvider"
+           id="org.unicase.workspace.notification.provider.TaskNotificationProvider"
+           name="Task Notifications">
+     </provider>
+     <provider
+           after="org.unicase.workspace.notification.provider.TaskNotificationProvider"
+           class="org.unicase.workspace.notification.provider.TaskChangeNotificationProvider"
+           id="org.unicase.workspace.notification.provider.TaskChangeNotificationProvider"
+           name="Task Change Notifications">
+     </provider>
+     <provider
+           after="org.unicase.workspace.notification.provider.TaskChangeNotificationProvider"
+           class="org.unicase.workspace.notification.provider.SubscriptionNotificationProvider"
+           id="org.unicase.workspace.notification.provider.SubscriptionNotificationProvider"
+           name="Subscriptions Notifications">
+     </provider>
+     <provider
+           after="org.unicase.workspace.notification.provider.SubscriptionNotificationProvider"
+           class="org.unicase.workspace.notification.provider.CommentsNotificationProvider"
+           id="org.unicase.workspace.notification.provider.CommentsNotificationProvider"
+           name="Comment Notifications">
+     </provider>
+     <provider
+           after="org.unicase.workspace.notification.provider.CommentsNotificationProvider"
+           class="org.unicase.workspace.notification.provider.TaskObjectNotificationProvider"
+           id="org.unicase.workspace.notification.provider.TaskObjectNotificationProvider"
+           name="Task Trace Notifications">
+     </provider>
   </extension>
 
 </plugin>

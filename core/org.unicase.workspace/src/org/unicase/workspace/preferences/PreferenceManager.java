@@ -3,14 +3,14 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace;
+package org.unicase.workspace.preferences;
 
 import java.util.HashMap;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.workspace.PropertyKey.DashboardKey;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.PropertyNotFoundException;
 
 /**
@@ -171,4 +171,13 @@ public final class PreferenceManager {
 		projectSpace.setProperty(property);
 	}
 
+	/**
+	 * Sets a new default property for the given key.
+	 * 
+	 * @param key the key.
+	 * @param property the property.
+	 */
+	public void setDefaultProperty(PropertyKey key, OrgUnitProperty property) {
+		defaultsMap.put(key, property);
+	}
 }

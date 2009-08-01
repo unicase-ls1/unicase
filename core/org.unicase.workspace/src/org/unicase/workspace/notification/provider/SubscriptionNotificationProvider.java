@@ -22,11 +22,11 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.organization.User;
-import org.unicase.workspace.PreferenceManager;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.PropertyKey.DashboardKey;
 import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.notification.NotificationProvider;
+import org.unicase.workspace.preferences.DashboardKey;
+import org.unicase.workspace.preferences.PreferenceManager;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
 
