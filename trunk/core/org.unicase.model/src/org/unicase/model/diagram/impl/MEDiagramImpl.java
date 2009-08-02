@@ -495,6 +495,15 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		if (diagramLayout == null) {
 			throw new DiagramLoadException("Diagram string is null, load failed.");
 		}
+		/*
+		 * Visual ID's of UseCase diagram were different in the past, e.g. UseCase had ID 1001, now it's 2001. For this
+		 * reason: Check for the old and incompatible layout information and convert it.
+		 */
+		if (this.getType() == DiagramType.USECASE_DIAGRAM) {
+			if (this.diagramLayout.contains("type=\"1001\"") || this.diagramLayout.contains("type=\"1002\"")) {
+				this.diagramLayout = this.convertUsecaseLayout(this.diagramLayout);
+			}
+		}
 		// load diagram
 		try {
 			diagramResource.load(new ByteArrayInputStream(diagramLayout.getBytes("UTF-8")), null);
@@ -529,6 +538,27 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		gmfDiagram.setElement(this);
 		// MK change this
 		saveAllResources();
+	}
+
+	/*
+	 * Visual ID's of UseCase diagram were different in the past, e.g. UseCase had ID 1001, now it's 2001. This method
+	 * converts the old layout information.
+	 */
+	private String convertUsecaseLayout(String string) {
+		// The order of the replace sequence is important.
+		string = string.replace("children type=\"1001\"", "children type=\"2001\"");
+		string = string.replace("children type=\"4002\"", "children type=\"5002\"");
+		string = string.replace("children type=\"3002\"", "children type=\"4002\"");
+		string = string.replace("children type=\"4001\"", "children type=\"5001\"");
+		string = string.replace("children type=\"3001\"", "children type=\"4001\"");
+		string = string.replace("children type=\"4006\"", "children type=\"6004\"");
+		string = string.replace("children type=\"4005\"", "children type=\"6003\"");
+		string = string.replace("children type=\"4004\"", "children type=\"6002\"");
+		string = string.replace("children type=\"4003\"", "children type=\"6001\"");
+		string = string.replace("children type=\"1002\"", "children type=\"2002\"");
+		string = string.replace("children type=\"3004\"", "children type=\"4004\"");
+		string = string.replace("children type=\"3003\"", "children type=\"4003\"");
+		return string;
 	}
 
 	private void restoreOldResources(EList<ModelElement> elements, Map<ModelElement, Resource> resourceMap,
