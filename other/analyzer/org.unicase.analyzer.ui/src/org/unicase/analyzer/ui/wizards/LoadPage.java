@@ -1,6 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.analyzer.ui.wizards;
@@ -14,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -22,7 +24,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
@@ -76,7 +77,7 @@ public class LoadPage extends WizardPage implements Listener {
 	    gl.numColumns = ncol;
 	    composite.setLayout(gl);
 
-	    new Label (composite, SWT.NONE).setText("Exporter Path:");	
+	    new Label (composite, SWT.NONE).setText("Configuration Path:");	
 		configurationPath = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		configurationPath.setLayoutData(gd);
@@ -124,14 +125,27 @@ public class LoadPage extends WizardPage implements Listener {
 		((ProjectAnalyzerWizard) getWizard()).setAnalyzerConfig(analyzerConfig);
 	}
 	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
+	 */
 	@Override
 	public boolean isPageComplete() {
-		if(configurationPath.getText() != null){
-			initConfig(configurationPath.getText());
-		}
+
 		return super.isPageComplete();
 	}
 	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
+	 */
+	@Override
+	public IWizardPage getNextPage() {
+		if(configurationPath.getText() != null){
+			initConfig(configurationPath.getText());
+		}
+		return super.getNextPage();
+	}
 	/**
 	 * Listener for the file location selection.
 	 */
@@ -142,7 +156,7 @@ public class LoadPage extends WizardPage implements Listener {
 		@Override
 		public void widgetSelected(SelectionEvent e) {
 			FileDialog fd = new FileDialog(((Button) e.widget).getParent().getShell());
-			fd.setText("select the folder where you want to save the analyzed results ");
+			fd.setText("select the configuration file ");
 			final String path = Configuration.getPluginDataBaseDirectory();
 			fd.setFilterPath(path);
 			String selected = fd.open();
