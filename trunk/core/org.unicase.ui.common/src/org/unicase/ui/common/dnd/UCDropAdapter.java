@@ -6,16 +6,8 @@
 
 package org.unicase.ui.common.dnd;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DND;
@@ -39,6 +31,14 @@ import org.unicase.ui.common.dnd.dropadapters.MeetingDropAdapter;
 import org.unicase.ui.common.dnd.dropadapters.ProjectDropAdapter;
 import org.unicase.ui.common.dnd.dropadapters.WorkItemMeetingSectionDropAdapter;
 import org.unicase.ui.common.dnd.dropadapters.WorkPackageDropAdapter;
+import org.unicase.workspace.util.UnicaseCommand;
+
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * This is the central drop adapter for unicase views. This class acts as a dispatcher. It has a map of (EClass,
@@ -121,10 +121,10 @@ public class UCDropAdapter extends DropTargetAdapter {
 	@Override
 	public void drop(final DropTargetEvent event) {
 
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				if ((eventFeedback & DND.FEEDBACK_INSERT_AFTER) == DND.FEEDBACK_INSERT_AFTER) {
 					targetDropAdapter.dropMove(targetConatiner, target, source, true);
 				} else if ((eventFeedback & DND.FEEDBACK_INSERT_BEFORE) == DND.FEEDBACK_INSERT_BEFORE) {
@@ -136,7 +136,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 			}
 
-		});
+		}.run();
 
 	}
 
