@@ -270,6 +270,37 @@ public class ESBrowserView extends ViewPart {
 		}
 	}
 
+	/**
+	 * Action for project checkout.
+	 * 
+	 * @author helming
+	 */
+	private final class ImportProjectHistoryAction extends Action {
+
+		@Override
+		public void run() {
+			MessageDialog.openInformation(
+					Display.getCurrent().getActiveShell(),
+					"import Proj hisotry", "import project history");
+		}
+	}
+
+	/**
+	 * Action for project checkout.
+	 * 
+	 * @author helming
+	 */
+	private final class ExportProjectHistoryAction extends Action {
+
+		@Override
+		public void run() {
+			MessageDialog.openInformation(
+					Display.getCurrent().getActiveShell(),
+					"Export Proj hisotry", "Export project history");
+
+		}
+	}
+
 	private TreeViewer viewer;
 	private Action projectCheckout;
 	private Action addRepository;
@@ -284,6 +315,8 @@ public class ESBrowserView extends ViewPart {
 	private ESBrowserContentProvider contentProvider;
 	private Action deleteAction;
 	private Action projectProperties;
+	private ImportProjectHistoryAction importProjectHistoryAction;
+	private ExportProjectHistoryAction exportProjectHistoryAction;
 
 	/**
 	 * The constructor.
@@ -399,6 +432,8 @@ public class ESBrowserView extends ViewPart {
 					accessControl.checkServerAdminAccess();
 					manager.add(new Separator("Administrative"));
 					manager.add(serverAddProject);
+					manager.add(importProjectHistoryAction);
+					manager.add(exportProjectHistoryAction);
 					manager.add(manageOrgUnits);
 
 				} catch (EmfStoreException e) {
@@ -579,6 +614,21 @@ public class ESBrowserView extends ViewPart {
 		projectProperties.setText("Properties");
 		projectProperties.setImageDescriptor(Activator
 				.getImageDescriptor("icons/info.png"));
+
+		createImportExportProjectHistoryActions();
+
+	}
+
+	private void createImportExportProjectHistoryActions() {
+		importProjectHistoryAction = new ImportProjectHistoryAction();
+		importProjectHistoryAction.setText("Import Project History...");
+		importProjectHistoryAction.setImageDescriptor(Activator
+				.getImageDescriptor("icons/import.gif"));
+
+		exportProjectHistoryAction = new ExportProjectHistoryAction();
+		exportProjectHistoryAction.setText("Export Project History...");
+		exportProjectHistoryAction.setImageDescriptor(Activator
+				.getImageDescriptor("icons/export.gif"));
 
 	}
 
