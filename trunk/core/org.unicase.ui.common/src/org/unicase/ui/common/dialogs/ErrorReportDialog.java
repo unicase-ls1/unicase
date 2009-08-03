@@ -58,7 +58,7 @@ public class ErrorReportDialog extends MessageDialog {
 			detailButtonID = 2;
 			extractDetailText();
 		}
-		setShellStyle(getShellStyle() | SWT.APPLICATION_MODAL);
+		setShellStyle(getShellStyle() | SWT.RESIZE | SWT.APPLICATION_MODAL);
 	}
 
 	private void extractDetailText() {

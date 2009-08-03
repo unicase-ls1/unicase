@@ -270,37 +270,6 @@ public class ESBrowserView extends ViewPart {
 		}
 	}
 
-	/**
-	 * Action for project checkout.
-	 * 
-	 * @author helming
-	 */
-	private final class ImportProjectHistoryAction extends Action {
-
-		@Override
-		public void run() {
-			MessageDialog.openInformation(
-					Display.getCurrent().getActiveShell(),
-					"import Proj hisotry", "import project history");
-		}
-	}
-
-	/**
-	 * Action for project checkout.
-	 * 
-	 * @author helming
-	 */
-	private final class ExportProjectHistoryAction extends Action {
-
-		@Override
-		public void run() {
-			MessageDialog.openInformation(
-					Display.getCurrent().getActiveShell(),
-					"Export Proj hisotry", "Export project history");
-
-		}
-	}
-
 	private TreeViewer viewer;
 	private Action projectCheckout;
 	private Action addRepository;
@@ -432,8 +401,8 @@ public class ESBrowserView extends ViewPart {
 					accessControl.checkServerAdminAccess();
 					manager.add(new Separator("Administrative"));
 					manager.add(serverAddProject);
+					importProjectHistoryAction.setUsersession(session);
 					manager.add(importProjectHistoryAction);
-					manager.add(exportProjectHistoryAction);
 					manager.add(manageOrgUnits);
 
 				} catch (EmfStoreException e) {
@@ -462,6 +431,10 @@ public class ESBrowserView extends ViewPart {
 			try {
 				accessControl.checkServerAdminAccess();
 				manager.add(new Separator("Administrative"));
+				exportProjectHistoryAction.setUsersession(accessControl
+						.getUsersession());
+				exportProjectHistoryAction.setProjectInfo((ProjectInfo) obj);
+				manager.add(exportProjectHistoryAction);
 				manager.add(serverDeleteProject);
 			} catch (EmfStoreException e) {
 				// access denied
