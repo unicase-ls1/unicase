@@ -63,7 +63,7 @@ public class ExportProjectHandler extends AbstractHandler {
 			return null;
 		}
 
-		String fileName = dialog.getFileName();
+		final String fileName = dialog.getFileName();
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(dialog.getFilterPath());
 		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
@@ -83,6 +83,8 @@ public class ExportProjectHandler extends AbstractHandler {
 							"Export project...", 100);
 					progressDialog.getProgressMonitor().worked(10);
 					projectSpace.exportProject(absoluteFileName);
+					MessageDialog.openInformation(null, "Export",
+							"Exported project to file " + fileName);
 				} catch (IOException e) {
 					DialogHandler.showExceptionDialog(e);
 					// BEGIN SUPRESS CATCH EXCEPTION
@@ -95,8 +97,7 @@ public class ExportProjectHandler extends AbstractHandler {
 				// END SUPRESS CATCH EXCEPTION
 			}
 		}.run();
-		MessageDialog.openInformation(null, "Export",
-				"Exported project to file " + fileName);
+
 		return null;
 	}
 }

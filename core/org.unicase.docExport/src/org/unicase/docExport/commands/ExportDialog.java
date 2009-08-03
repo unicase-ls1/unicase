@@ -76,7 +76,6 @@ public class ExportDialog extends TitleAreaDialog {
 	 * @param docRenderer the DocumentRenderer which will use the template to render it to an URootCompositeSection,
 	 *            which is used by the DocWriter
 	 * @param modelElement the modelElement which shall be exported to a document
-	 * @throws TemplatesFileNotFoundException no access to the templates files.
 	 */
 	public ExportDialog(Shell parentShell, DocumentRenderer docRenderer, ModelElement modelElement) {
 		super(parentShell);
