@@ -430,7 +430,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	}
 
 	/**
-	 * Called after moving a bar.
+	 * TODO finish implementation. Called after moving a bar.
 	 * 
 	 * @param arg0 a List
 	 * @param arg1 a MouseEvent
@@ -444,9 +444,9 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 			return;
 		}
 
-		GanttEvent ganttEvent = (GanttEvent) eventObject;
-		WorkPackage wp = (WorkPackage) ganttEvent.getData();
 		// TODO: Modify WorkPackage
+		// GanttEvent ganttEvent = (GanttEvent) eventObject;
+		// WorkPackage wp = (WorkPackage) ganttEvent.getData();
 	}
 
 	/**
@@ -460,7 +460,7 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 	}
 
 	/**
-	 * Called after resizing a bar.
+	 * TODO finish implementation. Called after resizing a bar.
 	 * 
 	 * @param arg0 GanttEvent at index 0
 	 * @param arg1 unused MouseEvent
@@ -473,13 +473,13 @@ public class GanttView extends ViewPart implements IGanttEventListener {
 			return;
 		}
 
-		GanttEvent ganttEvent = (GanttEvent) eventObject;
+		// GanttEvent ganttEvent = (GanttEvent) eventObject;
 
-		Calendar startDate = ganttEvent.getRevisedStart() == null ? ganttEvent.getStartDate() : ganttEvent
-			.getRevisedStart();
-		Calendar endDate = ganttEvent.getRevisedEnd() == null ? ganttEvent.getEndDate() : ganttEvent.getRevisedEnd();
-
-		WorkPackage wp = (WorkPackage) ganttEvent.getData();
+		// Calendar startDate = ganttEvent.getRevisedStart() == null ? ganttEvent.getStartDate() : ganttEvent
+		// .getRevisedStart();
+		// Calendar endDate = ganttEvent.getRevisedEnd() == null ? ganttEvent.getEndDate() : ganttEvent.getRevisedEnd();
+		//
+		// WorkPackage wp = (WorkPackage) ganttEvent.getData();
 	}
 
 	/**
