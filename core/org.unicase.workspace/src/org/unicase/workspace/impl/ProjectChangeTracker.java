@@ -221,6 +221,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			if (ops.size() > 1) {
 				CompositeOperation op = OperationsFactory.eINSTANCE.createCompositeOperation();
 				op.getSubOperations().addAll(ops);
+				// set the last operation as the main one for natural composites
+				op.setMainOperation(ops.get(ops.size() - 1));
 				projectSpace.addOperation(op);
 			} else if (ops.size() == 1) {
 				projectSpace.addOperation(ops.get(0));
