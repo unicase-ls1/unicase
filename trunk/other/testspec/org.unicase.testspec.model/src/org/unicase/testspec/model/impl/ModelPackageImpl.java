@@ -16,6 +16,8 @@ import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 
 import org.unicase.model.requirement.RequirementPackage;
+import org.unicase.testspec.model.ConcreteInputParameter;
+import org.unicase.testspec.model.ConcreteOutputParameter;
 import org.unicase.testspec.model.ConcreteParameter;
 import org.unicase.testspec.model.EnumState;
 import org.unicase.testspec.model.EnumType;
@@ -83,6 +85,20 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * @generated
 	 */
 	private EClass outputParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass concreteInputParameterEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass concreteOutputParameterEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -201,7 +217,16 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getTestProtocol_ConcreteParamter() {
+	public EReference getTestProtocol_ConcreteOutputParameter() {
+		return (EReference)testProtocolEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestProtocol_ConcreteInputParameter() {
 		return (EReference)testProtocolEClass.getEStructuralFeatures().get(3);
 	}
 
@@ -309,15 +334,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getConcreteParameter_Parameter() {
-		return (EReference)concreteParameterEClass.getEStructuralFeatures().get(1);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EClass getParameter() {
 		return parameterEClass;
 	}
@@ -399,6 +415,42 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EClass getConcreteInputParameter() {
+		return concreteInputParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConcreteInputParameter_InputParameter() {
+		return (EReference)concreteInputParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getConcreteOutputParameter() {
+		return concreteOutputParameterEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getConcreteOutputParameter_OutputParameter() {
+		return (EReference)concreteOutputParameterEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EEnum getEnumState() {
 		return enumStateEEnum;
 	}
@@ -444,7 +496,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		createEAttribute(testProtocolEClass, TEST_PROTOCOL__TEST_REPORT);
 		createEAttribute(testProtocolEClass, TEST_PROTOCOL__TEST_STATE);
 		createEReference(testProtocolEClass, TEST_PROTOCOL__TEST_CASE);
-		createEReference(testProtocolEClass, TEST_PROTOCOL__CONCRETE_PARAMTER);
+		createEReference(testProtocolEClass, TEST_PROTOCOL__CONCRETE_INPUT_PARAMETER);
+		createEReference(testProtocolEClass, TEST_PROTOCOL__CONCRETE_OUTPUT_PARAMETER);
 
 		logicalTestCaseEClass = createEClass(LOGICAL_TEST_CASE);
 		createEAttribute(logicalTestCaseEClass, LOGICAL_TEST_CASE__TYPE);
@@ -457,7 +510,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 
 		concreteParameterEClass = createEClass(CONCRETE_PARAMETER);
 		createEAttribute(concreteParameterEClass, CONCRETE_PARAMETER__VALUE);
-		createEReference(concreteParameterEClass, CONCRETE_PARAMETER__PARAMETER);
 
 		parameterEClass = createEClass(PARAMETER);
 		createEAttribute(parameterEClass, PARAMETER__TYPE);
@@ -471,6 +523,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		inputParameterEClass = createEClass(INPUT_PARAMETER);
 
 		outputParameterEClass = createEClass(OUTPUT_PARAMETER);
+
+		concreteInputParameterEClass = createEClass(CONCRETE_INPUT_PARAMETER);
+		createEReference(concreteInputParameterEClass, CONCRETE_INPUT_PARAMETER__INPUT_PARAMETER);
+
+		concreteOutputParameterEClass = createEClass(CONCRETE_OUTPUT_PARAMETER);
+		createEReference(concreteOutputParameterEClass, CONCRETE_OUTPUT_PARAMETER__OUTPUT_PARAMETER);
 
 		// Create enums
 		enumStateEEnum = createEEnum(ENUM_STATE);
@@ -512,18 +570,21 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Add supertypes to classes
 		testProtocolEClass.getESuperTypes().add(theModelPackage_1.getModelElement());
 		logicalTestCaseEClass.getESuperTypes().add(theModelPackage_1.getModelElement());
-		concreteParameterEClass.getESuperTypes().add(theModelPackage_1.getModelElement());
+		concreteParameterEClass.getESuperTypes().add(this.getParameter());
 		parameterEClass.getESuperTypes().add(theModelPackage_1.getModelElement());
 		testStepEClass.getESuperTypes().add(theModelPackage_1.getModelElement());
 		inputParameterEClass.getESuperTypes().add(this.getParameter());
 		outputParameterEClass.getESuperTypes().add(this.getParameter());
+		concreteInputParameterEClass.getESuperTypes().add(this.getConcreteParameter());
+		concreteOutputParameterEClass.getESuperTypes().add(this.getConcreteParameter());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(testProtocolEClass, TestProtocol.class, "TestProtocol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestProtocol_TestReport(), theEcorePackage.getEString(), "testReport", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTestProtocol_TestState(), this.getEnumState(), "testState", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getTestProtocol_TestCase(), this.getLogicalTestCase(), null, "testCase", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestProtocol_ConcreteParamter(), this.getConcreteParameter(), null, "concreteParamter", null, 0, -1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestProtocol_ConcreteInputParameter(), this.getConcreteInputParameter(), null, "concreteInputParameter", null, 0, -1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestProtocol_ConcreteOutputParameter(), this.getConcreteOutputParameter(), null, "concreteOutputParameter", null, 0, -1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(logicalTestCaseEClass, LogicalTestCase.class, "LogicalTestCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLogicalTestCase_Type(), theEcorePackage.getEString(), "type", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -534,9 +595,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEReference(getLogicalTestCase_FunctionalRequirement(), theRequirementPackage.getFunctionalRequirement(), null, "functionalRequirement", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getLogicalTestCase_Step(), this.getTestStep(), null, "step", null, 0, -1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(concreteParameterEClass, ConcreteParameter.class, "ConcreteParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(concreteParameterEClass, ConcreteParameter.class, "ConcreteParameter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getConcreteParameter_Value(), theEcorePackage.getEString(), "value", null, 0, 1, ConcreteParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getConcreteParameter_Parameter(), this.getParameter(), null, "parameter", null, 0, 1, ConcreteParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(parameterEClass, Parameter.class, "Parameter", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getParameter_Type(), theEcorePackage.getEString(), "type", null, 0, 1, Parameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -550,6 +610,12 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		initEClass(inputParameterEClass, InputParameter.class, "InputParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(outputParameterEClass, OutputParameter.class, "OutputParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+
+		initEClass(concreteInputParameterEClass, ConcreteInputParameter.class, "ConcreteInputParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConcreteInputParameter_InputParameter(), this.getInputParameter(), null, "inputParameter", null, 0, 1, ConcreteInputParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(concreteOutputParameterEClass, ConcreteOutputParameter.class, "ConcreteOutputParameter", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getConcreteOutputParameter_OutputParameter(), this.getOutputParameter(), null, "outputParameter", null, 0, 1, ConcreteOutputParameter.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(enumStateEEnum, EnumState.class, "EnumState");

@@ -44,15 +44,6 @@ public interface ModelFactory extends EFactory {
 	LogicalTestCase createLogicalTestCase();
 
 	/**
-	 * Returns a new object of class '<em>Concrete Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Concrete Parameter</em>'.
-	 * @generated
-	 */
-	ConcreteParameter createConcreteParameter();
-
-	/**
 	 * Returns a new object of class '<em>Test Step</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,6 +69,24 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	OutputParameter createOutputParameter();
+
+	/**
+	 * Returns a new object of class '<em>Concrete Input Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Concrete Input Parameter</em>'.
+	 * @generated
+	 */
+	ConcreteInputParameter createConcreteInputParameter();
+
+	/**
+	 * Returns a new object of class '<em>Concrete Output Parameter</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Concrete Output Parameter</em>'.
+	 * @generated
+	 */
+	ConcreteOutputParameter createConcreteOutputParameter();
 
 	/**
 	 * Returns the package supported by this factory.

@@ -103,6 +103,14 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createOutputParameterAdapter();
 			}
 			@Override
+			public Adapter caseConcreteInputParameter(ConcreteInputParameter object) {
+				return createConcreteInputParameterAdapter();
+			}
+			@Override
+			public Adapter caseConcreteOutputParameter(ConcreteOutputParameter object) {
+				return createConcreteOutputParameterAdapter();
+			}
+			@Override
 			public Adapter caseIdentifiableElement(IdentifiableElement object) {
 				return createIdentifiableElementAdapter();
 			}
@@ -225,6 +233,34 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createOutputParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.testspec.model.ConcreteInputParameter <em>Concrete Input Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.testspec.model.ConcreteInputParameter
+	 * @generated
+	 */
+	public Adapter createConcreteInputParameterAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.testspec.model.ConcreteOutputParameter <em>Concrete Output Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.unicase.testspec.model.ConcreteOutputParameter
+	 * @generated
+	 */
+	public Adapter createConcreteOutputParameterAdapter() {
 		return null;
 	}
 

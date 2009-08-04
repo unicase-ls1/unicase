@@ -206,13 +206,22 @@ public interface ModelPackage extends EPackage {
 	int TEST_PROTOCOL__TEST_CASE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
-	 * The feature id for the '<em><b>Concrete Paramter</b></em>' reference list.
+	 * The feature id for the '<em><b>Concrete Input Parameter</b></em>' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_PROTOCOL__CONCRETE_PARAMTER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int TEST_PROTOCOL__CONCRETE_INPUT_PARAMETER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Concrete Output Parameter</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_PROTOCOL__CONCRETE_OUTPUT_PARAMETER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Test Protocol</em>' class.
@@ -221,7 +230,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_PROTOCOL_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int TEST_PROTOCOL_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl <em>Logical Test Case</em>}' class.
@@ -424,141 +433,6 @@ public interface ModelPackage extends EPackage {
 	int CONCRETE_PARAMETER = 2;
 
 	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__IDENTIFIER = org.unicase.model.ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__NAME = org.unicase.model.ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__DESCRIPTION = org.unicase.model.ModelPackage.MODEL_ELEMENT__DESCRIPTION;
-
-	/**
-	 * The feature id for the '<em><b>Creator</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__CREATOR = org.unicase.model.ModelPackage.MODEL_ELEMENT__CREATOR;
-
-	/**
-	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__CREATION_DATE = org.unicase.model.ModelPackage.MODEL_ELEMENT__CREATION_DATE;
-
-	/**
-	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__ANNOTATIONS = org.unicase.model.ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
-
-	/**
-	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__ATTACHMENTS = org.unicase.model.ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__INCOMING_DOCUMENT_REFERENCES = org.unicase.model.ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
-
-	/**
-	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__LEAF_SECTION = org.unicase.model.ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
-
-	/**
-	 * The feature id for the '<em><b>State</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__STATE = org.unicase.model.ModelPackage.MODEL_ELEMENT__STATE;
-
-	/**
-	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__APPLIED_STEREOTYPE_INSTANCES = org.unicase.model.ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
-
-	/**
-	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__COMMENTS = org.unicase.model.ModelPackage.MODEL_ELEMENT__COMMENTS;
-
-	/**
-	 * The feature id for the '<em><b>Value</b></em>' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__VALUE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER__PARAMETER = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The number of structural features of the '<em>Concrete Parameter</em>' class.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int CONCRETE_PARAMETER_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.testspec.model.impl.ParameterImpl <em>Parameter</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -702,6 +576,150 @@ public interface ModelPackage extends EPackage {
 	 * @ordered
 	 */
 	int PARAMETER_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__IDENTIFIER = PARAMETER__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__NAME = PARAMETER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__DESCRIPTION = PARAMETER__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__CREATOR = PARAMETER__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__CREATION_DATE = PARAMETER__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__ANNOTATIONS = PARAMETER__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__ATTACHMENTS = PARAMETER__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__INCOMING_DOCUMENT_REFERENCES = PARAMETER__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__LEAF_SECTION = PARAMETER__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__STATE = PARAMETER__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__APPLIED_STEREOTYPE_INSTANCES = PARAMETER__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__COMMENTS = PARAMETER__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__TYPE = PARAMETER__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Range</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__RANGE = PARAMETER__RANGE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER__VALUE = PARAMETER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Concrete Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_PARAMETER_FEATURE_COUNT = PARAMETER_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.testspec.model.impl.TestStepImpl <em>Test Step</em>}' class.
@@ -1148,6 +1166,332 @@ public interface ModelPackage extends EPackage {
 	int OUTPUT_PARAMETER_FEATURE_COUNT = PARAMETER_FEATURE_COUNT + 0;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.testspec.model.impl.ConcreteInputParameterImpl <em>Concrete Input Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.testspec.model.impl.ConcreteInputParameterImpl
+	 * @see org.unicase.testspec.model.impl.ModelPackageImpl#getConcreteInputParameter()
+	 * @generated
+	 */
+	int CONCRETE_INPUT_PARAMETER = 7;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__IDENTIFIER = CONCRETE_PARAMETER__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__NAME = CONCRETE_PARAMETER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__DESCRIPTION = CONCRETE_PARAMETER__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__CREATOR = CONCRETE_PARAMETER__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__CREATION_DATE = CONCRETE_PARAMETER__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__ANNOTATIONS = CONCRETE_PARAMETER__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__ATTACHMENTS = CONCRETE_PARAMETER__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__INCOMING_DOCUMENT_REFERENCES = CONCRETE_PARAMETER__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__LEAF_SECTION = CONCRETE_PARAMETER__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__STATE = CONCRETE_PARAMETER__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__APPLIED_STEREOTYPE_INSTANCES = CONCRETE_PARAMETER__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__COMMENTS = CONCRETE_PARAMETER__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__TYPE = CONCRETE_PARAMETER__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Range</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__RANGE = CONCRETE_PARAMETER__RANGE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__VALUE = CONCRETE_PARAMETER__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Input Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER__INPUT_PARAMETER = CONCRETE_PARAMETER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Concrete Input Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_INPUT_PARAMETER_FEATURE_COUNT = CONCRETE_PARAMETER_FEATURE_COUNT + 1;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.testspec.model.impl.ConcreteOutputParameterImpl <em>Concrete Output Parameter</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.unicase.testspec.model.impl.ConcreteOutputParameterImpl
+	 * @see org.unicase.testspec.model.impl.ModelPackageImpl#getConcreteOutputParameter()
+	 * @generated
+	 */
+	int CONCRETE_OUTPUT_PARAMETER = 8;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__IDENTIFIER = CONCRETE_PARAMETER__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__NAME = CONCRETE_PARAMETER__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__DESCRIPTION = CONCRETE_PARAMETER__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__CREATOR = CONCRETE_PARAMETER__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__CREATION_DATE = CONCRETE_PARAMETER__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__ANNOTATIONS = CONCRETE_PARAMETER__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__ATTACHMENTS = CONCRETE_PARAMETER__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__INCOMING_DOCUMENT_REFERENCES = CONCRETE_PARAMETER__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__LEAF_SECTION = CONCRETE_PARAMETER__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__STATE = CONCRETE_PARAMETER__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__APPLIED_STEREOTYPE_INSTANCES = CONCRETE_PARAMETER__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__COMMENTS = CONCRETE_PARAMETER__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__TYPE = CONCRETE_PARAMETER__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Range</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__RANGE = CONCRETE_PARAMETER__RANGE;
+
+	/**
+	 * The feature id for the '<em><b>Value</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__VALUE = CONCRETE_PARAMETER__VALUE;
+
+	/**
+	 * The feature id for the '<em><b>Output Parameter</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER__OUTPUT_PARAMETER = CONCRETE_PARAMETER_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Concrete Output Parameter</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONCRETE_OUTPUT_PARAMETER_FEATURE_COUNT = CONCRETE_PARAMETER_FEATURE_COUNT + 1;
+
+	/**
 	 * The meta object id for the '{@link org.unicase.testspec.model.EnumState <em>Enum State</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1155,7 +1499,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.testspec.model.impl.ModelPackageImpl#getEnumState()
 	 * @generated
 	 */
-	int ENUM_STATE = 7;
+	int ENUM_STATE = 9;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.testspec.model.EnumType <em>Enum Type</em>}' enum.
@@ -1165,7 +1509,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.testspec.model.impl.ModelPackageImpl#getEnumType()
 	 * @generated
 	 */
-	int ENUM_TYPE = 8;
+	int ENUM_TYPE = 10;
 
 
 	/**
@@ -1201,15 +1545,26 @@ public interface ModelPackage extends EPackage {
 	EReference getTestProtocol_TestCase();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.testspec.model.TestProtocol#getConcreteParamter <em>Concrete Paramter</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.testspec.model.TestProtocol#getConcreteOutputParameter <em>Concrete Output Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference list '<em>Concrete Paramter</em>'.
-	 * @see org.unicase.testspec.model.TestProtocol#getConcreteParamter()
+	 * @return the meta object for the reference list '<em>Concrete Output Parameter</em>'.
+	 * @see org.unicase.testspec.model.TestProtocol#getConcreteOutputParameter()
 	 * @see #getTestProtocol()
 	 * @generated
 	 */
-	EReference getTestProtocol_ConcreteParamter();
+	EReference getTestProtocol_ConcreteOutputParameter();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.testspec.model.TestProtocol#getConcreteInputParameter <em>Concrete Input Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference list '<em>Concrete Input Parameter</em>'.
+	 * @see org.unicase.testspec.model.TestProtocol#getConcreteInputParameter()
+	 * @see #getTestProtocol()
+	 * @generated
+	 */
+	EReference getTestProtocol_ConcreteInputParameter();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.testspec.model.TestProtocol#getTestState <em>Test State</em>}'.
@@ -1331,17 +1686,6 @@ public interface ModelPackage extends EPackage {
 	EAttribute getConcreteParameter_Value();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.testspec.model.ConcreteParameter#getParameter <em>Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Parameter</em>'.
-	 * @see org.unicase.testspec.model.ConcreteParameter#getParameter()
-	 * @see #getConcreteParameter()
-	 * @generated
-	 */
-	EReference getConcreteParameter_Parameter();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.testspec.model.Parameter <em>Parameter</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1437,6 +1781,48 @@ public interface ModelPackage extends EPackage {
 	EClass getOutputParameter();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.testspec.model.ConcreteInputParameter <em>Concrete Input Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Concrete Input Parameter</em>'.
+	 * @see org.unicase.testspec.model.ConcreteInputParameter
+	 * @generated
+	 */
+	EClass getConcreteInputParameter();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.testspec.model.ConcreteInputParameter#getInputParameter <em>Input Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Input Parameter</em>'.
+	 * @see org.unicase.testspec.model.ConcreteInputParameter#getInputParameter()
+	 * @see #getConcreteInputParameter()
+	 * @generated
+	 */
+	EReference getConcreteInputParameter_InputParameter();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.testspec.model.ConcreteOutputParameter <em>Concrete Output Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Concrete Output Parameter</em>'.
+	 * @see org.unicase.testspec.model.ConcreteOutputParameter
+	 * @generated
+	 */
+	EClass getConcreteOutputParameter();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.unicase.testspec.model.ConcreteOutputParameter#getOutputParameter <em>Output Parameter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Output Parameter</em>'.
+	 * @see org.unicase.testspec.model.ConcreteOutputParameter#getOutputParameter()
+	 * @see #getConcreteOutputParameter()
+	 * @generated
+	 */
+	EReference getConcreteOutputParameter_OutputParameter();
+
+	/**
 	 * Returns the meta object for enum '{@link org.unicase.testspec.model.EnumState <em>Enum State</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1505,12 +1891,20 @@ public interface ModelPackage extends EPackage {
 		EReference TEST_PROTOCOL__TEST_CASE = eINSTANCE.getTestProtocol_TestCase();
 
 		/**
-		 * The meta object literal for the '<em><b>Concrete Paramter</b></em>' reference list feature.
+		 * The meta object literal for the '<em><b>Concrete Output Parameter</b></em>' reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference TEST_PROTOCOL__CONCRETE_PARAMTER = eINSTANCE.getTestProtocol_ConcreteParamter();
+		EReference TEST_PROTOCOL__CONCRETE_OUTPUT_PARAMETER = eINSTANCE.getTestProtocol_ConcreteOutputParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Concrete Input Parameter</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_PROTOCOL__CONCRETE_INPUT_PARAMETER = eINSTANCE.getTestProtocol_ConcreteInputParameter();
 
 		/**
 		 * The meta object literal for the '<em><b>Test State</b></em>' attribute feature.
@@ -1605,14 +1999,6 @@ public interface ModelPackage extends EPackage {
 		EAttribute CONCRETE_PARAMETER__VALUE = eINSTANCE.getConcreteParameter_Value();
 
 		/**
-		 * The meta object literal for the '<em><b>Parameter</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference CONCRETE_PARAMETER__PARAMETER = eINSTANCE.getConcreteParameter_Parameter();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.testspec.model.impl.ParameterImpl <em>Parameter</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -1691,6 +2077,42 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EClass OUTPUT_PARAMETER = eINSTANCE.getOutputParameter();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.testspec.model.impl.ConcreteInputParameterImpl <em>Concrete Input Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.testspec.model.impl.ConcreteInputParameterImpl
+		 * @see org.unicase.testspec.model.impl.ModelPackageImpl#getConcreteInputParameter()
+		 * @generated
+		 */
+		EClass CONCRETE_INPUT_PARAMETER = eINSTANCE.getConcreteInputParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Input Parameter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONCRETE_INPUT_PARAMETER__INPUT_PARAMETER = eINSTANCE.getConcreteInputParameter_InputParameter();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.testspec.model.impl.ConcreteOutputParameterImpl <em>Concrete Output Parameter</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.testspec.model.impl.ConcreteOutputParameterImpl
+		 * @see org.unicase.testspec.model.impl.ModelPackageImpl#getConcreteOutputParameter()
+		 * @generated
+		 */
+		EClass CONCRETE_OUTPUT_PARAMETER = eINSTANCE.getConcreteOutputParameter();
+
+		/**
+		 * The meta object literal for the '<em><b>Output Parameter</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference CONCRETE_OUTPUT_PARAMETER__OUTPUT_PARAMETER = eINSTANCE.getConcreteOutputParameter_OutputParameter();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.testspec.model.EnumState <em>Enum State</em>}' enum.

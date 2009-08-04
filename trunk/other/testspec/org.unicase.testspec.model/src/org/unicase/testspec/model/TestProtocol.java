@@ -21,7 +21,8 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestReport <em>Test Report</em>}</li>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestState <em>Test State</em>}</li>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}</li>
- *   <li>{@link org.unicase.testspec.model.TestProtocol#getConcreteParamter <em>Concrete Paramter</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestProtocol#getConcreteInputParameter <em>Concrete Input Parameter</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestProtocol#getConcreteOutputParameter <em>Concrete Output Parameter</em>}</li>
  * </ul>
  * </p>
  *
@@ -83,20 +84,36 @@ public interface TestProtocol extends ModelElement {
 	void setTestCase(LogicalTestCase value);
 
 	/**
-	 * Returns the value of the '<em><b>Concrete Paramter</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.testspec.model.ConcreteParameter}.
+	 * Returns the value of the '<em><b>Concrete Output Parameter</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.testspec.model.ConcreteOutputParameter}.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Concrete Paramter</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Concrete Output Parameter</em>' reference list isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Concrete Paramter</em>' reference list.
-	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_ConcreteParamter()
+	 * @return the value of the '<em>Concrete Output Parameter</em>' reference list.
+	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_ConcreteOutputParameter()
 	 * @model
 	 * @generated
 	 */
-	EList<ConcreteParameter> getConcreteParamter();
+	EList<ConcreteOutputParameter> getConcreteOutputParameter();
+
+	/**
+	 * Returns the value of the '<em><b>Concrete Input Parameter</b></em>' reference list.
+	 * The list contents are of type {@link org.unicase.testspec.model.ConcreteInputParameter}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Concrete Input Parameter</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Concrete Input Parameter</em>' reference list.
+	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_ConcreteInputParameter()
+	 * @model
+	 * @generated
+	 */
+	EList<ConcreteInputParameter> getConcreteInputParameter();
 
 	/**
 	 * Returns the value of the '<em><b>Test State</b></em>' attribute.
