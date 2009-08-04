@@ -40,6 +40,9 @@ import org.unicase.ui.common.util.ActionHelper;
  * @author shterev
  */
 public class NewReferenceAction extends Action {
+
+	private static final String DIALOG_MESSAGE = "Select a model element type to be created:";
+
 	/**
 	 * Command to create a new reference.
 	 * 
@@ -61,6 +64,7 @@ public class NewReferenceAction extends Action {
 			} else {
 				ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getShell(), new MEClassLabelProvider());
+				dlg.setMessage(DIALOG_MESSAGE);
 				dlg.setElements(subclasses.toArray());
 
 				dlg.setTitle("Select Element type");

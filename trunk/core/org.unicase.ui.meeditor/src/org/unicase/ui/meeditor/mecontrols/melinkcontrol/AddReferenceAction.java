@@ -38,6 +38,9 @@ import org.unicase.ui.common.decorators.OverlayImageDescriptor;
  * @author shterev
  */
 public class AddReferenceAction extends Action {
+
+	private static final String DIALOG_MESSAGE = "Enter model element name prefix or pattern (e.g. *Trun?)";
+
 	/**
 	 * Command to add a new reference.
 	 * 
@@ -55,6 +58,7 @@ public class AddReferenceAction extends Action {
 			ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench()
 				.getActiveWorkbenchWindow().getShell(), new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+			dlg.setMessage(DIALOG_MESSAGE);
 			Collection<ModelElement> allElements = modelElement.getProject().getAllModelElementsbyClass(clazz,
 				new BasicEList<ModelElement>());
 			allElements.remove(modelElement);

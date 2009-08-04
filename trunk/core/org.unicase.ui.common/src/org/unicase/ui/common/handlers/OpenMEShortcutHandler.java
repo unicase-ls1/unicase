@@ -29,7 +29,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * This is the (ShortcutCommand)-Handler to select Modelelements out of a list of elements..
+ * This is the (ShortcutCommand)-Handler to select model elements out of a list of elements.
  * 
  * @author Hamid
  */
@@ -37,6 +37,8 @@ import org.unicase.workspace.WorkspaceManager;
 public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 
 	private Project project;
+	
+	private static final String DIALOG_MESSAGE = "Enter model element name prefix or pattern (e.g. *Trun?)";
 
 	/**
 	 * Default constructor.
@@ -67,7 +69,7 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 				}
 			}
 			showShortcutDialog(shell, filteredModelElements, "Open Model Element",
-				"   Enter model element name prefix or pattern (e.g. *Trun?)");
+				DIALOG_MESSAGE);
 		}
 
 		return null;
