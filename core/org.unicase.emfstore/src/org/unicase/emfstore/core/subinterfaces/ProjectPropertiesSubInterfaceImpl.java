@@ -6,12 +6,15 @@
 
 package org.unicase.emfstore.core.subinterfaces;
 
+import java.io.IOException;
+
 import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.core.AbstractEmfstoreInterface;
 import org.unicase.emfstore.core.AbstractSubEmfstoreInterface;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 
 /**
@@ -30,21 +33,42 @@ public class ProjectPropertiesSubInterfaceImpl extends AbstractSubEmfstoreInterf
 	}
 
 	/**
-	 * Adds a property to the specified {@link ACUser}. client-side been changed
+	 * Adds a property to the specified {@link ACUser}.
 	 * 
 	 * @param changedProperty the property that has been changed
 	 * @param recUser the specified {@link ACUser}
 	 * @param projectId the specified {@link ProjectId}
+	 * @throws EmfStoreException if any error occurs setting the properties
 	 */
-	public void setProperties(OrgUnitProperty changedProperty, ACUser recUser, ProjectId projectId) {
+	public void setProperty(OrgUnitProperty changedProperty, ACUser recUser, ProjectId projectId)
+		throws EmfStoreException {
 		EList<ACUser> users = getServerSpace().getUsers();
-		ACUser user = users.get(users.lastIndexOf(recUser));
+		ACUser user = null;
+		for (ACUser serverUser : users) {
+			if (serverUser.getIdentifier().equals(recUser.getIdentifier())) {
+				user = serverUser;
+				break;
+			}
+		}
+		if (user == null) {
+			throw new EmfStoreException("The user does not exist on the server. Can not set the property.");
+		}
 		for (OrgUnitProperty property : user.getProperties()) {
-			if (property.getName().equals(changedProperty)) {
+			if (property.getName().equals(changedProperty.getName())) {
 				property.setValue(changedProperty.getValue());
+				save();
 				return;
 			}
-			user.getProperties().add(changedProperty);
+		}
+		user.getProperties().add(changedProperty);
+		save();
+	}
+
+	private void save() throws EmfStoreException {
+		try {
+			getServerSpace().save();
+		} catch (IOException e) {
+			throw new EmfStoreException("Can not set the property on the server.");
 		}
 	}
 }

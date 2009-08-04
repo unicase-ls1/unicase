@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.notify.Notification;
@@ -2073,10 +2074,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			if (stopTransfers()) {
 				resumeTransfers();
 			}
+			// transmitProperties();
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
-			WorkspaceUtil.logException("Resuming file transfers failed!", e);
+			WorkspaceUtil.logException("Resuming file transfers or transmitting properties failed!", e);
 		}
 	}
 
@@ -2404,14 +2406,14 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				propertyMap.put(property.getName(), property);
 			}
 			// the properties that have been altered are retained in a separate list
-			// for (OrgUnitProperty changedProperty : getUsersession().getChangedProperties()) {
-			// if (changedProperty.getName().equals(property.getName())) {
-			// changedProperty.setValue(property.getValue());
-			// WorkspaceManager.getInstance().getCurrentWorkspace().save();
-			// return;
-			// }
-			// }
-			// getUsersession().getChangedProperties().add(property);
+			for (OrgUnitProperty changedProperty : getUsersession().getChangedProperties()) {
+				if (changedProperty.getName().equals(property.getName())) {
+					changedProperty.setValue(property.getValue());
+					WorkspaceManager.getInstance().getCurrentWorkspace().save();
+					return;
+				}
+			}
+			getUsersession().getChangedProperties().add(property);
 			WorkspaceManager.getInstance().getCurrentWorkspace().save();
 		}
 	}
@@ -2425,10 +2427,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	@SuppressWarnings("unused")
 	private void transmitProperties() {
-		for (OrgUnitProperty changedProperty : getUsersession().getChangedProperties()) {
+		ListIterator<OrgUnitProperty> iterator = getUsersession().getChangedProperties().listIterator();
+		while (iterator.hasNext()) {
 			try {
 				WorkspaceManager.getInstance().getConnectionManager().transmitProperty(getUsersession().getSessionId(),
-					changedProperty, getUsersession().getACUser(), getProjectId());
+					iterator.next(), getUsersession().getACUser(), getProjectId());
+				iterator.remove();
 			} catch (EmfStoreException e) {
 				WorkspaceUtil.logException("Transmission of properties failed with exception", e);
 			}

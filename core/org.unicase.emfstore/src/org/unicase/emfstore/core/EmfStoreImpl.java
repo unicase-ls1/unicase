@@ -67,6 +67,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 		addSubInterface(new UserSubInterfaceImpl(this));
 		addSubInterface(new VersionSubInterfaceImpl(this));
 		addSubInterface(new FileTransferSubInterfaceImpl(this));
+		addSubInterface(new ProjectPropertiesSubInterfaceImpl(this));
 	}
 
 	/**
@@ -229,11 +230,11 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	/**
 	 * {@inheritDoc}
 	 */
-	public void transmitProperty(SessionId sessionId, OrgUnitProperty changedProperty, ACUser user,
-		ProjectId projectId) throws EmfStoreException {
+	public void transmitProperty(SessionId sessionId, OrgUnitProperty changedProperty, ACUser user, ProjectId projectId)
+		throws EmfStoreException {
 		sanityCheckObjects(new Object[] { projectId, user, changedProperty });
 		checkWriteAccess(sessionId, projectId, null);
-		getSubInterface(ProjectPropertiesSubInterfaceImpl.class).setProperties(changedProperty, user, projectId);
+		getSubInterface(ProjectPropertiesSubInterfaceImpl.class).setProperty(changedProperty, user, projectId);
 	}
 
 }
