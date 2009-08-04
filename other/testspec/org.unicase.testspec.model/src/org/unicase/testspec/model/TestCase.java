@@ -9,32 +9,33 @@ package org.unicase.testspec.model;
 import org.eclipse.emf.common.util.EList;
 
 import org.unicase.model.ModelElement;
+
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.NonFunctionalRequirement;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Logical Test Case</b></em>'.
+ * A representation of the model object '<em><b>Test Case</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * <ul>
- *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getPrecondition <em>Precondition</em>}</li>
- *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getPostcondition <em>Postcondition</em>}</li>
- *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getInfrastructure <em>Infrastructure</em>}</li>
- *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getNonFunctionalRequirement <em>Non Functional Requirement</em>}</li>
- *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getFunctionalRequirement <em>Functional Requirement</em>}</li>
- *   <li>{@link org.unicase.testspec.model.LogicalTestCase#getStep <em>Step</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestCase#getType <em>Type</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestCase#getPrecondition <em>Precondition</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestCase#getPostcondition <em>Postcondition</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestCase#getInfrastructure <em>Infrastructure</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestCase#getNonFunctionalRequirement <em>Non Functional Requirement</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestCase#getFunctionalRequirement <em>Functional Requirement</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestCase#getStep <em>Step</em>}</li>
  * </ul>
  * </p>
  *
- * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase()
+ * @see org.unicase.testspec.model.ModelPackage#getTestCase()
  * @model
  * @generated
  */
-public interface LogicalTestCase extends ModelElement {
+public interface TestCase extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -45,14 +46,14 @@ public interface LogicalTestCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
 	 * @see #setType(String)
-	 * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase_Type()
+	 * @see org.unicase.testspec.model.ModelPackage#getTestCase_Type()
 	 * @model
 	 * @generated
 	 */
 	String getType();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.testspec.model.LogicalTestCase#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.testspec.model.TestCase#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
@@ -71,14 +72,14 @@ public interface LogicalTestCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Precondition</em>' attribute.
 	 * @see #setPrecondition(String)
-	 * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase_Precondition()
+	 * @see org.unicase.testspec.model.ModelPackage#getTestCase_Precondition()
 	 * @model
 	 * @generated
 	 */
 	String getPrecondition();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.testspec.model.LogicalTestCase#getPrecondition <em>Precondition</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.testspec.model.TestCase#getPrecondition <em>Precondition</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Precondition</em>' attribute.
@@ -98,14 +99,14 @@ public interface LogicalTestCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Postcondition</em>' attribute.
 	 * @see #setPostcondition(String)
-	 * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase_Postcondition()
+	 * @see org.unicase.testspec.model.ModelPackage#getTestCase_Postcondition()
 	 * @model default=""
 	 * @generated
 	 */
 	String getPostcondition();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.testspec.model.LogicalTestCase#getPostcondition <em>Postcondition</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.testspec.model.TestCase#getPostcondition <em>Postcondition</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Postcondition</em>' attribute.
@@ -124,14 +125,14 @@ public interface LogicalTestCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Infrastructure</em>' attribute.
 	 * @see #setInfrastructure(String)
-	 * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase_Infrastructure()
+	 * @see org.unicase.testspec.model.ModelPackage#getTestCase_Infrastructure()
 	 * @model
 	 * @generated
 	 */
 	String getInfrastructure();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.testspec.model.LogicalTestCase#getInfrastructure <em>Infrastructure</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.testspec.model.TestCase#getInfrastructure <em>Infrastructure</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Infrastructure</em>' attribute.
@@ -150,14 +151,14 @@ public interface LogicalTestCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Non Functional Requirement</em>' reference.
 	 * @see #setNonFunctionalRequirement(NonFunctionalRequirement)
-	 * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase_NonFunctionalRequirement()
+	 * @see org.unicase.testspec.model.ModelPackage#getTestCase_NonFunctionalRequirement()
 	 * @model
 	 * @generated
 	 */
 	NonFunctionalRequirement getNonFunctionalRequirement();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.testspec.model.LogicalTestCase#getNonFunctionalRequirement <em>Non Functional Requirement</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.testspec.model.TestCase#getNonFunctionalRequirement <em>Non Functional Requirement</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Non Functional Requirement</em>' reference.
@@ -176,14 +177,14 @@ public interface LogicalTestCase extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Functional Requirement</em>' reference.
 	 * @see #setFunctionalRequirement(FunctionalRequirement)
-	 * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase_FunctionalRequirement()
+	 * @see org.unicase.testspec.model.ModelPackage#getTestCase_FunctionalRequirement()
 	 * @model
 	 * @generated
 	 */
 	FunctionalRequirement getFunctionalRequirement();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.testspec.model.LogicalTestCase#getFunctionalRequirement <em>Functional Requirement</em>}' reference.
+	 * Sets the value of the '{@link org.unicase.testspec.model.TestCase#getFunctionalRequirement <em>Functional Requirement</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Functional Requirement</em>' reference.
@@ -202,10 +203,10 @@ public interface LogicalTestCase extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Step</em>' reference list.
-	 * @see org.unicase.testspec.model.ModelPackage#getLogicalTestCase_Step()
+	 * @see org.unicase.testspec.model.ModelPackage#getTestCase_Step()
 	 * @model
 	 * @generated
 	 */
 	EList<TestStep> getStep();
 
-} // LogicalTestCase
+} // TestCase

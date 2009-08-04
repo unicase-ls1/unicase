@@ -6,26 +6,15 @@
  */
 package org.unicase.testspec.model.impl;
 
-import java.util.Collection;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
-import org.eclipse.emf.common.util.EList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.unicase.model.impl.ModelElementImpl;
-
-import org.unicase.testspec.model.ConcreteInputParameter;
-import org.unicase.testspec.model.ConcreteOutputParameter;
 import org.unicase.testspec.model.EnumState;
-import org.unicase.testspec.model.LogicalTestCase;
 import org.unicase.testspec.model.ModelPackage;
+import org.unicase.testspec.model.TestCase;
 import org.unicase.testspec.model.TestProtocol;
 
 /**
@@ -38,8 +27,6 @@ import org.unicase.testspec.model.TestProtocol;
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestReport <em>Test Report</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestState <em>Test State</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestCase <em>Test Case</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getConcreteInputParameter <em>Concrete Input Parameter</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getConcreteOutputParameter <em>Concrete Output Parameter</em>}</li>
  * </ul>
  * </p>
  *
@@ -94,27 +81,7 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * @generated
 	 * @ordered
 	 */
-	protected LogicalTestCase testCase;
-
-	/**
-	 * The cached value of the '{@link #getConcreteInputParameter() <em>Concrete Input Parameter</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConcreteInputParameter()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConcreteInputParameter> concreteInputParameter;
-
-	/**
-	 * The cached value of the '{@link #getConcreteOutputParameter() <em>Concrete Output Parameter</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #getConcreteOutputParameter()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ConcreteOutputParameter> concreteOutputParameter;
+	protected TestCase testCase;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,7 +128,7 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LogicalTestCase getTestCase() {
+	public TestCase getTestCase() {
 		return testCase;
 	}
 
@@ -170,8 +137,8 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetTestCase(LogicalTestCase newTestCase, NotificationChain msgs) {
-		LogicalTestCase oldTestCase = testCase;
+	public NotificationChain basicSetTestCase(TestCase newTestCase, NotificationChain msgs) {
+		TestCase oldTestCase = testCase;
 		testCase = newTestCase;
 		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__TEST_CASE, oldTestCase, newTestCase);
@@ -185,7 +152,7 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setTestCase(LogicalTestCase newTestCase) {
+	public void setTestCase(TestCase newTestCase) {
 		if (newTestCase != testCase) {
 			NotificationChain msgs = null;
 			if (testCase != null)
@@ -197,30 +164,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 		}
 		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__TEST_CASE, newTestCase, newTestCase));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ConcreteOutputParameter> getConcreteOutputParameter() {
-		if (concreteOutputParameter == null) {
-			concreteOutputParameter = new EObjectResolvingEList<ConcreteOutputParameter>(ConcreteOutputParameter.class, this, ModelPackage.TEST_PROTOCOL__CONCRETE_OUTPUT_PARAMETER);
-		}
-		return concreteOutputParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EList<ConcreteInputParameter> getConcreteInputParameter() {
-		if (concreteInputParameter == null) {
-			concreteInputParameter = new EObjectResolvingEList<ConcreteInputParameter>(ConcreteInputParameter.class, this, ModelPackage.TEST_PROTOCOL__CONCRETE_INPUT_PARAMETER);
-		}
-		return concreteInputParameter;
 	}
 
 	/**
@@ -272,10 +215,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 				return getTestState();
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
 				return getTestCase();
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_INPUT_PARAMETER:
-				return getConcreteInputParameter();
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_OUTPUT_PARAMETER:
-				return getConcreteOutputParameter();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -296,15 +235,7 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 				setTestState((EnumState)newValue);
 				return;
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
-				setTestCase((LogicalTestCase)newValue);
-				return;
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_INPUT_PARAMETER:
-				getConcreteInputParameter().clear();
-				getConcreteInputParameter().addAll((Collection<? extends ConcreteInputParameter>)newValue);
-				return;
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_OUTPUT_PARAMETER:
-				getConcreteOutputParameter().clear();
-				getConcreteOutputParameter().addAll((Collection<? extends ConcreteOutputParameter>)newValue);
+				setTestCase((TestCase)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -325,13 +256,7 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 				setTestState(TEST_STATE_EDEFAULT);
 				return;
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
-				setTestCase((LogicalTestCase)null);
-				return;
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_INPUT_PARAMETER:
-				getConcreteInputParameter().clear();
-				return;
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_OUTPUT_PARAMETER:
-				getConcreteOutputParameter().clear();
+				setTestCase((TestCase)null);
 				return;
 		}
 		super.eUnset(featureID);
@@ -351,10 +276,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 				return testState != TEST_STATE_EDEFAULT;
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
 				return testCase != null;
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_INPUT_PARAMETER:
-				return concreteInputParameter != null && !concreteInputParameter.isEmpty();
-			case ModelPackage.TEST_PROTOCOL__CONCRETE_OUTPUT_PARAMETER:
-				return concreteOutputParameter != null && !concreteOutputParameter.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
