@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -27,16 +26,17 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.unicase.model.provider.ModelElementItemProvider;
-import org.unicase.testspec.model.LogicalTestCase;
+
 import org.unicase.testspec.model.ModelPackage;
+import org.unicase.testspec.model.TestCase;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.testspec.model.LogicalTestCase} object.
+ * This is the item provider adapter for a {@link org.unicase.testspec.model.TestCase} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LogicalTestCaseItemProvider
+public class TestCaseItemProvider
 	extends ModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -50,7 +50,7 @@ public class LogicalTestCaseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LogicalTestCaseItemProvider(AdapterFactory adapterFactory) {
+	public TestCaseItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -87,9 +87,9 @@ public class LogicalTestCaseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_type_feature", "_UI_LogicalTestCase_type"),
-				 ModelPackage.Literals.LOGICAL_TEST_CASE__TYPE,
+				 getString("_UI_TestCase_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_type_feature", "_UI_TestCase_type"),
+				 ModelPackage.Literals.TEST_CASE__TYPE,
 				 true,
 				 false,
 				 false,
@@ -109,9 +109,9 @@ public class LogicalTestCaseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_precondition_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_precondition_feature", "_UI_LogicalTestCase_type"),
-				 ModelPackage.Literals.LOGICAL_TEST_CASE__PRECONDITION,
+				 getString("_UI_TestCase_precondition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_precondition_feature", "_UI_TestCase_type"),
+				 ModelPackage.Literals.TEST_CASE__PRECONDITION,
 				 true,
 				 true,
 				 false,
@@ -131,9 +131,9 @@ public class LogicalTestCaseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_postcondition_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_postcondition_feature", "_UI_LogicalTestCase_type"),
-				 ModelPackage.Literals.LOGICAL_TEST_CASE__POSTCONDITION,
+				 getString("_UI_TestCase_postcondition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_postcondition_feature", "_UI_TestCase_type"),
+				 ModelPackage.Literals.TEST_CASE__POSTCONDITION,
 				 true,
 				 true,
 				 false,
@@ -153,9 +153,9 @@ public class LogicalTestCaseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_infrastructure_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_infrastructure_feature", "_UI_LogicalTestCase_type"),
-				 ModelPackage.Literals.LOGICAL_TEST_CASE__INFRASTRUCTURE,
+				 getString("_UI_TestCase_infrastructure_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_infrastructure_feature", "_UI_TestCase_type"),
+				 ModelPackage.Literals.TEST_CASE__INFRASTRUCTURE,
 				 true,
 				 true,
 				 false,
@@ -175,9 +175,9 @@ public class LogicalTestCaseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_nonFunctionalRequirement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_nonFunctionalRequirement_feature", "_UI_LogicalTestCase_type"),
-				 ModelPackage.Literals.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT,
+				 getString("_UI_TestCase_nonFunctionalRequirement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_nonFunctionalRequirement_feature", "_UI_TestCase_type"),
+				 ModelPackage.Literals.TEST_CASE__NON_FUNCTIONAL_REQUIREMENT,
 				 true,
 				 false,
 				 true,
@@ -197,9 +197,9 @@ public class LogicalTestCaseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_functionalRequirement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_functionalRequirement_feature", "_UI_LogicalTestCase_type"),
-				 ModelPackage.Literals.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT,
+				 getString("_UI_TestCase_functionalRequirement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_functionalRequirement_feature", "_UI_TestCase_type"),
+				 ModelPackage.Literals.TEST_CASE__FUNCTIONAL_REQUIREMENT,
 				 true,
 				 false,
 				 true,
@@ -219,9 +219,9 @@ public class LogicalTestCaseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_step_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_step_feature", "_UI_LogicalTestCase_type"),
-				 ModelPackage.Literals.LOGICAL_TEST_CASE__STEP,
+				 getString("_UI_TestCase_step_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_step_feature", "_UI_TestCase_type"),
+				 ModelPackage.Literals.TEST_CASE__STEP,
 				 true,
 				 false,
 				 true,
@@ -231,14 +231,14 @@ public class LogicalTestCaseItemProvider
 	}
 
 	/**
-	 * This returns LogicalTestCase.gif.
+	 * This returns TestCase.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LogicalTestCase"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TestCase"));
 	}
 
 	/**
@@ -263,11 +263,11 @@ public class LogicalTestCaseItemProvider
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LogicalTestCase.class)) {
-			case ModelPackage.LOGICAL_TEST_CASE__TYPE:
-			case ModelPackage.LOGICAL_TEST_CASE__PRECONDITION:
-			case ModelPackage.LOGICAL_TEST_CASE__POSTCONDITION:
-			case ModelPackage.LOGICAL_TEST_CASE__INFRASTRUCTURE:
+		switch (notification.getFeatureID(TestCase.class)) {
+			case ModelPackage.TEST_CASE__TYPE:
+			case ModelPackage.TEST_CASE__PRECONDITION:
+			case ModelPackage.TEST_CASE__POSTCONDITION:
+			case ModelPackage.TEST_CASE__INFRASTRUCTURE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
