@@ -35,7 +35,7 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String EXCEPTION_EDEFAULT = null;
+	protected static final String EXCEPTION_EDEFAULT = "";
 
 	/**
 	 * The cached value of the '{@link #getException() <em>Exception</em>}' attribute.

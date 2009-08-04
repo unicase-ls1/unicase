@@ -74,7 +74,7 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	protected EnumState testState = TEST_STATE_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getTestCase() <em>Test Case</em>}' containment reference.
+	 * The cached value of the '{@link #getTestCase() <em>Test Case</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see #getTestCase()
@@ -128,63 +128,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TestCase getTestCase() {
-		return testCase;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotificationChain basicSetTestCase(TestCase newTestCase, NotificationChain msgs) {
-		TestCase oldTestCase = testCase;
-		testCase = newTestCase;
-		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__TEST_CASE, oldTestCase, newTestCase);
-			if (msgs == null) msgs = notification; else msgs.add(notification);
-		}
-		return msgs;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setTestCase(TestCase newTestCase) {
-		if (newTestCase != testCase) {
-			NotificationChain msgs = null;
-			if (testCase != null)
-				msgs = ((InternalEObject)testCase).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - ModelPackage.TEST_PROTOCOL__TEST_CASE, null, msgs);
-			if (newTestCase != null)
-				msgs = ((InternalEObject)newTestCase).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - ModelPackage.TEST_PROTOCOL__TEST_CASE, null, msgs);
-			msgs = basicSetTestCase(newTestCase, msgs);
-			if (msgs != null) msgs.dispatch();
-		}
-		else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__TEST_CASE, newTestCase, newTestCase));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
-			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
-				return basicSetTestCase(null, msgs);
-		}
-		return super.eInverseRemove(otherEnd, featureID, msgs);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EnumState getTestState() {
 		return testState;
 	}
@@ -206,6 +149,44 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public TestCase getTestCase() {
+		if (testCase != null && testCase.eIsProxy()) {
+			InternalEObject oldTestCase = (InternalEObject)testCase;
+			testCase = (TestCase)eResolveProxy(oldTestCase);
+			if (testCase != oldTestCase) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.TEST_PROTOCOL__TEST_CASE, oldTestCase, testCase));
+			}
+		}
+		return testCase;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public TestCase basicGetTestCase() {
+		return testCase;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestCase(TestCase newTestCase) {
+		TestCase oldTestCase = testCase;
+		testCase = newTestCase;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__TEST_CASE, oldTestCase, testCase));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -214,7 +195,8 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
 				return getTestState();
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
-				return getTestCase();
+				if (resolve) return getTestCase();
+				return basicGetTestCase();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}

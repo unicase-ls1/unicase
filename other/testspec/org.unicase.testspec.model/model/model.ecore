@@ -6,8 +6,7 @@
   <eClassifiers xsi:type="ecore:EClass" name="TestProtocol" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="testReport" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="testState" eType="#//EnumState"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="testCase" eType="#//TestCase"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testCase" eType="#//TestCase"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EnumState">
     <eLiterals name="passed"/>
@@ -31,6 +30,7 @@
     <eLiterals name="integration" value="2"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TestStep" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"
+        defaultValueLiteral=""/>
   </eClassifiers>
 </ecore:EPackage>

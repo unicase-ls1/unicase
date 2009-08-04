@@ -54,32 +54,6 @@ public interface TestProtocol extends ModelElement {
 	void setTestReport(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Test Case</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Test Case</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Test Case</em>' containment reference.
-	 * @see #setTestCase(TestCase)
-	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_TestCase()
-	 * @model containment="true"
-	 * @generated
-	 */
-	TestCase getTestCase();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Test Case</em>' containment reference.
-	 * @see #getTestCase()
-	 * @generated
-	 */
-	void setTestCase(TestCase value);
-
-	/**
 	 * Returns the value of the '<em><b>Test State</b></em>' attribute.
 	 * The literals are from the enumeration {@link org.unicase.testspec.model.EnumState}.
 	 * <!-- begin-user-doc -->
@@ -107,5 +81,31 @@ public interface TestProtocol extends ModelElement {
 	 * @generated
 	 */
 	void setTestState(EnumState value);
+
+	/**
+	 * Returns the value of the '<em><b>Test Case</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Case</em>' reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Case</em>' reference.
+	 * @see #setTestCase(TestCase)
+	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_TestCase()
+	 * @model
+	 * @generated
+	 */
+	TestCase getTestCase();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Case</em>' reference.
+	 * @see #getTestCase()
+	 * @generated
+	 */
+	void setTestCase(TestCase value);
 
 } // TestProtocol

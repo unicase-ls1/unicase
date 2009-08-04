@@ -28,6 +28,7 @@ import org.unicase.model.ModelElement;
 public interface TestStep extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Exception</b></em>' attribute.
+	 * The default value is <code>""</code>.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Exception</em>' attribute isn't clear,
@@ -37,7 +38,7 @@ public interface TestStep extends ModelElement {
 	 * @return the value of the '<em>Exception</em>' attribute.
 	 * @see #setException(String)
 	 * @see org.unicase.testspec.model.ModelPackage#getTestStep_Exception()
-	 * @model
+	 * @model default=""
 	 * @generated
 	 */
 	String getException();

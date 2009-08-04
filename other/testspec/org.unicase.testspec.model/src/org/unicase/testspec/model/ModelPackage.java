@@ -197,7 +197,7 @@ public interface ModelPackage extends EPackage {
 	int TEST_PROTOCOL__TEST_STATE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Test Case</b></em>' containment reference.
+	 * The feature id for the '<em><b>Test Case</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -583,17 +583,6 @@ public interface ModelPackage extends EPackage {
 	EAttribute getTestProtocol_TestReport();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the containment reference '<em>Test Case</em>'.
-	 * @see org.unicase.testspec.model.TestProtocol#getTestCase()
-	 * @see #getTestProtocol()
-	 * @generated
-	 */
-	EReference getTestProtocol_TestCase();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.testspec.model.TestCase <em>Test Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -692,6 +681,17 @@ public interface ModelPackage extends EPackage {
 	EAttribute getTestProtocol_TestState();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Test Case</em>'.
+	 * @see org.unicase.testspec.model.TestProtocol#getTestCase()
+	 * @see #getTestProtocol()
+	 * @generated
+	 */
+	EReference getTestProtocol_TestCase();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.testspec.model.TestStep <em>Test Step</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -773,14 +773,6 @@ public interface ModelPackage extends EPackage {
 		EAttribute TEST_PROTOCOL__TEST_REPORT = eINSTANCE.getTestProtocol_TestReport();
 
 		/**
-		 * The meta object literal for the '<em><b>Test Case</b></em>' containment reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TEST_PROTOCOL__TEST_CASE = eINSTANCE.getTestProtocol_TestCase();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.testspec.model.impl.TestCaseImpl <em>Test Case</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -853,6 +845,14 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TEST_PROTOCOL__TEST_STATE = eINSTANCE.getTestProtocol_TestState();
+
+		/**
+		 * The meta object literal for the '<em><b>Test Case</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference TEST_PROTOCOL__TEST_CASE = eINSTANCE.getTestProtocol_TestCase();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.testspec.model.impl.TestStepImpl <em>Test Step</em>}' class.
