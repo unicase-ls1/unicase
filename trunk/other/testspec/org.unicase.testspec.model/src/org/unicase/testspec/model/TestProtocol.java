@@ -6,8 +6,6 @@
  */
 package org.unicase.testspec.model;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.unicase.model.ModelElement;
 
 /**
@@ -21,8 +19,6 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestReport <em>Test Report</em>}</li>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestState <em>Test State</em>}</li>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}</li>
- *   <li>{@link org.unicase.testspec.model.TestProtocol#getConcreteInputParameter <em>Concrete Input Parameter</em>}</li>
- *   <li>{@link org.unicase.testspec.model.TestProtocol#getConcreteOutputParameter <em>Concrete Output Parameter</em>}</li>
  * </ul>
  * </p>
  *
@@ -66,12 +62,12 @@ public interface TestProtocol extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Test Case</em>' containment reference.
-	 * @see #setTestCase(LogicalTestCase)
+	 * @see #setTestCase(TestCase)
 	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_TestCase()
 	 * @model containment="true"
 	 * @generated
 	 */
-	LogicalTestCase getTestCase();
+	TestCase getTestCase();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}' containment reference.
@@ -81,39 +77,7 @@ public interface TestProtocol extends ModelElement {
 	 * @see #getTestCase()
 	 * @generated
 	 */
-	void setTestCase(LogicalTestCase value);
-
-	/**
-	 * Returns the value of the '<em><b>Concrete Output Parameter</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.testspec.model.ConcreteOutputParameter}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Concrete Output Parameter</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Concrete Output Parameter</em>' reference list.
-	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_ConcreteOutputParameter()
-	 * @model
-	 * @generated
-	 */
-	EList<ConcreteOutputParameter> getConcreteOutputParameter();
-
-	/**
-	 * Returns the value of the '<em><b>Concrete Input Parameter</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.testspec.model.ConcreteInputParameter}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Concrete Input Parameter</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Concrete Input Parameter</em>' reference list.
-	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_ConcreteInputParameter()
-	 * @model
-	 * @generated
-	 */
-	EList<ConcreteInputParameter> getConcreteInputParameter();
+	void setTestCase(TestCase value);
 
 	/**
 	 * Returns the value of the '<em><b>Test State</b></em>' attribute.

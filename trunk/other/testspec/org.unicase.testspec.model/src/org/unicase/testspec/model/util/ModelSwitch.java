@@ -98,28 +98,11 @@ public class ModelSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case ModelPackage.LOGICAL_TEST_CASE: {
-				LogicalTestCase logicalTestCase = (LogicalTestCase)theEObject;
-				T result = caseLogicalTestCase(logicalTestCase);
-				if (result == null) result = caseModelElement(logicalTestCase);
-				if (result == null) result = caseIdentifiableElement(logicalTestCase);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.CONCRETE_PARAMETER: {
-				ConcreteParameter concreteParameter = (ConcreteParameter)theEObject;
-				T result = caseConcreteParameter(concreteParameter);
-				if (result == null) result = caseParameter(concreteParameter);
-				if (result == null) result = caseModelElement(concreteParameter);
-				if (result == null) result = caseIdentifiableElement(concreteParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.PARAMETER: {
-				Parameter parameter = (Parameter)theEObject;
-				T result = caseParameter(parameter);
-				if (result == null) result = caseModelElement(parameter);
-				if (result == null) result = caseIdentifiableElement(parameter);
+			case ModelPackage.TEST_CASE: {
+				TestCase testCase = (TestCase)theEObject;
+				T result = caseTestCase(testCase);
+				if (result == null) result = caseModelElement(testCase);
+				if (result == null) result = caseIdentifiableElement(testCase);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -128,44 +111,6 @@ public class ModelSwitch<T> {
 				T result = caseTestStep(testStep);
 				if (result == null) result = caseModelElement(testStep);
 				if (result == null) result = caseIdentifiableElement(testStep);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.INPUT_PARAMETER: {
-				InputParameter inputParameter = (InputParameter)theEObject;
-				T result = caseInputParameter(inputParameter);
-				if (result == null) result = caseParameter(inputParameter);
-				if (result == null) result = caseModelElement(inputParameter);
-				if (result == null) result = caseIdentifiableElement(inputParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.OUTPUT_PARAMETER: {
-				OutputParameter outputParameter = (OutputParameter)theEObject;
-				T result = caseOutputParameter(outputParameter);
-				if (result == null) result = caseParameter(outputParameter);
-				if (result == null) result = caseModelElement(outputParameter);
-				if (result == null) result = caseIdentifiableElement(outputParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.CONCRETE_INPUT_PARAMETER: {
-				ConcreteInputParameter concreteInputParameter = (ConcreteInputParameter)theEObject;
-				T result = caseConcreteInputParameter(concreteInputParameter);
-				if (result == null) result = caseConcreteParameter(concreteInputParameter);
-				if (result == null) result = caseParameter(concreteInputParameter);
-				if (result == null) result = caseModelElement(concreteInputParameter);
-				if (result == null) result = caseIdentifiableElement(concreteInputParameter);
-				if (result == null) result = defaultCase(theEObject);
-				return result;
-			}
-			case ModelPackage.CONCRETE_OUTPUT_PARAMETER: {
-				ConcreteOutputParameter concreteOutputParameter = (ConcreteOutputParameter)theEObject;
-				T result = caseConcreteOutputParameter(concreteOutputParameter);
-				if (result == null) result = caseConcreteParameter(concreteOutputParameter);
-				if (result == null) result = caseParameter(concreteOutputParameter);
-				if (result == null) result = caseModelElement(concreteOutputParameter);
-				if (result == null) result = caseIdentifiableElement(concreteOutputParameter);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -189,47 +134,17 @@ public class ModelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Logical Test Case</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Test Case</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Logical Test Case</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Test Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLogicalTestCase(LogicalTestCase object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Concrete Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Concrete Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConcreteParameter(ConcreteParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseParameter(Parameter object) {
+	public T caseTestCase(TestCase object) {
 		return null;
 	}
 
@@ -245,66 +160,6 @@ public class ModelSwitch<T> {
 	 * @generated
 	 */
 	public T caseTestStep(TestStep object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Input Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Input Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseInputParameter(InputParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Output Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Output Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseOutputParameter(OutputParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Concrete Input Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Concrete Input Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConcreteInputParameter(ConcreteInputParameter object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Concrete Output Parameter</em>'.
-	 * <!-- begin-user-doc -->
-	 * This implementation returns null;
-	 * returning a non-null result will terminate the switch.
-	 * <!-- end-user-doc -->
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Concrete Output Parameter</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseConcreteOutputParameter(ConcreteOutputParameter object) {
 		return null;
 	}
 

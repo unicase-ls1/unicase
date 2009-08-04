@@ -6,8 +6,6 @@
  */
 package org.unicase.testspec.model;
 
-import org.eclipse.emf.common.util.EList;
-
 import org.unicase.model.ModelElement;
 
 
@@ -20,8 +18,6 @@ import org.unicase.model.ModelElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.testspec.model.TestStep#getException <em>Exception</em>}</li>
- *   <li>{@link org.unicase.testspec.model.TestStep#getInputParameter <em>Input Parameter</em>}</li>
- *   <li>{@link org.unicase.testspec.model.TestStep#getOutputParamter <em>Output Paramter</em>}</li>
  * </ul>
  * </p>
  *
@@ -55,37 +51,5 @@ public interface TestStep extends ModelElement {
 	 * @generated
 	 */
 	void setException(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Input Parameter</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.testspec.model.InputParameter}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Input Parameter</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Input Parameter</em>' reference list.
-	 * @see org.unicase.testspec.model.ModelPackage#getTestStep_InputParameter()
-	 * @model
-	 * @generated
-	 */
-	EList<InputParameter> getInputParameter();
-
-	/**
-	 * Returns the value of the '<em><b>Output Paramter</b></em>' reference list.
-	 * The list contents are of type {@link org.unicase.testspec.model.OutputParameter}.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Output Paramter</em>' reference list isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Output Paramter</em>' reference list.
-	 * @see org.unicase.testspec.model.ModelPackage#getTestStep_OutputParamter()
-	 * @model
-	 * @generated
-	 */
-	EList<OutputParameter> getOutputParamter();
 
 } // TestStep

@@ -79,36 +79,12 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 				return createTestProtocolAdapter();
 			}
 			@Override
-			public Adapter caseLogicalTestCase(LogicalTestCase object) {
-				return createLogicalTestCaseAdapter();
-			}
-			@Override
-			public Adapter caseConcreteParameter(ConcreteParameter object) {
-				return createConcreteParameterAdapter();
-			}
-			@Override
-			public Adapter caseParameter(Parameter object) {
-				return createParameterAdapter();
+			public Adapter caseTestCase(TestCase object) {
+				return createTestCaseAdapter();
 			}
 			@Override
 			public Adapter caseTestStep(TestStep object) {
 				return createTestStepAdapter();
-			}
-			@Override
-			public Adapter caseInputParameter(InputParameter object) {
-				return createInputParameterAdapter();
-			}
-			@Override
-			public Adapter caseOutputParameter(OutputParameter object) {
-				return createOutputParameterAdapter();
-			}
-			@Override
-			public Adapter caseConcreteInputParameter(ConcreteInputParameter object) {
-				return createConcreteInputParameterAdapter();
-			}
-			@Override
-			public Adapter caseConcreteOutputParameter(ConcreteOutputParameter object) {
-				return createConcreteOutputParameterAdapter();
 			}
 			@Override
 			public Adapter caseIdentifiableElement(IdentifiableElement object) {
@@ -153,44 +129,16 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.testspec.model.LogicalTestCase <em>Logical Test Case</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.unicase.testspec.model.TestCase <em>Test Case</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
 	 * <!-- end-user-doc -->
 	 * @return the new adapter.
-	 * @see org.unicase.testspec.model.LogicalTestCase
+	 * @see org.unicase.testspec.model.TestCase
 	 * @generated
 	 */
-	public Adapter createLogicalTestCaseAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.testspec.model.ConcreteParameter <em>Concrete Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.testspec.model.ConcreteParameter
-	 * @generated
-	 */
-	public Adapter createConcreteParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.testspec.model.Parameter <em>Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.testspec.model.Parameter
-	 * @generated
-	 */
-	public Adapter createParameterAdapter() {
+	public Adapter createTestCaseAdapter() {
 		return null;
 	}
 
@@ -205,62 +153,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTestStepAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.testspec.model.InputParameter <em>Input Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.testspec.model.InputParameter
-	 * @generated
-	 */
-	public Adapter createInputParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.testspec.model.OutputParameter <em>Output Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.testspec.model.OutputParameter
-	 * @generated
-	 */
-	public Adapter createOutputParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.testspec.model.ConcreteInputParameter <em>Concrete Input Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.testspec.model.ConcreteInputParameter
-	 * @generated
-	 */
-	public Adapter createConcreteInputParameterAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.testspec.model.ConcreteOutputParameter <em>Concrete Output Parameter</em>}'.
-	 * <!-- begin-user-doc -->
-	 * This default implementation returns null so that we can easily ignore cases;
-	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * @return the new adapter.
-	 * @see org.unicase.testspec.model.ConcreteOutputParameter
-	 * @generated
-	 */
-	public Adapter createConcreteOutputParameterAdapter() {
 		return null;
 	}
 

@@ -17,36 +17,37 @@ import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
-
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 
 import org.unicase.model.impl.ModelElementImpl;
+
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.NonFunctionalRequirement;
-import org.unicase.testspec.model.LogicalTestCase;
+
 import org.unicase.testspec.model.ModelPackage;
+import org.unicase.testspec.model.TestCase;
 import org.unicase.testspec.model.TestStep;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Logical Test Case</b></em>'.
+ * An implementation of the model object '<em><b>Test Case</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getType <em>Type</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getPrecondition <em>Precondition</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getPostcondition <em>Postcondition</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getInfrastructure <em>Infrastructure</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getNonFunctionalRequirement <em>Non Functional Requirement</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getFunctionalRequirement <em>Functional Requirement</em>}</li>
- *   <li>{@link org.unicase.testspec.model.impl.LogicalTestCaseImpl#getStep <em>Step</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestCaseImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestCaseImpl#getPrecondition <em>Precondition</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestCaseImpl#getPostcondition <em>Postcondition</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestCaseImpl#getInfrastructure <em>Infrastructure</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestCaseImpl#getNonFunctionalRequirement <em>Non Functional Requirement</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestCaseImpl#getFunctionalRequirement <em>Functional Requirement</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestCaseImpl#getStep <em>Step</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
-public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTestCase {
+public class TestCaseImpl extends ModelElementImpl implements TestCase {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -162,7 +163,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LogicalTestCaseImpl() {
+	protected TestCaseImpl() {
 		super();
 	}
 
@@ -173,7 +174,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ModelPackage.Literals.LOGICAL_TEST_CASE;
+		return ModelPackage.Literals.TEST_CASE;
 	}
 
 	/**
@@ -194,7 +195,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 		String oldType = type;
 		type = newType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LOGICAL_TEST_CASE__TYPE, oldType, type));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_CASE__TYPE, oldType, type));
 	}
 
 	/**
@@ -215,7 +216,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 		String oldPrecondition = precondition;
 		precondition = newPrecondition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LOGICAL_TEST_CASE__PRECONDITION, oldPrecondition, precondition));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_CASE__PRECONDITION, oldPrecondition, precondition));
 	}
 
 	/**
@@ -236,7 +237,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 		String oldPostcondition = postcondition;
 		postcondition = newPostcondition;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LOGICAL_TEST_CASE__POSTCONDITION, oldPostcondition, postcondition));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_CASE__POSTCONDITION, oldPostcondition, postcondition));
 	}
 
 	/**
@@ -257,7 +258,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 		String oldInfrastructure = infrastructure;
 		infrastructure = newInfrastructure;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LOGICAL_TEST_CASE__INFRASTRUCTURE, oldInfrastructure, infrastructure));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_CASE__INFRASTRUCTURE, oldInfrastructure, infrastructure));
 	}
 
 	/**
@@ -271,7 +272,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 			nonFunctionalRequirement = (NonFunctionalRequirement)eResolveProxy(oldNonFunctionalRequirement);
 			if (nonFunctionalRequirement != oldNonFunctionalRequirement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT, oldNonFunctionalRequirement, nonFunctionalRequirement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.TEST_CASE__NON_FUNCTIONAL_REQUIREMENT, oldNonFunctionalRequirement, nonFunctionalRequirement));
 			}
 		}
 		return nonFunctionalRequirement;
@@ -295,7 +296,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 		NonFunctionalRequirement oldNonFunctionalRequirement = nonFunctionalRequirement;
 		nonFunctionalRequirement = newNonFunctionalRequirement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT, oldNonFunctionalRequirement, nonFunctionalRequirement));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_CASE__NON_FUNCTIONAL_REQUIREMENT, oldNonFunctionalRequirement, nonFunctionalRequirement));
 	}
 
 	/**
@@ -309,7 +310,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 			functionalRequirement = (FunctionalRequirement)eResolveProxy(oldFunctionalRequirement);
 			if (functionalRequirement != oldFunctionalRequirement) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT, oldFunctionalRequirement, functionalRequirement));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ModelPackage.TEST_CASE__FUNCTIONAL_REQUIREMENT, oldFunctionalRequirement, functionalRequirement));
 			}
 		}
 		return functionalRequirement;
@@ -333,7 +334,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 		FunctionalRequirement oldFunctionalRequirement = functionalRequirement;
 		functionalRequirement = newFunctionalRequirement;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT, oldFunctionalRequirement, functionalRequirement));
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_CASE__FUNCTIONAL_REQUIREMENT, oldFunctionalRequirement, functionalRequirement));
 	}
 
 	/**
@@ -343,7 +344,7 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	 */
 	public EList<TestStep> getStep() {
 		if (step == null) {
-			step = new EObjectResolvingEList<TestStep>(TestStep.class, this, ModelPackage.LOGICAL_TEST_CASE__STEP);
+			step = new EObjectResolvingEList<TestStep>(TestStep.class, this, ModelPackage.TEST_CASE__STEP);
 		}
 		return step;
 	}
@@ -356,21 +357,21 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ModelPackage.LOGICAL_TEST_CASE__TYPE:
+			case ModelPackage.TEST_CASE__TYPE:
 				return getType();
-			case ModelPackage.LOGICAL_TEST_CASE__PRECONDITION:
+			case ModelPackage.TEST_CASE__PRECONDITION:
 				return getPrecondition();
-			case ModelPackage.LOGICAL_TEST_CASE__POSTCONDITION:
+			case ModelPackage.TEST_CASE__POSTCONDITION:
 				return getPostcondition();
-			case ModelPackage.LOGICAL_TEST_CASE__INFRASTRUCTURE:
+			case ModelPackage.TEST_CASE__INFRASTRUCTURE:
 				return getInfrastructure();
-			case ModelPackage.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
+			case ModelPackage.TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
 				if (resolve) return getNonFunctionalRequirement();
 				return basicGetNonFunctionalRequirement();
-			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
+			case ModelPackage.TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				if (resolve) return getFunctionalRequirement();
 				return basicGetFunctionalRequirement();
-			case ModelPackage.LOGICAL_TEST_CASE__STEP:
+			case ModelPackage.TEST_CASE__STEP:
 				return getStep();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -385,25 +386,25 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ModelPackage.LOGICAL_TEST_CASE__TYPE:
+			case ModelPackage.TEST_CASE__TYPE:
 				setType((String)newValue);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__PRECONDITION:
+			case ModelPackage.TEST_CASE__PRECONDITION:
 				setPrecondition((String)newValue);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__POSTCONDITION:
+			case ModelPackage.TEST_CASE__POSTCONDITION:
 				setPostcondition((String)newValue);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__INFRASTRUCTURE:
+			case ModelPackage.TEST_CASE__INFRASTRUCTURE:
 				setInfrastructure((String)newValue);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
+			case ModelPackage.TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
 				setNonFunctionalRequirement((NonFunctionalRequirement)newValue);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
+			case ModelPackage.TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				setFunctionalRequirement((FunctionalRequirement)newValue);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__STEP:
+			case ModelPackage.TEST_CASE__STEP:
 				getStep().clear();
 				getStep().addAll((Collection<? extends TestStep>)newValue);
 				return;
@@ -419,25 +420,25 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ModelPackage.LOGICAL_TEST_CASE__TYPE:
+			case ModelPackage.TEST_CASE__TYPE:
 				setType(TYPE_EDEFAULT);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__PRECONDITION:
+			case ModelPackage.TEST_CASE__PRECONDITION:
 				setPrecondition(PRECONDITION_EDEFAULT);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__POSTCONDITION:
+			case ModelPackage.TEST_CASE__POSTCONDITION:
 				setPostcondition(POSTCONDITION_EDEFAULT);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__INFRASTRUCTURE:
+			case ModelPackage.TEST_CASE__INFRASTRUCTURE:
 				setInfrastructure(INFRASTRUCTURE_EDEFAULT);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
+			case ModelPackage.TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
 				setNonFunctionalRequirement((NonFunctionalRequirement)null);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
+			case ModelPackage.TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				setFunctionalRequirement((FunctionalRequirement)null);
 				return;
-			case ModelPackage.LOGICAL_TEST_CASE__STEP:
+			case ModelPackage.TEST_CASE__STEP:
 				getStep().clear();
 				return;
 		}
@@ -452,19 +453,19 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ModelPackage.LOGICAL_TEST_CASE__TYPE:
+			case ModelPackage.TEST_CASE__TYPE:
 				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
-			case ModelPackage.LOGICAL_TEST_CASE__PRECONDITION:
+			case ModelPackage.TEST_CASE__PRECONDITION:
 				return PRECONDITION_EDEFAULT == null ? precondition != null : !PRECONDITION_EDEFAULT.equals(precondition);
-			case ModelPackage.LOGICAL_TEST_CASE__POSTCONDITION:
+			case ModelPackage.TEST_CASE__POSTCONDITION:
 				return POSTCONDITION_EDEFAULT == null ? postcondition != null : !POSTCONDITION_EDEFAULT.equals(postcondition);
-			case ModelPackage.LOGICAL_TEST_CASE__INFRASTRUCTURE:
+			case ModelPackage.TEST_CASE__INFRASTRUCTURE:
 				return INFRASTRUCTURE_EDEFAULT == null ? infrastructure != null : !INFRASTRUCTURE_EDEFAULT.equals(infrastructure);
-			case ModelPackage.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
+			case ModelPackage.TEST_CASE__NON_FUNCTIONAL_REQUIREMENT:
 				return nonFunctionalRequirement != null;
-			case ModelPackage.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT:
+			case ModelPackage.TEST_CASE__FUNCTIONAL_REQUIREMENT:
 				return functionalRequirement != null;
-			case ModelPackage.LOGICAL_TEST_CASE__STEP:
+			case ModelPackage.TEST_CASE__STEP:
 				return step != null && !step.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -492,4 +493,4 @@ public class LogicalTestCaseImpl extends ModelElementImpl implements LogicalTest
 		return result.toString();
 	}
 
-} //LogicalTestCaseImpl
+} //TestCaseImpl
