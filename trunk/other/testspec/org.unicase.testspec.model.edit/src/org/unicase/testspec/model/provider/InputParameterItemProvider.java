@@ -20,7 +20,8 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 
-import org.unicase.testspec.model.InputParameter;
+
+
 
 /**
  * This is the item provider adapter for a {@link org.unicase.testspec.model.InputParameter} object.

@@ -15,7 +15,6 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
@@ -29,7 +28,6 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.unicase.model.provider.ModelElementItemProvider;
 
-import org.unicase.testspec.model.ModelFactory;
 import org.unicase.testspec.model.ModelPackage;
 import org.unicase.testspec.model.TestProtocol;
 
@@ -71,7 +69,8 @@ public class TestProtocolItemProvider
 			addTestReportPropertyDescriptor(object);
 			addTestStatePropertyDescriptor(object);
 			addTestCasePropertyDescriptor(object);
-			addConcreteParamterPropertyDescriptor(object);
+			addConcreteInputParameterPropertyDescriptor(object);
+			addConcreteOutputParameterPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -143,19 +142,41 @@ public class TestProtocolItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Concrete Paramter feature.
+	 * This adds a property descriptor for the Concrete Output Parameter feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConcreteParamterPropertyDescriptor(Object object) {
+	protected void addConcreteOutputParameterPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_TestProtocol_concreteParamter_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TestProtocol_concreteParamter_feature", "_UI_TestProtocol_type"),
-				 ModelPackage.Literals.TEST_PROTOCOL__CONCRETE_PARAMTER,
+				 getString("_UI_TestProtocol_concreteOutputParameter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestProtocol_concreteOutputParameter_feature", "_UI_TestProtocol_type"),
+				 ModelPackage.Literals.TEST_PROTOCOL__CONCRETE_OUTPUT_PARAMETER,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Concrete Input Parameter feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected void addConcreteInputParameterPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TestProtocol_concreteInputParameter_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestProtocol_concreteInputParameter_feature", "_UI_TestProtocol_type"),
+				 ModelPackage.Literals.TEST_PROTOCOL__CONCRETE_INPUT_PARAMETER,
 				 true,
 				 false,
 				 true,
