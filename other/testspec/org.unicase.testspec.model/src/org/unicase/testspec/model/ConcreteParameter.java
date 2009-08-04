@@ -7,7 +7,6 @@
 package org.unicase.testspec.model;
 
 import org.unicase.model.ModelElement;
-import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
@@ -18,15 +17,14 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.testspec.model.ConcreteParameter#getValue <em>Value</em>}</li>
- *   <li>{@link org.unicase.testspec.model.ConcreteParameter#getParameter <em>Parameter</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.unicase.testspec.model.ModelPackage#getConcreteParameter()
- * @model
+ * @model abstract="true"
  * @generated
  */
-public interface ConcreteParameter extends ModelElement {
+public interface ConcreteParameter extends Parameter {
 	/**
 	 * Returns the value of the '<em><b>Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,31 +50,5 @@ public interface ConcreteParameter extends ModelElement {
 	 * @generated
 	 */
 	void setValue(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Parameter</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Parameter</em>' reference isn't clear,
-	 * there really should be more of a description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Parameter</em>' reference.
-	 * @see #setParameter(Parameter)
-	 * @see org.unicase.testspec.model.ModelPackage#getConcreteParameter_Parameter()
-	 * @model
-	 * @generated
-	 */
-	Parameter getParameter();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.testspec.model.ConcreteParameter#getParameter <em>Parameter</em>}' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Parameter</em>' reference.
-	 * @see #getParameter()
-	 * @generated
-	 */
-	void setParameter(Parameter value);
 
 } // ConcreteParameter

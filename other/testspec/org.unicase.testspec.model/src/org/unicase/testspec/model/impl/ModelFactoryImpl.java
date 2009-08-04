@@ -63,10 +63,11 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		switch (eClass.getClassifierID()) {
 			case ModelPackage.TEST_PROTOCOL: return createTestProtocol();
 			case ModelPackage.LOGICAL_TEST_CASE: return createLogicalTestCase();
-			case ModelPackage.CONCRETE_PARAMETER: return createConcreteParameter();
 			case ModelPackage.TEST_STEP: return createTestStep();
 			case ModelPackage.INPUT_PARAMETER: return createInputParameter();
 			case ModelPackage.OUTPUT_PARAMETER: return createOutputParameter();
+			case ModelPackage.CONCRETE_INPUT_PARAMETER: return createConcreteInputParameter();
+			case ModelPackage.CONCRETE_OUTPUT_PARAMETER: return createConcreteOutputParameter();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -131,16 +132,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConcreteParameter createConcreteParameter() {
-		ConcreteParameterImpl concreteParameter = new ConcreteParameterImpl();
-		return concreteParameter;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public TestStep createTestStep() {
 		TestStepImpl testStep = new TestStepImpl();
 		return testStep;
@@ -164,6 +155,26 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	public OutputParameter createOutputParameter() {
 		OutputParameterImpl outputParameter = new OutputParameterImpl();
 		return outputParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConcreteInputParameter createConcreteInputParameter() {
+		ConcreteInputParameterImpl concreteInputParameter = new ConcreteInputParameterImpl();
+		return concreteInputParameter;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ConcreteOutputParameter createConcreteOutputParameter() {
+		ConcreteOutputParameterImpl concreteOutputParameter = new ConcreteOutputParameterImpl();
+		return concreteOutputParameter;
 	}
 
 	/**

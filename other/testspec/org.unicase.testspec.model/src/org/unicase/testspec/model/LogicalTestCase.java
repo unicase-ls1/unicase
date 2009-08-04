@@ -9,7 +9,6 @@ package org.unicase.testspec.model;
 import org.eclipse.emf.common.util.EList;
 
 import org.unicase.model.ModelElement;
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.NonFunctionalRequirement;
 
