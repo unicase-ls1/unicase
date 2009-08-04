@@ -46,7 +46,10 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	private CreateDeleteOperation deleteOperation;
 	private CompositeOperation compositeOperation;
 
-	private static final String UNKOWN_CREATOR = "unknown";
+	/**
+	 * Name of unknown creator.
+	 */
+	public static final String UNKOWN_CREATOR = "unknown";
 
 	/**
 	 * Constructor.
