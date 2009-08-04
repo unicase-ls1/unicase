@@ -20,7 +20,6 @@ import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -28,7 +27,6 @@ import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
-import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
@@ -59,6 +57,8 @@ public class MEFileChooserControl extends AbstractMEControl {
 		+ "\nThe file attachment will be transferred when online. "
 		+ "\nYou can interrupt the file upload at any time or even "
 		+ "\nclose the program, as it will be resumed automatically.";
+
+	private static final String CANCEL_UPLOAD_TOOLTIP = "If you wish to cancel the pending upload and upload another file, \nplease click this button.";
 
 	private EAttribute attribute;
 
@@ -147,26 +147,27 @@ public class MEFileChooserControl extends AbstractMEControl {
 		// data binding context
 		dbc = new EMFDataBindingContext();
 		// file name binding
+		@SuppressWarnings("unused")
 		IObservableValue model1 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		UpdateValueStrategy strategy1 = new UpdateValueStrategy();
 		strategy1.setConverter(new FileNameLinkContentConverter());
-		dbc.bindValue(SWTObservables.observeText(fileName), model1, null, strategy1);
+		// dbc.bindValue(SWTObservables.observeText(fileName), model1, null, strategy1);
 		// upload binding
-		// TODO: eclipse 3.4 compatibility
 		@SuppressWarnings("unused")
 		IObservableValue model2 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
 			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Uploading());
 		UpdateValueStrategy strategy2 = new UpdateValueStrategy();
 		strategy2.setConverter(new UploadImageConverter(upload));
-		// dbc.bindValue(SWTObservables.observeImage(upload), model2, null, strategy2);
+		// Eclipse 3.4 compatibility: observeText instead of observeImage
+		// dbc.bindValue(SWTObservables.observeText(upload), model2, null, strategy2);
 		// download binding
-		// TODO: eclipse 3.4 compatibility
 		@SuppressWarnings("unused")
 		IObservableValue model3 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
 			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Downloading());
 		UpdateValueStrategy strategy = new UpdateValueStrategy();
 		strategy.setConverter(new DownloadImageConverter(downloadPending, saveAs));
-		// dbc.bindValue(SWTObservables.observeImage(downloadPending), model3, null, strategy);
+		// Eclipse 3.4 compatibility: observeText instead of observeImage
+		// dbc.bindValue(SWTObservables.observeText(downloadPending), model3, null, strategy);
 
 		return parent;
 	}
@@ -196,7 +197,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 		}
 
 		public Object getToType() {
-			return Image.class;
+			return String.class;
 		}
 
 		public Object getFromType() {
@@ -244,10 +245,12 @@ public class MEFileChooserControl extends AbstractMEControl {
 			saveAs.setEnabled(enabled);
 			downloadPending.setToolTipText(toolTipText);
 			if (enabled) {
-				return Activator.getImageDescriptor("icons/drive_go.png").createImage();
+				downloadPending.setImage(Activator.getImageDescriptor("icons/drive_go.png").createImage());
 			} else {
-				return Activator.getImageDescriptor("icons/drive_error.png").createImage();
+				downloadPending.setImage(Activator.getImageDescriptor("icons/drive_error.png").createImage());
 			}
+			// WORKAROUND: as SWTObservables.observeImage is not supported in Eclipse < 3.5
+			return "";
 		}
 	}
 
@@ -262,7 +265,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 		}
 
 		public Object getToType() {
-			return Image.class;
+			return String.class;
 		}
 
 		public Object getFromType() {
@@ -275,14 +278,15 @@ public class MEFileChooserControl extends AbstractMEControl {
 				upload.removeSelectionListener(removeListener);
 				upload.addSelectionListener(uploadListener);
 				upload.setToolTipText(UPLOAD_NOTPENDING_TOOL_TIP);
-				return Activator.getImageDescriptor("icons/page_add.png").createImage();
+				upload.setImage(Activator.getImageDescriptor("icons/page_add.png").createImage());
 			} else {
 				upload.removeSelectionListener(uploadListener);
 				upload.addSelectionListener(removeListener);
-				upload
-					.setToolTipText("If you wish to cancel the pending upload and upload another file, \nplease click this button.");
-				return Activator.getImageDescriptor("icons/delete.png").createImage();
+				upload.setToolTipText(CANCEL_UPLOAD_TOOLTIP);
+				upload.setImage(Activator.getImageDescriptor("icons/delete.png").createImage());
 			}
+			// WORKAROUND: as SWTObservables.observeImage is not supported in Eclipse < 3.5
+			return "";
 		}
 	}
 
