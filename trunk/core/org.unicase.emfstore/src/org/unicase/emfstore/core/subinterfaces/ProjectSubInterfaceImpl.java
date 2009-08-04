@@ -170,11 +170,31 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 * {@inheritDoc}
 	 */
 	public void deleteProject(ProjectId projectId, boolean deleteFiles) throws EmfStoreException {
+		deleteProject2(projectId, deleteFiles, true);
+	}
+
+	/**
+	 * Implemenation of {@link #deleteProject(ProjectId, boolean)} with additional possibility of not throwing an
+	 * invalid id exception.
+	 * 
+	 * @param projectId project id
+	 * @param deleteFiles boolean, whether to delete files in file system
+	 * @param throwInvalidIdException boolean
+	 * @throws EmfStoreException in case of failure
+	 */
+	protected void deleteProject2(ProjectId projectId, boolean deleteFiles, boolean throwInvalidIdException)
+		throws EmfStoreException {
 		synchronized (getMonitor()) {
 			try {
-				ProjectHistory project = getProject(projectId);
-				getServerSpace().getProjects().remove(project);
-				save(getServerSpace());
+				try {
+					ProjectHistory project = getProject(projectId);
+					getServerSpace().getProjects().remove(project);
+					save(getServerSpace());
+				} catch (InvalidProjectIdException e) {
+					if (throwInvalidIdException) {
+						throw e;
+					}
+				}
 				if (deleteFiles) {
 					File projectFolder = new File(getResourceHelper().getProjectFolder(projectId));
 					try {
@@ -197,9 +217,13 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		synchronized (getMonitor()) {
 			ProjectHistory projectOrNull = getProjectOrNull(projectHistory.getProjectId());
 			if (projectOrNull != null) {
+				// if project with same id exists, create a new id.
 				projectHistory.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
 			}
 			try {
+				getResourceHelper().createResourceForProjectHistory(projectHistory);
+				getServerSpace().getProjects().add(projectHistory);
+				getResourceHelper().save(getServerSpace());
 				for (Version version : projectHistory.getVersions()) {
 					if (version.getChanges() != null) {
 						getResourceHelper().createResourceForChangePackage(version.getChanges(),
@@ -211,9 +235,11 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 					}
 					getResourceHelper().createResourceForVersion(version, projectHistory.getProjectId());
 				}
-				getResourceHelper().createResourceForProjectHistory(projectHistory);
+				getResourceHelper().save(projectHistory);
 				getResourceHelper().saveAll();
 			} catch (FatalEmfStoreException e) {
+				// roll back
+				deleteProject2(projectHistory.getProjectId(), true, false);
 				throw new StorageException(StorageException.NOSAVE);
 			}
 			return (ProjectId) EcoreUtil.copy(projectHistory.getProjectId());
