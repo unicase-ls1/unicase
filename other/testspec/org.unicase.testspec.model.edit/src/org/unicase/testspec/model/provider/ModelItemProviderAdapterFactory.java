@@ -122,29 +122,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.testspec.model.ConcreteParameter} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected ConcreteParameterItemProvider concreteParameterItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.testspec.model.ConcreteParameter}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createConcreteParameterAdapter() {
-		if (concreteParameterItemProvider == null) {
-			concreteParameterItemProvider = new ConcreteParameterItemProvider(this);
-		}
-
-		return concreteParameterItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.unicase.testspec.model.TestStep} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -211,6 +188,52 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		}
 
 		return outputParameterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.testspec.model.ConcreteInputParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConcreteInputParameterItemProvider concreteInputParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.testspec.model.ConcreteInputParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConcreteInputParameterAdapter() {
+		if (concreteInputParameterItemProvider == null) {
+			concreteInputParameterItemProvider = new ConcreteInputParameterItemProvider(this);
+		}
+
+		return concreteInputParameterItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.testspec.model.ConcreteOutputParameter} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConcreteOutputParameterItemProvider concreteOutputParameterItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.testspec.model.ConcreteOutputParameter}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConcreteOutputParameterAdapter() {
+		if (concreteOutputParameterItemProvider == null) {
+			concreteOutputParameterItemProvider = new ConcreteOutputParameterItemProvider(this);
+		}
+
+		return concreteOutputParameterItemProvider;
 	}
 
 	/**
@@ -314,10 +337,11 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	public void dispose() {
 		if (testProtocolItemProvider != null) testProtocolItemProvider.dispose();
 		if (logicalTestCaseItemProvider != null) logicalTestCaseItemProvider.dispose();
-		if (concreteParameterItemProvider != null) concreteParameterItemProvider.dispose();
 		if (testStepItemProvider != null) testStepItemProvider.dispose();
 		if (inputParameterItemProvider != null) inputParameterItemProvider.dispose();
 		if (outputParameterItemProvider != null) outputParameterItemProvider.dispose();
+		if (concreteInputParameterItemProvider != null) concreteInputParameterItemProvider.dispose();
+		if (concreteOutputParameterItemProvider != null) concreteOutputParameterItemProvider.dispose();
 	}
 
 }
