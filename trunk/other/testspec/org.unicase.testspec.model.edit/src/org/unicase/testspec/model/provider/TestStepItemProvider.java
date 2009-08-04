@@ -66,8 +66,6 @@ public class TestStepItemProvider
 			super.getPropertyDescriptors(object);
 
 			addExceptionPropertyDescriptor(object);
-			addInputParameterPropertyDescriptor(object);
-			addOutputParamterPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -90,50 +88,6 @@ public class TestStepItemProvider
 				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Input Parameter feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addInputParameterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TestStep_inputParameter_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TestStep_inputParameter_feature", "_UI_TestStep_type"),
-				 ModelPackage.Literals.TEST_STEP__INPUT_PARAMETER,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Output Paramter feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addOutputParamterPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_TestStep_outputParamter_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_TestStep_outputParamter_feature", "_UI_TestStep_type"),
-				 ModelPackage.Literals.TEST_STEP__OUTPUT_PARAMTER,
-				 true,
-				 false,
-				 true,
-				 null,
 				 null,
 				 null));
 	}
