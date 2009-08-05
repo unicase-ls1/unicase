@@ -72,7 +72,7 @@ public class IteratorPage extends WizardPage implements Listener {
 	@Override
 	public IWizardPage getNextPage() {
 		if(versionIteratorButton.getSelection()){
-			VersionIteratorPage page = ((ProjectAnalyzerWizard)getWizard()).getVersionIteratorPage();
+			final VersionIteratorPage page = ((ProjectAnalyzerWizard)getWizard()).getVersionIteratorPage();
 			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
 				@Override
 				protected void doExecute() {
@@ -87,12 +87,14 @@ public class IteratorPage extends WizardPage implements Listener {
 						versionIterator.setVersionSpecQuery(versionQuery);
 						conf.setIterator(versionIterator);
 					}
+					page.initDefaulGroup();
+					page.initGroup();
 				}
 			});
 			return page;
 			
 		}else if(timeIteratorButton.getSelection()){
-			TimeIteratorPage page = ((ProjectAnalyzerWizard)getWizard()).getTimeIteratorPage();
+			final TimeIteratorPage page = ((ProjectAnalyzerWizard)getWizard()).getTimeIteratorPage();
 			editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {			
 				@Override
 				protected void doExecute() {
@@ -105,8 +107,10 @@ public class IteratorPage extends WizardPage implements Listener {
 						versionQuery.setEndVersion(endVer);
 						TimeIterator timeIterator = IteratorFactory.eINSTANCE.createTimeIterator();
 						timeIterator.setVersionSpecQuery(versionQuery);
-						conf.setIterator(timeIterator);
+						conf.setIterator(timeIterator);						
 					}
+					page.initDefaulGroup();
+					page.initGroup();
 				}
 			});
 			return page;

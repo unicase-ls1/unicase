@@ -30,7 +30,6 @@ import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.iterator.IteratorPackage;
-import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
 /**
@@ -79,16 +78,10 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		composite.setLayout(gl);
 		
 		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
-		 new Label (composite, SWT.NONE).setText("Step Length:");	
+		new Label (composite, SWT.NONE).setText("Step Length:");	
 		stepText = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		stepText.setLayoutData(gd);
-		if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
-			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_StepLength());
-			EMFDataBindingContext dbc = new EMFDataBindingContext();
-			dbc.bindValue(SWTObservables.observeText(stepText, SWT.FocusOut), modelObservable, null, null);
-		}
-
 		stepText.addListener(SWT.KeyUp, this);
 		
 		 
@@ -97,21 +90,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		 gd = new GridData(GridData.FILL_HORIZONTAL);
 		 gd.horizontalSpan = ncol;
 		 defaultButton.setLayoutData(gd);
-		 if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
-			 IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Default());
-			 EMFDataBindingContext dbc = new EMFDataBindingContext();
-			 dbc.bindValue(SWTObservables.observeSelection(defaultButton), modelObservable, null, null);
-		 }
-		 
-//		 if(conf.getIterator() != null){
-//			 defaultButton.setSelection(conf.getIterator().isDefault());
-//			}
-//		 else{
-//			 defaultButton.setSelection(false);
-//		 }
 		 defaultButton.addSelectionListener(new SelectionListener() {
-
-		
 				public void widgetDefaultSelected(SelectionEvent e) {
 					canFlipToNextPage = true;
 					getWizard().getContainer().updateButtons();
@@ -137,22 +116,12 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		startText = new Text(group, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		startText.setLayoutData(gd);		
-		if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
-			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator().getVersionSpecQuery().getStartVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
-			EMFDataBindingContext dbc = new EMFDataBindingContext();
-			dbc.bindValue(SWTObservables.observeText(startText, SWT.FocusOut), modelObservable, null, null);
-		}
 		startText.addListener(SWT.KeyUp, this);
 		
 		new Label (group, SWT.NONE).setText("End:");	
 		endText = new Text(group, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		endText.setLayoutData(gd);
-		if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
-			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator().getVersionSpecQuery().getEndVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
-			EMFDataBindingContext dbc = new EMFDataBindingContext();
-			dbc.bindValue(SWTObservables.observeText(endText, SWT.FocusOut), modelObservable, null, null);
-		}
 		endText.addListener(SWT.KeyUp, this);
 		
 		gd = new GridData();
@@ -161,20 +130,12 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		forwardButton.setText("Forward");
 		forwardButton.setLayoutData(gd);
 		forwardButton.setSelection(false); 
-		if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
-			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Forward());
-			EMFDataBindingContext dbc = new EMFDataBindingContext();
-			dbc.bindValue(SWTObservables.observeSelection(forwardButton), modelObservable, null, null);
-		}
 		forwardButton.addListener(SWT.Selection, this);
 		
 		backwardButton = new Button(group, SWT.RADIO);
 		backwardButton.setText("Backward");		 
 		backwardButton.setLayoutData(new GridData(GridData.END));
 		backwardButton.setSelection(false);
-//		modelObservable = EMFEditObservables.observeValue(editingDomain, versionIterator, IteratorPackage.eINSTANCE.getVersionIterator_Forward());
-//		dbc = new EMFDataBindingContext();
-//		dbc.bindValue(SWTObservables.observeSelection(backwardButton), modelObservable, null, null);
 		backwardButton.addListener(SWT.Selection, this);
 		
 		returnCopyButton = new Button(group, SWT.CHECK);
@@ -183,11 +144,6 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		gd.horizontalSpan = ncol;
 		returnCopyButton.setLayoutData(gd);
 		returnCopyButton.setSelection(false);
-		if(conf.getIterator() != null && !(conf.getIterator() instanceof TimeIterator)){
-			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_ReturnProjectDataCopy());
-			EMFDataBindingContext dbc = new EMFDataBindingContext();
-			dbc.bindValue(SWTObservables.observeSelection(returnCopyButton), modelObservable, null, null);
-		}
 		returnCopyButton.addListener(SWT.Selection, this);
 		
 		setCanFlipToNextPage(isPageComplete());
@@ -196,6 +152,45 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		
 	}
 
+	/**
+	 * Initializes the page, i.e. this method is not called at the time this class gets instantiated but later, when the
+	 * page is going to get displayed. Mainly create the databinding here.
+	 */
+	public void initDefaulGroup(){
+		//stepLength
+		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_StepLength());
+		EMFDataBindingContext dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeText(stepText, SWT.FocusOut), modelObservable, null, null);
+		
+		//default
+		 modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Default());
+		 dbc = new EMFDataBindingContext();
+		 dbc.bindValue(SWTObservables.observeSelection(defaultButton), modelObservable, null, null);
+		
+	}
+	
+	public void initGroup(){
+		 //start PrimaryVersionSpec
+		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator().getVersionSpecQuery().getStartVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
+		EMFDataBindingContext dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeText(startText, SWT.FocusOut), modelObservable, null, null);
+
+		 //end PrimaryVersionSpec
+		modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator().getVersionSpecQuery().getEndVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
+		dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeText(endText, SWT.FocusOut), modelObservable, null, null);
+		
+		//forward
+		modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Forward());
+		dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeSelection(forwardButton), modelObservable, null, null);
+		
+		
+		//return Project Copy
+		modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_ReturnProjectDataCopy());
+		dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeSelection(returnCopyButton), modelObservable, null, null);
+	}
 	private static boolean isTextNonEmpty(Text t)
 	{
 		String s = t.getText();
