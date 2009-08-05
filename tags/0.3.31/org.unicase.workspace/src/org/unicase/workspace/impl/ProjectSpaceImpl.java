@@ -1713,6 +1713,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 	private void save(ModelElement modelElement) {
 		Resource resource = modelElement.eResource();
+		// if this model element is the one to be deleted and if it is not in a separate resource
+		if (resource == null && modelElement.getProject() == null && this.deleteOperation != null) {
+			return;
+		}
 		if (resource == null) {
 			String message = "Save failed: ModelElement \"" + modelElement.getIdentifier() + "\" has no resource!";
 			WorkspaceUtil.logException(message, new IllegalStateException(message));
