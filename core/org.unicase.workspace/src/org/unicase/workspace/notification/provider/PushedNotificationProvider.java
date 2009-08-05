@@ -29,6 +29,11 @@ import org.unicase.workspace.util.OrgUnitHelper;
 public class PushedNotificationProvider implements NotificationProvider {
 
 	/**
+	 * The name.
+	 */
+	public static final String NAME = "Pushed Notification Provider";
+
+	/**
 	 * Default constructor.
 	 */
 	public PushedNotificationProvider() {
@@ -40,7 +45,7 @@ public class PushedNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#getName()
 	 */
 	public String getName() {
-		return "Pushed Notification Provider";
+		return NAME;
 	}
 
 	/**
@@ -68,7 +73,7 @@ public class PushedNotificationProvider implements NotificationProvider {
 		for (ChangePackage cp : changePackages) {
 			for (ESNotification notification : cp.getNotifications()) {
 				if (notification.getRecipient().equals(user.getName())) {
-					notification.setSender(getName());
+					notification.setProvider(getName());
 					result.add(notification);
 				} else {
 					EList<Group> groups = new BasicEList<Group>();
@@ -76,7 +81,7 @@ public class PushedNotificationProvider implements NotificationProvider {
 						groups);
 					for (Group group : groups) {
 						if (group.getName().equals(notification.getRecipient()) && group.getOrgUnits().contains(user)) {
-							notification.setSender(getName());
+							notification.setProvider(getName());
 							result.add(notification);
 						}
 					}

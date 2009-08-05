@@ -42,6 +42,11 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	private HashMap<Comment, Date> taskComments;
 
 	/**
+	 * The name.
+	 */
+	public static final String NAME = "Comments Notification Provider";
+
+	/**
 	 * Default constructor.
 	 */
 	public CommentsNotificationProvider() {
@@ -57,7 +62,7 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#getName()
 	 */
 	public String getName() {
-		return "Comments Notification Provider";
+		return NAME;
 	}
 
 	/**

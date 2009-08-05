@@ -39,13 +39,19 @@ import org.unicase.workspace.util.OrgUnitHelper;
  * @author helming
  */
 public class TaskObjectNotificationProvider implements NotificationProvider {
+
+	/**
+	 * The name.
+	 */
+	public static final String NAME = "Task Object Change Notifier";
+
 	/**
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.workspace.notification.NotificationProvider#getName()
 	 */
 	public String getName() {
-		return "Task Object Change Notifier";
+		return NAME;
 	}
 
 	/**
@@ -89,7 +95,7 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 			createNotification.setProject((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
 			createNotification.setName("Task Object Change");
 			createNotification.setRecipient(currentUsername);
-			createNotification.setSender(getName());
+			createNotification.setProvider(getName());
 			result.add(createNotification);
 		}
 

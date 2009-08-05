@@ -45,6 +45,11 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 	private EClass clazz;
 
 	/**
+	 * The name.
+	 */
+	public static final String NAME = "Assignement Notification Provider";
+
+	/**
 	 * Default constructor.
 	 * 
 	 * @param assignmentClass the class of the assignment - e.g. ActionItem, BugReport, etc.
@@ -125,7 +130,7 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#getName()
 	 */
 	public String getName() {
-		return "Assignement Notification Provider";
+		return NAME;
 	}
 
 	/**
@@ -215,7 +220,7 @@ public class AssignmentNotificationProvider implements NotificationProvider {
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(user.getName());
 		notification.setSeen(false);
-		notification.setSender("unicase assignment notification generator");
+		notification.setProvider("unicase assignment notification generator");
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("You have been assigned ");
 		ModelElementId[] wis = workItems.toArray(new ModelElementId[0]);
