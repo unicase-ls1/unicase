@@ -25,8 +25,6 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
-import org.eclipse.ui.IEditorPart;
-import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.ModelElement;
@@ -35,7 +33,7 @@ import org.unicase.model.Project;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.util.ProjectChangeObserver;
-import org.unicase.ui.meeditor.MEEditor;
+import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.workspace.WorkspaceManager;
@@ -128,11 +126,7 @@ public class MECommentsLinkControl extends AbstractMEControl implements MEContro
 		commentsLink.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				final IEditorPart activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-					.getActiveEditor();
-				if (activeEditor instanceof MEEditor) {
-					((MEEditor) activeEditor).setActivePage("Discussion");
-				}
+				ActionHelper.openDiscussion((ModelElement) getModelElement(), false);
 			}
 		});
 
