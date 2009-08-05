@@ -84,6 +84,7 @@ public class CommitNotificationsTray extends DialogTray {
 	 * @param commitDialog the commit dialog
 	 */
 	public CommitNotificationsTray(CommitDialog commitDialog) {
+		notifications = new ArrayList<ESNotification>();
 		this.commitDialog = commitDialog;
 	}
 
@@ -95,7 +96,6 @@ public class CommitNotificationsTray extends DialogTray {
 	@Override
 	protected Control createContents(Composite parent) {
 
-		notifications = new ArrayList<ESNotification>();
 		comment = Activator.getImageDescriptor("icons/comment.png").createImage();
 		add = Activator.getImageDescriptor("icons/add.png").createImage();
 		remove = Activator.getImageDescriptor("icons/remove.png").createImage();
@@ -302,7 +302,6 @@ public class CommitNotificationsTray extends DialogTray {
 
 				for (User user : users) {
 					ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
-					notification.setProvider("Pushed notifications provider");
 					notification.setName("Pushed name");
 					ProjectId projectIdCopy = (ProjectId) EcoreUtil.copy(projectSpace.getProjectId());
 					notification.setProject(projectIdCopy);

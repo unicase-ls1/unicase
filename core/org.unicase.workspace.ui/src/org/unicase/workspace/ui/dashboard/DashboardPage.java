@@ -144,7 +144,7 @@ public class DashboardPage extends FormPage {
 			@Override
 			public void widgetSelected(SelectionEvent event) {
 				Rectangle rect = sash.getParent().getClientArea();
-				event.x = Math.min(Math.max(event.x, 300), rect.width - 200);
+				event.x = Math.min(Math.max(event.x, 400), rect.width - 200);
 				if (event.detail != SWT.DRAG) {
 					sash.setBounds(event.x, event.y, event.width, event.height);
 					((FormData) sash.getLayoutData()).left = new FormAttachment(0, event.x);
@@ -234,7 +234,7 @@ public class DashboardPage extends FormPage {
 				for (ESNotification n : notifications) {
 					if (!n.isSeen()) {
 						AbstractDashboardEntry entry;
-						if (n.getSender() != null && n.getSender().equals(UpdateNotificationProvider.NAME)) {
+						if (n.getProvider().equals(UpdateNotificationProvider.NAME)) {
 							entry = new UpdateDashboardEntry(DashboardPage.this, notificationsComposite, SWT.NONE, n,
 								projectSpace);
 						} else {
