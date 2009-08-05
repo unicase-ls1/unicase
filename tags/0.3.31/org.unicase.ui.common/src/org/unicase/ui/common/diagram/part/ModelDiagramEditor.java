@@ -15,8 +15,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.NullProgressMonitor;
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.LayoutListener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -24,7 +22,6 @@ import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.KeyStroke;
-import org.eclipse.gef.LayerConstants;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
@@ -57,11 +54,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	 * The {@link FocusListener} for layout save commands.
 	 */
 	private FocusListener focusListener; 
-
-	/**
-	 * The {@link LayoutListener} for layout save commands.
-	 */
-	private LayoutListener layoutChangeListener;
 	
 	/**
 	 * . The constructor
@@ -96,13 +88,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 					//do nothing
 					//@see focusGained
 				}
-			}
-		};
-		
-		layoutChangeListener = new LayoutListener.Stub(){
-			@Override
-			public void postLayout(IFigure container) {
-				doSave(new NullProgressMonitor());
 			}
 		};
 	}
@@ -145,7 +130,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			});
 		getGraphicalViewer().getKeyHandler().put(KeyStroke.getPressed(SWT.DEL, 127, 0), new DeleteFromDiagramAction());	
 		
-		registerLayoutChangeListener();
 		registerFocusListener();
 	}
 
@@ -239,13 +223,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		super.dispose();
 
 		deregisterFocusListener();
-		deregisterLayoutChangeListener();
-	}
-
-	private void deregisterLayoutChangeListener() {
-		IFigure primaryLayer = getDiagramEditPart().getLayer(LayerConstants.PRIMARY_LAYER);
-
-		primaryLayer.removeLayoutListener(layoutChangeListener);		
 	}
 
 	private void deregisterFocusListener(){
@@ -273,25 +250,6 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			return;
 		}
 		control.addFocusListener(focusListener);	
-	}
-
-	private void registerLayoutChangeListener(){
-		IFigure primaryLayer = getDiagramEditPart().getLayer(LayerConstants.PRIMARY_LAYER);
-
-		LayoutListener layoutChangeListener = new LayoutListener.Stub(){
-			@Override
-			public void postLayout(IFigure container) {
-				try {
-					doSave(new NullProgressMonitor());	
-				} catch (IllegalStateException e) {
-					//do nothing
-					//We catch this exception in case we have been in an read only transaction context 
-					//and tried to save the layout which is performed with a read/write transaction
-				}
-			}
-		};
-
-		primaryLayer.addLayoutListener(layoutChangeListener);	
 	}
 	
 	/**
