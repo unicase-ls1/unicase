@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -18,9 +18,11 @@ import org.unicase.model.ModelElement;
  * This class creates stands for a RecommendationStategy, that collects different strategies and returns the arithmetic
  * mean of the values.
  * 
+ * @deprecated
  * @author Henning Femmer
  */
-public abstract class AbstractRecommendationStrategy {
+@Deprecated
+public abstract class AbstractRecommendationStrategy implements RecommendationStrategy {
 	private Collection<MEMatcher> matchers;
 	private double threshold;
 

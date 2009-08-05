@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -15,7 +15,9 @@ import org.unicase.model.ModelElement;
 
 /**
  * @author Henning Femmer
+ * @deprecated
  */
+@Deprecated
 public class WordFrequencyRecommendationStrategy extends AbstractRecommendationStrategy {
 
 	private static String[] IGNORE_WORDS = new String[] { "of", "on", "and", "or", "the", "this", "them", "not", "is",
@@ -27,8 +29,8 @@ public class WordFrequencyRecommendationStrategy extends AbstractRecommendationS
 	 * 
 	 * @param threshold the threshold
 	 */
-	public WordFrequencyRecommendationStrategy(double threshold) {
-		super(threshold);
+	public WordFrequencyRecommendationStrategy() {
+		super(0);
 	}
 
 	public boolean isRecommendationPossible(ModelElement base, ModelElement rec) {
