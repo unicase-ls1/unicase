@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -14,14 +14,12 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.ui.IMemento;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 import org.unicase.linkrecommendation.RecommendationManager;
 import org.unicase.model.ModelElement;
@@ -55,22 +53,24 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	 * @param shell The shell.
 	 * @param multi Can multiple elments be selected?
 	 * @param title The title of the dialog
+	 * @param message the message displayed
 	 * @param blockOnOpen block
 	 * @param elements The elements, which can be selected.
 	 * @param reference The element, to which the selection is made and to which other elements are compared.
 	 */
-	public MESuggestedSelectionDialog(Shell shell, boolean multi, String title, boolean blockOnOpen,
+	public MESuggestedSelectionDialog(Shell shell, boolean multi, String title, String message, boolean blockOnOpen,
 		Collection<ModelElement> elements, ModelElement reference) {
 		super(shell, multi);
 		this.reference = reference;
 		setTitle(title);
+		setMessage(message);
 		setBlockOnOpen(blockOnOpen);
 		setInitialPattern("**", NONE);
 
 		relevanceMap = new HashMap<ModelElement, Double>(elements.size());
 		resources = elements;
 		if (reference != null) {
-			relevanceMap = RecommendationManager.getInstance().getMatchMap("words", reference, elements);
+			relevanceMap = RecommendationManager.getInstance().getMatchMap(this.reference, elements);
 		}
 
 		labelProvider = new RelevanceWrappedLabelProvider(relevanceMap);
@@ -300,59 +300,6 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 				return "No item selected.";
 			} else {
 				return "Multiple elements selected.";
-			}
-		}
-	}
-
-	/**
-	 * Tried to create a fake history to push certain values to the top- No success.
-	 * 
-	 * @deprecated
-	 * @author henning femmer
-	 */
-	@Deprecated
-	private class FakeSelectionHistory extends SelectionHistory {
-		/*
-		 * @see
-		 * org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.SelectionHistory#restoreItemFromMemento(org.eclipse.ui
-		 * .IMemento)
-		 */
-		@Override
-		protected Object restoreItemFromMemento(IMemento element) {
-			return element.getString("resource"); //$NON-NLS-1$
-		}
-
-		/*
-		 * @see
-		 * org.eclipse.ui.dialogs.FilteredItemsSelectionDialog.SelectionHistory#storeItemToMemento(java.lang.Object,
-		 * org.eclipse.ui.IMemento)
-		 */
-		@Override
-		protected void storeItemToMemento(Object item, IMemento element) {
-			if (item instanceof ModelElement) {
-				element.putString("resource", ((ModelElement) item).getName());
-			} else if (item instanceof EList<?>) {
-				EList<Object> eList = (EList<Object>) item;
-				for (Object me : eList) {
-					if (me instanceof ModelElement) {
-						element.putString("resource", ((ModelElement) me).getName());
-					}
-				}
-			} else {
-				element.putString("resource", item.toString());
-			}
-
-		}
-
-		/**
-		 * This method was meant to push an element in the history, but is not working in this case.
-		 * 
-		 * @param item the item
-		 * @param value the value
-		 */
-		public void pushValue(Object item, int value) {
-			for (int i = 0; i < value; i++) {
-				this.accessed(item);
 			}
 		}
 	}
