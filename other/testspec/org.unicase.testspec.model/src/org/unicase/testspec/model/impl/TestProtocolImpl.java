@@ -27,6 +27,7 @@ import org.unicase.testspec.model.TestProtocol;
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestReport <em>Test Report</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestState <em>Test State</em>}</li>
  *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestCase <em>Test Case</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.impl.TestProtocolImpl#getTestSteps <em>Test Steps</em>}</li>
  * </ul>
  * </p>
  *
@@ -82,6 +83,26 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * @ordered
 	 */
 	protected TestCase testCase;
+
+	/**
+	 * The default value of the '{@link #getTestSteps() <em>Test Steps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestSteps()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String TEST_STEPS_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getTestSteps() <em>Test Steps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getTestSteps()
+	 * @generated
+	 * @ordered
+	 */
+	protected String testSteps = TEST_STEPS_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -187,6 +208,27 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getTestSteps() {
+		return testSteps;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setTestSteps(String newTestSteps) {
+		String oldTestSteps = testSteps;
+		testSteps = newTestSteps;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_PROTOCOL__TEST_STEPS, oldTestSteps, testSteps));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -197,6 +239,8 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
 				if (resolve) return getTestCase();
 				return basicGetTestCase();
+			case ModelPackage.TEST_PROTOCOL__TEST_STEPS:
+				return getTestSteps();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -219,6 +263,9 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
 				setTestCase((TestCase)newValue);
 				return;
+			case ModelPackage.TEST_PROTOCOL__TEST_STEPS:
+				setTestSteps((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -240,6 +287,9 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
 				setTestCase((TestCase)null);
 				return;
+			case ModelPackage.TEST_PROTOCOL__TEST_STEPS:
+				setTestSteps(TEST_STEPS_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -258,6 +308,8 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 				return testState != TEST_STATE_EDEFAULT;
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
 				return testCase != null;
+			case ModelPackage.TEST_PROTOCOL__TEST_STEPS:
+				return TEST_STEPS_EDEFAULT == null ? testSteps != null : !TEST_STEPS_EDEFAULT.equals(testSteps);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -276,6 +328,8 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 		result.append(testReport);
 		result.append(", testState: ");
 		result.append(testState);
+		result.append(", testSteps: ");
+		result.append(testSteps);
 		result.append(')');
 		return result.toString();
 	}

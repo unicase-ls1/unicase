@@ -19,6 +19,7 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestReport <em>Test Report</em>}</li>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestState <em>Test State</em>}</li>
  *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestCase <em>Test Case</em>}</li>
+ *   <li>{@link org.unicase.testspec.model.TestProtocol#getTestSteps <em>Test Steps</em>}</li>
  * </ul>
  * </p>
  *
@@ -107,5 +108,31 @@ public interface TestProtocol extends ModelElement {
 	 * @generated
 	 */
 	void setTestCase(TestCase value);
+
+	/**
+	 * Returns the value of the '<em><b>Test Steps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Steps</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Steps</em>' attribute.
+	 * @see #setTestSteps(String)
+	 * @see org.unicase.testspec.model.ModelPackage#getTestProtocol_TestSteps()
+	 * @model
+	 * @generated
+	 */
+	String getTestSteps();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.testspec.model.TestProtocol#getTestSteps <em>Test Steps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Steps</em>' attribute.
+	 * @see #getTestSteps()
+	 * @generated
+	 */
+	void setTestSteps(String value);
 
 } // TestProtocol
