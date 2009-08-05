@@ -35,5 +35,11 @@
             file="contexts.xml">
       </contexts>
    </extension>
+   <extension
+         point="org.unicase.analyzer.analyzer">
+      <client_analyzer
+            class="org.unicase.linkrecommendationevaluation.LinkRecommendationAnalyzer">
+      </client_analyzer>
+   </extension>
 
 </plugin>
