@@ -38,6 +38,7 @@ import org.unicase.model.requirement.NonFunctionalRequirement;
 public interface TestCase extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
+	 * The literals are from the enumeration {@link org.unicase.testspec.model.EnumType}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Type</em>' attribute isn't clear,
@@ -45,22 +46,24 @@ public interface TestCase extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Type</em>' attribute.
-	 * @see #setType(String)
+	 * @see org.unicase.testspec.model.EnumType
+	 * @see #setType(EnumType)
 	 * @see org.unicase.testspec.model.ModelPackage#getTestCase_Type()
 	 * @model
 	 * @generated
 	 */
-	String getType();
+	EnumType getType();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.testspec.model.TestCase#getType <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Type</em>' attribute.
+	 * @see org.unicase.testspec.model.EnumType
 	 * @see #getType()
 	 * @generated
 	 */
-	void setType(String value);
+	void setType(EnumType value);
 
 	/**
 	 * Returns the value of the '<em><b>Precondition</b></em>' attribute.

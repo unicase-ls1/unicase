@@ -24,6 +24,7 @@ import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.NonFunctionalRequirement;
 
+import org.unicase.testspec.model.EnumType;
 import org.unicase.testspec.model.ModelPackage;
 import org.unicase.testspec.model.TestCase;
 import org.unicase.testspec.model.TestStep;
@@ -56,7 +57,7 @@ public class TestCaseImpl extends ModelElementImpl implements TestCase {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String TYPE_EDEFAULT = null;
+	protected static final EnumType TYPE_EDEFAULT = EnumType.UNIT;
 
 	/**
 	 * The cached value of the '{@link #getType() <em>Type</em>}' attribute.
@@ -66,7 +67,7 @@ public class TestCaseImpl extends ModelElementImpl implements TestCase {
 	 * @generated
 	 * @ordered
 	 */
-	protected String type = TYPE_EDEFAULT;
+	protected EnumType type = TYPE_EDEFAULT;
 
 	/**
 	 * The default value of the '{@link #getPrecondition() <em>Precondition</em>}' attribute.
@@ -182,7 +183,7 @@ public class TestCaseImpl extends ModelElementImpl implements TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getType() {
+	public EnumType getType() {
 		return type;
 	}
 
@@ -191,9 +192,9 @@ public class TestCaseImpl extends ModelElementImpl implements TestCase {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(String newType) {
-		String oldType = type;
-		type = newType;
+	public void setType(EnumType newType) {
+		EnumType oldType = type;
+		type = newType == null ? TYPE_EDEFAULT : newType;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_CASE__TYPE, oldType, type));
 	}
@@ -387,7 +388,7 @@ public class TestCaseImpl extends ModelElementImpl implements TestCase {
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
 			case ModelPackage.TEST_CASE__TYPE:
-				setType((String)newValue);
+				setType((EnumType)newValue);
 				return;
 			case ModelPackage.TEST_CASE__PRECONDITION:
 				setPrecondition((String)newValue);
@@ -454,7 +455,7 @@ public class TestCaseImpl extends ModelElementImpl implements TestCase {
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
 			case ModelPackage.TEST_CASE__TYPE:
-				return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
+				return type != TYPE_EDEFAULT;
 			case ModelPackage.TEST_CASE__PRECONDITION:
 				return PRECONDITION_EDEFAULT == null ? precondition != null : !PRECONDITION_EDEFAULT.equals(precondition);
 			case ModelPackage.TEST_CASE__POSTCONDITION:
