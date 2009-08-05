@@ -154,6 +154,7 @@ public class MECommentReplyWidget extends Composite {
 
 		final Text inputText = new Text(inputEntry, SWT.MULTI | SWT.WRAP | SWT.BORDER | SWT.V_SCROLL);
 		GridDataFactory.fillDefaults().grab(true, false).hint(-1, 40).applyTo(inputText);
+		inputText.setBackground(getDisplay().getSystemColor(SWT.COLOR_WHITE));
 
 		ImageHyperlink closeButton = new ImageHyperlink(inputEntry, SWT.TOP);
 		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(closeButton);

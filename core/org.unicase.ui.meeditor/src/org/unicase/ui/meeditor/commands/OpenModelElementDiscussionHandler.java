@@ -58,8 +58,8 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 				if (activeEditor instanceof MEEditor) {
 					MEEditor meEditor = (MEEditor) activeEditor;
 					meEditor.setActivePage("Discussion");
-					if (meEditor.getActivePageInstance() instanceof METhreadPage && toggle != null
-						&& toggle.equals("toggle")) {
+					boolean shouldToggle = (toggle != null && toggle.equals("toggle")) || me.getComments().isEmpty();
+					if (meEditor.getActivePageInstance() instanceof METhreadPage && shouldToggle) {
 						((METhreadPage) meEditor.getActivePageInstance()).addComment();
 					}
 				}
@@ -71,5 +71,4 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 
 		return null;
 	}
-
 }
