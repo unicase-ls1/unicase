@@ -88,7 +88,6 @@ public class HistoryBrowserView extends ViewPart {
 	 * Provides popup menu for versions.
 	 * 
 	 * @author shterevg
-	 * 
 	 */
 	private final class PopupMenuListener implements IMenuListener {
 		public void menuAboutToShow(IMenuManager manager) {
@@ -97,14 +96,11 @@ public class HistoryBrowserView extends ViewPart {
 			if (obj instanceof TreeNode) {
 				TreeNode node = (TreeNode) obj;
 				if (node.getValue() instanceof HistoryInfo
-						&& ((HistoryInfo) node.getValue()).getChangePackage() != null
-						&& ((HistoryInfo) node.getValue()).getChangePackage()
-								.getLogMessage() != null) {
-					AccessControlHelper helper = new AccessControlHelper(
-							projectSpace.getUsersession());
+					&& ((HistoryInfo) node.getValue()).getChangePackage() != null
+					&& ((HistoryInfo) node.getValue()).getChangePackage().getLogMessage() != null) {
+					AccessControlHelper helper = new AccessControlHelper(projectSpace.getUsersession());
 					try {
-						helper.checkProjectAdminAccess((ProjectId) EcoreUtil
-								.copy(projectSpace.getProjectId()));
+						helper.checkProjectAdminAccess((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
 						manager.add(addTagAction);
 						manager.add(removeTagAction);
 						manager.add(new Separator());
@@ -121,7 +117,6 @@ public class HistoryBrowserView extends ViewPart {
 	 * Provides remove tag action.
 	 * 
 	 * @author shterevg
-	 * 
 	 */
 	private final class RemoveTagAction extends Action {
 		private final LabelProvider tagLabelProvider;
@@ -135,9 +130,8 @@ public class HistoryBrowserView extends ViewPart {
 			ISelection selection = viewer.getSelection();
 			Object obj = ((IStructuredSelection) selection).getFirstElement();
 			HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
-			ElementListSelectionDialog dlg = new ElementListSelectionDialog(
-					PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-							.getShell(), tagLabelProvider);
+			ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getShell(), tagLabelProvider);
 			dlg.setElements(historyInfo.getTagSpecs().toArray());
 			dlg.setTitle("Tag selection");
 			dlg.setBlockOnOpen(true);
@@ -208,24 +202,19 @@ public class HistoryBrowserView extends ViewPart {
 		this.parent = parent;
 
 		noProjectHint = new Label(parent, SWT.WRAP);
-		GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.CENTER).grab(true,
-				true).applyTo(noProjectHint);
-		noProjectHint
-				.setText("Please call 'Show history' from the context menu of an element in the navigator.");
+		GridDataFactory.fillDefaults().align(SWT.CENTER, SWT.CENTER).grab(true, true).applyTo(noProjectHint);
+		noProjectHint.setText("Please call 'Show history' from the context menu of an element in the navigator.");
 
 		viewer = new TreeViewer(parent, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(
-				viewer.getControl());
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(viewer.getControl());
 		ColumnViewerToolTipSupport.enableFor(viewer);
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
 				if (event.getSelection() instanceof IStructuredSelection) {
-					TreeNode node = (TreeNode) ((IStructuredSelection) event
-							.getSelection()).getFirstElement();
+					TreeNode node = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
 					if (node.getValue() instanceof ModelElement) {
-						ActionHelper.openModelElement((ModelElement) node
-								.getValue(), VIEW_ID);
+						ActionHelper.openModelElement((ModelElement) node.getValue(), VIEW_ID);
 					}
 				}
 
@@ -249,8 +238,7 @@ public class HistoryBrowserView extends ViewPart {
 
 		};
 
-		expand.setImageDescriptor(Activator
-				.getImageDescriptor("icons/expandall.gif"));
+		expand.setImageDescriptor(Activator.getImageDescriptor("icons/expandall.gif"));
 		menuManager.add(expand);
 
 		Action collapse = new Action() {
@@ -260,8 +248,7 @@ public class HistoryBrowserView extends ViewPart {
 			}
 
 		};
-		collapse.setImageDescriptor(Activator
-				.getImageDescriptor("icons/collapseall.gif"));
+		collapse.setImageDescriptor(Activator.getImageDescriptor("icons/collapseall.gif"));
 		menuManager.add(collapse);
 
 		Action refresh = new Action() {
@@ -271,8 +258,7 @@ public class HistoryBrowserView extends ViewPart {
 			}
 
 		};
-		refresh.setImageDescriptor(Activator
-				.getImageDescriptor("/icons/refresh.png"));
+		refresh.setImageDescriptor(Activator.getImageDescriptor("/icons/refresh.png"));
 		refresh.setToolTipText("Refresh");
 		menuManager.add(refresh);
 
@@ -281,11 +267,9 @@ public class HistoryBrowserView extends ViewPart {
 			public void run() {
 				boolean showRootsCache = contentProvider.showRootNodes();
 				if (isChecked()) {
-					contentProvider = new SCMContentProvider.Compact(viewer,
-							projectSpace.getProject());
+					contentProvider = new SCMContentProvider.Compact(viewer, projectSpace.getProject());
 				} else {
-					contentProvider = new SCMContentProvider.Detailed(viewer,
-							projectSpace.getProject());
+					contentProvider = new SCMContentProvider.Detailed(viewer, projectSpace.getProject());
 				}
 				contentProvider.setShowRootNodes(showRootsCache);
 				viewer.setContentProvider(contentProvider);
@@ -293,8 +277,7 @@ public class HistoryBrowserView extends ViewPart {
 			}
 
 		};
-		groupByMe.setImageDescriptor(Activator
-				.getImageDescriptor("/icons/groupByME.png"));
+		groupByMe.setImageDescriptor(Activator.getImageDescriptor("/icons/groupByME.png"));
 		groupByMe.setToolTipText("Group by model element");
 		groupByMe.setChecked(true);
 		menuManager.add(groupByMe);
@@ -313,12 +296,9 @@ public class HistoryBrowserView extends ViewPart {
 
 		};
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		showRoots.setImageDescriptor(ImageDescriptor
-				.createFromImage(adapterFactoryLabelProvider
-						.getImage(VersioningFactory.eINSTANCE
-								.createChangePackage())));
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		showRoots.setImageDescriptor(ImageDescriptor.createFromImage(adapterFactoryLabelProvider
+			.getImage(VersioningFactory.eINSTANCE.createChangePackage())));
 		showRoots.setToolTipText("Show revision nodes");
 		showRoots.setChecked(true);
 		menuManager.add(showRoots);
@@ -334,9 +314,7 @@ public class HistoryBrowserView extends ViewPart {
 			}
 
 		};
-		prev
-				.setImageDescriptor(Activator
-						.getImageDescriptor("/icons/prev.png"));
+		prev.setImageDescriptor(Activator.getImageDescriptor("/icons/prev.png"));
 		prev.setToolTipText("Previous " + (startOffset + 1) + " items");
 		menuManager.add(prev);
 
@@ -351,33 +329,28 @@ public class HistoryBrowserView extends ViewPart {
 			}
 
 		};
-		next
-				.setImageDescriptor(Activator
-						.getImageDescriptor("/icons/next.png"));
+		next.setImageDescriptor(Activator.getImageDescriptor("/icons/next.png"));
 		next.setToolTipText("Next " + (startOffset + 1) + " items");
 		menuManager.add(next);
 
 		Action jumpTo = new Action() {
 			@Override
 			public void run() {
-				InputDialog inputDialog = new InputDialog(getSite().getShell(),
-						"Go to revision", "Revision", "", null);
+				InputDialog inputDialog = new InputDialog(getSite().getShell(), "Go to revision", "Revision", "", null);
 				if (inputDialog.open() == Window.OK) {
 					try {
 						int temp = Integer.parseInt(inputDialog.getValue());
 						currentEnd = temp;
 						refresh();
 					} catch (NumberFormatException e) {
-						MessageDialog.openError(getSite().getShell(), "Error",
-								"A numeric value was expected!");
+						MessageDialog.openError(getSite().getShell(), "Error", "A numeric value was expected!");
 						run();
 					}
 				}
 			}
 
 		};
-		jumpTo.setImageDescriptor(Activator
-				.getImageDescriptor("/icons/magnifier.png"));
+		jumpTo.setImageDescriptor(Activator.getImageDescriptor("/icons/magnifier.png"));
 		jumpTo.setToolTipText("Go to revision...");
 		menuManager.add(jumpTo);
 	}
@@ -387,6 +360,8 @@ public class HistoryBrowserView extends ViewPart {
 	 */
 	protected void refresh() {
 		load(currentEnd);
+		viewer.setContentProvider(contentProvider);
+		viewer.setLabelProvider(labelProvider);
 		viewer.setInput(getHistoryInfos());
 	}
 
@@ -398,8 +373,7 @@ public class HistoryBrowserView extends ViewPart {
 				try {
 					loadContent(end);
 				} catch (InvalidVersionSpecException e) {
-					MessageDialog.openError(getShell(), "Invalid revision",
-							"The requested revision was invalid");
+					MessageDialog.openError(getShell(), "Invalid revision", "The requested revision was invalid");
 					currentEnd = projectSpace.getBaseVersion().getIdentifier();
 					refresh();
 				}
@@ -425,19 +399,17 @@ public class HistoryBrowserView extends ViewPart {
 		}
 		HistoryQuery query = getQuery(end);
 		List<HistoryInfo> historyInfo = projectSpace.getUsersession()
-				.getHistoryInfo(projectSpace.getProjectId(), query);
+			.getHistoryInfo(projectSpace.getProjectId(), query);
 
 		// Event logging
-		ShowHistoryEvent historyEvent = EventsFactory.eINSTANCE
-				.createShowHistoryEvent();
+		ShowHistoryEvent historyEvent = EventsFactory.eINSTANCE.createShowHistoryEvent();
 		historyEvent.setSourceVersion(query.getSource());
 		historyEvent.setTargetVersion(query.getTarget());
 		historyEvent.setTimestamp(new Date());
 		EList<ModelElementId> modelElements = query.getModelElements();
 		if (modelElements != null) {
 			for (ModelElementId modelElementId : modelElements) {
-				historyEvent.getModelElement().add(
-						ModelUtil.clone(modelElementId));
+				historyEvent.getModelElement().add(ModelUtil.clone(modelElementId));
 			}
 		}
 		projectSpace.addEvent(historyEvent);
@@ -445,8 +417,7 @@ public class HistoryBrowserView extends ViewPart {
 		if (historyInfo != null) {
 			for (HistoryInfo hi : historyInfo) {
 				if (hi.getPrimerySpec().equals(projectSpace.getBaseVersion())) {
-					TagVersionSpec spec = VersioningFactory.eINSTANCE
-							.createTagVersionSpec();
+					TagVersionSpec spec = VersioningFactory.eINSTANCE.createTagVersionSpec();
 					spec.setName(VersionSpec.BASE);
 					hi.getTagSpecs().add(spec);
 					break;
@@ -457,24 +428,19 @@ public class HistoryBrowserView extends ViewPart {
 		}
 		for (HistoryInfo hi : historyInfos) {
 			if (hi.getChangePackage() != null) {
-				changePackageCache.put(hi.getPrimerySpec().getIdentifier(), hi
-						.getChangePackage());
+				changePackageCache.put(hi.getPrimerySpec().getIdentifier(), hi.getChangePackage());
 			}
 		}
-		changePackageVisualizationHelper = new ChangePackageVisualizationHelper(
-				new ArrayList<ChangePackage>(changePackageCache.values()),
-				projectSpace.getProject());
-		labelProvider
-				.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
-		contentProvider
-				.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+		changePackageVisualizationHelper = new ChangePackageVisualizationHelper(new ArrayList<ChangePackage>(
+			changePackageCache.values()), projectSpace.getProject());
+		labelProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
+		contentProvider.setChangePackageVisualizationHelper(changePackageVisualizationHelper);
 	}
 
 	/**
 	 * Set the input for the History Browser.
 	 * 
-	 * @param projectSpace
-	 *            the input project space
+	 * @param projectSpace the input project space
 	 */
 	public void setInput(ProjectSpace projectSpace) {
 		setInput(projectSpace, null);
@@ -483,10 +449,8 @@ public class HistoryBrowserView extends ViewPart {
 	/**
 	 * Set the input for the History Browser.
 	 * 
-	 * @param projectSpace
-	 *            the input project space
-	 * @param me
-	 *            the input model element
+	 * @param projectSpace the input project space
+	 * @param me the input model element
 	 */
 	public void setInput(ProjectSpace projectSpace, ModelElement me) {
 		noProjectHint.dispose();
@@ -512,14 +476,11 @@ public class HistoryBrowserView extends ViewPart {
 		}
 		setContentDescription(label);
 		labelProvider = new SCMLabelProvider(project);
-		viewer.setContentProvider(contentProvider);
-		viewer.setLabelProvider(labelProvider);
 		refresh();
 	}
 
 	private void getHeadVersionIdentifier() throws EmfStoreException {
-		PrimaryVersionSpec resolveVersionSpec = projectSpace
-				.resolveVersionSpec(VersionSpec.HEAD_VERSION);
+		PrimaryVersionSpec resolveVersionSpec = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION);
 		int identifier = resolveVersionSpec.getIdentifier();
 		headVersion = identifier;
 	}
@@ -535,11 +496,9 @@ public class HistoryBrowserView extends ViewPart {
 		int temp = end - startOffset;
 		int start = (temp > 0 ? temp : 0);
 
-		PrimaryVersionSpec source = VersioningFactory.eINSTANCE
-				.createPrimaryVersionSpec();
+		PrimaryVersionSpec source = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		source.setIdentifier(start);
-		PrimaryVersionSpec target = VersioningFactory.eINSTANCE
-				.createPrimaryVersionSpec();
+		PrimaryVersionSpec target = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		target.setIdentifier(end);
 		query.setSource(source);
 		query.setTarget(target);
@@ -561,10 +520,8 @@ public class HistoryBrowserView extends ViewPart {
 		ArrayList<HistoryInfo> revisions = new ArrayList<HistoryInfo>();
 		if (projectSpace != null) {
 			// TODO: add a feature "hide local revision"
-			HistoryInfo localHistoryInfo = VersioningFactory.eINSTANCE
-					.createHistoryInfo();
-			ChangePackage changePackage = projectSpace
-					.getLocalChangePackage(false);
+			HistoryInfo localHistoryInfo = VersioningFactory.eINSTANCE.createHistoryInfo();
+			ChangePackage changePackage = projectSpace.getLocalChangePackage(false);
 			localHistoryInfo.setChangePackage(changePackage);
 			revisions.add(localHistoryInfo);
 		}
@@ -576,13 +533,10 @@ public class HistoryBrowserView extends ViewPart {
 	/**
 	 * Adds a tag to a version.
 	 * 
-	 * @param versionSpec
-	 *            the version
-	 * @param tag
-	 *            the tag
+	 * @param versionSpec the version
+	 * @param tag the tag
 	 */
-	public void addTag(final PrimaryVersionSpec versionSpec,
-			final TagVersionSpec tag) {
+	public void addTag(final PrimaryVersionSpec versionSpec, final TagVersionSpec tag) {
 
 		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
 
@@ -607,17 +561,15 @@ public class HistoryBrowserView extends ViewPart {
 	/**
 	 * Checks out a specific revision.
 	 * 
-	 * @param versionSpec
-	 *            the version
+	 * @param versionSpec the version
 	 */
 	public void checkout(final PrimaryVersionSpec versionSpec) {
 		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
 
 			@Override
 			protected Object run() throws EmfStoreException {
-				WorkspaceManager.getInstance().getCurrentWorkspace().checkout(
-						projectSpace.getUsersession(),
-						projectSpace.getProjectInfo(), versionSpec);
+				WorkspaceManager.getInstance().getCurrentWorkspace().checkout(projectSpace.getUsersession(),
+					projectSpace.getProjectInfo(), versionSpec);
 				return null;
 			}
 
@@ -636,13 +588,10 @@ public class HistoryBrowserView extends ViewPart {
 	/**
 	 * Removes a tag to a version.
 	 * 
-	 * @param versionSpec
-	 *            the version
-	 * @param tag
-	 *            the tag
+	 * @param versionSpec the version
+	 * @param tag the tag
 	 */
-	public void removeTag(final PrimaryVersionSpec versionSpec,
-			final TagVersionSpec tag) {
+	public void removeTag(final PrimaryVersionSpec versionSpec, final TagVersionSpec tag) {
 
 		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
 
@@ -686,12 +635,9 @@ public class HistoryBrowserView extends ViewPart {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection)
-						.getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj)
-						.getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil
-						.copy(historyInfo.getPrimerySpec());
+				Object obj = ((IStructuredSelection) selection).getFirstElement();
+				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
+				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
 				checkout(versionSpec);
 			}
 		};
@@ -702,19 +648,15 @@ public class HistoryBrowserView extends ViewPart {
 			@Override
 			public void run() {
 				ISelection selection = viewer.getSelection();
-				Object obj = ((IStructuredSelection) selection)
-						.getFirstElement();
-				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj)
-						.getValue();
-				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil
-						.copy(historyInfo.getPrimerySpec());
-				InputDialog inputDialog = new InputDialog(getSite().getShell(),
-						"Add tag", "Please enter the tag's name.", "", null);
+				Object obj = ((IStructuredSelection) selection).getFirstElement();
+				HistoryInfo historyInfo = (HistoryInfo) ((TreeNode) obj).getValue();
+				PrimaryVersionSpec versionSpec = (PrimaryVersionSpec) EcoreUtil.copy(historyInfo.getPrimerySpec());
+				InputDialog inputDialog = new InputDialog(getSite().getShell(), "Add tag",
+					"Please enter the tag's name.", "", null);
 				inputDialog.open();
 				String str = inputDialog.getValue().trim();
 				if (!(str == null || str.equals(""))) {
-					TagVersionSpec tag = VersioningFactory.eINSTANCE
-							.createTagVersionSpec();
+					TagVersionSpec tag = VersioningFactory.eINSTANCE.createTagVersionSpec();
 					tag.setName(str);
 					addTag(versionSpec, tag);
 					refresh();
@@ -745,12 +687,12 @@ public class HistoryBrowserView extends ViewPart {
 	/**
 	 * Highlights the given operations.
 	 * 
-	 * @param operations
-	 *            the operations
+	 * @param operations the operations
 	 */
 	public void highlightOperations(List<OperationId> operations) {
 		labelProvider.getHighlighted().clear();
 		labelProvider.getHighlighted().addAll(operations);
+		refresh();
 	}
 
 }

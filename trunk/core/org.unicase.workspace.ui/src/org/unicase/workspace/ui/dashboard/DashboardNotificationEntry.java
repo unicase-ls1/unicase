@@ -46,18 +46,17 @@ import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationIgnoreEvent;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationReadEvent;
-import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.rationale.RationalePackage;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.URLHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
+import org.unicase.workspace.notification.provider.PushedNotificationProvider;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -200,14 +199,13 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		localResources.add(lightBlue);
 
 		notificationColor = getDisplay().getSystemColor(SWT.COLOR_WHITE);
-		if (getNotification().getSender() != null
-			&& getNotification().getSender().equals("Pushed Notification Provider")) {
+		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)) {
 			notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
 		}
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
 			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		comments = getComment();
+		comments = getComments();
 		createEntry();
 	}
 
@@ -355,7 +353,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 
 		// the message
 		entryMessage = new Link(notificationEntry, SWT.WRAP | SWT.MULTI);
-		String text = getMessage();
+		String text = getNotification().getMessage();
 		if (text == null) {
 			text = "";
 		}
@@ -388,7 +386,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			entryMessage.addMouseListener(toggleDrawerAdapter);
 			notificationComposite.addMouseListener(toggleDrawerAdapter);
 		}
-		if (comments != null) {
+		if (comments.length > 0) {
 			DashboardToolbarAction toogleComments = new DashboardToolbarAction(toolbar, "comment.png", 110);
 			toogleComments.setToolTipText("Show comments");
 			Label toggleCommentsNumber = new Label(toolbar, SWT.WRAP);
@@ -555,37 +553,18 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		projectSpace.addEvent(notificationIgnoreEvent);
 	}
 
-	private Comment[] getComment() {
-		if (getNotification().getProvider() != null
-			&& getNotification().getProvider().equals("Pushed notifications provider")) {
+	private Comment[] getComments() {
+		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)) {
 			Comment tempComment = RationaleFactory.eINSTANCE.createComment();
 			tempComment.setName(getNotification().getDetails());
 			return new Comment[] { tempComment };
 		} else if (getNotification().getRelatedModelElements().size() == 1) {
-			ArrayList<Comment> comments = new ArrayList<Comment>();
-			for (ModelElementId modelElementId : getNotification().getRelatedModelElements()) {
-				ModelElement modelElement = getProjectSpace().getProject().getModelElement(modelElementId);
-				if (modelElement != null) {
-					for (Annotation annotation : modelElement.getAnnotations()) {
-						if (RationalePackage.eINSTANCE.getComment().isInstance(annotation)) {
-							comments.add((Comment) annotation);
-						}
-					}
-				}
-			}
-			if (comments.size() > 0) {
-				return comments.toArray(new Comment[0]);
+			ModelElementId modelElementId = getNotification().getRelatedModelElements().get(0);
+			ModelElement modelElement = getProjectSpace().getProject().getModelElement(modelElementId);
+			if (modelElement != null) {
+				return modelElement.getComments().toArray(new Comment[0]);
 			}
 		}
-		return null;
-	}
-
-	private String getMessage() {
-		String message = getNotification().getMessage();
-		String[] items = message.split("\\%\\%\\%");
-		if (items.length > 1) {
-			return items[0];
-		}
-		return message;
+		return new Comment[0];
 	}
 }
