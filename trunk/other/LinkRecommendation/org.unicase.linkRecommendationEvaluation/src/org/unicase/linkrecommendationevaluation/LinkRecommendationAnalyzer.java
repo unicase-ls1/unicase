@@ -1,4 +1,4 @@
-package org.unicase.linkrecommendationevaluation.views;
+package org.unicase.linkrecommendationevaluation;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -29,16 +29,10 @@ import org.unicase.model.task.TaskPackage;
 
 public class LinkRecommendationAnalyzer implements DataAnalyzer{
 	
-	private List<EReference> relevantReferences;
+	private List<EClass> relevantReferences;
 	private Double threshold;
-	
-	public void LinkRecommendationAnalyzer(){
-		//Thats how to get a reference
-		// Have one place where you define all relevant reference for the evaluation
-		//like this
-		relevantReferences = new ArrayList<EReference>();
-		
-		relevantReferences.add(ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements());
+
+	public LinkRecommendationAnalyzer(){
 		threshold = 0.1;
 	}
 	
@@ -46,13 +40,26 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer{
 		List<String> names = new ArrayList<String>();
 		names.add("Approach1PrecisionLinkTypeA");
 		names.add("Approach1RecallLinkTypeA");
-		names.add("Approach1PrecisionLinkTypeB");
-		names.add("Approach1RecallLinkTypeB");
+//		names.add("Approach1PrecisionLinkTypeB");
+//		names.add("Approach1RecallLinkTypeB");
 		//Build based on relevant links and approaches
-		return null;
+		return names;
+	}
+	
+	private void addRelevantReferences() {
+		//Thats how to get a reference
+		// Have one place where you define all relevant reference for the evaluation
+		// like this
+		relevantReferences = new ArrayList<EClass>();
+		relevantReferences.add(ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements().getEReferenceType());
+		
 	}
 
 	public List<Object> getValue(ProjectAnalysisData data) {
+		if(relevantReferences == null) {
+			addRelevantReferences();
+		}
+		
 //		EList<ChangePackage> changePackages = data.getChangePackages();
 //		List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
 //		for(ChangePackage changePackage: changePackages){
@@ -63,18 +70,22 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer{
 //			if(operation instanceof ReferenceOperation);
 //		}
 //		
+		
+		
 		List<Object> results = new ArrayList<Object>();
-		results.add("foo");
-		results.add("bar");
 		
 		Project project = data.getProjectState();
 		EList<ModelElement> allModelElements = project.getAllModelElements();
+		
+		double foundAndRec =0, foundNotRec =0;
+		double suggestedElements = 0, candidateElements = 0;
 		
 		for(ModelElement modelElement: allModelElements){
 			List<EReference> refs = modelElement.eClass().getEReferences();
 			
 			for(EReference eReference : refs) {
-				if (!relevantReferences.contains(eReference)) {
+				
+				if (!relevantReferences.contains(eReference.getEReferenceType())) {
 					continue;
 				}
 				
@@ -92,10 +103,13 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer{
 				EClass clazz = eReference.getEReferenceType();
 				Collection<ModelElement> candidates = modelElement.getProject().getAllModelElementsbyClass(clazz,
 					new BasicEList<ModelElement>());
+				//add to statistics:
+				candidateElements += candidates.size();
 				
 				Map<ModelElement, Double>relevanceMap = RecommendationManager.getInstance().getMatchMap(modelElement, candidates);
+				//add to statistics
+				suggestedElements += getNumberSuggestedElements(relevanceMap);
 				
-				double foundAndRec =0, foundNotRec =0;
 				for(ModelElement el : correctMEs) {
 					Double val = relevanceMap.get(el);
 					if(val!=null && val>=threshold) {
@@ -105,16 +119,34 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer{
 						foundNotRec++;
 					}	
 				}
-				//TODO: relevance map. size is wrong, just take elements above threshold.
-				double precision = foundAndRec/relevanceMap.size();
-				double recall = foundAndRec/candidates.size();
 				
-				results.add(precision);
-				results.add(recall);
+				System.out.println("ME: "+modelElement.getName()+" Suggested: "+suggestedElements+" candidates "+candidateElements);
+				
 			}
 		}
 		
+
+		double precision = foundAndRec/suggestedElements;
+		double recall = foundAndRec/candidateElements;
+		
+		results.add(precision);
+		results.add(recall);
+		
 		return results;
+	}
+
+	/**
+	 * @param relevanceMap
+	 * @return
+	 */
+	private int getNumberSuggestedElements(Map<ModelElement, Double> relevanceMap) {
+		int relevanceMapSuggestedNumbers = 0;
+		for(Double val : relevanceMap.values()) {
+			if(val > threshold) {
+				relevanceMapSuggestedNumbers++;
+			}
+		}
+		return relevanceMapSuggestedNumbers;
 	}
 	
 	public TreeIterator<EObject> eAllContents() {
