@@ -45,6 +45,11 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 	private Set<ModelElement> elementsToExclude;
 
 	/**
+	 * The name.
+	 */
+	public static final String NAME = "Task Change Notification Provider";
+
+	/**
 	 * Default constructor.
 	 * 
 	 * @param assignmentClass the class of the assignment - e.g. ActionItem, BugReport, etc.
@@ -69,7 +74,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#getName()
 	 */
 	public String getName() {
-		return "Task Change Notification Provider";
+		return NAME;
 	}
 
 	/**
@@ -95,7 +100,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 			return result;
 		}
 
-		Map<WorkItem, Date> workItems = new HashMap<WorkItem, Date>();
+		Map<WorkItem, AbstractOperation> workItems = new HashMap<WorkItem, AbstractOperation>();
 
 		Set<WorkItem> workItemsOfUser = TaskQuery.getWorkItemsOfUser(user);
 
@@ -114,7 +119,7 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 				}
 				for (WorkItem workItem : workItemsOfUser) {
 					if (workItem.getModelElementId().equals(modelElementId)) {
-						workItems.put(workItem, operation.getClientDate());
+						workItems.put(workItem, operation);
 					}
 				}
 			}
@@ -132,14 +137,15 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 
 	}
 
-	private ESNotification createNotification(ProjectSpace projectSpace, User user, Map<WorkItem, Date> workItemMap) {
+	private ESNotification createNotification(ProjectSpace projectSpace, User user,
+		Map<WorkItem, AbstractOperation> workItemMap) {
 		Set<WorkItem> workItems = workItemMap.keySet();
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("Changed work items");
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(user.getName());
 		notification.setSeen(false);
-		notification.setSender(getName());
+		notification.setProvider(getName());
 		StringBuilder stringBuilder = new StringBuilder();
 		if (workItems.size() == 1) {
 			stringBuilder.append("Your ");
@@ -171,8 +177,9 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 		notification.setMessage(message);
 		Date date = workItems.iterator().next().getCreationDate();
 		for (WorkItem workItem : workItems) {
+			notification.getRelatedOperations().add(workItemMap.get(workItem).getOperationId());
 			notification.getRelatedModelElements().add(workItem.getModelElementId());
-			Date newDate = workItemMap.get(workItem);
+			Date newDate = workItemMap.get(workItem).getClientDate();
 			if (newDate != null && newDate.after(date)) {
 				date = newDate;
 			}

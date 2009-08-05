@@ -41,6 +41,11 @@ import org.unicase.workspace.util.OrgUnitHelper;
  */
 public class TaskNotificationProvider extends AbstractNotificationProvider {
 
+	/**
+	 * The name.
+	 */
+	public static final String NAME = "Task Notification Provider";
+
 	private Map<WorkItem, AbstractOperation> reviewerItems;
 	private Map<WorkItem, AbstractOperation> assigneeItems;
 	private Map<WorkItem, AbstractOperation> readyForReviewItems;
@@ -66,7 +71,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#getName()
 	 */
 	public String getName() {
-		return "Task Notification Provider";
+		return NAME;
 	}
 
 	/**
@@ -98,7 +103,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 					readyForReviewItems.put(workItem, op);
 				} else if (op.getNewValue().equals(new Boolean(false))
 					&& (workItem.getAssignee().equals(user) || groupsOfOrgUnit.contains(workItem.getAssignee()))) {
-					assigneeItems.put(workItem, op);
+					// assigneeItems.put(workItem, op);
 				}
 			}
 		}
@@ -129,7 +134,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation).getNewValue();
 			ModelElement orgUnit = project.getModelElement(orgUnitId);
 			if (orgUnit != null && (orgUnit.equals(user) || groupsOfOrgUnit.contains(orgUnit))) {
-				assigneeItems.put((WorkItem) modelElement, referenceOperation);
+				// assigneeItems.put((WorkItem) modelElement, referenceOperation);
 			}
 		} else if (featureName.equalsIgnoreCase("assignments")
 			&& (modelElement.equals(user) || groupsOfOrgUnit.contains(modelElement))) {
@@ -137,7 +142,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 			for (ModelElementId wiId : wiIds) {
 				ModelElement wi = project.getModelElement(wiId);
 				if (wi != null) {
-					assigneeItems.put((WorkItem) wi, referenceOperation);
+					// assigneeItems.put((WorkItem) wi, referenceOperation);
 				}
 			}
 		}
@@ -191,7 +196,7 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(user.getName());
 		notification.setSeen(false);
-		notification.setSender(getName());
+		notification.setProvider(getName());
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(message);
 		if (workItems.size() == 1) {

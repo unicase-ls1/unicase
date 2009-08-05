@@ -20,6 +20,7 @@ import org.unicase.workspace.notification.NotificationProvider;
  * Provides notifications on updates of a project space.
  * 
  * @author koegel
+ * @author shterev
  */
 public class UpdateNotificationProvider implements NotificationProvider {
 
@@ -52,7 +53,13 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		}
 
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
-		notification.setCreationDate(new Date());
+		Date date = changePackages.get(0).getLogMessage().getClientDate();
+		for (ChangePackage cp : changePackages) {
+			if (cp.getLogMessage().getClientDate().after(date)) {
+				date = cp.getLogMessage().getClientDate();
+			}
+		}
+		notification.setCreationDate(date);
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("You updated your project to version ");
 		stringBuilder.append(projectSpace.getBaseVersion().getIdentifier());
@@ -60,7 +67,7 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		notification.setName("Updated Project");
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(currentUsername);
-		notification.setSender(getName());
+		notification.setProvider(getName());
 		result.add(notification);
 		return result;
 	}

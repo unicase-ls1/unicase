@@ -42,6 +42,11 @@ public class SubscriptionNotificationProvider implements NotificationProvider {
 	private User user;
 
 	/**
+	 * The name.
+	 */
+	public static final String NAME = "Subscription Notification Provider";
+
+	/**
 	 * Default constructor.
 	 */
 	public SubscriptionNotificationProvider() {
@@ -53,7 +58,7 @@ public class SubscriptionNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#getName()
 	 */
 	public String getName() {
-		return "Subscription Notification Provider";
+		return NAME;
 	}
 
 	/**
