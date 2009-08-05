@@ -65,6 +65,8 @@ public class TestStepItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
+			addInputPropertyDescriptor(object);
+			addOutputPropertyDescriptor(object);
 			addExceptionPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -84,6 +86,50 @@ public class TestStepItemProvider
 				 getString("_UI_TestStep_exception_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_TestStep_exception_feature", "_UI_TestStep_type"),
 				 ModelPackage.Literals.TEST_STEP__EXCEPTION,
+				 true,
+				 true,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Input feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected void addInputPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TestStep_input_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestStep_input_feature", "_UI_TestStep_type"),
+				 ModelPackage.Literals.TEST_STEP__INPUT,
+				 true,
+				 true,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Output feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected void addOutputPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TestStep_output_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestStep_output_feature", "_UI_TestStep_type"),
+				 ModelPackage.Literals.TEST_STEP__OUTPUT,
 				 true,
 				 true,
 				 false,
@@ -126,6 +172,8 @@ public class TestStepItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TestStep.class)) {
+			case ModelPackage.TEST_STEP__INPUT:
+			case ModelPackage.TEST_STEP__OUTPUT:
 			case ModelPackage.TEST_STEP__EXCEPTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
