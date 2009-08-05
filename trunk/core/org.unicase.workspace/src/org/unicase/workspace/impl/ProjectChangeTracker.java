@@ -254,6 +254,13 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 
 	private void save(ModelElement modelElement) {
 		Resource resource = modelElement.eResource();
+
+		// MK, OW: this fix was added to 0.3.31 tag and works, in the current trunk version it doesn't due to unknown
+		// side effects
+		// if this model element is the one to be deleted and if it is not in a separate resource
+		if (resource == null && modelElement.getProject() == null && this.deleteOperation != null) {
+			return;
+		}
 		if (resource == null) {
 			String message = "Save failed: ModelElement \"" + modelElement.getIdentifier() + "\" has no resource!";
 			WorkspaceUtil.logException(message, new IllegalStateException(message));
