@@ -136,8 +136,8 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			throw new IllegalArgumentException("Nothing selected!");
 		}
 		canFinish = false;
-		analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
-//		initConfig();
+//		analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
+		initConfig();
 	}
 	
     private void initConfig() {
@@ -194,8 +194,8 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
     @Override
 	public void addPages(){
     	
-    	loadPage = new LoadPage("LoadPage");
-    	addPage(loadPage);
+//    	loadPage = new LoadPage("LoadPage");
+//    	addPage(loadPage);
     	analyzerPage = new AnalyzerPage("AnalyzerPage");
 		addPage(analyzerPage);
 		iteratorPage = new IteratorPage("IteratorPage");

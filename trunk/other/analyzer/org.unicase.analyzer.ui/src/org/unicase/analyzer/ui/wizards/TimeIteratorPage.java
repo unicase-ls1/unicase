@@ -80,7 +80,6 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	 * {@inheritDoc}
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
-	@SuppressWarnings("cast")
 	public void createControl(Composite parent) {
 		GridData gd;
 		Composite composite = new Composite(parent, SWT.NULL);
@@ -95,11 +94,6 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		stepText = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		stepText.setLayoutData(gd);
-		if(conf.getIterator() != null && conf.getIterator() instanceof TimeIterator){
-			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, (TimeIterator)conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_StepLength());
-			EMFDataBindingContext dbc = new EMFDataBindingContext();
-			dbc.bindValue(SWTObservables.observeText(stepText, SWT.FocusOut), modelObservable, null, null);
-		}
 		stepText.addListener(SWT.KeyUp, this);
 		
 		stepUnitLabel = new Label (composite, SWT.NONE);
@@ -107,9 +101,6 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		stepUnit = new Combo(composite, SWT.BORDER | SWT.READ_ONLY);
 		stepUnit.setLayoutData(new GridData(GridData.END));
 		stepUnit.setItems(UNITS);
-		if(conf.getIterator() != null && conf.getIterator() instanceof TimeIterator){			
-			stepUnit.select(indexOf(((TimeIterator) conf.getIterator()).getStepLengthUnit()));
-		}
 		stepUnit.addListener(SWT.Selection, this);
 		
 		 
@@ -119,11 +110,6 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		 gd.horizontalSpan = ncol;
 		 defaultButton.setLayoutData(gd);
 		 defaultButton.setSelection(false);
-		 if(conf.getIterator() != null && conf.getIterator() instanceof TimeIterator){
-			 IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, (TimeIterator)conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Default());
-			 EMFDataBindingContext dbc = new EMFDataBindingContext();
-			 dbc.bindValue(SWTObservables.observeSelection(defaultButton), modelObservable, null, null);
-		 }
 		 defaultButton.addSelectionListener(new SelectionListener() {
 
 				public void widgetDefaultSelected(SelectionEvent e) {
@@ -152,9 +138,6 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		startDate = new CDateTime(group, CDT.BORDER);
 		startDate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		startDate.setPattern("dd.MM.yyyy HH:mm");
-		if(conf.getIterator() != null && conf.getIterator() instanceof TimeIterator){			
-			startDate.setData(((TimeIterator) conf.getIterator()).getStartDate());
-		}
 		
 		new Label (group, SWT.NONE).setText("End:");		
 		gd = new GridData();
@@ -162,9 +145,6 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		endDate = new CDateTime(group, CDT.BORDER);
 		endDate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		endDate.setPattern("dd.MM.yyyy HH:mm");
-		if(conf.getIterator() != null && conf.getIterator() instanceof TimeIterator){			
-			endDate.setData(((TimeIterator) conf.getIterator()).getEndDate());
-		}
 		
 		gd = new GridData();
 		gd.horizontalAlignment = GridData.BEGINNING;	
@@ -172,11 +152,6 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		forwardButton.setText("Forward");
 		forwardButton.setLayoutData(gd);
 		forwardButton.setSelection(false); 
-		if(conf.getIterator() != null && conf.getIterator() instanceof TimeIterator){
-			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, (TimeIterator)conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Forward());
-			EMFDataBindingContext dbc = new EMFDataBindingContext();
-			dbc.bindValue(SWTObservables.observeSelection(forwardButton), modelObservable, null, null);
-		}
 		forwardButton.addListener(SWT.Selection, this);
 		
 		backwardButton = new Button(group, SWT.RADIO);
@@ -191,11 +166,6 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		gd.horizontalSpan = ncol;
 		returnCopyButton.setLayoutData(gd);
 		returnCopyButton.setSelection(false);
-		if(conf.getIterator() != null && conf.getIterator() instanceof TimeIterator){
-			IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, (TimeIterator)conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Forward());
-			EMFDataBindingContext dbc = new EMFDataBindingContext();
-			dbc.bindValue(SWTObservables.observeSelection(forwardButton), modelObservable, null, null);
-		}
 		returnCopyButton.addListener(SWT.Selection, this);
 		
 		setControl(composite);
@@ -203,6 +173,51 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		
 	}
 	
+	/**
+	 * Initializes the page, i.e. this method is not called at the time this class gets instantiated but later, when the
+	 * page is going to get displayed. Mainly create the databinding here.
+	 */
+	public void initDefaulGroup(){
+		//stepLength
+		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_StepLength());
+		EMFDataBindingContext dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeText(stepText, SWT.FocusOut), modelObservable, null, null);
+		
+		//stepLengthUnit
+		if(conf.getIterator() instanceof TimeIterator){			
+			stepUnit.select(indexOf(((TimeIterator) conf.getIterator()).getStepLengthUnit()));
+		}
+		
+		//default
+		 modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Default());
+		 dbc = new EMFDataBindingContext();
+		 dbc.bindValue(SWTObservables.observeSelection(defaultButton), modelObservable, null, null);
+		
+	}
+	
+	public void initGroup(){
+		
+		//startDate for TimeIterator
+		if(conf.getIterator() instanceof TimeIterator){			
+			startDate.setData(((TimeIterator) conf.getIterator()).getStartDate());
+		}
+		
+		//endDate for TimeIterator
+		if(conf.getIterator() instanceof TimeIterator){			
+			endDate.setData(((TimeIterator) conf.getIterator()).getStartDate());
+		}
+		
+		//forward
+		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_Forward());
+		EMFDataBindingContext dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeSelection(forwardButton), modelObservable, null, null);
+		
+		
+		//return Project Copy
+		modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_ReturnProjectDataCopy());
+		dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeSelection(returnCopyButton), modelObservable, null, null);
+	}
 	
 	private int indexOf(int stepLengthUnit) {
 		for(int i=0; i<CALENDAR_FIELDS.length; i++){
