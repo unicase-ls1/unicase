@@ -69,6 +69,7 @@ public class TestProtocolItemProvider
 			addTestReportPropertyDescriptor(object);
 			addTestStatePropertyDescriptor(object);
 			addTestCasePropertyDescriptor(object);
+			addTestStepsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -140,6 +141,28 @@ public class TestProtocolItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Test Steps feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	protected void addTestStepsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TestProtocol_testSteps_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestProtocol_testSteps_feature", "_UI_TestProtocol_type"),
+				 ModelPackage.Literals.TEST_PROTOCOL__TEST_STEPS,
+				 true,
+				 true,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
+	}
+
+	/**
 	 * This returns TestProtocol.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -175,6 +198,7 @@ public class TestProtocolItemProvider
 		switch (notification.getFeatureID(TestProtocol.class)) {
 			case ModelPackage.TEST_PROTOCOL__TEST_REPORT:
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
+			case ModelPackage.TEST_PROTOCOL__TEST_STEPS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}
