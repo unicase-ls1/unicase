@@ -206,13 +206,22 @@ public interface ModelPackage extends EPackage {
 	int TEST_PROTOCOL__TEST_CASE = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Test Steps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_PROTOCOL__TEST_STEPS = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Test Protocol</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_PROTOCOL_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int TEST_PROTOCOL_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.testspec.model.impl.TestCaseImpl <em>Test Case</em>}' class.
@@ -523,13 +532,31 @@ public interface ModelPackage extends EPackage {
 	int TEST_STEP__COMMENTS = org.unicase.model.ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
+	 * The feature id for the '<em><b>Input</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_STEP__INPUT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Output</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_STEP__OUTPUT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+
+	/**
 	 * The feature id for the '<em><b>Exception</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP__EXCEPTION = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int TEST_STEP__EXCEPTION = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Test Step</em>' class.
@@ -538,7 +565,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TEST_STEP_FEATURE_COUNT = org.unicase.model.ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.testspec.model.EnumState <em>Enum State</em>}' enum.
@@ -692,6 +719,17 @@ public interface ModelPackage extends EPackage {
 	EReference getTestProtocol_TestCase();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.testspec.model.TestProtocol#getTestSteps <em>Test Steps</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Test Steps</em>'.
+	 * @see org.unicase.testspec.model.TestProtocol#getTestSteps()
+	 * @see #getTestProtocol()
+	 * @generated
+	 */
+	EAttribute getTestProtocol_TestSteps();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.testspec.model.TestStep <em>Test Step</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -711,6 +749,28 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 */
 	EAttribute getTestStep_Exception();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.testspec.model.TestStep#getInput <em>Input</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Input</em>'.
+	 * @see org.unicase.testspec.model.TestStep#getInput()
+	 * @see #getTestStep()
+	 * @generated
+	 */
+	EAttribute getTestStep_Input();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.testspec.model.TestStep#getOutput <em>Output</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Output</em>'.
+	 * @see org.unicase.testspec.model.TestStep#getOutput()
+	 * @see #getTestStep()
+	 * @generated
+	 */
+	EAttribute getTestStep_Output();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.testspec.model.EnumState <em>Enum State</em>}'.
@@ -855,6 +915,14 @@ public interface ModelPackage extends EPackage {
 		EReference TEST_PROTOCOL__TEST_CASE = eINSTANCE.getTestProtocol_TestCase();
 
 		/**
+		 * The meta object literal for the '<em><b>Test Steps</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEST_PROTOCOL__TEST_STEPS = eINSTANCE.getTestProtocol_TestSteps();
+
+		/**
 		 * The meta object literal for the '{@link org.unicase.testspec.model.impl.TestStepImpl <em>Test Step</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -871,6 +939,22 @@ public interface ModelPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute TEST_STEP__EXCEPTION = eINSTANCE.getTestStep_Exception();
+
+		/**
+		 * The meta object literal for the '<em><b>Input</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEST_STEP__INPUT = eINSTANCE.getTestStep_Input();
+
+		/**
+		 * The meta object literal for the '<em><b>Output</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute TEST_STEP__OUTPUT = eINSTANCE.getTestStep_Output();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.testspec.model.EnumState <em>Enum State</em>}' enum.
