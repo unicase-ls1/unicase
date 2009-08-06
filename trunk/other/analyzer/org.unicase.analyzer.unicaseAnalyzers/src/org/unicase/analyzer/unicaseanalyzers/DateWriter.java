@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.analyzer.TimeIterator;
-import org.unicase.analyzer.VersionIterator;
+import org.unicase.analyzer.iterator.TimeIterator;
+import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 
 /**
@@ -67,7 +67,8 @@ public class DateWriter implements DataAnalyzer {
 		List<Object> values = new ArrayList<Object>();
 		if(projectIterator instanceof TimeIterator){
 			TimeIterator it = (TimeIterator) projectIterator;
-			calendar.setTime(it.getDateSpec().getDate());
+			//FIXME add the getDateSpec()
+			//calendar.setTime(it.getDateSpec().getDate());
 		}
 		else{
 			List<ChangePackage> changepackages = data.getChangePackages();
