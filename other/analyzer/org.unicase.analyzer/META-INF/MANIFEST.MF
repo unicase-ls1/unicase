@@ -10,7 +10,6 @@ Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Require-Bundle: org.unicase.workspace;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Export-Package: org.unicase.analyzer,
- org.unicase.analyzer.dataanalyzer,
  org.unicase.analyzer.exceptions,
  org.unicase.analyzer.exporter,
  org.unicase.analyzer.exporters,
