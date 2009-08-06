@@ -6,7 +6,6 @@ Bundle-Version: 0.3.18.qualifier
 Bundle-Activator: org.unicase.test.Activator
 Require-Bundle: org.apache.commons.logging;bundle-version="1.0.4",
  org.unicase.ui.common,
- org.unicase.workspace.test,
- org.unicase.analyzer.edit
+ org.unicase.workspace.test
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
