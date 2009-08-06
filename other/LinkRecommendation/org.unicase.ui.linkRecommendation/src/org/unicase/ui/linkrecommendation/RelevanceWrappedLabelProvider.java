@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -22,14 +22,27 @@ public class RelevanceWrappedLabelProvider extends AdapterFactoryLabelProvider {
 
 	private Map<ModelElement, Double> relevanceValues;
 
+	private double threshold;
+
 	/**
 	 * The constructor.
 	 * 
 	 * @param relevanceVals the relevance map: element->double value
+	 * @param threshold the initial threshold, values lower than this are not specially displayed
 	 */
-	public RelevanceWrappedLabelProvider(Map<ModelElement, Double> relevanceVals) {
+	public RelevanceWrappedLabelProvider(Map<ModelElement, Double> relevanceVals, double threshold) {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		this.relevanceValues = relevanceVals;
+		this.threshold = threshold;
+	}
+
+	/**
+	 * Sets the threshold.
+	 * 
+	 * @param value the value
+	 */
+	public void setThreshold(double value) {
+		this.threshold = value;
 	}
 
 	/**
@@ -44,7 +57,7 @@ public class RelevanceWrappedLabelProvider extends AdapterFactoryLabelProvider {
 		String text = super.getText(o);
 		if (o instanceof ModelElement) {
 			Double sim = relevanceValues.get(o);
-			if (sim != null) {
+			if (sim != null && sim >= threshold) {
 				return text + " (Relevance: " + formatDouble(sim) + ")";
 			}
 		}

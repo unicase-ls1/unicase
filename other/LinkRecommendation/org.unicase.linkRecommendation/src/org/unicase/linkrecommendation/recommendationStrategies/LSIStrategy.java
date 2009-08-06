@@ -14,10 +14,11 @@ import org.unicase.linkrecommendation.TDFrequencyMatrix;
 import org.unicase.model.ModelElement;
 
 /**
- * @author henning
+ * This strategy uses latent semantic indexing for similarity measurements.
+ * 
+ * @author Henning Femmer
  */
-public class VectorSpaceModelStrategy implements RecommendationStrategy {
-
+public class LSIStrategy implements RecommendationStrategy {
 	/**
 	 * This method calculates the arithmetic average of all results of the managers matchingStrategies and returns a
 	 * hashmap of all values above the threshold.
@@ -41,18 +42,14 @@ public class VectorSpaceModelStrategy implements RecommendationStrategy {
 			indices.put(me, index);
 		}
 
-		// create an index for every word (for tfmatrix)
-		tdf.createDictionaryIndices();
-
-		// create term frequency matrix
 		tdf.createTDFMatrix();
-
 		// normalize numbers
 		tdf.normalizeDocuments();
-
 		// idf
 		tdf.transformIDF();
 
+		// SVD
+		tdf.transformLSI();
 		System.out.println(tdf);
 
 		int indexBase = indices.get(base);

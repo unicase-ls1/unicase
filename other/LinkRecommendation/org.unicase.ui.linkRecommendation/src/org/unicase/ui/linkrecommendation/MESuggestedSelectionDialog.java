@@ -15,10 +15,13 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.dialogs.IDialogSettings;
-import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Scale;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 import org.unicase.linkrecommendation.RecommendationManager;
@@ -31,7 +34,7 @@ import org.unicase.ui.common.Activator;
  * 
  * @author Henning Femmer
  */
-public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
+public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog implements SelectionListener {
 
 	// This element is the element to which similarity is calculated
 	private ModelElement reference;
@@ -45,7 +48,10 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	// maps modelElement.hashCode() to the similarity factor of the element
 	private Map<ModelElement, Double> relevanceMap;
 
-	private ILabelProvider labelProvider;
+	private RelevanceWrappedLabelProvider labelProvider;
+
+	private double threshold;
+	private Scale scaleWidget;
 
 	/**
 	 * The constructor.
@@ -61,6 +67,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	public MESuggestedSelectionDialog(Shell shell, boolean multi, String title, String message, boolean blockOnOpen,
 		Collection<ModelElement> elements, ModelElement reference) {
 		super(shell, multi);
+		threshold = 0.1;
 		this.reference = reference;
 		setTitle(title);
 		setMessage(message);
@@ -73,7 +80,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 			relevanceMap = RecommendationManager.getInstance().getMatchMap(this.reference, elements);
 		}
 
-		labelProvider = new RelevanceWrappedLabelProvider(relevanceMap);
+		labelProvider = new RelevanceWrappedLabelProvider(relevanceMap, threshold);
 		setListLabelProvider(labelProvider);
 		setDetailsLabelProvider(new RelevanceDetailsLabelProvider());
 	}
@@ -87,7 +94,15 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	 */
 	@Override
 	protected Control createExtendedContentArea(Composite parent) {
-		return null;
+		scaleWidget = new Scale(parent, SWT.HORIZONTAL);
+		scaleWidget.setMinimum(0);
+		scaleWidget.setMaximum(100);
+		scaleWidget.setSelection((int) (threshold * scaleWidget.getMaximum()));
+		scaleWidget.setToolTipText("Drag this to show more / less recommended results.");
+
+		scaleWidget.addSelectionListener(this);
+
+		return scaleWidget;
 	}
 
 	/**
@@ -192,7 +207,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 			val1 = relevanceMap.get(o1);
 			val2 = relevanceMap.get(o2);
 
-			if (val1 == null && val2 == null) {
+			if (!isRelevant(val1) && !isRelevant(val2)) {
 				String n1 = o1.getName();
 				String n2 = o2.getName();
 				if (n1 != null && n2 != null) {
@@ -200,15 +215,19 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 				} else {
 					return 0;
 				}
-			} else if (val1 == null) {
+			} else if (!isRelevant(val1)) {
 				return 1;
-			} else if (val2 == null) {
+			} else if (!isRelevant(val2)) {
 				return -1;
 			} else {
 				return val2.compareTo(val1);
 			}
 		}
 
+	}
+
+	private boolean isRelevant(Double val) {
+		return (val != null && val >= threshold);
 	}
 
 	/**
@@ -302,5 +321,31 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 				return "Multiple elements selected.";
 			}
 		}
+	}
+
+	private void updateThreshold() {
+		threshold = ((double) scaleWidget.getSelection()) / (double) scaleWidget.getMaximum();
+		this.setListLabelProvider(new RelevanceWrappedLabelProvider(relevanceMap, threshold));
+		this.refresh();
+	}
+
+	/**
+	 * Listener.
+	 * 
+	 * @param e event
+	 * @see org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse.swt.events.SelectionEvent)
+	 */
+	public void widgetDefaultSelected(SelectionEvent e) {
+		updateThreshold();
+	}
+
+	/**
+	 * Listener.
+	 * 
+	 * @param e event
+	 * @see org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse.swt.events.SelectionEvent)
+	 */
+	public void widgetSelected(SelectionEvent e) {
+		updateThreshold();
 	}
 }
