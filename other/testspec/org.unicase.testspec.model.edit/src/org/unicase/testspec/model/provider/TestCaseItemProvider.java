@@ -264,7 +264,7 @@ public class TestCaseItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
@@ -278,6 +278,7 @@ public class TestCaseItemProvider
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 			case ModelPackage.TEST_CASE__STEP:
+				// update test steps in referenced test protocols
 				TestCaseImpl tcase = (TestCaseImpl)notification.getNotifier();
 				Set<ModelElement> s = tcase.getContainerModelElement().getAllContainedModelElements();
 
@@ -287,13 +288,18 @@ public class TestCaseItemProvider
 						TestProtocolImpl tp = (TestProtocolImpl) object;
 						TestCaseImpl tc = (TestCaseImpl)tp.getTestCase();
 						if(tc != null) {
-							
-							tp.clearParams();
-							for (Iterator<TestStep> iterator = tc.getStep().iterator(); iterator.hasNext();) {
-								TestStepImpl ts = (TestStepImpl) iterator.next();
-								tp.addTestStepInputOutput(ts.getName(), ts.getInputParams(), ts.getOutputParams());
+							if (tc.getStep() != null) {
+								tp.clearParams();
+								for (Iterator<TestStep> iterator = tc.getStep().iterator(); iterator.hasNext();) {
+									TestStepImpl ts = (TestStepImpl) iterator.next();
+									tp.addTestStepInputOutput(ts.getName(), ts.getInputParams(), ts.getOutputParams());
+								}
+								tp.finishedTestSteps();
 							}
-							tp.finishedTestSteps();
+							else {
+								tp.emptyTestSteps();
+							}
+							
 						}
 						else {
 							tp.emptyTestSteps();
@@ -318,9 +324,8 @@ public class TestCaseItemProvider
 	}
 
 	/**
-	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Return the resource locator for this item provider's resources. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	@Override
