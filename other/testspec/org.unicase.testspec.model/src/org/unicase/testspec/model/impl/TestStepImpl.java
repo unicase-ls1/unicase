@@ -164,12 +164,10 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 	 * @generated
 	 */
 	public void setInput(String newInput) {
-		
 		String oldInput = input;
 		input = newInput;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_STEP__INPUT, oldInput, input));
-		updateReferencedTestProtocol();
 	}
 
 	/**
@@ -191,7 +189,6 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 		output = newOutput;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_STEP__OUTPUT, oldOutput, output));
-		updateReferencedTestProtocol();
 	}
 
 	/**
@@ -293,11 +290,6 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 		return result.toString();
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public void updateReferencedTestProtocol() {	
 		Set<ModelElement> s = this.getContainerModelElement().getAllContainedModelElements();
 
@@ -320,11 +312,6 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 		s = null;
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public String[] getInputParams(){
 		String[] lines = null;
 		try {
@@ -335,11 +322,6 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 		}
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public String[] getOutputParams(){
 		String[] lines = null;
 		try {

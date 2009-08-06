@@ -341,11 +341,6 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 		return result.toString();
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public void addTestStepInputOutput(String testStepName, String[] linesInput, String[] linesOutput) {
 		appendToTempTestSteps(testStepName + "\n");
 		if (linesInput != null) {
@@ -361,29 +356,14 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 		appendToTempTestSteps("\n");
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	private void appendToTempTestSteps(String value) {
 		tempTestSteps = tempTestSteps + value;
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public void clearParams() {
 		tempTestSteps = "";
 	}
 	
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated NOT
-	 */
 	public void finishedTestSteps(){
 		this.setTestSteps("%BEGINNTEXT%\n" + tempTestSteps);
 	}
