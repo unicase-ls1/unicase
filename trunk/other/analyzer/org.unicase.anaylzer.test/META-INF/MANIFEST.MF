@@ -4,10 +4,7 @@ Bundle-Name: Test Plug-in
 Bundle-SymbolicName: org.unicase.anaylzer.test;singleton:=true
 Bundle-Version: 0.0.1.qualifier
 Bundle-Activator: org.unicase.anaylzer.test.Activator
-Require-Bundle: org.junit4;bundle-version="4.3.1",
- org.unicase.workspace.test,
+Require-Bundle: org.unicase.workspace.test,
  org.unicase.analyzer
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Import-Package: org.unicase.emfstore.esmodel,
- org.unicase.workspace
