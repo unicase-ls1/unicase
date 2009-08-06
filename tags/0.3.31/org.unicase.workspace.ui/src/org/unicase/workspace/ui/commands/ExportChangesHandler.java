@@ -53,14 +53,8 @@ public class ExportChangesHandler extends AbstractHandler {
 			return null;
 		}
 
-		String fileName = dialog.getFileName();
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append(dialog.getFilterPath());
-		if (fileName.charAt(fileName.length() - 1) != File.separatorChar) {
-			stringBuilder.append(File.separatorChar);
-		}
-		stringBuilder.append(fileName);
-		final String absoluteFileName = stringBuilder.toString();
+		
+		final String absoluteFileName = fn;
 		final ProjectSpace projectSpace = ActionHelper.getProjectSpace(event);
 		final ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 			.getActiveWorkbenchWindow().getShell());
@@ -83,7 +77,7 @@ public class ExportChangesHandler extends AbstractHandler {
 				}
 			}
 		});
-		MessageDialog.openInformation(null, "Export", "Exported changes to file " + fileName);
+		MessageDialog.openInformation(null, "Export", "Exported changes to file " + absoluteFileName);
 		return null;
 	}
 
