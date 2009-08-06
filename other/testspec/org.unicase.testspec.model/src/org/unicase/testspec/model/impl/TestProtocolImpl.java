@@ -6,8 +6,9 @@
  */
 package org.unicase.testspec.model.impl;
 
+import java.util.Iterator;
+
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -16,6 +17,7 @@ import org.unicase.testspec.model.EnumState;
 import org.unicase.testspec.model.ModelPackage;
 import org.unicase.testspec.model.TestCase;
 import org.unicase.testspec.model.TestProtocol;
+import org.unicase.testspec.model.TestStep;
 
 /**
  * <!-- begin-user-doc -->
@@ -103,6 +105,14 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * @ordered
 	 */
 	protected String testSteps = TEST_STEPS_EDEFAULT;
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 * @ordered
+	 */
+	protected String tempTestSteps = "";
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -332,6 +342,57 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 		result.append(testSteps);
 		result.append(')');
 		return result.toString();
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void addTestStepInputOutput(String testStepName, String[] linesInput, String[] linesOutput) {
+		appendToTempTestSteps(testStepName + "\n");
+		if (linesInput != null) {
+			for (int i = 0; i < linesInput.length; i++) {
+				appendToTempTestSteps("I: " + linesInput[i].replace("]", "") + "; v: null]" + "\n");
+			}
+		}
+		if (linesOutput != null) {
+			for (int j = 0; j < linesOutput.length; j++) {
+				appendToTempTestSteps("O: " + linesOutput[j].replace("]", "") + "; v: null]" + "\n");
+			}
+		}
+		appendToTempTestSteps("\n");
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	private void appendToTempTestSteps(String value) {
+		tempTestSteps = tempTestSteps + value;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void clearParams() {
+		tempTestSteps = "";
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void finishedTestSteps(){
+		this.setTestSteps("%BEGINNTEXT%" + tempTestSteps);
+	}
+	
+	public void emptyTestSteps() {
+		this.setTestSteps("%BEGINNTEST%" + " ");
 	}
 
 } //TestProtocolImpl

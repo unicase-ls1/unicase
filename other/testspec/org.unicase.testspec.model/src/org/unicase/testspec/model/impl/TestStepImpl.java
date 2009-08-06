@@ -6,9 +6,13 @@
  */
 package org.unicase.testspec.model.impl;
 
+import java.util.Iterator;
+import java.util.Set;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.unicase.model.ModelElement;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.testspec.model.ModelPackage;
 import org.unicase.testspec.model.TestStep;
@@ -37,10 +41,7 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final String INPUT_EDEFAULT = "1,2,3,;,\n" + "%BEGINNTEXT%parameter 1\n" + 
-    																 "name:\n" + 
-    																 "type:\n" +
-    																"range:\n";
+	protected static final String INPUT_EDEFAULT = "%BEGINNTEXT%[n: ; t: ; r: ]";
 
 	/**
 	 * The cached value of the '{@link #getInput() <em>Input</em>}' attribute.
@@ -60,10 +61,7 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 	 * @generated NOT
 	 * @ordered
 	 */
-	protected static final String OUTPUT_EDEFAULT = "1,2,3,;,\n" + "%BEGINNTEXT%parameter 1\n" + 
-	 																  "name:\n" + 
-	 																  "type:\n" +
-	 																  "range:\n";
+	protected static final String OUTPUT_EDEFAULT = "%BEGINNTEXT%[n: ; t: ; r: ]";
 
 	/**
 	 * The cached value of the '{@link #getOutput() <em>Output</em>}' attribute.
@@ -94,6 +92,22 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 	 * @ordered
 	 */
 	protected String exception = EXCEPTION_EDEFAULT;
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getException()
+	 * @generated NOT
+	 */
+	protected static final String TEXTFIELD_TEMPLATE = "%BEGINNTEXT%";
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getException()
+	 * @generated NOT
+	 */
+	protected String textfield_template = TEXTFIELD_TEMPLATE;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -150,10 +164,12 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 	 * @generated
 	 */
 	public void setInput(String newInput) {
+		
 		String oldInput = input;
 		input = newInput;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_STEP__INPUT, oldInput, input));
+		updateReferencedTestProtocol();
 	}
 
 	/**
@@ -175,6 +191,7 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 		output = newOutput;
 		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, ModelPackage.TEST_STEP__OUTPUT, oldOutput, output));
+		updateReferencedTestProtocol();
 	}
 
 	/**
@@ -274,6 +291,63 @@ public class TestStepImpl extends ModelElementImpl implements TestStep {
 		result.append(exception);
 		result.append(')');
 		return result.toString();
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public void updateReferencedTestProtocol() {	
+		Set<ModelElement> s = this.getContainerModelElement().getAllContainedModelElements();
+
+		for (Iterator<ModelElement> i = s.iterator(); i.hasNext();) {
+			Object object = i.next();
+			if (object instanceof TestProtocolImpl) {
+				TestProtocolImpl tp = (TestProtocolImpl) object;
+				TestCaseImpl tc = (TestCaseImpl)tp.getTestCase();
+				
+				if(tc != null) {
+					tp.clearParams();
+					for (Iterator<TestStep> iterator = tc.getStep().iterator(); iterator.hasNext();) {
+						TestStepImpl ts = (TestStepImpl) iterator.next();
+						tp.addTestStepInputOutput(ts.getName(), ts.getInputParams(), ts.getOutputParams());
+					}
+					tp.finishedTestSteps();
+				}
+			}
+		}
+		s = null;
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String[] getInputParams(){
+		String[] lines = null;
+		try {
+			lines = input.substring(input.indexOf(textfield_template)+textfield_template.length(), input.length()).split("\n");
+			return lines;
+		} catch (Exception e) {
+			return null;
+		}
+	}
+	
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated NOT
+	 */
+	public String[] getOutputParams(){
+		String[] lines = null;
+		try {
+			lines = output.substring(output.indexOf(textfield_template)+textfield_template.length(), output.length()).split("\n");
+			return lines;
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 } //TestStepImpl
