@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -7,17 +7,19 @@ package org.unicase.ui.navigator.wizards;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map.Entry;
 
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EPackage.Registry;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.impl.ModelPackageImpl;
 
 /**
  * @author Hodaie ContentProvider for TreeViewer which is shown on ModelTreePage
@@ -37,9 +39,21 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public Object[] getElements(Object inputElement) {
+		//
+		// EPackage modelPackage = ModelPackageImpl.eINSTANCE;
+		// EList<EPackage> array = modelPackage.getESubpackages();
+		//
+		EList<EPackage> array = new BasicEList<EPackage>();
 
-		EPackage modelPackage = ModelPackageImpl.eINSTANCE;
-		EList<EPackage> array = modelPackage.getESubpackages();
+		Registry registry = EPackage.Registry.INSTANCE;
+
+		for (Entry<String, Object> entry : registry.entrySet()) {
+			if (entry.getKey().startsWith("http://unicase.org/model/")) {
+				EPackage model = EPackage.Registry.INSTANCE.getEPackage(entry.getKey());
+				array.add(model);
+			}
+		}
+
 		return array.toArray();
 	}
 
