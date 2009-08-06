@@ -10,6 +10,9 @@ import java.util.ArrayList;
 import java.util.TreeMap;
 import java.util.TreeSet;
 
+import Jama.Matrix;
+import Jama.SingularValueDecomposition;
+
 /**
  * This class represenst a Term to Document Frequency Matrix.
  * 
@@ -23,6 +26,8 @@ public class TDFrequencyMatrix {
 	private TreeMap<String, Integer> objectIndices;
 	private int objectCount;
 
+	private boolean stemming;
+
 	private ArrayList<ArrayList<String>> words;
 	private TreeSet<String> wordDictionary;
 
@@ -34,7 +39,7 @@ public class TDFrequencyMatrix {
 		wordIndices = new TreeMap<String, Integer>();
 		objectIndices = new TreeMap<String, Integer>();
 		objectCount = 0;
-
+		stemming = true;
 		words = new ArrayList<ArrayList<String>>();
 		wordDictionary = new TreeSet<String>();
 	}
@@ -42,14 +47,15 @@ public class TDFrequencyMatrix {
 	/**
 	 * The constructor using documents as strings.
 	 * 
+	 * @param stemming determines if stemming (replacing s or ed at the end eg.) should be applied
 	 * @param docs the docs
 	 */
-	public TDFrequencyMatrix(String[] docs) {
+	public TDFrequencyMatrix(String[] docs, boolean stemming) {
 		this();
 		for (String doc : docs) {
-			this.addWordsToDictionaries(doc);
+			this.addWordsToDictionaries(doc, stemming);
 		}
-		createIndices();
+		createDictionaryIndices();
 	}
 
 	/**
@@ -58,7 +64,7 @@ public class TDFrequencyMatrix {
 	public void normalizeDocuments() {
 		// this is possible as all rows have same width;
 		for (int col = 0; col < tfMatrix[0].length; col++) {
-			int numWords = words.get(col).size();
+			double numWords = sumDocument(col);
 			if (numWords != 0) {
 				for (int row = 0; row < tfMatrix.length; row++) {
 					tfMatrix[row][col] /= numWords;
@@ -71,14 +77,64 @@ public class TDFrequencyMatrix {
 	 * Multiplies each element with it's inverse document frequency.
 	 */
 	public void transformIDF() {
-		for (int col = 0; col < tfMatrix[0].length; col++) {
-			int numWords = words.get(col).size();
-			if (numWords != 0) {
-				for (int row = 0; row < tfMatrix.length; row++) {
-					tfMatrix[row][col] /= numWords;
-				}
+		for (int row = 0; row < tfMatrix.length; row++) {
+
+			double docFrequency = documentFrequency(row);
+			double factor = Math.log((tfMatrix[row].length) / docFrequency);
+
+			for (int col = 0; col < tfMatrix[0].length; col++) {
+				tfMatrix[row][col] *= factor;
 			}
 		}
+	}
+
+	/**
+	 * Uses SVD to reduce the number of elements in the matrix.
+	 */
+	public void transformLSI() {
+		Matrix myMatrix = new Matrix(tfMatrix);
+
+		SingularValueDecomposition svd = myMatrix.svd();
+		// tfMatrix = USV^T
+		// U : Eigenvalues of AA^T: left Eigenvectors
+		// S : Singular Values of A
+		// V : Eigenvalues od A^TA: right Eigenvalues
+		Matrix u = svd.getU();
+		Matrix s = svd.getS();
+		Matrix v = svd.getV();
+
+		//
+		System.out.println("My Matrix");
+		printMatrix(myMatrix);
+		System.out.println("U:");
+		this.printMatrix(u);
+		System.out.println("S:");
+		this.printMatrix(s);
+		System.out.println("V:");
+		this.printMatrix(v);
+
+		// TODO: find a proper value for k
+		int k = myMatrix.getColumnDimension();
+		Matrix sReduced = s.getMatrix(0, s.getRowDimension() - 1, 0, k - 1);
+		Matrix vReduced = v.getMatrix(0, v.getRowDimension() - 1, 0, k - 1);
+		Matrix uReduced = u.getMatrix(0, k - 1, 0, k - 1);
+
+		Matrix result = sReduced.times(uReduced).times(vReduced.transpose());
+		// save it, normalize it
+		tfMatrix = result.getArray();
+		this.normalizeDocuments();
+	}
+
+	private int documentFrequency(int index) {
+		int df = 0;
+
+		for (int col = 0; col < tfMatrix[0].length; col++) {
+			if (tfMatrix[index][col] != 0) {
+				df++;
+			}
+		}
+
+		return df;
 	}
 
 	/**
@@ -86,7 +142,7 @@ public class TDFrequencyMatrix {
 	 */
 	public void createTDFMatrix() {
 		if (wordIndices == null || wordIndices.size() == 0) {
-			this.createIndices();
+			this.createDictionaryIndices();
 		}
 
 		tfMatrix = new double[wordDictionary.size()][words.size()];
@@ -106,20 +162,34 @@ public class TDFrequencyMatrix {
 	 * Adds the words to the dictionaries.
 	 * 
 	 * @param text the text containing the words
+	 * @param stemming determines if stemming (replacing s or ed at the end eg.) should be applied
+	 * @return returns the internal index of this document
 	 */
-	public void addWordsToDictionaries(String text) {
+	public int addWordsToDictionaries(String text, boolean stemming) {
 		objectIndices.put(text, objectCount);
 		objectCount++;
 
-		ArrayList<String> tempWords = RecUtils.getFilteredWords(text);
-		wordDictionary.addAll(tempWords);
+		ArrayList<String> tempWords = RecUtils.getFilteredWords(text, stemming);
 		words.add(tempWords);
+		wordDictionary.addAll(tempWords);
+
+		return objectCount - 1;
+	}
+
+	/**
+	 * Adds the words to the dictionaries. Stemming is applied.
+	 * 
+	 * @param text the text containing the words
+	 * @return returns the internal index of this document
+	 */
+	public int addWordsToDictionaries(String text) {
+		return addWordsToDictionaries(text, true);
 	}
 
 	/**
 	 * Creates internal indices for each word in dictionary.
 	 */
-	public void createIndices() {
+	public void createDictionaryIndices() {
 		wordIndices = new TreeMap<String, Integer>();
 		int number = 0;
 		for (String word : wordDictionary) {
@@ -142,6 +212,51 @@ public class TDFrequencyMatrix {
 			dot += tfMatrix[row][i1] * tfMatrix[row][i2];
 		}
 		return dot;
+	}
+
+	/**
+	 * Return the cosinus between two documents. This is in fact a measurement for similarity.
+	 * 
+	 * @param i1 index for the first vector
+	 * @param i2 index for the second vector
+	 * @return the cosine
+	 */
+	public double cos(int i1, int i2) {
+		double dot = dotProduct(i1, i2);
+
+		double w1 = sumSquaredDocument(i1);
+		double w2 = sumSquaredDocument(i2);
+		return dot / Math.sqrt(w1 * w2);
+	}
+
+	/**
+	 * Sums up all values of a document.
+	 * 
+	 * @param col which document should be used.
+	 * @return the sum
+	 */
+	public double sumDocument(int col) {
+		double sum = 0;
+
+		for (int row = 0; row < tfMatrix.length; row++) {
+			sum += tfMatrix[row][col];
+		}
+		return sum;
+	}
+
+	/**
+	 * Sums up all squared values of a document.
+	 * 
+	 * @param col which document should be used.
+	 * @return the sum
+	 */
+	public double sumSquaredDocument(int col) {
+		double sum = 0;
+
+		for (int row = 0; row < tfMatrix.length; row++) {
+			sum += tfMatrix[row][col] * tfMatrix[row][col];
+		}
+		return sum;
 	}
 
 	/**
@@ -181,6 +296,24 @@ public class TDFrequencyMatrix {
 	}
 
 	/**
+	 * Returns the stemming value.
+	 * 
+	 * @return the stemming vaue
+	 */
+	public boolean getStemming() {
+		return stemming;
+	}
+
+	/**
+	 * Sets the stemming value.
+	 * 
+	 * @param value the new value
+	 */
+	public void setStemming(boolean value) {
+		stemming = value;
+	}
+
+	/**
 	 * Returns a documents index.
 	 * 
 	 * @param doc the document
@@ -188,5 +321,24 @@ public class TDFrequencyMatrix {
 	 */
 	public int getDocumentIndex(String doc) {
 		return objectIndices.get(doc);
+	}
+
+	/**
+	 * Prints a matrix.
+	 * 
+	 * @param m the matrix
+	 */
+	public void printMatrix(Matrix m) {
+		NumberFormat n = NumberFormat.getInstance();
+		n.setMaximumFractionDigits(4);
+
+		String s = "";
+		for (int col = 0; col < m.getColumnDimension(); col++) {
+			for (int row = 0; row < m.getRowDimension(); row++) {
+				s += n.format(m.get(row, col)) + "\t";
+			}
+			s += "\n";
+		}
+		System.out.println(s);
 	}
 }

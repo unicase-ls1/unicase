@@ -21,6 +21,11 @@ import org.unicase.linkrecommendation.TDFrequencyMatrix;
  */
 public class TDFrequencyMatrixTest {
 
+	private String[] docs = new String[] { "Human' machine interface for computer application systems",
+		"A survey of user opinions of computer systems response time", "The EPS user interface management system",
+		"System and human systems, engineering testing of EPS",
+		"The generation of random, binaries and ordered trees in systems",
+		"The intersection graph of (paths) in trees and their systems", "  Graph minors: A survey of systems." };
 	private TDFrequencyMatrix ma;
 
 	/**
@@ -28,11 +33,6 @@ public class TDFrequencyMatrixTest {
 	 */
 	@Before
 	public void setUp() {
-		ma = new TDFrequencyMatrix(new String[] { "Human machine interface for computer applications",
-			"A survey of user opinion of computer. system response time", "The EPS user interface management system",
-			"System and human system engineering testing of EPS", "The generation of random, binary and ordered trees",
-			"The intersection graph of paths in trees", "  Graph minors: A survey." });
-		ma.createTDFMatrix();
 	}
 
 	/**
@@ -40,7 +40,17 @@ public class TDFrequencyMatrixTest {
 	 */
 	@Test
 	public void testBasicFunctionality() {
+		System.out.println("Pure Frequency:" + docs.length);
+		ma = new TDFrequencyMatrix(docs, false);
+		ma.createTDFMatrix();
 		System.out.println(ma.toString());
+		System.out.println(ma + "\nDocumente:" + docs.length);
+
+		System.out.println("Stemmed Frequency:" + docs.length);
+		ma = new TDFrequencyMatrix(docs, true);
+		ma.createTDFMatrix();
+		System.out.println(ma.toString());
+		System.out.println(ma + "\nDocumente:" + docs.length);
 	}
 
 	/**
@@ -48,21 +58,68 @@ public class TDFrequencyMatrixTest {
 	 */
 	@Test
 	public void testNormalization() {
-		System.out.println("Normalisation:");
+
+		System.out.println("Normalisation:" + docs.length);
+
+		ma = new TDFrequencyMatrix(docs, false);
+		ma.createTDFMatrix();
 		ma.normalizeDocuments();
+
 		System.out.println(ma.toString());
+		System.out.println(ma + "\nDocumente:" + docs.length);
 
 		double[][] matrix = ma.getMatrix();
-
 		for (int col = 0; col < matrix[0].length; col++) {
-			double sum = 0;
-
-			for (int row = 0; row < matrix.length; row++) {
-				sum += matrix[row][col];
-			}
-
 			double epsilon = 0.000001;
-			Assert.assertTrue("After normalizing sums of cols must be 1", (sum - 1) < epsilon);
+			Assert.assertTrue("After normalizing sums of cols must be 1, but was " + ma.sumDocument(col), ma
+				.sumDocument(col) - 1 < epsilon);
 		}
+	}
+
+	/**
+	 * Test IDF.
+	 */
+	@Test
+	public void testTransformIDF() {
+		System.out.println("Transform IDF:" + docs.length);
+		ma = new TDFrequencyMatrix(docs, false);
+		ma.createTDFMatrix();
+		ma.normalizeDocuments();
+		ma.transformIDF();
+		System.out.println(ma + "\nDocumente:" + docs.length);
+
+		System.out.println("Transform IDF (stemmed):" + docs.length);
+		ma = new TDFrequencyMatrix(docs, true);
+		ma.createTDFMatrix();
+		ma.normalizeDocuments();
+		ma.transformIDF();
+		System.out.println(ma + "\nDocumente:" + docs.length);
+	}
+
+	/**
+	 * Test stemming.
+	 */
+	@Test
+	public void testStemming() {
+		System.out.println("Transform IDF (stemmed):" + docs.length);
+		ma = new TDFrequencyMatrix(docs, true);
+		ma.createTDFMatrix();
+		System.out.println(ma + "\nDocumente:" + docs.length);
+	}
+
+	/**
+	 * This test the LSI transformation.
+	 */
+	@Test
+	public void testTransformLSI() {
+
+		System.out.println("Transform LSI (stemmed):" + docs.length);
+		ma = new TDFrequencyMatrix(docs, true);
+		ma.createTDFMatrix();
+		ma.normalizeDocuments();
+		ma.transformIDF();
+		ma.transformLSI();
+		System.out.println(ma);
+
 	}
 }

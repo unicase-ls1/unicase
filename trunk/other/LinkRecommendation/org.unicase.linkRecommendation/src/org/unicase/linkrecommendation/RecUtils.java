@@ -6,7 +6,9 @@
 package org.unicase.linkrecommendation;
 
 import java.util.ArrayList;
-import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
@@ -18,9 +20,26 @@ import org.unicase.model.ModelElement;
  */
 public abstract class RecUtils {
 
-	private static String[] iSTOPWORDS = new String[] { " ", "for", "of", "on", "and", "or", "the", "this", "them",
-		"not", "is", "a", "we", "should", "be", "are", "he", "his", "in" };
-	private static char[] iSTOPCHARS = new char[] { '.', '!', ':', '?', '"', '(', ')', '-', ';' };
+	private static String[] iSTOPWORDS = new String[] { " ", "null", "to", "yet", "will", "which", "within", "without",
+		"how", "if", "it", "has", "have", "about", "also", "an", "at", "by", "for", "of", "on", "and", "or", "the",
+		"this", "them", "not", "is", "a", "we", "should", "be", "are", "he", "his", "in", "e", "g", "i", "e", "there",
+		"their", "from" };
+	private static char[] iSTOPCHARS = new char[] { '.', ',', '!', ':', '?', '\'', '"', '(', ')', '-', ';', '0', '1',
+		'2', '3', '4', '5', '6', '7', '8', '9' };
+
+	private static Map<String, String> iSTEMMAP = new HashMap<String, String>();
+
+	// initialization
+	static {
+		iSTEMMAP.put("ied", "y");// e.g. identified -> identify
+		iSTEMMAP.put("ed", "");// walked -> walk
+		iSTEMMAP.put("s", "");// walks -> walk, keyboards-> keyboard
+		iSTEMMAP.put("ies", "y"); // duties -> duty
+		iSTEMMAP.put("ing", ""); // meeting -> meet
+		iSTEMMAP.put("ings", ""); // meetings -> meet
+		// ly, ally
+		// er : shopper, shopping -> shop
+	}
 
 	/**
 	 * Calculates how often elements of the target words appear in the document vector.
@@ -49,9 +68,10 @@ public abstract class RecUtils {
 	 * Returns all words of the text as StringArrays.
 	 * 
 	 * @param text the text
+	 * @param stemming determines if stemming (replacing s or ed at the end eg.) should be applied
 	 * @return the words
 	 */
-	public static ArrayList<String> getFilteredWords(String text) {
+	public static ArrayList<String> getFilteredWords(String text, boolean stemming) {
 		if (text == null) {
 			return new ArrayList<String>();
 		}
@@ -68,10 +88,28 @@ public abstract class RecUtils {
 		// remove empty elements
 		for (int i = 0; i < tempResult.length; i++) {
 			if (!tempResult[i].equals("") && !contains(iSTOPWORDS, tempResult[i])) {
+				if (stemming) {
+					tempResult[i] = stemmWord(tempResult[i]);
+				}
 				result.add(tempResult[i]);
 			}
 		}
 		return result;
+	}
+
+	private static String stemmWord(String word) {
+		Set<String> ends = iSTEMMAP.keySet();
+		if (word.length() < 4) {
+			return word;
+		}
+
+		for (String ending : ends) {
+			if (word.endsWith(ending)) {
+				// replace the ending with what comes along
+				return word.substring(0, word.length() - ending.length()) + iSTEMMAP.get(ending);
+			}
+		}
+		return word;
 	}
 
 	/**
@@ -126,15 +164,12 @@ public abstract class RecUtils {
 	}
 
 	/**
-	 * Adds all element of the array to the collection.
+	 * Which texts are how used for analysis.
 	 * 
-	 * @param col the collection
-	 * @param array the array of Strings
+	 * @param me the model elment
+	 * @return the text
 	 */
-	public static void addStringsToCollection(Collection<String> col, String[] array) {
-		for (String s : array) {
-			col.add(s);
-		}
+	public static String getMEsText(ModelElement me) {
+		return me.getName() + " " + me.getDescriptionPlainText();
 	}
-
 }

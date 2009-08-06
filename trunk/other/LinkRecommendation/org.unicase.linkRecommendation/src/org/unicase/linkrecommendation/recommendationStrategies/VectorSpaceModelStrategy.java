@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.unicase.linkrecommendation.RecUtils;
 import org.unicase.linkrecommendation.TDFrequencyMatrix;
 import org.unicase.model.ModelElement;
 
@@ -27,18 +28,21 @@ public class VectorSpaceModelStrategy implements RecommendationStrategy {
 	 */
 	public Map<ModelElement, Double> getMatchingMap(ModelElement base, Collection<ModelElement> elements) {
 		HashMap<ModelElement, Double> hm = new HashMap<ModelElement, Double>(elements.size());
+		Map<ModelElement, Integer> indices = new HashMap<ModelElement, Integer>();
 
 		TDFrequencyMatrix tdf = new TDFrequencyMatrix();
 		// add the target element's words
-		tdf.addWordsToDictionaries(getMEsText(base));
+		int index = tdf.addWordsToDictionaries(RecUtils.getMEsText(base));
+		indices.put(base, index);
 		// create list of possible words
 		for (ModelElement me : elements) {
 			// add the target element's words
-			tdf.addWordsToDictionaries(getMEsText(me));
+			index = tdf.addWordsToDictionaries(RecUtils.getMEsText(me));
+			indices.put(me, index);
 		}
 
 		// create an index for every word (for tfmatrix)
-		tdf.createIndices();
+		tdf.createDictionaryIndices();
 
 		// create term frequency matrix
 		tdf.createTDFMatrix();
@@ -49,19 +53,16 @@ public class VectorSpaceModelStrategy implements RecommendationStrategy {
 		// idf
 		tdf.transformIDF();
 
+		System.out.println(tdf);
+
+		int indexBase = indices.get(base);
 		// determine values
-		int indexBase = tdf.getDocumentIndex(getMEsText(base));
 		for (ModelElement me : elements) {
-			int indexElements = tdf.getDocumentIndex(getMEsText(me));
-			double value = tdf.dotProduct(indexBase, indexElements);
-			// cos
+			int indexElement = indices.get(me);
+			double value = tdf.cos(indexBase, indexElement);
 			hm.put(me, value);
 		}
 		return hm;
-	}
-
-	private String getMEsText(ModelElement me) {
-		return me.getName() + " " + me.getDescriptionPlainText();
 	}
 
 }
