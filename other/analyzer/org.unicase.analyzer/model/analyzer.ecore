@@ -17,11 +17,9 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="iterator" eType="#//iterator/VersionIterator"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="analyzerName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="exporterName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="exporter" eType="#//exporters/Exporter"
+        containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="DataAnalyzer" abstract="true" interface="true"/>
-  <eClassifiers xsi:type="ecore:EClass" name="TwoDDataAnalyzer" abstract="true" interface="true"
-      eSuperTypes="#//DataAnalyzer"/>
   <eSubpackages name="iterator" nsURI="http://unicase.org/analyzer/iterator" nsPrefix="org.unicase.analyzer.iterator">
     <eClassifiers xsi:type="ecore:EClass" name="VersionIterator">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="stepLength" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
@@ -51,5 +49,6 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileName" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="overwrite" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EBoolean"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="CSVExporter" eSuperTypes="#//exporters/Exporter"/>
   </eSubpackages>
 </ecore:EPackage>
