@@ -6,10 +6,10 @@
 
 package org.unicase.analyzer.ui.wizards;
 
-import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
@@ -40,6 +40,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	private List<Button> analyzerButton = new ArrayList<Button>();
 	private boolean canFlipToNextPage;
 	private ArrayList<DataAnalyzer> analyzers;
+	private IConfigurationElement[] extendedAnalyzers;
 
 
 	/**
@@ -49,6 +50,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
+		extendedAnalyzers = new IConfigurationElement[20];
 		canFlipToNextPage = false;
 	}
 
@@ -82,6 +84,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		 for (int j = 0; j < elements.length; j++) {
 		     final IConfigurationElement element = elements[j];
 		     int count = i*elements.length + j;
+		     extendedAnalyzers[count] = element;
 		     Button button = new Button(composite, SWT.CHECK);
 		     button.setText(element.getAttribute("class"));
 			 gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -96,6 +99,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 			 }			 
 			 analyzerButton.add(button);
 			 analyzerButton.get(count).addListener(SWT.CHECK, this);
+			 			 
 //			 analyzerButton.get(count).addSelectionListener(new SelectionListener(){
 //
 //				public void widgetDefaultSelected(SelectionEvent e) {
@@ -116,7 +120,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 //						e1.printStackTrace();
 //					}					
 //				}
-//				 
+//			 
 //			 });
 		    }
 		}
@@ -132,15 +136,16 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
 	 */
 	@Override
-	@SuppressWarnings("unchecked")
 	public boolean isPageComplete() {
 		//final ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 		for(final Button button : analyzerButton){
+			int i = analyzerButton.indexOf(button);
 			if(button.getSelection()){
 	
 				try {
-					Class c = Class.forName(button.getText());			
-					DataAnalyzer analyzer = (DataAnalyzer) c.getConstructors()[0].newInstance();
+//					Class c = Class.forName(button.getText());			
+//					DataAnalyzer analyzer = (DataAnalyzer) c.getConstructors()[0].newInstance();
+					DataAnalyzer analyzer = (DataAnalyzer)extendedAnalyzers[i].createExecutableExtension("class");
 					final ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
 					// Not add the same analyzer into the analyzer list
 					boolean add = true;
@@ -171,16 +176,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 				} catch (SecurityException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
-				} catch (ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InstantiationException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (IllegalAccessException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (InvocationTargetException e) {
+				} catch (CoreException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}

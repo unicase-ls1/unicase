@@ -195,6 +195,9 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		
 	}
 	
+	/**
+	 * Initialize the group of this wizard page.
+	 */
 	public void initGroup(){
 		
 		//startDate for TimeIterator
