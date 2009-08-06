@@ -10,13 +10,8 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Data Analyzer</b></em>'. <!-- end-user-doc -->
- * 
- * @see org.unicase.analyzer.AnalyzerPackage#getDataAnalyzer()
- * @model interface="true" abstract="true"
- * @generated
  */
-public interface DataAnalyzer extends EObject {
+public interface DataAnalyzer {
 	/**
 	 * Returns the specified values of the given ProjectAnalysisData.
 	 * 
