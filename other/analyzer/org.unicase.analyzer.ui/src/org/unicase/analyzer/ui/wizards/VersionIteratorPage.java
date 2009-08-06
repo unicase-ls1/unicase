@@ -169,6 +169,9 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		
 	}
 	
+	/**
+	 * Initialize group of this wizard page.
+	 */
 	public void initGroup(){
 		 //start PrimaryVersionSpec
 		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator().getVersionSpecQuery().getStartVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
