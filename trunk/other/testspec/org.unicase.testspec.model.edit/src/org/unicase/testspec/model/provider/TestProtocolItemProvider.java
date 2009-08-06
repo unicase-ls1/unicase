@@ -196,7 +196,13 @@ public class TestProtocolItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TestProtocol.class)) {
+			case ModelPackage.TEST_PROTOCOL__TEST_REPORT:
+			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
+			case ModelPackage.TEST_PROTOCOL__TEST_STEPS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
+				// update test steps in referenced test protocols				
 				TestProtocolImpl tp = (TestProtocolImpl) notification.getNotifier();
 				TestCaseImpl tc = (TestCaseImpl)tp.getTestCase();
 				if(tc != null) {
@@ -211,15 +217,7 @@ public class TestProtocolItemProvider
 					tp.emptyTestSteps();
 				}
 				return;
-			case ModelPackage.TEST_PROTOCOL__TEST_REPORT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ModelPackage.TEST_PROTOCOL__TEST_STEPS:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+			
 		}
 		super.notifyChanged(notification);
 	}

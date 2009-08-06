@@ -6,8 +6,6 @@
  */
 package org.unicase.testspec.model.impl;
 
-import java.util.Iterator;
-
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -17,7 +15,6 @@ import org.unicase.testspec.model.EnumState;
 import org.unicase.testspec.model.ModelPackage;
 import org.unicase.testspec.model.TestCase;
 import org.unicase.testspec.model.TestProtocol;
-import org.unicase.testspec.model.TestStep;
 
 /**
  * <!-- begin-user-doc -->
@@ -388,7 +385,7 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * @generated NOT
 	 */
 	public void finishedTestSteps(){
-		this.setTestSteps("%BEGINNTEXT%" + tempTestSteps);
+		this.setTestSteps("%BEGINNTEXT%\n" + tempTestSteps);
 	}
 	
 	public void emptyTestSteps() {
