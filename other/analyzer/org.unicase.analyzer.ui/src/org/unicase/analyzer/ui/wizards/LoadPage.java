@@ -81,8 +81,7 @@ public class LoadPage extends WizardPage implements Listener {
 		configurationPath = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		configurationPath.setLayoutData(gd);
-		
-		
+
 		configurationPath.addListener(SWT.KeyUp, this);
 		
 		Button selectFileLocation = new Button(composite, SWT.PUSH);
@@ -131,7 +130,6 @@ public class LoadPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public boolean isPageComplete() {
-
 		return super.isPageComplete();
 	}
 	
@@ -141,9 +139,10 @@ public class LoadPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public IWizardPage getNextPage() {
-		if(configurationPath.getText() != null){
+		if(configurationPath.getText().length() > 1){
 			initConfig(configurationPath.getText());
-		}
+			((AnalyzerPage) super.getNextPage()).init();
+		}		
 		return super.getNextPage();
 	}
 	/**
