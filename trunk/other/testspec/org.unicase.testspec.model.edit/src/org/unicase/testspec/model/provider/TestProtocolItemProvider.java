@@ -8,14 +8,12 @@ package org.unicase.testspec.model.provider;
 
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.common.util.ResourceLocator;
-
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -25,11 +23,13 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.unicase.model.provider.ModelElementItemProvider;
-
 import org.unicase.testspec.model.ModelPackage;
 import org.unicase.testspec.model.TestProtocol;
+import org.unicase.testspec.model.TestStep;
+import org.unicase.testspec.model.impl.TestCaseImpl;
+import org.unicase.testspec.model.impl.TestProtocolImpl;
+import org.unicase.testspec.model.impl.TestStepImpl;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.testspec.model.TestProtocol} object.
@@ -189,15 +189,34 @@ public class TestProtocolItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TestProtocol.class)) {
+			case ModelPackage.TEST_PROTOCOL__TEST_CASE:
+				TestProtocolImpl tp = (TestProtocolImpl) notification.getNotifier();
+				TestCaseImpl tc = (TestCaseImpl)tp.getTestCase();
+				if(tc != null) {
+					tp.clearParams();
+					for (Iterator<TestStep> iterator = tc.getStep().iterator(); iterator.hasNext();) {
+						TestStepImpl ts = (TestStepImpl) iterator.next();
+						tp.addTestStepInputOutput(ts.getName(), ts.getInputParams(), ts.getOutputParams());
+					}
+					tp.finishedTestSteps();
+				}
+				else {
+					tp.emptyTestSteps();
+				}
+				return;
 			case ModelPackage.TEST_PROTOCOL__TEST_REPORT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case ModelPackage.TEST_PROTOCOL__TEST_STATE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 			case ModelPackage.TEST_PROTOCOL__TEST_STEPS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;

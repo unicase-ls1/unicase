@@ -8,7 +8,9 @@ package org.unicase.testspec.model.provider;
 
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -25,10 +27,15 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelElementItemProvider;
 
 import org.unicase.testspec.model.ModelPackage;
 import org.unicase.testspec.model.TestCase;
+import org.unicase.testspec.model.TestStep;
+import org.unicase.testspec.model.impl.TestCaseImpl;
+import org.unicase.testspec.model.impl.TestProtocolImpl;
+import org.unicase.testspec.model.impl.TestStepImpl;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.testspec.model.TestCase} object.
@@ -269,6 +276,30 @@ public class TestCaseItemProvider
 			case ModelPackage.TEST_CASE__POSTCONDITION:
 			case ModelPackage.TEST_CASE__INFRASTRUCTURE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ModelPackage.TEST_CASE__STEP:
+				TestCaseImpl tcase = (TestCaseImpl)notification.getNotifier();
+				Set<ModelElement> s = tcase.getContainerModelElement().getAllContainedModelElements();
+
+				for (Iterator<ModelElement> i = s.iterator(); i.hasNext();) {
+					Object object = i.next();
+					if (object instanceof TestProtocolImpl) {
+						TestProtocolImpl tp = (TestProtocolImpl) object;
+						TestCaseImpl tc = (TestCaseImpl)tp.getTestCase();
+						if(tc != null) {
+							
+							tp.clearParams();
+							for (Iterator<TestStep> iterator = tc.getStep().iterator(); iterator.hasNext();) {
+								TestStepImpl ts = (TestStepImpl) iterator.next();
+								tp.addTestStepInputOutput(ts.getName(), ts.getInputParams(), ts.getOutputParams());
+							}
+							tp.finishedTestSteps();
+						}
+						else {
+							tp.emptyTestSteps();
+						}
+					}
+				}
 				return;
 		}
 		super.notifyChanged(notification);
