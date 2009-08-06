@@ -141,7 +141,7 @@ public class LoadPage extends WizardPage implements Listener {
 	public IWizardPage getNextPage() {
 		if(configurationPath.getText().length() > 1){
 			initConfig(configurationPath.getText());
-			((AnalyzerPage) super.getNextPage()).init();
+			//((AnalyzerPage) super.getNextPage()).init();
 		}		
 		return super.getNextPage();
 	}
