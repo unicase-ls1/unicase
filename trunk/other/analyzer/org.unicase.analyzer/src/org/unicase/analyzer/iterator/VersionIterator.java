@@ -18,32 +18,32 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Version Iterator</b></em>'.
  * 
  * @implements Iterator <!-- end-user-doc -->
- *             <p>
- *             The following features are supported:
- *             <ul>
- *             <li>{@link org.unicase.analyzer.iterator.VersionIterator#getStepLength <em>Step Length</em>}</li>
- *             <li>{@link org.unicase.analyzer.iterator.VersionIterator#getProjectId <em>Project Id</em>}</li>
- *             <li>{@link org.unicase.analyzer.iterator.VersionIterator#isForward <em>Forward</em>}</li>
- *             <li>{@link org.unicase.analyzer.iterator.VersionIterator#isReturnProjectDataCopy <em>Return Project Data
- *             Copy</em>}</li>
- *             <li>{@link org.unicase.analyzer.iterator.VersionIterator#getVersionSpecQuery <em>Version Spec Query</em>}
- *             </li>
- *             <li>{@link org.unicase.analyzer.iterator.VersionIterator#isDefault <em>Default</em>}</li>
- *             </ul>
- *             </p>
+ *
+ * <p>
+ * The following features are supported:
+ * <ul>
+ *   <li>{@link org.unicase.analyzer.iterator.VersionIterator#getStepLength <em>Step Length</em>}</li>
+ *   <li>{@link org.unicase.analyzer.iterator.VersionIterator#getProjectId <em>Project Id</em>}</li>
+ *   <li>{@link org.unicase.analyzer.iterator.VersionIterator#isForward <em>Forward</em>}</li>
+ *   <li>{@link org.unicase.analyzer.iterator.VersionIterator#isReturnProjectDataCopy <em>Return Project Data Copy</em>}</li>
+ *   <li>{@link org.unicase.analyzer.iterator.VersionIterator#getVersionSpecQuery <em>Version Spec Query</em>}</li>
+ *   <li>{@link org.unicase.analyzer.iterator.VersionIterator#isDefault <em>Default</em>}</li>
+ * </ul>
+ * </p>
+ *
  * @see org.unicase.analyzer.iterator.IteratorPackage#getVersionIterator()
  * @model
  * @generated
  */
-public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> {
+public interface VersionIterator extends EObject, Iterator {
 	/**
-	 * Returns the value of the '<em><b>Step Length</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Step Length</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Step Length</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Step Length</em>' attribute.
 	 * @see #setStepLength(int)
 	 * @see org.unicase.analyzer.iterator.IteratorPackage#getVersionIterator_StepLength()
@@ -53,9 +53,8 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	int getStepLength();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#getStepLength <em>Step Length</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#getStepLength <em>Step Length</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Step Length</em>' attribute.
 	 * @see #getStepLength()
 	 * @generated
@@ -63,13 +62,13 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	void setStepLength(int value);
 
 	/**
-	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Project Id</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Project Id</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Project Id</em>' containment reference.
 	 * @see #setProjectId(ProjectId)
 	 * @see org.unicase.analyzer.iterator.IteratorPackage#getVersionIterator_ProjectId()
@@ -79,9 +78,8 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	ProjectId getProjectId();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#getProjectId <em>Project Id</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#getProjectId <em>Project Id</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Project Id</em>' containment reference.
 	 * @see #getProjectId()
 	 * @generated
@@ -89,13 +87,13 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	void setProjectId(ProjectId value);
 
 	/**
-	 * Returns the value of the '<em><b>Forward</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Forward</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Forward</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Forward</em>' attribute.
 	 * @see #setForward(boolean)
 	 * @see org.unicase.analyzer.iterator.IteratorPackage#getVersionIterator_Forward()
@@ -105,9 +103,8 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	boolean isForward();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#isForward <em>Forward</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#isForward <em>Forward</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Forward</em>' attribute.
 	 * @see #isForward()
 	 * @generated
@@ -115,13 +112,13 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	void setForward(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Return Project Data Copy</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Return Project Data Copy</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Return Project Data Copy</em>' attribute isn't clear, there really should be more of a
 	 * description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Return Project Data Copy</em>' attribute.
 	 * @see #setReturnProjectDataCopy(boolean)
 	 * @see org.unicase.analyzer.iterator.IteratorPackage#getVersionIterator_ReturnProjectDataCopy()
@@ -131,9 +128,8 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	boolean isReturnProjectDataCopy();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#isReturnProjectDataCopy
-	 * <em>Return Project Data Copy</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#isReturnProjectDataCopy <em>Return Project Data Copy</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Return Project Data Copy</em>' attribute.
 	 * @see #isReturnProjectDataCopy()
 	 * @generated
@@ -141,13 +137,13 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	void setReturnProjectDataCopy(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Version Spec Query</b></em>' containment reference. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Version Spec Query</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Version Spec Query</em>' containment reference isn't clear, there really should be
 	 * more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Version Spec Query</em>' containment reference.
 	 * @see #setVersionSpecQuery(VersionSpecQuery)
 	 * @see org.unicase.analyzer.iterator.IteratorPackage#getVersionIterator_VersionSpecQuery()
@@ -157,9 +153,8 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	VersionSpecQuery getVersionSpecQuery();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#getVersionSpecQuery
-	 * <em>Version Spec Query</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#getVersionSpecQuery <em>Version Spec Query</em>}' containment reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Version Spec Query</em>' containment reference.
 	 * @see #getVersionSpecQuery()
 	 * @generated
@@ -167,13 +162,13 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	void setVersionSpecQuery(VersionSpecQuery value);
 
 	/**
-	 * Returns the value of the '<em><b>Default</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Default</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Default</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Default</em>' attribute.
 	 * @see #setDefault(boolean)
 	 * @see org.unicase.analyzer.iterator.IteratorPackage#getVersionIterator_Default()
@@ -183,9 +178,8 @@ public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> 
 	boolean isDefault();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#isDefault <em>Default</em>}'
-	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Sets the value of the '{@link org.unicase.analyzer.iterator.VersionIterator#isDefault <em>Default</em>}' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Default</em>' attribute.
 	 * @see #isDefault()
 	 * @generated

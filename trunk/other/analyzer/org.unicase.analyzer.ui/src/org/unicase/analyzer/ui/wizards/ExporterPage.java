@@ -6,8 +6,6 @@
 
 package org.unicase.analyzer.ui.wizards;
 
-import java.io.IOException;
-
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.emf.databinding.EMFDataBindingContext;
 import org.eclipse.emf.databinding.edit.EMFEditObservables;
@@ -28,8 +26,9 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.analyzer.AnalyzerConfiguration;
-import org.unicase.analyzer.AnalyzerPackage;
-import org.unicase.analyzer.exporters.impl.CSVExporter;
+import org.unicase.analyzer.exporters.CSVExporter;
+import org.unicase.analyzer.exporters.ExportersFactory;
+import org.unicase.analyzer.exporters.ExportersPackage;
 
 
 /**
@@ -43,6 +42,7 @@ public class ExporterPage extends WizardPage implements Listener {
 	private Text exportPath;
 	private Button exporterButton;
 	private TransactionalEditingDomain editingDomain;
+	private AnalyzerConfiguration conf;
 
 	/**
 	 * @param pageName Name of the page
@@ -66,7 +66,7 @@ public class ExporterPage extends WizardPage implements Listener {
 	    gl.numColumns = ncol;
 	    composite.setLayout(gl);
 	    
-	    AnalyzerConfiguration conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+	    conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
 	    
 	    exporterButton = new Button(composite, SWT.RADIO);
 	    exporterButton.setText("CVS Exporter");
@@ -81,9 +81,6 @@ public class ExporterPage extends WizardPage implements Listener {
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		exportPath.setLayoutData(gd);
 		
-		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf, AnalyzerPackage.eINSTANCE.getAnalyzerConfiguration_ExporterName());
-		EMFDataBindingContext dbc = new EMFDataBindingContext();
-		dbc.bindValue(SWTObservables.observeText(exportPath, SWT.FocusOut), modelObservable, null, null);
 //		
 //		
 //		if(conf.getExporterName() != null){
@@ -121,6 +118,24 @@ public class ExporterPage extends WizardPage implements Listener {
 		return false;
 	}
 
+	/**
+	 * Initializes the page, i.e. this method is not called at the time this class gets instantiated but later, when the
+	 * page is going to get displayed. Mainly create the databinding here.
+	 */
+	public void init(){
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+		.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+			@Override
+			protected void doExecute() {
+				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
+				conf.setExporter(exporter);
+			}
+		});
+		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getExporter(), ExportersPackage.eINSTANCE.getExporter_FileName());
+		EMFDataBindingContext dbc = new EMFDataBindingContext();
+		dbc.bindValue(SWTObservables.observeText(exportPath, SWT.FocusOut), modelObservable, null, null);
+	}
 	
 	/** 
 	 * {@inheritDoc}
@@ -143,27 +158,11 @@ public class ExporterPage extends WizardPage implements Listener {
 	@Override
 	public boolean isPageComplete() {
 		if(isTextNonEmpty(exportPath)){
-			TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-			.getEditingDomain("org.unicase.EditingDomain");
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
-				@Override
-				protected void doExecute() {
-					ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
-					try {
-						CSVExporter exporter = new CSVExporter(exportPath.getText());
-						wizard.setExporter(exporter);
-						wizard.getAnalyzerConfig().setExporterName(exportPath.getText());
-					} catch (IOException e) {
-						// TODO Auto-generated catch block
-						e.printStackTrace();
-					}
-				}
-			});
 			return true;
-		}else{
-		return false;
 		}
+		return false;
 	}
+	
 	
 	/**
 	 * Listener for the file location selection.

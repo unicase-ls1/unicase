@@ -27,10 +27,9 @@ import org.unicase.analyzer.exporters.ExportersPackage;
 import org.unicase.analyzer.provider.AnalyzerEditPlugin;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.analyzer.exporters.Exporter} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.analyzer.exporters.Exporter} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ExporterItemProvider extends ItemProviderAdapter implements
@@ -70,14 +69,19 @@ public class ExporterItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addFileNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Exporter_fileName_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Exporter_fileName_feature", "_UI_Exporter_type"),
-				ExportersPackage.Literals.EXPORTER__FILE_NAME, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Exporter_fileName_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Exporter_fileName_feature", "_UI_Exporter_type"),
+				 ExportersPackage.Literals.EXPORTER__FILE_NAME,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -87,46 +91,50 @@ public class ExporterItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addOverwritePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_Exporter_overwrite_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_Exporter_overwrite_feature", "_UI_Exporter_type"),
-				ExportersPackage.Literals.EXPORTER__OVERWRITE, true, false,
-				false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Exporter_overwrite_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Exporter_overwrite_feature", "_UI_Exporter_type"),
+				 ExportersPackage.Literals.EXPORTER__OVERWRITE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This returns Exporter.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This returns Exporter.gif.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/Exporter"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/Exporter"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((Exporter) object).getFileName();
-		return label == null || label.length() == 0 ? getString("_UI_Exporter_type")
-				: getString("_UI_Exporter_type") + " " + label;
+		String label = ((Exporter)object).getFileName();
+		return label == null || label.length() == 0 ?
+			getString("_UI_Exporter_type") :
+			getString("_UI_Exporter_type") + " " + label;
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -134,11 +142,10 @@ public class ExporterItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Exporter.class)) {
-		case ExportersPackage.EXPORTER__FILE_NAME:
-		case ExportersPackage.EXPORTER__OVERWRITE:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case ExportersPackage.EXPORTER__FILE_NAME:
+			case ExportersPackage.EXPORTER__OVERWRITE:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

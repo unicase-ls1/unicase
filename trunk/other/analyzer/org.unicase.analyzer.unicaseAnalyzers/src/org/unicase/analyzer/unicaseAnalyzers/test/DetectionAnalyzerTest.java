@@ -16,7 +16,8 @@ import org.junit.Test;
 import org.unicase.analyzer.AnalyzerModelController;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
-import org.unicase.analyzer.exporters.impl.CSVExporter;
+import org.unicase.analyzer.exporters.CSVExporter;
+import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.analyzer.iterator.VersionSpecQuery;
 import org.unicase.analyzer.iterator.impl.IteratorFactoryImpl;
@@ -57,7 +58,8 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 				int stepLength = 1;
 
 				VersionIterator projectIt = IteratorFactoryImpl.eINSTANCE.createVersionIterator();
-				CSVExporter exporter = new CSVExporter("Exports/export_test.dat",true);
+				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
+				exporter.init("Exports/export_test.dat",true);
 				projectIt.setProjectId(pI.getProjectId());
 				projectIt.setStepLength(stepLength);
 				projectIt.setDefault(true);
@@ -86,7 +88,8 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 				int stepLength = 1;
 				
 				VersionIterator projectIt = IteratorFactoryImpl.eINSTANCE.createVersionIterator();
-				CSVExporter exporter = new CSVExporter("Exports/export_test.dat",true);
+				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
+				exporter.init("Exports/export_test.dat",true);
 				projectIt.setProjectId(pI.getProjectId());
 				projectIt.setStepLength(stepLength);
 				projectIt.setDefault(true);

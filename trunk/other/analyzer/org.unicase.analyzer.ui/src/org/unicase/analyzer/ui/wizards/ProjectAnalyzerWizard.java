@@ -33,6 +33,7 @@ import org.unicase.analyzer.AnalyzerModelController;
 import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
+import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.Exporter;
 import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -61,7 +62,6 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	private TimeIteratorPage timeIteratorPage;
 	
 	private VersionIterator versionIterator;
-	private Exporter exporter;
 	private ArrayList<DataAnalyzer> analyzers;
 	private AnalyzerConfiguration analyzerConfig;
 	private Usersession selectedUsersession;
@@ -82,13 +82,14 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 			protected void doExecute() {
 				try {
 					// pass to AnalyzerController
-					analyzerConfig.getIterator().init(selectedUsersession);			
+					analyzerConfig.getIterator().init(selectedUsersession);		
+					((CSVExporter) analyzerConfig.getExporter()).init();
 					setNeedsProgressMonitor(true);
 					getContainer().run(true, true, new IRunnableWithProgress(){ 
 					    public void run(IProgressMonitor monitor) { 
 					        monitor.beginTask("Analyzing...", 1); 
 					        @SuppressWarnings("unused")
-							AnalyzerModelController analyzerController = new AnalyzerModelController(analyzerConfig.getIterator(), analyzers, exporter); 
+							AnalyzerModelController analyzerController = new AnalyzerModelController(analyzerConfig.getIterator(), analyzers, analyzerConfig.getExporter()); 
 					        monitor.done(); 
 					    } 
 					});				
@@ -97,6 +98,9 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 				} catch (InvocationTargetException e) {
 					e.printStackTrace();
 				} catch (InterruptedException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
@@ -171,11 +175,6 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 							resource.getContents().add(analyzerConfig);
 						}
 					});
-//					try {
-//						resource.save(null);
-//					} catch (IOException e) {
-//						WorkspaceUtil.log("Could not save the resource!", e, IStatus.WARNING);
-//					}
 				}else{
 					
 					resource = domain.getResourceSet().getResource(fileURI, true);
@@ -279,20 +278,6 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	public void setVersionIterator(VersionIterator versionIterator) {
 		this.versionIterator = versionIterator;
-	}
-
-	/**
-	 * @return the exporter
-	 */
-	public Exporter getExporter() {
-		return exporter;
-	}
-
-	/**
-	 * @param exporter the exporter to set
-	 */
-	public void setExporter(Exporter exporter) {
-		this.exporter = exporter;
 	}
 
 

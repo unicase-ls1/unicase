@@ -27,10 +27,9 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.model.ModelFactory;
 
 /**
- * This is the item provider adapter for a
- * {@link org.unicase.analyzer.ProjectAnalysisData} object. <!-- begin-user-doc
+ * This is the item provider adapter for a {@link org.unicase.analyzer.ProjectAnalysisData} object.
+ * <!-- begin-user-doc
  * --> <!-- end-user-doc -->
- * 
  * @generated
  */
 public class ProjectAnalysisDataItemProvider extends ItemProviderAdapter
@@ -69,25 +68,26 @@ public class ProjectAnalysisDataItemProvider extends ItemProviderAdapter
 	 * @generated
 	 */
 	protected void addProjectIdPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_ProjectAnalysisData_projectId_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_ProjectAnalysisData_projectId_feature",
-						"_UI_ProjectAnalysisData_type"),
-				AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PROJECT_ID,
-				true, false, true, null, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_ProjectAnalysisData_projectId_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_ProjectAnalysisData_projectId_feature", "_UI_ProjectAnalysisData_type"),
+				 AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PROJECT_ID,
+				 true,
+				 false,
+				 true,
+				 null,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to
-	 * deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
-	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -95,46 +95,40 @@ public class ProjectAnalysisDataItemProvider extends ItemProviderAdapter
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PROJECT_STATE);
-			childrenFeatures
-					.add(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES);
-			childrenFeatures
-					.add(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC);
+			childrenFeatures.add(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PROJECT_STATE);
+			childrenFeatures.add(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES);
+			childrenFeatures.add(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns ProjectAnalysisData.gif. <!-- begin-user-doc --> <!--
+	 * This returns ProjectAnalysisData.gif.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/ProjectAnalysisData"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/ProjectAnalysisData"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -143,11 +137,10 @@ public class ProjectAnalysisDataItemProvider extends ItemProviderAdapter
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,12 +148,11 @@ public class ProjectAnalysisDataItemProvider extends ItemProviderAdapter
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(ProjectAnalysisData.class)) {
-		case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PROJECT_STATE:
-		case AnalyzerPackage.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES:
-		case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PROJECT_STATE:
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES:
+			case AnalyzerPackage.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -177,19 +169,20 @@ public class ProjectAnalysisDataItemProvider extends ItemProviderAdapter
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PROJECT_STATE,
-				ModelFactory.eINSTANCE.createProject()));
+		newChildDescriptors.add
+			(createChildParameter
+				(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PROJECT_STATE,
+				 ModelFactory.eINSTANCE.createProject()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES,
-						VersioningFactory.eINSTANCE.createChangePackage()));
+		newChildDescriptors.add
+			(createChildParameter
+				(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES,
+				 VersioningFactory.eINSTANCE.createChangePackage()));
 
-		newChildDescriptors
-				.add(createChildParameter(
-						AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC,
-						VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
+		newChildDescriptors.add
+			(createChildParameter
+				(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC,
+				 VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 	}
 
 	/**

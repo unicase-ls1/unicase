@@ -9,13 +9,10 @@ import java.util.List;
 
 import org.unicase.analyzer.iterator.VersionIterator;
 
+
 /**
- * <!-- begin-user-doc --> A representation of the model object '<em><b>Two DData Analyzer</b></em>'. <!-- end-user-doc
- * -->
- * 
- * @see org.unicase.analyzer.AnalyzerPackage#getTwoDDataAnalyzer()
- * @model interface="true" abstract="true"
- * @generated
+ * @author liya
+ *
  */
 public interface TwoDDataAnalyzer extends DataAnalyzer {
 	/**

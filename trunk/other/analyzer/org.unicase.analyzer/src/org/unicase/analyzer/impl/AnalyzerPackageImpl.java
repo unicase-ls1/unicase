@@ -27,37 +27,20 @@ import org.unicase.model.ModelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass projectAnalysisDataEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private EClass analyzerConfigurationEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass dataAnalyzerEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass twoDDataAnalyzerEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -78,37 +61,37 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * Simple dependencies are satisfied by calling this method on all dependent packages before doing anything else.
-	 * This method drives initialization for interdependent packages directly, in parallel with this package, itself.
-	 * <p>
-	 * Of this package and its interdependencies, all packages which have not yet been registered by their URI values
-	 * are first created and registered. The packages are then initialized in two steps: meta-model objects for all of
-	 * the packages are created before any are initialized, since one package's meta-model objects may refer to those of
-	 * another.
-	 * <p>
-	 * Invocation of this method will not affect any packages that have already been initialized. <!-- begin-user-doc
+	 * Creates, registers, and initializes the <b>Package</b> for this
+	 * model, and for any others upon which it depends.  Simple
+	 * dependencies are satisfied by calling this method on all
+	 * dependent packages before doing anything else.  This method drives
+	 * initialization for interdependent packages directly, in parallel
+	 * with this package, itself.
+	 * <p>Of this package and its interdependencies, all packages which
+	 * have not yet been registered by their URI values are first created
+	 * and registered.  The packages are then initialized in two steps:
+	 * meta-model objects for all of the packages are created before any
+	 * are initialized, since one package's meta-model objects may refer to
+	 * those of another.
+	 * <p>Invocation of this method will not affect any packages that have
+	 * already been initialized.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static AnalyzerPackage init() {
-		if (isInited)
-			return (AnalyzerPackage) EPackage.Registry.INSTANCE.getEPackage(AnalyzerPackage.eNS_URI);
+		if (isInited) return (AnalyzerPackage)EPackage.Registry.INSTANCE.getEPackage(AnalyzerPackage.eNS_URI);
 
 		// Obtain or create and register package
-		AnalyzerPackageImpl theAnalyzerPackage = (AnalyzerPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof AnalyzerPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
-			: new AnalyzerPackageImpl());
+		AnalyzerPackageImpl theAnalyzerPackage = (AnalyzerPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof AnalyzerPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new AnalyzerPackageImpl());
 
 		isInited = true;
 
@@ -116,12 +99,8 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		EsmodelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
-		IteratorPackageImpl theIteratorPackage = (IteratorPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(IteratorPackage.eNS_URI) instanceof IteratorPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(IteratorPackage.eNS_URI) : IteratorPackage.eINSTANCE);
-		ExportersPackageImpl theExportersPackage = (ExportersPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(ExportersPackage.eNS_URI) instanceof ExportersPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(ExportersPackage.eNS_URI) : ExportersPackage.eINSTANCE);
+		IteratorPackageImpl theIteratorPackage = (IteratorPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(IteratorPackage.eNS_URI) instanceof IteratorPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(IteratorPackage.eNS_URI) : IteratorPackage.eINSTANCE);
+		ExportersPackageImpl theExportersPackage = (ExportersPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(ExportersPackage.eNS_URI) instanceof ExportersPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(ExportersPackage.eNS_URI) : ExportersPackage.eINSTANCE);
 
 		// Create package meta-data objects
 		theAnalyzerPackage.createPackageContents();
@@ -141,7 +120,6 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getProjectAnalysisData() {
@@ -150,43 +128,38 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectAnalysisData_ProjectState() {
-		return (EReference) projectAnalysisDataEClass.getEStructuralFeatures().get(0);
+		return (EReference)projectAnalysisDataEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectAnalysisData_ChangePackages() {
-		return (EReference) projectAnalysisDataEClass.getEStructuralFeatures().get(1);
+		return (EReference)projectAnalysisDataEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectAnalysisData_PrimaryVersionSpec() {
-		return (EReference) projectAnalysisDataEClass.getEStructuralFeatures().get(2);
+		return (EReference)projectAnalysisDataEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getProjectAnalysisData_ProjectId() {
-		return (EReference) projectAnalysisDataEClass.getEStructuralFeatures().get(3);
+		return (EReference)projectAnalysisDataEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EClass getAnalyzerConfiguration() {
@@ -195,74 +168,51 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EReference getAnalyzerConfiguration_Iterator() {
-		return (EReference) analyzerConfigurationEClass.getEStructuralFeatures().get(0);
+		return (EReference)analyzerConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EAttribute getAnalyzerConfiguration_AnalyzerName() {
-		return (EAttribute) analyzerConfigurationEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)analyzerConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getAnalyzerConfiguration_ExporterName() {
-		return (EAttribute) analyzerConfigurationEClass.getEStructuralFeatures().get(2);
+	public EReference getAnalyzerConfiguration_Exporter() {
+		return (EReference)analyzerConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EClass getDataAnalyzer() {
-		return dataAnalyzerEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EClass getTwoDDataAnalyzer() {
-		return twoDDataAnalyzerEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AnalyzerFactory getAnalyzerFactory() {
-		return (AnalyzerFactory) getEFactoryInstance();
+		return (AnalyzerFactory)getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is guarded to have no affect on any invocation but
-	 * its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the meta-model objects for the package.  This method is
+	 * guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated)
-			return;
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -275,29 +225,23 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		analyzerConfigurationEClass = createEClass(ANALYZER_CONFIGURATION);
 		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ITERATOR);
 		createEAttribute(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__ANALYZER_NAME);
-		createEAttribute(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__EXPORTER_NAME);
-
-		dataAnalyzerEClass = createEClass(DATA_ANALYZER);
-
-		twoDDataAnalyzerEClass = createEClass(TWO_DDATA_ANALYZER);
+		createEReference(analyzerConfigurationEClass, ANALYZER_CONFIGURATION__EXPORTER);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This method is guarded to have no affect on any
-	 * invocation but its first. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Complete the initialization of the package and its meta-model.  This
+	 * method is guarded to have no affect on any invocation but its first.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized)
-			return;
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -306,16 +250,12 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		IteratorPackage theIteratorPackage = (IteratorPackage) EPackage.Registry.INSTANCE
-			.getEPackage(IteratorPackage.eNS_URI);
-		ExportersPackage theExportersPackage = (ExportersPackage) EPackage.Registry.INSTANCE
-			.getEPackage(ExportersPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
-			.getEPackage(VersioningPackage.eNS_URI);
-		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
-			.getEPackage(EsmodelPackage.eNS_URI);
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		IteratorPackage theIteratorPackage = (IteratorPackage)EPackage.Registry.INSTANCE.getEPackage(IteratorPackage.eNS_URI);
+		ExportersPackage theExportersPackage = (ExportersPackage)EPackage.Registry.INSTANCE.getEPackage(ExportersPackage.eNS_URI);
+		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		VersioningPackage theVersioningPackage = (VersioningPackage)EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI);
+		EsmodelPackage theEsmodelPackage = (EsmodelPackage)EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theIteratorPackage);
@@ -326,41 +266,18 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		twoDDataAnalyzerEClass.getESuperTypes().add(this.getDataAnalyzer());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(projectAnalysisDataEClass, ProjectAnalysisData.class, "ProjectAnalysisData", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProjectAnalysisData_ProjectState(), theModelPackage.getProject(), null, "projectState", null,
-			0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectAnalysisData_ChangePackages(), theVersioningPackage.getChangePackage(), null,
-			"changePackages", null, 0, -1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectAnalysisData_PrimaryVersionSpec(), theVersioningPackage.getPrimaryVersionSpec(), null,
-			"primaryVersionSpec", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
-			IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getProjectAnalysisData_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null,
-			0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEClass(projectAnalysisDataEClass, ProjectAnalysisData.class, "ProjectAnalysisData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getProjectAnalysisData_ProjectState(), theModelPackage.getProject(), null, "projectState", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectAnalysisData_ChangePackages(), theVersioningPackage.getChangePackage(), null, "changePackages", null, 0, -1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectAnalysisData_PrimaryVersionSpec(), theVersioningPackage.getPrimaryVersionSpec(), null, "primaryVersionSpec", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectAnalysisData_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(analyzerConfigurationEClass, AnalyzerConfiguration.class, "AnalyzerConfiguration", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAnalyzerConfiguration_Iterator(), theIteratorPackage.getVersionIterator(), null, "iterator",
-			null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			!IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAnalyzerConfiguration_AnalyzerName(), theEcorePackage.getEString(), "analyzerName", null, 0,
-			1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getAnalyzerConfiguration_ExporterName(), theEcorePackage.getEString(), "exporterName", null, 0,
-			1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
-			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-		initEClass(dataAnalyzerEClass, DataAnalyzer.class, "DataAnalyzer", IS_ABSTRACT, IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-
-		initEClass(twoDDataAnalyzerEClass, TwoDDataAnalyzer.class, "TwoDDataAnalyzer", IS_ABSTRACT, IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
+		initEClass(analyzerConfigurationEClass, AnalyzerConfiguration.class, "AnalyzerConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getAnalyzerConfiguration_Iterator(), theIteratorPackage.getVersionIterator(), null, "iterator", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getAnalyzerConfiguration_AnalyzerName(), theEcorePackage.getEString(), "analyzerName", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnalyzerConfiguration_Exporter(), theExportersPackage.getExporter(), null, "exporter", null, 0, 1, AnalyzerConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

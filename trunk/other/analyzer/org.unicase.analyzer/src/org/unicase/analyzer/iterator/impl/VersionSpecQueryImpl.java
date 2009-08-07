@@ -51,7 +51,6 @@ public class VersionSpecQueryImpl extends EObjectImpl implements VersionSpecQuer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected VersionSpecQueryImpl() {
@@ -60,7 +59,6 @@ public class VersionSpecQueryImpl extends EObjectImpl implements VersionSpecQuer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,7 +68,6 @@ public class VersionSpecQueryImpl extends EObjectImpl implements VersionSpecQuer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VersionSpec getEndVersion() {
@@ -79,48 +76,38 @@ public class VersionSpecQueryImpl extends EObjectImpl implements VersionSpecQuer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetEndVersion(VersionSpec newEndVersion, NotificationChain msgs) {
 		VersionSpec oldEndVersion = endVersion;
 		endVersion = newEndVersion;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				IteratorPackage.VERSION_SPEC_QUERY__END_VERSION, oldEndVersion, newEndVersion);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_SPEC_QUERY__END_VERSION, oldEndVersion, newEndVersion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setEndVersion(VersionSpec newEndVersion) {
 		if (newEndVersion != endVersion) {
 			NotificationChain msgs = null;
 			if (endVersion != null)
-				msgs = ((InternalEObject) endVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- IteratorPackage.VERSION_SPEC_QUERY__END_VERSION, null, msgs);
+				msgs = ((InternalEObject)endVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - IteratorPackage.VERSION_SPEC_QUERY__END_VERSION, null, msgs);
 			if (newEndVersion != null)
-				msgs = ((InternalEObject) newEndVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- IteratorPackage.VERSION_SPEC_QUERY__END_VERSION, null, msgs);
+				msgs = ((InternalEObject)newEndVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - IteratorPackage.VERSION_SPEC_QUERY__END_VERSION, null, msgs);
 			msgs = basicSetEndVersion(newEndVersion, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_SPEC_QUERY__END_VERSION,
-				newEndVersion, newEndVersion));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_SPEC_QUERY__END_VERSION, newEndVersion, newEndVersion));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public VersionSpec getStartVersion() {
@@ -129,125 +116,111 @@ public class VersionSpecQueryImpl extends EObjectImpl implements VersionSpecQuer
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetStartVersion(VersionSpec newStartVersion, NotificationChain msgs) {
 		VersionSpec oldStartVersion = startVersion;
 		startVersion = newStartVersion;
 		if (eNotificationRequired()) {
-			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
-				IteratorPackage.VERSION_SPEC_QUERY__START_VERSION, oldStartVersion, newStartVersion);
-			if (msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_SPEC_QUERY__START_VERSION, oldStartVersion, newStartVersion);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStartVersion(VersionSpec newStartVersion) {
 		if (newStartVersion != startVersion) {
 			NotificationChain msgs = null;
 			if (startVersion != null)
-				msgs = ((InternalEObject) startVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
-					- IteratorPackage.VERSION_SPEC_QUERY__START_VERSION, null, msgs);
+				msgs = ((InternalEObject)startVersion).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - IteratorPackage.VERSION_SPEC_QUERY__START_VERSION, null, msgs);
 			if (newStartVersion != null)
-				msgs = ((InternalEObject) newStartVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
-					- IteratorPackage.VERSION_SPEC_QUERY__START_VERSION, null, msgs);
+				msgs = ((InternalEObject)newStartVersion).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - IteratorPackage.VERSION_SPEC_QUERY__START_VERSION, null, msgs);
 			msgs = basicSetStartVersion(newStartVersion, msgs);
-			if (msgs != null)
-				msgs.dispatch();
-		} else if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_SPEC_QUERY__START_VERSION,
-				newStartVersion, newStartVersion));
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, IteratorPackage.VERSION_SPEC_QUERY__START_VERSION, newStartVersion, newStartVersion));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case IteratorPackage.VERSION_SPEC_QUERY__END_VERSION:
-			return basicSetEndVersion(null, msgs);
-		case IteratorPackage.VERSION_SPEC_QUERY__START_VERSION:
-			return basicSetStartVersion(null, msgs);
+			case IteratorPackage.VERSION_SPEC_QUERY__END_VERSION:
+				return basicSetEndVersion(null, msgs);
+			case IteratorPackage.VERSION_SPEC_QUERY__START_VERSION:
+				return basicSetStartVersion(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case IteratorPackage.VERSION_SPEC_QUERY__END_VERSION:
-			return getEndVersion();
-		case IteratorPackage.VERSION_SPEC_QUERY__START_VERSION:
-			return getStartVersion();
+			case IteratorPackage.VERSION_SPEC_QUERY__END_VERSION:
+				return getEndVersion();
+			case IteratorPackage.VERSION_SPEC_QUERY__START_VERSION:
+				return getStartVersion();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case IteratorPackage.VERSION_SPEC_QUERY__END_VERSION:
-			setEndVersion((VersionSpec) newValue);
-			return;
-		case IteratorPackage.VERSION_SPEC_QUERY__START_VERSION:
-			setStartVersion((VersionSpec) newValue);
-			return;
+			case IteratorPackage.VERSION_SPEC_QUERY__END_VERSION:
+				setEndVersion((VersionSpec)newValue);
+				return;
+			case IteratorPackage.VERSION_SPEC_QUERY__START_VERSION:
+				setStartVersion((VersionSpec)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case IteratorPackage.VERSION_SPEC_QUERY__END_VERSION:
-			setEndVersion((VersionSpec) null);
-			return;
-		case IteratorPackage.VERSION_SPEC_QUERY__START_VERSION:
-			setStartVersion((VersionSpec) null);
-			return;
+			case IteratorPackage.VERSION_SPEC_QUERY__END_VERSION:
+				setEndVersion((VersionSpec)null);
+				return;
+			case IteratorPackage.VERSION_SPEC_QUERY__START_VERSION:
+				setStartVersion((VersionSpec)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case IteratorPackage.VERSION_SPEC_QUERY__END_VERSION:
-			return endVersion != null;
-		case IteratorPackage.VERSION_SPEC_QUERY__START_VERSION:
-			return startVersion != null;
+			case IteratorPackage.VERSION_SPEC_QUERY__END_VERSION:
+				return endVersion != null;
+			case IteratorPackage.VERSION_SPEC_QUERY__START_VERSION:
+				return startVersion != null;
 		}
 		return super.eIsSet(featureID);
 	}

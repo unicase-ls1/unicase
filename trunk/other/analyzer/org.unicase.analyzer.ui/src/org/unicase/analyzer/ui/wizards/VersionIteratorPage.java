@@ -253,6 +253,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 			}
 		});
 		ExporterPage page = ((ProjectAnalyzerWizard)getWizard()).getExporterPage();
+		page.init();
 		return page;
 	}
 
