@@ -19,44 +19,42 @@ import org.eclipse.emf.ecore.EReference;
  * <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * 
  * @see org.unicase.analyzer.AnalyzerFactory
  * @model kind="package"
  * @generated
  */
 public interface AnalyzerPackage extends EPackage {
 	/**
-	 * The package name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNAME = "analyzer";
 
 	/**
-	 * The package namespace URI. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace URI.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_URI = "http://unicase.org/analyzer";
 
 	/**
-	 * The package namespace name. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The package namespace name.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	String eNS_PREFIX = "org.unicase.analyzer";
 
 	/**
-	 * The singleton instance of the package. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The singleton instance of the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	AnalyzerPackage eINSTANCE = org.unicase.analyzer.impl.AnalyzerPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl
-	 * <em>Project Analysis Data</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl <em>Project Analysis Data</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.analyzer.impl.ProjectAnalysisDataImpl
 	 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getProjectAnalysisData()
 	 * @generated
@@ -64,53 +62,52 @@ public interface AnalyzerPackage extends EPackage {
 	int PROJECT_ANALYSIS_DATA = 0;
 
 	/**
-	 * The feature id for the '<em><b>Project State</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Project State</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_ANALYSIS_DATA__PROJECT_STATE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Change Packages</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Change Packages</b></em>' containment reference list.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_ANALYSIS_DATA__CHANGE_PACKAGES = 1;
 
 	/**
-	 * The feature id for the '<em><b>Primary Version Spec</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Primary Version Spec</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC = 2;
 
 	/**
-	 * The feature id for the '<em><b>Project Id</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Project Id</b></em>' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_ANALYSIS_DATA__PROJECT_ID = 3;
 
 	/**
-	 * The number of structural features of the '<em>Project Analysis Data</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Project Analysis Data</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int PROJECT_ANALYSIS_DATA_FEATURE_COUNT = 4;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl <em>Configuration</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The meta object id for the '{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl <em>Configuration</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.unicase.analyzer.impl.AnalyzerConfigurationImpl
 	 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getAnalyzerConfiguration()
 	 * @generated
@@ -118,81 +115,43 @@ public interface AnalyzerPackage extends EPackage {
 	int ANALYZER_CONFIGURATION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Iterator</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Iterator</b></em>' containment reference.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ANALYZER_CONFIGURATION__ITERATOR = 0;
 
 	/**
-	 * The feature id for the '<em><b>Analyzer Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Analyzer Name</b></em>' attribute.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
 	int ANALYZER_CONFIGURATION__ANALYZER_NAME = 1;
 
 	/**
-	 * The feature id for the '<em><b>Exporter Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * The feature id for the '<em><b>Exporter</b></em>' containment reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int ANALYZER_CONFIGURATION__EXPORTER_NAME = 2;
+	int ANALYZER_CONFIGURATION__EXPORTER = 2;
 
 	/**
-	 * The number of structural features of the '<em>Configuration</em>' class. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Configuration</em>' class.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
 	int ANALYZER_CONFIGURATION_FEATURE_COUNT = 3;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.analyzer.DataAnalyzer <em>Data Analyzer</em>}' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.analyzer.DataAnalyzer
-	 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getDataAnalyzer()
-	 * @generated
-	 */
-	int DATA_ANALYZER = 2;
-
-	/**
-	 * The number of structural features of the '<em>Data Analyzer</em>' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int DATA_ANALYZER_FEATURE_COUNT = 0;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.analyzer.TwoDDataAnalyzer <em>Two DData Analyzer</em>}' class.
+	 * Returns the meta object for class '{@link org.unicase.analyzer.ProjectAnalysisData <em>Project Analysis Data</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.analyzer.TwoDDataAnalyzer
-	 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getTwoDDataAnalyzer()
-	 * @generated
-	 */
-	int TWO_DDATA_ANALYZER = 3;
-
-	/**
-	 * The number of structural features of the '<em>Two DData Analyzer</em>' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int TWO_DDATA_ANALYZER_FEATURE_COUNT = DATA_ANALYZER_FEATURE_COUNT + 0;
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.analyzer.ProjectAnalysisData
-	 * <em>Project Analysis Data</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Project Analysis Data</em>'.
 	 * @see org.unicase.analyzer.ProjectAnalysisData
 	 * @generated
@@ -200,10 +159,9 @@ public interface AnalyzerPackage extends EPackage {
 	EClass getProjectAnalysisData();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.analyzer.ProjectAnalysisData#getProjectState <em>Project State</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.ProjectAnalysisData#getProjectState <em>Project State</em>}'.
+	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Project State</em>'.
 	 * @see org.unicase.analyzer.ProjectAnalysisData#getProjectState()
 	 * @see #getProjectAnalysisData()
@@ -212,10 +170,9 @@ public interface AnalyzerPackage extends EPackage {
 	EReference getProjectAnalysisData_ProjectState();
 
 	/**
-	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.analyzer.ProjectAnalysisData#getChangePackages <em>Change Packages</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for the containment reference list '{@link org.unicase.analyzer.ProjectAnalysisData#getChangePackages <em>Change Packages</em>}'.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference list '<em>Change Packages</em>'.
 	 * @see org.unicase.analyzer.ProjectAnalysisData#getChangePackages()
 	 * @see #getProjectAnalysisData()
@@ -236,9 +193,8 @@ public interface AnalyzerPackage extends EPackage {
 	EReference getProjectAnalysisData_PrimaryVersionSpec();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.analyzer.ProjectAnalysisData#getProjectId
-	 * <em>Project Id</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the reference '{@link org.unicase.analyzer.ProjectAnalysisData#getProjectId <em>Project Id</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Project Id</em>'.
 	 * @see org.unicase.analyzer.ProjectAnalysisData#getProjectId()
 	 * @see #getProjectAnalysisData()
@@ -249,7 +205,6 @@ public interface AnalyzerPackage extends EPackage {
 	/**
 	 * Returns the meta object for class '{@link org.unicase.analyzer.AnalyzerConfiguration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the meta object for class '<em>Configuration</em>'.
 	 * @see org.unicase.analyzer.AnalyzerConfiguration
 	 * @generated
@@ -257,10 +212,9 @@ public interface AnalyzerPackage extends EPackage {
 	EClass getAnalyzerConfiguration();
 
 	/**
-	 * Returns the meta object for the containment reference '
-	 * {@link org.unicase.analyzer.AnalyzerConfiguration#getIterator <em>Iterator</em>}'. <!-- begin-user-doc --> <!--
+	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.AnalyzerConfiguration#getIterator <em>Iterator</em>}'.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return the meta object for the containment reference '<em>Iterator</em>'.
 	 * @see org.unicase.analyzer.AnalyzerConfiguration#getIterator()
 	 * @see #getAnalyzerConfiguration()
@@ -269,9 +223,8 @@ public interface AnalyzerPackage extends EPackage {
 	EReference getAnalyzerConfiguration_Iterator();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerName
-	 * <em>Analyzer Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Returns the meta object for the attribute '{@link org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerName <em>Analyzer Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Analyzer Name</em>'.
 	 * @see org.unicase.analyzer.AnalyzerConfiguration#getAnalyzerName()
 	 * @see #getAnalyzerConfiguration()
@@ -280,39 +233,19 @@ public interface AnalyzerPackage extends EPackage {
 	EAttribute getAnalyzerConfiguration_AnalyzerName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.analyzer.AnalyzerConfiguration#getExporterName
-	 * <em>Exporter Name</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Exporter Name</em>'.
-	 * @see org.unicase.analyzer.AnalyzerConfiguration#getExporterName()
+	 * Returns the meta object for the containment reference '{@link org.unicase.analyzer.AnalyzerConfiguration#getExporter <em>Exporter</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference '<em>Exporter</em>'.
+	 * @see org.unicase.analyzer.AnalyzerConfiguration#getExporter()
 	 * @see #getAnalyzerConfiguration()
 	 * @generated
 	 */
-	EAttribute getAnalyzerConfiguration_ExporterName();
+	EReference getAnalyzerConfiguration_Exporter();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.analyzer.DataAnalyzer <em>Data Analyzer</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Data Analyzer</em>'.
-	 * @see org.unicase.analyzer.DataAnalyzer
-	 * @generated
-	 */
-	EClass getDataAnalyzer();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.analyzer.TwoDDataAnalyzer <em>Two DData Analyzer</em>}'.
+	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Two DData Analyzer</em>'.
-	 * @see org.unicase.analyzer.TwoDDataAnalyzer
-	 * @generated
-	 */
-	EClass getTwoDDataAnalyzer();
-
-	/**
-	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -327,14 +260,12 @@ public interface AnalyzerPackage extends EPackage {
 	 * <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl
-		 * <em>Project Analysis Data</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.analyzer.impl.ProjectAnalysisDataImpl <em>Project Analysis Data</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.analyzer.impl.ProjectAnalysisDataImpl
 		 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getProjectAnalysisData()
 		 * @generated
@@ -366,17 +297,16 @@ public interface AnalyzerPackage extends EPackage {
 		EReference PROJECT_ANALYSIS_DATA__PRIMARY_VERSION_SPEC = eINSTANCE.getProjectAnalysisData_PrimaryVersionSpec();
 
 		/**
-		 * The meta object literal for the '<em><b>Project Id</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * The meta object literal for the '<em><b>Project Id</b></em>' reference feature.
+		 * <!-- begin-user-doc --> <!--
 		 * end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference PROJECT_ANALYSIS_DATA__PROJECT_ID = eINSTANCE.getProjectAnalysisData_ProjectId();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl
-		 * <em>Configuration</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
+		 * The meta object literal for the '{@link org.unicase.analyzer.impl.AnalyzerConfigurationImpl <em>Configuration</em>}' class.
+		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * @see org.unicase.analyzer.impl.AnalyzerConfigurationImpl
 		 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getAnalyzerConfiguration()
 		 * @generated
@@ -384,48 +314,28 @@ public interface AnalyzerPackage extends EPackage {
 		EClass ANALYZER_CONFIGURATION = eINSTANCE.getAnalyzerConfiguration();
 
 		/**
-		 * The meta object literal for the '<em><b>Iterator</b></em>' containment reference feature. <!-- begin-user-doc
+		 * The meta object literal for the '<em><b>Iterator</b></em>' containment reference feature.
+		 * <!-- begin-user-doc
 		 * --> <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EReference ANALYZER_CONFIGURATION__ITERATOR = eINSTANCE.getAnalyzerConfiguration_Iterator();
 
 		/**
-		 * The meta object literal for the '<em><b>Analyzer Name</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Analyzer Name</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		EAttribute ANALYZER_CONFIGURATION__ANALYZER_NAME = eINSTANCE.getAnalyzerConfiguration_AnalyzerName();
 
 		/**
-		 * The meta object literal for the '<em><b>Exporter Name</b></em>' attribute feature. <!-- begin-user-doc -->
+		 * The meta object literal for the '<em><b>Exporter</b></em>' containment reference feature.
+		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
-		EAttribute ANALYZER_CONFIGURATION__EXPORTER_NAME = eINSTANCE.getAnalyzerConfiguration_ExporterName();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.analyzer.DataAnalyzer <em>Data Analyzer</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @see org.unicase.analyzer.DataAnalyzer
-		 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getDataAnalyzer()
-		 * @generated
-		 */
-		EClass DATA_ANALYZER = eINSTANCE.getDataAnalyzer();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.analyzer.TwoDDataAnalyzer <em>Two DData Analyzer</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @see org.unicase.analyzer.TwoDDataAnalyzer
-		 * @see org.unicase.analyzer.impl.AnalyzerPackageImpl#getTwoDDataAnalyzer()
-		 * @generated
-		 */
-		EClass TWO_DDATA_ANALYZER = eINSTANCE.getTwoDDataAnalyzer();
+		EReference ANALYZER_CONFIGURATION__EXPORTER = eINSTANCE.getAnalyzerConfiguration_Exporter();
 
 	}
 

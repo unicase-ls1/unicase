@@ -12,27 +12,28 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Exporter</b></em>'. <!-- end-user-doc -->
+ *
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.analyzer.exporters.Exporter#getFileName <em>File Name</em>}</li>
- * <li>{@link org.unicase.analyzer.exporters.Exporter#isOverwrite <em>Overwrite</em>}</li>
+ *   <li>{@link org.unicase.analyzer.exporters.Exporter#getFileName <em>File Name</em>}</li>
+ *   <li>{@link org.unicase.analyzer.exporters.Exporter#isOverwrite <em>Overwrite</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @see org.unicase.analyzer.exporters.ExportersPackage#getExporter()
  * @model abstract="true"
  * @generated
  */
 public interface Exporter extends EObject {
 	/**
-	 * Returns the value of the '<em><b>File Name</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>File Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>File Name</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>File Name</em>' attribute.
 	 * @see #setFileName(String)
 	 * @see org.unicase.analyzer.exporters.ExportersPackage#getExporter_FileName()
@@ -44,7 +45,6 @@ public interface Exporter extends EObject {
 	/**
 	 * Sets the value of the '{@link org.unicase.analyzer.exporters.Exporter#getFileName <em>File Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>File Name</em>' attribute.
 	 * @see #getFileName()
 	 * @generated
@@ -52,13 +52,13 @@ public interface Exporter extends EObject {
 	void setFileName(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Overwrite</b></em>' attribute. <!-- begin-user-doc -->
+	 * Returns the value of the '<em><b>Overwrite</b></em>' attribute.
+	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Overwrite</em>' attribute isn't clear, there really should be more of a description
 	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Overwrite</em>' attribute.
 	 * @see #setOverwrite(boolean)
 	 * @see org.unicase.analyzer.exporters.ExportersPackage#getExporter_Overwrite()
@@ -70,7 +70,6 @@ public interface Exporter extends EObject {
 	/**
 	 * Sets the value of the '{@link org.unicase.analyzer.exporters.Exporter#isOverwrite <em>Overwrite</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @param value the new value of the '<em>Overwrite</em>' attribute.
 	 * @see #isOverwrite()
 	 * @generated

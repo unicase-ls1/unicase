@@ -68,16 +68,19 @@ public class TimeIteratorItemProvider extends VersionIteratorItemProvider
 	 * @generated
 	 */
 	protected void addStartDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_TimeIterator_startDate_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_TimeIterator_startDate_feature",
-						"_UI_TimeIterator_type"),
-				IteratorPackage.Literals.TIME_ITERATOR__START_DATE, true,
-				false, false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TimeIterator_startDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TimeIterator_startDate_feature", "_UI_TimeIterator_type"),
+				 IteratorPackage.Literals.TIME_ITERATOR__START_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -87,15 +90,19 @@ public class TimeIteratorItemProvider extends VersionIteratorItemProvider
 	 * @generated
 	 */
 	protected void addEndDatePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_TimeIterator_endDate_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_TimeIterator_endDate_feature",
-						"_UI_TimeIterator_type"),
-				IteratorPackage.Literals.TIME_ITERATOR__END_DATE, true, false,
-				false, ItemPropertyDescriptor.GENERIC_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TimeIterator_endDate_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TimeIterator_endDate_feature", "_UI_TimeIterator_type"),
+				 IteratorPackage.Literals.TIME_ITERATOR__END_DATE,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -105,16 +112,19 @@ public class TimeIteratorItemProvider extends VersionIteratorItemProvider
 	 * @generated
 	 */
 	protected void addStepLengthUnitPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_TimeIterator_stepLengthUnit_feature"),
-				getString("_UI_PropertyDescriptor_description",
-						"_UI_TimeIterator_stepLengthUnit_feature",
-						"_UI_TimeIterator_type"),
-				IteratorPackage.Literals.TIME_ITERATOR__STEP_LENGTH_UNIT, true,
-				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_TimeIterator_stepLengthUnit_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TimeIterator_stepLengthUnit_feature", "_UI_TimeIterator_type"),
+				 IteratorPackage.Literals.TIME_ITERATOR__STEP_LENGTH_UNIT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -125,29 +135,26 @@ public class TimeIteratorItemProvider extends VersionIteratorItemProvider
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/TimeIterator"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TimeIterator"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		TimeIterator timeIterator = (TimeIterator) object;
-		return getString("_UI_TimeIterator_type") + " "
-				+ timeIterator.getStepLength();
+		TimeIterator timeIterator = (TimeIterator)object;
+		return getString("_UI_TimeIterator_type") + " " + timeIterator.getStepLength();
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -155,12 +162,11 @@ public class TimeIteratorItemProvider extends VersionIteratorItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(TimeIterator.class)) {
-		case IteratorPackage.TIME_ITERATOR__START_DATE:
-		case IteratorPackage.TIME_ITERATOR__END_DATE:
-		case IteratorPackage.TIME_ITERATOR__STEP_LENGTH_UNIT:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
+			case IteratorPackage.TIME_ITERATOR__START_DATE:
+			case IteratorPackage.TIME_ITERATOR__END_DATE:
+			case IteratorPackage.TIME_ITERATOR__STEP_LENGTH_UNIT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}

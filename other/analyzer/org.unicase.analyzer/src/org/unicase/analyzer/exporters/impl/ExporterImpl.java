@@ -17,18 +17,18 @@ import org.unicase.analyzer.exporters.ExportersPackage;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.analyzer.exporters.impl.ExporterImpl#getFileName <em>File Name</em>}</li>
- * <li>{@link org.unicase.analyzer.exporters.impl.ExporterImpl#isOverwrite <em>Overwrite</em>}</li>
+ *   <li>{@link org.unicase.analyzer.exporters.impl.ExporterImpl#getFileName <em>File Name</em>}</li>
+ *   <li>{@link org.unicase.analyzer.exporters.impl.ExporterImpl#isOverwrite <em>Overwrite</em>}</li>
  * </ul>
  * </p>
- * 
+ *
  * @generated
  */
 public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 	/**
-	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #getFileName() <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFileName()
 	 * @generated
 	 * @ordered
@@ -36,9 +36,9 @@ public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 	protected static final String FILE_NAME_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getFileName() <em>File Name</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #getFileName() <em>File Name</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFileName()
 	 * @generated
 	 * @ordered
@@ -46,9 +46,9 @@ public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 	protected String fileName = FILE_NAME_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isOverwrite() <em>Overwrite</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The default value of the '{@link #isOverwrite() <em>Overwrite</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isOverwrite()
 	 * @generated
 	 * @ordered
@@ -56,9 +56,9 @@ public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 	protected static final boolean OVERWRITE_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isOverwrite() <em>Overwrite</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * The cached value of the '{@link #isOverwrite() <em>Overwrite</em>}' attribute.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isOverwrite()
 	 * @generated
 	 * @ordered
@@ -67,7 +67,6 @@ public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ExporterImpl() {
@@ -76,7 +75,6 @@ public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,7 +84,6 @@ public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getFileName() {
@@ -95,20 +92,17 @@ public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFileName(String newFileName) {
 		String oldFileName = fileName;
 		fileName = newFileName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExportersPackage.EXPORTER__FILE_NAME, oldFileName,
-				fileName));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExportersPackage.EXPORTER__FILE_NAME, oldFileName, fileName));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isOverwrite() {
@@ -117,94 +111,86 @@ public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOverwrite(boolean newOverwrite) {
 		boolean oldOverwrite = overwrite;
 		overwrite = newOverwrite;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExportersPackage.EXPORTER__OVERWRITE, oldOverwrite,
-				overwrite));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExportersPackage.EXPORTER__OVERWRITE, oldOverwrite, overwrite));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case ExportersPackage.EXPORTER__FILE_NAME:
-			return getFileName();
-		case ExportersPackage.EXPORTER__OVERWRITE:
-			return isOverwrite() ? Boolean.TRUE : Boolean.FALSE;
+			case ExportersPackage.EXPORTER__FILE_NAME:
+				return getFileName();
+			case ExportersPackage.EXPORTER__OVERWRITE:
+				return isOverwrite() ? Boolean.TRUE : Boolean.FALSE;
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case ExportersPackage.EXPORTER__FILE_NAME:
-			setFileName((String) newValue);
-			return;
-		case ExportersPackage.EXPORTER__OVERWRITE:
-			setOverwrite(((Boolean) newValue).booleanValue());
-			return;
+			case ExportersPackage.EXPORTER__FILE_NAME:
+				setFileName((String)newValue);
+				return;
+			case ExportersPackage.EXPORTER__OVERWRITE:
+				setOverwrite(((Boolean)newValue).booleanValue());
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case ExportersPackage.EXPORTER__FILE_NAME:
-			setFileName(FILE_NAME_EDEFAULT);
-			return;
-		case ExportersPackage.EXPORTER__OVERWRITE:
-			setOverwrite(OVERWRITE_EDEFAULT);
-			return;
+			case ExportersPackage.EXPORTER__FILE_NAME:
+				setFileName(FILE_NAME_EDEFAULT);
+				return;
+			case ExportersPackage.EXPORTER__OVERWRITE:
+				setOverwrite(OVERWRITE_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case ExportersPackage.EXPORTER__FILE_NAME:
-			return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
-		case ExportersPackage.EXPORTER__OVERWRITE:
-			return overwrite != OVERWRITE_EDEFAULT;
+			case ExportersPackage.EXPORTER__FILE_NAME:
+				return FILE_NAME_EDEFAULT == null ? fileName != null : !FILE_NAME_EDEFAULT.equals(fileName);
+			case ExportersPackage.EXPORTER__OVERWRITE:
+				return overwrite != OVERWRITE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (fileName: ");

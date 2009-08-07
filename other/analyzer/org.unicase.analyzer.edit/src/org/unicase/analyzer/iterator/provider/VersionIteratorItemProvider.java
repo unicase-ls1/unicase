@@ -75,16 +75,19 @@ public class VersionIteratorItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addStepLengthPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_VersionIterator_stepLength_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_VersionIterator_stepLength_feature",
-						"_UI_VersionIterator_type"),
-				IteratorPackage.Literals.VERSION_ITERATOR__STEP_LENGTH, true,
-				false, false, ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VersionIterator_stepLength_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VersionIterator_stepLength_feature", "_UI_VersionIterator_type"),
+				 IteratorPackage.Literals.VERSION_ITERATOR__STEP_LENGTH,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -94,38 +97,40 @@ public class VersionIteratorItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addForwardPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_VersionIterator_forward_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_VersionIterator_forward_feature",
-						"_UI_VersionIterator_type"),
-				IteratorPackage.Literals.VERSION_ITERATOR__FORWARD, true,
-				false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VersionIterator_forward_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VersionIterator_forward_feature", "_UI_VersionIterator_type"),
+				 IteratorPackage.Literals.VERSION_ITERATOR__FORWARD,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This adds a property descriptor for the Return Project Data Copy feature.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected void addReturnProjectDataCopyPropertyDescriptor(Object object) {
-		itemPropertyDescriptors
-				.add(createItemPropertyDescriptor(
-						((ComposeableAdapterFactory) adapterFactory)
-								.getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_VersionIterator_returnProjectDataCopy_feature"),
-						getString(
-								"_UI_PropertyDescriptor_description",
-								"_UI_VersionIterator_returnProjectDataCopy_feature",
-								"_UI_VersionIterator_type"),
-						IteratorPackage.Literals.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY,
-						true, false, false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VersionIterator_returnProjectDataCopy_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VersionIterator_returnProjectDataCopy_feature", "_UI_VersionIterator_type"),
+				 IteratorPackage.Literals.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -135,26 +140,26 @@ public class VersionIteratorItemProvider extends ItemProviderAdapter implements
 	 * @generated
 	 */
 	protected void addDefaultPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(
-				((ComposeableAdapterFactory) adapterFactory)
-						.getRootAdapterFactory(), getResourceLocator(),
-				getString("_UI_VersionIterator_default_feature"), getString(
-						"_UI_PropertyDescriptor_description",
-						"_UI_VersionIterator_default_feature",
-						"_UI_VersionIterator_type"),
-				IteratorPackage.Literals.VERSION_ITERATOR__DEFAULT, true,
-				false, false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null,
-				null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_VersionIterator_default_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_VersionIterator_default_feature", "_UI_VersionIterator_type"),
+				 IteratorPackage.Literals.VERSION_ITERATOR__DEFAULT,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to
-	 * deduce an appropriate feature for an
-	 * {@link org.eclipse.emf.edit.command.AddCommand},
-	 * {@link org.eclipse.emf.edit.command.RemoveCommand} or
-	 * {@link org.eclipse.emf.edit.command.MoveCommand} in
-	 * {@link #createCommand}. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
@@ -162,59 +167,52 @@ public class VersionIteratorItemProvider extends ItemProviderAdapter implements
 			Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures
-					.add(IteratorPackage.Literals.VERSION_ITERATOR__PROJECT_ID);
-			childrenFeatures
-					.add(IteratorPackage.Literals.VERSION_ITERATOR__VERSION_SPEC_QUERY);
+			childrenFeatures.add(IteratorPackage.Literals.VERSION_ITERATOR__PROJECT_ID);
+			childrenFeatures.add(IteratorPackage.Literals.VERSION_ITERATOR__VERSION_SPEC_QUERY);
 		}
 		return childrenFeatures;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
-		// Check the type of the specified child object and return the proper
-		// feature to use for
+		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
 		return super.getChildFeature(object, child);
 	}
 
 	/**
-	 * This returns VersionIterator.gif. <!-- begin-user-doc --> <!--
+	 * This returns VersionIterator.gif.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage(
-				"full/obj16/VersionIterator"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/VersionIterator"));
 	}
 
 	/**
-	 * This returns the label text for the adapted class. <!-- begin-user-doc
+	 * This returns the label text for the adapted class.
+	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
-		VersionIterator versionIterator = (VersionIterator) object;
-		return getString("_UI_VersionIterator_type") + " "
-				+ versionIterator.getStepLength();
+		VersionIterator versionIterator = (VersionIterator)object;
+		return getString("_UI_VersionIterator_type") + " " + versionIterator.getStepLength();
 	}
 
 	/**
-	 * This handles model notifications by calling {@link #updateChildren} to
-	 * update any cached children and by creating a viewer notification, which
-	 * it passes to {@link #fireNotifyChanged}. <!-- begin-user-doc --> <!--
+	 * This handles model notifications by calling {@link #updateChildren} to update any cached
+	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -222,18 +220,16 @@ public class VersionIteratorItemProvider extends ItemProviderAdapter implements
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(VersionIterator.class)) {
-		case IteratorPackage.VERSION_ITERATOR__STEP_LENGTH:
-		case IteratorPackage.VERSION_ITERATOR__FORWARD:
-		case IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY:
-		case IteratorPackage.VERSION_ITERATOR__DEFAULT:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), false, true));
-			return;
-		case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
-		case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
-			fireNotifyChanged(new ViewerNotification(notification, notification
-					.getNotifier(), true, false));
-			return;
+			case IteratorPackage.VERSION_ITERATOR__STEP_LENGTH:
+			case IteratorPackage.VERSION_ITERATOR__FORWARD:
+			case IteratorPackage.VERSION_ITERATOR__RETURN_PROJECT_DATA_COPY:
+			case IteratorPackage.VERSION_ITERATOR__DEFAULT:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case IteratorPackage.VERSION_ITERATOR__PROJECT_ID:
+			case IteratorPackage.VERSION_ITERATOR__VERSION_SPEC_QUERY:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -250,13 +246,15 @@ public class VersionIteratorItemProvider extends ItemProviderAdapter implements
 			Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add(createChildParameter(
-				IteratorPackage.Literals.VERSION_ITERATOR__PROJECT_ID,
-				EsmodelFactory.eINSTANCE.createProjectId()));
+		newChildDescriptors.add
+			(createChildParameter
+				(IteratorPackage.Literals.VERSION_ITERATOR__PROJECT_ID,
+				 EsmodelFactory.eINSTANCE.createProjectId()));
 
-		newChildDescriptors.add(createChildParameter(
-				IteratorPackage.Literals.VERSION_ITERATOR__VERSION_SPEC_QUERY,
-				IteratorFactory.eINSTANCE.createVersionSpecQuery()));
+		newChildDescriptors.add
+			(createChildParameter
+				(IteratorPackage.Literals.VERSION_ITERATOR__VERSION_SPEC_QUERY,
+				 IteratorFactory.eINSTANCE.createVersionSpecQuery()));
 	}
 
 	/**

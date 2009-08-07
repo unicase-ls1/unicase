@@ -16,10 +16,8 @@
     <genClasses ecoreClass="analyzer.ecore#//AnalyzerConfiguration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//AnalyzerConfiguration/iterator"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//AnalyzerConfiguration/analyzerName"/>
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//AnalyzerConfiguration/exporterName"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference analyzer.ecore#//AnalyzerConfiguration/exporter"/>
     </genClasses>
-    <genClasses image="false" ecoreClass="analyzer.ecore#//DataAnalyzer"/>
-    <genClasses image="false" ecoreClass="analyzer.ecore#//TwoDDataAnalyzer"/>
     <nestedGenPackages prefix="Iterator" basePackage="org.unicase.analyzer" disposableProviderFactory="true"
         ecorePackage="analyzer.ecore#//iterator">
       <genClasses ecoreClass="analyzer.ecore#//iterator/VersionIterator">
@@ -46,6 +44,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//exporters/Exporter/fileName"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute analyzer.ecore#//exporters/Exporter/overwrite"/>
       </genClasses>
+      <genClasses ecoreClass="analyzer.ecore#//exporters/CSVExporter"/>
     </nestedGenPackages>
   </genPackages>
 </genmodel:GenModel>

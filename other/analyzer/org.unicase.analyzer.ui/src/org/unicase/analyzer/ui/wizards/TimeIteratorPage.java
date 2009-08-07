@@ -273,6 +273,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		});
 		
 		ExporterPage page = ((ProjectAnalyzerWizard)getWizard()).getExporterPage();
+		page.init();
 		return page;
 	}
 
