@@ -12,12 +12,4 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.analyzer
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
-Import-Package: org.unicase.workspace.provider,
- org.unicase.workspace.test,
- org.unicase.workspace.test.projectGenerator,
- org.unicase.workspace.ui,
- org.unicase.workspace.ui.commands,
- org.unicase.workspace.ui.dashboard,
- org.unicase.workspace.ui.dialogs,
- org.unicase.workspace.ui.views.changes
 Export-Package: org.unicase.linkrecommendationevaluation
