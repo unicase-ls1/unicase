@@ -8,7 +8,7 @@ package org.unicase.analyzer.unicaseAnalyzers.test;
 
 import static org.junit.Assert.assertTrue;
 
-import java.io.File;
+
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -18,14 +18,12 @@ import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
+import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.VersionIterator;
-import org.unicase.analyzer.iterator.VersionSpecQuery;
-import org.unicase.analyzer.iterator.impl.IteratorFactoryImpl;
 import org.unicase.analyzer.unicaseanalyzers.DetectionAnalyzer;
 import org.unicase.anaylzer.test.AnalyzersTest;
 import org.unicase.emfstore.esmodel.ProjectInfo;
-import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+
 
 /**
  * @author liya
@@ -33,8 +31,6 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
  */
 public class DetectionAnalyzerTest extends AnalyzersTest {
 
-	private File export;
-	private CSVExporter exporter;
 	
 	
 	/**
@@ -57,7 +53,7 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 1;
 
-				VersionIterator projectIt = IteratorFactoryImpl.eINSTANCE.createVersionIterator();
+				VersionIterator projectIt = IteratorFactory.eINSTANCE.createVersionIterator();
 				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
 				exporter.init("Exports/export_test.dat",true);
 				projectIt.setProjectId(pI.getProjectId());
@@ -87,7 +83,7 @@ public class DetectionAnalyzerTest extends AnalyzersTest {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 1;
 				
-				VersionIterator projectIt = IteratorFactoryImpl.eINSTANCE.createVersionIterator();
+				VersionIterator projectIt = IteratorFactory.eINSTANCE.createVersionIterator();
 				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
 				exporter.init("Exports/export_test.dat",true);
 				projectIt.setProjectId(pI.getProjectId());
