@@ -20,8 +20,8 @@ import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
+import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.VersionIterator;
-import org.unicase.analyzer.iterator.impl.IteratorFactoryImpl;
 import org.unicase.analyzer.unicaseanalyzers.CommitUpdateReadEventAnalyzer;
 import org.unicase.anaylzer.test.AnalyzersTest;
 import org.unicase.emfstore.esmodel.ProjectInfo;
@@ -57,7 +57,7 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 1;
 
-				VersionIterator projectIt = IteratorFactoryImpl.eINSTANCE.createVersionIterator();				
+				VersionIterator projectIt = IteratorFactory.eINSTANCE.createVersionIterator();				
 				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
 				exporter.init("Exports/export_test.dat",true);
 				projectIt.setProjectId(pI.getProjectId());

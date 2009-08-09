@@ -17,9 +17,9 @@ import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
+import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.analyzer.iterator.VersionIterator;
-import org.unicase.analyzer.iterator.impl.IteratorFactoryImpl;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 
@@ -41,7 +41,7 @@ public class IteratorModelTest extends AnalyzersTest {
 			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 1;
-				VersionIterator projectIt = IteratorFactoryImpl.eINSTANCE.createVersionIterator();
+				VersionIterator projectIt = IteratorFactory.eINSTANCE.createVersionIterator();
 				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
 				exporter.init("Exports/export_test.dat",true);
 				projectIt.setProjectId(pI.getProjectId());
@@ -78,7 +78,7 @@ public class IteratorModelTest extends AnalyzersTest {
 			if (pI.getName().contains("test")) {
 				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
 				int stepLength = 1;
-				TimeIterator projectIt = IteratorFactoryImpl.eINSTANCE.createTimeIterator();
+				TimeIterator projectIt = IteratorFactory.eINSTANCE.createTimeIterator();
 				projectIt.init(super.getUserSession(), pI.getProjectId(), stepLength, Calendar.MINUTE);
 				int tempIdentifier = 0;
 				while (projectIt.hasNext()) {
