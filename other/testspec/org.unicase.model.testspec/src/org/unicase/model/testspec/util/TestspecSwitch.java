@@ -98,11 +98,11 @@ public class TestspecSwitch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case TestspecPackage.LOGICAL_TEST_CASE: {
-				LogicalTestCase logicalTestCase = (LogicalTestCase)theEObject;
-				T result = caseLogicalTestCase(logicalTestCase);
-				if (result == null) result = caseModelElement(logicalTestCase);
-				if (result == null) result = caseIdentifiableElement(logicalTestCase);
+			case TestspecPackage.TEST_CASE: {
+				TestCase testCase = (TestCase)theEObject;
+				T result = caseTestCase(testCase);
+				if (result == null) result = caseModelElement(testCase);
+				if (result == null) result = caseIdentifiableElement(testCase);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
@@ -134,17 +134,17 @@ public class TestspecSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Logical Test Case</em>'.
+	 * Returns the result of interpreting the object as an instance of '<em>Test Case</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
 	 * returning a non-null result will terminate the switch.
 	 * <!-- end-user-doc -->
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Logical Test Case</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Test Case</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseLogicalTestCase(LogicalTestCase object) {
+	public T caseTestCase(TestCase object) {
 		return null;
 	}
 

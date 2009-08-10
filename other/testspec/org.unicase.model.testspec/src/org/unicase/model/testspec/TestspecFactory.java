@@ -35,13 +35,13 @@ public interface TestspecFactory extends EFactory {
 	TestProtocol createTestProtocol();
 
 	/**
-	 * Returns a new object of class '<em>Logical Test Case</em>'.
+	 * Returns a new object of class '<em>Test Case</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return a new object of class '<em>Logical Test Case</em>'.
+	 * @return a new object of class '<em>Test Case</em>'.
 	 * @generated
 	 */
-	LogicalTestCase createLogicalTestCase();
+	TestCase createTestCase();
 
 	/**
 	 * Returns a new object of class '<em>Test Step</em>'.

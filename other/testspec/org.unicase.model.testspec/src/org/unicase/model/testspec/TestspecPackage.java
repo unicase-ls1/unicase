@@ -208,23 +208,32 @@ public interface TestspecPackage extends EPackage {
 	int TEST_PROTOCOL__TEST_CASE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Test Steps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TEST_PROTOCOL__TEST_STEPS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Test Protocol</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_PROTOCOL_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int TEST_PROTOCOL_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.testspec.impl.LogicalTestCaseImpl <em>Logical Test Case</em>}' class.
+	 * The meta object id for the '{@link org.unicase.model.testspec.impl.TestCaseImpl <em>Test Case</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see org.unicase.model.testspec.impl.LogicalTestCaseImpl
-	 * @see org.unicase.model.testspec.impl.TestspecPackageImpl#getLogicalTestCase()
+	 * @see org.unicase.model.testspec.impl.TestCaseImpl
+	 * @see org.unicase.model.testspec.impl.TestspecPackageImpl#getTestCase()
 	 * @generated
 	 */
-	int LOGICAL_TEST_CASE = 1;
+	int TEST_CASE = 1;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -233,7 +242,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+	int TEST_CASE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute.
@@ -242,7 +251,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+	int TEST_CASE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -251,7 +260,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int TEST_CASE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute.
@@ -260,7 +269,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int TEST_CASE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute.
@@ -269,7 +278,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int TEST_CASE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list.
@@ -278,7 +287,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int TEST_CASE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list.
@@ -287,7 +296,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int TEST_CASE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list.
@@ -296,7 +305,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int TEST_CASE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference.
@@ -305,7 +314,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int TEST_CASE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute.
@@ -314,7 +323,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int TEST_CASE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list.
@@ -323,7 +332,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int TEST_CASE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list.
@@ -332,7 +341,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int TEST_CASE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Type</b></em>' attribute.
@@ -341,7 +350,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__TYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int TEST_CASE__TYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Precondition</b></em>' attribute.
@@ -350,7 +359,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__PRECONDITION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TEST_CASE__PRECONDITION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Postcondition</b></em>' attribute.
@@ -359,7 +368,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__POSTCONDITION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int TEST_CASE__POSTCONDITION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Infrastructure</b></em>' attribute.
@@ -368,7 +377,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__INFRASTRUCTURE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int TEST_CASE__INFRASTRUCTURE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Non Functional Requirement</b></em>' reference.
@@ -377,7 +386,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int TEST_CASE__NON_FUNCTIONAL_REQUIREMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Functional Requirement</b></em>' reference.
@@ -386,7 +395,7 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int TEST_CASE__FUNCTIONAL_REQUIREMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Step</b></em>' reference list.
@@ -395,16 +404,16 @@ public interface TestspecPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE__STEP = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int TEST_CASE__STEP = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
-	 * The number of structural features of the '<em>Logical Test Case</em>' class.
+	 * The number of structural features of the '<em>Test Case</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int LOGICAL_TEST_CASE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int TEST_CASE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.testspec.impl.TestStepImpl <em>Test Step</em>}' class.
@@ -534,22 +543,22 @@ public interface TestspecPackage extends EPackage {
 	int TEST_STEP__EXCEPTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Input Paramter</b></em>' attribute.
+	 * The feature id for the '<em><b>Input</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP__INPUT_PARAMTER = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TEST_STEP__INPUT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Output Parameter</b></em>' attribute.
+	 * The feature id for the '<em><b>Output</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TEST_STEP__OUTPUT_PARAMETER = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int TEST_STEP__OUTPUT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Test Step</em>' class.
@@ -625,91 +634,102 @@ public interface TestspecPackage extends EPackage {
 	EReference getTestProtocol_TestCase();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.testspec.LogicalTestCase <em>Logical Test Case</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.TestProtocol#getTestSteps <em>Test Steps</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for class '<em>Logical Test Case</em>'.
-	 * @see org.unicase.model.testspec.LogicalTestCase
+	 * @return the meta object for the attribute '<em>Test Steps</em>'.
+	 * @see org.unicase.model.testspec.TestProtocol#getTestSteps()
+	 * @see #getTestProtocol()
 	 * @generated
 	 */
-	EClass getLogicalTestCase();
+	EAttribute getTestProtocol_TestSteps();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.LogicalTestCase#getType <em>Type</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.model.testspec.TestCase <em>Test Case</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Test Case</em>'.
+	 * @see org.unicase.model.testspec.TestCase
+	 * @generated
+	 */
+	EClass getTestCase();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.TestCase#getType <em>Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Type</em>'.
-	 * @see org.unicase.model.testspec.LogicalTestCase#getType()
-	 * @see #getLogicalTestCase()
+	 * @see org.unicase.model.testspec.TestCase#getType()
+	 * @see #getTestCase()
 	 * @generated
 	 */
-	EAttribute getLogicalTestCase_Type();
+	EAttribute getTestCase_Type();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.LogicalTestCase#getPrecondition <em>Precondition</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.TestCase#getPrecondition <em>Precondition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Precondition</em>'.
-	 * @see org.unicase.model.testspec.LogicalTestCase#getPrecondition()
-	 * @see #getLogicalTestCase()
+	 * @see org.unicase.model.testspec.TestCase#getPrecondition()
+	 * @see #getTestCase()
 	 * @generated
 	 */
-	EAttribute getLogicalTestCase_Precondition();
+	EAttribute getTestCase_Precondition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.LogicalTestCase#getPostcondition <em>Postcondition</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.TestCase#getPostcondition <em>Postcondition</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Postcondition</em>'.
-	 * @see org.unicase.model.testspec.LogicalTestCase#getPostcondition()
-	 * @see #getLogicalTestCase()
+	 * @see org.unicase.model.testspec.TestCase#getPostcondition()
+	 * @see #getTestCase()
 	 * @generated
 	 */
-	EAttribute getLogicalTestCase_Postcondition();
+	EAttribute getTestCase_Postcondition();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.LogicalTestCase#getInfrastructure <em>Infrastructure</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.TestCase#getInfrastructure <em>Infrastructure</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the attribute '<em>Infrastructure</em>'.
-	 * @see org.unicase.model.testspec.LogicalTestCase#getInfrastructure()
-	 * @see #getLogicalTestCase()
+	 * @see org.unicase.model.testspec.TestCase#getInfrastructure()
+	 * @see #getTestCase()
 	 * @generated
 	 */
-	EAttribute getLogicalTestCase_Infrastructure();
+	EAttribute getTestCase_Infrastructure();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.testspec.LogicalTestCase#getNonFunctionalRequirement <em>Non Functional Requirement</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.model.testspec.TestCase#getNonFunctionalRequirement <em>Non Functional Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Non Functional Requirement</em>'.
-	 * @see org.unicase.model.testspec.LogicalTestCase#getNonFunctionalRequirement()
-	 * @see #getLogicalTestCase()
+	 * @see org.unicase.model.testspec.TestCase#getNonFunctionalRequirement()
+	 * @see #getTestCase()
 	 * @generated
 	 */
-	EReference getLogicalTestCase_NonFunctionalRequirement();
+	EReference getTestCase_NonFunctionalRequirement();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.unicase.model.testspec.LogicalTestCase#getFunctionalRequirement <em>Functional Requirement</em>}'.
+	 * Returns the meta object for the reference '{@link org.unicase.model.testspec.TestCase#getFunctionalRequirement <em>Functional Requirement</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference '<em>Functional Requirement</em>'.
-	 * @see org.unicase.model.testspec.LogicalTestCase#getFunctionalRequirement()
-	 * @see #getLogicalTestCase()
+	 * @see org.unicase.model.testspec.TestCase#getFunctionalRequirement()
+	 * @see #getTestCase()
 	 * @generated
 	 */
-	EReference getLogicalTestCase_FunctionalRequirement();
+	EReference getTestCase_FunctionalRequirement();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.testspec.LogicalTestCase#getStep <em>Step</em>}'.
+	 * Returns the meta object for the reference list '{@link org.unicase.model.testspec.TestCase#getStep <em>Step</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @return the meta object for the reference list '<em>Step</em>'.
-	 * @see org.unicase.model.testspec.LogicalTestCase#getStep()
-	 * @see #getLogicalTestCase()
+	 * @see org.unicase.model.testspec.TestCase#getStep()
+	 * @see #getTestCase()
 	 * @generated
 	 */
-	EReference getLogicalTestCase_Step();
+	EReference getTestCase_Step();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.testspec.TestStep <em>Test Step</em>}'.
@@ -733,26 +753,26 @@ public interface TestspecPackage extends EPackage {
 	EAttribute getTestStep_Exception();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.TestStep#getInputParamter <em>Input Paramter</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.TestStep#getInput <em>Input</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Input Paramter</em>'.
-	 * @see org.unicase.model.testspec.TestStep#getInputParamter()
+	 * @return the meta object for the attribute '<em>Input</em>'.
+	 * @see org.unicase.model.testspec.TestStep#getInput()
 	 * @see #getTestStep()
 	 * @generated
 	 */
-	EAttribute getTestStep_InputParamter();
+	EAttribute getTestStep_Input();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.TestStep#getOutputParameter <em>Output Parameter</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.testspec.TestStep#getOutput <em>Output</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Output Parameter</em>'.
-	 * @see org.unicase.model.testspec.TestStep#getOutputParameter()
+	 * @return the meta object for the attribute '<em>Output</em>'.
+	 * @see org.unicase.model.testspec.TestStep#getOutput()
 	 * @see #getTestStep()
 	 * @generated
 	 */
-	EAttribute getTestStep_OutputParameter();
+	EAttribute getTestStep_Output();
 
 	/**
 	 * Returns the meta object for enum '{@link org.unicase.model.testspec.EnumState <em>Enum State</em>}'.
@@ -831,14 +851,22 @@ public interface TestspecPackage extends EPackage {
 		EReference TEST_PROTOCOL__TEST_CASE = eINSTANCE.getTestProtocol_TestCase();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.testspec.impl.LogicalTestCaseImpl <em>Logical Test Case</em>}' class.
+		 * The meta object literal for the '<em><b>Test Steps</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * @see org.unicase.model.testspec.impl.LogicalTestCaseImpl
-		 * @see org.unicase.model.testspec.impl.TestspecPackageImpl#getLogicalTestCase()
 		 * @generated
 		 */
-		EClass LOGICAL_TEST_CASE = eINSTANCE.getLogicalTestCase();
+		EAttribute TEST_PROTOCOL__TEST_STEPS = eINSTANCE.getTestProtocol_TestSteps();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.testspec.impl.TestCaseImpl <em>Test Case</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.unicase.model.testspec.impl.TestCaseImpl
+		 * @see org.unicase.model.testspec.impl.TestspecPackageImpl#getTestCase()
+		 * @generated
+		 */
+		EClass TEST_CASE = eINSTANCE.getTestCase();
 
 		/**
 		 * The meta object literal for the '<em><b>Type</b></em>' attribute feature.
@@ -846,7 +874,7 @@ public interface TestspecPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LOGICAL_TEST_CASE__TYPE = eINSTANCE.getLogicalTestCase_Type();
+		EAttribute TEST_CASE__TYPE = eINSTANCE.getTestCase_Type();
 
 		/**
 		 * The meta object literal for the '<em><b>Precondition</b></em>' attribute feature.
@@ -854,7 +882,7 @@ public interface TestspecPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LOGICAL_TEST_CASE__PRECONDITION = eINSTANCE.getLogicalTestCase_Precondition();
+		EAttribute TEST_CASE__PRECONDITION = eINSTANCE.getTestCase_Precondition();
 
 		/**
 		 * The meta object literal for the '<em><b>Postcondition</b></em>' attribute feature.
@@ -862,7 +890,7 @@ public interface TestspecPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LOGICAL_TEST_CASE__POSTCONDITION = eINSTANCE.getLogicalTestCase_Postcondition();
+		EAttribute TEST_CASE__POSTCONDITION = eINSTANCE.getTestCase_Postcondition();
 
 		/**
 		 * The meta object literal for the '<em><b>Infrastructure</b></em>' attribute feature.
@@ -870,7 +898,7 @@ public interface TestspecPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute LOGICAL_TEST_CASE__INFRASTRUCTURE = eINSTANCE.getLogicalTestCase_Infrastructure();
+		EAttribute TEST_CASE__INFRASTRUCTURE = eINSTANCE.getTestCase_Infrastructure();
 
 		/**
 		 * The meta object literal for the '<em><b>Non Functional Requirement</b></em>' reference feature.
@@ -878,7 +906,7 @@ public interface TestspecPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT = eINSTANCE.getLogicalTestCase_NonFunctionalRequirement();
+		EReference TEST_CASE__NON_FUNCTIONAL_REQUIREMENT = eINSTANCE.getTestCase_NonFunctionalRequirement();
 
 		/**
 		 * The meta object literal for the '<em><b>Functional Requirement</b></em>' reference feature.
@@ -886,7 +914,7 @@ public interface TestspecPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT = eINSTANCE.getLogicalTestCase_FunctionalRequirement();
+		EReference TEST_CASE__FUNCTIONAL_REQUIREMENT = eINSTANCE.getTestCase_FunctionalRequirement();
 
 		/**
 		 * The meta object literal for the '<em><b>Step</b></em>' reference list feature.
@@ -894,7 +922,7 @@ public interface TestspecPackage extends EPackage {
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EReference LOGICAL_TEST_CASE__STEP = eINSTANCE.getLogicalTestCase_Step();
+		EReference TEST_CASE__STEP = eINSTANCE.getTestCase_Step();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.testspec.impl.TestStepImpl <em>Test Step</em>}' class.
@@ -915,20 +943,20 @@ public interface TestspecPackage extends EPackage {
 		EAttribute TEST_STEP__EXCEPTION = eINSTANCE.getTestStep_Exception();
 
 		/**
-		 * The meta object literal for the '<em><b>Input Paramter</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Input</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TEST_STEP__INPUT_PARAMTER = eINSTANCE.getTestStep_InputParamter();
+		EAttribute TEST_STEP__INPUT = eINSTANCE.getTestStep_Input();
 
 		/**
-		 * The meta object literal for the '<em><b>Output Parameter</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Output</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute TEST_STEP__OUTPUT_PARAMETER = eINSTANCE.getTestStep_OutputParameter();
+		EAttribute TEST_STEP__OUTPUT = eINSTANCE.getTestStep_Output();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.testspec.EnumState <em>Enum State</em>}' enum.
