@@ -10,8 +10,8 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.unicase.linkrecommendation.recommendationStrategies.LSIStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.model.ModelElement;
 
 /**
@@ -38,8 +38,8 @@ public class RecommendationManager {
 	 * @return a recommendationStrategy to the specified type
 	 */
 	public RecommendationStrategy createRecommendationStrategy() {
-		return new LSIStrategy();
-		// return new VectorSpaceModelStrategy();
+		// return new LSIStrategy();
+		return new VectorSpaceModelStrategy();
 	}
 
 	/**

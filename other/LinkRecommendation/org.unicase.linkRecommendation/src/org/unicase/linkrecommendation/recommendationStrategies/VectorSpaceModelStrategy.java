@@ -53,7 +53,7 @@ public class VectorSpaceModelStrategy implements RecommendationStrategy {
 		// idf
 		tdf.transformIDF();
 
-		System.out.println(tdf);
+		// System.out.println(tdf);
 
 		int indexBase = indices.get(base);
 		// determine values
