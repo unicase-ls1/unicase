@@ -14,21 +14,20 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.unicase.model.Project;
-import org.unicase.model.task.WorkPackage;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-import org.unicase.analyzer.TimeIterator;
-import org.unicase.analyzer.VersionSpecQuery;
 import org.unicase.analyzer.exceptions.IteratorException;
+import org.unicase.analyzer.iterator.TimeIterator;
+import org.unicase.analyzer.iterator.VersionSpecQuery;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-
+import org.unicase.model.Project;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.pmdashboard.burndown.BurndownData;
 import org.unicase.pmdashboard.burndown.BurndownDay;
 import org.unicase.pmdashboard.burndown.BurndownFactory;
 import org.unicase.pmdashboard.burndown.impl.BurndownFactoryImpl;
+import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Generates all objects that contain information needed by the BurndownChart for WorkPackages.

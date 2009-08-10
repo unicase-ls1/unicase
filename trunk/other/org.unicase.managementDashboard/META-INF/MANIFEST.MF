@@ -15,7 +15,8 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.model;visibility:=reexport,
  org.eclipse.gmf.runtime.notation;visibility:=reexport,
  org.eclipse.ui,
- org.unicase.ui.common
+ org.unicase.ui.common,
+ org.unicase.analyzer;bundle-version="0.0.1"
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.jface.resource,
  org.eclipse.ui.plugin,
