@@ -17,8 +17,8 @@ import org.unicase.model.ModelElement;
  * The following features are supported:
  * <ul>
  *   <li>{@link org.unicase.model.testspec.TestStep#getException <em>Exception</em>}</li>
- *   <li>{@link org.unicase.model.testspec.TestStep#getInputParamter <em>Input Paramter</em>}</li>
- *   <li>{@link org.unicase.model.testspec.TestStep#getOutputParameter <em>Output Parameter</em>}</li>
+ *   <li>{@link org.unicase.model.testspec.TestStep#getInput <em>Input</em>}</li>
+ *   <li>{@link org.unicase.model.testspec.TestStep#getOutput <em>Output</em>}</li>
  * </ul>
  * </p>
  *
@@ -54,55 +54,55 @@ public interface TestStep extends ModelElement {
 	void setException(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Input Paramter</b></em>' attribute.
+	 * Returns the value of the '<em><b>Input</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Input Paramter</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Input</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Input Paramter</em>' attribute.
-	 * @see #setInputParamter(String)
-	 * @see org.unicase.model.testspec.TestspecPackage#getTestStep_InputParamter()
+	 * @return the value of the '<em>Input</em>' attribute.
+	 * @see #setInput(String)
+	 * @see org.unicase.model.testspec.TestspecPackage#getTestStep_Input()
 	 * @model
 	 * @generated
 	 */
-	String getInputParamter();
+	String getInput();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.testspec.TestStep#getInputParamter <em>Input Paramter</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.model.testspec.TestStep#getInput <em>Input</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Input Paramter</em>' attribute.
-	 * @see #getInputParamter()
+	 * @param value the new value of the '<em>Input</em>' attribute.
+	 * @see #getInput()
 	 * @generated
 	 */
-	void setInputParamter(String value);
+	void setInput(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Output Parameter</b></em>' attribute.
+	 * Returns the value of the '<em><b>Output</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Output Parameter</em>' reference list isn't clear,
+	 * If the meaning of the '<em>Output</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Output Parameter</em>' attribute.
-	 * @see #setOutputParameter(String)
-	 * @see org.unicase.model.testspec.TestspecPackage#getTestStep_OutputParameter()
+	 * @return the value of the '<em>Output</em>' attribute.
+	 * @see #setOutput(String)
+	 * @see org.unicase.model.testspec.TestspecPackage#getTestStep_Output()
 	 * @model
 	 * @generated
 	 */
-	String getOutputParameter();
+	String getOutput();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.testspec.TestStep#getOutputParameter <em>Output Parameter</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.model.testspec.TestStep#getOutput <em>Output</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Output Parameter</em>' attribute.
-	 * @see #getOutputParameter()
+	 * @param value the new value of the '<em>Output</em>' attribute.
+	 * @see #getOutput()
 	 * @generated
 	 */
-	void setOutputParameter(String value);
+	void setOutput(String value);
 
 } // TestStep

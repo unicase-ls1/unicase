@@ -62,7 +62,7 @@ public class TestspecFactoryImpl extends EFactoryImpl implements TestspecFactory
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case TestspecPackage.TEST_PROTOCOL: return createTestProtocol();
-			case TestspecPackage.LOGICAL_TEST_CASE: return createLogicalTestCase();
+			case TestspecPackage.TEST_CASE: return createTestCase();
 			case TestspecPackage.TEST_STEP: return createTestStep();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
@@ -118,10 +118,13 @@ public class TestspecFactoryImpl extends EFactoryImpl implements TestspecFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LogicalTestCase createLogicalTestCase() {
-		LogicalTestCaseImpl logicalTestCase = new LogicalTestCaseImpl();
-		return logicalTestCase;
+	public TestCase createTestCase() {
+		TestCaseImpl testCase = new TestCaseImpl();
+		return testCase;
 	}
+
+	
+	
 
 	/**
 	 * <!-- begin-user-doc -->

@@ -19,6 +19,7 @@ import org.unicase.model.ModelElement;
  *   <li>{@link org.unicase.model.testspec.TestProtocol#getTestReport <em>Test Report</em>}</li>
  *   <li>{@link org.unicase.model.testspec.TestProtocol#getTestState <em>Test State</em>}</li>
  *   <li>{@link org.unicase.model.testspec.TestProtocol#getTestCase <em>Test Case</em>}</li>
+ *   <li>{@link org.unicase.model.testspec.TestProtocol#getTestSteps <em>Test Steps</em>}</li>
  * </ul>
  * </p>
  *
@@ -91,12 +92,12 @@ public interface TestProtocol extends ModelElement {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Test Case</em>' reference.
-	 * @see #setTestCase(LogicalTestCase)
+	 * @see #setTestCase(TestCase)
 	 * @see org.unicase.model.testspec.TestspecPackage#getTestProtocol_TestCase()
 	 * @model keys="identifier"
 	 * @generated
 	 */
-	LogicalTestCase getTestCase();
+	TestCase getTestCase();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.testspec.TestProtocol#getTestCase <em>Test Case</em>}' reference.
@@ -106,6 +107,32 @@ public interface TestProtocol extends ModelElement {
 	 * @see #getTestCase()
 	 * @generated
 	 */
-	void setTestCase(LogicalTestCase value);
+	void setTestCase(TestCase value);
+
+	/**
+	 * Returns the value of the '<em><b>Test Steps</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Test Steps</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Test Steps</em>' attribute.
+	 * @see #setTestSteps(String)
+	 * @see org.unicase.model.testspec.TestspecPackage#getTestProtocol_TestSteps()
+	 * @model
+	 * @generated
+	 */
+	String getTestSteps();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.testspec.TestProtocol#getTestSteps <em>Test Steps</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Test Steps</em>' attribute.
+	 * @see #getTestSteps()
+	 * @generated
+	 */
+	void setTestSteps(String value);
 
 } // TestProtocol

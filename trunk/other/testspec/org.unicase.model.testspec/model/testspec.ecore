@@ -6,14 +6,15 @@
   <eClassifiers xsi:type="ecore:EClass" name="TestProtocol" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="testReport" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="testState" eType="#//EnumState"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="testCase" eType="#//LogicalTestCase"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="testCase" eType="#//TestCase"
         eKeys="platform:/plugin/org.unicase.model/model/model.ecore#//IdentifiableElement/identifier"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="testSteps" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EnumState">
     <eLiterals name="passed"/>
     <eLiterals name="failed" value="1"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="LogicalTestCase" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//ModelElement">
+  <eClassifiers xsi:type="ecore:EClass" name="TestCase" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="type" eType="#//EnumType"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="precondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="postcondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -32,7 +33,7 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="TestStep" eSuperTypes="platform:/plugin/org.unicase.model/model/model.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="inputParamter" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="outputParameter" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="input" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
 </ecore:EPackage>

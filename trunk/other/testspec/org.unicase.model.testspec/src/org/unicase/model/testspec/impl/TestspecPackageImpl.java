@@ -17,7 +17,7 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.testspec.EnumState;
 import org.unicase.model.testspec.EnumType;
-import org.unicase.model.testspec.LogicalTestCase;
+import org.unicase.model.testspec.TestCase;
 import org.unicase.model.testspec.TestProtocol;
 import org.unicase.model.testspec.TestStep;
 import org.unicase.model.testspec.TestspecFactory;
@@ -42,7 +42,7 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EClass logicalTestCaseEClass = null;
+	private EClass testCaseEClass = null;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -177,8 +177,8 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EClass getLogicalTestCase() {
-		return logicalTestCaseEClass;
+	public EAttribute getTestProtocol_TestSteps() {
+		return (EAttribute)testProtocolEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -186,8 +186,8 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLogicalTestCase_Type() {
-		return (EAttribute)logicalTestCaseEClass.getEStructuralFeatures().get(0);
+	public EClass getTestCase() {
+		return testCaseEClass;
 	}
 
 	/**
@@ -195,8 +195,8 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLogicalTestCase_Precondition() {
-		return (EAttribute)logicalTestCaseEClass.getEStructuralFeatures().get(1);
+	public EAttribute getTestCase_Type() {
+		return (EAttribute)testCaseEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -204,8 +204,8 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLogicalTestCase_Postcondition() {
-		return (EAttribute)logicalTestCaseEClass.getEStructuralFeatures().get(2);
+	public EAttribute getTestCase_Precondition() {
+		return (EAttribute)testCaseEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -213,8 +213,8 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getLogicalTestCase_Infrastructure() {
-		return (EAttribute)logicalTestCaseEClass.getEStructuralFeatures().get(3);
+	public EAttribute getTestCase_Postcondition() {
+		return (EAttribute)testCaseEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -222,8 +222,8 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLogicalTestCase_NonFunctionalRequirement() {
-		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(4);
+	public EAttribute getTestCase_Infrastructure() {
+		return (EAttribute)testCaseEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -231,8 +231,8 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLogicalTestCase_FunctionalRequirement() {
-		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(5);
+	public EReference getTestCase_NonFunctionalRequirement() {
+		return (EReference)testCaseEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -240,8 +240,17 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getLogicalTestCase_Step() {
-		return (EReference)logicalTestCaseEClass.getEStructuralFeatures().get(6);
+	public EReference getTestCase_FunctionalRequirement() {
+		return (EReference)testCaseEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getTestCase_Step() {
+		return (EReference)testCaseEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -267,7 +276,7 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTestStep_InputParamter() {
+	public EAttribute getTestStep_Input() {
 		return (EAttribute)testStepEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -276,7 +285,7 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getTestStep_OutputParameter() {
+	public EAttribute getTestStep_Output() {
 		return (EAttribute)testStepEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -330,20 +339,21 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 		createEAttribute(testProtocolEClass, TEST_PROTOCOL__TEST_REPORT);
 		createEAttribute(testProtocolEClass, TEST_PROTOCOL__TEST_STATE);
 		createEReference(testProtocolEClass, TEST_PROTOCOL__TEST_CASE);
+		createEAttribute(testProtocolEClass, TEST_PROTOCOL__TEST_STEPS);
 
-		logicalTestCaseEClass = createEClass(LOGICAL_TEST_CASE);
-		createEAttribute(logicalTestCaseEClass, LOGICAL_TEST_CASE__TYPE);
-		createEAttribute(logicalTestCaseEClass, LOGICAL_TEST_CASE__PRECONDITION);
-		createEAttribute(logicalTestCaseEClass, LOGICAL_TEST_CASE__POSTCONDITION);
-		createEAttribute(logicalTestCaseEClass, LOGICAL_TEST_CASE__INFRASTRUCTURE);
-		createEReference(logicalTestCaseEClass, LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT);
-		createEReference(logicalTestCaseEClass, LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT);
-		createEReference(logicalTestCaseEClass, LOGICAL_TEST_CASE__STEP);
+		testCaseEClass = createEClass(TEST_CASE);
+		createEAttribute(testCaseEClass, TEST_CASE__TYPE);
+		createEAttribute(testCaseEClass, TEST_CASE__PRECONDITION);
+		createEAttribute(testCaseEClass, TEST_CASE__POSTCONDITION);
+		createEAttribute(testCaseEClass, TEST_CASE__INFRASTRUCTURE);
+		createEReference(testCaseEClass, TEST_CASE__NON_FUNCTIONAL_REQUIREMENT);
+		createEReference(testCaseEClass, TEST_CASE__FUNCTIONAL_REQUIREMENT);
+		createEReference(testCaseEClass, TEST_CASE__STEP);
 
 		testStepEClass = createEClass(TEST_STEP);
 		createEAttribute(testStepEClass, TEST_STEP__EXCEPTION);
-		createEAttribute(testStepEClass, TEST_STEP__INPUT_PARAMTER);
-		createEAttribute(testStepEClass, TEST_STEP__OUTPUT_PARAMETER);
+		createEAttribute(testStepEClass, TEST_STEP__INPUT);
+		createEAttribute(testStepEClass, TEST_STEP__OUTPUT);
 
 		// Create enums
 		enumStateEEnum = createEEnum(ENUM_STATE);
@@ -375,8 +385,8 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 
 		// Obtain other dependent packages
 		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
-		RequirementPackage theRequirementPackage = (RequirementPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		RequirementPackage theRequirementPackage = (RequirementPackage)EPackage.Registry.INSTANCE.getEPackage(RequirementPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -384,30 +394,31 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 
 		// Add supertypes to classes
 		testProtocolEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		logicalTestCaseEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		testCaseEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		testStepEClass.getESuperTypes().add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(testProtocolEClass, TestProtocol.class, "TestProtocol", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestProtocol_TestReport(), ecorePackage.getEString(), "testReport", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTestProtocol_TestState(), this.getEnumState(), "testState", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTestProtocol_TestCase(), this.getLogicalTestCase(), null, "testCase", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestProtocol_TestCase(), this.getTestCase(), null, "testCase", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getTestProtocol_TestCase().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEAttribute(getTestProtocol_TestSteps(), theEcorePackage.getEString(), "testSteps", null, 0, 1, TestProtocol.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(logicalTestCaseEClass, LogicalTestCase.class, "LogicalTestCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getLogicalTestCase_Type(), this.getEnumType(), "type", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLogicalTestCase_Precondition(), ecorePackage.getEString(), "precondition", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLogicalTestCase_Postcondition(), ecorePackage.getEString(), "postcondition", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getLogicalTestCase_Infrastructure(), ecorePackage.getEString(), "infrastructure", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLogicalTestCase_NonFunctionalRequirement(), theRequirementPackage.getNonFunctionalRequirement(), null, "nonFunctionalRequirement", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLogicalTestCase_FunctionalRequirement(), theRequirementPackage.getFunctionalRequirement(), null, "functionalRequirement", null, 0, 1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLogicalTestCase_Step(), this.getTestStep(), null, "step", null, 0, -1, LogicalTestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getLogicalTestCase_Step().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEClass(testCaseEClass, TestCase.class, "TestCase", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getTestCase_Type(), this.getEnumType(), "type", null, 0, 1, TestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTestCase_Precondition(), ecorePackage.getEString(), "precondition", null, 0, 1, TestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTestCase_Postcondition(), ecorePackage.getEString(), "postcondition", null, 0, 1, TestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTestCase_Infrastructure(), ecorePackage.getEString(), "infrastructure", null, 0, 1, TestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestCase_NonFunctionalRequirement(), theRequirementPackage.getNonFunctionalRequirement(), null, "nonFunctionalRequirement", null, 0, 1, TestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestCase_FunctionalRequirement(), theRequirementPackage.getFunctionalRequirement(), null, "functionalRequirement", null, 0, 1, TestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getTestCase_Step(), this.getTestStep(), null, "step", null, 0, -1, TestCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getTestCase_Step().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(testStepEClass, TestStep.class, "TestStep", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTestStep_Exception(), ecorePackage.getEString(), "exception", null, 0, 1, TestStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTestStep_InputParamter(), theEcorePackage.getEString(), "inputParamter", null, 0, 1, TestStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getTestStep_OutputParameter(), theEcorePackage.getEString(), "outputParameter", null, 0, 1, TestStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTestStep_Input(), theEcorePackage.getEString(), "input", null, 0, 1, TestStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getTestStep_Output(), theEcorePackage.getEString(), "output", null, 0, 1, TestStep.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Initialize enums and add enum literals
 		initEEnum(enumStateEEnum, EnumState.class, "EnumState");
