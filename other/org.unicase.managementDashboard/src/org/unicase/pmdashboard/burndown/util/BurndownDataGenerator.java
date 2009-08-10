@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.analyzer.exceptions.IteratorException;
+import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.analyzer.iterator.VersionSpecQuery;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
@@ -116,15 +117,14 @@ public final class BurndownDataGenerator {
 		DateVersionSpec end = VersioningFactory.eINSTANCE.createDateVersionSpec();
 		end.setDate(workPackage.getDueDate());
 		
-		VersionSpecQuery specQuery = new VersionSpecQuery(start, end);
+		VersionSpecQuery specQuery = IteratorFactory.eINSTANCE.createVersionSpecQuery();
+		specQuery.setStartVersion(start);
+		specQuery.setEndVersion(end);
 		
-		return new TimeIterator(projectSpace.getUsersession(),
-								projectSpace.getProjectId(),
-								STEPLENGTH,
-								STEPUNIT,
-								specQuery,
-								true,
-								false);
+		TimeIterator timeIterator = IteratorFactory.eINSTANCE.createTimeIterator();
+		timeIterator.init(projectSpace.getUsersession(), projectSpace.getProjectId(), STEPLENGTH, STEPUNIT, specQuery, true, false);
+		
+		return timeIterator;
 	}
 	
 	private static ProjectSpace getActiveProjectSpace() {
