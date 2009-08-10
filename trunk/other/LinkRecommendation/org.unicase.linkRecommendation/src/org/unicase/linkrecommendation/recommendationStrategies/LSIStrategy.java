@@ -50,7 +50,7 @@ public class LSIStrategy implements RecommendationStrategy {
 
 		// SVD
 		tdf.transformLSI();
-		System.out.println(tdf);
+		// System.out.println(tdf);
 
 		int indexBase = indices.get(base);
 		// determine values
