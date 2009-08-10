@@ -44,10 +44,13 @@ public final class KeyStoreManager {
 
 	private static KeyStoreManager instance;
 
-	private static final String KEYSTOREPASSWORD = "jsFTga3rGTR833329GFQEfas";
-	// private static final String KEYSTOREPASSWORD = "123456";
-
 	private static final String KEYSTORENAME = "unicaseClient.keystore";
+
+	private static final String KEYSTOREPASSWORD = "jsFTga3rGTR833329GFQEfas";
+
+	private static final String CERTIFICATE_TYPE = "X.509";
+
+	private static final String CIPHER_ALGORITHM = "RSA";
 
 	private static final String DEFAULT_UNICASE_CERTIFICATE = "unicase.org 2009#1";
 
@@ -174,7 +177,7 @@ public final class KeyStoreManager {
 		if (!isDefaultCertificate(alias)) {
 			loadKeyStore();
 			try {
-				CertificateFactory factory = CertificateFactory.getInstance("X.509");
+				CertificateFactory factory = CertificateFactory.getInstance(CERTIFICATE_TYPE);
 				Certificate newCertificate = factory.generateCertificate(new FileInputStream(path));
 				keyStore.setCertificateEntry(alias, newCertificate);
 			} catch (CertificateException e) {
@@ -280,7 +283,7 @@ public final class KeyStoreManager {
 			PublicKey key = publicKey.getPublicKey();
 			byte[] inpBytes;
 			inpBytes = password.getBytes();
-			Cipher cipher = Cipher.getInstance("RSA");
+			Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
 			cipher.init(Cipher.ENCRYPT_MODE, key);
 			byte[] encryptededByteAr = cipher.doFinal(inpBytes);
 			byte[] base64EncodedByteAr = Base64.encodeBase64(encryptededByteAr);

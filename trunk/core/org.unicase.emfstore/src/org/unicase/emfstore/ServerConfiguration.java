@@ -75,6 +75,26 @@ public final class ServerConfiguration {
 	public static final String KEYSTORE_ALIAS_DEFAULT = "testkeygeneratedbyotto";
 
 	/**
+	 * Type of server certificate used for encryption.
+	 */
+	public static final String KEYSTORE_CERTIFICATE_TYPE = "emfstore.keystore.certificate.type";
+
+	/**
+	 * Default certificate.
+	 */
+	public static final String KEYSTORE_CERTIFICATE_TYPE_DEFAULT = "SunX509";
+
+	/**
+	 * Type of cipher algorithm used for encryption.
+	 */
+	public static final String KEYSTORE_CIPHER_ALGORITHM = "emfstore.keystore.cipher.algorithm";
+
+	/**
+	 * Default cipher algorithm.
+	 */
+	public static final String KEYSTORE_CIPHER_ALGORITHM_DEFAULT = "RSA";
+
+	/**
 	 * Property for projectstate persistence policy in versions. Possible values are <b>lastVersionOnly</b> and
 	 * <b>everyVersion</b>. If you don't have every project state the server has to recalulate certain revisions if
 	 * requested. On the other side saving every project state is quite redundant.
