@@ -66,7 +66,8 @@ public final class ServerKeyStoreManager {
 				throw new ServerKeyStoreException("Password is null.");
 			}
 			byte[] passwordBytes = Base64.decodeBase64(password.getBytes());
-			Cipher cipher = Cipher.getInstance("RSA");
+			Cipher cipher = Cipher.getInstance(ServerConfiguration.getProperties().getProperty(
+				ServerConfiguration.KEYSTORE_CIPHER_ALGORITHM, ServerConfiguration.KEYSTORE_CIPHER_ALGORITHM_DEFAULT));
 			cipher.init(Cipher.DECRYPT_MODE, getDecryptionKey());
 			return new String(cipher.doFinal(passwordBytes));
 		} catch (NoSuchAlgorithmException e) {
@@ -125,7 +126,9 @@ public final class ServerKeyStoreManager {
 	 */
 	public KeyManagerFactory getKeyManagerFactory() throws ServerKeyStoreException {
 		try {
-			KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance("SunX509");
+			KeyManagerFactory keyManagerFactory = KeyManagerFactory.getInstance(ServerConfiguration.getProperties()
+				.getProperty(ServerConfiguration.KEYSTORE_CERTIFICATE_TYPE,
+					ServerConfiguration.KEYSTORE_CERTIFICATE_TYPE_DEFAULT));
 			keyManagerFactory.init(getKeyStore(), getKeyStorePassword());
 			return keyManagerFactory;
 		} catch (NoSuchAlgorithmException e) {
