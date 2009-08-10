@@ -8,7 +8,9 @@ package org.unicase.model.testspec.provider;
 
 
 import java.util.Collection;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
@@ -25,18 +27,23 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
+import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelElementItemProvider;
 
-import org.unicase.model.testspec.LogicalTestCase;
 import org.unicase.model.testspec.TestspecPackage;
+import org.unicase.model.testspec.TestCase;
+import org.unicase.model.testspec.TestStep;
+import org.unicase.model.testspec.impl.TestCaseImpl;
+import org.unicase.model.testspec.impl.TestProtocolImpl;
+import org.unicase.model.testspec.impl.TestStepImpl;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.testspec.LogicalTestCase} object.
+ * This is the item provider adapter for a {@link org.unicase.model.testspec.TestCase} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
  * @generated
  */
-public class LogicalTestCaseItemProvider
+public class TestCaseItemProvider
 	extends ModelElementItemProvider
 	implements
 		IEditingDomainItemProvider,
@@ -50,7 +57,7 @@ public class LogicalTestCaseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LogicalTestCaseItemProvider(AdapterFactory adapterFactory) {
+	public TestCaseItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -87,9 +94,9 @@ public class LogicalTestCaseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_type_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_type_feature", "_UI_LogicalTestCase_type"),
-				 TestspecPackage.Literals.LOGICAL_TEST_CASE__TYPE,
+				 getString("_UI_TestCase_type_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_type_feature", "_UI_TestCase_type"),
+				 TestspecPackage.Literals.TEST_CASE__TYPE,
 				 true,
 				 false,
 				 false,
@@ -102,18 +109,18 @@ public class LogicalTestCaseItemProvider
 	 * This adds a property descriptor for the Precondition feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addPreconditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_precondition_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_precondition_feature", "_UI_LogicalTestCase_type"),
-				 TestspecPackage.Literals.LOGICAL_TEST_CASE__PRECONDITION,
+				 getString("_UI_TestCase_precondition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_precondition_feature", "_UI_TestCase_type"),
+				 TestspecPackage.Literals.TEST_CASE__PRECONDITION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -124,18 +131,18 @@ public class LogicalTestCaseItemProvider
 	 * This adds a property descriptor for the Postcondition feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addPostconditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_postcondition_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_postcondition_feature", "_UI_LogicalTestCase_type"),
-				 TestspecPackage.Literals.LOGICAL_TEST_CASE__POSTCONDITION,
+				 getString("_UI_TestCase_postcondition_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_postcondition_feature", "_UI_TestCase_type"),
+				 TestspecPackage.Literals.TEST_CASE__POSTCONDITION,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -146,18 +153,18 @@ public class LogicalTestCaseItemProvider
 	 * This adds a property descriptor for the Infrastructure feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void addInfrastructurePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_infrastructure_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_infrastructure_feature", "_UI_LogicalTestCase_type"),
-				 TestspecPackage.Literals.LOGICAL_TEST_CASE__INFRASTRUCTURE,
+				 getString("_UI_TestCase_infrastructure_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_infrastructure_feature", "_UI_TestCase_type"),
+				 TestspecPackage.Literals.TEST_CASE__INFRASTRUCTURE,
 				 true,
-				 false,
+				 true,
 				 false,
 				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
 				 null,
@@ -175,9 +182,9 @@ public class LogicalTestCaseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_nonFunctionalRequirement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_nonFunctionalRequirement_feature", "_UI_LogicalTestCase_type"),
-				 TestspecPackage.Literals.LOGICAL_TEST_CASE__NON_FUNCTIONAL_REQUIREMENT,
+				 getString("_UI_TestCase_nonFunctionalRequirement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_nonFunctionalRequirement_feature", "_UI_TestCase_type"),
+				 TestspecPackage.Literals.TEST_CASE__NON_FUNCTIONAL_REQUIREMENT,
 				 true,
 				 false,
 				 true,
@@ -197,9 +204,9 @@ public class LogicalTestCaseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_functionalRequirement_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_functionalRequirement_feature", "_UI_LogicalTestCase_type"),
-				 TestspecPackage.Literals.LOGICAL_TEST_CASE__FUNCTIONAL_REQUIREMENT,
+				 getString("_UI_TestCase_functionalRequirement_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_functionalRequirement_feature", "_UI_TestCase_type"),
+				 TestspecPackage.Literals.TEST_CASE__FUNCTIONAL_REQUIREMENT,
 				 true,
 				 false,
 				 true,
@@ -219,9 +226,9 @@ public class LogicalTestCaseItemProvider
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_LogicalTestCase_step_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_LogicalTestCase_step_feature", "_UI_LogicalTestCase_type"),
-				 TestspecPackage.Literals.LOGICAL_TEST_CASE__STEP,
+				 getString("_UI_TestCase_step_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_TestCase_step_feature", "_UI_TestCase_type"),
+				 TestspecPackage.Literals.TEST_CASE__STEP,
 				 true,
 				 false,
 				 true,
@@ -231,28 +238,25 @@ public class LogicalTestCaseItemProvider
 	}
 
 	/**
-	 * This returns LogicalTestCase.gif.
+	 * This returns TestCase.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
 	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/LogicalTestCase"));
+		return overlayImage(object, getResourceLocator().getImage("full/obj16/TestCase"));
 	}
 
 	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((LogicalTestCase)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_LogicalTestCase_type") :
-			getString("_UI_LogicalTestCase_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**
@@ -260,18 +264,48 @@ public class LogicalTestCaseItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LogicalTestCase.class)) {
-			case TestspecPackage.LOGICAL_TEST_CASE__TYPE:
-			case TestspecPackage.LOGICAL_TEST_CASE__PRECONDITION:
-			case TestspecPackage.LOGICAL_TEST_CASE__POSTCONDITION:
-			case TestspecPackage.LOGICAL_TEST_CASE__INFRASTRUCTURE:
+		switch (notification.getFeatureID(TestCase.class)) {
+			case TestspecPackage.TEST_CASE__TYPE:
+			case TestspecPackage.TEST_CASE__PRECONDITION:
+			case TestspecPackage.TEST_CASE__POSTCONDITION:
+			case TestspecPackage.TEST_CASE__INFRASTRUCTURE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case TestspecPackage.TEST_CASE__STEP:
+				// update test steps in referenced test protocols
+				TestCaseImpl tcase = (TestCaseImpl)notification.getNotifier();
+				Set<ModelElement> s = tcase.getContainerModelElement().getAllContainedModelElements();
+
+				for (Iterator<ModelElement> i = s.iterator(); i.hasNext();) {
+					Object object = i.next();
+					if (object instanceof TestProtocolImpl) {
+						TestProtocolImpl tp = (TestProtocolImpl) object;
+						TestCaseImpl tc = (TestCaseImpl)tp.getTestCase();
+						if(tc != null) {
+							if (tc.getStep() != null) {
+								tp.clearParams();
+								for (Iterator<TestStep> iterator = tc.getStep().iterator(); iterator.hasNext();) {
+									TestStepImpl ts = (TestStepImpl) iterator.next();
+									tp.addTestStepInputOutput(ts.getName(), ts.getInputParams(), ts.getOutputParams());
+								}
+								tp.finishedTestSteps();
+							}
+							else {
+								tp.emptyTestSteps();
+							}
+							
+						}
+						else {
+							tp.emptyTestSteps();
+						}
+					}
+				}
 				return;
 		}
 		super.notifyChanged(notification);
@@ -291,8 +325,7 @@ public class LogicalTestCaseItemProvider
 
 	/**
 	 * Return the resource locator for this item provider's resources.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
