@@ -1351,7 +1351,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		final List<ChangePackage> cps = changes;
 		for (ChangePackage change : cps) {
-			applyOperations(change.getCopyOfOperations());
+			applyOperations(change.getCopyOfOperations(), false);
 		}
 
 		setBaseVersion(resolvedVersion);
@@ -1971,7 +1971,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 
 		ChangePackage changePackage = (ChangePackage) directContents.get(0);
-		applyOperations(changePackage.getOperations());
+		applyOperationsWithRecording(changePackage.getOperations(), true);
 	}
 
 	/**
@@ -2372,12 +2372,43 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @param operations the list of operations
 	 */
 	private void applyOperations(List<AbstractOperation> operations) {
+		applyOperations(operations, true);
+	}
+
+	/**
+	 * Apply a list of operations to the project.
+	 * 
+	 * @param operations list of operations
+	 * @param addOperation true if operation should be saved in project space.
+	 */
+	private void applyOperations(List<AbstractOperation> operations, boolean addOperation) {
 		stopChangeRecording();
 		for (AbstractOperation operation : operations) {
 			operation.apply(getProject());
-			addOperation(operation);
+			if (addOperation) {
+				addOperation(operation);
+			}
 		}
 		startChangeRecording();
+	}
+
+	/**
+	 * Apply a list of operations to the project. This method is used by {@link #importLocalChanges(String)}. It is
+	 * possible to force import operations.
+	 * 
+	 * @param operations list of operations
+	 * @param force if true, no exception is thrown if operation.apply failes
+	 */
+	private void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force) {
+		for (AbstractOperation operation : operations) {
+			try {
+				operation.apply(getProject());
+			} catch (IllegalStateException e) {
+				if (!force) {
+					throw e;
+				}
+			}
+		}
 	}
 
 	/**
