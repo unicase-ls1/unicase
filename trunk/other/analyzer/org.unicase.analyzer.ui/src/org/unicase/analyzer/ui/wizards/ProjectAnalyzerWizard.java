@@ -35,6 +35,7 @@ import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.Exporter;
+import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.workspace.Configuration;
@@ -180,7 +181,8 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 					resource = domain.getResourceSet().getResource(fileURI, true);
 					EList<EObject> directContents = resource.getContents();
 					// MK cast
-					analyzerConfig = (AnalyzerConfiguration) directContents.get(0);		
+					analyzerConfig = (AnalyzerConfiguration) directContents.get(0);
+					canFinish = true;
 				}	
 //			}
 //    	});

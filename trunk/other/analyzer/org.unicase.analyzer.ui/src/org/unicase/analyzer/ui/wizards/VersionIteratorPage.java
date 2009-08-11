@@ -29,6 +29,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.analyzer.AnalyzerConfiguration;
+import org.unicase.analyzer.exporters.CSVExporter;
+import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 
@@ -86,7 +88,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		
 		 
 		 defaultButton = new Button(composite, SWT.CHECK);
-		 defaultButton.setText("Default");
+		 defaultButton.setText("Analyze the FULL versions");
 		 gd = new GridData(GridData.FILL_HORIZONTAL);
 		 gd.horizontalSpan = ncol;
 		 defaultButton.setLayoutData(gd);
@@ -126,17 +128,11 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		
 		gd = new GridData();
 		gd.horizontalAlignment = GridData.BEGINNING;	
-		forwardButton = new Button(group, SWT.RADIO);
+		forwardButton = new Button(group, SWT.CHECK);
 		forwardButton.setText("Forward");
 		forwardButton.setLayoutData(gd);
-		forwardButton.setSelection(false); 
+		forwardButton.setSelection(true); 
 		forwardButton.addListener(SWT.Selection, this);
-		
-		backwardButton = new Button(group, SWT.RADIO);
-		backwardButton.setText("Backward");		 
-		backwardButton.setLayoutData(new GridData(GridData.END));
-		backwardButton.setSelection(false);
-		backwardButton.addListener(SWT.Selection, this);
 		
 		returnCopyButton = new Button(group, SWT.CHECK);
 		returnCopyButton.setText("Return the copy of ProjectAnalysisData");
@@ -241,6 +237,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public IWizardPage getNextPage() {
+		final ExporterPage page = ((ProjectAnalyzerWizard)getWizard()).getExporterPage();
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 		.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -249,11 +246,14 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 			protected void doExecute() {
 				ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();				
 				conf.getIterator().setProjectId(wizard.getSelectedProjectID());
-				
+				if(conf.getExporter() == null){
+					CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
+					conf.setExporter(exporter);
+				}
+				page.init();				
 			}
 		});
-		ExporterPage page = ((ProjectAnalyzerWizard)getWizard()).getExporterPage();
-		page.init();
+	
 		return page;
 	}
 

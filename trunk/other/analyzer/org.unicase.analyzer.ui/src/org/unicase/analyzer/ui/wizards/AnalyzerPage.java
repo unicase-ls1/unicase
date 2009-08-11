@@ -97,8 +97,9 @@ public class AnalyzerPage extends WizardPage implements Listener {
 			 }else{
 				 button.setSelection(false);
 			 }			 
+			 button.addListener(SWT.Selection, this);
 			 analyzerButton.add(button);
-			 analyzerButton.get(count).addListener(SWT.CHECK, this);
+//			 analyzerButton.get(count).addListener(SWT.CHECK, this);
 			 			 
 //			 analyzerButton.get(count).addSelectionListener(new SelectionListener(){
 //

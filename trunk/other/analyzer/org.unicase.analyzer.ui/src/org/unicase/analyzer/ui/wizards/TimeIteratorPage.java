@@ -32,6 +32,8 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.analyzer.AnalyzerConfiguration;
+import org.unicase.analyzer.exporters.CSVExporter;
+import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
@@ -105,7 +107,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		
 		 
 		 defaultButton = new Button(composite, SWT.CHECK);
-		 defaultButton.setText("Default");
+		 defaultButton.setText("Analyze the FULL versions");
 		 gd = new GridData(GridData.FILL_HORIZONTAL);
 		 gd.horizontalSpan = ncol;
 		 defaultButton.setLayoutData(gd);
@@ -148,17 +150,11 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		
 		gd = new GridData();
 		gd.horizontalAlignment = GridData.BEGINNING;	
-		forwardButton = new Button(group, SWT.RADIO);
+		forwardButton = new Button(group, SWT.CHECK);
 		forwardButton.setText("Forward");
 		forwardButton.setLayoutData(gd);
-		forwardButton.setSelection(false); 
+		forwardButton.setSelection(true); 
 		forwardButton.addListener(SWT.Selection, this);
-		
-		backwardButton = new Button(group, SWT.RADIO);
-		backwardButton.setText("Backward");		 
-		backwardButton.setLayoutData(new GridData(GridData.END));
-		backwardButton.setSelection(false);
-		backwardButton.addListener(SWT.Selection, this);
 		
 		returnCopyButton = new Button(group, SWT.CHECK);
 		returnCopyButton.setText("Return the copy of ProjectAnalysisData");
@@ -168,6 +164,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		returnCopyButton.setSelection(false);
 		returnCopyButton.addListener(SWT.Selection, this);
 		
+		setCanFlipToNextPage(isPageComplete());
 		setControl(composite);
 		setPageComplete(true);
 		
@@ -231,6 +228,13 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 		return 0;
 	}
 
+    /**
+     * @param canFlipToNextPage true if can flip to next page
+     */
+	public void setCanFlipToNextPage(boolean canFlipToNextPage) {
+		this.canFlipToNextPage = canFlipToNextPage;
+	}
+	
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
@@ -246,6 +250,8 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public IWizardPage getNextPage() {
+		final ExporterPage page = ((ProjectAnalyzerWizard)getWizard()).getExporterPage();
+		
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 		.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
@@ -268,12 +274,16 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 				}
 //				wizard.setVersionIterator(timeIterator);
 //				wizard.getAnalyzerConfig().setIterator(timeIterator);
+				if(conf.getExporter() == null){
+					CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
+					conf.setExporter(exporter);
+				}
+				page.init();
 //				
 			}
 		});
 		
-		ExporterPage page = ((ProjectAnalyzerWizard)getWizard()).getExporterPage();
-		page.init();
+		
 		return page;
 	}
 
@@ -290,8 +300,34 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 							
 			}
 		}
-		
+		setCanFlipToNextPage(isPageComplete());
 		getWizard().getContainer().updateButtons();
+	}
+	
+	private static boolean isTextNonEmpty(Text t)
+	{
+		String s = t.getText();
+		if ((s!=null) && (s.trim().length() >0)) {
+			return true;
+		}
+		return false;
+	}
+	
+	/** 
+	 * {@inheritDoc}
+	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
+	 */
+	@Override
+	public boolean isPageComplete() {
+		if(isTextNonEmpty(stepText) && defaultButton.getSelection()){
+			getNextPage();
+			return true;
+		}else if(isTextNonEmpty(stepText)
+				&& (forwardButton.getSelection() || backwardButton.getSelection())){
+			getNextPage();
+			return true;
+		}
+		return super.isPageComplete();
 	}
 
 }
