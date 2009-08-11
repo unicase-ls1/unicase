@@ -65,4 +65,13 @@ public class VectorSpaceModelStrategy implements RecommendationStrategy {
 		return hm;
 	}
 
+	/**
+	 * Returns the name of this strategy for output reasons.
+	 * 
+	 * @return the name
+	 */
+	public String getName() {
+		return "VSM";
+	}
+
 }

@@ -26,13 +26,18 @@ public class WordFrequencyRecommendationStrategy extends AbstractRecommendationS
 
 	/**
 	 * Contructor.
-	 * 
-	 * @param threshold the threshold
 	 */
 	public WordFrequencyRecommendationStrategy() {
 		super(0);
 	}
 
+	/**
+	 * Is this strategy possible?
+	 * 
+	 * @param base the base
+	 * @param rec the recommendation
+	 * @return true or false
+	 */
 	public boolean isRecommendationPossible(ModelElement base, ModelElement rec) {
 		if (base == rec) {
 			return false;
@@ -200,5 +205,14 @@ public class WordFrequencyRecommendationStrategy extends AbstractRecommendationS
 		}
 
 		return false;
+	}
+
+	/**
+	 * Returns the name of this strategy for output reasons.
+	 * 
+	 * @return the name
+	 */
+	public String getName() {
+		return "Word Frequency Recommendation";
 	}
 }

@@ -62,4 +62,14 @@ public class LSIStrategy implements RecommendationStrategy {
 		return hm;
 	}
 
+	/**
+	 * Returns "LSI".
+	 * 
+	 * @return LSI
+	 * @see org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy#getName()
+	 */
+	public String getName() {
+		return "LSI";
+	}
+
 }

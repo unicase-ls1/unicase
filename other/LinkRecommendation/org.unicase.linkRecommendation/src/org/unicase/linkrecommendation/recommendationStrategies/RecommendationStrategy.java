@@ -24,4 +24,11 @@ public interface RecommendationStrategy {
 	 * @return a Map (ModelElement,Double)
 	 */
 	Map<ModelElement, Double> getMatchingMap(ModelElement base, Collection<ModelElement> elements);
+
+	/**
+	 * Returns the name of this strategy for output reasons.
+	 * 
+	 * @return the name
+	 */
+	String getName();
 }
