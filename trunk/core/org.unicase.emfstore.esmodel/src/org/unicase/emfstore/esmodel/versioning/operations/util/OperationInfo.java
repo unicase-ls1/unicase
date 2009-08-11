@@ -5,6 +5,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.util;
 
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
@@ -37,6 +38,7 @@ public final class OperationInfo {
 		if (op instanceof AttributeOperation) {
 			AttributeOperation o = (AttributeOperation) op;
 			return o.getModelElementId().equals(id) && featureName.equals(o.getFeatureName());
+
 		}
 
 		// reference operation matches if the op is directly manipulating the model element
@@ -57,6 +59,25 @@ public final class OperationInfo {
 		}
 
 		return false;
+	}
+
+	/**
+	 * Tests whether an operation changes a given model element.
+	 * 
+	 * @param op the op to examine
+	 * @param id the modelelement to check
+	 * @return if the operation changes the given model element
+	 */
+	public static boolean changesModelElement(AbstractOperation op, ModelElementId id) {
+
+		for (ModelElementId m : op.getAllInvolvedModelElements()) {
+			if (m.equals(id)) {
+				return true;
+			}
+		}
+
+		return false;
+
 	}
 
 }
