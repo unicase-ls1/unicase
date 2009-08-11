@@ -104,17 +104,17 @@ public class TDFrequencyMatrix {
 		Matrix v = svd.getV();
 
 		//
-		System.out.println("My Matrix");
-		printMatrix(myMatrix);
-		System.out.println("U:");
-		this.printMatrix(u);
-		System.out.println("S:");
-		this.printMatrix(s);
-		System.out.println("V:");
-		this.printMatrix(v);
+		// System.out.println("My Matrix");
+		// printMatrix(myMatrix);
+		// System.out.println("U:");
+		// this.printMatrix(u);
+		// System.out.println("S:");
+		// this.printMatrix(s);
+		// System.out.println("V:");
+		// this.printMatrix(v);
 
 		// TODO: find a proper value for k
-		int k = myMatrix.getColumnDimension();
+		int k = (int) Math.round(myMatrix.getColumnDimension() * 0.3);
 		Matrix sReduced = s.getMatrix(0, s.getRowDimension() - 1, 0, k - 1);
 		Matrix vReduced = v.getMatrix(0, v.getRowDimension() - 1, 0, k - 1);
 		Matrix uReduced = u.getMatrix(0, k - 1, 0, k - 1);

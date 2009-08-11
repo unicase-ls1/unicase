@@ -23,4 +23,13 @@ public class NameLengthRecommendationStrategy extends AbstractRecommendationStra
 		super(0.2);
 		this.addMEMatcher(new NameLengthMatcher());
 	}
+
+	/**
+	 * Returns the name of this strategy for output reasons.
+	 * 
+	 * @return the name
+	 */
+	public String getName() {
+		return "Name Length Recommendation Strategy";
+	}
 }
