@@ -17,6 +17,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.util.ModelUtil;
+import org.unicase.model.util.SerializationException;
 
 /**
  * Canonizes a list of operations. Removes all operations that are not necessary to achieve the same result when the
@@ -220,9 +221,40 @@ public final class OperationsCanonizer {
 				continue;
 			}
 			CompositeOperation comp = (CompositeOperation) op;
+
+			// safeguard preparation: if the main operation of the composite has been canonized away,
+			// the canonization is reverted. This generates more operations,
+			// but leaves the "intention" of the composite intact.
+			String operationCopy = null;
+
+			if (comp.getMainOperation() != null) {
+				try {
+					operationCopy = ModelUtil.eObjectToString(comp);
+				} catch (SerializationException e) {
+					// silent failure, this comp operation will not be canonized
+					continue;
+				}
+			}
+
 			OperationsCanonizer.canonize(comp.getSubOperations());
 			if (comp.getSubOperations().size() == 0) {
 				emptyComposites.add(comp);
+			}
+			// safeguard implementation: restore original composite operation if the main operation has been canonized
+			// away
+			else if (comp.getMainOperation() != null && !comp.getSubOperations().contains(comp.getMainOperation())) {
+
+				try {
+					CompositeOperation restored = (CompositeOperation) ModelUtil.stringToEObject(operationCopy);
+					comp.getSubOperations().clear();
+					comp.getSubOperations().addAll(restored.getSubOperations());
+					comp.setMainOperation(restored.getMainOperation());
+				} catch (SerializationException e) {
+					// this is fatal, actually, the operation is lost now
+					// nothing to do but abort. Will not happen for logical reasons, unless there
+					// are bugs in the serialization code.
+					throw new IllegalStateException("Canonization failed restoring composite operation");
+				}
 			}
 		}
 		operations.removeAll(emptyComposites);
