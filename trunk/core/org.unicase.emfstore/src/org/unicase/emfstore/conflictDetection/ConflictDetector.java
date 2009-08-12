@@ -109,6 +109,45 @@ public class ConflictDetector {
 	}
 
 	/**
+	 * Retrieve all operations in other ops that are conflicting on "index integrity only" with operations in ops. If
+	 * any operation is in both lists, it is not considered to be conflicting.
+	 * 
+	 * @param ops A list of operations.
+	 * @param otherOps A list of the other operations.
+	 * @return A set of conflicting operations which is a subset of otherOps.
+	 */
+	public Set<AbstractOperation> getConflictingIndexIntegrity(List<AbstractOperation> ops,
+		List<AbstractOperation> otherOps) {
+		// the operations that are conflicting
+		Set<AbstractOperation> conflicting = new HashSet<AbstractOperation>();
+
+		// works with only one strategy, as of now, hardcoding it
+		IndexSensitiveConflictDetectionStrategy indexSensitiveStrategy = new IndexSensitiveConflictDetectionStrategy();
+
+		// check each operation in ops against otherOps
+		for (AbstractOperation position : ops) {
+			for (AbstractOperation other : otherOps) {
+				if (conflicting.contains(other)) {
+					// a conflict has already been registered
+					continue;
+				}
+				// if there is a conflict, add the other op to the
+				// list of conflicting ops along with all ops that
+				// require other ops
+
+				if (indexSensitiveStrategy.doConflictIndexIntegrity(position, other)) {
+					conflicting.addAll(getRequiring(otherOps, other));
+					conflicting.add(other);
+				}
+			}
+
+		}
+
+		// return the set of conflicting operations in other ops
+		return conflicting;
+	}
+
+	/**
 	 * Retrieve all operations in ops that are required by op. The operation <code>op</code> must be part of
 	 * <code>ops</code>.
 	 * 
