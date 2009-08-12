@@ -125,18 +125,25 @@ public class HistorySubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		List<HistoryInfo> historyInfos = getHistoryInfo(versions.subList(0, historyCount), projectId,
 			includeChangePackage);
 		// filter operations to selected model element
-		for (HistoryInfo historyInfo : historyInfos) {
-			Set<AbstractOperation> operationsToRemove = new HashSet<AbstractOperation>();
-			EList<AbstractOperation> operations = historyInfo.getChangePackage().getOperations();
-			for (AbstractOperation operation : operations) {
-				if (!operation.getAllInvolvedModelElements().contains(modelElementId)) {
-					operationsToRemove.add(operation);
-				}
-			}
-			operations.removeAll(operationsToRemove);
 
+		for (HistoryInfo historyInfo : historyInfos) {
+			filterOperationsForSelectedME(modelElementId, historyInfo);
 		}
 		return historyInfos;
+	}
+
+	private void filterOperationsForSelectedME(ModelElementId modelElementId, HistoryInfo historyInfo) {
+		if (historyInfo.getChangePackage() == null || historyInfo.getChangePackage().getOperations() == null) {
+			return;
+		}
+		Set<AbstractOperation> operationsToRemove = new HashSet<AbstractOperation>();
+		EList<AbstractOperation> operations = historyInfo.getChangePackage().getOperations();
+		for (AbstractOperation operation : operations) {
+			if (!operation.getAllInvolvedModelElements().contains(modelElementId)) {
+				operationsToRemove.add(operation);
+			}
+		}
+		operations.removeAll(operationsToRemove);
 	}
 
 	private List<HistoryInfo> getHistoryInfo(ProjectId projectId, PrimaryVersionSpec source, PrimaryVersionSpec target,
