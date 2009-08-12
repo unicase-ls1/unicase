@@ -116,9 +116,7 @@ public class TDFrequencyMatrixTest {
 		System.out.println("Transform LSI (stemmed):" + docs.length);
 		ma = new TDFrequencyMatrix(docs, true);
 		ma.createTDFMatrix();
-		ma.normalizeDocuments();
-		ma.transformIDF();
-		ma.transformLSI();
+		ma.transformLSI(0.2);
 		System.out.println(ma);
 
 	}
