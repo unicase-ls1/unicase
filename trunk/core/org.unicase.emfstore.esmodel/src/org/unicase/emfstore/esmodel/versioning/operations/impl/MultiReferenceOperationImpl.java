@@ -306,11 +306,18 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 					if (index < list.size() && index > -1) {
 						int i = index;
 						for (ModelElement m : referencedModelElements) {
-							if (list.contains(m)) {
-								list.move(i, m);
+
+							if (index < list.size()) {
+								if (list.contains(m)) {
+									list.move(i, m);
+								} else {
+									list.add(i, m);
+								}
 							} else {
-								list.add(i, m);
+								// if index grows out of bounds, just append
+								list.add(m);
 							}
+
 							i++;
 						}
 						// list.addAll(getIndex(), referencedModelElements);
