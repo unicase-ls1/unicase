@@ -26,44 +26,38 @@
         point="org.unicase.workspace.notification.providers">
      <provider
            class="org.unicase.workspace.notification.provider.UpdateNotificationProvider"
-           id="org.unicase.workspace.notification.provider.UpdateNotificationProvider"
-           name="Update Notifications">
+           name="Update Notifications"
+           priority="0">
      </provider>
      <provider
-           after="org.unicase.workspace.notification.provider.UpdateNotificationProvider"
            class="org.unicase.workspace.notification.provider.PushedNotificationProvider"
-           id="org.unicase.workspace.notification.provider.PushedNotificationProvider"
-           name="Pushed Notifications">
+           name="Pushed Notifications"
+           priority="1">
      </provider>
      <provider
-           after="org.unicase.workspace.notification.provider.PushedNotificationProvider"
            class="org.unicase.workspace.notification.provider.TaskNotificationProvider"
-           id="org.unicase.workspace.notification.provider.TaskNotificationProvider"
-           name="Task Notifications">
+           name="Task Notifications"
+           priority="2">
      </provider>
      <provider
-           after="org.unicase.workspace.notification.provider.TaskNotificationProvider"
            class="org.unicase.workspace.notification.provider.TaskChangeNotificationProvider"
-           id="org.unicase.workspace.notification.provider.TaskChangeNotificationProvider"
-           name="Task Change Notifications">
+           name="Task Change Notifications"
+           priority="3">
      </provider>
      <provider
-           after="org.unicase.workspace.notification.provider.TaskChangeNotificationProvider"
            class="org.unicase.workspace.notification.provider.SubscriptionNotificationProvider"
-           id="org.unicase.workspace.notification.provider.SubscriptionNotificationProvider"
-           name="Subscriptions Notifications">
+           name="Subscriptions Notifications"
+           priority="4">
      </provider>
      <provider
-           after="org.unicase.workspace.notification.provider.SubscriptionNotificationProvider"
            class="org.unicase.workspace.notification.provider.CommentsNotificationProvider"
-           id="org.unicase.workspace.notification.provider.CommentsNotificationProvider"
-           name="Comment Notifications">
+           name="Comment Notifications"
+           priority="5">
      </provider>
      <provider
-           after="org.unicase.workspace.notification.provider.CommentsNotificationProvider"
            class="org.unicase.workspace.notification.provider.TaskObjectNotificationProvider"
-           id="org.unicase.workspace.notification.provider.TaskObjectNotificationProvider"
-           name="Task Trace Notifications">
+           name="Task Trace Notifications"
+           priority="6">
      </provider>
   </extension>
 

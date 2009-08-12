@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ProjectChangeObserver;
@@ -226,6 +227,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 				op.getSubOperations().addAll(ops);
 				// set the last operation as the main one for natural composites
 				op.setMainOperation(ops.get(ops.size() - 1));
+				op.setModelElementId((ModelElementId) EcoreUtil.copy(op.getMainOperation().getModelElementId()));
 				projectSpace.addOperation(op);
 			} else if (ops.size() == 1) {
 				projectSpace.addOperation(ops.get(0));

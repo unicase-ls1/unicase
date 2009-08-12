@@ -16,30 +16,22 @@ import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
-import org.unicase.model.organization.User;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
-import org.unicase.workspace.notification.NotificationProvider;
 import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.preferences.PreferenceManager;
-import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * Provides notifications for subscribed MEs.
  * 
  * @author shterev
  */
-public class SubscriptionNotificationProvider implements NotificationProvider {
+public class SubscriptionNotificationProvider extends AbstractNotificationProvider {
 
 	private ArrayList<ESNotification> result;
 	private List<EObject> subscriptionIds;
-	private User user;
 
 	/**
 	 * The name.
@@ -67,6 +59,7 @@ public class SubscriptionNotificationProvider implements NotificationProvider {
 	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
 	 *      java.util.List, java.lang.String)
 	 */
+	@Override
 	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
 		String currentUsername) {
 		result = new ArrayList<ESNotification>();
@@ -75,71 +68,75 @@ public class SubscriptionNotificationProvider implements NotificationProvider {
 		if (subscriptionIds.isEmpty()) {
 			return result;
 		}
-		try {
-			user = OrgUnitHelper.getUser(projectSpace);
-		} catch (NoCurrentUserException e) {
-			return result;
-		} catch (CannotMatchUserInProjectException e) {
-			return result;
-		}
-
-		if (projectSpace == null || user == null) {
-			return result;
-		}
-
-		if (!projectSpace.hasProperty(DashboardKey.SUBSCRIPTIONS)) {
-			return result;
-		}
-		for (ChangePackage changePackage : changePackages) {
-			for (AbstractOperation operation : changePackage.getOperations()) {
-				if (operation instanceof CompositeOperation) {
-					for (AbstractOperation op : ((CompositeOperation) operation).getSubOperations()) {
-						handleOperation(projectSpace, op);
-					}
-				} else if (operation instanceof CreateDeleteOperation) {
-					for (AbstractOperation op : ((CreateDeleteOperation) operation).getSubOperations()) {
-						handleOperation(projectSpace, op);
-					}
-				} else {
-					handleOperation(projectSpace, operation);
-				}
-			}
-		}
-		return result;
+		return super.provideNotifications(projectSpace, changePackages, currentUsername);
 	}
 
-	private void handleOperation(ProjectSpace projectSpace, AbstractOperation op) {
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.notification.provider.AbstractNotificationProvider#handleOperation(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
+	 */
+	@Override
+	protected void handleOperation(AbstractOperation op) {
 
 		if (subscriptionIds.contains(op.getModelElementId())) {
-			createOperation(projectSpace, op.getModelElementId(), op);
+			createOperation(op.getModelElementId(), op);
 		} else if (op instanceof ReferenceOperation) {
 			ReferenceOperation rop = (ReferenceOperation) op;
 			for (ModelElementId mid : rop.getAllInvolvedModelElements()) {
 				if (subscriptionIds.contains(mid)) {
-					createOperation(projectSpace, op.getModelElementId(), rop);
+					createOperation(op.getModelElementId(), rop);
 				}
 			}
 		}
 	}
 
-	private void createOperation(ProjectSpace projectSpace, ModelElementId mid, AbstractOperation op) {
-		ModelElement modelElement = projectSpace.getProject().getModelElement(mid);
+	private void createOperation(ModelElementId mid, AbstractOperation op) {
+		ModelElement modelElement = getProjectSpace().getProject().getModelElement(mid);
 		if (modelElement == null) {
 			return;
 		}
+		getExcludedOperations().add(op.getOperationId());
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("Subscriptions");
-		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
-		notification.setRecipient(user.getName());
+		notification.setProject(EsModelUtil.clone(getProjectSpace().getProjectId()));
+		notification.setRecipient(getUser().getName());
 		notification.setSeen(false);
 		notification.setProvider(getName());
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("An element on your watch list has changed: ");
-		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(modelElement, projectSpace));
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(modelElement, getProjectSpace()));
 		notification.setMessage(stringBuilder.toString());
 		notification.setCreationDate(op.getClientDate());
 		notification.getRelatedOperations().add(op.getOperationId());
 		notification.getRelatedModelElements().add(mid);
 		result.add(notification);
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public DashboardKey getKey() {
+		return DashboardKey.SUBSCRIPTION_PROVIDER;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected List<ESNotification> createNotifications() {
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.notification.provider.AbstractNotificationProvider#init()
+	 */
+	@Override
+	protected void init() {
+		super.init();
+		result.clear();
+	}
+
 }

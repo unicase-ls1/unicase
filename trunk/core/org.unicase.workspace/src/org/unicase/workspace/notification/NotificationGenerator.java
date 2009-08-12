@@ -6,12 +6,16 @@
 package org.unicase.workspace.notification;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
+import java.util.Comparator;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
@@ -19,17 +23,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.model.bug.BugPackage;
-import org.unicase.model.rationale.RationalePackage;
-import org.unicase.model.task.TaskPackage;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.notification.provider.CommentsNotificationProvider;
-import org.unicase.workspace.notification.provider.PushedNotificationProvider;
-import org.unicase.workspace.notification.provider.SubscriptionNotificationProvider;
-import org.unicase.workspace.notification.provider.TaskNotificationProvider;
-import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
-import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
-import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.preferences.PreferenceManager;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -43,9 +37,9 @@ public final class NotificationGenerator {
 
 	private static HashMap<ProjectSpace, NotificationGenerator> instances;
 
-	private List<NotificationProvider> providers;
-
 	private ProjectSpace projectSpace;
+
+	private ArrayList<NotificationProvider> allProviders;
 
 	/**
 	 * Constructor.
@@ -53,53 +47,54 @@ public final class NotificationGenerator {
 	 * @param projectSpace the project space.
 	 */
 	private NotificationGenerator(ProjectSpace projectSpace) {
-		providers = new ArrayList<NotificationProvider>();
-
 		this.projectSpace = projectSpace;
-		// update provider must be first in list
-		addNotificationProvider(new UpdateNotificationProvider());
-		addNotificationProvider(new PushedNotificationProvider());
 
-		addTaskProviders(projectSpace);
+		allProviders = new ArrayList<NotificationProvider>();
+		final HashMap<NotificationProvider, Integer> allProvidersMap = new HashMap<NotificationProvider, Integer>();
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(
+			"org.unicase.workspace.notification.providers");
 
-		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace,
-			DashboardKey.TASK_TRACE_PROVIDER);
-		if (property.getBooleanProperty()) {
-			addNotificationProvider(new TaskObjectNotificationProvider());
+		// get all providers from the extension points
+		for (IConfigurationElement e : config) {
+			Object o;
+			try {
+				o = e.createExecutableExtension("class");
+				if (o instanceof NotificationProvider) {
+					NotificationProvider provider = (NotificationProvider) o;
+					String position = e.getAttribute("priority");
+					try {
+						allProvidersMap.put(provider, new Integer(position));
+					} catch (NumberFormatException ex) {
+						WorkspaceUtil.logException("Wrong priority parameter for NotificationProvider: "
+							+ provider.getName(), ex);
+					}
+				}
+			} catch (CoreException e1) {
+				WorkspaceUtil.logException(e1.getMessage(), e1);
+			}
 		}
 
-		property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.COMMENTS_PROVIDER);
-		if (property.getBooleanProperty()) {
-			addNotificationProvider(new CommentsNotificationProvider());
-		}
-
-		property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTION_PROVIDER);
-		if (property.getBooleanProperty()) {
-			addNotificationProvider(new SubscriptionNotificationProvider());
-		}
+		// sort the providers
+		allProviders.addAll(allProvidersMap.keySet());
+		Collections.sort(allProviders, new Comparator<NotificationProvider>() {
+			public int compare(NotificationProvider arg0, NotificationProvider arg1) {
+				return allProvidersMap.get(arg0).compareTo(allProvidersMap.get(arg1));
+			}
+		});
 	}
 
-	private void addTaskProviders(ProjectSpace projectSpace) {
-
-		OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_AI_TASKS);
-		if (property.getBooleanProperty()) {
-			addNotificationProvider(new TaskNotificationProvider(TaskPackage.eINSTANCE.getActionItem()));
+	/**
+	 * @return the providers that are currently activated in the settings
+	 */
+	private List<NotificationProvider> getActiveProviders() {
+		ArrayList<NotificationProvider> providers = new ArrayList<NotificationProvider>();
+		for (NotificationProvider provider : allProviders) {
+			OrgUnitProperty property = PreferenceManager.INSTANCE.getProperty(projectSpace, provider.getKey());
+			if (property.getBooleanProperty()) {
+				providers.add(provider);
+			}
 		}
-
-		property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_BR_TASKS);
-		if (property.getBooleanProperty()) {
-			addNotificationProvider(new TaskNotificationProvider(BugPackage.eINSTANCE.getBugReport()));
-		}
-
-		property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_ISSUE_TASKS);
-		if (property.getBooleanProperty()) {
-			addNotificationProvider(new TaskNotificationProvider(RationalePackage.eINSTANCE.getIssue()));
-		}
-
-		property = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_WP_TASKS);
-		if (property.getBooleanProperty()) {
-			addNotificationProvider(new TaskNotificationProvider(TaskPackage.eINSTANCE.getWorkPackage()));
-		}
+		return providers;
 	}
 
 	/**
@@ -153,13 +148,22 @@ public final class NotificationGenerator {
 			}
 		}
 
-		for (NotificationProvider provider : providers) {
+		List<NotificationProvider> activeProviders = getActiveProviders();
+		Iterator<NotificationProvider> iterator = activeProviders.iterator();
+		NotificationProvider prev = null;
+		while (iterator.hasNext()) {
+			NotificationProvider current = iterator.next();
+			current.getExcludedOperations().clear();
+			if (prev != null) {
+				current.getExcludedOperations().addAll(prev.getExcludedOperations());
+			}
 			try {
-				result.addAll(provider.provideNotifications(projectSpace, changePackages, currentUsername));
+				result.addAll(current.provideNotifications(projectSpace, changePackages, currentUsername));
+				prev = current;
 				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
 				// END SUPRESS CATCH EXCEPTION
-				WorkspaceUtil.logException("Notification Provider " + provider.getName()
+				WorkspaceUtil.logException("Notification Provider " + current.getName()
 					+ " threw an exception, its notifications where discarded", e);
 			}
 		}
@@ -175,21 +179,5 @@ public final class NotificationGenerator {
 			projectSpace.addEvent(generationEvent);
 		}
 		return result;
-	}
-
-	/**
-	 * Add a new notification provider to the generator.
-	 * 
-	 * @param provider the new provider
-	 */
-	public void addNotificationProvider(NotificationProvider provider) {
-		this.providers.add(provider);
-	}
-
-	/**
-	 * @return the list of providers.
-	 */
-	public Collection<NotificationProvider> getProviders() {
-		return Collections.unmodifiableCollection(providers);
 	}
 }

@@ -7,14 +7,18 @@ package org.unicase.workspace.notification.provider;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.NotificationProvider;
+import org.unicase.workspace.preferences.DashboardKey;
 
 /**
  * Provides notifications on updates of a project space.
@@ -53,22 +57,46 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		}
 
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
-		Date date = changePackages.get(0).getLogMessage().getClientDate();
-		for (ChangePackage cp : changePackages) {
-			if (cp.getLogMessage().getClientDate().after(date)) {
-				date = cp.getLogMessage().getClientDate();
-			}
-		}
-		notification.setCreationDate(date);
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("You updated your project to version ");
-		stringBuilder.append(projectSpace.getBaseVersion().getIdentifier());
-		notification.setMessage(stringBuilder.toString());
-		notification.setName("Updated Project");
 		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(currentUsername);
 		notification.setProvider(getName());
+
+		if (changePackages.isEmpty()) {
+			notification.setCreationDate(new Date());
+			notification.setMessage("You checked out the project in version "
+				+ projectSpace.getBaseVersion().getIdentifier());
+			notification.setName("Project checkout");
+		} else {
+			Date date = changePackages.get(0).getLogMessage().getClientDate();
+			for (ChangePackage cp : changePackages) {
+				if (cp.getLogMessage().getClientDate().after(date)) {
+					date = cp.getLogMessage().getClientDate();
+				}
+			}
+			notification.setCreationDate(date);
+			StringBuilder stringBuilder = new StringBuilder();
+			stringBuilder.append("You updated your project to version ");
+			stringBuilder.append(projectSpace.getBaseVersion().getIdentifier());
+			notification.setMessage(stringBuilder.toString());
+			notification.setName("Updated Project");
+		}
 		result.add(notification);
 		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.notification.NotificationProvider#getExcludedOperations()
+	 */
+	public Set<OperationId> getExcludedOperations() {
+		return new HashSet<OperationId>();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public DashboardKey getKey() {
+		return DashboardKey.UPDATE_PROVIDER;
 	}
 }
