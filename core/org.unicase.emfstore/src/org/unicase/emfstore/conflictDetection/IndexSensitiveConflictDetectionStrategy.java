@@ -534,9 +534,16 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 				for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
 					for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
-						// if all were the same, this would be a bunch of hard conflicts, no index integrity conflicts
 						if (!mA.equals(mB)) {
-							return true;
+
+							// if the remove index is smaller than the add index, there is an index integrity conflict
+
+							if (opA.isAdd()) {
+								return opA.getIndex() > opB.getIndex() && opA.getIndex() != 0 && opB.getIndex() != 0;
+							} else {
+								return opA.getIndex() < opB.getIndex() && opA.getIndex() != 0 && opB.getIndex() != 0;
+							}
+
 						}
 					}
 				}
