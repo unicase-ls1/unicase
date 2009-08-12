@@ -24,11 +24,13 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.linkrecommendation.recommendationStrategies.LSIStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.change.ChangePackage;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.task.TaskPackage;
 
@@ -124,25 +126,23 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		List<Object> results = new ArrayList<Object>();
 
 		// TODO: ONLY CHANGED ELEMENTS!
-		// EList<ChangePackage> changePackages = data.getChangePackages();
-		// List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
-		//		
+		EList<ChangePackage> changePackages = data.getChangePackages();
+		List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
+
 		// Check each change.
-		// for(ChangePackage changePackage: changePackages){
-		// operations.addAll(changePackage.getOperations());
-		// }
+		for (ChangePackage changePackage : changePackages) {
+			operations.addAll(changePackage.getOperations());
+		}
 
-		// for(AbstractOperation operation: operations){
-		// if(operation instanceof SingleReferenceOperation){
-		// SingleReferenceOperation op = (SingleReferenceOperation) operation;
-		// EReference eReference;
-		// ModelElement base;
-		// ModelElement correctTarget;
-		//				
-		//				
-		// }
-		// }
+		for (AbstractOperation operation : operations) {
+			if (operation instanceof SingleReferenceOperation) {
+				SingleReferenceOperation op = (SingleReferenceOperation) operation;
+				EReference eReference;
+				ModelElement base;
+				ModelElement correctTarget;
 
+			}
+		}
 		analyzeEntireProject(data, results);
 
 		return results;
