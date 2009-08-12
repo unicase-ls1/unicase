@@ -60,6 +60,7 @@ import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
 import org.unicase.workspace.exceptions.ServerUrlResolutionException;
 import org.unicase.workspace.exceptions.UnkownProjectException;
 import org.unicase.workspace.notification.NotificationGenerator;
+import org.unicase.workspace.util.ResourceHelper;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -501,22 +502,19 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	 * @see org.unicase.workspace.Workspace#importProject(java.lang.String)
 	 */
 	public ProjectSpace importProject(String absoluteFileName) throws IOException {
-		ResourceSetImpl resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(URI.createFileURI(absoluteFileName), true);
-		EList<EObject> directContents = resource.getContents();
-		// sanity check
+		Project project = ResourceHelper.getElementFromResource(absoluteFileName, Project.class, 0);
+		return importProject(project, absoluteFileName.substring(absoluteFileName.lastIndexOf(File.separatorChar) + 1),
+			"Imported from " + absoluteFileName);
+	}
 
-		if (directContents.size() != 1 && (!(directContents.get(0) instanceof Project))) {
-			throw new IOException("File is corrupt, does not contain a Project.");
-		}
-
-		Project project = (Project) directContents.get(0);
-		resource.getContents().remove(project);
-
+	/**
+	 * {@inheritDoc}
+	 */
+	public ProjectSpace importProject(Project project, String name, String description) {
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
 		projectSpace.setProject(project);
-		projectSpace.setProjectName(absoluteFileName.substring(absoluteFileName.lastIndexOf(File.separatorChar) + 1));
-		projectSpace.setProjectDescription("Imported from " + absoluteFileName);
+		projectSpace.setProjectName(name);
+		projectSpace.setProjectDescription(description);
 		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
 
 		projectSpace.initResources(this.workspaceResourceSet);

@@ -170,6 +170,16 @@ public interface Workspace extends EObject, IAdaptable {
 	ProjectSpace importProject(String absoluteFileName) throws IOException;
 
 	/**
+	 * Imports a project into a projectSpace.
+	 * 
+	 * @param project project
+	 * @param name name
+	 * @param description description
+	 * @return projectspace
+	 */
+	ProjectSpace importProject(Project project, String name, String description);
+
+	/**
 	 * Export a project to a file.
 	 * 
 	 * @param projectSpace the projectSpace containing the project
