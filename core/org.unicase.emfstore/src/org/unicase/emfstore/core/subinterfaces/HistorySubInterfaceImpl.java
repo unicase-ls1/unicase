@@ -177,15 +177,10 @@ public class HistorySubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	 */
 	private HistoryInfo createHistoryInfo(PrimaryVersionSpec headRevision, Version version, boolean includeChangePackage) {
 		HistoryInfo history = VersioningFactory.eINSTANCE.createHistoryInfo();
-		if (includeChangePackage) {
-			// null check for the initial commit
-			if (version.getChanges() != null) {
-				history.setChangePackage((ChangePackage) EcoreUtil.copy(version.getChanges()));
-				history.getChangePackage().setLogMessage((LogMessage) EcoreUtil.copy(version.getLogMessage()));
-			}
-		} else {
-			history.setLogMessage((LogMessage) EcoreUtil.copy(version.getLogMessage()));
+		if (includeChangePackage && version.getChanges() != null) {
+			history.setChangePackage((ChangePackage) EcoreUtil.copy(version.getChanges()));
 		}
+		history.setLogMessage((LogMessage) EcoreUtil.copy(version.getLogMessage()));
 		history.setPrimerySpec((PrimaryVersionSpec) EcoreUtil.copy(version.getPrimarySpec()));
 		for (TagVersionSpec tagSpec : version.getTagSpecs()) {
 			history.getTagSpecs().add((TagVersionSpec) EcoreUtil.copy(tagSpec));
