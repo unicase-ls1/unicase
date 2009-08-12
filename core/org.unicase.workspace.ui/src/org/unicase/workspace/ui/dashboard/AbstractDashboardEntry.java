@@ -8,6 +8,8 @@ package org.unicase.workspace.ui.dashboard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -18,8 +20,9 @@ import org.unicase.workspace.ProjectSpace;
 public abstract class AbstractDashboardEntry extends Composite {
 
 	private ESNotification n;
-	private ProjectSpace project;
+	private ProjectSpace projectSpace;
 	private DashboardPage page;
+	private ModelElement firstModelElement;
 
 	/**
 	 * Default constructor.
@@ -27,16 +30,20 @@ public abstract class AbstractDashboardEntry extends Composite {
 	 * @param parent the parent composite.
 	 * @param style the style.
 	 * @param notification the notification.
-	 * @param project the project.
+	 * @param projectSpace the project.
 	 * @param page a back link to the dashboard page (needed only for layout purposes).
 	 */
 	public AbstractDashboardEntry(DashboardPage page, Composite parent, int style, ESNotification notification,
-		ProjectSpace project) {
+		ProjectSpace projectSpace) {
 		super(parent, style);
 		this.page = page;
-		n = notification;
-		this.project = project;
+		this.n = notification;
+		this.projectSpace = projectSpace;
 		this.setBackgroundMode(SWT.INHERIT_FORCE);
+		if (notification.getRelatedModelElements().size() > 0) {
+			ModelElementId modelElementId = notification.getRelatedModelElements().get(0);
+			this.firstModelElement = projectSpace.getProject().getModelElement(modelElementId);
+		}
 	}
 
 	/**
@@ -57,7 +64,7 @@ public abstract class AbstractDashboardEntry extends Composite {
 	 * @return the project
 	 */
 	protected ProjectSpace getProjectSpace() {
-		return project;
+		return projectSpace;
 	}
 
 	/**
@@ -67,4 +74,16 @@ public abstract class AbstractDashboardEntry extends Composite {
 		return page;
 	}
 
+	/**
+	 * Since a lot of features (e.g. notification icon, presentation of comments, etc) depend on the ModelElements which
+	 * the notification is based upon, it is useful to have a direct reference to this element. Because a list of
+	 * elements can be provided (e.g. from the TaskNotificationProvider), we take the instance for the first element
+	 * with the implicit contract that all elements in the notification are either of the same type or share a common
+	 * supertype.
+	 * 
+	 * @return the first modelelement if it exists in the project
+	 */
+	protected ModelElement getFirstModelElement() {
+		return firstModelElement;
+	}
 }

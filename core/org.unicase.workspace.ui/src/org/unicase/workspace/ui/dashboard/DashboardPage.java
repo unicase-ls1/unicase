@@ -41,9 +41,13 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.provider.UpdateNotificationProvider;
+import org.unicase.workspace.preferences.DashboardKey;
+import org.unicase.workspace.preferences.PreferenceManager;
 import org.unicase.workspace.ui.dashboard.widgets.AbstractDashboardWidget;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -231,7 +235,18 @@ public class DashboardPage extends FormPage {
 
 			@Override
 			protected void doExecute() {
-				for (ESNotification n : notifications) {
+				int count = PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.DASHBOARD_SIZE)
+					.getIntegerProperty();
+				count = Math.min(count, notifications.size());
+				for (int i = 0; i < count; i++) {
+					ESNotification n = notifications.get(i);
+					if (n.getRelatedModelElements().size() > 0) {
+						ModelElementId modelElementId = n.getRelatedModelElements().get(0);
+						ModelElement firstModelElement = projectSpace.getProject().getModelElement(modelElementId);
+						if (firstModelElement == null) {
+							continue;
+						}
+					}
 					if (!n.isSeen()) {
 						AbstractDashboardEntry entry;
 						if (n.getProvider().equals(UpdateNotificationProvider.NAME)) {

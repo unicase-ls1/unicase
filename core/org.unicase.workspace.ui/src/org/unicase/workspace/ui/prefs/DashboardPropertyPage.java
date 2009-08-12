@@ -11,6 +11,7 @@ import java.util.Collections;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
@@ -25,6 +26,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.SWT;
@@ -207,6 +209,20 @@ public class DashboardPropertyPage extends PropertyPage {
 
 		Button removeME = new Button(buttonsComposite, SWT.PUSH);
 		removeME.setText("Remove");
+		removeME.addSelectionListener(new SelectionAdapter() {
+			@SuppressWarnings("unchecked")
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				StructuredSelection selection = (StructuredSelection) elementsTable.getSelection();
+				Iterator<Object> iterator = selection.iterator();
+				while (iterator.hasNext()) {
+					Object o = iterator.next();
+					ModelElement modelElement = (ModelElement) o;
+					subscriptions.remove(modelElement);
+					elementsTable.setInput(subscriptions.toArray());
+				}
+			}
+		});
 
 		return root;
 	}
