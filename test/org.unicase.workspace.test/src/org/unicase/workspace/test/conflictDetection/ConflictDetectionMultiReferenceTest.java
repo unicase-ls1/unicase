@@ -1374,4 +1374,270 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 	}
 
+	/**
+	 * Tests if manipulating multi-features is detected as a conflict.
+	 */
+	@Test
+	public void conflictAddRemoveDifferentObject() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+		Actor anotherDummy = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(actor);
+		getProject().addModelElement(dummy);
+		getProject().addModelElement(otherDummy);
+		getProject().addModelElement(anotherDummy);
+
+		section.getModelElements().add(anotherDummy);
+		section.getModelElements().add(otherDummy);
+		section.getModelElements().add(dummy);
+
+		getProjectSpace().getOperations().clear();
+		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
+		Project project2 = ps2.getProject();
+
+		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		Actor otherDummy2 = (Actor) project2.getModelElement(otherDummy.getModelElementId());
+
+		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+
+		section1.getModelElements().add(2, actor1);
+		section2.getModelElements().remove(otherDummy2);
+
+		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
+		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+		Set<AbstractOperation> conflicts = cd.getConflictingIndexIntegrity(ops1, ops2);
+		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
+			.size());
+		// an index-integrity conflict (the remove index:1 is smaller than the add index:2, thus the added item
+		// ends up somewhere else, depending on serialization)
+		assertEquals(1, conflicts.size());
+
+	}
+
+	/**
+	 * Tests if manipulating multi-features is detected as a conflict.
+	 */
+	@Test
+	public void noConflictAddRemoveDifferentObject() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(actor);
+		getProject().addModelElement(dummy);
+		getProject().addModelElement(otherDummy);
+
+		section.getModelElements().add(otherDummy);
+		section.getModelElements().add(dummy);
+
+		getProjectSpace().getOperations().clear();
+		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
+		Project project2 = ps2.getProject();
+
+		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+
+		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+
+		section1.getModelElements().add(0, actor1);
+		section2.getModelElements().remove(dummy2);
+
+		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
+		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+		Set<AbstractOperation> conflicts = cd.getConflictingIndexIntegrity(ops1, ops2);
+		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
+			.size());
+		// no index-integrity conflict (the change happens at the boundary)
+		assertEquals(conflicts.size(), 0);
+
+	}
+
+	/**
+	 * Tests if manipulating multi-features is detected as a conflict.
+	 */
+	@Test
+	public void noConflictAddParentSetRemoveDifferentObject() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(otherSection);
+
+		getProject().addModelElement(actor);
+		getProject().addModelElement(dummy);
+		getProject().addModelElement(otherDummy);
+
+		section.getModelElements().add(otherDummy);
+		section.getModelElements().add(dummy);
+
+		getProjectSpace().getOperations().clear();
+		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
+		Project project2 = ps2.getProject();
+
+		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+
+		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		LeafSection otherSection2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+
+		section1.getModelElements().add(1, actor1);
+		dummy2.setLeafSection(otherSection2);
+
+		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
+		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+		Set<AbstractOperation> conflicts = cd.getConflictingIndexIntegrity(ops1, ops2);
+		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
+			.size());
+		// no index-integrity conflict (the change happens at the boundary)
+		assertEquals(conflicts.size(), 0);
+
+	}
+
+	/**
+	 * Tests if manipulating multi-features is detected as a conflict.
+	 */
+	@Test
+	public void noConflictParentSetAddRemoveDifferentObject() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(actor);
+		getProject().addModelElement(dummy);
+
+		section.getModelElements().add(dummy);
+
+		getProjectSpace().getOperations().clear();
+		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
+		Project project2 = ps2.getProject();
+
+		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+
+		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+
+		actor1.setLeafSection(section1);
+		section2.getModelElements().remove(dummy2);
+
+		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
+		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+		Set<AbstractOperation> conflicts = cd.getConflictingIndexIntegrity(ops1, ops2);
+		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
+			.size());
+		// no index-integrity conflict (outcome does not depend on serialization)
+		assertEquals(conflicts.size(), 0);
+
+	}
+
+	/**
+	 * Tests if manipulating multi-features is detected as a conflict.
+	 */
+	@Test
+	public void noConflictParentSetAddRemoveIndirectlyDifferentObject() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(otherSection);
+		getProject().addModelElement(actor);
+		getProject().addModelElement(dummy);
+
+		section.getModelElements().add(dummy);
+
+		getProjectSpace().getOperations().clear();
+		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
+		Project project2 = ps2.getProject();
+
+		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+
+		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		LeafSection otherSection2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+
+		actor1.setLeafSection(section1);
+		otherSection2.getModelElements().add(dummy2);
+
+		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
+		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+		Set<AbstractOperation> conflicts = cd.getConflictingIndexIntegrity(ops1, ops2);
+		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
+			.size());
+		// no index-integrity conflict (outcome does not depend on serialization)
+		assertEquals(conflicts.size(), 0);
+
+	}
+
+	/**
+	 * Tests if manipulating multi-features is detected as a conflict.
+	 */
+	@Test
+	public void noConflictPerentSetAddParentSetRemoveDifferentObject() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(otherSection);
+		getProject().addModelElement(actor);
+		getProject().addModelElement(dummy);
+
+		section.getModelElements().add(dummy);
+
+		getProjectSpace().getOperations().clear();
+		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
+		Project project2 = ps2.getProject();
+
+		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+
+		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		LeafSection otherSection2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+
+		actor1.setLeafSection(section1);
+		dummy2.setLeafSection(otherSection2);
+
+		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
+		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+		Set<AbstractOperation> conflicts = cd.getConflictingIndexIntegrity(ops1, ops2);
+		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
+			.size());
+		// no index-integrity conflict (outcome does not depend on serialization)
+		assertEquals(conflicts.size(), 0);
+
+	}
+
 }
