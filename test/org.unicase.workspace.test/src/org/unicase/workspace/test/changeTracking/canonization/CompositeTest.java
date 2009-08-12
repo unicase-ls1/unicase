@@ -12,6 +12,7 @@ import java.util.List;
 
 import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
 import org.unicase.model.Project;
 import org.unicase.model.requirement.RequirementFactory;
@@ -124,6 +125,102 @@ public class CompositeTest extends CanonizationTest {
 		OperationsCanonizer.canonize(operations);
 		assertEquals(operations.size(), 0);
 
+	}
+
+	/**
+	 * Tests canonization for composite ops, where main operation might be canonized away.
+	 * 
+	 * @throws InvalidHandleException if error occurs
+	 */
+	@Test
+	public void mainDeleteCompositeImplicitRestore() throws InvalidHandleException {
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase);
+		useCase.setName("oldName");
+
+		clearOperations();
+
+		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+
+		useCase.setName("A");
+		useCase.setName("B");
+		useCase.setName("newName");
+
+		handle.end("blubb", "blibb", null);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		assertEquals(operations.size(), 1);
+		CompositeOperation comp = (CompositeOperation) operations.get(0);
+		comp.setMainOperation(comp.getSubOperations().get(1)); // setName to from "A" to "B"
+		OperationsCanonizer.canonize(operations);
+		// the main one was a candidate for removal, but since it is the main one, it may not be touched
+		// in this case it will not even be modified
+		assertTrue(comp.getSubOperations().contains(comp.getMainOperation()));
+	}
+
+	/**
+	 * Tests canonization for composite ops, where main operation might be canonized away.
+	 * 
+	 * @throws InvalidHandleException if error occurs
+	 */
+	@Test
+	public void mainDeleteCompositeImplicitMainOpModification() throws InvalidHandleException {
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase);
+		useCase.setName("oldName");
+
+		clearOperations();
+
+		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+
+		useCase.setName("A");
+		useCase.setName("B");
+		useCase.setName("newName");
+
+		handle.end("blubb", "blibb", null);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		assertEquals(operations.size(), 1);
+		CompositeOperation comp = (CompositeOperation) operations.get(0);
+		comp.setMainOperation(comp.getSubOperations().get(0)); // setName to from "oldName" to "A"
+		OperationsCanonizer.canonize(operations);
+		// the main one was a candidate for removal, but since it is the main one, it may not be removed
+		// it might have been altered though (newValue, oldValue etc., might have changed in the canonization
+		// process)
+		assertTrue(comp.getSubOperations().contains(comp.getMainOperation()));
+	}
+
+	/**
+	 * Tests canonization for composite ops, where main operation might be canonized away.
+	 * 
+	 * @throws InvalidHandleException if error occurs
+	 */
+	@Test
+	public void mainDeleteNoOpComposite() throws InvalidHandleException {
+
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		getProject().addModelElement(useCase);
+		useCase.setName("oldName");
+
+		clearOperations();
+
+		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
+
+		useCase.setName("A");
+		useCase.setName("B");
+		useCase.setName("oldName");
+
+		handle.end("blubb", "blibb", null);
+
+		List<AbstractOperation> operations = getProjectSpace().getOperations();
+		assertEquals(operations.size(), 1);
+		CompositeOperation comp = (CompositeOperation) operations.get(0);
+		comp.setMainOperation(comp.getSubOperations().get(1)); // setName to from "A" to "B"
+		OperationsCanonizer.canonize(operations);
+		// since this composite is a noop, everything should have been removed
+		assertEquals(comp.getSubOperations().size(), 0);
 	}
 
 }
