@@ -90,21 +90,6 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	}
 
 	/**
-	 * A mouse adapter that toggles the comments.
-	 * 
-	 * @author Shterev
-	 */
-	private final class ToggleCommentsAdapter extends MouseAdapter {
-		@Override
-		public void mouseUp(MouseEvent e) {
-			toggleComments(e, showComments);
-			showComments = !showComments;
-			getPage().getForm().reflow(true);
-			notificationComposite.setFocus();
-		}
-	}
-
-	/**
 	 * A hover listener to change the color appearance of the notification.
 	 * 
 	 * @author Shterev
@@ -179,7 +164,6 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	private boolean mouseOverClose;
 
 	private boolean showDrawer = true;
-	private boolean showComments = true;
 	private AdapterFactoryLabelProvider labelProvider;
 	private Composite closeButton;
 	private Link entryMessage;
@@ -489,27 +473,6 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		} else {
 			GridDataFactory.createFrom((GridData) drawerComposite.getLayoutData()).hint(380, 0)
 				.applyTo(drawerComposite);
-		}
-		getParent().layout();
-	}
-
-	private void toggleComments(TypedEvent e, boolean open) {
-		if (open) {
-			createComments();
-
-			final NotificationReadEvent readEvent = EventsFactory.eINSTANCE.createNotificationReadEvent();
-			readEvent.setNotificationId(getNotification().getIdentifier());
-			readEvent.setReadView(DashboardEditor.ID);
-			readEvent.setSourceView(DashboardEditor.ID);
-			readEvent.setTimestamp(new Date());
-			new UnicaseCommand() {
-				@Override
-				protected void doRun() {
-					getProjectSpace().addEvent(readEvent);
-				}
-			}.run();
-		} else {
-			commentsComposite.dispose();
 		}
 		getParent().layout();
 	}

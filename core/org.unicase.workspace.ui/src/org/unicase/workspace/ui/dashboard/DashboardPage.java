@@ -57,6 +57,46 @@ import org.unicase.workspace.util.WorkspaceUtil;
  * @author Shterev
  */
 public class DashboardPage extends FormPage {
+
+	/**
+	 * Recording command to create notification entries.
+	 * 
+	 * @author shterevg
+	 */
+	private final class CreateNotificationsCommand extends RecordingCommand {
+		private CreateNotificationsCommand(TransactionalEditingDomain domain) {
+			super(domain);
+		}
+
+		@Override
+		protected void doExecute() {
+			int count = PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.DASHBOARD_SIZE)
+				.getIntegerProperty();
+			count = Math.min(count, notifications.size());
+			for (int i = 0; i < count; i++) {
+				ESNotification n = notifications.get(i);
+				if (n.getRelatedModelElements().size() > 0) {
+					ModelElementId modelElementId = n.getRelatedModelElements().get(0);
+					ModelElement firstModelElement = projectSpace.getProject().getModelElement(modelElementId);
+					if (firstModelElement == null) {
+						continue;
+					}
+				}
+				if (!n.isSeen()) {
+					AbstractDashboardEntry entry;
+					if (n.getProvider().equals(UpdateNotificationProvider.NAME)) {
+						entry = new UpdateDashboardEntry(DashboardPage.this, notificationsComposite, SWT.NONE, n,
+							projectSpace);
+					} else {
+						entry = new DashboardNotificationEntry(DashboardPage.this, notificationsComposite, SWT.NONE, n,
+							projectSpace);
+					}
+					GridDataFactory.fillDefaults().grab(true, false).applyTo(entry);
+				}
+			}
+		}
+	}
+
 	private FormToolkit toolkit;
 
 	private ScrolledForm form;
@@ -231,36 +271,7 @@ public class DashboardPage extends FormPage {
 	}
 
 	private void createNotifications() {
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-
-			@Override
-			protected void doExecute() {
-				int count = PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.DASHBOARD_SIZE)
-					.getIntegerProperty();
-				count = Math.min(count, notifications.size());
-				for (int i = 0; i < count; i++) {
-					ESNotification n = notifications.get(i);
-					if (n.getRelatedModelElements().size() > 0) {
-						ModelElementId modelElementId = n.getRelatedModelElements().get(0);
-						ModelElement firstModelElement = projectSpace.getProject().getModelElement(modelElementId);
-						if (firstModelElement == null) {
-							continue;
-						}
-					}
-					if (!n.isSeen()) {
-						AbstractDashboardEntry entry;
-						if (n.getProvider().equals(UpdateNotificationProvider.NAME)) {
-							entry = new UpdateDashboardEntry(DashboardPage.this, notificationsComposite, SWT.NONE, n,
-								projectSpace);
-						} else {
-							entry = new DashboardNotificationEntry(DashboardPage.this, notificationsComposite,
-								SWT.NONE, n, projectSpace);
-						}
-						GridDataFactory.fillDefaults().grab(true, false).applyTo(entry);
-					}
-				}
-			}
-		});
+		domain.getCommandStack().execute(new CreateNotificationsCommand(domain));
 	}
 
 	/**
