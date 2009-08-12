@@ -630,6 +630,47 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 	 * Tests if manipulating multi-features is detected as a conflict.
 	 */
 	@Test
+	public void conflictAddRemoveIndirectlySameObject() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(otherSection);
+		getProject().addModelElement(actor);
+
+		getProjectSpace().getOperations().clear();
+		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
+		Project project2 = ps2.getProject();
+
+		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+
+		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
+
+		section1.getModelElements().add(actor1);
+		section2.getModelElements().add(actor2);
+		otherSection2.getModelElements().add(actor2);
+
+		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
+		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+		// hard conflict between add and remove, serialization matters
+		Set<AbstractOperation> conflicts = cd.getConflicting(ops1, ops2);
+		assertEquals(cd.getConflicting(ops1, ops2).size(), cd.getConflicting(ops2, ops1).size());
+
+		assertEquals(conflicts.size(), 1);
+
+	}
+
+	/**
+	 * Tests if manipulating multi-features is detected as a conflict.
+	 */
+	@Test
 	public void conflictParentSetAddParentSetRemoveSameObject() {
 
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
@@ -654,6 +695,47 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		actor1.setLeafSection(section1);
 		actor2.setLeafSection(section2);
 		actor2.setLeafSection(otherSection2);
+
+		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
+		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+		// hard conflict between add and remove, serialization matters
+		Set<AbstractOperation> conflicts = cd.getConflicting(ops1, ops2);
+		assertEquals(cd.getConflicting(ops1, ops2).size(), cd.getConflicting(ops2, ops1).size());
+
+		assertEquals(conflicts.size(), 1);
+
+	}
+
+	/**
+	 * Tests if manipulating multi-features is detected as a conflict.
+	 */
+	@Test
+	public void conflictParentSetAddRemoveIndirectlySameObject() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(otherSection);
+		getProject().addModelElement(actor);
+
+		getProjectSpace().getOperations().clear();
+		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
+		Project project2 = ps2.getProject();
+
+		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+
+		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
+		LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
+
+		actor1.setLeafSection(section1);
+		actor2.setLeafSection(section2);
+		otherSection2.getModelElements().add(actor2);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
@@ -1719,6 +1801,54 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		section1.getModelElements().add(actor1);
 		dummy2.setLeafSection(otherSection2);
+
+		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
+		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+		Set<AbstractOperation> conflicts = cd.getConflictingIndexIntegrity(ops1, ops2);
+		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
+			.size());
+		// potential index-integrity conflict: it is unknown where dummy was located, worst case (before actor1
+		// insertion point) anticipated
+		assertEquals(conflicts.size(), 1);
+
+	}
+
+	/**
+	 * Tests if manipulating multi-features is detected as a conflict.
+	 */
+	@Test
+	public void nnoConflictAddRemoveIndirectlyDifferentObject() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection otherSection = DocumentFactory.eINSTANCE.createLeafSection();
+
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+		Actor otherDummy = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(actor);
+		getProject().addModelElement(dummy);
+		getProject().addModelElement(otherDummy);
+		getProject().addModelElement(otherSection);
+
+		section.getModelElements().add(otherDummy);
+		section.getModelElements().add(dummy);
+
+		getProjectSpace().getOperations().clear();
+		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
+		Project project2 = ps2.getProject();
+
+		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
+		Actor dummy2 = (Actor) project2.getModelElement(dummy.getModelElementId());
+
+		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
+		LeafSection otherSection2 = (LeafSection) project2.getModelElement(otherSection.getModelElementId());
+
+		section1.getModelElements().add(actor1);
+		otherSection2.getModelElements().add(dummy2);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
