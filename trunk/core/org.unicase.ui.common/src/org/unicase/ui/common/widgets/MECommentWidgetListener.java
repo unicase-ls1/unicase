@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.meeditor.mecontrols.commentcontrol;
+package org.unicase.ui.common.widgets;
 
 /**
  * Interface for classes that should receive notifications when the comment widget has been updated.

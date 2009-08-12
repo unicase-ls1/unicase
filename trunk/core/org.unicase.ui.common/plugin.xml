@@ -82,6 +82,11 @@
            id="org.unicase.ui.common.commands.addComment"
            name="addComment">
      </command>
+     <command
+           defaultHandler="org.unicase.ui.common.handlers.SubscriptionHandler"
+           id="org.unicase.ui.common.commands.subscribeToModelElement"
+           name="subscribeToModelElement">
+     </command>
   </extension>
   <extension
         point="org.eclipse.ui.menus">
@@ -166,10 +171,55 @@
               icon="icons/Comment.png"
               label="Add Comment"
               style="push">
-           <visibleWhen
+              <visibleWhen
                  checkEnabled="false">
               <iterate
                     ifEmpty="false">
+                 <instanceof
+                       value="org.unicase.model.ModelElement">
+                 </instanceof>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.commands.subscribeToModelElement"
+              icon="icons/subscribe.png"
+              label="Subscribe"
+              style="push">
+              <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false"
+                    operator="and">
+                 <instanceof
+                       value="org.unicase.model.ModelElement">
+                 </instanceof>
+                 <test
+                    forcePluginActivation="true"
+                    property="org.unicase.ui.common.commands.isNotSubscribed"
+                    value="true">
+                 </test>
+              </iterate>
+           </visibleWhen>
+        </command>
+        <command
+              commandId="org.unicase.ui.common.commands.subscribeToModelElement"
+              icon="icons/subscribe.png"
+              label="Unsubscribe"
+              style="push">
+           <visibleWhen
+                 checkEnabled="false">
+              <iterate
+                    ifEmpty="false"
+                    operator="and">
+                 <instanceof
+                       value="org.unicase.model.ModelElement">
+                 </instanceof>
+                 <test
+                       forcePluginActivation="true"
+                       property="org.unicase.ui.common.commands.isSubscribed"
+                       value="true">
+                 </test>
               </iterate>
            </visibleWhen>
         </command>
@@ -216,6 +266,11 @@
               icon="icons/Comment.png"
               label="Add Comment"
               style="push">
+        </command>
+        <command
+              commandId="org.unicase.ui.common.commands.subscribeToModelElement"
+              icon="icons/subscribe.png"
+              label="Subscribe for this ModelElement">
         </command>
         <command
               commandId="org.unicase.ui.common.deleteModelelement"
@@ -557,4 +612,14 @@
 			</popupContribution>
 		</contributionItemProvider>
 </extension>
+ <extension
+       point="org.eclipse.core.expressions.propertyTesters">
+        <propertyTester
+              class="org.unicase.ui.common.commands.SubscriptionTester"
+              id="org.unicase.ui.common.commands.subscriptionTester"
+              namespace="org.unicase.ui.common.commands"
+              properties="isSubscribed,isNotSubscribed"
+              type="org.unicase.model.ModelElement">
+        </propertyTester>
+ </extension>
 </plugin>
