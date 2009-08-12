@@ -338,8 +338,16 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	}
 
 	public List<ModelElement> getParents() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<ModelElement> parents = new ArrayList<ModelElement>();
+		ModelElement parent = getCommentedElement();
+		if (parent == null) {
+			return parents;
+		}
+		parents.add(parent);
+		if (parent instanceof Comment) {
+			parents.addAll(((Comment) parent).getParents());
+		}
+		return parents;
 	}
 
 } // CommentImpl
