@@ -12,7 +12,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.unicase.model.Project;
 
 /**
  * Helper for resource operations.
@@ -43,8 +42,8 @@ public final class ResourceHelper {
 		EList<EObject> directContents = resource.getContents();
 		// sanity check
 
-		if (directContents.size() != 1 && (!(directContents.get(0) instanceof Project))) {
-			throw new IOException("File is corrupt, does not contain a Project.");
+		if (directContents.size() != 1 && (!type.isInstance(directContents.get(0)))) {
+			throw new IOException("File is corrupt, does not contain a " + type.getName() + " .");
 		}
 
 		T object = (T) directContents.get(index);
