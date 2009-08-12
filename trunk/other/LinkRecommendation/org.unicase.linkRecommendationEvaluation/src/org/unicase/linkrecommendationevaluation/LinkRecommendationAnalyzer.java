@@ -26,7 +26,6 @@ import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.linkrecommendation.recommendationStrategies.LSIStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
-import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
@@ -53,12 +52,26 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 
 	private RecommendationStrategy[] strategies;
 
+	private final int DEBUGMODE_ALL = 0;
+	private final int DEBUGMODE_FAILS = 1;
+	private final int DEBUGMODE_NOTHING = 2;
+
+	private int debugmode;
+
 	/**
 	 * The constructor.
 	 */
 	public LinkRecommendationAnalyzer() {
-		thresholds = new Double[] { 0.1, 0.2, 0.35, 0.5, 0.7 };
-		strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(), new LSIStrategy() };
+		debugmode = DEBUGMODE_FAILS;
+		// thresholds = new Double[] { 0.1, 0.2, 0.35, 0.5, 0.7 };
+		thresholds = new Double[] { 0.35, 0.5, 0.7 };
+
+		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy() };
+		strategies = new RecommendationStrategy[] { new LSIStrategy(0.2), new LSIStrategy(0.4), new LSIStrategy(0.6),
+			new LSIStrategy(0.8) };
+		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(), new LSIStrategy(0.2),
+		// new LSIStrategy(0.4), new LSIStrategy(0.6), new LSIStrategy(0.8) };
+
 		addRelevants();
 	}
 
@@ -149,7 +162,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		suggestedElements = new int[thresholds.length][strategies.length];
 		hits = new int[thresholds.length][strategies.length];
 
-		for (int j = 0; j < strategies.length; j++) {
+		for (int j = 0; j < thresholds.length; j++) {
 			Arrays.fill(foundAndRec[j], 0);
 			Arrays.fill(suggestedElements[j], 0);
 			Arrays.fill(hits[j], 0);
@@ -191,17 +204,19 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 					// add to statistics
 					suggestionCases++;
 					for (int i = 0; i < thresholds.length; i++) {
-						calcStatistics(correctMEs, relevanceMap, i, j);
+						calcStatistics(modelElement, correctMEs, relevanceMap, i, j);
 					}
 
 					// Debug-Output:
-					System.out.print("Analyzing: " + modelElement.getName());
-					System.out.println(", reference: " + eReference.getName());
-					for (ModelElement me : correctMEs) {
-						System.out.println("# Name: " + me.getName());
-					}
-					for (int i = 0; i < thresholds.length; i++) {
-						printSuggestedElements(relevanceMap, thresholds[i]);
+					if (debugmode == DEBUGMODE_ALL) {
+						System.out.print("Analyzing: " + modelElement.getName());
+						System.out.println(", reference: " + eReference.getName());
+						for (ModelElement me : correctMEs) {
+							System.out.println("# Name: " + me.getName());
+						}
+						for (int i = 0; i < thresholds.length; i++) {
+							printSuggestedElements(relevanceMap, thresholds[i]);
+						}
 					}
 				}
 			}
@@ -262,8 +277,8 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		return correctMEs;
 	}
 
-	private void calcStatistics(Collection<ModelElement> correctMEs, Map<ModelElement, Double> relevanceMap,
-		int indexThreshold, int indexStrategy) {
+	private void calcStatistics(ModelElement me, Collection<ModelElement> correctMEs,
+		Map<ModelElement, Double> relevanceMap, int indexThreshold, int indexStrategy) {
 		boolean hit = false;
 		int sug = getNumberSuggestedElements(relevanceMap, thresholds[indexThreshold]);
 		suggestedElements[indexThreshold][indexStrategy] += sug;
@@ -280,6 +295,14 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		// determine if suggestions have been met
 		if (hit) {
 			hits[indexThreshold][indexStrategy]++;
+		} else if (debugmode == DEBUGMODE_FAILS && indexThreshold == 0) {
+			// debug:
+			System.out.println("* " + strategies[indexStrategy].getName() + " FAILS to connect ME \n" + me.getName()
+				+ ": " + me.getDescriptionPlainText() + " \n to");
+
+			for (ModelElement correctME : correctMEs) {
+				System.out.println("- Name: " + correctME.getName() + ": " + correctME.getDescriptionPlainText());
+			}
 		}
 	}
 

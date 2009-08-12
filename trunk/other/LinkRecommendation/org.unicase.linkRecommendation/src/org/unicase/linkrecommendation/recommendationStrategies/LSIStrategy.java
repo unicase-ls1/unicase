@@ -19,6 +19,18 @@ import org.unicase.model.ModelElement;
  * @author Henning Femmer
  */
 public class LSIStrategy implements RecommendationStrategy {
+
+	private double factorK = 0.3d;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param factorK the factor used in lsi
+	 */
+	public LSIStrategy(double factorK) {
+		this.factorK = factorK;
+	}
+
 	/**
 	 * This method calculates the arithmetic average of all results of the managers matchingStrategies and returns a
 	 * hashmap of all values above the threshold.
@@ -43,14 +55,9 @@ public class LSIStrategy implements RecommendationStrategy {
 		}
 
 		tdf.createTDFMatrix();
-		// normalize numbers
-		tdf.normalizeDocuments();
-		// idf
-		tdf.transformIDF();
+		//
 
-		// SVD
-		tdf.transformLSI();
-		// System.out.println(tdf);
+		tdf.transformLSI(factorK);
 
 		int indexBase = indices.get(base);
 		// determine values
@@ -69,7 +76,7 @@ public class LSIStrategy implements RecommendationStrategy {
 	 * @see org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy#getName()
 	 */
 	public String getName() {
-		return "LSI";
+		return "LSI (K-Factor:" + factorK + ")";
 	}
 
 }

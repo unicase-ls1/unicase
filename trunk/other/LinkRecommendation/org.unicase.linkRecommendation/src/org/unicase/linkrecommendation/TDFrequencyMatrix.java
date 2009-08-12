@@ -91,7 +91,8 @@ public class TDFrequencyMatrix {
 	/**
 	 * Uses SVD to reduce the number of elements in the matrix.
 	 */
-	public void transformLSI() {
+	public void transformLSI(double factorK) {
+
 		Matrix myMatrix = new Matrix(tfMatrix);
 
 		SingularValueDecomposition svd = myMatrix.svd();
@@ -99,27 +100,42 @@ public class TDFrequencyMatrix {
 		// U : Eigenvalues of AA^T: left Eigenvectors
 		// S : Singular Values of A
 		// V : Eigenvalues od A^TA: right Eigenvalues
-		Matrix u = svd.getU();
-		Matrix s = svd.getS();
-		Matrix v = svd.getV();
+		Matrix termMatrix = svd.getU();
+		Matrix singularValues = svd.getS();
+		Matrix documentMatrixT = svd.getV().transpose();
 
-		//
+		// DEBUG:
 		// System.out.println("My Matrix");
 		// printMatrix(myMatrix);
-		// System.out.println("U:");
-		// this.printMatrix(u);
-		// System.out.println("S:");
-		// this.printMatrix(s);
-		// System.out.println("V:");
-		// this.printMatrix(v);
+		// System.out.println("Term Matrix");
+		// this.printMatrix(termMatrix);
+		// System.out.println("Singulars:");
+		// this.printMatrix(singularValues);
+		// System.out.println("documentMatrix:");
+		// this.printMatrix(documentMatrixT);
 
 		// TODO: find a proper value for k
-		int k = (int) Math.round(myMatrix.getColumnDimension() * 0.3);
-		Matrix sReduced = s.getMatrix(0, s.getRowDimension() - 1, 0, k - 1);
-		Matrix vReduced = v.getMatrix(0, v.getRowDimension() - 1, 0, k - 1);
-		Matrix uReduced = u.getMatrix(0, k - 1, 0, k - 1);
+		int k = (int) Math.round(myMatrix.getColumnDimension() * factorK);
+		// (int) Math.floor(Math.sqrt(myMatrix.getColumnDimension()));
+		Matrix termReduced = termMatrix.getMatrix(0, termMatrix.getRowDimension() - 1, 0, k - 1);
+		Matrix singularReduced = singularValues.getMatrix(0, k - 1, 0, k - 1);
+		Matrix documentReduced = documentMatrixT.getMatrix(0, k - 1, 0, documentMatrixT.getColumnDimension() - 1);
 
-		Matrix result = sReduced.times(uReduced).times(vReduced.transpose());
+		// DEBUG:
+		// System.out.println("Term Matrix");
+		// this.printMatrix(termReduced);
+		// System.out.println("Singulars:");
+		// this.printMatrix(singularReduced);
+		// System.out.println("documentMatrix:");
+		// this.printMatrix(documentReduced);
+
+		// int bla1 = sReduced.getColumnDimension();
+		// int bla2 = vReduced.getRowDimension();
+
+		Matrix result = (termReduced.times(singularReduced)).times(documentReduced);
+		// DEBUG:
+		// printMatrix(result);
+
 		// save it, normalize it
 		tfMatrix = result.getArray();
 		this.normalizeDocuments();
@@ -224,9 +240,10 @@ public class TDFrequencyMatrix {
 	public double cos(int i1, int i2) {
 		double dot = dotProduct(i1, i2);
 
-		double w1 = sumSquaredDocument(i1);
-		double w2 = sumSquaredDocument(i2);
-		return dot / Math.sqrt(w1 * w2);
+		double w1 = lengthDocumentVector(i1);
+		double w2 = lengthDocumentVector(i2);
+		double result = dot / (w1 * w2);
+		return result;
 	}
 
 	/**
@@ -245,18 +262,18 @@ public class TDFrequencyMatrix {
 	}
 
 	/**
-	 * Sums up all squared values of a document.
+	 * Returns the 2-norm of the vector of a document.
 	 * 
-	 * @param col which document should be used.
-	 * @return the sum
+	 * @param col an integer declaring the index of the document to be calculated.
+	 * @return the norm
 	 */
-	public double sumSquaredDocument(int col) {
+	public double lengthDocumentVector(int col) {
 		double sum = 0;
 
 		for (int row = 0; row < tfMatrix.length; row++) {
 			sum += tfMatrix[row][col] * tfMatrix[row][col];
 		}
-		return sum;
+		return Math.sqrt(sum);
 	}
 
 	/**
@@ -266,7 +283,7 @@ public class TDFrequencyMatrix {
 	@Override
 	public String toString() {
 		NumberFormat n = NumberFormat.getInstance();
-		n.setMaximumFractionDigits(4);
+		n.setMaximumFractionDigits(2);
 
 		String text = "Matrix\n";
 		Object[] words = wordDictionary.toArray();
@@ -330,11 +347,11 @@ public class TDFrequencyMatrix {
 	 */
 	public void printMatrix(Matrix m) {
 		NumberFormat n = NumberFormat.getInstance();
-		n.setMaximumFractionDigits(4);
+		n.setMaximumFractionDigits(2);
 
 		String s = "";
-		for (int col = 0; col < m.getColumnDimension(); col++) {
-			for (int row = 0; row < m.getRowDimension(); row++) {
+		for (int row = 0; row < m.getRowDimension(); row++) {
+			for (int col = 0; col < m.getColumnDimension(); col++) {
 				s += n.format(m.get(row, col)) + "\t";
 			}
 			s += "\n";
