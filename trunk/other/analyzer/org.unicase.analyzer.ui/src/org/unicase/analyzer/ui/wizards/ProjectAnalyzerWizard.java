@@ -27,6 +27,7 @@ import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.AnalyzerModelController;
@@ -91,7 +92,8 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 					        monitor.beginTask("Analyzing...", 1); 
 					        @SuppressWarnings("unused")
 							AnalyzerModelController analyzerController = new AnalyzerModelController(analyzerConfig.getIterator(), analyzers, analyzerConfig.getExporter()); 
-					        monitor.done(); 
+					        monitor.done();
+//					        MessageDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "", "Finished Analysis!");
 					    } 
 					});				
 				} catch (IteratorException e) {

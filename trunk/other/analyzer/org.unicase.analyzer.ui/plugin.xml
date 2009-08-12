@@ -18,6 +18,11 @@
                   <instanceof
                         value="org.unicase.workspace.ProjectSpace">
                   </instanceof>
+                  <test
+                    forcePluginActivation="true"
+                    property="org.unicase.workspace.ui.commands.projectIsShared"
+                    value="true">
+              	  </test>
                </iterate>
             </visibleWhen>
          </command>

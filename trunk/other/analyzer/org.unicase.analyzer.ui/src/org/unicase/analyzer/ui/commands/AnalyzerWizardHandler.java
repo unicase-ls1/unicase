@@ -15,6 +15,10 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.analyzer.ui.wizards.ProjectAnalyzerWizard;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
+
 
 /**
  * @author liya
@@ -26,21 +30,35 @@ public class AnalyzerWizardHandler extends AbstractHandler {
 	 * {@inheritDoc}
 	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
-	public Object execute(ExecutionEvent event) throws ExecutionException {
+	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		
-		ProjectAnalyzerWizard wizard = new ProjectAnalyzerWizard();
-		ISelection selection = HandlerUtil.getCurrentSelection(event);
-		IStructuredSelection ssel;
-		if (selection != null && selection instanceof IStructuredSelection) {
-			ssel = (IStructuredSelection) selection;
-			wizard.init(HandlerUtil.getActiveWorkbenchWindow(event).getWorkbench(), ssel);
-		}
-		if(wizard.isLoggedIn()){
-			WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
-			wizardDialog.create();
-			wizardDialog.open();
-		}
+		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
 
+			@Override
+			protected Object run() throws EmfStoreException {
+				ProjectAnalyzerWizard wizard = new ProjectAnalyzerWizard();
+				ISelection selection = HandlerUtil.getCurrentSelection(event);
+				IStructuredSelection ssel;
+				if (selection != null && selection instanceof IStructuredSelection) {
+					ssel = (IStructuredSelection) selection;
+					wizard.init(HandlerUtil.getActiveWorkbenchWindow(event).getWorkbench(), ssel);
+				}
+				if(wizard.isLoggedIn()){
+					WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
+					wizardDialog.create();
+					wizardDialog.open();
+				}
+
+				return null;
+			}
+
+		};
+		try {
+			handler.execute(new ExecutionEvent());
+		} catch (ExecutionException e) {
+			DialogHandler.showErrorDialog(e.getMessage());
+		}
+	
 		return null;
 	}
 
