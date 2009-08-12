@@ -38,6 +38,8 @@ public final class PreferenceManager {
 		defaultsMap.put(DashboardKey.TASK_TRACE_PROVIDER, createProperty(DashboardKey.TASK_TRACE_PROVIDER, true));
 		defaultsMap.put(DashboardKey.SUBSCRIPTION_PROVIDER, createProperty(DashboardKey.SUBSCRIPTION_PROVIDER, true));
 		defaultsMap.put(DashboardKey.COMMENTS_PROVIDER, createProperty(DashboardKey.COMMENTS_PROVIDER, true));
+		defaultsMap.put(DashboardKey.PUSHED_PROVIDER, createProperty(DashboardKey.PUSHED_PROVIDER, true));
+		defaultsMap.put(DashboardKey.UPDATE_PROVIDER, createProperty(DashboardKey.UPDATE_PROVIDER, true));
 
 		defaultsMap.put(DashboardKey.HIGHLIGHT_PUSHED_COMMENTS, createProperty(DashboardKey.HIGHLIGHT_PUSHED_COMMENTS,
 			true));

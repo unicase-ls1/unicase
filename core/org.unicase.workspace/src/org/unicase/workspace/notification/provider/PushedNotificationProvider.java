@@ -6,18 +6,22 @@
 package org.unicase.workspace.notification.provider;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.notification.NotificationProvider;
+import org.unicase.workspace.preferences.DashboardKey;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
 
@@ -32,11 +36,13 @@ public class PushedNotificationProvider implements NotificationProvider {
 	 * The name.
 	 */
 	public static final String NAME = "Pushed Notification Provider";
+	private Set<OperationId> excludedOperations;
 
 	/**
 	 * Default constructor.
 	 */
 	public PushedNotificationProvider() {
+		excludedOperations = new HashSet<OperationId>();
 	}
 
 	/**
@@ -75,6 +81,7 @@ public class PushedNotificationProvider implements NotificationProvider {
 				if (notification.getRecipient().equals(user.getName())) {
 					notification.setProvider(getName());
 					result.add(notification);
+					getExcludedOperations().addAll(notification.getRelatedOperations());
 				} else {
 					EList<Group> groups = new BasicEList<Group>();
 					projectSpace.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getGroup(),
@@ -83,11 +90,28 @@ public class PushedNotificationProvider implements NotificationProvider {
 						if (group.getName().equals(notification.getRecipient()) && group.getOrgUnits().contains(user)) {
 							notification.setProvider(getName());
 							result.add(notification);
+							getExcludedOperations().addAll(notification.getRelatedOperations());
 						}
 					}
 				}
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.notification.NotificationProvider#getExcludedOperations()
+	 */
+	public Set<OperationId> getExcludedOperations() {
+		return excludedOperations;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public DashboardKey getKey() {
+		return DashboardKey.PUSHED_PROVIDER;
 	}
 }

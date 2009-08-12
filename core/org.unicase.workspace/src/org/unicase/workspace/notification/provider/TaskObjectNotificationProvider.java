@@ -16,34 +16,32 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
-import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.util.OpeningLinkHelper;
 import org.unicase.model.util.ModelElementPath;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
-import org.unicase.workspace.notification.NotificationProvider;
-import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.OrgUnitHelper;
+import org.unicase.workspace.preferences.DashboardKey;
 
 /**
  * This provider creates notifications about task objects.
  * 
  * @author helming
+ * @author shterev
  */
-public class TaskObjectNotificationProvider implements NotificationProvider {
+public class TaskObjectNotificationProvider extends AbstractNotificationProvider {
 
 	/**
 	 * The name.
 	 */
 	public static final String NAME = "Task Object Change Notifier";
+	private Map<ModelElementId, List<AbstractOperation>> changes;
+	private Map<ModelElementId, ModelElementPath> objectsOfWork;
 
 	/**
 	 * {@inheritDoc}
@@ -55,51 +53,63 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 	}
 
 	/**
+	 * Default constructor.
+	 */
+	public TaskObjectNotificationProvider() {
+		changes = new HashMap<ModelElementId, List<AbstractOperation>>();
+	}
+
+	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
-	 *      java.util.List, java.lang.String)
+	 * @see org.unicase.workspace.notification.provider.AbstractNotificationProvider#handleOperation(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
-		String currentUsername) {
-		List<ESNotification> result = new ArrayList<ESNotification>();
-		User user = null;
-		try {
-			user = OrgUnitHelper.getUser(projectSpace);
-		} catch (NoCurrentUserException e) {
-			return result;
-		} catch (CannotMatchUserInProjectException e) {
-			return result;
+	@Override
+	protected void handleOperation(AbstractOperation operation) {
+		if (filter(operation)) {
+			return;
 		}
-		if (projectSpace == null || user == null) {
-			return result;
-		}
-		Map<ModelElementId, ModelElementPath> objectsOfWork = OpeningLinkHelper.getObjectsOfWork(user);
-		Map<ModelElementId, List<AbstractOperation>> changes = new HashMap<ModelElementId, List<AbstractOperation>>();
-
-		for (ChangePackage changePackage : changePackages) {
-			for (AbstractOperation operation : changePackage.getOperations()) {
-				if (filter(operation)) {
-					continue;
-				}
-				ModelElementId modelElementId = operation.getModelElementId();
-				if (objectsOfWork.containsKey(modelElementId)) {
-					addChangePackage(modelElementId, operation, changes);
-				}
+		ModelElementId modelElementId = operation.getModelElementId();
+		if (objectsOfWork.containsKey(modelElementId)) {
+			if (changes.containsKey(modelElementId)) {
+				changes.get(modelElementId).add(operation);
+			} else {
+				ArrayList<AbstractOperation> arrayList = new ArrayList<AbstractOperation>();
+				arrayList.add(operation);
+				changes.put(modelElementId, arrayList);
 			}
+			getExcludedOperations().add(operation.getOperationId());
 		}
+	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.notification.provider.AbstractNotificationProvider#createNotifications()
+	 */
+	@Override
+	protected List<ESNotification> createNotifications() {
+		List<ESNotification> result = new ArrayList<ESNotification>();
 		for (ModelElementId meId : changes.keySet()) {
 			ESNotification createNotification = createNotification(meId, changes.get(meId), objectsOfWork.get(meId),
-				projectSpace);
-			createNotification.setProject((ProjectId) EcoreUtil.copy(projectSpace.getProjectId()));
-			createNotification.setName("Task Object Change");
-			createNotification.setRecipient(currentUsername);
-			createNotification.setProvider(getName());
+				getProjectSpace());
 			result.add(createNotification);
 		}
 
 		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.notification.provider.AbstractNotificationProvider#init()
+	 */
+	@Override
+	protected void init() {
+		super.init();
+		objectsOfWork = OpeningLinkHelper.getObjectsOfWork(getUser());
+		changes.clear();
+
 	}
 
 	private boolean filter(AbstractOperation operation) {
@@ -123,6 +133,7 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 		Set<ModelElementId> relatedElementSet = new HashSet<ModelElementId>();
 		for (AbstractOperation operation : list) {
 			relatedElementSet.add(operation.getModelElementId());
+			notification.getRelatedOperations().add(operation.getOperationId());
 		}
 		notification.getRelatedModelElements().addAll(relatedElementSet);
 		ModelElement modelElement = project.getModelElement(meId);
@@ -143,18 +154,17 @@ public class TaskObjectNotificationProvider implements NotificationProvider {
 		}
 		message.append(NotificationHelper.getHTMLLinkForModelElement(modelElementPath.getTarget(), projectSpace));
 		notification.setMessage(message.toString());
+		notification.setProject((ProjectId) EcoreUtil.copy(getProjectSpace().getProjectId()));
+		notification.setName("Task Object Change");
+		notification.setRecipient(getUser().getName());
+		notification.setProvider(getName());
 		return notification;
 	}
 
-	private void addChangePackage(ModelElementId modelElementId, AbstractOperation operation,
-		Map<ModelElementId, List<AbstractOperation>> changes) {
-		if (changes.containsKey(modelElementId)) {
-			changes.get(modelElementId).add(operation);
-		} else {
-			ArrayList<AbstractOperation> arrayList = new ArrayList<AbstractOperation>();
-			arrayList.add(operation);
-			changes.put(modelElementId, arrayList);
-		}
-
+	/**
+	 * {@inheritDoc}
+	 */
+	public DashboardKey getKey() {
+		return DashboardKey.TASK_TRACE_PROVIDER;
 	}
 }

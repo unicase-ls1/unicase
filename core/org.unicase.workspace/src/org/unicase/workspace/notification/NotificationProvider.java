@@ -6,10 +6,13 @@
 package org.unicase.workspace.notification;
 
 import java.util.List;
+import java.util.Set;
 
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.preferences.DashboardKey;
 
 /**
  * Provides notifications.
@@ -35,5 +38,19 @@ public interface NotificationProvider {
 	 */
 	List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
 		String currentUsername);
+
+	/**
+	 * Provides a list of AbstractOperations to be excluded from providers pending in the generator queue. Every
+	 * Provider should offer such a list to its direct successor (see the <i>after</i> parameter for the extension
+	 * point).
+	 * 
+	 * @return the set of operations
+	 */
+	Set<OperationId> getExcludedOperations();
+
+	/**
+	 * @return the Enum key for this provider's settings
+	 */
+	DashboardKey getKey();
 
 }

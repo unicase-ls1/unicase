@@ -96,4 +96,14 @@ public enum DashboardKey implements PropertyKey {
 	 * the comments provider.
 	 */
 	COMMENTS_PROVIDER,
+
+	/**
+	 * the pushed notifications provider.
+	 */
+	PUSHED_PROVIDER,
+
+	/**
+	 * the update notifications provider.
+	 */
+	UPDATE_PROVIDER,
 }

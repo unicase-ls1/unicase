@@ -6,66 +6,43 @@
 package org.unicase.workspace.notification.provider;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.util.EsModelUtil;
-import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
-import org.unicase.model.organization.User;
+import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.TaskQuery;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
-import org.unicase.workspace.notification.NotificationProvider;
-import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.OrgUnitHelper;
+import org.unicase.workspace.preferences.DashboardKey;
 
 /**
- * Provides assignment notifications.
+ * Provides notifications for changes on assigned tasks.
  * 
- * @author koegel
  * @author shterev
  */
-public class TaskChangeNotificationProvider implements NotificationProvider {
-
-	private EClass clazz;
-
-	private Set<ModelElement> elementsToExclude;
+public class TaskChangeNotificationProvider extends AbstractNotificationProvider {
 
 	/**
 	 * The name.
 	 */
 	public static final String NAME = "Task Change Notification Provider";
+	private HashMap<WorkItem, AbstractOperation> workItems;
+	private Set<WorkItem> workItemsOfUser;
 
 	/**
 	 * Default constructor.
-	 * 
-	 * @param assignmentClass the class of the assignment - e.g. ActionItem, BugReport, etc.
 	 */
-	public TaskChangeNotificationProvider(EClass assignmentClass) {
-		this.clazz = assignmentClass;
-		this.elementsToExclude = new HashSet<ModelElement>();
-	}
-
-	/**
-	 * Add the given elements to the exclude filter. Excluding them from notification.
-	 * 
-	 * @param elements the elements to exclude
-	 */
-	public void addToFilter(Collection<? extends ModelElement> elements) {
-		this.elementsToExclude.addAll(elements);
+	public TaskChangeNotificationProvider() {
+		workItems = new HashMap<WorkItem, AbstractOperation>();
 	}
 
 	/**
@@ -79,107 +56,48 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 
 	/**
 	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.workspace.notification.NotificationProvider#provideNotifications(org.unicase.workspace.ProjectSpace,
-	 *      java.util.List, java.lang.String)
 	 */
-	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
-		String currentUsername) {
-
-		// sanity checks
-		List<ESNotification> result = new ArrayList<ESNotification>();
-		User user = null;
-		try {
-			user = OrgUnitHelper.getUser(projectSpace);
-		} catch (NoCurrentUserException e) {
-			return result;
-		} catch (CannotMatchUserInProjectException e) {
-			return result;
+	@Override
+	protected List<ESNotification> createNotifications() {
+		ArrayList<ESNotification> notifications = new ArrayList<ESNotification>();
+		Set<WorkItem> workItemsSet = workItems.keySet();
+		if (workItemsSet.isEmpty()) {
+			return notifications;
 		}
-		if (projectSpace == null || user == null) {
-			return result;
-		}
-
-		Map<WorkItem, AbstractOperation> workItems = new HashMap<WorkItem, AbstractOperation>();
-
-		Set<WorkItem> workItemsOfUser = TaskQuery.getWorkItemsOfUser(user);
-
-		for (ChangePackage changePackage : changePackages) {
-			for (AbstractOperation operation : changePackage.getOperations()) {
-				ModelElementId modelElementId = operation.getModelElementId();
-				ModelElement modelElement = projectSpace.getProject().getModelElement(modelElementId);
-				if (modelElement == null) {
-					continue;
-				}
-				if (!this.clazz.isInstance(modelElement)) {
-					continue;
-				}
-				if (this.elementsToExclude.contains(modelElement)) {
-					continue;
-				}
-				for (WorkItem workItem : workItemsOfUser) {
-					if (workItem.getModelElementId().equals(modelElementId)) {
-						workItems.put(workItem, operation);
-					}
-				}
-			}
-		}
-
-		if (workItems.isEmpty()) {
-			return result;
-		}
-
-		// create a notification for the new work items
-		ESNotification notification = createNotification(projectSpace, user, workItems);
-
-		result.add(notification);
-		return result;
-
-	}
-
-	private ESNotification createNotification(ProjectSpace projectSpace, User user,
-		Map<WorkItem, AbstractOperation> workItemMap) {
-		Set<WorkItem> workItems = workItemMap.keySet();
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("Changed work items");
-		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
-		notification.setRecipient(user.getName());
+		notification.setProject(EsModelUtil.clone(getProjectSpace().getProjectId()));
+		notification.setRecipient(getUser().getName());
 		notification.setSeen(false);
 		notification.setProvider(getName());
 		StringBuilder stringBuilder = new StringBuilder();
-		if (workItems.size() == 1) {
-			stringBuilder.append("Your ");
-			stringBuilder.append(clazz.getName());
-			stringBuilder.append(" ");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(workItems.iterator().next(),
-				projectSpace));
+		if (workItemsSet.size() == 1) {
+			stringBuilder.append("Your task ");
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(workItemsSet.iterator().next(),
+				getProjectSpace()));
 			stringBuilder.append(" has changed.");
 
-		} else if (workItems.size() == 2) {
-			stringBuilder.append("Your ");
-			stringBuilder.append(this.clazz.getName());
-			stringBuilder.append("s ");
-			Iterator<WorkItem> iterator = workItems.iterator();
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(iterator.next(), projectSpace));
+		} else if (workItemsSet.size() == 2) {
+			stringBuilder.append("Your tasks ");
+			Iterator<WorkItem> iterator = workItemsSet.iterator();
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(iterator.next(), getProjectSpace()));
 			stringBuilder.append(" and ");
-			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(iterator.next(), projectSpace));
+			stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(iterator.next(), getProjectSpace()));
 			stringBuilder.append(" have changed.");
 		} else {
 			stringBuilder.append("<a href=\"more\">");
-			stringBuilder.append(workItems.size());
-			stringBuilder.append(" of your ");
-			stringBuilder.append(this.clazz.getName());
-			stringBuilder.append("s</a> ");
+			stringBuilder.append(workItemsSet.size());
+			stringBuilder.append(" of your tasks</a>");
 			stringBuilder.append(" have been changed.");
 		}
 
 		String message = stringBuilder.toString();
 		notification.setMessage(message);
-		Date date = workItems.iterator().next().getCreationDate();
-		for (WorkItem workItem : workItems) {
-			notification.getRelatedOperations().add(workItemMap.get(workItem).getOperationId());
+		Date date = workItemsSet.iterator().next().getCreationDate();
+		for (WorkItem workItem : workItemsSet) {
+			notification.getRelatedOperations().add(workItems.get(workItem).getOperationId());
 			notification.getRelatedModelElements().add(workItem.getModelElementId());
-			Date newDate = workItemMap.get(workItem).getClientDate();
+			Date newDate = workItems.get(workItem).getClientDate();
 			if (newDate != null && newDate.after(date)) {
 				date = newDate;
 			}
@@ -188,6 +106,52 @@ public class TaskChangeNotificationProvider implements NotificationProvider {
 			date = new Date();
 		}
 		notification.setCreationDate(date);
-		return notification;
+		notifications.add(notification);
+		return notifications;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public DashboardKey getKey() {
+		return DashboardKey.TASK_CHANGE_PROVIDER;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void handleOperation(AbstractOperation operation) {
+		ModelElementId modelElementId = operation.getModelElementId();
+		ModelElement modelElement = getProjectSpace().getProject().getModelElement(modelElementId);
+		if (modelElement == null) {
+			return;
+		}
+		if (!TaskPackage.eINSTANCE.getWorkItem().isInstance(modelElement)) {
+			return;
+		}
+		if (operation instanceof MultiReferenceOperation
+			&& ((MultiReferenceOperation) operation).getFeatureName().equalsIgnoreCase("comments")) {
+			// FIXME AS: think of a more generic solution
+			return;
+		}
+		for (WorkItem workItem : workItemsOfUser) {
+			if (workItem.getModelElementId().equals(modelElementId)) {
+				workItems.put(workItem, operation);
+				getExcludedOperations().add(operation.getOperationId());
+			}
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.notification.provider.AbstractNotificationProvider#init()
+	 */
+	@Override
+	protected void init() {
+		super.init();
+		workItems.clear();
+		workItemsOfUser = TaskQuery.getWorkItemsOfUser(getUser());
 	}
 }
