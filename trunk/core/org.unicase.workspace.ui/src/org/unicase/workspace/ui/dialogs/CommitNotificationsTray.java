@@ -6,6 +6,7 @@
 package org.unicase.workspace.ui.dialogs;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -58,6 +59,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.ui.Activator;
+import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.util.NoCurrentUserException;
 import org.unicase.workspace.util.OrgUnitHelper;
 
@@ -77,6 +79,7 @@ public class CommitNotificationsTray extends DialogTray {
 	private TableViewer notificationsTable;
 	private CommitDialog commitDialog;
 	private ColumnLabelProvider notificationLabelProvider;
+	private ChangePackageVisualizationHelper visualizationHelper;
 
 	/**
 	 * Default constructor.
@@ -86,6 +89,8 @@ public class CommitNotificationsTray extends DialogTray {
 	public CommitNotificationsTray(CommitDialog commitDialog) {
 		notifications = new ArrayList<ESNotification>();
 		this.commitDialog = commitDialog;
+		visualizationHelper = new ChangePackageVisualizationHelper(Arrays.asList(commitDialog.getChangePackage()),
+			commitDialog.getActiveProjectSpace().getProject());
 	}
 
 	/**
@@ -314,9 +319,9 @@ public class CommitNotificationsTray extends DialogTray {
 					StringBuilder msgBuilder = new StringBuilder();
 					msgBuilder.append(URLHelper
 						.getHTMLLinkForModelElement(currentUser, projectSpace, URLHelper.DEFAULT));
-					msgBuilder.append(" sent you a notification about this change: ");
+					msgBuilder.append(" sent you a notification about this change:\n");
 					ModelElementId modelElementIdCopy = (ModelElementId) EcoreUtil.copy(operation.getModelElementId());
-					msgBuilder.append(operation.getDescription());
+					msgBuilder.append(visualizationHelper.getDescription(operation));
 					msgBuilder.append(" in ");
 					msgBuilder.append(URLHelper.getHTMLLinkForModelElement(modelElementIdCopy, projectSpace,
 						URLHelper.UNLTD));

@@ -9,6 +9,7 @@ import java.net.MalformedURLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -22,8 +23,8 @@ import org.eclipse.swt.events.MouseTrackAdapter;
 import org.eclipse.swt.events.MouseTrackListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
+import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.events.TypedEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
@@ -38,7 +39,6 @@ import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ModelElementUrl;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
@@ -54,9 +54,14 @@ import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.URLHelper;
+import org.unicase.ui.common.widgets.MECommentWidget;
+import org.unicase.ui.common.widgets.MECommentWidgetListener;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
+import org.unicase.workspace.notification.provider.CommentsNotificationProvider;
 import org.unicase.workspace.notification.provider.PushedNotificationProvider;
+import org.unicase.workspace.preferences.DashboardKey;
+import org.unicase.workspace.preferences.PreferenceManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.historybrowserview.HistoryBrowserView;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -129,7 +134,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	 * 
 	 * @author Shterev
 	 */
-	private final class LinkSelectionListener implements SelectionListener {
+	private final class LinkSelectionListener extends SelectionAdapter {
 
 		private String source;
 
@@ -138,10 +143,12 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			this.source = source;
 		}
 
-		public void widgetDefaultSelected(SelectionEvent e) {
-			//
-		}
-
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.swt.events.SelectionAdapter#widgetSelected(org.eclipse.swt.events.SelectionEvent)
+		 */
+		@Override
 		public void widgetSelected(SelectionEvent e) {
 			String text = e.text;
 			if (text.equals("more")) {
@@ -177,7 +184,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	private Composite closeButton;
 	private Link entryMessage;
 	private Composite toolbar;
-	private Comment[] comments;
+	private List<Comment> comments;
 	private Composite commentsComposite;
 	private ArrayList<Resource> localResources;
 
@@ -199,7 +206,9 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		localResources.add(lightBlue);
 
 		notificationColor = getDisplay().getSystemColor(SWT.COLOR_WHITE);
-		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)) {
+		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)
+			&& PreferenceManager.INSTANCE.getProperty(getProjectSpace(), DashboardKey.HIGHLIGHT_PUSHED_COMMENTS)
+				.getBooleanProperty()) {
 			notificationColor = getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND);
 		}
 		format = new SimpleDateFormat("dd.MM.yyyy HH:mm");
@@ -260,13 +269,49 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		commentsComposite = new Composite(notificationComposite, SWT.NONE);
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(commentsComposite);
 		GridDataFactory.fillDefaults().span(3, 1).indent(20, 0).grab(true, false).applyTo(commentsComposite);
+		MECommentWidgetListener commentsWidgetListener = new MECommentWidgetListener() {
+			public void commentLayoutUpdated() {
+				completeLayout(true);
+			}
+
+			public void commentAdded() {
+				completeLayout(true);
+			}
+
+			public void commentInputClosed() {
+				completeLayout(true);
+			}
+		};
 		for (Comment comment : comments) {
-			createCommentEntry(commentsComposite, comment);
+			MECommentWidget widget = new MECommentWidget(comment, commentsComposite);
+			GridDataFactory.fillDefaults().grab(true, false).applyTo(widget);
+			widget.addCommentWidgetListener(commentsWidgetListener);
 		}
-		Composite c = commentsComposite;
-		while (c != null) {
-			c.layout(true);
-			c = c.getParent();
+		completeLayout();
+	}
+
+	/**
+	 * 
+	 */
+	private void completeLayout() {
+		completeLayout(false);
+	}
+
+	/**
+	 * 
+	 */
+	private void completeLayout(boolean reflow) {
+		commentsComposite.layout();
+		getParent().layout();
+		// Composite c = commentsComposite;
+		// Composite topParent = c;
+		// while (c != null) {
+		// topParent = c;
+		// c = c.getParent();
+		// }
+		// topParent.layout();
+		if (reflow) {
+			getPage().getForm().reflow(true);
 		}
 	}
 
@@ -323,8 +368,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 	}
 
 	private void createNotificationEntry() {
-		ModelElement modelElement = getProjectSpace().getProject().getModelElement(
-			getNotification().getRelatedModelElements().get(0));
+		ModelElement modelElement = getFirstModelElement();
 
 		// TODO Add the changepackage to the notification OR add the
 		// modelelement itself on create/deletes.
@@ -364,6 +408,11 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		// the toolbar
 		createToolbar(notificationEntry);
 
+		int commentsCount = comments.size();
+		if (commentsCount > 0 && commentsCount < 5) {
+			createComments();
+		}
+
 		// the date
 		Label date = new Label(notificationEntry, SWT.NONE);
 		date.setText(format.format(getNotification().getCreationDate()));
@@ -380,29 +429,27 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		toolbar.setLayout(layout);
 		if (getNotification().getRelatedModelElements().size() > 1) {
 			DashboardToolbarAction toogleDrawer = new DashboardToolbarAction(toolbar, "details.png", 150);
-			toogleDrawer.setToolTipText("Show details");
-			toogleDrawer.addMouseListener(new ToggleDrawerAdapter());
+			toogleDrawer.setToolTipText("Toggle details");
 			ToggleDrawerAdapter toggleDrawerAdapter = new ToggleDrawerAdapter();
+			toogleDrawer.addMouseListener(toggleDrawerAdapter);
 			entryMessage.addMouseListener(toggleDrawerAdapter);
 			notificationComposite.addMouseListener(toggleDrawerAdapter);
 		}
-		if (comments.length > 0) {
-			DashboardToolbarAction toogleComments = new DashboardToolbarAction(toolbar, "comment.png", 110);
-			toogleComments.setToolTipText("Show comments");
-			Label toggleCommentsNumber = new Label(toolbar, SWT.WRAP);
-			toggleCommentsNumber.setText(comments.length + "");
-			Color foreground = new Color(getDisplay(), 123, 160, 199);
-			localResources.add(foreground);
-			toggleCommentsNumber.setForeground(foreground);
-			ToggleCommentsAdapter toggleCommentsAdapter = new ToggleCommentsAdapter();
-			toggleCommentsNumber.addMouseListener(toggleCommentsAdapter);
-			toogleComments.addMouseListener(toggleCommentsAdapter);
+		if (comments.size() > 0 && comments.get(0).eContainer() != null) {
+			DashboardToolbarAction openThread = new DashboardToolbarAction(toolbar, "comments.png", 110);
+			openThread.setToolTipText("Open the discussion thread");
+			openThread.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseUp(MouseEvent e) {
+					ModelElement modelElement = comments.get(0).getFirstParent();
+					ActionHelper.openDiscussion(modelElement, false);
+				}
+			});
 		}
-		ModelElementId modelElementId = getNotification().getRelatedModelElements().get(0);
-		final ModelElement modelElement = getProjectSpace().getProject().getModelElement(modelElementId);
+		final ModelElement modelElement = getFirstModelElement();
 		if (modelElement != null && !getNotification().getRelatedOperations().isEmpty()) {
 			DashboardToolbarAction showOperations = new DashboardToolbarAction(toolbar, "historyview.png", 110);
-			showOperations.setToolTipText("Show changes details");
+			showOperations.setToolTipText("View changes");
 			showOperations.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseUp(MouseEvent event) {
@@ -422,70 +469,6 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 			});
 		}
 
-	}
-
-	private void createCommentEntry(Composite parent, Comment comment) {
-
-		if (comment.getCreator() != null) {
-			Composite commentTitleBar = new Composite(parent, SWT.NONE);
-			GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).margins(3, 3).applyTo(commentTitleBar);
-			GridDataFactory.fillDefaults().grab(true, false).applyTo(commentTitleBar);
-			Color titlebarColor = new Color(getDisplay(), 246, 235, 197);
-			localResources.add(titlebarColor);
-			commentTitleBar.setBackground(titlebarColor);
-
-			Label commentAuthor = new Label(commentTitleBar, SWT.WRAP);
-			commentAuthor.setText(comment.getCreator());
-			GridDataFactory.fillDefaults().grab(true, false).applyTo(commentAuthor);
-
-			SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
-			Label commentTime = new Label(commentTitleBar, SWT.WRAP);
-			commentTime.setText(dateFormat.format(comment.getCreationDate()));
-
-			Composite commentTitleBarBorder = new Composite(parent, SWT.NONE);
-			GridDataFactory.fillDefaults().span(2, 1).hint(SWT.DEFAULT, 1).grab(true, false).applyTo(
-				commentTitleBarBorder);
-			Color titlebarBorderColor = new Color(getDisplay(), 189, 157, 95);
-			localResources.add(titlebarBorderColor);
-			commentTitleBarBorder.setBackground(titlebarBorderColor);
-		}
-
-		Composite commentEntry = new Composite(parent, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(3).equalWidth(false).spacing(3, 0).applyTo(commentEntry);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(commentEntry);
-		commentEntry.setBackground(getDisplay().getSystemColor(SWT.COLOR_INFO_BACKGROUND));
-
-		Label userAvatar = new Label(commentEntry, SWT.WRAP);
-		userAvatar.setImage(DashboardImageUtil.getImage("guest_thumb.png"));
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(userAvatar);
-
-		Label userComment = new Label(commentEntry, SWT.WRAP);
-		userComment.setText(comment.getName());
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(userComment);
-
-		ImageHyperlink replyButton = new ImageHyperlink(commentEntry, SWT.TOP);
-		if (comment.eContainer() != null) {
-			replyButton.setImage(DashboardImageUtil.getImage("comments.png"));
-			replyButton.setToolTipText("Reply");
-		}
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(replyButton);
-
-		// for (Comment c : comment.getReplies()) {
-		// Composite userReply = new Composite(commentEntry, SWT.NONE);
-		// GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(userReply);
-		// GridDataFactory.fillDefaults().indent(30, 0).span(3, 1).grab(true,
-		// false).applyTo(userReply);
-		// createCommentEntry(userReply, c);
-		// }
-		// for (Annotation annotation : comment.getAnnotations()) {
-		// if (RationalePackage.eINSTANCE.getComment().isInterface()) {
-		// Composite userReply = new Composite(commentEntry, SWT.NONE);
-		// GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(userReply);
-		// GridDataFactory.fillDefaults().indent(20, 0).span(3, 1).grab(true,
-		// false).applyTo(userReply);
-		// createCommentEntry(userReply, (Comment) annotation);
-		// }
-		// }
 	}
 
 	private void toggleDrawer(TypedEvent e, boolean open) {
@@ -553,18 +536,29 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 		projectSpace.addEvent(notificationIgnoreEvent);
 	}
 
-	private Comment[] getComments() {
+	private List<Comment> getComments() {
+		ArrayList<Comment> comments = new ArrayList<Comment>();
+
 		if (getNotification().getProvider().equals(PushedNotificationProvider.NAME)) {
-			Comment tempComment = RationaleFactory.eINSTANCE.createComment();
-			tempComment.setName(getNotification().getDetails());
-			return new Comment[] { tempComment };
-		} else if (getNotification().getRelatedModelElements().size() == 1) {
-			ModelElementId modelElementId = getNotification().getRelatedModelElements().get(0);
-			ModelElement modelElement = getProjectSpace().getProject().getModelElement(modelElementId);
-			if (modelElement != null) {
-				return modelElement.getComments().toArray(new Comment[0]);
-			}
+			Comment comment = RationaleFactory.eINSTANCE.createComment();
+			comment.setDescription(getNotification().getDetails());
+			comment.setCreator(getNotification().getSender());
+			comment.setCreationDate(getNotification().getCreationDate());
+			comments.add(comment);
+			return comments;
 		}
-		return new Comment[0];
+		if (getNotification().getProvider().equals(CommentsNotificationProvider.NAME)) {
+			if (getNotification().getRelatedModelElements().size() < 1) {
+				return comments;
+			}
+			for (ModelElementId mid : getNotification().getRelatedModelElements()) {
+				ModelElement comment = getProjectSpace().getProject().getModelElement(mid);
+				if (comment != null) {
+					comments.add((Comment) comment);
+				}
+			}
+			return comments;
+		}
+		return comments;
 	}
 }
