@@ -200,9 +200,8 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	private boolean doConflictHardSingleMultiReferences(SingleReferenceOperation opA, MultiReferenceOperation opB) {
 
-		// 2 possible cases to check
+		// 1 possible case to check
 		// regular vs. opposite
-		// opposite vs. opposite
 
 		// case 1: regular vs. opposite
 		if (opA.getFeatureName().equals(opB.getOppositeFeatureName())) {
@@ -222,12 +221,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 			}
 		}
 
-		// case 2: opposite vs. opposite
-		/*
-		 * if (opB.getOppositeFeatureName().equals(opA.getOppositeFeatureName())) { for (ModelElementId mA :
-		 * opA.getOtherInvolvedModelElements()) { for (ModelElementId mB : opB.getOtherInvolvedModelElements()) { if
-		 * (mA.equals(mB)) { return true; } } } }
-		 */
 		return false;
 	}
 
@@ -413,10 +406,18 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 		if (opA.getFeatureName().equals(opB.getOppositeFeatureName())) {
 
+			// might conflict for equal elements
 			if (isSame(opB.getNewValue(), opA.getModelElementId())
 				&& isSame(opB.getModelElementId(), opA.getReferencedModelElementId())) {
 				return true;
 			}
+			// might conflict for different manipulated elements as well, if the move's
+			// target is the last index, we can't tell from here, so the assumption is, that it conflicts
+			// potentiality is there
+			else if (isSame(opB.getNewValue(), opA.getModelElementId())) {
+				return true;
+			}
+
 		}
 		return false;
 	}
@@ -439,7 +440,14 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 				return false;
 
 			} else {
-				return true;
+				// so there is an add or remove and a move going on on different objects but on the same feature
+				if (opB.isAdd() && opB.getIndex() >= opA.getNewIndex()) {
+					return true;
+				} else if (!opB.isAdd() && opB.getIndex() < opA.getNewIndex()) {
+					return true;
+				}
+				return false;
+
 			}
 
 		}
