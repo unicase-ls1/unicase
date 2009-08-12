@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.meeditor.mecontrols.commentcontrol;
+package org.unicase.ui.common.widgets;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.rationale.Comment;
-import org.unicase.ui.meeditor.Activator;
+import org.unicase.ui.common.Activator;
 
 /**
  * Standard widget to show a comment and all its replies.
@@ -75,31 +75,32 @@ public class MECommentWidget extends Composite {
 
 		if (enableReplies) {
 			final ImageHyperlink toggleButton = new ImageHyperlink(commentTitleBar, SWT.TOP);
-			final int numReplies = MECommentsLinkControl.sizeOf(comment) - 1;
 			final Image expandedImage = Activator.getImageDescriptor("icons/expanded.png").createImage();
 			final Image collapsedImage = Activator.getImageDescriptor("icons/collapsed.png").createImage();
+			final Image nocommentsImage = Activator.getImageDescriptor("icons/nocomments.png").createImage();
 			localResources.add(expandedImage);
 			localResources.add(collapsedImage);
-			if (numReplies > 0) {
-				toggleButton.setImage(expandedImage);
+			localResources.add(nocommentsImage);
+			if (comment.getComments().isEmpty()) {
+				toggleButton.setImage(nocommentsImage);
 			} else {
-				toggleButton.setImage(collapsedImage);
+				toggleButton.setImage(expandedImage);
+				toggleButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseUp(MouseEvent e) {
+						if (MECommentWidget.this.comment.getComments().isEmpty()) {
+							return;
+						}
+						toggleReplies = !toggleReplies;
+						if (toggleReplies) {
+							toggleButton.setImage(expandedImage);
+						} else {
+							toggleButton.setImage(collapsedImage);
+						}
+						reloadReplies();
+					}
+				});
 			}
-			toggleButton.addMouseListener(new MouseAdapter() {
-				@Override
-				public void mouseUp(MouseEvent e) {
-					if (MECommentWidget.this.comment.getComments().isEmpty()) {
-						return;
-					}
-					toggleReplies = !toggleReplies;
-					if (toggleReplies) {
-						toggleButton.setImage(expandedImage);
-					} else {
-						toggleButton.setImage(collapsedImage);
-					}
-					reloadReplies();
-				}
-			});
 		}
 
 		Label commentAuthor = new Label(commentTitleBar, SWT.WRAP);
@@ -146,19 +147,22 @@ public class MECommentWidget extends Composite {
 
 		ImageHyperlink replyButton = new ImageHyperlink(toolbar, SWT.TOP);
 		if (comment.eContainer() != null) {
+			// only if contained in a project - i.e. not for pushed comments
 			Image replyImage = Activator.getImageDescriptor("icons/commentReply.png").createImage();
 			localResources.add(replyImage);
 			replyButton.setImage(replyImage);
 			replyButton.setToolTipText("Reply");
+			replyButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseUp(MouseEvent e) {
+					createInputEntry();
+					toggleInput = false;
+					notifyListeners();
+				}
+			});
+		}else{
+			commentTime.setText("");
 		}
-		replyButton.addMouseListener(new MouseAdapter() {
-			@Override
-			public void mouseUp(MouseEvent e) {
-				createInputEntry();
-				toggleInput = false;
-				notifyListeners();
-			}
-		});
 
 		inputComposite = new Composite(this, SWT.NONE);
 		GridLayoutFactory.fillDefaults().applyTo(inputComposite);
@@ -178,9 +182,8 @@ public class MECommentWidget extends Composite {
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(replyWidget);
 		replyWidget.addCommentWidgetListener(new MECommentWidgetListener() {
 			public void commentAdded() {
-				for (MECommentWidgetListener l : listeners) {
-					l.commentAdded();
-				}
+				reloadReplies();
+				commentInputClosed();
 			}
 
 			public void commentInputClosed() {
@@ -199,11 +202,11 @@ public class MECommentWidget extends Composite {
 	}
 
 	private void reloadReplies() {
+		if (repliesComposite != null) {
+			repliesComposite.dispose();
+		}
 		if (!toggleReplies) {
-			if (repliesComposite != null) {
-				repliesComposite.dispose();
-				notifyListeners();
-			}
+			notifyListeners();
 			return;
 		}
 		repliesComposite = new Composite(this, SWT.NONE);

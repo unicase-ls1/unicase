@@ -31,9 +31,9 @@ import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Comment;
-import org.unicase.ui.meeditor.mecontrols.commentcontrol.MECommentReplyWidget;
-import org.unicase.ui.meeditor.mecontrols.commentcontrol.MECommentWidget;
-import org.unicase.ui.meeditor.mecontrols.commentcontrol.MECommentWidgetListener;
+import org.unicase.ui.common.widgets.MECommentReplyWidget;
+import org.unicase.ui.common.widgets.MECommentWidget;
+import org.unicase.ui.common.widgets.MECommentWidgetListener;
 
 /**
  * The editor page for the comment thread.
