@@ -117,7 +117,7 @@ public interface Workspace extends EObject, IAdaptable {
 	void setActiveProjectSpace(ProjectSpace value);
 
 	/**
-	 * Checkout a project to the workspace.
+	 * Checkout a project to the workspace in the current head revision.
 	 * 
 	 * @param usersession the usersession
 	 * @param projectInfo the project info describing the project and version
