@@ -8,6 +8,8 @@ package org.unicase.workspace.test.conflictDetection;
 import java.util.Date;
 
 import org.junit.Before;
+import org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy;
+import org.unicase.emfstore.conflictDetection.IndexSensitiveConflictDetectionStrategy;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.model.ModelFactory;
@@ -108,4 +110,14 @@ public abstract class ConflictDetectionTest {
 		return projectSpace;
 	}
 
+	/**
+	 * Returns a conflict detection strategy to use.
+	 * 
+	 * @return a conflict detection strategy
+	 */
+
+	public ConflictDetectionStrategy getConflictDetectionStrategy() {
+		return new IndexSensitiveConflictDetectionStrategy();
+		// return new FineGrainedConflictDetectionStrategy();
+	}
 }

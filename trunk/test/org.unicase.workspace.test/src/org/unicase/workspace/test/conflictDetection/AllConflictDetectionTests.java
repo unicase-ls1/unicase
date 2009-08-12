@@ -14,11 +14,10 @@ import org.junit.runners.Suite;
  * @author koegel
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { 
-		AttributeConflictTest.class,
-		ConflictDetectionAttributeTest.class 
-})
+@Suite.SuiteClasses( { AttributeConflictTest.class, ConflictDetectionAttributeTest.class,
+	ConflictDetectionReferenceTest.class, ConflictDetectionDeleteTest.class, ConflictDetectionMultiReferenceTest.class
 
+})
 public class AllConflictDetectionTests {
 
 }
