@@ -43,11 +43,11 @@ public class AnalyzerWizardHandler extends AbstractHandler {
 					ssel = (IStructuredSelection) selection;
 					wizard.init(HandlerUtil.getActiveWorkbenchWindow(event).getWorkbench(), ssel);
 				}
-				if(wizard.isLoggedIn()){
+//				if(wizard.isLoggedIn()){
 					WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
 					wizardDialog.create();
 					wizardDialog.open();
-				}
+//				}
 
 				return null;
 			}
