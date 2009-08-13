@@ -56,7 +56,6 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 	private Button defaultButton;
 	private Group group;
 	private Button forwardButton;
-	private Button backwardButton;
 	private Button returnCopyButton;
 	private Label stepUnitLabel;
 	private CDateTime startDate;
@@ -324,7 +323,7 @@ public class TimeIteratorPage extends WizardPage implements Listener {
 			getNextPage();
 			return true;
 		}else if(isTextNonEmpty(stepText)
-				&& (forwardButton.getSelection() || backwardButton.getSelection())){
+				&& forwardButton.getSelection()){
 			getNextPage();
 			return true;
 		}

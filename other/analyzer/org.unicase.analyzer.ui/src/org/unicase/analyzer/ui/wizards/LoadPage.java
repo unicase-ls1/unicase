@@ -154,7 +154,13 @@ public class LoadPage extends WizardPage implements Listener {
 		}else{
 			initConfig(DEFAULT_PATH);
 		}		
-		((AnalyzerPage) super.getNextPage()).init();
+		final AnalyzerPage page = (AnalyzerPage) super.getNextPage();
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+			@Override
+			protected void doExecute() {
+				page.init();
+			}
+		});
 		return super.getNextPage();
 	}
 	/**
