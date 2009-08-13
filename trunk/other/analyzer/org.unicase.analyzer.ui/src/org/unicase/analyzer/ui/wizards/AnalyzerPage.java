@@ -42,7 +42,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	private ArrayList<DataAnalyzer> analyzers;
 	private IConfigurationElement[] extendedAnalyzers;
 	private AnalyzerConfiguration conf;
-
+	private TransactionalEditingDomain editingDomain;
 
 	/**
 	 * @param pageName Name of the page
@@ -53,6 +53,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		setDescription(PAGE_DESCRIPTION);
 		extendedAnalyzers = new IConfigurationElement[20];
 		canFlipToNextPage = false;
+		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 	}
 
 	/** 
@@ -199,8 +200,14 @@ public class AnalyzerPage extends WizardPage implements Listener {
 					e.printStackTrace();
 				}
 			}
-		}
-		((IteratorPage) super.getNextPage()).init();
+		} 
+		final IteratorPage page = (IteratorPage) super.getNextPage();
+		editingDomain.getCommandStack().execute(new RecordingCommand(editingDomain) {
+			@Override
+			protected void doExecute() {
+				page.init();
+			}
+		});
 		return super.getNextPage();
 	}
 

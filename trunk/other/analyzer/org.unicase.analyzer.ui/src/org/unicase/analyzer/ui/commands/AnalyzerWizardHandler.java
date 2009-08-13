@@ -32,10 +32,10 @@ public class AnalyzerWizardHandler extends AbstractHandler {
 	 */
 	public Object execute(final ExecutionEvent event) throws ExecutionException {
 		
-		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
-
-			@Override
-			protected Object run() throws EmfStoreException {
+//		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
+//
+//			@Override
+//			protected Object run() throws EmfStoreException {
 				ProjectAnalyzerWizard wizard = new ProjectAnalyzerWizard();
 				ISelection selection = HandlerUtil.getCurrentSelection(event);
 				IStructuredSelection ssel;
@@ -43,21 +43,21 @@ public class AnalyzerWizardHandler extends AbstractHandler {
 					ssel = (IStructuredSelection) selection;
 					wizard.init(HandlerUtil.getActiveWorkbenchWindow(event).getWorkbench(), ssel);
 				}
-//				if(wizard.isLoggedIn()){
+				if(wizard.isLoggedIn()){
 					WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
 					wizardDialog.create();
 					wizardDialog.open();
-//				}
+				}
 
-				return null;
-			}
-
-		};
-		try {
-			handler.execute(new ExecutionEvent());
-		} catch (ExecutionException e) {
-			DialogHandler.showErrorDialog(e.getMessage());
-		}
+//				return null;
+//			}
+//
+//		};
+//		try {
+//			handler.execute(new ExecutionEvent());
+//		} catch (ExecutionException e) {
+//			DialogHandler.showErrorDialog(e.getMessage());
+//		}
 	
 		return null;
 	}

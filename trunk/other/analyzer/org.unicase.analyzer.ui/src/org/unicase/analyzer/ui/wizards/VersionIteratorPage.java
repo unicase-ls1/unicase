@@ -49,8 +49,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 	private Group group;
 	private Text startText;
 	private Text endText;
-	private Button forwardButton;
-	private Button backwardButton;
+	private Button forwardButton; 
 	private Button returnCopyButton;
 	
 	private TransactionalEditingDomain editingDomain;
