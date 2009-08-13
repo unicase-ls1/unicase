@@ -79,7 +79,6 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
 		
-		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
 		new Label (composite, SWT.NONE).setText("Step Length:");	
 		stepText = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -153,6 +152,8 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 	 * page is going to get displayed. Mainly create the databinding here.
 	 */
 	public void initDefaulGroup(){
+		
+		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
 		//stepLength
 		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator(), IteratorPackage.eINSTANCE.getVersionIterator_StepLength());
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
@@ -169,6 +170,8 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 	 * Initialize group of this wizard page.
 	 */
 	public void initGroup(){
+		
+		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
 		 //start PrimaryVersionSpec
 		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getIterator().getVersionSpecQuery().getStartVersion(), VersioningPackage.eINSTANCE.getPrimaryVersionSpec_Identifier());
 		EMFDataBindingContext dbc = new EMFDataBindingContext();

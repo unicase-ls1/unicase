@@ -45,6 +45,7 @@ public class LoadPage extends WizardPage implements Listener {
 	private Text configurationPath;
 	private TransactionalEditingDomain editingDomain;
 	private AnalyzerConfiguration analyzerConfig;
+	private static final String DEFAULT_PATH = Configuration.getPluginDataBaseDirectory() + "analyzerProfile.conf";
 
 	/**
 	 * @param pageName Name of the page
@@ -92,6 +93,14 @@ public class LoadPage extends WizardPage implements Listener {
 		setPageComplete(true);
 	}
 	
+	private static boolean isTextNonEmpty(Text t)
+	{
+		String s = t.getText();
+		if ((s!=null) && (s.trim().length() >0)) {
+			return true;
+		}
+		return false;
+	}
 	
 	private void initConfig(String path){
 
@@ -119,6 +128,7 @@ public class LoadPage extends WizardPage implements Listener {
 			EList<EObject> directContents = resource.getContents();
 			// MK cast
 			analyzerConfig = (AnalyzerConfiguration) directContents.get(0);		
+			((ProjectAnalyzerWizard) getWizard()).setCanFinish(true);
 		}
 		
 		((ProjectAnalyzerWizard) getWizard()).setAnalyzerConfig(analyzerConfig);
@@ -139,10 +149,12 @@ public class LoadPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public IWizardPage getNextPage() {
-		if(configurationPath.getText().length() > 1){
+		if(isTextNonEmpty(configurationPath)){
 			initConfig(configurationPath.getText());
-			//((AnalyzerPage) super.getNextPage()).init();
+		}else{
+			initConfig(DEFAULT_PATH);
 		}		
+		((AnalyzerPage) super.getNextPage()).init();
 		return super.getNextPage();
 	}
 	/**
