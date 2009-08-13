@@ -11,13 +11,13 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.util.ModelUtil;
-import org.unicase.model.util.SerializationException;
 
 /**
  * Canonizes a list of operations. Removes all operations that are not necessary to achieve the same result when the
@@ -225,15 +225,11 @@ public final class OperationsCanonizer {
 			// safeguard preparation: if the main operation of the composite has been canonized away,
 			// the canonization is reverted. This generates more operations,
 			// but leaves the "intention" of the composite intact.
-			String operationCopy = null;
+			AbstractOperation operationCopy = null;
 
 			if (comp.getMainOperation() != null) {
-				try {
-					operationCopy = ModelUtil.eObjectToString(comp);
-				} catch (SerializationException e) {
-					// silent failure, this comp operation will not be canonized
-					continue;
-				}
+				operationCopy = EsModelUtil.clone(comp);
+				// operationCopy = ModelUtil.eObjectToString(comp);
 			}
 
 			OperationsCanonizer.canonize(comp.getSubOperations());
@@ -244,17 +240,10 @@ public final class OperationsCanonizer {
 			// away
 			else if (comp.getMainOperation() != null && !comp.getSubOperations().contains(comp.getMainOperation())) {
 
-				try {
-					CompositeOperation restored = (CompositeOperation) ModelUtil.stringToEObject(operationCopy);
-					comp.getSubOperations().clear();
-					comp.getSubOperations().addAll(restored.getSubOperations());
-					comp.setMainOperation(restored.getMainOperation());
-				} catch (SerializationException e) {
-					// this is fatal, actually, the operation is lost now
-					// nothing to do but abort. Will not happen for logical reasons, unless there
-					// are bugs in the serialization code.
-					throw new IllegalStateException("Canonization failed restoring composite operation");
-				}
+				CompositeOperation restored = (CompositeOperation) operationCopy;
+				comp.getSubOperations().clear();
+				comp.getSubOperations().addAll(restored.getSubOperations());
+				comp.setMainOperation(restored.getMainOperation());
 			}
 		}
 		operations.removeAll(emptyComposites);
