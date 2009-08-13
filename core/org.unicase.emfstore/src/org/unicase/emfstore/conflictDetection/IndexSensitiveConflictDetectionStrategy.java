@@ -685,7 +685,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		// remove and add on same feature, if one of the removed elements was added, there is a dependency
 		if (sameElement && sameFeature && requiredOperation.isAdd() && !operation.isAdd()) {
 			for (ModelElementId modelElementId : operation.getReferencedModelElements()) {
-				if (requiredOperation.getReferencedModelElements().contains(modelElementId)) {
+				if (containsId(requiredOperation.getReferencedModelElements(), modelElementId)) {
 					return true;
 				}
 			}
@@ -714,6 +714,23 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	private boolean isRequiredCreate(CreateDeleteOperation requiredOperation, AbstractOperation operation) {
 		if (!requiredOperation.isDelete()) {
+			// in case of a delete, it only requires the create if the deleted element is created,
+			// creates of subelements in the deltree are not required
+			if (operation instanceof CreateDeleteOperation) {
+				CreateDeleteOperation op = (CreateDeleteOperation) operation;
+				if (op.isDelete() && op.getModelElementId().equals(requiredOperation.getModelElementId())) {
+					return true;
+				}
+				return false;
+			}
+			// in case of a single ref op, we don't need to require it if the create references the old value
+			if (operation instanceof SingleReferenceOperation) {
+				SingleReferenceOperation op = (SingleReferenceOperation) operation;
+				if (isSame(op.getOldValue(), requiredOperation.getModelElementId())) {
+					return false;
+				}
+			}
+
 			if (OperationInfo.changesModelElement(operation, requiredOperation.getModelElementId())) {
 				return true;
 			}
