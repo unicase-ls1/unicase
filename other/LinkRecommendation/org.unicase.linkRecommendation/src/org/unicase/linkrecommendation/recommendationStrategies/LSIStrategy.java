@@ -56,7 +56,8 @@ public class LSIStrategy implements RecommendationStrategy {
 
 		tdf.createTDFMatrix();
 		//
-
+		tdf.normalizeDocuments();
+		tdf.transformIDF();
 		tdf.transformLSI(factorK);
 
 		int indexBase = indices.get(base);

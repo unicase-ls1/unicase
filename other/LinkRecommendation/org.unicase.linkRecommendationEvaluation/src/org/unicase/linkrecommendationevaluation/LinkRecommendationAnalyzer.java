@@ -22,15 +22,20 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.linkrecommendation.recommendationStrategies.LSIStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.change.ChangePackage;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.task.TaskPackage;
 
@@ -50,27 +55,35 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	private int correctElements;
 	private double[][] foundAndRec;
 	private int[][] hits;
-	private int suggestionCases;
+	private int countSuggestions;
 
 	private RecommendationStrategy[] strategies;
 
-	private final int DEBUGMODE_ALL = 0;
-	private final int DEBUGMODE_FAILS = 1;
-	private final int DEBUGMODE_NOTHING = 2;
+	/**
+	 * Defines different states of output.
+	 * 
+	 * @author Henning Femmer
+	 */
+	private enum DEBUGMODE {
+		ALL, FAILS, APPLY, NOTHING
+	}
 
-	private int debugmode;
+	private final DEBUGMODE debug = DEBUGMODE.APPLY;
+
+	private Project clonedProject;
+
+	private final boolean ANALYSE_STEPBYSTEP = true;
 
 	/**
 	 * The constructor.
 	 */
 	public LinkRecommendationAnalyzer() {
-		debugmode = DEBUGMODE_FAILS;
-		// thresholds = new Double[] { 0.1, 0.2, 0.35, 0.5, 0.7 };
-		thresholds = new Double[] { 0.35, 0.5, 0.7 };
+		thresholds = new Double[] { 0.1, 0.2, 0.35, 0.5, 0.7 };
+		// thresholds = new Double[] { 0.2 };
 
-		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy() };
-		strategies = new RecommendationStrategy[] { new LSIStrategy(0.2), new LSIStrategy(0.4), new LSIStrategy(0.6),
-			new LSIStrategy(0.8) };
+		strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy() };
+		// strategies = new RecommendationStrategy[] { new LSIStrategy(0.2), new LSIStrategy(0.4), new LSIStrategy(0.6),
+		// new LSIStrategy(0.8) };
 		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(), new LSIStrategy(0.2),
 		// new LSIStrategy(0.4), new LSIStrategy(0.6), new LSIStrategy(0.8) };
 
@@ -85,6 +98,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	 */
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
+		names.add("#Elements");
 
 		for (int i = 0; i < strategies.length; i++) {
 			for (int j = 0; j < thresholds.length; j++) {
@@ -124,8 +138,44 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	 */
 	public List<Object> getValue(ProjectAnalysisData data) {
 		List<Object> results = new ArrayList<Object>();
+		initializeVariables();
 
-		// TODO: ONLY CHANGED ELEMENTS!
+		if (ANALYSE_STEPBYSTEP) {
+			analyseStepByStep(data, results);
+		} else {
+			analyzeEntireProject(data, results);
+		}
+
+		results.add(countSuggestions);
+		for (int j = 0; j < strategies.length; j++) {
+			for (int i = 0; i < thresholds.length; i++) {
+				double precision = 0, recall = 0;
+				if (suggestedElements[i][j] != 0) {
+					precision = foundAndRec[i][j] / suggestedElements[i][j];
+				}
+				if (correctElements != 0) {
+					recall = foundAndRec[i][j] / correctElements;
+				}
+				// double hitPercentage = ((double)hits[i])/((double)suggestionCases);
+
+				results.add(precision);
+				results.add(recall);
+				// results.add(hits[i]);
+				// results.add(suggestionCases);
+				// results.add(hitPercentage);
+			}
+		}
+
+		return results;
+	}
+
+	private void analyseStepByStep(ProjectAnalysisData data, List<Object> results) {
+		// first step? just fetch the data.
+		if (clonedProject == null) {
+			clonedProject = (Project) EcoreUtil.copy(data.getProjectState());
+			return;
+		}
+
 		EList<ChangePackage> changePackages = data.getChangePackages();
 		List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
 
@@ -135,17 +185,101 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		}
 
 		for (AbstractOperation operation : operations) {
-			if (operation instanceof SingleReferenceOperation) {
-				SingleReferenceOperation op = (SingleReferenceOperation) operation;
-				EReference eReference;
-				ModelElement base;
-				ModelElement correctTarget;
+			// The modelElement this is all about
+			ModelElement base = clonedProject.getModelElement(operation.getModelElementId());
+			// Load the reference.
+			EReference eReference = getReference(operation, base);
+			// The MEs to be guessed
+			Collection<ModelElement> correctMEs = getCorrectMEsFromOperation(operation);
 
+			analyseRecommendation(base, eReference, correctMEs);
+
+			// redraw the changes in the project
+			if (operation.canApply(clonedProject)) {
+				operation.apply(clonedProject);
+				if (debug == DEBUGMODE.APPLY) {
+					System.out.println("Apply: " + operation.getName());
+				}
+			} else if (debug == DEBUGMODE.APPLY || debug == DEBUGMODE.ALL) {
+				System.out.println("Can't apply: " + operation.getName());
 			}
 		}
-		analyzeEntireProject(data, results);
+	}
 
-		return results;
+	private void analyseRecommendation(ModelElement base, EReference eReference, Collection<ModelElement> correctMEs) {
+
+		if (correctMEs == null || correctMEs.size() <= 0 || base == null || eReference == null
+			|| !relevantBaseClasses.contains(base.eClass())
+			|| !relevantReferences.contains(eReference.getEReferenceType())) {
+			return;
+		}
+
+		correctElements += correctMEs.size();
+
+		// get the possible elements
+		Collection<ModelElement> candidates = getCandidates(base, eReference);
+
+		// make suggestions
+		for (int j = 0; j < strategies.length; j++) {
+			Map<ModelElement, Double> relevanceMap = strategies[j].getMatchingMap(base, candidates);
+
+			// add to statistics
+			countSuggestions++;
+			for (int i = 0; i < thresholds.length; i++) {
+				calcStatistics(base, correctMEs, relevanceMap, i, j);
+			}
+
+			// Debug-Output:
+			if (debug == DEBUGMODE.ALL) {
+				printDebugOutput(base, eReference, correctMEs, relevanceMap);
+			}
+		}
+	}
+
+	private Collection<ModelElement> getCorrectMEsFromOperation(AbstractOperation operation) {
+		Collection<ModelElement> correctMEs = new ArrayList<ModelElement>();
+
+		// Load the MEs which should be guessed
+		if (operation instanceof SingleReferenceOperation) {
+			SingleReferenceOperation op = (SingleReferenceOperation) operation;
+			ModelElement me = clonedProject.getModelElement(op.getNewValue());
+
+			if (me != null && relevantTargetClasses.contains(me.eClass())) {
+				correctMEs.add(me);
+			}
+		} else if (operation instanceof MultiReferenceOperation) {
+			MultiReferenceOperation op = (MultiReferenceOperation) operation;
+			for (ModelElementId meID : op.getOtherInvolvedModelElements()) {
+				ModelElement me = clonedProject.getModelElement(meID);
+				if (me != null && relevantTargetClasses.contains(me.eClass())) {
+					correctMEs.add(me);
+				}
+			}
+		}
+		return correctMEs;
+	}
+
+	private EReference getReference(AbstractOperation operation, ModelElement me) {
+		if (me == null || operation == null) {
+			return null;
+		}
+
+		if (operation instanceof ReferenceOperation) {
+			String featureName = ((ReferenceOperation) operation).getFeatureName();
+			if (featureName == null) {
+				return null;
+			}
+
+			for (EReference ref : me.eClass().getEAllReferences()) {
+				String name = ref.getName();
+
+				if (name != null && name.equals(featureName)) {
+					return ref;
+				}
+			}
+		}
+
+		return null;
 	}
 
 	/**
@@ -158,18 +292,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		Project project = data.getProjectState();
 		EList<ModelElement> allModelElements = project.getAllModelElements();
 
-		foundAndRec = new double[thresholds.length][strategies.length];
-		suggestedElements = new int[thresholds.length][strategies.length];
-		hits = new int[thresholds.length][strategies.length];
-
-		for (int j = 0; j < thresholds.length; j++) {
-			Arrays.fill(foundAndRec[j], 0);
-			Arrays.fill(suggestedElements[j], 0);
-			Arrays.fill(hits[j], 0);
-		}
-
-		correctElements = 0;
-		suggestionCases = 0;
+		initializeVariables();
 
 		for (ModelElement modelElement : allModelElements) {
 			// only check specified base classes
@@ -181,60 +304,39 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 			List<EReference> refs = modelElement.eClass().getEAllReferences();
 
 			for (EReference eReference : refs) {
-				// only check specified references
-				if (!relevantReferences.contains(eReference.getEReferenceType())) {
-					continue;
-				}
-
 				// find the proper candidates
 				Collection<ModelElement> correctMEs = getCorrectMEs(modelElement, eReference);
-				correctElements += correctMEs.size();
-				// stop if nothing to count
-				if (correctMEs.size() == 0) {
-					continue;
-				}
-
-				// get the possible elements
-				Collection<ModelElement> candidates = getCandidates(modelElement, eReference);
-
-				// make suggestions
-				for (int j = 0; j < strategies.length; j++) {
-					Map<ModelElement, Double> relevanceMap = strategies[j].getMatchingMap(modelElement, candidates);
-
-					// add to statistics
-					suggestionCases++;
-					for (int i = 0; i < thresholds.length; i++) {
-						calcStatistics(modelElement, correctMEs, relevanceMap, i, j);
-					}
-
-					// Debug-Output:
-					if (debugmode == DEBUGMODE_ALL) {
-						System.out.print("Analyzing: " + modelElement.getName());
-						System.out.println(", reference: " + eReference.getName());
-						for (ModelElement me : correctMEs) {
-							System.out.println("# Name: " + me.getName());
-						}
-						for (int i = 0; i < thresholds.length; i++) {
-							printSuggestedElements(relevanceMap, thresholds[i]);
-						}
-					}
-				}
+				analyseRecommendation(modelElement, eReference, correctMEs);
 			}
 		}
 
-		for (int j = 0; j < strategies.length; j++) {
-			for (int i = 0; i < thresholds.length; i++) {
-				double precision = foundAndRec[i][j] / suggestedElements[i][j];
-				double recall = foundAndRec[i][j] / correctElements;
-				// double hitPercentage = ((double)hits[i])/((double)suggestionCases);
+	}
 
-				results.add(precision);
-				results.add(recall);
-				// results.add(hits[i]);
-				// results.add(suggestionCases);
-				// results.add(hitPercentage);
-			}
+	private void printDebugOutput(ModelElement modelElement, EReference eReference,
+		Collection<ModelElement> correctMEs, Map<ModelElement, Double> relevanceMap) {
+		System.out.print("Analyzing: " + modelElement.getName());
+		System.out.println(", reference: " + eReference.getName());
+		for (ModelElement me : correctMEs) {
+			System.out.println("# Name: " + me.getName());
 		}
+		for (int i = 0; i < thresholds.length; i++) {
+			printSuggestedElements(relevanceMap, thresholds[i]);
+		}
+	}
+
+	private void initializeVariables() {
+		foundAndRec = new double[thresholds.length][strategies.length];
+		suggestedElements = new int[thresholds.length][strategies.length];
+		hits = new int[thresholds.length][strategies.length];
+
+		for (int j = 0; j < thresholds.length; j++) {
+			Arrays.fill(foundAndRec[j], 0);
+			Arrays.fill(suggestedElements[j], 0);
+			Arrays.fill(hits[j], 0);
+		}
+
+		correctElements = 0;
+		countSuggestions = 0;
 	}
 
 	private Collection<ModelElement> getCandidates(ModelElement modelElement, EReference eReference) {
@@ -253,13 +355,14 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		return candidates;
 	}
 
+	@SuppressWarnings("unchecked")
 	private Collection<ModelElement> getCorrectMEs(ModelElement modelElement, EReference eReference) {
 		List<ModelElement> correctMEs = new ArrayList<ModelElement>();
 
 		Object existing = modelElement.eGet(eReference);
 		List<ModelElement> allCorrectMEs = new ArrayList<ModelElement>();
 
-		if (existing instanceof EList) {
+		if (existing instanceof EList<?>) {
 			EList<ModelElement> eList = (EList<ModelElement>) existing;
 			allCorrectMEs.addAll(eList);
 		} else if (existing instanceof EObject) {
@@ -287,7 +390,6 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 			Double val = relevanceMap.get(el);
 			if (val != null && val >= thresholds[indexThreshold]) {
 				foundAndRec[indexThreshold][indexStrategy]++;
-
 				hit = true;
 			}
 		}
@@ -295,7 +397,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		// determine if suggestions have been met
 		if (hit) {
 			hits[indexThreshold][indexStrategy]++;
-		} else if (debugmode == DEBUGMODE_FAILS && indexThreshold == 0) {
+		} else if ((debug == DEBUGMODE.FAILS || debug == DEBUGMODE.ALL) && indexThreshold == 0) {
 			// debug:
 			System.out.println("* " + strategies[indexStrategy].getName() + " FAILS to connect ME \n" + me.getName()
 				+ ": " + me.getDescriptionPlainText() + " \n to");
