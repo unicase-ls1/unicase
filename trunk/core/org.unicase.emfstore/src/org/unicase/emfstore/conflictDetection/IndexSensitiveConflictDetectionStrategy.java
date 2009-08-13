@@ -592,7 +592,131 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	 * @see org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy#isRequired(org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation,
 	 *      org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation)
 	 */
-	public boolean isRequired(AbstractOperation operationA, AbstractOperation operationB) {
+	public boolean isRequired(AbstractOperation requiredOperation, AbstractOperation operation) {
+
+		// composite operation decomposition section
+		if (requiredOperation instanceof CompositeOperation) {
+			CompositeOperation compA = (CompositeOperation) requiredOperation;
+			for (AbstractOperation op : compA.getSubOperations()) {
+				if (isRequired(op, operation)) {
+					return true;
+				}
+			}
+			return false;
+		} else if (operation instanceof CompositeOperation) {
+			CompositeOperation compB = (CompositeOperation) operation;
+			for (AbstractOperation op : compB.getSubOperations()) {
+				if (isRequired(requiredOperation, op)) {
+					return true;
+				}
+			}
+			return false;
+		}
+
+		// non-composite op handling
+
+		if (requiredOperation instanceof CreateDeleteOperation) {
+			return isRequiredCreate((CreateDeleteOperation) requiredOperation, operation);
+		} else if (requiredOperation instanceof MultiReferenceOperation
+			&& operation instanceof MultiReferenceMoveOperation) {
+			return isRequiredMultiByMoveReference((MultiReferenceOperation) requiredOperation,
+				(MultiReferenceMoveOperation) operation);
+		} else if (requiredOperation instanceof MultiReferenceOperation && operation instanceof MultiReferenceOperation) {
+			return isRequiredMutiByMultiReference((MultiReferenceOperation) requiredOperation,
+				(MultiReferenceOperation) operation);
+		} else if (requiredOperation instanceof SingleReferenceOperation
+			&& operation instanceof MultiReferenceMoveOperation) {
+			return isRequiredSingleByMoveReference((SingleReferenceOperation) requiredOperation,
+				(MultiReferenceMoveOperation) operation);
+		} else if (requiredOperation instanceof SingleReferenceOperation
+			&& operation instanceof MultiReferenceOperation) {
+			return isRequiredSingleByMultiReference((SingleReferenceOperation) requiredOperation,
+				(MultiReferenceOperation) operation);
+		}
+
+		return false;
+	}
+
+	private boolean isRequiredSingleByMultiReference(SingleReferenceOperation requiredOperation,
+		MultiReferenceOperation operation) {
+
+		if (operation.isAdd()) {
+			return false;
+		}
+
+		if (!requiredOperation.isBidirectional()) {
+			return false;
+		}
+
+		boolean sameFeature = requiredOperation.getOppositeFeatureName().equals(operation.getFeatureName());
+		boolean sameElement = isSame(requiredOperation.getNewValue(), operation.getModelElementId());
+
+		if (sameFeature && sameElement
+			&& containsId(operation.getOtherInvolvedModelElements(), requiredOperation.getModelElementId())) {
+			return true;
+		}
+
+		return false;
+	}
+
+	private boolean isRequiredSingleByMoveReference(SingleReferenceOperation requiredOperation,
+		MultiReferenceMoveOperation operation) {
+
+		if (!requiredOperation.isBidirectional()) {
+			return false;
+		}
+
+		boolean sameFeature = requiredOperation.getOppositeFeatureName().equals(operation.getFeatureName());
+		boolean sameMovedElement = requiredOperation.getModelElementId()
+			.equals(operation.getReferencedModelElementId());
+		boolean sameElement = isSame(requiredOperation.getNewValue(), operation.getModelElementId());
+
+		return (sameElement && sameFeature && sameMovedElement);
+
+	}
+
+	private boolean isRequiredMutiByMultiReference(MultiReferenceOperation requiredOperation,
+		MultiReferenceOperation operation) {
+
+		boolean sameElement = requiredOperation.getModelElementId().equals(operation.getModelElementId());
+		boolean sameFeature = requiredOperation.getFeatureName().equals(operation.getFeatureName());
+
+		// remove and add on same feature, if one of the removed elements was added, there is a dependency
+		if (sameElement && sameFeature && requiredOperation.isAdd() && !operation.isAdd()) {
+			for (ModelElementId modelElementId : operation.getReferencedModelElements()) {
+				if (requiredOperation.getReferencedModelElements().contains(modelElementId)) {
+					return true;
+				}
+			}
+		}
+		return false;
+
+	}
+
+	private boolean isRequiredMultiByMoveReference(MultiReferenceOperation requiredOperation,
+		MultiReferenceMoveOperation operation) {
+
+		boolean sameElement = requiredOperation.getModelElementId().equals(operation.getModelElementId());
+		boolean sameFeature = requiredOperation.getFeatureName().equals(operation.getFeatureName());
+
+		// require the add of the element, that is moved around
+		if (sameElement && sameFeature) { // && requiredOperation.isAdd()
+			for (ModelElementId modelElementId : requiredOperation.getReferencedModelElements()) {
+				if (modelElementId.equals(operation.getReferencedModelElementId())) {
+					return true;
+				}
+			}
+		}
+
+		return false;
+	}
+
+	private boolean isRequiredCreate(CreateDeleteOperation requiredOperation, AbstractOperation operation) {
+		if (!requiredOperation.isDelete()) {
+			if (OperationInfo.changesModelElement(operation, requiredOperation.getModelElementId())) {
+				return true;
+			}
+		}
 		return false;
 	}
 
