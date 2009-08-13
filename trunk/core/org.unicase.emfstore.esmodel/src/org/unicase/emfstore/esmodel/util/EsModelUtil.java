@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 
 /**
  * Helper class for emf store model related tasks.
@@ -57,4 +58,16 @@ public final class EsModelUtil {
 		EObject copy = EcoreUtil.copy(notification);
 		return (ESNotification) copy;
 	}
+
+	/**
+	 * Clone an operation.
+	 * 
+	 * @param operation the operation
+	 * @return a clone
+	 */
+	public static AbstractOperation clone(AbstractOperation operation) {
+		EObject copy = EcoreUtil.copy(operation);
+		return (AbstractOperation) copy;
+	}
+
 }
