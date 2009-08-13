@@ -214,7 +214,7 @@ public class ConflictDetector {
 			}
 			// else check if it requires any of the already requiring ops
 			for (AbstractOperation req : requiring) {
-				if (conflictDetectionStrategy.isRequired(current, req)) {
+				if (conflictDetectionStrategy.isRequired(req, current)) {
 					requiring.add(current);
 					break;
 				}
