@@ -212,7 +212,7 @@ public class VersionIteratorPage extends WizardPage implements Listener {
 			getNextPage();
 			return true;
 		}else if(isTextNonEmpty(stepText) && isTextNonEmpty(startText)
-				&& isTextNonEmpty(endText) && (forwardButton.getSelection() || backwardButton.getSelection())){
+				&& isTextNonEmpty(endText) && (forwardButton.getSelection() )){
 			getNextPage();
 			return true;
 		}

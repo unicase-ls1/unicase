@@ -11,7 +11,6 @@ import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersPackage;
 

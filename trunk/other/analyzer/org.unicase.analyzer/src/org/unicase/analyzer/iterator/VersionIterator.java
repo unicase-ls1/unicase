@@ -17,7 +17,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Version Iterator</b></em>'.
  * 
- * @implements Iterator <!-- end-user-doc -->
+ * @implements Iterator<ProjectAnalysisData> <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
@@ -35,7 +35,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * @model
  * @generated
  */
-public interface VersionIterator extends EObject, Iterator {
+public interface VersionIterator extends EObject, Iterator<ProjectAnalysisData> {
 	/**
 	 * Returns the value of the '<em><b>Step Length</b></em>' attribute.
 	 * <!-- begin-user-doc -->
