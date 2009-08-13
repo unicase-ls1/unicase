@@ -62,8 +62,6 @@ public class ExporterPage extends WizardPage implements Listener {
 	    gl.numColumns = ncol;
 	    composite.setLayout(gl);
 	    
-	    conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
-	    
 //	    exporterButton = new Button(composite, SWT.RADIO);
 //	    exporterButton.setText("CVS Exporter");
 //	    gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -120,6 +118,8 @@ public class ExporterPage extends WizardPage implements Listener {
 	 */
 	public void init(){
 
+		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+		
 		IObservableValue modelObservable = EMFEditObservables.observeValue(editingDomain, conf.getExporter(), ExportersPackage.eINSTANCE.getExporter_FileName());
 		EMFDataBindingContext dbc = new EMFDataBindingContext();
 		dbc.bindValue(SWTObservables.observeText(exportPath, SWT.FocusOut), modelObservable, null, null);

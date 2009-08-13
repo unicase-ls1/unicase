@@ -121,8 +121,7 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		
-				
+						
 		Object firstElement;
 		if (!selection.isEmpty()) {
 			firstElement = selection.getFirstElement();
@@ -142,9 +141,9 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
 		} else {
 			throw new IllegalArgumentException("Nothing selected!");
 		}
-		canFinish = false;
+		setCanFinish(false);
 //		analyzerConfig = AnalyzerFactory.eINSTANCE.createAnalyzerConfiguration();
-		initConfig();
+//		initConfig();
 	}
 	
     private void initConfig() {
@@ -197,8 +196,8 @@ public class ProjectAnalyzerWizard extends Wizard implements IWorkbenchWizard {
     @Override
 	public void addPages(){
     	
-//    	loadPage = new LoadPage("LoadPage");
-//    	addPage(loadPage);
+    	loadPage = new LoadPage("LoadPage");
+    	addPage(loadPage);
     	analyzerPage = new AnalyzerPage("AnalyzerPage");
 		addPage(analyzerPage);
 		iteratorPage = new IteratorPage("IteratorPage");

@@ -147,8 +147,6 @@ public class IteratorPage extends WizardPage implements Listener {
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
 		
-		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
-		
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
 		
@@ -160,22 +158,27 @@ public class IteratorPage extends WizardPage implements Listener {
 		 timeIteratorButton = new Button(composite, SWT.RADIO);
 		 timeIteratorButton.setText("Time Iterator");		 
 		 timeIteratorButton.setLayoutData(gd);
-		 if(conf.getIterator() != null){
+		 timeIteratorButton.addListener(SWT.Selection, this);
+		 
+		 setCanFlipToNextPage(isPageComplete());
+		 setControl(composite);
+//		 setPageComplete(true);
+
+	}
+
+	/**
+	 * Initialize this page's editing domain.
+	 */
+	public void init(){
+		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+		if(conf.getIterator() != null){
 			 if(conf.getIterator() instanceof TimeIterator){
 				 timeIteratorButton.setSelection(true);
 			 }else{
 				 versionIteratorButton.setSelection(true);
 			 }
-		 }
-		 
-		 timeIteratorButton.addListener(SWT.Selection, this);
-		 
-		 setCanFlipToNextPage(isPageComplete());
-		 setControl(composite);
-		 setPageComplete(true);
-
+		 }		 
 	}
-
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
@@ -185,7 +188,7 @@ public class IteratorPage extends WizardPage implements Listener {
 		if(timeIteratorButton.getSelection() || versionIteratorButton.getSelection()){
 			return true;
 		}
-		return false;
+		return super.isPageComplete();
 		
 	}
 

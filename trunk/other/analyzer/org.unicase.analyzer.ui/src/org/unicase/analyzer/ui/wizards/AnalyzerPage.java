@@ -41,6 +41,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	private boolean canFlipToNextPage;
 	private ArrayList<DataAnalyzer> analyzers;
 	private IConfigurationElement[] extendedAnalyzers;
+	private AnalyzerConfiguration conf;
 
 
 	/**
@@ -67,7 +68,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	    gl.numColumns = ncol;
 	    composite.setLayout(gl);
 	    
-	    AnalyzerConfiguration conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+	    
 	    analyzers = new ArrayList<DataAnalyzer>();
 	    
 	    IExtensionRegistry registry = Platform.getExtensionRegistry();
@@ -90,48 +91,34 @@ public class AnalyzerPage extends WizardPage implements Listener {
 			 gd = new GridData(GridData.FILL_HORIZONTAL);
 			 gd.horizontalSpan = ncol;
 			 button.setLayoutData(gd);
-			 if(conf.getAnalyzerName() != null){
-				 if(conf.getAnalyzerName().equals(button.getText())){
-					 button.setSelection(true);
-				 }
-			 }else{
-				 button.setSelection(false);
-			 }			 
+			 
 			 button.addListener(SWT.Selection, this);
 			 analyzerButton.add(button);
-//			 analyzerButton.get(count).addListener(SWT.CHECK, this);
-			 			 
-//			 analyzerButton.get(count).addSelectionListener(new SelectionListener(){
-//
-//				public void widgetDefaultSelected(SelectionEvent e) {
-//					
-//				}
-//
-//				public void widgetSelected(SelectionEvent e) {
-//					try {
-//						DataAnalyzer analyzer = (DataAnalyzer)element.createExecutableExtension("class");
-//						if(!analyzers.contains(analyzer)){
-//							analyzers.add(analyzer);
-//						}
-//						canFlipToNextPage = true;
-//						getWizard().getContainer().updateButtons();
-//
-//					} catch (CoreException e1) {
-//						// TODO Auto-generated catch block
-//						e1.printStackTrace();
-//					}					
-//				}
-//			 
-//			 });
 		    }
 		}
 		
 		setCanFlipToNextPage(isPageComplete());
 		setControl(composite);
-		setPageComplete(true);
+//		setPageComplete(true);
 
 	}
 	
+	/**
+	 * Initialize this page editing domain.
+	 */
+	public void init(){
+		conf = ((ProjectAnalyzerWizard) getWizard()).getAnalyzerConfig();
+		
+		 for(Button button : analyzerButton){
+			 if(conf.getAnalyzerName() != null){				
+				 if(conf.getAnalyzerName().equals(button.getText())){
+					 button.setSelection(true);
+				 }
+			 }else{
+				 button.setSelection(false);
+			 }	
+		 }
+	}
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.jface.wizard.WizardPage#isPageComplete()
@@ -140,51 +127,11 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	public boolean isPageComplete() {
 		//final ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 		for(final Button button : analyzerButton){
-			int i = analyzerButton.indexOf(button);
 			if(button.getSelection()){
-	
-				try {
-//					Class c = Class.forName(button.getText());			
-//					DataAnalyzer analyzer = (DataAnalyzer) c.getConstructors()[0].newInstance();
-					DataAnalyzer analyzer = (DataAnalyzer)extendedAnalyzers[i].createExecutableExtension("class");
-					final ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
-					// Not add the same analyzer into the analyzer list
-					boolean add = true;
-					for(DataAnalyzer ana : analyzers){
-						if( ana.getClass().equals(analyzer.getClass()) ){
-							add = false;
-						}
-					}
-					if(add){
-						analyzers.add(analyzer);
-					}
-					wizard.setAnalyzers(analyzers);
-					
-					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-					.getEditingDomain("org.unicase.EditingDomain");
-					domain.getCommandStack().execute(new RecordingCommand(domain) {
-						@Override
-						protected void doExecute() {
-							
-							//TODO should set a list of analyzer names
-							wizard.getAnalyzerConfig().setAnalyzerName(button.getText());
-						}
-					});
-
-				} catch (IllegalArgumentException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (SecurityException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				} catch (CoreException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
 				return true;
 			}
 		}
-		return false;
+		return super.isPageComplete();
 	}
 
 	/** 
@@ -211,6 +158,49 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	@Override
 	public IWizardPage getNextPage() {	
 		setCanFlipToNextPage(isPageComplete());
+		
+		for(final Button button : analyzerButton){
+			int i = analyzerButton.indexOf(button);
+			if(button.getSelection()){
+	
+				try {
+					DataAnalyzer analyzer = (DataAnalyzer)extendedAnalyzers[i].createExecutableExtension("class");
+					final ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
+					// Not add the same analyzer into the analyzer list
+					boolean add = true;
+					for(DataAnalyzer ana : analyzers){
+						if( ana.getClass().equals(analyzer.getClass()) ){
+							add = false;
+						}
+					}
+					if(add){
+						analyzers.add(analyzer);
+					}
+					wizard.setAnalyzers(analyzers);
+					
+					TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+					.getEditingDomain("org.unicase.EditingDomain");
+					domain.getCommandStack().execute(new RecordingCommand(domain) {
+						@Override
+						protected void doExecute() {							
+							//TODO should set a list of analyzer names
+							wizard.getAnalyzerConfig().setAnalyzerName(button.getText());
+						}
+					});
+
+				} catch (IllegalArgumentException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SecurityException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (CoreException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+		}
+		((IteratorPage) super.getNextPage()).init();
 		return super.getNextPage();
 	}
 
