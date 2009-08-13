@@ -468,7 +468,6 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
-		Actor dummy = RequirementFactory.eINSTANCE.createActor();
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 
 		getProject().addModelElement(section);
