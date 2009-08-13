@@ -19,7 +19,8 @@ import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.VersionIterator;
-import org.unicase.analyzer.unicaseanalyzers.PotentialConflictAnalyzer;
+import org.unicase.analyzer.unicaseAnalyzers.PotentialConflictAnalyzer;
+
 import org.unicase.anaylzer.test.AnalyzersTest;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 

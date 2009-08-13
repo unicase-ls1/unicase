@@ -6,4 +6,5 @@ Bundle-Version: 0.0.1
 Require-Bundle: org.unicase.anaylzer.test
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.unicase.analyzer.unicaseanalyzers
+Export-Package: org.unicase.analyzer.unicaseAnalyzers,
+ org.unicase.analyzer.unicaseAnalyzers.test
