@@ -641,21 +641,21 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	private boolean isRequiredSingleByMultiReference(SingleReferenceOperation requiredOperation,
 		MultiReferenceOperation operation) {
 
-		if (operation.isAdd()) {
-			return false;
-		}
-
-		if (!requiredOperation.isBidirectional()) {
-			return false;
-		}
-
-		boolean sameFeature = requiredOperation.getOppositeFeatureName().equals(operation.getFeatureName());
-		boolean sameElement = isSame(requiredOperation.getNewValue(), operation.getModelElementId());
-
-		if (sameFeature && sameElement
-			&& containsId(operation.getOtherInvolvedModelElements(), requiredOperation.getModelElementId())) {
-			return true;
-		}
+		// if (operation.isAdd()) {
+		// return false;
+		// }
+		//
+		// if (!requiredOperation.isBidirectional()) {
+		// return false;
+		// }
+		//
+		// boolean sameFeature = requiredOperation.getOppositeFeatureName().equals(operation.getFeatureName());
+		// boolean sameElement = isSame(requiredOperation.getNewValue(), operation.getModelElementId());
+		//
+		// if (sameFeature && sameElement
+		// && containsId(operation.getOtherInvolvedModelElements(), requiredOperation.getModelElementId())) {
+		// return true;
+		// }
 
 		return false;
 	}
@@ -679,17 +679,17 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	private boolean isRequiredMutiByMultiReference(MultiReferenceOperation requiredOperation,
 		MultiReferenceOperation operation) {
 
-		boolean sameElement = requiredOperation.getModelElementId().equals(operation.getModelElementId());
-		boolean sameFeature = requiredOperation.getFeatureName().equals(operation.getFeatureName());
-
-		// remove and add on same feature, if one of the removed elements was added, there is a dependency
-		if (sameElement && sameFeature && requiredOperation.isAdd() && !operation.isAdd()) {
-			for (ModelElementId modelElementId : operation.getReferencedModelElements()) {
-				if (containsId(requiredOperation.getReferencedModelElements(), modelElementId)) {
-					return true;
-				}
-			}
-		}
+		// boolean sameElement = requiredOperation.getModelElementId().equals(operation.getModelElementId());
+		// boolean sameFeature = requiredOperation.getFeatureName().equals(operation.getFeatureName());
+		//
+		// // remove and add on same feature, if one of the removed elements was added, there is a dependency
+		// if (sameElement && sameFeature && requiredOperation.isAdd() && !operation.isAdd()) {
+		// for (ModelElementId modelElementId : operation.getReferencedModelElements()) {
+		// if (containsId(requiredOperation.getReferencedModelElements(), modelElementId)) {
+		// return true;
+		// }
+		// }
+		// }
 		return false;
 
 	}
