@@ -2196,11 +2196,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	}
 
 	/**
-	 * Merge the changes from current base version to given target version with the local operations.
-	 * 
-	 * @param target target version
-	 * @param conflictResolver a conflict resolver that will actually perform the conflict resolution
-	 * @throws EmfStoreException if the conncection to the server fails
+	 * {@inheritDoc}
 	 */
 	public void merge(PrimaryVersionSpec target, ConflictResolver conflictResolver) throws EmfStoreException {
 		// merge the conflicts

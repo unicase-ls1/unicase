@@ -24,12 +24,12 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.observers.UpdateObserver;
-import org.unicase.workspace.ui.dialogs.MergeDialog;
 import org.unicase.workspace.ui.dialogs.UpdateDialog;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
- * This handlers updates the Project to a user-defined version. It is only intended to be used by admins as no validation checks are made on the version number.
+ * This handlers updates the Project to a user-defined version. It is only intended to be used by admins as no
+ * validation checks are made on the version number.
  * 
  * @author Shterev
  */
@@ -83,22 +83,22 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 		shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell();
 		try {
 			PrimaryVersionSpec baseVersion = projectSpace.getBaseVersion();
-			
+
 			InputDialog inputDialog = new InputDialog(shell, "Update to version...", "Enter the new version:", "", null);
-			if(inputDialog.open()!=Window.OK){
+			if (inputDialog.open() != Window.OK) {
 				return;
 			}
 			int version = 0;
-			try{
+			try {
 				version = Integer.parseInt(inputDialog.getValue());
-			}catch(NumberFormatException e){
+			} catch (NumberFormatException e) {
 				MessageDialog.openError(shell, "Invalid input", "A numerical value was expected!");
 				update(projectSpace);
 			}
-			
+
 			PrimaryVersionSpec targetVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 			targetVersionSpec.setIdentifier(version);
-			
+
 			PrimaryVersionSpec targetVersion = projectSpace.update(targetVersionSpec, UpdateProjectVersionHandler.this);
 			WorkspaceUtil.logUpdate(projectSpace, baseVersion, targetVersion);
 
@@ -119,9 +119,8 @@ public class UpdateProjectVersionHandler extends ServerRequestCommandHandler imp
 	}
 
 	private void handleChangeConflictException(ChangeConflictException e1) {
-		List<ChangePackage> changePackages = e1.getNewPackages();
-		MergeDialog mergeDialog = new MergeDialog(shell, changePackages);
-		mergeDialog.open();
+		MessageDialog.openError(Display.getCurrent().getActiveShell(), "Ooops!",
+			"This feature is not implemented yet! We are sorry for the inconvenience.");
 	}
 
 	/**

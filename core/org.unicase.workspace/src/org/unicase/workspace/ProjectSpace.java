@@ -35,6 +35,7 @@ import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.PropertyNotFoundException;
 import org.unicase.workspace.observers.CommitObserver;
+import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.observers.OperationListener;
 import org.unicase.workspace.observers.UpdateObserver;
 import org.unicase.workspace.preferences.PropertyKey;
@@ -724,5 +725,14 @@ public interface ProjectSpace extends IdentifiableElement {
 	 * @param fileAttachmentId file attachment id
 	 */
 	void removePendingFileUpload(String fileAttachmentId);
+
+	/**
+	 * Merge the changes from current base version to given target version with the local operations.
+	 * 
+	 * @param target target version
+	 * @param conflictResolver a conflict resolver that will actually perform the conflict resolution
+	 * @throws EmfStoreException if the conncection to the server fails
+	 */
+	void merge(PrimaryVersionSpec target, ConflictResolver conflictResolver) throws EmfStoreException;
 
 } // ProjectContainer
