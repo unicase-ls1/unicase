@@ -18,8 +18,9 @@ import org.unicase.model.ModelElementId;
 /**
  * A conflict detection strategy that will operate on a per attribute and feature level.
  * 
- * @author koegel
+ * @author chodnick
  */
+// BEGIN COMPLEX CODE
 public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectionStrategy {
 
 	/**
@@ -769,5 +770,5 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		}
 		return false;
 	}
-
+	// END COMPLEX CODE
 }
