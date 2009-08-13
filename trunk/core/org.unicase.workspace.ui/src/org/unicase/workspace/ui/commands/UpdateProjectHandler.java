@@ -23,7 +23,6 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.observers.UpdateObserver;
-import org.unicase.workspace.ui.dialogs.MergeDialog;
 import org.unicase.workspace.ui.dialogs.UpdateDialog;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -95,17 +94,20 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 				}
 			});
 		} catch (ChangeConflictException e1) {
-			handleChangeConflictException(e1);
+			handleChangeConflictException(projectSpace);
 		} catch (NoChangesOnServerException e) {
 			MessageDialog.openInformation(shell, "No need to update",
 				"Your project is up to date, you do not need to update.");
 		}
 	}
 
-	private void handleChangeConflictException(ChangeConflictException e1) {
-		List<ChangePackage> changePackages = e1.getNewPackages();
-		MergeDialog mergeDialog = new MergeDialog(shell, changePackages);
-		mergeDialog.open();
+	private void handleChangeConflictException(ProjectSpace projectSpace) {
+		try {
+			PrimaryVersionSpec targetVersion = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION);
+			projectSpace.merge(targetVersion, new MergeProjectHandler());
+		} catch (EmfStoreException e) {
+			WorkspaceUtil.logException("Exception when merging the project!", e);
+		}
 	}
 
 	/**
