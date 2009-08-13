@@ -22,6 +22,8 @@ import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
+import org.unicase.workspace.CompositeOperationHandle;
+import org.unicase.workspace.exceptions.InvalidHandleException;
 
 /**
  * Tests conflict detection behaviour on attributes.
@@ -86,14 +88,12 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 
 		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
 
-		assertEquals(2, cd.getRequired(ops, removeActor).size());
+		assertEquals(1, cd.getRequired(ops, removeActor).size());
 		assertSame(cd.getRequired(ops, removeActor).get(0), createActor);
-		assertSame(cd.getRequired(ops, removeActor).get(1), addActor);
 
 		assertEquals(0, cd.getRequiring(ops, removeActor).size());
 
-		assertEquals(1, cd.getRequiring(ops, addActor).size());
-		assertSame(cd.getRequiring(ops, addActor).get(0), removeActor);
+		assertEquals(0, cd.getRequiring(ops, addActor).size());
 
 		assertEquals(2, cd.getRequiring(ops, createActor).size());
 		assertSame(cd.getRequiring(ops, createActor).get(0), addActor);
@@ -450,13 +450,12 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 
 		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
 
-		assertEquals(1, cd.getRequired(ops, removeActor).size());
-		assertSame(cd.getRequired(ops, removeActor).get(0), addActor);
-
+		// the remove does not required an add, as per specification
+		assertEquals(0, cd.getRequired(ops, removeActor).size());
 		assertEquals(0, cd.getRequiring(ops, removeActor).size());
 
-		assertEquals(1, cd.getRequiring(ops, addActor).size());
-		assertSame(cd.getRequiring(ops, addActor).get(0), removeActor);
+		assertEquals(0, cd.getRequired(ops, addActor).size());
+		assertEquals(0, cd.getRequiring(ops, addActor).size());
 
 	}
 
@@ -487,14 +486,439 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 
 		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
 
-		// the remove inside the relocation needs the add
-		assertEquals(1, cd.getRequired(ops, relocateActor).size());
-		assertSame(cd.getRequired(ops, relocateActor).get(0), addActor);
-
+		assertEquals(0, cd.getRequired(ops, relocateActor).size());
 		assertEquals(0, cd.getRequiring(ops, relocateActor).size());
 
+		assertEquals(0, cd.getRequired(ops, addActor).size());
+		assertEquals(0, cd.getRequiring(ops, addActor).size());
+
+	}
+
+	/**
+	 * Tests requires & requiring relation.
+	 */
+	@Test
+	public void requireMultiRefByIndirectRemove() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(section2);
+		getProject().addModelElement(actor);
+
+		getProjectSpace().getOperations().clear();
+
+		section.getModelElements().add(actor);
+		section2.getModelElements().add(actor);
+
+		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
+
+		// ops are [add actor to section], [composite remove/add actor to section2]
+		AbstractOperation addActor = ops.get(0);
+		AbstractOperation relocateActor = ops.get(1);
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+
+		assertEquals(0, cd.getRequired(ops, relocateActor).size());
+		assertEquals(0, cd.getRequiring(ops, relocateActor).size());
+
+		assertEquals(0, cd.getRequired(ops, addActor).size());
+		assertEquals(0, cd.getRequiring(ops, addActor).size());
+
+	}
+
+	/**
+	 * Tests requires & requiring relation.
+	 */
+	@Test
+	public void requireMultiRefByRemove() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(actor);
+
+		getProjectSpace().getOperations().clear();
+
+		section.getModelElements().add(actor);
+		section.getModelElements().remove(actor);
+
+		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
+
+		// ops are [add actor to section], [remove actor]
+		AbstractOperation addActor = ops.get(0);
+		AbstractOperation removeActor = ops.get(1);
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+
+		// the remove does not need the add as per spec
+		assertEquals(0, cd.getRequired(ops, removeActor).size());
+		assertEquals(0, cd.getRequiring(ops, removeActor).size());
+
+		assertEquals(0, cd.getRequired(ops, addActor).size());
+		assertEquals(0, cd.getRequiring(ops, addActor).size());
+	}
+
+	/**
+	 * Tests requires & requiring relation.
+	 */
+	@Test
+	public void requireMultiRefByMove() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(actor);
+		section.getModelElements().add(dummy);
+
+		getProjectSpace().getOperations().clear();
+
+		section.getModelElements().add(actor);
+		section.getModelElements().move(0, actor);
+
+		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
+
+		// ops are [add actor to section], [move actor]
+		AbstractOperation addActor = ops.get(0);
+		AbstractOperation moveActor = ops.get(1);
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+
+		assertEquals(1, cd.getRequired(ops, moveActor).size());
+		assertSame(cd.getRequired(ops, moveActor).get(0), addActor);
+
+		assertEquals(0, cd.getRequiring(ops, moveActor).size());
+
 		assertEquals(1, cd.getRequiring(ops, addActor).size());
-		assertSame(cd.getRequiring(ops, addActor).get(0), relocateActor);
+		assertSame(cd.getRequiring(ops, addActor).get(0), moveActor);
+
+	}
+
+	/**
+	 * Tests requires & requiring relation.
+	 * 
+	 * @throws InvalidHandleException if something goes wrong
+	 */
+	@Test
+	public void requireCompositeMultiRefByCompositeMove() throws InvalidHandleException {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor dummy = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(actor);
+		section.getModelElements().add(dummy);
+
+		getProjectSpace().getOperations().clear();
+
+		CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
+		section.getModelElements().add(actor);
+		handle1.end("", "", null);
+
+		CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
+		section.getModelElements().move(0, actor);
+		handle2.end("", "", null);
+
+		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
+
+		// ops are [composite add actor to section], [composite move actor in section2]
+		AbstractOperation addActor = ops.get(0);
+		AbstractOperation moveActor = ops.get(1);
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+
+		assertEquals(1, cd.getRequired(ops, moveActor).size());
+		assertSame(cd.getRequired(ops, moveActor).get(0), addActor);
+
+		assertEquals(0, cd.getRequiring(ops, moveActor).size());
+
+		assertEquals(1, cd.getRequiring(ops, addActor).size());
+		assertSame(cd.getRequiring(ops, addActor).get(0), moveActor);
+
+	}
+
+	/**
+	 * Tests requires & requiring relation.
+	 * 
+	 * @throws InvalidHandleException if something goes wrong
+	 */
+	@Test
+	public void requireCompositeMultiRefByCompositeIndirectRemove() throws InvalidHandleException {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(section2);
+		getProject().addModelElement(actor);
+
+		getProjectSpace().getOperations().clear();
+
+		CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
+		section.getModelElements().add(actor);
+		handle1.end("", "", null);
+
+		CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
+		section2.getModelElements().add(actor);
+		handle2.end("", "", null);
+
+		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
+
+		// ops are [composite add actor to section], [composite composite remove/add actor to section2]
+		AbstractOperation addActor = ops.get(0);
+		AbstractOperation relocateActor = ops.get(1);
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+
+		assertEquals(0, cd.getRequired(ops, relocateActor).size());
+		assertEquals(0, cd.getRequiring(ops, relocateActor).size());
+
+		assertEquals(0, cd.getRequired(ops, addActor).size());
+		assertEquals(0, cd.getRequiring(ops, addActor).size());
+
+	}
+
+	/**
+	 * Tests requires & requiring relation.
+	 * 
+	 * @throws InvalidHandleException
+	 * @throws InvalidHandleException if something goes wrong
+	 */
+	@Test
+	public void requireUnrelatedCompositeOps() throws InvalidHandleException {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(section2);
+		getProject().addModelElement(actor);
+		getProject().addModelElement(actor2);
+
+		getProjectSpace().getOperations().clear();
+
+		CompositeOperationHandle handle1 = getProjectSpace().beginCompositeOperation();
+		section.getModelElements().add(actor);
+		handle1.end("", "", null);
+
+		CompositeOperationHandle handle2 = getProjectSpace().beginCompositeOperation();
+		section2.getModelElements().add(actor2);
+		handle2.end("", "", null);
+
+		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
+
+		// ops are [composite add actor to section], [composite add actor2 to section2]
+		AbstractOperation addActor = ops.get(0);
+		AbstractOperation addActor2 = ops.get(1);
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+
+		assertEquals(0, cd.getRequired(ops, addActor).size());
+		assertEquals(0, cd.getRequiring(ops, addActor).size());
+
+		assertEquals(0, cd.getRequired(ops, addActor2).size());
+		assertEquals(0, cd.getRequiring(ops, addActor2).size());
+
+	}
+
+	/**
+	 * Tests requires & requiring relation.
+	 */
+	@Test
+	public void requireUnrelatedOps() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(section2);
+		getProject().addModelElement(actor);
+		getProject().addModelElement(actor2);
+
+		getProjectSpace().getOperations().clear();
+
+		section.getModelElements().add(actor);
+		section2.getModelElements().add(actor2);
+
+		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
+
+		// ops are [add actor to section], [add actor2 to section2]
+		AbstractOperation addActor = ops.get(0);
+		AbstractOperation addActor2 = ops.get(1);
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+
+		assertEquals(0, cd.getRequired(ops, addActor).size());
+		assertEquals(0, cd.getRequiring(ops, addActor).size());
+
+		assertEquals(0, cd.getRequired(ops, addActor2).size());
+		assertEquals(0, cd.getRequiring(ops, addActor2).size());
+
+	}
+
+	/**
+	 * Tests requires & requiring relation.
+	 */
+	@Test
+	public void requireComplexTest() {
+
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
+		Actor actor = RequirementFactory.eINSTANCE.createActor();
+		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
+		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+		UserTask task = RequirementFactory.eINSTANCE.createUserTask();
+
+		getProjectSpace().getOperations().clear();
+
+		getProject().addModelElement(section);
+		getProject().addModelElement(section2);
+		getProject().addModelElement(actor);
+		getProject().addModelElement(actor2);
+		getProject().addModelElement(useCase);
+		getProject().addModelElement(task);
+
+		section.getModelElements().add(actor);
+		actor.setName("actor");
+		section.setName("section");
+		section2.setLeafSection(section);
+		section2.getModelElements().add(actor2);
+		section2.getModelElements().add(actor);
+		task.setInitiatingActor(actor);
+		useCase.getParticipatingActors().add(actor);
+		useCase.getParticipatingActors().add(actor2);
+		useCase.getParticipatingActors().move(1, actor);
+		getProject().deleteModelElement(section);
+
+		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
+
+		// ops lineup
+		AbstractOperation createSection = ops.get(0);
+		AbstractOperation createSection2 = ops.get(1);
+		AbstractOperation createActor = ops.get(2);
+		AbstractOperation createActor2 = ops.get(3);
+		AbstractOperation createUseCase = ops.get(4);
+		AbstractOperation createTask = ops.get(5);
+		AbstractOperation addActor = ops.get(6);
+		AbstractOperation nameActor = ops.get(7);
+		AbstractOperation nameSection = ops.get(8);
+		AbstractOperation addSection2 = ops.get(9);
+		AbstractOperation addActor2 = ops.get(10);
+		AbstractOperation relocateActor = ops.get(11);
+		AbstractOperation taskActor = ops.get(12);
+		AbstractOperation caseActor = ops.get(13);
+		AbstractOperation caseActor2 = ops.get(14);
+		AbstractOperation moveActor = ops.get(15);
+		AbstractOperation deleteSection = ops.get(16);
+
+		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
+
+		assertEquals(0, cd.getRequired(ops, createSection).size());
+		assertEquals(5, cd.getRequiring(ops, createSection).size());
+		assertSame(cd.getRequiring(ops, createSection).get(0), addActor);
+		assertSame(cd.getRequiring(ops, createSection).get(1), nameSection);
+		assertSame(cd.getRequiring(ops, createSection).get(2), addSection2);
+		assertSame(cd.getRequiring(ops, createSection).get(3), relocateActor);
+		assertSame(cd.getRequiring(ops, createSection).get(4), deleteSection);
+
+		assertEquals(0, cd.getRequired(ops, createSection2).size());
+		assertEquals(3, cd.getRequiring(ops, createSection2).size());
+		assertSame(cd.getRequiring(ops, createSection2).get(0), addSection2);
+		assertSame(cd.getRequiring(ops, createSection2).get(1), addActor2);
+		assertSame(cd.getRequiring(ops, createSection2).get(2), relocateActor);
+
+		assertEquals(0, cd.getRequired(ops, createActor).size());
+		assertEquals(6, cd.getRequiring(ops, createActor).size());
+		assertSame(cd.getRequiring(ops, createActor).get(0), addActor);
+		assertSame(cd.getRequiring(ops, createActor).get(1), nameActor);
+		assertSame(cd.getRequiring(ops, createActor).get(2), relocateActor);
+		assertSame(cd.getRequiring(ops, createActor).get(3), taskActor);
+		assertSame(cd.getRequiring(ops, createActor).get(4), caseActor);
+		assertSame(cd.getRequiring(ops, createActor).get(5), moveActor);
+
+		assertEquals(0, cd.getRequired(ops, createActor2).size());
+		assertEquals(2, cd.getRequiring(ops, createActor2).size());
+		assertSame(cd.getRequiring(ops, createActor2).get(0), addActor2);
+		assertSame(cd.getRequiring(ops, createActor2).get(1), caseActor2);
+
+		assertEquals(0, cd.getRequired(ops, createUseCase).size());
+		assertEquals(3, cd.getRequiring(ops, createUseCase).size());
+		assertSame(cd.getRequiring(ops, createUseCase).get(0), caseActor);
+		assertSame(cd.getRequiring(ops, createUseCase).get(1), caseActor2);
+		assertSame(cd.getRequiring(ops, createUseCase).get(2), moveActor);
+
+		assertEquals(0, cd.getRequired(ops, createTask).size());
+		assertEquals(1, cd.getRequiring(ops, createTask).size());
+		assertSame(cd.getRequiring(ops, createTask).get(0), taskActor);
+
+		assertEquals(2, cd.getRequired(ops, addActor).size());
+		assertSame(cd.getRequired(ops, addActor).get(0), createSection);
+		assertSame(cd.getRequired(ops, addActor).get(1), createActor);
+		assertEquals(0, cd.getRequiring(ops, addActor).size());
+
+		assertEquals(1, cd.getRequired(ops, nameActor).size());
+		assertSame(cd.getRequired(ops, nameActor).get(0), createActor);
+		assertEquals(0, cd.getRequiring(ops, nameActor).size());
+
+		assertEquals(1, cd.getRequired(ops, nameSection).size());
+		assertSame(cd.getRequired(ops, nameSection).get(0), createSection);
+		assertEquals(0, cd.getRequiring(ops, nameSection).size());
+
+		assertEquals(2, cd.getRequired(ops, addSection2).size());
+		assertSame(cd.getRequired(ops, addSection2).get(0), createSection);
+		assertSame(cd.getRequired(ops, addSection2).get(1), createSection2);
+		assertEquals(0, cd.getRequiring(ops, addSection2).size());
+
+		assertEquals(2, cd.getRequired(ops, addActor2).size());
+		assertSame(cd.getRequired(ops, addActor2).get(0), createSection2);
+		assertSame(cd.getRequired(ops, addActor2).get(1), createActor2);
+		assertEquals(0, cd.getRequiring(ops, addActor2).size());
+
+		assertEquals(3, cd.getRequired(ops, relocateActor).size());
+		// note, section create is required, because the relocation goes from
+		// section to section2, and the remove from section requires the
+		// create, as per specification
+		assertSame(cd.getRequired(ops, relocateActor).get(0), createSection);
+		assertSame(cd.getRequired(ops, relocateActor).get(1), createSection2);
+		assertSame(cd.getRequired(ops, relocateActor).get(2), createActor);
+		assertEquals(0, cd.getRequiring(ops, relocateActor).size());
+
+		assertEquals(2, cd.getRequired(ops, taskActor).size());
+		assertSame(cd.getRequired(ops, taskActor).get(0), createActor);
+		assertSame(cd.getRequired(ops, taskActor).get(1), createTask);
+		assertEquals(0, cd.getRequiring(ops, taskActor).size());
+
+		assertEquals(2, cd.getRequired(ops, caseActor).size());
+		assertSame(cd.getRequired(ops, caseActor).get(0), createActor);
+		assertSame(cd.getRequired(ops, caseActor).get(1), createUseCase);
+		assertEquals(1, cd.getRequiring(ops, caseActor).size());
+		assertSame(cd.getRequiring(ops, caseActor).get(0), moveActor);
+
+		assertEquals(2, cd.getRequired(ops, caseActor2).size());
+		assertSame(cd.getRequired(ops, caseActor2).get(0), createActor2);
+		assertSame(cd.getRequired(ops, caseActor2).get(1), createUseCase);
+		assertEquals(0, cd.getRequiring(ops, caseActor2).size());
+
+		assertEquals(3, cd.getRequired(ops, moveActor).size());
+		assertSame(cd.getRequired(ops, moveActor).get(0), createActor);
+		assertSame(cd.getRequired(ops, moveActor).get(1), createUseCase);
+		assertSame(cd.getRequired(ops, moveActor).get(2), caseActor);
+		assertEquals(0, cd.getRequiring(ops, moveActor).size());
+
+		assertEquals(1, cd.getRequired(ops, deleteSection).size());
+		assertSame(cd.getRequired(ops, deleteSection).get(0), createSection);
+		assertEquals(0, cd.getRequiring(ops, deleteSection).size());
 
 	}
 
