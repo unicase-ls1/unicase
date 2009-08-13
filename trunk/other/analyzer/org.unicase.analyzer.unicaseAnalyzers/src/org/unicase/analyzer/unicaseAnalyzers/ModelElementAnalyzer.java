@@ -3,53 +3,46 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.analyzer.unicaseanalyzers;
+package org.unicase.analyzer.unicaseAnalyzers;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.BasicEList;
-
-import org.eclipse.emf.ecore.EClass;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.model.ModelElement;
 
 /**
  * @author liya
  *
  */
-public class CountAnalyzer implements DataAnalyzer {
+public class ModelElementAnalyzer implements DataAnalyzer {
 
-	private EClass eclass;
-	
+	private static final String MECOUNT = "ModelElement #";
+
 	/**
-	 * Constructor of CountAnalyzer. A analyzer which can count
-	 * the number of modelElements of a given EClass.
-	 * @param eclass EClass
-	 */
-	public CountAnalyzer(EClass eclass){
-		this.eclass = eclass;
-	}
-	/**
+	 * 
 	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
 	 * 
 	 */
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
-		names.add(eclass.getName()+'#');
+		names.add(MECOUNT);
 		return names;
 	}
 
-	/**
-	 * @param data {@link ProjectAnalysisData}
+	/** 
 	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getValue(org.unicase.analyzer.ProjectAnalysisData)
+	 * @param data {@link ProjectAnalysisData}
+	 * 
 	 */
 	public List<Object> getValue(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
-		values.add(data.getProjectState().getModelElementsByClass(eclass, new BasicEList<ModelElement>()).size());
+		
+		// Number of all ModelElements
+		values.add(data.getProjectState().getModelElements().size());
 		return values;
 	}
+
 	/** 
 	 * {@inheritDoc}
 	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
@@ -57,5 +50,4 @@ public class CountAnalyzer implements DataAnalyzer {
 	public boolean isExportOnce() {
 		return false;
 	}
-
 }
