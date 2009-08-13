@@ -15,7 +15,8 @@ import org.junit.runners.Suite;
  */
 @RunWith(Suite.class)
 @Suite.SuiteClasses( { AttributeConflictTest.class, ConflictDetectionAttributeTest.class,
-	ConflictDetectionReferenceTest.class, ConflictDetectionDeleteTest.class, ConflictDetectionMultiReferenceTest.class
+	ConflictDetectionReferenceTest.class, ConflictDetectionDeleteTest.class, ConflictDetectionMultiReferenceTest.class,
+	ConflictDetectionRequiredRelationTest.class
 
 })
 public class AllConflictDetectionTests {
