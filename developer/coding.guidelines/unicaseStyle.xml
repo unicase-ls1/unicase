@@ -197,7 +197,7 @@
     </module>
     <module name="SuppressionCommentFilter">
         <metadata name="com.atlassw.tools.eclipse.checkstyle.comment" value="High Complexity Code Warning Suppression"/>
-        <property name="offCommentFormat" value="//BEGIN COMPLEX CODE"/>
-        <property name="onCommentFormat" value="//END COMPLEX CODE"/>
+        <property name="offCommentFormat" value="// BEGIN COMPLEX CODE"/>
+        <property name="onCommentFormat" value="// END COMPLEX CODE"/>
     </module>
 </module>
