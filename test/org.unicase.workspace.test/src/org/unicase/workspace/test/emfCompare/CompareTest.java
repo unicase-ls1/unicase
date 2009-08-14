@@ -8,6 +8,7 @@ package org.unicase.workspace.test.emfCompare;
 
 import static org.junit.Assert.assertEquals;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -33,6 +34,7 @@ import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.util.ModelUtil;
+import org.unicase.workspace.Configuration;
 
 /**
  * Test the comparison of projects with emf compare.
@@ -45,16 +47,21 @@ public class CompareTest {
 	private Project project2;
 	private LeafSection functionalRequirementsSection;
 	private LeafSection nonFunctionalRequirementsSection;
+	private ResourceSet resourceSet;
 
 	/**
 	 * Setup the two projects for comparison.
+	 * 
+	 * @throws IOException if setup fails
 	 */
 	@Before
-	public void setup() {
-		ResourceSet resourceSet1 = new ResourceSetImpl();
-		Resource resource1 = resourceSet1.createResource(ModelUtil.VIRTUAL_URI);
+	public void setup() throws IOException {
+		resourceSet = new ResourceSetImpl();
+		URI fileURI1 = URI.createFileURI(Configuration.getWorkspaceDirectory() + "projectState1.upf");
+		Resource resource1 = resourceSet.createResource(fileURI1);
 		project1 = ModelFactory.eINSTANCE.createProject();
 		resource1.getContents().add(project1);
+		resource1.save(null);
 
 		CompositeSection rad = DocumentFactory.eINSTANCE.createCompositeSection();
 		rad.setName("Requirements Analysis Document");
@@ -85,11 +92,11 @@ public class CompareTest {
 		nfr.setName("NFR");
 		nonFunctionalRequirementsSection.getModelElements().add(nfr);
 
-		ResourceSet resourceSet2 = new ResourceSetImpl();
-		URI uri2 = URI.createURI("virtualUnicaseUri2");
-		Resource resource2 = resourceSet2.createResource(uri2);
+		URI fileURI2 = URI.createFileURI(Configuration.getWorkspaceDirectory() + "projectState2.upf");
+		Resource resource2 = resourceSet.createResource(fileURI2);
 		project2 = ModelUtil.clone(project1);
 		resource2.getContents().add(project2);
+		resource2.save(null);
 	}
 
 	/**
@@ -105,9 +112,10 @@ public class CompareTest {
 	 * Compares two copies of same project with the default matcher.
 	 * 
 	 * @throws InterruptedException if test fails
+	 * @throws IOException if test fails
 	 */
 	@Test
-	public void compareSameProjectWithDefaultMatcher() throws InterruptedException {
+	public void compareSameProjectWithDefaultMatcher() throws InterruptedException, IOException {
 		MatchModel match = MatchService.doMatch(project1, project2, Collections.<String, Object> emptyMap());
 		DiffModel diff = DiffService.doDiff(match, false);
 		List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
@@ -120,9 +128,10 @@ public class CompareTest {
 	 * Compares two different projects with the default matcher.
 	 * 
 	 * @throws InterruptedException if test fails
+	 * @throws IOException if test fails
 	 */
 	@Test
-	public void compareTwoProjectsWithDefaultMatcher() throws InterruptedException {
+	public void compareTwoProjectsWithDefaultMatcher() throws InterruptedException, IOException {
 		// change project 1
 		functionalRequirementsSection.getModelElements().get(1).setName("oldFR1");
 		functionalRequirementsSection.getModelElements().remove(2);
@@ -132,6 +141,12 @@ public class CompareTest {
 
 		MatchModel match = MatchService.doMatch(project1, project2, Collections.<String, Object> emptyMap());
 		DiffModel diff = DiffService.doDiff(match, false);
+
+		URI fileURI2 = URI.createFileURI(Configuration.getWorkspaceDirectory() + "diffModel.emfdiff");
+		Resource diffResource = resourceSet.createResource(fileURI2);
+		diffResource.getContents().add(diff);
+		diffResource.save(null);
+
 		List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
 		assertEquals(1, differences.size());
 		assertEquals(1, differences.get(0).getSubDiffElements().size());
