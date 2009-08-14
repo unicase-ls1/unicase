@@ -1,7 +1,5 @@
 package org.unicase.test;
 
-import java.io.IOException;
-
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.model.Project;
@@ -11,6 +9,8 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.test.projectGenerator.TestProjectGenerator;
 import org.unicase.workspace.test.projectGenerator.TestProjectParmeters;
+
+import java.io.IOException;
 
 /**
  * This class controls all aspects of the application's execution
@@ -29,6 +29,7 @@ public class Application implements IApplication {
 	 * 
 	 * @seeorg.eclipse.equinox.app.IApplicationk#start(org.eclipse.equinox.app. IApplicationContext)
 	 */
+	 
 
 	@SuppressWarnings("null")
 	public Object start(IApplicationContext context) throws Exception {
@@ -67,7 +68,7 @@ public class Application implements IApplication {
 	}
 
 	private void createRandomProject() throws IOException {
-		TestProjectParmeters param = new TestProjectParmeters(7, 1, 4, 3, 5, 20);
+		TestProjectParmeters param = new TestProjectParmeters(7, 3345671, 4, 3, 5, 20);
 		TestProjectGenerator generator = new TestProjectGenerator(param);
 
 		Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
@@ -76,9 +77,15 @@ public class Application implements IApplication {
 
 		Project project = generator.generateProject();
 		projectSpace.setProject(project);
-		workspace.exportProject(projectSpace,
-			"/Network/Servers/macbruegge7.informatik.tu-muenchen.de/Volumes/raid/Users/hodaie/Desktop/testProj.ucp");
+		String path;
+		if (System.getProperty("os.name").toLowerCase().startsWith("win")) {
+			path = "C:\\Dokumente und Einstellungen\\Hodaie\\Desktop\\testProj.ucp";
+		} else {
+			path = "/Network/Servers/macbruegge7.informatik.tu-muenchen.de/Volumes/raid/Users/hodaie/Desktop/testProj.ucp";
+		}
+		workspace.exportProject(projectSpace, path);
 		System.out.println(project.getAllModelElements().size());
+		System.out.println();
 	}
 
 	/**

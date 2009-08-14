@@ -11,6 +11,11 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.edit.ui,
  org.unicase.emfstore.esmodel.edit,
  org.unicase.workspace.edit,
- org.eclipse.emf.transaction.ui
+ org.eclipse.emf.transaction.ui,
+ org.eclipse.ui.ide.application;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-ClassPath: .,
+ lib/jdmp-complete-0.1.1-apidocs.jar,
+ lib/jdmp-complete-0.1.1-sources.jar,
+ lib/jdmp-complete-0.1.1.jar
