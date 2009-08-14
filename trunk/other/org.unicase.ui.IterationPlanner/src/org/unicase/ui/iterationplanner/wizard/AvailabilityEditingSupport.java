@@ -1,11 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
- * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
- * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
- */
-
-/**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -27,10 +21,13 @@ public class AvailabilityEditingSupport extends EditingSupport {
 	private IterationPlanner iterationPlanner;
 
 	/**
-	 * @param viewer viewer
-	 * @param iterationPlanner iteration planner
+	 * @param viewer
+	 *            viewer
+	 * @param iterationPlanner
+	 *            iteration planner
 	 */
-	public AvailabilityEditingSupport(TableViewer viewer, IterationPlanner iterationPlanner) {
+	public AvailabilityEditingSupport(TableViewer viewer,
+			IterationPlanner iterationPlanner) {
 		super(viewer);
 		this.iterationPlanner = iterationPlanner;
 		this.textCellEditor = new TextCellEditor(viewer.getTable());
@@ -74,7 +71,8 @@ public class AvailabilityEditingSupport extends EditingSupport {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.jface.viewers.EditingSupport#setValue(java.lang.Object, java.lang.Object)
+	 * @see org.eclipse.jface.viewers.EditingSupport#setValue(java.lang.Object,
+	 *      java.lang.Object)
 	 */
 	@Override
 	protected void setValue(Object element, Object value) {
@@ -86,7 +84,8 @@ public class AvailabilityEditingSupport extends EditingSupport {
 		if (value instanceof String) {
 			String strValue = value.toString();
 			if (strValue.matches("[0-9]*")) {
-				iterationPlanner.setAvailability(user, Integer.parseInt(strValue));
+				iterationPlanner.setAvailability(user, Integer
+						.parseInt(strValue));
 				getViewer().refresh();
 			}
 		}

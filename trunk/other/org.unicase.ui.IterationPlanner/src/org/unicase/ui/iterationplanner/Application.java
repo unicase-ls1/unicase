@@ -17,14 +17,18 @@ public class Application implements IApplication {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @throws Exception exception
+	 * @throws Exception
+	 *             exception
 	 */
 	public Object start(IApplicationContext context) throws Exception {
 
-		// * 1. Import your data into a Matrix, e.g. from CSV, Excel, JDBC (raw data -> matrix)
-		// * 2. Analyze your data, e.g. classify, cluster, make predictions and get the results also as matices (matrix
+		// * 1. Import your data into a Matrix, e.g. from CSV, Excel, JDBC (raw
+		// data -> matrix)
+		// * 2. Analyze your data, e.g. classify, cluster, make predictions and
+		// get the results also as matices (matrix
 		// -> matrix)
-		// * 3. Export results to the format you need, e.g. JPG, Excel, Latex, GnuPlot (matrix -> desired format)
+		// * 3. Export results to the format you need, e.g. JPG, Excel, Latex,
+		// GnuPlot (matrix -> desired format)
 
 		// Create a DataSet.
 		// Split into training and test set.
@@ -48,7 +52,7 @@ public class Application implements IApplication {
 	 * {@inheritDoc}
 	 */
 	public void stop() {
-	// TODO Auto-generated method stub
+		// TODO Auto-generated method stub
 
 	}
 

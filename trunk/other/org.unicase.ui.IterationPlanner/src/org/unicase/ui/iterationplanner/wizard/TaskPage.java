@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -40,7 +40,8 @@ public class TaskPage extends WizardPage {
 	 * 
 	 * @author hodaie
 	 */
-	private final class WorkPackageTableContentProvider implements IStructuredContentProvider {
+	private final class WorkPackageTableContentProvider implements
+			IStructuredContentProvider {
 		@SuppressWarnings("unchecked")
 		public Object[] getElements(Object inputElement) {
 			if (inputElement instanceof List) {
@@ -49,9 +50,11 @@ public class TaskPage extends WizardPage {
 			return new Object[0];
 		}
 
-		public void dispose() {}
+		public void dispose() {
+		}
 
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {}
+		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		}
 	}
 
 	private IterationPlanner iterationPlanner;
@@ -60,7 +63,8 @@ public class TaskPage extends WizardPage {
 	/**
 	 * Constructor.
 	 * 
-	 * @param planner iteration planner.
+	 * @param planner
+	 *            iteration planner.
 	 */
 	protected TaskPage(IterationPlanner planner) {
 		super("task page");
@@ -79,24 +83,29 @@ public class TaskPage extends WizardPage {
 		contents.setLayout(new GridLayout(2, false));
 
 		Label lblLastSprint = new Label(contents, SWT.NONE);
-		lblLastSprint.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false, 2, 1));
+		lblLastSprint.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER,
+				false, false, 2, 1));
 		lblLastSprint
-			.setText("Select work packages to include in planning (you will be normally selecting project backlog and last sprint):");
+				.setText("Select work packages to include in planning (you will be normally selecting project backlog and last sprint):");
 
 		Button btnAdd = new Button(contents, SWT.PUSH);
-		btnAdd.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		btnAdd.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+				false));
 		btnAdd.setText("Add work package....");
 		btnAdd.addSelectionListener(new SelectionListener() {
 
-			public void widgetDefaultSelected(SelectionEvent e) {}
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
 
 			public void widgetSelected(SelectionEvent e) {
-				Object[] result = UnicaseUiUtil.showMESelectionDialog(getShell(), TaskPackage.eINSTANCE
-					.getWorkPackage(), WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-					.getProject(), true);
+				Object[] result = UnicaseUiUtil.showMESelectionDialog(
+						getShell(), TaskPackage.eINSTANCE.getWorkPackage(),
+						WorkspaceManager.getInstance().getCurrentWorkspace()
+								.getActiveProjectSpace().getProject(), true);
 				if (result.length > 0) {
 					for (int i = 0; i < result.length; i++) {
-						iterationPlanner.getWorkPackages().add((WorkPackage) result[i]);
+						iterationPlanner.getWorkPackages().add(
+								(WorkPackage) result[i]);
 					}
 				}
 				tableViewer.refresh();
@@ -105,14 +114,17 @@ public class TaskPage extends WizardPage {
 		});
 
 		Button btnRemove = new Button(contents, SWT.PUSH);
-		btnRemove.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		btnRemove.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+				false));
 		btnRemove.setText("Remove");
 		btnRemove.addSelectionListener(new SelectionListener() {
 
-			public void widgetDefaultSelected(SelectionEvent e) {}
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
 
 			public void widgetSelected(SelectionEvent e) {
-				IStructuredSelection sel = (IStructuredSelection) tableViewer.getSelection();
+				IStructuredSelection sel = (IStructuredSelection) tableViewer
+						.getSelection();
 				WorkPackage wp = (WorkPackage) sel.getFirstElement();
 				if (!wp.equals(iterationPlanner.getLastSprint())) {
 					iterationPlanner.getWorkPackages().remove(wp);
@@ -123,9 +135,11 @@ public class TaskPage extends WizardPage {
 		});
 
 		tableViewer = new TableViewer(contents, SWT.NONE);
-		tableViewer.getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-		tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		tableViewer.getTable().setLayoutData(
+				new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		tableViewer.setLabelProvider(new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 		tableViewer.setContentProvider(new WorkPackageTableContentProvider());
 		tableViewer.setInput(iterationPlanner.getWorkPackages());
 

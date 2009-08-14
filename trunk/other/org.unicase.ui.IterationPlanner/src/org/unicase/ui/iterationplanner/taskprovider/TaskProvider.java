@@ -1,9 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
 package org.unicase.ui.iterationplanner.taskprovider;
 
 import org.unicase.model.Annotation;
@@ -24,7 +23,8 @@ public class TaskProvider {
 	/**
 	 * sort tasks by priority.
 	 * 
-	 * @param tasks tasks
+	 * @param tasks
+	 *            tasks
 	 * @return sorted task list
 	 */
 	public List<WorkItem> sortByPriority(List<WorkItem> tasks) {
@@ -34,7 +34,8 @@ public class TaskProvider {
 	/**
 	 * extract list of work items form FRs.
 	 * 
-	 * @param frs a list of functional requirements
+	 * @param frs
+	 *            a list of functional requirements
 	 * @return a list of work items relating to these FRs.
 	 */
 	public List<WorkItem> getWorkItems(List<FunctionalRequirement> frs) {
@@ -44,7 +45,8 @@ public class TaskProvider {
 	/**
 	 * find an appropriate assignee for this task based on some criteria.
 	 * 
-	 * @param workItem task
+	 * @param workItem
+	 *            task
 	 * @return appropriate assignee for this task.
 	 */
 	public User findAppropriateAssignee(WorkItem workItem) {
@@ -53,11 +55,13 @@ public class TaskProvider {
 	}
 
 	/**
-	 * Finds expertise of a user regarding a task. Expertise is number of related tasks which have this user as
-	 * assignee.
+	 * Finds expertise of a user regarding a task. Expertise is number of
+	 * related tasks which have this user as assignee.
 	 * 
-	 * @param assignee assignee
-	 * @param task task
+	 * @param assignee
+	 *            assignee
+	 * @param task
+	 *            task
 	 * @return int
 	 */
 	public int getExpertise(WorkItem task, User assignee) {
