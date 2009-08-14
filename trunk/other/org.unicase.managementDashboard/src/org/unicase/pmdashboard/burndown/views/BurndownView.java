@@ -1,10 +1,11 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.pmdashboard.burndown.views;
 
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.task.WorkPackage;
@@ -20,7 +21,6 @@ public class BurndownView extends ViewPart {
 	 */
 	public static final String ID = "org.unicase.managementDashboard.views.BurndownView";
 	
-	private Composite burndownChart;
 	private Composite parent;
 	
 	/**
@@ -31,6 +31,7 @@ public class BurndownView extends ViewPart {
 	@Override
 	public void createPartControl(Composite parent) {
 		this.parent = parent;
+		this.parent.setLayout(new FillLayout());
 	}
 	
 	/**
@@ -48,7 +49,6 @@ public class BurndownView extends ViewPart {
 	 */
 	@Override
 	public void setFocus() {
-		this.burndownChart.setFocus();
 	}
 
 }

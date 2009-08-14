@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -10,8 +10,8 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Label;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;
@@ -50,21 +50,22 @@ public class BurndownChartComposite extends Composite {
 	 */
 	BurndownChartComposite(WorkPackage sprint, Composite parent) {
 		super(parent, 0);
-		this.getParent().setLayout(new FillLayout());
 		
 		JFreeChart chart;
 		try {
 			chart = createChart(sprint);
-			final ChartComposite frame = new ChartComposite(this.getParent(), SWT.NONE, chart,
+			final ChartComposite frame = new ChartComposite(this, SWT.NONE, chart,
 					true);
 					frame.pack();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IteratorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (Exception e) {
+			// show the exception as content
+			final Label exceptionLabel = new Label(this, SWT.NONE);
+			exceptionLabel.setText(e.getLocalizedMessage());
 		}
+		// END SUPRESS CATCH EXCEPTION
+		
+		this.pack();
 	}
 	
 	/**
