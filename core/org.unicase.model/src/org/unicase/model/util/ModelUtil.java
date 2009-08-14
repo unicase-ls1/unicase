@@ -40,7 +40,10 @@ import org.unicase.model.Project;
  */
 public final class ModelUtil {
 
-	private static final URI VIRTUAL_URI = URI.createURI("virtualUnicaseUri");
+	/**
+	 * URI used to serialize EObject with the model util.
+	 */
+	public static final URI VIRTUAL_URI = URI.createURI("virtualUnicaseUri");
 
 	/**
 	 * Private constructor.
