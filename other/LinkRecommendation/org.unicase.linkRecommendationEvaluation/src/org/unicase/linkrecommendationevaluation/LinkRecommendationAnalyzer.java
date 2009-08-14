@@ -69,7 +69,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		ALL, RESULTS, FAILS, APPLY, NOTHING
 	}
 
-	private final DEBUGMODE debug = DEBUGMODE.NOTHING;
+	private final DEBUGMODE debug = DEBUGMODE.FAILS;
 
 	private Project clonedProject;
 

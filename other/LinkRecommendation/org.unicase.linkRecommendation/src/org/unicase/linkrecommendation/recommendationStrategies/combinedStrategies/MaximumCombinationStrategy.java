@@ -54,4 +54,14 @@ public class MaximumCombinationStrategy extends AbstractCombinationStrategy {
 		return map1;
 	}
 
+	/**
+	 * The name.
+	 * 
+	 * @return name
+	 * @see org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.AbstractCombinationStrategy#getName()
+	 */
+	@Override
+	public String getName() {
+		return "Max. " + super.getName();
+	}
 }
