@@ -14,10 +14,15 @@ import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSetSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffElement;
+import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
+import org.eclipse.emf.compare.diff.metamodel.DiffResourceSet;
 import org.eclipse.emf.compare.diff.service.DiffService;
+import org.eclipse.emf.compare.match.metamodel.MatchFactory;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
+import org.eclipse.emf.compare.match.metamodel.MatchResourceSet;
 import org.eclipse.emf.compare.match.service.MatchService;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -48,6 +53,8 @@ public class CompareTest {
 	private LeafSection functionalRequirementsSection;
 	private LeafSection nonFunctionalRequirementsSection;
 	private ResourceSet resourceSet;
+	private Resource resource2;
+	private Resource resource1;
 
 	/**
 	 * Setup the two projects for comparison.
@@ -58,10 +65,9 @@ public class CompareTest {
 	public void setup() throws IOException {
 		resourceSet = new ResourceSetImpl();
 		URI fileURI1 = URI.createFileURI(Configuration.getWorkspaceDirectory() + "projectState1.upf");
-		Resource resource1 = resourceSet.createResource(fileURI1);
+		resource1 = resourceSet.createResource(fileURI1);
 		project1 = ModelFactory.eINSTANCE.createProject();
 		resource1.getContents().add(project1);
-		resource1.save(null);
 
 		CompositeSection rad = DocumentFactory.eINSTANCE.createCompositeSection();
 		rad.setName("Requirements Analysis Document");
@@ -91,9 +97,10 @@ public class CompareTest {
 		NonFunctionalRequirement nfr = RequirementFactory.eINSTANCE.createNonFunctionalRequirement();
 		nfr.setName("NFR");
 		nonFunctionalRequirementsSection.getModelElements().add(nfr);
+		resource1.save(null);
 
 		URI fileURI2 = URI.createFileURI(Configuration.getWorkspaceDirectory() + "projectState2.upf");
-		Resource resource2 = resourceSet.createResource(fileURI2);
+		resource2 = resourceSet.createResource(fileURI2);
 		project2 = ModelUtil.clone(project1);
 		resource2.getContents().add(project2);
 		resource2.save(null);
@@ -106,6 +113,9 @@ public class CompareTest {
 	public void tearDown() {
 		project1 = null;
 		project2 = null;
+		resource1 = null;
+		resource2 = null;
+		resourceSet = null;
 	}
 
 	/**
@@ -138,13 +148,22 @@ public class CompareTest {
 		NonFunctionalRequirement nfr2 = RequirementFactory.eINSTANCE.createNonFunctionalRequirement();
 		nfr2.setName("NFR2");
 		nonFunctionalRequirementsSection.getModelElements().add(nfr2);
+		resource1.save(null);
 
 		MatchModel match = MatchService.doMatch(project1, project2, Collections.<String, Object> emptyMap());
 		DiffModel diff = DiffService.doDiff(match, false);
 
 		URI fileURI2 = URI.createFileURI(Configuration.getWorkspaceDirectory() + "diffModel.emfdiff");
 		Resource diffResource = resourceSet.createResource(fileURI2);
-		diffResource.getContents().add(diff);
+		DiffResourceSet diffSet = DiffFactory.eINSTANCE.createDiffResourceSet();
+		diffSet.getDiffModels().add(diff);
+		MatchResourceSet matchSet = MatchFactory.eINSTANCE.createMatchResourceSet();
+		matchSet.getMatchModels().add(match);
+		ComparisonResourceSetSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSetSnapshot();
+		snapshot.setDiffResourceSet(diffSet);
+		snapshot.setMatchResourceSet(matchSet);
+
+		diffResource.getContents().add(snapshot);
 		diffResource.save(null);
 
 		List<DiffElement> differences = new ArrayList<DiffElement>(diff.getOwnedElements());
