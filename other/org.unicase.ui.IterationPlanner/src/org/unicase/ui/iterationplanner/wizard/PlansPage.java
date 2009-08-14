@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -24,7 +24,8 @@ public class PlansPage extends WizardPage {
 	/**
 	 * Constructor.
 	 * 
-	 * @param planner iteration planner
+	 * @param planner
+	 *            iteration planner
 	 */
 	public PlansPage(IterationPlanner planner) {
 		super("plans page");
@@ -40,9 +41,11 @@ public class PlansPage extends WizardPage {
 		Composite contents = new Composite(parent, SWT.NONE);
 
 		Label lblPlan = new Label(contents, SWT.NONE);
-		lblPlan.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
-		lblPlan.setText("Select a plan to see. To change the plan move tasks usng drag and drop."
-			+ " Tasks are sorted based on their priority and those marked red exceed assignee's availability.");
+		lblPlan.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+				false));
+		lblPlan
+				.setText("Select a plan to see. To change the plan move tasks usng drag and drop."
+						+ " Tasks are sorted based on their priority and those marked red exceed assignee's availability.");
 
 		setControl(contents);
 

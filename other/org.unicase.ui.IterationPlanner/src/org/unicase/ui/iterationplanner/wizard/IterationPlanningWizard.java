@@ -1,9 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
 package org.unicase.ui.iterationplanner.wizard;
 
 import org.eclipse.jface.wizard.Wizard;
@@ -33,7 +32,8 @@ public class IterationPlanningWizard extends Wizard {
 	@Override
 	public void addPages() {
 		// 1. page: set sprint attributes, name, start/end date, predecessor
-		SprintAttributesPage sprintAttributesPage = new SprintAttributesPage(iterationPlanner);
+		SprintAttributesPage sprintAttributesPage = new SprintAttributesPage(
+				iterationPlanner);
 		addPage(sprintAttributesPage);
 
 		// 2. page: last sprint, select backlog or other work packages
@@ -41,7 +41,8 @@ public class IterationPlanningWizard extends Wizard {
 		addPage(tasksPage);
 
 		// 3. page: select requirements
-		RequirementsPage requirementsPage = new RequirementsPage(iterationPlanner);
+		RequirementsPage requirementsPage = new RequirementsPage(
+				iterationPlanner);
 		addPage(requirementsPage);
 
 		// 4. page: select assignees

@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -31,7 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * In this page we can select requirements which should be implemented in this sprint.
+ * In this page we can select requirements which should be implemented in this
+ * sprint.
  * 
  * @author hodaie
  */
@@ -49,13 +50,16 @@ public class RequirementsPage extends WizardPage {
 			return new Object[0];
 		}
 
-		public void dispose() {}
+		public void dispose() {
+		}
 
-		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {}
+		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+		}
 
 		public Object[] getChildren(Object parentElement) {
 			if (parentElement instanceof FunctionalRequirement) {
-				return ((FunctionalRequirement) parentElement).getRefiningRequirements().toArray();
+				return ((FunctionalRequirement) parentElement)
+						.getRefiningRequirements().toArray();
 			}
 			return null;
 		}
@@ -69,7 +73,8 @@ public class RequirementsPage extends WizardPage {
 
 		public boolean hasChildren(Object element) {
 			if (element instanceof FunctionalRequirement) {
-				return ((FunctionalRequirement) element).getRefiningRequirements().size() > 0;
+				return ((FunctionalRequirement) element)
+						.getRefiningRequirements().size() > 0;
 			}
 			return false;
 		}
@@ -81,7 +86,8 @@ public class RequirementsPage extends WizardPage {
 	/**
 	 * Constructor.
 	 * 
-	 * @param planner iteration planner
+	 * @param planner
+	 *            iteration planner
 	 */
 	RequirementsPage(IterationPlanner planner) {
 		super("requirements page");
@@ -99,14 +105,19 @@ public class RequirementsPage extends WizardPage {
 		contents.setLayout(new GridLayout());
 
 		Label lblReq = new Label(contents, SWT.NONE);
-		lblReq.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
-		lblReq.setText("Select functional requirements which should be implemented in this sprint:");
+		lblReq.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+				false));
+		lblReq
+				.setText("Select functional requirements which should be implemented in this sprint:");
 
 		Label label = new Label(contents, SWT.NONE);
-		label.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false));
+		label.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
+				false));
 
-		treeViewer = new CheckboxTreeViewer(contents, SWT.BORDER | SWT.FULL_SELECTION);
-		treeViewer.getTree().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		treeViewer = new CheckboxTreeViewer(contents, SWT.BORDER
+				| SWT.FULL_SELECTION);
+		treeViewer.getTree().setLayoutData(
+				new GridData(SWT.FILL, SWT.FILL, true, true));
 		treeViewer.getTree().setHeaderVisible(true);
 
 		treeViewer.addCheckStateListener(new ICheckStateListener() {
@@ -117,7 +128,8 @@ public class RequirementsPage extends WizardPage {
 				} else {
 					treeViewer.setSubtreeChecked(event.getElement(), false);
 				}
-				RequirementsPage.this.getWizard().getContainer().updateButtons();
+				RequirementsPage.this.getWizard().getContainer()
+						.updateButtons();
 			}
 		});
 
@@ -136,7 +148,8 @@ public class RequirementsPage extends WizardPage {
 
 		});
 
-		TreeViewerColumn clmPriority = new TreeViewerColumn(treeViewer, SWT.NONE);
+		TreeViewerColumn clmPriority = new TreeViewerColumn(treeViewer,
+				SWT.NONE);
 		clmPriority.getColumn().setText("Priority");
 		clmPriority.getColumn().setWidth(100);
 		ColumnLabelProvider priorityLabelProvider = new ColumnLabelProvider() {
@@ -151,7 +164,8 @@ public class RequirementsPage extends WizardPage {
 
 		};
 		clmPriority.setLabelProvider(priorityLabelProvider);
-		TreeViewerColumnSorter sorter = new TreeViewerColumnSorter(treeViewer, clmPriority, priorityLabelProvider);
+		TreeViewerColumnSorter sorter = new TreeViewerColumnSorter(treeViewer,
+				clmPriority, priorityLabelProvider);
 		treeViewer.setComparator(sorter);
 
 		treeViewer.setContentProvider(new TreeContentProvider());
@@ -166,9 +180,14 @@ public class RequirementsPage extends WizardPage {
 	 */
 	private List<FunctionalRequirement> getFirsLevelFunctionalRequirments() {
 		List<FunctionalRequirement> result = new ArrayList<FunctionalRequirement>();
-		List<FunctionalRequirement> allFRs = WorkspaceManager.getInstance().getCurrentWorkspace()
-			.getActiveProjectSpace().getProject().getAllModelElementsbyClass(
-				RequirementPackage.eINSTANCE.getFunctionalRequirement(), new BasicEList<FunctionalRequirement>());
+		List<FunctionalRequirement> allFRs = WorkspaceManager
+				.getInstance()
+				.getCurrentWorkspace()
+				.getActiveProjectSpace()
+				.getProject()
+				.getAllModelElementsbyClass(
+						RequirementPackage.eINSTANCE.getFunctionalRequirement(),
+						new BasicEList<FunctionalRequirement>());
 
 		for (FunctionalRequirement fr : allFRs) {
 			if (fr.getRefinedRequirement() == null) {

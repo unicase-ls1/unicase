@@ -1,11 +1,9 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 package org.unicase.ui.iterationplanner.wizard;
-
-
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -32,154 +30,167 @@ import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Sprint attributes page.
+ * 
  * @author hodaie
- *
+ * 
  */
 public class SprintAttributesPage extends WizardPage implements Listener {
-
 
 	private IterationPlanner iterationPlanner;
 	private Text txtSprintName;
 	private Text txtStartDate;
 	private Text txtEndDate;
 	private Text txtPredecessor;
-	
 
 	/**
 	 * Constructor.
-	 * @param planner iteration planner
+	 * 
+	 * @param planner
+	 *            iteration planner
 	 */
-	public SprintAttributesPage(IterationPlanner planner){
+	public SprintAttributesPage(IterationPlanner planner) {
 		super("sprint attributes page");
 		this.iterationPlanner = planner;
 	}
-	
+
 	/**
 	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.wizard.WizardPage#canFlipToNextPage()
 	 */
 	@Override
 	public boolean canFlipToNextPage() {
-		return !txtPredecessor.getText().equals("") && !txtSprintName.getText().equals("") && txtStartDate.getText() != "" && txtEndDate.getText() != "";
+		return !txtPredecessor.getText().equals("")
+				&& !txtSprintName.getText().equals("")
+				&& txtStartDate.getText() != "" && txtEndDate.getText() != "";
 	}
 
 	/**
 	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
-		
+
 		Composite contents = new Composite(parent, SWT.NONE);
-		
+
 		contents.setLayout(new GridLayout(3, false));
-	
+
 		Label lblPred = new Label(contents, SWT.NONE);
 		lblPred.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
 				false));
 		lblPred.setText("Predecessor:");
-		
+
 		txtPredecessor = new Text(contents, SWT.BORDER);
 		txtPredecessor.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
 				false));
 		txtPredecessor.setText("");
 		txtPredecessor.setEnabled(false);
-		
+
 		Button btnPredecessor = new Button(contents, SWT.PUSH);
-		btnPredecessor.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
-				false));
+		btnPredecessor.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER,
+				false, false));
 		btnPredecessor.setText("Select...");
-		btnPredecessor.addSelectionListener(new SelectionListener(){
+		btnPredecessor.addSelectionListener(new SelectionListener() {
 
 			public void widgetDefaultSelected(SelectionEvent e) {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				Object[] result = UnicaseUiUtil.showMESelectionDialog(getShell(), TaskPackage.eINSTANCE.getWorkPackage(), WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject(), false);
-				if(result.length > 0){
-					iterationPlanner.setLastSprint((WorkPackage)result[0]);
-					txtPredecessor.setText(((WorkPackage)result[0]).getName());
-					txtStartDate.setText(iterationPlanner.getLastSprint().getEndDate().toString());
-					txtEndDate.setText(getEndDate(iterationPlanner.getLastSprint()).toString());
+				Object[] result = UnicaseUiUtil.showMESelectionDialog(
+						getShell(), TaskPackage.eINSTANCE.getWorkPackage(),
+						WorkspaceManager.getInstance().getCurrentWorkspace()
+								.getActiveProjectSpace().getProject(), false);
+				if (result.length > 0) {
+					iterationPlanner.setLastSprint((WorkPackage) result[0]);
+					txtPredecessor.setText(((WorkPackage) result[0]).getName());
+					txtStartDate.setText(iterationPlanner.getLastSprint()
+							.getEndDate().toString());
+					txtEndDate.setText(getEndDate(
+							iterationPlanner.getLastSprint()).toString());
 				}
 			}
-			
+
 		});
-		
-		
-		
-		//sprint name
-		Label lblSprintName = new Label(
-				contents, SWT.NONE);
-		lblSprintName.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
-				false));
+
+		// sprint name
+		Label lblSprintName = new Label(contents, SWT.NONE);
+		lblSprintName.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER,
+				false, false));
 		lblSprintName.setText("Sprint name:");
-		
+
 		txtSprintName = new Text(contents, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
-		txtSprintName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		txtSprintName.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+				false, 2, 1));
 		txtSprintName.setText("");
 		txtSprintName.addListener(SWT.KeyUp, this);
-		
-		//sprint start date
+
+		// sprint start date
 		Label lblStartDate = new Label(contents, SWT.NONE);
-		lblStartDate.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
-				false));
+		lblStartDate.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER,
+				false, false));
 		lblStartDate.setText("Start date:");
-		
+
 		txtStartDate = new Text(contents, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
-		txtStartDate.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 2, 1));
+		txtStartDate.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false,
+				false, 2, 1));
 		txtStartDate.setText("");
 		txtStartDate.addListener(SWT.Modify, this);
-		
-		//sprint end date
+
+		// sprint end date
 		Label lblEndDate = new Label(contents, SWT.NONE);
 		lblEndDate.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false,
 				false));
 		lblEndDate.setText("End date: ");
-		
+
 		txtEndDate = new Text(contents, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
-		txtEndDate.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 2, 1));
+		txtEndDate.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true,
+				false, 2, 1));
 		txtEndDate.setText("");
 		txtEndDate.addListener(SWT.Modify, this);
-		
+
 		setControl(contents);
 		setPageComplete(true);
-		
-		
+
 	}
 
 	/**
 	 * 
-	 * @param lastSprint 
+	 * @param lastSprint
 	 * @return
 	 */
 	private Date getEndDate(WorkPackage lastSprint) {
 		long lastSprintEnd = lastSprint.getEndDate().getTime();
-		long lastSprintDuration = lastSprint.getEndDate().getTime() - lastSprint.getStartDate().getTime();
+		long lastSprintDuration = lastSprint.getEndDate().getTime()
+				- lastSprint.getStartDate().getTime();
 		long endDate = lastSprintEnd + lastSprintDuration;
 		Date ret = new Date(endDate);
-				
+
 		return ret;
-		
+
 	}
 
 	/**
 	 * 
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.wizard.WizardPage#getNextPage()
 	 */
 	@Override
 	public IWizardPage getNextPage() {
 		iterationPlanner.getSprint().setName(txtSprintName.getText());
 		try {
-			iterationPlanner.getSprint().setStartDate(DateFormat.getInstance().parse(txtStartDate.getText()));
-			iterationPlanner.getSprint().setEndDate(DateFormat.getInstance().parse(txtEndDate.getText()));
-		
+			iterationPlanner.getSprint().setStartDate(
+					DateFormat.getInstance().parse(txtStartDate.getText()));
+			iterationPlanner.getSprint().setEndDate(
+					DateFormat.getInstance().parse(txtEndDate.getText()));
+
 		} catch (ParseException e) {
 			e.printStackTrace();
 		}
-		
+
 		return super.getNextPage();
 	}
 
@@ -191,8 +202,5 @@ public class SprintAttributesPage extends WizardPage implements Listener {
 	public void handleEvent(Event event) {
 		getWizard().getContainer().updateButtons();
 	}
-
-	
-	
 
 }

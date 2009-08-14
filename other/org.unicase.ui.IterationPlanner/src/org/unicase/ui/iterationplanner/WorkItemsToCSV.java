@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.ui.iterationplanner;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -33,9 +38,10 @@ public class WorkItemsToCSV {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @throws Exception exception
+	 * @throws Exception
+	 *             exception
 	 */
-	public void outputWorkItems() throws Exception {
+	public void outputWorkItems()  {
 
 		FileWriter fileWriter = null;
 		try {
@@ -46,13 +52,22 @@ public class WorkItemsToCSV {
 
 		printCSVHeader(fileWriter);
 
-		List<WorkItem> workItems = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
-			.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(), new BasicEList<WorkItem>());
+		List<WorkItem> workItems = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getActiveProjectSpace().getProject()
+				.getAllModelElementsbyClass(
+						TaskPackage.eINSTANCE.getWorkItem(),
+						new BasicEList<WorkItem>());
 
 		printWorkItems(workItems, fileWriter);
 
-		fileWriter.flush();
-		fileWriter.close();
+		try {
+			fileWriter.flush();
+				fileWriter.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	
 
 	}
 
@@ -182,7 +197,8 @@ public class WorkItemsToCSV {
 		List<EStructuralFeature> result = new ArrayList<EStructuralFeature>();
 		result.add(ModelPackage.eINSTANCE.getModelElement_Name());
 		result.add(ModelPackage.eINSTANCE.getModelElement_Description());
-		result.add(ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements());
+		result.add(ModelPackage.eINSTANCE
+				.getAnnotation_AnnotatedModelElements());
 		result.add(TaskPackage.eINSTANCE.getWorkItem_Predecessors());
 		result.add(TaskPackage.eINSTANCE.getWorkItem_Assignee());
 		return result;

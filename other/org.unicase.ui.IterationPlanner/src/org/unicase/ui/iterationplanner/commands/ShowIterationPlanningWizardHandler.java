@@ -1,9 +1,8 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-
 package org.unicase.ui.iterationplanner.commands;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -26,25 +25,24 @@ public class ShowIterationPlanningWizardHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		// try {
 		// @SuppressWarnings("unused")
-		// Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject();
+		// Project project =
+		// WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject();
 		// } catch (NullPointerException e) {
-		// MessageDialog.openWarning(Display.getCurrent().getActiveShell(), "No Project selected",
+		// MessageDialog.openWarning(Display.getCurrent().getActiveShell(),
+		// "No Project selected",
 		// "Pleas select a project.");
 		// return null;
 		// }
 		// IterationPlanningWizard wizard = new IterationPlanningWizard();
-		// WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+		// WizardDialog wizardDialog = new
+		// WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
 		// wizard);
 		// wizardDialog.create();
 		// wizardDialog.open();
 
 		WorkItemsToCSV wiToCVS = new WorkItemsToCSV();
-		try {
-			wiToCVS.outputWorkItems();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		wiToCVS.outputWorkItems();
+		
 		return null;
 	}
 }
