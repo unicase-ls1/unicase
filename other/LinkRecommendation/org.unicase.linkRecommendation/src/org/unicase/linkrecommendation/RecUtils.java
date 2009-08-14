@@ -18,7 +18,7 @@ import org.unicase.model.ModelElement;
  * 
  * @author henning
  */
-public abstract class RecUtils {
+public class RecUtils {
 
 	private static String[] iSTOPWORDS = new String[] { " ", "null", "to", "yet", "will", "which", "within", "without",
 		"how", "if", "it", "has", "have", "about", "also", "an", "at", "by", "for", "of", "on", "and", "or", "the",
@@ -39,6 +39,13 @@ public abstract class RecUtils {
 		iSTEMMAP.put("ings", ""); // meetings -> meet
 		// ly, ally
 		// er : shopper, shopping -> shop
+	}
+
+	/**
+	 * Prevents calls from subclasses.
+	 */
+	protected RecUtils() {
+		throw new UnsupportedOperationException();
 	}
 
 	/**

@@ -16,8 +16,8 @@ import org.unicase.model.ModelElement;
 public interface RecommendationStrategy {
 
 	/**
-	 * This method calculates the arithmetic average of all results of the managers matchingStrategies and returns a
-	 * hashmap of all values above the threshold.
+	 * This method returns value pairs (ModelElement, Double) which indicate how probable a certain element might be
+	 * linked.
 	 * 
 	 * @param base The ModelElement which is compared to the rest
 	 * @param elements The potential elements linked to the base

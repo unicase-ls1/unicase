@@ -20,9 +20,9 @@ import org.unicase.model.ModelElement;
 @Deprecated
 public class WordFrequencyRecommendationStrategy extends AbstractRecommendationStrategy {
 
-	private static String[] IGNORE_WORDS = new String[] { "of", "on", "and", "or", "the", "this", "them", "not", "is",
+	private static String[] iIGNOREWORDS = new String[] { "of", "on", "and", "or", "the", "this", "them", "not", "is",
 		"a", "we", "should", "be", "are", "he", "his", "in" };
-	private static char[] IGNORE_CHARS = new char[] { '.', '!', ':', '?', '"', '(', ')', '-', ';' };
+	private static char[] iIGNORECHARS = new char[] { '.', '!', ':', '?', '"', '(', ')', '-', ';' };
 
 	/**
 	 * Contructor.
@@ -144,7 +144,7 @@ public class WordFrequencyRecommendationStrategy extends AbstractRecommendationS
 
 		text.toLowerCase();
 
-		for (char c : IGNORE_CHARS) {
+		for (char c : iIGNORECHARS) {
 			text = text.replace(c, ' ');
 		}
 		return text.split(" ");
@@ -155,7 +155,7 @@ public class WordFrequencyRecommendationStrategy extends AbstractRecommendationS
 
 		TreeSet<String> set = new TreeSet<String>();
 		for (String word : words) {
-			if (!contains(IGNORE_WORDS, word)) {
+			if (!contains(iIGNOREWORDS, word)) {
 				set.add(word);
 			}
 		}
