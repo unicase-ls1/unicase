@@ -18,7 +18,7 @@ import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 
-/**
+/** Be careful! The Date of Version 0 might not be correct!
  * @author liya
  *
  */
@@ -32,8 +32,8 @@ public class DateWriter implements DataAnalyzer {
 	 * Constructor of DateWriter.
 	 * @param projectIterator VersionIterator
 	 */
-	public DateWriter(VersionIterator projectIterator){
-		this.projectIterator = projectIterator;
+	public DateWriter(){
+//		this.projectIterator = projectIterator;
 		this.date = new Date();
 		this.format = new SimpleDateFormat("EEE d MMM yyyy HH:mm:ss Z");
 		this.calendar = Calendar.getInstance();
@@ -56,12 +56,13 @@ public class DateWriter implements DataAnalyzer {
 	 */
 	public List<Object> getValue(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
-		if(projectIterator instanceof TimeIterator){
-			TimeIterator it = (TimeIterator) projectIterator;
-			//FIXME add the getDateSpec()
-			//calendar.setTime(it.getDateSpec().getDate());
-		}
-		else{
+//		if(projectIterator instanceof TimeIterator){
+//			TimeIterator it = (TimeIterator) projectIterator;
+			//FIXME add the getDateSpec()  method in TimeIterator 
+			//This writes the time from the iterator, instead of version
+			//calendar.setTime(it.getDateSpec().getDate()); 
+//		}
+//		else{
 			List<ChangePackage> changepackages = data.getChangePackages();
 			if(data.getChangePackages() != null && data.getChangePackages().size() != 0) {
 				ChangePackage changePackage = changepackages.get(changepackages.size()-1);
@@ -69,7 +70,7 @@ public class DateWriter implements DataAnalyzer {
 					setTime(changePackage);
 				}
 			}
-		}
+//		}
 		date = calendar.getTime();
 		values.add(format.format(date));
 		return values;
