@@ -162,6 +162,7 @@ public class CompareTest {
 		ComparisonResourceSetSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSetSnapshot();
 		snapshot.setDiffResourceSet(diffSet);
 		snapshot.setMatchResourceSet(matchSet);
+		// ModelUtils.save(snapshot, "diffModel.emfdiff");
 
 		diffResource.getContents().add(snapshot);
 		diffResource.save(null);
