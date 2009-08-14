@@ -25,8 +25,13 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.linkrecommendation.recommendationStrategies.LSIStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RelatedAssigneesRecommendation;
+import org.unicase.linkrecommendation.recommendationStrategies.SharedReferencesRecommendation;
+import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.ArithmeticMeanCombinationStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.MaximumCombinationStrategy;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
@@ -79,15 +84,22 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		thresholds = new Double[] { 0.1, 0.35, 0.7 };
 		// thresholds = new Double[] { 0.35 };
 
-		strategies = new RecommendationStrategy[] { new RelatedAssigneesRecommendation() };
+		// strategies = new RecommendationStrategy[] { new RelatedAssigneesRecommendation() };
 		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy() };
 		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(),
 		// new SharedReferencesRecommendation(1), new SharedReferencesRecommendation(2),
 		// new SharedReferencesRecommendation(3) };
 		// strategies = new RecommendationStrategy[] { new LSIStrategy(0.2), new LSIStrategy(0.4), new LSIStrategy(0.6),
 		// new LSIStrategy(0.8) };
-		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(), new LSIStrategy(0.9),
-		// new RelatedAssigneesRecommendation(), new SharedReferencesRecommendation(2) };
+		strategies = new RecommendationStrategy[] {
+			new VectorSpaceModelStrategy(),
+			new LSIStrategy(0.9),
+			new RelatedAssigneesRecommendation(),
+			new SharedReferencesRecommendation(2),
+			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new RelatedAssigneesRecommendation()),
+			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(2)),
+			new MaximumCombinationStrategy(new VectorSpaceModelStrategy(), new RelatedAssigneesRecommendation()),
+			new MaximumCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(2)) };
 
 		addRelevants();
 	}
