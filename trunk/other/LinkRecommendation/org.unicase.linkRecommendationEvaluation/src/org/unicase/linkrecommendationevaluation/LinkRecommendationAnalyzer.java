@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -12,16 +12,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
@@ -31,7 +26,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
-import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.RelatedAssigneesRecommendation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
@@ -56,6 +51,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	private double[][] foundAndRec;
 	private int[][] hits;
 	private int countSuggestions;
+	private int step;
 
 	private RecommendationStrategy[] strategies;
 
@@ -65,27 +61,33 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	 * @author Henning Femmer
 	 */
 	private enum DEBUGMODE {
-		ALL, FAILS, APPLY, NOTHING
+		ALL, RESULTS, FAILS, APPLY, NOTHING
 	}
 
-	private final DEBUGMODE debug = DEBUGMODE.APPLY;
+	private final DEBUGMODE debug = DEBUGMODE.NOTHING;
 
 	private Project clonedProject;
 
-	private final boolean ANALYSE_STEPBYSTEP = true;
+	private final boolean analyseStepByStep = true;
 
 	/**
 	 * The constructor.
 	 */
 	public LinkRecommendationAnalyzer() {
-		thresholds = new Double[] { 0.1, 0.2, 0.35, 0.5, 0.7 };
-		// thresholds = new Double[] { 0.2 };
+		step = 0;
 
-		strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy() };
+		thresholds = new Double[] { 0.1, 0.35, 0.7 };
+		// thresholds = new Double[] { 0.35 };
+
+		strategies = new RecommendationStrategy[] { new RelatedAssigneesRecommendation() };
+		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy() };
+		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(),
+		// new SharedReferencesRecommendation(1), new SharedReferencesRecommendation(2),
+		// new SharedReferencesRecommendation(3) };
 		// strategies = new RecommendationStrategy[] { new LSIStrategy(0.2), new LSIStrategy(0.4), new LSIStrategy(0.6),
 		// new LSIStrategy(0.8) };
-		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(), new LSIStrategy(0.2),
-		// new LSIStrategy(0.4), new LSIStrategy(0.6), new LSIStrategy(0.8) };
+		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(), new LSIStrategy(0.9),
+		// new RelatedAssigneesRecommendation(), new SharedReferencesRecommendation(2) };
 
 		addRelevants();
 	}
@@ -98,6 +100,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	 */
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
+		names.add("Step");
 		names.add("#Elements");
 
 		for (int i = 0; i < strategies.length; i++) {
@@ -137,10 +140,14 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	 * @return a list of text elements.
 	 */
 	public List<Object> getValue(ProjectAnalysisData data) {
+
 		List<Object> results = new ArrayList<Object>();
+		results.add(step);
+		step++;
+
 		initializeVariables();
 
-		if (ANALYSE_STEPBYSTEP) {
+		if (analyseStepByStep) {
 			analyseStepByStep(data, results);
 		} else {
 			analyzeEntireProject(data, results);
@@ -197,7 +204,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 			// redraw the changes in the project
 			if (operation.canApply(clonedProject)) {
 				operation.apply(clonedProject);
-				if (debug == DEBUGMODE.APPLY) {
+				if (debug == DEBUGMODE.APPLY || debug == DEBUGMODE.ALL) {
 					System.out.println("Apply: " + operation.getName());
 				}
 			} else if (debug == DEBUGMODE.APPLY || debug == DEBUGMODE.ALL) {
@@ -230,7 +237,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 			}
 
 			// Debug-Output:
-			if (debug == DEBUGMODE.ALL) {
+			if (debug == DEBUGMODE.RESULTS || debug == DEBUGMODE.ALL) {
 				printDebugOutput(base, eReference, correctMEs, relevanceMap);
 			}
 		}
@@ -432,98 +439,10 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		}
 	}
 
-	public TreeIterator<EObject> eAllContents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EClass eClass() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EObject eContainer() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EStructuralFeature eContainingFeature() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EReference eContainmentFeature() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EList<EObject> eContents() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public EList<EObject> eCrossReferences() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Object eGet(EStructuralFeature feature) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Object eGet(EStructuralFeature feature, boolean resolve) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean eIsProxy() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public boolean eIsSet(EStructuralFeature feature) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public Resource eResource() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void eSet(EStructuralFeature feature, Object newValue) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void eUnset(EStructuralFeature feature) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public EList<Adapter> eAdapters() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public boolean eDeliver() {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	public void eNotify(Notification notification) {
-		// TODO Auto-generated method stub
-
-	}
-
-	public void eSetDeliver(boolean deliver) {
-		// TODO Auto-generated method stub
-
-	}
-
+	/**
+	 * @return false
+	 */
 	public boolean isExportOnce() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 }

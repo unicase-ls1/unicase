@@ -9,8 +9,6 @@
  */
 package org.unicase.linkrecommendation.test;
 
-import java.text.NumberFormat;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.unicase.linkrecommendation.TDFrequencyMatrix;
@@ -43,9 +41,7 @@ public class LSITest {
 			{ 0.0, 0.3298769722417042, 0.5743491727526943, 0.7944178780622027, 1.0 }, { 0.0, 0.25, 0.5, 0.75, 1.0 } };
 		Matrix x = new Matrix(vals);
 		SingularValueDecomposition svd = new SingularValueDecomposition(x);
-		Matrix u = svd.getU();
 		Matrix s = svd.getS();
-		Matrix v = svd.getV();
 
 		double eps = 0.001;
 		Assert.assertTrue(Math.abs(s.get(0, 0) - 4.0143) <= eps);
@@ -88,18 +84,5 @@ public class LSITest {
 			}
 		}
 		return true;
-	}
-
-	private String matrixToString(Matrix m) {
-		NumberFormat n = NumberFormat.getInstance();
-		n.setMaximumFractionDigits(2);
-		String s = "";
-		for (int col = 0; col < m.getColumnDimension(); col++) {
-			for (int row = 0; row < m.getRowDimension(); row++) {
-				s += n.format(m.get(row, col)) + "\t";
-			}
-			s += "\n";
-		}
-		return s;
 	}
 }

@@ -90,6 +90,8 @@ public class TDFrequencyMatrix {
 
 	/**
 	 * Uses SVD to reduce the number of elements in the matrix.
+	 * 
+	 * @param factorK the factor by which the dimensionality is reduced, e.g. 0.3
 	 */
 	public void transformLSI(double factorK) {
 

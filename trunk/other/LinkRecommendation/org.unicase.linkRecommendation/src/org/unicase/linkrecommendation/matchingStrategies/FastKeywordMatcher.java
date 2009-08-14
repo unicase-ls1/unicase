@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -20,9 +20,9 @@ import org.unicase.model.ModelElement;
 @Deprecated
 public class FastKeywordMatcher implements MEMatcher {
 
-	private static String[] IGNORE_WORDS = new String[] { "of", "on", "and", "or", "the", "this", "them", "not", "is",
+	private static String[] iIGNOREWORDS = new String[] { "of", "on", "and", "or", "the", "this", "them", "not", "is",
 		"a", "we", "should", "be", "are", "he", "his", "in" };
-	private static char[] IGNORE_CHARS = new char[] { '.', '!', ':', '?', '"', '(', ')', '-', ';' };
+	private static char[] iIGNORECHARS = new char[] { '.', '!', ':', '?', '"', '(', ')', '-', ';' };
 
 	/**
 	 * This method matches relevace between two elements on an scale [0..1].
@@ -84,7 +84,7 @@ public class FastKeywordMatcher implements MEMatcher {
 
 		text.toLowerCase();
 
-		for (char c : IGNORE_CHARS) {
+		for (char c : iIGNORECHARS) {
 			text = text.replace(c, ' ');
 		}
 		String[] result = text.split(" ");
@@ -95,7 +95,7 @@ public class FastKeywordMatcher implements MEMatcher {
 	private static String[] removeUnwantedWords(String[] words) {
 		TreeSet<String> set = new TreeSet<String>();
 		for (String word : words) {
-			if (!contains(IGNORE_WORDS, word)) {
+			if (!contains(iIGNOREWORDS, word)) {
 				set.add(word);
 			}
 		}
