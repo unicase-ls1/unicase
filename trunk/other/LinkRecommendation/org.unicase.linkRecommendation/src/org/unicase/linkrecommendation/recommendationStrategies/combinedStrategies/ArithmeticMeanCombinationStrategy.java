@@ -53,4 +53,15 @@ public class ArithmeticMeanCombinationStrategy extends AbstractCombinationStrate
 		}
 		return map1;
 	}
+
+	/**
+	 * The name.
+	 * 
+	 * @return name
+	 * @see org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.AbstractCombinationStrategy#getName()
+	 */
+	@Override
+	public String getName() {
+		return "Arr.Mean " + super.getName();
+	}
 }
