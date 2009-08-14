@@ -9,7 +9,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
