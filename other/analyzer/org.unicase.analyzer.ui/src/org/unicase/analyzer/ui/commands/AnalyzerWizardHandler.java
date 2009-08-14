@@ -15,9 +15,6 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.analyzer.ui.wizards.ProjectAnalyzerWizard;
-import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 
 
 /**
