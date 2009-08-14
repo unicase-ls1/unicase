@@ -1,5 +1,5 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
@@ -14,21 +14,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.unicase.analyzer.exceptions.IteratorException;
+import org.unicase.model.Project;
+import org.unicase.model.task.WorkPackage;
+import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.TimeIterator;
 import org.unicase.analyzer.iterator.VersionSpecQuery;
+import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.emfstore.esmodel.versioning.DateVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.model.Project;
-import org.unicase.model.task.WorkPackage;
+
 import org.unicase.pmdashboard.burndown.BurndownData;
 import org.unicase.pmdashboard.burndown.BurndownDay;
 import org.unicase.pmdashboard.burndown.BurndownFactory;
 import org.unicase.pmdashboard.burndown.impl.BurndownFactoryImpl;
-import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Generates all objects that contain information needed by the BurndownChart for WorkPackages.
@@ -63,7 +64,8 @@ public final class BurndownDataGenerator {
 		
 		URI resourceURI = URI.createFileURI(Configuration.getPluginDataBaseDirectory().concat(FILENAME));
 		
-		dataResource = resourceSet.getResource(resourceURI, true);
+		// when demand loading is on, there is an exception if the resource doesn't exist
+		dataResource = resourceSet.getResource(resourceURI, false);
 		
 		// if the resource is null, it didn't exist by now and we create it
 		if(dataResource == null) {
@@ -94,7 +96,7 @@ public final class BurndownDataGenerator {
 			dataResource.getContents().add(result);
 		}
 		
-		completeDays(result);
+		completeDays(sprint, result);
 		
 		dataResource.save(null);
 		
@@ -107,48 +109,54 @@ public final class BurndownDataGenerator {
 	 * @return iterator over the sprint's days
 	 * @throws IteratorException
 	 */
-	private TimeIterator getTimeIterator(BurndownData sprint) throws IteratorException {
-		ProjectSpace projectSpace = getActiveProjectSpace();
-		WorkPackage workPackage = sprintAsWorkPackage(sprint);
+	private TimeIterator getTimeIterator(WorkPackage sprint) throws IteratorException {
+		ProjectSpace projectSpace = getProjectSpace(sprint);
 
 		DateVersionSpec start = VersioningFactory.eINSTANCE.createDateVersionSpec();
-		start.setDate(workPackage.getStartDate());
+		start.setDate(sprint.getStartDate());
 		
 		DateVersionSpec end = VersioningFactory.eINSTANCE.createDateVersionSpec();
-		end.setDate(workPackage.getDueDate());
+		end.setDate(sprint.getDueDate());
 		
 		VersionSpecQuery specQuery = IteratorFactory.eINSTANCE.createVersionSpecQuery();
 		specQuery.setStartVersion(start);
 		specQuery.setEndVersion(end);
 		
-		TimeIterator timeIterator = IteratorFactory.eINSTANCE.createTimeIterator();
-		timeIterator.init(projectSpace.getUsersession(), projectSpace.getProjectId(), STEPLENGTH, STEPUNIT, specQuery, true, false);
-		
-		return timeIterator;
+		TimeIterator result = IteratorFactory.eINSTANCE.createTimeIterator();
+		result.init(	projectSpace.getUsersession(),
+						projectSpace.getProjectId(),
+						STEPLENGTH,
+						STEPUNIT,
+						specQuery,
+						true,
+						false
+					);
+		return result;
 	}
 	
-	private static ProjectSpace getActiveProjectSpace() {
-		return WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+	private static ProjectSpace getProjectSpace(WorkPackage sprint) {
+		WorkspaceManager.getInstance();
+		return WorkspaceManager.getProjectSpace(sprint);
 	}
 	
-	private static WorkPackage sprintAsWorkPackage(BurndownData sprint) {
-		return (WorkPackage) getActiveProjectSpace().getProject().getModelElement(sprint.getParentElementId());
+	private static WorkPackage sprintAsWorkPackage(BurndownData sprint, ProjectSpace project) {
+		return (WorkPackage) project.getProject().getModelElement(sprint.getParentElementId());
 	}
 	
 	/**
 	 * Adds missing days (and the contained information) to the BurndownData of a WorkPackage.
+	 * @param sprint 
 	 * @param target
 	 * @param sprintIterator
 	 * @return was the data updated?
 	 * @throws IteratorException 
 	 */
-	private boolean completeDays(BurndownData target) throws IteratorException {
-		TimeIterator steps = this.getTimeIterator(target);
-		WorkPackage workPackage = sprintAsWorkPackage(target);
+	private boolean completeDays(WorkPackage sprint, BurndownData target) throws IteratorException {
+		TimeIterator steps = this.getTimeIterator(sprint);
 		
 		// TODO don't generate the already stored days
 		Calendar currentDate = Calendar.getInstance();
-		currentDate.setTime(workPackage.getStartDate());
+		currentDate.setTime(sprint.getStartDate());
 		
 		BurndownFactory dayFactory = new BurndownFactoryImpl();
 		
@@ -159,7 +167,7 @@ public final class BurndownDataGenerator {
 			day.setDate(currentDate.getTime());
 			
 			// the cast must work, otherwise there's a programming error
-			WorkPackage stepWorkPackage = (WorkPackage) stepProject.getModelElement(workPackage.getModelElementId());
+			WorkPackage stepWorkPackage = (WorkPackage) stepProject.getModelElement(sprint.getModelElementId());
 			
 			day.setRemainingEstimate(stepWorkPackage.getRemainingEstimate());
 			day.setOpenTaskCount(stepWorkPackage.getAllTasks() - stepWorkPackage.getClosedTasks());
@@ -182,7 +190,7 @@ public final class BurndownDataGenerator {
 		
 		for(EObject object : directContents) {
 			if(object.getClass() == BurndownData.class) {
-				if(sprintAsWorkPackage((BurndownData) object) == sprint.getModelElementId()) {
+				if(sprintAsWorkPackage((BurndownData) object, getProjectSpace(sprint)) == sprint.getModelElementId()) {
 					return (BurndownData) object;
 				}
 			}
