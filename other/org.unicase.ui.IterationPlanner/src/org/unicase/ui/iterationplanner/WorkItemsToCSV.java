@@ -81,6 +81,8 @@ public class WorkItemsToCSV {
 			if ((wi instanceof WorkPackage) || (wi instanceof Milestone)) {
 				continue;
 			}
+			sb.append(wi.eClass().getName());
+			sb.append(ATTRIBUTE_DLIMITER);
 			for (EStructuralFeature feature : features) {
 				if (feature instanceof EAttribute) {
 
@@ -112,6 +114,8 @@ public class WorkItemsToCSV {
 		string = string.replace("\n", " ");
 		string = string.replace("\r", "");
 		string = string.replace(";, %BEGINNTEXT%", "");
+		string = string.replace("#", " ");
+		string = string.replace(",", " ");
 		return string;
 
 	}
@@ -129,14 +133,16 @@ public class WorkItemsToCSV {
 		if (value == null) {
 			return result;
 		}
-		if (!(value instanceof ModelElement)) {
-			return result;
-		}
 
 		if (feature.isMany()) {
 			List<EObject> list = (List<EObject>) value;
 			for (int i = 0; i < list.size(); i++) {
-				sb.append(list.get(i).toString());
+				if (list.get(i) instanceof ModelElement) {
+					sb.append(((ModelElement) list.get(i)).getName());
+				} else {
+					sb.append("");
+				}
+
 				if (i != list.size() - 1) {
 					sb.append(MANY_VALUED_ATTRIBUTE_DELIMITER);
 				}
@@ -144,7 +150,12 @@ public class WorkItemsToCSV {
 			result = removeLineBreaks(sb.toString());
 			return result;
 		} else {
-			sb.append(((ModelElement) value).getName());
+			if (value instanceof ModelElement) {
+				sb.append(((ModelElement) value).getName());
+			} else {
+				sb.append("");
+			}
+
 			result = removeLineBreaks(sb.toString());
 			return result;
 		}
@@ -172,6 +183,8 @@ public class WorkItemsToCSV {
 	 */
 	private void printCSVHeader(FileWriter writer) {
 		StringBuilder sb = new StringBuilder("");
+		sb.append("type");
+		sb.append(ATTRIBUTE_DLIMITER);
 		features = getOutputFeatures();
 		for (EStructuralFeature feature : features) {
 			sb.append(feature.getName() + "#");
@@ -200,6 +213,7 @@ public class WorkItemsToCSV {
 		result.add(ModelPackage.eINSTANCE
 				.getAnnotation_AnnotatedModelElements());
 		result.add(TaskPackage.eINSTANCE.getWorkItem_Predecessors());
+		result.add(TaskPackage.eINSTANCE.getWorkItem_Successors());
 		result.add(TaskPackage.eINSTANCE.getWorkItem_Assignee());
 		return result;
 	}
