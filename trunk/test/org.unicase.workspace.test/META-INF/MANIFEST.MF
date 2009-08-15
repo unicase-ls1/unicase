@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: Workspace Test
 Bundle-SymbolicName: org.unicase.workspace.test
-Bundle-Version: 0.3.18.qualifier
+Bundle-Version: 0.3.34.qualifier
 Bundle-Activator: org.unicase.workspace.test.Activator
 Require-Bundle: org.unicase.workspace;visibility:=reexport,
  org.junit4;visibility:=reexport,
