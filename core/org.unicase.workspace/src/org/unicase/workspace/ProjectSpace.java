@@ -735,4 +735,11 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	void merge(PrimaryVersionSpec target, ConflictResolver conflictResolver) throws EmfStoreException;
 
+	/**
+	 * Shows whether projectSpace is transient.
+	 * 
+	 * @return true, if transient.
+	 */
+	boolean isTransient();
+
 } // ProjectContainer

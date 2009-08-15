@@ -257,6 +257,10 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	private void save(ModelElement modelElement) {
 		Resource resource = modelElement.eResource();
 
+		if (projectSpace.isTransient()) {
+			return;
+		}
+
 		// MK, OW: this fix was added to 0.3.31 tag and works, in the current trunk version it doesn't due to unknown
 		// side effects
 		// if this model element is the one to be deleted and if it is not in a separate resource

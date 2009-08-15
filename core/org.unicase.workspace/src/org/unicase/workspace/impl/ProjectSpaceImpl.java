@@ -2208,7 +2208,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		this.revert();
 
 		for (ChangePackage changePackage : theirCps) {
-			applyOperations(changePackage.getOperations());
+			applyOperations(changePackage.getOperations(), false);
 		}
 
 		// generate merge result and apply to local workspace
@@ -2220,7 +2220,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		mergeResult.addAll(acceptedMine);
 
-		applyOperations(mergeResult);
+		applyOperations(mergeResult, false);
 
 		this.setBaseVersion(target);
 
@@ -2494,4 +2494,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		return;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public boolean isTransient() {
+		return isTransient;
+	}
+
 } // ProjectContainerImpl
