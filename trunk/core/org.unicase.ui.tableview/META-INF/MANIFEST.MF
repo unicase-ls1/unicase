@@ -2,9 +2,9 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: unicase Tableview Plug-in
 Bundle-SymbolicName: org.unicase.ui.tableview;singleton:=true
-Bundle-Version: 0.3.30.qualifier
+Bundle-Version: 0.3.34.qualifier
 Bundle-Activator: org.unicase.ui.tableview.Activator
-Require-Bundle: org.unicase.ui.common;bundle-version="0.3.30.qualifier"
+Require-Bundle: org.unicase.ui.common;bundle-version="0.3.34.qualifier"
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: unicase.org
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
