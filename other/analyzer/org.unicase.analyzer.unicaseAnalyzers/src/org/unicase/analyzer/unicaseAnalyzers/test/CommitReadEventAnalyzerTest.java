@@ -20,7 +20,9 @@ import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.VersionIterator;
+import org.unicase.analyzer.unicaseAnalyzers.CategoryAnalyzer;
 import org.unicase.analyzer.unicaseAnalyzers.CommitUpdateReadEventAnalyzer;
+import org.unicase.analyzer.unicaseAnalyzers.VersionWriter;
 import org.unicase.anaylzer.test.AnalyzersTest;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.model.ModelElementId;
@@ -57,7 +59,7 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 
 				VersionIterator projectIt = IteratorFactory.eINSTANCE.createVersionIterator();				
 				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
-				exporter.init("Exports/export_test.dat",true);
+				exporter.init("Exports/export_test.dat");
 				projectIt.setProjectId(pI.getProjectId());
 				projectIt.setStepLength(stepLength);
 				projectIt.setDefault(true);
@@ -70,6 +72,35 @@ public class CommitReadEventAnalyzerTest extends AnalyzersTest {
 				//FIXME assertTure
 				//assertTrue(compareTruth(elements, projectIt.getCurrentState()));
 
+			}
+		}
+		
+	}
+	
+	/**
+	 * CategoryAnalyzer for multiUserTest project.
+	 * @throws IOException fail to write to the exporter file
+	 * @throws IteratorException fail to run iterator on the project
+	 */
+	@Test
+	public void CategoryTest() throws IOException, IteratorException{
+		for (ProjectInfo pI : super.getProjectList()) {			
+			if (pI.getName().contains("DOLLI")) {
+				System.out.println(pI + " " + pI.getProjectId() + " at Version: " + pI.getVersion().getIdentifier());
+				int stepLength = 1;
+
+				VersionIterator projectIt = IteratorFactory.eINSTANCE.createVersionIterator();				
+				CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
+				exporter.init("Exports/category.dat");
+				projectIt.setProjectId(pI.getProjectId());
+				projectIt.setStepLength(stepLength);
+				projectIt.setDefault(true);
+				projectIt.init(super.getUserSession());
+				ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
+				analyzers.add(new VersionWriter());
+				analyzers.add(new CategoryAnalyzer());
+				@SuppressWarnings("unused")
+				AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
 			}
 		}
 		

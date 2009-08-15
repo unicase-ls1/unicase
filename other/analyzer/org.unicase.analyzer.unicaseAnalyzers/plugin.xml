@@ -7,9 +7,6 @@
             class="org.unicase.analyzer.unicaseAnalyzers.VersionWriter">
       </client_analyzer>
       <client_analyzer
-            class="org.unicase.analyzer.unicaseAnalyzers.CategoryAnalyzer">
-      </client_analyzer>
-      <client_analyzer
             class="org.unicase.analyzer.unicaseAnalyzers.DateWriter">
       </client_analyzer>
    </extension>

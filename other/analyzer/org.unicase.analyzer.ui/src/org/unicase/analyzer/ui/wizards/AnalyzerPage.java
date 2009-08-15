@@ -40,7 +40,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 	private List<Button> analyzerButton = new ArrayList<Button>();
 	private boolean canFlipToNextPage;
 	private ArrayList<DataAnalyzer> analyzers;
-	private IConfigurationElement[] extendedAnalyzers;
+	private List<IConfigurationElement> extendedAnalyzers;
 	private AnalyzerConfiguration conf;
 	private TransactionalEditingDomain editingDomain;
 
@@ -51,7 +51,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		extendedAnalyzers = new IConfigurationElement[20];
+		extendedAnalyzers = new ArrayList<IConfigurationElement>();
 		canFlipToNextPage = false;
 		editingDomain = TransactionalEditingDomain.Registry.INSTANCE.getEditingDomain("org.unicase.EditingDomain");
 	}
@@ -86,7 +86,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 		 for (int j = 0; j < elements.length; j++) {
 		     final IConfigurationElement element = elements[j];
 		     int count = i*elements.length + j;
-		     extendedAnalyzers[count] = element;
+		     extendedAnalyzers.add(element);
 		     Button button = new Button(composite, SWT.CHECK);
 		     button.setText(element.getAttribute("class"));
 			 gd = new GridData(GridData.FILL_HORIZONTAL);
@@ -165,7 +165,7 @@ public class AnalyzerPage extends WizardPage implements Listener {
 			if(button.getSelection()){
 	
 				try {
-					DataAnalyzer analyzer = (DataAnalyzer)extendedAnalyzers[i].createExecutableExtension("class");
+					DataAnalyzer analyzer = (DataAnalyzer)extendedAnalyzers.get(i).createExecutableExtension("class");
 					final ProjectAnalyzerWizard wizard = (ProjectAnalyzerWizard)getWizard();
 					// Not add the same analyzer into the analyzer list
 					boolean add = true;
