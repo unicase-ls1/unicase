@@ -14,18 +14,18 @@ import java.util.List;
  * @author Hodaie
  * 
  */
-public class EADispatcher extends Dispatcher {
+public class EAPlanner extends Planner {
 
 	/**
-	 * @param tasks
-	 *            tasks
-	 * @param assignees
-	 *            assignees
-	 * @return plans
+	 * {@inheritDoc}
+	 * 
 	 */
 	@Override
-	public List<Plan> dispatch(List<WorkItem> tasks, List<User> assignees) {
+	public List<Plan> plan(List<WorkItem> tasks, List<User> assignees,
+			int numOfIterations) {
+		// TODO Auto-generated method stub
 		return null;
 	}
+
 
 }

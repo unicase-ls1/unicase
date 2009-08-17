@@ -17,17 +17,19 @@ import org.unicase.model.task.WorkItem;
  * @author hodaie
  * 
  */
-public class SimpleDispatcher extends Dispatcher {
+public class SimplePlanner extends Planner {
 
+	
 	/**
 	 * 
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.ui.iterationplanner.core.Dispatcher#dispatch()
 	 */
 	@Override
-	public List<Plan> dispatch(List<WorkItem> tasks, List<User> assignees) {
+	public List<Plan> plan(List<WorkItem> tasks, List<User> assignees,
+			int numOfIterations) {
 		return null;
 	}
+
 
 }

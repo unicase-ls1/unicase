@@ -11,6 +11,8 @@ import org.unicase.model.task.WorkItem;
 import java.util.Map;
 
 /**
+ * An iteration plan is a mapping from work items to users.
+ * 
  * @author Hodaie
  * 
  */

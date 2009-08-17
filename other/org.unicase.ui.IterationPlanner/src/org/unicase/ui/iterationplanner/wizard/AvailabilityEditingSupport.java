@@ -10,7 +10,7 @@ import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.unicase.model.organization.User;
-import org.unicase.ui.iterationplanner.core.IterationPlanner;
+import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 
 /**
  * @author Hodaie
@@ -18,7 +18,7 @@ import org.unicase.ui.iterationplanner.core.IterationPlanner;
 public class AvailabilityEditingSupport extends EditingSupport {
 
 	private TextCellEditor textCellEditor;
-	private IterationPlanner iterationPlanner;
+	private IterationPlannerManager iterationPlanner;
 
 	/**
 	 * @param viewer
@@ -27,7 +27,7 @@ public class AvailabilityEditingSupport extends EditingSupport {
 	 *            iteration planner
 	 */
 	public AvailabilityEditingSupport(TableViewer viewer,
-			IterationPlanner iterationPlanner) {
+			IterationPlannerManager iterationPlanner) {
 		super(viewer);
 		this.iterationPlanner = iterationPlanner;
 		this.textCellEditor = new TextCellEditor(viewer.getTable());

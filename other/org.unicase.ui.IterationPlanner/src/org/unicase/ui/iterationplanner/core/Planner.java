@@ -12,10 +12,14 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 
 /**
+ * A planner takes a set of WorkItems, a set of Users, and number of sprints to
+ * plan. It returns a set of sprint plans. Each plan is a mapping of work items
+ * to users.
+ * 
  * @author Hodaie
  * 
  */
-public abstract class Dispatcher {
+public abstract class Planner {
 
 	/**
 	 * assigns tasks to users.
@@ -24,9 +28,11 @@ public abstract class Dispatcher {
 	 *            tasks
 	 * @param assignees
 	 *            users
-	 * @return a list of plans. Each plan is simply a mapping from task to user.
+	 * @param numOfIterations
+	 *            number of iterations to plan
+	 * @return a list of plans. Each plan is a mapping from task to user.
 	 */
-	public abstract List<Plan> dispatch(List<WorkItem> tasks,
-			List<User> assignees);
+	public abstract List<Plan> plan(List<WorkItem> tasks, List<User> assignees,
+			int numOfIterations);
 
 }

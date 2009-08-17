@@ -11,7 +11,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
-import org.unicase.ui.iterationplanner.core.IterationPlanner;
+import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 
 /**
  * @author hodaie
@@ -19,7 +19,7 @@ import org.unicase.ui.iterationplanner.core.IterationPlanner;
 public class PlansPage extends WizardPage {
 
 	@SuppressWarnings("unused")
-	private IterationPlanner iterationPlanner;
+	private IterationPlannerManager iterationPlanner;
 
 	/**
 	 * Constructor.
@@ -27,7 +27,7 @@ public class PlansPage extends WizardPage {
 	 * @param planner
 	 *            iteration planner
 	 */
-	public PlansPage(IterationPlanner planner) {
+	public PlansPage(IterationPlannerManager planner) {
 		super("plans page");
 		this.iterationPlanner = planner;
 	}

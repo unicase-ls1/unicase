@@ -6,21 +6,21 @@
 package org.unicase.ui.iterationplanner.wizard;
 
 import org.eclipse.jface.wizard.Wizard;
-import org.unicase.ui.iterationplanner.core.IterationPlanner;
+import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 
 /**
  * @author Hodaie
  */
 public class IterationPlanningWizard extends Wizard {
 
-	private IterationPlanner iterationPlanner;
+	private IterationPlannerManager iterationPlanner;
 
 	/**
 	 * Constructor.
 	 */
 	public IterationPlanningWizard() {
 
-		iterationPlanner = new IterationPlanner();
+		iterationPlanner = new IterationPlannerManager();
 
 	}
 
