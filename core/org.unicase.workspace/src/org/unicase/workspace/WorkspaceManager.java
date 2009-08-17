@@ -326,6 +326,15 @@ public final class WorkspaceManager {
 	}
 
 	/**
+	 * Set the connectionmanager.
+	 * 
+	 * @param manager connection manager.
+	 */
+	public void setConnectionManager(ConnectionManager manager) {
+		connectionManager = manager;
+	}
+
+	/**
 	 * Get the admin connection manager. Return the admin connection manager for this workspace.
 	 * 
 	 * @return the connectionManager
