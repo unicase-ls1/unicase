@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.unicase.model.requirement.FunctionalRequirement;
+import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 
 /**
  * 
@@ -19,21 +20,25 @@ public class RequirementProvider {
 
 	
 	private List<FunctionalRequirement> requirements;
+	private IterationPlannerManager planningManager;
 
 
 	/**
 	 * Constructor.
+	 * @param iterationPlannerManager iteration planning manager 
 	 */
-	public RequirementProvider(){
-		
+	public RequirementProvider(IterationPlannerManager iterationPlannerManager){
+		this.planningManager = iterationPlannerManager;
 	}
 	
 	
 	/**
 	 * Constructor.
+	 * @param iterationPlannerManager iteration planning manager 
 	 * @param reqs input requirement
 	 */
-	public RequirementProvider(List<FunctionalRequirement> reqs){
+	public RequirementProvider(IterationPlannerManager iterationPlannerManager, List<FunctionalRequirement> reqs){
+		this.planningManager = iterationPlannerManager;
 		this.requirements = reqs;
 	}
 	

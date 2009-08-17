@@ -8,7 +8,9 @@ package org.unicase.ui.iterationplanner.provider;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -16,9 +18,12 @@ import org.unicase.model.organization.User;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 
 /**
- * This class is responsible for holding tasks to be planned, computing tasks related to a task (using RelatedTasksStrategy), creating a list of assignee expertise regarding a task. 
+ * This class is responsible for holding tasks to be planned, computing tasks
+ * related to a task (using RelatedTasksStrategy), creating a list of assignee
+ * expertise regarding a task.
  * 
  * @author Hodaie
  */
@@ -27,26 +32,38 @@ public class TaskProvider {
 	private List<WorkPackage> workpackages;
 	private WorkPackage lastSprint;
 	private RelatedTasksSterategy relatedTasksSterategy;
+	private IterationPlannerManager planningManager;
 
 	/**
 	 * Constructor.
+	 * 
+	 * @param iterationPlannerManager
+	 *            iteration planning manager
 	 * 
 	 * @param lastSprint
 	 *            last sprint
 	 * @param workpackages
 	 *            work packages
 	 */
-	public TaskProvider(WorkPackage lastSprint, List<WorkPackage> workpackages) {
+	public TaskProvider(IterationPlannerManager iterationPlannerManager,
+			WorkPackage lastSprint, List<WorkPackage> workpackages) {
+		this.planningManager = iterationPlannerManager;
 		this.lastSprint = lastSprint;
 		this.workpackages = workpackages;
-		
+
 		relatedTasksSterategy = new ImperativeRelatedTasks();
 	}
 
 	/**
 	 * Constructor.
+	 * 
+	 * @param iterationPlannerManager
+	 *            iteration planning manager
+	 * 
+	 * @param iterationPlannerManager
 	 */
-	public TaskProvider() {
+	public TaskProvider(IterationPlannerManager iterationPlannerManager) {
+		this.planningManager = iterationPlannerManager;
 	}
 
 	/**
@@ -77,8 +94,6 @@ public class TaskProvider {
 
 		return lastSprint;
 	}
-
-	
 
 	/**
 	 * @return the workPackages
@@ -134,12 +149,13 @@ public class TaskProvider {
 	 *            task
 	 * @return int
 	 */
-	public int getExpertise(WorkItem task, User assignee) {
+	public double getExpertise(WorkItem task, User assignee) {
 
 		int expertise = 0;
-		
-		List<WorkItem> relatedWorkItems = relatedTasksSterategy.getRelatedTasks(task);
-		
+
+		List<WorkItem> relatedWorkItems = relatedTasksSterategy
+				.getRelatedTasks(task);
+
 		// count number of related tasks assigned to this user
 		for (WorkItem wi : relatedWorkItems) {
 			if (wi.getAssignee().equals(assignee)) {
@@ -148,6 +164,19 @@ public class TaskProvider {
 		}
 
 		return expertise;
+	}
+	
+	/**
+	 * returns a expertise for each assignee relating this task.
+	 * @param task task
+	 * @return a map of assignee to expertise relating this task
+	 */
+	public Map<User, Double> getExpertiseMap(WorkItem task){
+		Map<User, Double> result = new HashMap<User, Double>();
+		for(User assignee : planningManager.getAssigneeProvider().getAssignees()){
+			result.put(assignee, getExpertise(task, assignee));
+		}
+		return result;
 	}
 
 	/**
@@ -159,18 +188,20 @@ public class TaskProvider {
 		this.lastSprint = lastSprint;
 	}
 
-	
-
 	/**
 	 * strategy to compute related tasks.
-	 * @param relatedTasksSterategy relatedTasksSterategy
+	 * 
+	 * @param relatedTasksSterategy
+	 *            relatedTasksSterategy
 	 */
-	public void setRelatedTasksSterategy(RelatedTasksSterategy relatedTasksSterategy) {
+	public void setRelatedTasksSterategy(
+			RelatedTasksSterategy relatedTasksSterategy) {
 		this.relatedTasksSterategy = relatedTasksSterategy;
 	}
 
 	/**
 	 * returns strategy to compute related tasks.
+	 * 
 	 * @return strategy to compute related tasks
 	 */
 	public RelatedTasksSterategy getRelatedTasksSterategy() {

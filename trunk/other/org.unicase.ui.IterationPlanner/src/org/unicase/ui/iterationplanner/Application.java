@@ -44,9 +44,11 @@ public class Application implements IApplication {
 		// ClassificationDataSet dataSet = new ClassificationDataSet();
 		// dataSet.getAccuracyVariable();
 
-		WorkItemsToCSV wiToCVS = new WorkItemsToCSV();
-		wiToCVS.outputWorkItems();
+		// WorkItemsToCSV wiToCVS = new WorkItemsToCSV();
+		// wiToCVS.outputWorkItems();
 
+		
+		
 		return null;
 	}
 

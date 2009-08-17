@@ -17,6 +17,7 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 
 /**
  * 
@@ -28,21 +29,27 @@ public class AssigneeProvider {
 	private Map<User, Integer> assigneeAvailabilities;
 	private Map<User, Integer> initialAssigneeAvailabilities;
 	private WorkPackage lastSprint;
+	private IterationPlannerManager planningManager;
 	
 	
 	/**
 	 * Constructor.
+	 * @param iterationPlannerManager iteration planning manager
 	 * @param lastSprint last sprint
 	 */
-	public AssigneeProvider(WorkPackage lastSprint){
+	public AssigneeProvider(IterationPlannerManager iterationPlannerManager, WorkPackage lastSprint){
 		this.lastSprint = lastSprint;
+		this.planningManager = iterationPlannerManager;
 		initAssigneeAvailabilities();
 	}
 
 	/**
 	 * Constructor.
+	 *  @param iterationPlannerManager iteration planning manager
+	 * @param iterationPlannerManager 
 	 */
-	public AssigneeProvider() {
+	public AssigneeProvider(IterationPlannerManager iterationPlannerManager) {
+		this.planningManager = iterationPlannerManager;
 	}
 
 	/**
