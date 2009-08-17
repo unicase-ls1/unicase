@@ -4,12 +4,13 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.iterationplanner.core;
+package planner;
 
 import java.util.List;
 
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.iterationplanner.core.Plan;
 
 /**
  * A planner takes a set of WorkItems, a set of Users, and number of sprints to
