@@ -104,7 +104,7 @@ public class TaskPage extends WizardPage {
 								.getActiveProjectSpace().getProject(), true);
 				if (result.length > 0) {
 					for (int i = 0; i < result.length; i++) {
-						iterationPlanner.getWorkPackages().add(
+						iterationPlanner.getTaskProvider().getWorkPackages().add(
 								(WorkPackage) result[i]);
 					}
 				}
@@ -126,8 +126,8 @@ public class TaskPage extends WizardPage {
 				IStructuredSelection sel = (IStructuredSelection) tableViewer
 						.getSelection();
 				WorkPackage wp = (WorkPackage) sel.getFirstElement();
-				if (!wp.equals(iterationPlanner.getLastSprint())) {
-					iterationPlanner.getWorkPackages().remove(wp);
+				if (!wp.equals(iterationPlanner.getTaskProvider().getLastSprint())) {
+					iterationPlanner.getTaskProvider().getWorkPackages().remove(wp);
 				}
 				tableViewer.refresh();
 			}
@@ -141,7 +141,7 @@ public class TaskPage extends WizardPage {
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
 		tableViewer.setContentProvider(new WorkPackageTableContentProvider());
-		tableViewer.setInput(iterationPlanner.getWorkPackages());
+		tableViewer.setInput(iterationPlanner.getTaskProvider().getWorkPackages());
 
 		setControl(contents);
 		setPageComplete(true);

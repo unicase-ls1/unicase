@@ -18,18 +18,18 @@ import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 public class AvailabilityEditingSupport extends EditingSupport {
 
 	private TextCellEditor textCellEditor;
-	private IterationPlannerManager iterationPlanner;
+	private IterationPlannerManager manager;
 
 	/**
 	 * @param viewer
 	 *            viewer
-	 * @param iterationPlanner
+	 * @param iterationPlannerManager
 	 *            iteration planner
 	 */
 	public AvailabilityEditingSupport(TableViewer viewer,
-			IterationPlannerManager iterationPlanner) {
+			IterationPlannerManager iterationPlannerManager) {
 		super(viewer);
-		this.iterationPlanner = iterationPlanner;
+		this.manager = iterationPlannerManager;
 		this.textCellEditor = new TextCellEditor(viewer.getTable());
 	}
 
@@ -40,7 +40,7 @@ public class AvailabilityEditingSupport extends EditingSupport {
 	 */
 	@Override
 	protected boolean canEdit(Object element) {
-		return iterationPlanner.getAssignees().contains(element);
+		return manager.getAssigneeProvider().getAssignees().contains(element);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class AvailabilityEditingSupport extends EditingSupport {
 
 		if (element instanceof User) {
 
-			return iterationPlanner.getAvailability((User) element) + "";
+			return manager.getAssigneeProvider().getAvailability((User) element) + "";
 		}
 		return null;
 	}
@@ -84,7 +84,7 @@ public class AvailabilityEditingSupport extends EditingSupport {
 		if (value instanceof String) {
 			String strValue = value.toString();
 			if (strValue.matches("[0-9]*")) {
-				iterationPlanner.setAvailability(user, Integer
+				manager.getAssigneeProvider().setAvailability(user, Integer
 						.parseInt(strValue));
 				getViewer().refresh();
 			}

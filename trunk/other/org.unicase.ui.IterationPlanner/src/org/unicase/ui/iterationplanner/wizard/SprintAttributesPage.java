@@ -36,7 +36,7 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class SprintAttributesPage extends WizardPage implements Listener {
 
-	private IterationPlannerManager iterationPlanner;
+	private IterationPlannerManager manager;
 	private Text txtSprintName;
 	private Text txtStartDate;
 	private Text txtEndDate;
@@ -45,12 +45,12 @@ public class SprintAttributesPage extends WizardPage implements Listener {
 	/**
 	 * Constructor.
 	 * 
-	 * @param planner
+	 * @param manager
 	 *            iteration planner
 	 */
-	public SprintAttributesPage(IterationPlannerManager planner) {
+	public SprintAttributesPage(IterationPlannerManager manager) {
 		super("sprint attributes page");
-		this.iterationPlanner = planner;
+		this.manager = manager;
 	}
 
 	/**
@@ -104,12 +104,14 @@ public class SprintAttributesPage extends WizardPage implements Listener {
 						WorkspaceManager.getInstance().getCurrentWorkspace()
 								.getActiveProjectSpace().getProject(), false);
 				if (result.length > 0) {
-					iterationPlanner.setLastSprint((WorkPackage) result[0]);
+					manager.getTaskProvider().setLastSprint(
+							(WorkPackage) result[0]);
 					txtPredecessor.setText(((WorkPackage) result[0]).getName());
-					txtStartDate.setText(iterationPlanner.getLastSprint()
-							.getEndDate().toString());
+					txtStartDate.setText(manager.getTaskProvider()
+							.getLastSprint().getEndDate().toString());
 					txtEndDate.setText(getEndDate(
-							iterationPlanner.getLastSprint()).toString());
+							manager.getTaskProvider().getLastSprint())
+							.toString());
 				}
 			}
 
@@ -180,11 +182,11 @@ public class SprintAttributesPage extends WizardPage implements Listener {
 	 */
 	@Override
 	public IWizardPage getNextPage() {
-		iterationPlanner.getSprint().setName(txtSprintName.getText());
+		manager.getSprint().setName(txtSprintName.getText());
 		try {
-			iterationPlanner.getSprint().setStartDate(
+			manager.getSprint().setStartDate(
 					DateFormat.getInstance().parse(txtStartDate.getText()));
-			iterationPlanner.getSprint().setEndDate(
+			manager.getSprint().setEndDate(
 					DateFormat.getInstance().parse(txtEndDate.getText()));
 
 		} catch (ParseException e) {
