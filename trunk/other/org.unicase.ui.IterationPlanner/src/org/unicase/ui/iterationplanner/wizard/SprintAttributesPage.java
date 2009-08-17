@@ -25,7 +25,7 @@ import org.eclipse.swt.widgets.Text;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.UnicaseUiUtil;
-import org.unicase.ui.iterationplanner.core.IterationPlanner;
+import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -36,7 +36,7 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class SprintAttributesPage extends WizardPage implements Listener {
 
-	private IterationPlanner iterationPlanner;
+	private IterationPlannerManager iterationPlanner;
 	private Text txtSprintName;
 	private Text txtStartDate;
 	private Text txtEndDate;
@@ -48,7 +48,7 @@ public class SprintAttributesPage extends WizardPage implements Listener {
 	 * @param planner
 	 *            iteration planner
 	 */
-	public SprintAttributesPage(IterationPlanner planner) {
+	public SprintAttributesPage(IterationPlannerManager planner) {
 		super("sprint attributes page");
 		this.iterationPlanner = planner;
 	}

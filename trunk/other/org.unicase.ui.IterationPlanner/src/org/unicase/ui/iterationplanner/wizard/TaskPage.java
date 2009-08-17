@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Label;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.UnicaseUiUtil;
-import org.unicase.ui.iterationplanner.core.IterationPlanner;
+import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 import org.unicase.workspace.WorkspaceManager;
 
 import java.util.List;
@@ -57,7 +57,7 @@ public class TaskPage extends WizardPage {
 		}
 	}
 
-	private IterationPlanner iterationPlanner;
+	private IterationPlannerManager iterationPlanner;
 	private TableViewer tableViewer;
 
 	/**
@@ -66,7 +66,7 @@ public class TaskPage extends WizardPage {
 	 * @param planner
 	 *            iteration planner.
 	 */
-	protected TaskPage(IterationPlanner planner) {
+	protected TaskPage(IterationPlannerManager planner) {
 		super("task page");
 		this.iterationPlanner = planner;
 	}

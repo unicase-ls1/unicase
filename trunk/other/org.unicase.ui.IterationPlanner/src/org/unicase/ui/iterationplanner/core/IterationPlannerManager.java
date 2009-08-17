@@ -26,11 +26,11 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
 /**
- * Iteration planner.
+ * This is a facade for iteration planning functions. It takes inputs to problem (requirements, tasks, assignee, assignee availabilities) and delegates planning to Planner.
  * 
  * @author hodaie
  */
-public class IterationPlanner {
+public class IterationPlannerManager {
 
 	// input
 	private List<WorkPackage> workPackages;

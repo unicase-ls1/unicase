@@ -29,7 +29,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
-import org.unicase.ui.iterationplanner.core.IterationPlanner;
+import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -37,7 +37,7 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class AssigneesPage extends WizardPage {
 
-	private IterationPlanner iterationPlanner;
+	private IterationPlannerManager iterationPlanner;
 	private CheckboxTableViewer tableViewer;
 
 	/**
@@ -46,7 +46,7 @@ public class AssigneesPage extends WizardPage {
 	 * @param planner
 	 *            iteration planner
 	 */
-	AssigneesPage(IterationPlanner planner) {
+	AssigneesPage(IterationPlannerManager planner) {
 		super("assignees page");
 		this.iterationPlanner = planner;
 
