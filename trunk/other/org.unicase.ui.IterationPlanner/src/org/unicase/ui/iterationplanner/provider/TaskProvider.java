@@ -5,30 +5,28 @@
  */
 package org.unicase.ui.iterationplanner.provider;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 /**
+ * This class is responsible for holding tasks to be planned, computing tasks related to a task (using RelatedTasksStrategy), creating a list of assignee expertise regarding a task. 
+ * 
  * @author Hodaie
  */
 public class TaskProvider {
 
-	private List<FunctionalRequirement> requirements;
 	private List<WorkPackage> workpackages;
 	private WorkPackage lastSprint;
+	private RelatedTasksSterategy relatedTasksSterategy;
 
 	/**
 	 * Constructor.
@@ -37,14 +35,12 @@ public class TaskProvider {
 	 *            last sprint
 	 * @param workpackages
 	 *            work packages
-	 * @param requirements
-	 *            requirements
 	 */
-	public TaskProvider(WorkPackage lastSprint, List<WorkPackage> workpackages,
-			List<FunctionalRequirement> requirements) {
+	public TaskProvider(WorkPackage lastSprint, List<WorkPackage> workpackages) {
 		this.lastSprint = lastSprint;
 		this.workpackages = workpackages;
-		this.requirements = requirements;
+		
+		relatedTasksSterategy = new ImperativeRelatedTasks();
 	}
 
 	/**
@@ -82,15 +78,7 @@ public class TaskProvider {
 		return lastSprint;
 	}
 
-	/**
-	 * @return set of functional requirements to be implemented in sprints.
-	 */
-	public List<FunctionalRequirement> getRequirements() {
-		if (requirements == null) {
-			requirements = new ArrayList<FunctionalRequirement>();
-		}
-		return requirements;
-	}
+	
 
 	/**
 	 * @return the workPackages
@@ -149,34 +137,9 @@ public class TaskProvider {
 	public int getExpertise(WorkItem task, User assignee) {
 
 		int expertise = 0;
-
-		// find functional requirements annotated with this task
-		Set<FunctionalRequirement> annotatedReqs = new HashSet<FunctionalRequirement>();
-		for (ModelElement me : task.getAnnotatedModelElements()) {
-			if (me instanceof FunctionalRequirement) {
-				annotatedReqs.add((FunctionalRequirement) me);
-			}
-		}
-
-		// find refining and refined requirements for each annotated requirement
-		Set<FunctionalRequirement> relatedRequirements = new HashSet<FunctionalRequirement>();
-		relatedRequirements.addAll(annotatedReqs);
-		for (FunctionalRequirement req : annotatedReqs) {
-			// ??? should we go through all the hierarchy?
-			relatedRequirements.add(req.getRefinedRequirement());
-			relatedRequirements.addAll(req.getRefiningRequirements());
-		}
-
-		// find related tasks (task annotating related requirements)
-		Set<WorkItem> relatedWorkItems = new HashSet<WorkItem>();
-		for (FunctionalRequirement req : relatedRequirements) {
-			for (Annotation annotation : req.getAnnotations()) {
-				if (annotation instanceof WorkItem) {
-					relatedWorkItems.add((WorkItem) annotation);
-				}
-			}
-		}
-
+		
+		List<WorkItem> relatedWorkItems = relatedTasksSterategy.getRelatedTasks(task);
+		
 		// count number of related tasks assigned to this user
 		for (WorkItem wi : relatedWorkItems) {
 			if (wi.getAssignee().equals(assignee)) {
@@ -197,12 +160,21 @@ public class TaskProvider {
 	}
 
 	
+
 	/**
-	 * tmp.
-	 * @param reqs functional requirements
+	 * strategy to compute related tasks.
+	 * @param relatedTasksSterategy relatedTasksSterategy
 	 */
-	public void setRequirements(List<FunctionalRequirement> reqs) {
-		this.requirements = reqs;
+	public void setRelatedTasksSterategy(RelatedTasksSterategy relatedTasksSterategy) {
+		this.relatedTasksSterategy = relatedTasksSterategy;
+	}
+
+	/**
+	 * returns strategy to compute related tasks.
+	 * @return strategy to compute related tasks
+	 */
+	public RelatedTasksSterategy getRelatedTasksSterategy() {
+		return relatedTasksSterategy;
 	}
 
 }
