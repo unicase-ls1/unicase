@@ -96,7 +96,7 @@ public class AssigneesPage extends WizardPage {
 				}
 				allAssignees.removeAll(selectedAssignees);
 				for (User assignee : allAssignees) {
-					iterationPlanner.addAssignee(assignee);
+					iterationPlanner.getAssigneeProvider().addAssignee(assignee);
 				}
 				AssigneesPage.this.getWizard().getContainer().updateButtons();
 			}
@@ -113,7 +113,7 @@ public class AssigneesPage extends WizardPage {
 
 			public void widgetSelected(SelectionEvent e) {
 				for (Object obj : tableViewer.getCheckedElements()) {
-					iterationPlanner.removeAssignee((User) obj);
+					iterationPlanner.getAssigneeProvider().removeAssignee((User) obj);
 				}
 				tableViewer.setAllChecked(false);
 				AssigneesPage.this.getWizard().getContainer().updateButtons();
@@ -132,7 +132,7 @@ public class AssigneesPage extends WizardPage {
 			}
 
 			public void widgetSelected(SelectionEvent e) {
-				iterationPlanner.resetToInitialAssignees();
+				iterationPlanner.getAssigneeProvider().resetToInitialAssignees();
 				AssigneesPage.this.getWizard().getContainer().updateButtons();
 			}
 
@@ -159,9 +159,9 @@ public class AssigneesPage extends WizardPage {
 		tableViewer.addCheckStateListener(new ICheckStateListener() {
 			public void checkStateChanged(CheckStateChangedEvent event) {
 				if (event.getChecked()) {
-					iterationPlanner.addAssignee((User) event.getElement());
+					iterationPlanner.getAssigneeProvider().addAssignee((User) event.getElement());
 				} else {
-					iterationPlanner.removeAssignee((User) event.getElement());
+					iterationPlanner.getAssigneeProvider().removeAssignee((User) event.getElement());
 
 				}
 				AssigneesPage.this.getWizard().getContainer().updateButtons();
@@ -191,7 +191,7 @@ public class AssigneesPage extends WizardPage {
 			@Override
 			public String getText(Object element) {
 				if (element instanceof User) {
-					return iterationPlanner.getAvailability((User) element)
+					return iterationPlanner.getAssigneeProvider().getAvailability((User) element)
 							+ "";
 				}
 				return super.getText(element);
@@ -234,7 +234,7 @@ public class AssigneesPage extends WizardPage {
 	 */
 	@Override
 	public boolean canFlipToNextPage() {
-		tableViewer.setCheckedElements(iterationPlanner.getAssignees()
+		tableViewer.setCheckedElements(iterationPlanner.getAssigneeProvider().getAssignees()
 				.toArray());
 		tableViewer.refresh();
 		return tableViewer.getCheckedElements().length > 0;

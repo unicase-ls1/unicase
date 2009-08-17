@@ -5,12 +5,18 @@
  */
 package org.unicase.ui.iterationplanner.provider;
 
+import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -19,6 +25,82 @@ import java.util.Set;
  * @author Hodaie
  */
 public class TaskProvider {
+
+	private List<FunctionalRequirement> requirements;
+	private List<WorkPackage> workpackages;
+	private WorkPackage lastSprint;
+
+	/**
+	 * Constructor.
+	 * 
+	 * @param lastSprint
+	 *            last sprint
+	 * @param workpackages
+	 *            work packages
+	 * @param requirements
+	 *            requirements
+	 */
+	public TaskProvider(WorkPackage lastSprint, List<WorkPackage> workpackages,
+			List<FunctionalRequirement> requirements) {
+		this.lastSprint = lastSprint;
+		this.workpackages = workpackages;
+		this.requirements = requirements;
+	}
+
+	/**
+	 * Constructor.
+	 */
+	public TaskProvider() {
+	}
+
+	/**
+	 * @return last sprint
+	 */
+	public WorkPackage getLastSprint() {
+		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
+				.getEditingDomain("org.unicase.EditingDomain");
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+
+				if (lastSprint.getEndDate() == null) {
+					// now
+					lastSprint.setEndDate(Calendar.getInstance().getTime());
+
+				}
+				if (lastSprint.getStartDate() == null) {
+					// minus 14 days (two weeks)
+					lastSprint.setStartDate(new Date(lastSprint.getEndDate()
+							.getTime()
+							- 14L * 24L * 60L * 60L * 1000L));
+				}
+			}
+
+		});
+
+		return lastSprint;
+	}
+
+	/**
+	 * @return set of functional requirements to be implemented in sprints.
+	 */
+	public List<FunctionalRequirement> getRequirements() {
+		if (requirements == null) {
+			requirements = new ArrayList<FunctionalRequirement>();
+		}
+		return requirements;
+	}
+
+	/**
+	 * @return the workPackages
+	 */
+	public List<WorkPackage> getWorkPackages() {
+		if (workpackages == null) {
+			workpackages = new ArrayList<WorkPackage>();
+		}
+		return workpackages;
+	}
 
 	/**
 	 * sort tasks by priority.
@@ -103,6 +185,24 @@ public class TaskProvider {
 		}
 
 		return expertise;
+	}
+
+	/**
+	 * 
+	 * @param lastSprint
+	 *            last sprint
+	 */
+	public void setLastSprint(WorkPackage lastSprint) {
+		this.lastSprint = lastSprint;
+	}
+
+	
+	/**
+	 * tmp.
+	 * @param reqs functional requirements
+	 */
+	public void setRequirements(List<FunctionalRequirement> reqs) {
+		this.requirements = reqs;
 	}
 
 }
