@@ -40,16 +40,21 @@ public class TaskProvider {
 	 * @param iterationPlannerManager
 	 *            iteration planning manager
 	 * 
+	 * @param relatedTaskStrategy
+	 *            relateTaskStrategy
+	 * 
 	 * @param lastSprint
 	 *            last sprint
 	 * @param workpackages
 	 *            work packages
 	 */
 	public TaskProvider(IterationPlannerManager iterationPlannerManager,
-			WorkPackage lastSprint, List<WorkPackage> workpackages) {
+			RelatedTasksSterategy relatedTaskStrategy, WorkPackage lastSprint,
+			List<WorkPackage> workpackages) {
 		this.planningManager = iterationPlannerManager;
 		this.lastSprint = lastSprint;
 		this.workpackages = workpackages;
+		this.relatedTasksSterategy = relatedTaskStrategy;
 
 		relatedTasksSterategy = new ImperativeRelatedTasks();
 	}
@@ -60,10 +65,14 @@ public class TaskProvider {
 	 * @param iterationPlannerManager
 	 *            iteration planning manager
 	 * 
-	 * @param iterationPlannerManager
+	 * @param relatedTaskStrategy
+	 *            relateTaskStrategy
 	 */
-	public TaskProvider(IterationPlannerManager iterationPlannerManager) {
+	public TaskProvider(IterationPlannerManager iterationPlannerManager,
+			RelatedTasksSterategy relatedTaskStrategy) {
+
 		this.planningManager = iterationPlannerManager;
+		this.relatedTasksSterategy = relatedTaskStrategy;
 	}
 
 	/**
@@ -157,24 +166,27 @@ public class TaskProvider {
 				.getRelatedTasks(task);
 
 		// count number of related tasks assigned to this user
-		for (WorkItem wi : relatedWorkItems) {
-			if (wi.getAssignee().equals(assignee)) {
+		for (WorkItem relatedWorkItem : relatedWorkItems) {
+			if (relatedWorkItem.getAssignee() != null && relatedWorkItem.getAssignee().equals(assignee)) {
 				expertise += 1;
 			}
 		}
 
 		return expertise;
 	}
-	
+
 	/**
 	 * returns a expertise for each assignee relating this task.
-	 * @param task task
+	 * 
+	 * @param task
+	 *            task
 	 * @return a map of assignee to expertise relating this task
 	 */
-	public Map<User, Double> getExpertiseMap(WorkItem task){
-		Map<User, Double> result = new HashMap<User, Double>();
-		for(User assignee : planningManager.getAssigneeProvider().getAssignees()){
-			result.put(assignee, getExpertise(task, assignee));
+	public ExpertiseMap getExpertiseMap(WorkItem task) {
+		ExpertiseMap result = new ExpertiseMap();
+		for (User assignee : planningManager.getAssigneeProvider()
+				.getAssignees()) {
+			result.getExpertiseMap().put(assignee, getExpertise(task, assignee));
 		}
 		return result;
 	}

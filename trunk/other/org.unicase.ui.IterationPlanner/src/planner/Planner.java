@@ -33,7 +33,7 @@ public abstract class Planner {
 	 *            number of iterations to plan
 	 * @return a list of plans. Each plan is a mapping from task to user.
 	 */
-	public abstract List<Plan> plan(List<WorkItem> tasks, List<User> assignees,
+	public abstract Plan plan(List<WorkItem> tasks, List<User> assignees,
 			int numOfIterations);
 
 }
