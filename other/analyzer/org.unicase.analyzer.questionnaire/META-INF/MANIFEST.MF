@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Test
-Bundle-SymbolicName: test; singleton:=true
-Bundle-Version: 1.0.0.qualifier
+Bundle-Name: %pluginName
+Bundle-SymbolicName: org.unicase.analyzer.questionnaire;singleton:=true
+Bundle-Version: 0.0.1.qualifier
 Bundle-Activator: org.unicase.analyzer.questionnaire.Activator
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
@@ -12,6 +12,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.compare.match,
  org.eclipse.emf.compare.ui,
  org.unicase.workspace,
- org.eclipse.compare
+ org.eclipse.compare,
+ org.unicase.analyzer
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-Vendor: %pluginName

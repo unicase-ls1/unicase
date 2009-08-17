@@ -24,6 +24,14 @@
                toolbarPath="questionGroup"
                id="org.unicase.analyzer.questionnaire.actions.SampleAction">
          </action>
+         <action
+               label="&amp;Questionnaire Wizard"
+               icon="icons/sample.gif"
+               class="org.unicase.analyzer.questionnaire.actions.WizardAction"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup"
+               id="org.unicase.analyzer.questionnaire.actions.WizardAction">
+         </action>
       </actionSet>
    </extension>
 
