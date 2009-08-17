@@ -209,7 +209,7 @@ public class RequirementsPage extends WizardPage {
 		for (Object obj : treeViewer.getCheckedElements()) {
 			reqs.add((FunctionalRequirement) obj);
 		}
-		iterationPlanner.getTaskProvider().setRequirements(reqs);
+		iterationPlanner.getRequirementProvider().setRequirements(reqs);
 		return super.getNextPage();
 	}
 

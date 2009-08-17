@@ -11,6 +11,7 @@ import java.util.List;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.iterationplanner.provider.AssigneeProvider;
+import org.unicase.ui.iterationplanner.provider.RequirementProvider;
 import org.unicase.ui.iterationplanner.provider.TaskProvider;
 
 import planner.Planner;
@@ -33,6 +34,8 @@ public class IterationPlannerManager {
 
 	private Planner planner;
 
+	private RequirementProvider requirementProvider;
+
 	/**
 	 * Constructor.
 	 * 
@@ -50,8 +53,9 @@ public class IterationPlannerManager {
 		assigneeProvider = new AssigneeProvider(lastSprint);
 		assigneeProvider.initAssigneeAvailabilities();
 
-		taskProvider = new TaskProvider(lastSprint, includedWorkPackages,
-				requirements);
+		taskProvider = new TaskProvider(lastSprint, includedWorkPackages);
+		
+		requirementProvider = new RequirementProvider();
 
 		planner = new SimplePlanner();
 
@@ -94,15 +98,6 @@ public class IterationPlannerManager {
 	}
 
 	/**
-	 * tmp.
-	 * 
-	 * @return sprint
-	 */
-	public WorkPackage getSprint() {
-		return sprint;
-	}
-
-	/**
 	 * Sets the planner strategy (EA or Simple).
 	 * 
 	 * @param planner
@@ -111,5 +106,25 @@ public class IterationPlannerManager {
 	public void setPlanner(Planner planner) {
 		this.planner = planner;
 	}
+	
+	
+	/**
+	 * tmp.
+	 * 
+	 * @return sprint
+	 */
+	public WorkPackage getSprint() {
+		return sprint;
+	}
+
+
+	/**
+	 * requirements provider.
+	 * @return  requirements provider.
+	 */
+	public RequirementProvider getRequirementProvider() {
+		return requirementProvider;
+	}
+
 
 }
