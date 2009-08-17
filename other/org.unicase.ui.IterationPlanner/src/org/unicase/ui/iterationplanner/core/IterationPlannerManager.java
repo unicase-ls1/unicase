@@ -50,12 +50,12 @@ public class IterationPlannerManager {
 			List<WorkPackage> includedWorkPackages,
 			List<FunctionalRequirement> requirements) {
 
-		assigneeProvider = new AssigneeProvider(lastSprint);
+		assigneeProvider = new AssigneeProvider(this, lastSprint);
 		assigneeProvider.initAssigneeAvailabilities();
 
-		taskProvider = new TaskProvider(lastSprint, includedWorkPackages);
+		taskProvider = new TaskProvider(this, lastSprint, includedWorkPackages);
 		
-		requirementProvider = new RequirementProvider();
+		requirementProvider = new RequirementProvider(this, requirements);
 
 		planner = new SimplePlanner();
 
@@ -65,8 +65,9 @@ public class IterationPlannerManager {
 	 * Constructor.
 	 */
 	public IterationPlannerManager() {
-		assigneeProvider = new AssigneeProvider();
-		taskProvider = new TaskProvider();
+		assigneeProvider = new AssigneeProvider(this);
+		taskProvider = new TaskProvider(this);
+		requirementProvider = new RequirementProvider(this);
 		planner = new SimplePlanner();
 	}
 
