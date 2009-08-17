@@ -8,7 +8,8 @@ package org.unicase.ui.iterationplanner.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.unicase.ui.iterationplanner.WorkItemsToCSV;
+
+import util.WorkItemsToCSV;
 
 /**
  * This handler shows iteration planning wizard.
