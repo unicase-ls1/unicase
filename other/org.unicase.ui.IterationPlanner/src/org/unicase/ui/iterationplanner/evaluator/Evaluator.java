@@ -5,13 +5,16 @@
  */
 package org.unicase.ui.iterationplanner.evaluator;
 
+import org.unicase.model.organization.User;
+import org.unicase.model.task.WorkItem;
 import org.unicase.ui.iterationplanner.core.Plan;
+import org.unicase.ui.iterationplanner.core.SprintPlan;
 
 /**
  * @author Hodaie
  * 
  */
-public abstract class Evaluator {
+public interface Evaluator {
 
 	/**
 	 * evaluate.
@@ -20,6 +23,22 @@ public abstract class Evaluator {
 	 *            plan
 	 * @return evaluation
 	 */
-	public abstract int evaluate(Plan plan);
+	 double evaluate(Plan plan);
+
+
+	/**
+	 * 
+	 * @param task task
+	 * @param assignee assignee
+	 * @return how the user is appropriate for this task
+	 */
+	 double evaluateAssignment(WorkItem task, User assignee);
+	 
+	 /**
+	  * 
+	  * @param sprintPlan sprint plan
+	  * @return sprint plan
+	  */
+	 double evaluateSprintPlan(SprintPlan sprintPlan);
 
 }

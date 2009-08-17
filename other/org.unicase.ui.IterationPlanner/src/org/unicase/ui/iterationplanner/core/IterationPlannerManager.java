@@ -10,7 +10,10 @@ import java.util.List;
 
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.iterationplanner.evaluator.Evaluator;
+import org.unicase.ui.iterationplanner.evaluator.SimpleEvaluator;
 import org.unicase.ui.iterationplanner.provider.AssigneeProvider;
+import org.unicase.ui.iterationplanner.provider.ImperativeRelatedTasks;
 import org.unicase.ui.iterationplanner.provider.RequirementProvider;
 import org.unicase.ui.iterationplanner.provider.TaskProvider;
 
@@ -36,6 +39,8 @@ public class IterationPlannerManager {
 
 	private RequirementProvider requirementProvider;
 
+	private Evaluator evaluator;
+
 	/**
 	 * Constructor.
 	 * 
@@ -53,11 +58,13 @@ public class IterationPlannerManager {
 		assigneeProvider = new AssigneeProvider(this, lastSprint);
 		assigneeProvider.initAssigneeAvailabilities();
 
-		taskProvider = new TaskProvider(this, lastSprint, includedWorkPackages);
+		taskProvider = new TaskProvider(this, new ImperativeRelatedTasks(), lastSprint, includedWorkPackages);
 		
 		requirementProvider = new RequirementProvider(this, requirements);
-
+		
 		planner = new SimplePlanner();
+		
+		evaluator = new SimpleEvaluator(this);
 
 	}
 
@@ -66,9 +73,10 @@ public class IterationPlannerManager {
 	 */
 	public IterationPlannerManager() {
 		assigneeProvider = new AssigneeProvider(this);
-		taskProvider = new TaskProvider(this);
+		taskProvider = new TaskProvider(this, new ImperativeRelatedTasks());
 		requirementProvider = new RequirementProvider(this);
 		planner = new SimplePlanner();
+		evaluator = new SimpleEvaluator(this);
 	}
 
 	/**
@@ -125,6 +133,22 @@ public class IterationPlannerManager {
 	 */
 	public RequirementProvider getRequirementProvider() {
 		return requirementProvider;
+	}
+
+	/**
+	 * Set evaluator.
+	 * @param evaluator evaluator
+	 */
+	public void setEvaluator(Evaluator evaluator) {
+		this.evaluator = evaluator;
+	}
+
+	/**
+	 * evaluator.
+	 * @return evaluator.
+	 */
+	public Evaluator getEvaluator() {
+		return evaluator;
 	}
 
 

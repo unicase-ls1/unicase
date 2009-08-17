@@ -57,6 +57,9 @@ public class AssigneeProvider {
 	 *            assignee
 	 */
 	public void addAssignee(User assignee) {
+		if(assigneeAvailabilities == null){
+			assigneeAvailabilities = new HashMap<User, Integer>();
+		}
 		assigneeAvailabilities.put(assignee, 0);
 	}
 
@@ -65,7 +68,10 @@ public class AssigneeProvider {
 	 *            assignee
 	 */
 	public void removeAssignee(User asssignee) {
-		assigneeAvailabilities.remove(asssignee);
+		if(assigneeAvailabilities != null){
+			assigneeAvailabilities.remove(asssignee);
+			
+		}
 	}
 
 	/**
@@ -171,6 +177,16 @@ public class AssigneeProvider {
 		}
 
 		return result;
+	}
+
+	/**
+	 * set the initial assignees.
+	 * @param assignees initial assignees
+	 */
+	public void setAssignees(List<User> assignees) {
+		for(User assignee : assignees){
+			addAssignee(assignee);
+		}
 	}
 	
 

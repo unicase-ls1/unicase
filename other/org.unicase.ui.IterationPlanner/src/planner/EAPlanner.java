@@ -22,7 +22,7 @@ public class EAPlanner extends Planner {
 	 * 
 	 */
 	@Override
-	public List<Plan> plan(List<WorkItem> tasks, List<User> assignees,
+	public Plan plan(List<WorkItem> tasks, List<User> assignees,
 			int numOfIterations) {
 		// TODO Auto-generated method stub
 		return null;

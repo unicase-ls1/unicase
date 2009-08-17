@@ -5,57 +5,43 @@
  */
 package org.unicase.ui.iterationplanner.core;
 
-import org.unicase.model.organization.User;
-import org.unicase.model.task.WorkItem;
-
-import java.util.Map;
+import java.util.List;
 
 /**
- * An iteration plan is a mapping from work items to users.
+ * An iteration plan is set of sprint plans. A sprint plan is a mapping from work items to users.
  * 
  * @author Hodaie
  * 
  */
 public class Plan {
 
-	private Map<WorkItem, User> plan;
+	private List<SprintPlan> sprintPlans;
+	private int numOfSprints;
 
 	/**
 	 * plan.
 	 * 
-	 * @param plan
-	 *            plan.
+	 * @param sprintPlans
+	 *            sprintPlans.
 	 */
-	public Plan(Map<WorkItem, User> plan) {
-		this.plan = plan;
+	public Plan(List<SprintPlan> sprintPlans) {
+		this.sprintPlans = sprintPlans;
 	}
 
 	/**
 	 * @return the plan
 	 */
-	public Map<WorkItem, User> getPlan() {
-		return plan;
+	public List<SprintPlan> getSprintPlans() {
+		return sprintPlans;
 	}
 
 	/**
-	 * @param task
-	 *            task
-	 * @return assignee for this task.
+	 * number of sprints.
+	 * @return number of sprint
 	 */
-	public User getAssignee(WorkItem task) {
-		return plan.get(task);
+	public int getNumOfSprints() {
+		return numOfSprints;
 	}
 
-	/**
-	 * Sets assignee for this task.
-	 * 
-	 * @param task
-	 *            task
-	 * @param user
-	 *            assignee
-	 */
-	public void setAssignee(WorkItem task, User user) {
-		plan.put(task, user);
-
-	}
+	
 }
