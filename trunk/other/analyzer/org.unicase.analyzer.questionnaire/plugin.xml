@@ -17,7 +17,6 @@
          </menu>
          <action
                label="&amp;Questionnaire"
-               icon="icons/sample.gif"
                class="org.unicase.analyzer.questionnaire.actions.SampleAction"
                tooltip="Questionnaire for comparison"
                menubarPath="questionMenu/questionGroup"
@@ -26,11 +25,17 @@
          </action>
          <action
                label="&amp;Questionnaire Wizard"
-               icon="icons/sample.gif"
                class="org.unicase.analyzer.questionnaire.actions.WizardAction"
                menubarPath="questionMenu/questionGroup"
                toolbarPath="questionGroup"
                id="org.unicase.analyzer.questionnaire.actions.WizardAction">
+         </action>
+         <action
+               label="&amp;Generate projects and changes"
+               class="org.unicase.analyzer.questionnaire.actions.GenerateAction"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup"
+               id="org.unicase.analyzer.questionnaire.actions.GenerateAction">
          </action>
       </actionSet>
    </extension>

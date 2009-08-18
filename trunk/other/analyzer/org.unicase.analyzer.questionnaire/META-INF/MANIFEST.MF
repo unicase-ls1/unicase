@@ -11,9 +11,9 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.emf.compare.diff,
  org.eclipse.emf.compare.match,
  org.eclipse.emf.compare.ui,
- org.unicase.workspace,
  org.eclipse.compare,
- org.unicase.analyzer
+ org.unicase.analyzer,
+ org.unicase.workspace.ui
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Vendor: %pluginName
