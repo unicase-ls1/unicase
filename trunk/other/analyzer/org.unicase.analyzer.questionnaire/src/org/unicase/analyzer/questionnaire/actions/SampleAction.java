@@ -38,6 +38,7 @@ import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.util.ResourceHelper;
 
 /**
  * Our sample action implements workbench action delegate.
@@ -55,12 +56,30 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	private ResourceSet resourceSet;
 	private Resource resource2;
 	private Resource resource1;
+	
+	private static final String DIR = Configuration.getWorkspaceDirectory();
 	/**
 	 * The constructor.
 	 * @throws IOException 
 	 */
 	public SampleAction() throws IOException {
-		setup();
+//		setup();
+		String project1FileName = DIR + "/0/projectstate-13.ups";
+		String project2FileName = DIR + "/0/projectstate-14.ups";
+		
+		project1 = ResourceHelper.getElementFromResource(project1FileName, Project.class, 0);
+		project2 = ResourceHelper.getElementFromResource(project2FileName, Project.class, 0);
+		
+		resourceSet = new ResourceSetImpl();
+		resource1 = resourceSet.createResource( URI.createFileURI(project1FileName));
+		resource1.getContents().add(project1);
+		resource1.save(null);
+		
+		resource2 = resourceSet.createResource( URI.createFileURI(project2FileName));
+		resource2.getContents().add(project2);
+		resource2.save(null);
+		
+		
 	}
 
 	public void setup() throws IOException {
@@ -115,12 +134,12 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	public void run(IAction action) {
 			
 		try {
-			functionalRequirementsSection.getModelElements().get(1).setName("oldFR1");
-			functionalRequirementsSection.getModelElements().remove(2);
-			NonFunctionalRequirement nfr2 = RequirementFactory.eINSTANCE.createNonFunctionalRequirement();
-			nfr2.setName("NFR2");
-			nonFunctionalRequirementsSection.getModelElements().add(nfr2);
-			resource1.save(null);
+//			functionalRequirementsSection.getModelElements().get(1).setName("oldFR1");
+//			functionalRequirementsSection.getModelElements().remove(2);
+//			NonFunctionalRequirement nfr2 = RequirementFactory.eINSTANCE.createNonFunctionalRequirement();
+//			nfr2.setName("NFR2");
+//			nonFunctionalRequirementsSection.getModelElements().add(nfr2);
+//			resource1.save(null);
 			MatchModel match = MatchService.doMatch(project1, project2, Collections.<String, Object> emptyMap());
 			DiffModel diff = DiffService.doDiff(match, false);
 			URI fileURI2 = URI.createFileURI(Configuration.getWorkspaceDirectory() + "diffModel.emfdiff");

@@ -37,7 +37,6 @@ import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
@@ -144,34 +143,35 @@ public class RandomGenerator {
 				values.add(category1.get(version));
 				values.add(representation);
 				exporter.writeLine(values);
+				version = Integer.valueOf(category1.get(version).toString());
 				previousVersion = version - 1;
+				
 				
 				PrimaryVersionSpec previousVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 				previousVersionSpec.setIdentifier(previousVersion);
-				Project project = (Project) EcoreUtil.copy(WorkspaceManager.getInstance().getConnectionManager().getProject(session.getSessionId(), pid, previousVersionSpec));
+				Project project1 = (Project) EcoreUtil.copy(WorkspaceManager.getInstance().getConnectionManager().getProject(session.getSessionId(), pid, previousVersionSpec));
 				
 				ResourceSet resourceSet = new ResourceSetImpl();
-				Resource resource = resourceSet.createResource(URI.createFileURI(DOLLI_DIR + "/projectstate-" + previousVersion + ".ups"));
-				resource.getContents().add(project);
+				Resource resource = resourceSet.createResource(URI.createFileURI(DIR + "/" + i + "/" + "/projectstate-" + previousVersion + ".ups"));
+				resource.getContents().add(project1);
 				resource.save(null);				
-				GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + previousVersion + ".ups", DIR + "/" + i + "/" + "/projectstate-" + previousVersion + ".ups" );
+//				GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + previousVersion + ".ups", DIR + "/" + i + "/" + "/projectstate-" + previousVersion + ".ups" );
 				
 				ChangePackage changePackage = ResourceHelper.getElementFromResource(DOLLI_DIR + "/changepackage-" + version + ".ucp", ChangePackage.class, 0);
 				
 				if(representation){
 					GeneratorHelper.copyfile(DOLLI_DIR + "/changepackage-" + version + ".ucp", DIR + "/" + i + "/" + "/changepackage-" + version + ".ucp" );
 				}else{
-					changePackage.apply(project);
+					changePackage.apply(project1);
+					Project project2 = (Project) EcoreUtil.copy(project1);
 					resourceSet = new ResourceSetImpl();
-					resource = resourceSet.createResource(URI.createFileURI(DOLLI_DIR + "/projectstate-" + version + ".ups"));
-					resource.getContents().add(project);
+					resource = resourceSet.createResource(URI.createFileURI(DIR + "/" + i + "/" + "/projectstate-" + version + ".ups"));
+					resource.getContents().add(project2);
 					resource.save(null);				
 					
-					GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + version + ".ups", DIR + "/" + i + "/" + "/projectstate-" + version + ".ups" );
+//					GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + version + ".ups", DIR + "/" + i + "/" + "/projectstate-" + version + ".ups" );
 					
 					resourceSet = new ResourceSetImpl();
-					Project project1 = ResourceHelper.getElementFromResource(DIR + "/" + i + "/" + "/projectstate-" + previousVersion + ".ups", Project.class, 0);
-					Project project2 = ResourceHelper.getElementFromResource(DIR + "/" + i + "/" + "/projectstate-" + version + ".ups", Project.class, 0);
 					MatchModel match = MatchService.doMatch(project1, project2, Collections.<String, Object> emptyMap());
 					DiffModel diff = DiffService.doDiff(match, false);
 					URI fileURI2 = URI.createFileURI(DIR + "/" + i + "/" + "diffModel" + version + ".emfdiff");

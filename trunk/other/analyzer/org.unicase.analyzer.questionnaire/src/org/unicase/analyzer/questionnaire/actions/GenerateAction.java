@@ -14,6 +14,7 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.unicase.analyzer.questionnaire.generator.RandomGenerator;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.workspace.Configuration;
 
 /**
  * @author liya
@@ -48,7 +49,7 @@ public class GenerateAction implements IWorkbenchWindowActionDelegate {
 		RandomGenerator generator = new RandomGenerator();
 		
 		try {
-			generator.readFile(new File("/Network/Servers/macbruegge7.informatik.tu-muenchen.de/Volumes/raid/Users/liya/Desktop/ddd.dat"));
+			generator.readFile(new File(Configuration.getWorkspaceDirectory() + "/dolli.csv"));
 			generator.generateUserFolder(2);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

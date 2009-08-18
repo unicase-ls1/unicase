@@ -5,14 +5,8 @@
 
 package org.unicase.analyzer.questionnaire.wizards;
 
-import java.io.File;
 import java.io.IOException;
-import java.util.Map;
 
-import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -28,10 +22,9 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.Project;
-import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.util.ResourceHelper;
 import org.unicase.workspace.ui.views.CompareView;
+import org.unicase.workspace.util.ResourceHelper;
 
 
 /**
