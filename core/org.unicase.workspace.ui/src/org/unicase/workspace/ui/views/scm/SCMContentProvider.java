@@ -17,6 +17,7 @@ import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.Viewer;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
@@ -60,6 +61,9 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		} else if (element instanceof ModelElement) {
 			ModelElement me = (ModelElement) element;
 			return getChildren(me, treeNode);
+		} else if (element instanceof ChangePackage) {
+			ChangePackage cp = (ChangePackage) element;
+			return getChildren(cp, treeNode);
 		}
 		return new Object[0];
 	}
@@ -70,7 +74,14 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 	public void setChangePackageVisualizationHelper(ChangePackageVisualizationHelper visualizationHelper) {
 		changePackageVisualizationHelper = visualizationHelper;
 	}
-	
+
+	/**
+	 * @param changePackage the changePackage
+	 * @param treeNode the parent TreeNode
+	 * @return the subelements for this change package
+	 */
+	protected abstract Object[] getChildren(ChangePackage changePackage, TreeNode treeNode);
+
 	/**
 	 * @param historyInfo the history info
 	 * @param treeNode the parent TreeNode
@@ -104,16 +115,19 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 	 */
 	@SuppressWarnings("unchecked")
 	public Object[] getElements(Object inputElement) {
-		if(!(inputElement instanceof List)){
+		if (inputElement instanceof ChangePackage) {
+			return nodify(null, Arrays.asList((ChangePackage) inputElement)).toArray();
+		}
+		if (!(inputElement instanceof List)) {
 			return new Object[0];
 		}
 		List<HistoryInfo> historyInfos = (List<HistoryInfo>) inputElement;
-		if(showRootNodes){
+		if (showRootNodes) {
 			return nodify(null, historyInfos).toArray();
-		}else {
+		} else {
 			ArrayList<Object> elements = new ArrayList<Object>();
-			for(HistoryInfo hi : historyInfos){
-				if(hi.getChangePackage()!=null){
+			for (HistoryInfo hi : historyInfos) {
+				if (hi.getChangePackage() != null) {
 					elements.addAll(Arrays.asList(getChildren(hi, new TreeNode(hi))));
 				}
 			}
@@ -157,19 +171,20 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		}
 		return nodes;
 	}
-	
+
 	/**
 	 * @return if the root nodes should be shown.
 	 */
-	public boolean showRootNodes(){
+	public boolean showRootNodes() {
 		return showRootNodes;
 	}
 
 	/**
 	 * Sets if the root nodes should be shown.
+	 * 
 	 * @param show the new value.
 	 */
-	public void setShowRootNodes(boolean show ){
+	public void setShowRootNodes(boolean show) {
 		showRootNodes = show;
 	}
 
@@ -198,16 +213,16 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		 */
 		@Override
 		protected Object[] getChildren(AbstractOperation op, TreeNode treeNode) {
-			
-			if(op instanceof CompositeOperation){
+
+			if (op instanceof CompositeOperation) {
 				CompositeOperation cop = (CompositeOperation) op;
 				List<TreeNode> nodes = nodify(treeNode, cop.getSubOperations());
 				return nodes.toArray();
 			}
-			
+
 			List<EObject> mes = new ArrayList<EObject>();
 			ModelElement modelElement = changePackageVisualizationHelper.getModelElement(op.getModelElementId());
-			if(modelElement!=null){
+			if (modelElement != null) {
 				mes.add(modelElement);
 			}
 			mes.addAll(changePackageVisualizationHelper.getAffectedElements(op));
@@ -221,14 +236,24 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		 * @return an array of {@link AbstractOperation}s
 		 */
 		@Override
-		protected Object[] getChildren(HistoryInfo historyInfo, TreeNode treeNode) {
-			if(historyInfo.getChangePackage()==null){
-				return new Object[0];
-			}
-			EList<AbstractOperation> operations = historyInfo.getChangePackage().getOperations();
+		protected Object[] getChildren(ChangePackage changePackage, TreeNode treeNode) {
+			EList<AbstractOperation> operations = changePackage.getOperations();
 			List<TreeNode> nodes = nodify(treeNode, operations);
 			Collections.reverse(nodes);
 			return nodes.toArray();
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @return an array of {@link AbstractOperation}s
+		 */
+		@Override
+		protected Object[] getChildren(HistoryInfo historyInfo, TreeNode treeNode) {
+			if (historyInfo.getChangePackage() == null) {
+				return new Object[0];
+			}
+			return getChildren(historyInfo.getChangePackage(), treeNode);
 		}
 
 		/**
@@ -268,7 +293,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		 */
 		@Override
 		protected Object[] getChildren(AbstractOperation op, TreeNode treeNode) {
-			if(op instanceof CompositeOperation){
+			if (op instanceof CompositeOperation) {
 				CompositeOperation cop = (CompositeOperation) op;
 				List<TreeNode> nodes = nodify(treeNode, cop.getSubOperations());
 				return nodes.toArray();
@@ -285,15 +310,26 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		 */
 		@Override
 		protected Object[] getChildren(HistoryInfo historyInfo, TreeNode treeNode) {
-			if(historyInfo.getChangePackage()==null){
+			if (historyInfo.getChangePackage() == null) {
 				return new Object[0];
 			}
+			return getChildren(historyInfo.getChangePackage(), treeNode);
+		}
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @return an array of {@link ModelElement}s
+		 */
+		@Override
+		protected Object[] getChildren(ChangePackage changePackage, TreeNode treeNode) {
 			Set<EObject> modelElements = null;
-			if(historyInfo.getChangePackage().getLogMessage()==null){
-				ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays.asList(historyInfo.getChangePackage()), project);
-				modelElements = helper.getAllModelElements(historyInfo.getChangePackage());
-			}else{
-				modelElements = changePackageVisualizationHelper.getAllModelElements(historyInfo.getChangePackage());
+			if (changePackage.getLogMessage() == null) {
+				ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays
+					.asList(changePackage), project);
+				modelElements = helper.getAllModelElements(changePackage);
+			} else {
+				modelElements = changePackageVisualizationHelper.getAllModelElements(changePackage);
 			}
 			List<TreeNode> nodes = nodify(treeNode, new ArrayList<EObject>(modelElements));
 			return nodes.toArray();
@@ -308,13 +344,14 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		@Override
 		protected Object[] getChildren(ModelElement modelElement, TreeNode treeNode) {
 			if (treeNode.getParent().getValue() instanceof HistoryInfo) {
-				HistoryInfo historyInfo = (HistoryInfo) treeNode.getParent().getValue() ;
+				HistoryInfo historyInfo = (HistoryInfo) treeNode.getParent().getValue();
 				ChangePackageVisualizationHelper helper = changePackageVisualizationHelper;
-				if(historyInfo.getChangePackage().getLogMessage()==null){
-					helper = new ChangePackageVisualizationHelper(Arrays.asList(historyInfo.getChangePackage()), project);
+				if (historyInfo.getChangePackage().getLogMessage() == null) {
+					helper = new ChangePackageVisualizationHelper(Arrays.asList(historyInfo.getChangePackage()),
+						project);
 				}
-				ArrayList<EObject> operations = new ArrayList<EObject>(helper
-					.getOperations(modelElement,historyInfo.getChangePackage()));
+				ArrayList<EObject> operations = new ArrayList<EObject>(helper.getOperations(modelElement, historyInfo
+					.getChangePackage()));
 				List<TreeNode> nodes = nodify(treeNode, operations);
 				Collections.reverse(nodes);
 				return nodes.toArray();

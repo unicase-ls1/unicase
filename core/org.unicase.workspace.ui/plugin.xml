@@ -702,6 +702,14 @@
             name="Validation View"
             restorable="true">
       </view>
+      <view
+            allowMultiple="false"
+            category="org.unicase"
+            class="org.unicase.workspace.ui.views.CompareView"
+            id="org.unicase.workspace.ui.views.CompareView"
+            name="Compare View"
+            restorable="true">
+      </view>
     
    </extension>
      <extension
