@@ -6,11 +6,13 @@
 package org.unicase.analyzer.questionnaire.wizards;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
@@ -21,7 +23,15 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.model.Project;
+import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.util.ResourceHelper;
+import org.unicase.workspace.ui.views.CompareView;
 
 
 /**
@@ -46,8 +56,10 @@ public class ChooseUserPage extends WizardPage implements Listener {
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		// TODO Auto-generated method stub
-
+		if(event.widget == userNumber){
+			setPageComplete(true);
+		}
+		getWizard().getContainer().updateButtons();
 	}
 
 	/** 
@@ -66,10 +78,11 @@ public class ChooseUserPage extends WizardPage implements Listener {
 		userNumber = new Text(composite, SWT.BORDER);
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		userNumber.setLayoutData(gd);
-		userNumber.addListener(SWT.KeyUp, this);
+		userNumber.setFocus();
+		userNumber.addListener(SWT.FocusOut, this);
 		
 		setControl(composite);
-		setPageComplete(true);
+		setPageComplete(false);
 
 	}
 	
@@ -82,6 +95,29 @@ public class ChooseUserPage extends WizardPage implements Listener {
 //		Map<Integer, Integer> map = (Map<Integer, Integer>) resource.getContents().get(0);
 //		((QuestionnaireWizard) getWizard()).setCommitMap(map);
 		
+		
+		String projectFileName = DIR + "/" + userNumber.getText() + "/projectstate-4.ups";
+		String changeFileName = DIR + "/" + userNumber.getText() + "/changepackage-5.ucp";
+		try {
+			Project project = ResourceHelper.getElementFromResource(projectFileName, Project.class, 0);
+			ChangePackage changePackage = ResourceHelper.getElementFromResource(changeFileName, ChangePackage.class, 0);
+
+			 IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			 String viewId = "org.unicase.workspace.ui.views.CompareView";
+			 CompareView compareView = null;
+			 
+			 compareView = (CompareView) page.showView(viewId);
+			 
+			 if (compareView != null) {
+			 compareView.setInput(project, changePackage);
+			 }
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (PartInitException e) {
+
+			e.printStackTrace();
+		}		
+		getWizard().getContainer().getShell().setActive();
 		return super.getNextPage();
 	}
 

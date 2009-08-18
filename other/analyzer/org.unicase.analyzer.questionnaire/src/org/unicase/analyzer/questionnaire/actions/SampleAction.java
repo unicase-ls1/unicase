@@ -48,8 +48,6 @@ import org.unicase.workspace.Configuration;
  * @see IWorkbenchWindowActionDelegate
  */
 public class SampleAction implements IWorkbenchWindowActionDelegate {
-	private IWorkbenchWindow window;
-	
 	private Project project1;
 	private Project project2;
 	private LeafSection functionalRequirementsSection;
@@ -182,6 +180,5 @@ public class SampleAction implements IWorkbenchWindowActionDelegate {
 	 * @see IWorkbenchWindowActionDelegate#init
 	 */
 	public void init(IWorkbenchWindow window) {
-		this.window = window;
 	}
 }
