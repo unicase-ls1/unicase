@@ -116,6 +116,19 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 	public boolean inspectChanges(List<ChangePackage> changePackages) {
 		UpdateDialog updateDialog = new UpdateDialog(shell, changePackages);
 		int returnCode = updateDialog.open();
+
+		// IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		// String viewId = "org.unicase.workspace.ui.views.CompareView";
+		// CompareView compareView = null;
+		// try {
+		// compareView = (CompareView) page.showView(viewId);
+		// } catch (PartInitException e) {
+		// DialogHandler.showExceptionDialog(e);
+		// }
+		// if (compareView != null) {
+		// compareView.setInput(getProjectSpace().getProject(), changePackages.get(0));
+		// }
+
 		if (returnCode == Window.OK) {
 			return true;
 		}
