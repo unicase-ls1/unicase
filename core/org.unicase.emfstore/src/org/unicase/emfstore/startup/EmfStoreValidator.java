@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.RMISerializationException;
 import org.unicase.model.ModelElement;
@@ -132,7 +133,8 @@ public class EmfStoreValidator {
 			for (Version version : projectHistory.getVersions()) {
 				if (version.getChanges() != null) {
 					for (AbstractOperation ao : version.getChanges().getOperations()) {
-						if (ao.getModelElementId() == null || ao.getModelElementId().getId() == null) {
+						if (!(ao instanceof CompositeOperation)
+							&& (ao.getModelElementId() == null || ao.getModelElementId().getId() == null)) {
 							errors.add("ChangeOperation has no ModelElementId in project: "
 								+ projectHistory.getProjectId() + " version: "
 								+ version.getPrimarySpec().getIdentifier());
