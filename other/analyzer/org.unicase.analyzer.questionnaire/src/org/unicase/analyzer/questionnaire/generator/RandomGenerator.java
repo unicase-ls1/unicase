@@ -17,6 +17,8 @@ import java.util.Map;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSetSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
@@ -40,6 +42,8 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
+import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -150,6 +154,7 @@ public class RandomGenerator {
 				PrimaryVersionSpec previousVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 				previousVersionSpec.setIdentifier(previousVersion);
 				Project project1 = (Project) EcoreUtil.copy(WorkspaceManager.getInstance().getConnectionManager().getProject(session.getSessionId(), pid, previousVersionSpec));
+				killAllDiagrams(project1);
 				
 				ResourceSet resourceSet = new ResourceSetImpl();
 				Resource resource = resourceSet.createResource(URI.createFileURI(DIR + "/" + i + "/" + "/projectstate-" + previousVersion + ".ups"));
@@ -188,6 +193,13 @@ public class RandomGenerator {
 
 			}
 			
+		}
+	}
+	
+	private void killAllDiagrams(Project project) {
+		EList<MEDiagram> allDiagrams = project.getAllModelElementsbyClass(DiagramPackage.eINSTANCE.getMEDiagram(), new BasicEList<MEDiagram>());
+		for (MEDiagram diagram: allDiagrams) {
+			project.deleteModelElement(diagram);
 		}
 	}
 
