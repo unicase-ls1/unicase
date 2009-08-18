@@ -188,7 +188,7 @@ public class RandomGenerator {
 					ComparisonResourceSetSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSetSnapshot();
 					snapshot.setDiffResourceSet(diffSet);
 					snapshot.setMatchResourceSet(matchSet);
-					ModelUtils.save(snapshot, "diffModel" + version + ".emfdiff");
+					ModelUtils.save(snapshot, DIR + "/" + i + "/" + "diffModel" + version + ".emfdiff");
 				}
 
 			}
