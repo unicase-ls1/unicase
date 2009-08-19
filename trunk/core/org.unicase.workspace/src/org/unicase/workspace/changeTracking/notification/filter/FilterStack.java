@@ -28,17 +28,7 @@ public final class FilterStack implements NotificationFilter {
 		//
 		new EmptyRemovalsFilter(),
 		//
-		// new BidirectionalSetFilter(),
-		// 
-		// new BidirectionalRemoveFilter(),
-		// 
-		// new BidirectionalAddFilter(),
-		// 
 		new BidirectionalAddManyFilter(),
-		//
-		// new BidirectionalRemoveManyFilter(),
-		//
-		// new ContainmentRemovalFilter(),
 		//
 		new GenericBidirectionalFilter() };
 
