@@ -94,17 +94,18 @@ public class UpdateProjectHandler extends ServerRequestCommandHandler implements
 				}
 			});
 		} catch (ChangeConflictException e1) {
-			handleChangeConflictException(projectSpace);
+			handleChangeConflictException(e1);
 		} catch (NoChangesOnServerException e) {
 			MessageDialog.openInformation(shell, "No need to update",
 				"Your project is up to date, you do not need to update.");
 		}
 	}
 
-	private void handleChangeConflictException(ProjectSpace projectSpace) {
+	private void handleChangeConflictException(ChangeConflictException conflictException) {
+		ProjectSpace projectSpace = conflictException.getProjectSpace();
 		try {
 			PrimaryVersionSpec targetVersion = projectSpace.resolveVersionSpec(VersionSpec.HEAD_VERSION);
-			projectSpace.merge(targetVersion, new MergeProjectHandler());
+			projectSpace.merge(targetVersion, new MergeProjectHandler(conflictException));
 		} catch (EmfStoreException e) {
 			WorkspaceUtil.logException("Exception when merging the project!", e);
 		}

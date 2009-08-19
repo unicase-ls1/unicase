@@ -7,7 +7,9 @@ package org.unicase.workspace.exceptions;
 
 import java.util.List;
 
+import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * Represents the exception that there are conflicting changes.
@@ -18,6 +20,8 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 public class ChangeConflictException extends WorkspaceException {
 
 	private List<ChangePackage> newPackages;
+	private ProjectSpace projectSpace;
+	private ConflictDetector conflictDetector;
 
 	/**
 	 * Retrieve the list of change packages that caused the exception.
@@ -32,9 +36,28 @@ public class ChangeConflictException extends WorkspaceException {
 	 * Constructor.
 	 * 
 	 * @param newPackages the list of change packages that caused the exception
+	 * @param conflictDetector the ConflictDetector
+	 * @param projectSpace the ProjectSpace
 	 */
-	public ChangeConflictException(List<ChangePackage> newPackages) {
+	public ChangeConflictException(List<ChangePackage> newPackages, ProjectSpace projectSpace,
+		ConflictDetector conflictDetector) {
 		super("Conflict detected on update");
 		this.newPackages = newPackages;
+		this.projectSpace = projectSpace;
+		this.conflictDetector = conflictDetector;
+	}
+
+	/**
+	 * @return the ConflictDetector.
+	 */
+	public ConflictDetector getConflictDetector() {
+		return conflictDetector;
+	}
+
+	/**
+	 * @return the ProjectSpace.
+	 */
+	public ProjectSpace getProjectSpace() {
+		return projectSpace;
 	}
 }

@@ -216,7 +216,9 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 
 			if (op instanceof CompositeOperation) {
 				CompositeOperation cop = (CompositeOperation) op;
-				List<TreeNode> nodes = nodify(treeNode, cop.getSubOperations());
+				List<AbstractOperation> subOps = cop.getSubOperations();
+				subOps.remove(cop.getMainOperation());
+				List<TreeNode> nodes = nodify(treeNode, subOps);
 				return nodes.toArray();
 			}
 
@@ -295,7 +297,9 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		protected Object[] getChildren(AbstractOperation op, TreeNode treeNode) {
 			if (op instanceof CompositeOperation) {
 				CompositeOperation cop = (CompositeOperation) op;
-				List<TreeNode> nodes = nodify(treeNode, cop.getSubOperations());
+				List<AbstractOperation> subOps = cop.getSubOperations();
+				subOps.remove(cop.getMainOperation());
+				List<TreeNode> nodes = nodify(treeNode, subOps);
 				return nodes.toArray();
 			}
 			Set<EObject> modelElements = changePackageVisualizationHelper.getAffectedElements(op);

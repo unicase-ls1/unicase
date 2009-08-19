@@ -80,7 +80,8 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				return getText(historyInfo);
 			} else if (value instanceof AbstractOperation) {
 				if (value instanceof CompositeOperation) {
-					ret = "Composite operation";
+					ret = changePackageVisualizationHelper.getDescription(((CompositeOperation) value)
+						.getMainOperation());
 				} else {
 					ret = changePackageVisualizationHelper.getDescription((AbstractOperation) value);
 				}
