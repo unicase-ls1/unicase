@@ -2219,7 +2219,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 			mergeResult.addAll(acceptedMine);
 
-			applyOperations(mergeResult, false);
+			applyOperations(mergeResult, true);
 
 			this.setBaseVersion(target);
 
