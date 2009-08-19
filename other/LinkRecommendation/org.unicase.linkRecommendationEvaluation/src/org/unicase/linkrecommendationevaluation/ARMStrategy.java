@@ -42,12 +42,19 @@ public class ARMStrategy implements RecommendationStrategy {
 	public Map<ModelElement, Double> getMatchingMap(ModelElement base, Collection<ModelElement> elements) {
 		Map<ModelElement, Double> result = new HashMap<ModelElement, Double>();
 		String sourceId = base.getIdentifier();
+		double totalLinkCount = 0;
 		for (ModelElement linkTarget: elements) {
 			Double linkCount = linkCountMap.get(sourceId + linkTarget.getIdentifier());
 			if (linkCount==null) {
 				linkCount = new Double(0);
 			}
 			result.put(linkTarget, linkCount);
+			totalLinkCount+=linkCount.doubleValue();
+		}
+		if (totalLinkCount!=0) {
+			for (ModelElement targetElement: result.keySet()) {
+				result.put(targetElement, new Double(result.get(targetElement).doubleValue() / totalLinkCount));
+			}
 		}
 		return result;
 	}
