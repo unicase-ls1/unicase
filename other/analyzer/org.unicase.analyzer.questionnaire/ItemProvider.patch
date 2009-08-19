@@ -1,0 +1,13 @@
+Index: ProjectItemProvider.java
+===================================================================
+--- ProjectItemProvider.java	(revision 4879)
++++ ProjectItemProvider.java	(working copy)
+@@ -349,7 +349,7 @@
+ 			EList<ModelElement> allmes = project.getAllModelElements();
+ 			for (ModelElement temp : allmes) {
+ 				econtainer = temp.eContainer();
+-				if ((econtainer instanceof Project) && !(temp instanceof CompositeSection)) {
++				if ((econtainer instanceof Project) && (temp instanceof CompositeSection)) {
+ 					ret.add(temp);
+ 				}
+ 
