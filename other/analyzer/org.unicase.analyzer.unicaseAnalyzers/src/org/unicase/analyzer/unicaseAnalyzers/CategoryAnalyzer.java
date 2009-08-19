@@ -6,10 +6,14 @@
 package org.unicase.analyzer.unicaseAnalyzers;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
+import org.unicase.emfstore.conflictDetection.ConflictDetector;
+import org.unicase.emfstore.conflictDetection.IndexSensitiveConflictDetectionStrategy;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
@@ -28,6 +32,8 @@ public class CategoryAnalyzer implements DataAnalyzer {
 	public List<String> getName() {
 		List<String> names = new ArrayList<String>();
 		names.add("Category");
+		names.add("Operations Number");
+		names.add("Dependency Depth");
 		return names;
 	}
 
@@ -38,6 +44,7 @@ public class CategoryAnalyzer implements DataAnalyzer {
 	 */
 	public List<Object> getValue(ProjectAnalysisData data) {
 		List<Object> values = new ArrayList<Object>();
+		List<Integer> dependency;
 		
 		int category = 0; // Category number, 4 in total
 		
@@ -45,7 +52,15 @@ public class CategoryAnalyzer implements DataAnalyzer {
 		int refCount = 0;  // Reference Operation
 		int createCount = 0; // CreateDelete Operation
 		
+		int opListSize = 0;// operations number for each changePackage
+		int depth = 0; //dependency depth
+		
+		ConflictDetector conflictDetector = new ConflictDetector(new IndexSensitiveConflictDetectionStrategy());
+		
 		if(data.getChangePackages() != null && data.getChangePackages().size() > 0){
+			
+			dependency = new ArrayList<Integer>();
+			
 			for(AbstractOperation op: data.getChangePackages().get(0).getOperations()){
 				if(op instanceof AttributeOperation){
 					attriCount ++;
@@ -53,10 +68,13 @@ public class CategoryAnalyzer implements DataAnalyzer {
 					refCount ++;
 				}else if(op instanceof CreateDeleteOperation){
 					createCount ++;
-				}			
+				}
+				
+				//Calculate dependency depth
+				dependency.add(conflictDetector.getRequiring(data.getChangePackages().get(0).getOperations(), op).size());
 			}
 			
-			int opListSize = data.getChangePackages().get(0).getOperations().size();
+			opListSize = data.getChangePackages().get(0).getOperations().size();
 			
 			if(attriCount == opListSize){
 				category = 1;
@@ -67,8 +85,15 @@ public class CategoryAnalyzer implements DataAnalyzer {
 			}else if(attriCount + refCount + createCount < opListSize){
 				category = 4;
 			}
+			
+			if(dependency != null && dependency.size()>0){
+				depth = Collections.max(dependency);
+			}
 		}
+		
 		values.add(category);
+		values.add(opListSize);
+		values.add(depth);
 		return values;
 	}
 
