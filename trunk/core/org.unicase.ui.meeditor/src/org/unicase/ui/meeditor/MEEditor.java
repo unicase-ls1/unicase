@@ -98,6 +98,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	private Adapter eAdapter;
 
+	private String creatorHint;
+
 	/**
 	 * Default constructor.
 	 */
@@ -187,6 +189,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 			SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 			StringBuffer stringBuffer = new StringBuffer();
 			Date creationDate = modelElement.getCreationDate();
+			creatorHint = "";
 			if (creationDate != null) {
 				creationDate = modelElement.getCreationDate();
 				stringBuffer.append("Created on ");
@@ -195,11 +198,16 @@ public class MEEditor extends SharedHeaderFormEditor {
 				stringBuffer.append(timeFormat.format(creationDate));
 				stringBuffer.append(" by ");
 				stringBuffer.append(modelElement.getCreator());
-				getEditorSite().getActionBars().getStatusLineManager().setMessage(stringBuffer.toString());
+				creatorHint = stringBuffer.toString();
 			}
+			updateCreatorHint();
 		} else {
 			throw new PartInitException("MEEditor is only appliable for MEEditorInputs");
 		}
+	}
+
+	private void updateCreatorHint() {
+		getEditorSite().getActionBars().getStatusLineManager().setMessage(creatorHint);
 	}
 
 	/**
@@ -258,6 +266,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 		super.setFocus();
 		mePage.setFocus();
+		updateCreatorHint();
 
 	}
 
