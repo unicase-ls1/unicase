@@ -96,8 +96,8 @@ public class ArmStrategyTest {
 		event6.setTargetElement(ModelUtil.clone(elementId5));
 		
 		TraceEvent event7 = EventsFactory.eINSTANCE.createTraceEvent();
-		event7.setSourceElement(ModelUtil.clone(elementId5));
-		event7.setTargetElement(ModelUtil.clone(elementId6));
+		event7.setSourceElement(ModelUtil.clone(elementId1));
+		event7.setTargetElement(ModelUtil.clone(elementId3));
 		
 		TraceEvent event8 = EventsFactory.eINSTANCE.createTraceEvent();
 		event8.setSourceElement(ModelUtil.clone(elementId1));
@@ -188,8 +188,8 @@ public class ArmStrategyTest {
 		Map<ModelElement, Double> matchingMap = armStrategy.getMatchingMap(modelElement1, targetCandidates);
 		assertEquals(4, matchingMap.keySet().size());
 		
-		assertEquals(new Double(1), matchingMap.get(modelElement2));
-		assertEquals(new Double(2), matchingMap.get(modelElement3));
+		assertEquals(new Double(0.25), matchingMap.get(modelElement2));
+		assertEquals(new Double(0.75), matchingMap.get(modelElement3));
 		assertEquals(new Double(0), matchingMap.get(modelElement4));
 		assertEquals(new Double(0), matchingMap.get(modelElement5));
 		
@@ -226,8 +226,8 @@ public class ArmStrategyTest {
 		Map<ModelElement, Double> matchingMap = armStrategy.getMatchingMap(modelElement1, targetCandidates);
 		assertEquals(4, matchingMap.keySet().size());
 		
-		assertEquals(new Double(1), matchingMap.get(modelElement2));
-		assertEquals(new Double(2), matchingMap.get(modelElement3));
+		assertEquals(new Double(0.25), matchingMap.get(modelElement2));
+		assertEquals(new Double(0.75), matchingMap.get(modelElement3));
 		assertEquals(new Double(0), matchingMap.get(modelElement4));
 		assertEquals(new Double(0), matchingMap.get(modelElement5));
 		
@@ -256,10 +256,10 @@ public class ArmStrategyTest {
 
 		matchingMap = armStrategy.getMatchingMap(modelElement1, targetCandidates);
 		assertEquals(4, matchingMap.keySet().size());
-		
-		assertEquals(new Double(2), matchingMap.get(modelElement2));
-		assertEquals(new Double(3), matchingMap.get(modelElement3));
-		assertEquals(new Double(1), matchingMap.get(modelElement4));
+				
+		assertEquals(new Double(2.0/7), matchingMap.get(modelElement2));
+		assertEquals(new Double(4.0/7), matchingMap.get(modelElement3));
+		assertEquals(new Double(1.0/7), matchingMap.get(modelElement4));
 		assertEquals(new Double(0), matchingMap.get(modelElement5));
 		
 	}
