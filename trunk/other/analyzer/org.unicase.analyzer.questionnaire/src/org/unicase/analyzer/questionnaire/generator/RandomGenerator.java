@@ -17,10 +17,12 @@ import java.util.Map;
 import java.util.Random;
 import java.util.StringTokenizer;
 
+import org.eclipse.compare.CompareUI;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSetSnapshot;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.DiffResourceSet;
@@ -29,11 +31,16 @@ import org.eclipse.emf.compare.match.metamodel.MatchFactory;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.metamodel.MatchResourceSet;
 import org.eclipse.emf.compare.match.service.MatchService;
+import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
 import org.eclipse.emf.compare.util.ModelUtils;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.PartInitException;
+import org.eclipse.ui.PlatformUI;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -48,6 +55,7 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.ui.views.CompareView;
 import org.unicase.workspace.util.ResourceHelper;
 
 /**
@@ -166,6 +174,26 @@ public class RandomGenerator {
 				
 				if(representation){
 					GeneratorHelper.copyfile(DOLLI_DIR + "changepackage-" + version + ".ucp", DIR + i + File.separatorChar + "changepackage-" + version + ".ucp" );
+					try {
+						Project project = ResourceHelper.getElementFromResource(DIR + i + File.separatorChar + "projectstate-" + previousVersion + ".ups", Project.class, 0);
+						ChangePackage cp = ResourceHelper.getElementFromResource(DIR + i + File.separatorChar + "changepackage-" + version + ".ucp", ChangePackage.class, 0);
+
+						 IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+						 String viewId = "org.unicase.workspace.ui.views.CompareView";
+						 CompareView compareView = null;
+						 
+						 compareView = (CompareView) page.showView(viewId);
+						 
+						 if (compareView != null) {
+						 compareView.setInput(project, cp);
+						 }
+					} catch (IOException e) {
+						e.printStackTrace();
+					} catch (PartInitException e) {
+
+						e.printStackTrace();
+					}		
+				
 				}else{
 					
 					Project project2 = (Project) EcoreUtil.copy(project1);
@@ -193,6 +221,13 @@ public class RandomGenerator {
 					Resource createResource = resourceSet.createResource(URI.createFileURI(DIR + i + File.separatorChar + "diffModel" + version + ".emfdiff"));
 					createResource.getContents().add(snapshot);
 					createResource.save(null);
+					
+					final EObject loadedSnapshot = ModelUtils.load(fileURI2, resourceSet);
+
+					if (loadedSnapshot instanceof ComparisonSnapshot) {
+						CompareUI.openCompareEditorOnPage(new ModelCompareEditorInput((ComparisonSnapshot) loadedSnapshot),
+							PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage());
+					}
 					
 				}
 
