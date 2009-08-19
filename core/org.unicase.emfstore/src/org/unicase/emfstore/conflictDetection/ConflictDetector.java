@@ -28,7 +28,8 @@ public class ConflictDetector {
 	 */
 	public ConflictDetector() {
 		// this(new AlwaysFalseConflictDetectionStrategy());
-		this(new FineGrainedConflictDetectionStrategy());
+		// this(new FineGrainedConflictDetectionStrategy());
+		this(new IndexSensitiveConflictDetectionStrategy());
 	}
 
 	/**
