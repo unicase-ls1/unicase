@@ -40,6 +40,7 @@ public class RMIAdminEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade impleme
 	 */
 	public RMIAdminEmfStoreFacadeImpl(AdminEmfStore adminEmfStore, AuthenticationControl accessControl)
 		throws RemoteException, FatalEmfStoreException {
+		super(1097);
 		this.adminEmfStore = adminEmfStore;
 	}
 

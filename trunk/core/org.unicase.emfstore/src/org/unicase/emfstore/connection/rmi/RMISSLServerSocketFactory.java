@@ -19,8 +19,8 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.unicase.emfstore.EmfStoreController;
 import org.unicase.emfstore.connection.ServerKeyStoreManager;
-import org.unicase.emfstore.exceptions.ServerKeyStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.emfstore.exceptions.ServerKeyStoreException;
 
 /**
  * Custom SocketFactory for rmi with encryption.
@@ -33,11 +33,17 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory, Serial
 	private static Log logger;
 
 	/**
+	 * in development.
+	 */
+	public int id;
+
+	/**
 	 * Default constructor.
 	 */
 	public RMISSLServerSocketFactory() {
 		super();
 		logger = LogFactory.getLog(RMISSLServerSocketFactory.class);
+		id = 07701522;
 	}
 
 	/**
@@ -63,5 +69,25 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory, Serial
 		}
 
 		return serverSocketFactory.createServerSocket(port);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		return getClass() == obj.getClass() && ((RMISSLServerSocketFactory) obj).id == this.id;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		return id;
 	}
 }

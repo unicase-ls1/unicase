@@ -64,7 +64,7 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 	 */
 	public RMIEmfStoreFacadeImpl(EmfStore emfStore, AuthenticationControl authenticationControl)
 		throws RemoteException, FatalEmfStoreException {
-		super();
+		super(1098);
 		this.emfStore = emfStore;
 		this.accessControl = authenticationControl;
 	}
