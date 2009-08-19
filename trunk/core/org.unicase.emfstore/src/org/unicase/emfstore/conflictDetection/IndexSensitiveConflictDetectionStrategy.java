@@ -12,7 +12,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.util.OperationInfo;
 import org.unicase.model.ModelElementId;
 
 /**
@@ -53,6 +52,15 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	}
 
+	/**
+	 * Hard conflicts change the toplogogy of the model element graph. This method returns, given the operations in
+	 * question, whether such a conflict exists.
+	 * 
+	 * @param operationA any operation
+	 * @param operationB any operation
+	 * @return true if topology of the resulting model element graph depends on serialization of operationA and
+	 *         operationB false otherwise
+	 */
 	private boolean doConflictHard(AbstractOperation operationA, AbstractOperation operationB) {
 
 		if (operationA instanceof CreateDeleteOperation) {
@@ -105,9 +113,11 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		// reason why this always conflicts: there is no way to tell if the
 		// change was a containment change within the deletion tree. If so, a hard
 		// conflict arises, if not, it's not even important. But... we can't tell, because
-		// the model is not available to answer that question.
+		// the model is not available to answer that question. Besides, any delete
+		// operating on something the others changed is worth bringing to the users
+		// attention.
 		for (ModelElementId m : opA.getAllInvolvedModelElements()) {
-			if (OperationInfo.changesModelElement(opB, m)) {
+			if (changesModelElement(opB, m)) {
 				return true;
 			}
 		}
@@ -296,6 +306,15 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 
 	}
 
+	/**
+	 * This method tests whether the both give operations change the same multifeature on the same object. If so, and
+	 * additionally the order of items in the multifeature depends on the serialization of the operations, there is an
+	 * index integrity conflict, and the method returns true.
+	 * 
+	 * @param operationA any operation
+	 * @param operationB any operation
+	 * @return true if an index integrity conflict exists, false otherwise
+	 */
 	public boolean doConflictIndexIntegrity(AbstractOperation operationA, AbstractOperation operationB) {
 
 		if (operationA instanceof CompositeOperation) {
@@ -641,22 +660,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	private boolean isRequiredSingleByMultiReference(SingleReferenceOperation requiredOperation,
 		MultiReferenceOperation operation) {
 
-		// if (operation.isAdd()) {
-		// return false;
-		// }
-		//
-		// if (!requiredOperation.isBidirectional()) {
-		// return false;
-		// }
-		//
-		// boolean sameFeature = requiredOperation.getOppositeFeatureName().equals(operation.getFeatureName());
-		// boolean sameElement = isSame(requiredOperation.getNewValue(), operation.getModelElementId());
-		//
-		// if (sameFeature && sameElement
-		// && containsId(operation.getOtherInvolvedModelElements(), requiredOperation.getModelElementId())) {
-		// return true;
-		// }
-
 		return false;
 	}
 
@@ -679,17 +682,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 	private boolean isRequiredMutiByMultiReference(MultiReferenceOperation requiredOperation,
 		MultiReferenceOperation operation) {
 
-		// boolean sameElement = requiredOperation.getModelElementId().equals(operation.getModelElementId());
-		// boolean sameFeature = requiredOperation.getFeatureName().equals(operation.getFeatureName());
-		//
-		// // remove and add on same feature, if one of the removed elements was added, there is a dependency
-		// if (sameElement && sameFeature && requiredOperation.isAdd() && !operation.isAdd()) {
-		// for (ModelElementId modelElementId : operation.getReferencedModelElements()) {
-		// if (containsId(requiredOperation.getReferencedModelElements(), modelElementId)) {
-		// return true;
-		// }
-		// }
-		// }
 		return false;
 
 	}
@@ -701,7 +693,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		boolean sameFeature = requiredOperation.getFeatureName().equals(operation.getFeatureName());
 
 		// require the add of the element, that is moved around
-		if (sameElement && sameFeature) { // && requiredOperation.isAdd()
+		if (sameElement && sameFeature) {
 			for (ModelElementId modelElementId : requiredOperation.getReferencedModelElements()) {
 				if (modelElementId.equals(operation.getReferencedModelElementId())) {
 					return true;
@@ -731,12 +723,14 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 				}
 			}
 
-			if (OperationInfo.changesModelElement(operation, requiredOperation.getModelElementId())) {
+			if (changesModelElement(operation, requiredOperation.getModelElementId())) {
 				return true;
 			}
 		}
 		return false;
 	}
+
+	// helper methods
 
 	private static boolean isDifferent(Object a, Object b) {
 
@@ -787,5 +781,25 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		}
 		return false;
 	}
+
+	/**
+	 * Tests whether an operation changes a given model element.
+	 * 
+	 * @param op the op to examine
+	 * @param id the modelelement to check
+	 * @return if the operation changes the given model element
+	 */
+	public static boolean changesModelElement(AbstractOperation op, ModelElementId id) {
+
+		for (ModelElementId m : op.getAllInvolvedModelElements()) {
+			if (m.equals(id)) {
+				return true;
+			}
+		}
+
+		return false;
+
+	}
+
 	// END COMPLEX CODE
 }
