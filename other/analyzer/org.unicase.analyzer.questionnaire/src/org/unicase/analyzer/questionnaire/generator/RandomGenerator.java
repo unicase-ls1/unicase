@@ -92,7 +92,7 @@ public class RandomGenerator {
 		BufferedReader bufRdr  = new BufferedReader(new FileReader(file));
 
 		String line = null;
-		String[] temp = new String[2];
+		String[] temp = new String[4];
 		
 		//read each line of text file
 		while((line = bufRdr.readLine()) != null)
