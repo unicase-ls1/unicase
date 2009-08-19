@@ -27,11 +27,12 @@ public abstract class AbstractUnicaseRMIFacade extends UnicastRemoteObject {
 	/**
 	 * Default constructor.
 	 * 
+	 * @param port port to which the remote object will be exported
 	 * @throws RemoteException rmi related exception
 	 * @throws FatalEmfStoreException a fatal emfstore exception
 	 */
-	public AbstractUnicaseRMIFacade() throws RemoteException, FatalEmfStoreException {
-		super(0, getClientFactory(), getServerFactory());
+	public AbstractUnicaseRMIFacade(int port) throws RemoteException, FatalEmfStoreException {
+		super(port, getClientFactory(), getServerFactory());
 	}
 
 	private static RMIServerSocketFactory getServerFactory() throws InvalidPropertyException {
