@@ -5,6 +5,7 @@
  */
 package org.unicase.workspace.ui.commands;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.jface.window.Window;
@@ -12,6 +13,7 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.model.Project;
+import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.ui.dialogs.MergeDialog;
 
@@ -26,8 +28,10 @@ public class MergeProjectHandler implements ConflictResolver {
 
 	/**
 	 * Default constructor.
+	 * 
+	 * @param conflictException the ChangeConflictException
 	 */
-	public MergeProjectHandler() {
+	public MergeProjectHandler(ChangeConflictException conflictException) {
 		this.mergeDialog = new MergeDialog(Display.getCurrent().getActiveShell());
 	}
 
@@ -37,7 +41,10 @@ public class MergeProjectHandler implements ConflictResolver {
 	 * @see org.unicase.workspace.observers.ConflictResolver#getAcceptedMine()
 	 */
 	public List<AbstractOperation> getAcceptedMine() {
-		return mergeDialog.getAcceptedMine();
+		ArrayList<AbstractOperation> ret = new ArrayList<AbstractOperation>();
+		// ret.addAll(autoAcceptedMine);
+		ret.addAll(mergeDialog.getAcceptedMine());
+		return ret;
 	}
 
 	/**
@@ -59,5 +66,4 @@ public class MergeProjectHandler implements ConflictResolver {
 		mergeDialog.setChanges(myChangePackage, theirChangePackages);
 		return (mergeDialog.open() == Window.OK);
 	}
-
 }

@@ -336,4 +336,32 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 		return checked;
 	}
 
+	/**
+	 * Selects all local ops.
+	 */
+	public void selectAllMine() {
+		myDetailedTreeViewer.expandAll();
+		theirDetailedTreeViewer.expandAll();
+		for (Object o : myDetailedTreeViewer.getVisibleExpandedElements()) {
+			myDetailedTreeViewer.setSubtreeChecked(o, true);
+		}
+		for (Object o : theirDetailedTreeViewer.getVisibleExpandedElements()) {
+			theirDetailedTreeViewer.setSubtreeChecked(o, false);
+		}
+	}
+
+	/**
+	 * Selects all remote ops.
+	 */
+	public void selectAllTheirs() {
+		myDetailedTreeViewer.expandAll();
+		theirDetailedTreeViewer.expandAll();
+		for (Object o : myDetailedTreeViewer.getVisibleExpandedElements()) {
+			myDetailedTreeViewer.setSubtreeChecked(o, false);
+		}
+		for (Object o : theirDetailedTreeViewer.getVisibleExpandedElements()) {
+			theirDetailedTreeViewer.setSubtreeChecked(o, true);
+		}
+	}
+
 }

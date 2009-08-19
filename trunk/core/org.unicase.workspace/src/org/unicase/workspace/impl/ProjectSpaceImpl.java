@@ -1335,12 +1335,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		changes = connectionManager
 			.getChanges(getUsersession().getSessionId(), projectId, baseVersion, resolvedVersion);
 
-		// detect conflicts
 		ConflictDetector conflictDetector = new ConflictDetector();
 		for (ChangePackage change : changes) {
 			ChangePackage changePackage = getLocalChangePackage(false);
 			if (conflictDetector.doConflict(change, changePackage)) {
-				throw new ChangeConflictException(changes);
+				throw new ChangeConflictException(changes, this, conflictDetector);
 			}
 		}
 
@@ -2202,29 +2201,30 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		// merge the conflicts
 		ChangePackage myCp = this.getLocalChangePackage(true);
 		List<ChangePackage> theirCps = this.getChanges(getBaseVersion(), target);
-		conflictResolver.resolveConflicts(project, theirCps, myCp);
+		if (conflictResolver.resolveConflicts(project, theirCps, myCp)) {
 
-		// revert the local operations and apply all their operations
-		this.revert();
+			// revert the local operations and apply all their operations
+			this.revert();
 
-		for (ChangePackage changePackage : theirCps) {
-			applyOperations(changePackage.getOperations(), false);
+			for (ChangePackage changePackage : theirCps) {
+				applyOperations(changePackage.getOperations(), false);
+			}
+
+			// generate merge result and apply to local workspace
+			List<AbstractOperation> acceptedMine = conflictResolver.getAcceptedMine();
+			List<AbstractOperation> rejectedTheirs = conflictResolver.getRejectedTheirs();
+			List<AbstractOperation> mergeResult = new ArrayList<AbstractOperation>();
+			for (AbstractOperation operationToReverse : rejectedTheirs) {
+				mergeResult.add(0, operationToReverse.reverse());
+			}
+			mergeResult.addAll(acceptedMine);
+
+			applyOperations(mergeResult, false);
+
+			this.setBaseVersion(target);
+
+			saveProjectSpaceOnly();
 		}
-
-		// generate merge result and apply to local workspace
-		List<AbstractOperation> acceptedMine = conflictResolver.getAcceptedMine();
-		List<AbstractOperation> rejectedTheirs = conflictResolver.getRejectedTheirs();
-		List<AbstractOperation> mergeResult = new ArrayList<AbstractOperation>();
-		for (AbstractOperation operationToReverse : rejectedTheirs) {
-			mergeResult.add(0, operationToReverse.reverse());
-		}
-		mergeResult.addAll(acceptedMine);
-
-		applyOperations(mergeResult, false);
-
-		this.setBaseVersion(target);
-
-		saveProjectSpaceOnly();
 
 	}
 
