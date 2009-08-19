@@ -167,9 +167,10 @@ public class RandomGenerator {
 				if(representation){
 					GeneratorHelper.copyfile(DOLLI_DIR + "changepackage-" + version + ".ucp", DIR + i + File.separatorChar + "changepackage-" + version + ".ucp" );
 				}else{
-					changePackage.apply(project1);
+					
 					Project project2 = (Project) EcoreUtil.copy(project1);
-					resourceSet = new ResourceSetImpl();
+					changePackage.apply(project2);
+					//resourceSet = new ResourceSetImpl();
 					resource = resourceSet.createResource(URI.createFileURI(DIR + i + File.separatorChar + "projectstate-" + version + ".ups"));
 					resource.getContents().add(project2);
 					resource.save(null);				
@@ -188,7 +189,11 @@ public class RandomGenerator {
 					ComparisonResourceSetSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSetSnapshot();
 					snapshot.setDiffResourceSet(diffSet);
 					snapshot.setMatchResourceSet(matchSet);
-					ModelUtils.save(snapshot, DIR + i + File.separatorChar + "diffModel" + version + ".emfdiff");
+					//ModelUtils.save(snapshot, DIR + i + File.separatorChar + "diffModel" + version + ".emfdiff");
+					Resource createResource = resourceSet.createResource(URI.createFileURI(DIR + i + File.separatorChar + "diffModel" + version + ".emfdiff"));
+					createResource.getContents().add(snapshot);
+					createResource.save(null);
+					
 				}
 
 			}
