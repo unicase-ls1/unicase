@@ -64,7 +64,9 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		List<ACGroup> result = new ArrayList<ACGroup>();
 		for (ACGroup group : getServerSpace().getGroups()) {
-			result.add((ACGroup) EcoreUtil.copy(group));
+			ACGroup copy = (ACGroup) EcoreUtil.copy(group);
+			copy.getMembers().clear();
+			result.add(copy);
 		}
 		return result;
 	}
