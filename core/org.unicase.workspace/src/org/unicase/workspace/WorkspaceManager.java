@@ -350,7 +350,15 @@ public final class WorkspaceManager {
 	 * @return the project space
 	 */
 	public static ProjectSpace getProjectSpace(ModelElement modelElement) {
-		return getProjectSpace(modelElement.getProject());
+		if (modelElement == null) {
+			throw new IllegalArgumentException("The model element is null");
+		}
+		Project project = modelElement.getProject();
+		if (project == null) {
+			throw new IllegalArgumentException("The model element with ID " + modelElement.getIdentifier()
+				+ " has no project");
+		}
+		return getProjectSpace(project);
 	}
 
 	/**
@@ -360,6 +368,9 @@ public final class WorkspaceManager {
 	 * @return the project space
 	 */
 	public static ProjectSpace getProjectSpace(Project project) {
+		if (project == null) {
+			throw new IllegalArgumentException("The project is null");
+		}
 		// check if my container is a project space
 		if (WorkspacePackage.eINSTANCE.getProjectSpace().isInstance(project.eContainer())) {
 			return (ProjectSpace) project.eContainer();
