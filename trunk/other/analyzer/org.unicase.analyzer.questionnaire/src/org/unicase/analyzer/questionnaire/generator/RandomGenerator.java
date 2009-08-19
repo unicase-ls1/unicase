@@ -57,7 +57,7 @@ import org.unicase.workspace.util.ResourceHelper;
 public class RandomGenerator {
 	
 	private static final String DIR = Configuration.getWorkspaceDirectory();
-	private static final String DOLLI_DIR = DIR + "/" + "emfstore/" + "project-_2PWpQIvqEd67GORynYz3IQ";
+	private static final String DOLLI_DIR = DIR + "emfstore" + File.separatorChar + "project-_2PWpQIvqEd67GORynYz3IQ" + File.separatorChar;
 	
 	private Map<Object, Object> map;
 	private List<Object> category1;
@@ -121,9 +121,9 @@ public class RandomGenerator {
 	 */
 	public void generateUserFolder(int usersAmount) throws IOException, InterruptedException, EmfStoreException{
 		for(int i = 0; i < usersAmount; i++){
-			(new File(DIR + "/" + i)).mkdir();
+			(new File(DIR + i)).mkdir();
 			CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
-			exporter.setFileName(DIR + "/" + i + "/" + "versionInfo.info");
+			exporter.setFileName(DIR + i + File.separatorChar + "versionInfo.info");
 			exporter.init();
 			
 			List<Object> header = new ArrayList<Object>();
@@ -157,29 +157,29 @@ public class RandomGenerator {
 				killAllDiagrams(project1);
 				
 				ResourceSet resourceSet = new ResourceSetImpl();
-				Resource resource = resourceSet.createResource(URI.createFileURI(DIR + "/" + i + "/" + "/projectstate-" + previousVersion + ".ups"));
+				Resource resource = resourceSet.createResource(URI.createFileURI(DIR + i + File.separatorChar + "projectstate-" + previousVersion + ".ups"));
 				resource.getContents().add(project1);
 				resource.save(null);				
 //				GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + previousVersion + ".ups", DIR + "/" + i + "/" + "/projectstate-" + previousVersion + ".ups" );
 				
-				ChangePackage changePackage = ResourceHelper.getElementFromResource(DOLLI_DIR + "/changepackage-" + version + ".ucp", ChangePackage.class, 0);
+				ChangePackage changePackage = ResourceHelper.getElementFromResource(DOLLI_DIR + "changepackage-" + version + ".ucp", ChangePackage.class, 0);
 				
 				if(representation){
-					GeneratorHelper.copyfile(DOLLI_DIR + "/changepackage-" + version + ".ucp", DIR + "/" + i + "/" + "/changepackage-" + version + ".ucp" );
+					GeneratorHelper.copyfile(DOLLI_DIR + "changepackage-" + version + ".ucp", DIR + i + File.separatorChar + "changepackage-" + version + ".ucp" );
 				}else{
 					changePackage.apply(project1);
 					Project project2 = (Project) EcoreUtil.copy(project1);
 					resourceSet = new ResourceSetImpl();
-					resource = resourceSet.createResource(URI.createFileURI(DIR + "/" + i + "/" + "/projectstate-" + version + ".ups"));
+					resource = resourceSet.createResource(URI.createFileURI(DIR + i + File.separatorChar + "projectstate-" + version + ".ups"));
 					resource.getContents().add(project2);
 					resource.save(null);				
 					
 //					GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + version + ".ups", DIR + "/" + i + "/" + "/projectstate-" + version + ".ups" );
 					
-					resourceSet = new ResourceSetImpl();
+					//resourceSet = new ResourceSetImpl();
 					MatchModel match = MatchService.doMatch(project1, project2, Collections.<String, Object> emptyMap());
 					DiffModel diff = DiffService.doDiff(match, false);
-					URI fileURI2 = URI.createFileURI(DIR + "/" + i + "/" + "diffModel" + version + ".emfdiff");
+					URI fileURI2 = URI.createFileURI(DIR + i + File.separatorChar + "diffModel" + version + ".emfdiff");
 					Resource diffResource = resourceSet.createResource(fileURI2);
 					DiffResourceSet diffSet = DiffFactory.eINSTANCE.createDiffResourceSet();
 					diffSet.getDiffModels().add(diff);
@@ -188,7 +188,7 @@ public class RandomGenerator {
 					ComparisonResourceSetSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSetSnapshot();
 					snapshot.setDiffResourceSet(diffSet);
 					snapshot.setMatchResourceSet(matchSet);
-					ModelUtils.save(snapshot, DIR + "/" + i + "/" + "diffModel" + version + ".emfdiff");
+					ModelUtils.save(snapshot, DIR + i + File.separatorChar + "diffModel" + version + ".emfdiff");
 				}
 
 			}
