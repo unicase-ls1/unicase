@@ -8,7 +8,6 @@ package org.unicase.ui.iterationplanner;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 
-import util.WorkItemsToCSV;
 
 /**
  * @author Hodaie
@@ -24,39 +23,52 @@ public class Application implements IApplication {
 	 */
 	public Object start(IApplicationContext context) throws Exception {
 
-		// * 1. Import your data into a Matrix, e.g. from CSV, Excel, JDBC (raw
-		// data -> matrix)
-		// * 2. Analyze your data, e.g. classify, cluster, make predictions and
-		// get the results also as matices (matrix
-		// -> matrix)
-		// * 3. Export results to the format you need, e.g. JPG, Excel, Latex,
-		// GnuPlot (matrix -> desired format)
+		System.out.println("Hello Java!");
 
-		// Create a DataSet.
-		// Split into training and test set.
-		// Data normalization.
-		// Create a Classifier.
-		// Training.
-		// Prediction.
-		// Evaluation.
-		// Cross Validation.
-
-		// ClassificationDataSet dataSet = new ClassificationDataSet();
-		// dataSet.getAccuracyVariable();
-
-		// WorkItemsToCSV wiToCVS = new WorkItemsToCSV();
-		// wiToCVS.outputWorkItems();
-
-		
-		
+//		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0);
+//		Project project = projectSpace.getProject();
+//		
+//		
+//		
+//		List<ModelElement> workItems = project
+//				.getAllModelElementsbyClass(
+//						TaskPackage.eINSTANCE.getWorkItem(),
+//						new BasicEList<ModelElement>());
+//
+//		List<EStructuralFeature> features = getOutputFeatures();
+//		
+//		ModelElementMatrix m = new ModelElementMatrix(workItems, features);
+//		
+//		Classification classification = new Classification(m);
+//		try {
+//			classification.run();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
 		return null;
+		
+		
 	}
+	
+	
+	
+//	private List<EStructuralFeature> getOutputFeatures() {
+//		List<EStructuralFeature> result = new ArrayList<EStructuralFeature>();
+//		result.add(ModelPackage.eINSTANCE.getModelElement_Name());
+//		result.add(ModelPackage.eINSTANCE.getModelElement_Description());
+//		result.add(ModelPackage.eINSTANCE
+//				.getAnnotation_AnnotatedModelElements());
+//		result.add(TaskPackage.eINSTANCE.getWorkItem_Predecessors());
+//		result.add(TaskPackage.eINSTANCE.getWorkItem_Successors());
+//		result.add(TaskPackage.eINSTANCE.getWorkItem_Assignee());
+//		return result;
+//	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void stop() {
-		// TODO Auto-generated method stub
 
 	}
 
