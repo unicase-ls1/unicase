@@ -12,10 +12,28 @@ Require-Bundle: org.eclipse.ui,
  org.unicase.emfstore.esmodel.edit,
  org.unicase.workspace.edit,
  org.eclipse.emf.transaction.ui,
- org.eclipse.ui.ide.application;bundle-version="1.0.0"
+ org.eclipse.ui.ide.application;bundle-version="1.0.0",
+ ujmp;bundle-version="1.0.0",
+ ujmp_core;bundle-version="1.0.0",
+ ujmp_gui;bundle-version="1.0.0",
+ ujmp_mtj;bundle-version="1.0.0",
+ jdmp;bundle-version="1.0.0",
+ jdmp_core;bundle-version="1.0.0",
+ jdmp_gui;bundle-version="1.0.0",
+ jdmp_liblinear;bundle-version="1.0.0",
+ jdmp_libsvm;bundle-version="1.0.0",
+ jdmp_weka;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .,
- lib/jdmp-complete-0.1.1-apidocs.jar,
- lib/jdmp-complete-0.1.1-sources.jar,
- lib/jdmp-complete-0.1.1.jar
+ lib/arpack-combo-0.1.jar,
+ lib/liblinear-1.33-sources.jar,
+ lib/liblinear-1.33.jar,
+ lib/libsvm-2.89-sources.jar,
+ lib/libsvm-2.89.jar,
+ lib/mtj-0.9.12-sources.jar,
+ lib/mtj-0.9.12.jar,
+ lib/netlib-java-0.9.1-sources.jar,
+ lib/netlib-java-0.9.1.jar,
+ lib/weka-3.7.0-sources.jar,
+ lib/weka-3.7.0.jar
