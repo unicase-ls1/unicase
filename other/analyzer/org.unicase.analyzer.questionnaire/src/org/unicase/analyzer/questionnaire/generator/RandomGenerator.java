@@ -17,12 +17,10 @@ import java.util.Map;
 import java.util.Random;
 import java.util.StringTokenizer;
 
-import org.eclipse.compare.CompareUI;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSetSnapshot;
-import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffFactory;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.diff.metamodel.DiffResourceSet;
@@ -31,16 +29,10 @@ import org.eclipse.emf.compare.match.metamodel.MatchFactory;
 import org.eclipse.emf.compare.match.metamodel.MatchModel;
 import org.eclipse.emf.compare.match.metamodel.MatchResourceSet;
 import org.eclipse.emf.compare.match.service.MatchService;
-import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
-import org.eclipse.emf.compare.util.ModelUtils;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.ui.IWorkbenchPage;
-import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.emfstore.esmodel.ProjectId;
@@ -55,7 +47,6 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.ui.views.CompareView;
 import org.unicase.workspace.util.ResourceHelper;
 
 /**
@@ -65,7 +56,7 @@ import org.unicase.workspace.util.ResourceHelper;
 public class RandomGenerator {
 	
 	private static final String DIR = Configuration.getWorkspaceDirectory();
-	private static final String DOLLI_DIR = DIR + "emfstore" + File.separatorChar + "project-_2PWpQIvqEd67GORynYz3IQ" + File.separatorChar;
+	private String DOLLI_DIR;
 	
 	private Map<Object, Object> map;
 	private List<Object> category1;
@@ -86,6 +77,7 @@ public class RandomGenerator {
 		projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 		session = projectSpace.getUsersession();
 		pid = (ProjectId) EcoreUtil.copy(projectSpace.getProjectId());
+		DOLLI_DIR = DIR + "emfstore" + File.separatorChar + "project-" + pid.getId() + File.separatorChar;
 	}
 	
 	public void readFile(File file) throws IOException{
@@ -149,97 +141,80 @@ public class RandomGenerator {
 	}
 	
 	private void generateCommits(List<Object> category, int categoryNum, int commitsNum, int userNum, CSVExporter exporter) throws IOException, EmfStoreException, InterruptedException{
-		List<Object> values;
 		Random rand = new Random(); 
 		int version;
-		int previousVersion;
 		boolean representation;// if true operation-based, false state-based
 		
-		for(int j = 0; j < 5; j++){
+		for(int j = 0; j < category.size(); j++){
 			
-			version = rand.nextInt(category.size());
+			version = j;
 			representation = rand.nextBoolean();
-			values = new ArrayList<Object>();
-			values.add(categoryNum);
-			values.add(category.get(version));
-			values.add(representation);
-			exporter.writeLine(values);
-			version = Integer.valueOf(category.get(version).toString());
-			previousVersion = version - 1;
+			generateRepresentationForCommit(representation, version, categoryNum, userNum, category, exporter);
 			
-			
-			PrimaryVersionSpec previousVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-			previousVersionSpec.setIdentifier(previousVersion);
-			Project project1 = (Project) EcoreUtil.copy(WorkspaceManager.getInstance().getConnectionManager().getProject(session.getSessionId(), pid, previousVersionSpec));
-			killAllDiagrams(project1);
-			
-			ResourceSet resourceSet = new ResourceSetImpl();
-			Resource resource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar + "projectstate-" + previousVersion + ".ups"));
-			resource.getContents().add(project1);
-			resource.save(null);				
-//			GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + previousVersion + ".ups", DIR + "/" + i + "/" + "/projectstate-" + previousVersion + ".ups" );
-			
-			ChangePackage changePackage = ResourceHelper.getElementFromResource(DOLLI_DIR + "changepackage-" + version + ".ucp", ChangePackage.class, 0);
-			
-			if(representation){
-				GeneratorHelper.copyfile(DOLLI_DIR + "changepackage-" + version + ".ucp", DIR + userNum + File.separatorChar + "changepackage-" + version + ".ucp" );
-//				try {
-//					Project project = ResourceHelper.getElementFromResource(DIR + userNum + File.separatorChar + "projectstate-" + previousVersion + ".ups", Project.class, 0);
-//					ChangePackage cp = ResourceHelper.getElementFromResource(DIR + userNum + File.separatorChar + "changepackage-" + version + ".ucp", ChangePackage.class, 0);
-//
-//					 IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-//					 String viewId = "org.unicase.workspace.ui.views.CompareView";
-//					 CompareView compareView = null;
-//					 
-//					 compareView = (CompareView) page.showView(viewId);
-//					 
-//					 if (compareView != null) {
-//					 compareView.setInput(project, cp);
-//					 }
-//				} catch (IOException e) {
-//					e.printStackTrace();
-//				} catch (PartInitException e) {
-//					e.printStackTrace();
-//				}		
-			
-			}else{
-				
-				Project project2 = (Project) EcoreUtil.copy(project1);
-				changePackage.apply(project2);
-				//resourceSet = new ResourceSetImpl();
-				resource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar + "projectstate-" + version + ".ups"));
-				resource.getContents().add(project2);
-				resource.save(null);				
-				
-//				GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + version + ".ups", DIR + "/" + i + "/" + "/projectstate-" + version + ".ups" );
-				
-				//resourceSet = new ResourceSetImpl();
-				MatchModel match = MatchService.doMatch(project1, project2, Collections.<String, Object> emptyMap());
-				DiffModel diff = DiffService.doDiff(match, false);
-				URI fileURI2 = URI.createFileURI(DIR + userNum + File.separatorChar + "diffModel" + version + ".emfdiff");
-				Resource diffResource = resourceSet.createResource(fileURI2);
-				DiffResourceSet diffSet = DiffFactory.eINSTANCE.createDiffResourceSet();
-				diffSet.getDiffModels().add(diff);
-				MatchResourceSet matchSet = MatchFactory.eINSTANCE.createMatchResourceSet();
-				matchSet.getMatchModels().add(match);
-				ComparisonResourceSetSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSetSnapshot();
-				snapshot.setDiffResourceSet(diffSet);
-				snapshot.setMatchResourceSet(matchSet);
-				//ModelUtils.save(snapshot, DIR + i + File.separatorChar + "diffModel" + version + ".emfdiff");
-				Resource createResource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar + "diffModel" + version + ".emfdiff"));
-				createResource.getContents().add(snapshot);
-				createResource.save(null);
-//				
-//				final EObject loadedSnapshot = ModelUtils.load(fileURI2, resourceSet);
-//
-//				if (loadedSnapshot instanceof ComparisonSnapshot) {
-//					CompareUI.openCompareEditorOnPage(new ModelCompareEditorInput((ComparisonSnapshot) loadedSnapshot),
-//						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage());
-//				}
-				
-			}
-
 		}
+	}
+	
+	private void generateRepresentationForCommit(boolean representation, int version, int categoryNum, int userNum, List<Object> category, CSVExporter exporter) throws IOException, EmfStoreException, InterruptedException {
+		List<Object> values;
+		values = new ArrayList<Object>();
+		values.add(categoryNum);
+		values.add(category.get(version));
+		values.add(representation);
+		exporter.writeLine(values);
+		version = Integer.valueOf(category.get(version).toString());
+		int previousVersion = version - 1;
+		
+		
+		PrimaryVersionSpec previousVersionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		previousVersionSpec.setIdentifier(previousVersion);
+		Project project1 = (Project) EcoreUtil.copy(WorkspaceManager.getInstance().getConnectionManager().getProject(session.getSessionId(), pid, previousVersionSpec));
+		killAllDiagrams(project1);
+		
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar + "projectstate-" + previousVersion + ".ups"));
+		resource.getContents().add(project1);
+		resource.save(null);				
+//		GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + previousVersion + ".ups", DIR + "/" + i + "/" + "/projectstate-" + previousVersion + ".ups" );
+		
+		ChangePackage changePackage = ResourceHelper.getElementFromResource(DOLLI_DIR + "changepackage-" + version + ".ucp", ChangePackage.class, 0);
+		
+		//if(representation){
+			GeneratorHelper.copyfile(DOLLI_DIR + "changepackage-" + version + ".ucp", DIR + userNum + File.separatorChar + "changepackage-" + version + ".ucp" );
+		//}else{
+			
+			Project project2 = (Project) EcoreUtil.copy(project1);
+			changePackage.apply(project2);
+			//resourceSet = new ResourceSetImpl();
+			resource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar + "projectstate-" + version + ".ups"));
+			resource.getContents().add(project2);
+			resource.save(null);				
+			
+//			GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + version + ".ups", DIR + "/" + i + "/" + "/projectstate-" + version + ".ups" );
+			
+			//resourceSet = new ResourceSetImpl();
+			MatchModel match = MatchService.doMatch(project2, project1, Collections.<String, Object> emptyMap());
+			DiffModel diff = DiffService.doDiff(match, false);
+			DiffResourceSet diffSet = DiffFactory.eINSTANCE.createDiffResourceSet();
+			diffSet.getDiffModels().add(diff);
+			MatchResourceSet matchSet = MatchFactory.eINSTANCE.createMatchResourceSet();
+			matchSet.getMatchModels().add(match);
+			ComparisonResourceSetSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSetSnapshot();
+			snapshot.setDiffResourceSet(diffSet);
+			snapshot.setMatchResourceSet(matchSet);
+			//ModelUtils.save(snapshot, DIR + i + File.separatorChar + "diffModel" + version + ".emfdiff");
+			Resource createResource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar + "diffModel" + version + ".emfdiff"));
+			createResource.getContents().add(snapshot);
+			createResource.save(null);
+//			
+//			final EObject loadedSnapshot = ModelUtils.load(fileURI2, resourceSet);
+//
+//			if (loadedSnapshot instanceof ComparisonSnapshot) {
+//				CompareUI.openCompareEditorOnPage(new ModelCompareEditorInput((ComparisonSnapshot) loadedSnapshot),
+//					PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage());
+//			}
+			
+		//}
+
 	}
 	
 	private void killAllDiagrams(Project project) {
