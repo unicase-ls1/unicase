@@ -96,7 +96,7 @@ public class ShowIterationPlanningWizardHandler extends AbstractHandler {
 	}
 
 	private List<WorkItem> getWorkItems(Project project) {
-		List<WorkItem> result = new ArrayList<WorkItem>();
+		// List<WorkItem> result = new ArrayList<WorkItem>();
 		// List<WorkPackage> workPackages = project
 		// .getAllModelElementsbyClass(
 		// TaskPackage.eINSTANCE.getWorkPackage(),
@@ -114,18 +114,28 @@ public class ShowIterationPlanningWizardHandler extends AbstractHandler {
 		// result.addAll(getWorkItems(wp));
 		// }
 		// }
+
 		EList<WorkItem> allWorkItems = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
 			new BasicEList<WorkItem>());
+
+		List<WorkItem> allAssignedWorkItems = new ArrayList<WorkItem>();
+		List<WorkItem> allWorkItemsWithAnnotatedMEs = new ArrayList<WorkItem>();
 		for (WorkItem wi : allWorkItems) {
 			if (!(wi instanceof WorkPackage || wi instanceof Milestone || wi.getAssignee() == null)) {
 				// if(assigneesWithMoreThan10Tasks.contains(wi.getAssignee())){
-				result.add(wi);
+				allAssignedWorkItems.add(wi);
 				// }
 
+				if (wi.getAnnotatedModelElements().size() > 0) {
+					allWorkItemsWithAnnotatedMEs.add(wi);
+				}
+
 			}
+
 		}
 
-		return result;
+		// return allAssignedWorkItems;
+		return allWorkItemsWithAnnotatedMEs;
 	}
 
 	private List<WorkItem> getWorkItems(WorkPackage wp) {
