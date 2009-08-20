@@ -10,6 +10,7 @@ import java.io.IOException;
 import org.eclipse.compare.CompareUI;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.compare.diff.metamodel.ComparisonResourceSetSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.ComparisonSnapshot;
 import org.eclipse.emf.compare.diff.metamodel.DiffModel;
 import org.eclipse.emf.compare.ui.editor.ModelCompareEditorInput;
@@ -155,13 +156,13 @@ public class ChooseUserPage extends WizardPage implements Listener {
 			}		
 		}else{
 			String diffFileName = DIR  + userNumber.getText() + "/" + "diffModel" + commitNumber.getText() + ".emfdiff";
-			
+
 			ResourceSet resourceSet = new ResourceSetImpl();
 			Resource resource = resourceSet.getResource(URI.createFileURI(diffFileName), true);
 			EList<EObject> directContents = resource.getContents();
-			DiffModel diff = (DiffModel) directContents.get(0);			
+			ComparisonResourceSetSnapshot diff = (ComparisonResourceSetSnapshot) directContents.get(0);
 			
-			
+		
 			try {
 				EObject loadedSnapshot = ModelUtils.load(URI.createFileURI(diffFileName), resourceSet);
 				if (loadedSnapshot instanceof ComparisonSnapshot) {
