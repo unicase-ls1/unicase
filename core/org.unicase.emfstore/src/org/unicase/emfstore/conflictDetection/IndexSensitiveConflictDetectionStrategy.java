@@ -375,11 +375,6 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 				(SingleReferenceOperation) operationA);
 		}
 
-		if (operationA instanceof MultiReferenceMoveOperation && operationB instanceof SingleReferenceOperation) {
-			return doConflictIndexIntegrityMultiMoveSingleReferences((MultiReferenceMoveOperation) operationA,
-				(SingleReferenceOperation) operationB);
-		}
-
 		if (operationA instanceof SingleReferenceOperation && operationB instanceof SingleReferenceOperation) {
 			return doConflictIndexIntegritySingleReferences((SingleReferenceOperation) operationA,
 				(SingleReferenceOperation) operationB);
@@ -427,14 +422,15 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		if (opA.getFeatureName().equals(opB.getOppositeFeatureName())) {
 
 			// might conflict for equal elements
-			if (isSame(opB.getNewValue(), opA.getModelElementId())
-				&& isSame(opB.getModelElementId(), opA.getReferencedModelElementId())) {
-				return true;
-			}
+			// if (isSame(opB.getNewValue(), opA.getModelElementId())
+			// && isSame(opB.getModelElementId(), opA.getReferencedModelElementId())) {
+			// return true;
+			// }
 			// might conflict for different manipulated elements as well, if the move's
 			// target is the last index, we can't tell from here, so the assumption is, that it conflicts
 			// potentiality is there
-			else if (isSame(opB.getNewValue(), opA.getModelElementId())) {
+			// else
+			if (isSame(opB.getNewValue(), opA.getModelElementId())) {
 				return true;
 			}
 
@@ -460,10 +456,12 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 				return false;
 
 			} else {
+
 				// so there is an add or remove and a move going on on different objects but on the same feature
 				if (opB.isAdd() && opB.getIndex() >= opA.getNewIndex()) {
 					return true;
-				} else if (!opB.isAdd() && opB.getIndex() < opA.getNewIndex()) {
+				} else if (!opB.isAdd()
+					&& (opB.getIndex() + opB.getReferencedModelElements().size() - 1) < opA.getNewIndex()) {
 					return true;
 				}
 				return false;
