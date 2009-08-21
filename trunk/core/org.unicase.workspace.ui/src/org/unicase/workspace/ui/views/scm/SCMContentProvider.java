@@ -21,6 +21,10 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
@@ -47,6 +51,17 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 	}
 
 	/**
+	 * @param group the operation group
+	 * @param treeNode the node.
+	 * @return The children of an OperationsGroup
+	 */
+	protected Object[] getChildren(OperationGroup group, TreeNode treeNode) {
+		EList<AbstractOperation> ops = group.getOperations();
+		List<TreeNode> ret = nodify(treeNode, ops);
+		return ret.toArray();
+	}
+
+	/**
 	 * {@inheritDoc}
 	 */
 	public Object[] getChildren(Object node) {
@@ -64,6 +79,9 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		} else if (element instanceof ChangePackage) {
 			ChangePackage cp = (ChangePackage) element;
 			return getChildren(cp, treeNode);
+		} else if (element instanceof OperationGroup) {
+			OperationGroup og = (OperationGroup) element;
+			return getChildren(og, treeNode);
 		}
 		return new Object[0];
 	}
@@ -215,11 +233,54 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 		protected Object[] getChildren(AbstractOperation op, TreeNode treeNode) {
 
 			if (op instanceof CompositeOperation) {
+				ArrayList<TreeNode> ret = new ArrayList<TreeNode>();
 				CompositeOperation cop = (CompositeOperation) op;
+				if (cop.getMainOperation() != null) {
+					Object[] children = getChildren(cop.getMainOperation(), treeNode);
+					for (Object o : children) {
+						ret.add((TreeNode) o);
+					}
+				} else {
+					if (cop.getModelElementId() != null) {
+						ModelElement modelElement = changePackageVisualizationHelper.getModelElement(cop
+							.getModelElementId());
+						if (modelElement != null) {
+							TreeNode meNode = new TreeNode(modelElement);
+							meNode.setParent(treeNode);
+							ret.add(meNode);
+						}
+					}
+				}
 				List<AbstractOperation> subOps = cop.getSubOperations();
 				subOps.remove(cop.getMainOperation());
-				List<TreeNode> nodes = nodify(treeNode, subOps);
-				return nodes.toArray();
+				OperationGroup operationGroup = OperationsFactory.eINSTANCE.createOperationGroup();
+				operationGroup.setName("Suboperations");
+				operationGroup.getOperations().addAll(subOps);
+				TreeNode subOpsNode = new TreeNode(operationGroup);
+				subOpsNode.setParent(treeNode);
+				ret.add(subOpsNode);
+				return ret.toArray();
+			} else if (op instanceof CreateDeleteOperation) {
+				ArrayList<TreeNode> ret = new ArrayList<TreeNode>();
+				CreateDeleteOperation cdo = (CreateDeleteOperation) op;
+
+				if (cdo.getModelElementId() != null) {
+					ModelElement modelElement = changePackageVisualizationHelper.getModelElement(cdo
+						.getModelElementId());
+					if (modelElement != null) {
+						TreeNode meNode = new TreeNode(modelElement);
+						meNode.setParent(treeNode);
+						ret.add(meNode);
+					}
+				}
+				List<ReferenceOperation> subOps = cdo.getSubOperations();
+				OperationGroup operationGroup = OperationsFactory.eINSTANCE.createOperationGroup();
+				operationGroup.setName("Suboperations");
+				operationGroup.getOperations().addAll(subOps);
+				TreeNode subOpsNode = new TreeNode(operationGroup);
+				subOpsNode.setParent(treeNode);
+				ret.add(subOpsNode);
+				return ret.toArray();
 			}
 
 			List<EObject> mes = new ArrayList<EObject>();
@@ -298,9 +359,21 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 			if (op instanceof CompositeOperation) {
 				CompositeOperation cop = (CompositeOperation) op;
 				List<AbstractOperation> subOps = cop.getSubOperations();
-				subOps.remove(cop.getMainOperation());
-				List<TreeNode> nodes = nodify(treeNode, subOps);
-				return nodes.toArray();
+				OperationGroup operationGroup = OperationsFactory.eINSTANCE.createOperationGroup();
+				operationGroup.setName("Suboperations");
+				operationGroup.getOperations().addAll(subOps);
+				TreeNode subOpsNode = new TreeNode(operationGroup);
+				subOpsNode.setParent(treeNode);
+				return new Object[] { subOpsNode };
+			} else if (op instanceof CreateDeleteOperation) {
+				CreateDeleteOperation cdo = (CreateDeleteOperation) op;
+				List<ReferenceOperation> subOps = cdo.getSubOperations();
+				OperationGroup operationGroup = OperationsFactory.eINSTANCE.createOperationGroup();
+				operationGroup.setName("Suboperations");
+				operationGroup.getOperations().addAll(subOps);
+				TreeNode subOpsNode = new TreeNode(operationGroup);
+				subOpsNode.setParent(treeNode);
+				return new Object[] { subOpsNode };
 			}
 			Set<EObject> modelElements = changePackageVisualizationHelper.getAffectedElements(op);
 			List<TreeNode> nodes = nodify(treeNode, new ArrayList<EObject>(modelElements));

@@ -198,6 +198,11 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="OperationId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
+      <eClassifiers xsi:type="ecore:EClass" name="OperationGroup">
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="operations" upperBound="-1"
+            eType="#//versioning/operations/AbstractOperation"/>
+      </eClassifiers>
     </eSubpackages>
     <eSubpackages name="events" nsURI="http://unicase.org/esmodel/versioning/events"
         nsPrefix="org.unicase.emfstore.esmodel.versioning.events">

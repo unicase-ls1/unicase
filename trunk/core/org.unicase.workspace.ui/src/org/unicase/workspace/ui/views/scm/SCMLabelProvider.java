@@ -79,7 +79,7 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				HistoryInfo historyInfo = (HistoryInfo) value;
 				return getText(historyInfo);
 			} else if (value instanceof AbstractOperation) {
-				if (value instanceof CompositeOperation) {
+				if (value instanceof CompositeOperation && ((CompositeOperation) value).getMainOperation() != null) {
 					ret = changePackageVisualizationHelper.getDescription(((CompositeOperation) value)
 						.getMainOperation());
 				} else {
@@ -95,9 +95,9 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 					return ELEMENT_NOT_FOUND;
 				}
 			} else if (value instanceof EObject) {
-				ret = ((EObject) value).eClass().getName();
+				ret = adapterFactoryLabelProvider.getText(value);
 			} else {
-				ret = "";
+				ret = value.toString();
 			}
 			if (ret.length() > 50) {
 				ret = ret.substring(0, 47) + "...";
