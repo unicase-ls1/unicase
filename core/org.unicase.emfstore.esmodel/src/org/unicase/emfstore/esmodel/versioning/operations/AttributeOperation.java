@@ -5,7 +5,6 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
-import org.unicase.model.ModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Attribute Operation</b></em>'. <!-- end-user-doc
@@ -74,7 +73,5 @@ public interface AttributeOperation extends FeatureOperation {
 	 * @generated
 	 */
 	void setNewValue(Object value);
-
-	void apply(ModelElement modelElement);
 
 } // AttributeOperation

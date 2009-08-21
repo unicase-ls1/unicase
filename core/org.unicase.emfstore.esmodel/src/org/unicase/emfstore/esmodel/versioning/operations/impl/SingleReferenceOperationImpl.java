@@ -6,7 +6,6 @@
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -327,19 +326,11 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 		ModelElement modelElement = project.getModelElement(getModelElementId());
 		ModelElement newModelElement = project.getModelElement(getNewValue());
 
-		List<EReference> references = modelElement.eClass().getEAllReferences();
-		for (EReference reference : references) {
-			if (reference.getName().equals(this.getFeatureName())) {
-				modelElement.eSet(reference, newModelElement);
-				if (newModelElement == null && reference.isContainer()) {
-					project.addModelElement(modelElement);
-				}
-				return;
-			}
+		EReference reference = (EReference) this.getFeature(modelElement);
+		modelElement.eSet(reference, newModelElement);
+		if (newModelElement == null && reference.isContainer()) {
+			project.addModelElement(modelElement);
 		}
-		// FIXME MK: exception
-		throw new IllegalStateException("cannot find reference feature");
-
 	}
 
 	@Override

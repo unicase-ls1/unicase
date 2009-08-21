@@ -6,7 +6,6 @@
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
@@ -227,7 +226,8 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 	public void apply(Project project) {
 		super.apply(project);
 		ModelElement modelElement = project.getModelElement(this.getModelElementId());
-		apply(modelElement);
+		EAttribute attribute = (EAttribute) this.getFeature(modelElement);
+		modelElement.eSet(attribute, this.getNewValue());
 	}
 
 	@Override
@@ -280,18 +280,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 		stringBuilder.append(" attribute");
 		String name = stringBuilder.toString();
 		return name;
-	}
-
-	public void apply(ModelElement modelElement) {
-		EList<EAttribute> attributes = modelElement.eClass().getEAllAttributes();
-		for (EAttribute attribute : attributes) {
-			if (attribute.getName().equals(this.getFeatureName())) {
-				modelElement.eSet(attribute, this.getNewValue());
-				return;
-			}
-		}
-		// FIXME MK: exception
-		throw new IllegalStateException("cannot find attribute");
 	}
 
 } // AttributeOperationImpl
