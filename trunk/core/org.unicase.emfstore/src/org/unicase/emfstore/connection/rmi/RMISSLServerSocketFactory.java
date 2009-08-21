@@ -35,7 +35,7 @@ public class RMISSLServerSocketFactory implements RMIServerSocketFactory, Serial
 	/**
 	 * in development.
 	 */
-	public int id;
+	private int id;
 
 	/**
 	 * Default constructor.
