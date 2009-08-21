@@ -24,18 +24,44 @@
                id="org.unicase.analyzer.questionnaire.actions.SampleAction">
          </action>
          <action
-               label="&amp;Questionnaire Wizard"
                class="org.unicase.analyzer.questionnaire.actions.WizardAction"
+               icon="icons/book_open.png"
+               id="org.unicase.analyzer.questionnaire.actions.WizardAction"
+               label="&amp;Wizard"
                menubarPath="questionMenu/questionGroup"
-               toolbarPath="questionGroup"
-               id="org.unicase.analyzer.questionnaire.actions.WizardAction">
+               toolbarPath="questionGroup">
          </action>
          <action
-               label="&amp;Generate projects and changes"
                class="org.unicase.analyzer.questionnaire.actions.GenerateAction"
+               icon="icons/book_edit.png"
+               id="org.unicase.analyzer.questionnaire.actions.GenerateAction"
+               label="&amp;Generate"
                menubarPath="questionMenu/questionGroup"
-               toolbarPath="questionGroup"
-               id="org.unicase.analyzer.questionnaire.actions.GenerateAction">
+               toolbarPath="questionGroup">
+         </action>
+         <action
+               class="org.unicase.analyzer.questionnaire.actions.NextAction"
+               icon="icons/book_next.png"
+               id="org.unicase.analyzer.questionnaire.actions.NextAction"
+               label="&amp;Next"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup">
+         </action>
+         <action
+               class="org.unicase.analyzer.questionnaire.actions.StartAction"
+               icon="icons/control_play_blue.png"
+               id="org.unicase.analyzer.questionnaire.actions.StartAction"
+               label="&amp;Start"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup">
+         </action>
+         <action
+               class="org.unicase.analyzer.questionnaire.actions.StopAction"
+               icon="icons/control_stop_blue.png"
+               id="org.unicase.analyzer.questionnaire.actions.StopAction"
+               label="&amp;Stop"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup">
          </action>
       </actionSet>
    </extension>

@@ -11,16 +11,17 @@ import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.analyzer.questionnaire.wizards.QuestionnaireWizard;
+import org.unicase.analyzer.questionnaire.wizards.EvaluationWizard;
+import org.unicase.analyzer.questionnaire.wizards.QuestionnaireManager;
 
 /**
  * @author liya
  *
  */
-public class WizardAction implements IWorkbenchWindowActionDelegate {
+public class StopAction implements IWorkbenchWindowActionDelegate {
 
-	private QuestionnaireWizard wizard;
-
+	
+	private EvaluationWizard wizard;
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#dispose()
@@ -35,7 +36,7 @@ public class WizardAction implements IWorkbenchWindowActionDelegate {
 	 * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#init(org.eclipse.ui.IWorkbenchWindow)
 	 */
 	public void init(IWorkbenchWindow window) {
-		wizard = new QuestionnaireWizard();
+		wizard = new EvaluationWizard();
 		wizard.init(window.getWorkbench(), null);
 
 	}
@@ -45,6 +46,10 @@ public class WizardAction implements IWorkbenchWindowActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	public void run(IAction action) {
+		
+		long timeDiff = System.currentTimeMillis() - QuestionnaireManager.getInstance().getTime();
+		QuestionnaireManager.getInstance().setTime(timeDiff);
+		
 		WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
 		wizardDialog.create();
 		wizardDialog.open();

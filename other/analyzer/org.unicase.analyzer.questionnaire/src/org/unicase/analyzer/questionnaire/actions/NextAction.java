@@ -7,19 +7,15 @@ package org.unicase.analyzer.questionnaire.actions;
 
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
-import org.eclipse.ui.PlatformUI;
-import org.unicase.analyzer.questionnaire.wizards.QuestionnaireWizard;
+import org.unicase.analyzer.questionnaire.wizards.QuestionnaireManager;
 
 /**
  * @author liya
  *
  */
-public class WizardAction implements IWorkbenchWindowActionDelegate {
-
-	private QuestionnaireWizard wizard;
+public class NextAction implements IWorkbenchWindowActionDelegate {
 
 	/** 
 	 * {@inheritDoc}
@@ -35,8 +31,7 @@ public class WizardAction implements IWorkbenchWindowActionDelegate {
 	 * @see org.eclipse.ui.IWorkbenchWindowActionDelegate#init(org.eclipse.ui.IWorkbenchWindow)
 	 */
 	public void init(IWorkbenchWindow window) {
-		wizard = new QuestionnaireWizard();
-		wizard.init(window.getWorkbench(), null);
+		// TODO Auto-generated method stub
 
 	}
 
@@ -45,10 +40,8 @@ public class WizardAction implements IWorkbenchWindowActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	public void run(IAction action) {
-		WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
-		wizardDialog.create();
-		wizardDialog.open();
-
+		if(QuestionnaireManager.getInstance().hasNext())
+			QuestionnaireManager.getInstance().next();
 	}
 
 	/** 

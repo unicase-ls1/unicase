@@ -65,8 +65,10 @@ public class ChooseUserPage extends WizardPage implements Listener {
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		if(isTextNonEmpty(userNumber)&& isTextNonEmpty(commitNumber) && (operationBased.getSelection()||stateBased.getSelection())){
+		if(isTextNonEmpty(userNumber)){
 			setPageComplete(true);
+			((QuestionnaireWizard) getWizard()).setCanFinish(true);
+			((QuestionnaireWizard) getWizard()).setUser(Integer.valueOf(userNumber.getText()));
 		}
 		getWizard().getContainer().updateButtons();
 	}
@@ -99,83 +101,25 @@ public class ChooseUserPage extends WizardPage implements Listener {
 		userNumber.setFocus();
 		userNumber.addListener(SWT.FocusOut, this);
 		
-		 new Label (composite, SWT.NONE).setText("Commit Number:");	
-		commitNumber = new Text(composite, SWT.BORDER);
-		gd = new GridData(GridData.FILL_HORIZONTAL);
-		commitNumber.setLayoutData(gd);
-		commitNumber.setFocus();
-		commitNumber.addListener(SWT.FocusOut, this);
-		
-		operationBased = new Button(composite, SWT.RADIO);
-		operationBased.setText("Operation Based");
-		operationBased.setLayoutData(gd);
-		operationBased.addListener(SWT.Selection, this);
-		
-		stateBased = new Button(composite, SWT.RADIO);
-		stateBased.setText("State Based");
-		stateBased.setLayoutData(gd);
-		stateBased.addListener(SWT.Selection, this);
+//		 new Label (composite, SWT.NONE).setText("Commit Number:");	
+//		commitNumber = new Text(composite, SWT.BORDER);
+//		gd = new GridData(GridData.FILL_HORIZONTAL);
+//		commitNumber.setLayoutData(gd);
+//		commitNumber.setFocus();
+//		commitNumber.addListener(SWT.FocusOut, this);
+//		
+//		operationBased = new Button(composite, SWT.RADIO);
+//		operationBased.setText("Operation Based");
+//		operationBased.setLayoutData(gd);
+//		operationBased.addListener(SWT.Selection, this);
+//		
+//		stateBased = new Button(composite, SWT.RADIO);
+//		stateBased.setText("State Based");
+//		stateBased.setLayoutData(gd);
+//		stateBased.addListener(SWT.Selection, this);
 		
 		setControl(composite);
 		setPageComplete(false);
 
 	}
-	
-	@Override
-	public IWizardPage getNextPage() {
-		
-//		ResourceSet resourceSet = ((QuestionnaireWizard) getWizard()).getResourceSet();
-//		URI fileURI = URI.createFileURI(DIR + "/" + userNumber.getText() + "VersionInfo.info");
-//		Resource resource = resourceSet.getResource(fileURI, true);
-//		Map<Integer, Integer> map = (Map<Integer, Integer>) resource.getContents().get(0);
-//		((QuestionnaireWizard) getWizard()).setCommitMap(map);
-		
-		
-		if(operationBased.getSelection()){
-		
-			String projectFileName = DIR + userNumber.getText() + "/projectstate-" + (Integer.valueOf(commitNumber.getText())-1) + ".ups";
-			String changeFileName = DIR + userNumber.getText() + "/changepackage-" + commitNumber.getText() + ".ucp";
-			try {
-				Project project = ResourceHelper.getElementFromResource(projectFileName, Project.class, 0);
-				ChangePackage changePackage = ResourceHelper.getElementFromResource(changeFileName, ChangePackage.class, 0);
-	
-				 IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-				 String viewId = "org.unicase.workspace.ui.views.CompareView";
-				 CompareView compareView = null;
-				 
-				 compareView = (CompareView) page.showView(viewId);
-				 
-				 if (compareView != null) {
-				 compareView.setInput(project, changePackage);
-				 }
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (PartInitException e) {
-	
-				e.printStackTrace();
-			}		
-		}else{
-			String diffFileName = DIR  + userNumber.getText() + "/" + "diffModel" + commitNumber.getText() + ".emfdiff";
-
-			ResourceSet resourceSet = new ResourceSetImpl();
-			Resource resource = resourceSet.getResource(URI.createFileURI(diffFileName), true);
-			EList<EObject> directContents = resource.getContents();
-			ComparisonResourceSetSnapshot diff = (ComparisonResourceSetSnapshot) directContents.get(0);
-			
-		
-			try {
-				EObject loadedSnapshot = ModelUtils.load(URI.createFileURI(diffFileName), resourceSet);
-				if (loadedSnapshot instanceof ComparisonSnapshot) {
-					CompareUI.openCompareEditorOnPage(new ModelCompareEditorInput((ComparisonSnapshot) loadedSnapshot),
-						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage());
-				}
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-				
-		}
-		return super.getNextPage();
-	}
-
 }

@@ -5,34 +5,47 @@
 
 package org.unicase.analyzer.questionnaire.wizards;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
+import org.unicase.analyzer.exporters.CSVExporter;
+import org.unicase.analyzer.exporters.ExportersFactory;
+import org.unicase.workspace.Configuration;
 
 /**
  * @author liya
  *
  */
-public class QuestionnaireWizard extends Wizard implements IWorkbenchWizard {
+public class EvaluationWizard extends Wizard implements IWorkbenchWizard {
 
-	private ChooseUserPage chooseUserPage;
-	private int user;
+	private static final String DIR = Configuration.getWorkspaceDirectory();
 	private boolean canFinish;
-	
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
 	 */
 	@Override
 	public boolean performFinish() {
-		QuestionnaireManager.dispose();
-		QuestionnaireManager.getInstance().setUser(user);
-		QuestionnaireManager.getInstance().initCommitMap();
-		QuestionnaireManager.getInstance().initExporter();
+		List<Object> line = new ArrayList<Object>();
+		line.add(QuestionnaireManager.getInstance().getVersion());
+		line.add(QuestionnaireManager.getInstance().getTime());
+		line.add(QuestionnaireManager.getInstance().getEvaluationResult());
+		
+		try {
+			QuestionnaireManager.getInstance().getExporter().writeLine(line);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return super.performCancel();
 	}
-	
+
 	@Override
 	public boolean canFinish() {
 		return canFinish;
@@ -41,7 +54,6 @@ public class QuestionnaireWizard extends Wizard implements IWorkbenchWizard {
 	public void setCanFinish(boolean canFinish){
 		this.canFinish = canFinish;
 	}
-
 	/** 
 	 * {@inheritDoc}
 	 * @see org.eclipse.ui.IWorkbenchWizard#init(org.eclipse.ui.IWorkbench, org.eclipse.jface.viewers.IStructuredSelection)
@@ -53,22 +65,8 @@ public class QuestionnaireWizard extends Wizard implements IWorkbenchWizard {
 	
 	@Override
 	public void addPages() {
-		chooseUserPage = new ChooseUserPage("ChooseUserPage");
-		addPage(chooseUserPage);
-	}
-
-	/**
-	 * @return the user
-	 */
-	public int getUser() {
-		return user;
-	}
-
-	/**
-	 * @param user the user to set
-	 */
-	public void setUser(int user) {
-		this.user = user;
+		EvaluatePage page = new EvaluatePage("Evaluation");
+		addPage(page);
 	}
 
 }
