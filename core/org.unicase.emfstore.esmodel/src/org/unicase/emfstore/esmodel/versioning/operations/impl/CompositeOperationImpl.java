@@ -5,9 +5,11 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -486,6 +488,19 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 			copiedSubOperations.add(0, abstractOperation.reverse());
 		}
 		return compositeOperation;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getLeafOperations()
+	 */
+	public List<AbstractOperation> getLeafOperations() {
+		List<AbstractOperation> result = new ArrayList<AbstractOperation>();
+		for (AbstractOperation subOperation : getSubOperations()) {
+			result.addAll(subOperation.getLeafOperations());
+		}
+		return result;
 	}
 
 } // CompositeOperationImpl

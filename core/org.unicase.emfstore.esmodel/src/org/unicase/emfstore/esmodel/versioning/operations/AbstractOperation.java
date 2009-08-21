@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.operations;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 import org.unicase.model.IdentifiableElement;
@@ -185,5 +186,13 @@ public interface AbstractOperation extends IdentifiableElement {
 	 * @return a set of model element ids
 	 */
 	Set<ModelElementId> getOtherInvolvedModelElements();
+
+	/**
+	 * Get all operations that are a leaf operation. In case this operation is not containing any other operations it
+	 * will return itself.
+	 * 
+	 * @return a list of leaf operations
+	 */
+	List<AbstractOperation> getLeafOperations();
 
 } // AbstractOperation

@@ -5,6 +5,9 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
@@ -193,6 +196,51 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 			throw new IllegalArgumentException("Model Element is not in the given project");
 		}
 		return getFeature(modelElement);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getDescription()
+	 */
+	@Override
+	public String getDescription() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#getName()
+	 */
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.AbstractOperationImpl#reverse()
+	 */
+	@Override
+	public AbstractOperation reverse() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getLeafOperations()
+	 */
+	public List<AbstractOperation> getLeafOperations() {
+		List<AbstractOperation> result = new ArrayList<AbstractOperation>();
+		result.add(this);
+		return result;
 	}
 
 	/**
