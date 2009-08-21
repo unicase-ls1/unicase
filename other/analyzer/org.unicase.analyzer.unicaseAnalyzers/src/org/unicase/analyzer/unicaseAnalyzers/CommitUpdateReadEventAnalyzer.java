@@ -15,7 +15,6 @@ import java.util.NoSuchElementException;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.analyzer.TwoDDataAnalyzer;
 import org.unicase.analyzer.iterator.VersionIterator;
-import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
@@ -25,6 +24,7 @@ import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -62,7 +62,7 @@ public class CommitUpdateReadEventAnalyzer implements TwoDDataAnalyzer {
 					}
 					else{
 						base = ((CheckoutEvent) event).getBaseVersion();
-						target = EsModelUtil.clone(base);
+						target = ModelUtil.clone(base);
 						if(base.getIdentifier()- 20 > 0){
 							target.setIdentifier(base.getIdentifier()- 20); //just consider the last 20 revisions
 						}

@@ -53,6 +53,7 @@ public class CategoryAnalyzer implements DataAnalyzer {
 		int createCount = 0; // CreateDelete Operation
 		
 		int opListSize = 0;// operations number for each changePackage
+		int leafOpSize = 0;
 		int depth = 0; //dependency depth
 		
 		ConflictDetector conflictDetector = new ConflictDetector(new IndexSensitiveConflictDetectionStrategy());
@@ -89,10 +90,11 @@ public class CategoryAnalyzer implements DataAnalyzer {
 			if(dependency != null && dependency.size()>0){
 				depth = Collections.max(dependency);
 			}
+			leafOpSize =  data.getChangePackages().get(0).getLeafOperations().size();
 		}
 		
 		values.add(category);
-		values.add(opListSize);
+		values.add(leafOpSize);
 		values.add(depth);
 		return values;
 	}
