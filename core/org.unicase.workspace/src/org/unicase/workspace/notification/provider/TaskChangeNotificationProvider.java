@@ -14,7 +14,6 @@ import java.util.Set;
 
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
-import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.model.ModelElement;
@@ -22,6 +21,7 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.TaskQuery;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.preferences.DashboardKey;
 
 /**
@@ -66,7 +66,7 @@ public class TaskChangeNotificationProvider extends AbstractNotificationProvider
 		}
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("Changed work items");
-		notification.setProject(EsModelUtil.clone(getProjectSpace().getProjectId()));
+		notification.setProject(ModelUtil.clone(getProjectSpace().getProjectId()));
 		notification.setRecipient(getUser().getName());
 		notification.setSeen(false);
 		notification.setProvider(getName());

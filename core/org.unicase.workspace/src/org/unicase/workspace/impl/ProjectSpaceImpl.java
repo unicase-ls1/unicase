@@ -41,7 +41,6 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
-import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -1492,10 +1491,10 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public ProjectInfo getProjectInfo() {
 		ProjectInfo projectInfo = EsmodelFactory.eINSTANCE.createProjectInfo();
-		projectInfo.setProjectId(EsModelUtil.clone(getProjectId()));
+		projectInfo.setProjectId(ModelUtil.clone(getProjectId()));
 		projectInfo.setName(getProjectName());
 		projectInfo.setDescription(getProjectDescription());
-		projectInfo.setVersion(EsModelUtil.clone(getBaseVersion()));
+		projectInfo.setVersion(ModelUtil.clone(getBaseVersion()));
 		return projectInfo;
 	}
 

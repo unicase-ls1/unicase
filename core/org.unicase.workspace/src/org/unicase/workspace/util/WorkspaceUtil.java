@@ -11,7 +11,6 @@ import java.util.Date;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
@@ -19,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.Activator;
 import org.unicase.workspace.ProjectSpace;
 
@@ -79,7 +79,7 @@ public final class WorkspaceUtil {
 	 */
 	public static void logCheckout(ProjectSpace projectSpace, PrimaryVersionSpec baseVersion) {
 		CheckoutEvent checkoutEvent = EventsFactory.eINSTANCE.createCheckoutEvent();
-		checkoutEvent.setBaseVersion(EsModelUtil.clone(baseVersion));
+		checkoutEvent.setBaseVersion(ModelUtil.clone(baseVersion));
 		checkoutEvent.setTimestamp(new Date());
 		projectSpace.addEvent(checkoutEvent);
 	}
@@ -94,8 +94,8 @@ public final class WorkspaceUtil {
 	public static void logUpdate(ProjectSpace projectSpace, PrimaryVersionSpec baseVersion,
 		PrimaryVersionSpec targetVersion) {
 		UpdateEvent updateEvent = EventsFactory.eINSTANCE.createUpdateEvent();
-		updateEvent.setBaseVersion(EsModelUtil.clone(baseVersion));
-		updateEvent.setTargetVersion(EsModelUtil.clone(targetVersion));
+		updateEvent.setBaseVersion(ModelUtil.clone(baseVersion));
+		updateEvent.setTargetVersion(ModelUtil.clone(targetVersion));
 		updateEvent.setTimestamp(new Date());
 		projectSpace.addEvent(updateEvent);
 	}

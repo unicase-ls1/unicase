@@ -11,7 +11,6 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
@@ -228,7 +227,7 @@ public final class OperationsCanonizer {
 			AbstractOperation operationCopy = null;
 
 			if (comp.getMainOperation() != null) {
-				operationCopy = EsModelUtil.clone(comp);
+				operationCopy = ModelUtil.clone(comp);
 				// operationCopy = ModelUtil.eObjectToString(comp);
 			}
 
