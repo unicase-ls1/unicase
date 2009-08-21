@@ -545,13 +545,17 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 				// make sure that some of the added things are different
 				if (opA.getIndex() == opB.getIndex()) {
 					for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
-						for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
-							// if all were the same, this would be identical operations, thus no index conflict
-							if (!mA.equals(mB)) {
-								return true;
-							}
+						if (!containsId(opB.getOtherInvolvedModelElements(), mA)) {
+							return true;
 						}
 					}
+					for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
+						// if all were the same, this would be identical operations, thus no index conflict
+						if (!containsId(opA.getOtherInvolvedModelElements(), mB)) {
+							return true;
+						}
+					}
+
 				} else {
 					return true;
 				}
