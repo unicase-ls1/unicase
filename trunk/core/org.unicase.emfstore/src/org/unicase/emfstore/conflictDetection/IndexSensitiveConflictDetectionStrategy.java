@@ -565,21 +565,35 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 			if (opA.isAdd() != opB.isAdd()) {
 
 				for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
-					for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
-						if (!mA.equals(mB)) {
-
-							// if the remove index is smaller than the add index, there is an index integrity conflict
-
+					if (!containsId(opB.getOtherInvolvedModelElements(), mA)) {
+						if (opB.getReferencedModelElements().size() == 1
+							&& opA.getReferencedModelElements().size() == 1) {
 							if (opA.isAdd()) {
 								return opA.getIndex() > opB.getIndex() && opA.getIndex() != 0 && opB.getIndex() != 0;
 							} else {
 								return opA.getIndex() < opB.getIndex() && opA.getIndex() != 0 && opB.getIndex() != 0;
 							}
 
+						} else {
+							return true;
 						}
 					}
 				}
+				for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
+					if (!containsId(opA.getOtherInvolvedModelElements(), mB)) {
+						if (opB.getReferencedModelElements().size() == 1
+							&& opA.getReferencedModelElements().size() == 1) {
+							if (opA.isAdd()) {
+								return opA.getIndex() > opB.getIndex() && opA.getIndex() != 0 && opB.getIndex() != 0;
+							} else {
+								return opA.getIndex() < opB.getIndex() && opA.getIndex() != 0 && opB.getIndex() != 0;
+							}
 
+						} else {
+							return true;
+						}
+					}
+				}
 			}
 		}
 
