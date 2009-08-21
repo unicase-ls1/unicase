@@ -314,6 +314,30 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all
+	 * {@link org.unicase.emfstore.esmodel.versioning.operations.OperationGroup} instances. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected OperationGroupItemProvider operationGroupItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.OperationGroup}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createOperationGroupAdapter() {
+		if (operationGroupItemProvider == null) {
+			operationGroupItemProvider = new OperationGroupItemProvider(this);
+		}
+
+		return operationGroupItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -427,6 +451,8 @@ public class OperationsItemProviderAdapterFactory extends OperationsAdapterFacto
 			multiAttributeMoveOperationItemProvider.dispose();
 		if (operationIdItemProvider != null)
 			operationIdItemProvider.dispose();
+		if (operationGroupItemProvider != null)
+			operationGroupItemProvider.dispose();
 	}
 
 }
