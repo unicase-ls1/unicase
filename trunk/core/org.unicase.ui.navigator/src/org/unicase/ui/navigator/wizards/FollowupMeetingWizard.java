@@ -7,8 +7,6 @@ package org.unicase.ui.navigator.wizards;
 
 import java.util.List;
 
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
@@ -21,7 +19,12 @@ import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.CompositeOperationHandle;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.exceptions.InvalidHandleException;
+import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author naughton Wizard for creating a follow-up meeting.
@@ -116,39 +119,28 @@ public class FollowupMeetingWizard extends Wizard implements IWorkbenchWizard {
 
 	private void createFollowupMeeting() {
 		final LeafSection leafSection = (LeafSection) selectedMeeting.eContainer();
-		TransactionalEditingDomain domain = WorkspaceManager.getInstance().getCurrentWorkspace().getEditingDomain();
+		final ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(leafSection.getProject());
 
-		followupMeeting.setName(namePage.getMeetingName());
-		followupMeeting.setDescription(namePage.getMeetingDescription());
-
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
+				CompositeOperationHandle operationHandle = projectSpace.beginCompositeOperation();
+				followupMeeting.setName(namePage.getMeetingName());
+				followupMeeting.setDescription(namePage.getMeetingDescription());
 				leafSection.getModelElements().add(followupMeeting);
-			}
-		});
-
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
 				addMeetingSections(followupMeeting);
-			}
-		});
-
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
 				addMeetingSubSections(followupMeeting);
-			}
-		});
-
-		final List<WorkItem> statusItems = itemCarryPage.getStatusWorkItems();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
-			@Override
-			protected void doExecute() {
+				final List<WorkItem> statusItems = itemCarryPage.getStatusWorkItems();
 				addMeetingStatusItems(followupMeeting, statusItems);
+				try {
+					operationHandle.end("Create follow-up meeting", "Created follow-up meeting "
+						+ followupMeeting.getName() + " from " + selectedMeeting.getName() + ".", followupMeeting
+						.getModelElementId());
+				} catch (InvalidHandleException e) {
+					WorkspaceUtil.logException("Composite Operation failed!", e);
+				}
 			}
-		});
+		}.run();
 
 		ActionHelper.openModelElement(followupMeeting, this.getClass().getName());
 	}
