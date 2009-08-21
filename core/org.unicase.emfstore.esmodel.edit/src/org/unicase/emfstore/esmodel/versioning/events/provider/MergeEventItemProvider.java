@@ -201,13 +201,7 @@ public class MergeEventItemProvider extends EventItemProvider implements IEditin
 			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
 		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
 			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.MERGE_EVENT__LOCAL_CHANGES,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 	}
 
 	/**

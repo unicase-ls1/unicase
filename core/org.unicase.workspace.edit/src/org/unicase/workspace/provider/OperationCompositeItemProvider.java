@@ -153,13 +153,8 @@ public class OperationCompositeItemProvider extends ItemProviderAdapter implemen
 			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
 
-		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 	}
 
 	/**

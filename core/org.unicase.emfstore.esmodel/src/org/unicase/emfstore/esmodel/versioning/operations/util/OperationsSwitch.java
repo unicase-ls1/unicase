@@ -15,8 +15,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
@@ -189,19 +187,6 @@ public class OperationsSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION: {
-			MultiAttributeOperation multiAttributeOperation = (MultiAttributeOperation) theEObject;
-			T result = caseMultiAttributeOperation(multiAttributeOperation);
-			if (result == null)
-				result = caseFeatureOperation(multiAttributeOperation);
-			if (result == null)
-				result = caseAbstractOperation(multiAttributeOperation);
-			if (result == null)
-				result = caseIdentifiableElement(multiAttributeOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case OperationsPackage.REFERENCE_OPERATION: {
 			ReferenceOperation referenceOperation = (ReferenceOperation) theEObject;
 			T result = caseReferenceOperation(referenceOperation);
@@ -226,19 +211,6 @@ public class OperationsSwitch<T> {
 				result = caseAbstractOperation(diagramLayoutOperation);
 			if (result == null)
 				result = caseIdentifiableElement(diagramLayoutOperation);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION: {
-			MultiAttributeMoveOperation multiAttributeMoveOperation = (MultiAttributeMoveOperation) theEObject;
-			T result = caseMultiAttributeMoveOperation(multiAttributeMoveOperation);
-			if (result == null)
-				result = caseFeatureOperation(multiAttributeMoveOperation);
-			if (result == null)
-				result = caseAbstractOperation(multiAttributeMoveOperation);
-			if (result == null)
-				result = caseIdentifiableElement(multiAttributeMoveOperation);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -377,20 +349,6 @@ public class OperationsSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Multi Attribute Operation</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Multi Attribute Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMultiAttributeOperation(MultiAttributeOperation object) {
-		return null;
-	}
-
-	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Reference Operation</em>'. <!--
 	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
 	 * end-user-doc -->
@@ -415,20 +373,6 @@ public class OperationsSwitch<T> {
 	 * @generated
 	 */
 	public T caseDiagramLayoutOperation(DiagramLayoutOperation object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Multi Attribute Move Operation</em>'. <!--
-	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
-	 * end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Multi Attribute Move Operation</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseMultiAttributeMoveOperation(MultiAttributeMoveOperation object) {
 		return null;
 	}
 

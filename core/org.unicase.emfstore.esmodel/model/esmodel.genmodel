@@ -140,20 +140,11 @@
           <genFeatures notify="false" createChild="false" propertySortChoices="true"
               ecoreFeature="ecore:EReference esmodel.ecore#//versioning/operations/MultiReferenceMoveOperation/referencedModelElementId"/>
         </genClasses>
-        <genClasses ecoreClass="esmodel.ecore#//versioning/operations/MultiAttributeOperation">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeOperation/add"/>
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeOperation/index"/>
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeOperation/values"/>
-        </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/ReferenceOperation">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReferenceOperation/bidirectional"/>
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/ReferenceOperation/oppositeFeatureName"/>
         </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/DiagramLayoutOperation"/>
-        <genClasses ecoreClass="esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation">
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation/oldIndex"/>
-          <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/MultiAttributeMoveOperation/newIndex"/>
-        </genClasses>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/OperationId"/>
         <genClasses ecoreClass="esmodel.ecore#//versioning/operations/OperationGroup">
           <genFeatures createChild="false" ecoreFeature="ecore:EAttribute esmodel.ecore#//versioning/operations/OperationGroup/name"/>

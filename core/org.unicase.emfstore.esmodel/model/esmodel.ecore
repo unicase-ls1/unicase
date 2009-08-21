@@ -180,12 +180,6 @@
             eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
             containment="true"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="MultiAttributeOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="add" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="index" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="values" upperBound="-1"
-            eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EJavaObject"/>
-      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="ReferenceOperation" abstract="true"
           eSuperTypes="#//versioning/operations/FeatureOperation">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="bidirectional" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
@@ -193,10 +187,6 @@
             eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="DiagramLayoutOperation" eSuperTypes="#//versioning/operations/AttributeOperation"/>
-      <eClassifiers xsi:type="ecore:EClass" name="MultiAttributeMoveOperation" eSuperTypes="#//versioning/operations/FeatureOperation">
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="oldIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="newIndex" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-      </eClassifiers>
       <eClassifiers xsi:type="ecore:EClass" name="OperationId" eSuperTypes="../../org.unicase.model/model/model.ecore#//UniqueIdentifier"/>
       <eClassifiers xsi:type="ecore:EClass" name="OperationGroup">
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>

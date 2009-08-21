@@ -15,8 +15,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
@@ -119,11 +117,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseMultiAttributeOperation(MultiAttributeOperation object) {
-			return createMultiAttributeOperationAdapter();
-		}
-
-		@Override
 		public Adapter caseReferenceOperation(ReferenceOperation object) {
 			return createReferenceOperationAdapter();
 		}
@@ -131,11 +124,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseDiagramLayoutOperation(DiagramLayoutOperation object) {
 			return createDiagramLayoutOperationAdapter();
-		}
-
-		@Override
-		public Adapter caseMultiAttributeMoveOperation(MultiAttributeMoveOperation object) {
-			return createMultiAttributeMoveOperationAdapter();
 		}
 
 		@Override
@@ -293,21 +281,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 
 	/**
 	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation
-	 * <em>Multi Attribute Operation</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we
-	 * can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation
-	 * @generated
-	 */
-	public Adapter createMultiAttributeOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '
 	 * {@link org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation <em>Reference Operation</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
@@ -332,21 +305,6 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDiagramLayoutOperationAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '
-	 * {@link org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation
-	 * <em>Multi Attribute Move Operation</em>}'. <!-- begin-user-doc --> This default implementation returns null so
-	 * that we can easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway.
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation
-	 * @generated
-	 */
-	public Adapter createMultiAttributeMoveOperationAdapter() {
 		return null;
 	}
 
