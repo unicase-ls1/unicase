@@ -24,8 +24,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
@@ -123,12 +121,6 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 					if(op instanceof DiagramLayoutOperation){	
 						diagramLayout  ++;
 					}
-					continue;
-				}else if(op instanceof MultiAttributeMoveOperation){	
-					multiAttributeMove  ++;
-					continue;
-				}else if(op instanceof MultiAttributeOperation){	
-					multiAttribute  ++;
 					continue;
 				}else if(op instanceof MultiReferenceMoveOperation){					
 					multiReferenceMove  ++;
