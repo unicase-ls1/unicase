@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
@@ -25,31 +26,30 @@ import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperati
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
- * 
  * @generated
  */
 public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFactory {
 	/**
-	 * Creates the default factory implementation. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates the default factory implementation.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public static OperationsFactory init() {
 		try {
-			OperationsFactory theOperationsFactory = (OperationsFactory) EPackage.Registry.INSTANCE
-				.getEFactory("http://unicase.org/esmodel/versioning/operations");
+			OperationsFactory theOperationsFactory = (OperationsFactory)EPackage.Registry.INSTANCE.getEFactory("http://unicase.org/esmodel/versioning/operations"); 
 			if (theOperationsFactory != null) {
 				return theOperationsFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new OperationsFactoryImpl();
 	}
 
 	/**
-	 * Creates an instance of the factory. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * Creates an instance of the factory.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public OperationsFactoryImpl() {
@@ -58,40 +58,29 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case OperationsPackage.COMPOSITE_OPERATION:
-			return createCompositeOperation();
-		case OperationsPackage.CREATE_DELETE_OPERATION:
-			return createCreateDeleteOperation();
-		case OperationsPackage.ATTRIBUTE_OPERATION:
-			return createAttributeOperation();
-		case OperationsPackage.SINGLE_REFERENCE_OPERATION:
-			return createSingleReferenceOperation();
-		case OperationsPackage.MULTI_REFERENCE_OPERATION:
-			return createMultiReferenceOperation();
-		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION:
-			return createMultiReferenceMoveOperation();
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION:
-			return createMultiAttributeOperation();
-		case OperationsPackage.DIAGRAM_LAYOUT_OPERATION:
-			return createDiagramLayoutOperation();
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION:
-			return createMultiAttributeMoveOperation();
-		case OperationsPackage.OPERATION_ID:
-			return createOperationId();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case OperationsPackage.COMPOSITE_OPERATION: return createCompositeOperation();
+			case OperationsPackage.CREATE_DELETE_OPERATION: return createCreateDeleteOperation();
+			case OperationsPackage.ATTRIBUTE_OPERATION: return createAttributeOperation();
+			case OperationsPackage.SINGLE_REFERENCE_OPERATION: return createSingleReferenceOperation();
+			case OperationsPackage.MULTI_REFERENCE_OPERATION: return createMultiReferenceOperation();
+			case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION: return createMultiReferenceMoveOperation();
+			case OperationsPackage.MULTI_ATTRIBUTE_OPERATION: return createMultiAttributeOperation();
+			case OperationsPackage.DIAGRAM_LAYOUT_OPERATION: return createDiagramLayoutOperation();
+			case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION: return createMultiAttributeMoveOperation();
+			case OperationsPackage.OPERATION_ID: return createOperationId();
+			case OperationsPackage.OPERATION_GROUP: return createOperationGroup();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CompositeOperation createCompositeOperation() {
@@ -101,7 +90,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CreateDeleteOperation createCreateDeleteOperation() {
@@ -111,7 +99,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AttributeOperation createAttributeOperation() {
@@ -121,7 +108,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SingleReferenceOperation createSingleReferenceOperation() {
@@ -131,7 +117,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MultiReferenceOperation createMultiReferenceOperation() {
@@ -141,7 +126,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MultiReferenceMoveOperation createMultiReferenceMoveOperation() {
@@ -151,7 +135,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MultiAttributeOperation createMultiAttributeOperation() {
@@ -161,7 +144,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DiagramLayoutOperation createDiagramLayoutOperation() {
@@ -171,7 +153,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MultiAttributeMoveOperation createMultiAttributeMoveOperation() {
@@ -181,7 +162,6 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OperationId createOperationId() {
@@ -190,17 +170,25 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	}
 
 	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OperationsPackage getOperationsPackage() {
-		return (OperationsPackage) getEPackage();
+	public OperationGroup createOperationGroup() {
+		OperationGroupImpl operationGroup = new OperationGroupImpl();
+		return operationGroup;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
+	 * @generated
+	 */
+	public OperationsPackage getOperationsPackage() {
+		return (OperationsPackage)getEPackage();
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @deprecated
 	 * @generated
 	 */
