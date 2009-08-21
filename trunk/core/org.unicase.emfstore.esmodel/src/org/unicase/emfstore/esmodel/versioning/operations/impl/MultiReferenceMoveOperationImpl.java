@@ -354,24 +354,18 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	public void apply(Project project) {
 		super.apply(project);
 		ModelElement modelElement = project.getModelElement(getModelElementId());
-		EList<EReference> references = modelElement.eClass().getEAllReferences();
 		ModelElement referencedModelElement = project.getModelElement(getReferencedModelElementId());
-		for (EReference reference : references) {
-			if (reference.getName().equals(this.getFeatureName())) {
-				Object object = modelElement.eGet(reference);
-				@SuppressWarnings("unchecked")
-				EList<ModelElement> list = (EList<ModelElement>) object;
-				if (getNewIndex() >= list.size() || getNewIndex() < 0 || referencedModelElement == null
-					|| !list.contains(referencedModelElement)) {
-					// do nothing if index out of bound or element not in list.
-					return;
-				}
-				list.move(getNewIndex(), referencedModelElement);
-				return;
-			}
+		EReference reference = (EReference) this.getFeature(modelElement);
+		Object object = modelElement.eGet(reference);
+		@SuppressWarnings("unchecked")
+		EList<ModelElement> list = (EList<ModelElement>) object;
+		if (getNewIndex() >= list.size() || getNewIndex() < 0 || referencedModelElement == null
+			|| !list.contains(referencedModelElement)) {
+			// do nothing if index out of bound or element not in list.
+			return;
 		}
-		// FIXME MK: exception
-		throw new IllegalStateException("cannot find reference feature");
+		list.move(getNewIndex(), referencedModelElement);
+
 	}
 
 	@Override
