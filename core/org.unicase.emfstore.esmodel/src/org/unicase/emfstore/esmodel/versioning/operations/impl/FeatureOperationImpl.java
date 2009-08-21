@@ -6,11 +6,14 @@
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 
 /**
@@ -176,6 +179,40 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 		result.append(featureName);
 		result.append(')');
 		return result.toString();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeature(org.unicase.model.Project)
+	 * @generated NOT
+	 */
+	public EStructuralFeature getFeature(Project project) {
+		ModelElement modelElement = project.getModelElement(getModelElementId());
+		if (modelElement == null) {
+			throw new IllegalArgumentException("Model Element is not in the given project");
+		}
+		return getFeature(modelElement);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @generated NOT
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeature(org.unicase.model.ModelElement)
+	 */
+	public EStructuralFeature getFeature(ModelElement modelElement) {
+		if (!modelElement.getIdentifier().equals(this.getModelElementId().getId())) {
+			throw new IllegalArgumentException("model element id does not match id of operations model element");
+		}
+		EList<EStructuralFeature> features = modelElement.eClass().getEAllStructuralFeatures();
+		for (EStructuralFeature feature : features) {
+			if (feature.getName().equals(this.getFeatureName())) {
+				return feature;
+			}
+		}
+		throw new IllegalStateException("Feature " + getFeatureName()
+			+ " is not known to the eclass of the model element");
 	}
 
 } // FeatureOperationImpl

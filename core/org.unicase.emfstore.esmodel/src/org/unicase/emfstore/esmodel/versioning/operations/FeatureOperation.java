@@ -5,6 +5,10 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
+
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Feature Operation</b></em>'. <!-- end-user-doc
  * -->
@@ -46,5 +50,21 @@ public interface FeatureOperation extends AbstractOperation {
 	 * @generated
 	 */
 	void setFeatureName(String value);
+
+	/**
+	 * Get the feature from the Eclass of the model element identified by the model element of the operation.
+	 * 
+	 * @param project the project
+	 * @return the feature
+	 */
+	EStructuralFeature getFeature(Project project);
+
+	/**
+	 * Get the feature from the eclass of the given model element.
+	 * 
+	 * @param modelElement the model element
+	 * @return the feature
+	 */
+	EStructuralFeature getFeature(ModelElement modelElement);
 
 } // FeatureOperation
