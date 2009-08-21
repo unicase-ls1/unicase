@@ -36,7 +36,6 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
@@ -48,6 +47,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
@@ -505,9 +505,8 @@ public class HistoryComposite extends Composite implements
 
 		ShowChangesEvent showChangesEvent = EventsFactory.eINSTANCE
 				.createShowChangesEvent();
-		showChangesEvent.setSourceVersion(EsModelUtil.clone(prevVersionSpec));
-		showChangesEvent
-				.setTargetVersion(EsModelUtil.clone(currentVersionSpec));
+		showChangesEvent.setSourceVersion(ModelUtil.clone(prevVersionSpec));
+		showChangesEvent.setTargetVersion(ModelUtil.clone(currentVersionSpec));
 		showChangesEvent.setTimestamp(new Date());
 		activeProjectSpace.addEvent(showChangesEvent);
 

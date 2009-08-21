@@ -13,9 +13,9 @@ import java.util.Set;
 
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
-import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.notification.NotificationProvider;
 import org.unicase.workspace.preferences.DashboardKey;
@@ -57,7 +57,7 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		}
 
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
-		notification.setProject(EsModelUtil.clone(projectSpace.getProjectId()));
+		notification.setProject(ModelUtil.clone(projectSpace.getProjectId()));
 		notification.setRecipient(currentUsername);
 		notification.setProvider(getName());
 

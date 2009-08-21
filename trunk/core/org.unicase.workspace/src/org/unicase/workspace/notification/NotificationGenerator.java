@@ -18,11 +18,11 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.NotificationGenerationEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.preferences.PreferenceManager;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -173,7 +173,7 @@ public final class NotificationGenerator {
 			NotificationGenerationEvent generationEvent = EventsFactory.eINSTANCE.createNotificationGenerationEvent();
 			generationEvent.setTimestamp(new Date());
 			for (ESNotification notification : result) {
-				ESNotification clone = EsModelUtil.clone(notification);
+				ESNotification clone = ModelUtil.clone(notification);
 				generationEvent.getNotifications().add(clone);
 			}
 			projectSpace.addEvent(generationEvent);
