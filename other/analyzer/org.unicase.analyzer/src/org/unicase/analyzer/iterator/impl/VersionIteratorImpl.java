@@ -22,7 +22,6 @@ import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.analyzer.iterator.VersionSpecQuery;
 import org.unicase.emfstore.esmodel.ProjectId;
-import org.unicase.emfstore.esmodel.util.EsModelUtil;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
@@ -30,6 +29,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.model.Project;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -667,8 +667,8 @@ public class VersionIteratorImpl extends EObjectImpl implements VersionIterator 
 			}
 		}
 
-		this.nextSpec = EsModelUtil.clone(this.start);
-		this.sourceSpec = EsModelUtil.clone(this.start);
+		this.nextSpec = ModelUtil.clone(this.start);
+		this.sourceSpec = ModelUtil.clone(this.start);
 
 		updateSpecifier(sourceSpec, stepLength, !isForward());
 

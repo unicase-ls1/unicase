@@ -5,7 +5,6 @@
 
 package org.unicase.analyzer.questionnaire.wizards;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +13,6 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.analyzer.exporters.CSVExporter;
-import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.workspace.Configuration;
 
 /**
