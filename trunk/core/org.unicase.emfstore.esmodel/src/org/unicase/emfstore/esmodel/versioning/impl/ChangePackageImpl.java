@@ -421,6 +421,11 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		return super.eIsSet(featureID);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getCopyOfOperations()
+	 */
 	public List<AbstractOperation> getCopyOfOperations() {
 		List<AbstractOperation> copiedOperations = new ArrayList<AbstractOperation>();
 		for (AbstractOperation operation : getOperations()) {
@@ -428,4 +433,16 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 		}
 		return copiedOperations;
 	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	public List<AbstractOperation> getLeafOperations() {
+		List<AbstractOperation> leafOperations = new ArrayList<AbstractOperation>();
+		for (AbstractOperation operation : getOperations()) {
+			leafOperations.addAll(operation.getLeafOperations());
+		}
+		return leafOperations;
+	}
+
 } // ChangePackageImpl

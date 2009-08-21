@@ -144,4 +144,12 @@ public interface ChangePackage extends EObject {
 	 */
 	List<AbstractOperation> getCopyOfOperations();
 
+	/**
+	 * Get all leaf operations of a change package, decomposing all composite operations. The effect of the leaf
+	 * operations on a project is the same as the effect of the root operations of this change package.
+	 * 
+	 * @return a list of leaf operations.
+	 */
+	List<AbstractOperation> getLeafOperations();
+
 } // ChangePackage
