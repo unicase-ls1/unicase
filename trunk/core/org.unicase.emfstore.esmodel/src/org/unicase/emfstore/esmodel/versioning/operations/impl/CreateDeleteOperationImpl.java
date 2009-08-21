@@ -5,8 +5,10 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -419,6 +421,20 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		for (ReferenceOperation operation : getSubOperations()) {
 			result.addAll(operation.getAllInvolvedModelElements());
 		}
+		return result;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation#getLeafOperations()
+	 */
+	public List<AbstractOperation> getLeafOperations() {
+		List<AbstractOperation> result = new ArrayList<AbstractOperation>(getSubOperations().size() + 1);
+		CreateDeleteOperation createDeleteClone = ModelUtil.clone(this);
+		createDeleteClone.getSubOperations().clear();
+		result.add(createDeleteClone);
+		result.addAll(getSubOperations());
 		return result;
 	}
 
