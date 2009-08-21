@@ -6,7 +6,6 @@
 package org.unicase.workspace.test.changeTracking.operations;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,8 +16,6 @@ import org.junit.Test;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.model.ModelElementId;
-import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.document.LeafSection;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
@@ -270,33 +267,33 @@ public class MultiReferenceOperationTest extends OperationTest {
 
 	}
 
-	/**
-	 * Change a multi reference and check the generated operation.
-	 * 
-	 * @throws UnsupportedOperationException on test fail
-	 * @throws UnsupportedNotificationException on test fail
-	 */
-	@Test
-	public void listContainsTest() throws UnsupportedOperationException, UnsupportedNotificationException {
-
-		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		useCase.setIdentifier("usecase");
-		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
-		getProject().addModelElement(section);
-
-		clearOperations();
-		section.getModelElements().add(useCase);
-
-		List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
-
-		MultiReferenceOperation addOp = (MultiReferenceOperation) ops.get(1);
-
-		for (ModelElementId id : addOp.getReferencedModelElements()) {
-			if (id.equals(useCase.getModelElementId())) {
-				assertTrue(addOp.getReferencedModelElements().contains(useCase.getModelElementId()));
-			}
-		}
-
-	}
+	// /**
+	// * Checks whether the elist contains list works correctly.
+	// *
+	// * @throws UnsupportedOperationException on test fail
+	// * @throws UnsupportedNotificationException on test fail
+	// */
+	// @Test
+	// public void listContainsTest() throws UnsupportedOperationException, UnsupportedNotificationException {
+	//
+	// UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
+	// useCase.setIdentifier("usecase");
+	// LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+	// getProject().addModelElement(section);
+	//
+	// clearOperations();
+	// section.getModelElements().add(useCase);
+	//
+	// List<AbstractOperation> ops = getProjectSpace().getLocalOperations().getOperations();
+	//
+	// MultiReferenceOperation addOp = (MultiReferenceOperation) ops.get(1);
+	//
+	// for (ModelElementId id : addOp.getReferencedModelElements()) {
+	// if (id.equals(useCase.getModelElementId())) {
+	// assertTrue(addOp.getReferencedModelElements().contains(useCase.getModelElementId()));
+	// }
+	// }
+	//
+	// }
 
 }
