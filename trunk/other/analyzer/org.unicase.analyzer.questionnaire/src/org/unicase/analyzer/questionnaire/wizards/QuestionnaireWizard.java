@@ -5,14 +5,10 @@
 
 package org.unicase.analyzer.questionnaire.wizards;
 
-import java.util.Map;
-
-import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.analyzer.exporters.Exporter;
 
 /**
  * @author liya
@@ -21,10 +17,8 @@ import org.unicase.analyzer.exporters.Exporter;
 public class QuestionnaireWizard extends Wizard implements IWorkbenchWizard {
 
 	private ChooseUserPage chooseUserPage;
-	private EvaluatePage evaluatePage;
-	private Exporter exporter;
-	private Map<Integer, Integer> commitMap;
-	private ResourceSet resourceSet;
+	private int user;
+	private boolean canFinish;
 	
 	/** 
 	 * {@inheritDoc}
@@ -32,8 +26,20 @@ public class QuestionnaireWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		// TODO Auto-generated method stub
-		return false;
+		QuestionnaireManager.dispose();
+		QuestionnaireManager.getInstance().setUser(user);
+		QuestionnaireManager.getInstance().initCommitMap();
+		QuestionnaireManager.getInstance().initExporter();
+		return super.performCancel();
+	}
+	
+	@Override
+	public boolean canFinish() {
+		return canFinish;
+	}
+	
+	public void setCanFinish(boolean canFinish){
+		this.canFinish = canFinish;
 	}
 
 	/** 
@@ -49,50 +55,20 @@ public class QuestionnaireWizard extends Wizard implements IWorkbenchWizard {
 	public void addPages() {
 		chooseUserPage = new ChooseUserPage("ChooseUserPage");
 		addPage(chooseUserPage);
-		evaluatePage = new EvaluatePage("EvaluatePage");
-		addPage(evaluatePage);
 	}
 
 	/**
-	 * @return the exporter
+	 * @return the user
 	 */
-	public Exporter getExporter() {
-		return exporter;
+	public int getUser() {
+		return user;
 	}
 
 	/**
-	 * @param exporter the exporter to set
+	 * @param user the user to set
 	 */
-	public void setExporter(Exporter exporter) {
-		this.exporter = exporter;
-	}
-
-	/**
-	 * @return the commitMap
-	 */
-	public Map<Integer, Integer> getCommitMap() {
-		return commitMap;
-	}
-
-	/**
-	 * @param commitMap the commitMap to set
-	 */
-	public void setCommitMap(Map<Integer, Integer> commitMap) {
-		this.commitMap = commitMap;
-	}
-
-	/**
-	 * @return the resourceSet
-	 */
-	public ResourceSet getResourceSet() {
-		return resourceSet;
-	}
-
-	/**
-	 * @param resourceSet the resourceSet to set
-	 */
-	public void setResourceSet(ResourceSet resourceSet) {
-		this.resourceSet = resourceSet;
+	public void setUser(int user) {
+		this.user = user;
 	}
 
 }

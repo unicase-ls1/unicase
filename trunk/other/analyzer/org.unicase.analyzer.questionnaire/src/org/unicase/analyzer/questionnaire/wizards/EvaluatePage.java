@@ -23,10 +23,11 @@ public class EvaluatePage extends WizardPage implements Listener {
 	private static final String PAGE_TITLE = "Evaluate";
 	private static final String PAGE_DESCRIPTION = "Evaluate your understanding";
 	private Button veryWell;
-	private Button Well;
+	private Button well;
 	private Button ok;
 	private Button bad;
 	private Button veryBad;
+	private int result;
 
 	protected EvaluatePage(String pageName) {
 		super(pageName);
@@ -39,8 +40,24 @@ public class EvaluatePage extends WizardPage implements Listener {
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		// TODO Auto-generated method stub
-
+		if(veryWell.getSelection()){
+			result = 5;
+			((EvaluationWizard) getWizard()).setCanFinish(true);
+		}else if(well.getSelection()){
+			result = 4;
+			((EvaluationWizard) getWizard()).setCanFinish(true);
+		}else if(ok.getSelection()){
+			result = 3;
+			((EvaluationWizard) getWizard()).setCanFinish(true);
+		}else if(bad.getSelection()){
+			result = 2;
+			((EvaluationWizard) getWizard()).setCanFinish(true);
+		}else if(veryBad.getSelection()){
+			result = 0;
+			((EvaluationWizard) getWizard()).setCanFinish(true);
+		}
+		QuestionnaireManager.getInstance().setEvaluationResult(result);
+		getWizard().getContainer().updateButtons();
 	}
 
 	/** 
@@ -63,10 +80,10 @@ public class EvaluatePage extends WizardPage implements Listener {
 		veryWell.setLayoutData(gd);
 		veryWell.addListener(SWT.Selection, this);
 		 
-		Well = new Button(composite, SWT.RADIO);
-		Well.setText("Well");
-		Well.setLayoutData(gd);
-		Well.addListener(SWT.Selection, this);
+		well = new Button(composite, SWT.RADIO);
+		well.setText("Well");
+		well.setLayoutData(gd);
+		well.addListener(SWT.Selection, this);
 		
 		ok = new Button(composite, SWT.RADIO);
 		ok.setText("OK");

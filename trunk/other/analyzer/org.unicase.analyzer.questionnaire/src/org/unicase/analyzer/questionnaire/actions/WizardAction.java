@@ -46,9 +46,6 @@ public class WizardAction implements IWorkbenchWindowActionDelegate {
 	 */
 	public void run(IAction action) {
 		WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), wizard);
-//		Shell shell = new Shell();
-//		shell.setEnabled(false);
-//		WizardDialog wizardDialog = new WizardDialog(shell, wizard);
 		wizardDialog.create();
 		wizardDialog.open();
 
