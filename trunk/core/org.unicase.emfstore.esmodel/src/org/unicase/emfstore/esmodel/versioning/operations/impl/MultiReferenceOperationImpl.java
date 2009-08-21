@@ -296,58 +296,45 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 				referencedModelElements.add(referencedME);
 			}
 		}
-		EList<EReference> references = modelElement.eClass().getEAllReferences();
-		for (EReference reference : references) {
-			if (reference.getName().equals(this.getFeatureName())) {
-				Object object = modelElement.eGet(reference);
-				@SuppressWarnings("unchecked")
-				EList<ModelElement> list = (EList<ModelElement>) object;
-				if (isAdd()) {
-					if (index < list.size() && index > -1) {
-						int i = index;
-						for (ModelElement m : referencedModelElements) {
+		EReference reference = (EReference) this.getFeature(modelElement);
+		Object object = modelElement.eGet(reference);
+		@SuppressWarnings("unchecked")
+		EList<ModelElement> list = (EList<ModelElement>) object;
+		if (isAdd()) {
+			if (index < list.size() && index > -1) {
+				int i = index;
+				for (ModelElement m : referencedModelElements) {
 
-							if (index < list.size()) {
-								if (list.contains(m)) {
-									list.move(i, m);
-								} else {
-									list.add(i, m);
-								}
-							} else {
-								// if index grows out of bounds, just append
-								list.add(m);
-							}
-
-							i++;
+					if (index < list.size()) {
+						if (list.contains(m)) {
+							list.move(i, m);
+						} else {
+							list.add(i, m);
 						}
-						// list.addAll(getIndex(), referencedModelElements);
 					} else {
-						// if index is out of range ignore index
-						list.addAll(referencedModelElements);
+						// if index grows out of bounds, just append
+						list.add(m);
 					}
-				} else {
-					for (ModelElement me : referencedModelElements) {
-						if (list.contains(me)) {
-							list.remove(me);
-						}
-					}
-					for (ModelElement currentElement : referencedModelElements) {
-						if (currentElement.getProject() == null) {
-							project.addModelElement(currentElement);
-						}
-					}
-				}
-				return;
-			}
-		}
-		if (!isAdd()) {
-			for (ModelElement currentModelElement : referencedModelElements) {
-				project.addModelElement(currentModelElement);
-			}
-		}
-		// FIXME MK: exception
-		throw new IllegalStateException("cannot find reference feature");
 
+					i++;
+				}
+				// list.addAll(getIndex(), referencedModelElements);
+			} else {
+				// if index is out of range ignore index
+				list.addAll(referencedModelElements);
+			}
+		} else {
+			for (ModelElement me : referencedModelElements) {
+				if (list.contains(me)) {
+					list.remove(me);
+				}
+			}
+			for (ModelElement currentElement : referencedModelElements) {
+				if (currentElement.getProject() == null) {
+					project.addModelElement(currentElement);
+				}
+			}
+		}
 	}
 
 	@Override
