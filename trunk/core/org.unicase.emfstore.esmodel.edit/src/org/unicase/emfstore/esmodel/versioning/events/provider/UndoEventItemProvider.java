@@ -155,13 +155,7 @@ public class UndoEventItemProvider extends EventItemProvider implements IEditing
 			OperationsFactory.eINSTANCE.createMultiReferenceMoveOperation()));
 
 		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-			OperationsFactory.eINSTANCE.createMultiAttributeOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
 			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
-
-		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.UNDO_EVENT__OPERATION,
-			OperationsFactory.eINSTANCE.createMultiAttributeMoveOperation()));
 	}
 
 }

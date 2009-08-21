@@ -73,29 +73,12 @@ public interface OperationsFactory extends EFactory {
 	MultiReferenceMoveOperation createMultiReferenceMoveOperation();
 
 	/**
-	 * Returns a new object of class '<em>Multi Attribute Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Multi Attribute Operation</em>'.
-	 * @generated
-	 */
-	MultiAttributeOperation createMultiAttributeOperation();
-
-	/**
 	 * Returns a new object of class '<em>Diagram Layout Operation</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Diagram Layout Operation</em>'.
 	 * @generated
 	 */
 	DiagramLayoutOperation createDiagramLayoutOperation();
-
-	/**
-	 * Returns a new object of class '<em>Multi Attribute Move Operation</em>'. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Multi Attribute Move Operation</em>'.
-	 * @generated
-	 */
-	MultiAttributeMoveOperation createMultiAttributeMoveOperation();
 
 	/**
 	 * Returns a new object of class '<em>Operation Id</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->

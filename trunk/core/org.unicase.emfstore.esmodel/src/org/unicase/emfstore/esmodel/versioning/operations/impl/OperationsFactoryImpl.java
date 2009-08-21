@@ -14,8 +14,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.DiagramLayoutOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeMoveOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationGroup;
@@ -77,12 +75,8 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 			return createMultiReferenceOperation();
 		case OperationsPackage.MULTI_REFERENCE_MOVE_OPERATION:
 			return createMultiReferenceMoveOperation();
-		case OperationsPackage.MULTI_ATTRIBUTE_OPERATION:
-			return createMultiAttributeOperation();
 		case OperationsPackage.DIAGRAM_LAYOUT_OPERATION:
 			return createDiagramLayoutOperation();
-		case OperationsPackage.MULTI_ATTRIBUTE_MOVE_OPERATION:
-			return createMultiAttributeMoveOperation();
 		case OperationsPackage.OPERATION_ID:
 			return createOperationId();
 		case OperationsPackage.OPERATION_GROUP:
@@ -157,29 +151,9 @@ public class OperationsFactoryImpl extends EFactoryImpl implements OperationsFac
 	 * 
 	 * @generated
 	 */
-	public MultiAttributeOperation createMultiAttributeOperation() {
-		MultiAttributeOperationImpl multiAttributeOperation = new MultiAttributeOperationImpl();
-		return multiAttributeOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public DiagramLayoutOperation createDiagramLayoutOperation() {
 		DiagramLayoutOperationImpl diagramLayoutOperation = new DiagramLayoutOperationImpl();
 		return diagramLayoutOperation;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public MultiAttributeMoveOperation createMultiAttributeMoveOperation() {
-		MultiAttributeMoveOperationImpl multiAttributeMoveOperation = new MultiAttributeMoveOperationImpl();
-		return multiAttributeMoveOperation;
 	}
 
 	/**

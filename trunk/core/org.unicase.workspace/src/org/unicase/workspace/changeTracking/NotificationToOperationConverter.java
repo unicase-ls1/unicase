@@ -14,7 +14,6 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
@@ -61,7 +60,8 @@ public final class NotificationToOperationConverter {
 
 		case Notification.ADD:
 			if (n.isAttributeNotification()) {
-				return handleMultiAttribute(n, true);
+				// not supported
+				return null;
 			} else {
 				return handleMultiReference(n);
 			}
@@ -76,7 +76,8 @@ public final class NotificationToOperationConverter {
 
 		case Notification.REMOVE:
 			if (n.isAttributeNotification()) {
-				return handleMultiAttribute(n, false);
+				// not supported
+				return null;
 			} else {
 				return handleMultiReference(n);
 			}
@@ -134,24 +135,6 @@ public final class NotificationToOperationConverter {
 		for (ModelElement valueElement : list) {
 			referencedModelElements.add(valueElement.getModelElementId());
 		}
-		return op;
-
-	}
-
-	private static AbstractOperation handleMultiAttribute(NotificationInfo n, boolean isAdd) {
-
-		MultiAttributeOperation op = OperationsFactory.eINSTANCE.createMultiAttributeOperation();
-		setCommonValues(op, n.getNotifierModelElement());
-		op.setAdd(isAdd);
-		op.setFeatureName(n.getAttribute().getName());
-		op.setIndex(n.getPosition());
-
-		if (isAdd) {
-			op.getValues().add(n.getNewModelElementValue());
-		} else {
-			op.getValues().add(n.getOldModelElementValue());
-		}
-
 		return op;
 
 	}
