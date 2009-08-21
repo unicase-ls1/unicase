@@ -53,17 +53,6 @@ public final class ModelUtil {
 	}
 
 	/**
-	 * Clone the model element. The model element id will be the same in the clone.
-	 * 
-	 * @param modelElement the model element to clone
-	 * @return a clone
-	 */
-	public static ModelElement clone(ModelElement modelElement) {
-		EObject copy = EcoreUtil.copy(modelElement);
-		return (ModelElement) copy;
-	}
-
-	/**
 	 * Copy a model element. The new model element has a new unique id.
 	 * 
 	 * @param modelElement the model element
@@ -76,28 +65,6 @@ public final class ModelUtil {
 		copy.setIdentifier(modelElementId.getId());
 		// FIXME what about the containment tree is it copied, do we have to change ids too?
 		return copy;
-	}
-
-	/**
-	 * Clone a project. Clones all model elements in the project.
-	 * 
-	 * @param project the project
-	 * @return a clone of the project.
-	 */
-	public static Project clone(Project project) {
-		EObject copy = EcoreUtil.copy(project);
-		return (Project) copy;
-	}
-
-	/**
-	 * Clone the model element id.
-	 * 
-	 * @param modelElementId the model element id to clone
-	 * @return a clone
-	 */
-	public static ModelElementId clone(ModelElementId modelElementId) {
-		EObject copy = EcoreUtil.copy(modelElementId);
-		return (ModelElementId) copy;
 	}
 
 	/**
@@ -386,5 +353,18 @@ public final class ModelUtil {
 	 */
 	public static void logWarning(String message, Exception exception) {
 		log(message, exception, IStatus.WARNING);
+	}
+
+	/**
+	 * Clone any EObject.
+	 * 
+	 * @param <T> the Eobject sub type
+	 * @param eObject the Eobject instance
+	 * @return a clone of the Eobject instance
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends EObject> T clone(T eObject) {
+		EObject clone = EcoreUtil.copy(eObject);
+		return (T) clone;
 	}
 }
