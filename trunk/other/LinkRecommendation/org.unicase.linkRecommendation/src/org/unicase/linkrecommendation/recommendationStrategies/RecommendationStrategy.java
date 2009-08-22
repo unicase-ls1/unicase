@@ -17,10 +17,10 @@ public interface RecommendationStrategy {
 
 	/**
 	 * This method returns value pairs (ModelElement, Double) which indicate how probable a certain element might be
-	 * linked.
+	 * linked. The Double values should be in (0,1) to support combination of methods.
 	 * 
 	 * @param base The ModelElement which is compared to the rest
-	 * @param elements The potential elements linked to the base
+	 * @param elements The potential elements linked to the base, also referred as candidates.
 	 * @return a Map (ModelElement,Double)
 	 */
 	Map<ModelElement, Double> getMatchingMap(ModelElement base, Collection<ModelElement> elements);

@@ -3,13 +3,12 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.linkrecommendationevaluation;
+package org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies;
 
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
@@ -22,17 +21,18 @@ import org.unicase.model.ModelElementId;
  * 
  * @author koegel
  */
-public class ARMStrategy implements RecommendationStrategy {
+public class ARMStrategy implements RecommendationStrategy, Updateable {
 
 	private static final String ARM_STRATEGY = "ARM Strategy";
 	private Map<String, Double> linkCountMap;
-	
+
 	/**
 	 * Default Constructor.
 	 */
 	public ARMStrategy() {
 		linkCountMap = new HashMap<String, Double>();
 	}
+
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -43,16 +43,16 @@ public class ARMStrategy implements RecommendationStrategy {
 		Map<ModelElement, Double> result = new HashMap<ModelElement, Double>();
 		String sourceId = base.getIdentifier();
 		double totalLinkCount = 0;
-		for (ModelElement linkTarget: elements) {
+		for (ModelElement linkTarget : elements) {
 			Double linkCount = linkCountMap.get(sourceId + linkTarget.getIdentifier());
-			if (linkCount==null) {
+			if (linkCount == null) {
 				linkCount = new Double(0);
 			}
 			result.put(linkTarget, linkCount);
-			totalLinkCount+=linkCount.doubleValue();
+			totalLinkCount += linkCount.doubleValue();
 		}
-		if (totalLinkCount!=0) {
-			for (ModelElement targetElement: result.keySet()) {
+		if (totalLinkCount != 0) {
+			for (ModelElement targetElement : result.keySet()) {
 				result.put(targetElement, new Double(result.get(targetElement).doubleValue() / totalLinkCount));
 			}
 		}
@@ -70,21 +70,21 @@ public class ARMStrategy implements RecommendationStrategy {
 
 	/**
 	 * Updates the data of the strategy with a new ProjectAnalysisData object.
-	 * @param data the new data
+	 * 
+	 * @param cp the new data
 	 */
-	public void updateStrategyData(ProjectAnalysisData data) {
-		for (ChangePackage changePackage: data.getChangePackages()) {
-			for (Event event: changePackage.getEvents()) {
+	public void updateStrategyData(Collection<ChangePackage> cp) {
+		for (ChangePackage changePackage : cp) {
+			for (Event event : changePackage.getEvents()) {
 				if (event instanceof TraceEvent) {
 					TraceEvent traceEvent = (TraceEvent) event;
 					ModelElementId sourceElementId = traceEvent.getSourceElement();
 					ModelElementId targetElementId = traceEvent.getTargetElement();
 					String key = sourceElementId.getId() + targetElementId.getId();
 					Double linkCount = linkCountMap.get(key);
-					if (linkCount==null) {
+					if (linkCount == null) {
 						linkCountMap.put(key, new Double(1));
-					}
-					else {
+					} else {
 						linkCountMap.put(key, new Double(linkCount.doubleValue() + 1));
 					}
 				}
