@@ -120,7 +120,15 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 	 */
 	@Override
 	public String getText(Object object) {
-		return "Orphans";
+		if (object instanceof Project) {
+			Project project = (Project) object;
+			boolean isInProjectSpace = project.eContainer() != null
+				&& project.eContainer().eClass().getName().equals("ProjectSpace");
+			if (isInProjectSpace) {
+				return "Orphans";
+			}
+		}
+		return "Project";
 	}
 
 	/**
@@ -347,12 +355,14 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 			final Collection<ModelElement> ret = new ArrayList<ModelElement>();
 			EObject econtainer = null;
 			EList<ModelElement> allmes = project.getAllModelElements();
+			boolean isInProjectSpace = project.eContainer() != null
+				&& project.eContainer().eClass().getName().equals("ProjectSpace");
 			for (ModelElement temp : allmes) {
 				econtainer = temp.eContainer();
-				if ((econtainer instanceof Project) && !(temp instanceof CompositeSection)) {
+				if ((!isInProjectSpace && (econtainer instanceof Project) && (temp instanceof CompositeSection))
+					|| (isInProjectSpace && (econtainer instanceof Project) && !(temp instanceof CompositeSection))) {
 					ret.add(temp);
 				}
-
 			}
 			return ret;
 		} else {
