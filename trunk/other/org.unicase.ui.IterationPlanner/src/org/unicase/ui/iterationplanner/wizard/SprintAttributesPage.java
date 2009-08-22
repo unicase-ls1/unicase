@@ -46,7 +46,7 @@ public class SprintAttributesPage extends WizardPage implements Listener {
 	 * Constructor.
 	 * 
 	 * @param manager
-	 *            iteration planner
+	 *            iteration org.unicase.ui.iterationplanner.planner
 	 */
 	public SprintAttributesPage(IterationPlannerManager manager) {
 		super("sprint attributes page");

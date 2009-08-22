@@ -24,8 +24,8 @@ public class PlansPage extends WizardPage {
 	/**
 	 * Constructor.
 	 * 
-	 * @param planner
-	 *            iteration planner
+	 * @param org.unicase.ui.iterationplanner.planner
+	 *            iteration org.unicase.ui.iterationplanner.planner
 	 */
 	public PlansPage(IterationPlannerManager planner) {
 		super("plans page");

@@ -12,13 +12,13 @@ import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.iterationplanner.evaluator.Evaluator;
 import org.unicase.ui.iterationplanner.evaluator.SimpleEvaluator;
+import org.unicase.ui.iterationplanner.planner.Planner;
+import org.unicase.ui.iterationplanner.planner.SimplePlanner;
 import org.unicase.ui.iterationplanner.provider.AssigneeProvider;
 import org.unicase.ui.iterationplanner.provider.ImperativeRelatedTasks;
 import org.unicase.ui.iterationplanner.provider.RequirementProvider;
 import org.unicase.ui.iterationplanner.provider.TaskProvider;
 
-import planner.Planner;
-import planner.SimplePlanner;
 
 /**
  * This is a facade for iteration planning functions. It takes inputs to problem
@@ -98,19 +98,19 @@ public class IterationPlannerManager {
 	}
 
 	/**
-	 * returns planner.
+	 * returns org.unicase.ui.iterationplanner.planner.
 	 * 
-	 * @return planner
+	 * @return org.unicase.ui.iterationplanner.planner
 	 */
 	public Planner getPlanner() {
 		return planner;
 	}
 
 	/**
-	 * Sets the planner strategy (EA or Simple).
+	 * Sets the org.unicase.ui.iterationplanner.planner strategy (EA or Simple).
 	 * 
-	 * @param planner
-	 *            planner
+	 * @param org.unicase.ui.iterationplanner.planner
+	 *            org.unicase.ui.iterationplanner.planner
 	 */
 	public void setPlanner(Planner planner) {
 		this.planner = planner;

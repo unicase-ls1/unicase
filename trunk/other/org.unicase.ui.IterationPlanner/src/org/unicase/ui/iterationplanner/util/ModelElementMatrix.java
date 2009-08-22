@@ -1,4 +1,4 @@
-package util;
+package org.unicase.ui.iterationplanner.util;
 
 import java.util.List;
 

@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package planner;
+package org.unicase.ui.iterationplanner.planner;
 
 import java.util.List;
 

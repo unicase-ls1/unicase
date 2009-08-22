@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package planner;
+package org.unicase.ui.iterationplanner.planner;
 
 import java.util.List;
 
@@ -13,7 +13,7 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.ui.iterationplanner.core.Plan;
 
 /**
- * A planner takes a set of WorkItems, a set of Users, and number of sprints to
+ * A org.unicase.ui.iterationplanner.planner takes a set of WorkItems, a set of Users, and number of sprints to
  * plan. It returns a set of sprint plans. Each plan is a mapping of work items
  * to users.
  * 

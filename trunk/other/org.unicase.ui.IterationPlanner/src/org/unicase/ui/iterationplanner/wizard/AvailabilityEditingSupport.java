@@ -24,7 +24,7 @@ public class AvailabilityEditingSupport extends EditingSupport {
 	 * @param viewer
 	 *            viewer
 	 * @param iterationPlannerManager
-	 *            iteration planner
+	 *            iteration org.unicase.ui.iterationplanner.planner
 	 */
 	public AvailabilityEditingSupport(TableViewer viewer,
 			IterationPlannerManager iterationPlannerManager) {
