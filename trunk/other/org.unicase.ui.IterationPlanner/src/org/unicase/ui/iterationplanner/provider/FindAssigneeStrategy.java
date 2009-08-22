@@ -5,21 +5,21 @@
  */
 package org.unicase.ui.iterationplanner.provider;
 
-import java.util.List;
-
+import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 
 /**
  * interface to determine related tasks.
+ * 
  * @author hodaie
- *
  */
-public interface RelatedTasksSterategy {
+public interface FindAssigneeStrategy {
 	/**
-	 * Returns tasks related to this work item.
+	 * Returns assignee appropriate to do this work item.
+	 * 
 	 * @param workItem work item
 	 * @return related tasks
 	 */
-	List<WorkItem> getRelatedTasks(WorkItem workItem);
+	User suggestAssignee(WorkItem task);
 
 }

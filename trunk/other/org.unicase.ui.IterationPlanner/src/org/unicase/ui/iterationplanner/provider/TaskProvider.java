@@ -5,25 +5,23 @@
  */
 package org.unicase.ui.iterationplanner.provider;
 
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.model.organization.User;
+import org.unicase.model.Annotation;
+import org.unicase.model.ModelElement;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
+
 /**
- * This class is responsible for holding tasks to be planned, computing tasks
- * related to a task (using RelatedTasksStrategy), creating a list of assignee
- * expertise regarding a task.
+ * This class is responsible for holding tasks to be planned, computing tasks related to a task (using
+ * RelatedTasksStrategy), creating a list of assignee expertise regarding a task.
  * 
  * @author Hodaie
  */
@@ -31,48 +29,34 @@ public class TaskProvider {
 
 	private List<WorkPackage> workpackages;
 	private WorkPackage lastSprint;
-	private RelatedTasksSterategy relatedTasksSterategy;
+	// private FindAssigneeStrategy relatedTasksSterategy;
 	private IterationPlannerManager planningManager;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param iterationPlannerManager
-	 *            iteration planning manager
-	 * 
-	 * @param relatedTaskStrategy
-	 *            relateTaskStrategy
-	 * 
-	 * @param lastSprint
-	 *            last sprint
-	 * @param workpackages
-	 *            work packages
+	 * @param iterationPlannerManager iteration planning manager
+	 * @param relatedTaskStrategy relateTaskStrategy
+	 * @param lastSprint last sprint
+	 * @param workpackages work packages
 	 */
-	public TaskProvider(IterationPlannerManager iterationPlannerManager,
-			RelatedTasksSterategy relatedTaskStrategy, WorkPackage lastSprint,
-			List<WorkPackage> workpackages) {
+	public TaskProvider(IterationPlannerManager iterationPlannerManager, WorkPackage lastSprint,
+		List<WorkPackage> workpackages) {
 		this.planningManager = iterationPlannerManager;
 		this.lastSprint = lastSprint;
 		this.workpackages = workpackages;
-		this.relatedTasksSterategy = relatedTaskStrategy;
 
-		relatedTasksSterategy = new ImperativeRelatedTasks();
 	}
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param iterationPlannerManager
-	 *            iteration planning manager
-	 * 
-	 * @param relatedTaskStrategy
-	 *            relateTaskStrategy
+	 * @param iterationPlannerManager iteration planning manager
+	 * @param relatedTaskStrategy relateTaskStrategy
 	 */
-	public TaskProvider(IterationPlannerManager iterationPlannerManager,
-			RelatedTasksSterategy relatedTaskStrategy) {
+	public TaskProvider(IterationPlannerManager iterationPlannerManager) {
 
 		this.planningManager = iterationPlannerManager;
-		this.relatedTasksSterategy = relatedTaskStrategy;
 	}
 
 	/**
@@ -80,7 +64,7 @@ public class TaskProvider {
 	 */
 	public WorkPackage getLastSprint() {
 		TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
-				.getEditingDomain("org.unicase.EditingDomain");
+			.getEditingDomain("org.unicase.EditingDomain");
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 
 			@Override
@@ -93,9 +77,8 @@ public class TaskProvider {
 				}
 				if (lastSprint.getStartDate() == null) {
 					// minus 14 days (two weeks)
-					lastSprint.setStartDate(new Date(lastSprint.getEndDate()
-							.getTime()
-							- 14L * 24L * 60L * 60L * 1000L));
+					lastSprint
+						.setStartDate(new Date(lastSprint.getEndDate().getTime() - 14L * 24L * 60L * 60L * 1000L));
 				}
 			}
 
@@ -117,8 +100,7 @@ public class TaskProvider {
 	/**
 	 * sort tasks by priority.
 	 * 
-	 * @param tasks
-	 *            tasks
+	 * @param tasks tasks
 	 * @return sorted task list
 	 */
 	public List<WorkItem> sortByPriority(List<WorkItem> tasks) {
@@ -128,8 +110,7 @@ public class TaskProvider {
 	/**
 	 * extract list of work items form FRs.
 	 * 
-	 * @param frs
-	 *            a list of functional requirements
+	 * @param frs a list of functional requirements
 	 * @return a list of work items relating to these FRs.
 	 */
 	public List<WorkItem> getWorkItems(List<FunctionalRequirement> frs) {
@@ -137,87 +118,39 @@ public class TaskProvider {
 	}
 
 	/**
-	 * find an appropriate assignee for this task based on some criteria.
-	 * 
-	 * @param workItem
-	 *            task
-	 * @return appropriate assignee for this task.
-	 */
-	public User findAppropriateAssignee(WorkItem workItem) {
-
-		return null;
-	}
-
-	/**
-	 * Finds expertise of a user regarding a task. Expertise is number of
-	 * related tasks which have this user as assignee.
-	 * 
-	 * @param assignee
-	 *            assignee
-	 * @param task
-	 *            task
-	 * @return int
-	 */
-	public double getExpertise(WorkItem task, User assignee) {
-
-		int expertise = 0;
-
-		List<WorkItem> relatedWorkItems = relatedTasksSterategy
-				.getRelatedTasks(task);
-
-		// count number of related tasks assigned to this user
-		for (WorkItem relatedWorkItem : relatedWorkItems) {
-			if (relatedWorkItem.getAssignee() != null && relatedWorkItem.getAssignee().equals(assignee)) {
-				expertise += 1;
-			}
-		}
-
-		return expertise;
-	}
-
-	/**
-	 * returns a expertise for each assignee relating this task.
-	 * 
-	 * @param task
-	 *            task
-	 * @return a map of assignee to expertise relating this task
-	 */
-	public ExpertiseMap getExpertiseMap(WorkItem task) {
-		ExpertiseMap result = new ExpertiseMap();
-		for (User assignee : planningManager.getAssigneeProvider()
-				.getAssignees()) {
-			result.getExpertiseMap().put(assignee, getExpertise(task, assignee));
-		}
-		return result;
-	}
-
-	/**
-	 * 
-	 * @param lastSprint
-	 *            last sprint
+	 * @param lastSprint last sprint
 	 */
 	public void setLastSprint(WorkPackage lastSprint) {
 		this.lastSprint = lastSprint;
 	}
 
 	/**
-	 * strategy to compute related tasks.
-	 * 
-	 * @param relatedTasksSterategy
-	 *            relatedTasksSterategy
+	 * {@inheritDoc}
 	 */
-	public void setRelatedTasksSterategy(
-			RelatedTasksSterategy relatedTasksSterategy) {
-		this.relatedTasksSterategy = relatedTasksSterategy;
-	}
+	public List<WorkItem> getRelatedTasks(WorkItem workItem) {
+		// find model elements requirements annotated with this task
+		List<ModelElement> relatedMEs = new ArrayList<ModelElement>();
+		relatedMEs.addAll(workItem.getAnnotatedModelElements());
 
-	/**
-	 * returns strategy to compute related tasks.
-	 * 
-	 * @return strategy to compute related tasks
-	 */
-	public RelatedTasksSterategy getRelatedTasksSterategy() {
-		return relatedTasksSterategy;
+		for (ModelElement me : workItem.getAnnotatedModelElements()) {
+			if (me instanceof FunctionalRequirement) {
+				relatedMEs.addAll(planningManager.getRequirementProvider().getAllRefiningRequirements(
+					(FunctionalRequirement) me));
+			}
+
+		}
+
+		List<WorkItem> relatedWorkItems = new ArrayList<WorkItem>();
+		for (ModelElement me : relatedMEs) {
+			for (Annotation annotation : me.getAnnotations()) {
+				if (annotation instanceof WorkItem) {
+					relatedWorkItems.add((WorkItem) annotation);
+				}
+			}
+		}
+
+		return relatedWorkItems;
+
 	}
 
 }
