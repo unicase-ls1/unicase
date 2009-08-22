@@ -9,8 +9,10 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
 
@@ -124,6 +126,13 @@ public final class QuestionnaireManager {
 		exporter = ExportersFactory.eINSTANCE.createCSVExporter();
 		try {
 			exporter.init(DIR + user + File.separatorChar + "result.csv");
+			
+			List<Object> header = new ArrayList<Object>();
+			header.add("Version #");
+			header.add("Time");
+			header.add("Self-assessment");
+			exporter.writeLine(header);
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
