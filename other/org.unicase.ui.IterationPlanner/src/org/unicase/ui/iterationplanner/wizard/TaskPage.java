@@ -63,8 +63,8 @@ public class TaskPage extends WizardPage {
 	/**
 	 * Constructor.
 	 * 
-	 * @param planner
-	 *            iteration planner.
+	 * @param org.unicase.ui.iterationplanner.planner
+	 *            iteration org.unicase.ui.iterationplanner.planner.
 	 */
 	protected TaskPage(IterationPlannerManager planner) {
 		super("task page");

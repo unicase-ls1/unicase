@@ -86,8 +86,8 @@ public class RequirementsPage extends WizardPage {
 	/**
 	 * Constructor.
 	 * 
-	 * @param planner
-	 *            iteration planner
+	 * @param org.unicase.ui.iterationplanner.planner
+	 *            iteration org.unicase.ui.iterationplanner.planner
 	 */
 	RequirementsPage(IterationPlannerManager planner) {
 		super("requirements page");

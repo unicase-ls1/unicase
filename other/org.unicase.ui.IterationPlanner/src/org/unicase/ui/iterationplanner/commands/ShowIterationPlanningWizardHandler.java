@@ -18,9 +18,9 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.iterationplanner.provider.Classification;
+import org.unicase.ui.iterationplanner.util.ModelElementMatrix;
 import org.unicase.workspace.WorkspaceManager;
 
-import util.ModelElementMatrix;
 
 
 /**

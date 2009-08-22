@@ -32,7 +32,7 @@ public class SimpleEvaluator implements Evaluator {
 	 * Constructor.
 	 * 
 	 * @param iterationPlannerManager
-	 *            iteration planner manager
+	 *            iteration org.unicase.ui.iterationplanner.planner manager
 	 */
 	public SimpleEvaluator(IterationPlannerManager iterationPlannerManager) {
 		this.planningManager = iterationPlannerManager;
