@@ -127,7 +127,7 @@ public class TaskProvider {
 	/**
 	 * {@inheritDoc}
 	 */
-	public List<WorkItem> getRelatedTasks(WorkItem workItem) {
+	public List<WorkItem> getRelatedWorkItems(WorkItem workItem) {
 		// find model elements requirements annotated with this task
 		List<ModelElement> relatedMEs = new ArrayList<ModelElement>();
 		relatedMEs.addAll(workItem.getAnnotatedModelElements());
@@ -153,4 +153,33 @@ public class TaskProvider {
 
 	}
 
+	/**
+	 * @param fr
+	 */
+	public List<WorkItem> getRelatedWorkItems(FunctionalRequirement fr) {
+		List<WorkItem> relatedWorkItems = new ArrayList<WorkItem>();
+		// find related FRs
+		List<FunctionalRequirement> relatedFRs = new ArrayList<FunctionalRequirement>();
+		RequirementProvider requirementProvider = planningManager.getRequirementProvider();
+		if (fr.getRefinedRequirement() != null && fr.getRefinedRequirement().getRefinedRequirement() != null) {
+			relatedFRs.addAll(requirementProvider.getAllRefiningRequirements(fr.getRefinedRequirement()
+				.getRefinedRequirement()));
+		} else if (fr.getRefinedRequirement() != null) {
+
+			relatedFRs.addAll(requirementProvider.getAllRefiningRequirements(fr.getRefinedRequirement()));
+		} else {
+			relatedFRs.addAll(requirementProvider.getAllRefiningRequirements(fr));
+		}
+
+		for (FunctionalRequirement freq : relatedFRs) {
+			for (Annotation annotation : freq.getAnnotations()) {
+				if (annotation instanceof WorkItem) {
+					relatedWorkItems.add((WorkItem) annotation);
+				}
+			}
+		}
+
+		return relatedWorkItems;
+
+	}
 }

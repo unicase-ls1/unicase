@@ -8,6 +8,7 @@ package org.unicase.ui.iterationplanner.provider;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
+import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
@@ -199,7 +200,7 @@ public class AssigneeProvider {
 
 		int expertise = 0;
 
-		List<WorkItem> relatedWorkItems = planningManager.getTaskProvider().getRelatedTasks(task);
+		List<WorkItem> relatedWorkItems = planningManager.getTaskProvider().getRelatedWorkItems(task);
 
 		// count number of related tasks assigned to this user
 		for (WorkItem relatedWorkItem : relatedWorkItems) {
@@ -219,8 +220,8 @@ public class AssigneeProvider {
 	 */
 	public ExpertiseMap getExpertiseMap(WorkItem task) {
 		ExpertiseMap result = new ExpertiseMap();
-		for (User assignee : planningManager.getAssigneeProvider().getAssignees()) {
-			result.getExpertiseMap().put(assignee, planningManager.getAssigneeProvider().getExpertise(task, assignee));
+		for (User assignee : getAssignees()) {
+			result.put(assignee, planningManager.getAssigneeProvider().getExpertise(task, assignee));
 		}
 		return result;
 	}
@@ -229,4 +230,33 @@ public class AssigneeProvider {
 		return findAssigneeStrategy.suggestAssignee(task);
 	}
 
+	/**
+	 * @param fr
+	 * @return
+	 */
+	public ExpertiseMap getExpertiseMap(FunctionalRequirement fr) {
+		ExpertiseMap result = new ExpertiseMap();
+		for (User assignee : getAssignees()) {
+			result.put(assignee, getExpertise(fr, assignee));
+		}
+		return result;
+	}
+
+	/**
+	 * @param fr
+	 * @param assignee
+	 * @return
+	 */
+	private double getExpertise(FunctionalRequirement fr, User assignee) {
+		int expertise = 0;
+		List<WorkItem> relatedWorkItems = planningManager.getTaskProvider().getRelatedWorkItems(fr);
+		// count number of related tasks assigned to this user
+		for (WorkItem relatedWorkItem : relatedWorkItems) {
+			if (relatedWorkItem.getAssignee() != null && relatedWorkItem.getAssignee().equals(assignee)) {
+				expertise += 1;
+			}
+		}
+
+		return expertise;
+	}
 }

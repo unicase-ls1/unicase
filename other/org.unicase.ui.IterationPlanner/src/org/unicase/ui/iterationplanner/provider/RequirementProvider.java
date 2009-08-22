@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.iterationplanner.provider;
 
-import org.unicase.model.ModelElement;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 
@@ -65,8 +64,8 @@ public class RequirementProvider {
 	 * @param req req.
 	 * @return getAllRefiningRequirements recursive.
 	 */
-	public List<ModelElement> getAllRefiningRequirements(FunctionalRequirement req) {
-		List<ModelElement> result = new ArrayList<ModelElement>();
+	public List<FunctionalRequirement> getAllRefiningRequirements(FunctionalRequirement req) {
+		List<FunctionalRequirement> result = new ArrayList<FunctionalRequirement>();
 		for (FunctionalRequirement fr : req.getRefiningRequirements()) {
 			result.add(fr);
 			result.addAll(getAllRefiningRequirements(fr));
