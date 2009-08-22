@@ -44,7 +44,7 @@ public class ChooseUserPage extends WizardPage implements Listener {
 	 */
 	public void handleEvent(Event event) {
 		if(isTextNonEmpty(userNumber)){
-			setPageComplete(true);
+			setPageComplete(false);
 			((QuestionnaireWizard) getWizard()).setCanFinish(true);
 			((QuestionnaireWizard) getWizard()).setUser(Integer.valueOf(userNumber.getText()));
 		}

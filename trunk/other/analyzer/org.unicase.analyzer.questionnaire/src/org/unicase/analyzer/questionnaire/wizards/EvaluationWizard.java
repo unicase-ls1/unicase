@@ -21,7 +21,6 @@ import org.unicase.workspace.Configuration;
  */
 public class EvaluationWizard extends Wizard implements IWorkbenchWizard {
 
-	private static final String DIR = Configuration.getWorkspaceDirectory();
 	private boolean canFinish;
 	/** 
 	 * {@inheritDoc}

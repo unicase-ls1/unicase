@@ -101,6 +101,7 @@ public class EvaluatePage extends WizardPage implements Listener {
 		veryBad.addListener(SWT.Selection, this);
 		 
 		setControl(composite);
+		setPageComplete(false);
 
 	}
 
