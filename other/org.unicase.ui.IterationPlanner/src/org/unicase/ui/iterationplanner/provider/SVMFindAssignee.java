@@ -5,22 +5,23 @@
  */
 package org.unicase.ui.iterationplanner.provider;
 
-import java.util.List;
-
+import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 
 /**
  * Comupter related tasks using SVM.
+ * 
  * @author hodaie
- *
  */
-public class SVMRelatedTasks implements RelatedTasksSterategy {
+public class SVMFindAssignee implements FindAssigneeStrategy {
 
-	/**
-	 * {@inheritDoc}
-	 * 
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * org.unicase.ui.iterationplanner.provider.FindAssigneeStrategy#suggestAssignee(org.unicase.model.task.WorkItem)
 	 */
-	public List<WorkItem> getRelatedTasks(WorkItem workItem) {
+	public User suggestAssignee(WorkItem task) {
+		// TODO Auto-generated method stub
 		return null;
 	}
 

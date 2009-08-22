@@ -5,19 +5,12 @@
  */
 package org.unicase.ui.iterationplanner;
 
-import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.ui.iterationplanner.provider.Classification;
-import org.unicase.ui.iterationplanner.util.ModelElementMatrix;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-
+import org.unicase.ui.iterationplanner.util.PaperImperative;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,25 +28,8 @@ public class Application implements IApplication {
 	 */
 	public Object start(IApplicationContext context) throws Exception {
 
-		System.out.println("Hello Java!");
-
-		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0);
-		Project project = projectSpace.getProject();
-
-		List<ModelElement> workItems = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
-			new BasicEList<ModelElement>());
-
-		List<EStructuralFeature> features = getOutputFeatures();
-
-		ModelElementMatrix m = new ModelElementMatrix(workItems, features);
-
-		Classification classification = new Classification(m);
-		try {
-			classification.run();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
+		// new PaperMachineLearning().start();
+		new PaperImperative().start();
 		return null;
 
 	}

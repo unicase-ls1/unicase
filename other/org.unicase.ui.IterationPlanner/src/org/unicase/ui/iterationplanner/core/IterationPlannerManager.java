@@ -6,8 +6,6 @@
 
 package org.unicase.ui.iterationplanner.core;
 
-import java.util.List;
-
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.iterationplanner.evaluator.Evaluator;
@@ -15,15 +13,15 @@ import org.unicase.ui.iterationplanner.evaluator.SimpleEvaluator;
 import org.unicase.ui.iterationplanner.planner.Planner;
 import org.unicase.ui.iterationplanner.planner.SimplePlanner;
 import org.unicase.ui.iterationplanner.provider.AssigneeProvider;
-import org.unicase.ui.iterationplanner.provider.ImperativeRelatedTasks;
+import org.unicase.ui.iterationplanner.provider.ImperativeFindAssignee;
 import org.unicase.ui.iterationplanner.provider.RequirementProvider;
 import org.unicase.ui.iterationplanner.provider.TaskProvider;
 
+import java.util.List;
 
 /**
- * This is a facade for iteration planning functions. It takes inputs to problem
- * (requirements, tasks, assignee, assignee availabilities) and delegates
- * planning to Planner.
+ * This is a facade for iteration planning functions. It takes inputs to problem (requirements, tasks, assignee,
+ * assignee availabilities) and delegates planning to Planner.
  * 
  * @author hodaie
  */
@@ -44,26 +42,22 @@ public class IterationPlannerManager {
 	/**
 	 * Constructor.
 	 * 
-	 * @param lastSprint
-	 *            last sprint
-	 * @param includedWorkPackages
-	 *            work packages to be included in planning
-	 * @param requirements
-	 *            requirements to be included in planning
+	 * @param lastSprint last sprint
+	 * @param includedWorkPackages work packages to be included in planning
+	 * @param requirements requirements to be included in planning
 	 */
-	public IterationPlannerManager(WorkPackage lastSprint,
-			List<WorkPackage> includedWorkPackages,
-			List<FunctionalRequirement> requirements) {
+	public IterationPlannerManager(WorkPackage lastSprint, List<WorkPackage> includedWorkPackages,
+		List<FunctionalRequirement> requirements) {
 
-		assigneeProvider = new AssigneeProvider(this, lastSprint);
+		assigneeProvider = new AssigneeProvider(this, new ImperativeFindAssignee(), lastSprint);
 		assigneeProvider.initAssigneeAvailabilities();
 
-		taskProvider = new TaskProvider(this, new ImperativeRelatedTasks(), lastSprint, includedWorkPackages);
-		
+		taskProvider = new TaskProvider(this, lastSprint, includedWorkPackages);
+
 		requirementProvider = new RequirementProvider(this, requirements);
-		
+
 		planner = new SimplePlanner();
-		
+
 		evaluator = new SimpleEvaluator(this);
 
 	}
@@ -72,8 +66,8 @@ public class IterationPlannerManager {
 	 * Constructor.
 	 */
 	public IterationPlannerManager() {
-		assigneeProvider = new AssigneeProvider(this);
-		taskProvider = new TaskProvider(this, new ImperativeRelatedTasks());
+		assigneeProvider = new AssigneeProvider(this, new ImperativeFindAssignee());
+		taskProvider = new TaskProvider(this);
 		requirementProvider = new RequirementProvider(this);
 		planner = new SimplePlanner();
 		evaluator = new SimpleEvaluator(this);
@@ -109,14 +103,12 @@ public class IterationPlannerManager {
 	/**
 	 * Sets the org.unicase.ui.iterationplanner.planner strategy (EA or Simple).
 	 * 
-	 * @param org.unicase.ui.iterationplanner.planner
-	 *            org.unicase.ui.iterationplanner.planner
+	 * @param org.unicase.ui.iterationplanner.planner org.unicase.ui.iterationplanner.planner
 	 */
 	public void setPlanner(Planner planner) {
 		this.planner = planner;
 	}
-	
-	
+
 	/**
 	 * tmp.
 	 * 
@@ -126,10 +118,10 @@ public class IterationPlannerManager {
 		return sprint;
 	}
 
-
 	/**
 	 * requirements provider.
-	 * @return  requirements provider.
+	 * 
+	 * @return requirements provider.
 	 */
 	public RequirementProvider getRequirementProvider() {
 		return requirementProvider;
@@ -137,6 +129,7 @@ public class IterationPlannerManager {
 
 	/**
 	 * Set evaluator.
+	 * 
 	 * @param evaluator evaluator
 	 */
 	public void setEvaluator(Evaluator evaluator) {
@@ -145,11 +138,11 @@ public class IterationPlannerManager {
 
 	/**
 	 * evaluator.
+	 * 
 	 * @return evaluator.
 	 */
 	public Evaluator getEvaluator() {
 		return evaluator;
 	}
-
 
 }

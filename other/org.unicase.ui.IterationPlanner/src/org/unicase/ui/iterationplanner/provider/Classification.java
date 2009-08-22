@@ -1,31 +1,22 @@
 package org.unicase.ui.iterationplanner.provider;
 
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
 import org.jdmp.core.algorithm.classification.Classifier;
 import org.jdmp.core.dataset.ClassificationDataSet;
 import org.jdmp.core.dataset.CrossValidation;
 import org.jdmp.core.dataset.DataSetFactory;
 import org.jdmp.liblinear.LibLinearClassifier;
-import org.jdmp.libsvm.LibSVMClassifier;
-import org.jdmp.weka.classifier.WekaClassifier;
-import org.jdmp.weka.classifier.WekaClassifier.WekaClassifierType;
 import org.ujmp.core.Matrix;
 import org.ujmp.core.MatrixFactory;
 import org.ujmp.core.calculation.Calculation.Ret;
-import org.ujmp.core.enums.FileFormat;
-import org.ujmp.core.listmatrix.DefaultListMatrix;
-import org.ujmp.core.listmatrix.ListMatrix;
 import org.ujmp.mtj.MTJDenseDoubleMatrix2D;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class Classification {
-	
-	
-	private Matrix m; 
-	
+
+	private Matrix m;
 
 	public static final String PATH = System.getProperty("user.home") + "/";
 
@@ -55,38 +46,28 @@ public class Classification {
 
 	public static final long SEED = System.currentTimeMillis();
 
-	public static final String[] ENGLISH_STOP_WORDS1 = { "a", "an", "and",
-			"are", "as", "at", "be", "but", "by", "for", "if", "in", "into",
-			"is", "it", "no", "not", "of", "on", "or", "such", "that", "the",
-			"their", "then", "there", "these", "they", "this", "to", "was",
-			"will", "with" };
+	public static final String[] ENGLISH_STOP_WORDS1 = { "a", "an", "and", "are", "as", "at", "be", "but", "by", "for",
+		"if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there",
+		"these", "they", "this", "to", "was", "will", "with" };
 
-	public static final String[] ENGLISH_STOP_WORDS2 = { "0", "1", "2", "3",
-			"4", "5", "6", "7", "8", "9", "000", "$", "about", "after", "all",
-			"also", "an", "and", "another", "any", "are", "as", "at", "be",
-			"because", "been", "before", "being", "between", "both", "but",
-			"by", "came", "can", "come", "could", "did", "do", "does", "each",
-			"else", "for", "from", "get", "got", "has", "had", "he", "have",
-			"her", "here", "him", "himself", "his", "how", "if", "in", "into",
-			"is", "it", "its", "just", "like", "make", "many", "me", "might",
-			"more", "most", "much", "must", "my", "never", "now", "of", "on",
-			"only", "or", "other", "our", "out", "over", "re", "said", "same",
-			"see", "should", "since", "so", "some", "still", "such", "take",
-			"than", "that", "the", "their", "them", "then", "there", "these",
-			"they", "this", "those", "through", "to", "too", "under", "up",
-			"use", "very", "want", "was", "way", "we", "well", "were", "what",
-			"when", "where", "which", "while", "who", "will", "with", "would",
-			"you", "your", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
-			"k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
-			"x", "y", "z" };
+	public static final String[] ENGLISH_STOP_WORDS2 = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "000", "$",
+		"about", "after", "all", "also", "an", "and", "another", "any", "are", "as", "at", "be", "because", "been",
+		"before", "being", "between", "both", "but", "by", "came", "can", "come", "could", "did", "do", "does", "each",
+		"else", "for", "from", "get", "got", "has", "had", "he", "have", "her", "here", "him", "himself", "his", "how",
+		"if", "in", "into", "is", "it", "its", "just", "like", "make", "many", "me", "might", "more", "most", "much",
+		"must", "my", "never", "now", "of", "on", "only", "or", "other", "our", "out", "over", "re", "said", "same",
+		"see", "should", "since", "so", "some", "still", "such", "take", "than", "that", "the", "their", "them",
+		"then", "there", "these", "they", "this", "those", "through", "to", "too", "under", "up", "use", "very",
+		"want", "was", "way", "we", "well", "were", "what", "when", "where", "which", "while", "who", "will", "with",
+		"would", "you", "your", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
+		"r", "s", "t", "u", "v", "w", "x", "y", "z" };
 
 	public static final String[] ENGLISH_STOP_WORDS = ENGLISH_STOP_WORDS2;
 
-	
-	public Classification(Matrix m){
-		this.m  = m; 
+	public Classification(Matrix m) {
+		this.m = m;
 	}
-	
+
 	public void printStats(Matrix m) throws Exception {
 		// some stats
 		System.out.println(m.getRowCount() + " records");
@@ -97,9 +78,7 @@ public class Classification {
 
 	public void run() throws Exception {
 
-
 		System.out.println("preprocessing data...");
-
 
 		// delete all records with unknown assignee
 		List<Long> rowsToDelete = new ArrayList<Long>();
@@ -109,7 +88,6 @@ public class Classification {
 				rowsToDelete.add(row);
 			}
 		}
-
 
 		// delete
 		m = m.deleteRows(Ret.NEW, rowsToDelete);
@@ -127,8 +105,7 @@ public class Classification {
 		m = m.removeWords(Ret.NEW, Arrays.asList(ENGLISH_STOP_WORDS));
 
 		// create features for assignee
-		Matrix assignee = m.selectColumns(Ret.LINK, 6).tfIdf(false, false,
-				false);
+		Matrix assignee = m.selectColumns(Ret.LINK, 6).tfIdf(false, false, false);
 		assignee.setLabel("assignee");
 
 		// use PorterStemmer on the data
@@ -140,18 +117,15 @@ public class Classification {
 		System.out.println("creating features...");
 
 		// create features for name
-		Matrix name = m.selectColumns(Ret.LINK, 1).tfIdf(CALCULATETF,
-				CALCULATEIDF, false);
+		Matrix name = m.selectColumns(Ret.LINK, 1).tfIdf(CALCULATETF, CALCULATEIDF, false);
 		name.setLabel("name");
 
 		// create features for description
-		Matrix description = m.selectColumns(Ret.LINK, 2).tfIdf(CALCULATETF,
-				CALCULATEIDF, false);
+		Matrix description = m.selectColumns(Ret.LINK, 2).tfIdf(CALCULATETF, CALCULATEIDF, false);
 		description.setLabel("description");
 
 		// create features for annotated
-		Matrix annotated = m.selectColumns(Ret.LINK, 3).tfIdf(CALCULATETF,
-				CALCULATEIDF, false);
+		Matrix annotated = m.selectColumns(Ret.LINK, 3).tfIdf(CALCULATETF, CALCULATEIDF, false);
 		annotated.setLabel("annotated");
 
 		// create feature vector for training
@@ -189,8 +163,7 @@ public class Classification {
 		System.out.println("building dataset...");
 
 		// create the dataset
-		ClassificationDataSet ds = DataSetFactory.importFromMatrix(input,
-				assignee);
+		ClassificationDataSet ds = DataSetFactory.importFromMatrix(input, assignee);
 
 		System.out.println("training classifier...");
 

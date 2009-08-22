@@ -5,13 +5,6 @@
  */
 package org.unicase.ui.iterationplanner.provider;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
@@ -19,10 +12,15 @@ import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 /**
- * 
  * @author hodaie
- *
  */
 public class AssigneeProvider {
 
@@ -30,47 +28,50 @@ public class AssigneeProvider {
 	private Map<User, Integer> initialAssigneeAvailabilities;
 	private WorkPackage lastSprint;
 	private IterationPlannerManager planningManager;
-	
-	
+	private FindAssigneeStrategy findAssigneeStrategy;
+
 	/**
 	 * Constructor.
+	 * 
 	 * @param iterationPlannerManager iteration planning manager
 	 * @param lastSprint last sprint
 	 */
-	public AssigneeProvider(IterationPlannerManager iterationPlannerManager, WorkPackage lastSprint){
+	public AssigneeProvider(IterationPlannerManager iterationPlannerManager, FindAssigneeStrategy findAssigneeStrategy,
+		WorkPackage lastSprint) {
 		this.lastSprint = lastSprint;
 		this.planningManager = iterationPlannerManager;
+		this.findAssigneeStrategy = findAssigneeStrategy;
 		initAssigneeAvailabilities();
 	}
 
 	/**
 	 * Constructor.
-	 *  @param iterationPlannerManager iteration planning manager
-	 * @param iterationPlannerManager 
+	 * 
+	 * @param iterationPlannerManager iteration planning manager
+	 * @param iterationPlannerManager
 	 */
-	public AssigneeProvider(IterationPlannerManager iterationPlannerManager) {
+	public AssigneeProvider(IterationPlannerManager iterationPlannerManager, FindAssigneeStrategy findAssigneeStrategy) {
 		this.planningManager = iterationPlannerManager;
+		this.findAssigneeStrategy = findAssigneeStrategy;
 	}
 
 	/**
-	 * @param assignee
-	 *            assignee
+	 * @param assignee assignee
 	 */
 	public void addAssignee(User assignee) {
-		if(assigneeAvailabilities == null){
+		if (assigneeAvailabilities == null) {
 			assigneeAvailabilities = new HashMap<User, Integer>();
 		}
 		assigneeAvailabilities.put(assignee, 0);
 	}
 
 	/**
-	 * @param asssignee
-	 *            assignee
+	 * @param asssignee assignee
 	 */
 	public void removeAssignee(User asssignee) {
-		if(assigneeAvailabilities != null){
+		if (assigneeAvailabilities != null) {
 			assigneeAvailabilities.remove(asssignee);
-			
+
 		}
 	}
 
@@ -97,8 +98,7 @@ public class AssigneeProvider {
 	/**
 	 * returns availability of this assignee.
 	 * 
-	 * @param assignee
-	 *            assignee
+	 * @param assignee assignee
 	 * @return availability
 	 */
 	public int getAvailability(User assignee) {
@@ -114,10 +114,8 @@ public class AssigneeProvider {
 	}
 
 	/**
-	 * @param assignee
-	 *            assignee
-	 * @param value
-	 *            value
+	 * @param assignee assignee
+	 * @param value value
 	 */
 	public void setAvailability(User assignee, int value) {
 		if (assigneeAvailabilities != null) {
@@ -153,7 +151,6 @@ public class AssigneeProvider {
 		initialAssigneeAvailabilities.putAll(assigneeAvailabilities);
 	}
 
-	
 	private void updateAvailability(User assignee, int value) {
 		int currentAvailability = 0;
 		if (assigneeAvailabilities.get(assignee) != null) {
@@ -181,13 +178,55 @@ public class AssigneeProvider {
 
 	/**
 	 * set the initial assignees.
+	 * 
 	 * @param assignees initial assignees
 	 */
 	public void setAssignees(List<User> assignees) {
-		for(User assignee : assignees){
+		for (User assignee : assignees) {
 			addAssignee(assignee);
 		}
 	}
-	
+
+	/**
+	 * Finds expertise of a user regarding a task. Expertise is number of related tasks which have this user as
+	 * assignee.
+	 * 
+	 * @param assignee assignee
+	 * @param task task
+	 * @return int
+	 */
+	public double getExpertise(WorkItem task, User assignee) {
+
+		int expertise = 0;
+
+		List<WorkItem> relatedWorkItems = planningManager.getTaskProvider().getRelatedTasks(task);
+
+		// count number of related tasks assigned to this user
+		for (WorkItem relatedWorkItem : relatedWorkItems) {
+			if (relatedWorkItem.getAssignee() != null && relatedWorkItem.getAssignee().equals(assignee)) {
+				expertise += 1;
+			}
+		}
+
+		return expertise;
+	}
+
+	/**
+	 * returns a expertise for each assignee relating this task.
+	 * 
+	 * @param task task
+	 * @return a map of assignee to expertise relating this task
+	 */
+	public ExpertiseMap getExpertiseMap(WorkItem task) {
+		ExpertiseMap result = new ExpertiseMap();
+		for (User assignee : planningManager.getAssigneeProvider().getAssignees()) {
+			result.getExpertiseMap().put(assignee, planningManager.getAssigneeProvider().getExpertise(task, assignee));
+		}
+		return result;
+	}
+
+	public User getAppropriateAssignee(WorkItem task) {
+		return findAssigneeStrategy.suggestAssignee(task);
+	}
 
 }
