@@ -3,25 +3,25 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.linkrecommendationevaluation;
+package org.unicase.linkrecommendation.test;
 
 import static org.junit.Assert.assertEquals;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.EList;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.unicase.analyzer.AnalyzerFactory;
-import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.ARMStrategy;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
@@ -31,8 +31,8 @@ import org.unicase.model.util.ModelUtil;
 
 /**
  * Tests the ARM strategy.
+ * 
  * @author koegel
- *
  */
 public class ArmStrategyTest {
 
@@ -70,7 +70,7 @@ public class ArmStrategyTest {
 		elementId7.setId("777");
 		elementId8 = ModelFactory.eINSTANCE.createModelElementId();
 		elementId8.setId("888");
-			
+
 		TraceEvent event1 = EventsFactory.eINSTANCE.createTraceEvent();
 		event1.setSourceElement(ModelUtil.clone(elementId1));
 		event1.setTargetElement(ModelUtil.clone(elementId2));
@@ -78,31 +78,31 @@ public class ArmStrategyTest {
 		TraceEvent event2 = EventsFactory.eINSTANCE.createTraceEvent();
 		event2.setSourceElement(ModelUtil.clone(elementId3));
 		event2.setTargetElement(ModelUtil.clone(elementId4));
-		
+
 		TraceEvent event3 = EventsFactory.eINSTANCE.createTraceEvent();
 		event3.setSourceElement(ModelUtil.clone(elementId5));
 		event3.setTargetElement(ModelUtil.clone(elementId6));
-		
+
 		TraceEvent event4 = EventsFactory.eINSTANCE.createTraceEvent();
 		event4.setSourceElement(ModelUtil.clone(elementId7));
 		event4.setTargetElement(ModelUtil.clone(elementId8));
-		
+
 		TraceEvent event5 = EventsFactory.eINSTANCE.createTraceEvent();
 		event5.setSourceElement(ModelUtil.clone(elementId1));
 		event5.setTargetElement(ModelUtil.clone(elementId3));
-		
+
 		TraceEvent event6 = EventsFactory.eINSTANCE.createTraceEvent();
 		event6.setSourceElement(ModelUtil.clone(elementId3));
 		event6.setTargetElement(ModelUtil.clone(elementId5));
-		
+
 		TraceEvent event7 = EventsFactory.eINSTANCE.createTraceEvent();
 		event7.setSourceElement(ModelUtil.clone(elementId1));
 		event7.setTargetElement(ModelUtil.clone(elementId3));
-		
+
 		TraceEvent event8 = EventsFactory.eINSTANCE.createTraceEvent();
 		event8.setSourceElement(ModelUtil.clone(elementId1));
 		event8.setTargetElement(ModelUtil.clone(elementId3));
-		
+
 		EList<Event> events = changePackage.getEvents();
 		events.add(event1);
 		events.add(event2);
@@ -112,13 +112,11 @@ public class ArmStrategyTest {
 		events.add(event6);
 		events.add(event7);
 		events.add(event8);
-		
 
 	}
 
-	/** 
+	/**
 	 * Tear down the test case data.
-	 * 
 	 */
 	@After
 	public void tearDown() {
@@ -133,7 +131,7 @@ public class ArmStrategyTest {
 
 		FunctionalRequirement modelElement1 = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 		modelElement1.setIdentifier(elementId1.getId());
-		
+
 		Collection<ModelElement> targetCandidates = new HashSet<ModelElement>();
 		FunctionalRequirement modelElement2 = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 		modelElement2.setIdentifier(elementId2.getId());
@@ -147,29 +145,27 @@ public class ArmStrategyTest {
 		targetCandidates.add(modelElement3);
 		targetCandidates.add(modelElement4);
 		targetCandidates.add(modelElement5);
-		
-		
+
 		Map<ModelElement, Double> matchingMap = armStrategy.getMatchingMap(modelElement1, targetCandidates);
 		assertEquals(4, matchingMap.keySet().size());
 		assertEquals(new Double(0), matchingMap.get(modelElement2));
 		assertEquals(new Double(0), matchingMap.get(modelElement3));
 		assertEquals(new Double(0), matchingMap.get(modelElement4));
 		assertEquals(new Double(0), matchingMap.get(modelElement5));
-	}	
-	
+	}
+
 	/**
 	 * Test getting a mathing map for base 1 and targets 2,3,4 and 5.
 	 */
 	@Test
 	public void testGetMatchingMap() {
-		
-		ProjectAnalysisData data = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
-		data.getChangePackages().add(changePackage);
-		armStrategy.updateStrategyData(data);
-		
+		Collection<ChangePackage> changes = new LinkedList<ChangePackage>();
+		changes.add(changePackage);
+		armStrategy.updateStrategyData(changes);
+
 		FunctionalRequirement modelElement1 = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 		modelElement1.setIdentifier(elementId1.getId());
-		
+
 		Collection<ModelElement> targetCandidates = new HashSet<ModelElement>();
 		FunctionalRequirement modelElement2 = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 		modelElement2.setIdentifier(elementId2.getId());
@@ -183,16 +179,15 @@ public class ArmStrategyTest {
 		targetCandidates.add(modelElement3);
 		targetCandidates.add(modelElement4);
 		targetCandidates.add(modelElement5);
-		
-		
+
 		Map<ModelElement, Double> matchingMap = armStrategy.getMatchingMap(modelElement1, targetCandidates);
 		assertEquals(4, matchingMap.keySet().size());
-		
+
 		assertEquals(new Double(0.25), matchingMap.get(modelElement2));
 		assertEquals(new Double(0.75), matchingMap.get(modelElement3));
 		assertEquals(new Double(0), matchingMap.get(modelElement4));
 		assertEquals(new Double(0), matchingMap.get(modelElement5));
-		
+
 	}
 
 	/**
@@ -200,14 +195,14 @@ public class ArmStrategyTest {
 	 */
 	@Test
 	public void testUpdateStrategyData() {
-		
-		ProjectAnalysisData data = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
-		data.getChangePackages().add(changePackage);
-		armStrategy.updateStrategyData(data);
-		
+
+		Collection<ChangePackage> changes = new LinkedList<ChangePackage>();
+		changes.add(changePackage);
+		armStrategy.updateStrategyData(changes);
+
 		FunctionalRequirement modelElement1 = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 		modelElement1.setIdentifier(elementId1.getId());
-		
+
 		Collection<ModelElement> targetCandidates = new HashSet<ModelElement>();
 		FunctionalRequirement modelElement2 = RequirementFactory.eINSTANCE.createFunctionalRequirement();
 		modelElement2.setIdentifier(elementId2.getId());
@@ -221,47 +216,45 @@ public class ArmStrategyTest {
 		targetCandidates.add(modelElement3);
 		targetCandidates.add(modelElement4);
 		targetCandidates.add(modelElement5);
-		
-		
+
 		Map<ModelElement, Double> matchingMap = armStrategy.getMatchingMap(modelElement1, targetCandidates);
 		assertEquals(4, matchingMap.keySet().size());
-		
+
 		assertEquals(new Double(0.25), matchingMap.get(modelElement2));
 		assertEquals(new Double(0.75), matchingMap.get(modelElement3));
 		assertEquals(new Double(0), matchingMap.get(modelElement4));
 		assertEquals(new Double(0), matchingMap.get(modelElement5));
-		
-		
+
 		ChangePackage newChangePackage = VersioningFactory.eINSTANCE.createChangePackage();
 		TraceEvent event9 = EventsFactory.eINSTANCE.createTraceEvent();
 		event9.setSourceElement(ModelUtil.clone(elementId1));
 		event9.setTargetElement(ModelUtil.clone(elementId2));
-		
+
 		TraceEvent event10 = EventsFactory.eINSTANCE.createTraceEvent();
 		event10.setSourceElement(ModelUtil.clone(elementId1));
 		event10.setTargetElement(ModelUtil.clone(elementId4));
-		
+
 		TraceEvent event11 = EventsFactory.eINSTANCE.createTraceEvent();
 		event11.setSourceElement(ModelUtil.clone(elementId1));
 		event11.setTargetElement(ModelUtil.clone(elementId3));
-		
+
 		EList<Event> events = newChangePackage.getEvents();
 		events.add(event9);
 		events.add(event10);
 		events.add(event11);
-		
-		ProjectAnalysisData newData = AnalyzerFactory.eINSTANCE.createProjectAnalysisData();
-		newData.getChangePackages().add(newChangePackage);
-		armStrategy.updateStrategyData(newData);
+
+		Collection<ChangePackage> newChanges = new LinkedList<ChangePackage>();
+		newChanges.add(newChangePackage);
+		armStrategy.updateStrategyData(newChanges);
 
 		matchingMap = armStrategy.getMatchingMap(modelElement1, targetCandidates);
 		assertEquals(4, matchingMap.keySet().size());
-				
-		assertEquals(new Double(2.0/7), matchingMap.get(modelElement2));
-		assertEquals(new Double(4.0/7), matchingMap.get(modelElement3));
-		assertEquals(new Double(1.0/7), matchingMap.get(modelElement4));
+
+		assertEquals(new Double(2.0 / 7), matchingMap.get(modelElement2));
+		assertEquals(new Double(4.0 / 7), matchingMap.get(modelElement3));
+		assertEquals(new Double(1.0 / 7), matchingMap.get(modelElement4));
 		assertEquals(new Double(0), matchingMap.get(modelElement5));
-		
+
 	}
 
 }
