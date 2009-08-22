@@ -14,6 +14,7 @@ package org.unicase.ui.iterationplanner.util;
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Project;
+import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.Milestone;
@@ -45,14 +46,17 @@ public class PaperImperative {
 
 	private EList<WorkItem> allWorkItems;
 	private List<WorkItem> allWorkItemsWithAssignee;
-	private List<WorkItem> allWorkItemsWithAnnotatedMEs;
+	private List<WorkItem> allWorkItemsWithAnnotatedMEsAndAssignee;
+	private ArrayList<WorkItem> allWorkItemsWithAssigneesWithMoreThan10Task;
 
 	public void start() {
 
 		Project project = getProject();
 
-		List<User> assignees = getAssignees(project);
-		List<WorkItem> workItems = getWorkItems(project);
+		initAssignees(project);
+		initWorkItems(project);
+		List<WorkItem> workItems = allWorkItemsWithAnnotatedMEsAndAssignee;
+		List<User> assignees = assigneesWithAtLeastOneTask;
 		IterationPlannerManager planningManager = new IterationPlannerManager();
 		planningManager.getAssigneeProvider().setAssignees(assignees);
 
@@ -106,7 +110,8 @@ public class PaperImperative {
 
 	private void print(ExpertiseMap expertiseMap, WorkItem wi) {
 		System.out.println("=============================================================================");
-		System.out.println(wi.getName() + "----> " + expertiseMap.sortByExpertise().get(0).getKey().getName());
+		System.out.println(wi.getName() + " ----> " + wi.getAssignee().getName() + " ("
+			+ expertiseMap.sortByExpertise().get(0).getKey().getName() + ")");
 		Iterator<Entry<User, Double>> iterator = expertiseMap.getExpertiseMap().entrySet().iterator();
 		while (iterator.hasNext()) {
 			Entry<User, Double> next = iterator.next();
@@ -114,47 +119,30 @@ public class PaperImperative {
 		}
 	}
 
-	private List<WorkItem> getWorkItems(Project project) {
-		// List<WorkItem> result = new ArrayList<WorkItem>();
-		// List<WorkPackage> workPackages = project
-		// .getAllModelElementsbyClass(
-		// TaskPackage.eINSTANCE.getWorkPackage(),
-		// new BasicEList<WorkPackage>());
-		//
-		//
-		// for(WorkPackage wp : workPackages){
-		// if(wp.getName().equals("ASAP")){
-		// result.addAll(getWorkItems(wp));
-		// }else if(wp.getName().equals("Backlog")){
-		// result.addAll(getWorkItems(wp));
-		// }else if(wp.getName().equals("Sprint 33")){
-		// result.addAll(getWorkItems(wp));
-		// }else if(wp.getName().equals("Sprint 32")){
-		// result.addAll(getWorkItems(wp));
-		// }
-		// }
+	private void initWorkItems(Project project) {
 
 		allWorkItems = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
 			new BasicEList<WorkItem>());
 
 		allWorkItemsWithAssignee = new ArrayList<WorkItem>();
-		allWorkItemsWithAnnotatedMEs = new ArrayList<WorkItem>();
+		allWorkItemsWithAnnotatedMEsAndAssignee = new ArrayList<WorkItem>();
+		allWorkItemsWithAssigneesWithMoreThan10Task = new ArrayList<WorkItem>();
 		for (WorkItem wi : allWorkItems) {
-			if (!(wi instanceof WorkPackage || wi instanceof Milestone || wi.getAssignee() == null)) {
-				// if(assigneesWithMoreThan10Tasks.contains(wi.getAssignee())){
+			if (!(wi instanceof WorkPackage || wi instanceof Milestone) && wi.getAssignee() != null
+				&& !(wi.getAssignee() instanceof Group)) {
 				allWorkItemsWithAssignee.add(wi);
-				// }
+				if (assigneesWithMoreThan10Tasks.contains(wi.getAssignee())) {
+					allWorkItemsWithAssigneesWithMoreThan10Task.add(wi);
+				}
 
 				if (wi.getAnnotatedModelElements().size() > 0) {
-					allWorkItemsWithAnnotatedMEs.add(wi);
+					allWorkItemsWithAnnotatedMEsAndAssignee.add(wi);
 				}
 
 			}
 
 		}
 
-		// return allAssignedWorkItems;
-		return allWorkItemsWithAnnotatedMEs;
 	}
 
 	private List<WorkItem> getWorkItems(WorkPackage wp) {
@@ -170,35 +158,15 @@ public class PaperImperative {
 		return result;
 	}
 
-	private List<User> getAssignees(Project project) {
-		List<User> result = new ArrayList<User>();
-		// for (User assignee : project
-		// .getAllModelElementsbyClass(OrganizationPackage.eINSTANCE
-		// .getUser(), new BasicEList<User>())) {
-		// if (assignee.getName().equals("helming")) {
-		// result.add(assignee);
-		// } else if (assignee.getName().equals("liya")) {
-		// result.add(assignee);
-		// } else if (assignee.getName().equals("denglerm")) {
-		// result.add(assignee);
-		// } else if (assignee.getName().equals("shterevg")) {
-		// result.add(assignee);
-		// } else if (assignee.getName().equals("wesendon")) {
-		// result.add(assignee);
-		// } else if (assignee.getName().equals("koegel")) {
-		// result.add(assignee);
-		// } else if (assignee.getName().equals("hoechts")) {
-		// result.add(assignee);
-		// } else if (assignee.getName().equals("pfeifferc")) {
-		// result.add(assignee);
-		// } else if (assignee.getName().equals("barzalia")) {
-		// result.add(assignee);
-		// } else if (assignee.getName().equals("hodaie")) {
-		// result.add(assignee);
-		// }
-		//
-		// }
+	private List<WorkItem> getWorkItems(List<WorkPackage> wps) {
+		List<WorkItem> result = new ArrayList<WorkItem>();
+		for (WorkPackage wp : wps) {
+			result.addAll(getWorkItems(wp));
+		}
+		return result;
+	}
 
+	private void initAssignees(Project project) {
 		allAssignees = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
 			new BasicEList<User>());
 		assigneesWithAtLeastOneTask = new ArrayList<User>();
@@ -212,8 +180,5 @@ public class PaperImperative {
 			}
 		}
 
-		result.addAll(assigneesWithMoreThan10Tasks);
-
-		return result;
 	}
 }
