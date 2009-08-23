@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
@@ -389,5 +390,20 @@ public final class ModelUtil {
 			}
 		}
 		return ret;
+	}
+
+	/**
+	 * Create a flat clone of the list, the list if cloned but ot its content.
+	 * 
+	 * @param <T> the list type parameter
+	 * @param originalList the original list
+	 * @return a flat copy
+	 */
+	public static <T extends EObject> List<T> flatCloneList(List<T> originalList) {
+		List<T> clonedList = new ArrayList<T>(originalList.size());
+		for (T element : originalList) {
+			clonedList.add(element);
+		}
+		return clonedList;
 	}
 }
