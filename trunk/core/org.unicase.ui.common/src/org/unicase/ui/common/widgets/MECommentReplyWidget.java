@@ -15,7 +15,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -40,6 +39,7 @@ import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.ui.common.Activator;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.NoCurrentUserException;
@@ -248,7 +248,7 @@ public class MECommentReplyWidget extends Composite {
 		acceptButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+				TransactionalEditingDomain domain = Configuration.getEditingDomain();
 				domain.getCommandStack().execute(new CreateCommentCommand(domain, recipientsList, inputText));
 			}
 		});
