@@ -37,6 +37,7 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.MEStateImpl;
+import org.unicase.model.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc -->
@@ -145,8 +146,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 		}
 		return result;
 	}
-
-	private static final String BEGINNTEXT = "%BEGINNTEXT%";
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
@@ -636,15 +635,8 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * @Deprecated
 	 */
 	public String getDescriptionPlainText() {
-		String ret = "";
-		String description = getDescription();
-		if (description != null && description.length() > 0) {
-			String[] split = description.split(BEGINNTEXT);
-			if (split.length > 1) {
-				ret = split[split.length - 1];
-			}
-		}
-		return ret;
+		String richTextDescription = getDescription();
+		return ModelUtil.getPlainTextFromRichText(richTextDescription);
 	}
 
 	// end of custom code
