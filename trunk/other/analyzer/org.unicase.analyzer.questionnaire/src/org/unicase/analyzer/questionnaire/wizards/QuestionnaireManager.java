@@ -35,6 +35,8 @@ import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.Project;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.ui.views.CompareView;
 import org.unicase.workspace.util.ResourceHelper;
 
@@ -85,6 +87,8 @@ public final class QuestionnaireManager {
 			String changeFileName = DIR + user + "/changepackage-" + version + ".ucp";
 			try {
 				Project project = ResourceHelper.getElementFromResource(projectFileName, Project.class, 0);
+				ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
+				projectSpace.setProject(project);
 				ChangePackage changePackage = ResourceHelper.getElementFromResource(changeFileName, ChangePackage.class, 0);
 	
 				 IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
