@@ -41,6 +41,11 @@ import org.unicase.model.Project;
 public final class ModelUtil {
 
 	/**
+	 * Text marker for the begin of the plaintext in rich text attributes.
+	 */
+	public static final String BEGINTEXT_TOKEN = "%BEGINNTEXT%";
+
+	/**
 	 * URI used to serialize EObject with the model util.
 	 */
 	public static final URI VIRTUAL_URI = URI.createURI("virtualUnicaseUri");
@@ -366,5 +371,23 @@ public final class ModelUtil {
 	public static <T extends EObject> T clone(T eObject) {
 		EObject clone = EcoreUtil.copy(eObject);
 		return (T) clone;
+	}
+
+	/**
+	 * Retrieve the plain text from a richt text string.
+	 * 
+	 * @param richText richt text string
+	 * @return plain text string
+	 */
+	public static String getPlainTextFromRichText(String richText) {
+		String ret = "";
+		String description = richText;
+		if (description != null && description.length() > 0) {
+			String[] split = description.split(BEGINTEXT_TOKEN);
+			if (split.length > 1) {
+				ret = split[split.length - 1];
+			}
+		}
+		return ret;
 	}
 }
