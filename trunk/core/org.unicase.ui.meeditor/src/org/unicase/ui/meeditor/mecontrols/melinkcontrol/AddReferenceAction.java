@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -31,6 +30,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
+import org.unicase.workspace.Configuration;
 
 /**
  * An Action for adding reference links to a model element. It is mainly used in the {@link MEMultiLinkControl}
@@ -175,7 +175,7 @@ public class AddReferenceAction extends Action {
 	 */
 	@Override
 	public void run() {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = Configuration.getEditingDomain();
 		domain.getCommandStack().execute(new AddReferenceCommand(domain));
 
 	}

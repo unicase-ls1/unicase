@@ -7,7 +7,6 @@ package org.unicase.ui.meeditor;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -20,6 +19,7 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
+import org.unicase.workspace.Configuration;
 
 /**
  * The editor page for the description feature.
@@ -73,7 +73,7 @@ public class MEDescriptionPage extends FormPage {
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(body);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(body);
 
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = Configuration.getEditingDomain();
 		MERichTextControl textControl = new MERichTextControl(ModelPackage.eINSTANCE.getModelElement_Description(),
 			domain, modelElement, toolkit);
 		textControl.setShowExpand(false);

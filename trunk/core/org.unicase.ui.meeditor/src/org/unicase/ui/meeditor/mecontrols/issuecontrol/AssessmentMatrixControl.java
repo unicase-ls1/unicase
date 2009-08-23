@@ -18,9 +18,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
@@ -41,6 +38,7 @@ import org.unicase.ui.meeditor.ControlFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkAdapter;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Class displays assessment matrix for issues.
@@ -303,11 +301,9 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 				}
 			}
 		}
-
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				RationaleFactory rFactory = RationaleFactoryImpl.init();
 				Assessment assessment = rFactory.createAssessment();
 				assessment.setName("new Assessment");
@@ -315,7 +311,7 @@ public class AssessmentMatrixControl extends AbstractMEControl {
 				assessment.setCriterion(c);
 				assessment.eAdapters().add(eAdapter);
 			}
-		});
+		}.run();
 
 		assessmentsOfProposal = p.getAssessments();
 		for (int i = 0; i < assessmentsOfProposal.size(); i++) {

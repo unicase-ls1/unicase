@@ -28,6 +28,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.ui.common.MEEditorInput;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -220,8 +221,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 		this.adapterFactory.addAdapterFactory(new ReflectiveItemProviderAdapterFactory());
 
 		// command stack that will notify this editor as commands are executed
-		this.editingDomain = TransactionalEditingDomain.Factory.INSTANCE.getEditingDomain(modelElement.eResource()
-			.getResourceSet());
+		this.editingDomain = Configuration.getEditingDomain();
 
 		// this.commandStack = editingDomain.getCommandStack();
 		// // Add a listener to set the editor dirty of commands have been executed

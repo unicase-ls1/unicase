@@ -11,9 +11,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -26,6 +23,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * GUI Control for the ME reference single links.
@@ -124,11 +122,10 @@ public class MESingleLinkControl extends AbstractMEControl {
 		if (labelWidget != null) {
 			labelWidget.dispose();
 		}
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				EObject opposite = (EObject) getModelElement().eGet(eReference);
 				ModelElement me = (ModelElement) getModelElement();
 				if (opposite != null) {
@@ -143,7 +140,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 				composite.layout(true);
 
 			}
-		});
+		}.run();
 	}
 
 	/**

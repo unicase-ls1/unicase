@@ -15,7 +15,6 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -36,6 +35,7 @@ import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -143,7 +143,7 @@ public class MECommentsLinkControl extends AbstractMEControl implements MEContro
 
 	private void update() {
 
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
+		TransactionalEditingDomain domain = Configuration.getEditingDomain();
 		domain.getCommandStack().execute(new RecordingCommand(domain) {
 			@SuppressWarnings("unchecked")
 			@Override

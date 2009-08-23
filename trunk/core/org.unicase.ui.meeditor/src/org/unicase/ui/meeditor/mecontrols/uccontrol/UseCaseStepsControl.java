@@ -14,9 +14,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -32,6 +29,7 @@ import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.impl.RequirementFactoryImpl;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Class creates a widget that displays all use case steps of a use case.
@@ -50,10 +48,9 @@ public class UseCaseStepsControl extends AbstractMEControl {
 		}
 
 		public void linkActivated(HyperlinkEvent e) {
-			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					RequirementFactory rFactory = RequirementFactoryImpl.init();
 					Step p = rFactory.createStep();
 					UseCase uc = (UseCase) getModelElement();
@@ -67,7 +64,7 @@ public class UseCaseStepsControl extends AbstractMEControl {
 						allSteps.add(position, p);
 					}
 				}
-			});
+			}.run();
 		}
 
 		public void linkEntered(HyperlinkEvent e) {
@@ -90,10 +87,9 @@ public class UseCaseStepsControl extends AbstractMEControl {
 		}
 
 		public void linkActivated(HyperlinkEvent e) {
-			TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
+			new UnicaseCommand() {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					RequirementFactory rFactory = RequirementFactoryImpl.init();
 					Step p = rFactory.createStep();
 					p.setName("New Actor Step");
@@ -107,7 +103,7 @@ public class UseCaseStepsControl extends AbstractMEControl {
 						allSteps.add(position, p);
 					}
 				}
-			});
+			}.run();
 		}
 
 		public void linkEntered(HyperlinkEvent e) {
