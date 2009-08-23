@@ -12,9 +12,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.swt.SWT;
@@ -32,6 +29,7 @@ import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Standard widgets to edit a date attribute.
@@ -91,13 +89,13 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
+				new UnicaseCommand() {
+
 					@Override
-					protected void doExecute() {
+					protected void doRun() {
 						getModelElement().eSet(attribute, new Date());
 					}
-				});
+				}.run();
 			}
 
 		});
@@ -115,13 +113,13 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 			}
 
 			public void focusLost(FocusEvent e) {
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
+				new UnicaseCommand() {
+
 					@Override
-					protected void doExecute() {
+					protected void doRun() {
 						getModelElement().eSet(attribute, dateWidget.getSelection());
 					}
-				});
+				}.run();
 			}
 
 		});
@@ -130,13 +128,13 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 		dateDeleteButton.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-				domain.getCommandStack().execute(new RecordingCommand(domain) {
+				new UnicaseCommand() {
+
 					@Override
-					protected void doExecute() {
+					protected void doRun() {
 						getModelElement().eSet(attribute, null);
 					}
-				});
+				}.run();
 			}
 		});
 		return dateWidget;
@@ -153,10 +151,10 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 
 	private void update() {
 
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
+
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				Date newDate = (Date) getModelElement().eGet(attribute);
 				if (newDate == null) { // delete the date widget if it is present.
 					if (dateWidget != null) {
@@ -175,6 +173,6 @@ public class MEDateControl extends AbstractMEControl implements MEControl {
 				dateComposite.getParent().layout(true);
 				dateComposite.getParent().getParent().layout(true);
 			}
-		});
+		}.run();
 	}
 }

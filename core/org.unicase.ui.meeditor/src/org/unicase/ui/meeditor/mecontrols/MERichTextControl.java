@@ -14,9 +14,6 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.text.Document;
@@ -47,6 +44,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.ui.meeditor.MEEditor;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The standard widget for multi line text fields.
@@ -238,13 +236,12 @@ public class MERichTextControl extends AbstractMEControl {
 		txt.append("%BEGINNTEXT%");
 		txt.append(text.getText());
 		final String value = txt.toString();
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				getModelElement().eSet(attribute, value);
 			}
-		});
+		}.run();
 	}
 
 	private void load() {
@@ -252,17 +249,16 @@ public class MERichTextControl extends AbstractMEControl {
 		List<Integer> bulletedLines = new ArrayList<Integer>();
 		String txt = "";
 		final StringBuffer value = new StringBuffer();
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				if (getModelElement().eGet(attribute) == null) {
 					value.append("");
 				} else {
 					value.append(getModelElement().eGet(attribute));
 				}
 			}
-		});
+		}.run();
 		txt = value.toString();
 
 		String[] split = txt.split("%BEGINNTEXT%");

@@ -10,9 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.ContributionManager;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
@@ -34,6 +31,7 @@ import org.unicase.model.rationale.Comment;
 import org.unicase.ui.common.widgets.MECommentReplyWidget;
 import org.unicase.ui.common.widgets.MECommentWidget;
 import org.unicase.ui.common.widgets.MECommentWidgetListener;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * The editor page for the comment thread.
@@ -98,10 +96,9 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(inputComposite);
 		GridDataFactory.fillDefaults().grab(true, false).hint(-1, 0).applyTo(inputComposite);
 
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				List<Comment> comments = modelElement.getComments();
 				for (Comment c : comments) {
 					MECommentWidget widget = new MECommentWidget(c, body);
@@ -109,7 +106,7 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 					GridDataFactory.fillDefaults().grab(true, false).applyTo(widget);
 				}
 			}
-		});
+		}.run();
 	}
 
 	private void createToolbar() {

@@ -8,14 +8,12 @@ package org.unicase.ui.tableview.labelproviders;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.CellEditor;
 import org.eclipse.jface.viewers.EditingSupport;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TextCellEditor;
 import org.eclipse.jface.viewers.TreeViewer;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * This is editing support for columns showing integeral values.
@@ -124,14 +122,12 @@ public class IntegerEditingSupport extends EditingSupport {
 	}
 
 	private void doSetValue(final EObject eObject, final Integer value) {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(eObject);
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				eObject.eSet(feature, value);
 			}
-		});
-
+		}.run();
 	}
 
 }

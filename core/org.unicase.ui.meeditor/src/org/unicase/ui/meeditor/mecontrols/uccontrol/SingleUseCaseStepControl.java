@@ -14,9 +14,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.AdapterFactoryItemDelegator;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
@@ -42,6 +39,7 @@ import org.unicase.ui.meeditor.ControlFactory;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.melinkcontrol.MEHyperLinkDeleteAdapter;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * class creates and controls a widget to display one single use case step.
@@ -315,10 +313,9 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 	}
 
 	private void createNewStep(final int position, final boolean isActorStep) {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getModelElement());
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				RequirementFactory rFactory = RequirementFactoryImpl.init();
 				Step p = rFactory.createStep();
 				UseCase uc = (UseCase) contextModelElement;
@@ -339,7 +336,7 @@ public class SingleUseCaseStepControl extends AbstractMEControl {
 					allSteps.add(position, p);
 				}
 			}
-		});
+		}.run();
 	}
 
 	/**

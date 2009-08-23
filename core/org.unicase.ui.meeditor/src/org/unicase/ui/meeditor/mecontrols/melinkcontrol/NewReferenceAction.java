@@ -18,7 +18,6 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
@@ -33,6 +32,7 @@ import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.Configuration;
 
 /**
  * An Action for adding reference links to a model element. It is mainly used in the {@link MEMultiLinkControl}
@@ -200,7 +200,7 @@ public class NewReferenceAction extends Action {
 			DialogHandler.showErrorDialog("Operation not permitted for container references!");
 			return;
 		}
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(modelElement);
+		TransactionalEditingDomain domain = Configuration.getEditingDomain();
 		domain.getCommandStack().execute(new NewReferenceCommand(domain));
 
 	}
