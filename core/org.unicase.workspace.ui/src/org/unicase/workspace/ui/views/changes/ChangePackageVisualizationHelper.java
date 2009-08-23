@@ -39,6 +39,7 @@ import org.unicase.model.util.ModelUtil;
  */
 public class ChangePackageVisualizationHelper {
 
+	private static final int MAX_NAME_SIZE = 30;
 	private Project project;
 	private Map<ModelElementId, ModelElement> modelElementMap;
 	private Map<ChangePackage, Set<ModelElementId>> touchedModelElements;
@@ -379,8 +380,7 @@ public class ChangePackageVisualizationHelper {
 					&& ((EReference) referenceOperation
 							.getFeature(parentElement)).isContainment()) {
 				description += " from its parent "
-						+ parentElement.eClass().getName() + " "
-						+ trim(parentElement.getName(), true);
+						+ getModelElementName(parentElement);
 			}
 		}
 		return description;
@@ -513,8 +513,8 @@ public class ChangePackageVisualizationHelper {
 		}
 		String string = object.toString();
 		String result = string.trim();
-		if (result.length() > 20) {
-			return result.substring(0, 20) + "...";
+		if (result.length() > MAX_NAME_SIZE) {
+			return result.substring(0, MAX_NAME_SIZE) + "...";
 		}
 		if (result.length() == 0) {
 			return "(empty)";
