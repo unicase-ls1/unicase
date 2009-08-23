@@ -38,6 +38,9 @@ public class SubscriptionTester extends PropertyTester {
 			final Object expectedValue) {
 		if (receiver instanceof ModelElement) {
 				ModelElement modelElement = (ModelElement) receiver;
+				if (modelElement.getProject()==null) {
+					return false;
+				}
 				ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
 				OrgUnitProperty orgUnitProperty = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
 				EObject[] propertyArray = orgUnitProperty.getEObjectArrayProperty();
