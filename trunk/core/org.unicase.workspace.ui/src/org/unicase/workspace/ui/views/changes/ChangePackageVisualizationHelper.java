@@ -13,6 +13,7 @@ import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.swt.graphics.Image;
@@ -28,6 +29,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperati
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
+import org.unicase.model.util.ModelUtil;
 
 /**
  * A helper class for the visualization of change packages.
@@ -45,10 +47,13 @@ public class ChangePackageVisualizationHelper {
 	/**
 	 * Constructor.
 	 * 
-	 * @param changePackages a list of change packages
-	 * @param project a project
+	 * @param changePackages
+	 *            a list of change packages
+	 * @param project
+	 *            a project
 	 */
-	public ChangePackageVisualizationHelper(List<ChangePackage> changePackages, Project project) {
+	public ChangePackageVisualizationHelper(List<ChangePackage> changePackages,
+			Project project) {
 		this.modelElementMap = new HashMap<ModelElementId, ModelElement>();
 		this.touchedModelElements = new HashMap<ChangePackage, Set<ModelElementId>>();
 		for (ChangePackage changePackage : changePackages) {
@@ -68,9 +73,11 @@ public class ChangePackageVisualizationHelper {
 		}
 	}
 
-	private void extractModelElements(Set<ModelElementId> modelElements, AbstractOperation abstractOperation) {
+	private void extractModelElements(Set<ModelElementId> modelElements,
+			AbstractOperation abstractOperation) {
 		if (abstractOperation instanceof CreateDeleteOperation) {
-			ModelElement modelElement = ((CreateDeleteOperation) abstractOperation).getModelElement();
+			ModelElement modelElement = ((CreateDeleteOperation) abstractOperation)
+					.getModelElement();
 			modelElementMap.put(modelElement.getModelElementId(), modelElement);
 		} else if (abstractOperation instanceof SingleReferenceOperation) {
 			SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) abstractOperation;
@@ -84,11 +91,14 @@ public class ChangePackageVisualizationHelper {
 			}
 		} else if (abstractOperation instanceof MultiReferenceOperation) {
 			MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) abstractOperation;
-			modelElements.addAll(multiReferenceOperation.getReferencedModelElements());
+			modelElements.addAll(multiReferenceOperation
+					.getReferencedModelElements());
 		} else if (abstractOperation instanceof MultiReferenceMoveOperation) {
-			modelElements.add(((MultiReferenceMoveOperation) abstractOperation).getReferencedModelElementId());
+			modelElements.add(((MultiReferenceMoveOperation) abstractOperation)
+					.getReferencedModelElementId());
 		} else if (abstractOperation instanceof CompositeOperation) {
-			for (AbstractOperation subOperation : ((CompositeOperation) abstractOperation).getSubOperations()) {
+			for (AbstractOperation subOperation : ((CompositeOperation) abstractOperation)
+					.getSubOperations()) {
 				extractModelElements(modelElements, subOperation);
 			}
 		}
@@ -97,11 +107,14 @@ public class ChangePackageVisualizationHelper {
 	/**
 	 * Get a model element instance from the project for the given id.
 	 * 
-	 * @param modelElementId the id
+	 * @param modelElementId
+	 *            the id
 	 * @return the model element instance
 	 */
 	public ModelElement getModelElement(ModelElementId modelElementId) {
-		if (project.contains(modelElementId)) {
+		if (modelElementId == null) {
+			return null;
+		} else if (project.contains(modelElementId)) {
 			return project.getModelElement(modelElementId);
 		} else {
 			return modelElementMap.get(modelElementId);
@@ -111,22 +124,20 @@ public class ChangePackageVisualizationHelper {
 	/**
 	 * Get all elements affected by the operation.
 	 * 
-	 * @param operation the operation
+	 * @param operation
+	 *            the operation
 	 * @return a set of model elements
 	 */
 	public Set<EObject> getAffectedElements(AbstractOperation operation) {
 		Set<EObject> set = new HashSet<EObject>();
-		if (operation instanceof ReferenceOperation) {
-			ReferenceOperation op = (ReferenceOperation) operation;
-			Set<ModelElementId> others = op.getOtherInvolvedModelElements();
-			for (ModelElementId id : others) {
-				ModelElement modelElement = getModelElement(id);
-				if (modelElement != null) {
-					set.add(modelElement);
-				} else {
-					// AS: hiding elements that cannot be displayed
-					// set.add(id);
-				}
+		if (operation instanceof CreateDeleteOperation) {
+			return set;
+		}
+		Set<ModelElementId> others = operation.getOtherInvolvedModelElements();
+		for (ModelElementId id : others) {
+			ModelElement modelElement = getModelElement(id);
+			if (modelElement != null) {
+				set.add(modelElement);
 			}
 		}
 		return set;
@@ -135,7 +146,8 @@ public class ChangePackageVisualizationHelper {
 	/**
 	 * Get the overlay image for an operation.
 	 * 
-	 * @param operation the operation
+	 * @param operation
+	 *            the operation
 	 * @return the ImageDescriptor
 	 */
 	public ImageDescriptor getOverlayImage(AbstractOperation operation) {
@@ -174,18 +186,22 @@ public class ChangePackageVisualizationHelper {
 			overlay = "icons/modify_overlay.png";
 		}
 
-		ImageDescriptor overlayDescriptor = org.unicase.ui.common.Activator.getImageDescriptor(overlay);
+		ImageDescriptor overlayDescriptor = org.unicase.ui.common.Activator
+				.getImageDescriptor(overlay);
 		return overlayDescriptor;
 	}
 
 	/**
 	 * Get an image for the operation.
 	 * 
-	 * @param emfProvider the label provider
-	 * @param operation the operation
+	 * @param emfProvider
+	 *            the label provider
+	 * @param operation
+	 *            the operation
 	 * @return an image
 	 */
-	public Image getImage(ILabelProvider emfProvider, AbstractOperation operation) {
+	public Image getImage(ILabelProvider emfProvider,
+			AbstractOperation operation) {
 		Image image = null;
 		if (operation instanceof CreateDeleteOperation) {
 			CreateDeleteOperation op = (CreateDeleteOperation) operation;
@@ -204,7 +220,8 @@ public class ChangePackageVisualizationHelper {
 		} else if (operation instanceof MultiReferenceOperation) {
 			MultiReferenceOperation op = (MultiReferenceOperation) operation;
 			if (op.getReferencedModelElements().size() > 0) {
-				image = emfProvider.getImage(op.getReferencedModelElements().get(0));
+				image = emfProvider.getImage(op.getReferencedModelElements()
+						.get(0));
 			}
 		} else if (operation instanceof MultiReferenceMoveOperation) {
 			MultiReferenceMoveOperation op = (MultiReferenceMoveOperation) operation;
@@ -216,12 +233,14 @@ public class ChangePackageVisualizationHelper {
 	/**
 	 * Get all model elements that are changed by a change package.
 	 * 
-	 * @param changePackage the change package
+	 * @param changePackage
+	 *            the change package
 	 * @return a set of touched model elements
 	 */
 	public Set<EObject> getAllModelElements(ChangePackage changePackage) {
 		Set<EObject> set = new HashSet<EObject>();
-		Set<ModelElementId> tempSet = this.touchedModelElements.get(changePackage);
+		Set<ModelElementId> tempSet = this.touchedModelElements
+				.get(changePackage);
 		for (ModelElementId id : tempSet) {
 			ModelElement modelElement = getModelElement(id);
 			if (modelElement != null) {
@@ -237,18 +256,22 @@ public class ChangePackageVisualizationHelper {
 	/**
 	 * Get all operations for this ModelElement in the current ChangePackage.
 	 * 
-	 * @param me the ModelElement
-	 * @param changePackage the changePackage
+	 * @param me
+	 *            the ModelElement
+	 * @param changePackage
+	 *            the changePackage
 	 * @return the operations
 	 */
-	public Set<EObject> getOperations(ModelElement me, ChangePackage changePackage) {
+	public Set<EObject> getOperations(ModelElement me,
+			ChangePackage changePackage) {
 		Set<EObject> set = new HashSet<EObject>();
 		for (AbstractOperation op : changePackage.getOperations()) {
 			if (op.getModelElementId().equals(me.getModelElementId())) {
 				set.add(op);
 			} else if (op instanceof ReferenceOperation) {
 				ReferenceOperation rop = (ReferenceOperation) op;
-				Set<ModelElementId> others = rop.getOtherInvolvedModelElements();
+				Set<ModelElementId> others = rop
+						.getOtherInvolvedModelElements();
 				if (others.contains(me.getModelElementId())) {
 					set.add(rop);
 				}
@@ -258,9 +281,11 @@ public class ChangePackageVisualizationHelper {
 	}
 
 	/**
-	 * Get all operations for this ModelElement in the current list of ChangePackages.
+	 * Get all operations for this ModelElement in the current list of
+	 * ChangePackages.
 	 * 
-	 * @param me the ModelElement
+	 * @param me
+	 *            the ModelElement
 	 * @return the operations
 	 */
 	public Set<EObject> getOperations(ModelElement me) {
@@ -272,7 +297,8 @@ public class ChangePackageVisualizationHelper {
 	}
 
 	/**
-	 * @param op the operation to generate a description for
+	 * @param op
+	 *            the operation to generate a description for
 	 * @return the description for given operation
 	 */
 	public String getDescription(AbstractOperation op) {
@@ -294,105 +320,245 @@ public class ChangePackageVisualizationHelper {
 		if (op instanceof MultiReferenceMoveOperation) {
 			return getDescriptionMultiReferenceMoveOperation((MultiReferenceMoveOperation) op);
 		}
+		if (op instanceof CompositeOperation) {
+			return op.getDescription();
+		}
 
 		return getDescriptionUnknownOperation(op);
 
 	}
 
-	private String getDescriptionMultiReferenceMoveOperation(MultiReferenceMoveOperation op) {
+	private String getDescriptionMultiReferenceMoveOperation(
+			MultiReferenceMoveOperation op) {
 
-		ModelElement elem = getModelElement(op.getReferencedModelElementId());
-		String elemName = op.getReferencedModelElementId().toString();
-
-		if (elem != null) {
-			elemName = elem.eClass().getName() + " '" + elem.getName() + "'";
-		}
-
-		return "Reordered " + op.getFeatureName() + ", moved " + elemName + " from " + op.getOldIndex() + " to "
-			+ op.getNewIndex();
+		String elementName = getModelElementName(op.getModelElementId());
+		String movedElementName = getModelElementName(op
+				.getReferencedModelElementId());
+		return "Reordered " + op.getFeatureName() + " in " + elementName
+				+ ", moved " + movedElementName + " from position "
+				+ op.getOldIndex() + " to " + op.getNewIndex();
 	}
 
 	private String getDescriptionCreateDeleteOperation(CreateDeleteOperation op) {
 
+		ModelElement modelElement = op.getModelElement();
+		int childrenCount = modelElement.getAllContainedModelElements().size();
+		String description;
+
+		StringBuilder stringBuilder = new StringBuilder();
+		stringBuilder.append(modelElement.eClass().getName());
+		if (modelElement.getName() != null) {
+			stringBuilder.append(" \"");
+			stringBuilder.append(modelElement.getName());
+			stringBuilder.append("\" ");
+		}
+		String elementClassAndName = stringBuilder.toString();
 		if (op.isDelete()) {
-			return "Deleted " + op.getModelElement().eClass().getName() + " '" + op.getModelElement().getName() + "'";
+			description = "Deleted " + elementClassAndName;
 		} else {
-			return "Created " + op.getModelElement().eClass().getName() + " '" + op.getModelElement().getName() + "'";
+			description = "Created " + elementClassAndName;
 		}
+		if (childrenCount > 0) {
+			description += " including " + childrenCount + " sibling(s)";
+		}
+
+		EList<ReferenceOperation> subOperations = op.getSubOperations();
+		int subOperationCount = subOperations.size();
+		if (op.isDelete() && subOperationCount > 0) {
+			ReferenceOperation referenceOperation = subOperations
+					.get(subOperationCount - 1);
+			ModelElement parentElement = getModelElement(referenceOperation
+					.getModelElementId());
+			if (parentElement != null
+					&& ((EReference) referenceOperation
+							.getFeature(parentElement)).isContainment()) {
+				description += " from its parent "
+						+ parentElement.eClass().getName() + " "
+						+ trim(parentElement.getName(), true);
+			}
+		}
+		return description;
 
 	}
 
-	private String getDescriptionMultiReferenceOperation(MultiReferenceOperation op) {
+	private String getDescriptionMultiReferenceOperation(
+			MultiReferenceOperation op) {
 
-		String elemNames = getModelElementClassesAndNames(op.getReferencedModelElements());
+		ModelElement modelElement = getModelElement(op.getModelElementId());
+		if (modelElement == null) {
+			String elemNames = getModelElementClassesAndNames(op
+					.getReferencedModelElements(), "element");
+			if (op.isAdd()) {
+				return "Added " + elemNames + " to " + op.getFeatureName()
+						+ " of (unkown element)";
+			} else {
+				return "Removed " + elemNames + " from " + op.getFeatureName()
+						+ " of (unkown element)";
+			}
+		}
 
+		EReference feature = (EReference) op.getFeature(modelElement);
+		String elemNames = getModelElementClassesAndNames(op
+				.getReferencedModelElements(), feature.getEType().getName());
+		String elementNameAndClass = getModelElementName(modelElement);
 		if (op.isAdd()) {
-			// if adding to or removing from modelElements -> attach/detach operation in main tree
-			if (op.getFeatureName().equals("modelElements")) {
-				return "Attached " + elemNames;
+			if (feature.isContainment()) {
+				return "Added " + elemNames + " as child(ren) in "
+						+ elementNameAndClass;
 			} else {
-				return "Added " + elemNames + " to " + op.getFeatureName();
+				return "Added " + elemNames + " to " + op.getFeatureName()
+						+ " in " + elementNameAndClass;
 			}
-
 		} else {
-
-			if (op.getFeatureName().equals("modelElements")) {
-				return "Detached " + elemNames;
+			if (feature.isContainment()) {
+				return "Removed " + elemNames + " as child(ren) in "
+						+ elementNameAndClass;
 			} else {
-				return "Removed " + elemNames + " from " + op.getFeatureName();
+				return "Removed " + elemNames + " from " + op.getFeatureName()
+						+ " in " + elementNameAndClass;
 			}
 		}
 
 	}
 
-	private String getDescriptionSingleReferenceOperation(SingleReferenceOperation op) {
+	private String getDescriptionSingleReferenceOperation(
+			SingleReferenceOperation op) {
 
 		ModelElement oldElement = getModelElement(op.getOldValue());
 		ModelElement newElement = getModelElement(op.getNewValue());
-
-		String oldName = (oldElement == null) ? "none" : oldElement.getName();
-		String newName = (newElement == null) ? "none" : newElement.getName();
-
-		// changing leafSections means relocating the item
-		if (op.getFeatureName().equals("leafSection")) {
-			return "Relocated from '" + oldName + "' to '" + newName + "'";
+		String oldName = getModelElementName(oldElement);
+		String newName = getModelElementName(newElement);
+		ModelElement elem = getModelElement(op.getModelElementId());
+		String elementName = getModelElementName(elem);
+		if (elem == null) {
+			return "Changed " + op.getFeatureName() + " from \"" + oldName
+					+ "\" to \"" + newName + "\"" + " for \"(unkown element)\"";
 		}
-		// generic changing text
-		else {
-			return "Changed " + op.getFeatureName() + " from '" + oldName + "' to '" + newName + "'";
+
+		// changing containment means relocating the item
+		if (((EReference) op.getFeature(elem)).isContainer()
+				&& oldElement != null && newElement != null) {
+			return "Moved " + elementName + " from " + oldName + " to "
+					+ newName;
+		} else if (oldElement == null && newElement == null) {
+			return "Unset " + op.getFeatureName() + " in " + elementName;
+		} else if (oldElement == null && newElement != null) {
+			return "Set " + op.getFeatureName() + " in " + elementName
+					+ " to \"" + newName + "\"";
+		} else if (oldElement != null && newElement == null) {
+			return "Unset " + op.getFeatureName() + " in " + elementName
+					+ " from previous value \"" + oldName + "\"";
+		} else {
+			return "Set " + op.getFeatureName() + " in " + elementName
+					+ " to \"" + newName + "\" from previous value \""
+					+ oldName + "\"";
 		}
 
 	}
 
 	private String getDescriptionAttributeOperation(AttributeOperation op) {
-		return "Changed " + op.getFeatureName() + " from '" + op.getOldValue() + "' to '" + op.getNewValue() + "'";
+		ModelElement elem = getModelElement(op.getModelElementId());
+		if (elem == null) {
+			return "Changed " + op.getFeatureName() + " from \""
+					+ trim(op.getOldValue()) + "\" to \""
+					+ trim(op.getNewValue()) + "\""
+					+ " for \"(unkown element\"";
+		}
+		String oldValue;
+		String newValue;
+		if (op.getFeatureName().equals("description")) {
+			oldValue = (op.getOldValue() == null) ? null : ModelUtil
+					.getPlainTextFromRichText((String) op.getOldValue());
+			newValue = (op.getNewValue() == null) ? null : ModelUtil
+					.getPlainTextFromRichText((String) op.getNewValue());
+		} else {
+			oldValue = (op.getOldValue() == null) ? null : op.getOldValue()
+					.toString();
+			newValue = (op.getNewValue() == null) ? null : op.getNewValue()
+					.toString();
+		}
+		String elemNameAndClass = getModelElementName(elem);
+		if (oldValue == null && newValue == null) {
+			return "Unset " + op.getFeatureName() + " in " + elemNameAndClass;
+		} else if (oldValue == null && newValue != null) {
+			return "Set " + op.getFeatureName() + " in " + elemNameAndClass
+					+ " to \"" + trim(newValue) + "\"";
+		} else if (oldValue != null && newValue == null) {
+			return "Unset " + op.getFeatureName() + " in " + elemNameAndClass
+					+ " from previous value \"" + trim(oldValue) + "\"";
+		} else {
+			return "Set " + op.getFeatureName() + " in " + elemNameAndClass
+					+ " to \"" + trim(newValue) + "\" from previous value \""
+					+ trim(oldValue) + "\"";
+		}
+
 	}
 
 	private String getDescriptionUnknownOperation(AbstractOperation op) {
 		return op.getClass().getSimpleName() + " " + op.getDescription();
 	}
 
+	private String trim(Object object) {
+		return trim(object, false);
+	}
+
+	private String trim(Object object, boolean isName) {
+		if (object == null) {
+			return isName ? "(no name)" : "(null)";
+		}
+		String string = object.toString();
+		String result = string.trim();
+		if (result.length() > 20) {
+			return result.substring(0, 20) + "...";
+		}
+		if (result.length() == 0) {
+			return "(empty)";
+		}
+		return result;
+	}
+
 	/**
-	 * Returns a comma separated list of class names and model names. {id1, id2} will become
-	 * "Comment 'some comment', LeafSection 'section title'"
+	 * Returns a comma separated list of class names and model names. {id1, id2}
+	 * will become "Comment 'some comment', LeafSection 'section title'"
 	 * 
-	 * @param idList the list of model element IDs to return the names for
+	 * @param idList
+	 *            the list of model element IDs to return the names for
 	 * @return
 	 */
-	private String getModelElementClassesAndNames(EList<ModelElementId> idList) {
+	private String getModelElementClassesAndNames(EList<ModelElementId> idList,
+			String typeName) {
 
 		StringBuilder sb = new StringBuilder();
-		for (ModelElementId id : idList) {
 
-			if (getModelElement(id) != null) {
-				sb.append(getModelElement(id).eClass().getName() + " '" + getModelElement(id).getName() + "'");
+		if (idList.size() > 2) {
+			return idList.size() + " " + typeName + "s";
+		}
+
+		for (int i = 0; i < idList.size(); i++) {
+			if (i > 0 && i == idList.size() - 1) {
+				sb.append(" and ");
+			} else if (i > 0) {
 				sb.append(", ");
 			}
-		}
-		if (sb.length() > 2) {
-			sb.delete(sb.length() - 2, sb.length());
-		}
+			ModelElementId id = idList.get(i);
+			sb.append(getModelElementName(id));
 
+		}
 		return sb.toString();
+	}
+
+	private String getModelElementName(ModelElementId modelElementId) {
+		if (modelElementId == null) {
+			return "(unkown element)";
+		}
+		return getModelElementName(getModelElement(modelElementId));
+	}
+
+	private String getModelElementName(ModelElement modelElement) {
+		if (modelElement == null) {
+			return "(unkown element)";
+		}
+		return modelElement.eClass().getName() + " \""
+				+ trim(modelElement.getName(), true) + "\"";
 	}
 }
