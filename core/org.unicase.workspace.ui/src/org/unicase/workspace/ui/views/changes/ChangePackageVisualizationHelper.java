@@ -21,7 +21,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.MultiAttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
@@ -164,8 +163,6 @@ public class ChangePackageVisualizationHelper {
 			} else {
 				overlay = "icons/link_overlay.png";
 			}
-		} else if (operation instanceof MultiAttributeOperation) {
-			overlay = "icons/modify_overlay.png";
 		} else if (operation instanceof MultiReferenceOperation) {
 			MultiReferenceOperation op = (MultiReferenceOperation) operation;
 			if (op.getReferencedModelElements().size() > 0) {
@@ -204,8 +201,6 @@ public class ChangePackageVisualizationHelper {
 			} else {
 				image = emfProvider.getImage(op.getNewValue());
 			}
-		} else if (operation instanceof MultiAttributeOperation) {
-			image = emfProvider.getImage(null);
 		} else if (operation instanceof MultiReferenceOperation) {
 			MultiReferenceOperation op = (MultiReferenceOperation) operation;
 			if (op.getReferencedModelElements().size() > 0) {
