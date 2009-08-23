@@ -79,6 +79,12 @@ public class ChangePackageVisualizationHelper {
 			ModelElement modelElement = ((CreateDeleteOperation) abstractOperation)
 					.getModelElement();
 			modelElementMap.put(modelElement.getModelElementId(), modelElement);
+			modelElements.add(modelElement.getModelElementId());
+			for (ModelElement sibling : modelElement
+					.getAllContainedModelElements()) {
+				modelElementMap.put(sibling.getModelElementId(), sibling);
+				modelElements.add(sibling.getModelElementId());
+			}
 		} else if (abstractOperation instanceof SingleReferenceOperation) {
 			SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) abstractOperation;
 			ModelElementId newValue = singleReferenceOperation.getNewValue();
@@ -431,8 +437,8 @@ public class ChangePackageVisualizationHelper {
 		ModelElement elem = getModelElement(op.getModelElementId());
 		String elementName = getModelElementName(elem);
 		if (elem == null) {
-			return "Changed " + op.getFeatureName() + " from \"" + oldName
-					+ "\" to \"" + newName + "\"" + " for \"(unkown element)\"";
+			return "Changed " + op.getFeatureName() + " from " + oldName
+					+ " to " + newName + " for \"(unkown element)";
 		}
 
 		// changing containment means relocating the item
@@ -443,15 +449,14 @@ public class ChangePackageVisualizationHelper {
 		} else if (oldElement == null && newElement == null) {
 			return "Unset " + op.getFeatureName() + " in " + elementName;
 		} else if (oldElement == null && newElement != null) {
-			return "Set " + op.getFeatureName() + " in " + elementName
-					+ " to \"" + newName + "\"";
+			return "Set " + op.getFeatureName() + " in " + elementName + " to "
+					+ newName;
 		} else if (oldElement != null && newElement == null) {
 			return "Unset " + op.getFeatureName() + " in " + elementName
-					+ " from previous value \"" + oldName + "\"";
+					+ " from previous value " + oldName;
 		} else {
-			return "Set " + op.getFeatureName() + " in " + elementName
-					+ " to \"" + newName + "\" from previous value \""
-					+ oldName + "\"";
+			return "Set " + op.getFeatureName() + " in " + elementName + " to "
+					+ newName + " from previous value " + oldName;
 		}
 
 	}
