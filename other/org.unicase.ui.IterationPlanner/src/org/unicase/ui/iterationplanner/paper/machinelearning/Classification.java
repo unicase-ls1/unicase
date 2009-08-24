@@ -1,5 +1,8 @@
 package org.unicase.ui.iterationplanner.paper.machinelearning;
 
+import no.uib.cipr.matrix.SVD;
+
+import org.eclipse.gmf.runtime.diagram.ui.commands.SetViewMutabilityCommand;
 import org.jdmp.core.algorithm.classification.Classifier;
 import org.jdmp.core.dataset.ClassificationDataSet;
 import org.jdmp.core.dataset.CrossValidation;
