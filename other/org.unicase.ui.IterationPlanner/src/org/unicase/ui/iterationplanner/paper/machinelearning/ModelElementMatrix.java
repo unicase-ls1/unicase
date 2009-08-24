@@ -15,11 +15,11 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 	
 	private static final String MANY_VALUED_ATTRIBUTE_DELIMITER = ",";
 	private List<EStructuralFeature> features;
-	private List<ModelElement> inputMEs;
+	private List<ModelElement> modelElements;
 
-	public ModelElementMatrix(List<ModelElement> inputMEs,
+	public ModelElementMatrix(List<ModelElement> modelElements,
 			List<EStructuralFeature> outputFeatures) {
-		this.inputMEs = inputMEs;
+		this.modelElements = modelElements;
 		this.features = outputFeatures;
 	}
 
@@ -33,14 +33,18 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 
 	public String getString(long row, long column) {
 		String result= "";
-		ModelElement me = inputMEs.get((int) row);
+		ModelElement me = modelElements.get((int) row);
 		EStructuralFeature feature = features.get((int)column);
 		if(feature instanceof EReference){
-		result = getText(me, (EReference)feature);	
+		result = removeTabs(getText(me, (EReference)feature));	
 		}else if(feature instanceof EAttribute){
-			result = getText(me, (EAttribute)feature);
+			result = removeTabs(getText(me, (EAttribute)feature));
 		}
 		return result;
+	}
+
+	private String removeTabs(String text) {
+		return text.replace("\t", "");
 	}
 
 	public void setString(String value, long row, long column) {
@@ -49,16 +53,16 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 
 	public long[] getSize() {
 	
-		return new long[] { inputMEs.size(), features.size() };
+		return new long[] { modelElements.size(), features.size() };
 		
 	}
 
 	public void setInputMEs(List<ModelElement> inputMEs) {
-		this.inputMEs = inputMEs;
+		this.modelElements = inputMEs;
 	}
 
 	public List<ModelElement> getInputMEs() {
-		return inputMEs;
+		return modelElements;
 	}
 
 	/**
