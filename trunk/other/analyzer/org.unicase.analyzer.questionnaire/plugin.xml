@@ -24,10 +24,18 @@
                id="org.unicase.analyzer.questionnaire.actions.SampleAction">
          </action>
          <action
+               class="org.unicase.analyzer.questionnaire.actions.NextAction"
+               icon="icons/book_next.png"
+               id="org.unicase.analyzer.questionnaire.actions.NextAction"
+               label="&amp;Next"
+               menubarPath="questionMenu/questionGroup"
+               toolbarPath="questionGroup">
+         </action>
+         <action
                class="org.unicase.analyzer.questionnaire.actions.WizardAction"
                icon="icons/book_open.png"
                id="org.unicase.analyzer.questionnaire.actions.WizardAction"
-               label="&amp;Wizard"
+               label="&amp;SelectUser"
                menubarPath="questionMenu/questionGroup"
                toolbarPath="questionGroup">
          </action>
@@ -36,14 +44,6 @@
                icon="icons/book_edit.png"
                id="org.unicase.analyzer.questionnaire.actions.GenerateAction"
                label="&amp;Generate"
-               menubarPath="questionMenu/questionGroup"
-               toolbarPath="questionGroup">
-         </action>
-         <action
-               class="org.unicase.analyzer.questionnaire.actions.NextAction"
-               icon="icons/book_next.png"
-               id="org.unicase.analyzer.questionnaire.actions.NextAction"
-               label="&amp;Next"
                menubarPath="questionMenu/questionGroup"
                toolbarPath="questionGroup">
          </action>

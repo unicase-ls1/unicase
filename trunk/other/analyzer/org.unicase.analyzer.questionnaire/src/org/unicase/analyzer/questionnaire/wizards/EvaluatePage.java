@@ -1,6 +1,7 @@
 /**
- * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- * </copyright>
+ * <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
 package org.unicase.analyzer.questionnaire.wizards;
@@ -12,11 +13,11 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 
 /**
  * @author liya
- *
  */
 public class EvaluatePage extends WizardPage implements Listener {
 
@@ -35,24 +36,25 @@ public class EvaluatePage extends WizardPage implements Listener {
 		setDescription(PAGE_DESCRIPTION);
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		if(veryWell.getSelection()){
+		if (veryWell.getSelection()) {
 			result = 5;
 			((EvaluationWizard) getWizard()).setCanFinish(true);
-		}else if(well.getSelection()){
+		} else if (well.getSelection()) {
 			result = 4;
 			((EvaluationWizard) getWizard()).setCanFinish(true);
-		}else if(ok.getSelection()){
+		} else if (ok.getSelection()) {
 			result = 3;
 			((EvaluationWizard) getWizard()).setCanFinish(true);
-		}else if(bad.getSelection()){
+		} else if (bad.getSelection()) {
 			result = 2;
 			((EvaluationWizard) getWizard()).setCanFinish(true);
-		}else if(veryBad.getSelection()){
+		} else if (veryBad.getSelection()) {
 			result = 0;
 			((EvaluationWizard) getWizard()).setCanFinish(true);
 		}
@@ -60,8 +62,9 @@ public class EvaluatePage extends WizardPage implements Listener {
 		getWizard().getContainer().updateButtons();
 	}
 
-	/** 
+	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
@@ -71,35 +74,39 @@ public class EvaluatePage extends WizardPage implements Listener {
 		int ncol = 4;
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
-		
+
 		gd = new GridData(GridData.FILL_HORIZONTAL);
 		gd.horizontalSpan = ncol;
-		
+
+		Label label = new Label(composite, SWT.NULL);
+		label.setText("How easy was it to understand the changes in the commit of version "
+			+ QuestionnaireManager.getInstance().getVersion() + "?");
+
 		veryWell = new Button(composite, SWT.RADIO);
-		veryWell.setText("very Well");
+		veryWell.setText("Very Easy");
 		veryWell.setLayoutData(gd);
 		veryWell.addListener(SWT.Selection, this);
-		 
+
 		well = new Button(composite, SWT.RADIO);
-		well.setText("Well");
+		well.setText("Easy");
 		well.setLayoutData(gd);
 		well.addListener(SWT.Selection, this);
-		
+
 		ok = new Button(composite, SWT.RADIO);
 		ok.setText("OK");
 		ok.setLayoutData(gd);
 		ok.addListener(SWT.Selection, this);
-		
+
 		bad = new Button(composite, SWT.RADIO);
-		bad.setText("Bad");
+		bad.setText("Difficult");
 		bad.setLayoutData(gd);
 		bad.addListener(SWT.Selection, this);
-		
+
 		veryBad = new Button(composite, SWT.RADIO);
-		veryBad.setText("very Bad");
+		veryBad.setText("Very Difficult");
 		veryBad.setLayoutData(gd);
 		veryBad.addListener(SWT.Selection, this);
-		 
+
 		setControl(composite);
 		setPageComplete(false);
 
