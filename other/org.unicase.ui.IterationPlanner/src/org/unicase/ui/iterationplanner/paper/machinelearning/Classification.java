@@ -88,40 +88,14 @@ public class Classification {
 	public void run() throws Exception {
 
 		System.out.println("preprocessing data...");
-
-		// delete all records with unknown assignee
-		List<Long> rowsToDelete = new ArrayList<Long>();
-		for (long row = 0; row < m.getRowCount(); row++) {
-			String assignee = m.getAsString(row, ASSIGNEE_INDEX);
-			if (assignee == null || assignee.length() == 0) {
-				rowsToDelete.add(row);
-			}
-		}
-
-		// delete
-		m = m.deleteRows(Ret.NEW, rowsToDelete);
-
-		// some stats
-		// printStats(m);
-
-		// filter out unwanted characters
-		m = m.removePunctuation(Ret.NEW);
-
-		// use only lowercase characters
-		m = m.lowerCase(Ret.NEW);
-
-		// remove stopwords
-		m = m.removeWords(Ret.NEW, Arrays.asList(ENGLISH_STOP_WORDS));
-
+		doPreproccessing();
+		
+		
 		// create features for assignee
 		Matrix assignee = m.selectColumns(Ret.LINK, ASSIGNEE_INDEX).tfIdf(false, false, false);
 		assignee.setLabel("assignee");
 
-		// use PorterStemmer on the data
-		if (USESTEMMING) {
-			System.out.println("stemming data...");
-			m = m.stem(Ret.NEW);
-		}
+		
 
 		System.out.println("creating features...");
 
@@ -155,7 +129,6 @@ public class Classification {
 			input = new MTJDenseDoubleMatrix2D(input).princomp();
 		}
 
-		//input.showGUI();
 
 		// delete columns with variance < MINVARIANCE
 		if (PRUNEMATRIX) {
@@ -196,5 +169,37 @@ public class Classification {
 		System.out.println("USESVD: " + USESVD);
 		System.out.println("PRUNESVD: " + PRUNEMATRIX);
 		System.out.println("MINVARIANCE: " + MINVARIANCE);
+	}
+
+	private void doPreproccessing() {
+		// delete all records with unknown assignee
+		List<Long> rowsToDelete = new ArrayList<Long>();
+		for (long row = 0; row < m.getRowCount(); row++) {
+			String assignee = m.getAsString(row, ASSIGNEE_INDEX);
+			if (assignee == null || assignee.length() == 0) {
+				rowsToDelete.add(row);
+			}
+		}
+
+		// delete
+		m = m.deleteRows(Ret.NEW, rowsToDelete);
+
+		// some stats
+		// printStats(m);
+
+		// filter out unwanted characters
+		m = m.removePunctuation(Ret.NEW);
+
+		// use only lowercase characters
+		m = m.lowerCase(Ret.NEW);
+
+		// remove stopwords
+		m = m.removeWords(Ret.NEW, Arrays.asList(ENGLISH_STOP_WORDS));
+
+		// use PorterStemmer on the data
+		if (USESTEMMING) {
+			System.out.println("stemming data...");
+			m = m.stem(Ret.NEW);
+		}
 	}
 }

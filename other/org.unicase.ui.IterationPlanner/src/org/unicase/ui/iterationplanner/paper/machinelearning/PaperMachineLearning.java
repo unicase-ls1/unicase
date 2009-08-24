@@ -35,39 +35,42 @@ public class PaperMachineLearning {
 
 	public void start() {
 
+		//use a project directly
 		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0);
 		Project project = projectSpace.getProject();
 		
+				
 		List<ModelElement> workItems = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
 			new BasicEList<ModelElement>());
-
 		List<EStructuralFeature> features = getOutputFeatures();
-
-		
 		
 		ModelElementMatrix m = new ModelElementMatrix(workItems, features);
-		File file = new File(Activator.getDefault().getBundle().getLocation().replace("reference:file:", "")+"/datasets/unicase_workitems.csv");
-System.out.println(file.getPath());
+
+		Classification classification = new Classification(m);
 		try {
-			m.exportToFile(FileFormat.CSV, file, null);
-		} catch (MatrixException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
+			classification.run();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-//		Classification classification = new Classification(m);
-//		try {
-//			classification.run();
-//		} catch (Exception e) {
-//			e.printStackTrace();
-//		}
 
 	}
 
+	private void computeAccuracyWithProjectProgress(){
+		//create a analyzer and let it go through revisions
+		//listen to notifications about work items
+		//on notifications regarding work items
+		//   creat a new model element matrix from all work items in new project state (m)
+		//   create a new calssification for matrix m
+		//   get accuracy of new classification
+		//output: a csv file for [revision, accuracy] 
+	 	// or 					 [number of work items, accuracy] ??    
+		
+	}
+	
+	
+	
+	
+	
 	private List<EStructuralFeature> getOutputFeatures() {
 		List<EStructuralFeature> result = new ArrayList<EStructuralFeature>();
 		result.add(ModelPackage.eINSTANCE.getModelElement_Name());
