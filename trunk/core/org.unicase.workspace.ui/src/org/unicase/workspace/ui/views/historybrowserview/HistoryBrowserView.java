@@ -74,6 +74,7 @@ import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.ui.views.scm.SCMContentProvider;
 import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
 import org.unicase.workspace.util.EventUtil;
+import org.unicase.workspace.util.ProjectSpaceContainer;
 
 /**
  * This the History Browser view.
@@ -82,7 +83,8 @@ import org.unicase.workspace.util.EventUtil;
  * @author Wesendonk
  * @author Shterev
  */
-public class HistoryBrowserView extends ViewPart {
+public class HistoryBrowserView extends ViewPart implements
+		ProjectSpaceContainer {
 
 	/**
 	 * Provides popup menu for versions.
@@ -189,6 +191,8 @@ public class HistoryBrowserView extends ViewPart {
 
 	private Action checkoutAction;
 
+	private boolean isUnlinkedFromNavigator;
+
 	/**
 	 * Constructor.
 	 */
@@ -211,7 +215,12 @@ public class HistoryBrowserView extends ViewPart {
 		noProjectHint
 				.setText("Please call 'Show history' from the context menu of an element in the navigator.");
 
-		viewer = new TreeViewer(parent, SWT.NONE);
+		viewer = new TreeViewer(parent, SWT.NONE) {
+
+		};
+
+		getSite().setSelectionProvider(viewer);
+
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(
 				viewer.getControl());
 		ColumnViewerToolTipSupport.enableFor(viewer);
@@ -239,6 +248,23 @@ public class HistoryBrowserView extends ViewPart {
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
 
+		addExpandAllAndCollapseAllActions(menuManager);
+
+		addRefreshAction(menuManager);
+
+		addGroupByModelElementButton(menuManager);
+
+		addShowRootAction(menuManager);
+
+		addNextAndPreviousAction(menuManager);
+
+		addJumpToRevisionAction(menuManager);
+
+		addLinkWithNavigatorAction(menuManager);
+
+	}
+
+	private void addExpandAllAndCollapseAllActions(IToolBarManager menuManager) {
 		Action expand = new Action() {
 			@Override
 			public void run() {
@@ -261,7 +287,9 @@ public class HistoryBrowserView extends ViewPart {
 		collapse.setImageDescriptor(Activator
 				.getImageDescriptor("icons/collapseall.gif"));
 		menuManager.add(collapse);
+	}
 
+	private void addRefreshAction(IToolBarManager menuManager) {
 		Action refresh = new Action() {
 			@Override
 			public void run() {
@@ -273,11 +301,17 @@ public class HistoryBrowserView extends ViewPart {
 				.getImageDescriptor("/icons/refresh.png"));
 		refresh.setToolTipText("Refresh");
 		menuManager.add(refresh);
+	}
 
+	private void addGroupByModelElementButton(IToolBarManager menuManager) {
+		boolean isGroupByME = Activator.getDefault().getDialogSettings()
+				.getBoolean("GroupByModelElement");
 		groupByMe = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
 				boolean showRootsCache = contentProvider.showRootNodes();
+				Activator.getDefault().getDialogSettings().put(
+						"GroupByModelElement", isChecked());
 				if (isChecked()) {
 					contentProvider = new SCMContentProvider.Compact(viewer,
 							projectSpace.getProject());
@@ -291,12 +325,15 @@ public class HistoryBrowserView extends ViewPart {
 			}
 
 		};
+
 		groupByMe.setImageDescriptor(Activator
 				.getImageDescriptor("/icons/groupByME.png"));
 		groupByMe.setToolTipText("Group by model element");
-		groupByMe.setChecked(true);
+		groupByMe.setChecked(isGroupByME);
 		menuManager.add(groupByMe);
+	}
 
+	private void addShowRootAction(IToolBarManager menuManager) {
 		showRoots = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
@@ -320,7 +357,9 @@ public class HistoryBrowserView extends ViewPart {
 		showRoots.setToolTipText("Show revision nodes");
 		showRoots.setChecked(true);
 		menuManager.add(showRoots);
+	}
 
+	private void addNextAndPreviousAction(IToolBarManager menuManager) {
 		Action prev = new Action() {
 			@Override
 			public void run() {
@@ -354,7 +393,9 @@ public class HistoryBrowserView extends ViewPart {
 						.getImageDescriptor("/icons/next.png"));
 		next.setToolTipText("Next " + (startOffset + 1) + " items");
 		menuManager.add(next);
+	}
 
+	private void addJumpToRevisionAction(IToolBarManager menuManager) {
 		Action jumpTo = new Action() {
 			@Override
 			public void run() {
@@ -378,6 +419,26 @@ public class HistoryBrowserView extends ViewPart {
 				.getImageDescriptor("/icons/magnifier.png"));
 		jumpTo.setToolTipText("Go to revision...");
 		menuManager.add(jumpTo);
+	}
+
+	private void addLinkWithNavigatorAction(IToolBarManager menuManager) {
+		isUnlinkedFromNavigator = Activator.getDefault().getDialogSettings()
+				.getBoolean("LinkWithNavigator");
+		Action linkWithNavigator = new Action("Link with navigator", SWT.TOGGLE) {
+
+			@Override
+			public void run() {
+				Activator.getDefault().getDialogSettings().put(
+						"LinkWithNavigator", !this.isChecked());
+				isUnlinkedFromNavigator = (!this.isChecked());
+			}
+
+		};
+		linkWithNavigator.setImageDescriptor(Activator
+				.getImageDescriptor("icons/link_with_editor.gif"));
+		linkWithNavigator.setToolTipText("Link with Navigator");
+		linkWithNavigator.setChecked(!isUnlinkedFromNavigator);
+		menuManager.add(linkWithNavigator);
 	}
 
 	/**
@@ -505,9 +566,17 @@ public class HistoryBrowserView extends ViewPart {
 			contentProvider.setShowRootNodes(false);
 		} else {
 			label += projectSpace.getProjectName();
-			groupByMe.setChecked(true);
+			boolean isGroupedByME = Activator.getDefault().getDialogSettings()
+					.getBoolean("GroupByModelElement");
+			groupByMe.setChecked(isGroupedByME);
 			showRoots.setChecked(true);
-			contentProvider = new SCMContentProvider.Compact(viewer, project);
+			if (isGroupedByME) {
+				contentProvider = new SCMContentProvider.Compact(viewer,
+						project);
+			} else {
+				contentProvider = new SCMContentProvider.Detailed(viewer,
+						project);
+			}
 			contentProvider.setShowRootNodes(true);
 		}
 		setContentDescription(label);
@@ -754,6 +823,18 @@ public class HistoryBrowserView extends ViewPart {
 		labelProvider.getHighlighted().clear();
 		labelProvider.getHighlighted().addAll(operations);
 		refresh();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.workspace.util.ProjectSpaceContainer#getProjectSpace()
+	 */
+	public ProjectSpace getProjectSpace() {
+		if (isUnlinkedFromNavigator) {
+			return null;
+		}
+		return this.projectSpace;
 	}
 
 }
