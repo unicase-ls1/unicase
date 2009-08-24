@@ -36,10 +36,12 @@ import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.Project;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.ui.views.CompareView;
+import org.unicase.workspace.ui.views.StructuralView;
 import org.unicase.workspace.util.ResourceHelper;
 
 /**
@@ -97,13 +99,18 @@ public final class QuestionnaireManager {
 
 				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				String viewId = "org.unicase.workspace.ui.views.CompareView";
-				CompareView compareView = null;
-
-				compareView = (CompareView) page.showView(viewId);
+				CompareView compareView = (CompareView) page.showView(viewId);
 
 				if (compareView != null) {
 					compareView.setInput(project, changePackage);
 				}
+				StructuralView structuralView = (StructuralView) page
+					.showView("org.unicase.workspace.ui.views.StructuralView");
+
+				if (structuralView != null) {
+					structuralView.setInput(ModelUtil.clone(project));
+				}
+
 			} catch (IOException e) {
 				e.printStackTrace();
 			} catch (PartInitException e) {
