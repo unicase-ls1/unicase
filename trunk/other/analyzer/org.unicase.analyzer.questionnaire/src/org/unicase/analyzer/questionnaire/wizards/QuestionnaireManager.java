@@ -36,7 +36,6 @@ import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.Project;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
@@ -108,7 +107,7 @@ public final class QuestionnaireManager {
 					.showView("org.unicase.workspace.ui.views.StructuralView");
 
 				if (structuralView != null) {
-					structuralView.setInput(ModelUtil.clone(project));
+					structuralView.setInput(projectSpace);
 				}
 
 			} catch (IOException e) {
