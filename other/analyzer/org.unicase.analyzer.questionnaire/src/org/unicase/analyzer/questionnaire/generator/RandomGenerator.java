@@ -152,7 +152,7 @@ public class RandomGenerator {
 		int version;
 		boolean representation;// if true operation-based, false state-based
 
-		for (int j = 0; j < 5; j++) {
+		for (int j = 0; j < 6; j++) {
 
 			version = rand.nextInt(category.size());
 			representation = rand.nextBoolean();
