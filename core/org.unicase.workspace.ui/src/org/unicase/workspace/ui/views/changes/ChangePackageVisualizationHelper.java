@@ -407,9 +407,11 @@ public class ChangePackageVisualizationHelper {
 		String elemNames = getModelElementClassesAndNames(op
 				.getReferencedModelElements(), feature.getEType().getName());
 		String elementNameAndClass = getModelElementName(modelElement);
+		String children = op.getReferencedModelElements().size() > 1 ? "children"
+				: "child";
 		if (op.isAdd()) {
 			if (feature.isContainment()) {
-				return "Added " + elemNames + " as child(ren) in "
+				return "Added " + elemNames + " as " + children + " in "
 						+ elementNameAndClass;
 			} else {
 				return "Added " + elemNames + " to " + op.getFeatureName()
@@ -417,7 +419,7 @@ public class ChangePackageVisualizationHelper {
 			}
 		} else {
 			if (feature.isContainment()) {
-				return "Removed " + elemNames + " as child(ren) in "
+				return "Removed " + elemNames + " as " + children + " in "
 						+ elementNameAndClass;
 			} else {
 				return "Removed " + elemNames + " from " + op.getFeatureName()

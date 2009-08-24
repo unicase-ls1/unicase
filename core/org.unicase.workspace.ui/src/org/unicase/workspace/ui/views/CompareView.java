@@ -55,36 +55,46 @@ public class CompareView extends ViewPart {
 	public void createPartControl(Composite parent) {
 		GridLayoutFactory.fillDefaults().applyTo(parent);
 		viewer = new TreeViewer(parent, SWT.H_SCROLL | SWT.V_SCROLL);
+		getSite().setSelectionProvider(viewer);
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 
 			public void doubleClick(DoubleClickEvent event) {
 				if (event.getSelection() instanceof IStructuredSelection) {
-					TreeNode node = (TreeNode) ((IStructuredSelection) event.getSelection()).getFirstElement();
+					TreeNode node = (TreeNode) ((IStructuredSelection) event
+							.getSelection()).getFirstElement();
 					if (node.getValue() instanceof ModelElement) {
-						ActionHelper.openModelElement((ModelElement) node.getValue(), ID);
+						ActionHelper.openModelElement((ModelElement) node
+								.getValue(), ID);
 					}
 				}
 
 			}
 		});
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(viewer.getControl());
-		parent.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_CYAN));
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(
+				viewer.getControl());
+		parent.setBackground(Display.getCurrent()
+				.getSystemColor(SWT.COLOR_CYAN));
 	}
 
 	/**
 	 * Sets the input.
 	 * 
-	 * @param project the project
-	 * @param changePackage the change package
+	 * @param project
+	 *            the project
+	 * @param changePackage
+	 *            the change package
 	 */
 	public void setInput(Project project, ChangePackage changePackage) {
-		SCMContentProvider.Detailed contentProvider = new SCMContentProvider.Detailed(viewer, project);
+		SCMContentProvider.Detailed contentProvider = new SCMContentProvider.Detailed(
+				viewer, project);
 		contentProvider.setShowRootNodes(false);
 		SCMLabelProvider labelProvider = new SCMLabelProvider(project);
-		labelProvider.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(Arrays
-			.asList(changePackage), project));
-		contentProvider.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(Arrays
-			.asList(changePackage), project));
+		labelProvider
+				.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(
+						Arrays.asList(changePackage), project));
+		contentProvider
+				.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(
+						Arrays.asList(changePackage), project));
 		viewer.setContentProvider(contentProvider);
 		viewer.setLabelProvider(labelProvider);
 		viewer.setInput(changePackage);
