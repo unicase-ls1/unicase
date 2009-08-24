@@ -16,6 +16,8 @@ Require-Bundle: org.eclipse.ui,
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ClassPath: .,
+ lib/liblinear-1.33.jar,
+ lib/liblinear-1.33-sources.jar,
  lib/jdmp-core-0.1.2-sources.jar,
  lib/jdmp-core-0.1.2.jar,
  lib/jdmp-gui-0.1.2-sources.jar,

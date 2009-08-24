@@ -1,4 +1,4 @@
-package org.unicase.ui.iterationplanner.provider;
+package org.unicase.ui.iterationplanner.paper.machinelearning;
 
 import org.jdmp.core.algorithm.classification.Classifier;
 import org.jdmp.core.dataset.ClassificationDataSet;
@@ -178,7 +178,7 @@ public class Classification {
 		// test classifier on the whole data set
 		classifier.train(ds);
 		classifier.predict(ds);
-		//ds.showGUI();
+		ds.showGUI();
 
 		// // 10 times 10 fold cross-validation
 		CrossValidation.run(classifier, ds, CVFOLDS, CVRUNS, SEED);

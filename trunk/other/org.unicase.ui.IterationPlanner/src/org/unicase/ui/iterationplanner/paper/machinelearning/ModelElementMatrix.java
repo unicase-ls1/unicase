@@ -1,4 +1,4 @@
-package org.unicase.ui.iterationplanner.util;
+package org.unicase.ui.iterationplanner.paper.machinelearning;
 
 import java.util.List;
 

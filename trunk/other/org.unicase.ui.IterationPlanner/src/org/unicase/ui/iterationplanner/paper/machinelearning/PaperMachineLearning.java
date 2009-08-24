@@ -9,7 +9,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.ui.iterationplanner.util;
+package org.unicase.ui.iterationplanner.paper.machinelearning;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -17,7 +17,6 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.ui.iterationplanner.provider.Classification;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
