@@ -152,7 +152,7 @@ public class Classification {
 			input = new MTJDenseDoubleMatrix2D(input).princomp();
 		}
 
-		input.showGUI();
+		//input.showGUI();
 
 		// delete columns with variance < MINVARIANCE
 		if (PRUNEMATRIX) {
@@ -178,7 +178,7 @@ public class Classification {
 		// test classifier on the whole data set
 		classifier.train(ds);
 		classifier.predict(ds);
-		ds.showGUI();
+		//ds.showGUI();
 
 		// // 10 times 10 fold cross-validation
 		CrossValidation.run(classifier, ds, CVFOLDS, CVRUNS, SEED);
