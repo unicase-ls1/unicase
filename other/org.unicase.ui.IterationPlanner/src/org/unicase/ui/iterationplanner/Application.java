@@ -7,7 +7,7 @@ package org.unicase.ui.iterationplanner;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.unicase.ui.iterationplanner.util.PaperMachineLearning;
+import org.unicase.ui.iterationplanner.paper.machinelearning.PaperMachineLearning;
 
 /**
  * @author Hodaie
