@@ -33,6 +33,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.ProjectSpace;
 
 /**
  * A View displaying the model changes in a single ChangePackage.
@@ -69,11 +70,11 @@ public class StructuralView extends ViewPart implements ISelectionListener {
 
 			public void doubleClick(DoubleClickEvent event) {
 				if (event.getSelection() instanceof IStructuredSelection) {
-					TreeNode node = (TreeNode) ((IStructuredSelection) event
+					Object firstElement = ((IStructuredSelection) event
 							.getSelection()).getFirstElement();
-					if (node.getValue() instanceof ModelElement) {
-						ActionHelper.openModelElement((ModelElement) node
-								.getValue(), ID);
+					if (firstElement instanceof ModelElement) {
+						ActionHelper.openModelElement(
+								(ModelElement) firstElement, ID);
 					}
 				}
 
@@ -88,11 +89,11 @@ public class StructuralView extends ViewPart implements ISelectionListener {
 	/**
 	 * Sets the input.
 	 * 
-	 * @param project
-	 *            the project
+	 * @param projectSpace
+	 *            the project space
 	 */
-	public void setInput(Project project) {
-		this.project = project;
+	public void setInput(ProjectSpace projectSpace) {
+		project = projectSpace.getProject();
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 				new ComposedAdapterFactory(
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
@@ -103,7 +104,7 @@ public class StructuralView extends ViewPart implements ISelectionListener {
 				.getSelectionService().addSelectionListener(this);
 		viewer.setContentProvider(adapterFactoryContentProvider);
 		viewer.setLabelProvider(adapterFactoryLabelProvider);
-		viewer.setInput(project);
+		viewer.setInput(projectSpace);
 		viewer.refresh();
 	}
 
@@ -115,6 +116,7 @@ public class StructuralView extends ViewPart implements ISelectionListener {
 		viewer.getControl().setFocus();
 	}
 
+	// BEGIN COMPLEX CODE
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
@@ -144,6 +146,8 @@ public class StructuralView extends ViewPart implements ISelectionListener {
 			}
 		}
 	}
+
+	// END COMPLEX CODE
 
 	private void revealME(ModelElement me) {
 
