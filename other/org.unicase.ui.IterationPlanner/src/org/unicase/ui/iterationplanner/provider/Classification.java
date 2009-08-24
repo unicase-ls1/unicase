@@ -64,6 +64,12 @@ public class Classification {
 
 	public static final String[] ENGLISH_STOP_WORDS = ENGLISH_STOP_WORDS2;
 
+	private static final long NAME_INDEX = 0;
+	private static final long DESCRIPTION_INDEX = 1;
+	private static final long ANNOTATED_MES_INDEX = 2;
+	private static final long ASSIGNEE_INDEX = 5;
+
+	
 	public Classification(Matrix m) {
 		this.m = m;
 	}
@@ -71,7 +77,7 @@ public class Classification {
 	public void printStats(Matrix m) throws Exception {
 		// some stats
 		System.out.println(m.getRowCount() + " records");
-		Matrix assignees = m.selectColumns(Ret.LINK, 6).unique(Ret.NEW);
+		Matrix assignees = m.selectColumns(Ret.LINK, 5).unique(Ret.NEW);
 		System.out.println(assignees.getRowCount() + " different assignees:");
 		System.out.println(assignees.sort(Ret.NEW));
 	}
@@ -83,7 +89,7 @@ public class Classification {
 		// delete all records with unknown assignee
 		List<Long> rowsToDelete = new ArrayList<Long>();
 		for (long row = 0; row < m.getRowCount(); row++) {
-			String assignee = m.getAsString(row, 6);
+			String assignee = m.getAsString(row, ASSIGNEE_INDEX);
 			if (assignee == null || assignee.length() == 0) {
 				rowsToDelete.add(row);
 			}
@@ -105,7 +111,7 @@ public class Classification {
 		m = m.removeWords(Ret.NEW, Arrays.asList(ENGLISH_STOP_WORDS));
 
 		// create features for assignee
-		Matrix assignee = m.selectColumns(Ret.LINK, 6).tfIdf(false, false, false);
+		Matrix assignee = m.selectColumns(Ret.LINK, ASSIGNEE_INDEX).tfIdf(false, false, false);
 		assignee.setLabel("assignee");
 
 		// use PorterStemmer on the data
@@ -117,15 +123,15 @@ public class Classification {
 		System.out.println("creating features...");
 
 		// create features for name
-		Matrix name = m.selectColumns(Ret.LINK, 1).tfIdf(CALCULATETF, CALCULATEIDF, false);
+		Matrix name = m.selectColumns(Ret.LINK, NAME_INDEX).tfIdf(CALCULATETF, CALCULATEIDF, false);
 		name.setLabel("name");
 
 		// create features for description
-		Matrix description = m.selectColumns(Ret.LINK, 2).tfIdf(CALCULATETF, CALCULATEIDF, false);
+		Matrix description = m.selectColumns(Ret.LINK, DESCRIPTION_INDEX).tfIdf(CALCULATETF, CALCULATEIDF, false);
 		description.setLabel("description");
 
 		// create features for annotated
-		Matrix annotated = m.selectColumns(Ret.LINK, 3).tfIdf(CALCULATETF, CALCULATEIDF, false);
+		Matrix annotated = m.selectColumns(Ret.LINK, ANNOTATED_MES_INDEX).tfIdf(CALCULATETF, CALCULATEIDF, false);
 		annotated.setLabel("annotated");
 
 		// create feature vector for training

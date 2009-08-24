@@ -5,15 +5,9 @@
  */
 package org.unicase.ui.iterationplanner;
 
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.unicase.model.ModelPackage;
-import org.unicase.model.task.TaskPackage;
-import org.unicase.ui.iterationplanner.util.PaperImperative;
-
-import java.util.ArrayList;
-import java.util.List;
+import org.unicase.ui.iterationplanner.util.PaperMachineLearning;
 
 /**
  * @author Hodaie
@@ -28,22 +22,13 @@ public class Application implements IApplication {
 	 */
 	public Object start(IApplicationContext context) throws Exception {
 
-		// new PaperMachineLearning().start();
-		new PaperImperative().start();
+		new PaperMachineLearning().start();
+		//new PaperImperative().start();
 		return null;
 
 	}
 
-	private List<EStructuralFeature> getOutputFeatures() {
-		List<EStructuralFeature> result = new ArrayList<EStructuralFeature>();
-		result.add(ModelPackage.eINSTANCE.getModelElement_Name());
-		result.add(ModelPackage.eINSTANCE.getModelElement_Description());
-		result.add(ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements());
-		result.add(TaskPackage.eINSTANCE.getWorkItem_Predecessors());
-		result.add(TaskPackage.eINSTANCE.getWorkItem_Successors());
-		result.add(TaskPackage.eINSTANCE.getWorkItem_Assignee());
-		return result;
-	}
+	
 
 	/**
 	 * {@inheritDoc}
