@@ -129,6 +129,7 @@ public class Classification {
 			input = new MTJDenseDoubleMatrix2D(input).princomp();
 		}
 
+		input.showGUI();
 
 		// delete columns with variance < MINVARIANCE
 		if (PRUNEMATRIX) {
@@ -169,6 +170,9 @@ public class Classification {
 		System.out.println("USESVD: " + USESVD);
 		System.out.println("PRUNESVD: " + PRUNEMATRIX);
 		System.out.println("MINVARIANCE: " + MINVARIANCE);
+
+		
+		
 	}
 
 	private void doPreproccessing() {
@@ -202,4 +206,6 @@ public class Classification {
 			m = m.stem(Ret.NEW);
 		}
 	}
+	
+	
 }
