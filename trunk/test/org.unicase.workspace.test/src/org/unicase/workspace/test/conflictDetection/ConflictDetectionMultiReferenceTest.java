@@ -2322,23 +2322,24 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		getProject().addModelElement(otherDummy);
 		getProject().addModelElement(anotherDummy);
 
-		section.getModelElements().add(dummy);
+		// section.getModelElements().add(dummy);
+		section.getModelElements().add(actor);
 		section.getModelElements().add(otherDummy);
 
 		getProjectSpace().getOperations().clear();
 		ProjectSpace ps2 = cloneProjectSpace(getProjectSpace());
 		Project project2 = ps2.getProject();
 
-		Actor actor1 = (Actor) getProject().getModelElement(actor.getModelElementId());
-		// Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
+		Actor dummy1 = (Actor) getProject().getModelElement(dummy.getModelElementId());
+		Actor actor2 = (Actor) project2.getModelElement(actor.getModelElementId());
 		Actor anotherDummy2 = (Actor) project2.getModelElement(anotherDummy.getModelElementId());
 
 		LeafSection section1 = (LeafSection) getProject().getModelElement(section.getModelElementId());
 		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
-		actor1.setLeafSection(section1);
+		dummy1.setLeafSection(section1);
 		anotherDummy2.setLeafSection(section2);
-		section2.getModelElements().move(section2.getModelElements().size() - 1, anotherDummy2);
+		section2.getModelElements().move(section2.getModelElements().size() - 1, actor2);
 
 		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
