@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
+	<classpathentry exported="true" kind="lib" path="lib/arpack-combo-0.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/libsvm-2.89-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/libsvm-2.89.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netlib-java-0.9.1-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/netlib-java-0.9.1.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/weka-3.7.0-sources.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/weka-3.7.0.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/liblinear-1.33-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/liblinear-1.33.jar" sourcepath="lib/liblinear-1.33-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/mtj-0.9.12-sources.jar"/>
