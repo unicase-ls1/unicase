@@ -13,7 +13,7 @@
 	<classpathentry exported="true" kind="lib" path="lib/jdmp-weka-0.1.2-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/jdmp-weka-0.1.2.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ujmp-core-0.2.4-sources.jar"/>
-	<classpathentry exported="true" kind="lib" path="lib/ujmp-core-0.2.4.jar"/>
+	<classpathentry exported="true" kind="lib" path="lib/ujmp-core-0.2.4.jar" sourcepath="lib/ujmp-core-0.2.4-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ujmp-gui-0.2.4-sources.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ujmp-gui-0.2.4.jar"/>
 	<classpathentry exported="true" kind="lib" path="lib/ujmp-mtj-0.2.4-sources.jar"/>

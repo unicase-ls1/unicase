@@ -23,11 +23,11 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 		this.features = outputFeatures;
 	}
 
-	public void setOutputFeatures(List<EStructuralFeature> outputFeatures) {
-		this.features = outputFeatures;
+	public void setFeatures(List<EStructuralFeature> features) {
+		this.features = features;
 	}
 
-	public List<EStructuralFeature> getOutputFeatures() {
+	public List<EStructuralFeature> getFeatures() {
 		return features;
 	}
 
