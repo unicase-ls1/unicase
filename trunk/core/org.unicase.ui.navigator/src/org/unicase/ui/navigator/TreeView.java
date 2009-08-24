@@ -15,10 +15,12 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.DecoratingLabelProvider;
+import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.TreeNode;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
@@ -33,12 +35,16 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.IPartListener2;
+import org.eclipse.ui.ISelectionListener;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchPartReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.dnd.UCDragAdapter;
@@ -51,6 +57,7 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 import org.unicase.workspace.observers.SimpleOperationListener;
+import org.unicase.workspace.util.ProjectSpaceContainer;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -58,7 +65,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  * 
  * @author helming
  */
-public class TreeView extends ViewPart implements ProjectChangeObserver { // implements
+public class TreeView extends ViewPart implements ProjectChangeObserver, ISelectionListener { // implements
 	// IShowInSource
 
 	private static TreeViewer viewer;
@@ -135,6 +142,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	 */
 	@Override
 	public void dispose() {
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().removeSelectionListener(this);
 		getSite().getPage().removePartListener(partListener);
 		for (ProjectSpace projectSpace : currentWorkspace.getProjectSpaces()) {
 			projectSpace.getProject().removeProjectChangeObserver(this);
@@ -154,6 +162,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 			.getLabelDecorator()));
 		viewer.setContentProvider(new TreeContentProvider());
 		viewer.setInput(currentWorkspace);
+		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService().addSelectionListener(this);
 
 		// this is for workaround for update problem in navigator
 		getSite().setSelectionProvider(viewer);
@@ -541,6 +550,66 @@ public class TreeView extends ViewPart implements ProjectChangeObserver { // imp
 	 * {@inheritDoc}
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.ISelectionListener#selectionChanged(org.eclipse.ui.IWorkbenchPart,
+	 *      org.eclipse.jface.viewers.ISelection)
+	 */
+	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
+		if (part == this) {
+			return;
+		}
+		if (part instanceof ProjectSpaceContainer) {
+			updateSelectionfromProjectSpaceContainer(selection, (ProjectSpaceContainer) part);
+		}
+	}
+
+	private void updateSelectionfromProjectSpaceContainer(ISelection selection,
+		ProjectSpaceContainer projectSpaceContainer) {
+		ProjectSpace projectSpace = projectSpaceContainer.getProjectSpace();
+		if (projectSpace == null) {
+			return;
+		}
+		Project project = projectSpace.getProject();
+		if (project == null) {
+			return;
+		}
+		Object element = extractObjectFromSelection(selection);
+		if (element == null) {
+			return;
+		}
+		if (element instanceof ModelElement) {
+			ModelElementId modelElementId = ((ModelElement) element).getModelElementId();
+			revealME(project.getModelElement(modelElementId));
+		} else if (element instanceof CompositeOperation) {
+			CompositeOperation comop = (CompositeOperation) element;
+			AbstractOperation mainOperation = comop.getMainOperation();
+			if (mainOperation != null) {
+				ModelElementId modelElementId = mainOperation.getModelElementId();
+				revealME(project.getModelElement(modelElementId));
+			}
+		} else if (element instanceof AbstractOperation) {
+			ModelElementId modelElementId = ((AbstractOperation) element).getModelElementId();
+			revealME(project.getModelElement(modelElementId));
+		}
+
+	}
+
+	private Object extractObjectFromSelection(ISelection selection) {
+		if (selection instanceof IStructuredSelection) {
+			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
+			if (structuredSelection.size() == 1) {
+				Object node = structuredSelection.getFirstElement();
+				if (node instanceof TreeNode) {
+					Object element = ((TreeNode) node).getValue();
+					return element;
+				}
+			}
+		}
+		return null;
 	}
 
 }
