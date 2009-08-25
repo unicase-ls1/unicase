@@ -305,7 +305,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 				int i = index;
 				for (ModelElement m : referencedModelElements) {
 
-					if (index < list.size()) {
+					if (i < list.size()) {
 						if (list.contains(m)) {
 							list.move(i, m);
 						} else {
