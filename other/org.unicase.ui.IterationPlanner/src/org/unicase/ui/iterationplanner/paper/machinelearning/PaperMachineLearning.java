@@ -22,22 +22,39 @@ import org.ujmp.core.enums.FileFormat;
 import org.ujmp.core.exceptions.MatrixException;
 import org.unicase.analyzer.AnalyzerModelController;
 import org.unicase.analyzer.DataAnalyzer;
+import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.VersionIterator;
+import org.unicase.analyzer.iterator.VersionSpecQuery;
+import org.unicase.analyzer.iterator.impl.VersionSpecQueryImpl;
+import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.ui.iterationplanner.Activator;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.test.SetupHelper;
+import org.unicase.workspace.test.TestProjectEnum;
 
 /**
  * @author Hodaie
  */
 public class PaperMachineLearning {
+
+	private Classification classification;
+
+
+
+
 
 	public void start() {
 
@@ -46,22 +63,30 @@ public class PaperMachineLearning {
 		Project project = projectSpace.getProject();
 		
 				
-		List<ModelElement> workItems = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
-			new BasicEList<ModelElement>());
+		List<ModelElement> workItems = new ArrayList<ModelElement>();
 		List<EStructuralFeature> features = getOutputFeatures();
 		
 		ModelElementMatrix m = new ModelElementMatrix(workItems, features);
 
-		Classification classification = new Classification(m);
+		classification = new Classification();
+//		try {
+//			classification.run();
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+		
 		try {
-			classification.run();
-		} catch (Exception e) {
+			analyzeTriageAccuracy(m);
+		} catch (EmfStoreException e) {
+			e.printStackTrace();
+		} catch (IteratorException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
 			e.printStackTrace();
 		}
-
 	}
 
-	public void analyzeTriageAccuracy(){
+	public void analyzeTriageAccuracy(ModelElementMatrix m) throws EmfStoreException, IteratorException, IOException{
 		//create a analyzer and let it go through revisions
 		//listen to notifications about work items
 		//on notifications regarding work items
@@ -72,24 +97,37 @@ public class PaperMachineLearning {
 	 	// or 					 [number of work items, accuracy] ??    
 		
 		
+
 		
-//		/**
-//		 * I need the local server
-//		 * 
-//		 */
-		
-		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0);
+		SetupHelper setupHelper = new SetupHelper(TestProjectEnum.NONE);
+		setupHelper.loginServer();
+		Usersession userSession = setupHelper.getUsersession();
+		ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
+
+
+		List<ProjectInfo> projectList = connectionManager.getProjectList(userSession.getSessionId());
+		ProjectInfo projectInfo = projectList.get(0);
 		
 		int stepLength = 1;
 		VersionIterator projectIt = IteratorFactory.eINSTANCE.createVersionIterator();
 		CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
-		exporter.init("Exports/export_test.dat",true);
-		projectIt.setProjectId(projectSpace.getProjectId());
+		exporter.init(Activator.getDefault().getBundle().getLocation().replace("reference:file:", "") + "/Exports/export_test.dat",true);
+		projectIt.setProjectId(projectInfo.getProjectId());
 		projectIt.setStepLength(stepLength);
+		
+		VersionSpecQuery versionSpecQuery = IteratorFactory.eINSTANCE.createVersionSpecQuery();
+		PrimaryVersionSpec startVersion = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		startVersion.setIdentifier(1000);
+		PrimaryVersionSpec endVersion = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		endVersion.setIdentifier(2000);
+		versionSpecQuery.setStartVersion(startVersion);
+		versionSpecQuery.setEndVersion(endVersion);
+	
+		projectIt.setVersionSpecQuery(versionSpecQuery);
 		projectIt.setDefault(true);
-		projectIt.init(super.getUserSession());
+		projectIt.init(userSession);
 		ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
-		analyzers.add(new TriageAccuracyAnalyzer());
+		analyzers.add(new TriageAccuracyAnalyzer(classification, m));
 		@SuppressWarnings("unused")
 		AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);					
 

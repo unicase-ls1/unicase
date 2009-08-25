@@ -1,21 +1,20 @@
 package org.unicase.ui.iterationplanner.paper.machinelearning;
 
-import no.uib.cipr.matrix.SVD;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
-import org.eclipse.gmf.runtime.diagram.ui.commands.SetViewMutabilityCommand;
 import org.jdmp.core.algorithm.classification.Classifier;
 import org.jdmp.core.dataset.ClassificationDataSet;
 import org.jdmp.core.dataset.CrossValidation;
 import org.jdmp.core.dataset.DataSetFactory;
+import org.jdmp.core.sample.Sample;
+import org.jdmp.core.variable.Variable;
 import org.jdmp.liblinear.LibLinearClassifier;
 import org.ujmp.core.Matrix;
 import org.ujmp.core.MatrixFactory;
 import org.ujmp.core.calculation.Calculation.Ret;
 import org.ujmp.mtj.MTJDenseDoubleMatrix2D;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 public class Classification {
 
@@ -49,21 +48,30 @@ public class Classification {
 
 	public static final long SEED = System.currentTimeMillis();
 
-	public static final String[] ENGLISH_STOP_WORDS1 = { "a", "an", "and", "are", "as", "at", "be", "but", "by", "for",
-		"if", "in", "into", "is", "it", "no", "not", "of", "on", "or", "such", "that", "the", "their", "then", "there",
-		"these", "they", "this", "to", "was", "will", "with" };
+	public static final String[] ENGLISH_STOP_WORDS1 = { "a", "an", "and",
+			"are", "as", "at", "be", "but", "by", "for", "if", "in", "into",
+			"is", "it", "no", "not", "of", "on", "or", "such", "that", "the",
+			"their", "then", "there", "these", "they", "this", "to", "was",
+			"will", "with" };
 
-	public static final String[] ENGLISH_STOP_WORDS2 = { "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "000", "$",
-		"about", "after", "all", "also", "an", "and", "another", "any", "are", "as", "at", "be", "because", "been",
-		"before", "being", "between", "both", "but", "by", "came", "can", "come", "could", "did", "do", "does", "each",
-		"else", "for", "from", "get", "got", "has", "had", "he", "have", "her", "here", "him", "himself", "his", "how",
-		"if", "in", "into", "is", "it", "its", "just", "like", "make", "many", "me", "might", "more", "most", "much",
-		"must", "my", "never", "now", "of", "on", "only", "or", "other", "our", "out", "over", "re", "said", "same",
-		"see", "should", "since", "so", "some", "still", "such", "take", "than", "that", "the", "their", "them",
-		"then", "there", "these", "they", "this", "those", "through", "to", "too", "under", "up", "use", "very",
-		"want", "was", "way", "we", "well", "were", "what", "when", "where", "which", "while", "who", "will", "with",
-		"would", "you", "your", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q",
-		"r", "s", "t", "u", "v", "w", "x", "y", "z" };
+	public static final String[] ENGLISH_STOP_WORDS2 = { "0", "1", "2", "3",
+			"4", "5", "6", "7", "8", "9", "000", "$", "about", "after", "all",
+			"also", "an", "and", "another", "any", "are", "as", "at", "be",
+			"because", "been", "before", "being", "between", "both", "but",
+			"by", "came", "can", "come", "could", "did", "do", "does", "each",
+			"else", "for", "from", "get", "got", "has", "had", "he", "have",
+			"her", "here", "him", "himself", "his", "how", "if", "in", "into",
+			"is", "it", "its", "just", "like", "make", "many", "me", "might",
+			"more", "most", "much", "must", "my", "never", "now", "of", "on",
+			"only", "or", "other", "our", "out", "over", "re", "said", "same",
+			"see", "should", "since", "so", "some", "still", "such", "take",
+			"than", "that", "the", "their", "them", "then", "there", "these",
+			"they", "this", "those", "through", "to", "too", "under", "up",
+			"use", "very", "want", "was", "way", "we", "well", "were", "what",
+			"when", "where", "which", "while", "who", "will", "with", "would",
+			"you", "your", "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
+			"k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w",
+			"x", "y", "z" };
 
 	public static final String[] ENGLISH_STOP_WORDS = ENGLISH_STOP_WORDS2;
 
@@ -72,10 +80,9 @@ public class Classification {
 	private static final long ANNOTATED_MES_INDEX = 2;
 	private static final long ASSIGNEE_INDEX = 5;
 
-	
-	public Classification(Matrix m) {
-		this.m = m;
-	}
+	private ClassificationDataSet ds;
+
+	private Classifier classifier;
 
 	public void printStats(Matrix m) throws Exception {
 		// some stats
@@ -85,30 +92,31 @@ public class Classification {
 		System.out.println(assignees.sort(Ret.NEW));
 	}
 
-	public void run() throws Exception {
-
+	public void init(Matrix m) throws Exception {
+		this.m = m;
 		System.out.println("preprocessing data...");
 		doPreproccessing();
-		
-		
-		// create features for assignee
-		Matrix assignee = m.selectColumns(Ret.LINK, ASSIGNEE_INDEX).tfIdf(false, false, false);
-		assignee.setLabel("assignee");
 
-		
+		// create features for assignee
+		Matrix assignee = m.selectColumns(Ret.LINK, ASSIGNEE_INDEX).tfIdf(
+				false, false, false);
+		assignee.setLabel("assignee");
 
 		System.out.println("creating features...");
 
 		// create features for name
-		Matrix name = m.selectColumns(Ret.LINK, NAME_INDEX).tfIdf(CALCULATETF, CALCULATEIDF, false);
+		Matrix name = m.selectColumns(Ret.LINK, NAME_INDEX).tfIdf(CALCULATETF,
+				CALCULATEIDF, false);
 		name.setLabel("name");
 
 		// create features for description
-		Matrix description = m.selectColumns(Ret.LINK, DESCRIPTION_INDEX).tfIdf(CALCULATETF, CALCULATEIDF, false);
+		Matrix description = m.selectColumns(Ret.LINK, DESCRIPTION_INDEX)
+				.tfIdf(CALCULATETF, CALCULATEIDF, false);
 		description.setLabel("description");
 
 		// create features for annotated
-		Matrix annotated = m.selectColumns(Ret.LINK, ANNOTATED_MES_INDEX).tfIdf(CALCULATETF, CALCULATEIDF, false);
+		Matrix annotated = m.selectColumns(Ret.LINK, ANNOTATED_MES_INDEX)
+				.tfIdf(CALCULATETF, CALCULATEIDF, false);
 		annotated.setLabel("annotated");
 
 		// create feature vector for training
@@ -129,8 +137,6 @@ public class Classification {
 			input = new MTJDenseDoubleMatrix2D(input).princomp();
 		}
 
-		input.showGUI();
-
 		// delete columns with variance < MINVARIANCE
 		if (PRUNEMATRIX) {
 			List<Long> columnsToDelete = new ArrayList<Long>();
@@ -145,36 +151,33 @@ public class Classification {
 
 		System.out.println("building dataset...");
 
-		// create the dataset
-		ClassificationDataSet ds = DataSetFactory.importFromMatrix(input, assignee);
+		ds = DataSetFactory.importFromMatrix(input, assignee);
 
-		System.out.println("training classifier...");
+		classifier = new LibLinearClassifier();
 
-		Classifier classifier = new LibLinearClassifier();
-
-		// test classifier on the whole data set
-		classifier.train(ds);
-		classifier.predict(ds);
-		ds.showGUI();
-
-		// // 10 times 10 fold cross-validation
-		CrossValidation.run(classifier, ds, CVFOLDS, CVRUNS, SEED);
-		System.out.println("SEED: " + SEED);
-		System.out.println("CVFOLDS: " + CVFOLDS);
-		System.out.println("CVRUNS: " + CVRUNS);
-		System.out.println("FILENAME: " + FILENAME);
-		System.out.println("USENAME: " + USENAME);
-		System.out.println("USEDESCRIPTION: " + USEDESCRIPTION);
-		System.out.println("USEANNOTATED: " + USEANNOTATED);
-		System.out.println("USESTEMMING: " + USESTEMMING);
-		System.out.println("USESVD: " + USESVD);
-		System.out.println("PRUNESVD: " + PRUNEMATRIX);
-		System.out.println("MINVARIANCE: " + MINVARIANCE);
-
-		
-		
 	}
 
+	public String predictAssignee() throws Exception {
+
+		String idOfLastSample = ""; // = ?????;
+		Sample lastWorkItem = ds.getSamples().get(idOfLastSample );
+		ds.getSamples().remove(lastWorkItem);
+
+		System.out.println("training classifier...");
+		// test classifier on the whole data set
+		classifier.train(ds);
+
+		classifier.predict(lastWorkItem);
+		//???????
+		lastWorkItem.getMatrix(Variable.PREDICTED);
+
+		String assigneeName = ""; //????
+		return assigneeName;
+	}
+
+	/**s
+	 * 
+	 */
 	private void doPreproccessing() {
 		// delete all records with unknown assignee
 		List<Long> rowsToDelete = new ArrayList<Long>();
@@ -206,6 +209,22 @@ public class Classification {
 			m = m.stem(Ret.NEW);
 		}
 	}
-	
-	
+
+	public void doCrossValidation() throws Exception {
+		// 10 times 10 fold cross-validation
+		CrossValidation.run(classifier, ds, CVFOLDS, CVRUNS, SEED);
+		System.out.println("SEED: " + SEED);
+		System.out.println("CVFOLDS: " + CVFOLDS);
+		System.out.println("CVRUNS: " + CVRUNS);
+		System.out.println("FILENAME: " + FILENAME);
+		System.out.println("USENAME: " + USENAME);
+		System.out.println("USEDESCRIPTION: " + USEDESCRIPTION);
+		System.out.println("USEANNOTATED: " + USEANNOTATED);
+		System.out.println("USESTEMMING: " + USESTEMMING);
+		System.out.println("USESVD: " + USESVD);
+		System.out.println("PRUNESVD: " + PRUNEMATRIX);
+		System.out.println("MINVARIANCE: " + MINVARIANCE);
+
+	}
+
 }

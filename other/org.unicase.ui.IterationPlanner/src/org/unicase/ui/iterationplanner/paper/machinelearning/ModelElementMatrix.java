@@ -136,4 +136,15 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 
 	}
 
+	public void addModelElement(ModelElement me) {
+	
+		this.modelElements.add(me);
+		
+	}
+
+	public List<ModelElement> getModelElements() {
+		
+		return modelElements;
+	}
+
 }

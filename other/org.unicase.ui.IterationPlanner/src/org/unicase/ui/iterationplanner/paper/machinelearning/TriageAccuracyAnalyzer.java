@@ -1,28 +1,143 @@
 package org.unicase.ui.iterationplanner.paper.machinelearning;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
-import org.unicase.analyzer.AnalyzerModelController;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
-import org.unicase.analyzer.exporters.CSVExporter;
-import org.unicase.analyzer.exporters.ExportersFactory;
-import org.unicase.analyzer.iterator.IteratorFactory;
-import org.unicase.analyzer.iterator.VersionIterator;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
+import org.unicase.model.ModelElement;
+import org.unicase.model.Project;
+import org.unicase.model.bug.BugReport;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 
 public class TriageAccuracyAnalyzer implements DataAnalyzer {
 
-	
-	
-		
-	
+	private int totalPrecictions = 0;
+	private int correctPredictions = 0;
+
+	private Classification classification;
+	private ModelElementMatrix meMatrix;
+
+	private Project clonedProject;
+
+	public TriageAccuracyAnalyzer(Classification classification,
+			ModelElementMatrix m) {
+		this.classification = classification;
+		this.meMatrix = m;
+
+	}
+
 	public List<String> getName() {
-		return null;
+		List<String> list = new ArrayList<String>();
+		list.add("TriageAccuracy");
+		return list;
 	}
 
 	public List<Object> getValue(ProjectAnalysisData data) {
+		List<Object> value = new ArrayList<Object>();
+		// find assignee operations
+		// first step? just fetch the data.
+		if (clonedProject == null) {
+			clonedProject = (Project) EcoreUtil.copy(data.getProjectState());
+			return value;
+		}
+
+		EList<ChangePackage> changePackages = data.getChangePackages();
+		List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
+
+		// Check each change.
+		for (ChangePackage changePackage : changePackages) {
+			operations.addAll(changePackage.getOperations());
+		}
+
+		for (AbstractOperation operation : operations) {
+			// The modelElement this is all about
+			ModelElement me = clonedProject.getModelElement(operation
+					.getModelElementId());
+			// Load the reference.
+			if (!(me instanceof ActionItem || me instanceof BugReport || me instanceof Issue)) {
+				continue;
+			}
+
+			EReference eReference = getReference(operation, me);
+			if (!TaskPackage.eINSTANCE.getWorkItem_Assignee()
+					.equals(eReference)) {
+				continue;
+			}
+
+			// predict assignee
+			predictAssigneee((WorkItem) me);
+			
+			// redraw the changes in the project
+			if (operation.canApply(clonedProject)) {
+				operation.apply(clonedProject);
+			} else  {
+				System.out.println("Can't apply: " + operation.getName());
+			}
+		}
+
+		// compute accuracy
+		double accuracy = (correctPredictions / (double) totalPrecictions);
+		value.add(accuracy);
+		return value;
+	}
+
+	private EReference getReference(AbstractOperation operation, ModelElement me) {
+		if (me == null || operation == null) {
+			return null;
+		}
+
+		if (operation instanceof ReferenceOperation) {
+			String featureName = ((ReferenceOperation) operation)
+					.getFeatureName();
+			if (featureName == null) {
+				return null;
+			}
+
+			for (EReference ref : me.eClass().getEAllReferences()) {
+				String name = ref.getName();
+
+				if (name != null && name.equals(featureName)) {
+					return ref;
+				}
+			}
+		}
+
 		return null;
+	}
+
+	private void predictAssigneee(WorkItem wi) {
+		totalPrecictions++;
+		meMatrix.addModelElement(wi);
+		if(meMatrix.getModelElements().size() == 1){
+			return;
+		}
+		try {
+			classification.init(meMatrix);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		String suggestedAssignee = null;
+		try {
+			suggestedAssignee = classification.predictAssignee();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		if (suggestedAssignee != null
+				&& suggestedAssignee.equals(wi.getAssignee())) {
+			correctPredictions++;
+		}
+
 	}
 
 	public boolean isExportOnce() {
