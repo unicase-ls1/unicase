@@ -251,7 +251,7 @@ public class HistoryBrowserView extends ViewPart implements
 		IActionBars bars = getViewSite().getActionBars();
 		IToolBarManager menuManager = bars.getToolBarManager();
 
-		addExpandAllAndCollapseAllActions(menuManager);
+		addExpandAllAndCollapseAllAction(menuManager);
 
 		addRefreshAction(menuManager);
 
@@ -267,29 +267,29 @@ public class HistoryBrowserView extends ViewPart implements
 
 	}
 
-	private void addExpandAllAndCollapseAllActions(IToolBarManager menuManager) {
-		Action expand = new Action() {
+	private void addExpandAllAndCollapseAllAction(IToolBarManager menuManager) {
+		final ImageDescriptor expandImg = Activator
+				.getImageDescriptor("icons/expandall.gif");
+		final ImageDescriptor collapseImg = Activator
+				.getImageDescriptor("icons/collapseall.gif");
+
+		Action expandAndCollapse = new Action("", SWT.TOGGLE) {
 			@Override
 			public void run() {
-				viewer.expandToLevel(2);
+				if (!isChecked()) {
+					setImageDescriptor(expandImg);
+					viewer.collapseAll();
+				} else {
+					setImageDescriptor(collapseImg);
+					viewer.expandToLevel(2);
+				}
 			}
 
 		};
-
-		expand.setImageDescriptor(Activator
-				.getImageDescriptor("icons/expandall.gif"));
-		menuManager.add(expand);
-
-		Action collapse = new Action() {
-			@Override
-			public void run() {
-				viewer.collapseAll();
-			}
-
-		};
-		collapse.setImageDescriptor(Activator
-				.getImageDescriptor("icons/collapseall.gif"));
-		menuManager.add(collapse);
+		expandAndCollapse.setImageDescriptor(expandImg);
+		expandAndCollapse
+				.setToolTipText("Use this toggle to expand or collapse all elements");
+		menuManager.add(expandAndCollapse);
 	}
 
 	private void addRefreshAction(IToolBarManager menuManager) {

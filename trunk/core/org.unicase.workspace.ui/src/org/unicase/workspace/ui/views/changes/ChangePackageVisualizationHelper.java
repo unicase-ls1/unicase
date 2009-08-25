@@ -248,6 +248,9 @@ public class ChangePackageVisualizationHelper {
 		Set<EObject> set = new HashSet<EObject>();
 		Set<ModelElementId> tempSet = this.touchedModelElements
 				.get(changePackage);
+		if (tempSet == null) {
+			return set;
+		}
 		for (ModelElementId id : tempSet) {
 			ModelElement modelElement = getModelElement(id);
 			if (modelElement != null) {
