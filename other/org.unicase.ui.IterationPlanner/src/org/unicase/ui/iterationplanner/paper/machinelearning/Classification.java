@@ -9,6 +9,7 @@ import org.jdmp.core.dataset.ClassificationDataSet;
 import org.jdmp.core.dataset.CrossValidation;
 import org.jdmp.core.dataset.DataSetFactory;
 import org.jdmp.core.sample.Sample;
+import org.jdmp.core.sample.SampleFactory;
 import org.jdmp.core.variable.Variable;
 import org.jdmp.liblinear.LibLinearClassifier;
 import org.ujmp.core.Matrix;
@@ -84,6 +85,10 @@ public class Classification {
 
 	private Classifier classifier;
 
+	private Matrix input;
+
+	private Matrix assignee;
+
 	public void printStats(Matrix m) throws Exception {
 		// some stats
 		System.out.println(m.getRowCount() + " records");
@@ -97,8 +102,7 @@ public class Classification {
 		System.out.println("preprocessing data...");
 		doPreproccessing();
 
-		// create features for assignee
-		Matrix assignee = m.selectColumns(Ret.LINK, ASSIGNEE_INDEX).tfIdf(
+		assignee = m.selectColumns(Ret.LINK, ASSIGNEE_INDEX).tfIdf(
 				false, false, false);
 		assignee.setLabel("assignee");
 
@@ -119,8 +123,7 @@ public class Classification {
 				.tfIdf(CALCULATETF, CALCULATEIDF, false);
 		annotated.setLabel("annotated");
 
-		// create feature vector for training
-		Matrix input = MatrixFactory.sparse(name.getRowCount(), 0);
+		input = MatrixFactory.sparse(name.getRowCount(), 0);
 		if (USENAME) {
 			input = input.appendHorizontally(name);
 		}
@@ -157,25 +160,54 @@ public class Classification {
 
 	}
 
-	public String predictAssignee() throws Exception {
+	
 
-		String idOfLastSample = ""; // = ?????;
-		Sample lastWorkItem = ds.getSamples().get(idOfLastSample );
-		ds.getSamples().remove(lastWorkItem);
+	public String predictAssignee()
+			throws Exception {
+		Matrix predictionMatrix = input.selectRows(Ret.NEW,
+				input.getRowCount() - 1);
+		Matrix trainingMatrix = input.deleteRows(Ret.NEW,
+				input.getRowCount() - 1);
 
-		System.out.println("training classifier...");
-		// test classifier on the whole data set
+		Matrix predictionLabels = assignee.deleteRows(Ret.NEW, assignee
+				.getRowCount() - 1);
+		
+	
+
+		ds = DataSetFactory.importFromMatrix(trainingMatrix, predictionLabels);
+
 		classifier.train(ds);
 
-		classifier.predict(lastWorkItem);
-		//???????
-		lastWorkItem.getMatrix(Variable.PREDICTED);
+		Sample s = SampleFactory.emptySample();
+		s.setMatrix(Variable.INPUT, predictionMatrix);
 
-		String assigneeName = ""; //????
+		classifier.predict(s);
+
+		Matrix result = s.getMatrix(Variable.PREDICTED);
+
+		
+
+		List<String> developers = new ArrayList<String>();
+		for (int r = 0; r < m.getRowCount(); r++) {
+			String developer = m.getAsString(r, ASSIGNEE_INDEX);
+			if (!developers.contains(developer)) {
+				developers.add(developer);
+			}
+		}
+
+		int predictedIndex = result.indexOfMax(Ret.NEW, Matrix.COLUMN)
+				.intValue();
+
+		String assigneeName = "";
+		if(developers.size() > 0){
+			assigneeName= developers.get(predictedIndex);
+		}
 		return assigneeName;
+	
 	}
 
-	/**s
+	/**
+	 * s
 	 * 
 	 */
 	private void doPreproccessing() {
@@ -190,9 +222,6 @@ public class Classification {
 
 		// delete
 		m = m.deleteRows(Ret.NEW, rowsToDelete);
-
-		// some stats
-		// printStats(m);
 
 		// filter out unwanted characters
 		m = m.removePunctuation(Ret.NEW);
