@@ -7,18 +7,16 @@ package org.unicase.mergetest;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
@@ -86,7 +84,12 @@ public class MergeWizardPage extends WizardPage {
 		for (AbstractOperation ao : hashMap.keySet()) {
 			if (ao instanceof AttributeOperation) {
 				// ao.get
-				AbstractOperation opposite = hashMap.get(ao).iterator().next();
+				Iterator<AbstractOperation> iterator = hashMap.get(ao).iterator();
+				
+				if(!iterator.hasNext())
+					continue;
+				
+				AbstractOperation opposite = iterator.next();
 
 				createMergeDecision(composite, project.getModelElement(
 						ao.getModelElementId()).getName(),

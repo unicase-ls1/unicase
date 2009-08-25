@@ -6,7 +6,6 @@
 package org.unicase.mergetest;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.jface.wizard.Wizard;
