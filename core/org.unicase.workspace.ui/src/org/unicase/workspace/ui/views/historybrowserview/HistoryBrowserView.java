@@ -8,8 +8,10 @@ package org.unicase.workspace.ui.views.historybrowserview;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -55,6 +57,7 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -632,6 +635,17 @@ public class HistoryBrowserView extends ViewPart implements
 					.createHistoryInfo();
 			ChangePackage changePackage = projectSpace
 					.getLocalChangePackage(false);
+			// filter for modelelement
+			if (modelElement != null) {
+				Set<AbstractOperation> operationsToRemove = new HashSet<AbstractOperation>();
+				for (AbstractOperation ao : changePackage.getOperations()) {
+					if (!ao.getAllInvolvedModelElements().contains(
+							modelElement.getModelElementId())) {
+						operationsToRemove.add(ao);
+					}
+				}
+				changePackage.getOperations().removeAll(operationsToRemove);
+			}
 			localHistoryInfo.setChangePackage(changePackage);
 			PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE
 					.createPrimaryVersionSpec();
