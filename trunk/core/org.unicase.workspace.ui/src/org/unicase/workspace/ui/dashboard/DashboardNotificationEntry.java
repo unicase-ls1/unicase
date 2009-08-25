@@ -258,7 +258,7 @@ public class DashboardNotificationEntry extends AbstractDashboardEntry {
 				completeLayout(true);
 			}
 
-			public void commentAdded() {
+			public void commentAdded(Comment newComment) {
 				completeLayout(true);
 			}
 

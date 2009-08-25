@@ -27,10 +27,15 @@ import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.ModelElement;
+import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.common.widgets.MECommentReplyWidget;
 import org.unicase.ui.common.widgets.MECommentWidget;
 import org.unicase.ui.common.widgets.MECommentWidgetListener;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
+import org.unicase.workspace.util.NoCurrentUserException;
+import org.unicase.workspace.util.OrgUnitHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -49,6 +54,7 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 	private Composite inputComposite;
 	private MECommentReplyWidget inputEntry;
 	private boolean toggleReply = true;
+	private User currentUser;
 
 	/**
 	 * Default constructor.
@@ -62,6 +68,14 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 	public METhreadPage(MEEditor editor, String id, String title, EditingDomain editingDomain, ModelElement modelElement) {
 		super(editor, id, title);
 		this.modelElement = modelElement;
+		try {
+			currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(modelElement));
+		} catch (NoCurrentUserException e1) {
+			return;
+		} catch (CannotMatchUserInProjectException e1) {
+			return;
+		}
+
 	}
 
 	/**
@@ -164,9 +178,9 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 	}
 
 	/**
-	 * @see org.unicase.ui.meeditor.mecontrols.commentcontrol.MECommentWidgetListener#commentAdded()
+	 * {@inheritDoc}
 	 */
-	public void commentAdded() {
+	public void commentAdded(Comment newComment) {
 		toggleReply = true;
 		createWidget();
 		commentLayoutUpdated();
@@ -186,10 +200,10 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 	 * Add a root comment input entry to the thread.
 	 */
 	public void addComment() {
-		if (!toggleReply) {
+		if (!toggleReply && currentUser == null) {
 			return;
 		}
-		inputEntry = new MECommentReplyWidget(modelElement, inputComposite);
+		inputEntry = new MECommentReplyWidget(modelElement, inputComposite, currentUser);
 		inputEntry.addCommentWidgetListener(this);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(inputEntry);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(inputComposite);

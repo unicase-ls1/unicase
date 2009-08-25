@@ -22,8 +22,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.common.Activator;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
+import org.unicase.workspace.util.NoCurrentUserException;
+import org.unicase.workspace.util.OrgUnitHelper;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Standard widget to show a comment and all its replies.
@@ -40,6 +46,14 @@ public class MECommentWidget extends Composite {
 	private Comment comment;
 	private Composite repliesComposite;
 	private Composite inputComposite;
+	private User currentUser;
+	private ImageHyperlink toggleButton;
+	private Image expandedImage;
+	private Image collapsedImage;
+	private Image nocommentsImage;
+	private Image deleteImage;
+	private ImageHyperlink deleteButton;
+	private MECommentWidget parentWidget;
 
 	/**
 	 * Default constructor.
@@ -64,6 +78,15 @@ public class MECommentWidget extends Composite {
 		replies = new ArrayList<MECommentWidget>();
 		localResources = new ArrayList<Resource>();
 		listeners = new HashSet<MECommentWidgetListener>();
+
+		try {
+			currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(comment));
+		} catch (NoCurrentUserException e1) {
+			return;
+		} catch (CannotMatchUserInProjectException e1) {
+			return;
+		}
+
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(this);
 
 		Composite commentTitleBar = new Composite(this, SWT.NONE);
@@ -74,33 +97,28 @@ public class MECommentWidget extends Composite {
 		commentTitleBar.setBackground(titlebarColor);
 
 		if (enableReplies) {
-			final ImageHyperlink toggleButton = new ImageHyperlink(commentTitleBar, SWT.TOP);
-			final Image expandedImage = Activator.getImageDescriptor("icons/expanded.png").createImage();
-			final Image collapsedImage = Activator.getImageDescriptor("icons/collapsed.png").createImage();
-			final Image nocommentsImage = Activator.getImageDescriptor("icons/nocomments.png").createImage();
+			toggleButton = new ImageHyperlink(commentTitleBar, SWT.TOP);
+			toggleButton.addMouseListener(new MouseAdapter() {
+				@Override
+				public void mouseUp(MouseEvent e) {
+					if (MECommentWidget.this.comment.getComments().isEmpty()) {
+						return;
+					}
+					toggleReplies = !toggleReplies;
+					if (toggleReplies) {
+						toggleButton.setImage(expandedImage);
+					} else {
+						toggleButton.setImage(collapsedImage);
+					}
+					reloadReplies();
+				}
+			});
+			expandedImage = Activator.getImageDescriptor("icons/expanded.png").createImage();
+			collapsedImage = Activator.getImageDescriptor("icons/collapsed.png").createImage();
+			nocommentsImage = Activator.getImageDescriptor("icons/nocomments.png").createImage();
 			localResources.add(expandedImage);
 			localResources.add(collapsedImage);
 			localResources.add(nocommentsImage);
-			if (comment.getComments().isEmpty()) {
-				toggleButton.setImage(nocommentsImage);
-			} else {
-				toggleButton.setImage(expandedImage);
-				toggleButton.addMouseListener(new MouseAdapter() {
-					@Override
-					public void mouseUp(MouseEvent e) {
-						if (MECommentWidget.this.comment.getComments().isEmpty()) {
-							return;
-						}
-						toggleReplies = !toggleReplies;
-						if (toggleReplies) {
-							toggleButton.setImage(expandedImage);
-						} else {
-							toggleButton.setImage(collapsedImage);
-						}
-						reloadReplies();
-					}
-				});
-			}
 		}
 
 		Label commentAuthor = new Label(commentTitleBar, SWT.WRAP);
@@ -145,9 +163,9 @@ public class MECommentWidget extends Composite {
 		}
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(userComment);
 
-		ImageHyperlink replyButton = new ImageHyperlink(toolbar, SWT.TOP);
-		if (comment.eContainer() != null) {
+		if (comment.eContainer() != null && currentUser != null) {
 			// only if contained in a project - i.e. not for pushed comments
+			ImageHyperlink replyButton = new ImageHyperlink(toolbar, SWT.TOP);
 			Image replyImage = Activator.getImageDescriptor("icons/commentReply.png").createImage();
 			localResources.add(replyImage);
 			replyButton.setImage(replyImage);
@@ -160,7 +178,34 @@ public class MECommentWidget extends Composite {
 					notifyListeners();
 				}
 			});
-		}else{
+
+			if (comment.getSender().equals(currentUser)) {
+				deleteButton = new ImageHyperlink(toolbar, SWT.TOP);
+				deleteImage = Activator.getImageDescriptor("icons/delete_edit.gif").createImage();
+				localResources.add(deleteImage);
+				deleteButton.addMouseListener(new MouseAdapter() {
+					@Override
+					public void mouseUp(MouseEvent e) {
+						new UnicaseCommand() {
+							@Override
+							protected void doRun() {
+								MECommentWidget.this.comment.delete();
+								MECommentWidget.this.dispose();
+								MECommentWidget parent = MECommentWidget.this.getParentWidget();
+								if (parent != null && parent.getParentWidget()!=null) {
+									parent.updateTitleBar();
+									parent.getParentWidget().reloadReplies();
+								}else if (parent != null){
+									parent.updateTitleBar();
+									parent.reloadReplies();
+								}
+							}
+						}.run();
+					}
+				});
+			}
+
+		} else {
 			commentTime.setText("");
 		}
 
@@ -171,6 +216,14 @@ public class MECommentWidget extends Composite {
 		if (!comment.getComments().isEmpty() && enableReplies) {
 			reloadReplies();
 		}
+		updateTitleBar();
+	}
+
+	/**
+	 * @return the parent widget.
+	 */
+	protected MECommentWidget getParentWidget() {
+		return parentWidget;
 	}
 
 	private void createInputEntry() {
@@ -178,10 +231,11 @@ public class MECommentWidget extends Composite {
 			return;
 		}
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(inputComposite);
-		final MECommentReplyWidget replyWidget = new MECommentReplyWidget(comment, inputComposite);
+		final MECommentReplyWidget replyWidget = new MECommentReplyWidget(comment, inputComposite, currentUser);
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(replyWidget);
 		replyWidget.addCommentWidgetListener(new MECommentWidgetListener() {
-			public void commentAdded() {
+			public void commentAdded(Comment newComment) {
+				updateTitleBar();
 				reloadReplies();
 				commentInputClosed();
 			}
@@ -201,7 +255,30 @@ public class MECommentWidget extends Composite {
 		});
 	}
 
-	private void reloadReplies() {
+	/**
+	 * Updates the titlebar buttons.
+	 */
+	protected void updateTitleBar() {
+		if (comment.getComments().isEmpty()) {
+			toggleButton.setImage(nocommentsImage);
+		} else {
+			toggleButton.setImage(expandedImage);
+		}
+		if (deleteButton != null) {
+			if (comment.getComments().isEmpty()) {
+				deleteButton.setImage(deleteImage);
+				deleteButton.setToolTipText("Delete");
+			} else {
+				deleteButton.setImage(null);
+			}
+		}
+
+	}
+
+	/**
+	 * Reloads all replies and relayouts the widget.
+	 */
+	protected void reloadReplies() {
 		if (repliesComposite != null) {
 			repliesComposite.dispose();
 		}
@@ -217,11 +294,21 @@ public class MECommentWidget extends Composite {
 			MECommentWidget reply = new MECommentWidget(c, repliesComposite);
 			GridDataFactory.fillDefaults().indent(30, 0).grab(true, false).applyTo(reply);
 			replies.add(reply);
+			reply.setParentWidget(this);
 			for (MECommentWidgetListener l : listeners) {
 				reply.addCommentWidgetListener(l);
 			}
 		}
 		notifyListeners();
+	}
+
+	/**
+	 * Sets the parent.
+	 * 
+	 * @param parentWidget the parent
+	 */
+	protected void setParentWidget(MECommentWidget parentWidget) {
+		this.parentWidget = parentWidget;
 	}
 
 	private void notifyListeners() {

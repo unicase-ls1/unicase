@@ -5,6 +5,8 @@
  */
 package org.unicase.ui.common.widgets;
 
+import org.unicase.model.rationale.Comment;
+
 /**
  * Interface for classes that should receive notifications when the comment widget has been updated.
  * 
@@ -24,7 +26,8 @@ public interface MECommentWidgetListener {
 
 	/**
 	 * Will be called when a new comment is added.
+	 * @param newComment the new comment
 	 */
-	void commentAdded();
+	void commentAdded(Comment newComment);
 
 }
