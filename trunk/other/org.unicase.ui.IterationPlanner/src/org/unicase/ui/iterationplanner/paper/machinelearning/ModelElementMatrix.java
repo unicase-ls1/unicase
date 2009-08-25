@@ -12,7 +12,6 @@ import org.unicase.model.task.WorkItem;
 
 public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 
-	
 	private static final String MANY_VALUED_ATTRIBUTE_DELIMITER = ",";
 	private List<EStructuralFeature> features;
 	private List<ModelElement> modelElements;
@@ -32,13 +31,13 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 	}
 
 	public String getString(long row, long column) {
-		String result= "";
+		String result = "";
 		ModelElement me = modelElements.get((int) row);
-		EStructuralFeature feature = features.get((int)column);
-		if(feature instanceof EReference){
-		result = removeTabs(getText(me, (EReference)feature));	
-		}else if(feature instanceof EAttribute){
-			result = removeTabs(getText(me, (EAttribute)feature));
+		EStructuralFeature feature = features.get((int) column);
+		if (feature instanceof EReference) {
+			result = removeTabs(getText(me, (EReference) feature));
+		} else if (feature instanceof EAttribute) {
+			result = removeTabs(getText(me, (EAttribute) feature));
 		}
 		return result;
 	}
@@ -52,9 +51,9 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 	}
 
 	public long[] getSize() {
-	
+
 		return new long[] { modelElements.size(), features.size() };
-		
+
 	}
 
 	public void setInputMEs(List<ModelElement> inputMEs) {
@@ -122,8 +121,7 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 
 		return result;
 	}
-	
-	
+
 	/**
 	 * @param string
 	 */
@@ -137,13 +135,14 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 	}
 
 	public void addModelElement(ModelElement me) {
-	
-		this.modelElements.add(me);
-		
+		if (!modelElements.contains(me)) {
+			this.modelElements.add(me);
+		}
+
 	}
 
 	public List<ModelElement> getModelElements() {
-		
+
 		return modelElements;
 	}
 

@@ -11,8 +11,10 @@ import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.rationale.Issue;
@@ -22,8 +24,8 @@ import org.unicase.model.task.WorkItem;
 
 public class TriageAccuracyAnalyzer implements DataAnalyzer {
 
-	private int totalPrecictions = 0;
-	private int correctPredictions = 0;
+	private static int totalPredictions = 0;
+	private static int correctPredictions = 0;
 
 	private Classification classification;
 	private ModelElementMatrix meMatrix;
@@ -44,6 +46,7 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 	}
 
 	public List<Object> getValue(ProjectAnalysisData data) {
+		
 		List<Object> value = new ArrayList<Object>();
 		// find assignee operations
 		// first step? just fetch the data.
@@ -61,22 +64,28 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 		}
 
 		for (AbstractOperation operation : operations) {
-			// The modelElement this is all about
-			ModelElement me = clonedProject.getModelElement(operation
-					.getModelElementId());
-			// Load the reference.
-			if (!(me instanceof ActionItem || me instanceof BugReport || me instanceof Issue)) {
-				continue;
+			
+			
+			List<ModelElement> involvedMEs = new ArrayList<ModelElement>();
+			for(ModelElementId meId : operation.getAllInvolvedModelElements()){
+				involvedMEs.add(clonedProject.getModelElement(meId));
 			}
 
-			EReference eReference = getReference(operation, me);
-			if (!TaskPackage.eINSTANCE.getWorkItem_Assignee()
-					.equals(eReference)) {
-				continue;
+			for(ModelElement me : involvedMEs){
+				if (me instanceof ActionItem || me instanceof BugReport || me instanceof Issue) {
+					// predict assignee
+					predictAssigneee((WorkItem) me);
+				}
 			}
+			
 
-			// predict assignee
-			predictAssigneee((WorkItem) me);
+//			EReference eReference = getReference(operation, me);
+//			if (!TaskPackage.eINSTANCE.getWorkItem_Assignee()
+//					.equals(eReference)) {
+//				continue;
+//			}
+
+			
 			
 			// redraw the changes in the project
 			if (operation.canApply(clonedProject)) {
@@ -87,37 +96,38 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 		}
 
 		// compute accuracy
-		double accuracy = (correctPredictions / (double) totalPrecictions);
+		double accuracy = ((double)correctPredictions /  totalPredictions);
 		value.add(accuracy);
+		System.out.println(data.getPrimaryVersionSpec().getIdentifier() + " ---------- " + value.get(0) + " ------- total pred: " + totalPredictions + " ------ correct pred: " + correctPredictions + " ---- #WIs: " + meMatrix.getModelElements().size()); 
 		return value;
 	}
 
-	private EReference getReference(AbstractOperation operation, ModelElement me) {
-		if (me == null || operation == null) {
-			return null;
-		}
-
-		if (operation instanceof ReferenceOperation) {
-			String featureName = ((ReferenceOperation) operation)
-					.getFeatureName();
-			if (featureName == null) {
-				return null;
-			}
-
-			for (EReference ref : me.eClass().getEAllReferences()) {
-				String name = ref.getName();
-
-				if (name != null && name.equals(featureName)) {
-					return ref;
-				}
-			}
-		}
-
-		return null;
-	}
+//	private EReference getReference(AbstractOperation operation, ModelElement me) {
+//		if (me == null || operation == null) {
+//			return null;
+//		}
+//
+//		if (operation instanceof ReferenceOperation) {
+//			String featureName = ((ReferenceOperation) operation)
+//					.getFeatureName();
+//			if (featureName == null) {
+//				return null;
+//			}
+//
+//			for (EReference ref : me.eClass().getEAllReferences()) {
+//				String name = ref.getName();
+//
+//				if (name != null && name.equals(featureName)) {
+//					return ref;
+//				}
+//			}
+//		}
+//
+//		return null;
+//	}
 
 	private void predictAssigneee(WorkItem wi) {
-		totalPrecictions++;
+		totalPredictions++;
 		meMatrix.addModelElement(wi);
 		if(meMatrix.getModelElements().size() == 1){
 			return;
@@ -134,7 +144,7 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 			e.printStackTrace();
 		}
 		if (suggestedAssignee != null
-				&& suggestedAssignee.equals(wi.getAssignee())) {
+				&& wi.getAssignee() != null && suggestedAssignee.equals(wi.getAssignee().getName())) {
 			correctPredictions++;
 		}
 

@@ -115,15 +115,7 @@ public class PaperMachineLearning {
 		projectIt.setProjectId(projectInfo.getProjectId());
 		projectIt.setStepLength(stepLength);
 		
-		VersionSpecQuery versionSpecQuery = IteratorFactory.eINSTANCE.createVersionSpecQuery();
-		PrimaryVersionSpec startVersion = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		startVersion.setIdentifier(1000);
-		PrimaryVersionSpec endVersion = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
-		endVersion.setIdentifier(2000);
-		versionSpecQuery.setStartVersion(startVersion);
-		versionSpecQuery.setEndVersion(endVersion);
-	
-		projectIt.setVersionSpecQuery(versionSpecQuery);
+		
 		projectIt.setDefault(true);
 		projectIt.init(userSession);
 		ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
