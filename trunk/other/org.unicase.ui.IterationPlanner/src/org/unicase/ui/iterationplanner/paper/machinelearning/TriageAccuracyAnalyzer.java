@@ -1,11 +1,7 @@
 package org.unicase.ui.iterationplanner.paper.machinelearning;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
@@ -16,11 +12,16 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
-import org.unicase.model.bug.BugReport;
-import org.unicase.model.rationale.Issue;
-import org.unicase.model.task.ActionItem;
+import org.unicase.model.organization.User;
+import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
+
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
+import java.util.Set;
 
 public class TriageAccuracyAnalyzer implements DataAnalyzer {
 
@@ -32,8 +33,7 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 
 	private Project clonedProject;
 
-	public TriageAccuracyAnalyzer(Classification classification,
-			ModelElementMatrix m) {
+	public TriageAccuracyAnalyzer(Classification classification, ModelElementMatrix m) {
 		this.classification = classification;
 		this.meMatrix = m;
 
@@ -46,7 +46,7 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 	}
 
 	public List<Object> getValue(ProjectAnalysisData data) {
-		
+
 		List<Object> value = new ArrayList<Object>();
 		// find assignee operations
 		// first step? just fetch the data.
@@ -64,72 +64,79 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 		}
 
 		for (AbstractOperation operation : operations) {
-			
-			
-			List<ModelElement> involvedMEs = new ArrayList<ModelElement>();
-			for(ModelElementId meId : operation.getAllInvolvedModelElements()){
-				involvedMEs.add(clonedProject.getModelElement(meId));
+
+			if (operation instanceof CompositeOperation) {
+				operations.addAll(getAllSubOperations((CompositeOperation) operation));
+			}
+			if (!(operation instanceof ReferenceOperation)) {
+				continue;
+			}
+			ReferenceOperation refOp = (ReferenceOperation) operation;
+			if (refOp.getFeatureName().equals(TaskPackage.eINSTANCE.getWorkItem_Assignee().getName())) {
+				Object user = findNewUser(refOp.getAllInvolvedModelElements());
+				predictAssigneee(clonedProject.getModelElement(refOp.getModelElementId()), user);
 			}
 
-			for(ModelElement me : involvedMEs){
-				if (me instanceof ActionItem || me instanceof BugReport || me instanceof Issue) {
-					// predict assignee
-					predictAssigneee((WorkItem) me);
-				}
-			}
-			
-
-//			EReference eReference = getReference(operation, me);
-//			if (!TaskPackage.eINSTANCE.getWorkItem_Assignee()
-//					.equals(eReference)) {
-//				continue;
-//			}
-
-			
-			
 			// redraw the changes in the project
 			if (operation.canApply(clonedProject)) {
 				operation.apply(clonedProject);
-			} else  {
+				new Object();
+			} else {
 				System.out.println("Can't apply: " + operation.getName());
 			}
 		}
 
 		// compute accuracy
-		double accuracy = ((double)correctPredictions /  totalPredictions);
+		double accuracy = ((double) correctPredictions / totalPredictions);
 		value.add(accuracy);
-		System.out.println(data.getPrimaryVersionSpec().getIdentifier() + " ---------- " + value.get(0) + " ------- total pred: " + totalPredictions + " ------ correct pred: " + correctPredictions + " ---- #WIs: " + meMatrix.getModelElements().size()); 
+		System.out.println(data.getPrimaryVersionSpec().getIdentifier() + " ---------- " + value.get(0)
+			+ " ------- total pred: " + totalPredictions + " ------ correct pred: " + correctPredictions
+			+ " ---- #WIs: " + meMatrix.getModelElements().size());
 		return value;
 	}
 
-//	private EReference getReference(AbstractOperation operation, ModelElement me) {
-//		if (me == null || operation == null) {
-//			return null;
-//		}
-//
-//		if (operation instanceof ReferenceOperation) {
-//			String featureName = ((ReferenceOperation) operation)
-//					.getFeatureName();
-//			if (featureName == null) {
-//				return null;
-//			}
-//
-//			for (EReference ref : me.eClass().getEAllReferences()) {
-//				String name = ref.getName();
-//
-//				if (name != null && name.equals(featureName)) {
-//					return ref;
-//				}
-//			}
-//		}
-//
-//		return null;
-//	}
+	/**
+	 * @param allInvolvedModelElements
+	 * @return
+	 */
+	private Object findNewUser(Set<ModelElementId> allInvolvedModelElements) {
+		for (ModelElementId meId : allInvolvedModelElements) {
+			ModelElement me = clonedProject.getModelElement(meId);
+			if (me instanceof User) {
+				return me;
+			}
+		}
+		return null;
+	}
 
-	private void predictAssigneee(WorkItem wi) {
+	/**
+	 * @param operation
+	 * @return
+	 */
+	private Collection<? extends AbstractOperation> getAllSubOperations(CompositeOperation compOp) {
+		List<AbstractOperation> allSubOps = new ArrayList<AbstractOperation>();
+		for (AbstractOperation subOp : compOp.getSubOperations()) {
+			if (subOp instanceof CompositeOperation) {
+				allSubOps.addAll(getAllSubOperations((CompositeOperation) subOp));
+			} else {
+				allSubOps.add(subOp);
+			}
+		}
+
+		return allSubOps;
+	}
+
+	private void predictAssigneee(Object wi, Object user) {
+		if (!(wi instanceof WorkItem)) {
+			return;
+		}
+		if (!(user instanceof User)) {
+			return;
+		}
 		totalPredictions++;
-		meMatrix.addModelElement(wi);
-		if(meMatrix.getModelElements().size() == 1){
+
+		meMatrix = new ModelElementMatrix(getRelevantWorkItems(), meMatrix.getFeatures());
+		if (meMatrix.getModelElements().size() == 1) {
 			return;
 		}
 		try {
@@ -143,11 +150,25 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (suggestedAssignee != null
-				&& wi.getAssignee() != null && suggestedAssignee.equals(wi.getAssignee().getName())) {
+		if (suggestedAssignee != null && user != null && suggestedAssignee.equals(((User) user).getName())) {
 			correctPredictions++;
 		}
 
+	}
+
+	/**
+	 * @return
+	 */
+	private List<ModelElement> getRelevantWorkItems() {
+		List<WorkItem> allWorkItems = clonedProject.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
+			new BasicEList<WorkItem>());
+		ArrayList<ModelElement> relevantWorkItems = new ArrayList<ModelElement>();
+		for (WorkItem wi : allWorkItems) {
+			if (!(wi instanceof WorkPackage || wi instanceof Milestone)) {
+				relevantWorkItems.add(wi);
+			}
+		}
+		return relevantWorkItems;
 	}
 
 	public boolean isExportOnce() {

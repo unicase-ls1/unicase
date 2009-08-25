@@ -1,14 +1,13 @@
 package org.unicase.ui.iterationplanner.paper.machinelearning;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.ujmp.core.stringmatrix.stub.AbstractDenseStringMatrix2D;
 import org.unicase.model.ModelElement;
-import org.unicase.model.task.WorkItem;
+
+import java.util.List;
 
 public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 
@@ -16,8 +15,7 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 	private List<EStructuralFeature> features;
 	private List<ModelElement> modelElements;
 
-	public ModelElementMatrix(List<ModelElement> modelElements,
-			List<EStructuralFeature> outputFeatures) {
+	public ModelElementMatrix(List<ModelElement> modelElements, List<EStructuralFeature> outputFeatures) {
 		this.modelElements = modelElements;
 		this.features = outputFeatures;
 	}
@@ -131,13 +129,6 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 		string = string.replace(";, %BEGINNTEXT%", "");
 		string = string.replace(",", " ");
 		return string;
-
-	}
-
-	public void addModelElement(ModelElement me) {
-		if (!modelElements.contains(me)) {
-			this.modelElements.add(me);
-		}
 
 	}
 
