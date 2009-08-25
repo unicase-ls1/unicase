@@ -7,7 +7,6 @@ package org.unicase.mergetest;
 
 import java.util.List;
 
-import org.eclipse.jface.window.Window;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
