@@ -12,7 +12,10 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
+import org.unicase.model.bug.BugReport;
 import org.unicase.model.organization.User;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -73,8 +76,8 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 			}
 			ReferenceOperation refOp = (ReferenceOperation) operation;
 			if (refOp.getFeatureName().equals(TaskPackage.eINSTANCE.getWorkItem_Assignee().getName())) {
-				Object user = findNewUser(refOp.getAllInvolvedModelElements());
-				predictAssigneee(clonedProject.getModelElement(refOp.getModelElementId()), user);
+				Object assignee = findNewAssignee(refOp.getAllInvolvedModelElements());
+				predictAssigneee(clonedProject.getModelElement(refOp.getModelElementId()), assignee);
 			}
 
 			// redraw the changes in the project
@@ -99,7 +102,7 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 	 * @param allInvolvedModelElements
 	 * @return
 	 */
-	private Object findNewUser(Set<ModelElementId> allInvolvedModelElements) {
+	private Object findNewAssignee(Set<ModelElementId> allInvolvedModelElements) {
 		for (ModelElementId meId : allInvolvedModelElements) {
 			ModelElement me = clonedProject.getModelElement(meId);
 			if (me instanceof User) {
@@ -126,16 +129,22 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 		return allSubOps;
 	}
 
-	private void predictAssigneee(Object wi, Object user) {
-		if (!(wi instanceof WorkItem)) {
+	private void predictAssigneee(Object wi, Object assignee) {
+		if (!(wi instanceof BugReport || wi instanceof ActionItem || wi instanceof Issue)) {
 			return;
 		}
-		if (!(user instanceof User)) {
+		if (!(assignee instanceof User)) {
 			return;
 		}
 		totalPredictions++;
 
 		meMatrix = new ModelElementMatrix(getRelevantWorkItems(), meMatrix.getFeatures());
+
+		// put the WorkItem that is to be predicted to end of model elements list
+		// this is for classifier to predict assignee for this work item. see Classificaiton.predictAssignee()
+		meMatrix.getModelElements().remove(wi);
+		meMatrix.getModelElements().add((ModelElement) wi);
+
 		if (meMatrix.getModelElements().size() == 1) {
 			return;
 		}
@@ -150,7 +159,7 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (suggestedAssignee != null && user != null && suggestedAssignee.equals(((User) user).getName())) {
+		if (suggestedAssignee != null && assignee != null && suggestedAssignee.equals(((User) assignee).getName())) {
 			correctPredictions++;
 		}
 
