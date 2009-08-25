@@ -273,7 +273,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		}
 
 		// case 4: opposite vs. opposite
-		if (opB.getOppositeFeatureName().equals(opA.getOppositeFeatureName())) {
+		if (opB.isBidirectional() && opB.getOppositeFeatureName().equals(opA.getOppositeFeatureName())) {
 			for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
 
 				for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
@@ -397,7 +397,7 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 			return false;
 		}
 
-		if (opB.getOppositeFeatureName().equals(opA.getOppositeFeatureName())) {
+		if (opB.isBidirectional() && opB.getOppositeFeatureName().equals(opA.getOppositeFeatureName())) {
 			for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
 
 				for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
