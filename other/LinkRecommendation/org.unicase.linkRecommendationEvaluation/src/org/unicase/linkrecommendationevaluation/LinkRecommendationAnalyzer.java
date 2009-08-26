@@ -21,14 +21,16 @@ import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.linkrecommendation.linkselection.ConstantThresholdSelection;
 import org.unicase.linkrecommendation.linkselection.CutPointSelection;
 import org.unicase.linkrecommendation.linkselection.LinkSelectionStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.LSIStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
-import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.ARMStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.Updateable;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -53,7 +55,8 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	private double[][] foundAndRec;
 	private int[][] hits;
 	private int countSuggestions;
-	private int sumPositions;
+	private int[][] sumPositions;
+	private int[][] countNonZeroSuggestions;
 
 	private RecommendationStrategy[] recommendationStrategies;
 	private LinkSelectionStrategy[] selectionStrategies;
@@ -67,11 +70,11 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		ALL, RESULTS, FAILS, APPLY, NOTHING
 	}
 
-	private final DEBUGMODE debug = DEBUGMODE.RESULTS;
+	private final DEBUGMODE debug = DEBUGMODE.FAILS;
 
 	private Project clonedProject;
 
-	private final boolean analyseStepByStep = false;
+	private final boolean analyseStepByStep = true;
 
 	/**
 	 * The constructor.
@@ -81,15 +84,18 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 			new ConstantThresholdSelection(0.35), new ConstantThresholdSelection(0.5), new CutPointSelection(5),
 			new CutPointSelection(10) };
 
-		// strategies = new RecommendationStrategy[] { new RelatedAssigneesRecommendation() };
-		// recommendationStrategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy() };
-		recommendationStrategies = new RecommendationStrategy[] { new ARMStrategy() };
-		// strategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(),
+		// selectionStrategies = new LinkSelectionStrategy[] {};
+		// recommendationStrategies = new RecommendationStrategy[] { new RelatedAssigneesRecommendation() };
+		recommendationStrategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(), new LSIStrategy(0.5),
+			new LSIStrategy(0.9) };
+		// recommendationStrategies = new RecommendationStrategy[] { new ARMStrategy() };
+		// recommendationStrategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(),
 		// new SharedReferencesRecommendation(1), new SharedReferencesRecommendation(2),
 		// new SharedReferencesRecommendation(3) };
-		// strategies = new RecommendationStrategy[] { new LSIStrategy(0.2), new LSIStrategy(0.4), new LSIStrategy(0.6),
+		// recommendationStrategies = new RecommendationStrategy[] { new LSIStrategy(0.2), new LSIStrategy(0.4), new
+		// LSIStrategy(0.6),
 		// new LSIStrategy(0.8) };
-		// strategies = new RecommendationStrategy[] {
+		// recommendationStrategies = new RecommendationStrategy[] {
 		// new VectorSpaceModelStrategy(),
 		// new LSIStrategy(0.9),
 		// new RelatedAssigneesRecommendation(),
@@ -113,9 +119,11 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		names.add("#Elements");
 
 		for (int i = 0; i < recommendationStrategies.length; i++) {
-			names.add("Avg Position Recommendation" + recommendationStrategies[i].getName());
 
 			for (int j = 0; j < selectionStrategies.length; j++) {
+				names.add("Avg Position Recommendation" + recommendationStrategies[i].getName());
+				names.add("Number suggestions");
+
 				names.add("Prec.:" + recommendationStrategies[i].getName() + "[" + selectionStrategies[j].getName()
 					+ "]" + " ActionItems -> Functional Requirements");
 				names.add("Recl.:" + recommendationStrategies[i].getName() + "[" + selectionStrategies[j].getName()
@@ -151,42 +159,37 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	public List<Object> getValue(ProjectAnalysisData data) {
 		// initialize variables
 		List<Object> results = new ArrayList<Object>();
-		foundAndRec = new double[selectionStrategies.length][recommendationStrategies.length];
-		suggestedElements = new int[selectionStrategies.length][recommendationStrategies.length];
-		hits = new int[selectionStrategies.length][recommendationStrategies.length];
-
-		for (int j = 0; j < selectionStrategies.length; j++) {
-			Arrays.fill(foundAndRec[j], 0);
-			Arrays.fill(suggestedElements[j], 0);
-			Arrays.fill(hits[j], 0);
-		}
-
-		correctElements = 0;
-		countSuggestions = 0;
-		sumPositions = 0;
+		initializeVariables();
 
 		// Analyze the project
 		if (analyseStepByStep) {
 			analyseStepByStep(data, results);
 		} else {
-			analyzeEntireProject(data, results);
+			analyzeEntireProject(data.getProjectState(), results);
 		}
 
 		// post-analysation calculation e.g. "training"
-		for (RecommendationStrategy recStr : recommendationStrategies) {
-			if (recStr instanceof Updateable) {
-				Updateable str = (Updateable) recStr;
-				str.updateStrategyData(data.getChangePackages());
-			}
-		}
+		updateStrategies(data);
 
-		// Print the results
+		// Add the results
+		addResults(results);
+
+		return results;
+	}
+
+	/**
+	 * Calculates things like precision etc and adds the results to the given object.
+	 * 
+	 * @param results the result object
+	 */
+	public void addResults(List<Object> results) {
 		results.add(countSuggestions);
 		for (int j = 0; j < recommendationStrategies.length; j++) {
-			double avgPos = sumPositions / (double) countSuggestions;
-			results.add(avgPos);
-
 			for (int i = 0; i < selectionStrategies.length; i++) {
+				double avgPos = sumPositions[i][j] / (double) countNonZeroSuggestions[i][j];
+				results.add(avgPos);
+				results.add(countNonZeroSuggestions[i][j]);
+
 				double precision = 0, recall = 0;
 				if (suggestedElements[i][j] != 0) {
 					precision = foundAndRec[i][j] / suggestedElements[i][j];
@@ -203,8 +206,37 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 				// results.add(hitPercentage);
 			}
 		}
+	}
 
-		return results;
+	private void updateStrategies(ProjectAnalysisData data) {
+		for (RecommendationStrategy recStr : recommendationStrategies) {
+			if (recStr instanceof Updateable) {
+				Updateable str = (Updateable) recStr;
+				str.updateStrategyData(data.getChangePackages());
+			}
+		}
+	}
+
+	/**
+	 * Initializes the variables.
+	 */
+	public void initializeVariables() {
+		foundAndRec = new double[selectionStrategies.length][recommendationStrategies.length];
+		suggestedElements = new int[selectionStrategies.length][recommendationStrategies.length];
+		hits = new int[selectionStrategies.length][recommendationStrategies.length];
+		countNonZeroSuggestions = new int[selectionStrategies.length][recommendationStrategies.length];
+		sumPositions = new int[selectionStrategies.length][recommendationStrategies.length];
+
+		for (int j = 0; j < selectionStrategies.length; j++) {
+			Arrays.fill(foundAndRec[j], 0);
+			Arrays.fill(suggestedElements[j], 0);
+			Arrays.fill(hits[j], 0);
+			Arrays.fill(countNonZeroSuggestions[j], 0);
+			Arrays.fill(sumPositions[j], 0);
+		}
+
+		correctElements = 0;
+		countSuggestions = 0;
 	}
 
 	private void analyseStepByStep(ProjectAnalysisData data, List<Object> results) {
@@ -216,13 +248,24 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 
 		EList<ChangePackage> changePackages = data.getChangePackages();
 		List<AbstractOperation> operations = new ArrayList<AbstractOperation>();
+		List<AbstractOperation> leafoperations = new ArrayList<AbstractOperation>();
 
 		// Check each change.
 		for (ChangePackage changePackage : changePackages) {
 			operations.addAll(changePackage.getOperations());
 		}
 
+		// check for composite operations
 		for (AbstractOperation operation : operations) {
+			if (operation instanceof CompositeOperation) {
+				leafoperations.addAll(getAllSubOperations((CompositeOperation) operation));
+			} else {
+				leafoperations.add(operation);
+			}
+		}
+
+		//
+		for (AbstractOperation operation : leafoperations) {
 			// The modelElement this is all about
 			ModelElement base = clonedProject.getModelElement(operation.getModelElementId());
 			// Load the reference.
@@ -242,6 +285,26 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 				System.out.println("Can't apply: " + operation.getName());
 			}
 		}
+
+		// bring the project on the last state
+		clonedProject = (Project) EcoreUtil.copy(data.getProjectState());
+	}
+
+	/**
+	 * @param operation
+	 * @return
+	 */
+	private Collection<? extends AbstractOperation> getAllSubOperations(CompositeOperation compOp) {
+		List<AbstractOperation> allSubOps = new ArrayList<AbstractOperation>();
+		for (AbstractOperation subOp : compOp.getSubOperations()) {
+			if (subOp instanceof CompositeOperation) {
+				allSubOps.addAll(getAllSubOperations((CompositeOperation) subOp));
+			} else {
+				allSubOps.add(subOp);
+			}
+		}
+
+		return allSubOps;
 	}
 
 	private void analyseRecommendation(ModelElement base, EReference eReference, Collection<ModelElement> correctMEs) {
@@ -270,23 +333,50 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 				Map<ModelElement, Double> suggestionMap = selectionStrategies[i].selectCandidates(relevanceMap);
 				// add to statistics
 				calcStatistics(base, correctMEs, suggestionMap, i, j);
-
+				// calculate which position element is at
+				calcAveragePosition(correctMEs, suggestionMap, i, j);
 				// Debug-Output:
-				if (debug == DEBUGMODE.RESULTS || debug == DEBUGMODE.ALL) {
-					System.out.print("Analyzing: " + base.getName());
-					System.out.println(", reference: " + eReference.getName() + " with RecStrategy "
-						+ recommendationStrategies[j].getName() + " SelectionStrategy "
-						+ selectionStrategies[i].getName());
+				printDebugOutput(base, eReference, correctMEs, j, i, suggestionMap);
+			}
+		}
+	}
 
-					for (ModelElement me : correctMEs) {
-						System.out.println("# " + me.getName());
-					}
+	private void printDebugOutput(ModelElement base, EReference eReference, Collection<ModelElement> correctMEs, int j,
+		int i, Map<ModelElement, Double> suggestionMap) {
+		if (debug == DEBUGMODE.RESULTS || debug == DEBUGMODE.ALL) {
+			System.out.print("Analyzing: " + base.getName());
+			System.out.println(", reference: " + eReference.getName() + " with RecStrategy "
+				+ recommendationStrategies[j].getName() + " SelectionStrategy " + selectionStrategies[i].getName());
 
-					for (ModelElement me : suggestionMap.keySet()) {
-						System.out.println("+ " + me.getName() + " - " + suggestionMap.get(me));
-					}
+			for (ModelElement me : correctMEs) {
+				System.out.println("# " + me.getName());
+			}
+
+			for (ModelElement me : suggestionMap.keySet()) {
+				System.out.println("+ " + me.getName() + " - " + suggestionMap.get(me));
+			}
+		}
+	}
+
+	private void calcAveragePosition(Collection<ModelElement> correctMEs, Map<ModelElement, Double> relevanceMap,
+		int selectionIndex, int strategyIndex) {
+		Map<ModelElement, Double> posMap = (new CutPointSelection(0)).selectCandidates(relevanceMap);
+		ModelElement[] posElements = posMap.keySet().toArray(new ModelElement[0]);
+		for (ModelElement correct : correctMEs) {
+			int recPos = 0;
+			for (int i = 1; i <= posElements.length; i++) {
+				if (posElements[i - 1] == correct) {
+					recPos = i;
+					break;
 				}
 			}
+			if (recPos != 0) {
+				sumPositions[selectionIndex][strategyIndex] += recPos;
+			} else {
+				// if an element is not suggested it gets the value of the next element
+				sumPositions[selectionIndex][strategyIndex] += relevanceMap.keySet().size() + 1;
+			}
+			countNonZeroSuggestions[selectionIndex][strategyIndex]++;
 		}
 	}
 
@@ -337,13 +427,12 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	}
 
 	/**
-	 * Analyzes the entire Project and lists the result in the parameter results. take care: refs is empty...
+	 * Analyzes the entire Project and lists the result in the parameter results.
 	 * 
-	 * @param data the project
+	 * @param project the project
 	 * @param results results are printed into this list
 	 */
-	private void analyzeEntireProject(ProjectAnalysisData data, List<Object> results) {
-		Project project = data.getProjectState();
+	public void analyzeEntireProject(Project project, List<Object> results) {
 		EList<ModelElement> allModelElements = project.getAllModelElements();
 
 		for (ModelElement modelElement : allModelElements) {
@@ -446,5 +535,50 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	 */
 	public boolean isExportOnce() {
 		return false;
+	}
+
+	/**
+	 * Set the relevant references.
+	 * 
+	 * @param ref the references
+	 */
+	public void setRelevantReferences(List<EClass> ref) {
+		this.relevantReferences = ref;
+	}
+
+	/**
+	 * Sets the relevant base classes.
+	 * 
+	 * @param classes the base classes
+	 */
+	public void setRelevantBaseClasses(List<EClass> classes) {
+		this.relevantBaseClasses = classes;
+	}
+
+	/**
+	 * Sets the relevant target classes.
+	 * 
+	 * @param classes the target classes
+	 */
+	public void setRelevantTargetClasses(List<EClass> classes) {
+		this.relevantTargetClasses = classes;
+	}
+
+	/**
+	 * Sets the strategies used for selection.
+	 * 
+	 * @param strategies the strategies
+	 */
+	public void setSelectionStrategies(LinkSelectionStrategy[] strategies) {
+		this.selectionStrategies = strategies;
+	}
+
+	/**
+	 * Sets the strategies used for recommendation.
+	 * 
+	 * @param strategies the strategies
+	 */
+	public void setRecommendationStrategies(RecommendationStrategy[] strategies) {
+		this.recommendationStrategies = strategies;
 	}
 }
