@@ -11,6 +11,8 @@
  */
 package org.unicase.ui.iterationplanner.paper.machinelearning;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.analyzer.AnalyzerModelController;
 import org.unicase.analyzer.DataAnalyzer;
@@ -23,7 +25,12 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.Project;
+import org.unicase.model.bug.BugReport;
+import org.unicase.model.rationale.Issue;
+import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 import org.unicase.ui.iterationplanner.Activator;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
@@ -35,6 +42,8 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.swing.Action;
+
 /**
  * @author Hodaie
  */
@@ -44,38 +53,38 @@ public class PaperMachineLearning {
 
 	public void start() {
 
-		List<ModelElement> workItems = new ArrayList<ModelElement>();
-		List<EStructuralFeature> features = getOutputFeatures();
+//		List<ModelElement> workItems = new ArrayList<ModelElement>();
+//		List<EStructuralFeature> features = getOutputFeatures();
+		
+		
+		
+		List<ModelElement> relevantWorkItems = getRelevantWorkItems();
 
-		ModelElementMatrix m = new ModelElementMatrix(workItems, features);
+		ModelElementMatrix m = new ModelElementMatrix(relevantWorkItems, getOutputFeatures());
+		System.out.println(m.getModelElements().size());
 
 		classification = new Classification();
-		// try {
-		// classification.run();
-		// } catch (Exception e) {
-		// e.printStackTrace();
-		// }
-
 		try {
-			analyzeTriageAccuracy(m);
-		} catch (EmfStoreException e) {
-			e.printStackTrace();
-		} catch (IteratorException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
+			classification.init(m);
+			classification.runStateBasedClassification();
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		
+//		try {
+//			analyzeTriageAccuracy(m);
+//		} catch (EmfStoreException e) {
+//			e.printStackTrace();
+//		} catch (IteratorException e) {
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//		}
 	}
 
+
 	public void analyzeTriageAccuracy(ModelElementMatrix m) throws EmfStoreException, IteratorException, IOException {
-		// create a analyzer and let it go through revisions
-		// listen to notifications about work items
-		// on notifications regarding work items
-		// creat a new model element matrix (m) from all work items in new project state
-		// create a new calssification for matrix m
-		// get accuracy of new classification
-		// output: a csv file for [revision, accuracy]
-		// or [number of work items, accuracy] ??
 
 		SetupHelper setupHelper = new SetupHelper(TestProjectEnum.NONE);
 		setupHelper.loginServer();
@@ -112,4 +121,19 @@ public class PaperMachineLearning {
 		result.add(TaskPackage.eINSTANCE.getWorkItem_Assignee());
 		return result;
 	}
+
+	
+	private List<ModelElement> getRelevantWorkItems() {
+		Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0).getProject();
+		List<WorkItem> allWorkItems = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(), new BasicEList<WorkItem>());
+		List<ModelElement> relevantWorkItems = new ArrayList<ModelElement>();
+		for(WorkItem wi : allWorkItems){
+			if(wi instanceof ActionItem || wi instanceof BugReport || wi instanceof Issue){
+				relevantWorkItems.add(wi);
+			}
+		}
+		return relevantWorkItems;
+	}
+	
+	
 }

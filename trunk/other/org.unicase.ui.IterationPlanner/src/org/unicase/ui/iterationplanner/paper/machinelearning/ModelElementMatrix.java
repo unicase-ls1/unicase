@@ -4,9 +4,14 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.ujmp.core.enums.FileFormat;
+import org.ujmp.core.exceptions.MatrixException;
 import org.ujmp.core.stringmatrix.stub.AbstractDenseStringMatrix2D;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.iterationplanner.Activator;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
@@ -135,6 +140,18 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 	public List<ModelElement> getModelElements() {
 
 		return modelElements;
+	}
+	
+	public void exportToCSV(String fileName){
+		String path = Activator.getDefault().getBundle().getLocation().replace("reference:file:", "") + "/datasets/" + fileName;
+		File file = new File(path);
+		try {
+			this.exportToFile(FileFormat.CSV, file, null);
+		} catch (MatrixException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 }
