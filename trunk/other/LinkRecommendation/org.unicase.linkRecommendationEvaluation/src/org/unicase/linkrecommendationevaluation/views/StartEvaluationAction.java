@@ -5,16 +5,28 @@
  */
 package org.unicase.linkrecommendationevaluation.views;
 
-import org.eclipse.emf.common.util.BasicEList;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
-import org.unicase.model.ModelElement;
-import org.unicase.model.task.ActionItem;
-import org.unicase.model.task.TaskPackage;
+import org.unicase.linkrecommendation.linkselection.ConstantThresholdSelection;
+import org.unicase.linkrecommendation.linkselection.CutPointSelection;
+import org.unicase.linkrecommendation.linkselection.LinkSelectionStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.LSIStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
+import org.unicase.linkrecommendationevaluation.LinkRecommendationAnalyzer;
+import org.unicase.model.Project;
+import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -49,50 +61,88 @@ public class StartEvaluationAction extends Action {
 		if (obj == elements[0]) {
 			EList<ProjectSpace> all = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
 
-			String text = "";
-			for (ProjectSpace project : all) {
-				// if(element.eClass())
-				text += project.getProjectName() + " <-> ";
-
-				EList<ActionItem> myList = project.getProject().getAllModelElementsbyClass(
-					TaskPackage.eINSTANCE.getActionItem(), new BasicEList<ActionItem>());
-
-				for (ActionItem item : myList) {
-					evaluate(item);
+			for (ProjectSpace projectSpace : all) {
+				boolean stop = false;
+				for (String s : elements) {
+					if (projectSpace.getProjectName().equals(s)) {
+						showMessage("Analyzing " + projectSpace.getProjectName());
+						evaluate(projectSpace.getProject());
+						stop = true;
+						break;
+					}
+				}
+				if (stop) {
+					break;
 				}
 			}
-			showMessage(text);
 		} else {
 			showMessage("Double-click detected on " + obj.toString());
 		}
 	}
 
-	private void evaluate(ActionItem ae) {
-		System.out.println("Evaluating " + ae.getName());
-		System.out.println("Relevant: ");
-		EList<ModelElement> relevantElements = ae.getAnnotatedModelElements();
-		for (ModelElement el : relevantElements) {
-			System.out.println(el.getName());
-		}
-		System.out.println("\nRecommendations: ");
+	private void evaluate(Project project) {
+		LinkRecommendationAnalyzer an = new LinkRecommendationAnalyzer();
 
-		// Collection<ModelElement> posEl = getPossibleElements(ae);
-		// Map<ModelElement, Double>relevanceMap = RecommendationManager.getInstance().getMatchMap("words", ae, posEl);
-		//		
-		// double foundAndRec =0, foundNotRec =0;
-		// for(ModelElement el : relevantElements) {
-		// if(relevanceMap.get(el)!=null) {
-		// foundAndRec++;
-		// }
-		// else {
-		// foundNotRec++;
-		// }
-		// }
-		// double precision = foundAndRec/relevanceMap.size();
-		// double recall = foundAndRec/relevantElements.size();
-		//		
-		// System.out.println("Precision:"+precision);
-		// System.out.println("Recall:"+recall);
+		// FIRST standard: ActionItems -> Functional Requirements
+		an.setSelectionStrategies(new LinkSelectionStrategy[] { new ConstantThresholdSelection(0.1),
+			new ConstantThresholdSelection(0.35), new ConstantThresholdSelection(0.5), new CutPointSelection(5),
+			new CutPointSelection(10) });
+
+		an.setRecommendationStrategies(new RecommendationStrategy[] { new VectorSpaceModelStrategy(),
+			new LSIStrategy(0.5), new LSIStrategy(0.9) });
+
+		an.initializeVariables();
+		List<String> headline = an.getName();
+		List<Object> results = new ArrayList<Object>();
+		an.analyzeEntireProject(project, results);
+		an.addResults(results);
+
+		String location = "/Users/henning/Documents/workspace/BachelorArbeit/Quellen/Statistics/Entire Project Scan/";
+		String filename = "LSI_VSM.csv";
+
+		printToCSVFile(headline, results, location, filename);
+
+		// Now: FR -> UseCase
+		an.initializeVariables();
+
+		ArrayList<EClass> relevantBaseClasses = new ArrayList<EClass>();
+		relevantBaseClasses.add(RequirementPackage.eINSTANCE.getFunctionalRequirement());
+		an.setRelevantBaseClasses(relevantBaseClasses);
+
+		ArrayList<EClass> relevantTargetClasses = new ArrayList<EClass>();
+		relevantBaseClasses.add(RequirementPackage.eINSTANCE.getUseCase());
+		an.setRelevantTargetClasses(relevantTargetClasses);
+
+		results = new ArrayList<Object>();
+		an.analyzeEntireProject(project, results);
+		an.addResults(results);
+
+		printToCSVFile(headline, results, location, filename);
+
+		System.out.println("Finished.");
+	}
+
+	private void printToCSVFile(List<String> headline, List<Object> results, String location, String filename) {
+		try {
+			FileOutputStream fop = new FileOutputStream(location + filename, true);
+			PrintWriter wrt = new PrintWriter(fop);
+			wrt.println();
+			// headlines
+			for (String s : headline) {
+				wrt.print(s + ",");
+			}
+			wrt.println();
+
+			// data
+			for (Object o : results) {
+				wrt.print(o + ",");
+			}
+
+			wrt.flush();
+			wrt.close();
+		} catch (IOException e) {
+			System.out.println("Exception: " + e.getLocalizedMessage());
+		}
 	}
 
 	private void showMessage(String message) {

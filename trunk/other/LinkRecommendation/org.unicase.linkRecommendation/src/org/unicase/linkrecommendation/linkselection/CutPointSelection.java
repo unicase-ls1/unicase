@@ -23,7 +23,8 @@ public class CutPointSelection implements LinkSelectionStrategy {
 	/**
 	 * The constructor.
 	 * 
-	 * @param cutPoint the cutPoint: this value determines how many elements are selected
+	 * @param cutPoint the cutPoint: this value determines how many elements are selected, if cutPoint equals zero, only
+	 *            zero values are filtered
 	 */
 	public CutPointSelection(int cutPoint) {
 		this.cutPoint = cutPoint;
@@ -48,7 +49,8 @@ public class CutPointSelection implements LinkSelectionStrategy {
 		}
 
 		Object[] sortedKeyArray = result.keySet().toArray();
-		if (sortedKeyArray.length > cutPoint) {
+		// if cutpoint is zero, only zero elements are filtered.
+		if (sortedKeyArray.length > cutPoint && cutPoint != 0) {
 			ModelElement last = (ModelElement) sortedKeyArray[cutPoint];
 			return result.headMap(last);
 		} else { // less suggestions than cut point demands
