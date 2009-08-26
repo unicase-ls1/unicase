@@ -38,16 +38,13 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 		ModelElement me = modelElements.get((int) row);
 		EStructuralFeature feature = features.get((int) column);
 		if (feature instanceof EReference) {
-			result = removeTabs(getText(me, (EReference) feature));
+			result = getText(me, (EReference) feature);
 		} else if (feature instanceof EAttribute) {
-			result = removeTabs(getText(me, (EAttribute) feature));
+			result = getText(me, (EAttribute) feature);
 		}
 		return result;
 	}
 
-	private String removeTabs(String text) {
-		return text.replace("\t", "");
-	}
 
 	public void setString(String value, long row, long column) {
 
@@ -94,7 +91,7 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 					sb.append(MANY_VALUED_ATTRIBUTE_DELIMITER);
 				}
 			}
-			result = removeLineBreaks(sb.toString());
+			result = removeSpecialCharacters(sb.toString());
 			return result;
 		} else {
 			if (value instanceof ModelElement) {
@@ -103,7 +100,7 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 				sb.append("");
 			}
 
-			result = removeLineBreaks(sb.toString());
+			result = removeSpecialCharacters(sb.toString());
 			return result;
 		}
 
@@ -118,7 +115,7 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 		String result = "";
 		Object obj = wi.eGet(attr);
 		if (obj != null && !attr.isMany()) {
-			result = removeLineBreaks(obj.toString());
+			result = removeSpecialCharacters(obj.toString());
 
 		}
 
@@ -128,7 +125,8 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 	/**
 	 * @param string
 	 */
-	private String removeLineBreaks(String string) {
+	private String removeSpecialCharacters(String string) {
+		string = string.replace("\t", "");
 		string = string.replace("\n", " ");
 		string = string.replace("\r", "");
 		string = string.replace(";, %BEGINNTEXT%", "");
