@@ -30,13 +30,15 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 
 	private static int totalPredictions = 0;
 	private static int correctPredictions = 0;
+	private static int nullassignee= 0;
 
 	private Classification classification;
 	private ModelElementMatrix meMatrix;
 
 	private Project clonedProject;
 
-	public TriageAccuracyAnalyzer(Classification classification, ModelElementMatrix m) {
+	public TriageAccuracyAnalyzer(Classification classification,
+			ModelElementMatrix m) {
 		this.classification = classification;
 		this.meMatrix = m;
 
@@ -65,19 +67,27 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 		for (ChangePackage changePackage : changePackages) {
 			operations.addAll(changePackage.getOperations());
 		}
+		List<AbstractOperation> leafoperations = new ArrayList<AbstractOperation>();
 
 		for (AbstractOperation operation : operations) {
 
-			if (operation instanceof CompositeOperation) {
-				operations.addAll(getAllSubOperations((CompositeOperation) operation));
-			}
+			leafoperations.addAll(operation.getLeafOperations());
+		}
+		for (AbstractOperation operation : leafoperations) {
 			if (!(operation instanceof ReferenceOperation)) {
 				continue;
 			}
 			ReferenceOperation refOp = (ReferenceOperation) operation;
-			if (refOp.getFeatureName().equals(TaskPackage.eINSTANCE.getWorkItem_Assignee().getName())) {
-				Object assignee = findNewAssignee(refOp.getAllInvolvedModelElements());
-				predictAssigneee(clonedProject.getModelElement(refOp.getModelElementId()), assignee);
+			if (refOp.getFeatureName().equals(
+					TaskPackage.eINSTANCE.getWorkItem_Assignee().getName())) {
+
+				Object assignee = findNewAssignee(refOp
+						.getAllInvolvedModelElements());
+				if (assignee == null) {
+					System.out.println("Assignee is NULL number: "+ nullassignee);
+				}
+				predictAssigneee(clonedProject.getModelElement(refOp
+						.getModelElementId()), assignee);
 			}
 
 			// redraw the changes in the project
@@ -92,9 +102,12 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 		// compute accuracy
 		double accuracy = ((double) correctPredictions / totalPredictions);
 		value.add(accuracy);
-		System.out.println(data.getPrimaryVersionSpec().getIdentifier() + " ---------- " + value.get(0)
-			+ " ------- total pred: " + totalPredictions + " ------ correct pred: " + correctPredictions
-			+ " ---- #WIs: " + meMatrix.getModelElements().size());
+		System.out.println(data.getPrimaryVersionSpec().getIdentifier()
+				+ " ---------- " + value.get(0) + " ------- total pred: "
+				+ totalPredictions + " ------ correct pred: "
+				+ correctPredictions + " ---- #WIs: "
+				+ meMatrix.getModelElements().size());
+		clonedProject = (Project) EcoreUtil.copy(data.getProjectState());
 		return value;
 	}
 
@@ -112,23 +125,6 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 		return null;
 	}
 
-	/**
-	 * @param operation
-	 * @return
-	 */
-	private Collection<? extends AbstractOperation> getAllSubOperations(CompositeOperation compOp) {
-		List<AbstractOperation> allSubOps = new ArrayList<AbstractOperation>();
-		for (AbstractOperation subOp : compOp.getSubOperations()) {
-			if (subOp instanceof CompositeOperation) {
-				allSubOps.addAll(getAllSubOperations((CompositeOperation) subOp));
-			} else {
-				allSubOps.add(subOp);
-			}
-		}
-
-		return allSubOps;
-	}
-
 	private void predictAssigneee(Object wi, Object assignee) {
 		if (!(wi instanceof BugReport || wi instanceof ActionItem || wi instanceof Issue)) {
 			return;
@@ -138,10 +134,13 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 		}
 		totalPredictions++;
 
-		meMatrix = new ModelElementMatrix(getRelevantWorkItems(), meMatrix.getFeatures());
+		meMatrix = new ModelElementMatrix(getRelevantWorkItems(), meMatrix
+				.getFeatures());
 
-		// put the WorkItem that is to be predicted to end of model elements list
-		// this is for classifier to predict assignee for this work item. see Classificaiton.predictAssignee()
+		// put the WorkItem that is to be predicted to end of model elements
+		// list
+		// this is for classifier to predict assignee for this work item. see
+		// Classificaiton.predictAssignee()
 		meMatrix.getModelElements().remove(wi);
 		meMatrix.getModelElements().add((ModelElement) wi);
 
@@ -159,7 +158,8 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (suggestedAssignee != null && assignee != null && suggestedAssignee.equals(((User) assignee).getName())) {
+		if (suggestedAssignee != null && assignee != null
+				&& suggestedAssignee.equals(((User) assignee).getName())) {
 			correctPredictions++;
 		}
 
@@ -169,8 +169,10 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 	 * @return
 	 */
 	private List<ModelElement> getRelevantWorkItems() {
-		List<WorkItem> allWorkItems = clonedProject.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
-			new BasicEList<WorkItem>());
+		List<WorkItem> allWorkItems = clonedProject
+				.getAllModelElementsbyClass(
+						TaskPackage.eINSTANCE.getWorkItem(),
+						new BasicEList<WorkItem>());
 		ArrayList<ModelElement> relevantWorkItems = new ArrayList<ModelElement>();
 		for (WorkItem wi : allWorkItems) {
 			if (!(wi instanceof WorkPackage || wi instanceof Milestone)) {
