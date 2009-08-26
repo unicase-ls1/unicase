@@ -57,7 +57,6 @@ public class PaperMachineLearning {
 //		List<EStructuralFeature> features = getOutputFeatures();
 		
 		
-		
 		List<ModelElement> relevantWorkItems = getRelevantWorkItems();
 
 		ModelElementMatrix m = new ModelElementMatrix(relevantWorkItems, getOutputFeatures());
