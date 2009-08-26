@@ -33,6 +33,7 @@ import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.model.Project;
+import org.unicase.model.organization.User;
 import org.unicase.model.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -549,5 +550,19 @@ public class SetupHelper {
 		PrimaryVersionSpec versionSpec = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
 		versionSpec.setIdentifier(i);
 		return versionSpec;
+	}
+
+	/**
+	 * Creates a new Usersession and adds it to the workspace.
+	 * 
+	 * @param user the session is initialized with this User's name
+	 * @return the session
+	 */
+	public Usersession createUsersession(User user) {
+		Usersession session = WorkspaceFactory.eINSTANCE.createUsersession();
+		session.setUsername(user.getName());
+		session.setPassword("foo");
+		getWorkSpace().getUsersessions().add(session);
+		return session;
 	}
 }
