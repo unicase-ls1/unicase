@@ -7,11 +7,11 @@ package org.unicase.linkrecommendation.recommendationStrategies.updateableStrate
 
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.emfstore.esmodel.versioning.events.Event;
-import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
@@ -75,21 +75,26 @@ public class ARMStrategy implements RecommendationStrategy, Updateable {
 	 */
 	public void updateStrategyData(Collection<ChangePackage> cp) {
 		for (ChangePackage changePackage : cp) {
-			for (Event event : changePackage.getEvents()) {
-				if (event instanceof TraceEvent) {
-					TraceEvent traceEvent = (TraceEvent) event;
-					ModelElementId sourceElementId = traceEvent.getSourceElement();
-					ModelElementId targetElementId = traceEvent.getTargetElement();
-					String key = sourceElementId.getId() + targetElementId.getId();
-					Double linkCount = linkCountMap.get(key);
-					if (linkCount == null) {
-						linkCountMap.put(key, new Double(1));
-					} else {
-						linkCountMap.put(key, new Double(linkCount.doubleValue() + 1));
+			List<AbstractOperation> leafOperations = changePackage.getLeafOperations();
+			for (int i = 0; i < leafOperations.size(); i++) {
+				AbstractOperation operation = leafOperations.get(i);
+				ModelElementId sourceElementId = operation.getModelElementId();
+				ModelElementId targetElementId;
+				for (int offset = 1; offset < 11; offset++) {
+					if (i + offset < leafOperations.size()) {
+						targetElementId = leafOperations.get(i + offset).getModelElementId();
+						String key = sourceElementId.getId() + targetElementId.getId();
+						Double linkCount = linkCountMap.get(key);
+						if (linkCount == null) {
+							linkCountMap.put(key, new Double(1));
+						} else {
+							linkCountMap.put(key, new Double(linkCount.doubleValue() + 1));
+						}
 					}
 				}
 			}
 		}
+
 	}
 
 }
