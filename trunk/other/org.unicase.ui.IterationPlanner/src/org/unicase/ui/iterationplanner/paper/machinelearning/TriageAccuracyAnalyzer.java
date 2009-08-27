@@ -91,11 +91,10 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 			}
 
 			// redraw the changes in the project
-			if (operation.canApply(clonedProject)) {
+			try{
 				operation.apply(clonedProject);
-				new Object();
-			} else {
-				System.out.println("Can't apply: " + operation.getName());
+			}catch(Exception e){
+				//do nothing
 			}
 		}
 
