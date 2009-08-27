@@ -80,7 +80,14 @@ public class CutPointSelection implements LinkSelectionStrategy {
 		 * {@inheritDoc}
 		 */
 		public int compare(ModelElement o1, ModelElement o2) {
-			return probabilityMap.get(o2).compareTo(probabilityMap.get(o1));
+			Double val1 = (probabilityMap.containsKey(o1)) ? probabilityMap.get(o1) : 0.0;
+			Double val2 = (probabilityMap.containsKey(o2)) ? probabilityMap.get(o2) : 0.0;
+
+			if (val1.equals(val2)) {
+				return o2.toString().compareTo(o1.toString());
+			} else {
+				return val2.compareTo(val1);
+			}
 		}
 	}
 

@@ -21,9 +21,10 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.unicase.linkrecommendation.linkselection.ConstantThresholdSelection;
 import org.unicase.linkrecommendation.linkselection.CutPointSelection;
 import org.unicase.linkrecommendation.linkselection.LinkSelectionStrategy;
-import org.unicase.linkrecommendation.recommendationStrategies.LSIStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.RelatedAssigneesRecommendation;
 import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.ArithmeticMeanCombinationStrategy;
 import org.unicase.linkrecommendationevaluation.LinkRecommendationAnalyzer;
 import org.unicase.model.Project;
 import org.unicase.model.requirement.RequirementPackage;
@@ -85,20 +86,23 @@ public class StartEvaluationAction extends Action {
 
 		// FIRST standard: ActionItems -> Functional Requirements
 		an.setSelectionStrategies(new LinkSelectionStrategy[] { new ConstantThresholdSelection(0.1),
-			new ConstantThresholdSelection(0.35), new ConstantThresholdSelection(0.5), new CutPointSelection(5),
-			new CutPointSelection(10) });
+			new ConstantThresholdSelection(0.25), new ConstantThresholdSelection(0.5),
+			new ConstantThresholdSelection(0.75), new CutPointSelection(10) });
 
-		an.setRecommendationStrategies(new RecommendationStrategy[] { new VectorSpaceModelStrategy(),
-			new LSIStrategy(0.5), new LSIStrategy(0.9) });
+		an.setRecommendationStrategies(new RecommendationStrategy[] {
+			new VectorSpaceModelStrategy(),
+			new RelatedAssigneesRecommendation(true),
+			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new RelatedAssigneesRecommendation(
+				true)) });
 
 		an.initializeVariables();
 		List<String> headline = an.getName();
 		List<Object> results = new ArrayList<Object>();
-		an.analyzeEntireProject(project, results);
+		an.analyzeEntireProject(project);
 		an.addResults(results);
 
 		String location = "/Users/henning/Documents/workspace/BachelorArbeit/Quellen/Statistics/Entire Project Scan/";
-		String filename = "LSI_VSM.csv";
+		String filename = "scan_everything.csv";
 
 		printToCSVFile(headline, results, location, filename);
 
@@ -110,11 +114,15 @@ public class StartEvaluationAction extends Action {
 		an.setRelevantBaseClasses(relevantBaseClasses);
 
 		ArrayList<EClass> relevantTargetClasses = new ArrayList<EClass>();
-		relevantBaseClasses.add(RequirementPackage.eINSTANCE.getUseCase());
+		relevantTargetClasses.add(RequirementPackage.eINSTANCE.getUseCase());
 		an.setRelevantTargetClasses(relevantTargetClasses);
 
+		ArrayList<EClass> relevantReferences = new ArrayList<EClass>();
+		relevantReferences.add(RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases().getEReferenceType());
+		an.setRelevantReferences(relevantReferences);
+
 		results = new ArrayList<Object>();
-		an.analyzeEntireProject(project, results);
+		an.analyzeEntireProject(project);
 		an.addResults(results);
 
 		printToCSVFile(headline, results, location, filename);

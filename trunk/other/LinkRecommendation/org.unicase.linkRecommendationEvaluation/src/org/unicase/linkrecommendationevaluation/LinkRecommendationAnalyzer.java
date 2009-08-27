@@ -28,7 +28,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperati
 import org.unicase.linkrecommendation.linkselection.ConstantThresholdSelection;
 import org.unicase.linkrecommendation.linkselection.CutPointSelection;
 import org.unicase.linkrecommendation.linkselection.LinkSelectionStrategy;
-import org.unicase.linkrecommendation.recommendationStrategies.LSIStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.Updateable;
@@ -54,7 +53,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	private int correctElements;
 	private double[][] foundAndRec;
 	private int[][] hits;
-	private int countSuggestions;
+	private int countElements;
 	private int[][] sumPositions;
 	private int[][] countNonZeroSuggestions;
 
@@ -86,8 +85,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 
 		// selectionStrategies = new LinkSelectionStrategy[] {};
 		// recommendationStrategies = new RecommendationStrategy[] { new RelatedAssigneesRecommendation() };
-		recommendationStrategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(), new LSIStrategy(0.5),
-			new LSIStrategy(0.9) };
+		recommendationStrategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy() };
 		// recommendationStrategies = new RecommendationStrategy[] { new ARMStrategy() };
 		// recommendationStrategies = new RecommendationStrategy[] { new VectorSpaceModelStrategy(),
 		// new SharedReferencesRecommendation(1), new SharedReferencesRecommendation(2),
@@ -118,12 +116,14 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		List<String> names = new ArrayList<String>();
 		names.add("#Elements");
 
+		if (recommendationStrategies.length > 0 && selectionStrategies.length > 0) {
+			names.add("#Suggestions");
+		}
+
 		for (int i = 0; i < recommendationStrategies.length; i++) {
 
 			for (int j = 0; j < selectionStrategies.length; j++) {
 				names.add("Avg Position Recommendation" + recommendationStrategies[i].getName());
-				names.add("Number suggestions");
-
 				names.add("Prec.:" + recommendationStrategies[i].getName() + "[" + selectionStrategies[j].getName()
 					+ "]" + " ActionItems -> Functional Requirements");
 				names.add("Recl.:" + recommendationStrategies[i].getName() + "[" + selectionStrategies[j].getName()
@@ -163,9 +163,9 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 
 		// Analyze the project
 		if (analyseStepByStep) {
-			analyseStepByStep(data, results);
+			analyseStepByStep(data);
 		} else {
-			analyzeEntireProject(data.getProjectState(), results);
+			analyzeEntireProject(data.getProjectState());
 		}
 
 		// post-analysation calculation e.g. "training"
@@ -183,12 +183,14 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	 * @param results the result object
 	 */
 	public void addResults(List<Object> results) {
-		results.add(countSuggestions);
+		results.add(countElements);
+		if (recommendationStrategies.length > 0 && selectionStrategies.length > 0) {
+			results.add(countNonZeroSuggestions[0][0]);
+		}
 		for (int j = 0; j < recommendationStrategies.length; j++) {
 			for (int i = 0; i < selectionStrategies.length; i++) {
 				double avgPos = sumPositions[i][j] / (double) countNonZeroSuggestions[i][j];
 				results.add(avgPos);
-				results.add(countNonZeroSuggestions[i][j]);
 
 				double precision = 0, recall = 0;
 				if (suggestedElements[i][j] != 0) {
@@ -236,10 +238,10 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		}
 
 		correctElements = 0;
-		countSuggestions = 0;
+		countElements = 0;
 	}
 
-	private void analyseStepByStep(ProjectAnalysisData data, List<Object> results) {
+	private void analyseStepByStep(ProjectAnalysisData data) {
 		// first step? just fetch the data.
 		if (clonedProject == null) {
 			clonedProject = (Project) EcoreUtil.copy(data.getProjectState());
@@ -276,14 +278,15 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 			analyseRecommendation(base, eReference, correctMEs);
 
 			// redraw the changes in the project
-			if (operation.canApply(clonedProject)) {
-				operation.apply(clonedProject);
-				if (debug == DEBUGMODE.APPLY || debug == DEBUGMODE.ALL) {
-					System.out.println("Apply: " + operation.getName());
-				}
-			} else if (debug == DEBUGMODE.APPLY || debug == DEBUGMODE.ALL) {
-				System.out.println("Can't apply: " + operation.getName());
+			// if (operation.canApply(clonedProject)) {
+			operation.apply(clonedProject);
+			if (debug == DEBUGMODE.APPLY || debug == DEBUGMODE.ALL) {
+				System.out.println("Apply: " + operation.getName());
 			}
+			/*
+			 * } else if (debug == DEBUGMODE.APPLY || debug == DEBUGMODE.ALL) { System.out.println("Can't apply: " +
+			 * operation.getName()); }
+			 */
 		}
 
 		// bring the project on the last state
@@ -323,7 +326,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		// make suggestions
 		for (int j = 0; j < recommendationStrategies.length; j++) {
 			// the number of suggestions
-			countSuggestions++;
+			countElements++;
 			// calculate suggestions
 			Map<ModelElement, Double> relevanceMap = recommendationStrategies[j].getMatchingMap(base, candidates);
 
@@ -430,9 +433,8 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	 * Analyzes the entire Project and lists the result in the parameter results.
 	 * 
 	 * @param project the project
-	 * @param results results are printed into this list
 	 */
-	public void analyzeEntireProject(Project project, List<Object> results) {
+	public void analyzeEntireProject(Project project) {
 		EList<ModelElement> allModelElements = project.getAllModelElements();
 
 		for (ModelElement modelElement : allModelElements) {

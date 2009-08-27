@@ -23,6 +23,24 @@ import org.unicase.model.task.WorkItem;
  */
 public class RelatedAssigneesRecommendation implements RecommendationStrategy {
 
+	private boolean ignoreEnabled;
+
+	/**
+	 * The standard constructor.
+	 */
+	public RelatedAssigneesRecommendation() {
+		this(false);
+	}
+
+	/**
+	 * The constructor for testing. The base will be ignored at a certain point. Don't use it in running applications.
+	 * 
+	 * @param ignoreEnabled set it to true in testing cases.
+	 */
+	public RelatedAssigneesRecommendation(boolean ignoreEnabled) {
+		this.ignoreEnabled = ignoreEnabled;
+	}
+
 	/**
 	 * This method returns value pairs (ModelElement, Double) which indicate how probable a certain element might be
 	 * linked.
@@ -33,28 +51,49 @@ public class RelatedAssigneesRecommendation implements RecommendationStrategy {
 	 */
 	public Map<ModelElement, Double> getMatchingMap(ModelElement base, Collection<ModelElement> elements) {
 		HashMap<ModelElement, Double> result = new HashMap<ModelElement, Double>();
+		double max = 1.0;
 
 		if (base instanceof WorkItem) {
 			WorkItem wi = (WorkItem) base;
 			OrgUnit wu = wi.getAssignee();
 
-			if (wu != null) {
+			// has no assignee
+			if (wu == null) {
+				return result;
+			}
+			// CHANGED FROM GET LINKED MES
+			EList<WorkItem> relatedWIs = wu.getAssignments();
 
-				// CHANGED FROM GET LINKED MES
-				EList<WorkItem> relatedWIs = wu.getAssignments();
-				for (WorkItem item : relatedWIs) {
-					Set<ModelElement> linkedMEs = item.getLinkedModelElements();
-					linkedMEs.retainAll(elements);
-					for (ModelElement me : linkedMEs) {
-						// System.out.println(wi.getName());
-						// System.out.println("Assignee:" + wu.getName());
-						// System.out.println("WI:" + item.getName());
-						// System.out.println("ME:" + me.getName());
-						result.put(me, 1.0 / (linkedMEs.size()));
+			// System.out.println(wi.getName());
+			// System.out.println("Assignee:" + wu.getName());
+
+			for (WorkItem item : relatedWIs) {
+				if (ignoreEnabled && item == base) {
+					continue;
+				}
+
+				Set<ModelElement> linkedMEs = item.getLinkedModelElements();
+				linkedMEs.retainAll(elements);
+
+				for (ModelElement me : linkedMEs) {
+					// count it, add it up
+					if (result.containsKey(me)) {
+						Double newVal = result.get(me) + 1;
+						result.put(me, newVal);
+						if (newVal > max) {
+							max = newVal;
+						}
+					} else {
+						result.put(me, 1.0);
 					}
+					// System.out.println("ME:" + me.getName() + (1.0 / (linkedMEs.size())));
 				}
 			}
+		}
 
+		// normalize
+		for (ModelElement me : result.keySet()) {
+			result.put(me, result.get(me) / max);
 		}
 
 		return result;
