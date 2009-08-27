@@ -7,12 +7,15 @@ package org.unicase.ui.iterationplanner;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
+import org.unicase.ui.iterationplanner.paper.imperative.PaperImperative;
 import org.unicase.ui.iterationplanner.paper.machinelearning.PaperMachineLearning;
 
 /**
  * @author Hodaie
  */
 public class Application implements IApplication {
+	
+	private static final boolean IMPERATIVE_APPROACH = false;
 
 	// BEGIN SUPRESS CATCH EXCEPTION
 	/**
@@ -22,8 +25,11 @@ public class Application implements IApplication {
 	 */
 	public Object start(IApplicationContext context) throws Exception {
 
-		new PaperMachineLearning().start();
-		//new PaperImperative().start();
+		if(IMPERATIVE_APPROACH){
+			new PaperImperative().start();
+		}else{
+			new PaperMachineLearning().start();
+		}
 		return null;
 
 	}

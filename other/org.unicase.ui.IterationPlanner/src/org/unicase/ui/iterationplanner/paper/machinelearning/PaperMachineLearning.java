@@ -50,7 +50,8 @@ import org.unicase.workspace.test.TestProjectEnum;
  * @author Hodaie
  */
 public class PaperMachineLearning {
-	public static boolean HISTORY = false;
+	public static boolean HISTORY_BASED = true;
+	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
 
 	private Classification classification;
 	private ProjectSpace projectSpace;
@@ -59,7 +60,7 @@ public class PaperMachineLearning {
 
 		projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getProjectSpaces().get(0);
-		if (HISTORY) {
+		if (HISTORY_BASED) {
 			runHistoryBased();
 		} else {
 			runStateBased();
@@ -119,7 +120,18 @@ public class PaperMachineLearning {
 				+ "/Exports/" + projectSpace.getProjectName(), true);
 		projectIt.setProjectId(projectInfo.getProjectId());
 		projectIt.setStepLength(stepLength);
-		projectIt.setVersionSpecQuery(getVersionSpecQuery());
+
+		if (HISTORY_BASED_ITERATE_ALL_REVISIONS) {
+			// go through all revisions
+			projectIt.setDefault(true);
+		} else {
+			// determine start and end version
+			int startRevision = 100;
+			int endRevision = projectInfo.getVersion().getIdentifier();
+			projectIt.setVersionSpecQuery(getVersionSpecQuery(startRevision,
+					endRevision));
+		}
+
 		projectIt.setForward(true);
 		projectIt.init(userSession);
 		ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
@@ -130,14 +142,15 @@ public class PaperMachineLearning {
 
 	}
 
-	private VersionSpecQuery getVersionSpecQuery() {
+	private VersionSpecQuery getVersionSpecQuery(int startRevision,
+			int endRevision) {
 		PrimaryVersionSpec startVer = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
-		startVer.setIdentifier(500);
+		startVer.setIdentifier(startRevision);
 
 		PrimaryVersionSpec endVer = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
-		endVer.setIdentifier(626);
+		endVer.setIdentifier(endRevision);
 
 		VersionSpecQuery versionQuery = IteratorFactory.eINSTANCE
 				.createVersionSpecQuery();
