@@ -48,15 +48,40 @@ import javax.swing.Action;
  * @author Hodaie
  */
 public class PaperMachineLearning {
+	public static boolean HISTORY= false;
 
 	private Classification classification;
 
 	public void start() {
 
-//		List<ModelElement> workItems = new ArrayList<ModelElement>();
-//		List<EStructuralFeature> features = getOutputFeatures();
+//		
 		
 		
+		
+		if(HISTORY){
+		runHistoryBased();}
+		else{
+			runStateBased();
+		}
+	}
+
+
+	private void runHistoryBased() {
+		List<ModelElement> workItems = new ArrayList<ModelElement>();
+		ModelElementMatrix m = new ModelElementMatrix(workItems, getOutputFeatures());
+		try {
+			analyzeTriageAccuracy(m);
+		} catch (EmfStoreException e) {
+			e.printStackTrace();
+		} catch (IteratorException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+
+	private void runStateBased() {
 		List<ModelElement> relevantWorkItems = getRelevantWorkItems();
 
 		ModelElementMatrix m = new ModelElementMatrix(relevantWorkItems, getOutputFeatures());
@@ -69,17 +94,6 @@ public class PaperMachineLearning {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-		
-//		try {
-//			analyzeTriageAccuracy(m);
-//		} catch (EmfStoreException e) {
-//			e.printStackTrace();
-//		} catch (IteratorException e) {
-//			e.printStackTrace();
-//		} catch (IOException e) {
-//			e.printStackTrace();
-//		}
 	}
 
 
