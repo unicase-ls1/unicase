@@ -11,6 +11,14 @@
  */
 package org.unicase.ui.iterationplanner.paper.imperative;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
+import java.util.Random;
+import java.util.Map.Entry;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.Project;
@@ -27,15 +35,8 @@ import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
 import org.unicase.ui.iterationplanner.provider.AssigneeProvider;
 import org.unicase.ui.iterationplanner.provider.ExpertiseMap;
 import org.unicase.ui.iterationplanner.provider.ImperativeFindAssignee;
+import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Map;
-import java.util.Random;
-import java.util.Map.Entry;
 
 /**
  * @author Hodaie
@@ -53,9 +54,11 @@ public class PaperImperative {
 	private List<WorkItem> allWorkItemsWithAssignee;
 	private List<WorkItem> allWorkItemsWithAnnotatedMEsAndAssignee;
 	private ArrayList<WorkItem> allWorkItemsWithAssigneesWithMoreThan10Task;
+	private ProjectSpace projectSpace;
 
 	public void start() {
 
+		projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0);
 		Project project = getProject();
 
 		initFRs(project);
@@ -171,18 +174,8 @@ public class PaperImperative {
 	 * @return
 	 */
 	private Project getProject() {
-		Project project;
-		// project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject();
-
-		project = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0).getProject();
-
-		// String path = "";
-		// try {
-		// project = WorkspaceManager.getInstance().getCurrentWorkspace().importProject(path).getProject();
-		// } catch (IOException e) {
-		// // TODO Auto-generated catch block
-		// e.printStackTrace();
-		// }
+		
+		Project project  = projectSpace.getProject();
 
 		return project;
 	}

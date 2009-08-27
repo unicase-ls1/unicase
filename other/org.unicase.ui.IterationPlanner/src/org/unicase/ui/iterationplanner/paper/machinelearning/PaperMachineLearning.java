@@ -57,9 +57,10 @@ public class PaperMachineLearning {
 	private ProjectSpace projectSpace;
 
 	public void start() {
-
+		classification = new Classification();
 		projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getProjectSpaces().get(0);
+		
 		if (HISTORY_BASED) {
 			runHistoryBased();
 		} else {
@@ -88,7 +89,7 @@ public class PaperMachineLearning {
 				getOutputFeatures());
 		System.out.println(m.getModelElements().size());
 
-		classification = new Classification();
+		
 		try {
 			classification.init(m);
 			classification.runStateBasedClassification();
