@@ -6,6 +6,7 @@
 
 package org.unicase.analyzer.questionnaire.wizards;
 
+import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -44,20 +45,17 @@ public class EvaluatePage extends WizardPage implements Listener {
 	public void handleEvent(Event event) {
 		if (veryWell.getSelection()) {
 			result = 5;
-			((EvaluationWizard) getWizard()).setCanFinish(true);
 		} else if (well.getSelection()) {
 			result = 4;
-			((EvaluationWizard) getWizard()).setCanFinish(true);
 		} else if (ok.getSelection()) {
 			result = 3;
-			((EvaluationWizard) getWizard()).setCanFinish(true);
 		} else if (bad.getSelection()) {
 			result = 2;
-			((EvaluationWizard) getWizard()).setCanFinish(true);
 		} else if (veryBad.getSelection()) {
 			result = 0;
-			((EvaluationWizard) getWizard()).setCanFinish(true);
 		}
+		((EvaluationWizard) getWizard()).setCanFinish(true);
+		setPageComplete(true);
 		QuestionnaireManager.getInstance().setEvaluationResult(result);
 		getWizard().getContainer().updateButtons();
 	}
@@ -110,6 +108,11 @@ public class EvaluatePage extends WizardPage implements Listener {
 		setControl(composite);
 		setPageComplete(false);
 
+	}
+
+	@Override
+	public IWizardPage getNextPage() {
+		return super.getNextPage();
 	}
 
 }

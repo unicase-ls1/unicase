@@ -34,10 +34,14 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
+import org.unicase.analyzer.iterator.IteratorFactory;
+import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -65,6 +69,7 @@ public class RandomGenerator {
 	private final ProjectSpace projectSpace;
 	private final Usersession session;
 	private final ProjectId pid;
+	private List<HistoryInfo> history;
 
 	public RandomGenerator() {
 		map = new HashMap<Object, Object>();
@@ -75,6 +80,15 @@ public class RandomGenerator {
 		projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 		session = projectSpace.getUsersession();
 		pid = (ProjectId) EcoreUtil.copy(projectSpace.getProjectId());
+
+		VersionIterator it = IteratorFactory.eINSTANCE.createVersionIterator();
+		try {
+			it.init(session, pid, 1);
+			history = it.getProjectHistory();
+		} catch (IteratorException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		DOLLI_DIR = DIR + "emfstore" + File.separatorChar + "project-" + pid.getId() + File.separatorChar;
 	}
 
@@ -229,6 +243,57 @@ public class RandomGenerator {
 			// }
 
 		}
+
+		// get log message
+		Random rand = new Random();
+		List<Integer> index = new ArrayList<Integer>();
+		for (int i = 0; i < 10; i++) {
+			int temp = rand.nextInt(10);
+			if (index.isEmpty()) {
+				index.add(temp);
+			} else {
+				while (!isAvailable(temp, index)) {
+					temp = rand.nextInt(10);
+				}
+				index.add(temp);
+			}
+		}
+
+		String[] logMsgs = new String[10];
+		boolean[] correct = new boolean[10];
+		logMsgs[index.get(0)] = history.get(history.size() - 1 - version).getLogMessage().getMessage();
+		correct[index.get(0)] = true;
+		for (int i = 1; i < 10; i++) {
+			logMsgs[index.get(i)] = history.get(rand.nextInt(history.size())).getLogMessage().getMessage();
+			correct[index.get(i)] = false;
+		}
+
+		CSVExporter log = ExportersFactory.eINSTANCE.createCSVExporter();
+		log.init(DIR + userNum + File.separatorChar + "logMsgs-" + version + ".csv");
+		for (int i = 0; i < 10; i++) {
+			List<Object> line = new ArrayList<Object>();
+			line.add(logMsgs[i]);
+			log.writeLine(line);
+		}
+
+		CSVExporter choice = ExportersFactory.eINSTANCE.createCSVExporter();
+		choice.init(DIR + userNum + File.separatorChar + "choices-" + version + ".csv");
+		for (int i = 0; i < 10; i++) {
+			List<Object> line = new ArrayList<Object>();
+			line.add(correct[i]);
+			choice.writeLine(line);
+		}
+
+	}
+
+	private boolean isAvailable(int check, List<Integer> numbers) {
+		for (int x = 0; x < numbers.size(); x++) {
+			if (check == numbers.get(x).intValue()) {
+				return false;
+			}
+		}
+
+		return true;
 
 	}
 
