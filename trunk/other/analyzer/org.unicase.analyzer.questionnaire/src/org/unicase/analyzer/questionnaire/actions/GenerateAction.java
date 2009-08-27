@@ -52,7 +52,7 @@ public class GenerateAction implements IWorkbenchWindowActionDelegate {
 
 		try {
 			generator.readFile(new File(Configuration.getWorkspaceDirectory() + "/dolli.csv"));
-			generator.generateUserFolder(15);
+			generator.generateUserFolder(2);
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -180,7 +180,7 @@ public class RandomGenerator {
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar
-			+ "projectstate-" + previousVersion + ".ups"));
+			+ "projectstate-" + (version - 1) + ".ups"));
 		resource.getContents().add(project1);
 		resource.save(null);
 		// GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + previousVersion + ".ups", DIR + "/" + i + "/" +
@@ -189,18 +189,18 @@ public class RandomGenerator {
 		ChangePackage changePackage = ResourceHelper.getElementFromResource(DOLLI_DIR + "changepackage-" + version
 			+ ".ucp", ChangePackage.class, 0);
 
+		Project project2 = (Project) EcoreUtil.copy(project1);
+		changePackage.apply(project2);
+		// resourceSet = new ResourceSetImpl();
+		resource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar + "projectstate-"
+			+ version + ".ups"));
+		resource.getContents().add(project2);
+		resource.save(null);
+
 		if (representation) {
 			GeneratorHelper.copyfile(DOLLI_DIR + "changepackage-" + version + ".ucp", DIR + userNum
 				+ File.separatorChar + "changepackage-" + version + ".ucp");
 		} else {
-
-			Project project2 = (Project) EcoreUtil.copy(project1);
-			changePackage.apply(project2);
-			// resourceSet = new ResourceSetImpl();
-			resource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar
-				+ "projectstate-" + version + ".ups"));
-			resource.getContents().add(project2);
-			resource.save(null);
 
 			// GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + version + ".ups", DIR + "/" + i + "/" +
 			// "/projectstate-" + version + ".ups" );

@@ -87,7 +87,7 @@ public final class QuestionnaireManager {
 	public void next() {
 		version = it.next();
 		if (commitsMap.get(version)) {
-			String projectFileName = DIR + user + "/projectstate-" + (version - 1) + ".ups";
+			String projectFileName = DIR + user + "/projectstate-" + version + ".ups";
 			String changeFileName = DIR + user + "/changepackage-" + version + ".ucp";
 			try {
 				Project project = ResourceHelper.getElementFromResource(projectFileName, Project.class, 0);
