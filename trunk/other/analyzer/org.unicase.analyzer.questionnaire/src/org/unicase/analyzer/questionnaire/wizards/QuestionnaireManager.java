@@ -63,6 +63,7 @@ public final class QuestionnaireManager {
 	private CSVExporter exporter;
 	private int evaluationResult;
 	private IEditorPart activeEditor;
+	private boolean logMsgResult;// True if the user selected the right log message of this commit
 
 	public static QuestionnaireManager getInstance() {
 		if (instance == null) {
@@ -150,6 +151,7 @@ public final class QuestionnaireManager {
 			header.add("Version #");
 			header.add("Time");
 			header.add("Self-assessment");
+			header.add("Log Message Selection");
 			exporter.writeLine(header);
 
 		} catch (IOException e) {
@@ -276,4 +278,19 @@ public final class QuestionnaireManager {
 	public void setEvaluationResult(int evaluationResult) {
 		this.evaluationResult = evaluationResult;
 	}
+
+	/**
+	 * @return the logMsgResult
+	 */
+	public boolean isLogMsgResult() {
+		return logMsgResult;
+	}
+
+	/**
+	 * @param logMsgResult the logMsgResult to set
+	 */
+	public void setLogMsgResult(boolean logMsgResult) {
+		this.logMsgResult = logMsgResult;
+	}
+
 }
