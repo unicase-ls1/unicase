@@ -9,9 +9,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.Vector;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
+import org.unicase.model.requirement.Step;
+import org.unicase.model.requirement.UseCase;
 
 /**
  * This class offers a couple of useful methods for word extraction etc.
@@ -37,6 +42,7 @@ public class RecUtils {
 		iSTEMMAP.put("ies", "y"); // duties -> duty
 		iSTEMMAP.put("ing", ""); // meeting -> meet
 		iSTEMMAP.put("ings", ""); // meetings -> meet
+		iSTEMMAP.put("ion", ""); // encryption -> encrypt
 		// ly, ally
 		// er : shopper, shopping -> shop
 	}
@@ -83,8 +89,6 @@ public class RecUtils {
 			return new ArrayList<String>();
 		}
 
-		text = text.toLowerCase();
-
 		for (char c : iSTOPCHARS) {
 			text = text.replace(c, ' ');
 		}
@@ -94,14 +98,56 @@ public class RecUtils {
 
 		// remove empty elements
 		for (int i = 0; i < tempResult.length; i++) {
-			if (!tempResult[i].equals("") && !contains(iSTOPWORDS, tempResult[i])) {
+			if (!tempResult[i].equals("") && !contains(iSTOPWORDS, tempResult[i].toLowerCase())) {
 				if (stemming) {
-					tempResult[i] = stemmWord(tempResult[i]);
+					String[] words = decamilize(tempResult[i]);
+					for (String word : words) {
+						String myWord = word.toLowerCase();
+						myWord = stemmWord(myWord);
+						result.add(myWord);
+					}
+				} else {
+					result.add(tempResult[i]);
 				}
-				result.add(tempResult[i]);
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * This method takes a String and seperates camelcase words. e.g. CamelCase -> Camel, Case -> camelCase-> camel
+	 * Case. Adapted from http://www.malethan.com/article/humanise_camel_case_in_java.html
+	 * 
+	 * @param word the string
+	 * @return an array with the seperated words
+	 */
+	public static String[] decamilize(String word) {
+		Pattern pattern = Pattern.compile("([A-Z]|[a-z])[a-z]*");
+
+		Vector<String> tokens = new Vector<String>();
+		Matcher matcher = pattern.matcher(word);
+		String acronym = "";
+		while (matcher.find()) {
+			String found = matcher.group();
+			if (found.matches("^[A-Z]$")) {
+				acronym += found;
+			} else {
+				if (acronym.length() > 0) {
+					// we have an acronym to add before we continue
+					tokens.add(acronym);
+					acronym = "";
+				}
+				tokens.add(found);
+			}
+		}
+		if (acronym.length() > 0) {
+			tokens.add(acronym);
+		}
+		if (tokens.size() > 0) {
+			return tokens.toArray(new String[0]);
+		}
+
+		return new String[] { word };
 	}
 
 	private static String stemmWord(String word) {
@@ -177,6 +223,15 @@ public class RecUtils {
 	 * @return the text
 	 */
 	public static String getMEsText(ModelElement me) {
-		return me.getName() + " " + me.getDescriptionPlainText();
+		String text = me.getName() + " " + me.getDescriptionPlainText();
+
+		if (me instanceof UseCase) {
+			UseCase uc = (UseCase) me;
+			for (Step step : uc.getUseCaseSteps()) {
+				text += " " + step.getName() + " " + step.getDescriptionPlainText();
+			}
+		}
+
+		return text;
 	}
 }
