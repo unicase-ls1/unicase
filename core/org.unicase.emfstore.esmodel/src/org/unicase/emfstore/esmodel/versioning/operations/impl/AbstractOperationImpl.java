@@ -276,10 +276,10 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 	 * @generated NOT
 	 */
 	public void apply(Project project) {
-		if (!canApply(project)) {
-			// MK throw proper exception
-			throw new IllegalStateException("Cannot apply!");
-		}
+		// if (!canApply(project)) {
+		// // MK throw proper exception
+		// throw new IllegalStateException("Cannot apply!");
+		// }
 	}
 
 	/**
