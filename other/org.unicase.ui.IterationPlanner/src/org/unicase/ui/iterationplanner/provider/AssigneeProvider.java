@@ -29,7 +29,7 @@ public class AssigneeProvider {
 	private Map<User, Integer> initialAssigneeAvailabilities;
 	private WorkPackage lastSprint;
 	private IterationPlannerManager planningManager;
-	private FindAssigneeStrategy findAssigneeStrategy;
+	private AssigneePredictionStrategy assigneePredictionStrategy;
 
 	/**
 	 * Constructor.
@@ -37,11 +37,11 @@ public class AssigneeProvider {
 	 * @param iterationPlannerManager iteration planning manager
 	 * @param lastSprint last sprint
 	 */
-	public AssigneeProvider(IterationPlannerManager iterationPlannerManager, FindAssigneeStrategy findAssigneeStrategy,
+	public AssigneeProvider(IterationPlannerManager iterationPlannerManager, AssigneePredictionStrategy findAssigneeStrategy,
 		WorkPackage lastSprint) {
 		this.lastSprint = lastSprint;
 		this.planningManager = iterationPlannerManager;
-		this.findAssigneeStrategy = findAssigneeStrategy;
+		this.assigneePredictionStrategy = findAssigneeStrategy;
 		initAssigneeAvailabilities();
 	}
 
@@ -49,11 +49,11 @@ public class AssigneeProvider {
 	 * Constructor.
 	 * 
 	 * @param iterationPlannerManager iteration planning manager
-	 * @param iterationPlannerManager
+	 * @param findAssigneeStrategy findAssigneeStrategy (imperative or machine learning)
 	 */
-	public AssigneeProvider(IterationPlannerManager iterationPlannerManager, FindAssigneeStrategy findAssigneeStrategy) {
+	public AssigneeProvider(IterationPlannerManager iterationPlannerManager, AssigneePredictionStrategy findAssigneeStrategy) {
 		this.planningManager = iterationPlannerManager;
-		this.findAssigneeStrategy = findAssigneeStrategy;
+		this.assigneePredictionStrategy = findAssigneeStrategy;
 	}
 
 	/**
@@ -227,7 +227,7 @@ public class AssigneeProvider {
 	}
 
 	public User getAppropriateAssignee(WorkItem task) {
-		return findAssigneeStrategy.suggestAssignee(task);
+		return assigneePredictionStrategy.predictAssignee(task);
 	}
 
 	/**

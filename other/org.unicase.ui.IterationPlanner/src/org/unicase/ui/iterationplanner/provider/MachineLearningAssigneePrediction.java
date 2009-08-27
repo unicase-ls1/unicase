@@ -9,17 +9,20 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 
 /**
- * interface to determine related tasks.
+ * Comupter related tasks using SVM.
  * 
  * @author hodaie
  */
-public interface FindAssigneeStrategy {
-	/**
-	 * Returns assignee appropriate to do this work item.
-	 * 
-	 * @param workItem work item
-	 * @return related tasks
+public class MachineLearningAssigneePrediction implements AssigneePredictionStrategy {
+
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * org.unicase.ui.iterationplanner.provider.FindAssigneeStrategy#suggestAssignee(org.unicase.model.task.WorkItem)
 	 */
-	User suggestAssignee(WorkItem task);
+	public User predictAssignee(WorkItem task) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

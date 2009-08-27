@@ -9,19 +9,16 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 
 /**
- * Comupter related tasks using SVM.
+ * Computer related tasks directly.
  * 
  * @author hodaie
  */
-public class SVMFindAssignee implements FindAssigneeStrategy {
+public class ImperativeAssigneePrediction implements AssigneePredictionStrategy {
 
-	/*
-	 * (non-Javadoc)
-	 * @see
-	 * org.unicase.ui.iterationplanner.provider.FindAssigneeStrategy#suggestAssignee(org.unicase.model.task.WorkItem)
+	/**
+	 * {@inheritDoc}
 	 */
-	public User suggestAssignee(WorkItem task) {
-		// TODO Auto-generated method stub
+	public User predictAssignee(WorkItem task) {
 		return null;
 	}
 
