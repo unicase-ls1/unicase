@@ -12,9 +12,7 @@ import org.jdmp.core.dataset.DataSetFactory;
 import org.jdmp.core.sample.Sample;
 import org.jdmp.core.sample.SampleFactory;
 import org.jdmp.core.variable.Variable;
-import org.jdmp.libsvm.LibSVMClassifier;
-import org.jdmp.weka.classifier.WekaClassifier;
-import org.jdmp.weka.classifier.WekaClassifier.WekaClassifierType;
+import org.jdmp.liblinear.LibLinearClassifier;
 import org.ujmp.core.Matrix;
 import org.ujmp.core.MatrixFactory;
 import org.ujmp.core.calculation.Calculation.Ret;
@@ -158,12 +156,12 @@ public class Classification {
 		System.out.println("building dataset...");
 		ds = DataSetFactory.importFromMatrix(input, assignee);
 
-		//classifier = new LibLinearClassifier();  //takes 7 minutes; 40-50% accuracy
+		classifier = new LibLinearClassifier();  //takes 7 minutes; 40-50% accuracy
 		//classifier = new WekaClassifier(WekaClassifierType.NaiveBayes, true);
 		//classifier = new WekaClassifier(WekaClassifierType.Logistic, true);  //heap exception with 1024M; JVM does not start with 2048M
 		//classifier = new WekaClassifier(WekaClassifierType.MultilayerPerceptron, false);
 		//classifier = new LibSVMClassifier();  //after 40 minutes crashed at cross validation with ArrayIndexOutOfBoundException
-		classifier = new WekaClassifier(WekaClassifierType.Id3, false);  //numerical attributes are not valid
+		//classifier = new WekaClassifier(WekaClassifierType.Id3, false);  //numerical attributes are not valid
 		
 	}
 	
