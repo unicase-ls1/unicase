@@ -13,7 +13,7 @@ import org.unicase.ui.iterationplanner.evaluator.SimpleEvaluator;
 import org.unicase.ui.iterationplanner.planner.Planner;
 import org.unicase.ui.iterationplanner.planner.SimplePlanner;
 import org.unicase.ui.iterationplanner.provider.AssigneeProvider;
-import org.unicase.ui.iterationplanner.provider.ImperativeFindAssignee;
+import org.unicase.ui.iterationplanner.provider.ImperativeAssigneePrediction;
 import org.unicase.ui.iterationplanner.provider.RequirementProvider;
 import org.unicase.ui.iterationplanner.provider.TaskProvider;
 
@@ -49,7 +49,7 @@ public class IterationPlannerManager {
 	public IterationPlannerManager(WorkPackage lastSprint, List<WorkPackage> includedWorkPackages,
 		List<FunctionalRequirement> requirements) {
 
-		assigneeProvider = new AssigneeProvider(this, new ImperativeFindAssignee(), lastSprint);
+		assigneeProvider = new AssigneeProvider(this, new ImperativeAssigneePrediction(), lastSprint);
 		assigneeProvider.initAssigneeAvailabilities();
 
 		taskProvider = new TaskProvider(this, lastSprint, includedWorkPackages);
@@ -66,7 +66,7 @@ public class IterationPlannerManager {
 	 * Constructor.
 	 */
 	public IterationPlannerManager() {
-		assigneeProvider = new AssigneeProvider(this, new ImperativeFindAssignee());
+		assigneeProvider = new AssigneeProvider(this, new ImperativeAssigneePrediction());
 		taskProvider = new TaskProvider(this);
 		requirementProvider = new RequirementProvider(this);
 		planner = new SimplePlanner();

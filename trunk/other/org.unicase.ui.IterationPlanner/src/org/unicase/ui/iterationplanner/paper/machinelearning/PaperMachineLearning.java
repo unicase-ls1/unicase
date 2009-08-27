@@ -50,7 +50,7 @@ import org.unicase.workspace.test.TestProjectEnum;
  * @author Hodaie
  */
 public class PaperMachineLearning {
-	public static boolean HISTORY_BASED = true;
+	public static boolean HISTORY_BASED = false;
 	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
 
 	private Classification classification;
@@ -136,7 +136,7 @@ public class PaperMachineLearning {
 		projectIt.setForward(true);
 		projectIt.init(userSession);
 		ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
-		analyzers.add(new TriageAccuracyAnalyzer(classification, m));
+		analyzers.add(new MachineLearningTriageAccuracyAnalyzer(classification, m));
 		@SuppressWarnings("unused")
 		AnalyzerModelController anacontrol = new AnalyzerModelController(
 				projectIt, analyzers, exporter);

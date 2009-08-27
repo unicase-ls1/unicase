@@ -26,7 +26,12 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Set;
 
-public class TriageAccuracyAnalyzer implements DataAnalyzer {
+/**
+ * This class asks the classifier for assignee predictions on each revision of project.
+ * @author hodaie
+ *
+ */
+public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 
 	private static int totalPredictions = 0;
 	private static int correctPredictions = 0;
@@ -37,7 +42,7 @@ public class TriageAccuracyAnalyzer implements DataAnalyzer {
 
 	private Project clonedProject;
 
-	public TriageAccuracyAnalyzer(Classification classification,
+	public MachineLearningTriageAccuracyAnalyzer(Classification classification,
 			ModelElementMatrix m) {
 		this.classification = classification;
 		this.meMatrix = m;

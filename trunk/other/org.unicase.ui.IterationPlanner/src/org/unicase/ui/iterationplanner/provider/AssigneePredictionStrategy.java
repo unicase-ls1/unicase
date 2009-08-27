@@ -9,17 +9,17 @@ import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
 
 /**
- * Computer related tasks directly.
+ * interface to determine related tasks.
  * 
  * @author hodaie
  */
-public class ImperativeFindAssignee implements FindAssigneeStrategy {
-
+public interface AssigneePredictionStrategy {
 	/**
-	 * {@inheritDoc}
+	 * Returns assignee appropriate to do this work item.
+	 * 
+	 * @param workItem work item
+	 * @return related tasks
 	 */
-	public User suggestAssignee(WorkItem task) {
-		return null;
-	}
+	User predictAssignee(WorkItem task);
 
 }

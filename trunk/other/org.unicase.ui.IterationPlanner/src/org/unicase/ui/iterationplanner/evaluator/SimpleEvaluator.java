@@ -66,7 +66,7 @@ public class SimpleEvaluator implements Evaluator {
 	 * @param testSet
 	 *            testSet
 	 */
-	public void computePercision(Map<WorkItem, ExpertiseMap> testSet) {
+	public void computeAccuracy(Map<WorkItem, ExpertiseMap> testSet) {
 		firstProposalPercision = 0;
 		secondProposalPercision = 0;
 		int firstCorrectAssignments = 0;
