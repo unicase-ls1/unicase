@@ -7,7 +7,9 @@ package org.unicase.emfstore.esmodel.versioning.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
@@ -28,6 +30,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 
 /**
@@ -443,6 +446,19 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 			leafOperations.addAll(operation.getLeafOperations());
 		}
 		return leafOperations;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#getAllInvolvedModelElements()
+	 */
+	public Set<ModelElementId> getAllInvolvedModelElements() {
+		Set<ModelElementId> result = new HashSet<ModelElementId>();
+		for (AbstractOperation operation : getOperations()) {
+			result.addAll(operation.getAllInvolvedModelElements());
+		}
+		return result;
 	}
 
 } // ChangePackageImpl

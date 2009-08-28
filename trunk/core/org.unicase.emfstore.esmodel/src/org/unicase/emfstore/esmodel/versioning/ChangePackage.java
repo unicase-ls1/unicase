@@ -6,12 +6,14 @@
 package org.unicase.emfstore.esmodel.versioning;
 
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 
 /**
@@ -151,5 +153,12 @@ public interface ChangePackage extends EObject {
 	 * @return a list of leaf operations.
 	 */
 	List<AbstractOperation> getLeafOperations();
+
+	/**
+	 * Returns all model elements that are involved in this change package.
+	 * 
+	 * @return a set of model element ids
+	 */
+	Set<ModelElementId> getAllInvolvedModelElements();
 
 } // ChangePackage
