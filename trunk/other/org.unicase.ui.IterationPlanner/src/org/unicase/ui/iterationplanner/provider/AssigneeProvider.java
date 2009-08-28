@@ -26,8 +26,8 @@ import java.util.Map.Entry;
  */
 public class AssigneeProvider {
 
-	private Map<User, Integer> assigneeAvailabilities;
-	private Map<User, Integer> initialAssigneeAvailabilities;
+	private Map<OrgUnit, Integer> assigneeAvailabilities;
+	private Map<OrgUnit, Integer> initialAssigneeAvailabilities;
 	private WorkPackage lastSprint;
 	private IterationPlannerManager planningManager;
 	private AssigneePredictionStrategy assigneePredictionStrategy;
@@ -61,9 +61,9 @@ public class AssigneeProvider {
 	/**
 	 * @param assignee assignee
 	 */
-	public void addAssignee(User assignee) {
+	public void addAssignee(OrgUnit assignee) {
 		if (assigneeAvailabilities == null) {
-			assigneeAvailabilities = new HashMap<User, Integer>();
+			assigneeAvailabilities = new HashMap<OrgUnit, Integer>();
 		}
 		assigneeAvailabilities.put(assignee, 0);
 	}
@@ -71,7 +71,7 @@ public class AssigneeProvider {
 	/**
 	 * @param asssignee assignee
 	 */
-	public void removeAssignee(User asssignee) {
+	public void removeAssignee(OrgUnit asssignee) {
 		if (assigneeAvailabilities != null) {
 			assigneeAvailabilities.remove(asssignee);
 
@@ -81,7 +81,7 @@ public class AssigneeProvider {
 	/**
 	 * @return assignees
 	 */
-	public Set<User> getAssignees() {
+	public Set<OrgUnit> getAssignees() {
 		if (assigneeAvailabilities != null) {
 			return assigneeAvailabilities.keySet();
 		}
@@ -104,7 +104,7 @@ public class AssigneeProvider {
 	 * @param assignee assignee
 	 * @return availability
 	 */
-	public int getAvailability(User assignee) {
+	public int getAvailability(OrgUnit assignee) {
 		if (assigneeAvailabilities == null) {
 			return 0;
 		}
@@ -120,7 +120,7 @@ public class AssigneeProvider {
 	 * @param assignee assignee
 	 * @param value value
 	 */
-	public void setAvailability(User assignee, int value) {
+	public void setAvailability(OrgUnit assignee, int value) {
 		if (assigneeAvailabilities != null) {
 			assigneeAvailabilities.put(assignee, new Integer(value));
 		}
@@ -131,7 +131,7 @@ public class AssigneeProvider {
 	 * 
 	 */
 	public void initAssigneeAvailabilities() {
-		assigneeAvailabilities = new HashMap<User, Integer>();
+		assigneeAvailabilities = new HashMap<OrgUnit, Integer>();
 		if (lastSprint == null) {
 			return;
 		}
@@ -150,7 +150,7 @@ public class AssigneeProvider {
 
 		}
 
-		initialAssigneeAvailabilities = new HashMap<User, Integer>();
+		initialAssigneeAvailabilities = new HashMap<OrgUnit, Integer>();
 		initialAssigneeAvailabilities.putAll(assigneeAvailabilities);
 	}
 
@@ -182,10 +182,10 @@ public class AssigneeProvider {
 	/**
 	 * set the initial assignees.
 	 * 
-	 * @param assignees initial assignees
+	 * @param list initial assignees
 	 */
-	public void setAssignees(List<User> assignees) {
-		for (User assignee : assignees) {
+	public void setAssignees(List<OrgUnit> list) {
+		for (OrgUnit assignee : list) {
 			addAssignee(assignee);
 		}
 	}
@@ -198,7 +198,7 @@ public class AssigneeProvider {
 	 * @param task task
 	 * @return int
 	 */
-	public double getExpertise(WorkItem task, User assignee) {
+	public double getExpertise(WorkItem task, OrgUnit assignee) {
 
 		int expertise = 0;
 
@@ -222,16 +222,16 @@ public class AssigneeProvider {
 	 */
 	public ExpertiseMap getExpertiseMap(WorkItem task) {
 		ExpertiseMap result = new ExpertiseMap();
-		for (User assignee : getAssignees()) {
+		for (OrgUnit assignee : getAssignees()) {
 			result.put(assignee, getExpertise(task, assignee));
 		}
 		return result;
 	}
 
-	public User getAppropriateAssignee(WorkItem task) {
+	public OrgUnit getAppropriateAssignee(WorkItem task) {
 		// return assigneePredictionStrategy.predictAssignee(task);
 		ExpertiseMap expertiseMap = getExpertiseMap(task);
-		List<Entry<User, Double>> sortedExpertiseMap = expertiseMap.sortByExpertise();
+		List<Entry<OrgUnit, Double>> sortedExpertiseMap = expertiseMap.sortByExpertise();
 
 		return sortedExpertiseMap.get(0).getKey();
 
@@ -243,7 +243,7 @@ public class AssigneeProvider {
 	 */
 	public ExpertiseMap getExpertiseMap(FunctionalRequirement fr) {
 		ExpertiseMap result = new ExpertiseMap();
-		for (User assignee : getAssignees()) {
+		for (OrgUnit assignee : getAssignees()) {
 			result.put(assignee, getExpertise(fr, assignee));
 		}
 		return result;
@@ -254,7 +254,7 @@ public class AssigneeProvider {
 	 * @param assignee
 	 * @return
 	 */
-	private double getExpertise(FunctionalRequirement fr, User assignee) {
+	private double getExpertise(FunctionalRequirement fr, OrgUnit assignee) {
 		int expertise = 0;
 		List<WorkItem> relatedWorkItems = planningManager.getTaskProvider().getRelatedWorkItems(fr);
 		// count number of related tasks assigned to this user

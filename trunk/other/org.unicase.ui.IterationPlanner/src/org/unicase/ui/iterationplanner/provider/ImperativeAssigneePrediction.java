@@ -5,7 +5,7 @@
  */
 package org.unicase.ui.iterationplanner.provider;
 
-import org.unicase.model.organization.User;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -18,7 +18,7 @@ public class ImperativeAssigneePrediction implements AssigneePredictionStrategy 
 	/**
 	 * {@inheritDoc}
 	 */
-	public User predictAssignee(WorkItem task) {
+	public OrgUnit predictAssignee(WorkItem task) {
 		return null;
 	}
 

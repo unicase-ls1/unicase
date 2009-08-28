@@ -5,7 +5,7 @@
  */
 package org.unicase.ui.iterationplanner.provider;
 
-import org.unicase.model.organization.User;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -20,6 +20,6 @@ public interface AssigneePredictionStrategy {
 	 * @param workItem work item
 	 * @return related tasks
 	 */
-	User predictAssignee(WorkItem task);
+	OrgUnit predictAssignee(WorkItem task);
 
 }

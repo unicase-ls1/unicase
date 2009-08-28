@@ -27,8 +27,8 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
 import org.unicase.model.organization.Group;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
-import org.unicase.model.organization.User;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -62,9 +62,9 @@ public class PaperImperative {
 	public static boolean HISTORY_BASED = true;
 	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
 
-	private List<User> assigneesWithMoreThan10Tasks;
-	private List<User> assigneesWithAtLeastOneTask;
-	private List<User> allAssignees;
+	private List<OrgUnit> assigneesWithMoreThan10Tasks;
+	private List<OrgUnit> assigneesWithAtLeastOneTask;
+	private List<OrgUnit> allAssignees;
 
 	private EList<WorkItem> allWorkItems;
 	private List<WorkItem> allWorkItemsWithAssignee;
@@ -138,7 +138,7 @@ public class PaperImperative {
 			projectIt.setDefault(true);
 		} else {
 			// determine start and end version
-			int startRevision = 100;
+			int startRevision = 1300;
 			int endRevision = projectInfo.getVersion().getIdentifier();
 			projectIt.setVersionSpecQuery(getVersionSpecQuery(startRevision, endRevision));
 		}
@@ -164,7 +164,7 @@ public class PaperImperative {
 		initAssignees(project);
 		initWorkItems(project);
 		List<WorkItem> workItems = allWorkItemsWithAnnotatedMEsAndAssignee;
-		List<User> assignees = allAssignees;
+		List<OrgUnit> assignees = allAssignees;
 		IterationPlannerManager planningManager = new IterationPlannerManager();
 
 		AssigneeProvider assigneeProvider = new AssigneeProvider(planningManager, new ImperativeAssigneePrediction());
@@ -208,9 +208,9 @@ public class PaperImperative {
 		System.out.println("=============================================================================");
 		System.out.println(wi.getName() + " ----> " + wi.getAssignee().getName() + " ("
 			+ expertiseMap.sortByExpertise().get(0).getKey().getName() + ")");
-		Iterator<Entry<User, Double>> iterator = expertiseMap.getIterator();
+		Iterator<Entry<OrgUnit, Double>> iterator = expertiseMap.getIterator();
 		while (iterator.hasNext()) {
-			Entry<User, Double> next = iterator.next();
+			Entry<OrgUnit, Double> next = iterator.next();
 			System.out.printf("%-10s%40.1f%n", next.getKey().getName(), next.getValue());
 		}
 	}
@@ -254,20 +254,12 @@ public class PaperImperative {
 		return result;
 	}
 
-	private List<WorkItem> getWorkItems(List<WorkPackage> wps) {
-		List<WorkItem> result = new ArrayList<WorkItem>();
-		for (WorkPackage wp : wps) {
-			result.addAll(getWorkItems(wp));
-		}
-		return result;
-	}
-
 	private void initAssignees(Project project) {
-		allAssignees = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
-			new BasicEList<User>());
-		assigneesWithAtLeastOneTask = new ArrayList<User>();
-		assigneesWithMoreThan10Tasks = new ArrayList<User>();
-		for (User assignee : allAssignees) {
+		allAssignees = project.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getOrgUnit(),
+			new BasicEList<OrgUnit>());
+		assigneesWithAtLeastOneTask = new ArrayList<OrgUnit>();
+		assigneesWithMoreThan10Tasks = new ArrayList<OrgUnit>();
+		for (OrgUnit assignee : allAssignees) {
 			if (assignee.getAssignments().size() > 0) {
 				assigneesWithAtLeastOneTask.add(assignee);
 			}

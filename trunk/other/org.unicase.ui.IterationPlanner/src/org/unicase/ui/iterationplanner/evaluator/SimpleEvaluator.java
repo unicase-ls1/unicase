@@ -5,10 +5,6 @@
  */
 package org.unicase.ui.iterationplanner.evaluator;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Map.Entry;
-
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
@@ -17,10 +13,12 @@ import org.unicase.ui.iterationplanner.core.Plan;
 import org.unicase.ui.iterationplanner.core.SprintPlan;
 import org.unicase.ui.iterationplanner.provider.ExpertiseMap;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
+
 /**
- * 
  * @author hodaie
- * 
  */
 public class SimpleEvaluator implements Evaluator {
 
@@ -31,8 +29,7 @@ public class SimpleEvaluator implements Evaluator {
 	/**
 	 * Constructor.
 	 * 
-	 * @param iterationPlannerManager
-	 *            iteration org.unicase.ui.iterationplanner.planner manager
+	 * @param iterationPlannerManager iteration org.unicase.ui.iterationplanner.planner manager
 	 */
 	public SimpleEvaluator(IterationPlannerManager iterationPlannerManager) {
 		this.planningManager = iterationPlannerManager;
@@ -40,7 +37,6 @@ public class SimpleEvaluator implements Evaluator {
 
 	/**
 	 * {@inheritDoc}
-	 * 
 	 */
 	public double evaluate(Plan plan) {
 		return 0;
@@ -63,8 +59,7 @@ public class SimpleEvaluator implements Evaluator {
 	/**
 	 * Temp method.
 	 * 
-	 * @param testSet
-	 *            testSet
+	 * @param testSet testSet
 	 */
 	public void computeAccuracy(Map<WorkItem, ExpertiseMap> testSet) {
 		firstProposalPercision = 0;
@@ -74,17 +69,14 @@ public class SimpleEvaluator implements Evaluator {
 		int numOfWorkItems = testSet.size();
 
 		for (WorkItem wi : testSet.keySet()) {
-			
+
 			OrgUnit realAssignee = wi.getAssignee();
-			if(testSet.get(wi).isAllZero()){
+			if (testSet.get(wi).isAllZero()) {
 				continue;
 			}
-			List<Entry<User, Double>> sortedProposedAssignees = testSet.get(wi)
-					.sortByExpertise();
-			User firstProposedAssignee = sortedProposedAssignees.get(0)
-					.getKey();
-			User secondProposedAssignee = sortedProposedAssignees.get(1)
-					.getKey();
+			List<Entry<OrgUnit, Double>> sortedProposedAssignees = testSet.get(wi).sortByExpertise();
+			OrgUnit firstProposedAssignee = sortedProposedAssignees.get(0).getKey();
+			OrgUnit secondProposedAssignee = sortedProposedAssignees.get(1).getKey();
 
 			if (firstProposedAssignee.equals(realAssignee)) {
 				firstCorrectAssignments++;
@@ -94,13 +86,12 @@ public class SimpleEvaluator implements Evaluator {
 
 		}
 
-		firstProposalPercision = ((double)firstCorrectAssignments / numOfWorkItems) * 100;
-		secondProposalPercision = ((double)secondCorrectAssignments / numOfWorkItems) * 100;
+		firstProposalPercision = ((double) firstCorrectAssignments / numOfWorkItems) * 100;
+		secondProposalPercision = ((double) secondCorrectAssignments / numOfWorkItems) * 100;
 
 	}
 
 	/**
-	 * 
 	 * @return firstProposalPercision
 	 */
 	public double getFirstProposalPercision() {
@@ -108,7 +99,6 @@ public class SimpleEvaluator implements Evaluator {
 	}
 
 	/**
-	 * 
 	 * @return secondProposalPercision
 	 */
 	public double getSecondProposalPercision() {
