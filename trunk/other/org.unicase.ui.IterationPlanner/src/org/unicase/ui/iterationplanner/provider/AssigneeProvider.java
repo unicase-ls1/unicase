@@ -19,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.Map.Entry;
 
 /**
  * @author hodaie
@@ -37,8 +38,8 @@ public class AssigneeProvider {
 	 * @param iterationPlannerManager iteration planning manager
 	 * @param lastSprint last sprint
 	 */
-	public AssigneeProvider(IterationPlannerManager iterationPlannerManager, AssigneePredictionStrategy findAssigneeStrategy,
-		WorkPackage lastSprint) {
+	public AssigneeProvider(IterationPlannerManager iterationPlannerManager,
+		AssigneePredictionStrategy findAssigneeStrategy, WorkPackage lastSprint) {
 		this.lastSprint = lastSprint;
 		this.planningManager = iterationPlannerManager;
 		this.assigneePredictionStrategy = findAssigneeStrategy;
@@ -51,7 +52,8 @@ public class AssigneeProvider {
 	 * @param iterationPlannerManager iteration planning manager
 	 * @param findAssigneeStrategy findAssigneeStrategy (imperative or machine learning)
 	 */
-	public AssigneeProvider(IterationPlannerManager iterationPlannerManager, AssigneePredictionStrategy findAssigneeStrategy) {
+	public AssigneeProvider(IterationPlannerManager iterationPlannerManager,
+		AssigneePredictionStrategy findAssigneeStrategy) {
 		this.planningManager = iterationPlannerManager;
 		this.assigneePredictionStrategy = findAssigneeStrategy;
 	}
@@ -221,13 +223,18 @@ public class AssigneeProvider {
 	public ExpertiseMap getExpertiseMap(WorkItem task) {
 		ExpertiseMap result = new ExpertiseMap();
 		for (User assignee : getAssignees()) {
-			result.put(assignee, planningManager.getAssigneeProvider().getExpertise(task, assignee));
+			result.put(assignee, getExpertise(task, assignee));
 		}
 		return result;
 	}
 
 	public User getAppropriateAssignee(WorkItem task) {
-		return assigneePredictionStrategy.predictAssignee(task);
+		// return assigneePredictionStrategy.predictAssignee(task);
+		ExpertiseMap expertiseMap = getExpertiseMap(task);
+		List<Entry<User, Double>> sortedExpertiseMap = expertiseMap.sortByExpertise();
+
+		return sortedExpertiseMap.get(0).getKey();
+
 	}
 
 	/**
