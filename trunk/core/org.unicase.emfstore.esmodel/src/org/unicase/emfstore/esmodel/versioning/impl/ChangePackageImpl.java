@@ -271,16 +271,8 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated NOT
 	 */
 	public void apply(Project project) {
-		// for (ChangeContainer changeContainer : getChangeContainers()) {
-		// changeContainer.apply(project);
-		// }
 		for (AbstractOperation abstractOperation : getOperations()) {
-			// MK FIXME hack:
-			try {
-				abstractOperation.apply(project);
-			} catch (IllegalStateException e) {
-
-			}
+			abstractOperation.apply(project);
 		}
 	}
 
