@@ -11,6 +11,43 @@
  */
 package org.unicase.ui.iterationplanner.paper.imperative;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
+import org.unicase.analyzer.AnalyzerModelController;
+import org.unicase.analyzer.DataAnalyzer;
+import org.unicase.analyzer.exceptions.IteratorException;
+import org.unicase.analyzer.exporters.CSVExporter;
+import org.unicase.analyzer.exporters.ExportersFactory;
+import org.unicase.analyzer.iterator.IteratorFactory;
+import org.unicase.analyzer.iterator.VersionIterator;
+import org.unicase.analyzer.iterator.VersionSpecQuery;
+import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.Project;
+import org.unicase.model.organization.Group;
+import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.organization.User;
+import org.unicase.model.task.Milestone;
+import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
+import org.unicase.ui.iterationplanner.Activator;
+import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
+import org.unicase.ui.iterationplanner.evaluator.SimpleEvaluator;
+import org.unicase.ui.iterationplanner.provider.AssigneeProvider;
+import org.unicase.ui.iterationplanner.provider.ExpertiseMap;
+import org.unicase.ui.iterationplanner.provider.ImperativeAssigneePrediction;
+import org.unicase.ui.iterationplanner.provider.TaskProvider;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.Usersession;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.test.SetupHelper;
+import org.unicase.workspace.test.TestProjectEnum;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -18,57 +55,123 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
-import org.unicase.model.Project;
-import org.unicase.model.organization.Group;
-import org.unicase.model.organization.OrganizationPackage;
-import org.unicase.model.organization.User;
-import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.model.task.Milestone;
-import org.unicase.model.task.TaskPackage;
-import org.unicase.model.task.WorkItem;
-import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
-import org.unicase.ui.iterationplanner.evaluator.SimpleEvaluator;
-import org.unicase.ui.iterationplanner.provider.AssigneeProvider;
-import org.unicase.ui.iterationplanner.provider.ExpertiseMap;
-import org.unicase.ui.iterationplanner.provider.ImperativeAssigneePrediction;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceManager;
-
 /**
  * @author Hodaie
  */
 public class PaperImperative {
 
+	public static boolean HISTORY_BASED = true;
+	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
+
 	private List<User> assigneesWithMoreThan10Tasks;
 	private List<User> assigneesWithAtLeastOneTask;
 	private List<User> allAssignees;
-
 
 	private EList<WorkItem> allWorkItems;
 	private List<WorkItem> allWorkItemsWithAssignee;
 	private List<WorkItem> allWorkItemsWithAnnotatedMEsAndAssignee;
 	private ArrayList<WorkItem> allWorkItemsWithAssigneesWithMoreThan10Task;
 	private ProjectSpace projectSpace;
+	private Project project;
 
 	public void start() {
 
 		projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0);
-		Project project = getProject();
+		project = getProject();
 
-		
+		if (HISTORY_BASED) {
+			try {
+				runHistoryBased();
+			} catch (IteratorException e) {
+				e.printStackTrace();
+			} catch (EmfStoreException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+
+			runStateBased();
+
+		}
+
+	}
+
+	private VersionSpecQuery getVersionSpecQuery(int startRevision, int endRevision) {
+		PrimaryVersionSpec startVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		startVer.setIdentifier(startRevision);
+
+		PrimaryVersionSpec endVer = VersioningFactory.eINSTANCE.createPrimaryVersionSpec();
+		endVer.setIdentifier(endRevision);
+
+		VersionSpecQuery versionQuery = IteratorFactory.eINSTANCE.createVersionSpecQuery();
+		versionQuery.setStartVersion(startVer);
+		versionQuery.setEndVersion(endVer);
+
+		return versionQuery;
+	}
+
+	/**
+	 * @throws EmfStoreException
+	 * @throws IOException
+	 * @throws IteratorException
+	 */
+	private void runHistoryBased() throws EmfStoreException, IOException, IteratorException {
+
+		SetupHelper setupHelper = new SetupHelper(TestProjectEnum.NONE);
+		setupHelper.loginServer();
+		Usersession userSession = setupHelper.getUsersession();
+		ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
+
+		List<ProjectInfo> projectList = connectionManager.getProjectList(userSession.getSessionId());
+		ProjectInfo projectInfo = projectList.get(0);
+
+		int stepLength = 1;
+		VersionIterator projectIt = IteratorFactory.eINSTANCE.createVersionIterator();
+		CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
+		exporter.init(Activator.getDefault().getBundle().getLocation().replace("reference:file:", "") + "/Exports/"
+			+ projectSpace.getProjectName(), true);
+		projectIt.setProjectId(projectInfo.getProjectId());
+		projectIt.setStepLength(stepLength);
+
+		if (HISTORY_BASED_ITERATE_ALL_REVISIONS) {
+			// go through all revisions
+			projectIt.setDefault(true);
+		} else {
+			// determine start and end version
+			int startRevision = 100;
+			int endRevision = projectInfo.getVersion().getIdentifier();
+			projectIt.setVersionSpecQuery(getVersionSpecQuery(startRevision, endRevision));
+		}
+
+		projectIt.setForward(true);
+		projectIt.init(userSession);
+		ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
+
+		IterationPlannerManager planningManager = new IterationPlannerManager();
+		TaskProvider taskProvider = new TaskProvider(planningManager);
+		AssigneeProvider assigneeProvider = new AssigneeProvider(planningManager, new ImperativeAssigneePrediction());
+		analyzers.add(new ImperativeTriageAccuracyAnalyzer(assigneeProvider, taskProvider));
+		@SuppressWarnings("unused")
+		AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
+
+	}
+
+	/**
+	 * @throws IteratorException
+	 * @throws EmfStoreException
+	 * @throws IOException
+	 */
+	private void runStateBased() {
 		initAssignees(project);
 		initWorkItems(project);
 		List<WorkItem> workItems = allWorkItemsWithAnnotatedMEsAndAssignee;
 		List<User> assignees = allAssignees;
 		IterationPlannerManager planningManager = new IterationPlannerManager();
-	
-		Map<WorkItem, ExpertiseMap> testSet = new HashMap<WorkItem, ExpertiseMap>();
-		AssigneeProvider assigneeProvider = new AssigneeProvider(
-				planningManager, new ImperativeAssigneePrediction());
+
+		AssigneeProvider assigneeProvider = new AssigneeProvider(planningManager, new ImperativeAssigneePrediction());
 		assigneeProvider.setAssignees(assignees);
+		Map<WorkItem, ExpertiseMap> testSet = new HashMap<WorkItem, ExpertiseMap>();
 		for (WorkItem wi : workItems) {
 			ExpertiseMap expertiseMap = assigneeProvider.getExpertiseMap(wi);
 			print(expertiseMap, wi);
@@ -76,12 +179,9 @@ public class PaperImperative {
 
 		}
 
-		((SimpleEvaluator) planningManager.getEvaluator())
-				.computeAccuracy(testSet);
-		double firstPercision = ((SimpleEvaluator) planningManager
-				.getEvaluator()).getFirstProposalPercision();
-		double secondPercision = ((SimpleEvaluator) planningManager
-				.getEvaluator()).getSecondProposalPercision();
+		((SimpleEvaluator) planningManager.getEvaluator()).computeAccuracy(testSet);
+		double firstPercision = ((SimpleEvaluator) planningManager.getEvaluator()).getFirstProposalPercision();
+		double secondPercision = ((SimpleEvaluator) planningManager.getEvaluator()).getSecondProposalPercision();
 
 		System.out.printf("first percision: %f%n", firstPercision);
 		System.out.printf("scond percision: %f%n", secondPercision);
@@ -94,24 +194,15 @@ public class PaperImperative {
 		}
 
 		System.out.println("num of work items: " + workItems.size());
-		System.out.printf("work items without annotated MEs: %d (%f %%)",
-				workItemsWithOutAnnotatedMEs,
-				(double) workItemsWithOutAnnotatedMEs * 100 / workItems.size());
-
-		
-		
-
+		System.out.printf("work items without annotated MEs: %d (%f %%)", workItemsWithOutAnnotatedMEs,
+			(double) workItemsWithOutAnnotatedMEs * 100 / workItems.size());
 	}
-
-
-
-	
 
 	/**
 	 * @return
 	 */
 	private Project getProject() {
-		Project project  = projectSpace.getProject();
+		Project project = projectSpace.getProject();
 		return project;
 	}
 
@@ -189,4 +280,3 @@ public class PaperImperative {
 
 	}
 }
-
