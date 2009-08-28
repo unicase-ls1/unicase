@@ -12,6 +12,8 @@ import java.util.LinkedList;
 import java.util.Map;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.ModelElement;
 
 /**
@@ -22,6 +24,8 @@ import org.unicase.model.ModelElement;
 public class SharedReferencesRecommendation implements RecommendationStrategy {
 
 	private int depth = 1;
+	private EReference correctReference;
+	private boolean ignoreMEs;
 
 	/**
 	 * The constructor.
@@ -29,7 +33,24 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 	 * @param depth the depth of search.
 	 */
 	public SharedReferencesRecommendation(int depth) {
+		this(depth, null);
+	}
+
+	/**
+	 * The constructor for evaluation. Don't use it for runtime suggestions. ;)
+	 * 
+	 * @param depth the depth of search
+	 * @param correctReference the correct MEs, they will be subtracted
+	 */
+	public SharedReferencesRecommendation(int depth, EReference correctReference) {
 		this.depth = depth;
+		this.correctReference = correctReference;
+
+		if (correctReference != null) {
+			this.ignoreMEs = true;
+		} else {
+			this.ignoreMEs = false;
+		}
 	}
 
 	/**
@@ -40,17 +61,32 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 	 * @param elements The potential elements linked to the base
 	 * @return a Map (ModelElement,Double)
 	 */
+	@SuppressWarnings("unchecked")
 	public Map<ModelElement, Double> getMatchingMap(ModelElement base, Collection<ModelElement> elements) {
 		Map<ModelElement, Double> result = new HashMap<ModelElement, Double>();
+		EList<ModelElement> correctMEs = null;
 		double max = 1;
 
+		// for test cases only: remove already existing relations
+		if (ignoreMEs && correctReference != null && base.eGet(correctReference) instanceof EList) {
+			correctMEs = (EList<ModelElement>) base.eGet(correctReference);
+		}
+
 		/* CHANGE: ITERATE BASE AS WELL */
-		Set<ModelElement> baseRelated = base.getLinkedModelElements();
-		Collection<ModelElement> modelsToAdd = new LinkedList<ModelElement>();
+		Set<ModelElement> baseRelated = new HashSet<ModelElement>();
+
 		baseRelated.add(base);
 		for (int i = 0; i < depth; i++) {
+			Collection<ModelElement> modelsToAdd = new LinkedList<ModelElement>();
 			for (ModelElement subElement : baseRelated) {
-				modelsToAdd.addAll(subElement.getLinkedModelElements());
+				Collection<ModelElement> newMEs = subElement.getLinkedModelElements();
+
+				if (correctMEs != null && correctMEs.contains(subElement)) {
+					newMEs.remove(base);
+				} else if (correctMEs != null && subElement == base) {
+					newMEs.removeAll(correctMEs);
+				}
+				modelsToAdd.addAll(newMEs);
 			}
 			baseRelated.addAll(modelsToAdd);
 		}
@@ -58,11 +94,20 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 		for (ModelElement me : elements) {
 			// get all elements
 			Set<ModelElement> meRelated = new HashSet<ModelElement>();
-			modelsToAdd = new LinkedList<ModelElement>();
 			meRelated.add(me);
 			for (int i = 0; i < depth; i++) {
+				Collection<ModelElement> modelsToAdd = new LinkedList<ModelElement>();
 				for (ModelElement subElement : meRelated) {
-					modelsToAdd.addAll(subElement.getLinkedModelElements());
+					Collection<ModelElement> linkedMEs = subElement.getLinkedModelElements();
+
+					// on testing / evaluation remove already existing "correct" elements
+					if (correctMEs != null && correctMEs.contains(subElement)) {
+						linkedMEs.remove(base);
+					} else if (correctMEs != null && subElement == base) {
+						linkedMEs.removeAll(correctMEs);
+					}
+
+					modelsToAdd.addAll(linkedMEs);
 				}
 				meRelated.addAll(modelsToAdd);
 			}

@@ -103,7 +103,7 @@ public class EvaluationView extends ViewPart {
 		PlatformUI.getWorkbench().getHelpSystem().setHelp(viewer.getControl(),
 			"org.unicase.linkRecommendationEvaluation.viewer");
 
-		doubleClickAction = new StartEvaluationAction(viewer, elements);
+		doubleClickAction = new StartEvaluationAction(viewer);
 
 		viewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {

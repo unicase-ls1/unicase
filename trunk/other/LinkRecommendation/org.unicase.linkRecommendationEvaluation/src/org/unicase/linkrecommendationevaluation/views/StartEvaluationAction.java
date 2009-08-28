@@ -21,11 +21,13 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.unicase.linkrecommendation.linkselection.ConstantThresholdSelection;
 import org.unicase.linkrecommendation.linkselection.CutPointSelection;
 import org.unicase.linkrecommendation.linkselection.LinkSelectionStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.LSIStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
-import org.unicase.linkrecommendation.recommendationStrategies.RelatedAssigneesRecommendation;
+import org.unicase.linkrecommendation.recommendationStrategies.SharedReferencesRecommendation;
 import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.ArithmeticMeanCombinationStrategy;
 import org.unicase.linkrecommendationevaluation.LinkRecommendationAnalyzer;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.workspace.ProjectSpace;
@@ -38,17 +40,14 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class StartEvaluationAction extends Action {
 	private TableViewer viewer;
-	private String[] elements;
 
 	/**
 	 * Constructor.
 	 * 
 	 * @param v the tableView
-	 * @param el the possible elements in the tv
 	 */
-	public StartEvaluationAction(TableViewer v, String[] el) {
+	public StartEvaluationAction(TableViewer v) {
 		this.viewer = v;
-		this.elements = el;
 	}
 
 	/**
@@ -59,25 +58,19 @@ public class StartEvaluationAction extends Action {
 		ISelection selection = viewer.getSelection();
 		Object obj = ((IStructuredSelection) selection).getFirstElement();
 
-		if (obj == elements[0]) {
-			EList<ProjectSpace> all = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
+		EList<ProjectSpace> all = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces();
 
-			for (ProjectSpace projectSpace : all) {
-				boolean stop = false;
-				for (String s : elements) {
-					if (projectSpace.getProjectName().equals(s)) {
-						showMessage("Analyzing " + projectSpace.getProjectName());
-						evaluate(projectSpace.getProject());
-						stop = true;
-						break;
-					}
-				}
-				if (stop) {
-					break;
-				}
+		for (ProjectSpace projectSpace : all) {
+			boolean stop = false;
+			if (projectSpace.getProjectName().equals(obj)) {
+				showMessage("Analyzing " + projectSpace.getProjectName());
+				evaluate(projectSpace.getProject());
+				stop = true;
+				break;
 			}
-		} else {
-			showMessage("Double-click detected on " + obj.toString());
+			if (stop) {
+				break;
+			}
 		}
 	}
 
@@ -86,14 +79,21 @@ public class StartEvaluationAction extends Action {
 
 		// FIRST standard: ActionItems -> Functional Requirements
 		an.setSelectionStrategies(new LinkSelectionStrategy[] { new ConstantThresholdSelection(0.1),
-			new ConstantThresholdSelection(0.25), new ConstantThresholdSelection(0.5),
-			new ConstantThresholdSelection(0.75), new CutPointSelection(10) });
-
+			new ConstantThresholdSelection(0.35), new ConstantThresholdSelection(0.5), new CutPointSelection(5),
+			new CutPointSelection(10) });
+		// an.setRecommendationStrategies(new RecommendationStrategy[] {
+		// new SharedReferencesRecommendation(1, ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements()),
+		// new SharedReferencesRecommendation(2, ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements()),
+		// new SharedReferencesRecommendation(3, ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements()) });
 		an.setRecommendationStrategies(new RecommendationStrategy[] {
-			new VectorSpaceModelStrategy(),
-			new RelatedAssigneesRecommendation(true),
-			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new RelatedAssigneesRecommendation(
-				true)) });
+			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(1,
+				ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements())),
+			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(3,
+				ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements())),
+			new ArithmeticMeanCombinationStrategy(new LSIStrategy(0.9), new SharedReferencesRecommendation(1,
+				RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases())),
+			new ArithmeticMeanCombinationStrategy(new LSIStrategy(0.9), new SharedReferencesRecommendation(3,
+				ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements())) });
 
 		an.initializeVariables();
 		List<String> headline = an.getName();
@@ -101,10 +101,10 @@ public class StartEvaluationAction extends Action {
 		an.analyzeEntireProject(project);
 		an.addResults(results);
 
-		String location = "/Users/henning/Documents/workspace/BachelorArbeit/Quellen/Statistics/Entire Project Scan/";
-		String filename = "scan_everything.csv";
+		String location = "/Users/henning/Documents/workspace/BachelorArbeit/Quellen/Statistics/dolli/Entire Project Scan/";
+		String filename = "SRS.csv";
 
-		printToCSVFile(headline, results, location, filename);
+		printToCSVFile(headline, results, location + filename);
 
 		// Now: FR -> UseCase
 		an.initializeVariables();
@@ -121,18 +121,33 @@ public class StartEvaluationAction extends Action {
 		relevantReferences.add(RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases().getEReferenceType());
 		an.setRelevantReferences(relevantReferences);
 
+		// an.setRecommendationStrategies(new RecommendationStrategy[] {
+		// new SharedReferencesRecommendation(1, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()),
+		// new SharedReferencesRecommendation(2, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()),
+		// new SharedReferencesRecommendation(3, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()) });
+
+		an.setRecommendationStrategies(new RecommendationStrategy[] {
+			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(1,
+				RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases())),
+			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(3,
+				RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases())),
+			new ArithmeticMeanCombinationStrategy(new LSIStrategy(0.9), new SharedReferencesRecommendation(1,
+				RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases())),
+			new ArithmeticMeanCombinationStrategy(new LSIStrategy(0.9), new SharedReferencesRecommendation(3,
+				RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases())) });
+
 		results = new ArrayList<Object>();
 		an.analyzeEntireProject(project);
 		an.addResults(results);
 
-		printToCSVFile(headline, results, location, filename);
+		printToCSVFile(headline, results, location + filename);
 
 		System.out.println("Finished.");
 	}
 
-	private void printToCSVFile(List<String> headline, List<Object> results, String location, String filename) {
+	private void printToCSVFile(List<String> headline, List<Object> results, String file) {
 		try {
-			FileOutputStream fop = new FileOutputStream(location + filename, true);
+			FileOutputStream fop = new FileOutputStream(file, true);
 			PrintWriter wrt = new PrintWriter(fop);
 			wrt.println();
 			// headlines

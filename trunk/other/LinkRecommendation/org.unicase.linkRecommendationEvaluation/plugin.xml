@@ -41,5 +41,17 @@
             class="org.unicase.linkrecommendationevaluation.LinkRecommendationAnalyzer">
       </client_analyzer>
    </extension>
+   <extension
+         id="id1"
+         point="org.eclipse.core.runtime.applications">
+      <application
+            cardinality="singleton-global"
+            thread="main"
+            visible="true">
+         <run
+               class="org.unicase.linkrecommendationevaluation.EvaluationApplication">
+         </run>
+      </application>
+   </extension>
 
 </plugin>

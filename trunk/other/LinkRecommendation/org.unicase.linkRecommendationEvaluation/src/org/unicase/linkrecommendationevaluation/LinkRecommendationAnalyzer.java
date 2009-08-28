@@ -69,11 +69,11 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		ALL, RESULTS, FAILS, APPLY, NOTHING
 	}
 
-	private final DEBUGMODE debug = DEBUGMODE.FAILS;
+	private static final DEBUGMODE DEBUG = DEBUGMODE.FAILS;
 
 	private Project clonedProject;
 
-	private final boolean analyseStepByStep = true;
+	private static final boolean analyseStepByStep = true;
 
 	/**
 	 * The constructor.
@@ -125,9 +125,9 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 			for (int j = 0; j < selectionStrategies.length; j++) {
 				names.add("Avg Position Recommendation" + recommendationStrategies[i].getName());
 				names.add("Prec.:" + recommendationStrategies[i].getName() + "[" + selectionStrategies[j].getName()
-					+ "]" + " ActionItems -> Functional Requirements");
+					+ "]");
 				names.add("Recl.:" + recommendationStrategies[i].getName() + "[" + selectionStrategies[j].getName()
-					+ "]" + " ActionItems -> Functional Requirements");
+					+ "]");
 				// names.add("Hits (Threshold = "+d+")");
 				// names.add("Suggestion Cases (Threshold = "+d+")");
 				// names.add("Percentage Hits (Threshold = "+d+")");
@@ -280,7 +280,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 			// redraw the changes in the project
 			// if (operation.canApply(clonedProject)) {
 			operation.apply(clonedProject);
-			if (debug == DEBUGMODE.APPLY || debug == DEBUGMODE.ALL) {
+			if (DEBUG == DEBUGMODE.APPLY || DEBUG == DEBUGMODE.ALL) {
 				System.out.println("Apply: " + operation.getName());
 			}
 			/*
@@ -346,7 +346,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 
 	private void printDebugOutput(ModelElement base, EReference eReference, Collection<ModelElement> correctMEs, int j,
 		int i, Map<ModelElement, Double> suggestionMap) {
-		if (debug == DEBUGMODE.RESULTS || debug == DEBUGMODE.ALL) {
+		if (DEBUG == DEBUGMODE.RESULTS || DEBUG == DEBUGMODE.ALL) {
 			System.out.print("Analyzing: " + base.getName());
 			System.out.println(", reference: " + eReference.getName() + " with RecStrategy "
 				+ recommendationStrategies[j].getName() + " SelectionStrategy " + selectionStrategies[i].getName());
@@ -497,13 +497,13 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	}
 
 	private void calcStatistics(ModelElement me, Collection<ModelElement> correctMEs,
-		Map<ModelElement, Double> relevanceMap, int indexSelection, int indexStrategy) {
+		Map<ModelElement, Double> suggestionMap, int indexSelection, int indexStrategy) {
 		boolean hit = false;
-		int sug = getNumberSuggestedElements(relevanceMap);
+		int sug = getNumberSuggestedElements(suggestionMap);
 		suggestedElements[indexSelection][indexStrategy] += sug;
 
 		for (ModelElement el : correctMEs) {
-			Double val = relevanceMap.get(el);
+			Double val = suggestionMap.get(el);
 			if (val != null) {
 				foundAndRec[indexSelection][indexStrategy]++;
 				hit = true;
@@ -513,7 +513,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		// determine if suggestions have been met
 		if (hit) {
 			hits[indexSelection][indexStrategy]++;
-		} else if ((debug == DEBUGMODE.FAILS || debug == DEBUGMODE.ALL) && indexSelection == 0) {
+		} else if (DEBUG == DEBUGMODE.FAILS || DEBUG == DEBUGMODE.ALL) {
 			// debug:
 			System.out.println("* " + recommendationStrategies[indexStrategy].getName() + " FAILS to connect ME \n"
 				+ me.getName() + ": " + me.getDescriptionPlainText() + " \n to");
@@ -524,12 +524,8 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 		}
 	}
 
-	/**
-	 * @param relevanceMap
-	 * @return
-	 */
-	private int getNumberSuggestedElements(Map<ModelElement, Double> relevanceMap) {
-		return relevanceMap.size();
+	private int getNumberSuggestedElements(Map<ModelElement, Double> suggestionMap) {
+		return suggestionMap.size();
 	}
 
 	/**
