@@ -391,7 +391,7 @@ public class EmfStoreController implements IApplication, Runnable {
 
 			if (properties.getProperty(ServerConfiguration.VALIDATE_SERVERSPACE_ON_SERVERSTART, "true").equals("true")) {
 				logger.info("Validating serverspace ...");
-				// validateServerSpace(resource);
+				validateServerSpace(resource);
 				logger.info("Validation complete.");
 			}
 		} catch (IOException e) {
