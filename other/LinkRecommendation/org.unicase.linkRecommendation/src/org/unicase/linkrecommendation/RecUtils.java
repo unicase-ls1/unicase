@@ -25,24 +25,24 @@ import org.unicase.model.requirement.UseCase;
  */
 public class RecUtils {
 
-	private static String[] iSTOPWORDS = new String[] { " ", "null", "to", "yet", "will", "which", "within", "without",
-		"how", "if", "it", "has", "have", "about", "also", "an", "at", "by", "for", "of", "on", "and", "or", "the",
-		"this", "them", "not", "is", "a", "we", "should", "be", "are", "he", "his", "in", "e", "g", "i", "e", "there",
-		"their", "from" };
-	private static char[] iSTOPCHARS = new char[] { '.', ',', '!', ':', '?', '\'', '"', '(', ')', '-', ';', '0', '1',
-		'2', '3', '4', '5', '6', '7', '8', '9' };
+	private static final String[] STOPWORDS = new String[] { " ", "null", "to", "yet", "will", "which", "within",
+		"without", "how", "if", "it", "has", "have", "about", "also", "an", "at", "by", "for", "of", "on", "and", "or",
+		"the", "this", "them", "not", "is", "a", "we", "should", "be", "are", "he", "his", "in", "e", "g", "i", "e",
+		"there", "their", "from" };
+	private static final char[] STOPCHARS = new char[] { '.', ',', '!', ':', '?', '\'', '"', '(', ')', '-', ';', '0',
+		'1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
-	private static Map<String, String> iSTEMMAP = new HashMap<String, String>();
+	private static final Map<String, String> STEMMAP = new HashMap<String, String>();
 
 	// initialization
 	static {
-		iSTEMMAP.put("ied", "y");// e.g. identified -> identify
-		iSTEMMAP.put("ed", "");// walked -> walk
-		iSTEMMAP.put("s", "");// walks -> walk, keyboards-> keyboard
-		iSTEMMAP.put("ies", "y"); // duties -> duty
-		iSTEMMAP.put("ing", ""); // meeting -> meet
-		iSTEMMAP.put("ings", ""); // meetings -> meet
-		iSTEMMAP.put("ion", ""); // encryption -> encrypt
+		STEMMAP.put("ied", "y");// e.g. identified -> identify
+		STEMMAP.put("ed", "");// walked -> walk
+		STEMMAP.put("s", "");// walks -> walk, keyboards-> keyboard
+		STEMMAP.put("ies", "y"); // duties -> duty
+		STEMMAP.put("ing", ""); // meeting -> meet
+		STEMMAP.put("ings", ""); // meetings -> meet
+		STEMMAP.put("ion", ""); // encryption -> encrypt
 		// ly, ally
 		// er : shopper, shopping -> shop
 	}
@@ -89,7 +89,7 @@ public class RecUtils {
 			return new ArrayList<String>();
 		}
 
-		for (char c : iSTOPCHARS) {
+		for (char c : STOPCHARS) {
 			text = text.replace(c, ' ');
 		}
 
@@ -98,7 +98,7 @@ public class RecUtils {
 
 		// remove empty elements
 		for (int i = 0; i < tempResult.length; i++) {
-			if (!tempResult[i].equals("") && !contains(iSTOPWORDS, tempResult[i].toLowerCase())) {
+			if (!tempResult[i].equals("") && !contains(STOPWORDS, tempResult[i].toLowerCase())) {
 				if (stemming) {
 					String[] words = decamilize(tempResult[i]);
 					for (String word : words) {
@@ -151,7 +151,7 @@ public class RecUtils {
 	}
 
 	private static String stemmWord(String word) {
-		Set<String> ends = iSTEMMAP.keySet();
+		Set<String> ends = STEMMAP.keySet();
 		if (word.length() < 4) {
 			return word;
 		}
@@ -159,7 +159,7 @@ public class RecUtils {
 		for (String ending : ends) {
 			if (word.endsWith(ending)) {
 				// replace the ending with what comes along
-				return word.substring(0, word.length() - ending.length()) + iSTEMMAP.get(ending);
+				return word.substring(0, word.length() - ending.length()) + STEMMAP.get(ending);
 			}
 		}
 		return word;
@@ -223,7 +223,7 @@ public class RecUtils {
 	 * @return the text
 	 */
 	public static String getMEsText(ModelElement me) {
-		String text = me.getName() + " " + me.getDescriptionPlainText();
+		String text = me.getName() + " " + me.getName() + " " + me.getName() + " " + me.getDescriptionPlainText();
 
 		if (me instanceof UseCase) {
 			UseCase uc = (UseCase) me;
