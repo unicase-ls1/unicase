@@ -5,7 +5,7 @@
  */
 package org.unicase.ui.iterationplanner.provider;
 
-import org.unicase.model.organization.User;
+import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -20,7 +20,7 @@ public class MachineLearningAssigneePrediction implements AssigneePredictionStra
 	 * @see
 	 * org.unicase.ui.iterationplanner.provider.FindAssigneeStrategy#suggestAssignee(org.unicase.model.task.WorkItem)
 	 */
-	public User predictAssignee(WorkItem task) {
+	public OrgUnit predictAssignee(WorkItem task) {
 		// TODO Auto-generated method stub
 		return null;
 	}

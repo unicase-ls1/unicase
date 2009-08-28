@@ -5,7 +5,7 @@
  */
 package org.unicase.ui.iterationplanner.provider;
 
-import org.unicase.model.organization.User;
+import org.unicase.model.organization.OrgUnit;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -21,19 +21,19 @@ import java.util.Map.Entry;
  */
 public class ExpertiseMap {
 
-	private Map<User, Double> map;
+	private Map<OrgUnit, Double> map;
 
 	/**
 	 * Constructor.
 	 */
 	public ExpertiseMap() {
-		map = new HashMap<User, Double>();
+		map = new HashMap<OrgUnit, Double>();
 	}
 
 	/**
 	 * @param map expertise map
 	 */
-	public void setExpertiseMap(Map<User, Double> expertiseMap) {
+	public void setExpertiseMap(Map<OrgUnit, Double> expertiseMap) {
 		this.map = expertiseMap;
 	}
 
@@ -42,7 +42,7 @@ public class ExpertiseMap {
 	 * 
 	 * @return expertise map
 	 */
-	public void put(User assignee, Double expertise) {
+	public void put(OrgUnit assignee, Double expertise) {
 		map.put(assignee, expertise);
 	}
 
@@ -51,8 +51,8 @@ public class ExpertiseMap {
 	 * 
 	 * @return sorted list of assignees based on their experties
 	 */
-	public List<Entry<User, Double>> sortByExpertise() {
-		List<Entry<User, Double>> list = new ArrayList<Entry<User, Double>>();
+	public List<Entry<OrgUnit, Double>> sortByExpertise() {
+		List<Entry<OrgUnit, Double>> list = new ArrayList<Entry<OrgUnit, Double>>();
 		list.addAll(map.entrySet());
 		Collections.sort(list, new ExpertiseMapEntryComparator());
 		return list;
@@ -75,15 +75,15 @@ public class ExpertiseMap {
 	/**
 	 * @author hodaie
 	 */
-	private class ExpertiseMapEntryComparator implements Comparator<Entry<User, Double>> {
+	private class ExpertiseMapEntryComparator implements Comparator<Entry<OrgUnit, Double>> {
 
-		public int compare(Entry<User, Double> e1, Entry<User, Double> e2) {
+		public int compare(Entry<OrgUnit, Double> e1, Entry<OrgUnit, Double> e2) {
 			return e2.getValue().compareTo(e1.getValue());
 		}
 
 	}
 
-	public Iterator<Entry<User, Double>> getIterator() {
+	public Iterator<Entry<OrgUnit, Double>> getIterator() {
 		return map.entrySet().iterator();
 	}
 

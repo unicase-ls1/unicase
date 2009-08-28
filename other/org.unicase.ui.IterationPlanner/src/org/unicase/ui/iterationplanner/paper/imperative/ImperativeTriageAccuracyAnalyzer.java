@@ -12,11 +12,9 @@
 package org.unicase.ui.iterationplanner.paper.imperative;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.unicase.model.Project;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
-import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.WorkItem;
@@ -30,11 +28,6 @@ import java.util.List;
  */
 public class ImperativeTriageAccuracyAnalyzer extends TriageAccuracyAnalyzer {
 
-	private static int totalPredictions = 0;
-	private static int correctPredictions = 0;
-	private static int nullassignee = 0;
-
-	private Project clonedProject;
 	private AssigneeProvider assigneeProvider;
 
 	/**
@@ -59,7 +52,7 @@ public class ImperativeTriageAccuracyAnalyzer extends TriageAccuracyAnalyzer {
 		totalPredictions++;
 
 		assigneeProvider.setAssignees(getAssignees());
-		User suggestedAssignee = assigneeProvider.getAppropriateAssignee((WorkItem) wi);
+		OrgUnit suggestedAssignee = assigneeProvider.getAppropriateAssignee((WorkItem) wi);
 
 		if (suggestedAssignee != null && assignee != null && suggestedAssignee.equals(assignee)) {
 			correctPredictions++;
@@ -70,9 +63,9 @@ public class ImperativeTriageAccuracyAnalyzer extends TriageAccuracyAnalyzer {
 	/**
 	 * @return
 	 */
-	private List<User> getAssignees() {
-		List<User> allAssignees = clonedProject.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getUser(),
-			new BasicEList<User>());
+	private List<OrgUnit> getAssignees() {
+		List<OrgUnit> allAssignees = clonedProject.getAllModelElementsbyClass(OrganizationPackage.eINSTANCE
+			.getOrgUnit(), new BasicEList<OrgUnit>());
 		return allAssignees;
 	}
 

@@ -3,7 +3,6 @@ package org.unicase.ui.iterationplanner.paper.machinelearning;
 import org.unicase.model.ModelElement;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.organization.OrgUnit;
-import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.ActionItem;
 import org.unicase.ui.iterationplanner.paper.TriageAccuracyAnalyzer;
@@ -56,7 +55,7 @@ public class MachineLearningTriageAccuracyAnalyzer extends TriageAccuracyAnalyze
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (suggestedAssignee != null && assignee != null && suggestedAssignee.equals(((User) assignee).getName())) {
+		if (suggestedAssignee != null && assignee != null && suggestedAssignee.equals(((OrgUnit) assignee).getName())) {
 			correctPredictions++;
 		}
 
