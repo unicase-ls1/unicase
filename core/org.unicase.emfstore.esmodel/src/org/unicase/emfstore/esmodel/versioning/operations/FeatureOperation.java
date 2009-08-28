@@ -56,15 +56,17 @@ public interface FeatureOperation extends AbstractOperation {
 	 * 
 	 * @param project the project
 	 * @return the feature
+	 * @throws UnkownFeatureException if the feature can not be found in the eclass of the corresponding model element
 	 */
-	EStructuralFeature getFeature(Project project);
+	EStructuralFeature getFeature(Project project) throws UnkownFeatureException;
 
 	/**
 	 * Get the feature from the eclass of the given model element.
 	 * 
 	 * @param modelElement the model element
 	 * @return the feature
+	 * @throws UnkownFeatureException if the feature can not be found in the eclass of the corresponding model element
 	 */
-	EStructuralFeature getFeature(ModelElement modelElement);
+	EStructuralFeature getFeature(ModelElement modelElement) throws UnkownFeatureException;
 
 } // FeatureOperation

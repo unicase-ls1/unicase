@@ -275,18 +275,6 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 	 * 
 	 * @generated NOT
 	 */
-	public void apply(Project project) {
-		// if (!canApply(project)) {
-		// // MK throw proper exception
-		// throw new IllegalStateException("Cannot apply!");
-		// }
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @generated NOT
-	 */
 	public abstract AbstractOperation reverse();
 
 	/**
@@ -304,7 +292,15 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 	 * 
 	 * @generated NOT
 	 */
-	public abstract boolean canApply(Project project);
+	public boolean canApply(Project project) {
+		if (getModelElementId() == null) {
+			return true;
+		}
+		if (!project.contains(getModelElementId())) {
+			return false;
+		}
+		return true;
+	}
 
 	// end of custom code
 

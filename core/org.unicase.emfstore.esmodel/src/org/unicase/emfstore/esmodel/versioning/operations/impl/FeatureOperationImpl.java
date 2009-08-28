@@ -16,7 +16,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 
 /**
@@ -36,7 +38,21 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 
 	@Override
 	public boolean canApply(Project project) {
-		return project.contains(getModelElementId());
+		if (!super.canApply(project)) {
+			return false;
+		}
+		ModelElement element = project.getModelElement(getModelElementId());
+		try {
+			getFeature(element);
+		} catch (UnkownFeatureException e) {
+			return false;
+		}
+		for (ModelElementId otherElementId : getOtherInvolvedModelElements()) {
+			if (!project.contains(otherElementId)) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	@Override
@@ -190,7 +206,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeature(org.unicase.model.Project)
 	 * @generated NOT
 	 */
-	public EStructuralFeature getFeature(Project project) {
+	public EStructuralFeature getFeature(Project project) throws UnkownFeatureException {
 		ModelElement modelElement = project.getModelElement(getModelElementId());
 		if (modelElement == null) {
 			throw new IllegalArgumentException("Model Element is not in the given project");
@@ -249,7 +265,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 * @generated NOT
 	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeature(org.unicase.model.ModelElement)
 	 */
-	public EStructuralFeature getFeature(ModelElement modelElement) {
+	public EStructuralFeature getFeature(ModelElement modelElement) throws UnkownFeatureException {
 		if (!modelElement.getIdentifier().equals(this.getModelElementId().getId())) {
 			throw new IllegalArgumentException("model element id does not match id of operations model element");
 		}
@@ -259,8 +275,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 				return feature;
 			}
 		}
-		throw new IllegalStateException("Feature " + getFeatureName()
-			+ " is not known to the eclass of the model element");
+		throw new UnkownFeatureException(modelElement.eClass(), getFeatureName());
 	}
 
 } // FeatureOperationImpl

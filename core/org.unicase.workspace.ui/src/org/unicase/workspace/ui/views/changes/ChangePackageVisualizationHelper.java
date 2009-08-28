@@ -26,6 +26,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
@@ -379,11 +380,15 @@ public class ChangePackageVisualizationHelper {
 					.get(subOperationCount - 1);
 			ModelElement parentElement = getModelElement(referenceOperation
 					.getModelElementId());
-			if (parentElement != null
-					&& ((EReference) referenceOperation
-							.getFeature(parentElement)).isContainment()) {
-				description += " from its parent "
-						+ getModelElementName(parentElement);
+			try {
+				if (parentElement != null
+						&& ((EReference) referenceOperation
+								.getFeature(parentElement)).isContainment()) {
+					description += " from its parent "
+							+ getModelElementName(parentElement);
+				}
+			} catch (UnkownFeatureException e) {
+				// silently skip part about parent
 			}
 		}
 		return description;
@@ -406,14 +411,25 @@ public class ChangePackageVisualizationHelper {
 			}
 		}
 
-		EReference feature = (EReference) op.getFeature(modelElement);
+		boolean containment;
+		String featureType;
+		EReference feature;
+		try {
+			feature = (EReference) op.getFeature(modelElement);
+			containment = feature.isContainment();
+			featureType = feature.getEType().getName();
+		} catch (UnkownFeatureException e) {
+			containment = false;
+			featureType = "element";
+		}
+
 		String elemNames = getModelElementClassesAndNames(op
-				.getReferencedModelElements(), feature.getEType().getName());
+				.getReferencedModelElements(), featureType);
 		String elementNameAndClass = getModelElementName(modelElement);
 		String children = op.getReferencedModelElements().size() > 1 ? "children"
 				: "child";
 		if (op.isAdd()) {
-			if (feature.isContainment()) {
+			if (containment) {
 				return "Added " + elemNames + " as " + children + " in "
 						+ elementNameAndClass;
 			} else {
@@ -421,7 +437,7 @@ public class ChangePackageVisualizationHelper {
 						+ " in " + elementNameAndClass;
 			}
 		} else {
-			if (feature.isContainment()) {
+			if (containment) {
 				return "Removed " + elemNames + " as " + children + " in "
 						+ elementNameAndClass;
 			} else {
@@ -446,9 +462,14 @@ public class ChangePackageVisualizationHelper {
 					+ " to " + newName + " for \"(unkown element)";
 		}
 
+		boolean isContainer;
+		try {
+			isContainer = ((EReference) op.getFeature(elem)).isContainer();
+		} catch (UnkownFeatureException e) {
+			isContainer = false;
+		}
 		// changing containment means relocating the item
-		if (((EReference) op.getFeature(elem)).isContainer()
-				&& oldElement != null && newElement != null) {
+		if (isContainer && oldElement != null && newElement != null) {
 			return "Moved " + elementName + " from " + oldName + " to "
 					+ newName;
 		} else if (oldElement == null && newElement == null) {

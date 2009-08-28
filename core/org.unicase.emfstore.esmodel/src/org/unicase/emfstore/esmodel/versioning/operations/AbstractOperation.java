@@ -143,14 +143,17 @@ public interface AbstractOperation extends IdentifiableElement {
 	void setClientDate(Date value);
 
 	/**
-	 * Apply an operation to the given project.
+	 * Apply an operation to the given project if it can be applied. Apply will silently fail if the operation can not
+	 * be applied because the given project can not support the operation (e.g. element is missing). To make sure an
+	 * operation can be applied you can use canApply().
 	 * 
 	 * @param project the project
 	 */
 	void apply(Project project);
 
 	/**
-	 * Determine if the operation can be applied to a given project.
+	 * Determine if the operation can be applied to a given project. Can be used before apply to make sure that an
+	 * operation can be applied, since apply() will just fail silently.
 	 * 
 	 * @param project the project
 	 * @return true if it can be applied

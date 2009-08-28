@@ -433,9 +433,7 @@ public class CompositeOperationImpl extends AbstractOperationImpl implements Com
 		return result.toString();
 	}
 
-	@Override
 	public void apply(Project project) {
-		super.apply(project);
 		for (AbstractOperation abstractOperation : getSubOperations()) {
 			abstractOperation.apply(project);
 		}
