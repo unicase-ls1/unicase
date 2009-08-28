@@ -58,7 +58,9 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 		List<String> list = new ArrayList<String>();
 		list.add("Revision");
 		list.add("AggregateAccuracy");
-		list.add("AccuracyPerRevision");
+		list.add("TotalPredictionsPerRevision");
+		list.add("CorrectPredictionsPreRevision");
+		
 		return list;
 	}
 
@@ -120,15 +122,16 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 		correctPredictionsPreRevision = correctPredictions - oldCorrectPredictions;
 		
 		// compute accuracy
-		double aggregateAccuracy = (double) correctPredictions / totalPredictions;
-		double accurarcyPerRevision = (double)correctPredictionsPreRevision/totalPredictionsPerRevision;
-		value.add(value.add(data.getPrimaryVersionSpec()));
+		double aggregateAccuracy = ((double)correctPredictions)/totalPredictions;
+		double accurarcyPerRevision = ((double)correctPredictionsPreRevision)/totalPredictionsPerRevision;
+		value.add(data.getPrimaryVersionSpec().getIdentifier());
 		value.add(aggregateAccuracy);
-		value.add(accurarcyPerRevision);
+		value.add(totalPredictionsPerRevision);
+		value.add(correctPredictionsPreRevision);
 		System.out.println(value.get(0)
-				+ " ---- " + value.get(1) + " ----- " + value.get(2) + " ------- total pred: "
+				+ " ---- " + value.get(1) +  " ------- total pred: "
 				+ totalPredictions + " ------ correct pred: "
-				+ correctPredictions + " ----- totalPredictionsPerRevison " + totalPredictionsPerRevision  +" ----- correctPredictionsPerRevisioin " + correctPredictionsPreRevision + " ---- #WIs: "
+				+ correctPredictions + " ----- totalPredictionsPerRevison " + value.get(2)  +" ----- correctPredictionsPerRevisioin " + value.get(3) + " ---- #WIs: "
 				+ meMatrix.getModelElements().size());
 		clonedProject = (Project) EcoreUtil.copy(data.getProjectState());
 		return value;

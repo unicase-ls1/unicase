@@ -51,7 +51,7 @@ import org.unicase.workspace.test.TestProjectEnum;
  */
 public class PaperMachineLearning {
 	public static boolean HISTORY_BASED = true;
-	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = true;
+	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
 
 	private Classification classification;
 	private ProjectSpace projectSpace;
@@ -116,10 +116,9 @@ public class PaperMachineLearning {
 		VersionIterator projectIt = IteratorFactory.eINSTANCE
 				.createVersionIterator();
 		CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
-		exporter.init("result.txt", true);
-//		exporter.init(Activator.getDefault().getBundle().getLocation().replace(
-//				"reference:file:", "")
-//				+ "/Exports/" + projectSpace.getProjectName(), true);
+		exporter.init(Activator.getDefault().getBundle().getLocation().replace(
+				"reference:file:", "")
+				+ "/Exports/" + projectSpace.getProjectName(), true);
 		projectIt.setProjectId(projectInfo.getProjectId());
 		projectIt.setStepLength(stepLength);
 
@@ -128,13 +127,13 @@ public class PaperMachineLearning {
 			projectIt.setDefault(true);
 		} else {
 			// determine start and end version
-			int startRevision = 100;
+			int startRevision = 1200;
 			int endRevision = projectInfo.getVersion().getIdentifier();
 			projectIt.setVersionSpecQuery(getVersionSpecQuery(startRevision,
 					endRevision));
+			projectIt.setForward(true);
 		}
 
-		projectIt.setForward(true);
 		projectIt.init(userSession);
 		ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 		analyzers.add(new MachineLearningTriageAccuracyAnalyzer(classification, m));
