@@ -39,7 +39,6 @@ import org.unicase.ui.iterationplanner.evaluator.SimpleEvaluator;
 import org.unicase.ui.iterationplanner.provider.AssigneeProvider;
 import org.unicase.ui.iterationplanner.provider.ExpertiseMap;
 import org.unicase.ui.iterationplanner.provider.ImperativeAssigneePrediction;
-import org.unicase.ui.iterationplanner.provider.TaskProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
@@ -149,9 +148,8 @@ public class PaperImperative {
 		ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 
 		IterationPlannerManager planningManager = new IterationPlannerManager();
-		TaskProvider taskProvider = new TaskProvider(planningManager);
 		AssigneeProvider assigneeProvider = new AssigneeProvider(planningManager, new ImperativeAssigneePrediction());
-		analyzers.add(new ImperativeTriageAccuracyAnalyzer(assigneeProvider, taskProvider));
+		analyzers.add(new ImperativeTriageAccuracyAnalyzer(assigneeProvider));
 		@SuppressWarnings("unused")
 		AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
 
