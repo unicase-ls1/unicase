@@ -3,7 +3,6 @@
  */
 package org.unicase.analyzer.questionnaire.actions;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
@@ -22,9 +21,6 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.Configuration;
-import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.util.ResourceHelper;
 
 /**
  * @author liya
@@ -55,51 +51,36 @@ public class MEAction implements IWorkbenchWindowActionDelegate {
 	 */
 	public void run(IAction action) {
 		int version = QuestionnaireManager.getInstance().getVersion();
-		int user = QuestionnaireManager.getInstance().getUser();
+		int folder = QuestionnaireManager.getInstance().getFolder();
 
-		String projectFileName = DIR + user + "/projectstate-" + version + ".ups";
-		String changeFileName = DIR + user + "/changepackage-" + version + ".ucp";
+		Project project = QuestionnaireManager.getInstance().getProject();
+		ChangePackage changePackage = QuestionnaireManager.getInstance().getChangePackage();
+		Set<ModelElementId> ids = changePackage.getAllInvolvedModelElements();
+		List<ModelElementId> idList = new ArrayList<ModelElementId>(ids);
 
-		String preProjectFileName = DIR + user + "/projectstate-" + (version - 1) + ".ups";
+		Random rand = new Random();
+		ModelElementId id = idList.get(rand.nextInt(idList.size()));
 
-		try {
-			Project project = ResourceHelper.getElementFromResource(projectFileName, Project.class, 0);
-			ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
-			projectSpace.setProject(project);
-			ChangePackage changePackage = ResourceHelper.getElementFromResource(changeFileName, ChangePackage.class, 0);
-			Set<ModelElementId> ids = changePackage.getAllInvolvedModelElements();
-			List<ModelElementId> idList = new ArrayList<ModelElementId>(ids);
+		ModelElement leftME = project.getModelElement(id);
 
-			Random rand = new Random();
-			ModelElementId id = idList.get(rand.nextInt(idList.size()));
+		Project preProject = QuestionnaireManager.getInstance().getPreProject();
 
-			ModelElement leftME = project.getModelElement(id);
+		ModelElement rightME = preProject.getModelElement(id);
 
-			Project preProject = ResourceHelper.getElementFromResource(preProjectFileName, Project.class, 0);
-			ProjectSpace preProjectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
-			preProjectSpace.setProject(preProject);
-
-			ModelElement rightME = preProject.getModelElement(id);
-
-			if (activeEditor != null) {
-				activeEditor.getSite().getPage().closeAllEditors(false);
-			}
-
-			boolean left = rand.nextBoolean();
-			if (left) {
-				ActionHelper.openModelElement(leftME, "HAHA");// after commit
-				ActionHelper.openModelElement(rightME, "HAHA");// before commit
-			} else {
-				ActionHelper.openModelElement(rightME, "HAHA");// before commit
-				ActionHelper.openModelElement(leftME, "HAHA");// after commit
-			}
-
-			activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		if (activeEditor != null) {
+			activeEditor.getSite().getPage().closeAllEditors(false);
 		}
+
+		boolean left = rand.nextBoolean();
+		if (left) {
+			ActionHelper.openModelElement(leftME, "HAHA");// after commit
+			ActionHelper.openModelElement(rightME, "HAHA");// before commit
+		} else {
+			ActionHelper.openModelElement(rightME, "HAHA");// before commit
+			ActionHelper.openModelElement(leftME, "HAHA");// after commit
+		}
+
+		activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 	}
 
 	/**

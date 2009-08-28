@@ -65,6 +65,10 @@ public final class QuestionnaireManager {
 	private IEditorPart activeEditor;
 	private boolean logMsgResult;// True if the user selected the right log message of this commit
 
+	private Project project;
+	private Project preProject;
+	private ChangePackage changePackage;
+
 	public static QuestionnaireManager getInstance() {
 		if (instance == null) {
 			instance = new QuestionnaireManager();
@@ -87,14 +91,21 @@ public final class QuestionnaireManager {
 
 	public void next() {
 		version = it.next();
+		String projectFileName = DIR + folder + "/projectstate-" + version + ".ups";
+		String preProjectFileName = DIR + folder + "/projectstate-" + (version - 1) + ".ups";
+		String changeFileName = DIR + folder + "/changepackage-" + version + ".ucp";
+
+		try {
+			project = ResourceHelper.getElementFromResource(projectFileName, ProjectSpace.class, 0).getProject();
+			preProject = ResourceHelper.getElementFromResource(preProjectFileName, ProjectSpace.class, 0).getProject();
+			changePackage = ResourceHelper.getElementFromResource(changeFileName, ChangePackage.class, 0);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+
 		if (commitsMap.get(version)) {
-			String projectFileName = DIR + folder + "/projectstate-" + version + ".ups";
-			String changeFileName = DIR + folder + "/changepackage-" + version + ".ucp";
+
 			try {
-				Project project = ResourceHelper.getElementFromResource(projectFileName, ProjectSpace.class, 0)
-					.getProject();
-				ChangePackage changePackage = ResourceHelper.getElementFromResource(changeFileName,
-					ChangePackage.class, 0);
 
 				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				String viewId = "org.unicase.workspace.ui.views.CompareView";
@@ -110,8 +121,6 @@ public final class QuestionnaireManager {
 					structuralView.setInput((ProjectSpace) project.eContainer());
 				}
 
-			} catch (IOException e) {
-				e.printStackTrace();
 			} catch (PartInitException e) {
 				e.printStackTrace();
 			}
@@ -306,6 +315,48 @@ public final class QuestionnaireManager {
 	 */
 	public void setFolder(int folder) {
 		this.folder = folder;
+	}
+
+	/**
+	 * @return the project
+	 */
+	public Project getProject() {
+		return project;
+	}
+
+	/**
+	 * @param project the project to set
+	 */
+	public void setProject(Project project) {
+		this.project = project;
+	}
+
+	/**
+	 * @return the preProject
+	 */
+	public Project getPreProject() {
+		return preProject;
+	}
+
+	/**
+	 * @param preProject the preProject to set
+	 */
+	public void setPreProject(Project preProject) {
+		this.preProject = preProject;
+	}
+
+	/**
+	 * @return the changePackage
+	 */
+	public ChangePackage getChangePackage() {
+		return changePackage;
+	}
+
+	/**
+	 * @param changePackage the changePackage to set
+	 */
+	public void setChangePackage(ChangePackage changePackage) {
+		this.changePackage = changePackage;
 	}
 
 }
