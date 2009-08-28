@@ -16,12 +16,12 @@
             </separator>
          </menu>
          <action
-               label="&amp;Questionnaire"
-               class="org.unicase.analyzer.questionnaire.actions.SampleAction"
-               tooltip="Questionnaire for comparison"
+               label="&amp;ME"
+               class="org.unicase.analyzer.questionnaire.actions.MEAction"
+               tooltip="Show the ME pages"
                menubarPath="questionMenu/questionGroup"
                toolbarPath="questionGroup"
-               id="org.unicase.analyzer.questionnaire.actions.SampleAction">
+               id="org.unicase.analyzer.questionnaire.actions.MEAction">
          </action>
          <action
                class="org.unicase.analyzer.questionnaire.actions.NextAction"

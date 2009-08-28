@@ -135,33 +135,40 @@ public class RandomGenerator {
 	 * Generate the user folders, each contains random project from different categories, change package and diffmodel
 	 * depends on different representation.
 	 * 
-	 * @param usersAmount the total amount of users
+	 * @param folderAmount the total amount of folders
 	 * @throws IOException
 	 * @throws InterruptedException
 	 * @throws EmfStoreException
 	 */
-	public void generateUserFolder(int usersAmount) throws IOException, InterruptedException, EmfStoreException {
-		for (int i = 0; i < usersAmount; i++) {
+	public void generateUserFolder(int folderAmount) throws IOException, InterruptedException, EmfStoreException {
+		for (int i = 0; i < folderAmount; i++) {
 			(new File(DIR + i)).mkdir();
-			CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
-			exporter.setFileName(DIR + i + File.separatorChar + "versionInfo.csv");
-			exporter.init();
+			CSVExporter exporter0 = ExportersFactory.eINSTANCE.createCSVExporter();
+			int user0 = 2 * i;
+			exporter0.setFileName(DIR + i + File.separatorChar + "versionInfo-" + user0 + ".csv");
+			exporter0.init();
+
+			CSVExporter exporter1 = ExportersFactory.eINSTANCE.createCSVExporter();
+			int user1 = 2 * i + 1;
+			exporter1.setFileName(DIR + i + File.separatorChar + "versionInfo-" + user1 + ".csv");
+			exporter1.init();
 
 			List<Object> header = new ArrayList<Object>();
 			header.add("Category #");
 			header.add("Version #");
 			header.add("Representation");
-			exporter.writeLine(header);
+			exporter0.writeLine(header);
+			exporter1.writeLine(header);
 
-			generateCommits(category1, 1, 5, i, exporter);
-			generateCommits(category2, 2, 5, i, exporter);
-			generateCommits(category3, 3, 5, i, exporter);
+			generateCommits(category1, 1, 5, i, exporter0, exporter1);
+			generateCommits(category2, 2, 5, i, exporter0, exporter1);
+			generateCommits(category3, 3, 5, i, exporter0, exporter1);
 
 		}
 	}
 
-	private void generateCommits(List<Object> category, int categoryNum, int commitsNum, int userNum,
-		CSVExporter exporter) throws IOException, EmfStoreException, InterruptedException {
+	private void generateCommits(List<Object> category, int categoryNum, int commitsNum, int folderNum,
+		CSVExporter exporter0, CSVExporter exporter1) throws IOException, EmfStoreException, InterruptedException {
 		Random rand = new Random();
 		int version;
 		boolean representation;// if true operation-based, false state-based
@@ -170,19 +177,28 @@ public class RandomGenerator {
 
 			version = rand.nextInt(category.size());
 			representation = rand.nextBoolean();
-			generateRepresentationForCommit(representation, version, categoryNum, userNum, category, exporter);
+			generateRepresentationForCommit(representation, version, categoryNum, folderNum, category, exporter0,
+				exporter1);
 
 		}
 	}
 
-	private void generateRepresentationForCommit(boolean representation, int version, int categoryNum, int userNum,
-		List<Object> category, CSVExporter exporter) throws IOException, EmfStoreException, InterruptedException {
-		List<Object> values;
-		values = new ArrayList<Object>();
-		values.add(categoryNum);
-		values.add(category.get(version));
-		values.add(representation);
-		exporter.writeLine(values);
+	private void generateRepresentationForCommit(boolean representation, int version, int categoryNum, int folderNum,
+		List<Object> category, CSVExporter exporter0, CSVExporter exporter1) throws IOException, EmfStoreException,
+		InterruptedException {
+
+		List<Object> values0 = new ArrayList<Object>();
+		values0.add(categoryNum);
+		values0.add(category.get(version));
+		values0.add(representation);
+		exporter0.writeLine(values0);
+
+		List<Object> values1 = new ArrayList<Object>();
+		values1.add(categoryNum);
+		values1.add(category.get(version));
+		values1.add(!representation);
+		exporter1.writeLine(values1);
+
 		version = Integer.valueOf(category.get(version).toString());
 		int previousVersion = version - 1;
 
@@ -193,7 +209,7 @@ public class RandomGenerator {
 		killAllDiagrams(project1);
 
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar
+		Resource resource = resourceSet.createResource(URI.createFileURI(DIR + folderNum + File.separatorChar
 			+ "projectstate-" + (version - 1) + ".ups"));
 		resource.getContents().add(project1);
 		resource.save(null);
@@ -206,43 +222,32 @@ public class RandomGenerator {
 		Project project2 = (Project) EcoreUtil.copy(project1);
 		changePackage.apply(project2);
 		// resourceSet = new ResourceSetImpl();
-		resource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar + "projectstate-"
+		resource = resourceSet.createResource(URI.createFileURI(DIR + folderNum + File.separatorChar + "projectstate-"
 			+ version + ".ups"));
 		resource.getContents().add(project2);
 		resource.save(null);
 
-		if (representation) {
-			GeneratorHelper.copyfile(DOLLI_DIR + "changepackage-" + version + ".ucp", DIR + userNum
-				+ File.separatorChar + "changepackage-" + version + ".ucp");
-		} else {
+		GeneratorHelper.copyfile(DOLLI_DIR + "changepackage-" + version + ".ucp", DIR + folderNum + File.separatorChar
+			+ "changepackage-" + version + ".ucp");
 
-			// GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + version + ".ups", DIR + "/" + i + "/" +
-			// "/projectstate-" + version + ".ups" );
+		// GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + version + ".ups", DIR + "/" + i + "/" +
+		// "/projectstate-" + version + ".ups" );
 
-			// resourceSet = new ResourceSetImpl();
-			MatchModel match = MatchService.doMatch(project2, project1, Collections.<String, Object> emptyMap());
-			DiffModel diff = DiffService.doDiff(match, false);
-			DiffResourceSet diffSet = DiffFactory.eINSTANCE.createDiffResourceSet();
-			diffSet.getDiffModels().add(diff);
-			MatchResourceSet matchSet = MatchFactory.eINSTANCE.createMatchResourceSet();
-			matchSet.getMatchModels().add(match);
-			ComparisonResourceSetSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSetSnapshot();
-			snapshot.setDiffResourceSet(diffSet);
-			snapshot.setMatchResourceSet(matchSet);
-			// ModelUtils.save(snapshot, DIR + i + File.separatorChar + "diffModel" + version + ".emfdiff");
-			Resource createResource = resourceSet.createResource(URI.createFileURI(DIR + userNum + File.separatorChar
-				+ "diffModel" + version + ".emfdiff"));
-			createResource.getContents().add(snapshot);
-			createResource.save(null);
-			//			
-			// final EObject loadedSnapshot = ModelUtils.load(fileURI2, resourceSet);
-			//
-			// if (loadedSnapshot instanceof ComparisonSnapshot) {
-			// CompareUI.openCompareEditorOnPage(new ModelCompareEditorInput((ComparisonSnapshot) loadedSnapshot),
-			// PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage());
-			// }
-
-		}
+		// resourceSet = new ResourceSetImpl();
+		MatchModel match = MatchService.doMatch(project2, project1, Collections.<String, Object> emptyMap());
+		DiffModel diff = DiffService.doDiff(match, false);
+		DiffResourceSet diffSet = DiffFactory.eINSTANCE.createDiffResourceSet();
+		diffSet.getDiffModels().add(diff);
+		MatchResourceSet matchSet = MatchFactory.eINSTANCE.createMatchResourceSet();
+		matchSet.getMatchModels().add(match);
+		ComparisonResourceSetSnapshot snapshot = DiffFactory.eINSTANCE.createComparisonResourceSetSnapshot();
+		snapshot.setDiffResourceSet(diffSet);
+		snapshot.setMatchResourceSet(matchSet);
+		// ModelUtils.save(snapshot, DIR + i + File.separatorChar + "diffModel" + version + ".emfdiff");
+		Resource createResource = resourceSet.createResource(URI.createFileURI(DIR + folderNum + File.separatorChar
+			+ "diffModel" + version + ".emfdiff"));
+		createResource.getContents().add(snapshot);
+		createResource.save(null);
 
 		// get log message
 		Random rand = new Random();
@@ -269,7 +274,7 @@ public class RandomGenerator {
 		}
 
 		CSVExporter log = ExportersFactory.eINSTANCE.createCSVExporter();
-		log.init(DIR + userNum + File.separatorChar + "logMsgs-" + version + ".csv");
+		log.init(DIR + folderNum + File.separatorChar + "logMsgs-" + version + ".csv");
 		for (int i = 0; i < 10; i++) {
 			List<Object> line = new ArrayList<Object>();
 			line.add(logMsgs[i]);
@@ -277,7 +282,7 @@ public class RandomGenerator {
 		}
 
 		CSVExporter choice = ExportersFactory.eINSTANCE.createCSVExporter();
-		choice.init(DIR + userNum + File.separatorChar + "choices-" + version + ".csv");
+		choice.init(DIR + folderNum + File.separatorChar + "choices-" + version + ".csv");
 		for (int i = 0; i < 10; i++) {
 			List<Object> line = new ArrayList<Object>();
 			line.add(correct[i]);
@@ -288,7 +293,8 @@ public class RandomGenerator {
 
 	private boolean isAvailable(int check, List<Integer> numbers) {
 		for (int x = 0; x < numbers.size(); x++) {
-			if (check == numbers.get(x).intValue()) {
+			if (check == numbers.get(x).intValue() || history.get(check).equals("")
+				|| history.get(check).equals("<Empty log message>")) {
 				return false;
 			}
 		}

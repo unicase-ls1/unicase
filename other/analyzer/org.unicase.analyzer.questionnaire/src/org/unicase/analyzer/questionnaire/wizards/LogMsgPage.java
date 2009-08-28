@@ -29,20 +29,23 @@ public class LogMsgPage extends WizardPage implements Listener {
 	private static final String DIR = Configuration.getWorkspaceDirectory();
 	private static final String PAGE_TITLE = "Log Messages";
 	private static final String PAGE_DESCRIPTION = "Choose the log message which matches the commit.";
-	private final List<Button> buttons = new ArrayList<Button>();
-	private final List<String> logMsgs = new ArrayList<String>();
-	private final List<Boolean> correct = new ArrayList<Boolean>();
+	private List<Button> buttons;
+	private List<String> logMsgs;
+	private List<Boolean> correct;
 
 	protected LogMsgPage(String pageName) {
 		super(pageName);
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		init();
 
 	}
 
 	private void init() {
-		File file = new File(DIR + QuestionnaireManager.getInstance().getUser() + File.separatorChar + "logMsgs-"
+		buttons = new ArrayList<Button>();
+		logMsgs = new ArrayList<String>();
+		correct = new ArrayList<Boolean>();
+
+		File file = new File(DIR + QuestionnaireManager.getInstance().getFolder() + File.separatorChar + "logMsgs-"
 			+ QuestionnaireManager.getInstance().getVersion() + ".csv");
 		BufferedReader bufRdr;
 		try {
@@ -62,7 +65,7 @@ public class LogMsgPage extends WizardPage implements Listener {
 			e.printStackTrace();
 		}
 
-		file = new File(DIR + QuestionnaireManager.getInstance().getUser() + File.separatorChar + "choices-"
+		file = new File(DIR + QuestionnaireManager.getInstance().getFolder() + File.separatorChar + "choices-"
 			+ QuestionnaireManager.getInstance().getVersion() + ".csv");
 		try {
 			bufRdr = new BufferedReader(new FileReader(file));
@@ -88,6 +91,7 @@ public class LogMsgPage extends WizardPage implements Listener {
 	 */
 	public void createControl(Composite parent) {
 
+		init();
 		GridData gd;
 		Composite composite = new Composite(parent, SWT.NULL);
 		GridLayout gl = new GridLayout();
@@ -113,7 +117,7 @@ public class LogMsgPage extends WizardPage implements Listener {
 		boolean result = false;
 		for (Button button : buttons) {
 			if (button.getSelection()) {
-				result = true;
+				result = correct.get(buttons.indexOf(button));
 			}
 		}
 		QuestionnaireManager.getInstance().setLogMsgResult(result);
