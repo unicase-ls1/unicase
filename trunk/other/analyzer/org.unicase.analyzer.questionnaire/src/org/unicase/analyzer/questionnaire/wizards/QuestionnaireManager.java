@@ -38,7 +38,6 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.Project;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.ui.views.CompareView;
 import org.unicase.workspace.ui.views.StructuralView;
 import org.unicase.workspace.util.ResourceHelper;
@@ -92,9 +91,8 @@ public final class QuestionnaireManager {
 			String projectFileName = DIR + folder + "/projectstate-" + version + ".ups";
 			String changeFileName = DIR + folder + "/changepackage-" + version + ".ucp";
 			try {
-				Project project = ResourceHelper.getElementFromResource(projectFileName, Project.class, 0);
-				ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
-				projectSpace.setProject(project);
+				Project project = ResourceHelper.getElementFromResource(projectFileName, ProjectSpace.class, 0)
+					.getProject();
 				ChangePackage changePackage = ResourceHelper.getElementFromResource(changeFileName,
 					ChangePackage.class, 0);
 
@@ -109,7 +107,7 @@ public final class QuestionnaireManager {
 					.showView("org.unicase.workspace.ui.views.StructuralView");
 
 				if (structuralView != null) {
-					structuralView.setInput(projectSpace);
+					structuralView.setInput((ProjectSpace) project.eContainer());
 				}
 
 			} catch (IOException e) {
