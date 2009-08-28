@@ -63,7 +63,12 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 	}
 
 	public List<Object> getValue(ProjectAnalysisData data) {
-
+		
+		totalPredictionsPerRevision = 0;
+		correctPredictionsPreRevision = 0;
+		int oldTotalPredictions = totalPredictions;
+		int oldCorrectPredictions = correctPredictions;
+		
 		List<Object> value = new ArrayList<Object>();
 		// find assignee operations
 		// first step? just fetch the data.
@@ -111,9 +116,12 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 			}
 		}
 
+		totalPredictionsPerRevision = totalPredictions - oldTotalPredictions;
+		correctPredictionsPreRevision = correctPredictions - oldCorrectPredictions;
+		
 		// compute accuracy
 		double aggregateAccuracy = (double) correctPredictions / totalPredictions;
-		double accurarcyPerRevision = (();
+		double accurarcyPerRevision = (double)correctPredictionsPreRevision/totalPredictionsPerRevision;
 		value.add(value.add(data.getPrimaryVersionSpec()));
 		value.add(aggregateAccuracy);
 		value.add(accurarcyPerRevision);
