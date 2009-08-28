@@ -27,15 +27,20 @@ import java.util.List;
 import java.util.Set;
 
 /**
- * This class asks the classifier for assignee predictions on each revision of project.
+ * This class asks the classifier for assignee predictions on each revision of
+ * project.
+ * 
  * @author hodaie
- *
+ * 
  */
 public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 
 	private static int totalPredictions = 0;
 	private static int correctPredictions = 0;
-	private static int nullassignee= 0;
+	private int totalPredictionsPerRevision = 0;
+	private int correctPredictionsPreRevision = 0;
+
+	private static int nullassignee = 0;
 
 	private Classification classification;
 	private ModelElementMatrix meMatrix;
@@ -51,7 +56,9 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 
 	public List<String> getName() {
 		List<String> list = new ArrayList<String>();
-		list.add("TriageAccuracy");
+		list.add("Revision");
+		list.add("AggregateAccuracy");
+		list.add("AccuracyPerRevision");
 		return list;
 	}
 
@@ -89,27 +96,31 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 				Object assignee = findNewAssignee(refOp
 						.getAllInvolvedModelElements());
 				if (assignee == null) {
-					System.out.println("Assignee is NULL number: "+ nullassignee);
+					System.out.println("Assignee is NULL number: "
+							+ nullassignee);
 				}
 				predictAssigneee(clonedProject.getModelElement(refOp
 						.getModelElementId()), assignee);
 			}
 
 			// redraw the changes in the project
-			try{
+			try {
 				operation.apply(clonedProject);
-			}catch(Exception e){
-				//do nothing
+			} catch (Exception e) {
+				// do nothing
 			}
 		}
 
 		// compute accuracy
-		double accuracy = ((double) correctPredictions / totalPredictions);
-		value.add(accuracy);
-		System.out.println(data.getPrimaryVersionSpec().getIdentifier()
-				+ " ---------- " + value.get(0) + " ------- total pred: "
+		double aggregateAccuracy = (double) correctPredictions / totalPredictions;
+		double accurarcyPerRevision = (();
+		value.add(value.add(data.getPrimaryVersionSpec()));
+		value.add(aggregateAccuracy);
+		value.add(accurarcyPerRevision);
+		System.out.println(value.get(0)
+				+ " ---- " + value.get(1) + " ----- " + value.get(2) + " ------- total pred: "
 				+ totalPredictions + " ------ correct pred: "
-				+ correctPredictions + " ---- #WIs: "
+				+ correctPredictions + " ----- totalPredictionsPerRevison " + totalPredictionsPerRevision  +" ----- correctPredictionsPerRevisioin " + correctPredictionsPreRevision + " ---- #WIs: "
 				+ meMatrix.getModelElements().size());
 		clonedProject = (Project) EcoreUtil.copy(data.getProjectState());
 		return value;

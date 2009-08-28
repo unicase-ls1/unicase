@@ -50,8 +50,8 @@ import org.unicase.workspace.test.TestProjectEnum;
  * @author Hodaie
  */
 public class PaperMachineLearning {
-	public static boolean HISTORY_BASED = false;
-	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
+	public static boolean HISTORY_BASED = true;
+	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = true;
 
 	private Classification classification;
 	private ProjectSpace projectSpace;
@@ -116,9 +116,10 @@ public class PaperMachineLearning {
 		VersionIterator projectIt = IteratorFactory.eINSTANCE
 				.createVersionIterator();
 		CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
-		exporter.init(Activator.getDefault().getBundle().getLocation().replace(
-				"reference:file:", "")
-				+ "/Exports/" + projectSpace.getProjectName(), true);
+		exporter.init("result.txt", true);
+//		exporter.init(Activator.getDefault().getBundle().getLocation().replace(
+//				"reference:file:", "")
+//				+ "/Exports/" + projectSpace.getProjectName(), true);
 		projectIt.setProjectId(projectInfo.getProjectId());
 		projectIt.setStepLength(stepLength);
 
@@ -147,6 +148,7 @@ public class PaperMachineLearning {
 			int endRevision) {
 		PrimaryVersionSpec startVer = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
+
 		startVer.setIdentifier(startRevision);
 
 		PrimaryVersionSpec endVer = VersioningFactory.eINSTANCE
