@@ -93,12 +93,11 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 			operations.addAll(changePackage.getOperations());
 		}
 		List<AbstractOperation> leafoperations = new ArrayList<AbstractOperation>();
-
 		for (AbstractOperation operation : operations) {
-
 			leafoperations.addAll(operation.getLeafOperations());
 		}
 		for (AbstractOperation operation : leafoperations) {
+			//it is important to apply the operation first. Otherwise the assignee and work items are most the times null, and we cannot do a prediction.
 			try {
 				operation.apply(clonedProject);
 			} catch (Exception e) {
@@ -118,7 +117,6 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 				predictAssigneee(wi, assignee);
 			}
 
-			// redraw the changes in the project
 			
 		}
 
