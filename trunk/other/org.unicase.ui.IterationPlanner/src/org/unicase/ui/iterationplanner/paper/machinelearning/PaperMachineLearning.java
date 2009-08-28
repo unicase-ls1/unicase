@@ -51,7 +51,7 @@ import org.unicase.workspace.test.TestProjectEnum;
  */
 public class PaperMachineLearning {
 	public static boolean HISTORY_BASED = true;
-	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
+	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = true;
 
 	private Classification classification;
 	private ProjectSpace projectSpace;

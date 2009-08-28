@@ -61,8 +61,11 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 		List<String> list = new ArrayList<String>();
 		list.add("Revision");
 		list.add("AggregateAccuracy");
+		list.add("TotalPredictions");
+		list.add("CorrectPredictions");
 		list.add("TotalPredictionsPerRevision");
 		list.add("CorrectPredictionsPreRevision");
+		list.add("NumberOfWorkItems");
 
 		return list;
 	}
@@ -96,6 +99,12 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 			leafoperations.addAll(operation.getLeafOperations());
 		}
 		for (AbstractOperation operation : leafoperations) {
+			try {
+				operation.apply(clonedProject);
+			} catch (Exception e) {
+				// do nothing
+			}
+			
 			if (!isRelvant(operation)) {
 				continue;
 			}
@@ -110,11 +119,7 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 			}
 
 			// redraw the changes in the project
-			try {
-				operation.apply(clonedProject);
-			} catch (Exception e) {
-				// do nothing
-			}
+			
 		}
 
 		totalPredictionsPerRevision = totalPredictions - oldTotalPredictions;
@@ -128,14 +133,17 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 				/ totalPredictionsPerRevision;
 		value.add(data.getPrimaryVersionSpec().getIdentifier());
 		value.add(aggregateAccuracy);
+		value.add(totalPredictions);
+		value.add(correctPredictions);
 		value.add(totalPredictionsPerRevision);
 		value.add(correctPredictionsPreRevision);
+		value.add(meMatrix.getModelElements().size());
 		System.out.println(value.get(0) + " ---- " + value.get(1)
-				+ " ------- total pred: " + totalPredictions
-				+ " ------ correct pred: " + correctPredictions
-				+ " ----- totalPredictionsPerRevison " + value.get(2)
-				+ " ----- correctPredictionsPerRevisioin " + value.get(3)
-				+ " ---- #WIs: " + meMatrix.getModelElements().size());
+				+ " ------- total pred: " + value.get(2)
+				+ " ------ correct pred: " + value.get(3)
+				+ " ----- totalPredictionsPerRevison " + value.get(4)
+				+ " ----- correctPredictionsPerRevisioin " + value.get(5)
+				+ " ---- #WIs: " + value.get(6));
 		clonedProject = (Project) EcoreUtil.copy(data.getProjectState());
 		return value;
 	}
@@ -152,7 +160,8 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 			// assignments is set for user
 			MultiReferenceOperation op = (MultiReferenceOperation) operation;
 			for(ModelElementId meId : op.getReferencedModelElements()){
-				result.add(clonedProject.getModelElement(meId));
+				Object wi =clonedProject.getModelElement(meId) ;
+				result.add(wi);
 			}
 			return result;
 		}
@@ -164,11 +173,13 @@ public class MachineLearningTriageAccuracyAnalyzer implements DataAnalyzer {
 		if(operation instanceof SingleReferenceOperation){
 			// assignee is set for work item
 			SingleReferenceOperation op = (SingleReferenceOperation) operation;
-			return clonedProject.getModelElement(op.getNewValue());
+			Object assignee = clonedProject.getModelElement(op.getNewValue()); 
+			return assignee;
 		}else if(operation instanceof MultiReferenceOperation){
 			// assignments is set for user
 			MultiReferenceOperation op = (MultiReferenceOperation) operation;
-			return clonedProject.getModelElement(op.getModelElementId());
+			Object assigenee =clonedProject.getModelElement(op.getModelElementId()); 
+			return assigenee;
 		}
 		return null;
 	}
