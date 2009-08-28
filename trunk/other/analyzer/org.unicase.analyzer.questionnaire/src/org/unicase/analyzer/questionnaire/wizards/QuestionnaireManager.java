@@ -53,6 +53,7 @@ public final class QuestionnaireManager {
 	private static final String DIR = Configuration.getWorkspaceDirectory();
 	private static QuestionnaireManager instance;
 
+	private int folder;// folder number, each contains 2 users
 	private int user;
 	private Map<Integer, Boolean> commitsMap;
 
@@ -88,8 +89,8 @@ public final class QuestionnaireManager {
 	public void next() {
 		version = it.next();
 		if (commitsMap.get(version)) {
-			String projectFileName = DIR + user + "/projectstate-" + version + ".ups";
-			String changeFileName = DIR + user + "/changepackage-" + version + ".ucp";
+			String projectFileName = DIR + folder + "/projectstate-" + version + ".ups";
+			String changeFileName = DIR + folder + "/changepackage-" + version + ".ucp";
 			try {
 				Project project = ResourceHelper.getElementFromResource(projectFileName, Project.class, 0);
 				ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
@@ -117,7 +118,7 @@ public final class QuestionnaireManager {
 				e.printStackTrace();
 			}
 		} else {
-			String diffFileName = DIR + user + "/" + "diffModel" + version + ".emfdiff";
+			String diffFileName = DIR + folder + "/" + "diffModel" + version + ".emfdiff";
 
 			ResourceSet resourceSet = new ResourceSetImpl();
 			Resource resource = resourceSet.getResource(URI.createFileURI(diffFileName), true);
@@ -145,7 +146,7 @@ public final class QuestionnaireManager {
 	public void initExporter() {
 		exporter = ExportersFactory.eINSTANCE.createCSVExporter();
 		try {
-			exporter.init(DIR + user + File.separatorChar + "result.csv");
+			exporter.init(DIR + folder + File.separatorChar + "result-" + user + ".csv");
 
 			List<Object> header = new ArrayList<Object>();
 			header.add("Version #");
@@ -183,6 +184,7 @@ public final class QuestionnaireManager {
 	 */
 	public void setUser(int user) {
 		this.user = user;
+		this.setFolder((int) Math.floor(user / 2));
 	}
 
 	/**
@@ -200,7 +202,8 @@ public final class QuestionnaireManager {
 	}
 
 	private void readFile() throws NumberFormatException, IOException {
-		File file = new File(DIR + user + File.separatorChar + "versionInfo.csv");// read information of versions and
+		File file = new File(DIR + folder + File.separatorChar + "versionInfo-" + user + ".csv");// read information of
+		// versions and
 		// its representation
 
 		BufferedReader bufRdr = new BufferedReader(new FileReader(file));
@@ -291,6 +294,20 @@ public final class QuestionnaireManager {
 	 */
 	public void setLogMsgResult(boolean logMsgResult) {
 		this.logMsgResult = logMsgResult;
+	}
+
+	/**
+	 * @return the folder
+	 */
+	public int getFolder() {
+		return folder;
+	}
+
+	/**
+	 * @param folder the folder to set
+	 */
+	public void setFolder(int folder) {
+		this.folder = folder;
 	}
 
 }
