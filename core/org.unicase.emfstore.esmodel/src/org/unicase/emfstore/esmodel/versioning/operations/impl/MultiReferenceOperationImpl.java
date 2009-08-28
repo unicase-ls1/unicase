@@ -288,6 +288,10 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 
 	public void apply(Project project) {
 		ModelElement modelElement = project.getModelElement(getModelElementId());
+		if (modelElement == null) {
+			// fail silently
+			return;
+		}
 		EList<ModelElementId> referencedModelElementIds = getReferencedModelElements();
 		List<ModelElement> referencedModelElements = new ArrayList<ModelElement>();
 		for (ModelElementId refrencedModelElementId : referencedModelElementIds) {
