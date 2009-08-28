@@ -225,12 +225,17 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 
 	public void apply(Project project) {
 		ModelElement modelElement = project.getModelElement(this.getModelElementId());
+		if (modelElement == null) {
+			// silently fail
+			return;
+		}
 		EAttribute attribute;
 		try {
 			attribute = (EAttribute) this.getFeature(modelElement);
 			modelElement.eSet(attribute, this.getNewValue());
 		} catch (UnkownFeatureException e) {
 			// fail silently
+			return;
 		}
 	}
 
