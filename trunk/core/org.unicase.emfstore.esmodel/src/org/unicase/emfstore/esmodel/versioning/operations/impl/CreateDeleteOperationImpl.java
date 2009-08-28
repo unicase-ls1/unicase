@@ -48,13 +48,19 @@ import org.unicase.model.util.ModelUtil;
  */
 public class CreateDeleteOperationImpl extends AbstractOperationImpl implements CreateDeleteOperation {
 
-	@Override
 	public void apply(Project project) {
-		super.apply(project);
 		if (isDelete()) {
+			if (!project.contains(getModelElementId())) {
+				// silently fail
+				return;
+			}
 			ModelElement localModelElement = project.getModelElement(getModelElementId());
 			project.deleteModelElement(localModelElement);
 		} else {
+			if (project.contains(getModelElementId())) {
+				// silently fail
+				return;
+			}
 			project.getModelElements().add(ModelUtil.clone(getModelElement()));
 			for (ReferenceOperation operation : getSubOperations()) {
 				operation.apply(project);

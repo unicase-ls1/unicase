@@ -24,6 +24,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
@@ -47,6 +48,7 @@ import org.unicase.model.util.ModelUtil;
  * @generated
  */
 public class MultiReferenceOperationImpl extends ReferenceOperationImpl implements MultiReferenceOperation {
+
 	/**
 	 * The default value of the '{@link #isAdd() <em>Add</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -284,9 +286,7 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 		return result.toString();
 	}
 
-	@Override
 	public void apply(Project project) {
-		super.apply(project);
 		ModelElement modelElement = project.getModelElement(getModelElementId());
 		EList<ModelElementId> referencedModelElementIds = getReferencedModelElements();
 		List<ModelElement> referencedModelElements = new ArrayList<ModelElement>();
@@ -296,7 +296,13 @@ public class MultiReferenceOperationImpl extends ReferenceOperationImpl implemen
 				referencedModelElements.add(referencedME);
 			}
 		}
-		EReference reference = (EReference) this.getFeature(modelElement);
+		EReference reference;
+		try {
+			reference = (EReference) this.getFeature(modelElement);
+		} catch (UnkownFeatureException e) {
+			// fail silently
+			return;
+		}
 		Object object = modelElement.eGet(reference);
 		@SuppressWarnings("unchecked")
 		EList<ModelElement> list = (EList<ModelElement>) object;

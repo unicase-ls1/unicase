@@ -18,6 +18,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
@@ -320,17 +321,25 @@ public class SingleReferenceOperationImpl extends ReferenceOperationImpl impleme
 		return super.eIsSet(featureID);
 	}
 
-	@Override
 	public void apply(Project project) {
-		super.apply(project);
 		ModelElement modelElement = project.getModelElement(getModelElementId());
 		ModelElement newModelElement = project.getModelElement(getNewValue());
-
-		EReference reference = (EReference) this.getFeature(modelElement);
-		modelElement.eSet(reference, newModelElement);
-		if (newModelElement == null && reference.isContainer()) {
-			project.addModelElement(modelElement);
+		if (modelElement == null) {
+			// silently fail
+			return;
 		}
+		EReference reference;
+		try {
+			reference = (EReference) this.getFeature(modelElement);
+			modelElement.eSet(reference, newModelElement);
+			if (newModelElement == null && reference.isContainer()) {
+				project.addModelElement(modelElement);
+			}
+		} catch (UnkownFeatureException e) {
+			// silently fail
+			return;
+		}
+
 	}
 
 	@Override

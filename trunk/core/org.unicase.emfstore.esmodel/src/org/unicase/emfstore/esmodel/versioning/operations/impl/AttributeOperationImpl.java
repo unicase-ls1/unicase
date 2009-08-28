@@ -13,6 +13,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 
@@ -222,12 +223,15 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 		return result.toString();
 	}
 
-	@Override
 	public void apply(Project project) {
-		super.apply(project);
 		ModelElement modelElement = project.getModelElement(this.getModelElementId());
-		EAttribute attribute = (EAttribute) this.getFeature(modelElement);
-		modelElement.eSet(attribute, this.getNewValue());
+		EAttribute attribute;
+		try {
+			attribute = (EAttribute) this.getFeature(modelElement);
+			modelElement.eSet(attribute, this.getNewValue());
+		} catch (UnkownFeatureException e) {
+			// fail silently
+		}
 	}
 
 	@Override
@@ -238,11 +242,6 @@ public class AttributeOperationImpl extends FeatureOperationImpl implements Attr
 		attributeOperation.setNewValue(getOldValue());
 		attributeOperation.setOldValue(getNewValue());
 		return attributeOperation;
-	}
-
-	@Override
-	public boolean canApply(Project project) {
-		return project.contains(this.getModelElementId());
 	}
 
 	@Override
