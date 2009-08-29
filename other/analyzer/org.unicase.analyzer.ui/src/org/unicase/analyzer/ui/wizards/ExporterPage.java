@@ -19,12 +19,11 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.DirectoryDialog;
 import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.FileDialog;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.PlatformUI;
 import org.unicase.analyzer.AnalyzerConfiguration;
 import org.unicase.analyzer.exporters.ExportersPackage;
 
@@ -162,21 +161,21 @@ public class ExporterPage extends WizardPage implements Listener {
 		 */
 		@Override
 		public void widgetSelected(SelectionEvent e) {
-			// DirectoryDialog fd = new DirectoryDialog(((Button) e.widget).getParent().getShell());
-			// fd.setText("select the folder where you want to save the analyzed results ");
-			// String selected = fd.open();
+			DirectoryDialog fd = new DirectoryDialog(((Button) e.widget).getParent().getShell());
+			fd.setText("select the folder where you want to save the analyzed results ");
+			String selected = fd.open();
 
-			FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
-				SWT.SAVE);
-			dialog.setFilterNames(new String[] { "CSV Files(*.csv)", "All Files(*.*)" });
-			dialog.setFilterExtensions(new String[] { ".csv", ".*" });
-			dialog.setOverwrite(true);
-			String initialFileName = "test.csv";
-			dialog.setFileName(initialFileName);
-
-			// dialog
-			String selected = dialog.getFilterPath() + dialog.open();
-
+			// FileDialog dialog = new FileDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(),
+			// SWT.SAVE);
+			// dialog.setFilterNames(new String[] { "CSV Files(*.csv)", "All Files(*.*)" });
+			// dialog.setFilterExtensions(new String[] { ".csv", ".*" });
+			// dialog.setOverwrite(true);
+			// String initialFileName = "test.csv";
+			// dialog.setFileName(initialFileName);
+			//
+			// // dialog
+			// String selected = dialog.getFilterPath() + dialog.open();
+			//
 			if (selected != null) {
 				exportPath.setText(selected);
 			}
