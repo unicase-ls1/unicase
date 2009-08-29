@@ -55,10 +55,27 @@ public class MachineLearningTriageAccuracyAnalyzer extends TriageAccuracyAnalyze
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		if (suggestedAssignee != null && assignee != null && suggestedAssignee.equals(((OrgUnit) assignee).getName())) {
+		if (suggestedAssignee != null && assignee != null
+			&& areEqual(suggestedAssignee, ((OrgUnit) assignee).getName())) {
 			correctPredictions++;
 		}
 
+	}
+
+	/**
+	 * @param suggestedAssignee
+	 * @param name
+	 * @return
+	 */
+	private boolean areEqual(String suggestedAssignee, String actualAssignee) {
+		suggestedAssignee = suggestedAssignee.toLowerCase().trim();
+		actualAssignee = actualAssignee.toLowerCase().trim();
+		if (suggestedAssignee.startsWith(actualAssignee)) {
+			return true;
+		} else if (actualAssignee.startsWith(suggestedAssignee)) {
+			return true;
+		}
+		return false;
 	}
 
 }
