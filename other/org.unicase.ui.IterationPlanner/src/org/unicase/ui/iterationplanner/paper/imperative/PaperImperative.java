@@ -60,7 +60,7 @@ import java.util.Map.Entry;
 public class PaperImperative {
 
 	public static boolean HISTORY_BASED = true;
-	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
+	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = true;
 
 	private List<OrgUnit> assigneesWithMoreThan10Tasks;
 	private List<OrgUnit> assigneesWithAtLeastOneTask;
