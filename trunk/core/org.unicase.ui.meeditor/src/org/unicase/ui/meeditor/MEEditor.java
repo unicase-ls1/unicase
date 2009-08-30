@@ -18,6 +18,8 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorInput;
@@ -25,7 +27,6 @@ import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
-import org.unicase.model.bug.BugReport;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.ui.common.MEEditorInput;
 import org.unicase.workspace.Configuration;
@@ -56,30 +57,18 @@ public class MEEditor extends SharedHeaderFormEditor {
 			if (msg.isTouch()) {
 				return;
 			}
-			if (msg.getFeature() instanceof EAttribute && ((EAttribute) msg.getFeature()).getName().equals("name")) {
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {
+			Display.getDefault().asyncExec(new Runnable() {
+				public void run() {
+					updateIcon(input);
+					if (msg.getFeature() instanceof EAttribute
+						&& ((EAttribute) msg.getFeature()).getName().equals("name")) {
 						setPartName(getLimitedTitle(msg.getNewStringValue()));
 						if (mePage != null) {
 							mePage.updateSectionTitle();
 						}
 					}
-				});
-			}
-			if (modelElement instanceof BugReport) {
-				// update the icon for bugreports - when changing severity, resolution, etc.
-				Display.getDefault().asyncExec(new Runnable() {
-					public void run() {
-						Image titleImage = input.getImageDescriptor().createImage();
-						setTitleImage(titleImage);
-						// TODO AS: Debug why sometimes the page is null - not disposed Adapter?
-						if (mePage != null) {
-							// TODO AS: Replace with a SeverityDecorator.
-							mePage.getManagedForm().getForm().setImage(titleImage);
-						}
-					}
-				});
-			}
+				}
+			});
 		}
 	}
 
@@ -202,6 +191,13 @@ public class MEEditor extends SharedHeaderFormEditor {
 				creatorHint = stringBuffer.toString();
 			}
 			updateCreatorHint();
+
+			meInput.getLabelProvider().addListener(new ILabelProviderListener() {
+				public void labelProviderChanged(LabelProviderChangedEvent event) {
+					updateIcon(meInput);
+				}
+			});
+
 		} else {
 			throw new PartInitException("MEEditor is only appliable for MEEditorInputs");
 		}
@@ -284,5 +280,14 @@ public class MEEditor extends SharedHeaderFormEditor {
 	public void dispose() {
 		modelElement.eAdapters().remove(eAdapter);
 		super.dispose();
+	}
+
+	private void updateIcon(IEditorInput input) {
+		Image titleImage = input.getImageDescriptor().createImage();
+		setTitleImage(titleImage);
+		// TODO AS: Debug why sometimes the page is null - not disposed Adapter?
+		if (mePage != null) {
+			mePage.getManagedForm().getForm().setImage(titleImage);
+		}
 	}
 }
