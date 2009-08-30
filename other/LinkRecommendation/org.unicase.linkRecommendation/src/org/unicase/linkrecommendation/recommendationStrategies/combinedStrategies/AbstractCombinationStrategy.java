@@ -8,7 +8,9 @@ package org.unicase.linkrecommendation.recommendationStrategies.combinedStrategi
 import java.util.Collection;
 import java.util.Map;
 
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.Updateable;
 import org.unicase.model.ModelElement;
 
 /**
@@ -16,7 +18,7 @@ import org.unicase.model.ModelElement;
  * 
  * @author Henning Femmer
  */
-public abstract class AbstractCombinationStrategy implements RecommendationStrategy {
+public abstract class AbstractCombinationStrategy implements RecommendationStrategy, Updateable {
 
 	private RecommendationStrategy strategy1, strategy2;
 
@@ -65,4 +67,17 @@ public abstract class AbstractCombinationStrategy implements RecommendationStrat
 		return strategy1.getName() + "+" + strategy2.getName();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.Updateable#updateStrategyData(java.util.Collection)
+	 */
+	public void updateStrategyData(ChangePackage cp) {
+		if (strategy1 instanceof Updateable) {
+			((Updateable) strategy1).updateStrategyData(cp);
+		}
+		if (strategy2 instanceof Updateable) {
+			((Updateable) strategy2).updateStrategyData(cp);
+		}
+	}
 }

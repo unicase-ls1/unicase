@@ -25,12 +25,14 @@ public class ARMStrategy implements RecommendationStrategy, Updateable {
 
 	private static final String ARM_STRATEGY = "ARM Strategy";
 	private Map<String, Double> linkCountMap;
+	private int numberUpdates;
 
 	/**
 	 * Default Constructor.
 	 */
 	public ARMStrategy() {
 		linkCountMap = new HashMap<String, Double>();
+		numberUpdates = 0;
 	}
 
 	/**
@@ -47,8 +49,9 @@ public class ARMStrategy implements RecommendationStrategy, Updateable {
 			Double linkCount = linkCountMap.get(sourceId + linkTarget.getIdentifier());
 			if (linkCount == null) {
 				linkCount = new Double(0);
+			} else {
+				result.put(linkTarget, linkCount);
 			}
-			result.put(linkTarget, linkCount);
 			totalLinkCount += linkCount.doubleValue();
 		}
 		if (totalLinkCount != 0) {
@@ -69,32 +72,59 @@ public class ARMStrategy implements RecommendationStrategy, Updateable {
 	}
 
 	/**
+	 * Calls the update method for every single changePackage transmitted.
+	 * 
+	 * @param changePackages the change packages
+	 */
+	public void updateStrategyData(Collection<ChangePackage> changePackages) {
+		for (ChangePackage cp : changePackages) {
+			updateStrategyData(cp);
+		}
+	}
+
+	/**
 	 * Updates the data of the strategy with a new ProjectAnalysisData object.
 	 * 
-	 * @param cp the new data
+	 * @param changePackage the new data
 	 */
-	public void updateStrategyData(Collection<ChangePackage> cp) {
-		for (ChangePackage changePackage : cp) {
-			List<AbstractOperation> leafOperations = changePackage.getLeafOperations();
-			for (int i = 0; i < leafOperations.size(); i++) {
-				AbstractOperation operation = leafOperations.get(i);
-				ModelElementId sourceElementId = operation.getModelElementId();
-				ModelElementId targetElementId;
-				for (int offset = 1; offset < 11; offset++) {
-					if (i + offset < leafOperations.size()) {
-						targetElementId = leafOperations.get(i + offset).getModelElementId();
-						String key = sourceElementId.getId() + targetElementId.getId();
-						Double linkCount = linkCountMap.get(key);
-						if (linkCount == null) {
-							linkCountMap.put(key, new Double(1));
-						} else {
-							linkCountMap.put(key, new Double(linkCount.doubleValue() + 1));
-						}
-					}
-				}
+	public void updateStrategyData(ChangePackage changePackage) {
+		List<AbstractOperation> leafOperations = changePackage.getLeafOperations();
+		for (int i = 0; i < leafOperations.size(); i++) {
+
+			ModelElementId sourceElementId = leafOperations.get(i).getModelElementId();
+			ModelElementId targetElementId;
+
+			for (int j = i + 1; j < leafOperations.size(); j++) {
+
+				// for (int offset = 1; offset < 11; offset++) {
+				// if (i + offset < leafOperations.size()) {
+				// targetElementId = leafOperations.get(i + offset).getModelElementId();
+				targetElementId = leafOperations.get(j).getModelElementId();
+
+				updateCount(sourceElementId.getId() + targetElementId.getId());
+				updateCount(targetElementId.getId() + sourceElementId.getId());
+				// } else {
+				// break;
+				// }
+				// }
 			}
 		}
 
+		// System.out.println(numberUpdates);
+
+	}
+
+	/**
+	 * @param key
+	 */
+	private void updateCount(String key) {
+		numberUpdates++;
+		Double linkCount = linkCountMap.get(key);
+		if (linkCount == null) {
+			linkCountMap.put(key, new Double(1));
+		} else {
+			linkCountMap.put(key, new Double(linkCount.doubleValue() + 1));
+		}
 	}
 
 }

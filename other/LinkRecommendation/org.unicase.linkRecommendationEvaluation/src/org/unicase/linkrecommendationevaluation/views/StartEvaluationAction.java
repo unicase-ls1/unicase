@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
@@ -21,15 +20,12 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.unicase.linkrecommendation.linkselection.ConstantThresholdSelection;
 import org.unicase.linkrecommendation.linkselection.CutPointSelection;
 import org.unicase.linkrecommendation.linkselection.LinkSelectionStrategy;
-import org.unicase.linkrecommendation.recommendationStrategies.LSIStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
-import org.unicase.linkrecommendation.recommendationStrategies.SharedReferencesRecommendation;
+import org.unicase.linkrecommendation.recommendationStrategies.RelatedAssigneesRecommendation;
 import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
-import org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.ArithmeticMeanCombinationStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.FactorCombinationStrategy;
 import org.unicase.linkrecommendationevaluation.LinkRecommendationAnalyzer;
-import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
-import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -64,7 +60,7 @@ public class StartEvaluationAction extends Action {
 			boolean stop = false;
 			if (projectSpace.getProjectName().equals(obj)) {
 				showMessage("Analyzing " + projectSpace.getProjectName());
-				evaluate(projectSpace.getProject());
+				evaluate(projectSpace);
 				stop = true;
 				break;
 			}
@@ -74,26 +70,57 @@ public class StartEvaluationAction extends Action {
 		}
 	}
 
-	private void evaluate(Project project) {
+	private void evaluate(ProjectSpace projectSpace) {
+		Project project = projectSpace.getProject();
 		LinkRecommendationAnalyzer an = new LinkRecommendationAnalyzer();
+		an.setToActionItemToFuncReqAnalysis();
+		// an.setToFuncReqToUseCaseAnalysis();
+		VectorSpaceModelStrategy vsm = new VectorSpaceModelStrategy();
 
 		// FIRST standard: ActionItems -> Functional Requirements
 		an.setSelectionStrategies(new LinkSelectionStrategy[] { new ConstantThresholdSelection(0.1),
 			new ConstantThresholdSelection(0.35), new ConstantThresholdSelection(0.5), new CutPointSelection(5),
 			new CutPointSelection(10) });
+		// an.setRecommendationStrategies(new RecommendationStrategy[] { vsm });
+		// an.setRecommendationStrategies(new RecommendationStrategy[] {
+		// new SharedReferencesRecommendation(2, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()),
+		// new SharedReferencesRecommendation(3, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()),
+		// new SharedReferencesRecommendation(4, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()),
+		// new SharedReferencesRecommendation(5, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()), });
+		// an.setRecommendationStrategies(new RecommendationStrategy[] {
+		// vsm,
+		// new FactorCombinationStrategy(vsm, new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE
+		// .getAnnotation_AnnotatedModelElements()), 0.5),
+		// new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.5) });
+		an.setRecommendationStrategies(new RecommendationStrategy[] { vsm,
+			new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.1),
+			new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.35),
+			new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.5),
+			new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.75) });
+		// new FactorCombinationStrategy(vsm, new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE
+		// .getAnnotation_AnnotatedModelElements()), 0.35),
+		// new FactorCombinationStrategy(vsm, new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE
+		// .getAnnotation_AnnotatedModelElements()), 0.5),
+		// new FactorCombinationStrategy(vsm, new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE
+		// .getAnnotation_AnnotatedModelElements()), 0.75) });
+
+		// an.setRecommendationStrategies(new RecommendationStrategy[] { vsm, new LSIStrategy(0.9), new
+		// LSIStrategy(0.75),
+		// new LSIStrategy(0.25) });
+
 		// an.setRecommendationStrategies(new RecommendationStrategy[] {
 		// new SharedReferencesRecommendation(1, ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements()),
 		// new SharedReferencesRecommendation(2, ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements()),
 		// new SharedReferencesRecommendation(3, ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements()) });
-		an.setRecommendationStrategies(new RecommendationStrategy[] {
-			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(1,
-				ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements())),
-			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(3,
-				ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements())),
-			new ArithmeticMeanCombinationStrategy(new LSIStrategy(0.9), new SharedReferencesRecommendation(1,
-				RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases())),
-			new ArithmeticMeanCombinationStrategy(new LSIStrategy(0.9), new SharedReferencesRecommendation(3,
-				ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements())) });
+		// an.setRecommendationStrategies(new RecommendationStrategy[] {
+		// new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(1,
+		// ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements())),
+		// new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(3,
+		// ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements())),
+		// new ArithmeticMeanCombinationStrategy(new LSIStrategy(0.9), new SharedReferencesRecommendation(1,
+		// RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases())),
+		// new ArithmeticMeanCombinationStrategy(new LSIStrategy(0.9), new SharedReferencesRecommendation(3,
+		// ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements())) });
 
 		an.initializeVariables();
 		List<String> headline = an.getName();
@@ -101,44 +128,30 @@ public class StartEvaluationAction extends Action {
 		an.analyzeEntireProject(project);
 		an.addResults(results);
 
-		String location = "/Users/henning/Documents/workspace/BachelorArbeit/Quellen/Statistics/dolli/Entire Project Scan/";
-		String filename = "SRS.csv";
+		String location = "/Users/henning/Documents/workspace/BachelorArbeit/Quellen/Statistics/unicase/Entire Project Scan/";
+		String filename = "AI to FR_RAR_factor.csv";
 
 		printToCSVFile(headline, results, location + filename);
 
 		// Now: FR -> UseCase
 		an.initializeVariables();
-
-		ArrayList<EClass> relevantBaseClasses = new ArrayList<EClass>();
-		relevantBaseClasses.add(RequirementPackage.eINSTANCE.getFunctionalRequirement());
-		an.setRelevantBaseClasses(relevantBaseClasses);
-
-		ArrayList<EClass> relevantTargetClasses = new ArrayList<EClass>();
-		relevantTargetClasses.add(RequirementPackage.eINSTANCE.getUseCase());
-		an.setRelevantTargetClasses(relevantTargetClasses);
-
-		ArrayList<EClass> relevantReferences = new ArrayList<EClass>();
-		relevantReferences.add(RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases().getEReferenceType());
-		an.setRelevantReferences(relevantReferences);
+		// an.setToUseCaseToFuncReqAnalysis();
+		// an.setToFuncReqToActionItem();
 
 		// an.setRecommendationStrategies(new RecommendationStrategy[] {
-		// new SharedReferencesRecommendation(1, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()),
-		// new SharedReferencesRecommendation(2, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()),
-		// new SharedReferencesRecommendation(3, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()) });
+		// new MaximumCombinationStrategy(vsm, new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE
+		// .getModelElement_Annotations())),
+		// new MaximumCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true)) });
 
-		an.setRecommendationStrategies(new RecommendationStrategy[] {
-			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(1,
-				RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases())),
-			new ArithmeticMeanCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(3,
-				RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases())),
-			new ArithmeticMeanCombinationStrategy(new LSIStrategy(0.9), new SharedReferencesRecommendation(1,
-				RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases())),
-			new ArithmeticMeanCombinationStrategy(new LSIStrategy(0.9), new SharedReferencesRecommendation(3,
-				RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases())) });
+		// an.setRecommendationStrategies(new RecommendationStrategy[] {
+		// new SharedReferencesRecommendation(true, 10, ModelPackage.eINSTANCE.getModelElement_Annotations()),
+		// new SharedReferencesRecommendation(true, 25, ModelPackage.eINSTANCE.getModelElement_Annotations()),
+		// new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE.getModelElement_Annotations()),
+		// new SharedReferencesRecommendation(true, 75, ModelPackage.eINSTANCE.getModelElement_Annotations()) });
 
 		results = new ArrayList<Object>();
-		an.analyzeEntireProject(project);
-		an.addResults(results);
+		// an.analyzeEntireProject(project);
+		// an.addResults(results);
 
 		printToCSVFile(headline, results, location + filename);
 

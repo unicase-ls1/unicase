@@ -33,7 +33,9 @@ import org.unicase.model.util.ModelUtil;
  * Tests the ARM strategy.
  * 
  * @author koegel
+ * @deprecated
  */
+@Deprecated
 public class ArmStrategyTest {
 
 	private ARMStrategy armStrategy;
@@ -147,11 +149,7 @@ public class ArmStrategyTest {
 		targetCandidates.add(modelElement5);
 
 		Map<ModelElement, Double> matchingMap = armStrategy.getMatchingMap(modelElement1, targetCandidates);
-		assertEquals(4, matchingMap.keySet().size());
-		assertEquals(new Double(0), matchingMap.get(modelElement2));
-		assertEquals(new Double(0), matchingMap.get(modelElement3));
-		assertEquals(new Double(0), matchingMap.get(modelElement4));
-		assertEquals(new Double(0), matchingMap.get(modelElement5));
+		assertEquals(0, matchingMap.keySet().size());
 	}
 
 	/**
@@ -181,12 +179,12 @@ public class ArmStrategyTest {
 		targetCandidates.add(modelElement5);
 
 		Map<ModelElement, Double> matchingMap = armStrategy.getMatchingMap(modelElement1, targetCandidates);
-		assertEquals(4, matchingMap.keySet().size());
+		assertEquals(2, matchingMap.keySet().size());
 
 		assertEquals(new Double(0.25), matchingMap.get(modelElement2));
 		assertEquals(new Double(0.75), matchingMap.get(modelElement3));
-		assertEquals(new Double(0), matchingMap.get(modelElement4));
-		assertEquals(new Double(0), matchingMap.get(modelElement5));
+		assertEquals(null, matchingMap.get(modelElement4));
+		assertEquals(null, matchingMap.get(modelElement5));
 
 	}
 

@@ -15,7 +15,9 @@ import org.unicase.model.ModelElement;
  * 
  * @author Henning Femmmer
  */
-public class ArithmeticMeanCombinationStrategy extends AbstractCombinationStrategy {
+public class FactorCombinationStrategy extends AbstractCombinationStrategy {
+
+	private double factor;
 
 	/**
 	 * The constructor.
@@ -23,8 +25,9 @@ public class ArithmeticMeanCombinationStrategy extends AbstractCombinationStrate
 	 * @param s1 first strategy
 	 * @param s2 second strategy
 	 */
-	public ArithmeticMeanCombinationStrategy(RecommendationStrategy s1, RecommendationStrategy s2) {
+	public FactorCombinationStrategy(RecommendationStrategy s1, RecommendationStrategy s2, double factor) {
 		super(s1, s2);
+		this.factor = factor;
 	}
 
 	/**
@@ -49,7 +52,7 @@ public class ArithmeticMeanCombinationStrategy extends AbstractCombinationStrate
 				val2 = 0.0;
 			}
 
-			map1.put(me, (val1 + val2) / 2);
+			map1.put(me, ((factor * val1) + (1 - factor) * val2));
 		}
 		return map1;
 	}
@@ -62,6 +65,6 @@ public class ArithmeticMeanCombinationStrategy extends AbstractCombinationStrate
 	 */
 	@Override
 	public String getName() {
-		return "Arr.Mean " + super.getName();
+		return "Fac." + factor + ":" + super.getName();
 	}
 }

@@ -26,6 +26,8 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 	private int depth = 1;
 	private EReference correctReference;
 	private boolean ignoreMEs;
+	private boolean isMax;
+	private int maxNumber = 50;
 
 	/**
 	 * The constructor.
@@ -38,6 +40,21 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 
 	/**
 	 * The constructor for evaluation. Don't use it for runtime suggestions. ;)
+	 */
+	public SharedReferencesRecommendation(boolean isMax, int maxNumber, EReference correctReference) {
+		this.maxNumber = maxNumber;
+		this.isMax = isMax;
+		this.correctReference = correctReference;
+
+		if (correctReference != null) {
+			this.ignoreMEs = true;
+		} else {
+			this.ignoreMEs = false;
+		}
+	}
+
+	/**
+	 * The constructor for evaluation. Don't use it for runtime suggestions. ;)
 	 * 
 	 * @param depth the depth of search
 	 * @param correctReference the correct MEs, they will be subtracted
@@ -45,6 +62,7 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 	public SharedReferencesRecommendation(int depth, EReference correctReference) {
 		this.depth = depth;
 		this.correctReference = correctReference;
+		this.isMax = false;
 
 		if (correctReference != null) {
 			this.ignoreMEs = true;
@@ -76,7 +94,10 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 		Set<ModelElement> baseRelated = new HashSet<ModelElement>();
 
 		baseRelated.add(base);
-		for (int i = 0; i < depth; i++) {
+		// for (int i = 0; i < depth; i++) {
+		int oldVal = 0;
+		while (baseRelated.size() < maxNumber && oldVal < baseRelated.size()) {
+			oldVal = baseRelated.size();
 			Collection<ModelElement> modelsToAdd = new LinkedList<ModelElement>();
 			for (ModelElement subElement : baseRelated) {
 				Collection<ModelElement> newMEs = subElement.getLinkedModelElements();
@@ -87,15 +108,21 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 					newMEs.removeAll(correctMEs);
 				}
 				modelsToAdd.addAll(newMEs);
+
 			}
 			baseRelated.addAll(modelsToAdd);
+
 		}
 
 		for (ModelElement me : elements) {
 			// get all elements
 			Set<ModelElement> meRelated = new HashSet<ModelElement>();
 			meRelated.add(me);
-			for (int i = 0; i < depth; i++) {
+			// for (int i = 0; i < depth; i++) {
+			oldVal = 0;
+			while (oldVal < meRelated.size() && meRelated.size() < maxNumber) {
+				oldVal = meRelated.size();
+
 				Collection<ModelElement> modelsToAdd = new LinkedList<ModelElement>();
 				for (ModelElement subElement : meRelated) {
 					Collection<ModelElement> linkedMEs = subElement.getLinkedModelElements();
@@ -155,7 +182,7 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 	 * @see org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy#getName()
 	 */
 	public String getName() {
-		return "SRR(Depth=" + depth + ")";
+		return "SRR(Max=" + this.maxNumber + ")";
 	}
 
 }
