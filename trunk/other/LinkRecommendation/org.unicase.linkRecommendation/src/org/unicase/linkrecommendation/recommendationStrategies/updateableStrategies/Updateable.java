@@ -5,8 +5,6 @@
  */
 package org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies;
 
-import java.util.Collection;
-
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 
 /**
@@ -21,5 +19,5 @@ public interface Updateable {
 	 * 
 	 * @param cp the change packages
 	 */
-	void updateStrategyData(Collection<ChangePackage> cp);
+	void updateStrategyData(ChangePackage cp);
 }

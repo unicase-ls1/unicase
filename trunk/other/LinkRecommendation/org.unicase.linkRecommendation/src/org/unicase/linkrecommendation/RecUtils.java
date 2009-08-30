@@ -6,7 +6,7 @@
 package org.unicase.linkrecommendation;
 
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
@@ -32,17 +32,22 @@ public class RecUtils {
 	private static final char[] STOPCHARS = new char[] { '.', ',', '!', ':', '?', '\'', '"', '(', ')', '-', ';', '0',
 		'1', '2', '3', '4', '5', '6', '7', '8', '9' };
 
-	private static final Map<String, String> STEMMAP = new HashMap<String, String>();
+	private static final Map<String, String> STEMMAP = new LinkedHashMap<String, String>();
+
+	private static final boolean TRIPPLE_NAME = false;
 
 	// initialization
 	static {
+		STEMMAP.put("sses", "ss");// e.g. possesses -> possess
 		STEMMAP.put("ied", "y");// e.g. identified -> identify
 		STEMMAP.put("ed", "");// walked -> walk
 		STEMMAP.put("s", "");// walks -> walk, keyboards-> keyboard
-		STEMMAP.put("ies", "y"); // duties -> duty
+		STEMMAP.put("ies", "y"); // identifies -> identify
 		STEMMAP.put("ing", ""); // meeting -> meet
 		STEMMAP.put("ings", ""); // meetings -> meet
 		STEMMAP.put("ion", ""); // encryption -> encrypt
+		STEMMAP.put("ment", ""); // astonishment -> astonish
+
 		// ly, ally
 		// er : shopper, shopping -> shop
 	}
@@ -223,7 +228,12 @@ public class RecUtils {
 	 * @return the text
 	 */
 	public static String getMEsText(ModelElement me) {
-		String text = me.getName() + " " + me.getName() + " " + me.getName() + " " + me.getDescriptionPlainText();
+		String text = "";
+		if (TRIPPLE_NAME) {
+			text = me.getName() + " " + me.getName() + " " + me.getName() + " " + me.getDescriptionPlainText();
+		} else {
+			text = me.getName() + " " + me.getDescriptionPlainText();
+		}
 
 		if (me instanceof UseCase) {
 			UseCase uc = (UseCase) me;

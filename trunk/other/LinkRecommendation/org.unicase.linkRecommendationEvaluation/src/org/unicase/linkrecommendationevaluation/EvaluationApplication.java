@@ -5,6 +5,7 @@
  */
 package org.unicase.linkrecommendationevaluation;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -13,13 +14,18 @@ import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
 import org.unicase.analyzer.AnalyzerModelController;
 import org.unicase.analyzer.DataAnalyzer;
+import org.unicase.analyzer.exceptions.IteratorException;
 import org.unicase.analyzer.exporters.CSVExporter;
 import org.unicase.analyzer.exporters.ExportersFactory;
 import org.unicase.analyzer.iterator.IteratorFactory;
 import org.unicase.analyzer.iterator.TimeIterator;
+import org.unicase.analyzer.iterator.VersionIterator;
 import org.unicase.analyzer.unicaseAnalyzers.DateWriter;
 import org.unicase.analyzer.unicaseAnalyzers.VersionWriter;
 import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.linkrecommendation.linkselection.ConstantThresholdSelection;
+import org.unicase.linkrecommendation.linkselection.CutPointSelection;
+import org.unicase.linkrecommendation.linkselection.LinkSelectionStrategy;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -33,6 +39,9 @@ import org.unicase.workspace.test.TestProjectEnum;
  */
 public class EvaluationApplication implements IApplication {
 
+	@SuppressWarnings("unused")
+	private AnalyzerModelController anacontrol;
+
 	// BEGIN SUPRESS CATCH EXCEPTION
 	/**
 	 * {@inheritDoc}
@@ -41,7 +50,7 @@ public class EvaluationApplication implements IApplication {
 	 * @see org.eclipse.equinox.app.IApplication#start(org.eclipse.equinox.app.IApplicationContext)
 	 */
 	public Object start(IApplicationContext context) throws Exception {
-		System.out.println("Starting app.");
+		System.out.println("Starting Standard case.");
 		SetupHelper setupHelper = new SetupHelper(TestProjectEnum.NONE);
 		setupHelper.loginServer();
 		Usersession userSession = setupHelper.getUsersession();
@@ -50,32 +59,78 @@ public class EvaluationApplication implements IApplication {
 		List<ProjectInfo> projectList = connectionManager.getProjectList(userSession.getSessionId());
 		ProjectInfo projectInfo = projectList.get(0);
 
-		int stepLength = 1;
-		TimeIterator projectIt = IteratorFactory.eINSTANCE.createTimeIterator();
-		CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
+		VersionIterator projectIt = this.getIterator(userSession, projectInfo);
+		CSVExporter exporter = getExporter();
 
-		String location = "/Users/henning/Documents/workspace/BachelorArbeit/Quellen/Statistics/unicase/First Tries/";
-		String filename = "automated.csv";
-		exporter.init(location + filename, true);
+		ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
+		LinkRecommendationAnalyzer lrAnalyser = new LinkRecommendationAnalyzer();
+		lrAnalyser.setToFuncReqToActionItem();
+		// lrAnalyser.setRecommendationStrategies(new RecommendationStrategy[] { new VectorSpaceModelStrategy(),
+		// new FactorCombinationStrategy(new RelatedAssigneesRecommendation(), new VectorSpaceModelStrategy()), 0.5 });
+		lrAnalyser.setSelectionStrategies(new LinkSelectionStrategy[] { new ConstantThresholdSelection(0.1),
+			new ConstantThresholdSelection(0.5), new CutPointSelection(5), new CutPointSelection(10) });
+
+		analyzers.add(new VersionWriter());
+		analyzers.add(new DateWriter());
+		analyzers.add(lrAnalyser);
+
+		// first the standard case:
+		anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
+
+		// now FuncReq -> UseCase
+		System.out.println("Starting next");
+		projectIt = getIterator(userSession, projectInfo);
+		exporter = getExporter();
+		lrAnalyser.setToActionItemToFuncReqAnalysis();
+		anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
+
+		// now FuncReq -> UseCase
+		System.out.println("Starting next");
+		projectIt = getIterator(userSession, projectInfo);
+		exporter = getExporter();
+		lrAnalyser.setToFuncReqToUseCaseAnalysis();
+		anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
+
+		// now FuncReq -> UseCase
+		System.out.println("Starting next");
+		projectIt = getIterator(userSession, projectInfo);
+		exporter = getExporter();
+		lrAnalyser.setToUseCaseToFuncReqAnalysis();
+		anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
+
+		return null;
+	}
+
+	/**
+	 * @return
+	 * @throws IOException
+	 */
+	private CSVExporter getExporter() throws IOException {
+		CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
+		String location = "/Users/henning/Documents/workspace/BachelorArbeit/Quellen/Statistics/unicase/Steps/";
+		String filename = "opositeDirections.csv";
+		exporter.init(location + filename, false);
+		return exporter;
+	}
+
+	/**
+	 * @param userSession
+	 * @param projectInfo
+	 * @return
+	 * @throws IteratorException
+	 */
+	private VersionIterator getIterator(Usersession userSession, ProjectInfo projectInfo) throws IteratorException {
+		TimeIterator projectIt;
+		projectIt = IteratorFactory.eINSTANCE.createTimeIterator();
 		projectIt.setProjectId(projectInfo.getProjectId());
-		projectIt.setStepLength(stepLength);
+		projectIt.setStepLength(21);
 		projectIt.setStepLengthUnit(Calendar.DATE);
 
 		// go through all revisions
 		projectIt.setDefault(true);
 		projectIt.setForward(true);
 		projectIt.init(userSession);
-
-		ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
-		analyzers.add(new DateWriter());
-		analyzers.add(new VersionWriter());
-		analyzers.add(new LinkRecommendationAnalyzer());
-
-		// analyzers.add(new LinkRecommendationAnalyzer());
-		@SuppressWarnings("unused")
-		AnalyzerModelController anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
-
-		return null;
+		return projectIt;
 	}
 
 	/**
