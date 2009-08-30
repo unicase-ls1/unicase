@@ -90,6 +90,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 
 	private String creatorHint;
 
+	private ILabelProviderListener labelProviderListener;
+
 	/**
 	 * Default constructor.
 	 */
@@ -192,11 +194,12 @@ public class MEEditor extends SharedHeaderFormEditor {
 			}
 			updateCreatorHint();
 
-			meInput.getLabelProvider().addListener(new ILabelProviderListener() {
+			labelProviderListener = new ILabelProviderListener() {
 				public void labelProviderChanged(LabelProviderChangedEvent event) {
 					updateIcon(meInput);
 				}
-			});
+			};
+			meInput.getLabelProvider().addListener(labelProviderListener);
 
 		} else {
 			throw new PartInitException("MEEditor is only appliable for MEEditorInputs");
@@ -278,6 +281,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public void dispose() {
+		((MEEditorInput) getEditorInput()).getLabelProvider().removeListener(labelProviderListener);
 		modelElement.eAdapters().remove(eAdapter);
 		super.dispose();
 	}
