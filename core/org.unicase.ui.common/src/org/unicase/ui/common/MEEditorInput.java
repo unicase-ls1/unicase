@@ -33,6 +33,7 @@ public class MEEditorInput implements IEditorInput {
 
 	private ModelElement modelElement;
 	private EStructuralFeature problemFeature;
+	private DecoratingLabelProvider labelProvider;
 
 	/**
 	 * Default constructor.
@@ -67,6 +68,19 @@ public class MEEditorInput implements IEditorInput {
 				}
 			}.run();
 		}
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+		labelProvider = new DecoratingLabelProvider(adapterFactoryLabelProvider,
+			decoratorManager.getLabelDecorator());
+	}
+	
+	/**
+	 * Getter for the label provider.
+	 * @return the label provider
+	 */
+	public DecoratingLabelProvider getLabelProvider() {
+		return labelProvider;
 	}
 
 	/**
@@ -92,11 +106,6 @@ public class MEEditorInput implements IEditorInput {
 	 * {@inheritDoc}
 	 */
 	public ImageDescriptor getImageDescriptor() {
-		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-		DecoratingLabelProvider labelProvider = new DecoratingLabelProvider(adapterFactoryLabelProvider,
-			decoratorManager.getLabelDecorator());
 		ImageDescriptor descriptor = ImageDescriptor.createFromImage(labelProvider.getImage(modelElement));
 		return descriptor;
 	}
