@@ -38,6 +38,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.model.Project;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.ui.views.CompareView;
 import org.unicase.workspace.ui.views.StructuralView;
 import org.unicase.workspace.util.ResourceHelper;
@@ -63,11 +64,13 @@ public final class QuestionnaireManager {
 	private CSVExporter exporter;
 	private int evaluationResult;
 	private IEditorPart activeEditor;
-	private boolean logMsgResult;// True if the user selected the right log message of this commit
+	private int logMsgResult;// True if the user selected the right log message of this commit
+	private List<String> meResults;
 
 	private Project project;
 	private Project preProject;
 	private ChangePackage changePackage;
+	private boolean left;
 
 	public static QuestionnaireManager getInstance() {
 		if (instance == null) {
@@ -82,6 +85,7 @@ public final class QuestionnaireManager {
 
 	private QuestionnaireManager() {
 		commitsMap = new HashMap<Integer, Boolean>();
+		meResults = new ArrayList<String>();
 
 	}
 
@@ -94,10 +98,17 @@ public final class QuestionnaireManager {
 		String projectFileName = DIR + folder + "/projectstate-" + version + ".ups";
 		String preProjectFileName = DIR + folder + "/projectstate-" + (version - 1) + ".ups";
 		String changeFileName = DIR + folder + "/changepackage-" + version + ".ucp";
-
+		this.left = false;
+		this.logMsgResult = 0;
+		this.meResults = new ArrayList<String>();
+		this.time = -1;
+		this.evaluationResult = 0;
 		try {
-			project = ResourceHelper.getElementFromResource(projectFileName, ProjectSpace.class, 0).getProject();
-			preProject = ResourceHelper.getElementFromResource(preProjectFileName, ProjectSpace.class, 0).getProject();
+			project = ResourceHelper.getElementFromResource(projectFileName, Project.class, 0);
+			preProject = ResourceHelper.getElementFromResource(preProjectFileName, Project.class, 0);
+			addToProjectSpace(project);
+			addToProjectSpace(preProject);
+
 			changePackage = ResourceHelper.getElementFromResource(changeFileName, ChangePackage.class, 0);
 		} catch (IOException e1) {
 			e1.printStackTrace();
@@ -150,6 +161,13 @@ public final class QuestionnaireManager {
 		}
 	}
 
+	private void addToProjectSpace(Project project) {
+		ProjectSpace projectSpace1 = WorkspaceFactory.eINSTANCE.createProjectSpace();
+		projectSpace1.setProjectName("Project");
+		projectSpace1.setIdentifier("Project");
+		projectSpace1.setProject(project);
+	}
+
 	public void initExporter() {
 		exporter = ExportersFactory.eINSTANCE.createCSVExporter();
 		try {
@@ -160,6 +178,9 @@ public final class QuestionnaireManager {
 			header.add("Time");
 			header.add("Self-assessment");
 			header.add("Log Message Selection");
+			for (int i = 1; i < 4; i++) {
+				header.add("ME result " + i);
+			}
 			exporter.writeLine(header);
 
 		} catch (IOException e) {
@@ -292,14 +313,14 @@ public final class QuestionnaireManager {
 	/**
 	 * @return the logMsgResult
 	 */
-	public boolean isLogMsgResult() {
+	public int getLogMsgResult() {
 		return logMsgResult;
 	}
 
 	/**
 	 * @param logMsgResult the logMsgResult to set
 	 */
-	public void setLogMsgResult(boolean logMsgResult) {
+	public void setLogMsgResult(int logMsgResult) {
 		this.logMsgResult = logMsgResult;
 	}
 
@@ -359,4 +380,28 @@ public final class QuestionnaireManager {
 		this.changePackage = changePackage;
 	}
 
+	public boolean getMEisComplete() {
+		// TODO Auto-generated method stub
+		return getCurrentMECount() == 3;
+	}
+
+	public int getCurrentMECount() {
+		return this.meResults.size();
+	}
+
+	public void addMEResult(int result) {
+		this.meResults.add(result + "");
+	}
+
+	public List<String> getMEResult() {
+		return this.meResults;
+	}
+
+	public void setLeft(boolean left) {
+		this.left = left;
+	}
+
+	public boolean getLeft() {
+		return left;
+	}
 }

@@ -33,8 +33,10 @@ public class EvaluationWizard extends Wizard implements IWorkbenchWizard {
 		line.add(QuestionnaireManager.getInstance().getVersion());
 		line.add(QuestionnaireManager.getInstance().getTime());
 		line.add(QuestionnaireManager.getInstance().getEvaluationResult());
-		line.add(QuestionnaireManager.getInstance().isLogMsgResult());
-
+		line.add(QuestionnaireManager.getInstance().getLogMsgResult());
+		for (String meResult : QuestionnaireManager.getInstance().getMEResult()) {
+			line.add(meResult);
+		}
 		try {
 			QuestionnaireManager.getInstance().getExporter().writeLine(line);
 		} catch (IOException e) {
@@ -68,8 +70,9 @@ public class EvaluationWizard extends Wizard implements IWorkbenchWizard {
 	public void addPages() {
 		EvaluatePage page = new EvaluatePage("Evaluation");
 		addPage(page);
-		LogMsgPage page1 = new LogMsgPage("LogMsg");
-		addPage(page1);
+		for (int i = 1; i <= 3; i++) {
+			LogMsgPage nextPage = new LogMsgPage("LogMsg", i);
+			addPage(nextPage);
+		}
 	}
-
 }

@@ -21,7 +21,7 @@ public class MEChoiceWizard extends Wizard implements IWorkbenchWizard {
 	@Override
 	public boolean performFinish() {
 
-		return false;
+		return true;
 	}
 
 	/**
@@ -41,7 +41,7 @@ public class MEChoiceWizard extends Wizard implements IWorkbenchWizard {
 
 	@Override
 	public boolean canFinish() {
-		return canFinish;
+		return true;
 	}
 
 	public void setCanFinish(boolean canFinish) {
