@@ -193,7 +193,7 @@ public final class QuestionnaireManager {
 			header.add("LogMsg Rank");
 			header.add("Time");
 			header.add("Self-assessment");
-			for (int i = 1; i < 4; i++) {
+			for (int i = 1; i <= 5; i++) {
 				header.add("ME result " + i);
 			}
 			exporter.writeLine(header);
@@ -397,7 +397,7 @@ public final class QuestionnaireManager {
 
 	public boolean getMEisComplete() {
 		// TODO Auto-generated method stub
-		return getCurrentMECount() == 3;
+		return getCurrentMECount() == 5;
 	}
 
 	public int getCurrentMECount() {
