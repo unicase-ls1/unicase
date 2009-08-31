@@ -75,6 +75,7 @@ public final class QuestionnaireManager {
 	private boolean selectionOpen;
 	private boolean isFirstTime;
 	private int currentMEresult;
+	private IWorkbenchPage activePage;
 
 	public static QuestionnaireManager getInstance() {
 		if (instance == null) {
@@ -152,13 +153,17 @@ public final class QuestionnaireManager {
 			try {
 				EObject loadedSnapshot = ModelUtils.load(URI.createFileURI(diffFileName), resourceSet);
 				if (loadedSnapshot instanceof ComparisonSnapshot) {
-					if (activeEditor != null) {
-						activeEditor.getSite().getPage().closeEditor(activeEditor, false);
+					// if (activeEditor != null) {
+					// activeEditor.getSite().getPage().closeEditor(activeEditor, false);
+					// }
+					if (activePage != null) {
+						activePage.closeAllEditors(false);
 					}
 					CompareUI.openCompareEditorOnPage(new ModelCompareEditorInput((ComparisonSnapshot) loadedSnapshot),
 						PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage());
-					activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
-						.getActiveEditor();
+					// activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
+					// .getActiveEditor();
+					activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				}
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
@@ -181,9 +186,13 @@ public final class QuestionnaireManager {
 
 			List<Object> header = new ArrayList<Object>();
 			header.add("Version #");
+			header.add("Op-based");
+			header.add("LogMsg_1");
+			header.add("LogMsg_2");
+			header.add("LogMsg_3");
+			header.add("LogMsg Rank");
 			header.add("Time");
 			header.add("Self-assessment");
-			header.add("Log Message Selection");
 			for (int i = 1; i < 4; i++) {
 				header.add("ME result " + i);
 			}
