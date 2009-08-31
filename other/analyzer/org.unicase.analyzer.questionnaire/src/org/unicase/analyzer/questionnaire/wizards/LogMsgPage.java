@@ -32,12 +32,13 @@ public class LogMsgPage extends WizardPage implements Listener {
 	private List<Button> buttons;
 	private List<String> logMsgs;
 	private List<Boolean> correct;
+	private final int rank;
 
-	protected LogMsgPage(String pageName) {
-		super(pageName);
+	protected LogMsgPage(String pageName, int rank) {
+		super(pageName + rank);
+		this.rank = rank;
 		setTitle(PAGE_TITLE);
-		setDescription(PAGE_DESCRIPTION);
-
+		setDescription(PAGE_DESCRIPTION + " (" + rank + ". try)");
 	}
 
 	private void init() {
@@ -74,7 +75,7 @@ public class LogMsgPage extends WizardPage implements Listener {
 
 			// read each line of text file
 			while ((line = bufRdr.readLine()) != null) {
-				correct.add(Boolean.valueOf(line));
+				correct.add(Boolean.valueOf(line.substring(0, line.length() - 1)));
 			}
 		} catch (FileNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -120,8 +121,14 @@ public class LogMsgPage extends WizardPage implements Listener {
 				result = correct.get(buttons.indexOf(button));
 			}
 		}
-		QuestionnaireManager.getInstance().setLogMsgResult(result);
-		((EvaluationWizard) getWizard()).setCanFinish(true);
+		int logResult = QuestionnaireManager.getInstance().getLogMsgResult();
+		if (logResult == 0) {
+			QuestionnaireManager.getInstance().setLogMsgResult(4);
+		}
+		if (logResult >= rank && result) {
+			QuestionnaireManager.getInstance().setLogMsgResult(rank);
+		}
+		((EvaluationWizard) getWizard()).setCanFinish(rank == 3 || result);
 		getWizard().getContainer().updateButtons();
 
 	}

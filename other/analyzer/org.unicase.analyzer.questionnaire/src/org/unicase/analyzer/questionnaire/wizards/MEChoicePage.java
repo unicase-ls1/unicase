@@ -19,6 +19,8 @@ public class MEChoicePage extends WizardPage implements Listener {
 
 	private static final String PAGE_TITLE = "Model Element";
 	private static final String PAGE_DESCRIPTION = "Choose the model element which matches the commit.";
+	private Button leftButton;
+	private Button right;
 
 	protected MEChoicePage(String pageName) {
 		super(pageName);
@@ -30,8 +32,20 @@ public class MEChoicePage extends WizardPage implements Listener {
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		// TODO Auto-generated method stub
-
+		int result;
+		if (leftButton.getSelection() && QuestionnaireManager.getInstance().getLeft()) {
+			result = 1;
+		} else if (right.getSelection() && !QuestionnaireManager.getInstance().getLeft()) {
+			result = 1;
+		}
+		if (leftButton.getSelection() && !QuestionnaireManager.getInstance().getLeft()) {
+			result = 0;
+		} else if (right.getSelection() && QuestionnaireManager.getInstance().getLeft()) {
+			result = 0;
+		} else {
+			return;
+		}
+		QuestionnaireManager.getInstance().addMEResult(result);
 	}
 
 	/**
@@ -47,17 +61,17 @@ public class MEChoicePage extends WizardPage implements Listener {
 
 		new Label(composite, SWT.NONE).setText("Please choose:");
 
-		Button choiceA = new Button(composite, SWT.RADIO);
-		choiceA.setText("Left");
-		choiceA.addListener(SWT.SELECTED, this);
+		leftButton = new Button(composite, SWT.RADIO);
+		leftButton.setText("Left");
+		leftButton.addListener(SWT.SELECTED, this);
 
-		Button choiceB = new Button(composite, SWT.RADIO);
-		choiceB.setText("Right");
-		choiceB.addListener(SWT.SELECTED, this);
+		right = new Button(composite, SWT.RADIO);
+		right.setText("Right");
+		right.addListener(SWT.SELECTED, this);
 
-		Button choiceC = new Button(composite, SWT.RADIO);
-		choiceC.setText("No Idea");
-		choiceC.addListener(SWT.SELECTED, this);
+		Button noIdea = new Button(composite, SWT.RADIO);
+		noIdea.setText("No Idea");
+		noIdea.addListener(SWT.SELECTED, this);
 
 		setControl(composite);
 

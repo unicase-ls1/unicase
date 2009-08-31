@@ -52,7 +52,7 @@ public class EvaluatePage extends WizardPage implements Listener {
 		} else if (bad.getSelection()) {
 			result = 2;
 		} else if (veryBad.getSelection()) {
-			result = 0;
+			result = 1;
 		}
 		((EvaluationWizard) getWizard()).setCanFinish(true);
 		setPageComplete(true);

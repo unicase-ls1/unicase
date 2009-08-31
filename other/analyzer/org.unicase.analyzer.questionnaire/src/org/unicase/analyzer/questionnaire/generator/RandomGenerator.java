@@ -51,7 +51,6 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
-import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.util.ResourceHelper;
 
@@ -172,12 +171,12 @@ public class RandomGenerator {
 		CSVExporter exporter0, CSVExporter exporter1) throws IOException, EmfStoreException, InterruptedException {
 		Random rand = new Random();
 		int version;
-		boolean representation;// if true operation-based, false state-based
+		boolean representation = false;// if true operation-based, false state-based
 
 		for (int j = 0; j < 6; j++) {
 
 			version = rand.nextInt(category.size());
-			representation = rand.nextBoolean();
+			representation = !representation; // rand.nextBoolean();
 			generateRepresentationForCommit(representation, version, categoryNum, folderNum, category, exporter0,
 				exporter1);
 
@@ -212,10 +211,11 @@ public class RandomGenerator {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(URI.createFileURI(DIR + folderNum + File.separatorChar
 			+ "projectstate-" + (version - 1) + ".ups"));
-		ProjectSpace projectSpace1 = WorkspaceFactory.eINSTANCE.createProjectSpace();
-		projectSpace1.setProjectName("Project");
-		projectSpace1.setProject(project1);
-		resource.getContents().add(projectSpace1);
+		// ProjectSpace projectSpace1 = WorkspaceFactory.eINSTANCE.createProjectSpace();
+		// projectSpace1.setProjectName("Project");
+		// projectSpace1.setIdentifier(("Project"));
+		// projectSpace1.setProject(project1);
+		resource.getContents().add(project1);
 		resource.save(null);
 		// GeneratorHelper.copyfile(DOLLI_DIR + "/projectstate-" + previousVersion + ".ups", DIR + "/" + i + "/" +
 		// "/projectstate-" + previousVersion + ".ups" );
@@ -228,10 +228,11 @@ public class RandomGenerator {
 		// resourceSet = new ResourceSetImpl();
 		resource = resourceSet.createResource(URI.createFileURI(DIR + folderNum + File.separatorChar + "projectstate-"
 			+ version + ".ups"));
-		ProjectSpace projectSpace2 = WorkspaceFactory.eINSTANCE.createProjectSpace();
-		projectSpace2.setProjectName("Project");
-		projectSpace2.setProject(project2);
-		resource.getContents().add(projectSpace2);
+		// ProjectSpace projectSpace2 = WorkspaceFactory.eINSTANCE.createProjectSpace();
+		// projectSpace2.setProjectName("Project");
+		// projectSpace2.setIdentifier("Project");
+		// projectSpace2.setProject(project2);
+		resource.getContents().add(project2);
 		resource.save(null);
 
 		GeneratorHelper.copyfile(DOLLI_DIR + "changepackage-" + version + ".ucp", DIR + folderNum + File.separatorChar

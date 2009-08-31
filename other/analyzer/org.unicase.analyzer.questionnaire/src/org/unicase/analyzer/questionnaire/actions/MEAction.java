@@ -72,6 +72,7 @@ public class MEAction implements IWorkbenchWindowActionDelegate {
 		}
 
 		boolean left = rand.nextBoolean();
+		QuestionnaireManager.getInstance().setLeft(left);
 		if (left) {
 			ActionHelper.openModelElement(leftME, "HAHA");// after commit
 			ActionHelper.openModelElement(rightME, "HAHA");// before commit
