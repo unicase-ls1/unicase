@@ -115,6 +115,10 @@ public final class WorkspaceUtil {
 		readEvent.setReadView(readView);
 		readEvent.setSourceView(sourceView);
 		readEvent.setTimestamp(new Date());
+		if (projectSpace == null) {
+			logWarning("Read event could not be logged since given project space was null", new NullPointerException());
+			return;
+		}
 		projectSpace.addEvent(readEvent);
 	}
 
