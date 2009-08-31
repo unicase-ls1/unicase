@@ -109,7 +109,6 @@ public final class QuestionnaireManager {
 		this.left = false;
 		this.logMsgResult = 0;
 		this.meResults = new ArrayList<String>();
-		this.time = -1;
 		this.evaluationResult = 0;
 		this.createdDeleteMENames = new ArrayList<String>();
 		this.createdDeletedTruth = new ArrayList<Integer>();
@@ -173,6 +172,7 @@ public final class QuestionnaireManager {
 				e.printStackTrace();
 			}
 		}
+		this.time = System.currentTimeMillis();
 	}
 
 	private void addToProjectSpace(Project project) {
