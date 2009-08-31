@@ -19,6 +19,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.analyzer.questionnaire.wizards.CreateDeleteMEWizard;
 import org.unicase.analyzer.questionnaire.wizards.EvaluationWizard;
 import org.unicase.analyzer.questionnaire.wizards.MEChoiceWizard;
 import org.unicase.analyzer.questionnaire.wizards.QuestionnaireManager;
@@ -44,6 +45,7 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 	private IWorkbenchPage activePage;
 	private List<ModelElementId> deletedElements;
 	private List<ModelElementId> createdElements;
+	private CreateDeleteMEWizard createWizard;
 
 	/**
 	 * {@inheritDoc}
@@ -65,6 +67,8 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 		wizard.init(window.getWorkbench(), null);
 		meWizard = new MEChoiceWizard();
 		meWizard.init(window.getWorkbench(), null);
+		createWizard = new CreateDeleteMEWizard();
+		createWizard.init(window.getWorkbench(), null);
 		selectionOpen = false;
 	}
 
@@ -75,6 +79,7 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 	 */
 	public void run(IAction action) {
 		QuestionnaireManager questionnaireManager = QuestionnaireManager.getInstance();
+		questionnaireManager.stopViews();
 		selectionOpen = questionnaireManager.isSelectionOpen();
 		if (questionnaireManager.isFirstTime()) {
 			questionnaireManager.setFirstTime(false);
@@ -86,7 +91,21 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 		}
 		if (questionnaireManager.getMEisComplete()) {
 			generateDataForCreateDeleteQuestion();
+			if (questionnaireManager.getCreatedDeleteMENames() != null) {
+				WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+					.getShell(), createWizard);
+				wizardDialog.create();
+				wizardDialog.open();
+			}
+
 			generateDataForCreateDeleteQuestion();
+			if (questionnaireManager.getCreatedDeleteMENames() != null) {
+				WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+					.getShell(), createWizard);
+				wizardDialog.create();
+				wizardDialog.open();
+			}
+
 			WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell(), wizard);
 			wizardDialog.create();
@@ -192,7 +211,7 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 
 		Random rand = new Random();
 		boolean fake = rand.nextBoolean();
-		if (changedElements.size() < 1) {
+		if (changedElements == null || changedElements.size() < 1) {
 			fake = false;
 		}
 		boolean delete = rand.nextBoolean();
