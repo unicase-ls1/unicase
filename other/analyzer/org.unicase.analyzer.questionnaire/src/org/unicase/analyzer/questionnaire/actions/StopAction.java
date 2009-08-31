@@ -7,6 +7,7 @@
 package org.unicase.analyzer.questionnaire.actions;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Random;
 import java.util.Set;
@@ -27,6 +28,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.util.ActionHelper;
 
 /**
@@ -37,9 +39,11 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 	private EvaluationWizard wizard;
 	private boolean selectionOpen;
 	private MEChoiceWizard meWizard;
-	private List<ModelElementId> idList;
+	private List<ModelElementId> changedElements;
 
 	private IWorkbenchPage activePage;
+	private List<ModelElementId> deletedElements;
+	private List<ModelElementId> createdElements;
 
 	/**
 	 * {@inheritDoc}
@@ -80,14 +84,14 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 				questionnaireManager.setTime(timeDiff);
 			}
 		}
-
 		if (questionnaireManager.getMEisComplete()) {
-
+			generateDataForCreateDeleteQuestion();
+			generateDataForCreateDeleteQuestion();
 			WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell(), wizard);
 			wizardDialog.create();
 			wizardDialog.open();
-			this.idList = null;
+			this.changedElements = null;
 			// this.selectionOpen = false;
 			questionnaireManager.setSelectionOpen(false);
 			return;
@@ -103,26 +107,10 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 		} else {
 			Project project = questionnaireManager.getProject();
 			Project preProject = questionnaireManager.getPreProject();
-			if (idList == null) {
-
-				ChangePackage changePackage = questionnaireManager.getChangePackage();
-				Set<ModelElementId> ids = changePackage.getAllInvolvedModelElements();
-
-				for (AbstractOperation operation : changePackage.getOperations()) {
-					if (operation instanceof CreateDeleteOperation) {
-						CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
-						Set<ModelElement> allContainedModelElements = createDeleteOperation.getModelElement()
-							.getAllContainedModelElements();
-						allContainedModelElements.add(createDeleteOperation.getModelElement());
-						for (ModelElement element : allContainedModelElements) {
-							ids.remove(element.getModelElementId());
-						}
-					}
-				}
-
-				idList = new ArrayList<ModelElementId>(ids);
+			if (changedElements == null) {
+				extractElementsFromCP(questionnaireManager);
 			}
-			if (idList.size() == 0) {
+			if (changedElements.size() == 0) {
 				while (!questionnaireManager.getMEisComplete()) {
 					questionnaireManager.addMEResult(-2);
 				}
@@ -130,11 +118,10 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 				return;
 			}
 			Random rand = new Random();
-			ModelElementId id = idList.get(rand.nextInt(idList.size()));
-			idList.remove(id);
+			ModelElementId id = changedElements.get(rand.nextInt(changedElements.size()));
+			changedElements.remove(id);
 
 			ModelElement leftME = project.getModelElement(id);
-
 			ModelElement rightME = preProject.getModelElement(id);
 
 			// if (activeEditor != null) {
@@ -159,6 +146,77 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 			// this.selectionOpen = true;
 			questionnaireManager.setSelectionOpen(true);
 			return;
+		}
+	}
+
+	private void extractElementsFromCP(QuestionnaireManager questionnaireManager) {
+		ChangePackage changePackage = questionnaireManager.getChangePackage();
+		Set<ModelElementId> changedIds = changePackage.getAllInvolvedModelElements();
+		Set<ModelElementId> deletedIds = new HashSet<ModelElementId>();
+		Set<ModelElementId> createdIds = new HashSet<ModelElementId>();
+
+		for (AbstractOperation operation : changePackage.getOperations()) {
+			if (operation instanceof CreateDeleteOperation) {
+				CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
+				Set<ModelElement> allContainedModelElements = createDeleteOperation.getModelElement()
+					.getAllContainedModelElements();
+				allContainedModelElements.add(createDeleteOperation.getModelElement());
+				for (ModelElement element : allContainedModelElements) {
+					changedIds.remove(element.getModelElementId());
+					if (element instanceof MEDiagram) {
+						continue;
+					}
+					if (createDeleteOperation.isDelete()) {
+						deletedIds.add(element.getModelElementId());
+					} else {
+						createdIds.add(element.getModelElementId());
+					}
+				}
+			}
+		}
+		Project project = QuestionnaireManager.getInstance().getProject();
+		Set<ModelElementId> toRemove = new HashSet<ModelElementId>();
+		for (ModelElementId id : changedIds) {
+			if (project.getModelElement(id) instanceof MEDiagram) {
+				toRemove.remove(id);
+			}
+		}
+		changedIds.removeAll(toRemove);
+
+		createdElements = new ArrayList<ModelElementId>(createdIds);
+		deletedElements = new ArrayList<ModelElementId>(deletedIds);
+		changedElements = new ArrayList<ModelElementId>(changedIds);
+	}
+
+	public void generateDataForCreateDeleteQuestion() {
+
+		Random rand = new Random();
+		boolean fake = rand.nextBoolean();
+		if (changedElements.size() < 1) {
+			fake = false;
+		}
+		boolean delete = rand.nextBoolean();
+		if (delete && deletedElements.size() < 1) {
+			delete = false;
+		}
+		QuestionnaireManager questionnaireManager = QuestionnaireManager.getInstance();
+		Project project = questionnaireManager.getProject();
+		Project preProject = questionnaireManager.getPreProject();
+		if (fake) {
+			ModelElementId modelElementId = changedElements.get(rand.nextInt(changedElements.size()));
+			changedElements.remove(modelElementId);
+			questionnaireManager.addCreateDeleteData(project.getModelElement(modelElementId).getName(),
+				QuestionnaireManager.NONE);
+		} else if (delete) {
+			ModelElementId modelElementId = deletedElements.get(rand.nextInt(deletedElements.size()));
+			ModelElement modelElement = preProject.getModelElement(modelElementId);
+			deletedElements.remove(modelElementId);
+			questionnaireManager.addCreateDeleteData(modelElement.getName(), QuestionnaireManager.DELETED);
+		} else if (createdElements.size() > 0) {
+			ModelElementId modelElementId = createdElements.get(rand.nextInt(createdElements.size()));
+			ModelElement modelElement = project.getModelElement(modelElementId);
+			createdElements.remove(modelElementId);
+			questionnaireManager.addCreateDeleteData(modelElement.getName(), QuestionnaireManager.CREATED);
 		}
 	}
 

@@ -76,6 +76,7 @@ public final class QuestionnaireManager {
 	private boolean isFirstTime;
 	private int currentMEresult;
 	private IWorkbenchPage activePage;
+	private ArrayList<Integer> createdDeletedTruth;
 
 	public static QuestionnaireManager getInstance() {
 		if (instance == null) {
@@ -110,6 +111,8 @@ public final class QuestionnaireManager {
 		this.meResults = new ArrayList<String>();
 		this.time = -1;
 		this.evaluationResult = 0;
+		this.createdDeleteMENames = new ArrayList<String>();
+		this.createdDeletedTruth = new ArrayList<Integer>();
 		try {
 			project = ResourceHelper.getElementFromResource(projectFileName, Project.class, 0);
 			preProject = ResourceHelper.getElementFromResource(preProjectFileName, Project.class, 0);
@@ -454,5 +457,15 @@ public final class QuestionnaireManager {
 	 */
 	public int getCurrentMEResult() {
 		return currentMEresult;
+	}
+
+	public final static int CREATED = 1;
+	public final static int DELETED = 2;
+	public final static int NONE = 3;
+	private List<String> createdDeleteMENames;
+
+	public void addCreateDeleteData(String name, int truth) {
+		createdDeleteMENames.add(name);
+		createdDeletedTruth.add(truth);
 	}
 }
