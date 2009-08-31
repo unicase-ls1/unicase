@@ -15,7 +15,7 @@ import org.unicase.ui.iterationplanner.paper.machinelearning.PaperMachineLearnin
  */
 public class Application implements IApplication {
 
-	private static final boolean IMPERATIVE_APPROACH = false;
+	private static final boolean IMPERATIVE_APPROACH = true;
 
 	// BEGIN SUPRESS CATCH EXCEPTION
 	/**

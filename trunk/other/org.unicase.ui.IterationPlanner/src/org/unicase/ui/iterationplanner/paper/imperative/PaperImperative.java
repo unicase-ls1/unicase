@@ -26,7 +26,6 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.Project;
-import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.task.Milestone;
@@ -59,8 +58,8 @@ import java.util.Map.Entry;
  */
 public class PaperImperative {
 
-	public static boolean HISTORY_BASED = true;
-	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = true;
+	public static boolean HISTORY_BASED = false;
+	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = false;
 
 	private List<OrgUnit> assigneesWithMoreThan10Tasks;
 	private List<OrgUnit> assigneesWithAtLeastOneTask;
@@ -69,9 +68,9 @@ public class PaperImperative {
 	private EList<WorkItem> allWorkItems;
 	private List<WorkItem> allWorkItemsWithAssignee;
 	private List<WorkItem> allWorkItemsWithAnnotatedMEsAndAssignee;
-	private ArrayList<WorkItem> allWorkItemsWithAssigneesWithMoreThan10Task;
 	private ProjectSpace projectSpace;
 	private Project project;
+	private ArrayList<WorkItem> allWorkItemsWithAnnotatedMEs;
 
 	public void start() {
 
@@ -163,7 +162,7 @@ public class PaperImperative {
 	private void runStateBased() {
 		initAssignees(project);
 		initWorkItems(project);
-		List<WorkItem> workItems = allWorkItemsWithAnnotatedMEsAndAssignee;
+		List<WorkItem> workItems = allWorkItemsWithAssignee;
 		List<OrgUnit> assignees = allAssignees;
 		IterationPlannerManager planningManager = new IterationPlannerManager();
 
@@ -184,16 +183,11 @@ public class PaperImperative {
 		System.out.printf("first percision: %f%n", firstPercision);
 		System.out.printf("scond percision: %f%n", secondPercision);
 
-		int workItemsWithOutAnnotatedMEs = 0;
-		for (WorkItem wi : workItems) {
-			if (wi.getAnnotatedModelElements().size() == 0) {
-				workItemsWithOutAnnotatedMEs++;
-			}
-		}
+		System.out.println("num of work items: " + allWorkItems.size());
+		System.out.println("num of WIsWithAnnotatedMEs: " + allWorkItemsWithAnnotatedMEs.size());
+		System.out.println("num of WIsWithAssignee: " + allWorkItemsWithAssignee.size());
+		System.out.println("num of WIsWithAnnotatedMEsAndAssignee: " + allWorkItemsWithAnnotatedMEsAndAssignee.size());
 
-		System.out.println("num of work items: " + workItems.size());
-		System.out.printf("work items without annotated MEs: %d (%f %%)", workItemsWithOutAnnotatedMEs,
-			(double) workItemsWithOutAnnotatedMEs * 100 / workItems.size());
 	}
 
 	/**
@@ -221,18 +215,18 @@ public class PaperImperative {
 			new BasicEList<WorkItem>());
 
 		allWorkItemsWithAssignee = new ArrayList<WorkItem>();
+		allWorkItemsWithAnnotatedMEs = new ArrayList<WorkItem>();
 		allWorkItemsWithAnnotatedMEsAndAssignee = new ArrayList<WorkItem>();
-		allWorkItemsWithAssigneesWithMoreThan10Task = new ArrayList<WorkItem>();
 		for (WorkItem wi : allWorkItems) {
-			if (!(wi instanceof WorkPackage || wi instanceof Milestone) && wi.getAssignee() != null
-				&& !(wi.getAssignee() instanceof Group)) {
-				allWorkItemsWithAssignee.add(wi);
-				if (assigneesWithMoreThan10Tasks.contains(wi.getAssignee())) {
-					allWorkItemsWithAssigneesWithMoreThan10Task.add(wi);
+			if (!(wi instanceof WorkPackage || wi instanceof Milestone)) {
+				if (wi.getAssignee() != null) {
+					allWorkItemsWithAssignee.add(wi);
 				}
-
 				if (wi.getAnnotatedModelElements().size() > 0) {
-					allWorkItemsWithAnnotatedMEsAndAssignee.add(wi);
+					allWorkItemsWithAnnotatedMEs.add(wi);
+					if (wi.getAssignee() != null) {
+						allWorkItemsWithAnnotatedMEsAndAssignee.add(wi);
+					}
 				}
 
 			}
