@@ -205,18 +205,21 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 		if (fake) {
 			ModelElementId modelElementId = changedElements.get(rand.nextInt(changedElements.size()));
 			changedElements.remove(modelElementId);
-			questionnaireManager.addCreateDeleteData(project.getModelElement(modelElementId).getName(),
-				QuestionnaireManager.NONE);
+			ModelElement modelElement = project.getModelElement(modelElementId);
+			questionnaireManager.addCreateDeleteData(modelElement.eClass().getName() + ": \"" + modelElement.getName()
+				+ "\"", QuestionnaireManager.NONE);
 		} else if (delete) {
 			ModelElementId modelElementId = deletedElements.get(rand.nextInt(deletedElements.size()));
 			ModelElement modelElement = preProject.getModelElement(modelElementId);
 			deletedElements.remove(modelElementId);
-			questionnaireManager.addCreateDeleteData(modelElement.getName(), QuestionnaireManager.DELETED);
+			questionnaireManager.addCreateDeleteData(modelElement.eClass().getName() + ": \"" + modelElement.getName()
+				+ "\"", QuestionnaireManager.DELETED);
 		} else if (createdElements.size() > 0) {
 			ModelElementId modelElementId = createdElements.get(rand.nextInt(createdElements.size()));
 			ModelElement modelElement = project.getModelElement(modelElementId);
 			createdElements.remove(modelElementId);
-			questionnaireManager.addCreateDeleteData(modelElement.getName(), QuestionnaireManager.CREATED);
+			questionnaireManager.addCreateDeleteData(modelElement.eClass().getName() + ": \"" + modelElement.getName()
+				+ "\"", QuestionnaireManager.CREATED);
 		}
 	}
 
