@@ -46,7 +46,10 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
@@ -210,7 +213,7 @@ public class RandomGenerator {
 		previousVersionSpec.setIdentifier(previousVersion);
 		Project project1 = (Project) EcoreUtil.copy(WorkspaceManager.getInstance().getConnectionManager().getProject(
 			session.getSessionId(), pid, previousVersionSpec));
-		killAllDiagrams(project1);
+		Set<ModelElementId> allDiagrams = killAllDiagrams(project1);
 
 		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.createResource(URI.createFileURI(DIR + folderNum + File.separatorChar
@@ -226,6 +229,8 @@ public class RandomGenerator {
 
 		ChangePackage changePackage = ResourceHelper.getElementFromResource(DOLLI_DIR + "changepackage-" + version
 			+ ".ucp", ChangePackage.class, 0);
+
+		killAllDiagramOperations(changePackage, allDiagrams);
 
 		Project project2 = (Project) EcoreUtil.copy(project1);
 		changePackage.apply(project2);
@@ -295,6 +300,22 @@ public class RandomGenerator {
 
 	}
 
+	private void killAllDiagramOperations(ChangePackage changePackage, Set<ModelElementId> diagrams) {
+		Set<AbstractOperation> operationsToRemove = new HashSet<AbstractOperation>();
+		for (AbstractOperation operation : changePackage.getOperations()) {
+			if (diagrams.contains(operation.getModelElementId())) {
+				operationsToRemove.add(operation);
+			} else if (operation instanceof CreateDeleteOperation) {
+				CreateDeleteOperation createDeleteOperation = (CreateDeleteOperation) operation;
+				if (createDeleteOperation.getModelElement() instanceof MEDiagram) {
+					operationsToRemove.add(operation);
+				}
+			}
+
+		}
+		changePackage.getOperations().removeAll(operationsToRemove);
+	}
+
 	private String trim(String message) {
 		String result = message.replace(",", ".");
 		result = result.replace("\n", " | ");
@@ -328,12 +349,15 @@ public class RandomGenerator {
 		return true;
 	}
 
-	private void killAllDiagrams(Project project) {
+	private Set<ModelElementId> killAllDiagrams(Project project) {
+		Set<ModelElementId> result = new HashSet<ModelElementId>();
 		EList<MEDiagram> allDiagrams = project.getAllModelElementsbyClass(DiagramPackage.eINSTANCE.getMEDiagram(),
 			new BasicEList<MEDiagram>());
 		for (MEDiagram diagram : allDiagrams) {
+			result.add(diagram.getModelElementId());
 			project.deleteModelElement(diagram);
 		}
+		return result;
 	}
 
 }
