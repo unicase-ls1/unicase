@@ -14,7 +14,6 @@ import java.util.Set;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.WizardDialog;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
@@ -29,7 +28,6 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.ProjectSpace;
 
 /**
  * @author liya
@@ -37,13 +35,10 @@ import org.unicase.workspace.ProjectSpace;
 public class StopAction implements IWorkbenchWindowActionDelegate {
 
 	private EvaluationWizard wizard;
-	private IEditorPart activeEditor;
 	private boolean selectionOpen;
 	private MEChoiceWizard meWizard;
 	private List<ModelElementId> idList;
-	private ProjectSpace projectSpace1;
-	private ProjectSpace projectSpace2;
-	private boolean isFirstTime;
+
 	private IWorkbenchPage activePage;
 
 	/**
@@ -67,7 +62,6 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 		meWizard = new MEChoiceWizard();
 		meWizard.init(window.getWorkbench(), null);
 		selectionOpen = false;
-		isFirstTime = true;
 	}
 
 	/**
