@@ -15,6 +15,7 @@ import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 import org.eclipse.ui.PlatformUI;
@@ -43,6 +44,7 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 	private ProjectSpace projectSpace1;
 	private ProjectSpace projectSpace2;
 	private boolean isFirstTime;
+	private IWorkbenchPage activePage;
 
 	/**
 	 * {@inheritDoc}
@@ -141,8 +143,11 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 
 			ModelElement rightME = preProject.getModelElement(id);
 
-			if (activeEditor != null) {
-				activeEditor.getSite().getPage().closeAllEditors(false);
+			// if (activeEditor != null) {
+			// activeEditor.getSite().getPage().closeAllEditors(false);
+			// }
+			if (activePage != null) {
+				activePage.closeAllEditors(false);
 			}
 
 			boolean left = rand.nextBoolean();
@@ -154,7 +159,9 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 				ActionHelper.openModelElement(rightME, "HAHA");// before commit
 				ActionHelper.openModelElement(leftME, "HAHA");// after commit
 			}
-			activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+			activePage = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+
+			// activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 			// this.selectionOpen = true;
 			questionnaireManager.setSelectionOpen(true);
 			return;
