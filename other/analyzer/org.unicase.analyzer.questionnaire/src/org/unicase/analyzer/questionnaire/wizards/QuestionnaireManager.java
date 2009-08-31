@@ -76,7 +76,14 @@ public final class QuestionnaireManager {
 	private boolean isFirstTime;
 	private int currentMEresult;
 	private IWorkbenchPage activePage;
+
+	private CompareView compareView;
+	private StructuralView structuralView;
+
 	private ArrayList<Integer> createdDeletedTruth;
+
+	private int createDeleteResult;
+	private ArrayList<String> createDeleteResults;
 
 	public static QuestionnaireManager getInstance() {
 		if (instance == null) {
@@ -92,6 +99,7 @@ public final class QuestionnaireManager {
 	private QuestionnaireManager() {
 		commitsMap = new HashMap<Integer, Boolean>();
 		meResults = new ArrayList<String>();
+		createDeleteResults = new ArrayList<String>();
 		selectionOpen = false;
 
 	}
@@ -129,13 +137,12 @@ public final class QuestionnaireManager {
 
 				IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 				String viewId = "org.unicase.workspace.ui.views.CompareView";
-				CompareView compareView = (CompareView) page.showView(viewId);
+				compareView = (CompareView) page.showView(viewId);
 
 				if (compareView != null) {
 					compareView.setInput(project, changePackage);
 				}
-				StructuralView structuralView = (StructuralView) page
-					.showView("org.unicase.workspace.ui.views.StructuralView");
+				structuralView = (StructuralView) page.showView("org.unicase.workspace.ui.views.StructuralView");
 
 				if (structuralView != null) {
 					structuralView.setInput((ProjectSpace) project.eContainer());
@@ -172,7 +179,20 @@ public final class QuestionnaireManager {
 				e.printStackTrace();
 			}
 		}
+
 		this.time = System.currentTimeMillis();
+
+	}
+
+	public void stopViews() {
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		page.hideView(compareView);
+		page.hideView(structuralView);
+
+		if (activePage != null) {
+			activePage.closeAllEditors(false);
+		}
+
 	}
 
 	private void addToProjectSpace(Project project) {
@@ -411,6 +431,10 @@ public final class QuestionnaireManager {
 		this.meResults.add(result + "");
 	}
 
+	public void addCreateDeleteResult(int result) {
+		this.createDeleteResults.add(result + "");
+	}
+
 	public List<String> getMEResult() {
 		return this.meResults;
 	}
@@ -467,5 +491,61 @@ public final class QuestionnaireManager {
 	public void addCreateDeleteData(String name, int truth) {
 		createdDeleteMENames.add(name);
 		createdDeletedTruth.add(truth);
+	}
+
+	/**
+	 * @return the createdDeletedTruth
+	 */
+	public ArrayList<Integer> getCreatedDeletedTruth() {
+		return createdDeletedTruth;
+	}
+
+	/**
+	 * @param createdDeletedTruth the createdDeletedTruth to set
+	 */
+	public void setCreatedDeletedTruth(ArrayList<Integer> createdDeletedTruth) {
+		this.createdDeletedTruth = createdDeletedTruth;
+	}
+
+	/**
+	 * @return the createdDeleteMENames
+	 */
+	public List<String> getCreatedDeleteMENames() {
+		return createdDeleteMENames;
+	}
+
+	/**
+	 * @param createdDeleteMENames the createdDeleteMENames to set
+	 */
+	public void setCreatedDeleteMENames(List<String> createdDeleteMENames) {
+		this.createdDeleteMENames = createdDeleteMENames;
+	}
+
+	/**
+	 * @return the createDeleteResult
+	 */
+	public int getCreateDeleteResult() {
+		return createDeleteResult;
+	}
+
+	/**
+	 * @param createDeleteResult the createDeleteResult to set
+	 */
+	public void setCreateDeleteResult(int createDeleteResult) {
+		this.createDeleteResult = createDeleteResult;
+	}
+
+	/**
+	 * @return the createDeleteResults
+	 */
+	public ArrayList<String> getCreateDeleteResults() {
+		return createDeleteResults;
+	}
+
+	/**
+	 * @param createDeleteResults the createDeleteResults to set
+	 */
+	public void setCreateDeleteResults(ArrayList<String> createDeleteResults) {
+		this.createDeleteResults = createDeleteResults;
 	}
 }

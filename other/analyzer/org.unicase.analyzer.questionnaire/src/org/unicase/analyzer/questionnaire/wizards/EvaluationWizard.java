@@ -37,6 +37,10 @@ public class EvaluationWizard extends Wizard implements IWorkbenchWizard {
 		for (String meResult : QuestionnaireManager.getInstance().getMEResult()) {
 			line.add(meResult);
 		}
+		for (String createDeleteResult : QuestionnaireManager.getInstance().getCreateDeleteResults()) {
+			line.add(createDeleteResult);
+		}
+
 		try {
 			QuestionnaireManager.getInstance().getExporter().writeLine(line);
 		} catch (IOException e) {
