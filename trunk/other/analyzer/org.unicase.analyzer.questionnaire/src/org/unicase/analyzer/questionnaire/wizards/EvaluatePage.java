@@ -54,7 +54,6 @@ public class EvaluatePage extends WizardPage implements Listener {
 		} else if (veryBad.getSelection()) {
 			result = 1;
 		}
-		((EvaluationWizard) getWizard()).setCanFinish(true);
 		setPageComplete(true);
 		QuestionnaireManager.getInstance().setEvaluationResult(result);
 		getWizard().getContainer().updateButtons();
@@ -66,6 +65,7 @@ public class EvaluatePage extends WizardPage implements Listener {
 	 * @see org.eclipse.jface.dialogs.IDialogPage#createControl(org.eclipse.swt.widgets.Composite)
 	 */
 	public void createControl(Composite parent) {
+		((EvaluationWizard) getWizard()).setCanFinish(false);
 		GridData gd;
 		Composite composite = new Composite(parent, SWT.NULL);
 		GridLayout gl = new GridLayout();

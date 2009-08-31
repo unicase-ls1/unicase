@@ -68,11 +68,11 @@ public class EvaluationWizard extends Wizard implements IWorkbenchWizard {
 
 	@Override
 	public void addPages() {
-		EvaluatePage page = new EvaluatePage("Evaluation");
-		addPage(page);
 		for (int i = 1; i <= 3; i++) {
 			LogMsgPage nextPage = new LogMsgPage("LogMsg", i);
 			addPage(nextPage);
 		}
+		EvaluatePage page = new EvaluatePage("Evaluation");
+		addPage(page);
 	}
 }

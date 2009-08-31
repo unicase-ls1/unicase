@@ -13,9 +13,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Random;
+import java.util.Set;
 import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.util.BasicEList;
@@ -70,6 +72,7 @@ public class RandomGenerator {
 	private final Usersession session;
 	private final ProjectId pid;
 	private List<HistoryInfo> history;
+	private Set<String> seenMessages;
 
 	public RandomGenerator() {
 		map = new HashMap<Object, Object>();
@@ -187,6 +190,7 @@ public class RandomGenerator {
 		List<Object> category, CSVExporter exporter0, CSVExporter exporter1) throws IOException, EmfStoreException,
 		InterruptedException {
 
+		seenMessages = new HashSet<String>();
 		List<Object> values0 = new ArrayList<Object>();
 		values0.add(categoryNum);
 		values0.add(category.get(version));
@@ -259,56 +263,69 @@ public class RandomGenerator {
 
 		// get log message
 		Random rand = new Random();
-		List<Integer> index = new ArrayList<Integer>();
-		for (int i = 0; i < 10; i++) {
-			int temp = rand.nextInt(10);
-			if (index.isEmpty()) {
-				index.add(temp);
-			} else {
-				while (!isAvailable(temp, index)) {
-					temp = rand.nextInt(10);
-				}
-				index.add(temp);
-			}
-		}
 
-		String[] logMsgs = new String[10];
-		boolean[] correct = new boolean[10];
-		logMsgs[index.get(0)] = history.get(history.size() - 1 - version).getLogMessage().getMessage();
-		correct[index.get(0)] = true;
+		List<String> logMsgs = new ArrayList<String>();
+		List<Boolean> correct = new ArrayList<Boolean>();
+
+		String correctMessage = history.get(history.size() - 1 - version).getLogMessage().getMessage();
+		logMsgs.add(trim(correctMessage));
+		seenMessages.add(correctMessage);
+		correct.add(true);
 		for (int i = 1; i < 10; i++) {
-			logMsgs[index.get(i)] = history.get(rand.nextInt(history.size())).getLogMessage().getMessage();
-			correct[index.get(i)] = false;
+			int ind = rand.nextInt(logMsgs.size() + 1);
+			logMsgs.add(ind, getLogMessage(rand));
+			correct.add(ind, false);
 		}
 
 		CSVExporter log = ExportersFactory.eINSTANCE.createCSVExporter();
 		log.init(DIR + folderNum + File.separatorChar + "logMsgs-" + version + ".csv");
-		for (int i = 0; i < 10; i++) {
+		for (String message : logMsgs) {
 			List<Object> line = new ArrayList<Object>();
-			line.add(logMsgs[i]);
+			line.add(message);
 			log.writeLine(line);
 		}
 
 		CSVExporter choice = ExportersFactory.eINSTANCE.createCSVExporter();
 		choice.init(DIR + folderNum + File.separatorChar + "choices-" + version + ".csv");
-		for (int i = 0; i < 10; i++) {
+		for (Boolean cor : correct) {
 			List<Object> line = new ArrayList<Object>();
-			line.add(correct[i]);
+			line.add(cor);
 			choice.writeLine(line);
 		}
 
 	}
 
-	private boolean isAvailable(int check, List<Integer> numbers) {
-		for (int x = 0; x < numbers.size(); x++) {
-			if (check == numbers.get(x).intValue() || history.get(check).equals("")
-				|| history.get(check).equals("<Empty log message>")) {
-				return false;
-			}
+	private String trim(String message) {
+		String result = message.replace(",", ".");
+		result = result.replace("\n", " | ");
+		result = result.replace("\r", " | ");
+		return result;
+	}
+
+	private String getLogMessage(Random rand) {
+		String result;
+		result = history.get(rand.nextInt(history.size())).getLogMessage().getMessage();
+		while (!isValid(result)) {
+			result = history.get(rand.nextInt(history.size())).getLogMessage().getMessage();
 		}
+		return trim(result);
+	}
 
+	private boolean isValid(String result) {
+		if (result == null) {
+			return false;
+		}
+		if (result.length() < 3) {
+			return false;
+		}
+		if (seenMessages.contains(result)) {
+			return false;
+		}
+		if (result.equals("<Empty log message>")) {
+			return false;
+		}
+		seenMessages.add(result);
 		return true;
-
 	}
 
 	private void killAllDiagrams(Project project) {
