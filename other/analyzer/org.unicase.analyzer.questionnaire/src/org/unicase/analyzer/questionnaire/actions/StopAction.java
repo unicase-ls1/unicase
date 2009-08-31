@@ -42,6 +42,7 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 	private List<ModelElementId> idList;
 	private ProjectSpace projectSpace1;
 	private ProjectSpace projectSpace2;
+	private boolean isFirstTime;
 
 	/**
 	 * {@inheritDoc}
@@ -64,6 +65,7 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 		meWizard = new MEChoiceWizard();
 		meWizard.init(window.getWorkbench(), null);
 		selectionOpen = false;
+		isFirstTime = true;
 	}
 
 	/**
@@ -72,34 +74,42 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 	 * @see org.eclipse.ui.IActionDelegate#run(org.eclipse.jface.action.IAction)
 	 */
 	public void run(IAction action) {
+		QuestionnaireManager questionnaireManager = QuestionnaireManager.getInstance();
+		selectionOpen = questionnaireManager.isSelectionOpen();
+		if (questionnaireManager.isFirstTime()) {
+			questionnaireManager.setFirstTime(false);
+			long time = questionnaireManager.getTime();
+			if (time != -1) {
+				long timeDiff = System.currentTimeMillis() - time;
+				questionnaireManager.setTime(timeDiff);
+			}
+		}
 
-		// FIXME
-		long timeDiff = System.currentTimeMillis() - QuestionnaireManager.getInstance().getTime();
-		QuestionnaireManager.getInstance().setTime(timeDiff);
-
-		if (QuestionnaireManager.getInstance().getMEisComplete()) {
+		if (questionnaireManager.getMEisComplete()) {
 
 			WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell(), wizard);
 			wizardDialog.create();
 			wizardDialog.open();
 			this.idList = null;
-			this.selectionOpen = false;
+			// this.selectionOpen = false;
+			questionnaireManager.setSelectionOpen(false);
 			return;
 		} else if (this.selectionOpen) {
 			WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell(), meWizard);
 			wizardDialog.create();
 			wizardDialog.open();
-			this.selectionOpen = false;
+			// this.selectionOpen = false;
+			questionnaireManager.setSelectionOpen(false);
 			this.run(null);
 			return;
 		} else {
-			Project project = QuestionnaireManager.getInstance().getProject();
-			Project preProject = QuestionnaireManager.getInstance().getPreProject();
+			Project project = questionnaireManager.getProject();
+			Project preProject = questionnaireManager.getPreProject();
 			if (idList == null) {
 
-				ChangePackage changePackage = QuestionnaireManager.getInstance().getChangePackage();
+				ChangePackage changePackage = questionnaireManager.getChangePackage();
 				Set<ModelElementId> ids = changePackage.getAllInvolvedModelElements();
 
 				for (AbstractOperation operation : changePackage.getOperations()) {
@@ -117,8 +127,8 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 				idList = new ArrayList<ModelElementId>(ids);
 			}
 			if (idList.size() == 0) {
-				while (!QuestionnaireManager.getInstance().getMEisComplete()) {
-					QuestionnaireManager.getInstance().addMEResult(-2);
+				while (!questionnaireManager.getMEisComplete()) {
+					questionnaireManager.addMEResult(-2);
 				}
 				run(null);
 				return;
@@ -136,7 +146,7 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 			}
 
 			boolean left = rand.nextBoolean();
-			QuestionnaireManager.getInstance().setLeft(left);
+			questionnaireManager.setLeft(left);
 			if (left) {
 				ActionHelper.openModelElement(leftME, "HAHA");// after commit
 				ActionHelper.openModelElement(rightME, "HAHA");// before commit
@@ -145,7 +155,8 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 				ActionHelper.openModelElement(leftME, "HAHA");// after commit
 			}
 			activeEditor = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
-			this.selectionOpen = true;
+			// this.selectionOpen = true;
+			questionnaireManager.setSelectionOpen(true);
 			return;
 		}
 	}

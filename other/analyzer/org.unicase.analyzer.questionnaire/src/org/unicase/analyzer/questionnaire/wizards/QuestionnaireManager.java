@@ -72,6 +72,10 @@ public final class QuestionnaireManager {
 	private ChangePackage changePackage;
 	private boolean left;
 
+	private boolean selectionOpen;
+	private boolean isFirstTime;
+	private int currentMEresult;
+
 	public static QuestionnaireManager getInstance() {
 		if (instance == null) {
 			instance = new QuestionnaireManager();
@@ -86,6 +90,7 @@ public final class QuestionnaireManager {
 	private QuestionnaireManager() {
 		commitsMap = new HashMap<Integer, Boolean>();
 		meResults = new ArrayList<String>();
+		selectionOpen = false;
 
 	}
 
@@ -94,6 +99,7 @@ public final class QuestionnaireManager {
 	}
 
 	public void next() {
+		isFirstTime = true;
 		version = it.next();
 		String projectFileName = DIR + folder + "/projectstate-" + version + ".ups";
 		String preProjectFileName = DIR + folder + "/projectstate-" + (version - 1) + ".ups";
@@ -403,5 +409,41 @@ public final class QuestionnaireManager {
 
 	public boolean getLeft() {
 		return left;
+	}
+
+	/**
+	 * @return the selectionOpen
+	 */
+	public boolean isSelectionOpen() {
+		return selectionOpen;
+	}
+
+	/**
+	 * @param selectionOpen the selectionOpen to set
+	 */
+	public void setSelectionOpen(boolean selectionOpen) {
+		this.selectionOpen = selectionOpen;
+	}
+
+	public boolean isFirstTime() {
+		return this.isFirstTime;
+	}
+
+	/**
+	 * @param isFirstTime the isFirstTime to set
+	 */
+	public void setFirstTime(boolean isFirstTime) {
+		this.isFirstTime = isFirstTime;
+	}
+
+	public void setCurrentMEResult(int i) {
+		currentMEresult = i;
+	}
+
+	/**
+	 * @return the result
+	 */
+	public int getCurrentMEResult() {
+		return currentMEresult;
 	}
 }

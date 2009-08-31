@@ -14,13 +14,14 @@ import org.eclipse.ui.IWorkbenchWizard;
 public class MEChoiceWizard extends Wizard implements IWorkbenchWizard {
 
 	private boolean canFinish;
+	private MEChoicePage page;
 
 	/**
 	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
 	 */
 	@Override
 	public boolean performFinish() {
-
+		QuestionnaireManager.getInstance().addMEResult(QuestionnaireManager.getInstance().getCurrentMEResult());
 		return true;
 	}
 
@@ -35,7 +36,7 @@ public class MEChoiceWizard extends Wizard implements IWorkbenchWizard {
 
 	@Override
 	public void addPages() {
-		MEChoicePage page = new MEChoicePage("ME page");
+		page = new MEChoicePage("ME page");
 		addPage(page);
 	}
 

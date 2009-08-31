@@ -128,7 +128,7 @@ public class LogMsgPage extends WizardPage implements Listener {
 		if (logResult >= rank && result) {
 			QuestionnaireManager.getInstance().setLogMsgResult(rank);
 		}
-		((EvaluationWizard) getWizard()).setCanFinish(rank == 3 || result);
+		((EvaluationWizard) getWizard()).setCanFinish(rank == 3);
 		getWizard().getContainer().updateButtons();
 
 	}

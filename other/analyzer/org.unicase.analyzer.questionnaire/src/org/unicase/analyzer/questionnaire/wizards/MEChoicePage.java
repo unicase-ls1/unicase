@@ -32,20 +32,19 @@ public class MEChoicePage extends WizardPage implements Listener {
 	 * @see org.eclipse.swt.widgets.Listener#handleEvent(org.eclipse.swt.widgets.Event)
 	 */
 	public void handleEvent(Event event) {
-		int result;
-		if (leftButton.getSelection() && QuestionnaireManager.getInstance().getLeft()) {
-			result = 1;
-		} else if (right.getSelection() && !QuestionnaireManager.getInstance().getLeft()) {
-			result = 1;
-		}
-		if (leftButton.getSelection() && !QuestionnaireManager.getInstance().getLeft()) {
-			result = 0;
-		} else if (right.getSelection() && QuestionnaireManager.getInstance().getLeft()) {
-			result = 0;
+		QuestionnaireManager questionnaireManager = QuestionnaireManager.getInstance();
+		if (leftButton.getSelection() && questionnaireManager.getLeft()) {
+			questionnaireManager.setCurrentMEResult(1);
+		} else if (right.getSelection() && !questionnaireManager.getLeft()) {
+			questionnaireManager.setCurrentMEResult(1);
+		} else if (leftButton.getSelection() && !questionnaireManager.getLeft()) {
+			questionnaireManager.setCurrentMEResult(0);
+		} else if (right.getSelection() && questionnaireManager.getLeft()) {
+			questionnaireManager.setCurrentMEResult(0);
 		} else {
 			return;
 		}
-		QuestionnaireManager.getInstance().addMEResult(result);
+
 	}
 
 	/**
@@ -63,18 +62,17 @@ public class MEChoicePage extends WizardPage implements Listener {
 
 		leftButton = new Button(composite, SWT.RADIO);
 		leftButton.setText("Left");
-		leftButton.addListener(SWT.SELECTED, this);
+		leftButton.addListener(SWT.Selection, this);
 
 		right = new Button(composite, SWT.RADIO);
 		right.setText("Right");
-		right.addListener(SWT.SELECTED, this);
+		right.addListener(SWT.Selection, this);
 
 		Button noIdea = new Button(composite, SWT.RADIO);
 		noIdea.setText("No Idea");
-		noIdea.addListener(SWT.SELECTED, this);
+		noIdea.addListener(SWT.Selection, this);
 
 		setControl(composite);
 
 	}
-
 }
