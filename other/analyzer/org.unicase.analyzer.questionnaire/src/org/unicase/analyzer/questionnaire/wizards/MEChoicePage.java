@@ -42,7 +42,8 @@ public class MEChoicePage extends WizardPage implements Listener {
 		} else if (right.getSelection() && questionnaireManager.getLeft()) {
 			questionnaireManager.setCurrentMEResult(0);
 		} else {
-			return;
+			// return;
+			questionnaireManager.setCurrentMEResult(-1);
 		}
 
 	}

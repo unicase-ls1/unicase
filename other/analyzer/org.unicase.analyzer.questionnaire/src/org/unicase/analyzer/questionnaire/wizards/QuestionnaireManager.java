@@ -28,7 +28,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
@@ -63,7 +62,6 @@ public final class QuestionnaireManager {
 	private int version;
 	private CSVExporter exporter;
 	private int evaluationResult;
-	private IEditorPart activeEditor;
 	private int logMsgResult;// True if the user selected the right log message of this commit
 	private List<String> meResults;
 
@@ -82,8 +80,11 @@ public final class QuestionnaireManager {
 
 	private ArrayList<Integer> createdDeletedTruth;
 
+	private ArrayList<String> logResults;
+
 	private int createDeleteResult;
 	private ArrayList<String> createDeleteResults;
+	private Boolean representation;
 
 	public static QuestionnaireManager getInstance() {
 		if (instance == null) {
@@ -100,6 +101,8 @@ public final class QuestionnaireManager {
 		commitsMap = new HashMap<Integer, Boolean>();
 		meResults = new ArrayList<String>();
 		createDeleteResults = new ArrayList<String>();
+		createdDeletedTruth = new ArrayList<Integer>();
+		logResults = new ArrayList<String>();
 		selectionOpen = false;
 
 	}
@@ -111,12 +114,15 @@ public final class QuestionnaireManager {
 	public void next() {
 		isFirstTime = true;
 		version = it.next();
+		representation = commitsMap.get(version);
 		String projectFileName = DIR + folder + "/projectstate-" + version + ".ups";
 		String preProjectFileName = DIR + folder + "/projectstate-" + (version - 1) + ".ups";
 		String changeFileName = DIR + folder + "/changepackage-" + version + ".ucp";
 		this.left = false;
 		this.logMsgResult = 0;
 		this.meResults = new ArrayList<String>();
+		this.createDeleteResults = new ArrayList<String>();
+		this.logResults = new ArrayList<String>();
 		this.evaluationResult = 0;
 		this.createdDeleteMENames = new ArrayList<String>();
 		this.createdDeletedTruth = new ArrayList<Integer>();
@@ -218,6 +224,9 @@ public final class QuestionnaireManager {
 			header.add("Self-assessment");
 			for (int i = 1; i <= 5; i++) {
 				header.add("ME result " + i);
+			}
+			for (int i = 1; i <= 2; i++) {
+				header.add("CreateDelete result " + i);
 			}
 			exporter.writeLine(header);
 
@@ -420,7 +429,7 @@ public final class QuestionnaireManager {
 
 	public boolean getMEisComplete() {
 		// TODO Auto-generated method stub
-		return getCurrentMECount() == 5;
+		return getCurrentMECount() == 2;
 	}
 
 	public int getCurrentMECount() {
@@ -429,6 +438,10 @@ public final class QuestionnaireManager {
 
 	public void addMEResult(int result) {
 		this.meResults.add(result + "");
+	}
+
+	public void addLogResult(int b) {
+		this.logResults.add(b + "");
 	}
 
 	public void addCreateDeleteResult(int result) {
@@ -491,6 +504,7 @@ public final class QuestionnaireManager {
 	public void addCreateDeleteData(String name, int truth) {
 		createdDeleteMENames.add(name);
 		createdDeletedTruth.add(truth);
+		createDeleteResults.add(new Integer(-1).toString());
 	}
 
 	/**
@@ -512,13 +526,6 @@ public final class QuestionnaireManager {
 	 */
 	public List<String> getCreatedDeleteMENames() {
 		return createdDeleteMENames;
-	}
-
-	/**
-	 * @param createdDeleteMENames the createdDeleteMENames to set
-	 */
-	public void setCreatedDeleteMENames(List<String> createdDeleteMENames) {
-		this.createdDeleteMENames = createdDeleteMENames;
 	}
 
 	/**
@@ -548,4 +555,26 @@ public final class QuestionnaireManager {
 	public void setCreateDeleteResults(ArrayList<String> createDeleteResults) {
 		this.createDeleteResults = createDeleteResults;
 	}
+
+	/**
+	 * @return the representation
+	 */
+	public Boolean getRepresentation() {
+		return representation;
+	}
+
+	/**
+	 * @param representation the representation to set
+	 */
+	public void setRepresentation(Boolean representation) {
+		this.representation = representation;
+	}
+
+	/**
+	 * @return the logResults
+	 */
+	public ArrayList<String> getLogResults() {
+		return logResults;
+	}
+
 }
