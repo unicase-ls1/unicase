@@ -194,11 +194,13 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 			}
 		}
 		Project project = QuestionnaireManager.getInstance().getProject();
+		Project preProject = QuestionnaireManager.getInstance().getPreProject();
 		Set<ModelElementId> toRemove = new HashSet<ModelElementId>();
 		for (ModelElementId id : changedIds) {
-			if (project.getModelElement(id) instanceof MEDiagram) {
+			if (project.getModelElement(id) == null || preProject.getModelElement(id) == null) {
 				toRemove.remove(id);
 			}
+
 		}
 		changedIds.removeAll(toRemove);
 
