@@ -5,6 +5,7 @@ package org.unicase.analyzer.questionnaire.wizards;
 
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
@@ -23,13 +24,13 @@ public class CreateDeleteMEPage extends WizardPage implements Listener {
 	private Button deleteButton;
 	private Button noThingButton;
 	private Button noIdea;
-	private int index;
+	private final int index;
 
-	protected CreateDeleteMEPage(String pageName) {
+	protected CreateDeleteMEPage(String pageName, int index) {
 		super(pageName);
+		this.index = index;
 		setTitle(PAGE_TITLE);
 		setDescription(PAGE_DESCRIPTION);
-		index = 0;
 	}
 
 	/**
@@ -38,26 +39,29 @@ public class CreateDeleteMEPage extends WizardPage implements Listener {
 	public void handleEvent(Event event) {
 		QuestionnaireManager questionnaireManager = QuestionnaireManager.getInstance();
 		if (createButton.getSelection()
-			|| questionnaireManager.getCreatedDeletedTruth().get(index) == QuestionnaireManager.CREATED) {
+			&& questionnaireManager.getCreatedDeletedTruth().get(index) == QuestionnaireManager.CREATED) {
 			questionnaireManager.setCreateDeleteResult(1);
 		} else if (createButton.getSelection()
-			|| questionnaireManager.getCreatedDeletedTruth().get(index) != QuestionnaireManager.CREATED) {
+			&& questionnaireManager.getCreatedDeletedTruth().get(index) != QuestionnaireManager.CREATED) {
 			questionnaireManager.setCreateDeleteResult(0);
 		} else if (deleteButton.getSelection()
-			|| questionnaireManager.getCreatedDeletedTruth().get(index) == QuestionnaireManager.DELETED) {
+			&& questionnaireManager.getCreatedDeletedTruth().get(index) == QuestionnaireManager.DELETED) {
 			questionnaireManager.setCreateDeleteResult(1);
 		} else if (deleteButton.getSelection()
-			|| questionnaireManager.getCreatedDeletedTruth().get(index) != QuestionnaireManager.DELETED) {
+			&& questionnaireManager.getCreatedDeletedTruth().get(index) != QuestionnaireManager.DELETED) {
 			questionnaireManager.setCreateDeleteResult(0);
 		} else if (noThingButton.getSelection()
-			|| questionnaireManager.getCreatedDeletedTruth().get(index) == QuestionnaireManager.NONE) {
+			&& questionnaireManager.getCreatedDeletedTruth().get(index) == QuestionnaireManager.NONE) {
 			questionnaireManager.setCreateDeleteResult(1);
 		} else if (noThingButton.getSelection()
-			|| questionnaireManager.getCreatedDeletedTruth().get(index) != QuestionnaireManager.NONE) {
+			&& questionnaireManager.getCreatedDeletedTruth().get(index) != QuestionnaireManager.NONE) {
 			questionnaireManager.setCreateDeleteResult(0);
 		} else {
 			questionnaireManager.setCreateDeleteResult(-1);
 		}
+
+		QuestionnaireManager.getInstance().getCreateDeleteResults().set(index,
+			QuestionnaireManager.getInstance().getCreateDeleteResult() + "");
 	}
 
 	/**
@@ -66,14 +70,31 @@ public class CreateDeleteMEPage extends WizardPage implements Listener {
 	public void createControl(Composite parent) {
 
 		QuestionnaireManager questionnaireManager = QuestionnaireManager.getInstance();
+
+		if (index > questionnaireManager.getCreatedDeleteMENames().size() - 1) {
+			Composite composite = new Composite(parent, SWT.NULL);
+			GridLayout gl = new GridLayout();
+			int ncol = 1;
+			gl.numColumns = ncol;
+			composite.setLayout(gl);
+
+			Label label = new Label(composite, SWT.NONE);
+			label.setText("No more elements, click next or finish!");
+
+			setControl(composite);
+			return;
+		}
+
 		Composite composite = new Composite(parent, SWT.NULL);
 		GridLayout gl = new GridLayout();
-		int ncol = 4;
+		int ncol = 1;
 		gl.numColumns = ncol;
 		composite.setLayout(gl);
 
-		new Label(composite, SWT.NONE).setText("What happened to"
-			+ questionnaireManager.getCreatedDeleteMENames().get(index) + "?");
+		Label label = new Label(composite, SWT.NONE);
+		label.setText("What happened to " + questionnaireManager.getCreatedDeleteMENames().get(index) + "?");
+		GridData gd = new GridData(GridData.END);
+		label.setLayoutData(gd);
 
 		createButton = new Button(composite, SWT.RADIO);
 		createButton.setText("Created");
@@ -100,13 +121,6 @@ public class CreateDeleteMEPage extends WizardPage implements Listener {
 	 */
 	public int getIndex() {
 		return index;
-	}
-
-	/**
-	 * @param index the index to set
-	 */
-	public void setIndex(int index) {
-		this.index = index;
 	}
 
 }

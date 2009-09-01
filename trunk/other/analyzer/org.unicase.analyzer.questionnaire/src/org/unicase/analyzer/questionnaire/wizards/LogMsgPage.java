@@ -42,6 +42,7 @@ public class LogMsgPage extends WizardPage implements Listener {
 	}
 
 	private void init() {
+
 		buttons = new ArrayList<Button>();
 		logMsgs = new ArrayList<String>();
 		correct = new ArrayList<Boolean>();
@@ -116,19 +117,23 @@ public class LogMsgPage extends WizardPage implements Listener {
 
 	public void handleEvent(Event event) {
 		boolean result = false;
+
+		QuestionnaireManager questionnaireManager = QuestionnaireManager.getInstance();
 		for (Button button : buttons) {
 			if (button.getSelection()) {
 				result = correct.get(buttons.indexOf(button));
+				questionnaireManager.getLogResults().set(rank - 1, buttons.indexOf(button) + "");
 			}
 		}
-		int logResult = QuestionnaireManager.getInstance().getLogMsgResult();
-		if (logResult == 0) {
-			QuestionnaireManager.getInstance().setLogMsgResult(4);
+		int logResult = questionnaireManager.getLogMsgResult();
+		if (logResult < 1) {
+			questionnaireManager.setLogMsgResult(4);
 		}
 		if (logResult >= rank && result) {
-			QuestionnaireManager.getInstance().setLogMsgResult(rank);
+			questionnaireManager.setLogMsgResult(rank);
 		}
-		((EvaluationWizard) getWizard()).setCanFinish(rank == 3);
+
+		((EvaluationWizard) getWizard()).setCanFinish(false);
 		getWizard().getContainer().updateButtons();
 
 	}

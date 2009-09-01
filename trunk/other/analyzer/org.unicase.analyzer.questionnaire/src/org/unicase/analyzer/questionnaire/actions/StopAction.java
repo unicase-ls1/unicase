@@ -31,6 +31,7 @@ import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * @author liya
@@ -90,21 +91,31 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 			}
 		}
 		if (questionnaireManager.getMEisComplete()) {
-			generateDataForCreateDeleteQuestion();
-			if (questionnaireManager.getCreatedDeleteMENames() != null) {
+			try {
+				generateDataForCreateDeleteQuestion();
+				generateDataForCreateDeleteQuestion();
+			} catch (RuntimeException e) {
+				// ignore error in create delete generation
+				WorkspaceUtil.logException("create delete went wrong", e);
+			}
+			if (questionnaireManager.getCreatedDeleteMENames() != null
+				&& questionnaireManager.getCreatedDeleteMENames().size() > 0) {
+				// createWizard.setIndex(0);
 				WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 					.getShell(), createWizard);
 				wizardDialog.create();
 				wizardDialog.open();
 			}
 
-			generateDataForCreateDeleteQuestion();
-			if (questionnaireManager.getCreatedDeleteMENames() != null) {
-				WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
-					.getShell(), createWizard);
-				wizardDialog.create();
-				wizardDialog.open();
-			}
+			// generateDataForCreateDeleteQuestion();
+			// if (questionnaireManager.getCreatedDeleteMENames() != null
+			// && questionnaireManager.getCreatedDeleteMENames().size() > 0) {
+			// // createWizard.setIndex(1);
+			// WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+			// .getShell(), createWizard);
+			// wizardDialog.create();
+			// wizardDialog.open();
+			// }
 
 			WizardDialog wizardDialog = new WizardDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell(), wizard);
@@ -229,19 +240,23 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 			ModelElement modelElement = project.getModelElement(modelElementId);
 			questionnaireManager.addCreateDeleteData(modelElement.eClass().getName() + ": \"" + modelElement.getName()
 				+ "\"", QuestionnaireManager.NONE);
+			return;
 		} else if (delete) {
 			ModelElementId modelElementId = deletedElements.get(rand.nextInt(deletedElements.size()));
 			ModelElement modelElement = preProject.getModelElement(modelElementId);
 			deletedElements.remove(modelElementId);
 			questionnaireManager.addCreateDeleteData(modelElement.eClass().getName() + ": \"" + modelElement.getName()
 				+ "\"", QuestionnaireManager.DELETED);
+			return;
 		} else if (createdElements.size() > 0) {
 			ModelElementId modelElementId = createdElements.get(rand.nextInt(createdElements.size()));
 			ModelElement modelElement = project.getModelElement(modelElementId);
 			createdElements.remove(modelElementId);
 			questionnaireManager.addCreateDeleteData(modelElement.eClass().getName() + ": \"" + modelElement.getName()
 				+ "\"", QuestionnaireManager.CREATED);
+			return;
 		}
+		questionnaireManager.getCreateDeleteResults().add("-2");
 	}
 
 	/**

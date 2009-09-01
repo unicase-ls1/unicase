@@ -14,14 +14,15 @@ import org.eclipse.ui.IWorkbenchWizard;
 public class CreateDeleteMEWizard extends Wizard implements IWorkbenchWizard {
 
 	private CreateDeleteMEPage page;
+	private int index;
 
 	/**
 	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
 	 */
 	@Override
 	public boolean performFinish() {
-		QuestionnaireManager.getInstance().addCreateDeleteResult(
-			QuestionnaireManager.getInstance().getCreateDeleteResult());
+		// QuestionnaireManager.getInstance().addCreateDeleteResult(
+		// QuestionnaireManager.getInstance().getCreateDeleteResult());
 		return true;
 	}
 
@@ -30,14 +31,19 @@ public class CreateDeleteMEWizard extends Wizard implements IWorkbenchWizard {
 	 *      org.eclipse.jface.viewers.IStructuredSelection)
 	 */
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		// TODO Auto-generated method stub
+	}
+
+	public void setIndex(int value) {
+		this.index = value;
 
 	}
 
 	@Override
 	public void addPages() {
-		page = new CreateDeleteMEPage("");
-		addPage(page);
+		for (index = 0; index < 2; index++) {
+			page = new CreateDeleteMEPage("Page", index);
+			addPage(page);
+		}
 	}
 
 }

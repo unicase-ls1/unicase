@@ -31,14 +31,26 @@ public class EvaluationWizard extends Wizard implements IWorkbenchWizard {
 	public boolean performFinish() {
 		List<Object> line = new ArrayList<Object>();
 		line.add(QuestionnaireManager.getInstance().getVersion());
+		line.add(QuestionnaireManager.getInstance().getRepresentation());
 		line.add(QuestionnaireManager.getInstance().getTime());
-		line.add(QuestionnaireManager.getInstance().getEvaluationResult());
-		line.add(QuestionnaireManager.getInstance().getLogMsgResult());
-		for (String meResult : QuestionnaireManager.getInstance().getMEResult()) {
-			line.add(meResult);
+		int i = 0;
+		for (String logResult : QuestionnaireManager.getInstance().getLogResults()) {
+			line.add(i + ". logRes: " + logResult);
+			i++;
 		}
+
+		line.add("rank: " + QuestionnaireManager.getInstance().getLogMsgResult());
+		line.add("eval: " + QuestionnaireManager.getInstance().getEvaluationResult());
+
+		i = 0;
+		for (String meResult : QuestionnaireManager.getInstance().getMEResult()) {
+			line.add(i + ". meres " + meResult);
+			i++;
+		}
+		i = 0;
 		for (String createDeleteResult : QuestionnaireManager.getInstance().getCreateDeleteResults()) {
-			line.add(createDeleteResult);
+			line.add(i + ". createRes " + createDeleteResult);
+			i++;
 		}
 
 		try {
@@ -72,10 +84,13 @@ public class EvaluationWizard extends Wizard implements IWorkbenchWizard {
 
 	@Override
 	public void addPages() {
+		QuestionnaireManager questionnaireManager = QuestionnaireManager.getInstance();
 		for (int i = 1; i <= 3; i++) {
 			LogMsgPage nextPage = new LogMsgPage("LogMsg", i);
+			questionnaireManager.addLogResult(-1);
 			addPage(nextPage);
 		}
+
 		EvaluatePage page = new EvaluatePage("Evaluation");
 		addPage(page);
 	}
