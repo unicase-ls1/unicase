@@ -47,6 +47,7 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 	private List<ModelElementId> deletedElements;
 	private List<ModelElementId> createdElements;
 	private CreateDeleteMEWizard createWizard;
+	private Random rand;
 
 	/**
 	 * {@inheritDoc}
@@ -71,6 +72,7 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 		createWizard = new CreateDeleteMEWizard();
 		createWizard.init(window.getWorkbench(), null);
 		selectionOpen = false;
+		rand = new Random(QuestionnaireManager.getInstance().getVersion());
 	}
 
 	/**
@@ -140,6 +142,7 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 			if (changedElements == null) {
 				extractElementsFromCP(questionnaireManager);
 			}
+
 			if (changedElements.size() == 0) {
 				while (!questionnaireManager.getMEisComplete()) {
 					questionnaireManager.addMEResult(-2);
@@ -147,12 +150,16 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 				run(null);
 				return;
 			}
-			Random rand = new Random();
+
 			ModelElementId id = changedElements.get(rand.nextInt(changedElements.size()));
 			changedElements.remove(id);
 
 			ModelElement leftME = project.getModelElement(id);
 			ModelElement rightME = preProject.getModelElement(id);
+			if (leftME == null || rightME == null) {
+				this.run(null);
+				return;
+			}
 
 			// if (activeEditor != null) {
 			// activeEditor.getSite().getPage().closeAllEditors(false);
@@ -222,7 +229,6 @@ public class StopAction implements IWorkbenchWindowActionDelegate {
 
 	public void generateDataForCreateDeleteQuestion() {
 
-		Random rand = new Random();
 		boolean fake = rand.nextBoolean();
 		if (changedElements == null || changedElements.size() < 1) {
 			fake = false;
