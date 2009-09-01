@@ -60,6 +60,15 @@ public class CreateDeleteMEPage extends WizardPage implements Listener {
 			questionnaireManager.setCreateDeleteResult(-1);
 		}
 
+		if (index == 0) {
+			setPageComplete(true);
+			((CreateDeleteMEWizard) getWizard()).setCanFinish(false);
+		} else if (index == 1) {
+			setPageComplete(false);
+			((CreateDeleteMEWizard) getWizard()).setCanFinish(true);
+		}
+
+		getWizard().getContainer().updateButtons();
 		QuestionnaireManager.getInstance().getCreateDeleteResults().set(index,
 			QuestionnaireManager.getInstance().getCreateDeleteResult() + "");
 	}

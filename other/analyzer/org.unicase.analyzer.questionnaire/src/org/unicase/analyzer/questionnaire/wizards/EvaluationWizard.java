@@ -35,21 +35,21 @@ public class EvaluationWizard extends Wizard implements IWorkbenchWizard {
 		line.add(QuestionnaireManager.getInstance().getTime());
 		int i = 0;
 		for (String logResult : QuestionnaireManager.getInstance().getLogResults()) {
-			line.add(i + ". logRes: " + logResult);
+			line.add(logResult);
 			i++;
 		}
 
-		line.add("rank: " + QuestionnaireManager.getInstance().getLogMsgResult());
-		line.add("eval: " + QuestionnaireManager.getInstance().getEvaluationResult());
+		line.add(QuestionnaireManager.getInstance().getLogMsgResult());
+		line.add(QuestionnaireManager.getInstance().getEvaluationResult());
 
 		i = 0;
 		for (String meResult : QuestionnaireManager.getInstance().getMEResult()) {
-			line.add(i + ". meres " + meResult);
+			line.add(meResult);
 			i++;
 		}
 		i = 0;
 		for (String createDeleteResult : QuestionnaireManager.getInstance().getCreateDeleteResults()) {
-			line.add(i + ". createRes " + createDeleteResult);
+			line.add(createDeleteResult);
 			i++;
 		}
 

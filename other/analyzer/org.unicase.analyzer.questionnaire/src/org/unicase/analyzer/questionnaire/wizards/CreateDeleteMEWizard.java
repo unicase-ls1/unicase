@@ -15,6 +15,7 @@ public class CreateDeleteMEWizard extends Wizard implements IWorkbenchWizard {
 
 	private CreateDeleteMEPage page;
 	private int index;
+	private boolean canFinish;
 
 	/**
 	 * @see org.eclipse.jface.wizard.Wizard#performFinish()
@@ -44,6 +45,16 @@ public class CreateDeleteMEWizard extends Wizard implements IWorkbenchWizard {
 			page = new CreateDeleteMEPage("Page", index);
 			addPage(page);
 		}
+	}
+
+	public void setCanFinish(boolean canFinish) {
+		this.canFinish = canFinish;
+
+	}
+
+	@Override
+	public boolean canFinish() {
+		return canFinish;
 	}
 
 }

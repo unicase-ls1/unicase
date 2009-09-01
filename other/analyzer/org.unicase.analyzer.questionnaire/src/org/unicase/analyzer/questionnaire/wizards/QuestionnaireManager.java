@@ -429,7 +429,7 @@ public final class QuestionnaireManager {
 
 	public boolean getMEisComplete() {
 		// TODO Auto-generated method stub
-		return getCurrentMECount() == 2;
+		return getCurrentMECount() == 5;
 	}
 
 	public int getCurrentMECount() {
