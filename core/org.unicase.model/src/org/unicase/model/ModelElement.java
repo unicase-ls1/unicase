@@ -363,4 +363,10 @@ public interface ModelElement extends IdentifiableElement {
 	 * @return the project or null if the model element is not in a project
 	 */
 	Project getProject();
+
+	/**
+	 * @return the shortened name for this model element
+	 */
+	String getShortName();
+
 } // ModelElement
