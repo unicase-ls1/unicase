@@ -54,7 +54,7 @@ public class EvaluatePage extends WizardPage implements Listener {
 		} else if (veryBad.getSelection()) {
 			result = 1;
 		}
-		setPageComplete(true);
+
 		((EvaluationWizard) getWizard()).setCanFinish(true);
 		QuestionnaireManager.getInstance().setEvaluationResult(result);
 		getWizard().getContainer().updateButtons();

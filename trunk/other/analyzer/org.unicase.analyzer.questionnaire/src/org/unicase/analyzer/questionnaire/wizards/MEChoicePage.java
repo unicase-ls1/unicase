@@ -74,6 +74,7 @@ public class MEChoicePage extends WizardPage implements Listener {
 		noIdea.addListener(SWT.Selection, this);
 
 		setControl(composite);
+		setPageComplete(false);
 
 	}
 }
