@@ -216,11 +216,11 @@ public final class QuestionnaireManager {
 			List<Object> header = new ArrayList<Object>();
 			header.add("Version #");
 			header.add("Op-based");
+			header.add("Time");
 			header.add("LogMsg_1");
 			header.add("LogMsg_2");
 			header.add("LogMsg_3");
 			header.add("LogMsg Rank");
-			header.add("Time");
 			header.add("Self-assessment");
 			for (int i = 1; i <= 5; i++) {
 				header.add("ME result " + i);
