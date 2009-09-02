@@ -62,7 +62,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 					updateIcon(input);
 					if (msg.getFeature() instanceof EAttribute
 						&& ((EAttribute) msg.getFeature()).getName().equals("name")) {
-						setPartName(getLimitedTitle(msg.getNewStringValue()));
+						setPartName(modelElement.getShortName());
 						if (mePage != null) {
 							mePage.updateSectionTitle();
 						}
@@ -76,8 +76,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 * The Id for MEEditor. We need this to open a model element.
 	 */
 	public static final String ID = "org.unicase.ui.meeditor";
-
-	private int titleLimit = 25;
 
 	private ModelElement modelElement;
 	private ComposedAdapterFactory adapterFactory;
@@ -170,10 +168,10 @@ public class MEEditor extends SharedHeaderFormEditor {
 		if (input instanceof MEEditorInput) {
 			setInput(input);
 			final MEEditorInput meInput = (MEEditorInput) input;
-			setPartName(getLimitedTitle(input.getName()));
+			modelElement = meInput.getModelElement();
+			setPartName(modelElement.getShortName());
 			setTitleImage(input.getImageDescriptor().createImage());
 
-			modelElement = meInput.getModelElement();
 			initializeEditingDomain();
 			eAdapter = new MEEditorAdapter(input);
 			this.modelElement.eAdapters().add(eAdapter);
@@ -267,13 +265,6 @@ public class MEEditor extends SharedHeaderFormEditor {
 		mePage.setFocus();
 		updateCreatorHint();
 
-	}
-
-	private String getLimitedTitle(String name) {
-		if (name.length() > titleLimit) {
-			name = name.substring(0, titleLimit).concat("...");
-		}
-		return name;
 	}
 
 	/**

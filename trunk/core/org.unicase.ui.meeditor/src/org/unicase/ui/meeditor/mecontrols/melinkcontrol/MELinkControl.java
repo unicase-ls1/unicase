@@ -11,12 +11,18 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
+import org.eclipse.jface.viewers.DecoratingLabelProvider;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
@@ -43,6 +49,8 @@ public class MELinkControl extends AbstractMEControl {
 	private Hyperlink hyperlink;
 	private ILabelProvider labelProvider;
 	private ModelElementChangeObserver observer;
+	private ILabelProviderListener labelProviderListener;
+	private ImageHyperlink imageHyperlink;
 
 	/**
 	 * Default constructor.
@@ -66,7 +74,17 @@ public class MELinkControl extends AbstractMEControl {
 	public Control createControl(final Composite parent, int style) {
 		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(3, false));
-		labelProvider = new MELinkLabelProvider();
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
+		labelProvider = new DecoratingLabelProvider(adapterFactoryLabelProvider, decoratorManager.getLabelDecorator());
+		labelProviderListener = new ILabelProviderListener() {
+			public void labelProviderChanged(LabelProviderChangedEvent event) {
+				updateIcon();
+			}
+		};
+		labelProvider.addListener(labelProviderListener);
+
 		ArrayList<ModelElement> list = new ArrayList<ModelElement>();
 		list.add((ModelElement) getModelElement());
 		observer = new ModelElementChangeObserver() {
@@ -93,11 +111,13 @@ public class MELinkControl extends AbstractMEControl {
 		((ModelElement) getModelElement()).getProject().addProjectChangeObserver(observer);
 		observer.observeElement((ModelElement) getModelElement());
 		Image image = labelProvider.getImage(getModelElement());
-		ImageHyperlink imageHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
+		imageHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
 		imageHyperlink.setImage(image);
 		imageHyperlink.setData(getModelElement().eClass());
 		ModelElementClassTooltip.enableFor(imageHyperlink);
-		hyperlink = getToolkit().createHyperlink(linkComposite, labelProvider.getText(getModelElement()), style);
+		hyperlink = getToolkit().createHyperlink(linkComposite, ((ModelElement) getModelElement()).getShortName(),
+			style);
+		hyperlink.setToolTipText(labelProvider.getText(getModelElement()));
 		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) getModelElement(),
 			(ModelElement) contextModelElement, reference.getName());
 		hyperlink.addHyperlinkListener(listener);
@@ -115,12 +135,17 @@ public class MELinkControl extends AbstractMEControl {
 		return linkComposite;
 	}
 
+	private void updateIcon() {
+		imageHyperlink.setImage(labelProvider.getImage(getModelElement()));
+	}
+
 	/**
 	 * Disposes the Composite of this {@link MELinkControl}.
 	 */
 	@Override
 	public void dispose() {
 		((ModelElement) getModelElement()).getProject().removeProjectChangeObserver(observer);
+		labelProvider.removeListener(labelProviderListener);
 		labelProvider.dispose();
 		if (linkComposite != null) {
 			linkComposite.dispose();

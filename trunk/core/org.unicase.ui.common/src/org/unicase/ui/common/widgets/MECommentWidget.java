@@ -125,7 +125,7 @@ public class MECommentWidget extends Composite {
 
 		final OrgUnit sender = comment.getSender();
 		if (sender == null) {
-			commentAuthor.setText(comment.getCreator());
+			commentAuthor.setText(comment.getCreator() + "");
 		} else {
 			commentAuthor.setText(sender.getName() + "");
 		}

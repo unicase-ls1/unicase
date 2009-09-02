@@ -178,10 +178,8 @@ public class MEEditorPage extends FormPage {
 	 */
 	public void updateSectionTitle() {
 		// Layout form
-		String name = modelElement.getName();
-		if (name.length() > 33) {
-			name = name.substring(0, 30) + "...";
-		}
+		String name = modelElement.getShortName();
+
 		name += " [" + modelElement.eClass().getName() + "]";
 		form.setText(name);
 	}
