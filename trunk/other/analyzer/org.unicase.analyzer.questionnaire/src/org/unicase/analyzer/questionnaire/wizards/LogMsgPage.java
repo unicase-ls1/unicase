@@ -128,6 +128,7 @@ public class LogMsgPage extends WizardPage implements Listener {
 		int logResult = questionnaireManager.getLogMsgResult();
 		if (logResult < 1) {
 			questionnaireManager.setLogMsgResult(4);
+			logResult = 4;
 		}
 		if (logResult >= rank && result) {
 			questionnaireManager.setLogMsgResult(rank);
