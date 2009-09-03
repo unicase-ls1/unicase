@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.jdmp.core.algorithm.classification.Classifier;
+import org.jdmp.core.algorithm.classification.ConstantClassifier;
 import org.jdmp.core.dataset.ClassificationDataSet;
 import org.jdmp.core.dataset.CrossValidation;
 import org.jdmp.core.dataset.DataSetFactory;
@@ -160,8 +161,9 @@ public class Classification {
 		System.out.println("building dataset...");
 		ds = DataSetFactory.importFromMatrix(input, assignee);
 
-		classifier = new LibLinearClassifier();  //takes 7 minutes; 40-50% accuracy
-//		classifier = new WekaClassifier(WekaClassifierType.NaiveBayes, true);
+		//classifier = new LibLinearClassifier();  //takes 7 minutes; 40-50% accuracy
+		classifier = new ConstantClassifier();
+		//classifier = new WekaClassifier(WekaClassifierType.NaiveBayes, true);
 		//classifier = new WekaClassifier(WekaClassifierType.Logistic, true);  //heap exception with 1024M; JVM does not start with 2048M
 		//classifier = new WekaClassifier(WekaClassifierType.MultilayerPerceptron, false);
 		//classifier = new LibSVMClassifier();  //after 40 minutes crashed at cross validation with ArrayIndexOutOfBoundException
@@ -199,11 +201,11 @@ public class Classification {
 		classifier.train(ds);
 
 		Sample s = SampleFactory.emptySample();
-		s.setMatrix(Variable.INPUT, predictionMatrix);
+		s.getVariables().setMatrix(Variable.INPUT, predictionMatrix);
 
 		classifier.predict(s);
 
-		Matrix result = s.getMatrix(Variable.PREDICTED);
+		Matrix result = s.getVariables().getMatrix(Variable.PREDICTED);
 
 		
 

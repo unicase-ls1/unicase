@@ -25,9 +25,11 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
+import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -71,6 +73,7 @@ public class PaperImperative {
 	private ProjectSpace projectSpace;
 	private Project project;
 	private ArrayList<WorkItem> allWorkItemsWithAnnotatedMEs;
+	private ArrayList<WorkItem> allWorkItemsAnnotatingNonFRs;
 
 	public void start() {
 
@@ -162,31 +165,32 @@ public class PaperImperative {
 	private void runStateBased() {
 		initAssignees(project);
 		initWorkItems(project);
-		List<WorkItem> workItems = allWorkItemsWithAssignee;
-		List<OrgUnit> assignees = allAssignees;
-		IterationPlannerManager planningManager = new IterationPlannerManager();
-
-		AssigneeProvider assigneeProvider = new AssigneeProvider(planningManager, new ImperativeAssigneePrediction());
-		assigneeProvider.setAssignees(assignees);
-		Map<WorkItem, ExpertiseMap> testSet = new HashMap<WorkItem, ExpertiseMap>();
-		for (WorkItem wi : workItems) {
-			ExpertiseMap expertiseMap = assigneeProvider.getExpertiseMap(wi);
-			print(expertiseMap, wi);
-			testSet.put(wi, expertiseMap);
-
-		}
-
-		((SimpleEvaluator) planningManager.getEvaluator()).computeAccuracy(testSet);
-		double firstPercision = ((SimpleEvaluator) planningManager.getEvaluator()).getFirstProposalPercision();
-		double secondPercision = ((SimpleEvaluator) planningManager.getEvaluator()).getSecondProposalPercision();
-
-		System.out.printf("first percision: %f%n", firstPercision);
-		System.out.printf("scond percision: %f%n", secondPercision);
+//		List<WorkItem> workItems = allWorkItemsWithAssignee;
+//		List<OrgUnit> assignees = allAssignees;
+//		IterationPlannerManager planningManager = new IterationPlannerManager();
+//
+//		AssigneeProvider assigneeProvider = new AssigneeProvider(planningManager, new ImperativeAssigneePrediction());
+//		assigneeProvider.setAssignees(assignees);
+//		Map<WorkItem, ExpertiseMap> testSet = new HashMap<WorkItem, ExpertiseMap>();
+//		for (WorkItem wi : workItems) {
+//			ExpertiseMap expertiseMap = assigneeProvider.getExpertiseMap(wi);
+//			print(expertiseMap, wi);
+//			testSet.put(wi, expertiseMap);
+//
+//		}
+//
+//		((SimpleEvaluator) planningManager.getEvaluator()).computeAccuracy(testSet);
+//		double firstPercision = ((SimpleEvaluator) planningManager.getEvaluator()).getFirstProposalPercision();
+//		double secondPercision = ((SimpleEvaluator) planningManager.getEvaluator()).getSecondProposalPercision();
+//
+//		System.out.printf("first percision: %f%n", firstPercision);
+//		System.out.printf("scond percision: %f%n", secondPercision);
 
 		System.out.println("num of work items: " + allWorkItems.size());
 		System.out.println("num of WIsWithAnnotatedMEs: " + allWorkItemsWithAnnotatedMEs.size());
 		System.out.println("num of WIsWithAssignee: " + allWorkItemsWithAssignee.size());
 		System.out.println("num of WIsWithAnnotatedMEsAndAssignee: " + allWorkItemsWithAnnotatedMEsAndAssignee.size());
+		
 
 	}
 
