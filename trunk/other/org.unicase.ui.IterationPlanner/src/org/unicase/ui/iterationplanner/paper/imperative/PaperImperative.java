@@ -70,11 +70,13 @@ public class PaperImperative {
 	private EList<WorkItem> allWorkItems;
 	private List<WorkItem> allWorkItemsWithAssignee;
 	private List<WorkItem> allWorkItemsWithAnnotatedMEsAndAssignee;
-	private ProjectSpace projectSpace;
-	private Project project;
 	private ArrayList<WorkItem> allWorkItemsWithAnnotatedMEs;
 	private ArrayList<WorkItem> allWorkItemsAnnotatingNonFRs;
 
+	private ProjectSpace projectSpace;
+	private Project project;
+
+	
 	public void start() {
 
 		projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getProjectSpaces().get(0);
