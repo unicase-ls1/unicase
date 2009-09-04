@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.unicase.analyzer.AnalyzerFactory;
 import org.unicase.analyzer.AnalyzerModelController;
@@ -31,14 +32,17 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.model.Annotation;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.Milestone;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
+import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.iterationplanner.Activator;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -53,14 +57,25 @@ import org.unicase.workspace.test.TestProjectEnum;
 public class PaperMachineLearning {
 	public static boolean HISTORY_BASED = false;
 	private static boolean HISTORY_BASED_ITERATE_ALL_REVISIONS = true;
-
-	private Classification classification;
+	
+	private EList<ModelElement> allWorkItems;
+	private List<ModelElement> allWorkItemsWithAssignee;
+	private List<ModelElement> allWorkItemsWithAnnotatedMEsAndAssignee;
+	private ArrayList<ModelElement> allWorkItemsWithAnnotatedMEs;
+	private ArrayList<ModelElement> allWorkItemsAnnotatingNonFRs;
+	
+	
+	private Project project;
 	private ProjectSpace projectSpace;
 
+	private Classification classification;
+
+	
 	public void start() {
 		classification = new Classification();
 		projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
 				.getProjectSpaces().get(0);
+		project = projectSpace.getProject();
 		
 		if (HISTORY_BASED) {
 			runHistoryBased();
@@ -85,7 +100,8 @@ public class PaperMachineLearning {
 	}
 
 	private void runStateBased() {
-		List<ModelElement> relevantWorkItems = getRelevantWorkItems();
+		initWorkItems(project);
+		List<ModelElement> relevantWorkItems = allWorkItemsWithAnnotatedMEsAndAssignee;
 		ModelElementMatrix m = new ModelElementMatrix(relevantWorkItems,
 				getOutputFeatures());
 		System.out.println(m.getModelElements().size());
@@ -175,20 +191,32 @@ public class PaperMachineLearning {
 		return result;
 	}
 
-	private List<ModelElement> getRelevantWorkItems() {
-		Project project = projectSpace.getProject();
-		List<WorkItem> allWorkItems = project
-				.getAllModelElementsbyClass(
-						TaskPackage.eINSTANCE.getWorkItem(),
-						new BasicEList<WorkItem>());
-		List<ModelElement> relevantWorkItems = new ArrayList<ModelElement>();
-		for (WorkItem wi : allWorkItems) {
-			if (wi instanceof ActionItem || wi instanceof BugReport
-					|| wi instanceof Issue) {
-				relevantWorkItems.add(wi);
+
+	
+	private void initWorkItems(Project project) {
+
+		allWorkItems = project.getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
+			new BasicEList<ModelElement>());
+
+		allWorkItemsWithAssignee = new ArrayList<ModelElement>();
+		allWorkItemsWithAnnotatedMEs = new ArrayList<ModelElement>();
+		allWorkItemsWithAnnotatedMEsAndAssignee = new ArrayList<ModelElement>();
+		for (ModelElement wi : allWorkItems) {
+			if (!(wi instanceof WorkPackage || wi instanceof Milestone)) {
+				if (((WorkItem) wi).getAssignee() != null) {
+					allWorkItemsWithAssignee.add(wi);
+				}
+				if (((Annotation) wi).getAnnotatedModelElements().size() > 0) {
+					allWorkItemsWithAnnotatedMEs.add(wi);
+					if (((WorkItem) wi).getAssignee() != null) {
+						allWorkItemsWithAnnotatedMEsAndAssignee.add(wi);
+					}
+				}
+
 			}
+
 		}
-		return relevantWorkItems;
+
 	}
 
 }

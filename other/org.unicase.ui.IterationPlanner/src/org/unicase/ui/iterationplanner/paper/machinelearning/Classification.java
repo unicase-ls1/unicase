@@ -12,8 +12,7 @@ import org.jdmp.core.dataset.DataSetFactory;
 import org.jdmp.core.sample.Sample;
 import org.jdmp.core.sample.SampleFactory;
 import org.jdmp.core.variable.Variable;
-import org.jdmp.mallet.classifier.MalletClassifier;
-import org.jdmp.mallet.classifier.MalletClassifier.MalletClassifiers;
+import org.jdmp.liblinear.LibLinearClassifier;
 import org.ujmp.core.Matrix;
 import org.ujmp.core.MatrixFactory;
 import org.ujmp.core.calculation.Calculation.Ret;
@@ -159,12 +158,12 @@ public class Classification {
 		System.out.println("building dataset...");
 		ds = DataSetFactory.importFromMatrix(input, assignee);
 
-		//classifier = new LibLinearClassifier();
+		classifier = new LibLinearClassifier();
 //		input = input.times(3); // diese zeile nicht vergessen!
 //		classifier = new WekaClassifier(WekaClassifierType.NaiveBayesMultinomial,
 //		false);
-		input = input.times(3); // diese zeile nicht vergessen!
-		classifier = new MalletClassifier(MalletClassifiers.NaiveBayes);
+//		input = input.times(3); // diese zeile nicht vergessen!
+//		classifier = new MalletClassifier(MalletClassifiers.NaiveBayes);
 		//classifier = new ConstantClassifier();
 		//classifier = new WekaClassifier(WekaClassifierType.NaiveBayes, true);
 		//classifier = new WekaClassifier(WekaClassifierType.Logistic, true);  //heap exception with 1024M; JVM does not start with 2048M
