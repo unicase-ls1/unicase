@@ -8,16 +8,23 @@ package org.unicase.analyzer.unicaseAnalyzers;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
+import org.eclipse.emf.ecore.EReference;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.conflictDetection.IndexSensitiveConflictDetectionStrategy;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
+import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 
 /**
  * @author liya
@@ -96,7 +103,44 @@ public class CategoryAnalyzer implements DataAnalyzer {
 		values.add(category);
 		values.add(leafOpSize);
 		values.add(depth);
+		checkForRenameAndMove(data);
 		return values;
+	}
+
+	private void checkForRenameAndMove(ProjectAnalysisData data) {
+		for (ChangePackage changePackage : data.getChangePackages()) {
+			Set<ModelElementId> renamedElements = new HashSet<ModelElementId>();
+			Set<ModelElementId> containmentChangeElements = new HashSet<ModelElementId>();
+			for (AbstractOperation operation : changePackage.getOperations()) {
+				if (operation instanceof AttributeOperation) {
+					AttributeOperation attributeOperation = (AttributeOperation) operation;
+					String featureName = attributeOperation.getFeatureName();
+					if (featureName.equals("name")) {
+						renamedElements.add(attributeOperation.getModelElementId());
+					}
+				} else if (operation instanceof ReferenceOperation) {
+					ReferenceOperation referenceOperation = (ReferenceOperation) operation;
+					try {
+						ModelElement modelElement = data.getProjectState().getModelElement(
+							operation.getModelElementId());
+						if (modelElement == null) {
+							continue;
+						}
+						EReference feature = (EReference) referenceOperation.getFeature(modelElement);
+						if (feature.isContainer() || feature.isContainment()) {
+							containmentChangeElements.addAll(referenceOperation.getAllInvolvedModelElements());
+						}
+
+					} catch (UnkownFeatureException e) {
+						continue;
+					}
+				}
+			}
+			boolean doIntersect = renamedElements.removeAll(containmentChangeElements);
+			if (doIntersect) {
+				System.out.println("Possible intersection at revision " + data.getPrimaryVersionSpec());
+			}
+		}
 	}
 
 	/**
