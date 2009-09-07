@@ -23,32 +23,27 @@ import org.unicase.model.ModelElement;
  */
 public class SharedReferencesRecommendation implements RecommendationStrategy {
 
-	private int depth = 1;
 	private EReference correctReference;
 	private boolean ignoreMEs;
-	private boolean isMax;
 	private int maxNumber = 50;
 
 	/**
-	 * The constructor.
+	 * This is the constructor for number based recommendation.
 	 * 
-	 * @param depth the depth of search.
+	 * @param maxNumber the maximum number
 	 */
-	public SharedReferencesRecommendation(int depth) {
-		this(depth, null);
-	}
-
-	public SharedReferencesRecommendation(boolean isMax, int maxNumber) {
+	public SharedReferencesRecommendation(int maxNumber) {
 		this.maxNumber = maxNumber;
-		this.isMax = isMax;
 	}
 
 	/**
 	 * The constructor for evaluation. Don't use it for runtime suggestions. ;)
+	 * 
+	 * @param maxNumber maximum number of elements to be counted.
+	 * @param correctReference the reference to be ignored.
 	 */
-	public SharedReferencesRecommendation(boolean isMax, int maxNumber, EReference correctReference) {
+	public SharedReferencesRecommendation(int maxNumber, EReference correctReference) {
 		this.maxNumber = maxNumber;
-		this.isMax = isMax;
 		this.correctReference = correctReference;
 
 		if (correctReference != null) {
@@ -58,23 +53,24 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 		}
 	}
 
-	/**
-	 * The constructor for evaluation. Don't use it for runtime suggestions. ;)
-	 * 
-	 * @param depth the depth of search
-	 * @param correctReference the correct MEs, they will be subtracted
-	 */
-	public SharedReferencesRecommendation(int depth, EReference correctReference) {
-		this.depth = depth;
-		this.correctReference = correctReference;
-		this.isMax = false;
-
-		if (correctReference != null) {
-			this.ignoreMEs = true;
-		} else {
-			this.ignoreMEs = false;
-		}
-	}
+	// /**
+	// * The constructor for evaluation. Don't use it for runtime suggestions. ;)
+	// *
+	// * @param depth the depth of search
+	// * @param correctReference the correct MEs, they will be subtracted
+	// */
+	// @Deprecated
+	// public SharedReferencesRecommendation(int depth, EReference correctReference) {
+	// this.depth = depth;
+	// this.correctReference = correctReference;
+	// this.isMax = false;
+	//
+	// if (correctReference != null) {
+	// this.ignoreMEs = true;
+	// } else {
+	// this.ignoreMEs = false;
+	// }
+	// }
 
 	/**
 	 * This methods checks the links of the elements and searches for equalities, thus creating some kind of context an
@@ -95,7 +91,7 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 			correctMEs = (EList<ModelElement>) base.eGet(correctReference);
 		}
 
-		/* CHANGE: ITERATE BASE AS WELL */
+		/* CHANGE: ITERATE BASE, size / depth */
 		Set<ModelElement> baseRelated = new HashSet<ModelElement>();
 
 		baseRelated.add(base);
@@ -103,20 +99,7 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 		int oldVal = 0;
 		while (baseRelated.size() < maxNumber && oldVal < baseRelated.size()) {
 			oldVal = baseRelated.size();
-			Collection<ModelElement> modelsToAdd = new LinkedList<ModelElement>();
-			for (ModelElement subElement : baseRelated) {
-				Collection<ModelElement> newMEs = subElement.getLinkedModelElements();
-
-				if (correctMEs != null && correctMEs.contains(subElement)) {
-					newMEs.remove(base);
-				} else if (correctMEs != null && subElement == base) {
-					newMEs.removeAll(correctMEs);
-				}
-				modelsToAdd.addAll(newMEs);
-
-			}
-			baseRelated.addAll(modelsToAdd);
-
+			addRelatedElements(base, correctMEs, baseRelated);
 		}
 
 		for (ModelElement me : elements) {
@@ -127,21 +110,7 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 			oldVal = 0;
 			while (oldVal < meRelated.size() && meRelated.size() < maxNumber) {
 				oldVal = meRelated.size();
-
-				Collection<ModelElement> modelsToAdd = new LinkedList<ModelElement>();
-				for (ModelElement subElement : meRelated) {
-					Collection<ModelElement> linkedMEs = subElement.getLinkedModelElements();
-
-					// on testing / evaluation remove already existing "correct" elements
-					if (correctMEs != null && correctMEs.contains(subElement)) {
-						linkedMEs.remove(base);
-					} else if (correctMEs != null && subElement == base) {
-						linkedMEs.removeAll(correctMEs);
-					}
-
-					modelsToAdd.addAll(linkedMEs);
-				}
-				meRelated.addAll(modelsToAdd);
+				addRelatedElements(base, correctMEs, meRelated);
 			}
 
 			// find the number of common elements
@@ -163,6 +132,27 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 		return result;
 	}
 
+	/**
+	 * If certain elements are to be ignored they are removed.
+	 * 
+	 * @param base the base
+	 * @param correctMEs the correctMEs to be ignored
+	 * @param baseRelated the list to which correct elements are added.
+	 */
+	public void addRelatedElements(ModelElement base, EList<ModelElement> correctMEs, Set<ModelElement> baseRelated) {
+		Collection<ModelElement> modelsToAdd = new LinkedList<ModelElement>();
+		for (ModelElement subElement : baseRelated) {
+			Collection<ModelElement> newMEs = subElement.getLinkedModelElements();
+			if (correctMEs != null && correctMEs.contains(subElement)) {
+				newMEs.remove(base);
+			} else if (correctMEs != null && subElement == base) {
+				newMEs.removeAll(correctMEs);
+			}
+			modelsToAdd.addAll(newMEs);
+		}
+		baseRelated.addAll(modelsToAdd);
+	}
+
 	private int countCommonElements(Set<? extends Object> baseRelated, Set<? extends Object> meRelated) {
 		int count = 0;
 
@@ -176,7 +166,6 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 				count++;
 			}
 		}
-
 		return count;
 	}
 

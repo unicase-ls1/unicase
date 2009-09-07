@@ -74,11 +74,12 @@ public class EvaluationApplication implements IApplication {
 			new ConstantThresholdSelection(0.35), new ConstantThresholdSelection(0.5), new CutPointSelection(5),
 			new CutPointSelection(10) });
 
-		lrAnalyser.setRecommendationStrategies(new RecommendationStrategy[] {
-			new VectorSpaceModelStrategy(),
-			new ARMStrategy(),
-			new FactorCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(true, 50),
-				0.5) });
+		lrAnalyser
+			.setRecommendationStrategies(new RecommendationStrategy[] {
+				new VectorSpaceModelStrategy(),
+				new ARMStrategy(),
+				new FactorCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(50),
+					0.5) });
 
 		analyzers.add(new VersionWriter());
 		analyzers.add(new DateWriter());
