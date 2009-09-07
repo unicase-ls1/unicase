@@ -74,7 +74,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 
 	private static final boolean ANALYSE_STEP_BY_STEP = true;
 
-	private static final boolean RAW_DATA_OUTPUT = false;
+	private static final boolean RAW_DATA_OUTPUT = true;
 
 	/**
 	 * The constructor.

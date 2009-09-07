@@ -26,6 +26,11 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.linkrecommendation.linkselection.ConstantThresholdSelection;
 import org.unicase.linkrecommendation.linkselection.CutPointSelection;
 import org.unicase.linkrecommendation.linkselection.LinkSelectionStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.SharedReferencesRecommendation;
+import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.FactorCombinationStrategy;
+import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.ARMStrategy;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -64,11 +69,16 @@ public class EvaluationApplication implements IApplication {
 
 		ArrayList<DataAnalyzer> analyzers = new ArrayList<DataAnalyzer>();
 		LinkRecommendationAnalyzer lrAnalyser = new LinkRecommendationAnalyzer();
-		lrAnalyser.setToFuncReqToActionItem();
-		// lrAnalyser.setRecommendationStrategies(new RecommendationStrategy[] { new VectorSpaceModelStrategy(),
-		// new FactorCombinationStrategy(new RelatedAssigneesRecommendation(), new VectorSpaceModelStrategy()), 0.5 });
+		lrAnalyser.setToActionItemToFuncReqAnalysis();
 		lrAnalyser.setSelectionStrategies(new LinkSelectionStrategy[] { new ConstantThresholdSelection(0.1),
-			new ConstantThresholdSelection(0.5), new CutPointSelection(5), new CutPointSelection(10) });
+			new ConstantThresholdSelection(0.35), new ConstantThresholdSelection(0.5), new CutPointSelection(5),
+			new CutPointSelection(10) });
+
+		lrAnalyser.setRecommendationStrategies(new RecommendationStrategy[] {
+			new VectorSpaceModelStrategy(),
+			new ARMStrategy(),
+			new FactorCombinationStrategy(new VectorSpaceModelStrategy(), new SharedReferencesRecommendation(true, 50),
+				0.5) });
 
 		analyzers.add(new VersionWriter());
 		analyzers.add(new DateWriter());
@@ -77,7 +87,7 @@ public class EvaluationApplication implements IApplication {
 		// first the standard case:
 		anacontrol = new AnalyzerModelController(projectIt, analyzers, exporter);
 
-		// now FuncReq -> UseCase
+		// // now FuncReq -> UseCase
 		System.out.println("Starting next");
 		projectIt = getIterator(userSession, projectInfo);
 		exporter = getExporter();
@@ -107,8 +117,8 @@ public class EvaluationApplication implements IApplication {
 	 */
 	private CSVExporter getExporter() throws IOException {
 		CSVExporter exporter = ExportersFactory.eINSTANCE.createCSVExporter();
-		String location = "/Users/henning/Documents/workspace/BachelorArbeit/Quellen/Statistics/unicase/Steps/";
-		String filename = "opositeDirections.csv";
+		String location = "/Users/henning/Documents/workspace/BachelorArbeit/Quellen/Statistics/paper/";
+		String filename = "overTime_srr_raw_unicase.csv";
 		exporter.init(location + filename, false);
 		return exporter;
 	}

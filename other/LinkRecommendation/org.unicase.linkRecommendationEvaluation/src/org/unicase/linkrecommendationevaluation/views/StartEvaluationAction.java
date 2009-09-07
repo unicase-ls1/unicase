@@ -17,15 +17,16 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
-import org.unicase.linkrecommendation.linkselection.ConstantThresholdSelection;
 import org.unicase.linkrecommendation.linkselection.CutPointSelection;
 import org.unicase.linkrecommendation.linkselection.LinkSelectionStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
-import org.unicase.linkrecommendation.recommendationStrategies.RelatedAssigneesRecommendation;
+import org.unicase.linkrecommendation.recommendationStrategies.SharedReferencesRecommendation;
 import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.combinedStrategies.FactorCombinationStrategy;
 import org.unicase.linkrecommendationevaluation.LinkRecommendationAnalyzer;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -73,15 +74,20 @@ public class StartEvaluationAction extends Action {
 	private void evaluate(ProjectSpace projectSpace) {
 		Project project = projectSpace.getProject();
 		LinkRecommendationAnalyzer an = new LinkRecommendationAnalyzer();
-		an.setToActionItemToFuncReqAnalysis();
-		// an.setToFuncReqToUseCaseAnalysis();
+		an.setToUseCaseToFuncReqAnalysis();
+		// an.setToFuncRexqToUseCaseAnalysis();
 		VectorSpaceModelStrategy vsm = new VectorSpaceModelStrategy();
 
-		// FIRST standard: ActionItems -> Functional Requirements
-		an.setSelectionStrategies(new LinkSelectionStrategy[] { new ConstantThresholdSelection(0.1),
-			new ConstantThresholdSelection(0.35), new ConstantThresholdSelection(0.5), new CutPointSelection(5),
-			new CutPointSelection(10) });
-		// an.setRecommendationStrategies(new RecommendationStrategy[] { vsm });
+		// // FIRST standard: ActionItems -> Functional Requirements
+		// an.setSelectionStrategies(new LinkSelectionStrategy[] { new ConstantThresholdSelection(0.1),
+		// new ConstantThresholdSelection(0.35), new ConstantThresholdSelection(0.5), new CutPointSelection(5),
+		// new CutPointSelection(10) });
+
+		an.setSelectionStrategies(new LinkSelectionStrategy[] { new CutPointSelection(10) });
+		an.setRecommendationStrategies(new RecommendationStrategy[] { new FactorCombinationStrategy(vsm,
+			new SharedReferencesRecommendation(true, 50, RequirementPackage.eINSTANCE
+				.getUseCase_FunctionalRequirements()), 0.5) });
+
 		// an.setRecommendationStrategies(new RecommendationStrategy[] {
 		// new SharedReferencesRecommendation(2, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()),
 		// new SharedReferencesRecommendation(3, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()),
@@ -92,11 +98,11 @@ public class StartEvaluationAction extends Action {
 		// new FactorCombinationStrategy(vsm, new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE
 		// .getAnnotation_AnnotatedModelElements()), 0.5),
 		// new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.5) });
-		an.setRecommendationStrategies(new RecommendationStrategy[] { vsm,
-			new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.1),
-			new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.35),
-			new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.5),
-			new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.75) });
+		// an.setRecommendationStrategies(new RecommendationStrategy[] { vsm,
+		// new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.1),
+		// new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.35),
+		// new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.5),
+		// new FactorCombinationStrategy(vsm, new RelatedAssigneesRecommendation(true), 0.75) });
 		// new FactorCombinationStrategy(vsm, new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE
 		// .getAnnotation_AnnotatedModelElements()), 0.35),
 		// new FactorCombinationStrategy(vsm, new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE
@@ -129,12 +135,16 @@ public class StartEvaluationAction extends Action {
 		an.addResults(results);
 
 		String location = "/Users/henning/Documents/workspace/BachelorArbeit/Quellen/Statistics/unicase/Entire Project Scan/";
-		String filename = "AI to FR_RAR_factor.csv";
+		String filename = "srr_vsm.csv";
 
 		printToCSVFile(headline, results, location + filename);
 
 		// Now: FR -> UseCase
 		an.initializeVariables();
+		an.setToFuncReqToUseCaseAnalysis();
+		an.setRecommendationStrategies(new RecommendationStrategy[] { new FactorCombinationStrategy(vsm,
+			new SharedReferencesRecommendation(true, 50, RequirementPackage.eINSTANCE
+				.getFunctionalRequirement_UseCases()), 0.5) });
 		// an.setToUseCaseToFuncReqAnalysis();
 		// an.setToFuncReqToActionItem();
 
@@ -150,12 +160,41 @@ public class StartEvaluationAction extends Action {
 		// new SharedReferencesRecommendation(true, 75, ModelPackage.eINSTANCE.getModelElement_Annotations()) });
 
 		results = new ArrayList<Object>();
-		// an.analyzeEntireProject(project);
-		// an.addResults(results);
+		an.analyzeEntireProject(project);
+		an.addResults(results);
+
+		printToCSVFile(headline, results, location + filename);
+
+		// 
+		an.initializeVariables();
+		an.setToActionItemToFuncReqAnalysis();
+		an
+			.setRecommendationStrategies(new RecommendationStrategy[] { new FactorCombinationStrategy(vsm,
+				new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE
+					.getAnnotation_AnnotatedModelElements()), 0.5) });
+
+		results = new ArrayList<Object>();
+		an.analyzeEntireProject(project);
+		an.addResults(results);
 
 		printToCSVFile(headline, results, location + filename);
 
 		System.out.println("Finished.");
+
+		// 
+		an.initializeVariables();
+		an.setToFuncReqToActionItem();
+		an.setRecommendationStrategies(new RecommendationStrategy[] { new FactorCombinationStrategy(vsm,
+			new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE.getModelElement_Annotations()), 0.5) });
+
+		results = new ArrayList<Object>();
+		an.analyzeEntireProject(project);
+		an.addResults(results);
+
+		printToCSVFile(headline, results, location + filename);
+
+		System.out.println("Finished.");
+
 	}
 
 	private void printToCSVFile(List<String> headline, List<Object> results, String file) {
