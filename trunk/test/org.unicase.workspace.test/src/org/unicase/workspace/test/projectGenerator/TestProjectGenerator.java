@@ -17,13 +17,14 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.transaction.RecordingCommand;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.unicase.model.IdentifiableElement;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
+import org.unicase.model.diagram.DiagramPackage;
+import org.unicase.model.diagram.DiagramType;
+import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
@@ -31,6 +32,8 @@ import org.unicase.model.document.Section;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
+import org.unicase.workspace.impl.WorkspaceImpl;
+import org.unicase.workspace.util.UnicaseCommand;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -74,6 +77,7 @@ public class TestProjectGenerator {
 	// keep a list of all classes that can be instantiated.
 	private List<EClass> meNonAbstractClasses = new ArrayList<EClass>();
 	private List<EClass> nonMEnonAbstractClasses = new ArrayList<EClass>();
+	private MEDiagramElementsProvider diagramElementsProvider;
 
 	/**
 	 * Constructor: set test project parameters.
@@ -115,18 +119,22 @@ public class TestProjectGenerator {
 		initClassLists();
 	}
 
-	// at the beginning, initialize a list of all non-Abstract, ME- and non-ME
-	// classes
-	// this is done mainly for performance, to eliminate loop which went through
-	// model package
+	/**
+	 * At the beginning, initialize a list of all non-Abstract, ME- and non-ME classes. this is done mainly for
+	 * performance, to eliminate loop which went through model package.
+	 */
+
 	private void initClassLists() {
 		getClasses(ModelPackage.eINSTANCE);
 
 	}
 
-	// recursively go through model package and create a list of all
-	// non-Abstract classes (ME and non-ME)
-	// Attention: the Project class is excluded.
+	/**
+	 * recursively go through model package and create a list of all non-Abstract classes (ME and non-ME) Attention: the
+	 * Project class is excluded.
+	 * 
+	 * @param ePackage
+	 */
 	private void getClasses(EPackage ePackage) {
 
 		for (EObject eObject : ePackage.eContents()) {
@@ -152,7 +160,7 @@ public class TestProjectGenerator {
 	}
 
 	/**
-	 * . This creates the test project and adds it to workspace.
+	 * This creates the test project and adds it to workspace.
 	 * 
 	 * @param workspace Workspace to which the project will be added
 	 * @param project Project to be added
@@ -165,20 +173,22 @@ public class TestProjectGenerator {
 		projectSpace.setProjectName("ModelTestProject");
 		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
 
-		TransactionalEditingDomain domain = workspace.getEditingDomain();
-		domain.getCommandStack().execute(new RecordingCommand(domain) {
+		new UnicaseCommand() {
+
 			@Override
-			protected void doExecute() {
+			protected void doRun() {
 				// FIXME: ugly code
-				projectSpace.initResources(workspace.eResource().getResourceSet());
-				workspace.getProjectSpaces().add(projectSpace);
+				projectSpace.initResources(((WorkspaceImpl) workspace).getWorkspaceResourceSet());
+				((WorkspaceImpl) workspace).addProjectSpace(projectSpace);
 				workspace.save();
 			}
-		});
+
+		}.run();
+
 	}
 
 	/**
-	 * . Creates a test project
+	 * Creates a test project.
 	 * 
 	 * @return a Project
 	 */
@@ -213,8 +223,10 @@ public class TestProjectGenerator {
 
 	}
 
-	// recursively create the subsections (Composite and LeafSections)
-	// under a Composite section (based of projectWidth and projectDepth)
+	/**
+	 * recursively create the subsections (Composite and LeafSections) under a Composite section. (based on projectWidth
+	 * and projectDepth)
+	 */
 	private void createDocStructure(int remainingDepth, CompositeSection comp) {
 
 		if (remainingDepth > 0) {
@@ -234,8 +246,9 @@ public class TestProjectGenerator {
 		}
 	}
 
-	// create minimum number of instances of all EClasses
-	// contained in Model Package
+	/**
+	 * create minimum number of instances of all EClasses contained in Model Package.
+	 */
 	private void createMinimumNumOfInstances() {
 		List<EClass> allNonAbstractClasses = new ArrayList<EClass>();
 		allNonAbstractClasses.addAll(meNonAbstractClasses);
@@ -245,9 +258,9 @@ public class TestProjectGenerator {
 		}
 	}
 
-	// create the required minimum number of instances of an EClass
-	// initialize simple attributes
-	// add them to project of list of non-ME instances
+	/**
+	 * create the required minimum number of instances of an EClass. initialize simple attributes add them to project.
+	 */
 	private void createInstances(EClass eClass) {
 		// the model element IDs are set explicitly (in
 		// initializeSimpleAttributes() method)
@@ -256,7 +269,7 @@ public class TestProjectGenerator {
 			return;
 		}
 		// the classes of Document package should not be instantiated
-		// again. They are in createDocStructure instantiated and added
+		// again. They have been instantiated in createDocStructure and added
 		// to project.
 		if (SECTION_ECLASS.isSuperTypeOf(eClass)) {
 			return;
@@ -276,7 +289,9 @@ public class TestProjectGenerator {
 		}
 	}
 
-	// this adds an instance to <EClass, ItsInstances> hash-tables
+	/**
+	 * this adds an instance to (EClass, ItsInstances) hash-tables.
+	 */
 	private void keepTrackOf(EClass eClass, EObject instance) {
 		if (MODELELEMENT_ECLASS.isSuperTypeOf(eClass)) {
 			// if instance is a ModelElement, add it to model elements
@@ -295,15 +310,13 @@ public class TestProjectGenerator {
 
 	}
 
-	// this goes through initial elements in project,
-	// and sets their references
+	/**
+	 * this goes through initial elements in project, and sets their references.
+	 */
 	private void createReferences() {
-		// set references for the initial elements in project
-		// for elements that are created during setting references process
-		// references are created automatically
-		// i mean, these new elements are actually created because there
-		// have'nt been enough elements to reference, and therefore they
-		// are referenced as soon as they are created.
+		// set references for the initial elements in project.
+		// For elements that are created during setting references (e.g. because there is not ME of ref type anymore
+		// unreferenced in project), it is not needed.
 		List<EObject> allMEs = new ArrayList<EObject>();
 		allMEs.addAll(getAllInstancesOf(MODELELEMENT_ECLASS));
 
@@ -312,7 +325,9 @@ public class TestProjectGenerator {
 		}
 	}
 
-	// this sets the references according their type
+	/**
+	 * this sets the references according their type.
+	 */
 	private void initializeReferences(ModelElement me) {
 
 		List<EReference> references = me.eClass().getEAllReferences();
@@ -342,14 +357,29 @@ public class TestProjectGenerator {
 		// .lowerBound
 	}
 
-	// this sets normal references for an instance
+	/**
+	 * this sets normal (non containment)references for an instance.
+	 * 
+	 * @param me
+	 * @param ref
+	 * @param lowerBound
+	 * @param upperBound
+	 */
 	private void createNormalReference(ModelElement me, EReference ref, int lowerBound, int upperBound) {
 		// create a list of all instances of reference type
+		// and get a random number for number of references
 		List<EObject> instancesOfRefType = new ArrayList<EObject>();
-		instancesOfRefType.addAll(getAllInstancesOf(ref.getEReferenceType()));
-
-		// get a random number for number of references
-		int numOfRefs = getNumOfRefs(ref, lowerBound, upperBound);
+		int numOfRefs;
+		if (me instanceof MEDiagram && ref.equals(DiagramPackage.eINSTANCE.getMEDiagram_Elements())) {
+			diagramElementsProvider = new MEDiagramElementsProvider(project);
+			MEDiagram diagram = (MEDiagram) me;
+			DiagramType diagramType = diagram.getType();
+			instancesOfRefType.addAll(diagramElementsProvider.getMatchingElements(diagramType));
+			numOfRefs = diagramElementsProvider.getRandomNumOfDiagramElements(diagramType);
+		} else {
+			instancesOfRefType.addAll(getAllInstancesOf(ref.getEReferenceType()));
+			numOfRefs = getNumOfRefs(ref, lowerBound, upperBound);
+		}
 
 		// check not to self-reference
 		if (instancesOfRefType.contains(me)) {
@@ -399,9 +429,10 @@ public class TestProjectGenerator {
 		}
 	}
 
-	// this sets containment references for an instance
-	// consider that containment reference of an object, is at the same time
-	// container reference of the opposite object
+	/**
+	 * this sets containment references for an instance consider that containment reference of an object, is at the same
+	 * time container reference of the opposite object.
+	 */
 	private void createContainmentRef(ModelElement me, EReference ref, int lowerBound, int upperBound) {
 		// check special cases
 		if (checkSpecialCase(me, ref)) {
@@ -459,7 +490,9 @@ public class TestProjectGenerator {
 
 	}
 
-	// this checks ME and Ref against some special cases
+	/**
+	 * this checks ME and Ref against some special cases.
+	 */
 	private boolean checkSpecialCase(ModelElement me, EReference ref) {
 		boolean result = false;
 		if (ref.getEReferenceType().equals(ModelPackage.eINSTANCE.getModelElementId())) {
@@ -526,30 +559,31 @@ public class TestProjectGenerator {
 		return numOfRefs;
 	}
 
-	// this returns all instances of an EClass in the project.
-	// EClass can be abstract.
+	/**
+	 * this returns all instances of an EClass in the project. EClass can be abstract.
+	 */
 	private List<EObject> getAllInstancesOf(EClass type) {
 		List<EObject> result;
-		HashMap<EClass, List<EObject>> hash;
+		HashMap<EClass, List<EObject>> map;
 		// if EClass is a ModelElement sub-class, look in MEs hash-table
 		if (MODELELEMENT_ECLASS.isSuperTypeOf(type)) {
-			hash = meInstancesByClass;
+			map = meInstancesByClass;
 		} else {
-			hash = nonMEInstancesByClass;
+			map = nonMEInstancesByClass;
 		}
 
 		if (type.isAbstract() || type.isInterface()) {
 			result = new ArrayList<EObject>();
-			Iterator<EClass> iterator = hash.keySet().iterator();
+			Iterator<EClass> iterator = map.keySet().iterator();
 			while (iterator.hasNext()) {
 				EClass eClass = iterator.next();
 				if (type.isSuperTypeOf(eClass)) {
-					result.addAll(hash.get(eClass));
+					result.addAll(map.get(eClass));
 				}
 
 			}
 		} else {
-			result = hash.get(type);
+			result = map.get(type);
 		}
 		if (result == null) {
 			// don't return null.
@@ -561,9 +595,10 @@ public class TestProjectGenerator {
 		return result;
 	}
 
-	// after all instances are created and references are set
-	// distribute some instances which are not contained in some other,
-	// on leaf sections
+	/**
+	 * after all instances are created and references are set distribute some instances which are not contained in some
+	 * other, on leaf sections.
+	 */
 	private void distributeMEsOnLeafSection(LeafSection ls) {
 
 		int numOfRefs = random.nextInt(maxNumOfMEsInLeafSection);
@@ -606,11 +641,15 @@ public class TestProjectGenerator {
 
 	}
 
-	// this creates an instance of given class, initializes
-	// its simple attributes, and adds it to hash-tables keeping track of
-	// instances
-	// in some situations (such as distributeMEsOnLeafSection()) we don't want
-	// a Section to be created. noSection parameter takes care of it.
+	/**
+	 * This creates an instance of given class, initializes its simple attributes, and adds it to hash-tables keeping
+	 * track of instances. In some situations (such as distributeMEsOnLeafSection()) we don't want a Section to be
+	 * created. noSection parameter takes care of it.
+	 * 
+	 * @param eClass
+	 * @param noSection
+	 * @return
+	 */
 	private EObject createInstance(EClass eClass, boolean noSection) {
 		EObject obj = null;
 
@@ -643,8 +682,9 @@ public class TestProjectGenerator {
 		return obj;
 	}
 
-	// special case for createInstance()
-	// it works faster
+	/**
+	 * special case for createInstance(). it works faster
+	 */
 	private EObject createSomeModelElment(boolean noSection) {
 		EObject me;
 		int index = random.nextInt(meNonAbstractClasses.size());
@@ -660,7 +700,11 @@ public class TestProjectGenerator {
 		return me;
 	}
 
-	// the simplest of all....
+	/**
+	 * Initialize simple attributes.
+	 * 
+	 * @param instance
+	 */
 	private void initializeSimpleAttributes(EObject instance) {
 
 		for (EAttribute attribute : instance.eClass().getEAllAttributes()) {
@@ -680,9 +724,8 @@ public class TestProjectGenerator {
 
 				// in any other case create a random text
 				// FIXME ZH, JH: description is not shown. StackOverflow, NullPointer
-				// instance.eSet(attribute, getRandomText(instance.eClass()
-				// .getName()));
-				getRandomText("some text");
+				instance.eSet(attribute, getRandomText(instance.eClass().getName()));
+				// getRandomText("some text");
 				continue;
 			}
 
@@ -752,33 +795,33 @@ public class TestProjectGenerator {
 		return new Date();
 	}
 
-//	/**
-//	 * . Opens some model elements randomly.
-//	 * 
-//	 * @param count number of model elements to be opened.
-//	 */
-//	public void openSomeModelElements(int count) {
-//		List<EObject> modelElements = new ArrayList<EObject>();
-//		modelElements.addAll(getAllInstancesOf(MODELELEMENT_ECLASS));
-//		int index;
-//		for (int i = 0; i < count; i++) {
-//			index = random.nextInt(modelElements.size());
-//			EObject me = modelElements.get(index);
-//			openME((ModelElement) me);
-//			modelElements.remove(index);
-//		}
-//	}
+	// /**
+	// * . Opens some model elements randomly.
+	// *
+	// * @param count number of model elements to be opened.
+	// */
+	// public void openSomeModelElements(int count) {
+	// List<EObject> modelElements = new ArrayList<EObject>();
+	// modelElements.addAll(getAllInstancesOf(MODELELEMENT_ECLASS));
+	// int index;
+	// for (int i = 0; i < count; i++) {
+	// index = random.nextInt(modelElements.size());
+	// EObject me = modelElements.get(index);
+	// openME((ModelElement) me);
+	// modelElements.remove(index);
+	// }
+	// }
 
-//	private void openME(ModelElement me) {
-//		MEEditorInput input = new MEEditorInput(me);
-//		try {
-//			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, MEEditor.ID, true);
-//		} catch (PartInitException e) {
-//			// ZH: exception handling
-//			e.printStackTrace();
-//		}
-//
-//	}
+	// private void openME(ModelElement me) {
+	// MEEditorInput input = new MEEditorInput(me);
+	// try {
+	// PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, MEEditor.ID, true);
+	// } catch (PartInitException e) {
+	// // ZH: exception handling
+	// e.printStackTrace();
+	// }
+	//
+	// }
 
 	/**
 	 * Return the number of Model Elements that have been generated.
