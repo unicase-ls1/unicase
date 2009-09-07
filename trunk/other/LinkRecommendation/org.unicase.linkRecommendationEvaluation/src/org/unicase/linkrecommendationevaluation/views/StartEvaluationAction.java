@@ -85,8 +85,8 @@ public class StartEvaluationAction extends Action {
 
 		an.setSelectionStrategies(new LinkSelectionStrategy[] { new CutPointSelection(10) });
 		an.setRecommendationStrategies(new RecommendationStrategy[] { new FactorCombinationStrategy(vsm,
-			new SharedReferencesRecommendation(true, 50, RequirementPackage.eINSTANCE
-				.getUseCase_FunctionalRequirements()), 0.5) });
+			new SharedReferencesRecommendation(50, RequirementPackage.eINSTANCE.getUseCase_FunctionalRequirements()),
+			0.5) });
 
 		// an.setRecommendationStrategies(new RecommendationStrategy[] {
 		// new SharedReferencesRecommendation(2, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()),
@@ -143,8 +143,8 @@ public class StartEvaluationAction extends Action {
 		an.initializeVariables();
 		an.setToFuncReqToUseCaseAnalysis();
 		an.setRecommendationStrategies(new RecommendationStrategy[] { new FactorCombinationStrategy(vsm,
-			new SharedReferencesRecommendation(true, 50, RequirementPackage.eINSTANCE
-				.getFunctionalRequirement_UseCases()), 0.5) });
+			new SharedReferencesRecommendation(50, RequirementPackage.eINSTANCE.getFunctionalRequirement_UseCases()),
+			0.5) });
 		// an.setToUseCaseToFuncReqAnalysis();
 		// an.setToFuncReqToActionItem();
 
@@ -170,8 +170,8 @@ public class StartEvaluationAction extends Action {
 		an.setToActionItemToFuncReqAnalysis();
 		an
 			.setRecommendationStrategies(new RecommendationStrategy[] { new FactorCombinationStrategy(vsm,
-				new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE
-					.getAnnotation_AnnotatedModelElements()), 0.5) });
+				new SharedReferencesRecommendation(50, ModelPackage.eINSTANCE.getAnnotation_AnnotatedModelElements()),
+				0.5) });
 
 		results = new ArrayList<Object>();
 		an.analyzeEntireProject(project);
@@ -185,7 +185,7 @@ public class StartEvaluationAction extends Action {
 		an.initializeVariables();
 		an.setToFuncReqToActionItem();
 		an.setRecommendationStrategies(new RecommendationStrategy[] { new FactorCombinationStrategy(vsm,
-			new SharedReferencesRecommendation(true, 50, ModelPackage.eINSTANCE.getModelElement_Annotations()), 0.5) });
+			new SharedReferencesRecommendation(50, ModelPackage.eINSTANCE.getModelElement_Annotations()), 0.5) });
 
 		results = new ArrayList<Object>();
 		an.analyzeEntireProject(project);

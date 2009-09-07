@@ -24,6 +24,7 @@ public class FactorCombinationStrategy extends AbstractCombinationStrategy {
 	 * 
 	 * @param s1 first strategy
 	 * @param s2 second strategy
+	 * @param factor the factor for combination
 	 */
 	public FactorCombinationStrategy(RecommendationStrategy s1, RecommendationStrategy s2, double factor) {
 		super(s1, s2);
