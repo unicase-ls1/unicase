@@ -38,6 +38,11 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 		this(depth, null);
 	}
 
+	public SharedReferencesRecommendation(boolean isMax, int maxNumber) {
+		this.maxNumber = maxNumber;
+		this.isMax = isMax;
+	}
+
 	/**
 	 * The constructor for evaluation. Don't use it for runtime suggestions. ;)
 	 */
