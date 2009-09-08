@@ -62,7 +62,7 @@ public abstract class FileTransferJob extends Job {
 	}
 
 	/**
-	 * Sets a pending file transfer from the pending file transfers.
+	 * Removes the preliminary file name from a transfer.
 	 */
 	protected void removePendingFileTransferPreliminaryFileName() {
 		new UnicaseCommand() {
@@ -98,6 +98,8 @@ public abstract class FileTransferJob extends Job {
 				((ProjectSpaceImpl) WorkspaceManager.getProjectSpace(fileAttachment)).saveProjectSpaceOnly();
 				if (transfer.isUpload()) {
 					fileAttachment.setUploading(false);
+					fileAttachment.setDownloading(true);
+					fileAttachment.setDownloading(false);
 				} else {
 					if (fileInformation.getFileVersion() == Integer.parseInt(fileAttachment.getFileID())) {
 						fileAttachment.setDownloading(false);
@@ -270,7 +272,7 @@ public abstract class FileTransferJob extends Job {
 	 * @throws FileTransferException if the job execution has been halted
 	 */
 	protected void checkCancelled() throws FileTransferException {
-		if (cancelled) {
+		if (cancelled || transfer.getAttachmentId() == null) {
 			throw new FileTransferException("File transfer has been cancelled!");
 		}
 		if (!WorkspaceManager.getProjectSpace(fileAttachment).getPendingFileTransfers().contains(getTransfer())) {

@@ -20,6 +20,7 @@ import org.eclipse.emf.databinding.edit.EMFEditObservables;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.jface.databinding.swt.SWTObservables;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.jface.layout.GridDataFactory;
@@ -45,6 +46,7 @@ import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.util.FileTransferUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -55,7 +57,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 	private static final String UPLOAD_NOTPENDING_TOOL_TIP = "Click to upload a new file attachment to the server. "
 		+ "\nThe file attachment will be transferred when online. "
-		+ "\nYou can interrupt the file upload at any time or even "
+		+ "\nYou can interrupt the file upload at any time and even "
 		+ "\nclose the program, as it will be resumed automatically.";
 
 	private static final String CANCEL_UPLOAD_TOOLTIP = "If you wish to cancel the pending upload and upload another file, \nplease click this button.";
@@ -119,8 +121,8 @@ public class MEFileChooserControl extends AbstractMEControl {
 		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).hint(300, 15).grab(true, true).applyTo(fileName);
 
 		// Column 3: save as button
-		Button saveAs = new Button(composite, SWT.RIGHT);
-		saveAs.setText("Save as... ");
+		Link saveAs = new Link(composite, SWT.RIGHT);
+		saveAs.setText("<a>Save as...</a>");
 		saveAs.setLayoutData(new GridData(SWT.RIGHT, SWT.BEGINNING, false, false));
 		saveAs.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).grab(false, false).applyTo(saveAs);
@@ -128,6 +130,10 @@ public class MEFileChooserControl extends AbstractMEControl {
 		// Column 4: button to open a dialog for uploading files
 		Button upload = new Button(composite, SWT.PUSH);
 		upload.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
+
+		// Column x: invisible label to fix databinding direction problem
+		Label fix = new Label(composite, SWT.NONE);
+		fix.setVisible(false);
 
 		// ADDING LISTENERS AND TOOLTIPS TO THE WIDGETS
 
@@ -147,27 +153,24 @@ public class MEFileChooserControl extends AbstractMEControl {
 		// data binding context
 		dbc = new EMFDataBindingContext();
 		// file name binding
-		@SuppressWarnings("unused")
 		IObservableValue model1 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
 		UpdateValueStrategy strategy1 = new UpdateValueStrategy();
 		strategy1.setConverter(new FileNameLinkContentConverter());
-		// dbc.bindValue(SWTObservables.observeText(fileName), model1, null, strategy1);
+		dbc.bindValue(SWTObservables.observeText(fileName), model1, null, strategy1);
 		// upload binding
-		@SuppressWarnings("unused")
 		IObservableValue model2 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
 			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Uploading());
 		UpdateValueStrategy strategy2 = new UpdateValueStrategy();
 		strategy2.setConverter(new UploadImageConverter(upload));
-		// Eclipse 3.4 compatibility: observeText instead of observeImage
-		// dbc.bindValue(SWTObservables.observeText(upload), model2, null, strategy2);
+		// Eclipse 3.4 compatibility: observeSelection instead of observeImage
+		dbc.bindValue(SWTObservables.observeText(fix), model2, null, strategy2);
 		// download binding
-		@SuppressWarnings("unused")
 		IObservableValue model3 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
 			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Downloading());
-		UpdateValueStrategy strategy = new UpdateValueStrategy();
-		strategy.setConverter(new DownloadImageConverter(downloadPending, saveAs));
+		UpdateValueStrategy strategy3 = new UpdateValueStrategy();
+		strategy3.setConverter(new DownloadImageConverter(downloadPending, saveAs));
 		// Eclipse 3.4 compatibility: observeText instead of observeImage
-		// dbc.bindValue(SWTObservables.observeText(downloadPending), model3, null, strategy);
+		dbc.bindValue(SWTObservables.observeText(fix), model3, null, strategy3);
 
 		return parent;
 	}
@@ -189,9 +192,9 @@ public class MEFileChooserControl extends AbstractMEControl {
 	private final class DownloadImageConverter implements IConverter {
 
 		private Label downloadPending;
-		private Button saveAs;
+		private Link saveAs;
 
-		public DownloadImageConverter(Label downloadPending, Button saveAs) {
+		public DownloadImageConverter(Label downloadPending, Link saveAs) {
 			this.downloadPending = downloadPending;
 			this.saveAs = saveAs;
 		}
@@ -428,17 +431,12 @@ public class MEFileChooserControl extends AbstractMEControl {
 				}
 				try {
 					// try to localize the cached file
-					File cachedFile = FileTransferUtil.findCachedFile(fileInfo, WorkspaceManager.getProjectSpace(
-						fileAttachment).getProjectId());
-					FileInputStream fileInputStream = new FileInputStream(cachedFile);
-					int size = fileInputStream.available();
-					fileInputStream.close();
-					if (fileAttachment.getFileSize() != size) {
-						openInformation("Please observe: ", "File transfer has not been completed yet!");
-					} else {
-						// open file
-						openFile(fileInfo, WorkspaceManager.getProjectSpace(fileAttachment).getProjectId());
+					if (!FileTransferUtil.findCachedFile(fileInfo,
+						WorkspaceManager.getProjectSpace(fileAttachment).getProjectId()).exists()) {
+						throw new FileNotFoundException("File could not be localized!");
 					}
+					// open file
+					openFile(fileInfo, WorkspaceManager.getProjectSpace(fileAttachment).getProjectId());
 				} catch (FileNotFoundException e) {
 					try {
 						// if file could not be found, initiate transfer
@@ -452,11 +450,8 @@ public class MEFileChooserControl extends AbstractMEControl {
 					} catch (FileTransferException e1) {
 						openInformation("Please observe:", e1.getMessage());
 					}
-				} catch (IOException e) {
-					openInformation("Please observe:", e.getMessage());
 				}
 			}
-
 		}
 	}
 
@@ -475,7 +470,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 			// open a file dialog
 			final FileDialog fileDialog = new FileDialog(Display.getCurrent().getActiveShell());
 			fileDialog.open();
-			// check if user actually selected a dialog
+			// check if user actually selected a file
 			if (!fileDialog.getFileName().equals("")) {
 				// set information needed for this particular upload
 				final FileInformation fileInformation = new FileInformation();
@@ -491,6 +486,8 @@ public class MEFileChooserControl extends AbstractMEControl {
 						@Override
 						protected void doRun() {
 							fileAttachment.setUploading(true);
+							((ProjectSpaceImpl) WorkspaceManager.getProjectSpace(fileAttachment))
+								.saveProjectSpaceOnly();
 						}
 					}.run();
 				} catch (FileTransferException e1) {

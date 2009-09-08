@@ -2480,11 +2480,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	public void removePendingFileUpload(String fileAttachmentId) {
 		final Iterator<PendingFileTransfer> iterator = getPendingFileTransfers().listIterator();
 		while (iterator.hasNext()) {
-			PendingFileTransfer transfer = iterator.next();
+			final PendingFileTransfer transfer = iterator.next();
 			if (transfer.isUpload() && transfer.getAttachmentId().getId().equals(fileAttachmentId)) {
 				new UnicaseCommand() {
 					@Override
 					protected void doRun() {
+						transfer.setAttachmentId(null);
 						iterator.remove();
 					}
 				}.run();
