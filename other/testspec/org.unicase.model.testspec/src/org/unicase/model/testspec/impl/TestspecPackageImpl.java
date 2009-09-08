@@ -422,6 +422,7 @@ public class TestspecPackageImpl extends EPackageImpl implements TestspecPackage
 
 		// Initialize enums and add enum literals
 		initEEnum(enumStateEEnum, EnumState.class, "EnumState");
+		addEEnumLiteral(enumStateEEnum, EnumState.UNSET);
 		addEEnumLiteral(enumStateEEnum, EnumState.PASSED);
 		addEEnumLiteral(enumStateEEnum, EnumState.FAILED);
 

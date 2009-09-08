@@ -61,7 +61,7 @@ public class TestProtocolImpl extends ModelElementImpl implements TestProtocol {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EnumState TEST_STATE_EDEFAULT = EnumState.PASSED;
+	protected static final EnumState TEST_STATE_EDEFAULT = EnumState.UNSET;
 
 	/**
 	 * The cached value of the '{@link #getTestState() <em>Test State</em>}' attribute.

@@ -8,6 +8,7 @@
   <genPackages prefix="Testspec" basePackage="org.unicase.model" resource="XML" disposableProviderFactory="true"
       ecorePackage="testspec.ecore#/">
     <genEnums typeSafeEnumCompatible="false" ecoreEnum="testspec.ecore#//EnumState">
+      <genEnumLiterals ecoreEnumLiteral="testspec.ecore#//EnumState/unset"/>
       <genEnumLiterals ecoreEnumLiteral="testspec.ecore#//EnumState/passed"/>
       <genEnumLiterals ecoreEnumLiteral="testspec.ecore#//EnumState/failed"/>
     </genEnums>
