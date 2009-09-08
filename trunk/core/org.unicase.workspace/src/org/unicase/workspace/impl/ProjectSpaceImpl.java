@@ -1363,12 +1363,11 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 
 		// check for operations on file attachments: if version has been increased and file is required offline, add to
 		// pending file transfers
-		// checkUpdatedFileAttachments(changes);
+		checkUpdatedFileAttachments(changes);
 
 		return resolvedVersion;
 	}
 
-	@SuppressWarnings("unused")
 	private void checkUpdatedFileAttachments(List<ChangePackage> changes) {
 		List<FileAttachment> attachmentsToDownload = new LinkedList<FileAttachment>();
 		for (ChangePackage change : changes) {
