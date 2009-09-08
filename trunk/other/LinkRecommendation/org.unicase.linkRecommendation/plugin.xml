@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="org.unicase.linkRecommendation.linkRecommendationStrategy" name="LinkRecommendationStrategy" schema="schema/org.unicase.linkRecommendation.linkRecommendationStrategy.exsd"/>
+   <extension
+         point="org.unicase.ui.meeditor.linkrecommendation">
+      <recommendationframework
+            class="org.unicase.linkrecommendation.RecommendationManager"
+            id="org.unicase.linkrecommendation.recommendationManager"
+            name="org.unicase.linkrecommendation.recommendationManager">
+      </recommendationframework>
+   </extension>
+
+</plugin>

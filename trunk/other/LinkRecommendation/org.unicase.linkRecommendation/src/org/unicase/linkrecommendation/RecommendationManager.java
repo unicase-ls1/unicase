@@ -10,16 +10,19 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.unicase.linkrecommendation.linkselection.CutPointSelection;
+import org.unicase.linkrecommendation.linkselection.LinkSelectionStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.meeditor.RecommendationManagerInterface;
 
 /**
  * This class is used as a singleton for providing link recommendation.
  * 
  * @author Henning Femmer
  */
-public class RecommendationManager {
+public class RecommendationManager implements RecommendationManagerInterface {
 
 	private static RecommendationManager singleton = new RecommendationManager();
 
@@ -43,6 +46,15 @@ public class RecommendationManager {
 	}
 
 	/**
+	 * Returns a link selection strategy.
+	 * 
+	 * @return a links selection strategy
+	 */
+	public LinkSelectionStrategy createSelectionStrategy() {
+		return new CutPointSelection(10);
+	}
+
+	/**
 	 * Calculates the relevance of all elements to the base and returns these values.
 	 * 
 	 * @param base the element which is going to be the reference.
@@ -50,10 +62,12 @@ public class RecommendationManager {
 	 * @return a map modelElement -> double value reference. The higher the better. Value should be in (0..1]
 	 */
 	public Map<ModelElement, Double> getMatchMap(final ModelElement base, final Collection<ModelElement> elements) {
-		RecommendationStrategy strategy = createRecommendationStrategy();
+		RecommendationStrategy recStrategy = createRecommendationStrategy();
+		LinkSelectionStrategy selStrategy = createSelectionStrategy();
 
-		if (strategy != null) {
-			return strategy.getMatchingMap(base, elements);
+		if (recStrategy != null) {
+			Map<ModelElement, Double> rec = recStrategy.getMatchingMap(base, elements);
+			return selStrategy.selectCandidates(rec);
 		}
 
 		return new HashMap<ModelElement, Double>();
