@@ -23,6 +23,14 @@ import org.eclipse.emf.common.util.Enumerator;
  */
 public enum EnumState implements Enumerator {
 	/**
+	 * The '<em><b>Unset</b></em>' literal object.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #UNSET_VALUE
+	 * @generated
+	 * @ordered
+	 */
+	UNSET(2, "unset", "unset"), /**
 	 * The '<em><b>Passed</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41,6 +49,21 @@ public enum EnumState implements Enumerator {
 	 * @ordered
 	 */
 	FAILED(1, "failed", "failed");
+
+	/**
+	 * The '<em><b>Unset</b></em>' literal value.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of '<em><b>Unset</b></em>' literal object isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @see #UNSET
+	 * @model name="unset"
+	 * @generated
+	 * @ordered
+	 */
+	public static final int UNSET_VALUE = 2;
 
 	/**
 	 * The '<em><b>Passed</b></em>' literal value.
@@ -80,6 +103,7 @@ public enum EnumState implements Enumerator {
 	 */
 	private static final EnumState[] VALUES_ARRAY =
 		new EnumState[] {
+			UNSET,
 			PASSED,
 			FAILED,
 		};
@@ -132,6 +156,7 @@ public enum EnumState implements Enumerator {
 	 */
 	public static EnumState get(int value) {
 		switch (value) {
+			case UNSET_VALUE: return UNSET;
 			case PASSED_VALUE: return PASSED;
 			case FAILED_VALUE: return FAILED;
 		}

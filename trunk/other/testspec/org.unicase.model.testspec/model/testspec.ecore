@@ -11,6 +11,7 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="testSteps" eType="ecore:EDataType platform:/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//EString"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EEnum" name="EnumState">
+    <eLiterals name="unset" value="2" literal="unset"/>
     <eLiterals name="passed"/>
     <eLiterals name="failed" value="1"/>
   </eClassifiers>
