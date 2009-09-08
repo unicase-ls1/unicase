@@ -51,7 +51,7 @@ public class RecommendationManager implements RecommendationManagerInterface {
 	 * @return a links selection strategy
 	 */
 	public LinkSelectionStrategy createSelectionStrategy() {
-		return new CutPointSelection(10);
+		return new CutPointSelection(15);
 	}
 
 	/**
