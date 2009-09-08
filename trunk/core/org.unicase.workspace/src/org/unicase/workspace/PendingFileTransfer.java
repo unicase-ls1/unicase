@@ -46,7 +46,8 @@ public interface PendingFileTransfer extends EObject {
 
 	/**
 	 * Sets the value of the '{@link org.unicase.workspace.PendingFileTransfer#getAttachmentId <em>Attachment Id</em>}'
-	 * containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * containment reference. <!-- begin-user-doc --> A null value indicates that the transfer is to be cancelled. <!--
+	 * end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Attachment Id</em>' containment reference.
 	 * @see #getAttachmentId()
