@@ -161,6 +161,7 @@ public abstract class FileTransferJob extends Job {
 	@Override
 	protected void canceling() {
 		cancelled = true;
+		removePendingFileTransfer();
 		super.canceling();
 	}
 
