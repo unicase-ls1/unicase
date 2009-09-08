@@ -24,6 +24,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.testspec.EnumState;
 import org.unicase.model.testspec.TestProtocol;
 import org.unicase.model.testspec.TestStep;
 import org.unicase.model.testspec.TestspecPackage;
@@ -166,10 +167,22 @@ public class TestProtocolItemProvider
 	 * This returns TestProtocol.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public Object getImage(Object object) {
+		if (object instanceof TestProtocol) {
+			TestProtocol tp = (TestProtocol) object;
+			// PASSED
+			if (tp.getTestState() == EnumState.PASSED) {
+				return overlayImage(object, getResourceLocator().getImage("full/obj16/TestProtocolPassed"));
+			}
+			// FAILED
+			if (tp.getTestState() == EnumState.FAILED) {
+				return overlayImage(object, getResourceLocator().getImage("full/obj16/TestProtocolFailed"));
+			}
+		}
+		// UNSET
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/TestProtocol"));
 	}
 
