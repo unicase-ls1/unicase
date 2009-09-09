@@ -1391,7 +1391,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				}
 			}
 		}
-		for (FileAttachment fileAttachment : attachmentsToDownload) {
+		for (final FileAttachment fileAttachment : attachmentsToDownload) {
 			final PendingFileTransfer transfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
 			transfer.setAttachmentId(fileAttachment.getModelElementId());
 			transfer.setChunkNumber(0);
@@ -1402,6 +1402,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			new UnicaseCommand() {
 				@Override
 				protected void doRun() {
+					fileAttachment.setDownloading(true);
 					getPendingFileTransfers().add(transfer);
 				}
 			}.run();
