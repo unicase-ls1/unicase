@@ -429,12 +429,14 @@ public class TestProjectGenerator {
 		} else {
 			// me.eSet(ref, null);
 		}
+
 	}
 
 	/**
 	 * this sets containment references for an instance consider that containment reference of an object, is at the same
 	 * time container reference of the opposite object.
 	 */
+	@SuppressWarnings("unchecked")
 	private void createContainmentRef(ModelElement me, EReference ref, int lowerBound, int upperBound) {
 		// check special cases
 		if (checkSpecialCase(me, ref)) {
@@ -483,7 +485,8 @@ public class TestProjectGenerator {
 			freeInstancesOfRefType.remove(referencedInstance);
 		}
 		if (ref.isMany()) {
-			me.eSet(ref, referencedInstances);
+			List<Object> list = (List<Object>) me.eGet(ref);
+			list.addAll(referencedInstances);
 		} else if (referencedInstances.size() != 0) {
 			me.eSet(ref, referencedInstances.get(0));
 		} else {
@@ -516,6 +519,9 @@ public class TestProjectGenerator {
 			// we don't want to break apart the document structure.
 			// a containment reference whose target is Section is not
 			// considered.
+			result = true;
+		}
+		if (me instanceof MEDiagram && ref.equals(DiagramPackage.eINSTANCE.getMEDiagram_NewElements())) {
 			result = true;
 		}
 		return result;
@@ -747,6 +753,11 @@ public class TestProjectGenerator {
 				continue;
 			}
 			if (attribute.getEType() instanceof EEnum) {
+				if (attribute.equals(DiagramPackage.eINSTANCE.getMEDiagram_Type())) {
+					DiagramType diagramType = getRandomDiagramType();
+					instance.eSet(attribute, diagramType);
+					continue;
+				}
 				EEnum en = (EEnum) attribute.getEType();
 				int numOfLiterals = en.getELiterals().size();
 				int index = numOfLiterals == 1 ? 0 : random.nextInt(numOfLiterals - 1);
@@ -756,6 +767,31 @@ public class TestProjectGenerator {
 				continue;
 			}
 
+		}
+	}
+
+	/**
+	 * @return
+	 */
+	private DiagramType getRandomDiagramType() {
+		int value = random.nextInt(10);
+		switch (value) {
+		case 0:
+			return DiagramType.ACTIVITY_DIAGRAM;
+		case 1:
+			return DiagramType.STATE_DIAGRAM;
+		case 2:
+		case 3:
+		case 4:
+			return DiagramType.USECASE_DIAGRAM;
+		case 5:
+		case 6:
+		case 7:
+		case 8:
+		case 9:
+			return DiagramType.CLASS_DIAGRAM;
+		default:
+			return DiagramType.CLASS_DIAGRAM;
 		}
 	}
 
