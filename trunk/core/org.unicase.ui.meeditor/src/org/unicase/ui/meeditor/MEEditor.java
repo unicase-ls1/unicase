@@ -272,8 +272,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public void dispose() {
-		((MEEditorInput) getEditorInput()).getLabelProvider().removeListener(labelProviderListener);
 		modelElement.eAdapters().remove(eAdapter);
+		((MEEditorInput) getEditorInput()).getLabelProvider().removeListener(labelProviderListener);
 		super.dispose();
 	}
 
