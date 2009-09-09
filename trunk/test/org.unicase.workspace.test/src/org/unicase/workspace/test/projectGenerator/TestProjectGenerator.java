@@ -365,6 +365,7 @@ public class TestProjectGenerator {
 	 * @param lowerBound
 	 * @param upperBound
 	 */
+	@SuppressWarnings("unchecked")
 	private void createNormalReference(ModelElement me, EReference ref, int lowerBound, int upperBound) {
 		// create a list of all instances of reference type
 		// and get a random number for number of references
@@ -421,7 +422,8 @@ public class TestProjectGenerator {
 			instancesOfRefType.remove(referencedInstance);
 		}
 		if (ref.isMany()) {
-			me.eSet(ref, referencedInstances);
+			List<Object> list = (List<Object>) me.eGet(ref);
+			list.addAll(referencedInstances);
 		} else if (referencedInstances.size() != 0) {
 			me.eSet(ref, referencedInstances.get(0));
 		} else {
@@ -719,6 +721,9 @@ public class TestProjectGenerator {
 					&& attribute.getName().equalsIgnoreCase("identifier")) {
 					// special case for identifier attribute
 					// do nothing
+					continue;
+				} else if (instance instanceof MEDiagram
+					&& attribute.equals(DiagramPackage.eINSTANCE.getMEDiagram_DiagramLayout())) {
 					continue;
 				}
 
