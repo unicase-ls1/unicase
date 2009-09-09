@@ -62,15 +62,22 @@ public class Application implements IApplication {
 		// if (test != null) {
 		// test.runTest(DEFAULTITERATION);
 		// }
-		createRandomProject();
+		boolean intoWorkspace = true;
+		createRandomProject(intoWorkspace);
 
 		return IApplication.EXIT_OK;
 	}
 
-	private void createRandomProject() throws IOException {
-		TestProjectParmeters param = new TestProjectParmeters(7, 3345671, 4, 3, 5, 20);
+	private void createRandomProject(boolean intoWorkspace) throws IOException {
+
+		TestProjectParmeters param = new TestProjectParmeters(7, 123456789, 4, 3, 5, 20);
 		TestProjectGenerator generator = new TestProjectGenerator(param);
 
+		if (intoWorkspace) {
+			Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
+			generator.generateProjectIntoWorkspace(workspace);
+			return;
+		}
 		Workspace workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
 		ProjectSpace projectSpace = ChangeTestHelper.createEmptyProjectSpace("random project");
 		projectSpace.setProjectDescription("random project with parameter: " + param.toString());
