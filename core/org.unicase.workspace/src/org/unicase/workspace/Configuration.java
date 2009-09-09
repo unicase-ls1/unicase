@@ -136,7 +136,7 @@ public final class Configuration {
 		ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
 		serverInfo.setName("unicase Developer Server");
 		serverInfo.setPort(1099);
-		serverInfo.setUrl("unicase-dev.in.tum.de");
+		serverInfo.setUrl("unicase-beta.in.tum.de");
 		return serverInfo;
 	}
 
