@@ -201,7 +201,7 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 
 		for (Comment c : comments) {
 			ops.add(comment2opMap.get(c));
-			if (!c.getSender().equals(getUser())) {
+			if (c.getSender() != null && !c.getSender().equals(getUser())) {
 				stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(c.getSender(), getProjectSpace()));
 				stringBuilder.append(", ");
 			}

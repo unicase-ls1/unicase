@@ -51,8 +51,16 @@ public class UpdateNotificationProvider implements NotificationProvider {
 	public List<ESNotification> provideNotifications(ProjectSpace projectSpace, List<ChangePackage> changePackages,
 		String currentUsername) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
+
+		List<ChangePackage> newChangePackages = new ArrayList<ChangePackage>();
+		for (ChangePackage cp : changePackages) {
+			if (cp != null) {
+				newChangePackages.add(cp);
+			}
+		}
+
 		// do not generate an update notification for a commit
-		if ((changePackages.size() == 1 && changePackages.get(0).getLogMessage() == null)) {
+		if ((newChangePackages.size() == 1 && newChangePackages.get(0).getLogMessage() == null)) {
 			return result;
 		}
 
@@ -61,14 +69,14 @@ public class UpdateNotificationProvider implements NotificationProvider {
 		notification.setRecipient(currentUsername);
 		notification.setProvider(getName());
 
-		if (changePackages.isEmpty()) {
+		if (newChangePackages.isEmpty()) {
 			notification.setCreationDate(new Date());
 			notification.setMessage("You checked out the project in version "
 				+ projectSpace.getBaseVersion().getIdentifier());
 			notification.setName("Project checkout");
 		} else {
-			Date date = changePackages.get(0).getLogMessage().getClientDate();
-			for (ChangePackage cp : changePackages) {
+			Date date = newChangePackages.get(0).getLogMessage().getClientDate();
+			for (ChangePackage cp : newChangePackages) {
 				if (cp.getLogMessage().getClientDate().after(date)) {
 					date = cp.getLogMessage().getClientDate();
 				}

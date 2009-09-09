@@ -139,6 +139,10 @@ public final class NotificationGenerator {
 		boolean createGenerationEvent) {
 		List<ESNotification> result = new ArrayList<ESNotification>();
 
+		if (changePackages == null || currentUsername == null) {
+			return result;
+		}
+
 		// rectify client date if neccessary
 		for (ChangePackage changePackage : changePackages) {
 			for (AbstractOperation operation : changePackage.getOperations()) {

@@ -94,7 +94,7 @@ public final class NotificationHelper {
 	 */
 	public static String getHTMLLinkForModelElement(ModelElement modelElement, ProjectSpace projectSpace) {
 		String label = "null";
-		if (modelElement != null) {
+		if (modelElement != null && modelElement.getName() != null) {
 			label = modelElement.getName().replaceAll("\"", "\\'");
 		}
 		return getHTMLLinkForModelElement(modelElement, projectSpace, label);
@@ -120,7 +120,10 @@ public final class NotificationHelper {
 		ret.append("%");
 		ret.append(projectSpace.getProjectId().getId());
 		ret.append("/");
-		String name = modelElement.getName().replaceAll("\"", "\\'");
+		String name = "null";
+		if (modelElement.getName() != null) {
+			name = modelElement.getName().replaceAll("\"", "\\'");
+		}
 		ret.append(name);
 		ret.append("%");
 		ret.append(modelElement.getIdentifier());

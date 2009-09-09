@@ -119,14 +119,15 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 
 	private void processReviewAssignments(String featureName, ReferenceOperation referenceOperation,
 		ModelElement modelElement, Set<Group> groupsOfOrgUnit, EClass clazz) {
-		if (featureName.equalsIgnoreCase("reviewer")) {
+		if (featureName.equalsIgnoreCase(TaskPackage.eINSTANCE.getWorkItem_Reviewer().getName())) {
 			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation).getNewValue();
 			ModelElement orgUnit = getProjectSpace().getProject().getModelElement(orgUnitId);
 			if (orgUnit != null && orgUnit instanceof User && orgUnit.equals(getUser())) {
 				reviewerItems.get(clazz).put((WorkItem) modelElement, referenceOperation);
 				getExcludedOperations().add(referenceOperation.getOperationId());
 			}
-		} else if (featureName.equalsIgnoreCase("workItemsToReview") && modelElement.equals(getUser())) {
+		} else if (featureName.equalsIgnoreCase(OrganizationPackage.eINSTANCE.getUser_WorkItemsToReview().getName())
+			&& modelElement.equals(getUser())) {
 			EList<ModelElementId> wiIds = ((MultiReferenceOperation) referenceOperation).getReferencedModelElements();
 			for (ModelElementId wiId : wiIds) {
 				ModelElement wi = getProjectSpace().getProject().getModelElement(wiId);
@@ -140,14 +141,14 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 
 	private void processAssignments(String featureName, ReferenceOperation referenceOperation,
 		ModelElement modelElement, Set<Group> groupsOfOrgUnit, EClass clazz) {
-		if (featureName.equalsIgnoreCase("assignee")) {
+		if (featureName.equalsIgnoreCase(TaskPackage.eINSTANCE.getWorkItem_Assignee().getName())) {
 			ModelElementId orgUnitId = ((SingleReferenceOperation) referenceOperation).getNewValue();
 			ModelElement orgUnit = getProjectSpace().getProject().getModelElement(orgUnitId);
 			if (orgUnit != null && (orgUnit.equals(getUser()) || groupsOfOrgUnit.contains(orgUnit))) {
 				assigneeItems.get(clazz).put((WorkItem) modelElement, referenceOperation);
 				getExcludedOperations().add(referenceOperation.getOperationId());
 			}
-		} else if (featureName.equalsIgnoreCase("assignments")
+		} else if (featureName.equalsIgnoreCase(OrganizationPackage.eINSTANCE.getOrgUnit_Assignments().getName())
 			&& (modelElement.equals(getUser()) || groupsOfOrgUnit.contains(modelElement))) {
 			EList<ModelElementId> wiIds = ((MultiReferenceOperation) referenceOperation).getReferencedModelElements();
 			for (ModelElementId wiId : wiIds) {
