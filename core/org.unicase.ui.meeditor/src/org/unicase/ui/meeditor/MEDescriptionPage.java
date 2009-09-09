@@ -18,7 +18,8 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
-import org.unicase.ui.meeditor.mecontrols.MERichTextControl;
+import org.unicase.ui.meeditor.mecontrols.MEControl;
+import org.unicase.ui.meeditor.mecontrols.RTEditor;
 import org.unicase.workspace.Configuration;
 
 /**
@@ -33,6 +34,7 @@ public class MEDescriptionPage extends FormPage {
 
 	private ScrolledForm form;
 	private Composite body;
+	private MEControl textControl;
 
 	/**
 	 * Default constructor.
@@ -74,11 +76,10 @@ public class MEDescriptionPage extends FormPage {
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(body);
 
 		TransactionalEditingDomain domain = Configuration.getEditingDomain();
-		MERichTextControl textControl = new MERichTextControl(ModelPackage.eINSTANCE.getModelElement_Description(),
-			domain, modelElement, toolkit);
-		textControl.setShowExpand(false);
+		textControl = new RTEditor(ModelPackage.eINSTANCE.getModelElement_Description(), domain, modelElement, toolkit);
+		// textControl.setShowExpand(false);
 		Control textWidget = textControl.createControl(body, SWT.NONE);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(textWidget);
+		GridDataFactory.fillDefaults().hint(200, -1).grab(true, true).applyTo(textWidget);
 	}
 
 	/**
@@ -86,6 +87,9 @@ public class MEDescriptionPage extends FormPage {
 	 */
 	@Override
 	public void dispose() {
+		if (textControl != null) {
+			textControl.dispose();
+		}
 		super.dispose();
 	}
 
