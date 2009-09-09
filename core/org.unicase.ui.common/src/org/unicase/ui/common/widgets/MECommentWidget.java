@@ -161,7 +161,7 @@ public class MECommentWidget extends Composite {
 		if (comment.getDescription() != null) {
 			userComment.setText(comment.getDescription());
 		}
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(userComment);
+		GridDataFactory.fillDefaults().hint(200, -1).grab(true, false).applyTo(userComment);
 
 		if (comment.eContainer() != null && currentUser != null) {
 			// only if contained in a project - i.e. not for pushed comments
