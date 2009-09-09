@@ -82,8 +82,7 @@ public class MEDiagramElementsProvider {
 			break;
 
 		case DiagramType.CLASS_DIAGRAM_VALUE:
-			result.add(ClassesPackage.eINSTANCE.getClass_());
-			result.add(ClassesPackage.eINSTANCE.getPackage());
+			result.add(ClassesPackage.eINSTANCE.getPackageElement());
 			break;
 
 		case DiagramType.WORKITEM_DIAGRAM_VALUE:
