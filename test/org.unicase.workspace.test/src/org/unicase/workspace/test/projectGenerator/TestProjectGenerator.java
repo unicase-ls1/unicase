@@ -60,7 +60,7 @@ public class TestProjectGenerator {
 	private static final String[] WORDS = { "hello", "cat", "mouse", "sun", "moon", "network", "watch", "rain", "kid",
 		"repair", "bug", "rainbow" };
 	// maximum length of a text
-	private static final int MAX_NUM_OF_WORDS = 25;
+	private static final int MAX_NUM_OF_WORDS = 5;
 
 	private Project project;
 
