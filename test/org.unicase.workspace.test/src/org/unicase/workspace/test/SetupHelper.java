@@ -399,9 +399,7 @@ public class SetupHelper {
 		if (usersession == null) {
 			usersession = WorkspaceFactory.eINSTANCE.createUsersession();
 
-			ServerInfo serverInfo = WorkspaceFactory.eINSTANCE.createServerInfo();
-			serverInfo.setPort(1099);
-			serverInfo.setUrl("127.0.0.1");
+			ServerInfo serverInfo = getServerInfo();
 
 			usersession.setServerInfo(serverInfo);
 			usersession.setUsername("super");
@@ -471,6 +469,7 @@ public class SetupHelper {
 		final LogMessage logMessage = VersioningFactory.eINSTANCE.createLogMessage();
 		logMessage.setAuthor(name);
 		logMessage.setDate(Calendar.getInstance().getTime());
+		logMessage.setClientDate(Calendar.getInstance().getTime());
 		logMessage.setMessage(message);
 		return logMessage;
 	}
@@ -560,9 +559,10 @@ public class SetupHelper {
 	 */
 	public Usersession createUsersession(User user) {
 		Usersession session = WorkspaceFactory.eINSTANCE.createUsersession();
+		getWorkSpace().getUsersessions().add(session);
+		session.setServerInfo(getServerInfo());
 		session.setUsername(user.getName());
 		session.setPassword("foo");
-		getWorkSpace().getUsersessions().add(session);
 		return session;
 	}
 }

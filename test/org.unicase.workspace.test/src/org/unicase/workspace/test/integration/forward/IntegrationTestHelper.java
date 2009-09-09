@@ -126,7 +126,7 @@ public final class IntegrationTestHelper {
 		final boolean clearOperations) {
 
 		final ChangePackage changePackage = VersioningFactory.eINSTANCE.createChangePackage();
-		domain.getCommandStack().execute(new RecordingCommand(getDomain()) {
+		getDomain().getCommandStack().execute(new RecordingCommand(getDomain()) {
 
 			@Override
 			protected void doExecute() {
@@ -1136,23 +1136,23 @@ public final class IntegrationTestHelper {
 	 */
 	private boolean sanityCheckCreateAndMultipleChange(ModelElement me, EReference ref1, ModelElement meToRef1,
 		EReference ref2, ModelElement meToRef2) {
-		
-		if(ref1 == null || ref2 == null){
+
+		if (ref1 == null || ref2 == null) {
 			return false;
 		}
-		
-		if(meToRef1 == null || meToRef2 == null){
+
+		if (meToRef1 == null || meToRef2 == null) {
 			return false;
 		}
-		
-		if(ref1.isContainment() && (meToRef1.equals(me) || EcoreUtil.isAncestor(meToRef1, me))){
+
+		if (ref1.isContainment() && (meToRef1.equals(me) || EcoreUtil.isAncestor(meToRef1, me))) {
 			return false;
 		}
-		
-		if(ref2.isContainment() && (meToRef2.equals(me) || EcoreUtil.isAncestor(meToRef2, me))){
+
+		if (ref2.isContainment() && (meToRef2.equals(me) || EcoreUtil.isAncestor(meToRef2, me))) {
 			return false;
 		}
-		
+
 		return true;
 	}
 
