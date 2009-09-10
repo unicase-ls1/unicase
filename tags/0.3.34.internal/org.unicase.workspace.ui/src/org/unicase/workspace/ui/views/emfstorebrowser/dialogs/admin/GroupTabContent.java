@@ -5,105 +5,51 @@
  */
 package org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin;
 
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
 import org.eclipse.draw2d.GridData;
+import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.ToolBarManager;
+import org.eclipse.jface.util.IPropertyChangeListener;
+import org.eclipse.jface.util.PropertyChangeEvent;
+import org.eclipse.jface.viewers.ILabelProviderListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.wizard.WizardDialog;
+import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.events.SelectionAdapter;
-import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.ToolBar;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.AdminBroker;
+import org.unicase.workspace.ui.Activator;
 
 /**
- * @author gurcankarakoc
+ * @author gurcankarakoc, deser
  */
-public class GroupTabContent extends TabContent {
+public class GroupTabContent extends TabContent implements IPropertyChangeListener {
 
 	/**
-	 * @param string
-	 *            the name of tab.
-	 * @param adminBroker
-	 *            AdminBroker is needed to communicate with server.
-	 * @param frm
-	 *            used to set input to properties form and update its table
-	 *            viewer upon. deletion of OrgUnits.
+	 * @param string the name of tab.
+	 * @param adminBroker AdminBroker is needed to communicate with server.
+	 * @param frm used to set input to properties form and update its table viewer upon. deletion of OrgUnits.
 	 */
-	public GroupTabContent(String string, AdminBroker adminBroker,
-			PropertiesForm frm) {
+	public GroupTabContent(String string, AdminBroker adminBroker, PropertiesForm frm) {
 		super(string, adminBroker, frm);
 		this.setTab(this);
 	}
 
 	/**
-	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createButtons(org.eclipse.swt.widgets.Composite)
-	 * @param tabContent
-	 *            is the Composite.
-	 */
-	@Override
-	public void createButtons(Composite tabContent) {
-		// Create and configure the "New" button
-		Button btnNew = new Button(tabContent, SWT.PUSH);
-		btnNew.setText("New Group");
-
-		btnNew.addSelectionListener(new SelectionAdapter() {
-			// create a new OrgUnit
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				newOrgUnit();
-				getForm().getTableViewer().refresh();
-			}
-
-		});
-
-		// Create and configure the "Delete" button
-		Button btnDelete = new Button(tabContent, SWT.PUSH);
-		btnDelete.setText("Delete Group");// User");
-
-		btnDelete.addSelectionListener(new SelectionAdapter() {
-			// Remove the selection and refresh the view
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-
-				deleteOrgUnit();
-				// If form input is a project, and from users of groups tab one
-				// of participants of this project is deleted, then the table
-				// viewer on project properties must be updated.
-				// Accordingly, if a group is open and one of its users is
-				// deleted, or if a user is open and one of its groups is
-				// deleted.
-				// form.getTableViewer().refresh();
-			}
-		});
-
-		Button importButton = new Button(tabContent, SWT.PUSH);
-		importButton.setText("Import Group");
-
-		importButton.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				AcUserImportWizard wizard = new AcUserImportWizard(
-						getAdminBroker(), getListViewer());
-				WizardDialog dialog = new WizardDialog(Display.getCurrent()
-						.getActiveShell(), wizard);
-				dialog.create();
-				dialog.open();
-			}
-		});
-
-	}
-
-	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createContents(org.eclipse.swt.widgets.TabFolder)
-	 * @param tabFolder
-	 *            TabFolder.
+	 * @param tabFolder TabFolder.
 	 * @return Composite.
 	 */
 	@Override
@@ -112,53 +58,135 @@ public class GroupTabContent extends TabContent {
 		tabContent.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		tabContent.setLayout(new GridLayout(2, false));
 
-		initList(tabContent);
+		ToolBar toolBar = new ToolBar(tabContent, SWT.FLAT | SWT.RIGHT);
+		ToolBarManager toolBarManager = new ToolBarManager(toolBar);
 
-		createButtons(tabContent);
+		Action createNewGroup = new Action("Create new group") {
+
+			@Override
+			public void run() {
+				try {
+					getAdminBroker().createGroup("New Group");
+				} catch (EmfStoreException e) {
+
+					DialogHandler.showExceptionDialog(e);
+				}
+				getTableViewer().refresh();
+
+				getForm().getTableViewer().refresh();
+			}
+
+		};
+
+		createNewGroup.setImageDescriptor(Activator.getImageDescriptor("icons/Group.gif"));
+		createNewGroup.setToolTipText("Create new group");
+
+		Action deleteGroup = new Action("Delete group") {
+			@Override
+			public void run() {
+				IStructuredSelection selection = (IStructuredSelection) getTableViewer().getSelection();
+				Iterator<?> iterator = selection.iterator();
+
+				while (iterator.hasNext()) {
+					ACGroup ou = (ACGroup) iterator.next();
+					if (ou == null) {
+						return;
+					}
+
+					try {
+						getAdminBroker().deleteGroup(ou.getId());
+					} catch (EmfStoreException e) {
+						DialogHandler.showExceptionDialog(e);
+					}
+
+					if (getForm().getCurrentInput() instanceof ACOrgUnit && getForm().getCurrentInput().equals(ou)) {
+						getForm().setInput(null);
+					}
+				}
+				getTableViewer().refresh();
+			}
+		};
+
+		deleteGroup.setImageDescriptor(Activator.getImageDescriptor("icons/delete.gif"));
+		deleteGroup.setToolTipText("Delete group");
+
+		Action importOrgUnit = new AcUserImportAction(getAdminBroker());
+		importOrgUnit.addPropertyChangeListener(this);
+
+		toolBarManager.add(createNewGroup);
+		toolBarManager.add(deleteGroup);
+		toolBarManager.add(importOrgUnit);
+		toolBarManager.update(true);
+
+		initList(tabContent);
 
 		return tabContent;
 	}
 
 	/**
-	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#newOrgUnit()
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected void newOrgUnit() {
-		try {
-			getAdminBroker().createGroup("New Group");
-		} catch (EmfStoreException e) {
+	public ITableLabelProvider getLabelProvider() {
+		return new ITableLabelProvider() {
 
-			DialogHandler.showExceptionDialog(e);
-		}
-		getListViewer().refresh();
+			public void addListener(ILabelProviderListener listener) {
+			}
 
+			public boolean isLabelProperty(Object element, String property) {
+				return false;
+			}
+
+			public void removeListener(ILabelProviderListener listener) {
+			}
+
+			public void dispose() {
+			}
+
+			public Image getColumnImage(Object element, int columnIndex) {
+				return Activator.getImageDescriptor("icons/Group.gif").createImage();
+			}
+
+			public String getColumnText(Object element, int columnIndex) {
+				return ((ACGroup) element).getName();
+			}
+
+		};
 	}
 
 	/**
-	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#deleteOrgUnit()
+	 * {@inheritDoc}
 	 */
 	@Override
-	protected void deleteOrgUnit() {
+	public IStructuredContentProvider getContentProvider() {
+		return new IStructuredContentProvider() {
 
-		ACGroup ou = (ACGroup) ((IStructuredSelection) getListViewer()
-				.getSelection()).getFirstElement();
-		if (ou == null) {
-			return;
-		}
+			public Object[] getElements(Object inputElement) {
+				// return a list of Groups in project space
+				List<ACGroup> groups = new ArrayList<ACGroup>();
+				try {
+					groups.addAll(getAdminBroker().getGroups());
+				} catch (EmfStoreException e) {
+					DialogHandler.showExceptionDialog(e);
+				}
+				return groups.toArray(new ACGroup[groups.size()]);
+			}
 
-		try {
-			getAdminBroker().deleteGroup(ou.getId());
-		} catch (EmfStoreException e) {
+			public void dispose() {
+			}
 
-			DialogHandler.showExceptionDialog(e);
-		}
+			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			}
+		};
+	}
 
-		getListViewer().refresh();
-		if (getForm().getCurrentInput() instanceof ACOrgUnit
-				&& getForm().getCurrentInput().equals(ou)) {
-			getForm().setInput(null);
-		}
-
+	/**
+	 * Refresh the tableViewer after a property change. (Used e.g. after importing users via e.g. CSV.)
+	 * 
+	 * @param event The event to deal with.
+	 */
+	public void propertyChange(PropertyChangeEvent event) {
+		getTableViewer().refresh();
 	}
 
 }

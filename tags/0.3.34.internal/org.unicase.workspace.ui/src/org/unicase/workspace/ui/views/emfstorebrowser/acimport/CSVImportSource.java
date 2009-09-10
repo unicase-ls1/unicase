@@ -51,16 +51,11 @@ public class CSVImportSource extends ImportSource {
 	 */
 	@Override
 	public Object[] getChildren(Object ob) {
-		ImportItemWrapper importWrapper = setParentsOfChildOrgUnits(ob);
+		ImportItemWrapper importWrapper = (ImportItemWrapper) ob;
 		if (importWrapper != null && importWrapper.getChildOrgUnits() != null) {
 			return importWrapper.getChildOrgUnits().toArray();
 		}
 		return null;
-	}
-
-	private ImportItemWrapper setParentsOfChildOrgUnits(Object arg0) {
-		((ImportItemWrapper) arg0).setParentOrgUnit(((ImportItemWrapper) arg0));
-		return ((ImportItemWrapper) arg0);
 	}
 
 	/**
@@ -128,16 +123,15 @@ public class CSVImportSource extends ImportSource {
 				String userName = title[indexUserName];
 				String groupName = title[indexForGroup];
 
-				ACUser user = AccesscontrolFactory.eINSTANCE.createACUser();
-				user.setName(userName);
-				ImportItemWrapper userImportWrapper = new ImportItemWrapper(null, user);
-				users.add(userImportWrapper);
-
 				ImportItemWrapper importWrapper = null;
 				ArrayList<ImportItemWrapper> childOrgUnits;
 				if (groupMap.get(groupName) == null) {
 					ACGroup group = AccesscontrolFactory.eINSTANCE.createACGroup();
 					importWrapper = new ImportItemWrapper(null, group);
+
+					// because these are root elements, they are their own parents
+					importWrapper.setParentOrgUnit(importWrapper);
+
 					group.setName(groupName);
 					groups.add(importWrapper);
 					groupMap.put(groupName, importWrapper);
@@ -146,6 +140,11 @@ public class CSVImportSource extends ImportSource {
 					importWrapper = groupMap.get(groupName);
 					childOrgUnits = importWrapper.getChildOrgUnits();
 				}
+
+				ACUser user = AccesscontrolFactory.eINSTANCE.createACUser();
+				user.setName(userName);
+				ImportItemWrapper userImportWrapper = new ImportItemWrapper(null, user, importWrapper);
+				users.add(userImportWrapper);
 
 				childOrgUnits.add(userImportWrapper);
 				importWrapper.setChildOrgUnits(childOrgUnits);
