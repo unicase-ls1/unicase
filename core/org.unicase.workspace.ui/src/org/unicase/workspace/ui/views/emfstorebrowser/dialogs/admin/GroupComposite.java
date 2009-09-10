@@ -178,7 +178,7 @@ public class GroupComposite extends PropertiesComposite {
 			try {
 				getAdminBroker().changeOrgUnit(group.getId(), getTxtName().getText(), getTxtDescription().getText());
 				((Form) (this.getParent().getParent())).setText("Group: " + getTxtName().getText());
-				orgUnitMgmtGUI.getActiveTabContent().getListViewer().refresh();
+				orgUnitMgmtGUI.getActiveTabContent().getTableViewer().refresh();
 			} catch (EmfStoreException e) {
 				DialogHandler.showExceptionDialog(e);
 			}

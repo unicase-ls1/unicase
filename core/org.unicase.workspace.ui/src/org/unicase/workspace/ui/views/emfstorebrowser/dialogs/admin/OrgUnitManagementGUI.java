@@ -26,8 +26,6 @@ import org.unicase.workspace.AdminBroker;
  */
 public class OrgUnitManagementGUI {
 
-	private TabFolder tabFolder;
-
 	// This keeps track of active tab;
 	// PropertiesForm need to know the activeTab so that
 	// it can refresh its list viewer on property changes
@@ -36,6 +34,8 @@ public class OrgUnitManagementGUI {
 	private ProjectTabContent projectsTabContents;
 	private GroupTabContent groupsTabContents;
 	private UserTabContent usersTabContents;
+
+	private TabFolder tabFolder;
 
 	/**
 	 * Constructor.
@@ -80,6 +80,7 @@ public class OrgUnitManagementGUI {
 	private void createTabFolder(SashForm sash) {
 
 		tabFolder = new TabFolder(sash, SWT.NONE);
+
 		tabFolder.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 
 		tabFolder.addSelectionListener(new SelectionListener() {
@@ -152,6 +153,20 @@ public class OrgUnitManagementGUI {
 
 		// set initial input to properties form
 		projectsTabContents.viewStarted();
+
+		tabFolder.addSelectionListener(new SelectionListener() {
+
+			public void widgetDefaultSelected(SelectionEvent e) {
+			}
+
+			// Update every tableViewer on any click on one of the TabItems
+			public void widgetSelected(SelectionEvent e) {
+				projectsTabContents.getTableViewer().refresh();
+				groupsTabContents.getTableViewer().refresh();
+				usersTabContents.getTableViewer().refresh();
+			}
+
+		});
 	}
 
 	private int[] sashWeights() {

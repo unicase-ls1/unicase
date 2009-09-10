@@ -9,7 +9,6 @@ import java.util.ArrayList;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
-import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.wizard.Wizard;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportController;
@@ -21,17 +20,11 @@ import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportItemWrapper
 public class AcUserImportWizard extends Wizard {
 
 	private ImportController importController;
-	private ListViewer listViewer;
 
 	/**
-	 * @param broker
-	 *            the broker which creates new users or groups at the end of the
-	 *            execution of this wizard.
-	 * @param listViewer
-	 *            listViewer
+	 * @param broker the broker which creates new users or groups at the end of the execution of this wizard.
 	 */
-	public AcUserImportWizard(AdminBroker broker, ListViewer listViewer) {
-		this.listViewer = listViewer;
+	public AcUserImportWizard(AdminBroker broker) {
 		importController = new ImportController(broker);
 		this.setWindowTitle("Import new users");
 	}
@@ -58,17 +51,13 @@ public class AcUserImportWizard extends Wizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		ArrayList<ImportItemWrapper> wrappedOrgUnits = ((AcUserImportPageTwo) this
-				.getPages()[1]).getCheckedItems();
+		ArrayList<ImportItemWrapper> wrappedOrgUnits = ((AcUserImportPageTwo) this.getPages()[1]).getCheckedItems();
 		if (wrappedOrgUnits.size() > 0) {
-			ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(
-					getShell());
+			ProgressMonitorDialog progressMonitorDialog = new ProgressMonitorDialog(getShell());
 			progressMonitorDialog.open();
-			progressMonitorDialog.getProgressMonitor().beginTask(
-					"Importing users", IProgressMonitor.UNKNOWN);
+			progressMonitorDialog.getProgressMonitor().beginTask("Importing users", IProgressMonitor.UNKNOWN);
 
 			importController.importOrgUnits(wrappedOrgUnits);
-			this.listViewer.refresh();
 
 			progressMonitorDialog.close();
 			return true;

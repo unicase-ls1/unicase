@@ -207,7 +207,7 @@ public class UserComposite extends PropertiesComposite {
 			try {
 				getAdminBroker().changeOrgUnit(user.getId(), getTxtName().getText(), getTxtDescription().getText());
 				((Form) (this.getParent().getParent())).setText("User: " + getTxtName().getText());
-				orgUnitMgmtGUI.getActiveTabContent().getListViewer().refresh();
+				orgUnitMgmtGUI.getActiveTabContent().getTableViewer().refresh();
 
 			} catch (EmfStoreException e) {
 				DialogHandler.showExceptionDialog(e);
