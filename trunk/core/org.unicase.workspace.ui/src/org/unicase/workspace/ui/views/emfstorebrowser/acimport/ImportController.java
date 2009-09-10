@@ -6,11 +6,11 @@
 package org.unicase.workspace.ui.views.emfstorebrowser.acimport;
 
 import java.util.ArrayList;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
-import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
@@ -27,20 +27,32 @@ public class ImportController {
 
 	private ImportSource importSource;
 
+	private Hashtable<ACOrgUnitId, ImportItemWrapper> importedUnits;
+
 	/**
 	 * @param adminBroker the admin broker.
 	 */
 	public ImportController(AdminBroker adminBroker) {
 		this.adminBroker = adminBroker;
-
+		this.importedUnits = new Hashtable<ACOrgUnitId, ImportItemWrapper>();
 	}
 
 	/**
 	 * @param wrappedOrgUnits a list of wrapped OrgUnits, which should be imported.
 	 */
 	public void importOrgUnits(ArrayList<ImportItemWrapper> wrappedOrgUnits) {
-		// TODO: would be easy to just add the already created ACOrgUnits
-		// instead of wrapping around ...!
+
+		// first go through the list and add all units of type group
+		importGroups(wrappedOrgUnits);
+
+		// then add all units of type user
+		importUsers(wrappedOrgUnits);
+
+		// finally set the associations on the imported units
+		setAssociations();
+	}
+
+	private void importUsers(ArrayList<ImportItemWrapper> wrappedOrgUnits) {
 		for (int i = 0; i < wrappedOrgUnits.size(); i++) {
 			ImportItemWrapper wrappedOrgUnit = wrappedOrgUnits.get(i);
 			if (wrappedOrgUnit.getOrgUnit() instanceof ACUser) {
@@ -48,51 +60,57 @@ public class ImportController {
 				try {
 					String username = wrappedOrgUnit.getOrgUnit().getName();
 					if (null == existUser(username)) {
-						adminBroker.createUser(username);
+						this.importedUnits.put(adminBroker.createUser(username), wrappedOrgUnit);
 					}
 				} catch (EmfStoreException e) {
 					WorkspaceUtil.logException(e.getMessage(), e);
 					DialogHandler.showExceptionDialog(e);
 				}
-			} else if (wrappedOrgUnit.getOrgUnit() instanceof ACGroup) {
+			}
+		}
+	}
+
+	private void importGroups(ArrayList<ImportItemWrapper> wrappedOrgUnits) {
+		for (int i = 0; i < wrappedOrgUnits.size(); i++) {
+			ImportItemWrapper wrappedOrgUnit = wrappedOrgUnits.get(i);
+			if (wrappedOrgUnit.getOrgUnit() instanceof ACGroup) {
 				// add this group to the system if it doesn't exist
 				try {
 					String groupname = wrappedOrgUnit.getOrgUnit().getName();
-					ACOrgUnitId groupID = existGroup(groupname);
-
-					if (null == groupID) {
-						groupID = adminBroker.createGroup(groupname);
+					if (null == existGroup(groupname)) {
+						this.importedUnits.put(adminBroker.createGroup(groupname), wrappedOrgUnit);
 					}
-
-					ArrayList<ImportItemWrapper> childrenWrappedOrgUnits = wrappedOrgUnit.getChildOrgUnits();
-
-					for (int j = 0; j < childrenWrappedOrgUnits.size(); j++) {
-						if (childrenWrappedOrgUnits.get(j).getOrgUnit() instanceof ACUser) {
-							String username = childrenWrappedOrgUnits.get(j).getOrgUnit().getName();
-							ACOrgUnitId userID = existUser(username);
-
-							if (null == userID) {
-								userID = adminBroker.createUser(username);
-							}
-							adminBroker.addMember(groupID, userID);
-						}
-					}
-
 				} catch (EmfStoreException e) {
 					WorkspaceUtil.logException(e.getMessage(), e);
 					DialogHandler.showExceptionDialog(e);
 				}
+			}
+		}
+	}
 
-			} else {
-				// Then it must be a "plain"/"abstract" ACOrgUnit, which should
-				// not be added to the system.
+	private void setAssociations() {
+		for (ACOrgUnitId unitId : importedUnits.keySet()) {
+			if (this.importedUnits.get(unitId).getParentOrgUnit() != null) {
+
+				ACOrgUnitId existGroup = existGroup(this.importedUnits.get(unitId).getParentOrgUnit().getOrgUnit()
+					.getName());
+
+				// we do not want self-containment
+				if (existGroup != null && !existGroup.equals(unitId)) {
+					try {
+						adminBroker.addMember(existGroup, unitId);
+					} catch (EmfStoreException e) {
+						WorkspaceUtil.logException(e.getMessage(), e);
+						DialogHandler.showExceptionDialog(e);
+					}
+				}
 			}
 		}
 	}
 
 	/**
 	 * @param groupName the name of group.
-	 * @return A ACOrgUnitId object if the group already exist null otherwise.
+	 * @return A ACOrgUnitId object if the group already exists null otherwise.
 	 */
 	private ACOrgUnitId existGroup(final String groupName) {
 		ACOrgUnitId exist = null;
@@ -126,28 +144,6 @@ public class ImportController {
 				ACUser us = iteratorUser.next();
 				if (us.getName().equalsIgnoreCase((userName))) {
 					exist = us.getId();
-				}
-			}
-		} catch (EmfStoreException e) {
-			DialogHandler.showExceptionDialog(e);
-		}
-		return exist;
-	}
-
-	/**
-	 * @param element the name of user.
-	 * @return true if the user already exist.
-	 */
-	@SuppressWarnings("unused")
-	private boolean existOrgUnit(final String element) {
-		boolean exist = false;
-		try {
-			List<ACOrgUnit> orgUnits = getAdminBroker().getOrgUnits();
-			Iterator<ACOrgUnit> iterator = orgUnits.iterator();
-
-			while (iterator.hasNext()) {
-				if (iterator.next().getName().equalsIgnoreCase((element))) {
-					exist = true;
 				}
 			}
 		} catch (EmfStoreException e) {

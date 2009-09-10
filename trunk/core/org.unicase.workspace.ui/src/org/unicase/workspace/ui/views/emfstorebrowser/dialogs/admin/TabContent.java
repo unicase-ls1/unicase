@@ -10,8 +10,13 @@ import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.DoubleClickEvent;
 import org.eclipse.jface.viewers.IDoubleClickListener;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.jface.viewers.ITableLabelProvider;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.TableViewerColumn;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerSorter;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DragSourceEvent;
@@ -21,7 +26,10 @@ import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.TabFolder;
+import org.eclipse.swt.widgets.Table;
 import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.accesscontrol.ACGroup;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
@@ -33,18 +41,49 @@ import org.unicase.workspace.AdminBroker;
 /**
  * This class sets the contents of tabs on the left side of OrgUnitManagmentGUI.
  * 
- * @author Hodaie, gurcankarakoc
+ * @author Hodaie, gurcankarakoc, deser
  */
 public abstract class TabContent {
 
 	/**
-	 * ListViewer lists the element in the tabs.
+	 * @author deser
 	 */
-	private ListViewer listViewer;
+	private final class SimpleAlphabeticSorter extends ViewerSorter {
 
-	/**
-	 * 
-	 */
+		private int dir = SWT.UP;
+
+		public SimpleAlphabeticSorter(int dir) {
+			super();
+			this.dir = dir;
+		}
+
+		@Override
+		public int compare(Viewer viewer, Object e1, Object e2) {
+			int returnValue = 0;
+			if (e1 instanceof ProjectInfo) {
+				ProjectInfo pi1 = (ProjectInfo) e1;
+				ProjectInfo pi2 = (ProjectInfo) e2;
+				returnValue = pi1.getName().compareTo(pi2.getName());
+			}
+			if (e1 instanceof ACUser) {
+				ACUser u1 = (ACUser) e1;
+				ACUser u2 = (ACUser) e2;
+				returnValue = u1.getName().compareTo(u2.getName());
+			}
+
+			if (e1 instanceof ACGroup) {
+				ACGroup g1 = (ACGroup) e1;
+				ACGroup g2 = (ACGroup) e2;
+				returnValue = g1.getName().compareTo(g2.getName());
+			}
+			if (this.dir == SWT.DOWN) {
+				returnValue = returnValue * -1;
+			}
+			return returnValue;
+		}
+	}
+
+	private TableViewer tableViewer;
 	private String tabName;
 
 	/**
@@ -58,54 +97,77 @@ public abstract class TabContent {
 	private AdminBroker adminBroker;
 
 	/**
-	 * used to set input to properties form and update its table viewer upon.
-	 * deletion of OrgUnits.
+	 * used to set input to properties form and update its table viewer upon. deletion of OrgUnits.
 	 */
 	private PropertiesForm form;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param tabName
-	 *            tab name
-	 * @param adminBroker
-	 *            AdminBroker
-	 * @param frm
-	 *            ProperitesForm
+	 * @param tabName tab name
+	 * @param adminBroker AdminBroker
+	 * @param frm ProperitesForm
 	 */
-	public TabContent(String tabName, AdminBroker adminBroker,
-			PropertiesForm frm) {
+	public TabContent(String tabName, AdminBroker adminBroker, PropertiesForm frm) {
 		this.tabName = tabName;
 		this.adminBroker = adminBroker;
 		this.form = frm;
-
 	}
 
 	/**
 	 * Creates contents of each tab.
 	 * 
-	 * @param tabFolder
-	 *            parent
+	 * @param tabFolder parent
 	 * @return contents composite
 	 */
 	protected abstract Composite createContents(TabFolder tabFolder);
 
 	/**
-	 * @param tabPage
-	 *            is the Composite.
+	 * @param tabPage is the Composite.
 	 */
 	protected void initList(Composite tabPage) {
 
-		listViewer = new ListViewer(tabPage, SWT.V_SCROLL | SWT.BORDER);
+		tableViewer = new TableViewer(tabPage, SWT.MULTI | SWT.H_SCROLL | SWT.V_SCROLL | SWT.FULL_SELECTION);
+
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gridData.horizontalSpan = 2;
-		listViewer.getList().setLayoutData(gridData);
+		tableViewer.getTable().setLayoutData(gridData);
 
-		listViewer.setLabelProvider(new TabLabelProvider());
-		listViewer.setContentProvider(new TabContentProvider(tab, adminBroker));
-		listViewer.setInput(new Object());
+		Table table = tableViewer.getTable();
+		table.setHeaderVisible(true);
+		table.setLinesVisible(true);
 
-		listViewer.addDoubleClickListener(new IDoubleClickListener() {
+		TableViewerColumn column = new TableViewerColumn(tableViewer, SWT.NONE);
+
+		column.getColumn().setWidth(100);
+		column.getColumn().setResizable(true);
+		column.getColumn().setMoveable(true);
+
+		// The getContentProvider-method fetches the specific ContentProvider.
+		// Therefore this method has to be overridden in children of this class!
+		tableViewer.setContentProvider(getContentProvider());
+
+		// The same with the LabelProvider.
+		tableViewer.setLabelProvider(getLabelProvider());
+		tableViewer.setInput(new Object());
+
+		tableViewer.getTable().setSortColumn(tableViewer.getTable().getColumn(0));
+		tableViewer.getTable().setSortDirection(SWT.UP);
+
+		Listener sortListener = new Listener() {
+			public void handleEvent(Event e) {
+				int dir = tableViewer.getTable().getSortDirection();
+				dir = dir == SWT.UP ? SWT.DOWN : SWT.UP;
+				tableViewer.getTable().setSortDirection(dir);
+				tableViewer.setSorter(new SimpleAlphabeticSorter(dir));
+			}
+
+		};
+
+		// connect the listener to the (first) column
+		column.getColumn().addListener(SWT.Selection, sortListener);
+
+		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
 				form.setInput(getSelectedItem(event));
 			}
@@ -117,36 +179,28 @@ public abstract class TabContent {
 	}
 
 	/**
-	 * @param tabContents
-	 *            is the Composite.
+	 * @return The LabelProvider for the concrete TabContent.
 	 */
-	public abstract void createButtons(Composite tabContents);
+	public abstract ITableLabelProvider getLabelProvider();
 
 	/**
-	 * Delete OrgUnit and refresh properties form if needed.
+	 * @return The ContentProvider for the concrete TabContent.
 	 */
-	protected abstract void deleteOrgUnit();
+	public abstract IStructuredContentProvider getContentProvider();
 
 	/**
-	 * You can create a new user or group in this method.
-	 */
-	protected abstract void newOrgUnit();
-
-	/**
-	 * This is used during first creation of tab folder to set initial input to
-	 * properties form.
+	 * This is used during first creation of tab folder to set initial input to properties form.
 	 */
 	public void viewStarted() {
 		if (form.getCurrentInput() == null) {
-			form.setInput((EObject) listViewer.getElementAt(0));
+			form.setInput((EObject) tableViewer.getElementAt(0));
 		}
 
 	}
 
 	private void addDragNDropSupport() {
 		int ops = DND.DROP_COPY;
-		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer
-				.getTransfer() };
+		Transfer[] transfers = new Transfer[] { LocalSelectionTransfer.getTransfer() };
 
 		DragSourceListener dragListener = new DragSourceListener() {
 			public void dragFinished(DragSourceEvent event) {
@@ -168,7 +222,7 @@ public abstract class TabContent {
 				}
 			}
 		};
-		listViewer.addDragSupport(ops, transfers, dragListener);
+		tableViewer.addDragSupport(ops, transfers, dragListener);
 
 		ops = DND.DROP_MOVE;
 		DropTargetListener dropListener = new DropTargetListener() {
@@ -195,7 +249,7 @@ public abstract class TabContent {
 			}
 
 		};
-		listViewer.addDropSupport(ops, transfers, dropListener);
+		tableViewer.addDropSupport(ops, transfers, dropListener);
 
 	}
 
@@ -208,8 +262,7 @@ public abstract class TabContent {
 			if (currentInput instanceof ProjectInfo) {
 				ProjectInfo projectInfo = (ProjectInfo) currentInput;
 
-				adminBroker.removeParticipant(projectInfo.getProjectId(),
-						orgUnit.getId());
+				adminBroker.removeParticipant(projectInfo.getProjectId(), orgUnit.getId());
 
 			} else if (currentInput instanceof ACGroup) {
 				ACGroup group = (ACGroup) currentInput;
@@ -217,8 +270,7 @@ public abstract class TabContent {
 
 			} else if (currentInput instanceof ACUser) {
 				ACUser user = (ACUser) currentInput;
-				adminBroker.removeGroup(user.getId(), ((ACGroup) orgUnit)
-						.getId());
+				adminBroker.removeGroup(user.getId(), ((ACGroup) orgUnit).getId());
 			}
 		} catch (EmfStoreException e) {
 			DialogHandler.showExceptionDialog(e);
@@ -233,13 +285,13 @@ public abstract class TabContent {
 	}
 
 	/**
-	 * This is called from user and group properties composites in order to
-	 * update ListViewer, For example when name of an OrgUnit is changed.
+	 * This is called from user and group properties composites in order to update TableViewer, For example when name of
+	 * an OrgUnit is changed.
 	 * 
-	 * @return listViewer
+	 * @return tableViewer
 	 */
-	public ListViewer getListViewer() {
-		return this.listViewer;
+	public TableViewer getTableViewer() {
+		return this.tableViewer;
 	}
 
 	/**
@@ -251,7 +303,7 @@ public abstract class TabContent {
 		if (event != null) {
 			sel = event.getSelection();
 		} else {
-			sel = listViewer.getSelection();
+			sel = tableViewer.getSelection();
 		}
 
 		IStructuredSelection ssel = null;
@@ -273,7 +325,6 @@ public abstract class TabContent {
 	}
 
 	/**
-	 * 
 	 * @return the name of the tab.
 	 */
 	public String getTabName() {
@@ -281,16 +332,13 @@ public abstract class TabContent {
 	}
 
 	/**
-	 * 
-	 * @param tabName
-	 *            set the name of current tab.
+	 * @param tabName set the name of current tab.
 	 */
 	public void setTabName(String tabName) {
 		this.tabName = tabName;
 	}
 
 	/**
-	 * 
 	 * @return get the type of the current tab.
 	 */
 	public TabContent getTab() {
@@ -298,16 +346,13 @@ public abstract class TabContent {
 	}
 
 	/**
-	 * 
-	 * @param tab
-	 *            set the type of current tab.
+	 * @param tab set the type of current tab.
 	 */
 	public void setTab(TabContent tab) {
 		this.tab = tab;
 	}
 
 	/**
-	 * 
 	 * @return get the AdminBroker.
 	 */
 	public AdminBroker getAdminBroker() {
@@ -315,16 +360,13 @@ public abstract class TabContent {
 	}
 
 	/**
-	 * 
-	 * @param adminBroker
-	 *            set the AdminBroker.
+	 * @param adminBroker set the AdminBroker.
 	 */
 	public void setAdminBroker(AdminBroker adminBroker) {
 		this.adminBroker = adminBroker;
 	}
 
 	/**
-	 * 
 	 * @return get the PropertiesForm.
 	 */
 	public PropertiesForm getForm() {
@@ -332,21 +374,17 @@ public abstract class TabContent {
 	}
 
 	/**
-	 * 
-	 * @param form
-	 *            set the PropertiesForm.
+	 * @param form set the PropertiesForm.
 	 */
 	public void setForm(PropertiesForm form) {
 		this.form = form;
 	}
 
 	/**
-	 * 
-	 * @param listViewer
-	 *            set the ListViewer.
+	 * @param tableViewer The tableViewer to set.
 	 */
-	public void setListViewer(ListViewer listViewer) {
-		this.listViewer = listViewer;
+	public void setTableViewer(TableViewer tableViewer) {
+		this.tableViewer = tableViewer;
 	}
 
 }
