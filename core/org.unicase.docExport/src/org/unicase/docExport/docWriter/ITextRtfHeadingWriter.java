@@ -47,7 +47,7 @@ public class ITextRtfHeadingWriter extends ITextRtfWriter {
 
 		Paragraph paragraph = new Paragraph(child.getTitlParagraph().getText(), style);
 
-		addItextObject(parent, paragraph);
+		addItextObject(parent, paragraph, true);
 
 		Vector<UDocument> children = child.getChildren();
 		for (UDocument subChild : children) {
