@@ -37,6 +37,7 @@ import com.lowagie.text.Chapter;
 import com.lowagie.text.Chunk;
 import com.lowagie.text.Document;
 import com.lowagie.text.DocumentException;
+import com.lowagie.text.Element;
 import com.lowagie.text.Font;
 import com.lowagie.text.FontFactory;
 import com.lowagie.text.List;
@@ -428,13 +429,18 @@ public abstract class ITextWriter {
 	/**
 	 * @param parent the iText parent object
 	 * @param toAdd the iText object, which shall be added
+	 * @param headingsOn true if headings should be written (necessary for the RtfHeadingWriter)
 	 * @throws DocumentException -
 	 */
-	protected void addItextObject(Object parent, Object toAdd) throws DocumentException {
+	protected void addItextObject(Object parent, Object toAdd, boolean headingsOn) throws DocumentException {
 		if (parent instanceof Document) {
-			Paragraph container = new Paragraph();
-			container.add(toAdd);
-			((Document) parent).add(container);
+			if (headingsOn) {
+				((Document) parent).add((Element) toAdd);
+			} else {
+				Paragraph container = new Paragraph();
+				container.add(toAdd);
+				((Document) parent).add(container);
+			}
 		} else if (parent instanceof Chapter) {
 			((Chapter) parent).add(toAdd);
 		} else if (parent instanceof Section) {
@@ -445,6 +451,15 @@ public abstract class ITextWriter {
 			WorkspaceUtil.log("The parent of the type " + parent.getClass().getSimpleName() + " "
 				+ "can't be used here. Nothing will be written to the document.", new Exception(), IStatus.ERROR);
 		}
+	}
+
+	/**
+	 * @param parent the iText parent object
+	 * @param toAdd the iText object, which shall be added
+	 * @throws DocumentException -
+	 */
+	protected void addItextObject(Object parent, Object toAdd) throws DocumentException {
+		addItextObject(parent, toAdd, false);
 	}
 
 	/**
