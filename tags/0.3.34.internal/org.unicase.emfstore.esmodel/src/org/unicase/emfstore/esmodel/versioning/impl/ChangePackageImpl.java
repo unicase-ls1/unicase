@@ -280,7 +280,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#apply(org.unicase.model.Project, boolean)
 	 */
 	public void apply(Project project, boolean force) {
-		for (AbstractOperation operation : operations) {
+		for (AbstractOperation operation : getOperations()) {
 			try {
 				operation.apply(project);
 			} catch (IllegalStateException e) {
