@@ -7,9 +7,11 @@ package org.unicase.emfstore.core;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.AdminEmfStore;
@@ -39,7 +41,7 @@ import org.unicase.emfstore.exceptions.StorageException;
  * 
  * @author Wesendonk
  */
-// TODO: bring this interface in new subinterface structure
+// TODO: bring this interface in new subinterface structure and refactor it
 public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements AdminEmfStore {
 
 	/**
@@ -64,8 +66,10 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		List<ACGroup> result = new ArrayList<ACGroup>();
 		for (ACGroup group : getServerSpace().getGroups()) {
+
+			// quickfix
 			ACGroup copy = (ACGroup) EcoreUtil.copy(group);
-			copy.getMembers().clear();
+			clearMembersFromGroup(copy);
 			result.add(copy);
 		}
 		return result;
@@ -83,7 +87,11 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
 		for (ACGroup group : getServerSpace().getGroups()) {
 			if (group.getMembers().contains(orgUnit)) {
-				result.add((ACGroup) EcoreUtil.copy(group));
+
+				// quickfix
+				ACGroup copy = (ACGroup) EcoreUtil.copy(group);
+				clearMembersFromGroup(copy);
+				result.add(copy);
 			}
 		}
 		return result;
@@ -155,7 +163,11 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 			throw new InvalidInputException();
 		}
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
-		return getGroup(groupId).getMembers();
+
+		// quickfix
+		EList<ACOrgUnit> members = getGroup(groupId).getMembers();
+		clearMembersFromGroups(members);
+		return members;
 	}
 
 	/**
@@ -213,6 +225,8 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 				}
 			}
 		}
+		// quickfix
+		clearMembersFromGroups(result);
 		return result;
 	}
 
@@ -365,6 +379,8 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		for (ACOrgUnit group : getServerSpace().getGroups()) {
 			result.add(group);
 		}
+		// quickfix
+		clearMembersFromGroups(result);
 		return result;
 	}
 
@@ -454,7 +470,28 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 			throw new InvalidInputException();
 		}
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
-		return getOrgUnit(orgUnitId);
+		// quickfix
+		ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
+		clearMembersFromGroup(orgUnit);
+		return orgUnit;
+	}
+
+	/**
+	 * This method is used as fix for the containment issue of group.
+	 */
+	private void clearMembersFromGroups(Collection<ACOrgUnit> orgUnits) {
+		for (ACOrgUnit orgUnit : orgUnits) {
+			clearMembersFromGroup(orgUnit);
+		}
+	}
+
+	/**
+	 * This method is used as fix for the containment issue of group.
+	 */
+	private void clearMembersFromGroup(ACOrgUnit orgUnit) {
+		if (orgUnit instanceof ACGroup) {
+			((ACGroup) orgUnit).getMembers().clear();
+		}
 	}
 
 	private boolean isServerAdmin(Role role) {
