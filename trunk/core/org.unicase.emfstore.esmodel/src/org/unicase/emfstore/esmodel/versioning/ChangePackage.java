@@ -129,6 +129,15 @@ public interface ChangePackage extends EObject {
 	void apply(Project project);
 
 	/**
+	 * Apply all operations in the change package to the given project. Additional you can force the operations to be
+	 * applied with illegal operations being ignored.
+	 * 
+	 * @param project the project
+	 * @param force if true, illegal Operations won't stop the other to be applied
+	 */
+	void apply(Project project, boolean force);
+
+	/**
 	 * Remove all operations from the change package that are masked by later operations in the same package.
 	 */
 	void cannonize();
