@@ -271,8 +271,23 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	 * @generated NOT
 	 */
 	public void apply(Project project) {
-		for (AbstractOperation abstractOperation : getOperations()) {
-			abstractOperation.apply(project);
+		apply(project, false);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#apply(org.unicase.model.Project, boolean)
+	 */
+	public void apply(Project project, boolean force) {
+		for (AbstractOperation operation : operations) {
+			try {
+				operation.apply(project);
+			} catch (IllegalStateException e) {
+				if (!force) {
+					throw e;
+				}
+			}
 		}
 	}
 
