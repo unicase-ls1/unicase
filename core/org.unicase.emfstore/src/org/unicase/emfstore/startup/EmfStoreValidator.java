@@ -176,7 +176,7 @@ public class EmfStoreValidator {
 					state = (Project) EcoreUtil.copy(version.getProjectState());
 				} else {
 
-					version.getChanges().apply(state);
+					version.getChanges().apply(state, true);
 
 					if (version.getProjectState() != null) {
 						int[] compare = linearCompare(version.getProjectState(), state);
