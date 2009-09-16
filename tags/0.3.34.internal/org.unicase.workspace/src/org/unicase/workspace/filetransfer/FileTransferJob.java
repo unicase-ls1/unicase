@@ -96,15 +96,6 @@ public abstract class FileTransferJob extends Job {
 			protected void doRun() {
 				WorkspaceManager.getProjectSpace(fileAttachment).getPendingFileTransfers().remove(transfer);
 				((ProjectSpaceImpl) WorkspaceManager.getProjectSpace(fileAttachment)).saveProjectSpaceOnly();
-				if (transfer.isUpload()) {
-					fileAttachment.setUploading(false);
-					fileAttachment.setDownloading(true);
-					fileAttachment.setDownloading(false);
-				} else {
-					if (fileInformation.getFileVersion() == Integer.parseInt(fileAttachment.getFileID())) {
-						fileAttachment.setDownloading(false);
-					}
-				}
 			}
 		}.run();
 	}
