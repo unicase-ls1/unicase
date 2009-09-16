@@ -75,12 +75,8 @@ public class DashboardPage extends FormPage {
 			count = Math.min(count, notifications.size());
 			for (int i = 0; i < count; i++) {
 				ESNotification n = notifications.get(i);
-				if (n.getRelatedModelElements().size() > 0) {
-					ModelElementId modelElementId = n.getRelatedModelElements().get(0);
-					ModelElement firstModelElement = projectSpace.getProject().getModelElement(modelElementId);
-					if (firstModelElement == null) {
-						continue;
-					}
+				if (!sanityCheck(n)) {
+					continue;
 				}
 				if (!n.isSeen()) {
 					AbstractDashboardEntry entry;
@@ -123,6 +119,31 @@ public class DashboardPage extends FormPage {
 	public DashboardPage(DashboardEditor editor, String id, String title) {
 		super(editor, id, title);
 		domain = Configuration.getEditingDomain();
+	}
+
+	/**
+	 * Performs sanity checks on a notification.
+	 * 
+	 * @param n the notification.
+	 * @return if the notification is valid.
+	 */
+	protected boolean sanityCheck(ESNotification n) {
+		if (n == null) {
+			return false;
+		}
+		if (n.getProject() == null || n.getProvider() == null || n.getCreationDate() == null || n.getMessage() == null
+			|| n.getName() == null) {
+			return false;
+		}
+		if (n.getRelatedModelElements().size() > 0) {
+			ModelElementId modelElementId = n.getRelatedModelElements().get(0);
+			ModelElement firstModelElement = projectSpace.getProject().getModelElement(modelElementId);
+			if (firstModelElement == null) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
