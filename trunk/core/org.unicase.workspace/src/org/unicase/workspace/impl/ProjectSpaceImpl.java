@@ -2502,4 +2502,19 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return isTransient;
 	}
 
+	public boolean hasFileTransfer(FileInformation fileInformation, boolean upload) {
+		final PendingFileTransfer tmpTransfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
+		tmpTransfer.setAttachmentId(ModelUtil.createModelElementId(fileInformation.getFileAttachmentId()));
+		tmpTransfer.setChunkNumber(fileInformation.getChunkNumber());
+		tmpTransfer.setFileVersion(fileInformation.getFileVersion());
+		tmpTransfer.setFileName(fileInformation.getFileName());
+		tmpTransfer.setUpload(upload);
+		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
+			if (transfer.isUpload() == upload && transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId())
+				&& transfer.getFileVersion() == tmpTransfer.getFileVersion()) {
+				return true;
+			}
+		}
+		return false;
+	}
 } // ProjectContainerImpl

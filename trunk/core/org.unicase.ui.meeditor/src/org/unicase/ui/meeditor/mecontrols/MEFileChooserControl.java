@@ -6,7 +6,6 @@
 package org.unicase.ui.meeditor.mecontrols;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -46,9 +45,7 @@ import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.impl.ProjectSpaceImpl;
 import org.unicase.workspace.util.FileTransferUtil;
-import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * @author pfeifferc
@@ -62,8 +59,6 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 	private static final String CANCEL_UPLOAD_TOOLTIP = "If you wish to cancel the pending upload and upload another file, \nplease click this button.";
 
-	private EAttribute attribute;
-
 	private FileAttachment fileAttachment;
 
 	private UploadSelectionListener uploadListener;
@@ -71,6 +66,10 @@ public class MEFileChooserControl extends AbstractMEControl {
 	private RemoveTransferSelectionListener removeListener;
 
 	private EMFDataBindingContext dbc;
+
+	private Button upload;
+
+	private Link fileName;
 
 	/**
 	 * Default constructor.
@@ -83,7 +82,6 @@ public class MEFileChooserControl extends AbstractMEControl {
 	public MEFileChooserControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement,
 		EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
-		this.attribute = attribute;
 		fileAttachment = (FileAttachment) getModelElement();
 	}
 
@@ -110,30 +108,28 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 		// ADDING WIDGETS AND SETTING LAYOUT DATA
 
-		// Column 1: downloadPending, icon to display status of cached file
-		Label downloadPending = new Label(composite, SWT.NONE);
-		downloadPending.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
-
-		// Column 2: file name
-		Link fileName = new Link(composite, SWT.NONE);
+		// Column 1: file name
+		fileName = new Link(composite, SWT.NONE);
 		fileName.setLayoutData(new GridData(SWT.NONE, SWT.BEGINNING, true, true));
 		fileName.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).hint(300, 15).grab(true, true).applyTo(fileName);
 
-		// Column 3: save as button
+		// Column 2: save as button
 		Link saveAs = new Link(composite, SWT.RIGHT);
 		saveAs.setText("<a>Save as...</a>");
 		saveAs.setLayoutData(new GridData(SWT.RIGHT, SWT.BEGINNING, false, false));
 		saveAs.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WHITE));
 		GridDataFactory.fillDefaults().align(SWT.LEFT, SWT.CENTER).grab(false, false).applyTo(saveAs);
 
-		// Column 4: button to open a dialog for uploading files
-		Button upload = new Button(composite, SWT.PUSH);
+		// Column 3: button to open a dialog for uploading files
+
+		upload = new Button(composite, SWT.PUSH);
 		upload.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
 
 		// Column x: invisible label to fix databinding direction problem
 		Label fix = new Label(composite, SWT.NONE);
 		fix.setVisible(false);
+		GridDataFactory.fillDefaults().hint(0, 0).grab(false, false).applyTo(fix);
 
 		// ADDING LISTENERS AND TOOLTIPS TO THE WIDGETS
 
@@ -153,24 +149,11 @@ public class MEFileChooserControl extends AbstractMEControl {
 		// data binding context
 		dbc = new EMFDataBindingContext();
 		// file name binding
-		IObservableValue model1 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(), attribute);
+		IObservableValue model1 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
+			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_FileID());
 		UpdateValueStrategy strategy1 = new UpdateValueStrategy();
-		strategy1.setConverter(new FileNameLinkContentConverter());
-		dbc.bindValue(SWTObservables.observeText(fileName), model1, null, strategy1);
-		// upload binding
-		IObservableValue model2 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
-			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Uploading());
-		UpdateValueStrategy strategy2 = new UpdateValueStrategy();
-		strategy2.setConverter(new UploadImageConverter(upload));
-		// Eclipse 3.4 compatibility: observeSelection instead of observeImage
-		dbc.bindValue(SWTObservables.observeText(fix), model2, null, strategy2);
-		// download binding
-		IObservableValue model3 = EMFEditObservables.observeValue(getEditingDomain(), getModelElement(),
-			AttachmentFactory.eINSTANCE.getAttachmentPackage().getFileAttachment_Downloading());
-		UpdateValueStrategy strategy3 = new UpdateValueStrategy();
-		strategy3.setConverter(new DownloadImageConverter(downloadPending, saveAs));
-		// Eclipse 3.4 compatibility: observeText instead of observeImage
-		dbc.bindValue(SWTObservables.observeText(fix), model3, null, strategy3);
+		strategy1.setConverter(new FileIDContentConverter());
+		dbc.bindValue(SWTObservables.observeText(fix), model1, null, strategy1);
 
 		return parent;
 	}
@@ -186,134 +169,54 @@ public class MEFileChooserControl extends AbstractMEControl {
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	private final class DownloadImageConverter implements IConverter {
-
-		private Label downloadPending;
-		private Link saveAs;
-
-		public DownloadImageConverter(Label downloadPending, Link saveAs) {
-			this.downloadPending = downloadPending;
-			this.saveAs = saveAs;
-		}
-
-		public Object getToType() {
-			return String.class;
-		}
-
-		public Object getFromType() {
-			return Boolean.class;
-		}
-
-		public Object convert(Object fromObject) {
-			if (fileAttachment.getFileID() == null) {
-				return setToolTipAndSaveAsStatus("There is no file attached to this file attachment.", false);
-			}
-			File cachedFile;
-			try {
-				cachedFile = FileTransferUtil.findCachedFile(fileAttachment, WorkspaceManager.getProjectSpace(
-					fileAttachment).getProjectId());
-				FileInputStream fileInputStream = new FileInputStream(cachedFile);
-				int size = fileInputStream.available();
-				fileInputStream.close();
-				if (size == fileAttachment.getFileSize()) {
-					return setToolTipAndSaveAsStatus(
-						"The download has succeeded. \nYou can open or save the file at another location at any time.",
-						true);
-				} else {
-					if (fileAttachment.isDownloading()) {
-						return setToolTipAndSaveAsStatus(
-							"A download request is pending. \nPlease wait for it to be finished.", false);
-					} else {
-						return setToolTipAndSaveAsStatus(
-							"Please login and click the file name \nto initiate the download of the file.", false);
-					}
-				}
-			} catch (FileNotFoundException e) {
-				if (fileAttachment.isDownloading()) {
-					return setToolTipAndSaveAsStatus(
-						"A download request is pending. \nPlease wait for it to be finished.", false);
-				} else {
-					return setToolTipAndSaveAsStatus(
-						"Please login and click the file name \nto initiate the download of the file.", false);
-				}
-			} catch (IOException e) {
-				return setToolTipAndSaveAsStatus("Could not locate the file in the cache.", false);
-			}
-		}
-
-		private Object setToolTipAndSaveAsStatus(String toolTipText, boolean enabled) {
-			saveAs.setEnabled(enabled);
-			downloadPending.setToolTipText(toolTipText);
-			if (enabled) {
-				downloadPending.setImage(Activator.getImageDescriptor("icons/drive_go.png").createImage());
-			} else {
-				downloadPending.setImage(Activator.getImageDescriptor("icons/drive_error.png").createImage());
-			}
-			// WORKAROUND: as SWTObservables.observeImage is not supported in Eclipse < 3.5
-			return "";
+	private void setUploadButtonAccordingToTransferStatus(boolean uploading) {
+		if (!uploading) {
+			upload.removeSelectionListener(removeListener);
+			upload.addSelectionListener(uploadListener);
+			upload.setToolTipText(UPLOAD_NOTPENDING_TOOL_TIP);
+			upload.setImage(Activator.getImageDescriptor("icons/page_add.png").createImage());
+		} else {
+			upload.removeSelectionListener(uploadListener);
+			upload.addSelectionListener(removeListener);
+			upload.setToolTipText(CANCEL_UPLOAD_TOOLTIP);
+			upload.setImage(Activator.getImageDescriptor("icons/delete.png").createImage());
 		}
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	private final class UploadImageConverter implements IConverter {
-		private final Button upload;
-
-		private UploadImageConverter(Button upload) {
-			this.upload = upload;
-		}
-
-		public Object getToType() {
-			return String.class;
-		}
-
-		public Object getFromType() {
-			return Boolean.class;
-		}
-
-		public Object convert(Object fromObject) {
-			boolean uploading = (Boolean) fromObject;
-			if (!uploading) {
-				upload.removeSelectionListener(removeListener);
-				upload.addSelectionListener(uploadListener);
-				upload.setToolTipText(UPLOAD_NOTPENDING_TOOL_TIP);
-				upload.setImage(Activator.getImageDescriptor("icons/page_add.png").createImage());
-			} else {
-				upload.removeSelectionListener(uploadListener);
-				upload.addSelectionListener(removeListener);
-				upload.setToolTipText(CANCEL_UPLOAD_TOOLTIP);
-				upload.setImage(Activator.getImageDescriptor("icons/delete.png").createImage());
-			}
-			// WORKAROUND: as SWTObservables.observeImage is not supported in Eclipse < 3.5
-			return "";
-		}
-	}
-
-	/**
-	 * Converts the content of the file name attribute value to a hyperlink.
+	 * Responds to changes of the file version to trigger correct UI behaviour.
 	 * 
 	 * @author pfeifferc
 	 */
-	private final class FileNameLinkContentConverter implements IConverter {
+	private final class FileIDContentConverter implements IConverter {
 
-		public Object getToType() {
-			return String.class;
+		public Object convert(Object fromObject) {
+			try {
+				if (WorkspaceManager.getProjectSpace(fileAttachment).hasFileTransfer(
+					getFileInformationForFileAttachment(), true)) {
+					setUploadButtonAccordingToTransferStatus(true);
+				} else {
+					setUploadButtonAccordingToTransferStatus(false);
+				}
+			} catch (FileTransferException e) {
+				setUploadButtonAccordingToTransferStatus(false);
+			}
+			if (fileAttachment.getFileName() == null) {
+				fileName.setText("No file attached.");
+			} else {
+				fileName.setText("<a>" + fileAttachment.getFileName() + "</a>");
+			}
+			return fromObject;
 		}
 
 		public Object getFromType() {
 			return String.class;
 		}
 
-		public Object convert(Object fromObject) {
-			if (fromObject == null) {
-				return "There is no file attached.";
-			}
-			return "<a>" + fromObject.toString() + "</a>";
+		public Object getToType() {
+			return String.class;
 		}
+
 	}
 
 	/**
@@ -323,12 +226,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 
 		public void widgetSelected(SelectionEvent e) {
 			WorkspaceManager.getProjectSpace(fileAttachment).removePendingFileUpload(fileAttachment.getIdentifier());
-			new UnicaseCommand() {
-				@Override
-				protected void doRun() {
-					fileAttachment.setUploading(false);
-				}
-			}.run();
+			setUploadButtonAccordingToTransferStatus(false);
 		}
 
 		public void widgetDefaultSelected(SelectionEvent e) {
@@ -410,6 +308,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 	private final class DownloadSelectionListener implements SelectionListener {
 
 		public void widgetDefaultSelected(SelectionEvent e) {
+			// nothing to do
 		}
 
 		public void widgetSelected(SelectionEvent e) {
@@ -430,23 +329,23 @@ public class MEFileChooserControl extends AbstractMEControl {
 					return;
 				}
 				try {
-					// try to localize the cached file
-					if (!FileTransferUtil.findCachedFile(fileInfo,
-						WorkspaceManager.getProjectSpace(fileAttachment).getProjectId()).exists()) {
-						throw new FileNotFoundException("File could not be localized!");
+					if (WorkspaceManager.getProjectSpace(fileAttachment).hasFileTransfer(fileInfo, false)) {
+						openInformation("Please observe:", "File download has not yet been fulfilled!");
+					} else {
+						// try to localize the cached file
+						if (!FileTransferUtil.findCachedFile(fileInfo,
+							WorkspaceManager.getProjectSpace(fileAttachment).getProjectId()).exists()) {
+							throw new FileNotFoundException("File could not be localized!");
+						}
+						// open file
+						openFile(fileInfo, WorkspaceManager.getProjectSpace(fileAttachment).getProjectId());
 					}
-					// open file
-					openFile(fileInfo, WorkspaceManager.getProjectSpace(fileAttachment).getProjectId());
 				} catch (FileNotFoundException e) {
 					try {
 						// if file could not be found, initiate transfer
 						WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInfo, null, false);
-						new UnicaseCommand() {
-							@Override
-							protected void doRun() {
-								fileAttachment.setDownloading(true);
-							}
-						}.run();
+						openInformation("Please observe:",
+							"The file will be downloaded as soon as you login, or now if you are already logged in.");
 					} catch (FileTransferException e1) {
 						openInformation("Please observe:", e1.getMessage());
 					}
@@ -482,14 +381,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 					// adds a pending file upload request
 					WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInformation,
 						new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()), true);
-					new UnicaseCommand() {
-						@Override
-						protected void doRun() {
-							fileAttachment.setUploading(true);
-							((ProjectSpaceImpl) WorkspaceManager.getProjectSpace(fileAttachment))
-								.saveProjectSpaceOnly();
-						}
-					}.run();
+					setUploadButtonAccordingToTransferStatus(true);
 				} catch (FileTransferException e1) {
 					openInformation("File Transfer Exception:", e1.getMessage());
 				}

@@ -742,4 +742,11 @@ public interface ProjectSpace extends IdentifiableElement {
 	 */
 	boolean isTransient();
 
+	/**
+	 * @param fileInformation file info
+	 * @param upload if true, download if false
+	 * @return if transfer exists
+	 */
+	boolean hasFileTransfer(FileInformation fileInformation, boolean upload);
+
 } // ProjectContainer
