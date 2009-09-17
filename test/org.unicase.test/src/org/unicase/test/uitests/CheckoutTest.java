@@ -30,7 +30,7 @@ public class CheckoutTest {
 	}
 
 	@Test
-	public void canCreateANewJavaProject() throws Exception {
+	public void checkoutProject() throws Exception {
 		bot.menu("Window").menu("Show View").menu("Other...").click();
 		SWTBotShell shell = bot.shell("Show View");
 		shell.activate();
@@ -59,7 +59,7 @@ public class CheckoutTest {
 
 	@AfterClass
 	public static void sleep() {
-		bot.sleep(100000);
+		bot.sleep(5000);
 		SetupHelper.stopServer();
 	}
 }
