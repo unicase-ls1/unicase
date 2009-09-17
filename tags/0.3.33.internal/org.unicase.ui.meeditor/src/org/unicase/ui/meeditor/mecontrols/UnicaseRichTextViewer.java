@@ -5,7 +5,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
-import org.eclipse.jface.action.ControlContribution;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.action.IContributionItem;
 import org.eclipse.jface.action.IContributionManager;
@@ -107,7 +106,6 @@ public class UnicaseRichTextViewer extends RichTextViewer {
 		toolbarManager.add(new Separator());
 
 		IContributionItem styleContributionItem = factory.getStyleContributionItem();
-		ControlContribution controlContribution = (ControlContribution) styleContributionItem;
 		toolbarManager.add(styleContributionItem);
 
 		IAction foregroundColorAction = super.factory.getForegroundColorAction();
