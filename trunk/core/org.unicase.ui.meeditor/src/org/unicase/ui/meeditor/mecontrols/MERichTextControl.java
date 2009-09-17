@@ -277,13 +277,36 @@ public class MERichTextControl extends AbstractMEControl {
 				}
 			}
 			viewer.getDocument().set(split[1]);
+
 		}
+		System.out.println("-----------------");
+		System.out.println(txt);
+		System.out.println("-----------------");
+
+		StringBuilder newString = new StringBuilder();
+		for (int i = 0; i < text.getLineCount(); i++) {
+			if (bulletedLines.contains(i)) {
+				newString.append("<ul>");
+				newString.append("<li>");
+				newString.append(text.getLine(i));
+				newString.append("</li>");
+				newString.append("</ul>");
+			} else {
+				newString.append(text.getLine(i));
+			}
+		}
+		String newDesc = newString.toString();
+		System.out.println(newDesc);
+
+		System.out.println("-----------------");
+
 		for (int i = 0; i < text.getLineCount(); i++) {
 			text.setLineBullet(i, 1, null);
 		}
 		for (Integer line : bulletedLines) {
 			bullet(line, 1);
 		}
+		viewer.getDocument().set(newDesc);
 
 	}
 
