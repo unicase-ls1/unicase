@@ -59,7 +59,7 @@ public class CheckoutTest {
 
 	@AfterClass
 	public static void sleep() {
-		bot.sleep(10000);
+		bot.sleep(100000);
 		SetupHelper.stopServer();
 	}
 }
