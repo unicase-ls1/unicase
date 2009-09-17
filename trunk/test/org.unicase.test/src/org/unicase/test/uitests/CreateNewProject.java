@@ -30,7 +30,7 @@ public class CreateNewProject {
 	public void canCreateANewJavaProject() throws Exception {
 		Logger logger = Logger.getLogger("LoggerTest");
 
-		logger.info("test ya brenz heheh");
+		logger.info("testing");
 	}
 
 	@AfterClass
