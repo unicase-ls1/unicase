@@ -51,16 +51,26 @@ public class ReferenceNotificationTest extends NotificationTest {
 
 		// exactly one SET notification is expected with attribute feature "initiatingActor" on our useCase and newValue
 		// actor
-		assertEquals(1, rec.size());
 
-		NotificationInfo n = rec.get(0);
+		// due to refactoring and removing the bidirectional filter two notifications are expected.
+		assertEquals(2, rec.size());
 
-		assertSame(useCase, n.getNotifier());
-		assertTrue(n.isReferenceNotification());
-		assertTrue(n.isSetEvent());
-		assertSame(n.getNewValue(), actor);
-		assertEquals(n.getReference().getName(), "initiatingActor");
-		assertNull(n.getOldValue());
+		NotificationInfo addNotification = rec.get(0);
+		NotificationInfo setNotification = rec.get(1);
+
+		assertSame(actor, addNotification.getNotifier());
+		assertTrue(addNotification.isReferenceNotification());
+		assertTrue(addNotification.isAddEvent());
+		assertSame(addNotification.getNewValue(), useCase);
+		assertEquals(addNotification.getReference().getName(), "initiatedUseCases");
+		assertNull(addNotification.getOldValue());
+
+		assertSame(useCase, setNotification.getNotifier());
+		assertTrue(setNotification.isReferenceNotification());
+		assertTrue(setNotification.isSetEvent());
+		assertSame(setNotification.getNewValue(), actor);
+		assertEquals(setNotification.getReference().getName(), "initiatingActor");
+		assertNull(setNotification.getOldValue());
 
 	}
 
@@ -95,15 +105,24 @@ public class ReferenceNotificationTest extends NotificationTest {
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// exactly one ADD notification is expected
-		assertEquals(1, rec.size());
+		// after refactoring: additional SET is expected
+		assertEquals(2, rec.size());
 
-		NotificationInfo n = rec.get(0);
+		NotificationInfo setNotification = rec.get(0);
+		NotificationInfo addNotification = rec.get(1);
 
-		assertSame(actor, n.getNotifier());
-		assertTrue(n.isReferenceNotification());
-		assertTrue(n.isAddEvent());
-		assertSame(n.getNewValue(), useCase);
-		assertEquals(n.getReference().getName(), "initiatedUseCases");
+		assertSame(useCase, setNotification.getNotifier());
+		assertTrue(setNotification.isReferenceNotification());
+		assertTrue(setNotification.isSetEvent());
+		assertSame(setNotification.getNewValue(), actor);
+		assertEquals(setNotification.getReference().getName(), "initiatingActor");
+		assertNull(setNotification.getOldValue());
+
+		assertSame(actor, addNotification.getNotifier());
+		assertTrue(addNotification.isReferenceNotification());
+		assertTrue(addNotification.isAddEvent());
+		assertSame(addNotification.getNewValue(), useCase);
+		assertEquals(addNotification.getReference().getName(), "initiatedUseCases");
 
 	}
 
@@ -129,16 +148,23 @@ public class ReferenceNotificationTest extends NotificationTest {
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
-		// exactly one ADD notification is expected
-		assertEquals(1, rec.size());
+		// exactly two ADD notification is expected
+		assertEquals(2, rec.size());
 
-		NotificationInfo n = rec.get(0);
+		NotificationInfo actorAdd = rec.get(0);
+		NotificationInfo useCaseAdd = rec.get(1);
 
-		assertSame(useCase, n.getNotifier());
-		assertTrue(n.isReferenceNotification());
-		assertTrue(n.isAddEvent());
-		assertSame(n.getNewValue(), actor);
-		assertEquals(n.getReference().getName(), "participatingActors");
+		assertSame(actor, actorAdd.getNotifier());
+		assertTrue(actorAdd.isReferenceNotification());
+		assertTrue(actorAdd.isAddEvent());
+		assertSame(actorAdd.getNewValue(), useCase);
+		assertEquals(actorAdd.getReference().getName(), "participatedUseCases");
+
+		assertSame(useCase, useCaseAdd.getNotifier());
+		assertTrue(useCaseAdd.isReferenceNotification());
+		assertTrue(useCaseAdd.isAddEvent());
+		assertSame(useCaseAdd.getNewValue(), actor);
+		assertEquals(useCaseAdd.getReference().getName(), "participatingActors");
 
 	}
 
@@ -165,11 +191,24 @@ public class ReferenceNotificationTest extends NotificationTest {
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
 
+		// was has set mit bidi zu tun?
+		// for (NotificationInfo info : rec) {
+		// System.out.println(info);
+		// }
+
 		// exactly one REMOVE notification is expected from the actor
-		assertEquals(1, rec.size());
+
+		assertEquals(2, rec.size());
 
 		NotificationInfo n = rec.get(0);
+		assertSame(useCase, n.getNotifier());
+		assertTrue(n.isReferenceNotification());
+		assertTrue(n.isSetEvent());
+		assertSame(n.getOldValue(), actor);
+		assertSame(null, n.getNewValue());
+		assertEquals(n.getReference().getName(), "initiatingActor");
 
+		n = rec.get(1);
 		assertSame(actor, n.getNotifier());
 		assertTrue(n.isReferenceNotification());
 		assertTrue(n.isRemoveEvent());

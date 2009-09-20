@@ -135,21 +135,30 @@ public class CreateDeleteOperationTest extends OperationTest {
 		assertEquals(useCase.getModelElementId(), createDeleteOperation.getModelElement().getModelElementId());
 		EList<ReferenceOperation> subOperations = createDeleteOperation.getSubOperations();
 
-		assertEquals(4, subOperations.size());
+		assertEquals(7, subOperations.size());
 		AbstractOperation subOperation0 = subOperations.get(0);
 		AbstractOperation subOperation1 = subOperations.get(1);
 		AbstractOperation subOperation2 = subOperations.get(2);
 		AbstractOperation subOperation3 = subOperations.get(3);
+		AbstractOperation subOperation4 = subOperations.get(4);
+		AbstractOperation subOperation5 = subOperations.get(5);
+		AbstractOperation subOperation6 = subOperations.get(6);
 
 		assertEquals(true, subOperation0 instanceof MultiReferenceOperation);
 		assertEquals(true, subOperation1 instanceof SingleReferenceOperation);
 		assertEquals(true, subOperation2 instanceof MultiReferenceOperation);
 		assertEquals(true, subOperation3 instanceof MultiReferenceOperation);
+		assertEquals(true, subOperation4 instanceof MultiReferenceOperation);
+		assertEquals(true, subOperation5 instanceof SingleReferenceOperation);
+		assertEquals(true, subOperation6 instanceof MultiReferenceOperation);
 
 		MultiReferenceOperation mrSubOperation0 = (MultiReferenceOperation) subOperation0;
 		SingleReferenceOperation mrSubOperation1 = (SingleReferenceOperation) subOperation1;
 		MultiReferenceOperation mrSubOperation2 = (MultiReferenceOperation) subOperation2;
 		MultiReferenceOperation mrSubOperation3 = (MultiReferenceOperation) subOperation3;
+		MultiReferenceOperation mrSubOperation4 = (MultiReferenceOperation) subOperation4;
+		SingleReferenceOperation mrSubOperation5 = (SingleReferenceOperation) subOperation5;
+		MultiReferenceOperation mrSubOperation6 = (MultiReferenceOperation) subOperation6;
 
 		assertEquals("initiatedUseCases", mrSubOperation0.getFeatureName());
 		assertEquals(0, mrSubOperation0.getIndex());
@@ -173,28 +182,45 @@ public class CreateDeleteOperationTest extends OperationTest {
 		assertEquals(1, otherInvolvedModelElements.size());
 		assertEquals(oldActor.getModelElementId(), otherInvolvedModelElements.iterator().next());
 
-		assertEquals("participatingActors", mrSubOperation2.getFeatureName());
-		assertEquals(-1, mrSubOperation2.getIndex());
-		assertEquals(useCase.getModelElementId(), mrSubOperation2.getModelElementId());
-		assertEquals("participatedUseCases", mrSubOperation2.getOppositeFeatureName());
+		assertEquals(newActor.getModelElementId(), mrSubOperation2.getModelElementId());
+		assertEquals("participatedUseCases", mrSubOperation2.getFeatureName());
 		assertEquals(false, mrSubOperation2.isAdd());
-		assertEquals(true, mrSubOperation2.isBidirectional());
-		Set<ModelElementId> otherInvolvedModelElements2 = mrSubOperation2.getOtherInvolvedModelElements();
+		assertEquals(1, mrSubOperation2.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), mrSubOperation2.getReferencedModelElements().get(0));
+
+		assertEquals(otherActor.getModelElementId(), mrSubOperation3.getModelElementId());
+		assertEquals("participatedUseCases", mrSubOperation3.getFeatureName());
+		assertEquals(false, mrSubOperation3.isAdd());
+		assertEquals(1, mrSubOperation3.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), mrSubOperation3.getReferencedModelElements().get(0));
+
+		assertEquals("participatingActors", mrSubOperation4.getFeatureName());
+		assertEquals(-1, mrSubOperation4.getIndex());
+		assertEquals(useCase.getModelElementId(), mrSubOperation4.getModelElementId());
+		assertEquals("participatedUseCases", mrSubOperation4.getOppositeFeatureName());
+		assertEquals(false, mrSubOperation4.isAdd());
+		assertEquals(true, mrSubOperation4.isBidirectional());
+		Set<ModelElementId> otherInvolvedModelElements2 = mrSubOperation4.getOtherInvolvedModelElements();
 		assertEquals(2, otherInvolvedModelElements2.size());
-		EList<ModelElementId> referencedModelElements = mrSubOperation2.getReferencedModelElements();
+		EList<ModelElementId> referencedModelElements = mrSubOperation4.getReferencedModelElements();
 		assertEquals(2, referencedModelElements.size());
 		assertEquals(newActor.getModelElementId(), referencedModelElements.get(0));
 		assertEquals(otherActor.getModelElementId(), referencedModelElements.get(1));
 
-		assertEquals("modelElements", mrSubOperation3.getFeatureName());
-		assertEquals(0, mrSubOperation3.getIndex());
-		assertEquals(section.getModelElementId(), mrSubOperation3.getModelElementId());
-		assertEquals("leafSection", mrSubOperation3.getOppositeFeatureName());
-		assertEquals(false, mrSubOperation3.isAdd());
-		assertEquals(true, mrSubOperation3.isBidirectional());
-		Set<ModelElementId> otherInvolvedModelElements3 = mrSubOperation3.getOtherInvolvedModelElements();
+		assertEquals(useCase.getModelElementId(), mrSubOperation5.getModelElementId());
+		assertEquals("leafSection", mrSubOperation5.getFeatureName());
+		assertEquals(section.getModelElementId(), mrSubOperation5.getOldValue());
+		assertEquals(null, mrSubOperation5.getNewValue());
+
+		assertEquals("modelElements", mrSubOperation6.getFeatureName());
+		assertEquals(0, mrSubOperation6.getIndex());
+		assertEquals(section.getModelElementId(), mrSubOperation6.getModelElementId());
+		assertEquals("leafSection", mrSubOperation6.getOppositeFeatureName());
+		assertEquals(false, mrSubOperation6.isAdd());
+		assertEquals(true, mrSubOperation6.isBidirectional());
+		Set<ModelElementId> otherInvolvedModelElements3 = mrSubOperation6.getOtherInvolvedModelElements();
 		assertEquals(1, otherInvolvedModelElements3.size());
-		EList<ModelElementId> referencedModelElements3 = mrSubOperation3.getReferencedModelElements();
+		EList<ModelElementId> referencedModelElements3 = mrSubOperation6.getReferencedModelElements();
 		assertEquals(1, referencedModelElements3.size());
 		assertEquals(useCase.getModelElementId(), referencedModelElements3.get(0));
 	}
@@ -256,22 +282,30 @@ public class CreateDeleteOperationTest extends OperationTest {
 		assertEquals(useCase.getModelElementId(), createDeleteOperation.getModelElement().getModelElementId());
 		EList<ReferenceOperation> subOperations = createDeleteOperation.getSubOperations();
 
-		assertEquals(4, subOperations.size());
-
-		AbstractOperation subOperation0 = subOperations.get(3);
-		AbstractOperation subOperation1 = subOperations.get(2);
-		AbstractOperation subOperation2 = subOperations.get(1);
-		AbstractOperation subOperation3 = subOperations.get(0);
+		assertEquals(7, subOperations.size());
+		AbstractOperation subOperation0 = subOperations.get(6);
+		AbstractOperation subOperation1 = subOperations.get(5);
+		AbstractOperation subOperation2 = subOperations.get(4);
+		AbstractOperation subOperation3 = subOperations.get(3);
+		AbstractOperation subOperation4 = subOperations.get(2);
+		AbstractOperation subOperation5 = subOperations.get(1);
+		AbstractOperation subOperation6 = subOperations.get(0);
 
 		assertEquals(true, subOperation0 instanceof MultiReferenceOperation);
 		assertEquals(true, subOperation1 instanceof SingleReferenceOperation);
 		assertEquals(true, subOperation2 instanceof MultiReferenceOperation);
 		assertEquals(true, subOperation3 instanceof MultiReferenceOperation);
+		assertEquals(true, subOperation4 instanceof MultiReferenceOperation);
+		assertEquals(true, subOperation5 instanceof SingleReferenceOperation);
+		assertEquals(true, subOperation6 instanceof MultiReferenceOperation);
 
 		MultiReferenceOperation mrSubOperation0 = (MultiReferenceOperation) subOperation0;
 		SingleReferenceOperation mrSubOperation1 = (SingleReferenceOperation) subOperation1;
 		MultiReferenceOperation mrSubOperation2 = (MultiReferenceOperation) subOperation2;
 		MultiReferenceOperation mrSubOperation3 = (MultiReferenceOperation) subOperation3;
+		MultiReferenceOperation mrSubOperation4 = (MultiReferenceOperation) subOperation4;
+		SingleReferenceOperation mrSubOperation5 = (SingleReferenceOperation) subOperation5;
+		MultiReferenceOperation mrSubOperation6 = (MultiReferenceOperation) subOperation6;
 
 		assertEquals("initiatedUseCases", mrSubOperation0.getFeatureName());
 		assertEquals(0, mrSubOperation0.getIndex());
@@ -295,28 +329,45 @@ public class CreateDeleteOperationTest extends OperationTest {
 		assertEquals(1, otherInvolvedModelElements.size());
 		assertEquals(oldActor.getModelElementId(), otherInvolvedModelElements.iterator().next());
 
-		assertEquals("participatingActors", mrSubOperation2.getFeatureName());
-		assertEquals(-1, mrSubOperation2.getIndex());
-		assertEquals(useCase.getModelElementId(), mrSubOperation2.getModelElementId());
-		assertEquals("participatedUseCases", mrSubOperation2.getOppositeFeatureName());
+		assertEquals(newActor.getModelElementId(), mrSubOperation2.getModelElementId());
+		assertEquals("participatedUseCases", mrSubOperation2.getFeatureName());
 		assertEquals(true, mrSubOperation2.isAdd());
-		assertEquals(true, mrSubOperation2.isBidirectional());
-		Set<ModelElementId> otherInvolvedModelElements2 = mrSubOperation2.getOtherInvolvedModelElements();
+		assertEquals(1, mrSubOperation2.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), mrSubOperation2.getReferencedModelElements().get(0));
+
+		assertEquals(otherActor.getModelElementId(), mrSubOperation3.getModelElementId());
+		assertEquals("participatedUseCases", mrSubOperation3.getFeatureName());
+		assertEquals(true, mrSubOperation3.isAdd());
+		assertEquals(1, mrSubOperation3.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), mrSubOperation3.getReferencedModelElements().get(0));
+
+		assertEquals("participatingActors", mrSubOperation4.getFeatureName());
+		assertEquals(-1, mrSubOperation4.getIndex());
+		assertEquals(useCase.getModelElementId(), mrSubOperation4.getModelElementId());
+		assertEquals("participatedUseCases", mrSubOperation4.getOppositeFeatureName());
+		assertEquals(true, mrSubOperation4.isAdd());
+		assertEquals(true, mrSubOperation4.isBidirectional());
+		Set<ModelElementId> otherInvolvedModelElements2 = mrSubOperation4.getOtherInvolvedModelElements();
 		assertEquals(2, otherInvolvedModelElements2.size());
-		EList<ModelElementId> referencedModelElements = mrSubOperation2.getReferencedModelElements();
+		EList<ModelElementId> referencedModelElements = mrSubOperation4.getReferencedModelElements();
 		assertEquals(2, referencedModelElements.size());
 		assertEquals(newActor.getModelElementId(), referencedModelElements.get(0));
 		assertEquals(otherActor.getModelElementId(), referencedModelElements.get(1));
 
-		assertEquals("modelElements", mrSubOperation3.getFeatureName());
-		assertEquals(0, mrSubOperation3.getIndex());
-		assertEquals(section.getModelElementId(), mrSubOperation3.getModelElementId());
-		assertEquals("leafSection", mrSubOperation3.getOppositeFeatureName());
-		assertEquals(true, mrSubOperation3.isAdd());
-		assertEquals(true, mrSubOperation3.isBidirectional());
-		Set<ModelElementId> otherInvolvedModelElements3 = mrSubOperation3.getOtherInvolvedModelElements();
+		assertEquals(useCase.getModelElementId(), mrSubOperation5.getModelElementId());
+		assertEquals("leafSection", mrSubOperation5.getFeatureName());
+		assertEquals(section.getModelElementId(), mrSubOperation5.getNewValue());
+		assertEquals(null, mrSubOperation5.getOldValue());
+
+		assertEquals("modelElements", mrSubOperation6.getFeatureName());
+		assertEquals(0, mrSubOperation6.getIndex());
+		assertEquals(section.getModelElementId(), mrSubOperation6.getModelElementId());
+		assertEquals("leafSection", mrSubOperation6.getOppositeFeatureName());
+		assertEquals(true, mrSubOperation6.isAdd());
+		assertEquals(true, mrSubOperation6.isBidirectional());
+		Set<ModelElementId> otherInvolvedModelElements3 = mrSubOperation6.getOtherInvolvedModelElements();
 		assertEquals(1, otherInvolvedModelElements3.size());
-		EList<ModelElementId> referencedModelElements3 = mrSubOperation3.getReferencedModelElements();
+		EList<ModelElementId> referencedModelElements3 = mrSubOperation6.getReferencedModelElements();
 		assertEquals(1, referencedModelElements3.size());
 		assertEquals(useCase.getModelElementId(), referencedModelElements3.get(0));
 

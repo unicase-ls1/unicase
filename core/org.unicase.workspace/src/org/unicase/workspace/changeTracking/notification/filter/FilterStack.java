@@ -26,11 +26,12 @@ public final class FilterStack implements NotificationFilter {
 		//
 		new TransientFilter(),
 		//
-		new EmptyRemovalsFilter(),
-		//
-		new BidirectionalAddManyFilter(),
-		//
-		new GenericBidirectionalFilter() };
+		new EmptyRemovalsFilter()
+	//
+	// new BidirectionalAddManyFilter(),
+	//
+	// new GenericBidirectionalFilter()
+	};
 
 	/**
 	 * The default filter stack.

@@ -19,6 +19,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.document.DocumentFactory;
@@ -66,6 +67,24 @@ public class SingleReferenceOperationTest extends OperationTest {
 
 		assertEquals(1, operations.size());
 		AbstractOperation operation = operations.get(0);
+		assertEquals(true, operation instanceof CompositeOperation);
+
+		EList<AbstractOperation> subOperations = ((CompositeOperation) operation).getSubOperations();
+
+		assertEquals(2, subOperations.size());
+
+		operation = subOperations.get(0);
+		assertEquals(true, operation instanceof MultiReferenceOperationImpl);
+		MultiReferenceOperation multiReferenceOperation = (MultiReferenceOperation) operation;
+		assertEquals("initiatedUseCases", multiReferenceOperation.getFeatureName());
+		assertEquals("initiatingActor", multiReferenceOperation.getOppositeFeatureName());
+		assertEquals(useCase.getModelElementId(), multiReferenceOperation.getReferencedModelElements().get(0));
+		assertEquals(actor.getModelElementId(), multiReferenceOperation.getModelElementId());
+		assertTrue(multiReferenceOperation.isBidirectional());
+		assertTrue(multiReferenceOperation.isAdd());
+		assertEquals(1, multiReferenceOperation.getOtherInvolvedModelElements().size());
+
+		operation = subOperations.get(1);
 		assertEquals(true, operation instanceof SingleReferenceOperation);
 		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
 
@@ -167,10 +186,10 @@ public class SingleReferenceOperationTest extends OperationTest {
 			fail("composite operation expected");
 		}
 
-		assertEquals(2, operations.size());
+		assertEquals(3, operations.size());
 
 		// note: skipping multireferenceop at index 0 in test, as it is not interesting in this context
-		AbstractOperation operation = operations.get(1);
+		AbstractOperation operation = operations.get(2);
 		assertEquals(true, operation instanceof SingleReferenceOperation);
 		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
 
@@ -280,7 +299,7 @@ public class SingleReferenceOperationTest extends OperationTest {
 			fail("composite operation expected");
 		}
 
-		assertEquals(2, operations.size());
+		assertEquals(3, operations.size());
 
 		AbstractOperation op0 = operations.get(0);
 		assertTrue(op0 instanceof MultiReferenceOperation);
@@ -291,7 +310,16 @@ public class SingleReferenceOperationTest extends OperationTest {
 		assertEquals(multiReferenceOperation.getReferencedModelElements().size(), 1);
 		assertEquals(multiReferenceOperation.getIndex(), 0);
 
-		AbstractOperation operation = operations.get(1);
+		AbstractOperation op1 = operations.get(1);
+		assertTrue(op1 instanceof MultiReferenceOperation);
+		multiReferenceOperation = (MultiReferenceOperation) op1;
+		assertEquals(multiReferenceOperation.getModelElementId(), newIssue.getModelElementId());
+		assertTrue(multiReferenceOperation.isAdd());
+		assertEquals(multiReferenceOperation.getReferencedModelElements().get(0), proposal.getModelElementId());
+		assertEquals(multiReferenceOperation.getReferencedModelElements().size(), 1);
+		assertEquals(multiReferenceOperation.getIndex(), 0);
+
+		AbstractOperation operation = operations.get(2);
 		assertEquals(true, operation instanceof SingleReferenceOperation);
 		SingleReferenceOperation singleReferenceOperation = (SingleReferenceOperation) operation;
 
