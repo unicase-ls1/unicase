@@ -46,6 +46,7 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
 import org.unicase.emfstore.startup.ConsoleProgressMonitor;
 import org.unicase.emfstore.startup.EmfStoreValidator;
+import org.unicase.emfstore.startup.StartupExtensionManager;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.taskmanager.TaskManager;
 import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
@@ -119,8 +120,7 @@ public class EmfStoreController implements IApplication, Runnable {
 
 		historyCache = initHistoryCache();
 
-		// FixSuite fixSuite = new FixSuite(serverSpace);
-		// fixSuite.fix("_LnSQYIrzEd25VYUNYBK0Mw");
+		handleStartupListener();
 
 		accessControl = initAccessControl(serverSpace);
 		emfStore = new EmfStoreImpl(serverSpace, accessControl);
@@ -139,6 +139,12 @@ public class EmfStoreController implements IApplication, Runnable {
 		if (waitForTermination) {
 			waitForTermination();
 		}
+	}
+
+	private void handleStartupListener() {
+		StartupExtensionManager startupExtensionManager = new StartupExtensionManager();
+		logger.info("Notifying startup listener");
+		startupExtensionManager.runOnProjects(serverSpace.getProjects());
 	}
 
 	private void setupKeyStore() {
