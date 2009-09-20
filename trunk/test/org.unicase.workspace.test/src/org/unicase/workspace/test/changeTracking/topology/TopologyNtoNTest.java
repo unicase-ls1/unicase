@@ -51,8 +51,23 @@ public class TopologyNtoNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
-		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
-		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
+		AbstractOperation operation = operations.get(0);
+		assertTrue(operation instanceof CompositeOperation);
+		CompositeOperation compositeOperation = (CompositeOperation) operation;
+
+		List<AbstractOperation> subOperations = compositeOperation.getSubOperations();
+
+		assertTrue(subOperations.get(0) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op = (MultiReferenceOperation) subOperations.get(0);
+		assertTrue(op.isAdd());
+		assertEquals(1, op.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), op.getReferencedModelElements().get(0));
+		assertEquals("annotatedModelElements", op.getFeatureName());
+		assertEquals(op.getModelElementId(), mileStone.getModelElementId());
+		assertEquals(op.getIndex(), 0);
+
+		assertTrue(subOperations.get(1) instanceof MultiReferenceOperation);
+		op = (MultiReferenceOperation) subOperations.get(1);
 		assertTrue(op.isAdd());
 		assertEquals(1, op.getReferencedModelElements().size());
 		assertEquals(mileStone.getModelElementId(), op.getReferencedModelElements().get(0));
@@ -88,8 +103,24 @@ public class TopologyNtoNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
-		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
-		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
+		AbstractOperation operation = operations.get(0);
+		assertTrue(operation instanceof CompositeOperation);
+		CompositeOperation compositeOperation = (CompositeOperation) operation;
+
+		List<AbstractOperation> subOperations = compositeOperation.getSubOperations();
+
+		for (int i = 0; i < 2; i++) {
+			assertTrue(subOperations.get(i) instanceof MultiReferenceOperation);
+			MultiReferenceOperation op = (MultiReferenceOperation) subOperations.get(i);
+			assertTrue(op.isAdd());
+			assertEquals(1, op.getReferencedModelElements().size());
+			assertEquals("annotatedModelElements", op.getFeatureName());
+			assertEquals(op.getModelElementId(), stones[i].getModelElementId());
+			assertEquals(op.getIndex(), 0);
+		}
+
+		assertTrue(subOperations.get(2) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op = (MultiReferenceOperation) subOperations.get(2);
 		assertTrue(op.isAdd());
 		assertEquals(2, op.getReferencedModelElements().size());
 		assertEquals(mileStone1.getModelElementId(), op.getReferencedModelElements().get(0));
@@ -97,7 +128,6 @@ public class TopologyNtoNTest extends TopologyTest {
 		assertEquals("annotations", op.getFeatureName());
 		assertEquals(op.getModelElementId(), useCase.getModelElementId());
 		assertEquals(op.getIndex(), 0);
-
 	}
 
 	/**
@@ -125,8 +155,23 @@ public class TopologyNtoNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
-		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
-		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
+		AbstractOperation operation = operations.get(0);
+		assertTrue(operation instanceof CompositeOperation);
+		CompositeOperation compositeOperation = (CompositeOperation) operation;
+
+		List<AbstractOperation> subOperations = compositeOperation.getSubOperations();
+
+		assertTrue(subOperations.get(0) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op = (MultiReferenceOperation) subOperations.get(0);
+		assertTrue(op.isAdd());
+		assertEquals(1, op.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), op.getReferencedModelElements().get(0));
+		assertEquals("annotatedModelElements", op.getFeatureName());
+		assertEquals(op.getModelElementId(), mileStone.getModelElementId());
+		assertEquals(op.getIndex(), 0);
+
+		assertTrue(subOperations.get(1) instanceof MultiReferenceOperation);
+		op = (MultiReferenceOperation) subOperations.get(1);
 		assertTrue(op.isAdd());
 		assertEquals(1, op.getReferencedModelElements().size());
 		assertEquals(mileStone.getModelElementId(), op.getReferencedModelElements().get(0));
@@ -166,8 +211,24 @@ public class TopologyNtoNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
-		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
-		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
+		AbstractOperation operation = operations.get(0);
+		assertTrue(operation instanceof CompositeOperation);
+		CompositeOperation compositeOperation = (CompositeOperation) operation;
+
+		List<AbstractOperation> subOperations = compositeOperation.getSubOperations();
+
+		for (int i = 0; i < 2; i++) {
+			assertTrue(subOperations.get(i) instanceof MultiReferenceOperation);
+			MultiReferenceOperation op = (MultiReferenceOperation) subOperations.get(i);
+			assertTrue(op.isAdd());
+			assertEquals(1, op.getReferencedModelElements().size());
+			assertEquals("annotatedModelElements", op.getFeatureName());
+			assertEquals(op.getModelElementId(), stones[i].getModelElementId());
+			assertEquals(op.getIndex(), 0);
+		}
+
+		assertTrue(subOperations.get(2) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op = (MultiReferenceOperation) subOperations.get(2);
 		assertTrue(op.isAdd());
 		assertEquals(2, op.getReferencedModelElements().size());
 		assertEquals(mileStone1.getModelElementId(), op.getReferencedModelElements().get(0));
@@ -306,8 +367,32 @@ public class TopologyNtoNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
-		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
-		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
+		AbstractOperation operation = operations.get(0);
+		assertTrue(operation instanceof CompositeOperation);
+		CompositeOperation compositeOperation = (CompositeOperation) operation;
+
+		List<AbstractOperation> subOperations = compositeOperation.getSubOperations();
+
+		assertTrue(subOperations.get(0) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op = (MultiReferenceOperation) subOperations.get(0);
+		assertFalse(op.isAdd());
+		assertEquals(1, op.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), op.getReferencedModelElements().get(0));
+		assertEquals("annotatedModelElements", op.getFeatureName());
+		assertEquals(op.getModelElementId(), mileStone.getModelElementId());
+		assertEquals(op.getIndex(), 0);
+
+		assertTrue(subOperations.get(1) instanceof MultiReferenceOperation);
+		op = (MultiReferenceOperation) subOperations.get(1);
+		assertFalse(op.isAdd());
+		assertEquals(1, op.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), op.getReferencedModelElements().get(0));
+		assertEquals("annotatedModelElements", op.getFeatureName());
+		assertEquals(op.getModelElementId(), otherMileStone.getModelElementId());
+		assertEquals(op.getIndex(), 0);
+
+		assertTrue(subOperations.get(2) instanceof MultiReferenceOperation);
+		op = (MultiReferenceOperation) subOperations.get(2);
 		assertFalse(op.isAdd());
 		assertEquals(2, op.getReferencedModelElements().size());
 		assertEquals(mileStone.getModelElementId(), op.getReferencedModelElements().get(0));
@@ -315,7 +400,6 @@ public class TopologyNtoNTest extends TopologyTest {
 		assertEquals("annotations", op.getFeatureName());
 		assertEquals(op.getModelElementId(), useCase.getModelElementId());
 		assertEquals(op.getIndex(), 0);
-
 	}
 
 	/**
@@ -352,8 +436,32 @@ public class TopologyNtoNTest extends TopologyTest {
 		List<AbstractOperation> operations = getProjectSpace().getOperations();
 
 		assertEquals(1, operations.size());
-		assertTrue(operations.get(0) instanceof MultiReferenceOperation);
-		MultiReferenceOperation op = (MultiReferenceOperation) operations.get(0);
+		AbstractOperation operation = operations.get(0);
+		assertTrue(operation instanceof CompositeOperation);
+		CompositeOperation compositeOperation = (CompositeOperation) operation;
+
+		List<AbstractOperation> subOperations = compositeOperation.getSubOperations();
+
+		assertTrue(subOperations.get(0) instanceof MultiReferenceOperation);
+		MultiReferenceOperation op = (MultiReferenceOperation) subOperations.get(0);
+		assertFalse(op.isAdd());
+		assertEquals(1, op.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), op.getReferencedModelElements().get(0));
+		assertEquals("annotatedModelElements", op.getFeatureName());
+		assertEquals(op.getModelElementId(), mileStone1.getModelElementId());
+		assertEquals(op.getIndex(), 0);
+
+		assertTrue(subOperations.get(1) instanceof MultiReferenceOperation);
+		op = (MultiReferenceOperation) subOperations.get(1);
+		assertFalse(op.isAdd());
+		assertEquals(1, op.getReferencedModelElements().size());
+		assertEquals(useCase.getModelElementId(), op.getReferencedModelElements().get(0));
+		assertEquals("annotatedModelElements", op.getFeatureName());
+		assertEquals(op.getModelElementId(), mileStone2.getModelElementId());
+		assertEquals(op.getIndex(), 0);
+
+		assertTrue(subOperations.get(2) instanceof MultiReferenceOperation);
+		op = (MultiReferenceOperation) subOperations.get(2);
 		assertFalse(op.isAdd());
 		assertEquals(2, op.getReferencedModelElements().size());
 		assertEquals(mileStone1.getModelElementId(), op.getReferencedModelElements().get(0));

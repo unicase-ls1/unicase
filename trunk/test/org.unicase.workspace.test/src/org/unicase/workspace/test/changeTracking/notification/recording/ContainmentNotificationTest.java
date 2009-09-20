@@ -52,7 +52,8 @@ public class ContainmentNotificationTest extends NotificationTest {
 		List<NotificationInfo> rec = recording.asMutableList();
 
 		// exactly one SET notification is expected, resetting the leaf section
-		assertEquals(2, rec.size());
+		// and one ADD
+		assertEquals(3, rec.size());
 
 		NotificationInfo n = rec.get(0);
 		assertSame(section1, n.getNotifier());
@@ -61,6 +62,13 @@ public class ContainmentNotificationTest extends NotificationTest {
 		assertEquals(n.getReference().getName(), "modelElements");
 
 		n = rec.get(1);
+		assertSame(section2, n.getNotifier());
+		assertTrue(n.isReferenceNotification());
+		assertTrue(n.isAddEvent());
+		assertSame(n.getNewValue(), useCase);
+		assertEquals(n.getReference().getName(), "modelElements");
+
+		n = rec.get(2);
 		assertSame(useCase, n.getNotifier());
 		assertTrue(n.isSetEvent());
 		assertEquals(n.getOldValue(), section1);
@@ -94,7 +102,7 @@ public class ContainmentNotificationTest extends NotificationTest {
 
 		// one REMOVE and two SET notification are expected, resetting the leaf section to "null" and the refined req to
 		// "req"
-		assertEquals(3, rec.size());
+		assertEquals(4, rec.size());
 
 		// check index maintaining remove
 		NotificationInfo n0 = rec.get(0);
@@ -104,21 +112,28 @@ public class ContainmentNotificationTest extends NotificationTest {
 		assertSame(child, n0.getOldValue());
 		assertEquals(0, n0.getPosition());
 
-		// check first set
 		NotificationInfo n1 = rec.get(1);
-		assertSame(child, n1.getNotifier());
-		assertTrue(n1.isSetEvent());
-		assertEquals(n1.getReference().getName(), "leafSection");
-		assertEquals(n1.getOldValue(), section);
-		assertEquals(n1.getNewValue(), null);
+		assertSame(req, n1.getNotifier());
+		assertTrue(n1.isReferenceNotification());
+		assertTrue(n1.isAddEvent());
+		assertSame(n1.getNewValue(), child);
+		assertEquals(n1.getReference().getName(), "refiningRequirements");
 
-		// check second set
+		// check first set
 		NotificationInfo n2 = rec.get(2);
 		assertSame(child, n2.getNotifier());
 		assertTrue(n2.isSetEvent());
-		assertEquals(n2.getReference().getName(), "refinedRequirement");
-		assertEquals(n2.getOldValue(), null);
-		assertEquals(n2.getNewValue(), req);
+		assertEquals(n2.getReference().getName(), "leafSection");
+		assertEquals(n2.getOldValue(), section);
+		assertEquals(n2.getNewValue(), null);
+
+		// check second set
+		NotificationInfo n3 = rec.get(3);
+		assertSame(child, n3.getNotifier());
+		assertTrue(n3.isSetEvent());
+		assertEquals(n3.getReference().getName(), "refinedRequirement");
+		assertEquals(n3.getOldValue(), null);
+		assertEquals(n3.getNewValue(), req);
 
 	}
 
