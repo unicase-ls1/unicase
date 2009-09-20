@@ -2366,7 +2366,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * 
 	 * @param operations the list of operations
 	 */
-	private void applyOperations(List<AbstractOperation> operations) {
+	public void applyOperations(List<AbstractOperation> operations) {
 		applyOperations(operations, true);
 	}
 
@@ -2376,7 +2376,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @param operations list of operations
 	 * @param addOperation true if operation should be saved in project space.
 	 */
-	private void applyOperations(List<AbstractOperation> operations, boolean addOperation) {
+	public void applyOperations(List<AbstractOperation> operations, boolean addOperation) {
 		stopChangeRecording();
 		for (AbstractOperation operation : operations) {
 			operation.apply(getProject());
@@ -2394,7 +2394,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * @param operations list of operations
 	 * @param force if true, no exception is thrown if operation.apply failes
 	 */
-	private void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force) {
+	public void applyOperationsWithRecording(List<AbstractOperation> operations, boolean force) {
 		for (AbstractOperation operation : operations) {
 			try {
 				operation.apply(getProject());

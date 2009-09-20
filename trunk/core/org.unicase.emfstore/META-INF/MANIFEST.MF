@@ -19,5 +19,6 @@ Export-Package: org.unicase.emfstore,
  org.unicase.emfstore.connection.rmi,
  org.unicase.emfstore.exceptions,
  org.unicase.emfstore.filetransfer,
+ org.unicase.emfstore.startup,
  org.unicase.emfstore.storage
 Bundle-ActivationPolicy: lazy
