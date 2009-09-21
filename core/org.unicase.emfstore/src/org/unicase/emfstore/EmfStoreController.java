@@ -142,9 +142,13 @@ public class EmfStoreController implements IApplication, Runnable {
 	}
 
 	private void handleStartupListener() {
-		StartupExtensionManager startupExtensionManager = new StartupExtensionManager();
-		logger.info("Notifying startup listener");
-		startupExtensionManager.runOnProjects(serverSpace.getProjects());
+		String property = ServerConfiguration.getProperties().getProperty(ServerConfiguration.LOAD_STARTUP_LISTENER,
+			ServerConfiguration.LOAD_STARTUP_LISTENER_DEFAULT);
+		if (ServerConfiguration.TRUE.equals(property)) {
+			StartupExtensionManager startupExtensionManager = new StartupExtensionManager();
+			logger.info("Notifying startup listener");
+			startupExtensionManager.runOnProjects(serverSpace.getProjects());
+		}
 	}
 
 	private void setupKeyStore() {

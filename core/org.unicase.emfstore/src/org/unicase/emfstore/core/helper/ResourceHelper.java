@@ -98,21 +98,27 @@ public class ResourceHelper {
 	}
 
 	/**
-	 * Deletes a projectstate, depending on the policy, the file is deleted or renamed for backup reasons.
+	 * Deletes a projectstate, depending on the policy, the file is deleted or renamed for backup reasons. Note: renamed
+	 * for backup is deactivated since 20.09.2009.
 	 * 
 	 * @param projectId project id
 	 * @param lastVersion the version
 	 */
 	public void deleteProjectState(ProjectId projectId, int lastVersion) {
-		int x = getXFromPolicy(ServerConfiguration.PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X,
-			ServerConfiguration.PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT, true);
+		// int x = getXFromPolicy(ServerConfiguration.PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X,
+		// ServerConfiguration.PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT, true);
+
+		// backup projectstate deactivated
+
 		File file = new File(getProjectFolder(projectId) + getProjectFile(lastVersion));
-		if (lastVersion != 0 && lastVersion % x != 0) {
-			file.delete();
-		} else {
-			file.renameTo(new File(getProjectFolder(projectId) + ServerConfiguration.FILE_PREFIX_BACKUPPROJECTSTATE
-				+ getProjectFile(lastVersion)));
-		}
+		file.delete();
+
+		// if (lastVersion != 0 && lastVersion % x != 0) {
+		// file.delete();
+		// } else {
+		// file.renameTo(new File(getProjectFolder(projectId) + ServerConfiguration.FILE_PREFIX_BACKUPPROJECTSTATE
+		// + getProjectFile(lastVersion)));
+		// }
 	}
 
 	/**

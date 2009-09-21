@@ -129,11 +129,13 @@ public final class ServerConfiguration {
 	/**
 	 * Property for the count of versions, needed by the BACKUP everyXVersion policy.
 	 */
+	@Deprecated
 	public static final String PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X = "emfstore.persistence.version.backup.projectstate.everyxversions";
 
 	/**
 	 * Default value for the BACKUP everyXVersion policy.
 	 */
+	@Deprecated
 	public static final String PROJECTSTATE_VERSION_BACKUP_PERSISTENCE_EVERYXVERSIONS_X_DEFAULT = "1";
 
 	/**
@@ -252,6 +254,16 @@ public final class ServerConfiguration {
 	public static final String VALIDATION_PROJECT_EXCLUDE_DEFAULT = "";
 
 	/**
+	 * Property for loading startuo listeners from extension point.
+	 */
+	public static final String LOAD_STARTUP_LISTENER = "emfstore.startup.loadlistener";
+
+	/**
+	 * Default value for {@link #LOAD_STARTUP_LISTENER}.
+	 */
+	public static final String LOAD_STARTUP_LISTENER_DEFAULT = FALSE;
+
+	/**
 	 * Property name of accepted client versions. Enter the version's names or any, seperate multiple entries with
 	 * {@link #MULTI_PROPERTY_SEPERATOR}.
 	 */
@@ -303,6 +315,7 @@ public final class ServerConfiguration {
 	/**
 	 * File prefix for file: backup projectstate.
 	 */
+	@Deprecated
 	public static final String FILE_PREFIX_BACKUPPROJECTSTATE = "backup_";
 
 	/**
