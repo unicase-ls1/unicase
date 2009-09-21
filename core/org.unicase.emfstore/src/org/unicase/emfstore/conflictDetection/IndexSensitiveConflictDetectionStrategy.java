@@ -195,7 +195,8 @@ public class IndexSensitiveConflictDetectionStrategy implements ConflictDetectio
 		}
 
 		// case 4: opposite vs. opposite
-		if (opB.getOppositeFeatureName().equals(opA.getOppositeFeatureName())) {
+		// opposite feature names can be null?
+		if (opB.getOppositeFeatureName() != null && opB.getOppositeFeatureName().equals(opA.getOppositeFeatureName())) {
 			for (ModelElementId mA : opA.getOtherInvolvedModelElements()) {
 
 				for (ModelElementId mB : opB.getOtherInvolvedModelElements()) {
