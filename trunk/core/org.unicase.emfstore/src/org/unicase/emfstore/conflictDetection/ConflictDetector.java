@@ -51,12 +51,23 @@ public class ConflictDetector {
 	public boolean doConflict(ChangePackage changePackageA, ChangePackage changePackageB) {
 		for (AbstractOperation operation : changePackageA.getOperations()) {
 			for (AbstractOperation otherOperation : changePackageB.getOperations()) {
-				if (conflictDetectionStrategy.doConflict(operation, otherOperation)) {
+				if (doConflict(operation, otherOperation)) {
 					return true;
 				}
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * Determines if two changepackages are conflicting.
+	 * 
+	 * @param operation operation
+	 * @param otherOperation otheroperation
+	 * @return true, if conflicting
+	 */
+	public boolean doConflict(AbstractOperation operation, AbstractOperation otherOperation) {
+		return conflictDetectionStrategy.doConflict(operation, otherOperation);
 	}
 
 	/**
@@ -66,7 +77,7 @@ public class ConflictDetector {
 	 * @param changePackageList a list of change package
 	 * @return true if the change package conflicts with any package in the list
 	 */
-	public boolean doConflict(ChangePackage changePackage, ArrayList<ChangePackage> changePackageList) {
+	public boolean doConflict(ChangePackage changePackage, List<ChangePackage> changePackageList) {
 		for (ChangePackage b : changePackageList) {
 			if (doConflict(changePackage, b)) {
 				return true;
