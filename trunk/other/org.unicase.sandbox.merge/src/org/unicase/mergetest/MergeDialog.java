@@ -11,10 +11,14 @@ import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.jface.dialogs.TitleAreaDialog;
+import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.MouseAdapter;
+import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -101,6 +105,26 @@ public class MergeDialog extends TitleAreaDialog {
 			theirChangePackages);
 		mergeComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 
+		Button acceptMine = new Button(contents, SWT.PUSH);
+		acceptMine.setText("Accept all");
+		acceptMine.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				mergeComposite.selectAllMine();
+			}
+		});
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(acceptMine);
+
+		Button acceptTheirs = new Button(contents, SWT.PUSH);
+		acceptTheirs.setText("Accept all");
+		acceptTheirs.addMouseListener(new MouseAdapter() {
+			@Override
+			public void mouseUp(MouseEvent e) {
+				mergeComposite.selectAllTheirs();
+			}
+		});
+		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(acceptTheirs);
+		
 		return contents;
 
 	}
