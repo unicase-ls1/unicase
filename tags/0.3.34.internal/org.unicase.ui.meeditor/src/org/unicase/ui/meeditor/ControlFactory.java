@@ -79,9 +79,10 @@ public class ControlFactory {
 			if (feature.getEType().getInstanceClass().equals(Comment.class)) {
 				return createMECommentControl(reference);
 			}
+
 			if (feature.getUpperBound() != 1) {
 				if (reference.isMany()) {
-					return createMELinkControl((EReference) feature, itemPropertyDescriptor);
+					return createMEMultiLinkControl((EReference) feature, itemPropertyDescriptor);
 				}
 			}
 
@@ -108,7 +109,7 @@ public class ControlFactory {
 
 		}
 		if (feature.getName().equalsIgnoreCase("url")) {
-			return createMEURLControl((EAttribute) feature);
+			return createMEURLControl();
 		}
 		if (itemPropertyDescriptor.isMultiLine(modelElement)) {
 			return createMERichTextControl((EAttribute) feature);
@@ -180,11 +181,11 @@ public class ControlFactory {
 		return new METextControl(attribute, toolkit, modelElement, editingDomain, itemPropertyDescriptor);
 	}
 
-	private MEControl createMEURLControl(EAttribute feature) {
-		return new MEURLControl(feature, toolkit, modelElement, editingDomain);
+	private MEControl createMEURLControl() {
+		return new MEURLControl(toolkit, modelElement, editingDomain);
 	}
 
-	private MEControl createMELinkControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
+	private MEControl createMEMultiLinkControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
 		return new MEMultiLinkControl(modelElement, reference, toolkit, editingDomain, itemPropertyDescriptor);
 	}
 

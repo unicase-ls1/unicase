@@ -19,12 +19,15 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.program.Program;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.forms.events.HyperlinkAdapter;
+import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
@@ -32,6 +35,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.Project;
+import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.util.ModelElementChangeObserver;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
@@ -74,7 +78,7 @@ public class MELinkControl extends AbstractMEControl {
 	 */
 	public Control createControl(final Composite parent, int style) {
 		linkComposite = getToolkit().createComposite(parent, style);
-		linkComposite.setLayout(new GridLayout(3, false));
+		linkComposite.setLayout(new GridLayout(3 + getNumberOfAdditionalControlComponents(), false));
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
@@ -111,6 +115,9 @@ public class MELinkControl extends AbstractMEControl {
 		};
 		((ModelElement) getModelElement()).getProject().addProjectChangeObserver(observer);
 		observer.observeElement((ModelElement) getModelElement());
+
+		setupAdditionalControlComponents(style);
+
 		Image image = labelProvider.getImage(getModelElement());
 		imageHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
 		imageHyperlink.setImage(image);
@@ -134,6 +141,41 @@ public class MELinkControl extends AbstractMEControl {
 
 		deleteLink.addMouseListener(new MEHyperLinkDeleteAdapter(contextModelElement, reference, getModelElement()));
 		return linkComposite;
+	}
+
+	/**
+	 * Set up additional controls to the left of the default link
+	 * 
+	 * @param style Style
+	 */
+	protected void setupAdditionalControlComponents(int style) {
+		if (((ModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class)) {
+			String url = ((UrlAttachment) getModelElement()).getUrl();
+			if (url == null)
+				url = "";
+			Hyperlink urlHyperlink = getToolkit().createHyperlink(linkComposite, url, style);
+			urlHyperlink.addHyperlinkListener(new HyperlinkAdapter() {
+				@Override
+				public void linkActivated(HyperlinkEvent event) {
+					String url = ((UrlAttachment) getModelElement()).getUrl();
+					if (url == null)
+						return;
+					Program.launch(url);
+					super.linkActivated(event);
+				}
+			});
+		}
+	}
+
+	/**
+	 * Get the number of additional control elements to the left of the default link
+	 * 
+	 * @return Number of controls
+	 */
+	protected int getNumberOfAdditionalControlComponents() {
+		if (((ModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class))
+			return 1;
+		return 0;
 	}
 
 	private void updateIcon() {

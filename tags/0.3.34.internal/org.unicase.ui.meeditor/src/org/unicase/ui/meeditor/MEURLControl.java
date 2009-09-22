@@ -10,7 +10,6 @@ import java.net.URL;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -74,7 +73,7 @@ public class MEURLControl extends AbstractMEControl {
 	private Hyperlink hyperlink;
 	private ModelElementChangeObserver observer;
 
-	public MEURLControl(EAttribute attribute, FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
+	public MEURLControl(FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
 	}
 
@@ -108,12 +107,17 @@ public class MEURLControl extends AbstractMEControl {
 		((ModelElement) getModelElement()).getProject().addProjectChangeObserver(observer);
 		observer.observeElement((ModelElement) getModelElement());
 
-		hyperlink = getToolkit().createHyperlink(linkComposite, ((ModelElement) getModelElement()).getShortName(),
-			style);
+		String url = ((UrlAttachment) getModelElement()).getUrl();
+		if (url == null)
+			url = "";
+		hyperlink = getToolkit().createHyperlink(linkComposite, url, style);
 		hyperlink.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
 			public void linkActivated(HyperlinkEvent event) {
-				Program.launch(((UrlAttachment) getModelElement()).getUrl());
+				String url = ((UrlAttachment) getModelElement()).getUrl();
+				if (url == null)
+					return;
+				Program.launch(url);
 				super.linkActivated(event);
 			}
 		});
