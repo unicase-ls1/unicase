@@ -105,6 +105,10 @@ public class ControlFactory {
 		}
 		if (feature.getName().equalsIgnoreCase("email")) {
 			return createMEEmailControl((EAttribute) feature);
+
+		}
+		if (feature.getName().equalsIgnoreCase("url")) {
+			return createMEURLControl((EAttribute) feature);
 		}
 		if (itemPropertyDescriptor.isMultiLine(modelElement)) {
 			return createMERichTextControl((EAttribute) feature);
@@ -174,6 +178,10 @@ public class ControlFactory {
 
 	private MEControl createMETextControl(EAttribute attribute, IItemPropertyDescriptor itemPropertyDescriptor) {
 		return new METextControl(attribute, toolkit, modelElement, editingDomain, itemPropertyDescriptor);
+	}
+
+	private MEControl createMEURLControl(EAttribute feature) {
+		return new MEURLControl(feature, toolkit, modelElement, editingDomain);
 	}
 
 	private MEControl createMELinkControl(EReference reference, IItemPropertyDescriptor itemPropertyDescriptor) {
