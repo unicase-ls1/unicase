@@ -6661,66 +6661,82 @@
       </element>
     </changes>
   </releases>
-  <releases label="">
+  <releases date="2009-09-22T19:44:49.578+0200" label="3">
     <changes xsi:type="history:Create" target="model.ecore#//rationale" element="model.ecore#//rationale/AudioComment"
-        referenceName="eClassifiers"/>
-    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment"
-        featureName="name" dataValue="AudioComment"/>
-    <changes xsi:type="history:Create" target="model.ecore#//attachment" element="model.ecore#//attachment/FileAttachmentType"
-        referenceName="eClassifiers"/>
-    <changes xsi:type="history:CompositeChange">
-      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType"
-          featureName="instanceClassName"/>
-      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType"
-          featureName="instanceTypeName"/>
+        referenceName="eClassifiers">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment"
+          featureName="name" dataValue="AudioComment"/>
     </changes>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType"
-        featureName="name" dataValue="FileAttachmentType"/>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment" element="model.ecore#//attachment/FileAttachmentType"
+        referenceName="eClassifiers">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType"
+          featureName="name" dataValue="FileAttachmentType"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
-        element="model.ecore#//attachment/FileAttachmentType/BINARY" referenceName="eLiterals"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/BINARY"
-        featureName="name" dataValue="BINARY"/>
+        element="model.ecore#//attachment/FileAttachmentType/BINARY" referenceName="eLiterals">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/BINARY"
+          featureName="name" dataValue="BINARY"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
-        element="model.ecore#//attachment/FileAttachmentType/IMAGE" referenceName="eLiterals"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
-        featureName="literal" dataValue=""/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
-        featureName="name" dataValue="IMAGE"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
-        featureName="literal" dataValue="IMAGE"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
-        featureName="value" dataValue="1"/>
+        element="model.ecore#//attachment/FileAttachmentType/IMAGE" referenceName="eLiterals">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
+          featureName="name" dataValue="IMAGE"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
+          featureName="literal" dataValue="IMAGE"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
+          featureName="value" dataValue="1"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
-        element="model.ecore#//attachment/FileAttachmentType/AUDIO" referenceName="eLiterals"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
-        featureName="value" dataValue="2"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
-        featureName="literal" dataValue="AUDIO"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
-        featureName="name" dataValue="AUDIO"/>
+        element="model.ecore#//attachment/FileAttachmentType/AUDIO" referenceName="eLiterals">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
+          featureName="value" dataValue="2"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
+          featureName="literal" dataValue="AUDIO"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
+          featureName="name" dataValue="AUDIO"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
-        element="model.ecore#//attachment/FileAttachmentType/VIDEO" referenceName="eLiterals"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
-        featureName="literal" dataValue=""/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
-        featureName="name" dataValue="VIDEO"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
-        featureName="literal" dataValue="VIDEO"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
-        featureName="value" dataValue="3"/>
+        element="model.ecore#//attachment/FileAttachmentType/VIDEO" referenceName="eLiterals">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+          featureName="literal" dataValue=""/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+          featureName="name" dataValue="VIDEO"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+          featureName="literal" dataValue="VIDEO"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+          featureName="value" dataValue="3"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
-        element="model.ecore#//attachment/FileAttachment/fileType" referenceName="eStructuralFeatures"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileType"
-        featureName="eType" referenceValue="model.ecore#//attachment/FileAttachmentType"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileType"
-        featureName="name" dataValue="fileType"/>
+        element="model.ecore#//attachment/FileAttachment/fileType" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileType"
+          featureName="eType" referenceValue="model.ecore#//attachment/FileAttachmentType"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileType"
+          featureName="name" dataValue="fileType"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//rationale/AudioComment"
-        element="model.ecore#//rationale/AudioComment/audioFile" referenceName="eStructuralFeatures"/>
-    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
-        featureName="containment" dataValue="true"/>
-    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
-        featureName="eType" referenceValue="model.ecore#//attachment/FileAttachment"/>
-    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
-        featureName="name" dataValue="audioFile"/>
+        element="model.ecore#//rationale/AudioComment/audioFile" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
+          featureName="containment" dataValue="true"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
+          featureName="eType" referenceValue="model.ecore#//attachment/FileAttachment"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
+          featureName="name" dataValue="audioFile"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
+        element="model.ecore#//attachment/FileAttachment/uploading" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/uploading"
+          featureName="name" dataValue="uploading"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/uploading"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
+        element="model.ecore#//attachment/FileAttachment/downloading" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/downloading"
+          featureName="name" dataValue="downloading"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/downloading"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * Converts the rich text string as generated by the MERichTextContol to HTML.&#xD;&#xA; * &#xD;&#xA; * @param richText the input string&#xD;&#xA; * @return the converted HTML text&#xD;&#xA; */&#xD;&#xA;public static String getHTMLFromRichText(String richText) {&#xD;&#xA;&#x9;if (richText == null) {&#xD;&#xA;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;String[] split = richText.split(&quot;%BEGINNTEXT%&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;if (split.length == 1) {&#xD;&#xA;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;List&lt;Integer> bulletedLines = new ArrayList&lt;Integer>();&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;StringTokenizer stringTokenizer = new StringTokenizer(split[0], &quot;,&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;while (stringTokenizer.hasMoreElements()) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;String nextElement = (String) stringTokenizer.nextElement();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (nextElement.equals(&quot;;&quot;)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;bulletedLines.add(Integer.parseInt(nextElement));&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;} catch (RuntimeException e) {&#xD;&#xA;&#x9;&#x9;&#x9;e.printStackTrace();&#xD;&#xA;&#x9;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;String text = split[1];&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;// normalize line feeds&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\n\r&quot;, &quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\r\n&quot;, &quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\r&quot;, &quot;\n&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;String[] lines = text.split(&quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;StringBuilder newString = new StringBuilder();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;for (int i = 0; i &lt; lines.length; i++) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (bulletedLines.contains(i)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;\n&lt;ul>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;li>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(lines[i]);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;/li>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;/ul>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(lines[i]);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;br/>\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;String newDesc = newString.toString();&#xD;&#xA;&#x9;&#x9;&#x9;return newDesc;&#xD;&#xA;&#x9;&#x9;} catch (RuntimeException e) {&#xD;&#xA;&#x9;&#x9;&#x9;e.printStackTrace();&#xD;&#xA;&#x9;&#x9;&#x9;return text;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;//change migration&#xD;&#xA;getElementById = { id ->&#xD;&#xA;&#x9;def element = model.IdentifiableElement.allInstances.find{e -> id.equals(e.identifier)} &#xD;&#xA;&#x9;if(element == null) {&#xD;&#xA;&#x9;&#x9;println &quot;id &quot; + id + &quot; not found&quot;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return element&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;isFeatureChange = { operation, EStructuralFeature feature ->&#xD;&#xA;&#x9;if(feature.name.equals(operation.featureName)) {&#xD;&#xA;&#x9;&#x9;def id = operation.modelElementId.id&#xD;&#xA;&#x9;&#x9;def element = getElementById(id)&#xD;&#xA;&#x9;&#x9;if(element == null || element.instanceOf(feature.eContainingClass)) {&#xD;&#xA;&#x9;&#x9;&#x9;return true&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return false&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {&#xD;&#xA;&#x9;if(isFeatureChange(operation, model.ModelElement.description)) {&#xD;&#xA;&#x9;&#x9;if(operation.oldValue != null) {&#xD;&#xA;&#x9;&#x9;&#x9;operation.oldValue = getHTMLFromRichText(operation.oldValue)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;if(operation.newValue != null) {&#xD;&#xA;&#x9;&#x9;&#x9;operation.newValue = getHTMLFromRichText(operation.newValue)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// model migration&#xD;&#xA;for(m in model.ModelElement.allInstances) {&#xD;&#xA;&#x9;if(m.description != null) {&#xD;&#xA;&#x9;&#x9;m.description = getHTMLFromRichText(m.description)&#xD;&#xA;&#x9;}&#xD;&#xA;}"/>
   </releases>
+  <releases/>
 </history:History>
