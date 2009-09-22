@@ -2,13 +2,16 @@ package org.unicase.mergetest;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
+import java.util.TreeMap;
 
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gef.ui.stackview.CommandStackViewerAction;
+import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.connection.rmi.SerializationUtil;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
@@ -17,10 +20,14 @@ import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.events.Event;
+import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.RMISerializationException;
 import org.unicase.mergetest.AnalyzeChangeSandboxController.Result;
+import org.unicase.model.Project;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspaceFactory;
@@ -28,20 +35,30 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 
-public class GetChangesSandboxController {
+public class AnalyzeConflictsController {
 
-	private static final int step = 1;
-	private ConnectionManager connectionManager;
-	private SessionId sessionId;
+	public static final int step = 1;
+	public ConnectionManager connectionManager;
+	public SessionId sessionId;
+	public int i;
+	public int size;
+	public ArrayList<int[]> conflicts;
+	public ProjectInfo projectInfo;
 
 	public void run() throws Exception {
 		loginServer("super", "super", "127.0.0.1", null, null);
 
-		ProjectInfo projectInfo = getProjectInfo("DOLLI2", false);
+		projectInfo = getProjectInfo("tale", true);
 
-		 iterateOverAll(projectInfo);
+		conflicts = new ArrayList<int[]>();
+		
+		iterateOverAll(projectInfo);
+		
+		Display display = new Display();
+		ShowConflictsDialog conflictsDialog = new ShowConflictsDialog(this);
+		conflictsDialog.open();
 
-//		showOne(projectInfo, 2143);
+		// showOne(projectInfo, 2143);
 
 		// storeChanges(projectInfo,"...");
 
@@ -67,36 +84,148 @@ public class GetChangesSandboxController {
 	}
 
 	private void iterateOverAll(ProjectInfo projectInfo) throws IOException {
-		Result result = new AnalyzeChangeSandboxController().new Result();
+//		Result result = new AnalyzeChangeSandboxController().new Result();
+
+		TreeMap<Integer, List<UpdateEvent>> sortedMap = getUpdateEvents(projectInfo);
+
+//		for (Integer integer : sortedMap.keySet()) {
+//			System.out.print(integer + " ");
+//			for (UpdateEvent update : sortedMap.get(integer)) {
+//				System.out.print("[" + update.getBaseVersion().getIdentifier()
+//						+ ":" + update.getTargetVersion().getIdentifier()
+//						+ "] ");
+//			}
+//			System.out.println("");
+//		}
+
+		for (Integer integer : sortedMap.keySet()) {
+			try {
+				List<ChangePackage> myChanges = connectionManager.getChanges(
+						sessionId, projectInfo.getProjectId(), getVersionSpec(integer - 1), getVersionSpec(integer));
+				
+				List<UpdateEvent> list = sortedMap.get(integer);
+				UpdateEvent lastUpdateEvent = list.get(list.size()-1);
+				List<ChangePackage> theirChanges = connectionManager.getChanges(
+						sessionId, projectInfo.getProjectId(), lastUpdateEvent.getBaseVersion(), lastUpdateEvent.getTargetVersion());
+				
+				if(myChanges.size()!=1) {
+					throw new IllegalStateException();
+				}
+				checkForConflicts(integer, lastUpdateEvent.getBaseVersion().getIdentifier(), lastUpdateEvent.getTargetVersion().getIdentifier(), myChanges.get(0), theirChanges);
+			
+			} catch (EmfStoreException e) {
+				e.printStackTrace();
+			}
+
+		}
+
+		// saveToFile(result,"test");
+	}
+
+	private void checkForConflicts(int versionNumber, int base, int target,
+			ChangePackage myChanges, List<ChangePackage> theirChanges) {
 		ConflictDetector conflictDetector = new ConflictDetector();
+		if(conflictDetector.doConflict(myChanges, theirChanges)) {
+			
+			conflicts.add(new int[] {versionNumber,base,target});
+
+			printCollision(versionNumber, base, target, myChanges, theirChanges);
+			
+			int j = 1;
+			for(AbstractOperation ao : myChanges.getOperations()) {
+				int cpc = 0;
+				for(ChangePackage cp : theirChanges) {
+					for(AbstractOperation theirAo : cp.getOperations()) {
+						if(conflictDetector.doConflict(ao, theirAo)) {
+							printCollidingOperation(j++, ao, cpc, theirAo);
+							
+						}
+					}
+					cpc++;
+				}
+			}
+		}
+		
+	}
+
+	public Project getProject(int version) throws EmfStoreException {
+		return connectionManager.getProject(sessionId, projectInfo.getProjectId(), getVersionSpec(version));
+	}
+	
+	public List<ChangePackage> getChanges(int source, int target) throws EmfStoreException {
+		return connectionManager.getChanges(sessionId, projectInfo.getProjectId(), getVersionSpec(source), getVersionSpec(target));
+	}
+	
+	private void printCollidingOperation(int j, AbstractOperation ao, int cpc,
+			AbstractOperation theirAo) {
+		System.out.print("\t\t"+j+". cp: "+cpc+" - ");
+		System.out.print(ao.getClass().getSimpleName());
+		if(ao instanceof CompositeOperation) {
+			System.out.print(" ("+((CompositeOperation) ao).getSubOperations().size()+")");
+		}
+		System.out.print(" => ");
+		System.out.print(theirAo.getClass().getSimpleName());
+		if(theirAo instanceof CompositeOperation) {
+			System.out.print(" ("+((CompositeOperation) theirAo).getSubOperations().size()+")");
+		}
+		System.out.println("");
+	}
+
+	private void printCollision(int versionNumber, int base, int target,
+			ChangePackage myChanges, List<ChangePackage> theirChanges) {
+		System.out.print("["+(i++)+"]Collision in version: "+versionNumber);
+		System.out.print(" ("+base+"-"+target+")");
+		System.out.print(" myOperations: "+myChanges.getOperations().size());
+		System.out.print(" theirCP: "+theirChanges.size());
+		int totalsize = 0;
+		String cpSizes = "";
+		for(ChangePackage cp : theirChanges) {
+			cpSizes += " "+cp.getOperations().size()+",";
+			totalsize += cp.getOperations().size();
+		}
+		System.out.println(" theirTotalOperations: "+totalsize+" operationsPerCP:"+cpSizes);
+	}
+
+	private TreeMap<Integer, List<UpdateEvent>> getUpdateEvents(
+			ProjectInfo projectInfo) {
+		TreeMap<Integer, List<UpdateEvent>> sortedMap = new TreeMap<Integer, List<UpdateEvent>>();
 
 		int total = projectInfo.getVersion().getIdentifier();
 		System.out.println("total: " + total);
-		int i = 2;
+		int i = 1;
 		while (i < total) {
 			try {
-				PrimaryVersionSpec source = getVersionSpec(i - 2);
+				PrimaryVersionSpec source = getVersionSpec(i - 1);
 				PrimaryVersionSpec target = getVersionSpec(i);
 				List<ChangePackage> changes = connectionManager.getChanges(
 						sessionId, projectInfo.getProjectId(), source, target);
-				if (changes.size() != 2) {
+				if (changes.size() != 1) {
 					continue;
 				}
-				Set<AbstractOperation> conflicting = conflictDetector
-						.getConflicting(changes.get(0).getOperations(), changes
-								.get(1).getOperations());
-				result.add(conflicting, i);
+
+				for (ChangePackage cp : changes) {
+					for (Event event : cp.getEvents()) {
+						if (event instanceof UpdateEvent) {
+							List<UpdateEvent> list = sortedMap.get(i);
+							if (list == null) {
+								list = new ArrayList<UpdateEvent>();
+								sortedMap.put(i, list);
+							}
+							list.add((UpdateEvent) event);
+						}
+					}
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
-			System.out.print(".");
-			if (i % 50 == 0)
-				System.out.println("]");
 			i++;
 		}
+		return sortedMap;
+	}
 
-		FileWriter fileWriter = new FileWriter(
-				"C:/Users/Otto/Desktop/test.txt", true);
+	private void saveToFile(Result result, String fileName) throws IOException {
+		FileWriter fileWriter = new FileWriter("C:/Users/Otto/Desktop/"
+				+ fileName + ".txt", true);
 
 		List<Object> render = result.render();
 		for (Object obj : render) {
@@ -177,7 +306,7 @@ public class GetChangesSandboxController {
 		return serverInfo;
 	}
 
-	private PrimaryVersionSpec getVersionSpec(int id) {
+	public PrimaryVersionSpec getVersionSpec(int id) {
 		PrimaryVersionSpec primaryVersionSpec = VersioningFactory.eINSTANCE
 				.createPrimaryVersionSpec();
 		primaryVersionSpec.setIdentifier(id);

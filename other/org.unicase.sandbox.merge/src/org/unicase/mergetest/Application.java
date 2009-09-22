@@ -19,9 +19,7 @@ public class Application implements IApplication {
 		
 //		new MergeSandboxController().run();
 		
-		new GetChangesSandboxController().run();
-		
-//		new AnalyzeChangeSandboxController().run();
+		new AnalyzeConflictsController().run();
 		
 		return IApplication.EXIT_OK;
 	}

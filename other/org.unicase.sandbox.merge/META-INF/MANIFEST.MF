@@ -10,4 +10,3 @@ Require-Bundle: org.eclipse.core.runtime,
  org.unicase.workspace,
  org.eclipse.emf.edit.ui
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
