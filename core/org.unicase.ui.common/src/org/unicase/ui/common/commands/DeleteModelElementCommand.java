@@ -8,14 +8,18 @@ package org.unicase.ui.common.commands;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.ui.URIEditorInput;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
+import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
+import org.unicase.ui.common.MEEditorInput;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.util.UnicaseCommand;
+import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * Command to delete a modelelement.
@@ -77,13 +81,21 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 		List<IEditorReference> toCloseEditors = new ArrayList<IEditorReference>();
 		for (int i = 0; i < openEditors.length; i++) {
 			try {
-				// JH: remove this hack, adapter is null if editor is
-				// mediagrameditor
-				// ZH: set adapter for MEDiagramEditor
-				Object adapter = openEditors[i].getEditorInput().getAdapter(ModelElement.class);
-				if (adapter != null && adapter.equals(me)) {
-					toCloseEditors.add(openEditors[i]);
+				
+				IEditorInput editorInput = openEditors[i].getEditorInput();
+				
+				if(editorInput instanceof MEEditorInput) {
+					Object adapter = editorInput.getAdapter(ModelElement.class);
+					if(adapter != null && adapter.equals(me)) {
+						toCloseEditors.add(openEditors[i]);
+					}
+				} else if(editorInput instanceof URIEditorInput) {
+					ModelElement modelElement = WorkspaceUtil.getModelElementByUri(((URIEditorInput) editorInput).getURI());
+					if(modelElement != null && modelElement.equals(me)) {
+						toCloseEditors.add(openEditors[i]);
+					}
 				}
+				
 			} catch (PartInitException e) {
 				DialogHandler.showExceptionDialog(e);
 				result = false;
