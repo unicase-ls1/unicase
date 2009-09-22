@@ -233,6 +233,9 @@ public class ProjectItemProvider extends RootElementItemProvider implements IEdi
 			RequirementFactory.eINSTANCE.createUserTask()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
+			RequirementFactory.eINSTANCE.createWorkspace()));
+
+		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,
 			RationaleFactory.eINSTANCE.createIssue()));
 
 		newChildDescriptors.add(createChildParameter(ModelPackage.Literals.PROJECT__MODEL_ELEMENTS,

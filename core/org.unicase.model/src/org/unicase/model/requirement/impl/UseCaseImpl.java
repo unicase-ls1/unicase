@@ -25,6 +25,7 @@ import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.requirement.Step;
+import org.unicase.model.requirement.SystemFunction;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
 
@@ -49,6 +50,7 @@ import org.unicase.model.requirement.UserTask;
  * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIdentifiedClasses <em>Identified Classes</em>}</li>
  * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getIncludedUseCases <em>Included Use Cases</em>}</li>
  * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getExtendedUseCases <em>Extended Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UseCaseImpl#getSystemFunctions <em>System Functions</em>}</li>
  * </ul>
  * </p>
  * 
@@ -236,6 +238,16 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 	protected EList<UseCase> extendedUseCases;
 
 	/**
+	 * The cached value of the '{@link #getSystemFunctions() <em>System Functions</em>}' reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getSystemFunctions()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<SystemFunction> systemFunctions;
+
+	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -401,6 +413,19 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 				RequirementPackage.USE_CASE__EXTENDED_USE_CASES);
 		}
 		return extendedUseCases;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<SystemFunction> getSystemFunctions() {
+		if (systemFunctions == null) {
+			systemFunctions = new EObjectWithInverseResolvingEList.ManyInverse<SystemFunction>(SystemFunction.class,
+				this, RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS, RequirementPackage.SYSTEM_FUNCTION__USECASES);
+		}
+		return systemFunctions;
 	}
 
 	/**
@@ -619,6 +644,8 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getIdentifiedClasses())
 				.basicAdd(otherEnd, msgs);
+		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getSystemFunctions()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -647,6 +674,8 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return ((InternalEList<?>) getNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.USE_CASE__IDENTIFIED_CLASSES:
 			return ((InternalEList<?>) getIdentifiedClasses()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
+			return ((InternalEList<?>) getSystemFunctions()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -691,6 +720,8 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return getIncludedUseCases();
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
 			return getExtendedUseCases();
+		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
+			return getSystemFunctions();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -754,6 +785,10 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			getExtendedUseCases().clear();
 			getExtendedUseCases().addAll((Collection<? extends UseCase>) newValue);
 			return;
+		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
+			getSystemFunctions().clear();
+			getSystemFunctions().addAll((Collection<? extends SystemFunction>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -808,6 +843,9 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
 			getExtendedUseCases().clear();
 			return;
+		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
+			getSystemFunctions().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -849,6 +887,8 @@ public class UseCaseImpl extends ModelElementImpl implements UseCase {
 			return includedUseCases != null && !includedUseCases.isEmpty();
 		case RequirementPackage.USE_CASE__EXTENDED_USE_CASES:
 			return extendedUseCases != null && !extendedUseCases.isEmpty();
+		case RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS:
+			return systemFunctions != null && !systemFunctions.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

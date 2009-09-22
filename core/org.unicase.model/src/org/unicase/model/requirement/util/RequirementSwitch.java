@@ -23,6 +23,7 @@ import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.SystemFunction;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
+import org.unicase.model.requirement.Workspace;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
@@ -175,8 +176,6 @@ public class RequirementSwitch<T> {
 			if (result == null)
 				result = caseModelElement(systemFunction);
 			if (result == null)
-				result = caseNonDomainElement(systemFunction);
-			if (result == null)
 				result = caseIdentifiableElement(systemFunction);
 			if (result == null)
 				result = defaultCase(theEObject);
@@ -188,9 +187,18 @@ public class RequirementSwitch<T> {
 			if (result == null)
 				result = caseModelElement(userTask);
 			if (result == null)
-				result = caseNonDomainElement(userTask);
-			if (result == null)
 				result = caseIdentifiableElement(userTask);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case RequirementPackage.WORKSPACE: {
+			Workspace workspace = (Workspace) theEObject;
+			T result = caseWorkspace(workspace);
+			if (result == null)
+				result = caseModelElement(workspace);
+			if (result == null)
+				result = caseIdentifiableElement(workspace);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -318,6 +326,19 @@ public class RequirementSwitch<T> {
 	 * @generated
 	 */
 	public T caseUserTask(UserTask object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Workspace</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Workspace</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseWorkspace(Workspace object) {
 		return null;
 	}
 

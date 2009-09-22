@@ -5,12 +5,22 @@
  */
 package org.unicase.model.requirement.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.SystemFunction;
+import org.unicase.model.requirement.UseCase;
+import org.unicase.model.requirement.Workspace;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>System Function</b></em>'. <!-- end-user-doc
@@ -86,6 +96,36 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 	 * @ordered
 	 */
 	protected String exception = EXCEPTION_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getWorkspace() <em>Workspace</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getWorkspace()
+	 * @generated
+	 * @ordered
+	 */
+	protected Workspace workspace;
+
+	/**
+	 * The cached value of the '{@link #getUsecases() <em>Usecases</em>}' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #getUsecases()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<UseCase> usecases;
+
+	/**
+	 * The cached value of the '{@link #getNonFunctionalRequirement() <em>Non Functional Requirement</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getNonFunctionalRequirement()
+	 * @generated
+	 * @ordered
+	 */
+	protected NonFunctionalRequirement nonFunctionalRequirement;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -177,6 +217,205 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 	 * 
 	 * @generated
 	 */
+	public Workspace getWorkspace() {
+		if (workspace != null && workspace.eIsProxy()) {
+			InternalEObject oldWorkspace = (InternalEObject) workspace;
+			workspace = (Workspace) eResolveProxy(oldWorkspace);
+			if (workspace != oldWorkspace) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						RequirementPackage.SYSTEM_FUNCTION__WORKSPACE, oldWorkspace, workspace));
+			}
+		}
+		return workspace;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Workspace basicGetWorkspace() {
+		return workspace;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetWorkspace(Workspace newWorkspace, NotificationChain msgs) {
+		Workspace oldWorkspace = workspace;
+		workspace = newWorkspace;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				RequirementPackage.SYSTEM_FUNCTION__WORKSPACE, oldWorkspace, newWorkspace);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setWorkspace(Workspace newWorkspace) {
+		if (newWorkspace != workspace) {
+			NotificationChain msgs = null;
+			if (workspace != null)
+				msgs = ((InternalEObject) workspace).eInverseRemove(this,
+					RequirementPackage.WORKSPACE__SYSTEM_FUNCTIONS, Workspace.class, msgs);
+			if (newWorkspace != null)
+				msgs = ((InternalEObject) newWorkspace).eInverseAdd(this,
+					RequirementPackage.WORKSPACE__SYSTEM_FUNCTIONS, Workspace.class, msgs);
+			msgs = basicSetWorkspace(newWorkspace, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, RequirementPackage.SYSTEM_FUNCTION__WORKSPACE,
+				newWorkspace, newWorkspace));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EList<UseCase> getUsecases() {
+		if (usecases == null) {
+			usecases = new EObjectWithInverseResolvingEList.ManyInverse<UseCase>(UseCase.class, this,
+				RequirementPackage.SYSTEM_FUNCTION__USECASES, RequirementPackage.USE_CASE__SYSTEM_FUNCTIONS);
+		}
+		return usecases;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NonFunctionalRequirement getNonFunctionalRequirement() {
+		if (nonFunctionalRequirement != null && nonFunctionalRequirement.eIsProxy()) {
+			InternalEObject oldNonFunctionalRequirement = (InternalEObject) nonFunctionalRequirement;
+			nonFunctionalRequirement = (NonFunctionalRequirement) eResolveProxy(oldNonFunctionalRequirement);
+			if (nonFunctionalRequirement != oldNonFunctionalRequirement) {
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT, oldNonFunctionalRequirement,
+						nonFunctionalRequirement));
+			}
+		}
+		return nonFunctionalRequirement;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NonFunctionalRequirement basicGetNonFunctionalRequirement() {
+		return nonFunctionalRequirement;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetNonFunctionalRequirement(NonFunctionalRequirement newNonFunctionalRequirement,
+		NotificationChain msgs) {
+		NonFunctionalRequirement oldNonFunctionalRequirement = nonFunctionalRequirement;
+		nonFunctionalRequirement = newNonFunctionalRequirement;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT, oldNonFunctionalRequirement,
+				newNonFunctionalRequirement);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setNonFunctionalRequirement(NonFunctionalRequirement newNonFunctionalRequirement) {
+		if (newNonFunctionalRequirement != nonFunctionalRequirement) {
+			NotificationChain msgs = null;
+			if (nonFunctionalRequirement != null)
+				msgs = ((InternalEObject) nonFunctionalRequirement).eInverseRemove(this,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS, NonFunctionalRequirement.class,
+					msgs);
+			if (newNonFunctionalRequirement != null)
+				msgs = ((InternalEObject) newNonFunctionalRequirement).eInverseAdd(this,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS, NonFunctionalRequirement.class,
+					msgs);
+			msgs = basicSetNonFunctionalRequirement(newNonFunctionalRequirement, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET,
+				RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT, newNonFunctionalRequirement,
+				newNonFunctionalRequirement));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			if (workspace != null)
+				msgs = ((InternalEObject) workspace).eInverseRemove(this,
+					RequirementPackage.WORKSPACE__SYSTEM_FUNCTIONS, Workspace.class, msgs);
+			return basicSetWorkspace((Workspace) otherEnd, msgs);
+		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUsecases()).basicAdd(otherEnd, msgs);
+		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
+			if (nonFunctionalRequirement != null)
+				msgs = ((InternalEObject) nonFunctionalRequirement).eInverseRemove(this,
+					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS, NonFunctionalRequirement.class,
+					msgs);
+			return basicSetNonFunctionalRequirement((NonFunctionalRequirement) otherEnd, msgs);
+		}
+		return super.eInverseAdd(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			return basicSetWorkspace(null, msgs);
+		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
+			return ((InternalEList<?>) getUsecases()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
+			return basicSetNonFunctionalRequirement(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -186,6 +425,16 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 			return getOutput();
 		case RequirementPackage.SYSTEM_FUNCTION__EXCEPTION:
 			return getException();
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			if (resolve)
+				return getWorkspace();
+			return basicGetWorkspace();
+		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
+			return getUsecases();
+		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
+			if (resolve)
+				return getNonFunctionalRequirement();
+			return basicGetNonFunctionalRequirement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -195,6 +444,7 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 	 * 
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -206,6 +456,16 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 			return;
 		case RequirementPackage.SYSTEM_FUNCTION__EXCEPTION:
 			setException((String) newValue);
+			return;
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			setWorkspace((Workspace) newValue);
+			return;
+		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
+			getUsecases().clear();
+			getUsecases().addAll((Collection<? extends UseCase>) newValue);
+			return;
+		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
+			setNonFunctionalRequirement((NonFunctionalRequirement) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -228,6 +488,15 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 		case RequirementPackage.SYSTEM_FUNCTION__EXCEPTION:
 			setException(EXCEPTION_EDEFAULT);
 			return;
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			setWorkspace((Workspace) null);
+			return;
+		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
+			getUsecases().clear();
+			return;
+		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
+			setNonFunctionalRequirement((NonFunctionalRequirement) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -246,6 +515,12 @@ public class SystemFunctionImpl extends ModelElementImpl implements SystemFuncti
 			return OUTPUT_EDEFAULT == null ? output != null : !OUTPUT_EDEFAULT.equals(output);
 		case RequirementPackage.SYSTEM_FUNCTION__EXCEPTION:
 			return EXCEPTION_EDEFAULT == null ? exception != null : !EXCEPTION_EDEFAULT.equals(exception);
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			return workspace != null;
+		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
+			return usecases != null && !usecases.isEmpty();
+		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
+			return nonFunctionalRequirement != null;
 		}
 		return super.eIsSet(featureID);
 	}

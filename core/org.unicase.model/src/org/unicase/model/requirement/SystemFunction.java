@@ -5,8 +5,8 @@
  */
 package org.unicase.model.requirement;
 
+import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
-import org.unicase.model.NonDomainElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>System Function</b></em>'. <!-- end-user-doc -->
@@ -16,6 +16,10 @@ import org.unicase.model.NonDomainElement;
  * <li>{@link org.unicase.model.requirement.SystemFunction#getInput <em>Input</em>}</li>
  * <li>{@link org.unicase.model.requirement.SystemFunction#getOutput <em>Output</em>}</li>
  * <li>{@link org.unicase.model.requirement.SystemFunction#getException <em>Exception</em>}</li>
+ * <li>{@link org.unicase.model.requirement.SystemFunction#getWorkspace <em>Workspace</em>}</li>
+ * <li>{@link org.unicase.model.requirement.SystemFunction#getUsecases <em>Usecases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.SystemFunction#getNonFunctionalRequirement <em>Non Functional Requirement
+ * </em>}</li>
  * </ul>
  * </p>
  * 
@@ -23,7 +27,7 @@ import org.unicase.model.NonDomainElement;
  * @model
  * @generated
  */
-public interface SystemFunction extends ModelElement, NonDomainElement {
+public interface SystemFunction extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Input</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
@@ -101,5 +105,83 @@ public interface SystemFunction extends ModelElement, NonDomainElement {
 	 * @generated
 	 */
 	void setException(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Workspace</b></em>' reference. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.requirement.Workspace#getSystemFunctions <em>System Functions</em>}'. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Workspace</em>' reference isn't clear, there really should be more of a description
+	 * here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Workspace</em>' reference.
+	 * @see #setWorkspace(Workspace)
+	 * @see org.unicase.model.requirement.RequirementPackage#getSystemFunction_Workspace()
+	 * @see org.unicase.model.requirement.Workspace#getSystemFunctions
+	 * @model opposite="systemFunctions" keys="identifier"
+	 * @generated
+	 */
+	Workspace getWorkspace();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.requirement.SystemFunction#getWorkspace <em>Workspace</em>}'
+	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Workspace</em>' reference.
+	 * @see #getWorkspace()
+	 * @generated
+	 */
+	void setWorkspace(Workspace value);
+
+	/**
+	 * Returns the value of the '<em><b>Usecases</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.requirement.UseCase}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.requirement.UseCase#getSystemFunctions <em>System Functions</em>}'. <!-- begin-user-doc
+	 * -->
+	 * <p>
+	 * If the meaning of the '<em>Usecases</em>' reference list isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Usecases</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getSystemFunction_Usecases()
+	 * @see org.unicase.model.requirement.UseCase#getSystemFunctions
+	 * @model opposite="systemFunctions" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 * @generated
+	 */
+	EList<UseCase> getUsecases();
+
+	/**
+	 * Returns the value of the '<em><b>Non Functional Requirement</b></em>' reference. It is bidirectional and its
+	 * opposite is '{@link org.unicase.model.requirement.NonFunctionalRequirement#getSystemFunctions
+	 * <em>System Functions</em>}'. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Non Functional Requirement</em>' reference isn't clear, there really should be more of
+	 * a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Non Functional Requirement</em>' reference.
+	 * @see #setNonFunctionalRequirement(NonFunctionalRequirement)
+	 * @see org.unicase.model.requirement.RequirementPackage#getSystemFunction_NonFunctionalRequirement()
+	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getSystemFunctions
+	 * @model opposite="systemFunctions" keys="identifier"
+	 * @generated
+	 */
+	NonFunctionalRequirement getNonFunctionalRequirement();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.model.requirement.SystemFunction#getNonFunctionalRequirement
+	 * <em>Non Functional Requirement</em>}' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Non Functional Requirement</em>' reference.
+	 * @see #getNonFunctionalRequirement()
+	 * @generated
+	 */
+	void setNonFunctionalRequirement(NonFunctionalRequirement value);
 
 } // SystemFunction

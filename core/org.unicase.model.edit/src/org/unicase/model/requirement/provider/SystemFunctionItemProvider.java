@@ -55,6 +55,9 @@ public class SystemFunctionItemProvider extends ModelElementItemProvider impleme
 			addInputPropertyDescriptor(object);
 			addOutputPropertyDescriptor(object);
 			addExceptionPropertyDescriptor(object);
+			addWorkspacePropertyDescriptor(object);
+			addUsecasesPropertyDescriptor(object);
+			addNonFunctionalRequirementPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -99,6 +102,47 @@ public class SystemFunctionItemProvider extends ModelElementItemProvider impleme
 	}
 
 	/**
+	 * This adds a property descriptor for the Workspace feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addWorkspacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SystemFunction_workspace_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_SystemFunction_workspace_feature",
+				"_UI_SystemFunction_type"), RequirementPackage.Literals.SYSTEM_FUNCTION__WORKSPACE, true, false, true,
+			null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Usecases feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addUsecasesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_SystemFunction_usecases_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_SystemFunction_usecases_feature",
+				"_UI_SystemFunction_type"), RequirementPackage.Literals.SYSTEM_FUNCTION__USECASES, true, false, true,
+			null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Non Functional Requirement feature. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addNonFunctionalRequirementPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_SystemFunction_nonFunctionalRequirement_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_SystemFunction_nonFunctionalRequirement_feature",
+				"_UI_SystemFunction_type"), RequirementPackage.Literals.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT,
+			true, false, true, null, null, null));
+	}
+
+	/**
 	 * This returns SystemFunction.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -111,13 +155,11 @@ public class SystemFunctionItemProvider extends ModelElementItemProvider impleme
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((SystemFunction) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_SystemFunction_type")
-			: getString("_UI_SystemFunction_type") + " " + label;
+		return super.getText(object);
 	}
 
 	/**

@@ -183,7 +183,7 @@ public class ActorImpl extends ModelElementImpl implements Actor {
 	public EList<UserTask> getParticipatedUserTasks() {
 		if (participatedUserTasks == null) {
 			participatedUserTasks = new EObjectWithInverseResolvingEList.ManyInverse<UserTask>(UserTask.class, this,
-				RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS, RequirementPackage.USER_TASK__PARTICIPATING_ACTOR);
+				RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS, RequirementPackage.USER_TASK__PARTICIPATING_ACTORS);
 		}
 		return participatedUserTasks;
 	}

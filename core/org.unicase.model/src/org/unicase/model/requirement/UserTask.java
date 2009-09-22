@@ -7,7 +7,6 @@ package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
-import org.unicase.model.NonDomainElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>User Task</b></em>'. <!-- end-user-doc -->
@@ -15,8 +14,9 @@ import org.unicase.model.NonDomainElement;
  * The following features are supported:
  * <ul>
  * <li>{@link org.unicase.model.requirement.UserTask#getInitiatingActor <em>Initiating Actor</em>}</li>
- * <li>{@link org.unicase.model.requirement.UserTask#getParticipatingActor <em>Participating Actor</em>}</li>
+ * <li>{@link org.unicase.model.requirement.UserTask#getParticipatingActors <em>Participating Actors</em>}</li>
  * <li>{@link org.unicase.model.requirement.UserTask#getRealizingUseCases <em>Realizing Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.UserTask#getNonFunctionalRequirements <em>Non Functional Requirements</em>}</li>
  * </ul>
  * </p>
  * 
@@ -24,7 +24,7 @@ import org.unicase.model.NonDomainElement;
  * @model
  * @generated
  */
-public interface UserTask extends ModelElement, NonDomainElement {
+public interface UserTask extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Initiating Actor</b></em>' reference. It is bidirectional and its opposite is '
 	 * {@link org.unicase.model.requirement.Actor#getInitiatedUserTask <em>Initiated User Task</em>}'. <!--
@@ -55,23 +55,24 @@ public interface UserTask extends ModelElement, NonDomainElement {
 	void setInitiatingActor(Actor value);
 
 	/**
-	 * Returns the value of the '<em><b>Participating Actor</b></em>' reference list. The list contents are of type
+	 * Returns the value of the '<em><b>Participating Actors</b></em>' reference list. The list contents are of type
 	 * {@link org.unicase.model.requirement.Actor}. It is bidirectional and its opposite is '
 	 * {@link org.unicase.model.requirement.Actor#getParticipatedUserTasks <em>Participated User Tasks</em>}'. <!--
 	 * begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Participating Actor</em>' reference list isn't clear, there really should be more of a
-	 * description here...
+	 * If the meaning of the '<em>Participating Actors</em>' reference list isn't clear, there really should be more of
+	 * a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * 
-	 * @return the value of the '<em>Participating Actor</em>' reference list.
-	 * @see org.unicase.model.requirement.RequirementPackage#getUserTask_ParticipatingActor()
+	 * @return the value of the '<em>Participating Actors</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getUserTask_ParticipatingActors()
 	 * @see org.unicase.model.requirement.Actor#getParticipatedUserTasks
 	 * @model opposite="participatedUserTasks" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
-	EList<Actor> getParticipatingActor();
+	EList<Actor> getParticipatingActors();
 
 	/**
 	 * Returns the value of the '<em><b>Realizing Use Cases</b></em>' reference list. The list contents are of type
@@ -91,5 +92,25 @@ public interface UserTask extends ModelElement, NonDomainElement {
 	 * @generated
 	 */
 	EList<UseCase> getRealizingUseCases();
+
+	/**
+	 * Returns the value of the '<em><b>Non Functional Requirements</b></em>' reference list. The list contents are of
+	 * type {@link org.unicase.model.requirement.NonFunctionalRequirement}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.requirement.NonFunctionalRequirement#getUserTasks <em>User Tasks</em>}'. <!--
+	 * begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Non Functional Requirements</em>' reference list isn't clear, there really should be
+	 * more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Non Functional Requirements</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getUserTask_NonFunctionalRequirements()
+	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getUserTasks
+	 * @model opposite="userTasks" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 * @generated
+	 */
+	EList<NonFunctionalRequirement> getNonFunctionalRequirements();
 
 } // UserTask

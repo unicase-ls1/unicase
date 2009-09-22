@@ -254,6 +254,9 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 			RequirementFactory.eINSTANCE.createUserTask()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
+			RequirementFactory.eINSTANCE.createWorkspace()));
+
+		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
 			RationaleFactory.eINSTANCE.createIssue()));
 
 		newChildDescriptors.add(createChildParameter(DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS,
