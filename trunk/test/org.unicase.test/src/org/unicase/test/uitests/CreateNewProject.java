@@ -1,9 +1,13 @@
 package org.unicase.test.uitests;
 
+import java.util.logging.FileHandler;
 import java.util.logging.Logger;
 
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
+import org.eclipse.swtbot.eclipse.finder.widgets.SWTBotView;
 import org.eclipse.swtbot.swt.finder.junit.SWTBotJunit4ClassRunner;
+import org.eclipse.swtbot.swt.finder.widgets.SWTBotShell;
+import org.eclipse.swtbot.swt.finder.widgets.SWTBotTreeItem;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -27,10 +31,30 @@ public class CreateNewProject {
 	}
 
 	@Test
-	public void canCreateANewJavaProject() throws Exception {
+	public void canCreateANewProject() throws Exception {
 		Logger logger = Logger.getLogger("LoggerTest");
+		bot.menu("Window").menu("Show View").menu("Other...").click();
+		SWTBotShell shell = bot.shell("Show View");
+		shell.activate();
+		bot.tree().expandNode("unicase").select("EmfStore Browser");
+		bot.button("OK").click();
+		SWTBotView viewById = bot.activeView();
+		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
+		items[0].getText();
+		logger.addHandler(new FileHandler("createnewprojectlog.txt"));
 
-		logger.info("testing");
+		int countofelem = (items[0].expand().rowCount());
+		if (countofelem == 0) {
+			logger.info("creating a new project called :testproject");
+			items[0].select().contextMenu("Create new project...").click();
+			bot.textWithLabel("Name:").typeText("testproject");
+			bot.button("OK").click();
+			items[0].expand();
+		} else {
+			logger.info("the testproject already exists");
+
+		}
+
 	}
 
 	@AfterClass

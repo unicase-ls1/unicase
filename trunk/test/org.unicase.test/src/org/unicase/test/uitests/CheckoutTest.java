@@ -40,7 +40,7 @@ public class CheckoutTest {
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
 		items[0].getText();
 		Logger logger = Logger.getLogger("LoggerTest");
-		logger.addHandler(new FileHandler("log.txt"));
+		logger.addHandler(new FileHandler("checkoutlog.txt"));
 
 		int countofelem = (items[0].expand().rowCount());
 		if (countofelem == 0) {
