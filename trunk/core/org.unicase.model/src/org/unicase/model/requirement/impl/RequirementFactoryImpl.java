@@ -21,6 +21,7 @@ import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.SystemFunction;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
+import org.unicase.model.requirement.Workspace;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -81,6 +82,8 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 			return createSystemFunction();
 		case RequirementPackage.USER_TASK:
 			return createUserTask();
+		case RequirementPackage.WORKSPACE:
+			return createWorkspace();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -174,6 +177,16 @@ public class RequirementFactoryImpl extends EFactoryImpl implements RequirementF
 	public UserTask createUserTask() {
 		UserTaskImpl userTask = new UserTaskImpl();
 		return userTask;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public Workspace createWorkspace() {
+		WorkspaceImpl workspace = new WorkspaceImpl();
+		return workspace;
 	}
 
 	/**

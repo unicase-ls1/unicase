@@ -260,6 +260,10 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/restrictedScenarios"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/restrictedUseCases"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/NonFunctionalRequirement/userTasks"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/FunctionalRequirement">
         <genFeatures notify="false" createChild="false" ecoreFeature="ecore:EReference model.ecore#//requirement/FunctionalRequirement/refinedRequirement"/>
@@ -280,7 +284,7 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/initiatingActor"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/participatingActors"/>
-        <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/realizedUserTask"/>
         <genFeatures property="None" createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/UseCase/precondition"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
@@ -300,6 +304,8 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/includedUseCases"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/extendedUseCases"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UseCase/systemFunctions"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/Scenario">
         <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/steps"/>
@@ -319,9 +325,9 @@
             ecoreFeature="ecore:EReference model.ecore#//requirement/Scenario/participatingClasses"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/Actor">
-        <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/Actor/initiatedUserTask"/>
-        <genFeatures property="None" notify="false" createChild="false" propertySortChoices="true"
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/Actor/participatedUserTasks"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/Actor/initiatedUseCases"/>
@@ -350,14 +356,26 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/SystemFunction/input"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/SystemFunction/output"/>
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute model.ecore#//requirement/SystemFunction/exception"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/SystemFunction/workspace"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/SystemFunction/usecases"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"/>
       </genClasses>
       <genClasses ecoreClass="model.ecore#//requirement/UserTask">
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UserTask/initiatingActor"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
-            ecoreFeature="ecore:EReference model.ecore#//requirement/UserTask/participatingActor"/>
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UserTask/participatingActors"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference model.ecore#//requirement/UserTask/realizingUseCases"/>
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/UserTask/nonFunctionalRequirements"/>
+      </genClasses>
+      <genClasses ecoreClass="model.ecore#//requirement/Workspace">
+        <genFeatures notify="false" createChild="false" propertySortChoices="true"
+            ecoreFeature="ecore:EReference model.ecore#//requirement/Workspace/systemFunctions"/>
       </genClasses>
     </nestedGenPackages>
     <nestedGenPackages prefix="Rationale" basePackage="org.unicase.model" disposableProviderFactory="true"

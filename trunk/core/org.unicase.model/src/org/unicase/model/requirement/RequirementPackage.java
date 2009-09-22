@@ -195,13 +195,30 @@ public interface RequirementPackage extends EPackage {
 	int NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES = RationalePackage.CRITERION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>System Functions</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS = RationalePackage.CRITERION_FEATURE_COUNT + 2;
+
+	/**
+	 * The feature id for the '<em><b>User Tasks</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__USER_TASKS = RationalePackage.CRITERION_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>Non Functional Requirement</em>' class. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int NON_FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = RationalePackage.CRITERION_FEATURE_COUNT + 2;
+	int NON_FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = RationalePackage.CRITERION_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl
@@ -632,12 +649,21 @@ public interface RequirementPackage extends EPackage {
 	int USE_CASE__EXTENDED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
+	 * The feature id for the '<em><b>System Functions</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__SYSTEM_FUNCTIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 14;
+
+	/**
 	 * The number of structural features of the '<em>Use Case</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 14;
+	int USE_CASE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ScenarioImpl <em>Scenario</em>}' class.
@@ -1435,13 +1461,38 @@ public interface RequirementPackage extends EPackage {
 	int SYSTEM_FUNCTION__EXCEPTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Workspace</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__WORKSPACE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Usecases</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__USECASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Non Functional Requirement</b></em>' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
 	 * The number of structural features of the '<em>System Function</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int SYSTEM_FUNCTION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -1565,13 +1616,13 @@ public interface RequirementPackage extends EPackage {
 	int USER_TASK__INITIATING_ACTOR = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
-	 * The feature id for the '<em><b>Participating Actor</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * The feature id for the '<em><b>Participating Actors</b></em>' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__PARTICIPATING_ACTOR = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int USER_TASK__PARTICIPATING_ACTORS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Realizing Use Cases</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -1583,13 +1634,152 @@ public interface RequirementPackage extends EPackage {
 	int USER_TASK__REALIZING_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
+	 * The feature id for the '<em><b>Non Functional Requirements</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__NON_FUNCTIONAL_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
 	 * The number of structural features of the '<em>User Task</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int USER_TASK_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The meta object id for the '{@link org.unicase.model.requirement.impl.WorkspaceImpl <em>Workspace</em>}' class.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.model.requirement.impl.WorkspaceImpl
+	 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getWorkspace()
+	 * @generated
+	 */
+	int WORKSPACE = 9;
+
+	/**
+	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+
+	/**
+	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+
+	/**
+	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+
+	/**
+	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+
+	/**
+	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+
+	/**
+	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+
+	/**
+	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+
+	/**
+	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+
+	/**
+	 * The feature id for the '<em><b>System Functions</b></em>' reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__SYSTEM_FUNCTIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Workspace</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.requirement.NonFunctionalRequirement
@@ -1624,6 +1814,30 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getNonFunctionalRequirement_RestrictedUseCases();
+
+	/**
+	 * Returns the meta object for the reference list '
+	 * {@link org.unicase.model.requirement.NonFunctionalRequirement#getSystemFunctions <em>System Functions</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>System Functions</em>'.
+	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getSystemFunctions()
+	 * @see #getNonFunctionalRequirement()
+	 * @generated
+	 */
+	EReference getNonFunctionalRequirement_SystemFunctions();
+
+	/**
+	 * Returns the meta object for the reference list '
+	 * {@link org.unicase.model.requirement.NonFunctionalRequirement#getUserTasks <em>User Tasks</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>User Tasks</em>'.
+	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getUserTasks()
+	 * @see #getNonFunctionalRequirement()
+	 * @generated
+	 */
+	EReference getNonFunctionalRequirement_UserTasks();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.requirement.FunctionalRequirement
@@ -1830,6 +2044,17 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUseCase_ExtendedUseCases();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.UseCase#getSystemFunctions
+	 * <em>System Functions</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>System Functions</em>'.
+	 * @see org.unicase.model.requirement.UseCase#getSystemFunctions()
+	 * @see #getUseCase()
+	 * @generated
+	 */
+	EReference getUseCase_SystemFunctions();
 
 	/**
 	 * Returns the meta object for the reference list '
@@ -2227,6 +2452,40 @@ public interface RequirementPackage extends EPackage {
 	EAttribute getSystemFunction_Exception();
 
 	/**
+	 * Returns the meta object for the reference '{@link org.unicase.model.requirement.SystemFunction#getWorkspace
+	 * <em>Workspace</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Workspace</em>'.
+	 * @see org.unicase.model.requirement.SystemFunction#getWorkspace()
+	 * @see #getSystemFunction()
+	 * @generated
+	 */
+	EReference getSystemFunction_Workspace();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.unicase.model.requirement.SystemFunction#getUsecases
+	 * <em>Usecases</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Usecases</em>'.
+	 * @see org.unicase.model.requirement.SystemFunction#getUsecases()
+	 * @see #getSystemFunction()
+	 * @generated
+	 */
+	EReference getSystemFunction_Usecases();
+
+	/**
+	 * Returns the meta object for the reference '
+	 * {@link org.unicase.model.requirement.SystemFunction#getNonFunctionalRequirement
+	 * <em>Non Functional Requirement</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference '<em>Non Functional Requirement</em>'.
+	 * @see org.unicase.model.requirement.SystemFunction#getNonFunctionalRequirement()
+	 * @see #getSystemFunction()
+	 * @generated
+	 */
+	EReference getSystemFunction_NonFunctionalRequirement();
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.model.requirement.UserTask <em>User Task</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -2249,15 +2508,15 @@ public interface RequirementPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.model.requirement.UserTask#getParticipatingActor <em>Participating Actor</em>}'. <!--
+	 * {@link org.unicase.model.requirement.UserTask#getParticipatingActors <em>Participating Actors</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for the reference list '<em>Participating Actor</em>'.
-	 * @see org.unicase.model.requirement.UserTask#getParticipatingActor()
+	 * @return the meta object for the reference list '<em>Participating Actors</em>'.
+	 * @see org.unicase.model.requirement.UserTask#getParticipatingActors()
 	 * @see #getUserTask()
 	 * @generated
 	 */
-	EReference getUserTask_ParticipatingActor();
+	EReference getUserTask_ParticipatingActors();
 
 	/**
 	 * Returns the meta object for the reference list '
@@ -2270,6 +2529,40 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getUserTask_RealizingUseCases();
+
+	/**
+	 * Returns the meta object for the reference list '
+	 * {@link org.unicase.model.requirement.UserTask#getNonFunctionalRequirements <em>Non Functional Requirements</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>Non Functional Requirements</em>'.
+	 * @see org.unicase.model.requirement.UserTask#getNonFunctionalRequirements()
+	 * @see #getUserTask()
+	 * @generated
+	 */
+	EReference getUserTask_NonFunctionalRequirements();
+
+	/**
+	 * Returns the meta object for class '{@link org.unicase.model.requirement.Workspace <em>Workspace</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>Workspace</em>'.
+	 * @see org.unicase.model.requirement.Workspace
+	 * @generated
+	 */
+	EClass getWorkspace();
+
+	/**
+	 * Returns the meta object for the reference list '
+	 * {@link org.unicase.model.requirement.Workspace#getSystemFunctions <em>System Functions</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the reference list '<em>System Functions</em>'.
+	 * @see org.unicase.model.requirement.Workspace#getSystemFunctions()
+	 * @see #getWorkspace()
+	 * @generated
+	 */
+	EReference getWorkspace_SystemFunctions();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -2317,6 +2610,21 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EReference NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES = eINSTANCE
 			.getNonFunctionalRequirement_RestrictedUseCases();
+		/**
+		 * The meta object literal for the '<em><b>System Functions</b></em>' reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS = eINSTANCE
+			.getNonFunctionalRequirement_SystemFunctions();
+		/**
+		 * The meta object literal for the '<em><b>User Tasks</b></em>' reference list feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference NON_FUNCTIONAL_REQUIREMENT__USER_TASKS = eINSTANCE.getNonFunctionalRequirement_UserTasks();
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.FunctionalRequirementImpl
 		 * <em>Functional Requirement</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -2449,6 +2757,13 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EReference USE_CASE__EXTENDED_USE_CASES = eINSTANCE.getUseCase_ExtendedUseCases();
+		/**
+		 * The meta object literal for the '<em><b>System Functions</b></em>' reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference USE_CASE__SYSTEM_FUNCTIONS = eINSTANCE.getUseCase_SystemFunctions();
 		/**
 		 * The meta object literal for the '<em><b>Participating Actors</b></em> ' reference list feature. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
@@ -2705,6 +3020,27 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EAttribute SYSTEM_FUNCTION__EXCEPTION = eINSTANCE.getSystemFunction_Exception();
 		/**
+		 * The meta object literal for the '<em><b>Workspace</b></em>' reference feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference SYSTEM_FUNCTION__WORKSPACE = eINSTANCE.getSystemFunction_Workspace();
+		/**
+		 * The meta object literal for the '<em><b>Usecases</b></em>' reference list feature. <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference SYSTEM_FUNCTION__USECASES = eINSTANCE.getSystemFunction_Usecases();
+		/**
+		 * The meta object literal for the '<em><b>Non Functional Requirement</b></em>' reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT = eINSTANCE.getSystemFunction_NonFunctionalRequirement();
+		/**
 		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.UserTaskImpl <em>User Task</em>}'
 		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -2721,12 +3057,12 @@ public interface RequirementPackage extends EPackage {
 		 */
 		EReference USER_TASK__INITIATING_ACTOR = eINSTANCE.getUserTask_InitiatingActor();
 		/**
-		 * The meta object literal for the '<em><b>Participating Actor</b></em>' reference list feature. <!--
+		 * The meta object literal for the '<em><b>Participating Actors</b></em>' reference list feature. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @generated
 		 */
-		EReference USER_TASK__PARTICIPATING_ACTOR = eINSTANCE.getUserTask_ParticipatingActor();
+		EReference USER_TASK__PARTICIPATING_ACTORS = eINSTANCE.getUserTask_ParticipatingActors();
 		/**
 		 * The meta object literal for the '<em><b>Realizing Use Cases</b></em>' reference list feature. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
@@ -2734,6 +3070,29 @@ public interface RequirementPackage extends EPackage {
 		 * @generated
 		 */
 		EReference USER_TASK__REALIZING_USE_CASES = eINSTANCE.getUserTask_RealizingUseCases();
+		/**
+		 * The meta object literal for the '<em><b>Non Functional Requirements</b></em>' reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference USER_TASK__NON_FUNCTIONAL_REQUIREMENTS = eINSTANCE.getUserTask_NonFunctionalRequirements();
+		/**
+		 * The meta object literal for the '{@link org.unicase.model.requirement.impl.WorkspaceImpl <em>Workspace</em>}'
+		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.model.requirement.impl.WorkspaceImpl
+		 * @see org.unicase.model.requirement.impl.RequirementPackageImpl#getWorkspace()
+		 * @generated
+		 */
+		EClass WORKSPACE = eINSTANCE.getWorkspace();
+		/**
+		 * The meta object literal for the '<em><b>System Functions</b></em>' reference list feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference WORKSPACE__SYSTEM_FUNCTIONS = eINSTANCE.getWorkspace_SystemFunctions();
 
 	}
 

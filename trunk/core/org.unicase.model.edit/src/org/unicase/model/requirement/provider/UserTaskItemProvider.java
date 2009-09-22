@@ -21,7 +21,6 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.ModelElementItemProvider;
 import org.unicase.model.requirement.RequirementPackage;
-import org.unicase.model.requirement.UserTask;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.requirement.UserTask} object. <!-- begin-user-doc
@@ -51,8 +50,9 @@ public class UserTaskItemProvider extends ModelElementItemProvider implements IE
 			super.getPropertyDescriptors(object);
 
 			addInitiatingActorPropertyDescriptor(object);
-			addParticipatingActorPropertyDescriptor(object);
+			addParticipatingActorsPropertyDescriptor(object);
 			addRealizingUseCasesPropertyDescriptor(object);
+			addNonFunctionalRequirementsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -71,16 +71,16 @@ public class UserTaskItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
-	 * This adds a property descriptor for the Participating Actor feature. <!-- begin-user-doc --> <!-- end-user-doc
+	 * This adds a property descriptor for the Participating Actors feature. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
 	 */
-	protected void addParticipatingActorPropertyDescriptor(Object object) {
+	protected void addParticipatingActorsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UserTask_participatingActor_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_UserTask_participatingActor_feature",
-				"_UI_UserTask_type"), RequirementPackage.Literals.USER_TASK__PARTICIPATING_ACTOR, true, false, true,
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UserTask_participatingActors_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UserTask_participatingActors_feature",
+				"_UI_UserTask_type"), RequirementPackage.Literals.USER_TASK__PARTICIPATING_ACTORS, true, false, true,
 			null, null, null));
 	}
 
@@ -99,6 +99,21 @@ public class UserTaskItemProvider extends ModelElementItemProvider implements IE
 	}
 
 	/**
+	 * This adds a property descriptor for the Non Functional Requirements feature. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addNonFunctionalRequirementsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_UserTask_nonFunctionalRequirements_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_UserTask_nonFunctionalRequirements_feature",
+				"_UI_UserTask_type"), RequirementPackage.Literals.USER_TASK__NON_FUNCTIONAL_REQUIREMENTS, true, false,
+			true, null, null, null));
+	}
+
+	/**
 	 * This returns UserTask.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -111,13 +126,11 @@ public class UserTaskItemProvider extends ModelElementItemProvider implements IE
 	/**
 	 * This returns the label text for the adapted class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((UserTask) object).getName();
-		return label == null || label.length() == 0 ? getString("_UI_UserTask_type") : getString("_UI_UserTask_type")
-			+ " " + label;
+		return super.getText(object);
 	}
 
 	/**

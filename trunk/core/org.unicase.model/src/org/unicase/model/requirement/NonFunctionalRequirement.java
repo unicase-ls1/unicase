@@ -18,6 +18,8 @@ import org.unicase.model.rationale.Criterion;
  * </em>}</li>
  * <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedUseCases <em>Restricted Use Cases
  * </em>}</li>
+ * <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getSystemFunctions <em>System Functions</em>}</li>
+ * <li>{@link org.unicase.model.requirement.NonFunctionalRequirement#getUserTasks <em>User Tasks</em>}</li>
  * </ul>
  * </p>
  * 
@@ -66,4 +68,44 @@ public interface NonFunctionalRequirement extends Criterion {
 	 * @generated
 	 */
 	EList<UseCase> getRestrictedUseCases();
+
+	/**
+	 * Returns the value of the '<em><b>System Functions</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.requirement.SystemFunction}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.requirement.SystemFunction#getNonFunctionalRequirement
+	 * <em>Non Functional Requirement</em>}'. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>System Functions</em>' reference list isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>System Functions</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement_SystemFunctions()
+	 * @see org.unicase.model.requirement.SystemFunction#getNonFunctionalRequirement
+	 * @model opposite="nonFunctionalRequirement" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='13.0' position='right'"
+	 * @generated
+	 */
+	EList<SystemFunction> getSystemFunctions();
+
+	/**
+	 * Returns the value of the '<em><b>User Tasks</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.requirement.UserTask}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.requirement.UserTask#getNonFunctionalRequirements <em>Non Functional Requirements</em>}
+	 * '. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>User Tasks</em>' reference list isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>User Tasks</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getNonFunctionalRequirement_UserTasks()
+	 * @see org.unicase.model.requirement.UserTask#getNonFunctionalRequirements
+	 * @model opposite="nonFunctionalRequirements" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='14.0' position='right'"
+	 * @generated
+	 */
+	EList<UserTask> getUserTasks();
 } // NonFunctionalRequirement

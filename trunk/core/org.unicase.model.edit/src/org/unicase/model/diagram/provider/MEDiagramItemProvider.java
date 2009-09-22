@@ -274,6 +274,9 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 			RequirementFactory.eINSTANCE.createUserTask()));
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
+			RequirementFactory.eINSTANCE.createWorkspace()));
+
+		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,
 			RationaleFactory.eINSTANCE.createIssue()));
 
 		newChildDescriptors.add(createChildParameter(DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS,

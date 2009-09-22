@@ -96,6 +96,14 @@ public interface RequirementFactory extends EFactory {
 	UserTask createUserTask();
 
 	/**
+	 * Returns a new object of class '<em>Workspace</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>Workspace</em>'.
+	 * @generated
+	 */
+	Workspace createWorkspace();
+
+	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.
