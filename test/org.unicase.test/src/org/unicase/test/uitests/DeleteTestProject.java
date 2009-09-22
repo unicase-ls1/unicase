@@ -16,8 +16,7 @@ import org.unicase.workspace.test.SetupHelper;
 
 @SuppressWarnings( { "unused" })
 @RunWith(SWTBotJunit4ClassRunner.class)
-public class CreateNewProject {
-
+public class DeleteTestProject {
 	private static final String RESTRICTION = "restriction";
 	private static SWTWorkbenchBot bot;
 
@@ -31,7 +30,7 @@ public class CreateNewProject {
 	}
 
 	@Test
-	public void canCreateANewProject() throws Exception {
+	public void canDeleteProject() throws Exception {
 		Logger logger = Logger.getLogger("LoggerTest");
 		bot.menu("Window").menu("Show View").menu("Other...").click();
 		SWTBotShell shell = bot.shell("Show View");
@@ -41,17 +40,31 @@ public class CreateNewProject {
 		SWTBotView viewById = bot.activeView();
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
 		items[0].getText();
-		logger.addHandler(new FileHandler("createnewprojectlog.txt"));
-
+		// items[0].expand();
+		logger.addHandler(new FileHandler("deletetestprojectlog.txt"));
+		boolean flag = true;
 		int countofelem = (items[0].expand().rowCount());
-		if (countofelem == 0) {
-			logger.info("creating a new project called :testproject");
-			items[0].select().contextMenu("Create new project...").click();
-			bot.textWithLabel("Name:").typeText("testproject");
-			bot.button("OK").click();
-			items[0].expand();
+		int testprojectposition = -1;
+		if (countofelem > 0) {
+			logger.info("deleting a project called :testproject");
+			SWTBotTreeItem[] subitem = items[0].getItems();
+			for (int i = 0; i < subitem.length || flag == true; i++) {
+				if (subitem[i].getText().equalsIgnoreCase("testproject")) {
+					flag = false;
+					testprojectposition = i;
+					logger.info("testproject exists " + testprojectposition);
+				}
+
+			}
+			if (flag) {
+				logger.info("testproject dosn't exists");
+			} else {
+				subitem[testprojectposition].select().contextMenu("Delete on server").click();
+				// bot.checkBoxWithLabel()
+			}
+
 		} else {
-			logger.info("the testproject already exists");
+			logger.info("project list is empty");
 
 		}
 
@@ -59,7 +72,8 @@ public class CreateNewProject {
 
 	@AfterClass
 	public static void sleep() {
-		bot.sleep(2000);
+		bot.sleep(20000);
 		SetupHelper.stopServer();
 	}
+
 }
