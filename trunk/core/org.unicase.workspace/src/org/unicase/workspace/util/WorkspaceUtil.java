@@ -11,16 +11,21 @@ import java.util.Date;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.events.CheckoutEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
+import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.Activator;
 import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Workspace utility class.
@@ -194,5 +199,34 @@ public final class WorkspaceUtil {
 					.log("could not open the file with the system dependant command: " + cmd, e, IStatus.ERROR);
 			}
 		}
+	}
+
+	/**
+	 * Returns a EObject by Uri.
+	 * 
+	 * @param uri reference on object
+	 * @return EObject or null
+	 */
+	public static EObject getEObjectByUri(URI uri) {
+		if (uri == null) {
+			return null;
+		}
+		// Should you test whether the referenced item is within the workspace?
+		ResourceSet resourceSet = WorkspaceManager.getInstance().getCurrentWorkspace().eResource().getResourceSet();
+		return resourceSet.getEObject(uri, false);
+	}
+
+	/**
+	 * Returns ModelElement by Uri.
+	 * 
+	 * @param uri reference on object
+	 * @return ModelElement or null
+	 */
+	public static ModelElement getModelElementByUri(URI uri) {
+		EObject objectByUri = getEObjectByUri(uri);
+		if (objectByUri instanceof ModelElement) {
+			return (ModelElement) objectByUri;
+		}
+		return null;
 	}
 }
