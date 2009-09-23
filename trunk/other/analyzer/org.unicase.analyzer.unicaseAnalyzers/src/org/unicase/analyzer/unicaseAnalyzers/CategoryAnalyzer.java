@@ -146,9 +146,9 @@ public class CategoryAnalyzer implements DataAnalyzer {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.analyzer.DataAnalyzer#isExportOnce()
+	 * @see org.unicase.analyzer.DataAnalyzer#isGlobal()
 	 */
-	public boolean isExportOnce() {
+	public boolean isGlobal() {
 		// TODO Auto-generated method stub
 		return false;
 	}

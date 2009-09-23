@@ -583,7 +583,7 @@ public class LinkRecommendationAnalyzer implements DataAnalyzer {
 	/**
 	 * @return false
 	 */
-	public boolean isExportOnce() {
+	public boolean isGlobal() {
 		return false;
 	}
 

@@ -28,5 +28,5 @@ public interface DataAnalyzer {
 	/**
 	 * @return true if just export once
 	 */
-	boolean isExportOnce();
+	boolean isGlobal();
 } // DataAnalyzer

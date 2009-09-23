@@ -70,7 +70,7 @@ public class AnalyzerModelController {
 				data = projectIterator.next();
 				lines.clear();
 				for (DataAnalyzer analyzer : analyzers) {
-					if (analyzer.isExportOnce()) {
+					if (analyzer.isGlobal()) {
 						((TwoDDataAnalyzer) analyzer).analyzeData(data, projectIterator);
 					} else {
 						lines = ((TwoDDataAnalyzer) analyzer).get2DValue(data, projectIterator);
@@ -79,7 +79,7 @@ public class AnalyzerModelController {
 				}
 			}
 			for (DataAnalyzer analyzer : analyzers) {
-				if (analyzer.isExportOnce()) {
+				if (analyzer.isGlobal()) {
 					lines = ((TwoDDataAnalyzer) analyzer).get2DValue(data, projectIterator);
 					exporter.export(lines);
 				}
