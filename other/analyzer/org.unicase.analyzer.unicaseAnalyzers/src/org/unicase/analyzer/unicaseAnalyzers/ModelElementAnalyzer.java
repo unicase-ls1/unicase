@@ -45,9 +45,9 @@ public class ModelElementAnalyzer implements DataAnalyzer {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
+	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isGlobal()
 	 */
-	public boolean isExportOnce() {
+	public boolean isGlobal() {
 		return false;
 	}
 }

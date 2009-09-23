@@ -153,10 +153,10 @@ public class CommitUpdateReadEventAnalyzer implements TwoDDataAnalyzer {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isExportOnce()
+	 * @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#isGlobal()
 	 */
 	
-	public boolean isExportOnce() {
+	public boolean isGlobal() {
 		return false;
 	}
 

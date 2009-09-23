@@ -201,10 +201,10 @@ public class PotentialConflictAnalyzer implements TwoDDataAnalyzer {
 
 	/** 
 	 * {@inheritDoc}
-	 * @see org.unicase.analyzer.DataAnalyzer#isExportOnce()
+	 * @see org.unicase.analyzer.DataAnalyzer#isGlobal()
 	 */
 	
-	public boolean isExportOnce() {
+	public boolean isGlobal() {
 		return false;
 	}
 }
