@@ -48,7 +48,7 @@ public class DeleteTestProject {
 		if (countofelem > 0) {
 			logger.info("deleting a project called :testproject");
 			SWTBotTreeItem[] subitem = items[0].getItems();
-			for (int i = 0; i < subitem.length || flag == true; i++) {
+			for (int i = 0; i <= countofelem && flag == true; i++) {
 				if (subitem[i].getText().equalsIgnoreCase("testproject")) {
 					flag = false;
 					testprojectposition = i;
@@ -60,7 +60,13 @@ public class DeleteTestProject {
 				logger.info("testproject dosn't exists");
 			} else {
 				subitem[testprojectposition].select().contextMenu("Delete on server").click();
-				// bot.checkBoxWithLabel()
+				shell = bot.shell("Delete testproject");
+				shell.activate();
+				String checkboxname = (bot.checkBox().getText());
+				logger.info(checkboxname);
+				bot.checkBox().select();
+				bot.button("OK").click();
+
 			}
 
 		} else {
