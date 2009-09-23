@@ -43,6 +43,7 @@ import org.unicase.emfstore.esmodel.versioning.events.RevertEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.URLEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.Validate;
@@ -217,6 +218,13 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * @generated
 	 */
 	private EClass notificationIgnoreEventEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass urlEventEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -954,6 +962,42 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 	 * 
 	 * @generated
 	 */
+	public EClass getURLEvent() {
+		return urlEventEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getURLEvent_SourceModelElement() {
+		return (EReference) urlEventEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EAttribute getURLEvent_SourceView() {
+		return (EAttribute) urlEventEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getURLEvent_SourceURL() {
+		return (EReference) urlEventEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EventsFactory getEventsFactory() {
 		return (EventsFactory) getEFactoryInstance();
 	}
@@ -1069,6 +1113,11 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 		notificationIgnoreEventEClass = createEClass(NOTIFICATION_IGNORE_EVENT);
 		createEAttribute(notificationIgnoreEventEClass, NOTIFICATION_IGNORE_EVENT__NOTIFICATION_ID);
+
+		urlEventEClass = createEClass(URL_EVENT);
+		createEReference(urlEventEClass, URL_EVENT__SOURCE_MODEL_ELEMENT);
+		createEAttribute(urlEventEClass, URL_EVENT__SOURCE_VIEW);
+		createEReference(urlEventEClass, URL_EVENT__SOURCE_URL);
 	}
 
 	/**
@@ -1130,6 +1179,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		notificationReadEventEClass.getESuperTypes().add(this.getReadEvent());
 		notificationGenerationEventEClass.getESuperTypes().add(this.getEvent());
 		notificationIgnoreEventEClass.getESuperTypes().add(this.getEvent());
+		urlEventEClass.getESuperTypes().add(this.getEvent());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(eventEClass, Event.class, "Event", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1333,6 +1383,16 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		initEAttribute(getNotificationIgnoreEvent_NotificationId(), ecorePackage.getEString(), "notificationId", "", 0,
 			1, NotificationIgnoreEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(urlEventEClass, URLEvent.class, "URLEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getURLEvent_SourceModelElement(), theModelPackage.getModelElementId(), null,
+			"sourceModelElement", null, 0, 1, URLEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getURLEvent_SourceView(), ecorePackage.getEString(), "sourceView", null, 0, 1, URLEvent.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getURLEvent_SourceURL(), theModelPackage.getModelElementId(), null, "sourceURL", null, 0, 1,
+			URLEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}
 
 } // EventsPackageImpl
