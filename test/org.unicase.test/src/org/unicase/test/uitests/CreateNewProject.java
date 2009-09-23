@@ -42,17 +42,26 @@ public class CreateNewProject {
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
 		items[0].getText();
 		logger.addHandler(new FileHandler("createnewprojectlog.txt"));
-
 		int countofelem = (items[0].expand().rowCount());
-		if (countofelem == 0) {
+		boolean flag = true;
+		int testprojectposition = -1;
+		SWTBotTreeItem[] subitem = items[0].getItems();
+		for (int i = 0; i <= countofelem && flag == true; i++) {
+			if (subitem[i].getText().equalsIgnoreCase("testproject")) {
+				flag = false;
+				testprojectposition = i;
+				logger.info("testproject exists " + testprojectposition);
+			}
+
+		}
+		if (flag || countofelem == 0) {
 			logger.info("creating a new project called :testproject");
 			items[0].select().contextMenu("Create new project...").click();
 			bot.textWithLabel("Name:").typeText("testproject");
 			bot.button("OK").click();
 			items[0].expand();
 		} else {
-			logger.info("the testproject already exists");
-
+			logger.info("testproject already exists");
 		}
 
 	}
