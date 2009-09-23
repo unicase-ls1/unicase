@@ -157,6 +157,11 @@ public class CommitDialog extends TitleAreaDialog implements KeyListener {
 						.getProject());
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
 				true).span(2, 1).applyTo(changesComposite);
+
+		operationsMap = new HashMap<AbstractOperation, ArrayList<ESNotification>>();
+		for (AbstractOperation op : changes.getOperations()) {
+			operationsMap.put(op, new ArrayList<ESNotification>());
+		}
 		return contents;
 
 	}
