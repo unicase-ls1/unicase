@@ -56,7 +56,7 @@ public class MELinkControl extends AbstractMEControl {
 	private ModelElementChangeObserver observer;
 	private ILabelProviderListener labelProviderListener;
 	private ImageHyperlink imageHyperlink;
-	private Hyperlink urlHyperlink;
+	private ImageHyperlink urlHyperlink;
 
 	/**
 	 * Default constructor.
@@ -101,7 +101,8 @@ public class MELinkControl extends AbstractMEControl {
 
 					public void run() {
 						if (!hyperlink.isDisposed()) {
-							hyperlink.setText(labelProvider.getText(getModelElement()));
+							hyperlink.setText(((ModelElement) getModelElement()).getShortName());
+							hyperlink.setToolTipText(((ModelElement) getModelElement()).getShortName());
 							updateAdditionalControlComponents();
 							linkComposite.layout(true);
 							parent.getParent().layout(true);
@@ -119,8 +120,6 @@ public class MELinkControl extends AbstractMEControl {
 		((ModelElement) getModelElement()).getProject().addProjectChangeObserver(observer);
 		observer.observeElement((ModelElement) getModelElement());
 
-		setupAdditionalControlComponents(style);
-
 		Image image = labelProvider.getImage(getModelElement());
 		imageHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
 		imageHyperlink.setImage(image);
@@ -128,11 +127,14 @@ public class MELinkControl extends AbstractMEControl {
 		ModelElementClassTooltip.enableFor(imageHyperlink);
 		hyperlink = getToolkit().createHyperlink(linkComposite, ((ModelElement) getModelElement()).getShortName(),
 			style);
-		hyperlink.setToolTipText(labelProvider.getText(getModelElement()));
+		hyperlink.setToolTipText(((ModelElement) getModelElement()).getShortName());
 		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) getModelElement(),
 			(ModelElement) contextModelElement, reference.getName());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
+
+		setupAdditionalControlComponents(style);
+
 		ImageHyperlink deleteLink = getToolkit().createImageHyperlink(linkComposite, style);
 		Image deleteImage = null;
 		if (reference.isContainment() && (getModelElement() instanceof NonDomainElement)) {
@@ -153,10 +155,16 @@ public class MELinkControl extends AbstractMEControl {
 	 */
 	private void setupAdditionalControlComponents(int style) {
 		if (((ModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class)) {
+			urlHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
+			Image launchImage = org.unicase.ui.meeditor.Activator.getImageDescriptor("icons/world_link.png")
+				.createImage();
+			urlHyperlink.setImage(launchImage);
+
 			String url = ((UrlAttachment) getModelElement()).getUrl();
-			if (url == null)
+			if (url == null) {
 				url = "";
-			urlHyperlink = getToolkit().createHyperlink(linkComposite, url, style);
+			}
+			urlHyperlink.setToolTipText(url);
 			urlHyperlink.addHyperlinkListener(new HyperlinkAdapter() {
 				@Override
 				public void linkActivated(HyperlinkEvent event) {
@@ -185,11 +193,12 @@ public class MELinkControl extends AbstractMEControl {
 	 * Pass change notification to additional control components
 	 */
 	private void updateAdditionalControlComponents() {
-		if (!urlHyperlink.isDisposed()) {
+		if ((urlHyperlink != null) && (!urlHyperlink.isDisposed())) {
 			String url = ((UrlAttachment) getModelElement()).getUrl();
-			if (url == null)
+			if (url == null) {
 				url = "";
-			urlHyperlink.setText(url);
+			}
+			urlHyperlink.setToolTipText(url);
 		}
 	}
 

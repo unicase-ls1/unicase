@@ -5,8 +5,6 @@
  */
 package org.unicase.ui.meeditor;
 
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.util.ArrayList;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -15,7 +13,6 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.action.Action;
-import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.InputDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -130,17 +127,7 @@ public class MEURLControl extends AbstractMEControl {
 			@Override
 			public void run() {
 				InputDialog input = new InputDialog(parent.getShell(), "Edit URL", "Please enter the URL",
-					((UrlAttachment) getModelElement()).getUrl(), new IInputValidator() {
-
-						public String isValid(String newText) {
-							try {
-								new URL(newText);
-								return null;
-							} catch (MalformedURLException e) {
-								return "Invalid URL";
-							}
-						}
-					});
+					((UrlAttachment) getModelElement()).getUrl(), null);
 				input.setBlockOnOpen(true);
 				int result = input.open();
 				if (result == InputDialog.OK) {
