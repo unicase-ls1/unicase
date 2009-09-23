@@ -56,6 +56,7 @@ public class MELinkControl extends AbstractMEControl {
 	private ModelElementChangeObserver observer;
 	private ILabelProviderListener labelProviderListener;
 	private ImageHyperlink imageHyperlink;
+	private Hyperlink urlHyperlink;
 
 	/**
 	 * Default constructor.
@@ -101,10 +102,12 @@ public class MELinkControl extends AbstractMEControl {
 					public void run() {
 						if (!hyperlink.isDisposed()) {
 							hyperlink.setText(labelProvider.getText(getModelElement()));
+							updateAdditionalControlComponents();
 							linkComposite.layout(true);
 							parent.getParent().layout(true);
 						}
 					}
+
 				});
 			}
 
@@ -148,12 +151,12 @@ public class MELinkControl extends AbstractMEControl {
 	 * 
 	 * @param style Style
 	 */
-	protected void setupAdditionalControlComponents(int style) {
+	private void setupAdditionalControlComponents(int style) {
 		if (((ModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class)) {
 			String url = ((UrlAttachment) getModelElement()).getUrl();
 			if (url == null)
 				url = "";
-			Hyperlink urlHyperlink = getToolkit().createHyperlink(linkComposite, url, style);
+			urlHyperlink = getToolkit().createHyperlink(linkComposite, url, style);
 			urlHyperlink.addHyperlinkListener(new HyperlinkAdapter() {
 				@Override
 				public void linkActivated(HyperlinkEvent event) {
@@ -172,10 +175,22 @@ public class MELinkControl extends AbstractMEControl {
 	 * 
 	 * @return Number of controls
 	 */
-	protected int getNumberOfAdditionalControlComponents() {
+	private int getNumberOfAdditionalControlComponents() {
 		if (((ModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class))
 			return 1;
 		return 0;
+	}
+
+	/**
+	 * Pass change notification to additional control components
+	 */
+	private void updateAdditionalControlComponents() {
+		if (!urlHyperlink.isDisposed()) {
+			String url = ((UrlAttachment) getModelElement()).getUrl();
+			if (url == null)
+				url = "";
+			urlHyperlink.setText(url);
+		}
 	}
 
 	private void updateIcon() {

@@ -91,7 +91,10 @@ public class MEURLControl extends AbstractMEControl {
 
 					public void run() {
 						if (!hyperlink.isDisposed()) {
-							hyperlink.setText(((UrlAttachment) getModelElement()).getUrl());
+							String url = ((UrlAttachment) getModelElement()).getUrl();
+							if (url == null)
+								url = "";
+							hyperlink.setText(url);
 							linkComposite.layout(true);
 							parent.getParent().layout(true);
 						}
