@@ -30,6 +30,7 @@ import org.unicase.emfstore.esmodel.versioning.events.RevertEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.URLEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.Validate;
@@ -301,6 +302,15 @@ public class EventsSwitch<T> {
 			T result = caseNotificationIgnoreEvent(notificationIgnoreEvent);
 			if (result == null)
 				result = caseEvent(notificationIgnoreEvent);
+			if (result == null)
+				result = defaultCase(theEObject);
+			return result;
+		}
+		case EventsPackage.URL_EVENT: {
+			URLEvent urlEvent = (URLEvent) theEObject;
+			T result = caseURLEvent(urlEvent);
+			if (result == null)
+				result = caseEvent(urlEvent);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -619,6 +629,19 @@ public class EventsSwitch<T> {
 	 * @generated
 	 */
 	public T caseNotificationIgnoreEvent(NotificationIgnoreEvent object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>URL Event</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>URL Event</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseURLEvent(URLEvent object) {
 		return null;
 	}
 

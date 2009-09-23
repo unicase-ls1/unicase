@@ -255,6 +255,9 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 			RequirementFactory.eINSTANCE.createUserTask()));
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			RequirementFactory.eINSTANCE.createWorkspace()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 			RationaleFactory.eINSTANCE.createIssue()));
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,

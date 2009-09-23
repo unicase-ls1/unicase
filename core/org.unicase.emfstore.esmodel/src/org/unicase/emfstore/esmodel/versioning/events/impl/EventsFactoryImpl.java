@@ -32,6 +32,7 @@ import org.unicase.emfstore.esmodel.versioning.events.RevertEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.URLEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.Validate;
@@ -123,6 +124,8 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 			return createNotificationGenerationEvent();
 		case EventsPackage.NOTIFICATION_IGNORE_EVENT:
 			return createNotificationIgnoreEvent();
+		case EventsPackage.URL_EVENT:
+			return createURLEvent();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -356,6 +359,16 @@ public class EventsFactoryImpl extends EFactoryImpl implements EventsFactory {
 	public NotificationIgnoreEvent createNotificationIgnoreEvent() {
 		NotificationIgnoreEventImpl notificationIgnoreEvent = new NotificationIgnoreEventImpl();
 		return notificationIgnoreEvent;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public URLEvent createURLEvent() {
+		URLEventImpl urlEvent = new URLEventImpl();
+		return urlEvent;
 	}
 
 	/**

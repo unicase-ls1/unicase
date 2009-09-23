@@ -208,6 +208,14 @@ public interface EventsFactory extends EFactory {
 	NotificationIgnoreEvent createNotificationIgnoreEvent();
 
 	/**
+	 * Returns a new object of class '<em>URL Event</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return a new object of class '<em>URL Event</em>'.
+	 * @generated
+	 */
+	URLEvent createURLEvent();
+
+	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the package supported by this factory.

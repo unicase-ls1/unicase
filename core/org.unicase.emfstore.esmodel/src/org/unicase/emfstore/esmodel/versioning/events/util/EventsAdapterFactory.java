@@ -30,6 +30,7 @@ import org.unicase.emfstore.esmodel.versioning.events.RevertEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ShowChangesEvent;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
 import org.unicase.emfstore.esmodel.versioning.events.TraceEvent;
+import org.unicase.emfstore.esmodel.versioning.events.URLEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UndoEvent;
 import org.unicase.emfstore.esmodel.versioning.events.UpdateEvent;
 import org.unicase.emfstore.esmodel.versioning.events.Validate;
@@ -198,6 +199,11 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseNotificationIgnoreEvent(NotificationIgnoreEvent object) {
 			return createNotificationIgnoreEventAdapter();
+		}
+
+		@Override
+		public Adapter caseURLEvent(URLEvent object) {
+			return createURLEventAdapter();
 		}
 
 		@Override
@@ -537,6 +543,20 @@ public class EventsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createNotificationIgnoreEventAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent
+	 * <em>URL Event</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can easily
+	 * ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc
+	 * -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.URLEvent
+	 * @generated
+	 */
+	public Adapter createURLEventAdapter() {
 		return null;
 	}
 
