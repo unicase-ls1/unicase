@@ -19,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.xmi.DOMHandler;
 import org.eclipse.emf.ecore.xmi.DOMHelper;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -35,7 +36,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
 import org.w3c.dom.Document;
 import org.w3c.dom.Node;
 import org.xml.sax.InputSource;
-//dengler: review
+
+// dengler: review
 /**
  * @author Helming, denglerm
  */
@@ -133,7 +135,7 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 			id = "Activity";
 		} else if (meDiagram.getType().equals(DiagramType.WORKITEM_DIAGRAM)) {
 			id = "WorkItem";
-		}		
+		}
 
 		if (id == null) {
 			throw new RuntimeException("Unsupported diagram type");
@@ -172,7 +174,12 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 	 */
 	@Override
 	public ResourceSet getResourceSet() {
-		return meDiagram.eResource().getResourceSet();
+		if (meDiagram.eResource() != null) {
+			return meDiagram.eResource().getResourceSet();
+		} else {
+			// evil hack
+			return new ResourceSetImpl();
+		}
 	}
 
 	/**
@@ -191,7 +198,14 @@ public class MEDiagramResource extends ResourceImpl implements Resource, Resourc
 	 */
 	@Override
 	public URI getURI() {
-		return meDiagram.eResource().getURI();
+		if (meDiagram.eResource() != null) {
+			return meDiagram.eResource().getURI();
+		} else {
+			// evil hack
+			ResourceSetImpl resourceSetImpl = new ResourceSetImpl();
+			Resource resource = resourceSetImpl.createResource(URI.createURI("blaaaaaa"));
+			return resource.getURI();
+		}
 	}
 
 	/**
