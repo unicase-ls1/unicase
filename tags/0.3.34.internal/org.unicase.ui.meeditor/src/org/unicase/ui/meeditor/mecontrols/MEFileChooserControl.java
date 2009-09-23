@@ -398,7 +398,14 @@ public class MEFileChooserControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		dbc.dispose();
+		if (uploadListener != null && removeListener != null && !upload.isDisposed()) {
+			upload.removeSelectionListener(uploadListener);
+			upload.removeSelectionListener(removeListener);
+			upload.dispose();
+		}
+		if (dbc != null) {
+			dbc.dispose();
+		}
 		super.dispose();
 	}
 
