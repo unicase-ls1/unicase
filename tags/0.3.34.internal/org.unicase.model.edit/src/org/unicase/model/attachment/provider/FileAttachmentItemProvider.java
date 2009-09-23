@@ -56,8 +56,6 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 			addFileSizePropertyDescriptor(object);
 			addRequiredOfflinePropertyDescriptor(object);
 			addFileTypePropertyDescriptor(object);
-			addDownloadingPropertyDescriptor(object);
-			addUploadingPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -115,32 +113,6 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 	}
 
 	/**
-	 * This adds a property descriptor for the Downloading feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addDownloadingPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_downloading_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_downloading_feature",
-				"_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__DOWNLOADING, true, false,
-			false, ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
-	}
-
-	/**
-	 * This adds a property descriptor for the Uploading feature. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected void addUploadingPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
-			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_FileAttachment_uploading_feature"),
-			getString("_UI_PropertyDescriptor_description", "_UI_FileAttachment_uploading_feature",
-				"_UI_FileAttachment_type"), AttachmentPackage.Literals.FILE_ATTACHMENT__UPLOADING, true, false, false,
-			ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE, null, null));
-	}
-
-	/**
 	 * This returns FileAttachment.gif. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -181,8 +153,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
-		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
 		case AttachmentPackage.FILE_ATTACHMENT__UPLOADING:
+		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

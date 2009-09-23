@@ -363,20 +363,20 @@ public interface AttachmentPackage extends EPackage {
 	int FILE_ATTACHMENT__FILE_TYPE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Downloading</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_ATTACHMENT__DOWNLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 6;
-
-	/**
 	 * The feature id for the '<em><b>Uploading</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_ATTACHMENT__UPLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 7;
+	int FILE_ATTACHMENT__UPLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Downloading</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTACHMENT__DOWNLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>File Attachment</em>' class. <!-- begin-user-doc --> <!--
