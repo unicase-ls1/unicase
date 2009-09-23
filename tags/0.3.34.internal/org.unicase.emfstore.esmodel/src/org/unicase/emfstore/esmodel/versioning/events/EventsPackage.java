@@ -1099,6 +1099,59 @@ public interface EventsPackage extends EPackage {
 	int NOTIFICATION_IGNORE_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 1;
 
 	/**
+	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.URLEventImpl
+	 * <em>URL Event</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.URLEventImpl
+	 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getURLEvent()
+	 * @generated
+	 */
+	int URL_EVENT = 23;
+
+	/**
+	 * The feature id for the '<em><b>Timestamp</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int URL_EVENT__TIMESTAMP = EVENT__TIMESTAMP;
+
+	/**
+	 * The feature id for the '<em><b>Source Model Element</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int URL_EVENT__SOURCE_MODEL_ELEMENT = EVENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Source View</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int URL_EVENT__SOURCE_VIEW = EVENT_FEATURE_COUNT + 1;
+
+	/**
+	 * The feature id for the '<em><b>Source URL</b></em>' containment reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int URL_EVENT__SOURCE_URL = EVENT_FEATURE_COUNT + 2;
+
+	/**
+	 * The number of structural features of the '<em>URL Event</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int URL_EVENT_FEATURE_COUNT = EVENT_FEATURE_COUNT + 3;
+
+	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.Event <em>Event</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -1894,6 +1947,52 @@ public interface EventsPackage extends EPackage {
 	EAttribute getNotificationIgnoreEvent_NotificationId();
 
 	/**
+	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.versioning.events.URLEvent
+	 * <em>URL Event</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for class '<em>URL Event</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.URLEvent
+	 * @generated
+	 */
+	EClass getURLEvent();
+
+	/**
+	 * Returns the meta object for the containment reference '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceModelElement
+	 * <em>Source Model Element</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '<em>Source Model Element</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceModelElement()
+	 * @see #getURLEvent()
+	 * @generated
+	 */
+	EReference getURLEvent_SourceModelElement();
+
+	/**
+	 * Returns the meta object for the attribute '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceView <em>Source View</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the attribute '<em>Source View</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceView()
+	 * @see #getURLEvent()
+	 * @generated
+	 */
+	EAttribute getURLEvent_SourceView();
+
+	/**
+	 * Returns the meta object for the containment reference '
+	 * {@link org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceURL <em>Source URL</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '<em>Source URL</em>'.
+	 * @see org.unicase.emfstore.esmodel.versioning.events.URLEvent#getSourceURL()
+	 * @see #getURLEvent()
+	 * @generated
+	 */
+	EReference getURLEvent_SourceURL();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -2534,6 +2633,40 @@ public interface EventsPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute NOTIFICATION_IGNORE_EVENT__NOTIFICATION_ID = eINSTANCE.getNotificationIgnoreEvent_NotificationId();
+
+		/**
+		 * The meta object literal for the '{@link org.unicase.emfstore.esmodel.versioning.events.impl.URLEventImpl
+		 * <em>URL Event</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.URLEventImpl
+		 * @see org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl#getURLEvent()
+		 * @generated
+		 */
+		EClass URL_EVENT = eINSTANCE.getURLEvent();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Model Element</b></em>' containment reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference URL_EVENT__SOURCE_MODEL_ELEMENT = eINSTANCE.getURLEvent_SourceModelElement();
+
+		/**
+		 * The meta object literal for the '<em><b>Source View</b></em>' attribute feature. <!-- begin-user-doc --> <!--
+		 * end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EAttribute URL_EVENT__SOURCE_VIEW = eINSTANCE.getURLEvent_SourceView();
+
+		/**
+		 * The meta object literal for the '<em><b>Source URL</b></em>' containment reference feature. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference URL_EVENT__SOURCE_URL = eINSTANCE.getURLEvent_SourceURL();
 
 	}
 

@@ -618,6 +618,29 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.emfstore.esmodel.versioning.events.URLEvent}
+	 * instances. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected URLEventItemProvider urlEventItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.URLEvent}. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createURLEventAdapter() {
+		if (urlEventItemProvider == null) {
+			urlEventItemProvider = new URLEventItemProvider(this);
+		}
+
+		return urlEventItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -757,6 +780,8 @@ public class EventsItemProviderAdapterFactory extends EventsAdapterFactory imple
 			notificationGenerationEventItemProvider.dispose();
 		if (notificationIgnoreEventItemProvider != null)
 			notificationIgnoreEventItemProvider.dispose();
+		if (urlEventItemProvider != null)
+			urlEventItemProvider.dispose();
 	}
 
 }
