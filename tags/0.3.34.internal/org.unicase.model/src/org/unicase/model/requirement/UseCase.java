@@ -27,6 +27,7 @@ import org.unicase.model.ModelElement;
  * <li>{@link org.unicase.model.requirement.UseCase#getIdentifiedClasses <em>Identified Classes</em>}</li>
  * <li>{@link org.unicase.model.requirement.UseCase#getIncludedUseCases <em>Included Use Cases</em>}</li>
  * <li>{@link org.unicase.model.requirement.UseCase#getExtendedUseCases <em>Extended Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.UseCase#getSystemFunctions <em>System Functions</em>}</li>
  * </ul>
  * </p>
  * 
@@ -176,6 +177,25 @@ public interface UseCase extends ModelElement {
 	 * @generated
 	 */
 	EList<UseCase> getExtendedUseCases();
+
+	/**
+	 * Returns the value of the '<em><b>System Functions</b></em>' reference list. The list contents are of type
+	 * {@link org.unicase.model.requirement.SystemFunction}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.requirement.SystemFunction#getUsecases <em>Usecases</em>}'. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>System Functions</em>' reference list isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>System Functions</em>' reference list.
+	 * @see org.unicase.model.requirement.RequirementPackage#getUseCase_SystemFunctions()
+	 * @see org.unicase.model.requirement.SystemFunction#getUsecases
+	 * @model opposite="usecases" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='15.0' position='right'"
+	 * @generated
+	 */
+	EList<SystemFunction> getSystemFunctions();
 
 	/**
 	 * Returns the value of the '<em><b>Participating Actors</b></em>' reference list. The list contents are of type

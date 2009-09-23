@@ -279,6 +279,29 @@ public class RequirementItemProviderAdapterFactory extends RequirementAdapterFac
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.requirement.Workspace} instances. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected WorkspaceItemProvider workspaceItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.unicase.model.requirement.Workspace}. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createWorkspaceAdapter() {
+		if (workspaceItemProvider == null) {
+			workspaceItemProvider = new WorkspaceItemProvider(this);
+		}
+
+		return workspaceItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -390,6 +413,8 @@ public class RequirementItemProviderAdapterFactory extends RequirementAdapterFac
 			systemFunctionItemProvider.dispose();
 		if (userTaskItemProvider != null)
 			userTaskItemProvider.dispose();
+		if (workspaceItemProvider != null)
+			workspaceItemProvider.dispose();
 	}
 
 }

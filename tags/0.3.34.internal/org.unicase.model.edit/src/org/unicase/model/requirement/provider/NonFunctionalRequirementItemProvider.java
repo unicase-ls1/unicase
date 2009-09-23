@@ -51,6 +51,8 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 
 			addRestrictedScenariosPropertyDescriptor(object);
 			addRestrictedUseCasesPropertyDescriptor(object);
+			addSystemFunctionsPropertyDescriptor(object);
+			addUserTasksPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -85,6 +87,35 @@ public class NonFunctionalRequirementItemProvider extends CriterionItemProvider 
 				"_UI_NonFunctionalRequirement_type"),
 			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES, true, false, true, null,
 			null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the System Functions feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addSystemFunctionsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_NonFunctionalRequirement_systemFunctions_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_systemFunctions_feature",
+				"_UI_NonFunctionalRequirement_type"),
+			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS, true, false, true, null, null,
+			null));
+	}
+
+	/**
+	 * This adds a property descriptor for the User Tasks feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addUserTasksPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(),
+			getString("_UI_NonFunctionalRequirement_userTasks_feature"), getString(
+				"_UI_PropertyDescriptor_description", "_UI_NonFunctionalRequirement_userTasks_feature",
+				"_UI_NonFunctionalRequirement_type"),
+			RequirementPackage.Literals.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS, true, false, true, null, null, null));
 	}
 
 	/**

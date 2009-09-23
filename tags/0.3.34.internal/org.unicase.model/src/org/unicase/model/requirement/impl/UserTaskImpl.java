@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.impl.ModelElementImpl;
 import org.unicase.model.requirement.Actor;
+import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
@@ -27,8 +28,10 @@ import org.unicase.model.requirement.UserTask;
  * The following features are implemented:
  * <ul>
  * <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getInitiatingActor <em>Initiating Actor</em>}</li>
- * <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getParticipatingActor <em>Participating Actor</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getParticipatingActors <em>Participating Actors</em>}</li>
  * <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getRealizingUseCases <em>Realizing Use Cases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.impl.UserTaskImpl#getNonFunctionalRequirements <em>Non Functional
+ * Requirements</em>}</li>
  * </ul>
  * </p>
  * 
@@ -46,14 +49,14 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 	protected Actor initiatingActor;
 
 	/**
-	 * The cached value of the '{@link #getParticipatingActor() <em>Participating Actor</em>}' reference list. <!--
+	 * The cached value of the '{@link #getParticipatingActors() <em>Participating Actors</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getParticipatingActor()
+	 * @see #getParticipatingActors()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Actor> participatingActor;
+	protected EList<Actor> participatingActors;
 
 	/**
 	 * The cached value of the '{@link #getRealizingUseCases() <em>Realizing Use Cases</em>}' reference list. <!--
@@ -64,6 +67,16 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 	 * @ordered
 	 */
 	protected EList<UseCase> realizingUseCases;
+
+	/**
+	 * The cached value of the '{@link #getNonFunctionalRequirements() <em>Non Functional Requirements</em>}' reference
+	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @see #getNonFunctionalRequirements()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<NonFunctionalRequirement> nonFunctionalRequirements;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -157,12 +170,12 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 	 * 
 	 * @generated
 	 */
-	public EList<Actor> getParticipatingActor() {
-		if (participatingActor == null) {
-			participatingActor = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(Actor.class, this,
-				RequirementPackage.USER_TASK__PARTICIPATING_ACTOR, RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS);
+	public EList<Actor> getParticipatingActors() {
+		if (participatingActors == null) {
+			participatingActors = new EObjectWithInverseResolvingEList.ManyInverse<Actor>(Actor.class, this,
+				RequirementPackage.USER_TASK__PARTICIPATING_ACTORS, RequirementPackage.ACTOR__PARTICIPATED_USER_TASKS);
 		}
-		return participatingActor;
+		return participatingActors;
 	}
 
 	/**
@@ -183,6 +196,20 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 	 * 
 	 * @generated
 	 */
+	public EList<NonFunctionalRequirement> getNonFunctionalRequirements() {
+		if (nonFunctionalRequirements == null) {
+			nonFunctionalRequirements = new EObjectWithInverseResolvingEList.ManyInverse<NonFunctionalRequirement>(
+				NonFunctionalRequirement.class, this, RequirementPackage.USER_TASK__NON_FUNCTIONAL_REQUIREMENTS,
+				RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__USER_TASKS);
+		}
+		return nonFunctionalRequirements;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -192,12 +219,15 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 				msgs = ((InternalEObject) initiatingActor).eInverseRemove(this,
 					RequirementPackage.ACTOR__INITIATED_USER_TASK, Actor.class, msgs);
 			return basicSetInitiatingActor((Actor) otherEnd, msgs);
-		case RequirementPackage.USER_TASK__PARTICIPATING_ACTOR:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActor()).basicAdd(otherEnd,
+		case RequirementPackage.USER_TASK__PARTICIPATING_ACTORS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getParticipatingActors()).basicAdd(otherEnd,
 				msgs);
 		case RequirementPackage.USER_TASK__REALIZING_USE_CASES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getRealizingUseCases())
 				.basicAdd(otherEnd, msgs);
+		case RequirementPackage.USER_TASK__NON_FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getNonFunctionalRequirements()).basicAdd(
+				otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -212,10 +242,12 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 		switch (featureID) {
 		case RequirementPackage.USER_TASK__INITIATING_ACTOR:
 			return basicSetInitiatingActor(null, msgs);
-		case RequirementPackage.USER_TASK__PARTICIPATING_ACTOR:
-			return ((InternalEList<?>) getParticipatingActor()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.USER_TASK__PARTICIPATING_ACTORS:
+			return ((InternalEList<?>) getParticipatingActors()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.USER_TASK__REALIZING_USE_CASES:
 			return ((InternalEList<?>) getRealizingUseCases()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.USER_TASK__NON_FUNCTIONAL_REQUIREMENTS:
+			return ((InternalEList<?>) getNonFunctionalRequirements()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -232,10 +264,12 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 			if (resolve)
 				return getInitiatingActor();
 			return basicGetInitiatingActor();
-		case RequirementPackage.USER_TASK__PARTICIPATING_ACTOR:
-			return getParticipatingActor();
+		case RequirementPackage.USER_TASK__PARTICIPATING_ACTORS:
+			return getParticipatingActors();
 		case RequirementPackage.USER_TASK__REALIZING_USE_CASES:
 			return getRealizingUseCases();
+		case RequirementPackage.USER_TASK__NON_FUNCTIONAL_REQUIREMENTS:
+			return getNonFunctionalRequirements();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -252,13 +286,17 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 		case RequirementPackage.USER_TASK__INITIATING_ACTOR:
 			setInitiatingActor((Actor) newValue);
 			return;
-		case RequirementPackage.USER_TASK__PARTICIPATING_ACTOR:
-			getParticipatingActor().clear();
-			getParticipatingActor().addAll((Collection<? extends Actor>) newValue);
+		case RequirementPackage.USER_TASK__PARTICIPATING_ACTORS:
+			getParticipatingActors().clear();
+			getParticipatingActors().addAll((Collection<? extends Actor>) newValue);
 			return;
 		case RequirementPackage.USER_TASK__REALIZING_USE_CASES:
 			getRealizingUseCases().clear();
 			getRealizingUseCases().addAll((Collection<? extends UseCase>) newValue);
+			return;
+		case RequirementPackage.USER_TASK__NON_FUNCTIONAL_REQUIREMENTS:
+			getNonFunctionalRequirements().clear();
+			getNonFunctionalRequirements().addAll((Collection<? extends NonFunctionalRequirement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -275,11 +313,14 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 		case RequirementPackage.USER_TASK__INITIATING_ACTOR:
 			setInitiatingActor((Actor) null);
 			return;
-		case RequirementPackage.USER_TASK__PARTICIPATING_ACTOR:
-			getParticipatingActor().clear();
+		case RequirementPackage.USER_TASK__PARTICIPATING_ACTORS:
+			getParticipatingActors().clear();
 			return;
 		case RequirementPackage.USER_TASK__REALIZING_USE_CASES:
 			getRealizingUseCases().clear();
+			return;
+		case RequirementPackage.USER_TASK__NON_FUNCTIONAL_REQUIREMENTS:
+			getNonFunctionalRequirements().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -295,10 +336,12 @@ public class UserTaskImpl extends ModelElementImpl implements UserTask {
 		switch (featureID) {
 		case RequirementPackage.USER_TASK__INITIATING_ACTOR:
 			return initiatingActor != null;
-		case RequirementPackage.USER_TASK__PARTICIPATING_ACTOR:
-			return participatingActor != null && !participatingActor.isEmpty();
+		case RequirementPackage.USER_TASK__PARTICIPATING_ACTORS:
+			return participatingActors != null && !participatingActors.isEmpty();
 		case RequirementPackage.USER_TASK__REALIZING_USE_CASES:
 			return realizingUseCases != null && !realizingUseCases.isEmpty();
+		case RequirementPackage.USER_TASK__NON_FUNCTIONAL_REQUIREMENTS:
+			return nonFunctionalRequirements != null && !nonFunctionalRequirements.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

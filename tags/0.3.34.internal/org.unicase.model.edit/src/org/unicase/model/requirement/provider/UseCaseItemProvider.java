@@ -53,6 +53,7 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 
 			addInitiatingActorPropertyDescriptor(object);
 			addParticipatingActorsPropertyDescriptor(object);
+			addRealizedUserTaskPropertyDescriptor(object);
 			addUseCaseStepsPropertyDescriptor(object);
 			addScenariosPropertyDescriptor(object);
 			addFunctionalRequirementsPropertyDescriptor(object);
@@ -60,6 +61,7 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 			addIdentifiedClassesPropertyDescriptor(object);
 			addIncludedUseCasesPropertyDescriptor(object);
 			addExtendedUseCasesPropertyDescriptor(object);
+			addSystemFunctionsPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -156,6 +158,18 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 	}
 
 	/**
+	 * This adds a property descriptor for the System Functions feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addSystemFunctionsPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory)
+			.getRootAdapterFactory(), getResourceLocator(), getString("_UI_UseCase_systemFunctions_feature"),
+			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_systemFunctions_feature", "_UI_UseCase_type"),
+			RequirementPackage.Literals.USE_CASE__SYSTEM_FUNCTIONS, true, false, true, null, null, null));
+	}
+
+	/**
 	 * This adds a property descriptor for the Participating Actors feature. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
@@ -167,6 +181,19 @@ public class UseCaseItemProvider extends ModelElementItemProvider implements IEd
 			getString("_UI_PropertyDescriptor_description", "_UI_UseCase_participatingActors_feature",
 				"_UI_UseCase_type"), RequirementPackage.Literals.USE_CASE__PARTICIPATING_ACTORS, true, false, true,
 			null, null, null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Realized User Task feature. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected void addRealizedUserTaskPropertyDescriptor(Object object) {
+		itemPropertyDescriptors
+			.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(), getString("_UI_UseCase_realizedUserTask_feature"), getString(
+					"_UI_PropertyDescriptor_description", "_UI_UseCase_realizedUserTask_feature", "_UI_UseCase_type"),
+				RequirementPackage.Literals.USE_CASE__REALIZED_USER_TASK, true, false, true, null, null, null));
 	}
 
 	/**

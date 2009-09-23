@@ -48,6 +48,7 @@ import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.SystemFunction;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.requirement.UserTask;
+import org.unicase.model.requirement.Workspace;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.impl.StatePackageImpl;
 import org.unicase.model.task.TaskPackage;
@@ -123,6 +124,13 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 * @generated
 	 */
 	private EClass userTaskEClass = null;
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	private EClass workspaceEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -302,6 +310,24 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 * 
 	 * @generated
 	 */
+	public EReference getNonFunctionalRequirement_SystemFunctions() {
+		return (EReference) nonFunctionalRequirementEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getNonFunctionalRequirement_UserTasks() {
+		return (EReference) nonFunctionalRequirementEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getFunctionalRequirement() {
 		return functionalRequirementEClass;
 	}
@@ -457,6 +483,15 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 */
 	public EReference getUseCase_ExtendedUseCases() {
 		return (EReference) useCaseEClass.getEStructuralFeatures().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getUseCase_SystemFunctions() {
+		return (EReference) useCaseEClass.getEStructuralFeatures().get(14);
 	}
 
 	/**
@@ -779,6 +814,33 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 * 
 	 * @generated
 	 */
+	public EReference getSystemFunction_Workspace() {
+		return (EReference) systemFunctionEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getSystemFunction_Usecases() {
+		return (EReference) systemFunctionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getSystemFunction_NonFunctionalRequirement() {
+		return (EReference) systemFunctionEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public EClass getUserTask() {
 		return userTaskEClass;
 	}
@@ -797,7 +859,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 * 
 	 * @generated
 	 */
-	public EReference getUserTask_ParticipatingActor() {
+	public EReference getUserTask_ParticipatingActors() {
 		return (EReference) userTaskEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -808,6 +870,33 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 */
 	public EReference getUserTask_RealizingUseCases() {
 		return (EReference) userTaskEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getUserTask_NonFunctionalRequirements() {
+		return (EReference) userTaskEClass.getEStructuralFeatures().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EClass getWorkspace() {
+		return workspaceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public EReference getWorkspace_SystemFunctions() {
+		return (EReference) workspaceEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -841,6 +930,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		nonFunctionalRequirementEClass = createEClass(NON_FUNCTIONAL_REQUIREMENT);
 		createEReference(nonFunctionalRequirementEClass, NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_SCENARIOS);
 		createEReference(nonFunctionalRequirementEClass, NON_FUNCTIONAL_REQUIREMENT__RESTRICTED_USE_CASES);
+		createEReference(nonFunctionalRequirementEClass, NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS);
+		createEReference(nonFunctionalRequirementEClass, NON_FUNCTIONAL_REQUIREMENT__USER_TASKS);
 
 		functionalRequirementEClass = createEClass(FUNCTIONAL_REQUIREMENT);
 		createEReference(functionalRequirementEClass, FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT);
@@ -868,6 +959,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		createEReference(useCaseEClass, USE_CASE__IDENTIFIED_CLASSES);
 		createEReference(useCaseEClass, USE_CASE__INCLUDED_USE_CASES);
 		createEReference(useCaseEClass, USE_CASE__EXTENDED_USE_CASES);
+		createEReference(useCaseEClass, USE_CASE__SYSTEM_FUNCTIONS);
 
 		scenarioEClass = createEClass(SCENARIO);
 		createEReference(scenarioEClass, SCENARIO__STEPS);
@@ -901,11 +993,18 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		createEAttribute(systemFunctionEClass, SYSTEM_FUNCTION__INPUT);
 		createEAttribute(systemFunctionEClass, SYSTEM_FUNCTION__OUTPUT);
 		createEAttribute(systemFunctionEClass, SYSTEM_FUNCTION__EXCEPTION);
+		createEReference(systemFunctionEClass, SYSTEM_FUNCTION__WORKSPACE);
+		createEReference(systemFunctionEClass, SYSTEM_FUNCTION__USECASES);
+		createEReference(systemFunctionEClass, SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT);
 
 		userTaskEClass = createEClass(USER_TASK);
 		createEReference(userTaskEClass, USER_TASK__INITIATING_ACTOR);
-		createEReference(userTaskEClass, USER_TASK__PARTICIPATING_ACTOR);
+		createEReference(userTaskEClass, USER_TASK__PARTICIPATING_ACTORS);
 		createEReference(userTaskEClass, USER_TASK__REALIZING_USE_CASES);
+		createEReference(userTaskEClass, USER_TASK__NON_FUNCTIONAL_REQUIREMENTS);
+
+		workspaceEClass = createEClass(WORKSPACE);
+		createEReference(workspaceEClass, WORKSPACE__SYSTEM_FUNCTIONS);
 	}
 
 	/**
@@ -954,9 +1053,8 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		stepEClass.getESuperTypes().add(theModelPackage.getModelElement());
 		stepEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
 		systemFunctionEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		systemFunctionEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
 		userTaskEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		userTaskEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
+		workspaceEClass.getESuperTypes().add(theModelPackage.getModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(nonFunctionalRequirementEClass, NonFunctionalRequirement.class, "NonFunctionalRequirement",
@@ -973,6 +1071,17 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			!IS_DERIVED, IS_ORDERED);
 		getNonFunctionalRequirement_RestrictedUseCases().getEKeys().add(
 			theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getNonFunctionalRequirement_SystemFunctions(), this.getSystemFunction(), this
+			.getSystemFunction_NonFunctionalRequirement(), "systemFunctions", null, 0, -1,
+			NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getNonFunctionalRequirement_SystemFunctions().getEKeys().add(
+			theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getNonFunctionalRequirement_UserTasks(), this.getUserTask(), this
+			.getUserTask_NonFunctionalRequirements(), "userTasks", null, 0, -1, NonFunctionalRequirement.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		getNonFunctionalRequirement_UserTasks().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(functionalRequirementEClass, FunctionalRequirement.class, "FunctionalRequirement", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1068,6 +1177,10 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getUseCase_ExtendedUseCases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getUseCase_SystemFunctions(), this.getSystemFunction(), this.getSystemFunction_Usecases(),
+			"systemFunctions", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getUseCase_SystemFunctions().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(scenarioEClass, Scenario.class, "Scenario", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getScenario_Steps(), this.getStep(), null, "steps", null, 0, -1, Scenario.class, !IS_TRANSIENT,
@@ -1114,7 +1227,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			"initiatedUserTask", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getActor_InitiatedUserTask().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getActor_ParticipatedUserTasks(), this.getUserTask(), this.getUserTask_ParticipatingActor(),
+		initEReference(getActor_ParticipatedUserTasks(), this.getUserTask(), this.getUserTask_ParticipatingActors(),
 			"participatedUserTasks", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getActor_ParticipatedUserTasks().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
@@ -1174,20 +1287,46 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEAttribute(getSystemFunction_Exception(), ecorePackage.getEString(), "exception", null, 0, 1,
 			SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+		initEReference(getSystemFunction_Workspace(), this.getWorkspace(), this.getWorkspace_SystemFunctions(),
+			"workspace", null, 0, 1, SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getSystemFunction_Workspace().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getSystemFunction_Usecases(), this.getUseCase(), this.getUseCase_SystemFunctions(), "usecases",
+			null, 0, -1, SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getSystemFunction_Usecases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getSystemFunction_NonFunctionalRequirement(), this.getNonFunctionalRequirement(), this
+			.getNonFunctionalRequirement_SystemFunctions(), "nonFunctionalRequirement", null, 0, 1,
+			SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getSystemFunction_NonFunctionalRequirement().getEKeys()
+			.add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(userTaskEClass, UserTask.class, "UserTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserTask_InitiatingActor(), this.getActor(), this.getActor_InitiatedUserTask(),
 			"initiatingActor", null, 0, 1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getUserTask_InitiatingActor().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getUserTask_ParticipatingActor(), this.getActor(), this.getActor_ParticipatedUserTasks(),
-			"participatingActor", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+		initEReference(getUserTask_ParticipatingActors(), this.getActor(), this.getActor_ParticipatedUserTasks(),
+			"participatingActors", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUserTask_ParticipatingActor().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		getUserTask_ParticipatingActors().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUserTask_RealizingUseCases(), this.getUseCase(), this.getUseCase_RealizedUserTask(),
 			"realizingUseCases", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getUserTask_RealizingUseCases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getUserTask_NonFunctionalRequirements(), this.getNonFunctionalRequirement(), this
+			.getNonFunctionalRequirement_UserTasks(), "nonFunctionalRequirements", null, 0, -1, UserTask.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		getUserTask_NonFunctionalRequirements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+
+		initEClass(workspaceEClass, Workspace.class, "Workspace", !IS_ABSTRACT, !IS_INTERFACE,
+			IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getWorkspace_SystemFunctions(), this.getSystemFunction(), this.getSystemFunction_Workspace(),
+			"systemFunctions", null, 0, -1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getWorkspace_SystemFunctions().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor
@@ -1207,6 +1346,10 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			"position", "right" });
 		addAnnotation(getNonFunctionalRequirement_RestrictedUseCases(), source, new String[] { "priority", "9.2",
 			"position", "right" });
+		addAnnotation(getNonFunctionalRequirement_SystemFunctions(), source, new String[] { "priority", "13.0",
+			"position", "right" });
+		addAnnotation(getNonFunctionalRequirement_UserTasks(), source, new String[] { "priority", "14.0", "position",
+			"right" });
 		addAnnotation(getFunctionalRequirement_RefinedRequirement(), source, new String[] { "priority", "10.0",
 			"position", "left" });
 		addAnnotation(getFunctionalRequirement_Priority(), source, new String[] { "priority", "12.0", "position",
@@ -1223,6 +1366,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			"left" });
 		addAnnotation(getUseCase_InitiatingActor(), source, new String[] { "priority", "10.0", "position", "left" });
 		addAnnotation(getUseCase_ParticipatingActors(), source, new String[] { "priority", "11.0", "position", "left" });
+		addAnnotation(getUseCase_RealizedUserTask(), source, new String[] { "priority", "10.1", "position", "left" });
 		addAnnotation(getUseCase_Scenarios(), source, new String[] { "priority", "10.0", "position", "right" });
 		addAnnotation(getUseCase_FunctionalRequirements(), source, new String[] { "priority", "11.0", "position",
 			"right" });
@@ -1231,6 +1375,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		addAnnotation(getUseCase_IdentifiedClasses(), source, new String[] { "priority", "13.0", "position", "right" });
 		addAnnotation(getUseCase_IncludedUseCases(), source, new String[] { "priority", "12.0", "position", "left" });
 		addAnnotation(getUseCase_ExtendedUseCases(), source, new String[] { "priority", "13.0", "position", "left" });
+		addAnnotation(getUseCase_SystemFunctions(), source, new String[] { "priority", "15.0", "position", "right" });
 		addAnnotation(getScenario_InitiatingActorInstance(), source, new String[] { "priority", "10.0", "position",
 			"left" });
 		addAnnotation(getScenario_ParticipatingActorInstances(), source, new String[] { "priority", "11.0", "position",
@@ -1241,6 +1386,9 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			"right" });
 		addAnnotation(getScenario_NonFunctionalRequirements(), source, new String[] { "priority", "12.0", "position",
 			"right" });
+		addAnnotation(getActor_InitiatedUserTask(), source, new String[] { "priority", "15.0", "position", "left" });
+		addAnnotation(getActor_ParticipatedUserTasks(), source,
+			new String[] { "priority", "15.0", "position", "right" });
 		addAnnotation(getActor_InitiatedUseCases(), source, new String[] { "priority", "10.0", "position", "right" });
 		addAnnotation(getActor_ParticipatedUseCases(), source, new String[] { "priority", "11.0", "position", "right" });
 		addAnnotation(getActor_Instances(), source, new String[] { "priority", "12.0", "position", "right" });
@@ -1250,6 +1398,13 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			"right" });
 		addAnnotation(getActorInstance_InstantiatedActor(), source, new String[] { "priority", "10.0", "position",
 			"left" });
+		addAnnotation(getSystemFunction_Usecases(), source, new String[] { "priority", "12.0", "position", "right" });
+		addAnnotation(getUserTask_ParticipatingActors(), source,
+			new String[] { "priority", "12.0", "position", "right" });
+		addAnnotation(getUserTask_RealizingUseCases(), source, new String[] { "priority", "12.0", "position", "right" });
+		addAnnotation(getUserTask_NonFunctionalRequirements(), source, new String[] { "priority", "12.0", "position",
+			"right" });
+		addAnnotation(getWorkspace_SystemFunctions(), source, new String[] { "priority", "12.0", "position", "right" });
 	}
 
 	/**
