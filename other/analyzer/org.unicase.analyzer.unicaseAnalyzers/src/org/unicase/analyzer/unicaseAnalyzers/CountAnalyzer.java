@@ -13,22 +13,25 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.analyzer.DataAnalyzer;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.model.ModelElement;
+import org.unicase.model.task.TaskPackage;
 
 /**
  * @author liya
  */
 public class CountAnalyzer implements DataAnalyzer {
 
-	private final EClass eclass;
+	private final EClass eclass = TaskPackage.eINSTANCE.getActionItem(); // Change to the ME you want! By default is
+
+	// ActionItem
 
 	/**
 	 * Constructor of CountAnalyzer. A analyzer which can count the number of modelElements of a given EClass.
 	 * 
 	 * @param eclass EClass
 	 */
-	public CountAnalyzer(EClass eclass) {
-		this.eclass = eclass;
-	}
+	// public CountAnalyzer(EClass eclass) {
+	// this.eclass = eclass;
+	// }
 
 	/**
 	 * @return @see org.unicase.analyzer.dataanalyzer.DataAnalyzer#getName()
