@@ -321,6 +321,14 @@
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="notificationId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"
             defaultValueLiteral=""/>
       </eClassifiers>
+      <eClassifiers xsi:type="ecore:EClass" name="URLEvent" eSuperTypes="#//versioning/events/Event">
+        <eStructuralFeatures xsi:type="ecore:EReference" name="sourceModelElement"
+            eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceView" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        <eStructuralFeatures xsi:type="ecore:EReference" name="sourceURL" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+            containment="true"/>
+      </eClassifiers>
     </eSubpackages>
   </eSubpackages>
   <eSubpackages name="accesscontrol" nsURI="http://unicase.org/esmodel/accesscontrol"
