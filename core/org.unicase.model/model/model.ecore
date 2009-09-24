@@ -985,8 +985,9 @@
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="input" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="workspace" eType="#//requirement/Workspace"
-          eOpposite="#//requirement/Workspace/systemFunctions" eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nonFunctionalRequirement"
+          eType="#//requirement/NonFunctionalRequirement" eOpposite="#//requirement/NonFunctionalRequirement/systemFunctions"
+          eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="usecases" upperBound="-1"
           eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/systemFunctions"
           eKeys="#//IdentifiableElement/identifier">
@@ -995,9 +996,8 @@
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="nonFunctionalRequirement"
-          eType="#//requirement/NonFunctionalRequirement" eOpposite="#//requirement/NonFunctionalRequirement/systemFunctions"
-          eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="workspace" eType="#//requirement/Workspace"
+          eOpposite="#//requirement/Workspace/systemFunctions" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatingActor" eType="#//requirement/Actor"
@@ -1384,8 +1384,8 @@
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredOffline" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileType" eType="#//attachment/FileAttachmentType"/>
-      <eStructuralFeatures xsi:type="ecore:EAttribute" name="downloading" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="uploading" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="downloading" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EEnum" name="FileAttachmentType">
       <eLiterals name="BINARY"/>

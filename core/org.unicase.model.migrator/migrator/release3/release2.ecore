@@ -1478,7 +1478,7 @@
             eOpposite="#/1/rationale/Criterion/assessments" eKeys="#/1/IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="value" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
       </eClassifiers>
-      <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#/1/ModelElement">
+      <eClassifiers xsi:type="ecore:EClass" name="Comment" eSuperTypes="#/1/ModelElement #/1/NonDomainElement">
         <eStructuralFeatures xsi:type="ecore:EReference" name="sender" eType="#/1/organization/OrgUnit"
             eKeys="#/1/IdentifiableElement/identifier"/>
         <eStructuralFeatures xsi:type="ecore:EReference" name="recipients" upperBound="-1"
@@ -1515,7 +1515,6 @@
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
-        <eStructuralFeatures xsi:type="ecore:EAttribute" name="Status" eType="#/1/bug/BugStatus"/>
         <eStructuralFeatures xsi:type="ecore:EAttribute" name="severity" eType="#/1/bug/Severity">
           <eAnnotations source="org.unicase.ui.meeditor">
             <details key="priority" value="9.5"/>
@@ -1528,13 +1527,7 @@
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
-      </eClassifiers>
-      <eClassifiers xsi:type="ecore:EEnum" name="BugStatus">
-        <eLiterals name="NEW" literal="NEW"/>
-        <eLiterals name="CONFIRMED" value="1" literal="CONFIRMED"/>
-        <eLiterals name="ASSIGNED" value="2" literal="ASSIGNED"/>
-        <eLiterals name="RESOLVED" value="3" literal="RESOLVED"/>
-        <eLiterals name="CLOSED" value="4" literal="CLOSED"/>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="done" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eClassifiers>
       <eClassifiers xsi:type="ecore:EEnum" name="Severity">
         <eLiterals name="FEATURE" literal="FEATURE"/>
@@ -1747,6 +1740,7 @@
             <details key="position" value="left"/>
           </eAnnotations>
         </eStructuralFeatures>
+        <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredOffline" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       </eClassifiers>
     </eSubpackages>
     <eSubpackages name="profile" nsURI="http://unicase.org/model/profile" nsPrefix="org.unicase.model.profile">

@@ -4297,18 +4297,18 @@
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask"
-          element="model.ecore#//requirement/UserTask/participatingActor" referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActor"
+          element="model.ecore#//requirement/UserTask/participatingActors" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActors"
             featureName="name" dataValue="participatingActor"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActor"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActors"
             featureName="upperBound" dataValue="-1"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActor"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActors"
             featureName="eType" referenceValue="model.ecore#//requirement/Actor"/>
-        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActor"
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActors"
             featureName="eOpposite" referenceValue="model.ecore#//requirement/Actor/participatedUserTasks"/>
         <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/participatedUserTasks"
-            featureName="eOpposite" referenceValue="model.ecore#//requirement/UserTask/participatingActor"/>
-        <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask/participatingActor"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/UserTask/participatingActors"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask/participatingActors"
             featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask"
@@ -6661,66 +6661,459 @@
       </element>
     </changes>
   </releases>
-  <releases label="">
+  <releases date="2009-09-22T19:44:49.578+0200" label="3">
     <changes xsi:type="history:Create" target="model.ecore#//rationale" element="model.ecore#//rationale/AudioComment"
-        referenceName="eClassifiers"/>
-    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment"
-        featureName="name" dataValue="AudioComment"/>
-    <changes xsi:type="history:Create" target="model.ecore#//attachment" element="model.ecore#//attachment/FileAttachmentType"
-        referenceName="eClassifiers"/>
-    <changes xsi:type="history:CompositeChange">
-      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType"
-          featureName="instanceClassName"/>
-      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType"
-          featureName="instanceTypeName"/>
+        referenceName="eClassifiers">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment"
+          featureName="name" dataValue="AudioComment"/>
     </changes>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType"
-        featureName="name" dataValue="FileAttachmentType"/>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment" element="model.ecore#//attachment/FileAttachmentType"
+        referenceName="eClassifiers">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType"
+          featureName="name" dataValue="FileAttachmentType"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
-        element="model.ecore#//attachment/FileAttachmentType/BINARY" referenceName="eLiterals"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/BINARY"
-        featureName="name" dataValue="BINARY"/>
+        element="model.ecore#//attachment/FileAttachmentType/BINARY" referenceName="eLiterals">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/BINARY"
+          featureName="name" dataValue="BINARY"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
-        element="model.ecore#//attachment/FileAttachmentType/IMAGE" referenceName="eLiterals"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
-        featureName="literal" dataValue=""/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
-        featureName="name" dataValue="IMAGE"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
-        featureName="literal" dataValue="IMAGE"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
-        featureName="value" dataValue="1"/>
+        element="model.ecore#//attachment/FileAttachmentType/IMAGE" referenceName="eLiterals">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
+          featureName="name" dataValue="IMAGE"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
+          featureName="literal" dataValue="IMAGE"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/IMAGE"
+          featureName="value" dataValue="1"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
-        element="model.ecore#//attachment/FileAttachmentType/AUDIO" referenceName="eLiterals"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
-        featureName="value" dataValue="2"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
-        featureName="literal" dataValue="AUDIO"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
-        featureName="name" dataValue="AUDIO"/>
+        element="model.ecore#//attachment/FileAttachmentType/AUDIO" referenceName="eLiterals">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
+          featureName="value" dataValue="2"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
+          featureName="literal" dataValue="AUDIO"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/AUDIO"
+          featureName="name" dataValue="AUDIO"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachmentType"
-        element="model.ecore#//attachment/FileAttachmentType/VIDEO" referenceName="eLiterals"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
-        featureName="literal" dataValue=""/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
-        featureName="name" dataValue="VIDEO"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
-        featureName="literal" dataValue="VIDEO"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
-        featureName="value" dataValue="3"/>
+        element="model.ecore#//attachment/FileAttachmentType/VIDEO" referenceName="eLiterals">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+          featureName="literal" dataValue=""/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+          featureName="name" dataValue="VIDEO"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+          featureName="literal" dataValue="VIDEO"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachmentType/VIDEO"
+          featureName="value" dataValue="3"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
-        element="model.ecore#//attachment/FileAttachment/fileType" referenceName="eStructuralFeatures"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileType"
-        featureName="eType" referenceValue="model.ecore#//attachment/FileAttachmentType"/>
-    <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileType"
-        featureName="name" dataValue="fileType"/>
+        element="model.ecore#//attachment/FileAttachment/fileType" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileType"
+          featureName="eType" referenceValue="model.ecore#//attachment/FileAttachmentType"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/fileType"
+          featureName="name" dataValue="fileType"/>
+    </changes>
     <changes xsi:type="history:Create" target="model.ecore#//rationale/AudioComment"
-        element="model.ecore#//rationale/AudioComment/audioFile" referenceName="eStructuralFeatures"/>
-    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
-        featureName="containment" dataValue="true"/>
-    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
-        featureName="eType" referenceValue="model.ecore#//attachment/FileAttachment"/>
-    <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
-        featureName="name" dataValue="audioFile"/>
+        element="model.ecore#//rationale/AudioComment/audioFile" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
+          featureName="containment" dataValue="true"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
+          featureName="eType" referenceValue="model.ecore#//attachment/FileAttachment"/>
+      <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment/audioFile"
+          featureName="name" dataValue="audioFile"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
+        element="model.ecore#//attachment/FileAttachment/uploading" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/uploading"
+          featureName="name" dataValue="uploading"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/uploading"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#//attachment/FileAttachment"
+        element="model.ecore#//attachment/FileAttachment/downloading" referenceName="eStructuralFeatures">
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/downloading"
+          featureName="name" dataValue="downloading"/>
+      <changes xsi:type="history:Set" element="model.ecore#//attachment/FileAttachment/downloading"
+          featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </changes>
+    <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xD;&#xA;&#xD;&#xA;/**&#xD;&#xA; * Converts the rich text string as generated by the MERichTextContol to HTML.&#xD;&#xA; * &#xD;&#xA; * @param richText the input string&#xD;&#xA; * @return the converted HTML text&#xD;&#xA; */&#xD;&#xA;public static String getHTMLFromRichText(String richText) {&#xD;&#xA;&#x9;if (richText == null) {&#xD;&#xA;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;String[] split = richText.split(&quot;%BEGINNTEXT%&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;if (split.length == 1) {&#xD;&#xA;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;} else {&#xD;&#xA;&#x9;&#x9;List&lt;Integer> bulletedLines = new ArrayList&lt;Integer>();&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#x9;&#x9;&#x9;StringTokenizer stringTokenizer = new StringTokenizer(split[0], &quot;,&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;while (stringTokenizer.hasMoreElements()) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;String nextElement = (String) stringTokenizer.nextElement();&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (nextElement.equals(&quot;;&quot;)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;break;&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;bulletedLines.add(Integer.parseInt(nextElement));&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;} catch (RuntimeException e) {&#xD;&#xA;&#x9;&#x9;&#x9;e.printStackTrace();&#xD;&#xA;&#x9;&#x9;&#x9;return &quot;&quot;;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;String text = split[1];&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;try {&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;// normalize line feeds&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\n\r&quot;, &quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\r\n&quot;, &quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;text.replaceAll(&quot;\r&quot;, &quot;\n&quot;);&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;String[] lines = text.split(&quot;\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;StringBuilder newString = new StringBuilder();&#xD;&#xA;&#xD;&#xA;&#x9;&#x9;&#x9;for (int i = 0; i &lt; lines.length; i++) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;if (bulletedLines.contains(i)) {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;\n&lt;ul>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;li>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(lines[i]);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;/li>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;/ul>&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;} else {&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(lines[i]);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;newString.append(&quot;&lt;br/>\n&quot;);&#xD;&#xA;&#x9;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;&#x9;String newDesc = newString.toString();&#xD;&#xA;&#x9;&#x9;&#x9;return newDesc;&#xD;&#xA;&#x9;&#x9;} catch (RuntimeException e) {&#xD;&#xA;&#x9;&#x9;&#x9;e.printStackTrace();&#xD;&#xA;&#x9;&#x9;&#x9;return text;&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;//change migration&#xD;&#xA;getElementById = { id ->&#xD;&#xA;&#x9;def element = model.IdentifiableElement.allInstances.find{e -> id.equals(e.identifier)} &#xD;&#xA;&#x9;if(element == null) {&#xD;&#xA;&#x9;&#x9;println &quot;id &quot; + id + &quot; not found&quot;&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return element&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;isFeatureChange = { operation, EStructuralFeature feature ->&#xD;&#xA;&#x9;if(feature.name.equals(operation.featureName)) {&#xD;&#xA;&#x9;&#x9;def id = operation.modelElementId.id&#xD;&#xA;&#x9;&#x9;def element = getElementById(id)&#xD;&#xA;&#x9;&#x9;if(element == null || element.instanceOf(feature.eContainingClass)) {&#xD;&#xA;&#x9;&#x9;&#x9;return true&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;&#x9;return false&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;for(operation in esmodel.versioning.operations.AttributeOperation.allInstances) {&#xD;&#xA;&#x9;if(isFeatureChange(operation, model.ModelElement.description)) {&#xD;&#xA;&#x9;&#x9;if(operation.oldValue != null) {&#xD;&#xA;&#x9;&#x9;&#x9;operation.oldValue = getHTMLFromRichText(operation.oldValue)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;&#x9;if(operation.newValue != null) {&#xD;&#xA;&#x9;&#x9;&#x9;operation.newValue = getHTMLFromRichText(operation.newValue)&#xD;&#xA;&#x9;&#x9;}&#xD;&#xA;&#x9;}&#xD;&#xA;}&#xD;&#xA;&#xD;&#xA;// model migration&#xD;&#xA;for(m in model.ModelElement.allInstances) {&#xD;&#xA;&#x9;if(m.description != null) {&#xD;&#xA;&#x9;&#x9;m.description = getHTMLFromRichText(m.description)&#xD;&#xA;&#x9;}&#xD;&#xA;}"/>
+    <changes xsi:type="history:Remove" element="model.ecore#//requirement/SystemFunction"
+        featureName="eSuperTypes" referenceValue="model.ecore#//NonDomainElement"/>
+    <changes xsi:type="history:Remove" element="model.ecore#//requirement/UserTask"
+        featureName="eSuperTypes" referenceValue="model.ecore#//NonDomainElement"/>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/Actor/initiatedUserTask"
+          element="model.ecore#//requirement/Actor/initiatedUserTask/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/initiatedUserTask/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/Actor/initiatedUserTask/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/Actor/initiatedUserTask/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/initiatedUserTask/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/initiatedUserTask/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="15.0"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/Actor/initiatedUserTask/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/Actor/initiatedUserTask/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/initiatedUserTask/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/initiatedUserTask/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="left"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/Actor/participatedUserTasks"
+          element="model.ecore#//requirement/Actor/participatedUserTasks/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/participatedUserTasks/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/Actor/participatedUserTasks/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/Actor/participatedUserTasks/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/participatedUserTasks/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/participatedUserTasks/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="15.0"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/Actor/participatedUserTasks/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/Actor/participatedUserTasks/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/participatedUserTasks/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Actor/participatedUserTasks/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="right"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/SystemFunction"
+          element="model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"
+          referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"
+            featureName="name" dataValue="nonFunctionalRequirement"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"
+            featureName="eType" referenceValue="model.ecore#//requirement/NonFunctionalRequirement"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"
+            featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement"
+          element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"
+          referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"
+            featureName="name" dataValue="systemFunctions"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"
+            featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"
+            featureName="eType" referenceValue="model.ecore#//requirement/SystemFunction"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/nonFunctionalRequirement"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"
+            featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions"
+          element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="13.0"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/systemFunctions/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="right"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask"
+          element="model.ecore#//requirement/UserTask/nonFunctionalRequirements" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements"
+            featureName="name" dataValue="nonFunctionalRequirements"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements"
+            featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements"
+            featureName="eType" referenceValue="model.ecore#//requirement/NonFunctionalRequirement"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements"
+            featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask/nonFunctionalRequirements"
+          element="model.ecore#//requirement/UserTask/nonFunctionalRequirements/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask/nonFunctionalRequirements/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UserTask/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="12.0"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask/nonFunctionalRequirements/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UserTask/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="right"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement"
+          element="model.ecore#//requirement/NonFunctionalRequirement/userTasks" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks"
+            featureName="name" dataValue="userTasks"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks"
+            featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/UserTask/nonFunctionalRequirements"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/nonFunctionalRequirements"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/NonFunctionalRequirement/userTasks"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks"
+            featureName="eType" referenceValue="model.ecore#//requirement/UserTask"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks"
+            featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement/userTasks"
+          element="model.ecore#//requirement/NonFunctionalRequirement/userTasks/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement/userTasks/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/NonFunctionalRequirement/userTasks/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="14.0"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/NonFunctionalRequirement/userTasks/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/NonFunctionalRequirement/userTasks/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/NonFunctionalRequirement/userTasks/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="right"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase"
+          element="model.ecore#//requirement/UseCase/systemFunctions" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/systemFunctions"
+            featureName="name" dataValue="systemFunctions"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/systemFunctions"
+            featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/UseCase/systemFunctions"
+            featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/systemFunctions"
+            featureName="eType" referenceValue="model.ecore#//requirement/SystemFunction"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/systemFunctions"
+          element="model.ecore#//requirement/UseCase/systemFunctions/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/systemFunctions/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/systemFunctions/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/systemFunctions/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/systemFunctions/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/systemFunctions/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="15.0"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/systemFunctions/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/systemFunctions/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/systemFunctions/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/systemFunctions/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="right"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/SystemFunction"
+          element="model.ecore#//requirement/SystemFunction/usecases" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/usecases"
+            featureName="name" dataValue="usecases"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/usecases"
+            featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/usecases"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/UseCase/systemFunctions"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/systemFunctions"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/SystemFunction/usecases"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/SystemFunction/usecases"
+            featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/usecases"
+            featureName="eType" referenceValue="model.ecore#//requirement/UseCase"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/SystemFunction/usecases"
+          element="model.ecore#//requirement/SystemFunction/usecases/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/usecases/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/SystemFunction/usecases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/SystemFunction/usecases/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/usecases/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/usecases/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="12.0"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/SystemFunction/usecases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/SystemFunction/usecases/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/usecases/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/usecases/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="right"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Create" target="model.ecore#//requirement" element="model.ecore#//requirement/Workspace"
+          referenceName="eClassifiers">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Workspace"
+            featureName="name" dataValue="Workspace"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/Workspace"
+            featureName="eSuperTypes" referenceValue="model.ecore#//ModelElement"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/SystemFunction"
+          element="model.ecore#//requirement/SystemFunction/workspace" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/workspace"
+            featureName="name" dataValue="workspace"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/workspace"
+            featureName="eType" referenceValue="model.ecore#//requirement/Workspace"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/SystemFunction/workspace"
+            featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/Workspace"
+          element="model.ecore#//requirement/Workspace/systemFunctions" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Workspace/systemFunctions"
+            featureName="name" dataValue="systemFunctions"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Workspace/systemFunctions"
+            featureName="upperBound" dataValue="-1"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Workspace/systemFunctions"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/SystemFunction/workspace"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/SystemFunction/workspace"
+            featureName="eOpposite" referenceValue="model.ecore#//requirement/Workspace/systemFunctions"/>
+        <changes xsi:type="history:Add" element="model.ecore#//requirement/Workspace/systemFunctions"
+            featureName="eKeys" referenceValue="model.ecore#//IdentifiableElement/identifier"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Workspace/systemFunctions"
+            featureName="eType" referenceValue="model.ecore#//requirement/SystemFunction"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/Workspace/systemFunctions"
+          element="model.ecore#//requirement/Workspace/systemFunctions/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Workspace/systemFunctions/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/Workspace/systemFunctions/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/Workspace/systemFunctions/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Workspace/systemFunctions/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Workspace/systemFunctions/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="12.0"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/Workspace/systemFunctions/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/Workspace/systemFunctions/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Workspace/systemFunctions/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/Workspace/systemFunctions/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="right"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/realizedUserTask"
+          element="model.ecore#//requirement/UseCase/realizedUserTask/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/realizedUserTask/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/realizedUserTask/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/realizedUserTask/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/realizedUserTask/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/realizedUserTask/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="10.1"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UseCase/realizedUserTask/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UseCase/realizedUserTask/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/realizedUserTask/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UseCase/realizedUserTask/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="left"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask/realizingUseCases"
+          element="model.ecore#//requirement/UserTask/realizingUseCases/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/realizingUseCases/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask/realizingUseCases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UserTask/realizingUseCases/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/realizingUseCases/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/realizingUseCases/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="12.0"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask/realizingUseCases/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UserTask/realizingUseCases/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/realizingUseCases/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/realizingUseCases/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="right"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:CompositeChange">
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask/participatingActors"
+          element="model.ecore#//requirement/UserTask/participatingActors/%org.unicase.ui.meeditor%"
+          referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActors/%org.unicase.ui.meeditor%"
+            featureName="source" dataValue="org.unicase.ui.meeditor"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask/participatingActors/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UserTask/participatingActors/%org.unicase.ui.meeditor%/@details.0"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActors/%org.unicase.ui.meeditor%/@details.0"
+            featureName="key" dataValue="priority"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActors/%org.unicase.ui.meeditor%/@details.0"
+            featureName="value" dataValue="12.0"/>
+      </changes>
+      <changes xsi:type="history:Create" target="model.ecore#//requirement/UserTask/participatingActors/%org.unicase.ui.meeditor%"
+          element="model.ecore#//requirement/UserTask/participatingActors/%org.unicase.ui.meeditor%/@details.1"
+          referenceName="details">
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActors/%org.unicase.ui.meeditor%/@details.1"
+            featureName="key" dataValue="position"/>
+        <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActors/%org.unicase.ui.meeditor%/@details.1"
+            featureName="value" dataValue="right"/>
+      </changes>
+    </changes>
+    <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xA;&#xA;participatingActorReference = model.requirement.UserTask.participatingActor&#xA;&#xA;// change migration&#xA;getElementById = { id ->&#xA;&#x9;def element = model.IdentifiableElement.allInstances.find{e -> id.equals(e.identifier)} &#xA;&#x9;if(element == null) {&#xA;&#x9;&#x9;println &quot;id &quot; + id + &quot; not found&quot;&#xA;&#x9;}&#xA;&#x9;return element&#xA;}&#xA;&#xA;isFeatureChange = { operation, EStructuralFeature feature ->&#xA;&#xA;&#x9;if(feature.name.equals(operation.featureName)) {&#xA;&#x9;&#x9;if(operation.modelElementId == null) {&#xA;&#x9;&#x9;&#x9;debug(operation, &quot;model element id = null&quot;)&#xA;&#x9;&#x9;&#x9;// model element id of an operation can be null.&#xA;&#x9;&#x9;&#x9;// is this legal and what does it mean?&#xA;&#x9;&#x9;&#x9;return true&#xA;&#x9;&#x9;}&#xA;&#x9;&#x9;def id = operation.modelElementId.id&#xA;&#x9;&#x9;def element = getElementById(id)&#xA;&#x9;&#x9;if(element == null || element.instanceOf(feature.eContainingClass)) {&#xA;&#x9;&#x9;&#x9;return true&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;return false&#xA;}&#xA;&#xA;renameFeature_Changes = { EStructuralFeature feature, String name ->&#xA;&#xA;&#x9;for(operation in esmodel.versioning.operations.FeatureOperation.allInstances) {&#xA;&#x9;&#x9;if(isFeatureChange(operation, feature)) {&#xA;&#x9;&#x9;&#x9;operation.featureName = name&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;if(feature instanceof EReference) {&#xA;&#x9;&#x9;def opposite = feature.eOpposite&#xA;&#x9;&#x9;if(opposite != null) {&#xA;&#x9;&#x9;&#x9;for(operation in esmodel.versioning.operations.ReferenceOperation.allInstances) {&#xA;&#x9;&#x9;&#x9;&#x9;if(isFeatureChange(operation, opposite)) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;operation.oppositeFeatureName = name&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#x9;&#x9;&#xA;&#x9;}&#xA;}&#xA;&#xA;renameFeature_Changes(participatingActorReference, &quot;participatingActors&quot;)&#xA;&#xA;// model migration&#xA;participatingActorReference.name = &quot;participatingActors&quot;&#xA;">
+      <changes xsi:type="history:Set" element="model.ecore#//requirement/UserTask/participatingActors"
+          featureName="name" dataValue="participatingActors"/>
+    </changes>
   </releases>
+  <releases/>
 </history:History>
