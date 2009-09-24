@@ -698,6 +698,22 @@
           <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="systemFunctions" upperBound="-1"
+          eType="#//requirement/SystemFunction" eOpposite="#//requirement/SystemFunction/nonFunctionalRequirement"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="13.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="userTasks" upperBound="-1"
+          eType="#//requirement/UserTask" eOpposite="#//requirement/UserTask/nonFunctionalRequirements"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="14.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="FunctionalRequirement" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="refinedRequirement" eType="#//requirement/FunctionalRequirement"
@@ -770,7 +786,12 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="realizedUserTask" eType="#//requirement/UserTask"
-          eOpposite="#//requirement/UserTask/realizingUseCases" eKeys="#//IdentifiableElement/identifier"/>
+          eOpposite="#//requirement/UserTask/realizingUseCases" eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="10.1"/>
+          <details key="position" value="left"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="precondition" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="useCaseSteps" upperBound="-1"
           eType="#//requirement/Step" containment="true" eOpposite="#//requirement/Step/useCase"
@@ -823,6 +844,14 @@
         <eAnnotations source="org.unicase.ui.meeditor">
           <details key="priority" value="13.0"/>
           <details key="position" value="left"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="systemFunctions" upperBound="-1"
+          eType="#//requirement/SystemFunction" eOpposite="#//requirement/SystemFunction/usecases"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="15.0"/>
+          <details key="position" value="right"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -878,10 +907,20 @@
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="Actor" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedUserTask" eType="#//requirement/UserTask"
-          eOpposite="#//requirement/UserTask/initiatingActor" eKeys="#//IdentifiableElement/identifier"/>
+          eOpposite="#//requirement/UserTask/initiatingActor" eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="15.0"/>
+          <details key="position" value="left"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="participatedUserTasks"
-          upperBound="-1" eType="#//requirement/UserTask" eOpposite="#//requirement/UserTask/participatingActor"
-          eKeys="#//IdentifiableElement/identifier"/>
+          upperBound="-1" eType="#//requirement/UserTask" eOpposite="#//requirement/UserTask/participatingActors"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="15.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatedUseCases" upperBound="-1"
           eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/initiatingActor"
           eKeys="#//IdentifiableElement/identifier">
@@ -942,20 +981,61 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="useCase" eType="#//requirement/UseCase"
           eOpposite="#//requirement/UseCase/useCaseSteps" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="SystemFunction" eSuperTypes="#//ModelElement #//NonDomainElement">
+    <eClassifiers xsi:type="ecore:EClass" name="SystemFunction" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="input" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="output" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="exception" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nonFunctionalRequirement"
+          eType="#//requirement/NonFunctionalRequirement" eOpposite="#//requirement/NonFunctionalRequirement/systemFunctions"
+          eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="usecases" upperBound="-1"
+          eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/systemFunctions"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="12.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="workspace" eType="#//requirement/Workspace"
+          eOpposite="#//requirement/Workspace/systemFunctions" eKeys="#//IdentifiableElement/identifier"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="#//ModelElement #//NonDomainElement">
+    <eClassifiers xsi:type="ecore:EClass" name="UserTask" eSuperTypes="#//ModelElement">
       <eStructuralFeatures xsi:type="ecore:EReference" name="initiatingActor" eType="#//requirement/Actor"
           eOpposite="#//requirement/Actor/initiatedUserTask" eKeys="#//IdentifiableElement/identifier"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="participatingActor" upperBound="-1"
-          eType="#//requirement/Actor" eOpposite="#//requirement/Actor/participatedUserTasks"
-          eKeys="#//IdentifiableElement/identifier"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="participatingActors"
+          upperBound="-1" eType="#//requirement/Actor" eOpposite="#//requirement/Actor/participatedUserTasks"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="12.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EReference" name="realizingUseCases" upperBound="-1"
           eType="#//requirement/UseCase" eOpposite="#//requirement/UseCase/realizedUserTask"
-          eKeys="#//IdentifiableElement/identifier"/>
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="12.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="nonFunctionalRequirements"
+          upperBound="-1" eType="#//requirement/NonFunctionalRequirement" eOpposite="#//requirement/NonFunctionalRequirement/userTasks"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="12.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Workspace" eSuperTypes="#//ModelElement">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="systemFunctions" upperBound="-1"
+          eType="#//requirement/SystemFunction" eOpposite="#//requirement/SystemFunction/workspace"
+          eKeys="#//IdentifiableElement/identifier">
+        <eAnnotations source="org.unicase.ui.meeditor">
+          <details key="priority" value="12.0"/>
+          <details key="position" value="right"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="rationale" nsURI="http://unicase.org/model/rationale" nsPrefix="org.unicase.model.rationale">
@@ -1046,6 +1126,10 @@
           eType="#//organization/OrgUnit" eKeys="#//IdentifiableElement/identifier"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="commentedElement" eType="#//ModelElement"
           eOpposite="#//ModelElement/comments" eKeys="#//IdentifiableElement/identifier"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="AudioComment">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="audioFile" eType="#//attachment/FileAttachment"
+          containment="true"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="change" nsURI="http://unicase.org/model/change" nsPrefix="org.unicase.model.rationale">
@@ -1299,6 +1383,15 @@
         </eAnnotations>
       </eStructuralFeatures>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="requiredOffline" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileType" eType="#//attachment/FileAttachmentType"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="uploading" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eStructuralFeatures xsi:type="ecore:EAttribute" name="downloading" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EEnum" name="FileAttachmentType">
+      <eLiterals name="BINARY"/>
+      <eLiterals name="IMAGE" value="1" literal="IMAGE"/>
+      <eLiterals name="AUDIO" value="2" literal="AUDIO"/>
+      <eLiterals name="VIDEO" value="3" literal="VIDEO"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="profile" nsURI="http://unicase.org/model/profile" nsPrefix="org.unicase.model.profile">
