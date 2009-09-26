@@ -342,6 +342,9 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		// obviously an index-integrity conflict
 		assertEquals(conflicts.size(), 1);
 
+		assertEquals(cd.getConflicting(ops1, ops2).size(), cd.getConflicting(ops2, ops1).size());
+		assertEquals(0, cd.getConflicting(ops2, ops1).size());
+
 	}
 
 	/**
