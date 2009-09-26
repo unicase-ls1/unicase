@@ -332,6 +332,10 @@ public class ChangePackageVisualizationHelper {
 			return getDescriptionMultiReferenceMoveOperation((MultiReferenceMoveOperation) op);
 		}
 		if (op instanceof CompositeOperation) {
+			CompositeOperation compositeOperation = (CompositeOperation) op;
+			if (compositeOperation.getMainOperation() != null) {
+				return getDescription(compositeOperation.getMainOperation());
+			}
 			return op.getDescription();
 		}
 
