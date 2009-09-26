@@ -84,15 +84,8 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				HistoryInfo historyInfo = (HistoryInfo) value;
 				return getText(historyInfo);
 			} else if (value instanceof AbstractOperation) {
-				if (value instanceof CompositeOperation
-						&& ((CompositeOperation) value).getMainOperation() != null) {
-					ret = changePackageVisualizationHelper
-							.getDescription(((CompositeOperation) value)
-									.getMainOperation());
-				} else {
-					ret = changePackageVisualizationHelper
-							.getDescription((AbstractOperation) value);
-				}
+				ret = changePackageVisualizationHelper
+						.getDescription((AbstractOperation) value);
 			} else if (value instanceof ModelElement) {
 				ret = ((ModelElement) value).getName();
 			} else if (value instanceof ModelElementId) {
