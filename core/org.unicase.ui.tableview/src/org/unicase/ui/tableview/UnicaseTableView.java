@@ -5,6 +5,9 @@
  */
 package org.unicase.ui.tableview;
 
+import java.util.List;
+import java.util.regex.PatternSyntaxException;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EClass;
@@ -12,14 +15,23 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.viewers.ViewerFilter;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
+import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Event;
+import org.eclipse.swt.widgets.Listener;
+import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.util.ProjectChangeObserver;
-import org.unicase.ui.common.dialogs.METypeTreeSelectionDialog;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.ui.tableview.viewer.METableViewer;
@@ -29,8 +41,6 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
 
-import java.util.List;
-
 /**
  * A specialized UnicaseTableView to display all Attributes of model element.
  * 
@@ -38,11 +48,53 @@ import java.util.List;
  */
 public class UnicaseTableView extends ViewPart implements ProjectChangeObserver {
 
+	/**
+	 * Filter model elements by name in table viewer.
+	 * 
+	 * @author hodaie
+	 */
+	public class ModelElementNameFilter extends ViewerFilter {
+
+		/**
+		 * {@inheritDoc}
+		 * 
+		 * @see org.eclipse.jface.viewers.ViewerFilter#select(org.eclipse.jface.viewers.Viewer, java.lang.Object,
+		 *      java.lang.Object)
+		 */
+		@Override
+		public boolean select(Viewer viewer, Object parentElement, Object element) {
+			// true = show; false = do not show
+			if (!(element instanceof ModelElement)) {
+				return false;
+			}
+			ModelElement me = (ModelElement) element;
+
+			if (me.getName() != null && match(me.getName(), txtFilter.getText())) {
+				return true;
+			}
+			return false;
+		}
+
+		private boolean match(String name, String filter) {
+			filter = filter.replace("*", ".*").toLowerCase().trim().concat(".*");
+			boolean result = false;
+			try {
+				result = name.toLowerCase().matches(filter);
+			} catch (PatternSyntaxException e) {
+				// do nothing
+			}
+			return result;
+		}
+
+	}
+
 	private METableViewer viewer;
 
 	private Project activeProject;
 	private Workspace workspace;
 	private AdapterImpl workspaceListenerAdapter;
+
+	private Text txtFilter;
 
 	/**
 	 * {@inheritDoc}
@@ -51,7 +103,11 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 	 */
 	@Override
 	public void createPartControl(Composite parent) {
+		parent.setLayout(new GridLayout());
+		createFilterText(parent);
+
 		viewer = new METableViewer(parent, ModelPackage.eINSTANCE.getModelElement());
+		viewer.getTableViewer().getTable().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		viewer.createColumns(ModelPackage.eINSTANCE.getModelElement(), null, false);
 
 		workspace = WorkspaceManager.getInstance().getCurrentWorkspace();
@@ -88,6 +144,36 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 			activeProject.addProjectChangeObserver(UnicaseTableView.this);
 		}
 		viewer.setInput(activeProject);
+		viewer.addFilter(new ModelElementNameFilter());
+	}
+
+	private void createFilterText(Composite parent) {
+		txtFilter = new Text(parent, SWT.SINGLE | SWT.LEAD | SWT.BORDER);
+		txtFilter.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false));
+		txtFilter.setText("");
+
+		Listener listener = new Listener() {
+
+			public void handleEvent(Event event) {
+				viewer.refresh();
+			}
+
+		};
+		txtFilter.addListener(SWT.Modify, listener);
+
+		txtFilter.addKeyListener(new KeyListener() {
+
+			public void keyPressed(KeyEvent e) {
+				if (e.keyCode == SWT.ARROW_DOWN) {
+					viewer.getTableViewer().getTable().setFocus();
+				}
+			}
+
+			public void keyReleased(KeyEvent e) {
+			}
+
+		});
+
 	}
 
 	private void hookDoubleClickAction() {
@@ -136,20 +222,6 @@ public class UnicaseTableView extends ViewPart implements ProjectChangeObserver 
 		showHideColumnsAction.setImageDescriptor(Activator.getImageDescriptor("/icons/table.png"));
 		toolbarManager.add(showHideColumnsAction);
 
-	}
-
-	/**
-	 * Helper method to show METypeSelectionDialog.
-	 * 
-	 * @return a list of eclasses
-	 */
-	protected EClass[] showMETypeSelectionDialog() {
-		EClass[] result = null;
-
-		METypeTreeSelectionDialog dialog = new METypeTreeSelectionDialog(getSite().getShell(), false);
-		dialog.open();
-		result = dialog.getResult();
-		return result;
 	}
 
 	/**
