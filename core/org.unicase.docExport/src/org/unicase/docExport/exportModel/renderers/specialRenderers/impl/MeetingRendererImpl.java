@@ -124,8 +124,18 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		}
 
 		createMeetingTable(title);
+		createMeetingDescription(title);
 		renderMeetingSections(title);
 
+	}
+
+	/**
+	 * Renders the meeting description.
+	 * 
+	 * @param parent
+	 */
+	private void createMeetingDescription(USection parent) {
+		renderDescription(parent, getMeeting());
 	}
 
 	/**
@@ -291,8 +301,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		int i = 1;
 		EList<Issue> issues = meetingSection.getIncludedIssues();
 		for (Issue issue : issues) {
-			renderWorkItem(issueSection, issue, i);
-			i++;
+			renderWorkItem(issueSection, issue, i++);
 		}
 	}
 
