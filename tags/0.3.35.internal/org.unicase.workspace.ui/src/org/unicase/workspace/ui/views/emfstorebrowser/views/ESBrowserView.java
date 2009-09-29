@@ -248,7 +248,7 @@ public class ESBrowserView extends ViewPart {
 					// BEGIN SUPRESS CATCH EXCEPTION
 				} catch (RuntimeException e) {
 					DialogHandler.showExceptionDialog(e);
-					WorkspaceUtil.logException("RuntimeException in "
+					WorkspaceUtil.logWarning("RuntimeException in "
 							+ ESBrowserView.class.getName(), e);
 					// END SUPRESS CATCH EXCEPTION
 				} finally {

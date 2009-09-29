@@ -95,7 +95,7 @@ public class TemplateEditor extends EditorPart {
 				oldTemplate = (Template) EcoreUtil.copy(template);
 				testDirty();
 			} catch (TemplatesFileNotFoundException e) {
-				WorkspaceUtil.log("could not save the Template", e, IStatus.ERROR);
+				WorkspaceUtil.log("could not save the Template", e, IStatus.WARNING);
 				MessageBox messageBox = new MessageBox(PlatformUI.getWorkbench().getDisplay().getActiveShell());
 				messageBox.setMessage("Saving the template failed!");
 				messageBox.open();
