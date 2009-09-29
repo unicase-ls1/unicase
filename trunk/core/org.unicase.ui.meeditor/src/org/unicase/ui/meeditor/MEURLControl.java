@@ -163,6 +163,14 @@ public class MEURLControl extends AbstractMEControl {
 		return linkComposite;
 	}
 
+	/**
+	 * Logs an URLEvent.
+	 * 
+	 * @param sourceModelElementId The ID where the widgte was clicked
+	 * @param urlID The ID of the URL
+	 * @param projectSpace The project space to log the event
+	 * @param source The source view
+	 */
 	public static void logEvent(ModelElementId sourceModelElementId, ModelElementId urlID,
 		final ProjectSpace projectSpace, String source) {
 		final URLEvent urlEvent = EventsFactory.eINSTANCE.createURLEvent();
