@@ -38,7 +38,9 @@ import org.unicase.model.Project;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.util.ModelElementChangeObserver;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
+import org.unicase.ui.meeditor.MEURLControl;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
+import org.unicase.workspace.WorkspaceManager;
 
 /**
  * GUI Control for the ME reference links.
@@ -172,7 +174,12 @@ public class MELinkControl extends AbstractMEControl {
 					if (url == null)
 						return;
 					Program.launch(url);
+					ModelElement urlAttachement = (ModelElement) getModelElement();
+					MEURLControl.logEvent(((ModelElement) contextModelElement).getModelElementId(), urlAttachement
+						.getModelElementId(), WorkspaceManager.getProjectSpace(urlAttachement),
+						"org.unicase.ui.meeditor");
 					super.linkActivated(event);
+
 				}
 			});
 		}
