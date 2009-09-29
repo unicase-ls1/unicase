@@ -12,6 +12,7 @@ import java.util.Map;
 import org.unicase.linkrecommendation.RecUtils;
 import org.unicase.linkrecommendation.TDFrequencyMatrix;
 import org.unicase.model.ModelElement;
+import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
 
 /**
  * @author Henning Femmer
@@ -60,6 +61,9 @@ public class VectorSpaceModelStrategy implements RecommendationStrategy {
 		for (ModelElement me : elements) {
 			int indexElement = indices.get(me);
 			double value = tdf.cos(indexBase, indexElement);
+			if (Double.valueOf(value).equals(Double.NaN)) {
+				value = 0;
+			}
 			hm.put(me, value);
 		}
 		return hm;

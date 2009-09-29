@@ -12,9 +12,9 @@ import java.util.Map;
 
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
 import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
+import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
 
 /**
  * Recommends a link based on the previous read history based on Association Rule Mining.
@@ -38,7 +38,7 @@ public class ARMStrategy implements RecommendationStrategy, Updateable {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy#getMatchingMap(org.unicase.model.ModelElement,
+	 * @see org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy#getMatchingMap(org.unicase.model.ModelElement,
 	 *      java.util.Collection)
 	 */
 	public Map<ModelElement, Double> getMatchingMap(ModelElement base, Collection<ModelElement> elements) {
@@ -65,7 +65,7 @@ public class ARMStrategy implements RecommendationStrategy, Updateable {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy#getName()
+	 * @see org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy#getName()
 	 */
 	public String getName() {
 		return ARM_STRATEGY;

@@ -24,10 +24,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.linkrecommendation.linkselection.ConstantThresholdSelection;
-import org.unicase.linkrecommendation.linkselection.CutPointSelection;
-import org.unicase.linkrecommendation.linkselection.LinkSelectionStrategy;
-import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.VectorSpaceModelStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.Updateable;
 import org.unicase.model.ModelElement;
@@ -36,6 +32,10 @@ import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.task.TaskPackage;
+import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
+import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.ConstantThresholdSelection;
+import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.CutPointSelection;
+import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.LinkSelectionStrategy;
 
 /**
  * This class represents an analyzer made for comparing different versions of link recommendation.

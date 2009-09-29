@@ -9,9 +9,9 @@ import java.util.Collection;
 import java.util.Map;
 
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
 import org.unicase.linkrecommendation.recommendationStrategies.updateableStrategies.Updateable;
 import org.unicase.model.ModelElement;
+import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
 
 /**
  * This strategy tries to combine different strategies.
@@ -61,7 +61,7 @@ public abstract class AbstractCombinationStrategy implements RecommendationStrat
 	 * Name of this strategy.
 	 * 
 	 * @return names of both sub-strategies
-	 * @see org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy#getName()
+	 * @see org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy#getName()
 	 */
 	public String getName() {
 		return strategy1.getName() + "+" + strategy2.getName();

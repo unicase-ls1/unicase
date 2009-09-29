@@ -13,6 +13,7 @@ import java.util.TreeSet;
 
 import org.unicase.linkrecommendation.matchingStrategies.MEMatcher;
 import org.unicase.model.ModelElement;
+import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
 
 /**
  * This class creates stands for a RecommendationStategy, that collects different strategies and returns the arithmetic
