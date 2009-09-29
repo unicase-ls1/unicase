@@ -11,7 +11,6 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.emfstore.AdminEmfStore;
@@ -165,9 +164,12 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
 
 		// quickfix
-		EList<ACOrgUnit> members = getGroup(groupId).getMembers();
-		clearMembersFromGroups(members);
-		return members;
+		List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
+		for (ACOrgUnit orgUnit : getGroup(groupId).getMembers()) {
+			result.add((ACOrgUnit) EcoreUtil.copy(orgUnit));
+		}
+		clearMembersFromGroups(result);
+		return result;
 	}
 
 	/**
@@ -199,7 +201,6 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 			acGroup.getMembers().remove(acMember);
 			save();
 		}
-
 	}
 
 	/**
@@ -214,14 +215,14 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		for (ACOrgUnit orgUnit : getServerSpace().getUsers()) {
 			for (Role role : orgUnit.getRoles()) {
 				if (isServerAdmin(role) || role.getProjects().contains(projectId)) {
-					result.add(orgUnit);
+					result.add((ACOrgUnit) EcoreUtil.copy(orgUnit));
 				}
 			}
 		}
 		for (ACOrgUnit orgUnit : getServerSpace().getGroups()) {
 			for (Role role : orgUnit.getRoles()) {
 				if (isServerAdmin(role) || role.getProjects().contains(projectId)) {
-					result.add(orgUnit);
+					result.add((ACOrgUnit) EcoreUtil.copy(orgUnit));
 				}
 			}
 		}
@@ -374,10 +375,10 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		List<ACOrgUnit> result = new ArrayList<ACOrgUnit>();
 		for (ACOrgUnit user : getServerSpace().getUsers()) {
-			result.add(user);
+			result.add((ACOrgUnit) EcoreUtil.copy(user));
 		}
 		for (ACOrgUnit group : getServerSpace().getGroups()) {
-			result.add(group);
+			result.add((ACOrgUnit) EcoreUtil.copy(group));
 		}
 		// quickfix
 		clearMembersFromGroups(result);
@@ -471,7 +472,7 @@ public class AdminEmfStoreImpl extends AbstractEmfstoreInterface implements Admi
 		}
 		getAuthorizationControl().checkServerAdminAccess(sessionId);
 		// quickfix
-		ACOrgUnit orgUnit = getOrgUnit(orgUnitId);
+		ACOrgUnit orgUnit = (ACOrgUnit) EcoreUtil.copy(getOrgUnit(orgUnitId));
 		clearMembersFromGroup(orgUnit);
 		return orgUnit;
 	}
