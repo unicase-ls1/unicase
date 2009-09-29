@@ -7,8 +7,8 @@ package org.unicase.linkrecommendation.recommendationStrategies.combinedStrategi
 
 import java.util.Map;
 
-import org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy;
 import org.unicase.model.ModelElement;
+import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
 
 /**
  * This method returns the maximum.

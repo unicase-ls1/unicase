@@ -15,6 +15,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EReference;
 import org.unicase.model.ModelElement;
+import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
 
 /**
  * This strategy analyzes the creation dates and other static data of an element.
@@ -173,7 +174,7 @@ public class SharedReferencesRecommendation implements RecommendationStrategy {
 	 * Returns "DRS".
 	 * 
 	 * @return DRS
-	 * @see org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy#getName()
+	 * @see org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy#getName()
 	 */
 	public String getName() {
 		return "SRR(Max=" + this.maxNumber + ")";

@@ -12,6 +12,7 @@ import java.util.Map;
 import org.unicase.linkrecommendation.RecUtils;
 import org.unicase.linkrecommendation.TDFrequencyMatrix;
 import org.unicase.model.ModelElement;
+import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
 
 /**
  * This strategy uses latent semantic indexing for similarity measurements.
@@ -72,7 +73,7 @@ public class LSIStrategy implements RecommendationStrategy {
 	 * Returns "LSI".
 	 * 
 	 * @return LSI
-	 * @see org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy#getName()
+	 * @see org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy#getName()
 	 */
 	public String getName() {
 		return "LSI (K-Factor:" + factorK + ")";

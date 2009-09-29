@@ -14,6 +14,7 @@ import org.eclipse.emf.common.util.EList;
 import org.unicase.model.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
+import org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy;
 
 /**
  * This method tries to find the related assignee and looks at his other items. In case a couple of those are suggested
@@ -74,6 +75,8 @@ public class RelatedAssigneesRecommendation implements RecommendationStrategy {
 
 				Set<ModelElement> linkedMEs = item.getLinkedModelElements();
 				linkedMEs.retainAll(elements);
+				// the work unit is not of interest.
+				linkedMEs.remove(wu);
 
 				for (ModelElement me : linkedMEs) {
 					// count it, add it up
@@ -103,7 +106,7 @@ public class RelatedAssigneesRecommendation implements RecommendationStrategy {
 	 * Name of this strategy.
 	 * 
 	 * @return "RAR"
-	 * @see org.unicase.linkrecommendation.recommendationStrategies.RecommendationStrategy#getName()
+	 * @see org.unicase.model.util.traceabilityrecommendation.RecommendationStrategy#getName()
 	 */
 	public String getName() {
 		return "RAR";
