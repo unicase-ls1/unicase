@@ -76,7 +76,7 @@ public class ShareProjectHandler extends ServerRequestCommandHandler {
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			DialogHandler.showExceptionDialog(e);
-			WorkspaceUtil.logException("RuntimeException in "
+			WorkspaceUtil.logWarning("RuntimeException in "
 					+ ShareProjectHandler.class.getName(), e);
 			// throw e;
 		}

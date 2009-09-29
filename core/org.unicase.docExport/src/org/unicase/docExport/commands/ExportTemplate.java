@@ -85,7 +85,7 @@ public class ExportTemplate extends AbstractHandler {
 			resource.save(null);
 		} catch (IOException e) {
 			WorkspaceUtil.log("couldn't save the template temporarily for template export handling", new Exception(),
-				IStatus.ERROR);
+				IStatus.WARNING);
 			throw new IOException();
 		}
 		return tmpTemplateFile;

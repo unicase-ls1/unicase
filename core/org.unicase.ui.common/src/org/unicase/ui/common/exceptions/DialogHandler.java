@@ -59,7 +59,7 @@ public final class DialogHandler {
 		}
 		String string = stringBuilder.toString();
 		MessageDialog.openError(shell, title, string);
-		WorkspaceUtil.logException("An unexpected error in a unicase plugin occured.", cause);
+		WorkspaceUtil.logWarning("An unexpected error in a unicase plugin occured.", cause);
 	}
 
 }

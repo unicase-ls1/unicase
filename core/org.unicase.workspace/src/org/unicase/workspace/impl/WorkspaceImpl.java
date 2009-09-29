@@ -300,15 +300,15 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 			projectSpace.eResource().save(null);
 		} catch (EmfStoreException e) {
 			projectSpace.getNotificationsFromComposite().clear();
-			WorkspaceUtil.logException("Creating notifications failed!", e);
+			WorkspaceUtil.logWarning("Creating notifications failed!", e);
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
 			projectSpace.getNotificationsFromComposite().clear();
-			WorkspaceUtil.logException("Creating notifications failed!", e);
+			WorkspaceUtil.logWarning("Creating notifications failed!", e);
 		} catch (IOException e) {
 			projectSpace.getNotificationsFromComposite().clear();
-			WorkspaceUtil.logException("Creating notifications failed!", e);
+			WorkspaceUtil.logWarning("Creating notifications failed!", e);
 		}
 
 		addProjectSpace(projectSpace);

@@ -59,7 +59,7 @@ public class RevertHandler extends AbstractHandler {
 					resultValue = true;
 				} catch (RuntimeException e) {
 					DialogHandler.showExceptionDialog(e);
-					WorkspaceUtil.logException("RuntimeException in "
+					WorkspaceUtil.logWarning("RuntimeException in "
 							+ RevertHandler.class.getName(), e);
 				} finally {
 					// END SUPRESS CATCH EXCEPTION

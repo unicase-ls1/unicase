@@ -44,7 +44,7 @@ public abstract class ServerRequestCommandHandler extends ServerRequestHandler {
 					return handleRun();
 				} catch (ExecutionException e) {
 					DialogHandler.showExceptionDialog(e);
-					WorkspaceUtil.logException("Exception during login", e);
+					WorkspaceUtil.logWarning("Exception during login", e);
 					return null;
 				}
 			}

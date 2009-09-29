@@ -355,7 +355,7 @@ public final class TemplateRegistry {
 				return resource;
 			} catch (IOException e) {
 				WorkspaceUtil.log("The templates file could not be saved after creating a new resource",
-					new Exception(), IStatus.ERROR);
+					new Exception(), IStatus.WARNING);
 				throw new TemplatesFileNotFoundException(e);
 			}
 		} else {

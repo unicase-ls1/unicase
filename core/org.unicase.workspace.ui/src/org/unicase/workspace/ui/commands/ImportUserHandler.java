@@ -34,7 +34,7 @@ public class ImportUserHandler extends AbstractHandler {
 					OrgUnitHelper.importACUsers(projectSpace);
 				} catch (AccessControlException e) {
 					String message = "No admin rights for user import!";
-					WorkspaceUtil.logException(message, e);
+					WorkspaceUtil.logWarning(message, e);
 					DialogHandler.showExceptionDialog(message, e);
 				}
 			}

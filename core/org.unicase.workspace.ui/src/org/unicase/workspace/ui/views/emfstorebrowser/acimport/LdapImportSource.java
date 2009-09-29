@@ -39,9 +39,12 @@ public class LdapImportSource extends ImportSource {
 	private DirContext dirContext;
 	private String[] attrSet = new String[] { "objectclass", "cn", "uid" };
 
-	// This strings decide whether an ldap-entry is a person, a group or none of both.
-	// Maybe we should change the access to public and implement a setter, because in this way
-	// one could easily let the user define what has to be considered as a person and what as a group.
+	// This strings decide whether an ldap-entry is a person, a group or none of
+	// both.
+	// Maybe we should change the access to public and implement a setter,
+	// because in this way
+	// one could easily let the user define what has to be considered as a
+	// person and what as a group.
 	private String personObjectClass = "inetOrgPerson";
 	private String groupObjectClass = "posixGroup";
 
@@ -55,8 +58,10 @@ public class LdapImportSource extends ImportSource {
 
 	/**
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#init(org.eclipse.swt.widgets.Shell)
-	 * @param shell the shell
-	 * @return whether the initialization was successful or not (e.g. pressing cancel on choosing the source)
+	 * @param shell
+	 *            the shell
+	 * @return whether the initialization was successful or not (e.g. pressing
+	 *         cancel on choosing the source)
 	 */
 	@Override
 	public boolean init(Shell shell) {
@@ -69,7 +74,8 @@ public class LdapImportSource extends ImportSource {
 
 	/**
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getLabel()
-	 * @return a small label which indicates that this is an import from an LDAP server.
+	 * @return a small label which indicates that this is an import from an LDAP
+	 *         server.
 	 */
 	@Override
 	public String getLabel() {
@@ -77,19 +83,25 @@ public class LdapImportSource extends ImportSource {
 	}
 
 	/**
-	 * Returns the children of a given object (which is of the type ImportItemWrapper in this case). One special thing
-	 * about this method is, that it does not only return the children objects, but also sets the correct reference (the
-	 * children) of the given object. This is important as otherwise displaying the items on a TreeViewer correctly
-	 * would fail, as the getParent()-method wouldn't return the right result.
+	 * Returns the children of a given object (which is of the type
+	 * ImportItemWrapper in this case). One special thing about this method is,
+	 * that it does not only return the children objects, but also sets the
+	 * correct reference (the children) of the given object. This is important
+	 * as otherwise displaying the items on a TreeViewer correctly would fail,
+	 * as the getParent()-method wouldn't return the right result.
 	 * 
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getChildren(java.lang.Object)
-	 * @param arg0 the object to get the children from.
-	 * @return the children, which have the correct references to their parent (the given object).
+	 * @param arg0
+	 *            the object to get the children from.
+	 * @return the children, which have the correct references to their parent
+	 *         (the given object).
 	 */
 	@Override
 	public Object[] getChildren(Object arg0) {
-		// This method-chaining is necessary! Why? Otherwise the reference to the given object (arg0) wouldn't be
-		// available when the ContentProvider (ImportSource in our case) calls his getParent()-method.
+		// This method-chaining is necessary! Why? Otherwise the reference to
+		// the given object (arg0) wouldn't be
+		// available when the ContentProvider (ImportSource in our case) calls
+		// his getParent()-method.
 		return setChildOrgUnits(arg0).getChildOrgUnits().toArray();
 	}
 
@@ -107,7 +119,8 @@ public class LdapImportSource extends ImportSource {
 
 				Attributes attr = new BasicAttributes();
 				try {
-					attr = this.dirContext.getAttributes(nameInNamespace, attrSet);
+					attr = this.dirContext.getAttributes(nameInNamespace,
+							attrSet);
 				} catch (NamingException exc) {
 					// do nothing at all, attributes couldn't be fetched
 				}
@@ -122,8 +135,8 @@ public class LdapImportSource extends ImportSource {
 				} else if (isPerson(objectclasses)) {
 					orgUnit = AccesscontrolFactory.eINSTANCE.createACUser();
 					// if we can't get "uid", we take "cn" instead.
-					String username = attr.get("uid") != null ? (String) attr.get("uid").get() : (String) attr
-						.get("cn").get();
+					String username = attr.get("uid") != null ? (String) attr
+							.get("uid").get() : (String) attr.get("cn").get();
 					orgUnit.setName(username);
 				} else {
 					orgUnit = AccesscontrolFactory.eINSTANCE.createACOrgUnit();
@@ -134,13 +147,17 @@ public class LdapImportSource extends ImportSource {
 					}
 				}
 
-				// Here we set the parent object of every child we add. We couldn't do this in the getChildren-method,
-				// because in this case we would lose the wrappedObject - it would vanish, as it is just a parameter!
-				arrayList.add(new ImportItemWrapper(nameInNamespace, orgUnit, wrappedObject));
+				// Here we set the parent object of every child we add. We
+				// couldn't do this in the getChildren-method,
+				// because in this case we would lose the wrappedObject - it
+				// would vanish, as it is just a parameter!
+				arrayList.add(new ImportItemWrapper(nameInNamespace, orgUnit,
+						wrappedObject));
 			}
 
 			wrappedObject.setChildOrgUnits(arrayList);
-			// As we return the wrapped object, it still exists, when getParent() of ImportSource is called.
+			// As we return the wrapped object, it still exists, when
+			// getParent() of ImportSource is called.
 			return wrappedObject;
 		} catch (NamingException e) {
 			WorkspaceUtil.logException(e.getMessage(), e);
@@ -150,20 +167,23 @@ public class LdapImportSource extends ImportSource {
 
 	/**
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getElements(java.lang.Object)
-	 * @param arg0 object to get the basic elements from.
+	 * @param arg0
+	 *            object to get the basic elements from.
 	 * @return the root elements.
 	 */
 	@Override
 	public Object[] getElements(Object arg0) {
 		try {
-			NamingEnumeration<NameClassPair> list = dirContext.list(properties.getProperty(LdapImportSource.LDAP_BASE));
+			NamingEnumeration<NameClassPair> list = dirContext.list(properties
+					.getProperty(LdapImportSource.LDAP_BASE));
 
 			ArrayList<ImportItemWrapper> arrayList = new ArrayList<ImportItemWrapper>();
 
 			while (list.hasMore()) {
 
 				String nameInNamespace = list.next().getNameInNamespace();
-				Attributes attr = this.dirContext.getAttributes(nameInNamespace, attrSet);
+				Attributes attr = this.dirContext.getAttributes(
+						nameInNamespace, attrSet);
 
 				ACOrgUnit orgUnit;
 
@@ -175,8 +195,8 @@ public class LdapImportSource extends ImportSource {
 				} else if (isPerson(objectclasses)) { // if we got a user
 					orgUnit = AccesscontrolFactory.eINSTANCE.createACUser();
 					// if we can't get "uid", we take "cn" instead.
-					String username = attr.get("uid") != null ? (String) attr.get("uid").get() : (String) attr
-						.get("cn").get();
+					String username = attr.get("uid") != null ? (String) attr
+							.get("uid").get() : (String) attr.get("cn").get();
 					orgUnit.setName(username);
 				} else {
 					orgUnit = AccesscontrolFactory.eINSTANCE.createACOrgUnit();
@@ -224,12 +244,15 @@ public class LdapImportSource extends ImportSource {
 	}
 
 	/**
-	 * @param list a NamingEnumeration, that should be converted into an ArrayList
+	 * @param list
+	 *            a NamingEnumeration, that should be converted into an
+	 *            ArrayList
 	 * @return an ArrayList of the given NamingEnumeration
-	 * @throws NamingException throws an exception
+	 * @throws NamingException
+	 *             throws an exception
 	 */
-	public ArrayList<NameClassPair> namingEnumerationToArrayList(NamingEnumeration<NameClassPair> list)
-		throws NamingException {
+	public ArrayList<NameClassPair> namingEnumerationToArrayList(
+			NamingEnumeration<NameClassPair> list) throws NamingException {
 		ArrayList<NameClassPair> arrayList = new ArrayList<NameClassPair>();
 		while (list.hasMore()) {
 			arrayList.add(list.next());
@@ -238,27 +261,31 @@ public class LdapImportSource extends ImportSource {
 	}
 
 	/**
-	 * @param serverProperties The properties of the LDAP server.
+	 * @param serverProperties
+	 *            The properties of the LDAP server.
 	 */
 	public void setProperties(Properties serverProperties) {
 		this.properties = serverProperties;
 	}
 
 	/**
-	 * Initializes the connection to the LDAP server, using the properties field.
+	 * Initializes the connection to the LDAP server, using the properties
+	 * field.
 	 * 
-	 * @throws CorruptedSourceException if no connection could be established to the given server.
+	 * @throws CorruptedSourceException
+	 *             if no connection could be established to the given server.
 	 */
 	public void connect() throws CorruptedSourceException {
 		properties.put("java.naming.ldap.version", "3");
 		properties.put(Context.INITIAL_CONTEXT_FACTORY, DEFAULT_CTX);
 
 		// Create the connection to the LDAP-server
-		// (Each time an initial context is created, a new LDAP connection is created)
+		// (Each time an initial context is created, a new LDAP connection is
+		// created)
 		try {
 			dirContext = new InitialDirContext(properties);
 		} catch (NamingException e) {
-			WorkspaceUtil.logException(e.getMessage(), e);
+			WorkspaceUtil.logWarning(e.getMessage(), e);
 			throw new CorruptedSourceException("Couldn't connect to server!");
 		}
 
@@ -270,8 +297,8 @@ public class LdapImportSource extends ImportSource {
 	 */
 	@Override
 	public String getMessage() {
-		return "Import from " + properties.getProperty(Context.PROVIDER_URL) + " with base: "
-			+ properties.getProperty(LDAP_BASE);
+		return "Import from " + properties.getProperty(Context.PROVIDER_URL)
+				+ " with base: " + properties.getProperty(LDAP_BASE);
 	}
 
 	/**
@@ -284,9 +311,12 @@ public class LdapImportSource extends ImportSource {
 	/**
 	 * Called when the input changes.
 	 * 
-	 * @param arg0 the viewer
-	 * @param arg1 the old input
-	 * @param arg2 the new input
+	 * @param arg0
+	 *            the viewer
+	 * @param arg1
+	 *            the old input
+	 * @param arg2
+	 *            the new input
 	 */
 	public void inputChanged(Viewer arg0, Object arg1, Object arg2) {
 		// Nothing to change

@@ -201,23 +201,23 @@ public final class KeyStoreManager {
 			keyStore.store(new FileOutputStream(getPathToKeyStore()), KEYSTOREPASSWORD.toCharArray());
 		} catch (KeyStoreException e) {
 			String message = "Storing certificate failed!";
-			WorkspaceUtil.logException(message, e);
+			WorkspaceUtil.logWarning(message, e);
 			throw new CertificateStoreException(message, e);
 		} catch (NoSuchAlgorithmException e) {
 			String message = "Storing certificate failed!";
-			WorkspaceUtil.logException(message, e);
+			WorkspaceUtil.logWarning(message, e);
 			throw new CertificateStoreException(message, e);
 		} catch (CertificateException e) {
 			String message = "Storing certificate failed!";
-			WorkspaceUtil.logException(message, e);
+			WorkspaceUtil.logWarning(message, e);
 			throw new CertificateStoreException(message, e);
 		} catch (FileNotFoundException e) {
 			String message = "Storing certificate failed!";
-			WorkspaceUtil.logException(message, e);
+			WorkspaceUtil.logWarning(message, e);
 			throw new CertificateStoreException(message, e);
 		} catch (IOException e) {
 			String message = "Storing certificate failed!";
-			WorkspaceUtil.logException(message, e);
+			WorkspaceUtil.logWarning(message, e);
 			throw new CertificateStoreException(message, e);
 		}
 	}
@@ -229,23 +229,23 @@ public final class KeyStoreManager {
 				keyStore.load(new FileInputStream(getPathToKeyStore()), KEYSTOREPASSWORD.toCharArray());
 			} catch (KeyStoreException e) {
 				String message = "Loading certificate failed!";
-				WorkspaceUtil.logException(message, e);
+				WorkspaceUtil.logWarning(message, e);
 				throw new CertificateStoreException(message, e);
 			} catch (NoSuchAlgorithmException e) {
 				String message = "Loading certificate failed!";
-				WorkspaceUtil.logException(message, e);
+				WorkspaceUtil.logWarning(message, e);
 				throw new CertificateStoreException(message, e);
 			} catch (CertificateException e) {
 				String message = "Loading certificate failed!";
-				WorkspaceUtil.logException(message, e);
+				WorkspaceUtil.logWarning(message, e);
 				throw new CertificateStoreException(message, e);
 			} catch (FileNotFoundException e) {
 				String message = "Loading certificate failed!";
-				WorkspaceUtil.logException(message, e);
+				WorkspaceUtil.logWarning(message, e);
 				throw new CertificateStoreException(message, e);
 			} catch (IOException e) {
 				String message = "Loading certificate failed!";
-				WorkspaceUtil.logException(message, e);
+				WorkspaceUtil.logWarning(message, e);
 				throw new CertificateStoreException(message, e);
 			}
 		}
