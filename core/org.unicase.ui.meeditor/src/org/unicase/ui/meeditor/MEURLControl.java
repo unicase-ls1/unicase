@@ -6,6 +6,7 @@
 package org.unicase.ui.meeditor;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
@@ -28,12 +29,18 @@ import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
+import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.emfstore.esmodel.versioning.events.URLEvent;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.util.ModelElementChangeObserver;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.Configuration;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * GUI Control for URL hyperlinks.
@@ -118,7 +125,11 @@ public class MEURLControl extends AbstractMEControl {
 				if (url == null)
 					return;
 				Program.launch(url);
+				ModelElement modelElement = (ModelElement) getModelElement();
+				logEvent(modelElement.getModelElementId(), modelElement.getModelElementId(), WorkspaceManager
+					.getProjectSpace(modelElement), "org.unicase.ui.meeditor");
 				super.linkActivated(event);
+
 			}
 		});
 
@@ -150,6 +161,23 @@ public class MEURLControl extends AbstractMEControl {
 		button.setImage(Activator.getImageDescriptor("icons/link.png").createImage());
 
 		return linkComposite;
+	}
+
+	public static void logEvent(ModelElementId sourceModelElementId, ModelElementId urlID,
+		final ProjectSpace projectSpace, String source) {
+		final URLEvent urlEvent = EventsFactory.eINSTANCE.createURLEvent();
+		urlEvent.setSourceModelElement(sourceModelElementId);
+		urlEvent.setSourceURL(urlID);
+		urlEvent.setTimestamp(new Date());
+		urlEvent.setSourceView(source);
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				projectSpace.addEvent(urlEvent);
+			}
+		}.run();
+
 	}
 
 	/**
