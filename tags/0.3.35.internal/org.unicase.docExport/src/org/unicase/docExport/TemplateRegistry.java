@@ -143,7 +143,8 @@ public final class TemplateRegistry {
 				// I couldn't find a function, which generates the correct path string.
 				// so i take this one and manipulate it.
 				// cut the last file separator and the "!"
-				jarFilePath += DEFAULT_TEMPLATES_FOLDER + File.separator + DEFAULT_TEMPLATE_NAME + ".zip";
+				jarFilePath = jarFilePath.substring(0, jarFilePath.length() - 2);
+				jarFilePath = jarFilePath.replace("file:", "");
 
 				JarFile jarFile = new JarFile(jarFilePath);
 				Enumeration<JarEntry> jarEnum = jarFile.entries();
