@@ -162,8 +162,8 @@ public class VersioningPackageImpl extends EPackageImpl implements VersioningPac
 			return (VersioningPackage) EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI);
 
 		// Obtain or create and register package
-		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof VersioningPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new VersioningPackageImpl());
 
 		isInited = true;
