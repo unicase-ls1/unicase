@@ -5,13 +5,16 @@
  */
 package org.unicase.model.impl;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -37,6 +40,7 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.MEStateImpl;
+import org.unicase.model.util.ModelElementChangeListener;
 import org.unicase.model.util.ModelUtil;
 
 /**
@@ -63,6 +67,62 @@ import org.unicase.model.util.ModelUtil;
  * @generated
  */
 public abstract class ModelElementImpl extends IdentifiableElementImpl implements ModelElement {
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.ModelElement#addModelElementChangeListener(org.unicase.model.util.ModelElementChangeListener)
+	 */
+	public void addModelElementChangeListener(ModelElementChangeListener listener) {
+		if (this.changeListeners.size() == 0) {
+			internalChangeListener = new AdapterImpl() {
+				/**
+				 * {@inheritDoc}
+				 */
+				@Override
+				public void notifyChanged(Notification notification) {
+					notifyListenersAboutChange(notification);
+				}
+			};
+			this.eAdapters().add(internalChangeListener);
+		}
+		this.changeListeners.add(listener);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.model.ModelElement#removeModelElementChangeListener(org.unicase.model.util.ModelElementChangeListener)
+	 */
+	public void removeModelElementChangeListener(ModelElementChangeListener listener) {
+		this.changeListeners.remove(listener);
+		if (this.changeListeners.size() < 1 && internalChangeListener != null) {
+			this.eAdapters().remove(internalChangeListener);
+			internalChangeListener = null;
+		}
+	}
+
+	private void notifyListenersAboutChange(Notification notification) {
+		for (ModelElementChangeListener listener : changeListeners) {
+			try {
+				listener.onChange(notification);
+			}
+			// BEGIN SUPRESS CATCH EXCEPTION
+			catch (RuntimeException exception) {
+				ModelUtil.logWarning("ModelElementChangeListener threw RuntimeException on Change Notification " + ""
+					+ "(exception was caught and forwarded to listener for handling)", exception);
+				try {
+					listener.onRuntimeExceptionInListener(exception);
+				} catch (RuntimeException runtimeException) {
+					ModelUtil.logException(
+						"Notifying listener about change in a model element failed, UI may not update properly now.",
+						runtimeException);
+					removeModelElementChangeListener(listener);
+				}
+			}
+			// END SUPRESS CATCH EXCEPTION
+		}
+	}
 
 	/**
 	 * @see org.unicase.model.ModelElement#delete()
@@ -291,6 +351,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 
 	private org.unicase.model.task.util.MEState meState;
 
+	private List<ModelElementChangeListener> changeListeners;
+
+	private AdapterImpl internalChangeListener;
+
 	// begin of custom code
 	/**
 	 * Constructor.
@@ -299,7 +363,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 */
 	protected ModelElementImpl() {
 		super();
-
+		changeListeners = new ArrayList<ModelElementChangeListener>();
 		// TODO AS activate this when the models on the server are fixed.
 		// name = "new " + eClass().getName();
 	}
