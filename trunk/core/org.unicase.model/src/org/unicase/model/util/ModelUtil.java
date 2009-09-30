@@ -419,10 +419,12 @@ public final class ModelUtil {
 						bulletedLines.add(Integer.parseInt(nextElement));
 					}
 				}
+				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
-				e.printStackTrace();
+				logException("An exception occured during String conversion from HTML!", e);
 				return "";
 			}
+			// END SUPRESS CATCH EXCEPTION
 
 			String text = split[1];
 
@@ -450,8 +452,10 @@ public final class ModelUtil {
 				}
 				String newDesc = newString.toString();
 				return newDesc;
+				// BEGIN SUPRESS CATCH EXCEPTION
 			} catch (RuntimeException e) {
-				e.printStackTrace();
+				// END SUPRESS CATCH EXCEPTION
+				logException("An exception occured during String conversion from HTML!", e);
 				return text;
 			}
 		}
