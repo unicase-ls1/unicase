@@ -27,9 +27,9 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.model.ModelElement;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
+import org.unicase.ui.meeditor.mecontrols.MESuggestedSelectionDialog;
 import org.unicase.workspace.Configuration;
 
 /**
@@ -55,10 +55,6 @@ public class AddReferenceAction extends Action {
 		@Override
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
-			ElementListSelectionDialog dlg = new ElementListSelectionDialog(PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getShell(), new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
-			dlg.setMessage(DIALOG_MESSAGE);
 			Collection<ModelElement> allElements = modelElement.getProject().getAllModelElementsbyClass(clazz,
 				new BasicEList<ModelElement>());
 			allElements.remove(modelElement);
@@ -94,12 +90,10 @@ public class AddReferenceAction extends Action {
 				}
 			}
 
-			dlg.setMultipleSelection(eReference.isMany());
-			dlg.setElements(allElements.toArray());
-			dlg.setTitle("Select Elements");
-			dlg.setBlockOnOpen(true);
-			if (dlg.open() == Window.OK) {
+			MESuggestedSelectionDialog dlg = new MESuggestedSelectionDialog("Select Elements", DIALOG_MESSAGE, true,
+				modelElement, eReference, allElements);
 
+			if (dlg.open() == Window.OK) {
 				if (eReference.isMany()) {
 					Object[] results = dlg.getResult();
 					ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
