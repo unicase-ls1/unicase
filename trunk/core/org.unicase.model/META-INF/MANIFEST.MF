@@ -62,6 +62,8 @@ Export-Package: org.unicase.model,
  org.unicase.model.task.validation,
  org.unicase.model.util,
  org.unicase.model.util.impl,
+ org.unicase.model.util.traceabilityrecommendation,
+ org.unicase.model.util.traceabilityrecommendation.selectionstrategies,
  org.unicase.model.util.util,
  org.unicase.model.validation
 Require-Bundle: org.eclipse.gmf.runtime.notation;visibility:=reexport,
