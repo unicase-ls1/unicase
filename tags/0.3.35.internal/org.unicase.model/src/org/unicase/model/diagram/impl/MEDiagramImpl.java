@@ -291,7 +291,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @generated NOT
+	 * @generated
 	 */
 	public void setDiagramLayout(String newDiagramLayout) {
 		String oldDiagramLayout = diagramLayout;
