@@ -10,9 +10,10 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
-import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryLabelProvider;
 import org.eclipse.jface.util.LocalSelectionTransfer;
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -46,6 +47,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.ui.Activator;
 
 /**
  * This is the super class of property composites shown on properties form (right side of OrgUnitManagmentGUI). It
@@ -312,9 +314,31 @@ public abstract class PropertiesComposite extends Composite {
 	 * @return selected elements.
 	 */
 	protected Object[] showDialog(Collection<ACOrgUnit> content, String title) {
-		ElementListSelectionDialog dlg = new ElementListSelectionDialog(this.getShell(),
-			new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)));
+		ElementListSelectionDialog dlg = new ElementListSelectionDialog(this.getShell(), new ILabelProvider() {
+			public Image getImage(Object element) {
+				if (element instanceof ACGroup) {
+					return Activator.getImageDescriptor("icons/Group.gif").createImage();
+				}
+				return Activator.getImageDescriptor("icons/user.png").createImage();
+			}
+
+			public String getText(Object element) {
+				return ((ACOrgUnit) element).getName();
+			}
+
+			public void addListener(ILabelProviderListener listener) {
+			}
+
+			public void removeListener(ILabelProviderListener listener) {
+			}
+
+			public void dispose() {
+			}
+
+			public boolean isLabelProperty(Object element, String property) {
+				return false;
+			}
+		});
 
 		dlg.setElements(content.toArray(new Object[content.size()]));
 		dlg.setTitle(title);
