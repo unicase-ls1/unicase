@@ -29,7 +29,6 @@ public final class DocWriterRegistry {
 
 		docWriters.add(new FopPdfWriter());
 		docWriters.add(new FopRtfWriter());
-		docWriters.add(new FopTxtWriter());
 		docWriters.add(new FopHTMLWriter());
 		docWriters.add(new ITextRtfWriter());
 		docWriters.add(new ITextRtfHeadingWriter());
