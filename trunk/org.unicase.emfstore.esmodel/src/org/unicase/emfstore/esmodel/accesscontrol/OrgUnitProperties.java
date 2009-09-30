@@ -6,6 +6,7 @@
 package org.unicase.emfstore.esmodel.accesscontrol;
 
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.emfstore.esmodel.ProjectId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Org Unit Properties</b></em>'. <!-- end-user-doc
@@ -73,5 +74,31 @@ public interface OrgUnitProperties extends EObject {
 	 * @generated
 	 */
 	void setValue(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Project</b></em>' containment reference. <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Project</em>' containment reference isn't clear, there really should be more of a
+	 * description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * 
+	 * @return the value of the '<em>Project</em>' containment reference.
+	 * @see #setProject(ProjectId)
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage#getOrgUnitProperties_Project()
+	 * @model containment="true" resolveProxies="true" keys="id"
+	 * @generated
+	 */
+	ProjectId getProject();
+
+	/**
+	 * Sets the value of the '{@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties#getProject
+	 * <em>Project</em>}' containment reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @param value the new value of the '<em>Project</em>' containment reference.
+	 * @see #getProject()
+	 * @generated
+	 */
+	void setProject(ProjectId value);
 
 } // OrgUnitProperties

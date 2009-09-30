@@ -186,8 +186,8 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 			return (OperationsPackage) EPackage.Registry.INSTANCE.getEPackage(OperationsPackage.eNS_URI);
 
 		// Obtain or create and register package
-		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+		OperationsPackageImpl theOperationsPackage = (OperationsPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof OperationsPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new OperationsPackageImpl());
 
 		isInited = true;

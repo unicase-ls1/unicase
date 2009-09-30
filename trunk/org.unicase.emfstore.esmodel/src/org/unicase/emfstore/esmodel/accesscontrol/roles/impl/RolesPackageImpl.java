@@ -121,8 +121,8 @@ public class RolesPackageImpl extends EPackageImpl implements RolesPackage {
 			return (RolesPackage) EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI);
 
 		// Obtain or create and register package
-		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		RolesPackageImpl theRolesPackage = (RolesPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RolesPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new RolesPackageImpl());
 
 		isInited = true;

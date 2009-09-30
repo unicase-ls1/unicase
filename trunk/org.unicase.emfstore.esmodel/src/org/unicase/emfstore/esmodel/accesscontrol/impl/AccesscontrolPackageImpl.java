@@ -122,7 +122,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 
 		// Obtain or create and register package
 		AccesscontrolPackageImpl theAccesscontrolPackage = (AccesscontrolPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+			.get(eNS_URI) instanceof AccesscontrolPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
 			: new AccesscontrolPackageImpl());
 
 		isInited = true;
@@ -310,6 +310,15 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 	 * 
 	 * @generated
 	 */
+	public EReference getOrgUnitProperties_Project() {
+		return (EReference) orgUnitPropertiesEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	public AccesscontrolFactory getAccesscontrolFactory() {
 		return (AccesscontrolFactory) getEFactoryInstance();
 	}
@@ -351,6 +360,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		orgUnitPropertiesEClass = createEClass(ORG_UNIT_PROPERTIES);
 		createEAttribute(orgUnitPropertiesEClass, ORG_UNIT_PROPERTIES__NAME);
 		createEAttribute(orgUnitPropertiesEClass, ORG_UNIT_PROPERTIES__VALUE);
+		createEReference(orgUnitPropertiesEClass, ORG_UNIT_PROPERTIES__PROJECT);
 	}
 
 	/**
@@ -379,6 +389,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		// Obtain other dependent packages
 		RolesPackage theRolesPackage = (RolesPackage) EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(EsmodelPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theRolesPackage);
@@ -433,6 +445,10 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		initEAttribute(getOrgUnitProperties_Value(), ecorePackage.getEString(), "value", null, 0, 1,
 			OrgUnitProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+		initEReference(getOrgUnitProperties_Project(), theEsmodelPackage.getProjectId(), null, "project", null, 0, 1,
+			OrgUnitProperties.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getOrgUnitProperties_Project().getEKeys().add(theModelPackage.getUniqueIdentifier_Id());
 	}
 
 } // AccesscontrolPackageImpl

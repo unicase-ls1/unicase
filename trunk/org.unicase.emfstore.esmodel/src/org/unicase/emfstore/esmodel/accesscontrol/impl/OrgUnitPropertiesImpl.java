@@ -6,9 +6,12 @@
 package org.unicase.emfstore.esmodel.accesscontrol.impl;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
 
@@ -20,6 +23,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties;
  * <ul>
  * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertiesImpl#getName <em>Name</em>}</li>
  * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertiesImpl#getValue <em>Value</em>}</li>
+ * <li>{@link org.unicase.emfstore.esmodel.accesscontrol.impl.OrgUnitPropertiesImpl#getProject <em>Project</em>}</li>
  * </ul>
  * </p>
  * 
@@ -65,6 +69,16 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 	 * @ordered
 	 */
 	protected String value = VALUE_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @see #getProject()
+	 * @generated
+	 * @ordered
+	 */
+	protected ProjectId project;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -134,6 +148,97 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 	 * 
 	 * @generated
 	 */
+	public ProjectId getProject() {
+		if (project != null && project.eIsProxy()) {
+			InternalEObject oldProject = (InternalEObject) project;
+			project = (ProjectId) eResolveProxy(oldProject);
+			if (project != oldProject) {
+				InternalEObject newProject = (InternalEObject) project;
+				NotificationChain msgs = oldProject.eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, null, null);
+				if (newProject.eInternalContainer() == null) {
+					msgs = newProject.eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+						- AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, null, msgs);
+				}
+				if (msgs != null)
+					msgs.dispatch();
+				if (eNotificationRequired())
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE,
+						AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, oldProject, project));
+			}
+		}
+		return project;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public ProjectId basicGetProject() {
+		return project;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public NotificationChain basicSetProject(ProjectId newProject, NotificationChain msgs) {
+		ProjectId oldProject = project;
+		project = newProject;
+		if (eNotificationRequired()) {
+			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET,
+				AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, oldProject, newProject);
+			if (msgs == null)
+				msgs = notification;
+			else
+				msgs.add(notification);
+		}
+		return msgs;
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	public void setProject(ProjectId newProject) {
+		if (newProject != project) {
+			NotificationChain msgs = null;
+			if (project != null)
+				msgs = ((InternalEObject) project).eInverseRemove(this, EOPPOSITE_FEATURE_BASE
+					- AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, null, msgs);
+			if (newProject != null)
+				msgs = ((InternalEObject) newProject).eInverseAdd(this, EOPPOSITE_FEATURE_BASE
+					- AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT, null, msgs);
+			msgs = basicSetProject(newProject, msgs);
+			if (msgs != null)
+				msgs.dispatch();
+		} else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT,
+				newProject, newProject));
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
+		switch (featureID) {
+		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT:
+			return basicSetProject(null, msgs);
+		}
+		return super.eInverseRemove(otherEnd, featureID, msgs);
+	}
+
+	/**
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -141,6 +246,10 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 			return getName();
 		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__VALUE:
 			return getValue();
+		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT:
+			if (resolve)
+				return getProject();
+			return basicGetProject();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -158,6 +267,9 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 			return;
 		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__VALUE:
 			setValue((String) newValue);
+			return;
+		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT:
+			setProject((ProjectId) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -177,6 +289,9 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__VALUE:
 			setValue(VALUE_EDEFAULT);
 			return;
+		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT:
+			setProject((ProjectId) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -193,6 +308,8 @@ public class OrgUnitPropertiesImpl extends EObjectImpl implements OrgUnitPropert
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__VALUE:
 			return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+		case AccesscontrolPackage.ORG_UNIT_PROPERTIES__PROJECT:
+			return project != null;
 		}
 		return super.eIsSet(featureID);
 	}

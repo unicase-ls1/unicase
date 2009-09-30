@@ -23,6 +23,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
+import org.unicase.model.activity.ActivityFactory;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.change.ChangeFactory;
@@ -314,6 +315,12 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 			StateFactory.eINSTANCE.createTransition()));
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			StateFactory.eINSTANCE.createStateInitial()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			StateFactory.eINSTANCE.createStateEnd()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 			AttachmentFactory.eINSTANCE.createUrlAttachment()));
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
@@ -333,6 +340,24 @@ public class CreateDeleteOperationItemProvider extends AbstractOperationItemProv
 
 		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
 			ProfileFactory.eINSTANCE.createStereotypeAttributeInstanceString()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			ActivityFactory.eINSTANCE.createTransition()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			ActivityFactory.eINSTANCE.createActivity()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			ActivityFactory.eINSTANCE.createFork()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			ActivityFactory.eINSTANCE.createBranch()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			ActivityFactory.eINSTANCE.createActivityInitial()));
+
+		newChildDescriptors.add(createChildParameter(OperationsPackage.Literals.CREATE_DELETE_OPERATION__MODEL_ELEMENT,
+			ActivityFactory.eINSTANCE.createActivityEnd()));
 
 		newChildDescriptors.add(createChildParameter(
 			OperationsPackage.Literals.CREATE_DELETE_OPERATION__SUB_OPERATIONS, OperationsFactory.eINSTANCE

@@ -138,8 +138,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 			return (EsmodelPackage) EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI)
+		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof EsmodelPackageImpl ? EPackage.Registry.INSTANCE
+			.get(eNS_URI)
 			: new EsmodelPackageImpl());
 
 		isInited = true;

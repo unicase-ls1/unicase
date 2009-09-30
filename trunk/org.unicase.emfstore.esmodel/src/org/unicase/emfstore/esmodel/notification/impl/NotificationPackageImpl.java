@@ -90,7 +90,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 
 		// Obtain or create and register package
 		NotificationPackageImpl theNotificationPackage = (NotificationPackageImpl) (EPackage.Registry.INSTANCE
-			.getEPackage(eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI)
+			.get(eNS_URI) instanceof NotificationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
 			: new NotificationPackageImpl());
 
 		isInited = true;

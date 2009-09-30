@@ -313,13 +313,22 @@ public interface AccesscontrolPackage extends EPackage {
 	int ORG_UNIT_PROPERTIES__VALUE = 1;
 
 	/**
+	 * The feature id for the '<em><b>Project</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
+	 * -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT_PROPERTIES__PROJECT = 2;
+
+	/**
 	 * The number of structural features of the '<em>Org Unit Properties</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT_PROPERTIES_FEATURE_COUNT = 2;
+	int ORG_UNIT_PROPERTIES_FEATURE_COUNT = 3;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.accesscontrol.ACUser <em>AC User</em>}'.
@@ -477,6 +486,18 @@ public interface AccesscontrolPackage extends EPackage {
 	EAttribute getOrgUnitProperties_Value();
 
 	/**
+	 * Returns the meta object for the containment reference '
+	 * {@link org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties#getProject <em>Project</em>}'. <!--
+	 * begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @return the meta object for the containment reference '<em>Project</em>'.
+	 * @see org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperties#getProject()
+	 * @see #getOrgUnitProperties()
+	 * @generated
+	 */
+	EReference getOrgUnitProperties_Project();
+
+	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the factory that creates the instances of the model.
@@ -619,6 +640,14 @@ public interface AccesscontrolPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute ORG_UNIT_PROPERTIES__VALUE = eINSTANCE.getOrgUnitProperties_Value();
+
+		/**
+		 * The meta object literal for the '<em><b>Project</b></em>' containment reference feature. <!-- begin-user-doc
+		 * --> <!-- end-user-doc -->
+		 * 
+		 * @generated
+		 */
+		EReference ORG_UNIT_PROPERTIES__PROJECT = eINSTANCE.getOrgUnitProperties_Project();
 
 	}
 
