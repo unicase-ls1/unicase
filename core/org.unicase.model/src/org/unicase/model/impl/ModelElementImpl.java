@@ -103,6 +103,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	}
 
 	private void notifyListenersAboutChange(Notification notification) {
+		Set<ModelElementChangeListener> toRemove = new HashSet<ModelElementChangeListener>();
 		for (ModelElementChangeListener listener : changeListeners) {
 			try {
 				listener.onChange(notification);
@@ -117,10 +118,13 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 					ModelUtil.logException(
 						"Notifying listener about change in a model element failed, UI may not update properly now.",
 						runtimeException);
-					removeModelElementChangeListener(listener);
+					toRemove.add(listener);
 				}
 			}
 			// END SUPRESS CATCH EXCEPTION
+		}
+		for (ModelElementChangeListener listener : toRemove) {
+			removeModelElementChangeListener(listener);
 		}
 	}
 
