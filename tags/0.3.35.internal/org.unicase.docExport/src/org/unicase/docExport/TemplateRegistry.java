@@ -122,7 +122,7 @@ public final class TemplateRegistry {
 				DEFAULT_TEMPLATES_FOLDER + File.separatorChar), Collections.EMPTY_MAP);
 
 			// loading the template in the developer version is easy
-			if (true | Configuration.isDeveloperVersion()) {
+			if (Configuration.isDeveloperVersion()) {
 				File templateFolder = new File(FileLocator.resolve(templateFolderUrl).getPath());
 				File[] files = templateFolder.listFiles();
 				for (int i = 0; i < files.length; i++) {
