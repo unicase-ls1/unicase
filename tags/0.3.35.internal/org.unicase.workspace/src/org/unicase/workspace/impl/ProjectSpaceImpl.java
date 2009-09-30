@@ -2312,12 +2312,12 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				addElementToResouce(modelElement);
+				addElementToResource(modelElement);
 			}
 		}.run();
 	}
 
-	private void addElementToResouce(final ModelElement modelElement) {
+	private void addElementToResource(final ModelElement modelElement) {
 		Resource oldResource = modelElement.eResource();
 		URI oldUri = oldResource.getURI();
 		if (!oldUri.isFile()) {
@@ -2332,6 +2332,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			URI fileURI = URI.createFileURI(newfileName);
 			Resource newResource = oldResource.getResourceSet().createResource(fileURI);
 			newResource.getContents().add(modelElement);
+			saveResource(newResource);
 		}
 	}
 
