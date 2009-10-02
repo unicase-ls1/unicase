@@ -23,21 +23,25 @@ public abstract class ImportSource implements ITreeContentProvider {
 	public abstract Object[] getChildren(Object obj);
 
 	/**
-	 * @param obj Object (TreeItem) from which the parent object will be returned
+	 * @param obj Object from which the parent object will be returned
 	 * @return the parent object of the given object
 	 * @see org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource#getParent(java.lang.Object)
 	 */
 	public Object getParent(Object obj) {
-		if ((ImportItemWrapper) ((TreeItem) obj).getData() != null) {
-			return ((ImportItemWrapper) ((TreeItem) obj).getData()).getParentOrgUnit();
-		} else {
-			return null;
+		if (obj instanceof TreeItem) {
+			if ((ImportItemWrapper) ((TreeItem) obj).getData() != null) {
+				return ((ImportItemWrapper) ((TreeItem) obj).getData()).getParentOrgUnit();
+			}
 		}
+		if (obj instanceof ImportItemWrapper) {
+			return ((ImportItemWrapper) obj).getParentOrgUnit();
+		}
+		return null;
 	}
 
 	/**
 	 * @param arg0 the object to get the information, if it has children.
-	 * @return wheter the given object has children or not.
+	 * @return whether the given object has children or not.
 	 */
 	public boolean hasChildren(Object arg0) {
 		// Get the children
@@ -48,8 +52,8 @@ public abstract class ImportSource implements ITreeContentProvider {
 	}
 
 	/**
-	 * @param obj the object to get the root elements from.
-	 * @return the root elements of the given object.
+	 * @param obj The object to get the root elements from.
+	 * @return The root elements of the given object.
 	 */
 	public abstract Object[] getElements(Object obj);
 
