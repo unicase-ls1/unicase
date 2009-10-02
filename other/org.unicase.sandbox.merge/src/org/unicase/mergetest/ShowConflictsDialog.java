@@ -25,6 +25,7 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ProjectSpace;
@@ -108,6 +109,10 @@ public class ShowConflictsDialog extends TitleAreaDialog {
 										.getChanges(v[0] - 1, v[0]).get(0);
 								List<ChangePackage> theirChanges = analyzeConflict
 										.getChanges(v[1], v[2]);
+								
+								ConflictDetector conflictDetector = new ConflictDetector();
+								conflictDetector.filterToConflictInvolved(myChanges, theirChanges);
+								
 								mergeDialog.setChanges(myChanges, theirChanges);
 								mergeDialog.open();
 							} catch (Exception e) {

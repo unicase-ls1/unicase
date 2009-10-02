@@ -105,6 +105,11 @@ public class AnalyzeConflictsController {
 				
 				List<UpdateEvent> list = sortedMap.get(integer);
 				UpdateEvent lastUpdateEvent = list.get(list.size()-1);
+				
+				//changed
+				lastUpdateEvent.setBaseVersion(list.get(0).getBaseVersion());
+				
+				
 				List<ChangePackage> theirChanges = connectionManager.getChanges(
 						sessionId, projectInfo.getProjectId(), lastUpdateEvent.getBaseVersion(), lastUpdateEvent.getTargetVersion());
 				
