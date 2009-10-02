@@ -21,6 +21,8 @@ import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
 import org.eclipse.swt.widgets.TreeItem;
+import org.eclipse.ui.dialogs.FilteredTree;
+import org.eclipse.ui.dialogs.PatternFilter;
 import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportItemWrapper;
 import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportLabelProvider;
 import org.unicase.workspace.ui.views.emfstorebrowser.acimport.ImportSource;
@@ -54,6 +56,9 @@ public class AcUserImportPageTwo extends WizardPage {
 
 		Button selectAll = new Button(composite, SWT.CHECK);
 		selectAll.setText("Select/deselect all");
+		GridData gridData = new GridData(GridData.FILL_BOTH);
+		gridData.horizontalSpan = 2;
+		selectAll.setLayoutData(gridData);
 
 		selectAll.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -64,12 +69,19 @@ public class AcUserImportPageTwo extends WizardPage {
 			}
 		});
 
-		tv = new TreeViewer(composite, SWT.CHECK | SWT.BORDER);
+		// How to add a filter to a treeviewer:
+		// http://jmesnil.net/weblog/2007/02/26/add-a-filter-to-a-treeviewer/
 
-		GridData gridData = new GridData(GridData.FILL_BOTH);
+		final PatternFilter patternFilter = new PatternFilter();
+		final FilteredTree filter = new FilteredTree(composite, SWT.CHECK | SWT.BORDER | SWT.MULTI | SWT.H_SCROLL
+			| SWT.V_SCROLL, patternFilter, true);
+
+		gridData = new GridData(GridData.FILL_BOTH | GridData.GRAB_HORIZONTAL);
 		gridData.horizontalSpan = 2;
 		gridData.heightHint = 280; // TODO remove this "magic number"?
-		tv.getTree().setLayoutData(gridData);
+		filter.setLayoutData(gridData);
+
+		tv = filter.getViewer();
 
 		tv.getTree().addListener(SWT.Selection, new Listener() {
 			public void handleEvent(Event event) {
@@ -173,7 +185,7 @@ public class AcUserImportPageTwo extends WizardPage {
 
 		tv.setContentProvider(src);
 		tv.setLabelProvider(new ImportLabelProvider(wizard.getController()));
-		tv.setInput(new Object()); // argument is a non-null that will be ignored
+		tv.setInput(src.getElements(null)); // argument is a non-null that will be ignored
 
 		this.setTitle(wizard.getController().getTitle());
 		this.setMessage(wizard.getController().getMessage());
