@@ -29,7 +29,7 @@ import org.unicase.workspace.preferences.PreferenceManager;
 import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
- * Provides notifications for new comments.
+ * Provides notifications for new Comments.
  * 
  * @author shterev
  */
