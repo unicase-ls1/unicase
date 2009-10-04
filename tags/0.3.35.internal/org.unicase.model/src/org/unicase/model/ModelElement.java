@@ -14,6 +14,7 @@ import org.unicase.model.profile.StereotypeInstance;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
+import org.unicase.model.util.ModelElementChangeListener;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc -->
@@ -368,5 +369,19 @@ public interface ModelElement extends IdentifiableElement {
 	 * @return the shortened name for this model element
 	 */
 	String getShortName();
+
+	/**
+	 * Add a model element change listener.
+	 * 
+	 * @param listener listener to add.
+	 */
+	void addModelElementChangeListener(ModelElementChangeListener listener);
+
+	/**
+	 * Remove a model element change listener.
+	 * 
+	 * @param listener the listener to remove
+	 */
+	void removeModelElementChangeListener(ModelElementChangeListener listener);
 
 } // ModelElement
