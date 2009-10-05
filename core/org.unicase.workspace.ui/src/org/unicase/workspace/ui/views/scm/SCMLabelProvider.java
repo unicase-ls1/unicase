@@ -20,6 +20,7 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.HistoryInfo;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
@@ -96,6 +97,9 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				} else {
 					return ELEMENT_NOT_FOUND;
 				}
+			} else if (value instanceof ChangePackage) {
+				ChangePackage changePackage = (ChangePackage) value;
+				return getText(changePackage);
 			} else if (value instanceof EObject) {
 				ret = adapterFactoryLabelProvider.getText(value);
 			} else {
@@ -107,6 +111,23 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 			return ret;
 		}
 		return super.getText(element);
+	}
+
+	private String getText(ChangePackage changePackage) {
+		StringBuilder builder = new StringBuilder();
+		builder.append("Change Package");
+		if (changePackage.getLogMessage() != null) {
+			SimpleDateFormat dateFormat = new SimpleDateFormat(
+					"yyyy-MM-dd, HH:mm");
+			LogMessage logMessage = changePackage.getLogMessage();
+			builder.append(" [");
+			builder.append(logMessage.getAuthor());
+			builder.append(" @ ");
+			builder.append(dateFormat.format(logMessage.getClientDate()));
+			builder.append("] ");
+			builder.append(logMessage.getMessage());
+		}
+		return builder.toString();
 	}
 
 	private String getText(HistoryInfo historyInfo) {
