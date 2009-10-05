@@ -8,8 +8,6 @@ package org.unicase.workspace.util;
 
 import java.io.IOException;
 import java.util.Date;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -35,8 +33,6 @@ import org.unicase.workspace.WorkspaceManager;
  * @author koegel
  */
 public final class WorkspaceUtil {
-
-	private static final String BEGINNTEXT = "%BEGINNTEXT%";
 
 	/**
 	 * Private constructor.
@@ -154,24 +150,14 @@ public final class WorkspaceUtil {
 	 * @return a string only containing the plain text
 	 */
 	public static String cleanFormatedText(String text) {
-
-		text = text.replaceAll("\n", "");
-		Pattern ulsPattern = Pattern.compile("<ul>(.*)<\\/ul>", Pattern.DOTALL);
-		Matcher ulsMatcher = ulsPattern.matcher(text);
-
-		while (ulsMatcher.find()) {
-			String lis = ulsMatcher.group(0);
-
-			// Pattern lisPattern = Pattern.compile("<li>(.*)<\\/li>", Pattern.DOTALL);
-			Pattern lisPattern = Pattern.compile("<li><P  style=\"margin: 4;\"align = \"left\">([^<]*)<\\/P>",
-				Pattern.DOTALL);
-			Matcher lisMatcher = lisPattern.matcher(lis);
-			while (lisMatcher.find()) {
-				String li = lisMatcher.group(0);
-				li = li.replaceAll("<[^<]*>", "");
-				System.out.println("   \u2022 " + li);
-			}
+		if (text == null) {
+			return text;
 		}
+		text = text.replaceAll("\n", "");
+		text = text.replaceAll("<br>", "\n");
+		text = text.replaceAll("<br\\/>", "\n");
+		text = text.replaceAll("</P>", "\n");
+		text = text.replaceAll("<[^<]*>", "");
 
 		return text;
 	}
