@@ -95,7 +95,12 @@ public final class URLHelper {
 			ret.append(projectSpace.getProjectId().getId());
 		}
 		ret.append("/");
-		String name = modelElement.getName().replaceAll("\"", "\\'");
+		String name;
+		if (modelElement.getName()!=null){
+			name = modelElement.getName().replaceAll("\"", "\\'");
+		}else{
+			name = "Unnamed Element";
+		}
 		ret.append(name);
 		ret.append("%");
 		ret.append(modelElement.getIdentifier());
