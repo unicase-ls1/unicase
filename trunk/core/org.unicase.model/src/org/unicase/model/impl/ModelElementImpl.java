@@ -966,6 +966,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	public String getShortName() {
 		int limit = 30;
 		String name = getName();
+		if (name == null) {
+			name = "";
+		}
 		if (name.length() > limit + 5) {
 			name = name.substring(0, limit).concat("[...]");
 		}

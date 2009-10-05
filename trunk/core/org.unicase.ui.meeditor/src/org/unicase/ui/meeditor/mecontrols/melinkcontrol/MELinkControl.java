@@ -54,7 +54,7 @@ public class MELinkControl extends AbstractMEControl {
 	private EReference reference;
 	private Hyperlink hyperlink;
 	private ILabelProvider labelProvider;
-	private ModelElementChangeObserver observer;
+	private ModelElementChangeListener observer;
 	private ILabelProviderListener labelProviderListener;
 	private ImageHyperlink imageHyperlink;
 	private ImageHyperlink urlHyperlink;
@@ -94,10 +94,9 @@ public class MELinkControl extends AbstractMEControl {
 
 		ArrayList<ModelElement> list = new ArrayList<ModelElement>();
 		list.add((ModelElement) getModelElement());
-		observer = new ModelElementChangeObserver() {
+		observer = new ModelElementChangeListener() {
 
-			@Override
-			protected void onNotify(Notification notification, ModelElement element) {
+			public void onChange(Notification notification) {
 				Display.getDefault().asyncExec(new Runnable() {
 
 					public void run() {
@@ -113,13 +112,11 @@ public class MELinkControl extends AbstractMEControl {
 				});
 			}
 
-			@Override
-			protected void onElementDeleted(ModelElement element) {
-				// nothing to do
+			public void onRuntimeExceptionInListener(RuntimeException exception) {
+				((ModelElement) getModelElement()).removeModelElementChangeListener(observer);
 			}
 		};
-		((ModelElement) getModelElement()).getProject().addProjectChangeObserver(observer);
-		observer.observeElement((ModelElement) getModelElement());
+		((ModelElement) getModelElement()).addModelElementChangeListener(observer);
 
 		Image image = labelProvider.getImage(getModelElement());
 		imageHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
@@ -218,10 +215,7 @@ public class MELinkControl extends AbstractMEControl {
 	@Override
 	public void dispose() {
 		if (getModelElement() != null) {
-			Project project = ((ModelElement) getModelElement()).getProject();
-			if (project != null) {
-				project.removeProjectChangeObserver(observer);
-			}
+			((ModelElement) getModelElement()).removeModelElementChangeListener(observer);
 		}
 		labelProvider.removeListener(labelProviderListener);
 		labelProvider.dispose();
