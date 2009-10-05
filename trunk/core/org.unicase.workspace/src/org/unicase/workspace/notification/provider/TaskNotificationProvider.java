@@ -100,15 +100,16 @@ public class TaskNotificationProvider extends AbstractNotificationProvider {
 				processAssignments(featureName, referenceOperation, modelElement, groupsOfOrgUnit, clazz);
 				processReviewAssignments(featureName, referenceOperation, modelElement, groupsOfOrgUnit, clazz);
 			} else if (operation instanceof AttributeOperation
-				&& ((AttributeOperation) operation).getFeatureName().equalsIgnoreCase("resolved")
-				&& modelElement instanceof WorkItem) {
+				&& ((AttributeOperation) operation).getFeatureName().equalsIgnoreCase(
+					TaskPackage.eINSTANCE.getWorkItem_Resolved().getName()) && modelElement instanceof WorkItem) {
 				// Ready for review
 				AttributeOperation op = (AttributeOperation) operation;
 				WorkItem workItem = (WorkItem) modelElement;
-				if (op.getNewValue().equals(new Boolean(true)) && workItem.getReviewer().equals(getUser())) {
+				if (op.getNewValue().equals(new Boolean(true)) && workItem.getReviewer() != null
+					&& workItem.getReviewer().equals(getUser())) {
 					readyForReviewItems.get(clazz).put(workItem, op);
 					getExcludedOperations().add(op.getOperationId());
-				} else if (op.getNewValue().equals(new Boolean(false))
+				} else if (op.getNewValue().equals(new Boolean(false)) && workItem.getAssignee() != null
 					&& (workItem.getAssignee().equals(getUser()) || groupsOfOrgUnit.contains(workItem.getAssignee()))) {
 					assigneeItems.get(clazz).put(workItem, op);
 					getExcludedOperations().add(op.getOperationId());
