@@ -46,7 +46,7 @@ public class CreateNewProject {
 		boolean flag = true;
 		int testprojectposition = -1;
 		SWTBotTreeItem[] subitem = items[0].getItems();
-		for (int i = 0; i <= countofelem && flag == true; i++) {
+		for (int i = 0; i < countofelem && flag == true; i++) {
 			if (subitem[i].getText().equalsIgnoreCase("testproject")) {
 				flag = false;
 				testprojectposition = i;
