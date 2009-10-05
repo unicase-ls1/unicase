@@ -151,14 +151,15 @@ public final class WorkspaceUtil {
 	 */
 	public static String cleanFormatedText(String text) {
 		if (text == null) {
-			return text;
+			return "";
 		}
 		text = text.replaceAll("\n", "");
 		text = text.replaceAll("<br>", "\n");
 		text = text.replaceAll("<br\\/>", "\n");
-		text = text.replaceAll("</P>", "\n");
+		text = text.replaceAll("<li><P[^>]*>", "\n  \u2022 ");
+		text = text.replaceAll("<P[^>]*>", "\n");
 		text = text.replaceAll("<[^<]*>", "");
-
+		text = text.replaceAll("\\&nbsp;", " ");
 		return text;
 	}
 
