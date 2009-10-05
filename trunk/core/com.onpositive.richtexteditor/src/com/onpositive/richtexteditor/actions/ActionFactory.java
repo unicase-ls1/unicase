@@ -51,7 +51,8 @@ import com.onpositive.richtexteditor.viewer.undo.RichDocumentChange;
 /**
  * @author 32kda & kor Class, which manages interface actions and their states
  */
-public class ActionFactory implements ISelectionChangedListener, IRichDocumentListener {
+public class ActionFactory implements ISelectionChangedListener,
+		IRichDocumentListener {
 
 	private final class AlignAction extends Action {
 
@@ -64,7 +65,8 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 
 		public void run() {
 			disableAllOther();
-			manager.setIntervalAlign(viewer.getSelectedRange().x, viewer.getSelectedRange().y, style);
+			manager.setIntervalAlign(viewer.getSelectedRange().x, viewer
+					.getSelectedRange().y, style);
 			// setLineIdentation(viewer.getSelectedRange().x,
 			// viewer.getSelectedRange().y);
 		}
@@ -93,11 +95,12 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		public void run() {
 			disableAllOtherListButtons();
 			if (isChecked()) {
-				manager.setIntervalList(viewer.getSelectedRange().x, viewer.getSelectedRange().y, style);
+				manager.setIntervalList(viewer.getSelectedRange().x, viewer
+						.getSelectedRange().y, style);
 				enableProhibitedAligns(false);
 			} else {
-				manager.setIntervalList(viewer.getSelectedRange().x, viewer.getSelectedRange().y,
-					LayerManager.NONE_LIST);
+				manager.setIntervalList(viewer.getSelectedRange().x, viewer
+						.getSelectedRange().y, LayerManager.NONE_LIST);
 				enableProhibitedAligns(true);
 			}
 		}
@@ -264,8 +267,10 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 	/**
 	 * Basic constructor
 	 * 
-	 * @param manager LayerManager instance
-	 * @param viewer ITextViewer instance
+	 * @param manager
+	 *            LayerManager instance
+	 * @param viewer
+	 *            ITextViewer instance
 	 */
 	public ActionFactory(LayerManager manager, ITextViewer viewer) {
 		this.manager = manager;
@@ -275,8 +280,9 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 	}
 
 	/**
-	 * This must be used <b>only</b> when we need to configure action bar in custom style, and later, with the help of
-	 * <i>delayedConfigure</i> method, add all needed links.
+	 * This must be used <b>only</b> when we need to configure action bar in
+	 * custom style, and later, with the help of <i>delayedConfigure</i> method,
+	 * add all needed links.
 	 */
 	public ActionFactory() {
 		// TODO Auto-generated constructor stub
@@ -285,8 +291,10 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 	/**
 	 * Used for delayed basic links configuring - for customized ActionFactory
 	 * 
-	 * @param manager LayerManager instance
-	 * @param viewer ITextViewer instance
+	 * @param manager
+	 *            LayerManager instance
+	 * @param viewer
+	 *            ITextViewer instance
 	 */
 	public void delayedConfigure(LayerManager manager, ITextViewer viewer) {
 		this.manager = manager;
@@ -303,7 +311,8 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 	}
 
 	/**
-	 * @param manager LayerManager instance
+	 * @param manager
+	 *            LayerManager instance
 	 */
 	public void setManager(LayerManager manager) {
 		this.manager = manager;
@@ -317,7 +326,8 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 			boldAction = new Action("", Action.AS_CHECK_BOX) {
 				public void run() {
 					if (viewer.getSelectedRange().y > 0)
-						manager.boldCommand(viewer.getSelectedRange().x, viewer.getSelectedRange().y, isChecked());
+						manager.boldCommand(viewer.getSelectedRange().x, viewer
+								.getSelectedRange().y, isChecked());
 					else
 						setCurrentBasePartitionState();
 				}
@@ -336,7 +346,8 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 			italicAction = new Action("", Action.AS_CHECK_BOX) {
 				public void run() {
 					if (viewer.getSelectedRange().y > 0)
-						manager.italicCommand(viewer.getSelectedRange().x, viewer.getSelectedRange().y, isChecked());
+						manager.italicCommand(viewer.getSelectedRange().x,
+								viewer.getSelectedRange().y, isChecked());
 					else
 						setCurrentBasePartitionState();
 				}
@@ -355,13 +366,15 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 			underlineAction = new Action("", Action.AS_CHECK_BOX) {
 				public void run() {
 					if (viewer.getSelectedRange().y > 0)
-						manager.underlineCommand(viewer.getSelectedRange().x, viewer.getSelectedRange().y, isChecked());
+						manager.underlineCommand(viewer.getSelectedRange().x,
+								viewer.getSelectedRange().y, isChecked());
 					else
 						setCurrentBasePartitionState();
 				}
 			};
 			underlineAction.setText("Underline");
-			underlineAction.setImageDescriptor(getImageDescriptor(UNDERLINE_IMAGE));
+			underlineAction
+					.setImageDescriptor(getImageDescriptor(UNDERLINE_IMAGE));
 		}
 		return underlineAction;
 	}
@@ -373,15 +386,18 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		if (addImageAction == null) {
 			addImageAction = new Action() {
 				public void run() {
-					FileDialog dialog = new FileDialog(viewer.getTextWidget().getShell());
-					dialog.setFilterExtensions(new String[] { "*.gif", "*.jpg", "*.png", "*.bmp" });
+					FileDialog dialog = new FileDialog(viewer.getTextWidget()
+							.getShell());
+					dialog.setFilterExtensions(new String[] { "*.gif", "*.jpg",
+							"*.png", "*.bmp" });
 					String filename = dialog.open();
 					if (filename != null)
 						manager.addNewImage(filename);
 				}
 			};
 			addImageAction.setText("insert image");
-			addImageAction.setImageDescriptor(getImageDescriptor(ADD_IMAGE_IMAGE));
+			addImageAction
+					.setImageDescriptor(getImageDescriptor(ADD_IMAGE_IMAGE));
 		}
 		return addImageAction;
 	}
@@ -397,7 +413,8 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 				}
 			};
 			addRegionAction.setText("insert text region");
-			addRegionAction.setImageDescriptor(getImageDescriptor(ADD_REGION_IMAGE));
+			addRegionAction
+					.setImageDescriptor(getImageDescriptor(ADD_REGION_IMAGE));
 		}
 		return addRegionAction;
 	}
@@ -449,14 +466,18 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		if (openFileAction == null) {
 			openFileAction = new Action() {
 				public void run() {
-					FileDialog dialog = new FileDialog(viewer.getTextWidget().getShell());
-					dialog.setFilterExtensions(new String[] { "*.html", "*.htm" });
+					FileDialog dialog = new FileDialog(viewer.getTextWidget()
+							.getShell());
+					dialog
+							.setFilterExtensions(new String[] { "*.html",
+									"*.htm" });
 					String filename = dialog.open();
 					if (filename != null)
 						manager.openHTMLFile(filename);
 				}
 			};
-			openFileAction.setImageDescriptor(getImageDescriptor(OPEN_IMAGE_IMAGE));
+			openFileAction
+					.setImageDescriptor(getImageDescriptor(OPEN_IMAGE_IMAGE));
 			openFileAction.setText("Open");
 		}
 		return openFileAction;
@@ -473,18 +494,21 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 					int offset = viewer.getSelectedRange().x;
 					int length = viewer.getSelectedRange().y;
 					if (viewer.getTextWidget().getText().length() > 0) {
-						if (manager.defineSumStylePartition(offset, length).isHasLinks()) {
+						if (manager.defineSumStylePartition(offset, length)
+								.isHasLinks()) {
 							setChecked(true);
 							return;
 						}
 					}
 					HyperlinkDialog hyperlinkDialog;
-					hyperlinkDialog = new HyperlinkDialog(viewer.getTextWidget().getShell());
+					hyperlinkDialog = new HyperlinkDialog(viewer
+							.getTextWidget().getShell());
 					hyperlinkDialog.create();
 					String name = viewer.getTextWidget().getSelectionText();
 					int selOffset = viewer.getTextWidget().getSelection().x;
-					String url = manager.getLayer().getSummaryUrl(viewer.getSelectedRange().x,
-						viewer.getSelectedRange().y);
+					String url = manager.getLayer().getSummaryUrl(
+							viewer.getSelectedRange().x,
+							viewer.getSelectedRange().y);
 					hyperlinkDialog.setName(name);
 					hyperlinkDialog.setUrl(url);
 					setChecked(false);
@@ -492,9 +516,11 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 					if (retCode == Window.OK) {
 						if (!name.equals(hyperlinkDialog.getName()))
 							viewer.getTextWidget().setFocus();
-						manager.insertLinkPartititon(viewer.getSelectedRange(), hyperlinkDialog.getName(),
-							hyperlinkDialog.getUrl());
-						viewer.setSelectedRange(selOffset, hyperlinkDialog.getName().length()); // Selection fixing
+						manager.insertLinkPartititon(viewer.getSelectedRange(),
+								hyperlinkDialog.getName(), hyperlinkDialog
+										.getUrl());
+						viewer.setSelectedRange(selOffset, hyperlinkDialog
+								.getName().length()); // Selection fixing
 						// neede for correct newlink adding
 					}
 				}
@@ -513,56 +539,80 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 			customizeFontStyleAction = new Action("", Action.AS_PUSH_BUTTON) {
 				public void run() {
 					FontConfigurationDialog configurationDialog;
-					configurationDialog = new FontConfigurationDialog(viewer.getTextWidget().getShell(), manager
-						.getFontStyleManager());
+					configurationDialog = new FontConfigurationDialog(viewer
+							.getTextWidget().getShell(), manager
+							.getFontStyleManager());
 					configurationDialog.create();
 					int retCode = configurationDialog.open();
 					if (retCode == Window.OK) {
 						FontStyleData data = configurationDialog.getData();
 						if (data.getDeletedStyles().size() > 0) {
 							ArrayList<FontStyle> usedStyles = new ArrayList<FontStyle>();
-							for (Iterator<FontStyle> iterator = data.getDeletedStyles().iterator(); iterator.hasNext();) {
-								FontStyle deletedStyle = (FontStyle) iterator.next();
+							for (Iterator<FontStyle> iterator = data
+									.getDeletedStyles().iterator(); iterator
+									.hasNext();) {
+								FontStyle deletedStyle = (FontStyle) iterator
+										.next();
 								if (manager.isStyleUsed(deletedStyle))
 									usedStyles.add(deletedStyle);
 							}
 							if (usedStyles.size() > 0) {
 								String namesList = "";
-								for (Iterator<FontStyle> iterator = usedStyles.iterator(); iterator.hasNext();)
-									namesList = namesList + ((FontStyle) iterator.next()).getDisplayName() + ",";
-								boolean res = MessageDialog.openQuestion(null, "Styles is in use",
-									"Foolowing styles is in use: " + namesList
-										+ ". Delete them and replace with default style in text?");
+								for (Iterator<FontStyle> iterator = usedStyles
+										.iterator(); iterator.hasNext();)
+									namesList = namesList
+											+ ((FontStyle) iterator.next())
+													.getDisplayName() + ",";
+								boolean res = MessageDialog
+										.openQuestion(
+												null,
+												"Styles is in use",
+												"Foolowing styles is in use: "
+														+ namesList
+														+ ". Delete them and replace with default style in text?");
 								if (res) {
-									for (Iterator<FontStyle> iterator = usedStyles.iterator(); iterator.hasNext();)
-										manager.removeStyleFromAllPartitions((FontStyle) iterator.next());
+									for (Iterator<FontStyle> iterator = usedStyles
+											.iterator(); iterator.hasNext();)
+										manager
+												.removeStyleFromAllPartitions((FontStyle) iterator
+														.next());
 								} else
 									data.getFontStyles().addAll(usedStyles);
 							}
 						}
-						ArrayList<FontStyle> changedStylesList = data.validateChangedStyles(manager
-							.getFontStyleManager());
-						if (changedStylesList.size() > 0 || data.getAddedStyles().size() > 0
-							|| data.getDeletedStyles().size() > 0) {
-							manager.getFontStyleManager().reinit(data.getFontStyles(), data.getResultFontRegistry(),
-								changedStylesList);
+						ArrayList<FontStyle> changedStylesList = data
+								.validateChangedStyles(manager
+										.getFontStyleManager());
+						if (changedStylesList.size() > 0
+								|| data.getAddedStyles().size() > 0
+								|| data.getDeletedStyles().size() > 0) {
+							manager.getFontStyleManager().reinit(
+									data.getFontStyles(),
+									data.getResultFontRegistry(),
+									changedStylesList);
 							/*
-							 * combo.setItems(manager.getFontStyleManager().getFontStyleDisplayNames());
-							 * combo.setText(manager.getFontStyleManager().getDefaultStyle().getDisplayName());
+							 * combo.setItems(manager.getFontStyleManager().getFontStyleDisplayNames
+							 * ());combo.setText(manager.getFontStyleManager().
+							 * getDefaultStyle().getDisplayName());
 							 */
 						}
 					}
 				}
 			};
-			manager.getFontStyleManager().addFontStyleChangeListener(new FontStylesChangeListener() {
-				public void stylesChanged(ArrayList<FontStyle> changedStyles) {
-					combo.setItems(manager.getFontStyleManager().getFontStyleDisplayNames());
-					combo.setText(manager.getFontStyleManager().getDefaultStyle().getDisplayName());
-				}
-			});
+			manager.getFontStyleManager().addFontStyleChangeListener(
+					new FontStylesChangeListener() {
+						public void stylesChanged(
+								ArrayList<FontStyle> changedStyles) {
+							combo.setItems(manager.getFontStyleManager()
+									.getFontStyleDisplayNames());
+							combo.setText(manager.getFontStyleManager()
+									.getDefaultStyle().getDisplayName());
+						}
+					});
 
 			customizeFontStyleAction.setText("Customize Font Styles");
-			customizeFontStyleAction.setImageDescriptor(getImageDescriptor(CUSTOMIZE_FONT_STYLES_IMAGE));
+			customizeFontStyleAction
+					.setImageDescriptor(getImageDescriptor(CUSTOMIZE_FONT_STYLES_IMAGE));
 
 		}
 
@@ -578,8 +628,10 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 
 				protected Control createControl(Composite parent) {
 					combo = new CCombo(parent, SWT.READ_ONLY | SWT.BORDER);
-					combo.setItems(manager.getFontStyleManager().getFontStyleDisplayNames());
-					combo.setText(manager.getFontStyleManager().getDefaultStyle().getDisplayName());
+					combo.setItems(manager.getFontStyleManager()
+							.getFontStyleDisplayNames());
+					combo.setText(manager.getFontStyleManager()
+							.getDefaultStyle().getDisplayName());
 					combo.addSelectionListener(new SelectionListener() {
 
 						public void widgetDefaultSelected(SelectionEvent e) {
@@ -589,8 +641,11 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 						public void widgetSelected(SelectionEvent e) {
 							if (combo.getSelectionIndex() > -1) {
 								if (viewer.getSelectedRange().y > 0) {
-									manager.changeFontCommand(combo.getItem(combo.getSelectionIndex()), viewer
-										.getSelectedRange().x, viewer.getSelectedRange().y);
+									manager.changeFontCommand(
+											combo.getItem(combo
+													.getSelectionIndex()),
+											viewer.getSelectedRange().x, viewer
+													.getSelectedRange().y);
 									viewer.getTextWidget().setFocus();
 								} else {
 									setCurrentBasePartitionState();
@@ -616,7 +671,8 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		if (leftAlignAction == null) {
 			leftAlignAction = new AlignAction(SWT.LEFT);
 			leftAlignAction.setText("Align Left");
-			leftAlignAction.setImageDescriptor(getImageDescriptor(LEFT_JUSTIFY_IMAGE));
+			leftAlignAction
+					.setImageDescriptor(getImageDescriptor(LEFT_JUSTIFY_IMAGE));
 		}
 		return leftAlignAction;
 	}
@@ -628,7 +684,8 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		if (rightAlignAction == null) {
 			rightAlignAction = new AlignAction(SWT.RIGHT);
 			rightAlignAction.setText("Align Right");
-			rightAlignAction.setImageDescriptor(getImageDescriptor(RIGHT_JUSTIFY_IMAGE));
+			rightAlignAction
+					.setImageDescriptor(getImageDescriptor(RIGHT_JUSTIFY_IMAGE));
 		}
 		return rightAlignAction;
 	}
@@ -640,7 +697,8 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		if (centerAlignAction == null) {
 			centerAlignAction = new AlignAction(SWT.CENTER);
 			centerAlignAction.setText("Align Center");
-			centerAlignAction.setImageDescriptor(getImageDescriptor(CENTER_JUSTIFY_IMAGE));
+			centerAlignAction
+					.setImageDescriptor(getImageDescriptor(CENTER_JUSTIFY_IMAGE));
 		}
 		return centerAlignAction;
 	}
@@ -652,7 +710,8 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		if (fillAlignAction == null) {
 			fillAlignAction = new AlignAction(LayerManager.FIT_ALIGN);
 			fillAlignAction.setText("Align Justify");
-			fillAlignAction.setImageDescriptor(getImageDescriptor(FULL_JUSTIFY_IMAGE));
+			fillAlignAction
+					.setImageDescriptor(getImageDescriptor(FULL_JUSTIFY_IMAGE));
 		}
 		return fillAlignAction;
 	}
@@ -664,7 +723,8 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		if (bulletedListAction == null) {
 			bulletedListAction = new ListAction(LayerManager.BULLETED_LIST);
 			bulletedListAction.setText("Bulleted List");
-			bulletedListAction.setImageDescriptor(getImageDescriptor(BULLETS_IMAGE));
+			bulletedListAction
+					.setImageDescriptor(getImageDescriptor(BULLETS_IMAGE));
 		}
 		return bulletedListAction;
 	}
@@ -676,37 +736,52 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		if (numberedListAction == null) {
 			numberedListAction = new ListAction(LayerManager.NUMBERED_LIST);
 			numberedListAction.setText("numbered List");
-			numberedListAction.setImageDescriptor(getImageDescriptor(NUMBERS_IMAGE));
+			numberedListAction
+					.setImageDescriptor(getImageDescriptor(NUMBERS_IMAGE));
 		}
 		return numberedListAction;
 	}
 
 	/**
-	 * @param toolbarManager ToolbarManager to fill with action buttons
+	 * @param toolbarManager
+	 *            ToolbarManager to fill with action buttons
 	 */
 	public void fillToolbarManager(IContributionManager toolbarManager) {
 		List<IContributionItem> itemsList = createActionsList();
 		for (Iterator iterator = itemsList.iterator(); iterator.hasNext();) {
-			IContributionItem contributionItem = (IContributionItem) iterator.next();
+			IContributionItem contributionItem = (IContributionItem) iterator
+					.next();
 			toolbarManager.add(contributionItem);
 		}
 		/*
-		 * toolbarManager.add(this.getBoldAction()); toolbarManager.add(this.getItalicAction());
+		 * toolbarManager.add(this.getBoldAction());
+		 * toolbarManager.add(this.getItalicAction());
 		 * toolbarManager.add(this.getUnderlineAction()); //TODO IMPLEMENT IT
-		 * toolbarManager.add(this.getStrikeThroughAction()); toolbarManager.add(new Separator());
-		 * toolbarManager.add(this.getStyleContributionItem()); toolbarManager.add(new Separator());
-		 * toolbarManager.add(this.getAlignLeftAction()); toolbarManager.add(this.getAlignRightAction());
-		 * toolbarManager.add(this.getAlignCenterAction()); toolbarManager.add(this.getAlignJustifyAction());
-		 * toolbarManager.add(new Separator()); toolbarManager.add(this.getNewLinkAction()); toolbarManager.add(new
+		 * toolbarManager.add(this.getStrikeThroughAction());
+		 * toolbarManager.add(new Separator());
+		 * toolbarManager.add(this.getStyleContributionItem());
+		 * toolbarManager.add(new Separator());
+		 * toolbarManager.add(this.getAlignLeftAction());
+		 * toolbarManager.add(this.getAlignRightAction());
+		 * toolbarManager.add(this.getAlignCenterAction());
+		 * toolbarManager.add(this.getAlignJustifyAction());
+		 * toolbarManager.add(new Separator());
+		 * toolbarManager.add(this.getNewLinkAction()); toolbarManager.add(new
 		 * Separator()); toolbarManager.add(this.getBulletedListAction());
-		 * toolbarManager.add(this.getNumberedListAction()); toolbarManager.add(new Separator()); //fix for Windows
-		 * toolbar redrawing issue toolbarManager.add(new ControlContribution(""){ protected Control
-		 * createControl(Composite parent) { parent.setLayout(new FillLayout()); ToolBar toolbar = new
-		 * ToolBar(parent,SWT.NONE); ToolBarManager ma=new ToolBarManager(toolbar); ma.add(getForegroundColorAction());
-		 * ma.add(new Separator()); ma.add(getBackgroundColorAction()); ma.update(true); return ma.getControl(); } });
-		 * toolbarManager.add(new Separator()); toolbarManager.add(this.getAddImageAction()); toolbarManager.add(new
-		 * Separator()); toolbarManager.add(this.getOpenFileAction()); toolbarManager.add(new Separator());
-		 * toolbarManager.add(this.getAddHRAction()); toolbarManager.add(this.getCustomizeFontStyleAction());
+		 * toolbarManager.add(this.getNumberedListAction());
+		 * toolbarManager.add(new Separator()); //fix for Windows toolbar
+		 * redrawing issue toolbarManager.add(new ControlContribution(""){
+		 * protected Control createControl(Composite parent) {
+		 * parent.setLayout(new FillLayout()); ToolBar toolbar = new
+		 * ToolBar(parent,SWT.NONE); ToolBarManager ma=new
+		 * ToolBarManager(toolbar); ma.add(getForegroundColorAction());
+		 * ma.add(new Separator()); ma.add(getBackgroundColorAction());
+		 * ma.update(true); return ma.getControl(); } }); toolbarManager.add(new
+		 * Separator()); toolbarManager.add(this.getAddImageAction());
+		 * toolbarManager.add(new Separator());
+		 * toolbarManager.add(this.getOpenFileAction()); toolbarManager.add(new
+		 * Separator()); toolbarManager.add(this.getAddHRAction());
+		 * toolbarManager.add(this.getCustomizeFontStyleAction());
 		 */}
 
 	public ArrayList<IContributionItem> createActionsList() {
@@ -749,23 +824,29 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		resList.add(new ActionContributionItem(this.getAddImageAction()));
 		resList.add(new ActionContributionItem(this.getAddRegionAction()));
 		// TODO OPTIMIZE IT
-		// resList.add(new ActionContributionItem(this.getAddJavaRegionAction()));
+		// resList.add(new
+		// ActionContributionItem(this.getAddJavaRegionAction()));
 		resList.add(new Separator());
 		resList.add(new ActionContributionItem(this.getOpenFileAction()));
 		resList.add(new Separator());
 		resList.add(new ActionContributionItem(this.getAddHRAction()));
-		resList.add(new ActionContributionItem(this.getCustomizeFontStyleAction()));
+		resList.add(new ActionContributionItem(this
+				.getCustomizeFontStyleAction()));
 		return resList;
 	}
 
 	/**
 	 * Used to fill toolbar manager with custom actions
 	 * 
-	 * @param toolbarManager manager to fill
-	 * @param items list of actions to fill with
+	 * @param toolbarManager
+	 *            manager to fill
+	 * @param items
+	 *            list of actions to fill with
 	 */
-	public void customFillToolbarManager(IContributionManager toolbarManager, List<IContributionItem> items) {
-		for (Iterator<IContributionItem> iterator = items.iterator(); iterator.hasNext();) {
+	public void customFillToolbarManager(IContributionManager toolbarManager,
+			List<IContributionItem> items) {
+		for (Iterator<IContributionItem> iterator = items.iterator(); iterator
+				.hasNext();) {
 			IContributionItem item = (IContributionItem) iterator.next();
 			toolbarManager.add(item);
 		}
@@ -779,15 +860,17 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 			strikeThroughAction = new Action("", Action.AS_CHECK_BOX) {
 				public void run() {
 					if (viewer.getSelectedRange().y > 0)
-						manager.strikethroughCommand(viewer.getSelectedRange().x, viewer.getSelectedRange().y,
-							isChecked());
+						manager.strikethroughCommand(
+								viewer.getSelectedRange().x, viewer
+										.getSelectedRange().y, isChecked());
 					else
 						setCurrentBasePartitionState();
 				}
 			};
 			strikeThroughAction.setText("Strike through");
 			// boldAction.setAccelerator(SWT.CTRL | 'I');
-			strikeThroughAction.setImageDescriptor(getImageDescriptor(STRIKE_IMAGE));
+			strikeThroughAction
+					.setImageDescriptor(getImageDescriptor(STRIKE_IMAGE));
 		}
 		return strikeThroughAction;
 	}
@@ -803,9 +886,12 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 	 */
 	public void selectionChanged(SelectionChangedEvent event) {
 		int offset = manager.getEditor().getCaretOffset();
-		BasePartition curPartition = (BasePartition) manager.getLayer().getPartitionAtOffset(offset);
-		if (curPartition != null && curPartition.requiresSingleLine() && offset > curPartition.getOffset())
-			manager.getEditor().setCaretOffset(curPartition.getOffset() + curPartition.getLength());
+		BasePartition curPartition = (BasePartition) manager.getLayer()
+				.getPartitionAtOffset(offset);
+		if (curPartition != null && curPartition.requiresSingleLine()
+				&& offset > curPartition.getOffset())
+			manager.getEditor().setCaretOffset(
+					curPartition.getOffset() + curPartition.getLength());
 		manager.setCurrentFontPartition(null);
 		update();
 	}
@@ -821,11 +907,13 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		if (length == 0)
 			lastLine = firstLine;
 		else
-			lastLine = viewer.getTextWidget().getLineAtOffset(offset + length - 1);
+			lastLine = viewer.getTextWidget().getLineAtOffset(
+					offset + length - 1);
 
 		// if (length == 0)
 		// setLineIdentation(offset, length);
-		RichSelectionState sumPartition = manager.defineSumStylePartition(offset, length);
+		RichSelectionState sumPartition = manager.defineSumStylePartition(
+				offset, length);
 		setFontStyleControlsStates(sumPartition);
 
 		int align = manager.defineSumAlignStyle(firstLine, lastLine);
@@ -840,14 +928,18 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		partition.setUnderlined(getUnderlineAction().isChecked());
 		partition.setStrikethrough(getStrikeThroughAction().isChecked());
 		// String fontDataName = FontStyle.NORMAL_FONT_NAME; //by default
-		final int selectionIndex = combo.getSelectionIndex();
-		if (selectionIndex > -1) {
-			final String item = combo.getItem(selectionIndex);
-			manager.addNewlinesIfNeeded(viewer.getTextWidget().getCaretOffset(), item);
-			manager.getFontStyleManager().getFontStyleByFontDataName(partition.getFontDataName())
-				.removeStyle(partition);
-			manager.getFontStyleManager().getFontStyle(item).applyStyle(partition);
-			combo.select(selectionIndex);
+		if (combo != null) {
+			final int selectionIndex = combo.getSelectionIndex();
+			if (selectionIndex > -1) {
+				final String item = combo.getItem(selectionIndex);
+				manager.addNewlinesIfNeeded(viewer.getTextWidget()
+						.getCaretOffset(), item);
+				manager.getFontStyleManager().getFontStyleByFontDataName(
+						partition.getFontDataName()).removeStyle(partition);
+				manager.getFontStyleManager().getFontStyle(item).applyStyle(
+						partition);
+				combo.select(selectionIndex);
+			}
 		}
 		// update();
 	}
@@ -858,24 +950,30 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 
 	protected void setAlignButtonsStates(int align) {
 		if (this.centerAlignAction != null)
-			this.getAlignCenterAction().setChecked(align == LayerManager.CENTER_ALIGN);
+			this.getAlignCenterAction().setChecked(
+					align == LayerManager.CENTER_ALIGN);
 		if (this.leftAlignAction != null)
-			this.getAlignLeftAction().setChecked(align == LayerManager.LEFT_ALIGN);
+			this.getAlignLeftAction().setChecked(
+					align == LayerManager.LEFT_ALIGN);
 		if (this.rightAlignAction != null)
-			this.getAlignRightAction().setChecked(align == LayerManager.RIGHT_ALIGN);
+			this.getAlignRightAction().setChecked(
+					align == LayerManager.RIGHT_ALIGN);
 		if (this.fillAlignAction != null)
-			this.getAlignJustifyAction().setChecked(align == LayerManager.FIT_ALIGN);
+			this.getAlignJustifyAction().setChecked(
+					align == LayerManager.FIT_ALIGN);
 	}
 
 	protected void setListButtonsStates(int style) {
 		boolean wasChecked = false;
 		if (this.bulletedListAction != null) {
-			this.bulletedListAction.setChecked(style == LayerManager.BULLETED_LIST);
+			this.bulletedListAction
+					.setChecked(style == LayerManager.BULLETED_LIST);
 			if (this.bulletedListAction.isChecked())
 				wasChecked = true;
 		}
 		if (this.numberedListAction != null) {
-			this.numberedListAction.setChecked(style == LayerManager.NUMBERED_LIST);
+			this.numberedListAction
+					.setChecked(style == LayerManager.NUMBERED_LIST);
 			if (this.numberedListAction.isChecked())
 				wasChecked = true;
 		}
@@ -891,20 +989,25 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 		if (this.underlineAction != null)
 			this.getUnderlineAction().setChecked(sumPartition.isUnderlined());
 		if (this.strikeThroughAction != null)
-			this.getStrikeThroughAction().setChecked(sumPartition.isStrikethrough());
+			this.getStrikeThroughAction().setChecked(
+					sumPartition.isStrikethrough());
 		if (this.foregroundColorAction != null)
-			((ForeGroundColorAction) this.getForegroundColorAction()).setColor(sumPartition.getColorRGB());
+			((ForeGroundColorAction) this.getForegroundColorAction())
+					.setColor(sumPartition.getColorRGB());
 		if (this.backgroundColorAction != null)
-			((BackGroundColorAction) this.getBackgroundColorAction()).setColor(sumPartition.getBgColorRGB());
+			((BackGroundColorAction) this.getBackgroundColorAction())
+					.setColor(sumPartition.getBgColorRGB());
 		if (this.linkAction != null) {
 			linkAction.setChecked(state.isHasLinks());
 		}
-		if (this.controlContribution != null) {
+		if (this.controlContribution != null && combo != null) {
 			if (sumPartition.getFontDataName().length() > 0) {
-				String[] fontStyleNames = manager.getFontStyleManager().getFontStyleDataNames();
+				String[] fontStyleNames = manager.getFontStyleManager()
+						.getFontStyleDataNames();
 				boolean wasSelected = false;
 				for (int i = 0; i < fontStyleNames.length; i++) {
-					if (fontStyleNames[i].equals(sumPartition.getFontDataName())) {
+					if (fontStyleNames[i]
+							.equals(sumPartition.getFontDataName())) {
 						combo.select(i);
 						i = fontStyleNames.length; // For loop interrupting
 						wasSelected = true;
@@ -918,10 +1021,11 @@ public class ActionFactory implements ISelectionChangedListener, IRichDocumentLi
 	}
 
 	/**
-	 * enables or disable special aligns< like right or center Needed when endling/disabling lists, to display list
-	 * bullets correctly
+	 * enables or disable special aligns< like right or center Needed when
+	 * endling/disabling lists, to display list bullets correctly
 	 * 
-	 * @param enable <b>true</b> enable this actions, <b>false</b> - disable them
+	 * @param enable
+	 *            <b>true</b> enable this actions, <b>false</b> - disable them
 	 */
 	protected void enableProhibitedAligns(boolean enable) {
 

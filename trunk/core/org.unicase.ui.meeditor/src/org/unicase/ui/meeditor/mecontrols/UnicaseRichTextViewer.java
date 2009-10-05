@@ -106,7 +106,7 @@ public class UnicaseRichTextViewer extends RichTextViewer {
 		toolbarManager.add(new Separator());
 
 		IContributionItem styleContributionItem = factory.getStyleContributionItem();
-		toolbarManager.add(styleContributionItem);
+		// toolbarManager.add(styleContributionItem);
 
 		IAction foregroundColorAction = super.factory.getForegroundColorAction();
 		toolbarManager.add(foregroundColorAction);

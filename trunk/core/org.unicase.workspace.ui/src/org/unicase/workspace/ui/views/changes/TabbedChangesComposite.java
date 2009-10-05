@@ -48,9 +48,9 @@ public class TabbedChangesComposite extends Composite implements
 			String tab = "Unknown view";
 			Control control = folder.getSelection()[0].getControl();
 			if (control instanceof CompactChangesComposite) {
-				tab = "Compact view";
+				tab = "ModelElements";
 			} else if (control instanceof DetailedChangesComposite) {
-				tab = "Detailed view";
+				tab = "Operations";
 			}
 			EventUtil.logPresentationSwitchEvent(getClass().getName(), tab);
 		}
@@ -62,6 +62,8 @@ public class TabbedChangesComposite extends Composite implements
 	private Composite compactTabComposite;
 	private TreeViewer compactTabTreeViewer;
 	private TreeViewer detailedTabTreeViewer;
+	private SCMContentProvider.Compact compactContentProvider;
+	private SCMContentProvider.Detailed detailedContentProvider;
 
 	/**
 	 * Default constructor.
@@ -81,34 +83,6 @@ public class TabbedChangesComposite extends Composite implements
 		folder = new TabFolder(this, style);
 		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
 				true).applyTo(folder);
-		this.changePackages = changePackages;
-
-		// -----------------------Compact -----------------------------
-		compactTabComposite = new Composite(folder, SWT.NONE);
-		GridLayoutFactory.fillDefaults().applyTo(compactTabComposite);
-		compactTabTreeViewer = new TreeViewer(compactTabComposite, SWT.H_SCROLL
-				| SWT.V_SCROLL);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(
-				compactTabTreeViewer.getControl());
-
-		SCMContentProvider.Compact compactContentProvider = new SCMContentProvider.Compact(
-				compactTabTreeViewer, project);
-		compactContentProvider.setShowRootNodes(true);
-		SCMLabelProvider compactLabelProvider = new SCMLabelProvider(project);
-		compactLabelProvider
-				.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(
-						changePackages, project));
-		compactContentProvider
-				.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(
-						changePackages, project));
-		compactTabTreeViewer.setContentProvider(compactContentProvider);
-		compactTabTreeViewer.setLabelProvider(compactLabelProvider);
-		compactTabTreeViewer.setInput(changePackages);
-		compactTabTreeViewer.expandToLevel(2);
-
-		TabItem meTab = new TabItem(folder, style);
-		meTab.setText("Compact");
-		meTab.setControl(compactTabComposite);
 
 		// -----------------------Detailed -----------------------------
 		detailedTabComposite = new Composite(folder, SWT.NONE);
@@ -119,7 +93,7 @@ public class TabbedChangesComposite extends Composite implements
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(
 				detailedTabTreeViewer.getControl());
 
-		SCMContentProvider.Detailed detailedContentProvider = new SCMContentProvider.Detailed(
+		detailedContentProvider = new SCMContentProvider.Detailed(
 				detailedTabTreeViewer, project);
 		detailedContentProvider.setShowRootNodes(true);
 		SCMLabelProvider detailedLabelProvider = new SCMLabelProvider(project);
@@ -135,9 +109,58 @@ public class TabbedChangesComposite extends Composite implements
 		detailedTabTreeViewer.expandToLevel(2);
 
 		TabItem opTab = new TabItem(folder, style);
-		opTab.setText("Detailed");
+		opTab.setText("Operations");
 		opTab.setControl(detailedTabComposite);
 		folder.addSelectionListener(new TabSelectionListener());
+
+		// -----------------------Compact -----------------------------
+		compactTabComposite = new Composite(folder, SWT.NONE);
+		GridLayoutFactory.fillDefaults().applyTo(compactTabComposite);
+		compactTabTreeViewer = new TreeViewer(compactTabComposite, SWT.H_SCROLL
+				| SWT.V_SCROLL);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(
+				compactTabTreeViewer.getControl());
+
+		compactContentProvider = new SCMContentProvider.Compact(
+				compactTabTreeViewer, project);
+		compactContentProvider.setShowRootNodes(true);
+		SCMLabelProvider compactLabelProvider = new SCMLabelProvider(project);
+		compactLabelProvider
+				.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(
+						changePackages, project));
+		compactContentProvider
+				.setChangePackageVisualizationHelper(new ChangePackageVisualizationHelper(
+						changePackages, project));
+		compactTabTreeViewer.setContentProvider(compactContentProvider);
+		compactTabTreeViewer.setLabelProvider(compactLabelProvider);
+		compactTabTreeViewer.expandToLevel(2);
+
+		TabItem meTab = new TabItem(folder, style);
+		meTab.setText("ModelElements");
+		meTab.setControl(compactTabComposite);
+	}
+
+	/**
+	 * Sets if the root nodes should be shown.
+	 * 
+	 * @param showRootNodes
+	 *            the new value
+	 */
+	public void setShowRootNodes(boolean showRootNodes) {
+		compactContentProvider.setShowRootNodes(showRootNodes);
+		detailedContentProvider.setShowRootNodes(showRootNodes);
+	}
+
+	/**
+	 * Sets if the root nodes should be reversed.
+	 * 
+	 * @see SCMContentProvider#setReverseNodes(boolean)
+	 * @param showRootNodes
+	 *            the new value
+	 */
+	public void setReverseNodes(boolean reverseNodes) {
+		compactContentProvider.setReverseNodes(reverseNodes);
+		detailedContentProvider.setReverseNodes(reverseNodes);
 	}
 
 	/**
