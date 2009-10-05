@@ -35,7 +35,7 @@ import org.eclipse.ui.forms.widgets.ImageHyperlink;
 import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.attachment.UrlAttachment;
-import org.unicase.model.util.ModelElementChangeObserver;
+import org.unicase.model.util.ModelElementChangeListener;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.meeditor.MEURLControl;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
