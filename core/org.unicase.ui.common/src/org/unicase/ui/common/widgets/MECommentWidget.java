@@ -70,21 +70,23 @@ public class MECommentWidget extends Composite {
 	 * 
 	 * @param comment the comment object
 	 * @param composite the parent composite
-	 * @param enableReplies show/hide replies
+	 * @param showReplies show/hide replies
 	 */
-	public MECommentWidget(Comment comment, Composite composite, boolean enableReplies) {
+	public MECommentWidget(Comment comment, Composite composite, boolean showReplies) {
 		super(composite, SWT.NONE);
 		this.comment = comment;
 		replies = new ArrayList<MECommentWidget>();
 		localResources = new ArrayList<Resource>();
 		listeners = new HashSet<MECommentWidgetListener>();
 
-		try {
-			currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(comment));
-		} catch (NoCurrentUserException e1) {
-			return;
-		} catch (CannotMatchUserInProjectException e1) {
-			return;
+		if(comment.eContainer()!=null){
+			try {
+				currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(comment));
+			} catch (NoCurrentUserException e1) {
+				return;
+			} catch (CannotMatchUserInProjectException e1) {
+				return;
+			}
 		}
 
 		GridLayoutFactory.fillDefaults().spacing(0, 0).applyTo(this);
@@ -96,8 +98,8 @@ public class MECommentWidget extends Composite {
 		localResources.add(titlebarColor);
 		commentTitleBar.setBackground(titlebarColor);
 
-		if (enableReplies) {
-			toggleButton = new ImageHyperlink(commentTitleBar, SWT.TOP);
+		if (showReplies) {
+			toggleButton = new ImageHyperlink(commentTitleBar, SWT.WRAP);
 			toggleButton.addMouseListener(new MouseAdapter() {
 				@Override
 				public void mouseUp(MouseEvent e) {
@@ -137,6 +139,7 @@ public class MECommentWidget extends Composite {
 		toolbarLayout.marginTop = 0;
 		toolbarLayout.spacing = 0;
 		toolbar.setLayout(toolbarLayout);
+		GridDataFactory.fillDefaults().grab(true, false).hint(-1, 19).align(SWT.END, SWT.BEGINNING).applyTo(toolbar);
 
 		SimpleDateFormat dateFormat = new SimpleDateFormat("dd.MM.yyyy HH:mm");
 		Label commentTime = new Label(commentTitleBar, SWT.WRAP);
@@ -179,7 +182,7 @@ public class MECommentWidget extends Composite {
 				}
 			});
 
-			if (comment.getSender().equals(currentUser)) {
+			if (comment.getSender()!=null && comment.getSender().equals(currentUser)) {
 				deleteButton = new ImageHyperlink(toolbar, SWT.TOP);
 				deleteImage = Activator.getImageDescriptor("icons/delete_edit.gif").createImage();
 				localResources.add(deleteImage);
@@ -213,7 +216,7 @@ public class MECommentWidget extends Composite {
 		GridLayoutFactory.fillDefaults().applyTo(inputComposite);
 		GridDataFactory.fillDefaults().grab(true, false).hint(-1, 0).applyTo(inputComposite);
 
-		if (!comment.getComments().isEmpty() && enableReplies) {
+		if (!comment.getComments().isEmpty() && showReplies) {
 			reloadReplies();
 		}
 		updateTitleBar();

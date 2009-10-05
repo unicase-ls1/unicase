@@ -83,7 +83,7 @@ public abstract class AbstractNotificationProvider implements NotificationProvid
 			}
 			if (changePackage.getLogMessage() != null
 				&& changePackage.getLogMessage().getAuthor().equals(user.getName())) {
-				// continue;
+				continue;
 			}
 			for (AbstractOperation operation : changePackage.getOperations()) {
 				if (operation instanceof CompositeOperation) {

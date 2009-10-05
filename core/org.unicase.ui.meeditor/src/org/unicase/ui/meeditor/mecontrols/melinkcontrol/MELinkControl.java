@@ -217,7 +217,12 @@ public class MELinkControl extends AbstractMEControl {
 	 */
 	@Override
 	public void dispose() {
-		((ModelElement) getModelElement()).getProject().removeProjectChangeObserver(observer);
+		if (getModelElement() != null) {
+			Project project = ((ModelElement) getModelElement()).getProject();
+			if (project != null) {
+				project.removeProjectChangeObserver(observer);
+			}
+		}
 		labelProvider.removeListener(labelProviderListener);
 		labelProvider.dispose();
 		if (linkComposite != null) {

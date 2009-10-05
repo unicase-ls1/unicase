@@ -8,6 +8,8 @@ package org.unicase.workspace.util;
 
 import java.io.IOException;
 import java.util.Date;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
@@ -152,14 +154,26 @@ public final class WorkspaceUtil {
 	 * @return a string only containing the plain text
 	 */
 	public static String cleanFormatedText(String text) {
-		String ret = "";
-		if (text != null && text.length() > 0) {
-			String[] split = text.split(BEGINNTEXT);
-			if (split.length > 1) {
-				ret = split[split.length - 1];
+
+		text = text.replaceAll("\n", "");
+		Pattern ulsPattern = Pattern.compile("<ul>(.*)<\\/ul>", Pattern.DOTALL);
+		Matcher ulsMatcher = ulsPattern.matcher(text);
+
+		while (ulsMatcher.find()) {
+			String lis = ulsMatcher.group(0);
+
+			// Pattern lisPattern = Pattern.compile("<li>(.*)<\\/li>", Pattern.DOTALL);
+			Pattern lisPattern = Pattern.compile("<li><P  style=\"margin: 4;\"align = \"left\">([^<]*)<\\/P>",
+				Pattern.DOTALL);
+			Matcher lisMatcher = lisPattern.matcher(lis);
+			while (lisMatcher.find()) {
+				String li = lisMatcher.group(0);
+				li = li.replaceAll("<[^<]*>", "");
+				System.out.println("   \u2022 " + li);
 			}
 		}
-		return ret;
+
+		return text;
 	}
 
 	/**
