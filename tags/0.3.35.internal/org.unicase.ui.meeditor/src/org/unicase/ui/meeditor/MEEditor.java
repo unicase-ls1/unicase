@@ -10,9 +10,7 @@ import java.util.Date;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
@@ -28,6 +26,7 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
 import org.unicase.model.ModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
+import org.unicase.model.util.ModelElementChangeListener;
 import org.unicase.ui.common.MEEditorInput;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -45,15 +44,14 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 * 
 	 * @author Shterev
 	 */
-	private final class MEEditorAdapter extends AdapterImpl {
+	private final class MEEditorListener implements ModelElementChangeListener {
 		private final IEditorInput input;
 
-		private MEEditorAdapter(IEditorInput input) {
+		private MEEditorListener(IEditorInput input) {
 			this.input = input;
 		}
 
-		@Override
-		public void notifyChanged(final Notification msg) {
+		public void onChange(final Notification msg) {
 			if (msg.isTouch()) {
 				return;
 			}
@@ -69,6 +67,11 @@ public class MEEditor extends SharedHeaderFormEditor {
 					}
 				}
 			});
+
+		}
+
+		public void onRuntimeExceptionInListener(RuntimeException exception) {
+			modelElement.removeModelElementChangeListener(eAdapter);
 		}
 	}
 
@@ -84,7 +87,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	private METhreadPage commentsPage;
 	private MEDescriptionPage descriptionPage;
 
-	private Adapter eAdapter;
+	private ModelElementChangeListener eAdapter;
 
 	private String creatorHint;
 
@@ -173,8 +176,8 @@ public class MEEditor extends SharedHeaderFormEditor {
 			setTitleImage(input.getImageDescriptor().createImage());
 
 			initializeEditingDomain();
-			eAdapter = new MEEditorAdapter(input);
-			this.modelElement.eAdapters().add(eAdapter);
+			eAdapter = new MEEditorListener(input);
+			this.modelElement.addModelElementChangeListener(eAdapter);
 			SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
 			SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm:ss");
 			StringBuffer stringBuffer = new StringBuffer();
@@ -272,7 +275,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	@Override
 	public void dispose() {
-		modelElement.eAdapters().remove(eAdapter);
+		modelElement.removeModelElementChangeListener(eAdapter);
 		((MEEditorInput) getEditorInput()).getLabelProvider().removeListener(labelProviderListener);
 		super.dispose();
 	}
