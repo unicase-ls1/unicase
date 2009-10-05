@@ -48,7 +48,7 @@ public class DeleteTestProject {
 		if (countofelem > 0) {
 			logger.info("deleting a project called :testproject");
 			SWTBotTreeItem[] subitem = items[0].getItems();
-			for (int i = 0; i <= countofelem && flag == true; i++) {
+			for (int i = 0; i < countofelem && flag == true; i++) {
 				if (subitem[i].getText().equalsIgnoreCase("testproject")) {
 					flag = false;
 					testprojectposition = i;
@@ -70,7 +70,7 @@ public class DeleteTestProject {
 			}
 
 		} else {
-			logger.info("project list is empty");
+			logger.info("project list is empty nothing to be deleted ");
 
 		}
 
