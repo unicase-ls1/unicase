@@ -53,13 +53,14 @@ public class CheckoutTest {
 			logger.info("the project list is not empty");
 			SWTBotTreeItem[] subitem = items[0].getItems();
 			subitem[0].select().contextMenu("Checkout").click();
+			bot.viewByTitle("Unicase Navigator").show();
 		}
 
 	}
 
 	@AfterClass
 	public static void sleep() {
-		bot.sleep(20000);
+		bot.sleep(5000);
 		SetupHelper.stopServer();
 	}
 }
