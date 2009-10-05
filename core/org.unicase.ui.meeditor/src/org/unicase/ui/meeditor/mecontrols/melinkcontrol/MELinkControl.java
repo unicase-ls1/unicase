@@ -100,7 +100,7 @@ public class MELinkControl extends AbstractMEControl {
 				Display.getDefault().asyncExec(new Runnable() {
 
 					public void run() {
-						if (!hyperlink.isDisposed()) {
+						if (hyperlink != null && !hyperlink.isDisposed()) {
 							hyperlink.setText(((ModelElement) getModelElement()).getShortName());
 							hyperlink.setToolTipText(((ModelElement) getModelElement()).getShortName());
 							updateAdditionalControlComponents();

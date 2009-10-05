@@ -29,7 +29,7 @@ import org.unicase.workspace.preferences.PreferenceManager;
 import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
- * Provides notifications for new comments.
+ * Provides notifications for new Comments.
  * 
  * @author shterev
  */
@@ -100,7 +100,7 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 			}
 			for (ModelElement modelElement : me2taskCommentMap.keySet()) {
 				result.add(createCommentNotification(me2taskCommentMap, taskComment2OperationMap, modelElement,
-					" commented on your task + "));
+					" commented on your task "));
 			}
 		}
 		return result;
@@ -123,8 +123,18 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	}
 
 	private void handleCreateDeleteOperation(AbstractOperation operation, User user, Comment comment) {
-		ModelElement firstParent = comment.getFirstParent();
-
+		CreateDeleteOperation cdo = (CreateDeleteOperation) operation;
+		if (cdo.isDelete()) {
+			return;
+		}
+		if (comment.getModelElementId() == null) {
+			return;
+		}
+		Comment localComment = (Comment) getProjectSpace().getProject().getModelElement(comment.getModelElementId());
+		ModelElement firstParent = localComment.getFirstParent();
+		if (firstParent == null) {
+			return;
+		}
 		for (Comment c : firstParent.getComments()) {
 			for (Comment c2 : c.getThread()) {
 				if (c2.getSender() != null && c2.getSender().equals(user)) {

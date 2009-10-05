@@ -61,6 +61,7 @@ public class UpdateDialog extends TitleAreaDialog {
 			TabbedChangesComposite changesComposite = new TabbedChangesComposite(
 					contents, SWT.BORDER, changes, activeProjectSpace
 							.getProject());
+			changesComposite.setReverseNodes(false);
 			changesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
 					true, true, 2, 1));
 		}

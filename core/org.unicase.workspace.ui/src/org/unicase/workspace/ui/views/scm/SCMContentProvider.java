@@ -41,6 +41,7 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 
 	private static ChangePackageVisualizationHelper changePackageVisualizationHelper;
 	private boolean showRootNodes = true;
+	private boolean reverseNodes = true;
 	private static Project project;
 
 	/**
@@ -53,6 +54,24 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 	 */
 	protected SCMContentProvider(TreeViewer treeViewer, Project activeProject) {
 		project = activeProject;
+	}
+
+	/**
+	 * Sets the flag to reverse the order of the nodes. Default value is true -
+	 * i.e. the more recent operations are on top.
+	 * 
+	 * @param reverseNodes
+	 *            the new value
+	 */
+	public void setReverseNodes(boolean reverseNodes) {
+		this.reverseNodes = reverseNodes;
+	}
+
+	/**
+	 * Returns if the nodes should be reversed.
+	 */
+	public boolean isReverseNodes() {
+		return reverseNodes;
 	}
 
 	/**
@@ -158,22 +177,41 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 			return nodify(null, Arrays.asList((ChangePackage) inputElement))
 					.toArray();
 		}
-		if (!(inputElement instanceof List)) {
+		if (!(inputElement instanceof List) || ((List) inputElement).isEmpty()) {
 			return new Object[0];
 		}
-		List<HistoryInfo> historyInfos = (List<HistoryInfo>) inputElement;
-		if (showRootNodes) {
-			return nodify(null, historyInfos).toArray();
-		} else {
-			ArrayList<Object> elements = new ArrayList<Object>();
-			for (HistoryInfo hi : historyInfos) {
-				if (hi.getChangePackage() != null) {
-					elements.addAll(Arrays.asList(getChildren(hi, new TreeNode(
-							hi))));
-				}
-			}
-			return elements.toArray();
+		List inputList = (List) inputElement;
+		Object firstElement = inputList.get(0);
+		if (firstElement == null) {
+			return new Object[0];
 		}
+		if (firstElement instanceof ChangePackage) {
+			if(showRootNodes){
+				return nodify(null, inputList).toArray();
+			}else{
+				ArrayList<Object> elements = new ArrayList<Object>();
+				List<ChangePackage> changePackages = inputList; 
+				for (ChangePackage cp : changePackages) {
+					elements.addAll(Arrays.asList(getChildren(cp,new TreeNode(cp))));
+				}
+				return elements.toArray();
+			}
+		} else if (firstElement instanceof HistoryInfo) {
+			List<HistoryInfo> historyInfos = (List<HistoryInfo>) inputElement;
+			if (showRootNodes) {
+				return nodify(null, historyInfos).toArray();
+			} else {
+				ArrayList<Object> elements = new ArrayList<Object>();
+				for (HistoryInfo hi : historyInfos) {
+					if (hi.getChangePackage() != null) {
+						elements.addAll(Arrays.asList(getChildren(hi,
+								new TreeNode(hi))));
+					}
+				}
+				return elements.toArray();
+			}
+		}
+		return new Object[0];
 	}
 
 	/**
@@ -352,7 +390,9 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 				TreeNode treeNode) {
 			EList<AbstractOperation> operations = changePackage.getOperations();
 			List<TreeNode> nodes = nodify(treeNode, operations);
-			Collections.reverse(nodes);
+			if (isReverseNodes()) {
+				Collections.reverse(nodes);
+			}
 			return nodes.toArray();
 		}
 
@@ -498,7 +538,9 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 						.getOperations(modelElement, historyInfo
 								.getChangePackage()));
 				List<TreeNode> nodes = nodify(treeNode, operations);
-				Collections.reverse(nodes);
+				if (isReverseNodes()) {
+					Collections.reverse(nodes);
+				}
 				return nodes.toArray();
 			} else if (treeNode.getParent().getValue() instanceof ChangePackage) {
 				ChangePackage changePackage = (ChangePackage) treeNode
@@ -511,7 +553,9 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 				ArrayList<EObject> operations = new ArrayList<EObject>(helper
 						.getOperations(modelElement, changePackage));
 				List<TreeNode> nodes = nodify(treeNode, operations);
-				Collections.reverse(nodes);
+				if (isReverseNodes()) {
+					Collections.reverse(nodes);
+				}
 				return nodes.toArray();
 			}
 			return new Object[0];
