@@ -4,7 +4,7 @@
     modelPluginID="org.unicase.model.glossary" modelName="Glossary" editPluginClass="org.unicase.model.glossary.provider.GlossaryEditPlugin"
     editorPluginClass="org.unicase.model.glossary.presentation.GlossaryEditorPlugin"
     testSuiteClass="org.unicase.model.glossary.tests.GlossaryAllTests" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
+    containmentProxies="true" complianceLevel="6.0" copyrightFields="false" usedGenPackages="platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.unicase.model/model/model.genmodel#//model platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation">
   <foreignModel>glossary.ecore</foreignModel>
   <genPackages prefix="Glossary" basePackage="org.unicase.model" disposableProviderFactory="true"
       ecorePackage="glossary.ecore#/">
