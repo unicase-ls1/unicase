@@ -500,6 +500,19 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 				List<TreeNode> nodes = nodify(treeNode, operations);
 				Collections.reverse(nodes);
 				return nodes.toArray();
+			} else if (treeNode.getParent().getValue() instanceof ChangePackage) {
+				ChangePackage changePackage = (ChangePackage) treeNode
+						.getParent().getValue();
+				ChangePackageVisualizationHelper helper = changePackageVisualizationHelper;
+				if (changePackage.getLogMessage() == null) {
+					helper = new ChangePackageVisualizationHelper(Arrays
+							.asList(changePackage), project);
+				}
+				ArrayList<EObject> operations = new ArrayList<EObject>(helper
+						.getOperations(modelElement, changePackage));
+				List<TreeNode> nodes = nodify(treeNode, operations);
+				Collections.reverse(nodes);
+				return nodes.toArray();
 			}
 			return new Object[0];
 		}

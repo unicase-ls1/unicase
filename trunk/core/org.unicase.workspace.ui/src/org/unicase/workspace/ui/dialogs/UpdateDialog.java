@@ -14,9 +14,10 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.workspace.ProjectSpace;
+import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.views.changes.TabbedChangesComposite;
 
 /**
@@ -28,17 +29,22 @@ import org.unicase.workspace.ui.views.changes.TabbedChangesComposite;
 public class UpdateDialog extends TitleAreaDialog {
 
 	private List<ChangePackage> changes;
+	private ProjectSpace activeProjectSpace;
 
 	/**
 	 * Constructor.
 	 * 
-	 * @param parentShell the parent shell
-	 * @param changes the list of changes
+	 * @param parentShell
+	 *            the parent shell
+	 * @param changes
+	 *            the list of changes
 	 */
 	public UpdateDialog(Shell parentShell, List<ChangePackage> changes) {
 		super(parentShell);
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE);
 		this.changes = changes;
+		activeProjectSpace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getActiveProjectSpace();
 	}
 
 	/**
@@ -52,8 +58,11 @@ public class UpdateDialog extends TitleAreaDialog {
 
 		// changes tree
 		if (changes != null) {
-			TabbedChangesComposite changesComposite = new TabbedChangesComposite(contents, SWT.BORDER, changes);
-			changesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+			TabbedChangesComposite changesComposite = new TabbedChangesComposite(
+					contents, SWT.BORDER, changes, activeProjectSpace
+							.getProject());
+			changesComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL,
+					true, true, 2, 1));
 		}
 
 		// show number of changes on dialog title
@@ -69,10 +78,12 @@ public class UpdateDialog extends TitleAreaDialog {
 	protected void configureShell(Shell newShell) {
 		super.configureShell(newShell);
 		newShell.setText("Update");
-		Rectangle area = Display.getCurrent().getClientArea();
+
+		Rectangle area = newShell.getShell().getParent().getClientArea();
 		int width = area.width * 2 / 3;
 		int height = area.height * 2 / 3;
-		newShell.setBounds((area.width - width) / 2, (area.height - height) / 2, width, height);
+		newShell.setBounds((area.width - width) / 2,
+				(area.height - height) / 2, width, height);
 	}
 
 	/**
