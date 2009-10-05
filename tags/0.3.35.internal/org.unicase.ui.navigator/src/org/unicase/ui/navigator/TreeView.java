@@ -78,6 +78,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	private AdapterImpl workspaceListenerAdapter;
 	private boolean shouldRefresh;
 	private SimpleOperationListener simpleOperationListener;
+	private boolean internalSelectionEvent;
 
 	/**
 	 * Constructor.
@@ -268,6 +269,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 		// // TreeView.getTreeViewer().setSelection(new StructuredSelection(me), true);
 
 		EObject container = me.eContainer();
+		internalSelectionEvent = true;
 		viewer.setSelection(new StructuredSelection(container), true);
 
 		TreeSelection treeSelection = (TreeSelection) viewer.getSelection();
@@ -277,6 +279,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 			TreeSelection newTreeSeleciton = new TreeSelection(treePath);
 			viewer.setSelection(newTreeSeleciton, true);
 		}
+		internalSelectionEvent = false;
 	}
 
 	private void addSelectionListener() {
@@ -289,7 +292,7 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 					setActiveProjectSpace(obj);
 
 					// activate MEEditor if this obj is already open.
-					if (isLinkedWithEditor) {
+					if (isLinkedWithEditor && !internalSelectionEvent) {
 						linkWithEditor(obj);
 					}
 
