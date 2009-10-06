@@ -7,11 +7,14 @@ package org.unicase.model.util;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.UUID;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -30,7 +33,7 @@ import org.eclipse.emf.ecore.util.EContentAdapter;
  * @author koegel
  * @param <T> the type of the containers root.
  */
-public class AutoSaveContainer<T> extends EContentAdapter {
+public class AutoSaveContainer<T extends EObject> extends EContentAdapter {
 
 	private static final int DEFAULT_MAX_FILESIZE = 50000;
 	private String path;
@@ -47,7 +50,7 @@ public class AutoSaveContainer<T> extends EContentAdapter {
 	private Resource currentResource;
 	private boolean initialized;
 	private final AutoSaveContainerExceptionHandler exceptionHandler;
-	private EObject rootObject;
+	private T rootObject;
 
 	/**
 	 * Constructor.
@@ -79,21 +82,36 @@ public class AutoSaveContainer<T> extends EContentAdapter {
 	 * Add initial content to the container.
 	 * 
 	 * @param root the root object
+	 * @throws AutoSaveContainerInitilizationException if the init fails
 	 */
-	public void addInitialRoot(EObject root) {
-		checkForInit();
+	public void initWithRoot(T root) throws AutoSaveContainerInitilizationException {
 		if (!rootClass.isInstance(root)) {
-			throw new IllegalArgumentException("Root is not of the correct type. It should be of type "
+			throw new AutoSaveContainerInitilizationException("Root is not of the correct type. It should be of type "
 				+ rootClass.getName());
 		}
 		String rootFilePath = path + ROOT_FILENAME + extension;
 		File workspaceFile = new File(rootFilePath);
 		if (workspaceFile.exists()) {
-			throw new IllegalStateException("A resource with content already exists!");
+			throw new AutoSaveContainerInitilizationException("A resource with content already exists!");
 		}
+		rootObject = root;
 		URI fileURI = URI.createFileURI(rootFilePath);
 		Resource rootResource = resourceSet.createResource(fileURI);
 		rootResource.getContents().add(root);
+		TreeIterator<EObject> iterator = root.eAllContents();
+		Set<Resource> resourcesToSave = new HashSet<Resource>();
+		while (iterator.hasNext()) {
+			EObject next = iterator.next();
+			resourcesToSave.add(addToResource(next));
+		}
+		for (Resource resource : resourcesToSave) {
+			try {
+				resource.save(null);
+			} catch (IOException e) {
+				throw new AutoSaveContainerInitilizationException("Saving initial root failed!", e);
+			}
+		}
+		root.eAdapters().add(this);
 	}
 
 	/**
@@ -127,29 +145,31 @@ public class AutoSaveContainer<T> extends EContentAdapter {
 	 * tree of the root object.
 	 * 
 	 * @return the root node of the container.
+	 * @throws AutoSaveContainerInitilizationException if init fails
 	 */
 	@SuppressWarnings("unchecked")
-	public T init() {
+	public T init() throws AutoSaveContainerInitilizationException {
 		String rootFilePath = path + ROOT_FILENAME + extension;
 		File workspaceFile = new File(rootFilePath);
 		Resource rootResource;
 		if (!workspaceFile.exists()) {
 			URI fileURI = URI.createFileURI(rootFilePath);
-			rootObject = rootClass.getEPackage().getEFactoryInstance().create(rootClass);
+			rootObject = (T) rootClass.getEPackage().getEFactoryInstance().create(rootClass);
 			rootResource = resourceSet.createResource(fileURI);
 			rootResource.getContents().add(rootObject);
 		} else {
 			rootResource = resourceSet.getResource(URI.createFileURI(rootFilePath), true);
 			EList<EObject> directContents = rootResource.getContents();
 			if (directContents.size() != 1) {
-				throw new IllegalStateException("Root resource contains more than one root object: " + rootFilePath);
+				throw new AutoSaveContainerInitilizationException("Root resource contains more than one root object: "
+					+ rootFilePath);
 			}
-			rootObject = directContents.get(0);
+			rootObject = (T) directContents.get(0);
 		}
 		save(rootObject);
 		rootObject.eAdapters().add(this);
 		this.initialized = true;
-		return (T) rootObject;
+		return rootObject;
 	}
 
 	private boolean needsTracking(Object object) {
@@ -181,10 +201,10 @@ public class AutoSaveContainer<T> extends EContentAdapter {
 
 	private void save(EObject changeObject) {
 		Resource eResource = changeObject.eResource();
+		if (currentResource == null) {
+			currentResource = eResource;
+		}
 		try {
-			if (currentResource == null) {
-				currentResource = eResource;
-			}
 			eResource.save(null);
 		} catch (IOException e) {
 			exceptionHandler.handleExceptionOnSave(changeObject, eResource, e);
@@ -201,19 +221,25 @@ public class AutoSaveContainer<T> extends EContentAdapter {
 		super.addAdapter(notifier);
 		if (needsTracking(notifier)) {
 			EObject addedObject = (EObject) notifier;
-			Resource oldResource = addedObject.eResource();
-			if (resourceIsFull(oldResource)) {
-				Resource resource;
-				if (currentResource != null && !resourceIsFull(currentResource)) {
-					resource = currentResource;
-				} else {
-					resource = createRandomResource(resourceSet, path);
-					currentResource = resource;
-				}
-				resource.getContents().add(addedObject);
-				save(addedObject);
-			}
+			addToResource(addedObject);
+			save(addedObject);
 		}
+	}
+
+	private Resource addToResource(EObject addedObject) {
+		Resource oldResource = addedObject.eResource();
+		if (resourceIsFull(oldResource)) {
+			Resource resource;
+			if (currentResource != null && !resourceIsFull(currentResource)) {
+				resource = currentResource;
+			} else {
+				resource = createRandomResource(resourceSet, path);
+				currentResource = resource;
+			}
+			resource.getContents().add(addedObject);
+			return resource;
+		}
+		return oldResource;
 	}
 
 	private boolean resourceIsFull(Resource oldResource) {
