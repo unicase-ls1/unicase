@@ -17,12 +17,14 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import org.unicase.model.ModelElement;
+import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.Project;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.util.AutoSaveContainer;
 import org.unicase.model.util.AutoSaveContainerExceptionHandler;
+import org.unicase.model.util.AutoSaveContainerInitilizationException;
 import org.unicase.model.util.FileUtil;
 
 /**
@@ -56,9 +58,10 @@ public class AutoSaveContainerTest implements AutoSaveContainerExceptionHandler 
 
 	/**
 	 * Test a container with an empty startup.
+	 * @throws AutoSaveContainerInitilizationException if test fails
 	 */
 	@Test
-	public void testEmptyContainer() {
+	public void testEmptyContainer() throws AutoSaveContainerInitilizationException {
 		container.setMaxFileSize(MAX_FILE_SIZE);
 		assertEquals(false, fileExists(path + File.separator + AutoSaveContainer.ROOT_FILENAME + EXTENSION));
 		Project project = container.init();
@@ -109,9 +112,10 @@ public class AutoSaveContainerTest implements AutoSaveContainerExceptionHandler 
 
 	/**
 	 * Test a tree delete.
+	 * @throws AutoSaveContainerInitilizationException if test fails
 	 */
 	@Test
-	public void testTreeDelete() {
+	public void testTreeDelete() throws AutoSaveContainerInitilizationException {
 		container.setMaxFileSize(MAX_FILE_SIZE);
 		assertEquals(false, fileExists(path + File.separator + AutoSaveContainer.ROOT_FILENAME + EXTENSION));
 		Project project = container.init();
@@ -139,6 +143,57 @@ public class AutoSaveContainerTest implements AutoSaveContainerExceptionHandler 
 		functionalRequirement.delete();
 		assertEquals(1, dirSize(path));
 		assertEquals(0, project.getAllModelElements().size());
+	}
+	
+	/**
+	 * Test adding initial content.
+	 * @throws AutoSaveContainerInitilizationException if test fails
+	 */
+	@Test
+	public void testAddInitial() throws AutoSaveContainerInitilizationException {
+		container.setMaxFileSize(MAX_FILE_SIZE);
+		assertEquals(false, fileExists(path + File.separator + AutoSaveContainer.ROOT_FILENAME + EXTENSION));
+		Project project = ModelFactory.eINSTANCE.createProject();
+		FunctionalRequirement functionalRequirement = RequirementFactory.eINSTANCE.createFunctionalRequirement();
+		project.addModelElement(functionalRequirement);
+		functionalRequirement.setName("FR1");
+		functionalRequirement.setDescription("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk");
+		FunctionalRequirement functionalRequirement2 = RequirementFactory.eINSTANCE.createFunctionalRequirement();
+		functionalRequirement2.setName("fr2");
+		functionalRequirement.getRefiningRequirements().add(functionalRequirement2);
+		container.initWithRoot(project);
+		assertEquals(2, dirSize(path));
+		assertEquals(true, fileSize(path + File.separator + AutoSaveContainer.ROOT_FILENAME + EXTENSION) >= MAX_FILE_SIZE);
+		container.destroy();
+		assertEquals(2, dirSize(path));
+		assertEquals(true, fileSize(path + File.separator + AutoSaveContainer.ROOT_FILENAME + EXTENSION) >= MAX_FILE_SIZE);
+		
+		container = new AutoSaveContainer<Project>(ModelPackage.eINSTANCE.getProject(), path, EXTENSION, this);
+		Project project2 = container.init();
+		assertEquals(2, project2.getAllModelElements().size());
+		ModelElement modelElement = project2.getModelElement(functionalRequirement.getModelElementId());
+		assertEquals(true, modelElement != null);
+		assertEquals(1, modelElement.getAllContainedModelElements().size());
+		assertEquals(functionalRequirement2.getModelElementId(), modelElement.getAllContainedModelElements().iterator().next().getModelElementId());
+		assertEquals("kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", modelElement.getDescription());
+		assertEquals(2, dirSize(path));
+		assertEquals(true, fileSize(path + File.separator + AutoSaveContainer.ROOT_FILENAME + EXTENSION) >= MAX_FILE_SIZE);
 	}
 	
 	/**
