@@ -4,6 +4,6 @@ import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { CreateNewProject.class, CheckoutTest.class })
+@Suite.SuiteClasses( { CreateNewProject.class })
 public class EMFTestSuite {
 }
