@@ -148,7 +148,7 @@ public class AutoSaveContainerTest implements AutoSaveContainerExceptionHandler 
 	 */
 	@After
 	public void tearDown() throws IOException {
-		//FileUtil.deleteFolder(new File(path));
+		FileUtil.deleteFolder(new File(path));
 	}
 
 	private boolean fileExists(String path) {
