@@ -5,10 +5,15 @@
  */
 package org.unicase.ui.stem.commands;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.ui.IPartListener;
 import org.eclipse.ui.IWorkbenchPage;
+import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.unicase.model.ModelElement;
@@ -21,9 +26,22 @@ import org.unicase.ui.stem.views.statusview.StatusView;
  * 
  * @author Hodaie
  */
-public class ShowInStausViewHandler extends AbstractHandler {
+public class ShowInStausViewHandler extends AbstractHandler implements IPartListener {
 
 	private static final String STATUS_VIEW_ID = "org.unicase.ui.treeview.views.StatusView";
+	private static List<StatusView> openStatusViews;
+
+	public ShowInStausViewHandler() {
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		page.addPartListener(this);
+	}
+
+	@Override
+	public void dispose() {
+		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		page.removePartListener(this);
+		super.dispose();
+	}
 
 	/**
 	 * {@inheritDoc}
@@ -32,19 +50,64 @@ public class ShowInStausViewHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
+		if (openStatusViews == null) {
+			openStatusViews = new ArrayList<StatusView>();
+		}
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
-		ModelElement me = ActionHelper.getModelElement(event);
+		page.addPartListener(this);
+		ModelElement newInput = ActionHelper.getModelElement(event);
 
-		try {
-			StatusView statusView = (StatusView) page.showView(STATUS_VIEW_ID, me.getName(),
-				IWorkbenchPage.VIEW_ACTIVATE);
+		StatusView statusView = (StatusView) page.findView(STATUS_VIEW_ID);
+		if (statusView == null) {
+			try {
+				statusView = (StatusView) page.showView(STATUS_VIEW_ID, newInput.getName(),
+					IWorkbenchPage.VIEW_ACTIVATE);
+				statusView.setInput(newInput);
+				openStatusViews.add(statusView);
+			} catch (PartInitException e) {
+				DialogHandler.showExceptionDialog(e);
+			}
 
-			statusView.setInput(me);
+		} else {
+			if (!openStatusViews.contains(statusView)) {
+				openStatusViews.add(statusView);
+			}
+			for (StatusView stv : openStatusViews) {
+				if (!stv.isPinned()) {
+					page.activate(stv);
+					stv.setInput(newInput);
+					return null;
+				}
+			}
+			try {
 
-		} catch (PartInitException e) {
-			DialogHandler.showExceptionDialog(e);
+				StatusView newStatusView = (StatusView) page.showView(STATUS_VIEW_ID, newInput.getName(),
+					IWorkbenchPage.VIEW_ACTIVATE);
+				newStatusView.setInput(newInput);
+				openStatusViews.add(newStatusView);
+			} catch (PartInitException e) {
+				DialogHandler.showExceptionDialog(e);
+			}
+
 		}
 
 		return null;
 	}
+
+	public void partClosed(IWorkbenchPart part) {
+		openStatusViews.remove(part);
+	}
+
+	public void partActivated(IWorkbenchPart part) {
+	}
+
+	public void partBroughtToTop(IWorkbenchPart part) {
+	}
+
+	public void partDeactivated(IWorkbenchPart part) {
+	}
+
+	public void partOpened(IWorkbenchPart part) {
+	}
+
 }
