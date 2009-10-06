@@ -16,7 +16,7 @@ import org.unicase.workspace.test.SetupHelper;
 
 @SuppressWarnings( { "unused" })
 @RunWith(SWTBotJunit4ClassRunner.class)
-public class CheckoutTest {
+public class CheckoutTrial {
 
 	private static final String RESTRICTION = "restriction";
 	private static SWTWorkbenchBot bot;
@@ -25,6 +25,7 @@ public class CheckoutTest {
 	public static void beforeClass() throws Exception {
 		bot = new SWTWorkbenchBot();
 		bot.viewByTitle("Welcome").close();
+		// bot.getFinder();
 		SetupHelper.startSever();
 
 	}
@@ -53,7 +54,15 @@ public class CheckoutTest {
 			logger.info("the project list is not empty");
 			SWTBotTreeItem[] subitem = items[0].getItems();
 			subitem[0].select().contextMenu("Checkout").click();
-			bot.viewByTitle("Unicase Navigator").show();
+			try {
+				logger.info(bot.viewById("org.unicase.ui.navigator.viewer").getTitle());
+				// bot.perspectives()
+			} catch (Exception e) {
+				logger.info("Output" + e);
+			}
+			// SWTBotView[] Allviews= bot.
+			// logger.info(bot.viewById("org.unicase.ui.navigator").getTitle());
+			// ("Unicase Navigator").show();
 		}
 
 	}
@@ -63,4 +72,5 @@ public class CheckoutTest {
 		bot.sleep(5000);
 		SetupHelper.stopServer();
 	}
+
 }
