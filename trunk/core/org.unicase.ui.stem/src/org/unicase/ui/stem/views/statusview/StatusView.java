@@ -21,6 +21,7 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
 import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IToolBarManager;
+import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.layout.GridLayoutFactory;
 import org.eclipse.jface.resource.ImageDescriptor;
@@ -111,6 +112,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	private static final String ACTIVITY_TAB_IMAGE = "avtivity_tab_image";
 	private static final String WP_TAB_IMAGE = "wp_tab_image";
 	private TabFolder tabFolder;
+	private boolean pinned = false;
 
 	/**
 	 * Constructor.
@@ -196,7 +198,8 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		createTabs(root);
 		// sash.setWeights(new int[] { 20, 80 });
 		IActionBars bars = getViewSite().getActionBars();
-		IToolBarManager menuManager = bars.getToolBarManager();
+		IToolBarManager toolbarManager = bars.getToolBarManager();
+
 		Action refresh = new Action() {
 			@Override
 			public void run() {
@@ -206,7 +209,27 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		};
 		refresh.setImageDescriptor(Activator.getImageDescriptor("/icons/refresh.png"));
 		refresh.setToolTipText("Refresh");
-		menuManager.add(refresh);
+		toolbarManager.add(refresh);
+
+		toolbarManager.add(new Separator());
+		Action pinView = new Action("", SWT.TOGGLE) {
+			@Override
+			public void run() {
+				if (isChecked()) {
+					pinned = true;
+					setImageDescriptor(Activator.getImageDescriptor("/icons/unpin.png"));
+					setToolTipText("Unpin");
+				} else {
+					pinned = false;
+					setImageDescriptor(Activator.getImageDescriptor("/icons/pin.png"));
+					setToolTipText("Pin");
+				}
+			}
+		};
+		pinned = false;
+		pinView.setImageDescriptor(Activator.getImageDescriptor("/icons/pin.png"));
+		pinView.setToolTipText("Pin");
+		toolbarManager.add(pinView);
 
 	}
 
@@ -646,6 +669,13 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		}
 		refreshView();
 
+	}
+
+	/**
+	 * @return the pinned
+	 */
+	public boolean isPinned() {
+		return pinned;
 	}
 
 }
