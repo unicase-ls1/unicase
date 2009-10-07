@@ -286,11 +286,6 @@ public final class TemplateRegistry {
 	 *             template. This is a fatal Exception disabling all export functions.
 	 */
 	public static ArrayList<Template> getAllTemplates() throws TemplatesFileNotFoundException {
-		try {
-			loadDefaultTemplatesFromZipFile();
-		} catch (DefaultTemplateLoadException e) {
-			WorkspaceUtil.log("An Error occured while loading the default templates", e, IStatus.WARNING);
-		}
 
 		ArrayList<Template> templates = new ArrayList<Template>();
 
@@ -299,6 +294,11 @@ public final class TemplateRegistry {
 
 		try {
 			resource.load(resource.getResourceSet().getLoadOptions());
+			try {
+				loadDefaultTemplatesFromZipFile();
+			} catch (DefaultTemplateLoadException e) {
+				WorkspaceUtil.log("An Error occured while loading the default templates", e, IStatus.WARNING);
+			}
 		} catch (IOException e) {
 			WorkspaceUtil.log("Fetching all templates failed", new TemplatesFileNotFoundException(e), IStatus.WARNING);
 
