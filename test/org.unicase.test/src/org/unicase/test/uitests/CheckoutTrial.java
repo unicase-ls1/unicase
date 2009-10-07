@@ -56,10 +56,11 @@ public class CheckoutTrial {
 			subitem[0].select().contextMenu("Checkout").click();
 			try {
 				logger.info(bot.viewById("org.unicase.ui.navigator.viewer").getTitle());
-				// bot.perspectives()
+				// SWTBotPrespective= bot.perspectives()
 			} catch (Exception e) {
 				logger.info("Output" + e);
 			}
+
 			// SWTBotView[] Allviews= bot.
 			// logger.info(bot.viewById("org.unicase.ui.navigator").getTitle());
 			// ("Unicase Navigator").show();
