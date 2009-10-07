@@ -2,14 +2,14 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2009-09-17T10:29:43</date>
-  <millis>1253176183779</millis>
+  <date>2009-09-22T14:33:50</date>
+  <millis>1253622830628</millis>
   <sequence>9</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
-  <class>org.unicase.test.uitests.CheckoutTest</class>
-  <method>canCreateANewJavaProject</method>
+  <class>org.unicase.test.uitests.DeleteTestProject</class>
+  <method>canDeleteProject</method>
   <thread>14</thread>
-  <message>the project list is not empty</message>
+  <message>deleting a project called :testproject</message>
 </record>
 </log>
