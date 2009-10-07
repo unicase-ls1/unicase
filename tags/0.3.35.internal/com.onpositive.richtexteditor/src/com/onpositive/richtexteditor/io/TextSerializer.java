@@ -227,6 +227,11 @@ public abstract class TextSerializer
 		}
 		BasePartition startPartition = (BasePartition) curLayer.getPartitionAtOffset(offset);
 		BasePartition endPartition = (BasePartition) curLayer.getPartitionAtOffset(offset + length - 1);
+		if(endPartition ==null){
+			endPartition = (BasePartition) curLayer.getPartitionAtOffset(offset + length - 2);
+		}
+		
+		
 		if (startPartition == null) return sb.toString();
 		if (startPartition == endPartition)
 		{
