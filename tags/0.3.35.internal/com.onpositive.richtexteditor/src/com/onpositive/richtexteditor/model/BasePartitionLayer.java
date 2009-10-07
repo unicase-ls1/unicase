@@ -297,7 +297,13 @@ public class BasePartitionLayer extends AbstractModel implements IPartitionLayer
 		BasePartition resPartition = null;
 
 		BasePartition startPartition = (BasePartition) getPartitionAtOffset(offset);
+		if(startPartition==null){
+			return null;
+			
+		}
 		int startIdx = startPartition.getPosition();
+		
+			
 		BasePartition endPartition = (BasePartition) getPartitionAtOffset(offset
 				+ length);
 		
