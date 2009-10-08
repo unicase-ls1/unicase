@@ -719,6 +719,52 @@ public class HistoryBrowserView extends ViewPart implements
 	}
 
 	/**
+	 * Reverts the commit from a certain revision in a local workspace that can
+	 * be commited later.
+	 * 
+	 * @param versionSpec
+	 *            the version of the commit to revert
+	 */
+	public void revertCommit(final PrimaryVersionSpec versionSpec) {
+		ServerRequestCommandHandler handler = new ServerRequestCommandHandler() {
+
+			@Override
+			protected Object run() throws EmfStoreException {
+				checkoutAndReverseCommit(versionSpec);
+				return null;
+			}
+
+			@Override
+			public String getTaskTitle() {
+				return "Resolving project versions...";
+			}
+		};
+		try {
+			handler.execute(new ExecutionEvent());
+		} catch (ExecutionException e) {
+			DialogHandler.showErrorDialog(e.getMessage());
+		}
+	}
+
+	private void checkoutAndReverseCommit(final PrimaryVersionSpec versionSpec)
+			throws EmfStoreException {
+		ProjectSpace revertSpace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().checkout(projectSpace.getUsersession(),
+						projectSpace.getProjectInfo(), versionSpec);
+		PrimaryVersionSpec sourceVersion = ModelUtil.clone(versionSpec);
+		sourceVersion.setIdentifier(sourceVersion.getIdentifier() - 1);
+		List<ChangePackage> changes = revertSpace.getChanges(sourceVersion,
+				versionSpec);
+		if (changes.size() != 1) {
+			throw new EmfStoreException(
+					"Zero or more than 1 Change Package received for one revision!");
+		}
+		ChangePackage changePackage = changes.get(0);
+		ChangePackage reversedChangePackage = changePackage.reverse();
+		reversedChangePackage.apply(revertSpace.getProject(), true);
+	}
+
+	/**
 	 * Removes a tag to a version.
 	 * 
 	 * @param versionSpec
