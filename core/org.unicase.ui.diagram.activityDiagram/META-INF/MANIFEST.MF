@@ -2,10 +2,10 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: org.unicase.ui.diagram.activityDiagram; singleton:=true
-Bundle-Version: 0.3.34.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-ClassPath: .
 Bundle-Activator: org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-Bundle-Vendor: %providerName
+Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Export-Package: org.unicase.ui.diagram.activityDiagram.edit.parts,
  org.unicase.ui.diagram.activityDiagram.part,

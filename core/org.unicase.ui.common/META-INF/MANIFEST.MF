@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Common UI Plug-in
+Bundle-Name: unicase Common UI Plug-in
 Bundle-SymbolicName: org.unicase.ui.common;singleton:=true
-Bundle-Version: 0.3.34.qualifier
+Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.ui.common.Activator
-Bundle-Vendor: TU-Muenchen
+Bundle-Vendor: unicase.org
 Require-Bundle: org.eclipse.ui;visibility:=reexport,
  org.eclipse.core.expressions;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,

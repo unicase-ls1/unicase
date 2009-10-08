@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.model.ModelElement;
@@ -474,5 +475,48 @@ public final class ModelUtil {
 			clonedList.add(element);
 		}
 		return clonedList;
+	}
+
+	/**
+	 * Load an EObject from a resource, the resource is supposed to contain only one root object of the given EClass
+	 * type. Type T must match EClass type.
+	 * 
+	 * @param <T> Type of the EObject
+	 * @param eClass the EClass of the EObject
+	 * @param resourceURI the resources URI
+	 * @return the object loaded from the resource
+	 * @throws IOException if loading the object from the resource fails.
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T extends EObject> T loadEObjectFromResource(EClass eClass, URI resourceURI) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.getResource(resourceURI, false);
+		EList<EObject> contents = resource.getContents();
+		if (contents.size() > 1) {
+			throw new IOException("Resource containes multiple objects!");
+		}
+		if (contents.size() < 1) {
+			throw new IOException("Resource contains no objects");
+		}
+		EObject eObject = contents.get(0);
+		if (!(eClass.isInstance(eObject))) {
+			throw new IOException("Resource contains no objects of given class");
+		}
+		return (T) eObject;
+	}
+
+	/**
+	 * Save an Eobject to a resource.
+	 * 
+	 * @param eObject the object
+	 * @param resourceURI the resources URI
+	 * @throws IOException if saving to the resource fails.
+	 */
+	public static void saveObjectToResource(EObject eObject, URI resourceURI) throws IOException {
+		ResourceSet resourceSet = new ResourceSetImpl();
+		Resource resource = resourceSet.createResource(resourceURI);
+		EList<EObject> contents = resource.getContents();
+		contents.add(eObject);
+		resource.save(null);
 	}
 }
