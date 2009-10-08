@@ -45,8 +45,10 @@ public class ImportProject {
 		bot.table().select("Unicase");
 		bot.button("OK").click();
 		SWTBotView viewById = bot.activeView();
+		int x1 = bot.tree().rowCount();
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
 		try {
+
 			logger.info(bot.tree().contextMenu("Import").menu("Import Project").getText());
 			bot.tree().contextMenu("Import").menu("Import Project").click();
 		} catch (Exception e) {
@@ -54,20 +56,29 @@ public class ImportProject {
 		}
 		logger.info("sleeping down for the first time to select the imported project");
 		bot.sleep(30000);
+
 		logger.info("waking up for the first time");
 		openPerspectiveShell = bot.shell("Project Name");
 		openPerspectiveShell.activate();
 		// logger.info(bot.textWithLabel("Please enter a name for the import project:").getText());
 		// bot.button("OK").click();
 		bot.text().typeText("test2");
-		bot.button("Cancel").click();
-
+		bot.button("OK").click();
+		bot.button("OK").click();
+		bot.menu("Window").menu("Open Perspective").menu("Other...").click();
+		openPerspectiveShell = bot.shell("Open Perspective");
+		openPerspectiveShell.activate();
+		bot.table().select("Unicase");
+		bot.button("OK").click();
+		int x2 = bot.tree().rowCount();
+		// logger.info(x1 + " " + x2);
+		// logger.info(bot.tree(x2 - 1).getText());
 	}
 
 	@AfterClass
 	public static void sleep() {
 		logger.info("sleeping down for the 2nd time and closing the server");
-		bot.sleep(50000);
+		bot.sleep(5000);
 		SetupHelper.stopServer();
 		logger.info("waking up for the last time and project will end");
 
