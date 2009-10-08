@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="MacRoman" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2009-10-07T15:50:31</date>
+  <millis>1254923431303</millis>
+  <sequence>9</sequence>
+  <logger>LoggerTest</logger>
+  <level>INFO</level>
+  <class>org.unicase.test.uitests.CheckoutTrial</class>
+  <method>checkoutProject</method>
+  <thread>14</thread>
+  <message>the project list is not empty</message>
+</record>
+</log>
