@@ -207,9 +207,11 @@ public final class ActionHelper {
 			DialogHandler.showExceptionDialog(e);
 		} catch (NotHandledException e) {
 			DialogHandler.showExceptionDialog(e);
+		// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e){
 			DialogHandler.showExceptionDialog(e);
 		}
+		//END SUPRESS CATCH EXCEPTION
 	}
 
 	private static void openMEwithMEEditor(ModelElement me) {
