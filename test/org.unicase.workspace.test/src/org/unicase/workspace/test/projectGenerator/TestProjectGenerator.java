@@ -5,6 +5,13 @@
  */
 package org.unicase.workspace.test.projectGenerator;
 
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Random;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
@@ -34,13 +41,6 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.impl.WorkspaceImpl;
 import org.unicase.workspace.util.UnicaseCommand;
-
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
-import java.util.Random;
 
 /**
  * @author Hodaie This class creates a test random model. The test takes parameters like minimum number of model
@@ -713,6 +713,7 @@ public class TestProjectGenerator {
 	 * 
 	 * @param instance
 	 */
+	// BEGIN COMPLEX CODE
 	private void initializeSimpleAttributes(EObject instance) {
 
 		for (EAttribute attribute : instance.eClass().getEAllAttributes()) {
