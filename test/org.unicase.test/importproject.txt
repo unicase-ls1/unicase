@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2009-10-08T19:25:09</date>
-  <millis>1255022709881</millis>
+  <date>2009-10-08T21:09:52</date>
+  <millis>1255028992070</millis>
   <sequence>4</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
@@ -13,8 +13,8 @@
   <message>Import Project</message>
 </record>
 <record>
-  <date>2009-10-08T19:25:10</date>
-  <millis>1255022710124</millis>
+  <date>2009-10-08T21:09:52</date>
+  <millis>1255028992295</millis>
   <sequence>5</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
@@ -22,5 +22,49 @@
   <method>importproject</method>
   <thread>13</thread>
   <message>sleeping down for the first time to select the imported project</message>
+</record>
+<record>
+  <date>2009-10-08T21:10:22</date>
+  <millis>1255029022296</millis>
+  <sequence>6</sequence>
+  <logger>LoggerTest</logger>
+  <level>INFO</level>
+  <class>org.unicase.test.uitests.ImportProject</class>
+  <method>importproject</method>
+  <thread>13</thread>
+  <message>waking up for the first time</message>
+</record>
+<record>
+  <date>2009-10-08T21:10:23</date>
+  <millis>1255029023133</millis>
+  <sequence>7</sequence>
+  <logger>LoggerTest</logger>
+  <level>INFO</level>
+  <class>org.unicase.test.uitests.ImportProject</class>
+  <method>importproject</method>
+  <thread>13</thread>
+  <message>2 3</message>
+</record>
+<record>
+  <date>2009-10-08T21:10:25</date>
+  <millis>1255029025968</millis>
+  <sequence>8</sequence>
+  <logger>LoggerTest</logger>
+  <level>INFO</level>
+  <class>org.unicase.test.uitests.ImportProject</class>
+  <method>sleep</method>
+  <thread>13</thread>
+  <message>sleeping down for the 2nd time and closing the server</message>
+</record>
+<record>
+  <date>2009-10-08T21:10:30</date>
+  <millis>1255029030973</millis>
+  <sequence>11</sequence>
+  <logger>LoggerTest</logger>
+  <level>INFO</level>
+  <class>org.unicase.test.uitests.ImportProject</class>
+  <method>sleep</method>
+  <thread>13</thread>
+  <message>waking up for the last time and project will end</message>
 </record>
 </log>
