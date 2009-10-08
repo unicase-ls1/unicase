@@ -25,6 +25,7 @@ public class CheckoutTrial {
 	public static void beforeClass() throws Exception {
 		bot = new SWTWorkbenchBot();
 		bot.viewByTitle("Welcome").close();
+
 		// bot.getFinder();
 		SetupHelper.startSever();
 
@@ -55,8 +56,15 @@ public class CheckoutTrial {
 			SWTBotTreeItem[] subitem = items[0].getItems();
 			subitem[0].select().contextMenu("Checkout").click();
 			try {
-				logger.info(bot.viewById("org.unicase.ui.navigator.viewer").getTitle());
-				// SWTBotPrespective= bot.perspectives()
+				// logger.info(bot.viewById("org.unicase.ui.navigator.viewer").getTitle());
+
+				bot.menu("Window").menu("Open Perspective").menu("Other...").click();
+				SWTBotShell openPerspectiveShell = bot.shell("Open Perspective");
+				openPerspectiveShell.activate();
+				bot.table().select("Unicase");
+				bot.button("OK").click();
+
+				// TBotPrespective= bot.perspectives();
 			} catch (Exception e) {
 				logger.info("Output" + e);
 			}

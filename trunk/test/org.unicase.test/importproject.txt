@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="MacRoman" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2009-10-08T17:41:49</date>
+  <millis>1255016509156</millis>
+  <sequence>4</sequence>
+  <logger>LoggerTest</logger>
+  <level>INFO</level>
+  <class>org.unicase.test.uitests.ImportProject</class>
+  <method>sleep</method>
+  <thread>13</thread>
+  <message>sleeping down for the 2nd time and closing the server</message>
+</record>
+<record>
+  <date>2009-10-08T17:41:54</date>
+  <millis>1255016514159</millis>
+  <sequence>7</sequence>
+  <logger>LoggerTest</logger>
+  <level>INFO</level>
+  <class>org.unicase.test.uitests.ImportProject</class>
+  <method>sleep</method>
+  <thread>13</thread>
+  <message>waking up for the last time and project will end</message>
+</record>
+</log>

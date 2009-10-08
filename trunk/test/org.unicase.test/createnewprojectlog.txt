@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="MacRoman" standalone="no"?>
+<!DOCTYPE log SYSTEM "logger.dtd">
+<log>
+<record>
+  <date>2009-10-07T23:54:26</date>
+  <millis>1254952466842</millis>
+  <sequence>9</sequence>
+  <logger>LoggerTest</logger>
+  <level>INFO</level>
+  <class>org.unicase.test.uitests.CreateNewProject</class>
+  <method>canCreateANewProject</method>
+  <thread>14</thread>
+  <message>testproject exists 0</message>
+</record>
+<record>
+  <date>2009-10-07T23:54:26</date>
+  <millis>1254952466843</millis>
+  <sequence>10</sequence>
+  <logger>LoggerTest</logger>
+  <level>INFO</level>
+  <class>org.unicase.test.uitests.CreateNewProject</class>
+  <method>canCreateANewProject</method>
+  <thread>14</thread>
+  <message>testproject already exists</message>
+</record>
+</log>

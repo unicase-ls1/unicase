@@ -23,7 +23,7 @@ public class DeleteTestProject {
 	@BeforeClass
 	public static void beforeClass() throws Exception {
 		bot = new SWTWorkbenchBot();
-		bot.viewByTitle("Welcome").close();
+		// bot.viewByTitle("Welcome").close();
 		// bot.getFinder();
 		SetupHelper.startSever();
 
@@ -78,7 +78,7 @@ public class DeleteTestProject {
 
 	@AfterClass
 	public static void sleep() {
-		bot.sleep(20000);
+		bot.sleep(2000);
 		SetupHelper.stopServer();
 	}
 
