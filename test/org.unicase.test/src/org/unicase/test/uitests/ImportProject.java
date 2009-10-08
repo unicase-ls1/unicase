@@ -60,14 +60,14 @@ public class ImportProject {
 		// logger.info(bot.textWithLabel("Please enter a name for the import project:").getText());
 		// bot.button("OK").click();
 		bot.text().typeText("test2");
-		bot.button("OK").click();
+		bot.button("Cancel").click();
 
 	}
 
 	@AfterClass
 	public static void sleep() {
 		logger.info("sleeping down for the 2nd time and closing the server");
-		bot.sleep(5000);
+		bot.sleep(50000);
 		SetupHelper.stopServer();
 		logger.info("waking up for the last time and project will end");
 

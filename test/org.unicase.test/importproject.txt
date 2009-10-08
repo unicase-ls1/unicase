@@ -2,25 +2,25 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2009-10-08T17:41:49</date>
-  <millis>1255016509156</millis>
+  <date>2009-10-08T19:25:09</date>
+  <millis>1255022709881</millis>
   <sequence>4</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
   <class>org.unicase.test.uitests.ImportProject</class>
-  <method>sleep</method>
+  <method>importproject</method>
   <thread>13</thread>
-  <message>sleeping down for the 2nd time and closing the server</message>
+  <message>Import Project</message>
 </record>
 <record>
-  <date>2009-10-08T17:41:54</date>
-  <millis>1255016514159</millis>
-  <sequence>7</sequence>
+  <date>2009-10-08T19:25:10</date>
+  <millis>1255022710124</millis>
+  <sequence>5</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
   <class>org.unicase.test.uitests.ImportProject</class>
-  <method>sleep</method>
+  <method>importproject</method>
   <thread>13</thread>
-  <message>waking up for the last time and project will end</message>
+  <message>sleeping down for the first time to select the imported project</message>
 </record>
 </log>
