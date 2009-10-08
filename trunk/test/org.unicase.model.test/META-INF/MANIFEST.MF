@@ -1,6 +1,6 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: Model Test plugin
+Bundle-Name: unicase Model Test plugin
 Bundle-SymbolicName: org.unicase.model.test;singleton:=true
 Bundle-Version: 0.0.1.qualifier
 Bundle-Vendor: unicase.org
