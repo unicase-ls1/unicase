@@ -1360,6 +1360,7 @@ public class Topology1toNTest extends TopologyTest {
 		assertEquals(op6.getIndex(), 1);
 	}
 
+	// BEGIN COMPLEX CODE
 	/**
 	 * add several already contained children to an empty containment feature.
 	 * 

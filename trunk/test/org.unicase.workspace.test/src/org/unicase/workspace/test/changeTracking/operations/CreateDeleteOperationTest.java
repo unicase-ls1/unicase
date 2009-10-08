@@ -100,6 +100,7 @@ public class CreateDeleteOperationTest extends OperationTest {
 	 * @throws UnsupportedNotificationException on test fail
 	 */
 	@Test
+	// BEGIN COMPLEX CODE
 	public void complexDeleteElementTest() throws UnsupportedOperationException, UnsupportedNotificationException {
 		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
 		getProject().addModelElement(section);
