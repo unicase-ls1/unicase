@@ -44,8 +44,12 @@ public class EditModelElementDescp {
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
 		logger.info(items[0].getText());
 		items[0].expand().getNode(0).select().doubleClick();
-		viewById = bot.activeView();
-		logger.info(viewById.getTitle());
+
+		// logger.info("active editor" + bot.activeEditor().);
+		// bot.textWithLabel("Name").typeText("hi");
+		logger.info(bot.editorById("org.unicase.ui.meeditor").getTitle());
+		// bot.e
+
 	}
 
 	@AfterClass
