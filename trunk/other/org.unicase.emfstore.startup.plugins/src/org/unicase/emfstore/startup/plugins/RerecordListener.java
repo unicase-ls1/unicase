@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.startup.plugins;
 
 import java.io.IOException;
@@ -12,11 +17,17 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.startup.StartupListener;
 import org.unicase.model.Project;
 
+/**
+ * A emfstore startup listener which rerecord all operations of all projects on the server.
+ * 
+ * @author wesendon
+ *
+ */
 public class RerecordListener implements StartupListener {
 
-	public RerecordListener() {
-	}
-
+	/**
+	 * {@inheritDoc}
+	 */
 	public void startedUp(List<ProjectHistory> projects) {
 		for (ProjectHistory pH : projects) {
 			ChangeReRecorder changeReRecorder = new ChangeReRecorder();
@@ -56,8 +67,9 @@ public class RerecordListener implements StartupListener {
 						}
 					}
 				}
-				if(i==0)
+				if(i==0) {
 					continue;
+				}
 				System.out.print(".");
 				if(i%30==0) {
 					System.out.println(" i:"+i);
