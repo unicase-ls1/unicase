@@ -1,3 +1,8 @@
+/**
+ * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
+ * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
+ * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
+ */
 package org.unicase.emfstore.startup.plugins;
 
 import java.util.Arrays;
@@ -11,15 +16,24 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.model.Project;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
+/**
+ * Is used to rerecord changes.
+ * 
+ * @author wesendon
+ */
 public class ChangeReRecorder {
 
 	private ProjectSpaceImpl projectSpace;
 
+	/**
+	 * Initialises the transiet projecstapce which is needed for rerecording.
+	 * 
+	 * @param project initial project
+	 */
 	public void init(Project project) {
 		if (project == null) {
 			throw new IllegalStateException();
@@ -37,6 +51,12 @@ public class ChangeReRecorder {
 		projectSpace.init();
 	}
 
+	/**
+	 * Converts the operations through rerecording.
+	 * 
+	 * @param operations list of operations
+	 * @return new operations
+	 */
 	public List<AbstractOperation> convertOperations(List<AbstractOperation> operations) {
 		projectSpace.getOperations().clear();
 		applyOperationForOperation(operations);
@@ -69,6 +89,10 @@ public class ChangeReRecorder {
 		operation.setClientDate(clientDate==null?null:(Date) clientDate.clone());
 	}
 
+	/**
+	 * Returns a copy of the project.
+	 * @return project
+	 */
 	public Project getProject() {
 		return (Project) EcoreUtil.copy(projectSpace.getProject());
 	}
