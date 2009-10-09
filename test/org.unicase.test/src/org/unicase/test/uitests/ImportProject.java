@@ -55,7 +55,7 @@ public class ImportProject {
 			logger.info("" + e);
 		}
 		logger.info("sleeping down for the first time to select the imported project");
-		bot.sleep(30000);
+		bot.sleep(9000);
 
 		logger.info("waking up for the first time");
 		openPerspectiveShell = bot.shell("Project Name");
@@ -71,14 +71,28 @@ public class ImportProject {
 		bot.table().select("Unicase");
 		bot.button("OK").click();
 		int x2 = bot.tree().rowCount();
-		// logger.info(x1 + " " + x2);
-		// logger.info(bot.tree(x2 - 1).getText());
+		logger.info(x1 + " " + x2);
+		items = bot.tree().getAllItems();
+		logger.info(items[x2 - 1].getText());
+		try {
+			logger.info("Check:" + items[x2 - 1].select().contextMenu("Share  Project").getText());
+			items[x2 - 1].select().contextMenu("Share  Project").click();
+			openPerspectiveShell = bot.shell("Select Usersession");
+			openPerspectiveShell.activate();
+			bot.table().select(0);
+			bot.button("OK").click();
+			bot.table().select(0);
+			bot.button("OK").click();
+			bot.button("OK").click();
+		} catch (Exception e) {
+			logger.info(" " + e);
+		}
 	}
 
 	@AfterClass
 	public static void sleep() {
 		logger.info("sleeping down for the 2nd time and closing the server");
-		bot.sleep(5000);
+		bot.sleep(9000);
 		SetupHelper.stopServer();
 		logger.info("waking up for the last time and project will end");
 
