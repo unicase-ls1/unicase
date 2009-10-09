@@ -115,6 +115,19 @@ public final class ModelUtil {
 	 * @throws SerializationException if a serialization problem occurs
 	 */
 	public static String eObjectToString(EObject object) throws SerializationException {
+		return eObjectToString(object, false);
+	}
+
+	/**
+	 * Converts an EObject to a String.
+	 * 
+	 * @param object the eObject
+	 * @param overrideContainmentCheck if true, no containment check
+	 * @return String representation of the EObject
+	 * @throws SerializationException if a serialization problem occurs
+	 */
+	public static String eObjectToString(EObject object, boolean overrideContainmentCheck)
+		throws SerializationException {
 		if (object == null) {
 			return null;
 		}
@@ -122,7 +135,9 @@ public final class ModelUtil {
 		Resource res = (new ResourceSetImpl()).createResource(VIRTUAL_URI);
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 
-		checkIfSelfContained(object);
+		if (!overrideContainmentCheck) {
+			checkIfSelfContained(object);
+		}
 
 		EObject copy = EcoreUtil.copy(object);
 
