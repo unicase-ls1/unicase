@@ -27,7 +27,7 @@ public class CheckoutTrial {
 		bot.viewByTitle("Welcome").close();
 
 		// bot.getFinder();
-		SetupHelper.startSever();
+		// SetupHelper.startSever();
 
 	}
 

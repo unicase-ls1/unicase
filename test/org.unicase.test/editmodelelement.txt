@@ -1,26 +1,4 @@
 <?xml version="1.0" encoding="MacRoman" standalone="no"?>
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
-<record>
-  <date>2009-10-09T11:34:03</date>
-  <millis>1255080843000</millis>
-  <sequence>4</sequence>
-  <logger>LoggerTest</logger>
-  <level>INFO</level>
-  <class>org.unicase.test.uitests.EditModelElementDescp</class>
-  <method>editModelElement</method>
-  <thread>13</thread>
-  <message>Unicase Navigator</message>
-</record>
-<record>
-  <date>2009-10-09T11:34:03</date>
-  <millis>1255080843005</millis>
-  <sequence>5</sequence>
-  <logger>LoggerTest</logger>
-  <level>INFO</level>
-  <class>org.unicase.test.uitests.EditModelElementDescp</class>
-  <method>editModelElement</method>
-  <thread>13</thread>
-  <message>test2</message>
-</record>
 </log>
