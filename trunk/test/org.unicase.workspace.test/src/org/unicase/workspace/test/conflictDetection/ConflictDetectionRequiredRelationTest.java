@@ -293,9 +293,10 @@ public class ConflictDetectionRequiredRelationTest extends ConflictDetectionTest
 
 		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
 
-		assertEquals(0, cd.getRequired(ops, setSolution2).size());
-		assertEquals(1, cd.getRequiring(ops, createSolution1).size());
+		assertEquals(1, cd.getRequired(ops, setSolution2).size());
+		assertEquals(2, cd.getRequiring(ops, createSolution1).size());
 		assertSame(cd.getRequiring(ops, createSolution1).get(0), setSolution1);
+		assertSame(cd.getRequiring(ops, createSolution1).get(1), setSolution2);
 
 	}
 
