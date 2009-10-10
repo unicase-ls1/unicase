@@ -10,6 +10,7 @@ import static org.junit.Assert.assertEquals;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -228,6 +229,10 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		Actor actor = RequirementFactory.eINSTANCE.createActor();
 		Actor dummy = RequirementFactory.eINSTANCE.createActor();
 
+		section.setIdentifier("section");
+		actor.setIdentifier("actor");
+		dummy.setIdentifier("dummy");
+
 		getProject().addModelElement(section);
 		getProject().addModelElement(actor);
 		getProject().addModelElement(dummy);
@@ -244,19 +249,18 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		LeafSection section2 = (LeafSection) project2.getModelElement(section.getModelElementId());
 
 		section1.getModelElements().add(actor1);
-
 		section2.getModelElements().add(dummy2);
 		actor2.setLeafSection(section2);
 
-		List<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
-		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
+		EList<AbstractOperation> ops1 = getProjectSpace().getLocalOperations().getOperations();
+		EList<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
 
 		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
 
-		// index conflict expected: when adding by setting parent, index is unknown
-		// and is thus potentially conflicting
-		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
-			.size());
+		// ops1,ops2 not same as ops1,ops2
+		// assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
+		// .size());
+		assertEquals(2, cd.getConflictingIndexIntegrity(ops1, ops2).size());
 		assertEquals(1, cd.getConflictingIndexIntegrity(ops2, ops1).size());
 
 	}
@@ -296,12 +300,10 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 
 		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
 
-		// no index conflict expected:
-		// appending, then adding at 0 and gives same result in reverse order
-		// appending and appending the same thing gives also same result in reverse order
-		assertEquals(cd.getConflictingIndexIntegrity(ops2, ops1).size(), cd.getConflictingIndexIntegrity(ops1, ops2)
-			.size());
-		assertEquals(0, cd.getConflictingIndexIntegrity(ops1, ops2).size());
+		// assertEquals(cd.getConflictingIndexIntegrity(ops2, ops1).size(), cd.getConflictingIndexIntegrity(ops1, ops2)
+		// .size());
+		assertEquals(2, cd.getConflictingIndexIntegrity(ops1, ops2).size());
+		assertEquals(1, cd.getConflictingIndexIntegrity(ops2, ops1).size());
 
 	}
 
@@ -422,8 +424,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		Set<AbstractOperation> conflicts = cd.getConflictingIndexIntegrity(ops1, ops2);
 		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
 			.size());
-		// no index-integrity conflict, outcome does not depend on serialization
-		assertEquals(conflicts.size(), 0);
+		assertEquals(conflicts.size(), 1);
 
 	}
 
@@ -460,12 +461,9 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
 
 		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
-
-		// no index-conflict:
-		// appending and adding at 0 gives same result in reverse
 		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
 			.size());
-		assertEquals(0, cd.getConflictingIndexIntegrity(ops2, ops1).size());
+		assertEquals(1, cd.getConflictingIndexIntegrity(ops2, ops1).size());
 
 	}
 
@@ -541,12 +539,9 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		List<AbstractOperation> ops2 = ps2.getLocalOperations().getOperations();
 
 		ConflictDetector cd = new ConflictDetector(getConflictDetectionStrategy());
-
-		// no index-conflict, outcome does not depend on serialization for each op
-		// add at 0 and append or append and add at 0 does not matter
 		assertEquals(cd.getConflictingIndexIntegrity(ops2, ops1).size(), cd.getConflictingIndexIntegrity(ops1, ops2)
 			.size());
-		assertEquals(0, cd.getConflictingIndexIntegrity(ops1, ops2).size());
+		assertEquals(1, cd.getConflictingIndexIntegrity(ops1, ops2).size());
 
 	}
 
@@ -1592,8 +1587,7 @@ public class ConflictDetectionMultiReferenceTest extends ConflictDetectionTest {
 		Set<AbstractOperation> conflicts = cd.getConflictingIndexIntegrity(ops1, ops2);
 		assertEquals(cd.getConflictingIndexIntegrity(ops1, ops2).size(), cd.getConflictingIndexIntegrity(ops2, ops1)
 			.size());
-		// index-integrity conflict if remove comes first, actor1 ends up somewhere else
-		assertEquals(conflicts.size(), 1);
+		assertEquals(conflicts.size(), 0);
 
 	}
 
