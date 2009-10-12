@@ -51,7 +51,7 @@ public class CleanMemoryTask extends Task {
 	@Override
 	public void executeTask() {
 		synchronized (MonitorProvider.getInstance().getMonitor()) {
-			LOGGER.info("checking whether projectstates have to be unloaded.");
+			// LOGGER.info("checking whether projectstates have to be unloaded.");
 			ResourceSet resourceSet = serverSpace.eResource().getResourceSet();
 			EList<Resource> resources = resourceSet.getResources();
 			for (int i = 0; i < resources.size(); i++) {
