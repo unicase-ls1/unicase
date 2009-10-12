@@ -11,19 +11,15 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.unicase.workspace.test.SetupHelper;
 
-@SuppressWarnings( { "unused" })
 @RunWith(SWTBotJunit4ClassRunner.class)
 public class SWTDiagramTest {
 
-	private static final String RESTRICTION = "restriction";
 	private static SWTWorkbenchBot bot;
 
 	@BeforeClass
 	public static void beforeClass() throws Exception {
 		bot = new SWTWorkbenchBot();
 		bot.viewByTitle("Welcome").close();
-
-		// bot.getFinder();
 		SetupHelper.startSever();
 
 	}
@@ -44,10 +40,10 @@ public class SWTDiagramTest {
 
 		SWTBotView viewById = bot.activeView();
 		SWTBotTreeItem[] items = viewById.bot().tree().getAllItems();
-		SWTBotTreeItem[] tempitem = items[0].expand().getItems();
-		items = tempitem[0].expand().getItems();
-		tempitem = items[3].expand().getItems();
-		tempitem[0].doubleClick();
+		SWTBotTreeItem[] subitem = items[0].expand().getItems();
+		items = subitem[0].expand().getItems();
+		subitem = items[3].expand().getItems();
+		subitem[0].doubleClick();
 
 	}
 
