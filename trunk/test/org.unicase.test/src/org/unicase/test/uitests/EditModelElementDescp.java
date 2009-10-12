@@ -47,15 +47,19 @@ public class EditModelElementDescp {
 
 		// logger.info("active editor" + bot.activeEditor().);
 		// bot.textWithLabel("Name").typeText("hi");
-		logger.info(bot.editorById("org.unicase.ui.meeditor").getTitle());
+		logger.info("check1:" + bot.editorById("org.unicase.ui.meeditor").getTitle());
+		// logger.info("check2:" + bot.editorByTitle("Name").getTitle())
+
 		// bot.e
+		bot.styledText().typeText("Hi");
+		bot.editorById("org.unicase.ui.meeditor").close();
 
 	}
 
 	@AfterClass
 	public static void sleep() {
 
-		bot.sleep(9000);
+		bot.sleep(20000);
 		SetupHelper.stopServer();
 
 	}
