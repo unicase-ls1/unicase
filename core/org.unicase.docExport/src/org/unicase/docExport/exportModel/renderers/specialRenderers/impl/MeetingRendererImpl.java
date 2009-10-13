@@ -357,19 +357,31 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 
 		if (workItem instanceof Issue) {
 			Issue issue = (Issue) workItem;
+			UParagraph issueDescriptionPar = new UParagraph(WorkspaceUtil.cleanFormatedText(issue.getDescription()),
+				getWorkItemTextOption());
+			issueDescriptionPar.setIndentionLeft(2);
+			workItemSection.add(issueDescriptionPar);
 			int i = 1;
 			for (Proposal proposal : issue.getProposals()) {
-				String text2 = "P[" + number + "." + i + "]: " + proposal.getName();
+				String text2 = "P[" + number + "." + i++ + "]: " + proposal.getName();
 				UParagraph par2 = new UParagraph(text2, getWorkItemTextOption());
-				par2.setIndentionLeft(2);
+				String text3 = WorkspaceUtil.cleanFormatedText(proposal.getDescription());
+				UParagraph par3 = new UParagraph(text3, getWorkItemTextOption());
+				par2.setIndentionLeft(3);
+				par3.setIndentionLeft(4);
 				workItemSection.add(par2);
+				workItemSection.add(par3);
 			}
 
 			if (issue.getSolution() != null) {
 				UParagraph solution = new UParagraph("Solution: " + issue.getSolution().getName(),
 					getWorkItemTextOption());
-				solution.setIndentionLeft(2);
+				String solutionDescription = WorkspaceUtil.cleanFormatedText(issue.getSolution().getDescription());
+				UParagraph solutionPar = new UParagraph(solutionDescription, getWorkItemTextOption());
+				solution.setIndentionLeft(3);
 				workItemSection.add(solution);
+				solutionPar.setIndentionLeft(4);
+				workItemSection.add(solutionPar);
 			}
 		}
 	}

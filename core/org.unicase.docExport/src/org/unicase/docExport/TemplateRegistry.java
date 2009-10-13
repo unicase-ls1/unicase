@@ -143,7 +143,8 @@ public final class TemplateRegistry {
 				// I couldn't find a function, which generates the correct path string.
 				// so i take this one and manipulate it.
 				// cut the last file separator and the "!"
-				jarFilePath += DEFAULT_TEMPLATES_FOLDER + File.separator + DEFAULT_TEMPLATE_NAME + ".zip";
+				jarFilePath = jarFilePath.substring(0, jarFilePath.length() - 2);
+				jarFilePath = jarFilePath.replace("file:", "");
 
 				JarFile jarFile = new JarFile(jarFilePath);
 				Enumeration<JarEntry> jarEnum = jarFile.entries();
@@ -285,11 +286,6 @@ public final class TemplateRegistry {
 	 *             template. This is a fatal Exception disabling all export functions.
 	 */
 	public static ArrayList<Template> getAllTemplates() throws TemplatesFileNotFoundException {
-		try {
-			loadDefaultTemplatesFromZipFile();
-		} catch (DefaultTemplateLoadException e) {
-			WorkspaceUtil.log("An Error occured while loading the default templates", e, IStatus.WARNING);
-		}
 
 		ArrayList<Template> templates = new ArrayList<Template>();
 
@@ -298,6 +294,11 @@ public final class TemplateRegistry {
 
 		try {
 			resource.load(resource.getResourceSet().getLoadOptions());
+			try {
+				loadDefaultTemplatesFromZipFile();
+			} catch (DefaultTemplateLoadException e) {
+				WorkspaceUtil.log("An Error occured while loading the default templates", e, IStatus.WARNING);
+			}
 		} catch (IOException e) {
 			WorkspaceUtil.log("Fetching all templates failed", new TemplatesFileNotFoundException(e), IStatus.WARNING);
 

@@ -2093,18 +2093,15 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * {@inheritDoc}
 	 * 
 	 * @throws FileTransferException
+	 * @throws FileTransferException
 	 * @see org.unicase.workspace.ProjectSpace#addFileTransfer(org.unicase.model.attachment.FileAttachment,
 	 *      org.unicase.emfstore.filetransfer.FileInformation, boolean)
 	 */
-	public void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean upload)
+	public void addFileTransfer(final PendingFileTransfer tmpTransfer, File selectedFile, boolean run)
 		throws FileTransferException {
-		final PendingFileTransfer tmpTransfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
-		tmpTransfer.setAttachmentId(ModelUtil.createModelElementId(fileInformation.getFileAttachmentId()));
-		tmpTransfer.setChunkNumber(fileInformation.getChunkNumber());
-		tmpTransfer.setFileVersion(fileInformation.getFileVersion());
-		tmpTransfer.setFileName(fileInformation.getFileName());
-		tmpTransfer.setUpload(upload);
-		if (upload && selectedFile != null) {
+		// in case of an upload, isUpload has to evaluate to true and a selectedFile (file to be uploaded) must be
+		// not-null
+		if (tmpTransfer.isUpload() && selectedFile != null) {
 			String uUID = EcoreUtil.generateUUID();
 			tmpTransfer.setPreliminaryFileName(uUID);
 			try {
@@ -2129,7 +2126,22 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 				getPendingFileTransfers().add(tmpTransfer);
 			}
 		}.run();
-		startFileTransfer(tmpTransfer);
+		if (run) {
+			startFileTransfer(tmpTransfer);
+		}
+	}
+
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @throws FileTransferException
+	 * @see org.unicase.workspace.ProjectSpace#addFileTransfer(org.unicase.model.attachment.FileAttachment,
+	 *      org.unicase.emfstore.filetransfer.FileInformation, boolean)
+	 */
+	public void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean isUpload, boolean run)
+		throws FileTransferException {
+		addFileTransfer(FileTransferUtil.createPendingFileTransferFromFileInformation(fileInformation, isUpload),
+			selectedFile, run);
 	}
 
 	/**
@@ -2502,6 +2514,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return isTransient;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
 	public boolean hasFileTransfer(FileInformation fileInformation, boolean upload) {
 		final PendingFileTransfer tmpTransfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
 		tmpTransfer.setAttachmentId(ModelUtil.createModelElementId(fileInformation.getFileAttachmentId()));

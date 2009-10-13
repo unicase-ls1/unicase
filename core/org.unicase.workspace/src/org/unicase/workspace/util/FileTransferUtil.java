@@ -18,8 +18,10 @@ import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.model.util.FileUtil;
+import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.PendingFileTransfer;
+import org.unicase.workspace.impl.WorkspaceFactoryImpl;
 
 /**
  * Utility methods for the file transfer interface. Important notice regarding the terminology used: construct means
@@ -222,6 +224,41 @@ public final class FileTransferUtil {
 	public static String constructCacheFolder(ProjectId projectId) {
 		return Configuration.getWorkspaceDirectory() + ATTACHMENT_FOLDER + File.separator + PROJECT_FOLDER_PREFIX
 			+ projectId.getId();
+	}
+
+	/**
+	 * @param fileAttachment file attachment
+	 * @return file information containing the information related to the specified file attachment
+	 * @throws FileTransferException if there is no file attached to the file attachment
+	 */
+	public static FileInformation createFileInformationFromFileAttachment(FileAttachment fileAttachment)
+		throws FileTransferException {
+		// check if the file attachment attributes are set, otherwise return error dialog
+		if (fileAttachment.getFileName() == null || fileAttachment.getFileID() == null) {
+			throw new FileTransferException("There is no file attached to this file attachment!");
+		}
+		// set information needed for transfer
+		FileInformation fileInfo = new FileInformation();
+		fileInfo.setFileAttachmentId(fileAttachment.getIdentifier());
+		fileInfo.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
+		fileInfo.setFileName(fileAttachment.getFileName());
+		return fileInfo;
+	}
+
+	/**
+	 * @param fileInformation {@link FileInformation}
+	 * @param isUpload true if upload, false if not
+	 * @return {@link PendingFileTransfer}
+	 */
+	public static PendingFileTransfer createPendingFileTransferFromFileInformation(FileInformation fileInformation,
+		boolean isUpload) {
+		PendingFileTransfer tmpTransfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
+		tmpTransfer.setAttachmentId(ModelUtil.createModelElementId(fileInformation.getFileAttachmentId()));
+		tmpTransfer.setChunkNumber(fileInformation.getChunkNumber());
+		tmpTransfer.setFileVersion(fileInformation.getFileVersion());
+		tmpTransfer.setFileName(fileInformation.getFileName());
+		tmpTransfer.setUpload(isUpload);
+		return tmpTransfer;
 	}
 
 	/**
