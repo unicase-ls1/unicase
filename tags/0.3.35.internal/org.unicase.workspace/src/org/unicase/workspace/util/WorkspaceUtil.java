@@ -24,6 +24,7 @@ import org.unicase.model.ModelElement;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.Activator;
+import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -152,6 +153,10 @@ public final class WorkspaceUtil {
 	public static String cleanFormatedText(String text) {
 		if (text == null) {
 			return "";
+		}
+		if (Configuration.getRTFStatus()) {
+			// the text should be already clear of html formatting
+			return text;
 		}
 		text = text.replaceAll("\n", "");
 		text = text.replaceAll("<br>", "\n");

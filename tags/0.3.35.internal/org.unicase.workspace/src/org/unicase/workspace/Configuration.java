@@ -38,6 +38,12 @@ public final class Configuration {
 	}
 
 	// private static Map<Object, Object> resourceSaveOptions;
+	/**
+	 * @return if meeditor should fall back to a simple text widget.
+	 */
+	public static boolean getRTFStatus() {
+		return true;
+	}
 
 	/**
 	 * Return the user home folder.
