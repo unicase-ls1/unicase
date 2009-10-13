@@ -193,7 +193,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 		public Object convert(Object fromObject) {
 			try {
 				if (WorkspaceManager.getProjectSpace(fileAttachment).hasFileTransfer(
-					getFileInformationForFileAttachment(), true)) {
+					FileTransferUtil.createFileInformationFromFileAttachment(fileAttachment), true)) {
 					setUploadButtonAccordingToTransferStatus(true);
 				} else {
 					setUploadButtonAccordingToTransferStatus(false);
@@ -323,7 +323,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 			public void run() {
 				FileInformation fileInfo;
 				try {
-					fileInfo = getFileInformationForFileAttachment();
+					fileInfo = FileTransferUtil.createFileInformationFromFileAttachment(fileAttachment);
 				} catch (FileTransferException e2) {
 					openInformation("Please observe:", e2.getMessage());
 					return;
@@ -343,7 +343,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 				} catch (FileNotFoundException e) {
 					try {
 						// if file could not be found, initiate transfer
-						WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInfo, null, false);
+						WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInfo, null, false, true);
 						openInformation("Please observe:",
 							"The file will be downloaded as soon as you login, or now if you are already logged in.");
 					} catch (FileTransferException e1) {
@@ -373,14 +373,14 @@ public class MEFileChooserControl extends AbstractMEControl {
 			if (!fileDialog.getFileName().equals("")) {
 				// set information needed for this particular upload
 				final FileInformation fileInformation = new FileInformation();
-				fileInformation.setChunkNumber(0);
+				// fileInformation.setChunkNumber(0);
 				fileInformation.setFileVersion(-1);
 				fileInformation.setFileName(fileDialog.getFileName());
 				fileInformation.setFileAttachmentId((fileAttachment).getIdentifier());
 				try {
 					// adds a pending file upload request
 					WorkspaceManager.getProjectSpace(fileAttachment).addFileTransfer(fileInformation,
-						new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()), true);
+						new File(fileDialog.getFilterPath() + File.separator + fileDialog.getFileName()), true, true);
 					setUploadButtonAccordingToTransferStatus(true);
 				} catch (FileTransferException e1) {
 					openInformation("File Transfer Exception:", e1.getMessage());
@@ -407,18 +407,5 @@ public class MEFileChooserControl extends AbstractMEControl {
 			dbc.dispose();
 		}
 		super.dispose();
-	}
-
-	private FileInformation getFileInformationForFileAttachment() throws FileTransferException {
-		// check if the file attachment attributes are set, otherwise return error dialog
-		if (fileAttachment.getFileName() == null || fileAttachment.getFileID() == null) {
-			throw new FileTransferException("There is no file attached to this file attachment!");
-		}
-		// set information needed for transfer
-		FileInformation fileInfo = new FileInformation();
-		fileInfo.setFileAttachmentId(fileAttachment.getIdentifier());
-		fileInfo.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
-		fileInfo.setFileName(fileAttachment.getFileName());
-		return fileInfo;
 	}
 }
