@@ -183,6 +183,23 @@ public final class WorkspaceUtil {
 	}
 
 	/**
+	 * Clean a formatted text from the list formatting.
+	 * 
+	 * @param text the text which shall be cleaned
+	 * @return a string only containing the plain text
+	 */
+	public static String cleanBeginnText(String text) {
+		String ret = "";
+		if (text != null && text.length() > 0) {
+			String[] split = text.split("%BEGINNTEXT%");
+			if (split.length > 1) {
+				ret = split[split.length - 1];
+			}
+		}
+		return ret;
+	}
+
+	/**
 	 * Opens a file with the default program used on the current computer. This is just the same as Desktop.open() of
 	 * java 1.6. This should work with - Mac os X, - windows xp, - as well as the most linux distributions
 	 * 
