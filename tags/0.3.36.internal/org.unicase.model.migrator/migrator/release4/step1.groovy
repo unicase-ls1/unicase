@@ -15,7 +15,6 @@ public static String getHTMLFromRichText(String text) {
 	text = text.replaceAll("<[^<]*>", "");
 	text = text.replaceAll("\\&nbsp;", " ");
 	return text;
-	}
 }
 
 //change migration

@@ -3,9 +3,7 @@
    <description url="http://wwwbruegge.in.tum.de/static/unicase/">
       Unicase update site
    </description>
-   <feature url="features/org.unicase.client_0.3.24.internal.jar" id="org.unicase.client" version="0.3.24.internal">
-      <category name="unicase"/>
-   </feature>
+   <feature url="features/org.unicase.client_0.3.36.internal.jar" id="org.unicase.client" version="0.3.36.internal"/>
    <category-def name="unicase" label="unicase">
       <description>
          unicase CASE Tool
