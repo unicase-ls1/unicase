@@ -158,6 +158,17 @@ public final class WorkspaceUtil {
 			// the text should be already clear of html formatting
 			return text;
 		}
+		text = convertRTFtoPlain(text);
+		return text;
+	}
+
+	/**
+	 * Converts html formatted rich text to plain text.
+	 * 
+	 * @param text the html text
+	 * @return plain text.
+	 */
+	public static String convertRTFtoPlain(String text) {
 		text = text.replaceAll("\n", "");
 		text = text.replaceAll("<br>", "\n");
 		text = text.replaceAll("<br\\/>", "\n");

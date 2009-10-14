@@ -129,16 +129,16 @@ public class MERichTextControl extends AbstractMEControl {
 
 	private void createToolBar() {
 		toolBar = new ToolBar(composite, SWT.NULL);
-		final ToolItem bulletsItem = new ToolItem(toolBar, SWT.PUSH);
-		ImageDescriptor descriptor = Activator.getImageDescriptor("icons/bullet.jpg");
-		bulletsItem.setImage(descriptor.createImage());
-		bulletsItem.addSelectionListener(new SelectionAdapter() {
-
-			@Override
-			public void widgetSelected(SelectionEvent event) {
-				toggleBullet();
-			}
-		});
+		// final ToolItem bulletsItem = new ToolItem(toolBar, SWT.PUSH);
+		// ImageDescriptor descriptor = Activator.getImageDescriptor("icons/bullet.jpg");
+		// bulletsItem.setImage(descriptor.createImage());
+		// bulletsItem.addSelectionListener(new SelectionAdapter() {
+		//
+		// @Override
+		// public void widgetSelected(SelectionEvent event) {
+		// toggleBullet();
+		// }
+		// });
 
 		if (shoudShowExpand) {
 			ToolItem textItem = new ToolItem(toolBar, SWT.PUSH);
@@ -158,6 +158,7 @@ public class MERichTextControl extends AbstractMEControl {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private void toggleBullet() {
 		int size = text.getText().length();
 		StringBuilder newText = new StringBuilder();
