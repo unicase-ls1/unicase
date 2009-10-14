@@ -169,6 +169,9 @@ public final class WorkspaceUtil {
 	 * @return plain text.
 	 */
 	public static String convertRTFtoPlain(String text) {
+		if (text == null) {
+			return "";
+		}
 		text = text.replaceAll("\n", "");
 		text = text.replaceAll("<br>", "\n");
 		text = text.replaceAll("<br\\/>", "\n");
