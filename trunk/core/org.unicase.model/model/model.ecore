@@ -29,8 +29,7 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="attachments" upperBound="-1"
-        eType="#//Attachment" containment="true" eOpposite="#//Attachment/attachedElement"
-        eKeys="#//IdentifiableElement/identifier">
+        eType="#//Attachment" eOpposite="#//Attachment/referringModelElements" eKeys="#//IdentifiableElement/identifier">
       <eAnnotations source="org.unicase.ui.meeditor">
         <details key="priority" value="101.0"/>
         <details key="position" value="right"/>
@@ -80,8 +79,9 @@
     </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Attachment" abstract="true" eSuperTypes="#//ModelElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attachedElement" eType="#//ModelElement"
-        eOpposite="#//ModelElement/attachments" eKeys="#//IdentifiableElement/identifier"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="referringModelElements"
+        upperBound="-1" eType="#//ModelElement" eOpposite="#//ModelElement/attachments"
+        eKeys="#//IdentifiableElement/identifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="IdentifiableElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="identifier" lowerBound="1"
