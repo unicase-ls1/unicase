@@ -69,6 +69,8 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 
 	/**
 	 * Returns if the nodes should be reversed.
+	 * 
+	 * @return true if the nodes should be reversed in order
 	 */
 	public boolean isReverseNodes() {
 		return reverseNodes;
@@ -186,13 +188,14 @@ public abstract class SCMContentProvider implements ITreeContentProvider {
 			return new Object[0];
 		}
 		if (firstElement instanceof ChangePackage) {
-			if(showRootNodes){
+			if (showRootNodes) {
 				return nodify(null, inputList).toArray();
-			}else{
+			} else {
 				ArrayList<Object> elements = new ArrayList<Object>();
-				List<ChangePackage> changePackages = inputList; 
+				List<ChangePackage> changePackages = inputList;
 				for (ChangePackage cp : changePackages) {
-					elements.addAll(Arrays.asList(getChildren(cp,new TreeNode(cp))));
+					elements.addAll(Arrays.asList(getChildren(cp, new TreeNode(
+							cp))));
 				}
 				return elements.toArray();
 			}

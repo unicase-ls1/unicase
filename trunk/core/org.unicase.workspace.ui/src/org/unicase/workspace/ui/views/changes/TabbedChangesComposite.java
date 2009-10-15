@@ -74,6 +74,8 @@ public class TabbedChangesComposite extends Composite implements
 	 *            the style
 	 * @param changePackages
 	 *            the input of change packages as a list
+	 * @param project
+	 *            the project
 	 */
 	public TabbedChangesComposite(Composite parent, int style,
 			List<ChangePackage> changePackages, Project project) {
@@ -155,8 +157,8 @@ public class TabbedChangesComposite extends Composite implements
 	 * Sets if the root nodes should be reversed.
 	 * 
 	 * @see SCMContentProvider#setReverseNodes(boolean)
-	 * @param showRootNodes
-	 *            the new value
+	 * @param reverseNodes
+	 *            wheter to reverse the nodes or not
 	 */
 	public void setReverseNodes(boolean reverseNodes) {
 		compactContentProvider.setReverseNodes(reverseNodes);
