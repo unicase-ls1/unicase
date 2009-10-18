@@ -42,9 +42,6 @@ public class VectorSpaceModelStrategy implements RecommendationStrategy {
 			indices.put(me, index);
 		}
 
-		// create an index for every word (for tfmatrix)
-		tdf.createDictionaryIndices();
-
 		// create term frequency matrix
 		tdf.createTDFMatrix();
 
