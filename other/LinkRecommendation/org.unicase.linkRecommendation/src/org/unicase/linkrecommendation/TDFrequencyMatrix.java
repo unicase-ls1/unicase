@@ -26,8 +26,6 @@ public class TDFrequencyMatrix {
 	private TreeMap<String, Integer> objectIndices;
 	private int objectCount;
 
-	private boolean stemming;
-
 	private ArrayList<ArrayList<String>> words;
 	private TreeSet<String> wordDictionary;
 
@@ -39,7 +37,6 @@ public class TDFrequencyMatrix {
 		wordIndices = new TreeMap<String, Integer>();
 		objectIndices = new TreeMap<String, Integer>();
 		objectCount = 0;
-		stemming = true;
 		words = new ArrayList<ArrayList<String>>();
 		wordDictionary = new TreeSet<String>();
 	}
@@ -207,7 +204,7 @@ public class TDFrequencyMatrix {
 	/**
 	 * Creates internal indices for each word in dictionary.
 	 */
-	public void createDictionaryIndices() {
+	private void createDictionaryIndices() {
 		wordIndices = new TreeMap<String, Integer>();
 		int number = 0;
 		for (String word : wordDictionary) {
@@ -312,34 +309,6 @@ public class TDFrequencyMatrix {
 	 */
 	public double[][] getMatrix() {
 		return tfMatrix;
-	}
-
-	/**
-	 * Returns the stemming value.
-	 * 
-	 * @return the stemming vaue
-	 */
-	public boolean getStemming() {
-		return stemming;
-	}
-
-	/**
-	 * Sets the stemming value.
-	 * 
-	 * @param value the new value
-	 */
-	public void setStemming(boolean value) {
-		stemming = value;
-	}
-
-	/**
-	 * Returns a documents index.
-	 * 
-	 * @param doc the document
-	 * @return the index
-	 */
-	public int getDocumentIndex(String doc) {
-		return objectIndices.get(doc);
 	}
 
 	/**

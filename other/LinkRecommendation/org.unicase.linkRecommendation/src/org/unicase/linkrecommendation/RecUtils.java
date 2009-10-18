@@ -13,7 +13,6 @@ import java.util.Vector;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.ModelElement;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.UseCase;
@@ -34,7 +33,7 @@ public class RecUtils {
 
 	private static final Map<String, String> STEMMAP = new LinkedHashMap<String, String>();
 
-	private static final boolean TRIPPLE_NAME = false;
+	private static final boolean TRIPPLE_NAME = true;
 
 	// initialization
 	static {
@@ -168,40 +167,6 @@ public class RecUtils {
 			}
 		}
 		return word;
-	}
-
-	/**
-	 * This method returns important text elements of a modelelement.
-	 * 
-	 * @param m1 ModelElement
-	 * @param includeParent checks if parents name should be included as well
-	 * @return name and parents name
-	 */
-	public static String getPrimaryText(ModelElement m1, boolean includeParent) {
-		String text = m1.getName();
-
-		if (includeParent) {
-			EObject container = m1.eContainer();
-			if (container instanceof ModelElement) {
-				ModelElement parent = (ModelElement) container;
-				text += " " + parent.getName();
-			}
-		}
-		return text;
-	}
-
-	/**
-	 * At the moment this just loads the description.
-	 * 
-	 * @param me the ModelElement
-	 * @return the description if any, "" otherwise
-	 */
-	public static String getSecondaryText(ModelElement me) {
-		String desc = me.getDescriptionPlainText();
-		if (desc.equals("null")) {
-			desc = "";
-		}
-		return desc;
 	}
 
 	/**
