@@ -1,0 +1,71 @@
+package org.unicase.proxyclient.example;
+
+import java.util.Date;
+
+import org.unicase.emfstore.esmodel.ProjectInfo;
+import org.unicase.emfstore.esmodel.versioning.ChangePackage;
+import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
+import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.model.ModelElement;
+import org.unicase.model.rationale.Comment;
+import org.unicase.proxyclient.ProxyClient;
+import org.unicase.workspace.impl.ProjectSpaceImpl;
+
+public class CommentFixClient extends ProxyClient {
+
+	public void run() throws Exception {
+		loginServer("super", "super", "unicase-internal.informatik.tu-muenchen.de", "0.3.35.internal", "unicase.org 2009#1");
+
+		ProjectInfo projectInfo = getProjectInfo("unicase", false);
+
+		ProjectSpaceImpl projectSpace = createTransientProjectSpace(getConnectionManager()
+				.getProject(getSessionId(), projectInfo.getProjectId(),
+						projectInfo.getVersion()));
+
+		for (ModelElement me : projectSpace.getProject().getAllModelElements()) {
+			if (me instanceof Comment) {
+				if (me.getDescription() == null
+						|| me.getDescription().equals("")) {
+					String name = me.getName();
+					if (name == null) {
+						continue;
+					}
+					me.setDescription(name);
+					if (20 < (name.length())) {
+						name = name.substring(0, 20) + "...";
+					}
+					me.setName(name);
+				}
+			}
+		}
+
+		ChangePackage localChangePackage = projectSpace
+				.getLocalChangePackage(true);
+		for (AbstractOperation ao : localChangePackage.getOperations()) {
+			System.out.println(ao);
+		}
+
+		PrimaryVersionSpec versionSpec = getConnectionManager()
+				.createVersion(
+						getSessionId(),
+						projectInfo.getProjectId(),
+						projectInfo.getVersion(),
+						localChangePackage,
+						createLogMessage(
+								"super",
+								"automatic commit: copied name from comment to description, if description was empty.",
+								new Date()));
+		
+		System.out.println("new version: "+versionSpec.getIdentifier());
+		
+		getConnectionManager().addTag(getSessionId(),projectInfo.getProjectId(), versionSpec, createTag("Comment fix"));
+	}
+
+	private TagVersionSpec createTag(String string) {
+		TagVersionSpec tagVersionSpec = VersioningFactory.eINSTANCE.createTagVersionSpec();
+		tagVersionSpec.setName(string);
+		return tagVersionSpec;
+	}
+}
