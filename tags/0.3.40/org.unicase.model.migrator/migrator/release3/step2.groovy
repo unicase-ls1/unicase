@@ -7,7 +7,61 @@ import org.eclipse.emf.ecore.*
  * @return the converted HTML text
  */
 public static String getHTMLFromRichText(String richText) {
-	return richText;
+	if (richText == null) {
+		return "";
+	}
+	String[] split = richText.split("%BEGINNTEXT%");
+
+	if (split.length == 1) {
+		return "";
+	} else {
+		List<Integer> bulletedLines = new ArrayList<Integer>();
+		try {
+			StringTokenizer stringTokenizer = new StringTokenizer(split[0], ",");
+			while (stringTokenizer.hasMoreElements()) {
+				String nextElement = (String) stringTokenizer.nextElement();
+				if (nextElement.equals(";")) {
+					break;
+				} else {
+					bulletedLines.add(Integer.parseInt(nextElement));
+				}
+			}
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			return "";
+		}
+
+		String text = split[1];
+
+		try {
+
+			// normalize line feeds
+			text.replaceAll("\n\r", "\n");
+			text.replaceAll("\r\n", "\n");
+			text.replaceAll("\r", "\n");
+
+			String[] lines = text.split("\n");
+			StringBuilder newString = new StringBuilder();
+
+			for (int i = 0; i < lines.length; i++) {
+				if (bulletedLines.contains(i)) {
+					newString.append("\n<ul>");
+					newString.append("<li>");
+					newString.append(lines[i]);
+					newString.append("</li>");
+					newString.append("</ul>");
+				} else {
+					newString.append(lines[i]);
+					newString.append("<br/>\n");
+				}
+			}
+			String newDesc = newString.toString();
+			return newDesc;
+		} catch (RuntimeException e) {
+			e.printStackTrace();
+			return text;
+		}
+	}
 }
 
 //change migration
