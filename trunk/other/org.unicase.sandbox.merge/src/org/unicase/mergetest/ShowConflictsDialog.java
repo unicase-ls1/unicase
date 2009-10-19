@@ -17,6 +17,7 @@ import org.eclipse.jface.viewers.ListViewer;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
@@ -28,6 +29,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.mergetest.merge.MergeWizard;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
@@ -113,8 +115,17 @@ public class ShowConflictsDialog extends TitleAreaDialog {
 								ConflictDetector conflictDetector = new ConflictDetector();
 								conflictDetector.filterToConflictInvolved(myChanges, theirChanges);
 								
-								mergeDialog.setChanges(myChanges, theirChanges);
-								mergeDialog.open();
+								MergeWizard wizard = new MergeWizard(analyzeConflict
+										.getProject(v[0]),analyzeConflict
+										.getChanges(v[1], v[2]),analyzeConflict
+										.getChanges(v[0] - 1, v[0]).get(0));
+								WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
+								dialog.create();
+								dialog.open();
+								
+//								mergeDialog.setChanges(myChanges, theirChanges);
+//								mergeDialog.open();
+								
 							} catch (Exception e) {
 								e.printStackTrace();
 							}
