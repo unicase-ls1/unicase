@@ -19,6 +19,7 @@
    <extension
          point="org.eclipse.ui.views">
       <view
+            allowMultiple="true"
             category="org.unicase"
             class="org.unicase.pmdashboard.burndown.views.BurndownView"
             id="org.unicase.managementDashboard.views.BurndownView"
