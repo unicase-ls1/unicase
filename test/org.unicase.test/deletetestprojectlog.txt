@@ -2,36 +2,36 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2009-10-07T16:33:22</date>
-  <millis>1254926002094</millis>
-  <sequence>17</sequence>
+  <date>2009-10-12T16:41:01</date>
+  <millis>1255358461070</millis>
+  <sequence>28</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
   <class>org.unicase.test.uitests.DeleteTestProject</class>
   <method>canDeleteProject</method>
-  <thread>14</thread>
+  <thread>13</thread>
   <message>deleting a project called :testproject</message>
 </record>
 <record>
-  <date>2009-10-07T16:33:22</date>
-  <millis>1254926002094</millis>
-  <sequence>18</sequence>
+  <date>2009-10-12T16:41:01</date>
+  <millis>1255358461072</millis>
+  <sequence>29</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
   <class>org.unicase.test.uitests.DeleteTestProject</class>
   <method>canDeleteProject</method>
-  <thread>14</thread>
-  <message>testproject exists 0</message>
+  <thread>13</thread>
+  <message>testproject exists 1</message>
 </record>
 <record>
-  <date>2009-10-07T16:33:22</date>
-  <millis>1254926002231</millis>
-  <sequence>19</sequence>
+  <date>2009-10-12T16:41:01</date>
+  <millis>1255358461232</millis>
+  <sequence>30</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
   <class>org.unicase.test.uitests.DeleteTestProject</class>
   <method>canDeleteProject</method>
-  <thread>14</thread>
+  <thread>13</thread>
   <message>Delete project contents (cannot be undone)</message>
 </record>
 </log>
