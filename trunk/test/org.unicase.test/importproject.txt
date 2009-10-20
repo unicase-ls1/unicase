@@ -2,8 +2,8 @@
 <!DOCTYPE log SYSTEM "logger.dtd">
 <log>
 <record>
-  <date>2009-10-09T10:45:54</date>
-  <millis>1255077954937</millis>
+  <date>2009-10-12T11:29:38</date>
+  <millis>1255339778511</millis>
   <sequence>4</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
@@ -13,8 +13,8 @@
   <message>Import Project</message>
 </record>
 <record>
-  <date>2009-10-09T10:45:55</date>
-  <millis>1255077955170</millis>
+  <date>2009-10-12T11:29:38</date>
+  <millis>1255339778722</millis>
   <sequence>5</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
@@ -24,8 +24,8 @@
   <message>sleeping down for the first time to select the imported project</message>
 </record>
 <record>
-  <date>2009-10-09T10:46:04</date>
-  <millis>1255077964171</millis>
+  <date>2009-10-12T11:29:47</date>
+  <millis>1255339787722</millis>
   <sequence>6</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
@@ -35,19 +35,19 @@
   <message>waking up for the first time</message>
 </record>
 <record>
-  <date>2009-10-09T10:46:06</date>
-  <millis>1255077966676</millis>
+  <date>2009-10-12T11:29:53</date>
+  <millis>1255339793017</millis>
   <sequence>7</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
   <class>org.unicase.test.uitests.ImportProject</class>
   <method>importproject</method>
   <thread>13</thread>
-  <message>31 32</message>
+  <message>0 1</message>
 </record>
 <record>
-  <date>2009-10-09T10:46:06</date>
-  <millis>1255077966683</millis>
+  <date>2009-10-12T11:29:53</date>
+  <millis>1255339793032</millis>
   <sequence>8</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
@@ -57,8 +57,8 @@
   <message>test2</message>
 </record>
 <record>
-  <date>2009-10-09T10:46:06</date>
-  <millis>1255077966748</millis>
+  <date>2009-10-12T11:29:53</date>
+  <millis>1255339793082</millis>
   <sequence>9</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
@@ -68,8 +68,8 @@
   <message>Check:Share  Project</message>
 </record>
 <record>
-  <date>2009-10-09T10:46:07</date>
-  <millis>1255077967796</millis>
+  <date>2009-10-12T11:29:53</date>
+  <millis>1255339793984</millis>
   <sequence>15</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
@@ -79,9 +79,9 @@
   <message>sleeping down for the 2nd time and closing the server</message>
 </record>
 <record>
-  <date>2009-10-09T10:47:45</date>
-  <millis>1255078065952</millis>
-  <sequence>25</sequence>
+  <date>2009-10-12T11:30:02</date>
+  <millis>1255339802987</millis>
+  <sequence>19</sequence>
   <logger>LoggerTest</logger>
   <level>INFO</level>
   <class>org.unicase.test.uitests.ImportProject</class>
