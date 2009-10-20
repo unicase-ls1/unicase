@@ -29,6 +29,12 @@ public class RerecordListener implements StartupListener {
 	 * {@inheritDoc}
 	 */
 	public void startedUp(List<ProjectHistory> projects) {
+		if(false) {
+			return;
+		}
+		if(projects.size()==0) {
+			return;
+		}
 		for (ProjectHistory pH : projects) {
 			ChangeReRecorder changeReRecorder = new ChangeReRecorder();
 			System.out.println("Checking: " + pH.getProjectName());
@@ -77,13 +83,14 @@ public class RerecordListener implements StartupListener {
 			}
 			System.out.println("\n"+pH.getProjectName()+" finished.");
 			
-			for(Resource res : pH.eResource().getResourceSet().getResources()) {
-				try {
-					res.save(null);
-				} catch (IOException e) {
-					e.printStackTrace();
-				}			
-			}
+		}
+		
+		for(Resource res : projects.get(0).eResource().getResourceSet().getResources()) {
+			try {
+				res.save(null);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}			
 		}
 	}
 
