@@ -89,9 +89,9 @@ public final class BurndownDataGenerator {
 //		// look if the sprint is already stored
 //		if(result == null) {
 //			// if not, create new data
-			BurndownFactory burndownFactory = new BurndownFactoryImpl();
 			
-			result = burndownFactory.createBurndownData();
+			
+			result = BurndownFactory.eINSTANCE.createBurndownData();
 			result.setParentElementId(modelElement.getModelElementId());
 			
 			dataResource.getContents().add(result);
@@ -111,7 +111,7 @@ public final class BurndownDataGenerator {
 	 * @throws IteratorException
 	 */
 	private TimeIterator getTimeIterator(WorkPackage sprint) throws IteratorException {
-		ProjectSpace projectSpace = getProjectSpace(sprint);
+		ProjectSpace projectSpace =WorkspaceManager.getInstance().getProjectSpace(sprint);
 
 		DateVersionSpec start = VersioningFactory.eINSTANCE.createDateVersionSpec();
 		start.setDate(sprint.getStartDate());
