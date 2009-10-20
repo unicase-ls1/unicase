@@ -11,6 +11,7 @@ import java.text.SimpleDateFormat;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.axis.DateAxis;
@@ -51,17 +52,19 @@ public class BurndownChartControl {
 			ModelElement modelElement) {
 		this.parent = parent;
 		this.modelElement = modelElement;
-		try {
-			chart = createChart();
-			frame = new ChartComposite(parent, SWT.CENTER, chart, true);
-			return frame;
-		} catch (IteratorException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Composite composite = new Composite(parent, style);
+		composite.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_BLACK));
+//		try {
+//			chart = createChart();
+//			frame = new ChartComposite(parent, SWT.CENTER, chart, true);
+//			return frame;
+//		} catch (IteratorException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		} catch (IOException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
 		return null;
 
 	}
