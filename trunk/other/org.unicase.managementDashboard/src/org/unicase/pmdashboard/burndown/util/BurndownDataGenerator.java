@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.unicase.model.ModelElement;
 import org.unicase.model.Project;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.workspace.Configuration;
@@ -75,28 +76,28 @@ public final class BurndownDataGenerator {
 	
 	/**
 	 * Calculates the sprint's amounts of open tasks and the remaining estimates for each day of the sprint. 
-	 * @param sprint the WorkPackage, that's days should be completed  
+	 * @param modelElement the WorkPackage, that's days should be completed  
 	 * @return all days for the sprint containing all necessary information for the chart
 	 * @throws IteratorException if the project can't be iterated
 	 * @throws IOException if resource couldn't be saved
 	 */
-	public BurndownData getBurndownData(WorkPackage sprint) throws IteratorException, IOException {
+	public BurndownData getBurndownData(ModelElement modelElement) throws IteratorException, IOException {
 		BurndownData result;
 		
-		result = getStoredBurndownData(sprint);
-		
-		// look if the sprint is already stored
-		if(result == null) {
-			// if not, create new data
+//		result = getStoredBurndownData(modelElement);
+//		
+//		// look if the sprint is already stored
+//		if(result == null) {
+//			// if not, create new data
 			BurndownFactory burndownFactory = new BurndownFactoryImpl();
 			
 			result = burndownFactory.createBurndownData();
-			result.setParentElementId(sprint.getModelElementId());
+			result.setParentElementId(modelElement.getModelElementId());
 			
 			dataResource.getContents().add(result);
-		}
+//		}
 		
-		completeDays(sprint, result);
+//		completeDays(modelElement, result);
 		
 		dataResource.save(null);
 		

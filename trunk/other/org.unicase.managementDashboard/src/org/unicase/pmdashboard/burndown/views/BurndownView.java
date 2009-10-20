@@ -5,10 +5,11 @@
  */
 package org.unicase.pmdashboard.burndown.views;
 
-import org.eclipse.swt.layout.FillLayout;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.model.task.WorkPackage;
+import org.unicase.model.ModelElement;
 
 /**
  * View for demonstration of the burndown chart, which will be integrated into a dashboard later.
@@ -16,39 +17,24 @@ import org.unicase.model.task.WorkPackage;
  *
  */
 public class BurndownView extends ViewPart {
-	/**
-	 * ID for this view, so that commands can find it .
-	 */
 	public static final String ID = "org.unicase.managementDashboard.views.BurndownView";
-	
+	private BurndownChartControl burndownChartControl;
 	private Composite parent;
-	
-	/**
-	 * 
-	 * {@inheritDoc}
-	 * @see org.eclipse.ui.part.WorkbenchPart#createPartControl(org.eclipse.swt.widgets.Composite)
-	 */
+
 	@Override
 	public void createPartControl(Composite parent) {
 		this.parent = parent;
-		this.parent.setLayout(new FillLayout());
-	}
-	
-	/**
-	 * Interface for the command to set the input.
-	 * @param sprint the chart should be generated for
-	 */
-	public void setInput(WorkPackage sprint) {
-		 new BurndownChartComposite(sprint, this.parent);
+		burndownChartControl = new BurndownChartControl();		
 	}
 
-	/**
-	 * 
-	 * {@inheritDoc}
-	 * @see org.eclipse.ui.part.WorkbenchPart#setFocus()
-	 */
 	@Override
 	public void setFocus() {
+	
 	}
+	public void setInput(ModelElement newInput) {
+		burndownChartControl.createControl(parent, SWT.FILL, newInput);		
+
+	}
+
 
 }
