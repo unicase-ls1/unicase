@@ -183,6 +183,7 @@ public class EmfStoreValidator {
 						if (compare[0] == 0) {
 							errors.add("project compare of project " + history.getProjectId().getId()
 								+ " not equal in version " + version.getPrimarySpec().getIdentifier());
+							// debug(history, state, version);
 						}
 						state = (Project) EcoreUtil.copy(version.getProjectState());
 					}
@@ -193,6 +194,35 @@ public class EmfStoreValidator {
 		stop();
 		return errors.size() == 0;
 	}
+
+	// private void debug(ProjectHistory history, Project state, Version version) {
+	// try {
+	//
+	// String pre = history.getProjectId().getId() + "_" + version.getPrimarySpec().getIdentifier() + "_";
+	//
+	// File file = new File(System.getProperty("user.home") + "/Desktop/compares/" + pre + "generated.txt");
+	// if (!file.exists())
+	// file.createNewFile();
+	// FileWriter fileWriter = new FileWriter(file, false);
+	// fileWriter.write(SerializationUtil.eObjectToString(version.getProjectState()));
+	// fileWriter.close();
+	//
+	// File file2 = new File(System.getProperty("user.home") + "/Desktop/compares/" + pre + "state.txt");
+	// if (!file2.exists())
+	// file2.createNewFile();
+	//
+	// FileWriter fileWriter2 = new FileWriter(file2, false);
+	// fileWriter2.write(SerializationUtil.eObjectToString(state));
+	// fileWriter2.close();
+	//
+	// } catch (IOException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// } catch (EmfStoreException e) {
+	// // TODO Auto-generated catch block
+	// e.printStackTrace();
+	// }
+	// }
 
 	/**
 	 * Allows to exclude projects from validation aside from {@link #RESOLVEALL}.
