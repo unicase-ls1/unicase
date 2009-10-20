@@ -112,7 +112,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	private static final String ACTIVITY_TAB_IMAGE = "avtivity_tab_image";
 	private static final String WP_TAB_IMAGE = "wp_tab_image";
 	private TabFolder tabFolder;
-	private boolean pinned = false;
+	private boolean pinned;
 
 	/**
 	 * Constructor.
