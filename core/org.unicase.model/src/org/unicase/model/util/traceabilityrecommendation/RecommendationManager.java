@@ -95,44 +95,45 @@ public class RecommendationManager {
 	 * @param base the model element, for which suggestions will be made
 	 * @return a recommendationStrategy to the specified type
 	 */
-	public RecommendationStrategy createRecommendationStrategy(EReference ref, ModelElement base) {
-		String baseClassKey = getFullQualifiedClassName(base.eClass());
+	public RecommendationStrategy getRecommendationStrategy(EReference ref, ModelElement base) {
+		if (base != null && ref != null) {
+			String baseClassKey = getFullQualifiedClassName(base.eClass());
 
-		// 1. Step: Is there a special recommendation for this reference and base?
-		for (StrategyExtension ex : extensions) {
-			if (ref.getName().equals(ex.getEReferenceName()) && ex.getBaseClassName().equals(baseClassKey)) {
-				return ex.getRecommendationStrategy();
-			}
-		}
-
-		// 2. Step: Check super-type and interfaces for special recommendations
-		for (StrategyExtension ex : extensions) {
-			for (EClass superType : base.eClass().getESuperTypes()) {
-				String key = this.getFullQualifiedClassName(superType);
-				if (ref.getName().equals(ex.getEReferenceName()) && ex.getBaseClassName().equals(key)) {
+			// 1. Step: Is there a special recommendation for this reference and base?
+			for (StrategyExtension ex : extensions) {
+				if (ref.getName().equals(ex.getEReferenceName()) && ex.getBaseClassName().equals(baseClassKey)) {
 					return ex.getRecommendationStrategy();
 				}
 			}
-		}
 
-		// 3. Step: is there a general strategy for this base?
-		if (general.containsKey(baseClassKey)) {
-			return general.get(baseClassKey).getRecommendationStrategy();
-		}
+			// 2. Step: Check super-type and interfaces for special recommendations
+			for (StrategyExtension ex : extensions) {
+				for (EClass superType : base.eClass().getESuperTypes()) {
+					String key = this.getFullQualifiedClassName(superType);
+					if (ref.getName().equals(ex.getEReferenceName()) && ex.getBaseClassName().equals(key)) {
+						return ex.getRecommendationStrategy();
+					}
+				}
+			}
 
-		// 4. Step: is there a general strategy for the super-type or interfaces
-		for (EClass superType : base.eClass().getESuperTypes()) {
-			String key = this.getFullQualifiedClassName(superType);
-			if (general.containsKey(key)) {
-				return general.get(key).getRecommendationStrategy();
+			// 3. Step: is there a general strategy for this base?
+			if (general.containsKey(baseClassKey)) {
+				return general.get(baseClassKey).getRecommendationStrategy();
+			}
+
+			// 4. Step: is there a general strategy for the super-type or interfaces
+			for (EClass superType : base.eClass().getESuperTypes()) {
+				String key = this.getFullQualifiedClassName(superType);
+				if (general.containsKey(key)) {
+					return general.get(key).getRecommendationStrategy();
+				}
+			}
+
+			// 5. Step: is there a general for the model element (the most basic)
+			if (general.containsKey(BASE_CLASS)) {
+				return general.get(BASE_CLASS).getRecommendationStrategy();
 			}
 		}
-
-		// 5. Step: is there a general for the model element (the most basic)
-		if (general.containsKey(BASE_CLASS)) {
-			return general.get(BASE_CLASS).getRecommendationStrategy();
-		}
-
 		return null;
 	}
 
@@ -159,17 +160,18 @@ public class RecommendationManager {
 	public Map<ModelElement, Double> getMatchMap(final ModelElement base, EReference ref,
 		final Collection<ModelElement> elements, LinkSelectionStrategy selStrategy) {
 
-		if (base == null || ref == null || elements == null) {
+		if (base == null || ref == null || elements == null || elements.size() == 0) {
 			return new HashMap<ModelElement, Double>();
 		}
 
-		RecommendationStrategy recStrategy = createRecommendationStrategy(ref, base);
+		RecommendationStrategy recStrategy = getRecommendationStrategy(ref, base);
 
 		if (recStrategy != null) {
 			Map<ModelElement, Double> rec = recStrategy.getMatchingMap(base, elements);
 			if (selStrategy != null) {
 				rec = selStrategy.selectCandidates(rec);
 			}
+
 			return rec;
 		}
 
