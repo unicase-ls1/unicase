@@ -38,7 +38,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	private static final String DIALOG_SETTINGS = "STANDARD_DIALOG_SETTING";
 
 	// the elements of the dialog
-	private Collection<ModelElement> resources;
+	private Collection<ModelElement> candidates;
 
 	// maps modelElement.hashCode() to the similarity factor of the element
 	private Map<ModelElement, Double> relevanceMap;
@@ -66,7 +66,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		setInitialPattern("**", NONE);
 
 		relevanceMap = new HashMap<ModelElement, Double>(elements.size());
-		resources = elements;
+		candidates = elements;
 		recMan = RecommendationManager.getInstance();
 
 		if (recMan != null) {
@@ -117,8 +117,8 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	protected void fillContentProvider(AbstractContentProvider contentProvider, ItemsFilter itemsFilter,
 		IProgressMonitor progressMonitor) throws CoreException {
 
-		progressMonitor.beginTask("Searching", resources.size());
-		for (ModelElement me : resources) {
+		progressMonitor.beginTask("Searching", candidates.size());
+		for (ModelElement me : candidates) {
 			contentProvider.add(me, itemsFilter);
 			progressMonitor.worked(1);
 		}
