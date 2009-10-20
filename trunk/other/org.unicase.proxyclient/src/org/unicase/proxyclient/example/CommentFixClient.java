@@ -8,6 +8,8 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.exceptions.EmfStoreException;
+import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.model.ModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.proxyclient.ProxyClient;
@@ -16,10 +18,22 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
 public class CommentFixClient extends ProxyClient {
 
 	public void run() throws Exception {
-		loginServer("super", "super", "unicase-internal.informatik.tu-muenchen.de", "0.3.35.internal", "unicase.org 2009#1");
+		
+		loginServer("super", "blub", "unicase.in.tum.de", "0.3.40", "unicase.org 2009#1");
 
-		ProjectInfo projectInfo = getProjectInfo("unicase", false);
+//		ProjectInfo projectInfo = getProjectInfo("unicase", false);
 
+		for(ProjectInfo projectInfo : getConnectionManager().getProjectList(getSessionId())) {
+			fixProject(projectInfo);
+		}
+		
+	}
+
+	private void fixProject(ProjectInfo projectInfo) throws EmfStoreException,
+			InvalidVersionSpecException {
+		System.out.println("Checking project: "+projectInfo.getName());
+		
+		
 		ProjectSpaceImpl projectSpace = createTransientProjectSpace(getConnectionManager()
 				.getProject(getSessionId(), projectInfo.getProjectId(),
 						projectInfo.getVersion()));
@@ -40,13 +54,20 @@ public class CommentFixClient extends ProxyClient {
 				}
 			}
 		}
-
+		
+		
+		
 		ChangePackage localChangePackage = projectSpace
 				.getLocalChangePackage(true);
 		for (AbstractOperation ao : localChangePackage.getOperations()) {
 			System.out.println(ao);
 		}
 
+		if(localChangePackage.getOperations().size()==0) {
+			System.out.println("no changes...");
+			return;
+		}
+		
 		PrimaryVersionSpec versionSpec = getConnectionManager()
 				.createVersion(
 						getSessionId(),
