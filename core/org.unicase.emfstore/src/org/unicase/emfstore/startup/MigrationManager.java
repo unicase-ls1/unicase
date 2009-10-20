@@ -81,7 +81,6 @@ public class MigrationManager {
 				convertInitialProjectState(modelVersion, projectDirectory);
 
 				File[] listFiles = projectDirectory.listFiles(new FileFilter() {
-					@Override
 					public boolean accept(File pathname) {
 						if (pathname.isFile()
 							&& (pathname.getName().endsWith(".ucp") || pathname.getName().endsWith(".ups"))) {
