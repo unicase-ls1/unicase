@@ -42,7 +42,7 @@
    <extension
          point="org.eclipse.ui.commands">
       <command
-            defaultHandler="org.unicase.ui.stem.commands.ShowInStausViewHandler"
+            defaultHandler="org.unicase.ui.stem.commands.ShowInStatusViewHandler"
             id="org.unicase.ui.stem.ShowInStatusView"
             name="ShowInStatusView">
       </command>

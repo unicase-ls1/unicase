@@ -26,16 +26,24 @@ import org.unicase.ui.stem.views.statusview.StatusView;
  * 
  * @author Hodaie
  */
-public class ShowInStausViewHandler extends AbstractHandler implements IPartListener {
+public class ShowInStatusViewHandler extends AbstractHandler implements IPartListener {
 
 	private static final String STATUS_VIEW_ID = "org.unicase.ui.treeview.views.StatusView";
 	private static List<StatusView> openStatusViews;
 
-	public ShowInStausViewHandler() {
+	/**
+	 * Default constructor.
+	 */
+	public ShowInStatusViewHandler() {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		page.addPartListener(this);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.core.commands.AbstractHandler#dispose()
+	 */
 	@Override
 	public void dispose() {
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
@@ -94,19 +102,44 @@ public class ShowInStausViewHandler extends AbstractHandler implements IPartList
 		return null;
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.IPartListener#partClosed(org.eclipse.ui.IWorkbenchPart)
+	 */
 	public void partClosed(IWorkbenchPart part) {
 		openStatusViews.remove(part);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.IPartListener#partActivated(org.eclipse.ui.IWorkbenchPart)
+	 */
 	public void partActivated(IWorkbenchPart part) {
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.IPartListener#partBroughtToTop(org.eclipse.ui.IWorkbenchPart)
+	 */
 	public void partBroughtToTop(IWorkbenchPart part) {
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.IPartListener#partDeactivated(org.eclipse.ui.IWorkbenchPart)
+	 */
 	public void partDeactivated(IWorkbenchPart part) {
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.ui.IPartListener#partOpened(org.eclipse.ui.IWorkbenchPart)
+	 */
 	public void partOpened(IWorkbenchPart part) {
 	}
 
