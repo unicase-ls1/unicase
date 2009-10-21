@@ -20,12 +20,9 @@ import java.util.Date;
 import java.util.List;
 
 /**
- * This class is responsible for holding tasks to be planned, computing tasks related to a task (using
- * RelatedTasksStrategy), creating a list of assignee expertise regarding a task.
- * 
  * @author Hodaie
  */
-public class TaskProvider {
+public class TaskHelper {
 
 	private List<WorkPackage> workpackages;
 	private WorkPackage lastSprint;
@@ -40,7 +37,7 @@ public class TaskProvider {
 	 * @param lastSprint last sprint
 	 * @param workpackages work packages
 	 */
-	public TaskProvider(IterationPlannerManager iterationPlannerManager, WorkPackage lastSprint,
+	public TaskHelper(IterationPlannerManager iterationPlannerManager, WorkPackage lastSprint,
 		List<WorkPackage> workpackages) {
 		this.planningManager = iterationPlannerManager;
 		this.lastSprint = lastSprint;
@@ -54,7 +51,7 @@ public class TaskProvider {
 	 * @param iterationPlannerManager iteration planning manager
 	 * @param relatedTaskStrategy relateTaskStrategy
 	 */
-	public TaskProvider(IterationPlannerManager iterationPlannerManager) {
+	public TaskHelper(IterationPlannerManager iterationPlannerManager) {
 
 		this.planningManager = iterationPlannerManager;
 	}
@@ -132,13 +129,13 @@ public class TaskProvider {
 		List<ModelElement> relatedMEs = new ArrayList<ModelElement>();
 		relatedMEs.addAll(workItem.getAnnotatedModelElements());
 
-		for (ModelElement me : workItem.getAnnotatedModelElements()) {
-			if (me instanceof FunctionalRequirement) {
-				relatedMEs.addAll(planningManager.getRequirementProvider().getAllRefiningRequirements(
-					(FunctionalRequirement) me));
-			}
-
-		}
+		// for (ModelElement me : workItem.getAnnotatedModelElements()) {
+		// if (me instanceof FunctionalRequirement) {
+		// relatedMEs.addAll(planningManager.getRequirementProvider().getAllRefiningRequirements(
+		// (FunctionalRequirement) me));
+		// }
+		//
+		// }
 
 		List<WorkItem> relatedWorkItems = new ArrayList<WorkItem>();
 		for (ModelElement me : relatedMEs) {
@@ -160,7 +157,7 @@ public class TaskProvider {
 		List<WorkItem> relatedWorkItems = new ArrayList<WorkItem>();
 		// find related FRs
 		List<FunctionalRequirement> relatedFRs = new ArrayList<FunctionalRequirement>();
-		RequirementProvider requirementProvider = planningManager.getRequirementProvider();
+		RequirementHelper requirementProvider = null; // = planningManager.getRequirementProvider();
 		if (fr.getRefinedRequirement() != null && fr.getRefinedRequirement().getRefinedRequirement() != null) {
 			relatedFRs.addAll(requirementProvider.getAllRefiningRequirements(fr.getRefinedRequirement()
 				.getRefinedRequirement()));

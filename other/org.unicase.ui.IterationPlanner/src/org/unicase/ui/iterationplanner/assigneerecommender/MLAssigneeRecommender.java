@@ -11,10 +11,29 @@
  */
 package org.unicase.ui.iterationplanner.assigneerecommender;
 
+import org.unicase.model.organization.User;
+
+import java.util.List;
+
 /**
  * @author Hodaie
  */
 public class MLAssigneeRecommender implements AssigneeRecommender {
+
+	public void addAssignee(User assignee) {
+	// TODO Auto-generated method stub
+
+	}
+
+	public List<User> getAssignees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void removeAssignee(User obj) {
+	// TODO Auto-generated method stub
+
+	}
 
 }
 

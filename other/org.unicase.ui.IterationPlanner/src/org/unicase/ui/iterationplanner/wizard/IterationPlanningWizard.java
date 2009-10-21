@@ -24,54 +24,9 @@ public class IterationPlanningWizard extends Wizard {
 
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.wizard.Wizard#addPages()
-	 */
-	@Override
-	public void addPages() {
-		// 1. page: set sprint attributes, name, start/end date, predecessor
-		SprintAttributesPage sprintAttributesPage = new SprintAttributesPage(
-				iterationPlanner);
-		addPage(sprintAttributesPage);
-
-		// 2. page: last sprint, select backlog or other work packages
-		TaskPage tasksPage = new TaskPage(iterationPlanner);
-		addPage(tasksPage);
-
-		// 3. page: select requirements
-		RequirementsPage requirementsPage = new RequirementsPage(
-				iterationPlanner);
-		addPage(requirementsPage);
-
-		// 4. page: select assignees
-		AssigneesPage assignessPage = new AssigneesPage(iterationPlanner);
-		addPage(assignessPage);
-
-		// 5. page: show plans in a table tree viewer
-		PlansPage plansPage = new PlansPage(iterationPlanner);
-		addPage(plansPage);
-
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
 	@Override
 	public boolean performFinish() {
-
 		return false;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.jface.wizard.Wizard#canFinish()
-	 */
-	@Override
-	public boolean canFinish() {
-		return getContainer().getCurrentPage() instanceof PlansPage;
 	}
 
 }

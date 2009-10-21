@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * @author hodaie
  */
-public class RequirementProvider {
+public class RequirementHelper {
 
 	private List<FunctionalRequirement> requirements;
 	private IterationPlannerManager planningManager;
@@ -24,7 +24,7 @@ public class RequirementProvider {
 	 * 
 	 * @param iterationPlannerManager iteration planning manager
 	 */
-	public RequirementProvider(IterationPlannerManager iterationPlannerManager) {
+	public RequirementHelper(IterationPlannerManager iterationPlannerManager) {
 		this.planningManager = iterationPlannerManager;
 	}
 
@@ -34,7 +34,7 @@ public class RequirementProvider {
 	 * @param iterationPlannerManager iteration planning manager
 	 * @param reqs input requirement
 	 */
-	public RequirementProvider(IterationPlannerManager iterationPlannerManager, List<FunctionalRequirement> reqs) {
+	public RequirementHelper(IterationPlannerManager iterationPlannerManager, List<FunctionalRequirement> reqs) {
 		this.planningManager = iterationPlannerManager;
 		this.requirements = reqs;
 	}
