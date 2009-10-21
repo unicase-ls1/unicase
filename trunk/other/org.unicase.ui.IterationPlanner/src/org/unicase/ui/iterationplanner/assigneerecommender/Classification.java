@@ -1,4 +1,4 @@
-package org.unicase.ui.iterationplanner.paper.machinelearning;
+package org.unicase.ui.iterationplanner.assigneerecommender;
 
 import java.util.ArrayList;
 import java.util.Arrays;

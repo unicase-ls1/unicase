@@ -11,7 +11,8 @@ import org.unicase.model.organization.User;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
+import org.unicase.ui.iterationplanner.IterationPlannerManager;
+import org.unicase.ui.iterationplanner.assigneerecommender.ExpertiseMap;
 
 import java.util.ArrayList;
 import java.util.Collections;

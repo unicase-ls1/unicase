@@ -6,7 +6,7 @@
 package org.unicase.ui.iterationplanner.provider;
 
 import org.unicase.model.requirement.FunctionalRequirement;
-import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
+import org.unicase.ui.iterationplanner.IterationPlannerManager;
 
 import java.util.ArrayList;
 import java.util.List;

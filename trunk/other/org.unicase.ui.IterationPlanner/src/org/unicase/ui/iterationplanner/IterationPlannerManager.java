@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.ui.iterationplanner.core;
+package org.unicase.ui.iterationplanner;
 
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkPackage;

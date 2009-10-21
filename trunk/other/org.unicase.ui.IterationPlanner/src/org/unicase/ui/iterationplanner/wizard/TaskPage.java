@@ -23,7 +23,7 @@ import org.eclipse.swt.widgets.Label;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.util.UnicaseUiUtil;
-import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
+import org.unicase.ui.iterationplanner.IterationPlannerManager;
 import org.unicase.workspace.WorkspaceManager;
 
 import java.util.List;

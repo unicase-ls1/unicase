@@ -1,4 +1,4 @@
-package org.unicase.ui.iterationplanner.paper.machinelearning;
+package org.unicase.ui.iterationplanner.util;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
