@@ -14,8 +14,8 @@ import org.unicase.ui.iterationplanner.planner.Planner;
 import org.unicase.ui.iterationplanner.planner.SimplePlanner;
 import org.unicase.ui.iterationplanner.provider.AssigneeProvider;
 import org.unicase.ui.iterationplanner.provider.ImperativeAssigneePrediction;
-import org.unicase.ui.iterationplanner.provider.RequirementProvider;
-import org.unicase.ui.iterationplanner.provider.TaskProvider;
+import org.unicase.ui.iterationplanner.util.RequirementProvider;
+import org.unicase.ui.iterationplanner.util.TaskProvider;
 
 import java.util.List;
 
