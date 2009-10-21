@@ -12,6 +12,7 @@
 package org.unicase.ui.iterationplanner.assigneerecommender;
 
 import org.unicase.model.organization.OrgUnit;
+import org.unicase.model.organization.User;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.WorkItem;
 
@@ -35,14 +36,14 @@ public class SimpleAssigneeRecommender implements AssigneeRecommender {
 
 		int expertise = 0;
 
-		List<WorkItem> relatedWorkItems = planningManager.getTaskProvider().getRelatedWorkItems(task);
+		// List<WorkItem> relatedWorkItems = planningManager.getTaskProvider().getRelatedWorkItems(task);
 
 		// count number of related tasks assigned to this user
-		for (WorkItem relatedWorkItem : relatedWorkItems) {
-			if (relatedWorkItem.getAssignee() != null && relatedWorkItem.getAssignee().equals(assignee)) {
-				expertise += 1;
-			}
-		}
+		// for (WorkItem relatedWorkItem : relatedWorkItems) {
+		// if (relatedWorkItem.getAssignee() != null && relatedWorkItem.getAssignee().equals(assignee)) {
+		// expertise += 1;
+		// }
+		// }
 
 		return expertise;
 	}
@@ -89,14 +90,45 @@ public class SimpleAssigneeRecommender implements AssigneeRecommender {
 	 */
 	private double getExpertise(FunctionalRequirement fr, OrgUnit assignee) {
 		int expertise = 0;
-		List<WorkItem> relatedWorkItems = planningManager.getTaskProvider().getRelatedWorkItems(fr);
-		// count number of related tasks assigned to this user
-		for (WorkItem relatedWorkItem : relatedWorkItems) {
-			if (relatedWorkItem.getAssignee() != null && relatedWorkItem.getAssignee().equals(assignee)) {
-				expertise += 1;
-			}
-		}
+		// List<WorkItem> relatedWorkItems = planningManager.getTaskProvider().getRelatedWorkItems(fr);
+		// // count number of related tasks assigned to this user
+		// for (WorkItem relatedWorkItem : relatedWorkItems) {
+		// if (relatedWorkItem.getAssignee() != null && relatedWorkItem.getAssignee().equals(assignee)) {
+		// expertise += 1;
+		// }
+		// }
 
 		return expertise;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * org.unicase.ui.iterationplanner.assigneerecommender.AssigneeRecommender#addAssignee(org.unicase.model.organization
+	 * .User)
+	 */
+	public void addAssignee(User assignee) {
+	// TODO Auto-generated method stub
+
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see org.unicase.ui.iterationplanner.assigneerecommender.AssigneeRecommender#getAssignees()
+	 */
+	public List<User> getAssignees() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see
+	 * org.unicase.ui.iterationplanner.assigneerecommender.AssigneeRecommender#removeAssignee(org.unicase.model.organization
+	 * .User)
+	 */
+	public void removeAssignee(User obj) {
+	// TODO Auto-generated method stub
+
 	}
 }

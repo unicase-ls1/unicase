@@ -11,10 +11,28 @@
  */
 package org.unicase.ui.iterationplanner.assigneerecommender;
 
+import org.unicase.model.organization.User;
+
+import java.util.List;
+
 /**
  * @author Hodaie
- *
  */
 public interface AssigneeRecommender {
+
+	/**
+	 * @param assignee
+	 */
+	void addAssignee(User assignee);
+
+	/**
+	 * @param obj
+	 */
+	void removeAssignee(User obj);
+
+	/**
+	 * @return
+	 */
+	List<User> getAssignees();
 
 }
