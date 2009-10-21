@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.iterationplanner.core.Plan;
 
 /**
  * A org.unicase.ui.iterationplanner.planner takes a set of WorkItems, a set of Users, and number of sprints to

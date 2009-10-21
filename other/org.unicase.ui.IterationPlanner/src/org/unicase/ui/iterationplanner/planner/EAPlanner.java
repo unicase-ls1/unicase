@@ -7,7 +7,6 @@ package org.unicase.ui.iterationplanner.planner;
 
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.iterationplanner.core.Plan;
 
 import java.util.List;
 

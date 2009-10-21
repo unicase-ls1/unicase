@@ -10,7 +10,6 @@ import java.util.List;
 
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.iterationplanner.core.Plan;
 
 /**
  * Simple dispatcher.

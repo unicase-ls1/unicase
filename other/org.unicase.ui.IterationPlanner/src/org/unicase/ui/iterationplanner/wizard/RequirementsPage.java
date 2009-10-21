@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Label;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.ui.common.TreeViewerColumnSorter;
-import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
+import org.unicase.ui.iterationplanner.IterationPlannerManager;
 import org.unicase.workspace.WorkspaceManager;
 
 import java.util.ArrayList;

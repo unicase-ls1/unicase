@@ -8,7 +8,6 @@ package org.unicase.ui.iterationplanner.commands;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.unicase.ui.iterationplanner.paper.imperative.PaperImperative;
 
 /**
  * This handler shows iteration planning wizard.
@@ -24,8 +23,6 @@ public class ShowIterationPlanningWizardHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		// new PaperMachineLearning().start();
-		new PaperImperative().start();
 		return null;
 
 	}

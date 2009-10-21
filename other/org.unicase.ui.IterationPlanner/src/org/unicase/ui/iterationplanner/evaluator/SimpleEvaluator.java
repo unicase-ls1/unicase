@@ -8,10 +8,10 @@ package org.unicase.ui.iterationplanner.evaluator;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
-import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
-import org.unicase.ui.iterationplanner.core.Plan;
-import org.unicase.ui.iterationplanner.core.SprintPlan;
-import org.unicase.ui.iterationplanner.provider.ExpertiseMap;
+import org.unicase.ui.iterationplanner.IterationPlannerManager;
+import org.unicase.ui.iterationplanner.assigneerecommender.ExpertiseMap;
+import org.unicase.ui.iterationplanner.planner.Plan;
+import org.unicase.ui.iterationplanner.planner.SprintPlan;
 
 import java.util.List;
 import java.util.Map;

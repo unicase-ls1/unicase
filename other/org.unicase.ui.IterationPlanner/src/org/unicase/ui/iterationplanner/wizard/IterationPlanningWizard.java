@@ -6,7 +6,7 @@
 package org.unicase.ui.iterationplanner.wizard;
 
 import org.eclipse.jface.wizard.Wizard;
-import org.unicase.ui.iterationplanner.core.IterationPlannerManager;
+import org.unicase.ui.iterationplanner.IterationPlannerManager;
 
 /**
  * @author Hodaie
