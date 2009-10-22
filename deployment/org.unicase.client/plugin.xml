@@ -25,38 +25,26 @@
          point="org.eclipse.core.runtime.products">
       <product
             application="org.unicase.client.application"
-            name="Unicase">
-         <property
-               name="windowImages"
-               value="icons/alt_window_16.gif,icons/alt_window_32.gif,icons/alt_window_48.gif,icons/alt_window_64.gif,icons/alt_window_128.gif">
-         </property>
+            name="unicase">
          <property
                name="appName"
-               value="Unicase">
+               value="unicase">
+         </property>
+         <property
+               name="preferenceCustomization"
+               value="plugin_customization.ini">
          </property>
          <property
                name="aboutText"
-               value="The unicase client. http://www.unicase.org">
+               value="The unicase client.">
          </property>
          <property
                name="aboutImage"
                value="about.png">
          </property>
          <property
-               name="startupForegroundColor"
-               value="FFFFFF">
-         </property>
-         <property
-               name="startupMessageRect"
-               value="7,252,445,20">
-         </property>
-         <property
-               name="startupProgressRect"
-               value="5,275,445,15">
-         </property>
-         <property
-               name="preferenceCustomization"
-               value="plugin_customization.ini">
+               name="windowImages"
+               value="icons/alt_window_16.gif,icons/alt_window_32.gif,icons/alt_window_48.gif,icons/alt_window_64.gif,icons/alt_window_128.gif">
          </property>
       </product>
    </extension>
