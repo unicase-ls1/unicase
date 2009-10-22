@@ -6,7 +6,7 @@ Getting started as Framework User
 
 = Details =
 
-Coding - Guidelines for general coding with the UNICASE Framework <br>
+[CodingGuidlines Coding - Guidelines for general coding with the UNICASE Framework] <br>
 Modeling - Guidelines for Modeling in UNICASE<br>
 Diagram - Guidelines for the Diagram Framework in UNICASE<br>
 Set-up and Configuration - Guidelines for the set-up of your development environment and configuration of plugins<br>
