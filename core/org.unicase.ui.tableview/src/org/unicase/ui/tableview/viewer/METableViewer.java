@@ -113,7 +113,7 @@ public class METableViewer {
 			// if(feature.getEType().equals(ModelPackage.Literals.)){width=150;}
 			width = 270;
 		}
-		if (feature.getEType().equals(ModelPackage.Literals.MODEL_ELEMENT__NAME)) {
+		if (feature.getEType().equals(ModelPackage.Literals.MODEL_ELEMENT__NAME)) {// the bug is here
 			width = 0;
 		}
 		TableViewerColumn genericColumn = createColumn(feature, provider, width, style, true, true);
