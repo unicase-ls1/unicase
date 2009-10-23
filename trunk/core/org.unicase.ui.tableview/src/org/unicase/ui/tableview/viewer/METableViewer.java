@@ -100,7 +100,7 @@ public class METableViewer {
 		int style, width;
 		if (feature.getEType().equals(EcorePackage.Literals.EINT)) {
 			style = SWT.CENTER;
-			width = 25;
+			width = 50;
 		} else if (feature.getEType().equals(OrganizationPackage.Literals.ORG_UNIT)
 			|| feature.getEType().equals(OrganizationPackage.Literals.USER)) {
 			style = SWT.CENTER;
@@ -110,7 +110,7 @@ public class METableViewer {
 			width = 100;
 		} else {
 			style = SWT.NONE;
-			width = 150;
+			width = 350;
 		}
 		if (feature.getEType().equals(ModelPackage.Literals.MODEL_ELEMENT__NAME)) {
 			width = 270;
