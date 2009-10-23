@@ -402,7 +402,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		doneOrResolvedLabelProvider = new WorkItemDoneOrResolvedLabelProvider();
 		doneOrResolvedLabelProvider.setCurrentUser(loggedInUser);
 		doneOrResolvedEditingSupport = new WorkItemDoneOrResolvedEditingSupport(metv.getTableViewer(), loggedInUser);
-		metv.addCustomColumn(0, "Done/Resolved", 100, SWT.NONE, false, doneOrResolvedLabelProvider,
+		metv.addCustomColumn(0, "Done/Resolved", 100, SWT.CENTER, false, doneOrResolvedLabelProvider,
 			doneOrResolvedEditingSupport);
 		return metv;
 	}

@@ -98,6 +98,7 @@ public class METableViewer {
 
 		ColumnLabelProvider provider = new GenericColumnLabelProvider(feature);
 		int style, width;
+
 		if (feature.getEType().equals(EcorePackage.Literals.EINT)) {
 			style = SWT.CENTER;
 			width = 50;
@@ -108,13 +109,18 @@ public class METableViewer {
 		} else if (feature.equals(ModelPackage.Literals.MODEL_ELEMENT__CREATOR)) {
 			style = SWT.CENTER;
 			width = 100;
-		} else {
+		}
+
+		else if (feature.equals(ModelPackage.Literals.MODEL_ELEMENT__NAME)) {
+			width = 300;
 			style = SWT.NONE;
-			width = 270;
 		}
-		if (feature.getEType().equals(ModelPackage.Literals.MODEL_ELEMENT__NAME)) {// the bug is here
-			width = 0;
+
+		else {
+			style = SWT.CENTER;
+			width = 150;
 		}
+
 		TableViewerColumn genericColumn = createColumn(feature, provider, width, style, true, true);
 
 		return genericColumn;
