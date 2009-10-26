@@ -9,12 +9,14 @@ public abstract class Conflict {
 	private final AbstractOperation theirOperation;
 	private final AbstractOperation myOperation;
 	private final DecisionManager decisionManager;
+	private boolean isResolved;
 
 	public Conflict(AbstractOperation myOperation,
 			AbstractOperation theirOperation, DecisionManager decisionManager) {
 				this.myOperation = myOperation;
 				this.theirOperation = theirOperation;
 				this.decisionManager = decisionManager;
+				isResolved=false;
 	}
 
 	
@@ -50,4 +52,20 @@ public abstract class Conflict {
 	public String getOptionDescription() {
 		return "";
 	}
+
+
+	public void setSolution(int optionIndex) {
+		setResolved(true);
+	}
+	
+	
+	public boolean isResolved() {
+		return isResolved;
+	}
+
+
+	public void setResolved(boolean isResolved) {
+		this.isResolved = isResolved;
+	}
+	
 }
