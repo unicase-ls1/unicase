@@ -46,9 +46,17 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 	protected void doRun() {
 		// check if this model element is already opened in an editor
 		// and if yes, prompt to close editor.
+		String elementName ;
+		
+		if(me.getName() == null){
+		elementName =  me.eClass().getName() + " \"unnamed\"";
+		}else{
+			elementName = me.eClass().getName() + " \""+ me.getName() +"\"";
+		}
+		
 		if (closeEditor(me)) {
 			MessageDialog dialog = new MessageDialog(null, "Confirmation", null, "Do you really want to delete "
-				+ me.getName(), MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+				+ elementName, MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 			int result = dialog.open();
 			if (result == MessageDialog.OK) {
 				ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
