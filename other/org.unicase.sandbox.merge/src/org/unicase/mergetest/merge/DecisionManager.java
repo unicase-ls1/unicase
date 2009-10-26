@@ -8,6 +8,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.model.ModelElementId;
 import org.unicase.model.Project;
 
@@ -47,6 +48,14 @@ public class DecisionManager {
 						conflicts.add(new LinkConflict(myOperation, theirOperation,this));
 					}
 					
+					if(isDeleteOp(myOperation) || isDeleteOp(theirOperation)) {
+						if(isDeleteOp(myOperation)) {
+							conflicts.add(new DeleteConflict(myOperation,theirOperation,this,true));
+						} else {
+							conflicts.add(new DeleteConflict(myOperation,theirOperation,this,false));
+						}
+					}
+					
 				}
 			}
 		}
@@ -54,6 +63,14 @@ public class DecisionManager {
 		return conflicts;
 	}
 
+	private boolean isDeleteOp(AbstractOperation myOperation) {
+		return myOperation instanceof CreateDeleteOperation && ((CreateDeleteOperation)myOperation).isDelete();
+	}
+
+	public ConflictDetector getConflictDetector() {
+		return conflictDetector;
+	}
+	
 	public String getModelElementName(ModelElementId modelElementId) {
 		return project.getModelElement(modelElementId).getName();
 	}
