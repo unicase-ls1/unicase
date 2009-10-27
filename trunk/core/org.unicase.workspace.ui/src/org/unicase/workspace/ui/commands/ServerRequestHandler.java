@@ -56,7 +56,9 @@ public abstract class ServerRequestHandler extends AbstractHandler {
 	 * @return the usersession
 	 */
 	protected Usersession getUsersession() {
-		initUsersession();
+		if (usersession == null) {
+			initUsersession();
+		}
 		return usersession;
 	}
 

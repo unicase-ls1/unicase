@@ -43,6 +43,7 @@ public class ShareProjectHandler extends ServerRequestCommandHandler {
 	 */
 	@Override
 	protected void initUsersession() {
+
 		Shell shell = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
 				.getShell();
 		ElementListSelectionDialog dlg = new ElementListSelectionDialog(shell,
