@@ -1,4 +1,6 @@
  * [ModelingGuidelines Modeling Guidelines]
  * Model Transformation Guidelines
  * Editor Hints Guidelines
- * 
+ * UNICASE Model Documentation
+ * Design Model Elements
+ * Validation Rule Implementation
