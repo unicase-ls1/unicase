@@ -1,0 +1,4 @@
+ * [ModelingGuidelines Modeling Guidelines]
+ * Model Transformation Guidelines
+ * Editor Hints Guidelines
+ * 
