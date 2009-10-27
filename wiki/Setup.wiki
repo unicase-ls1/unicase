@@ -1,0 +1,7 @@
+ * [PluginConfiguration Plugin Configuration Guidelines]
+ * SVN Repository
+ * UNICASE Repository (beta server)
+ * Mailinglist
+ * Development Environment Troubleshooting
+ * Use External Library
+ * Remove API Baseline Warning
