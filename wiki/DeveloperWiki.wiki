@@ -2,12 +2,12 @@
 
  * Getting started as Framework User
 
-== Details ==
+=== Details ===
 
-[Coding Coding - Guidelines for general coding with the UNICASE Framework] <br>
-[Modeling Modeling - Guidelines for Modeling in UNICASE]<br>
-Diagram - Guidelines for the Diagram Framework in UNICASE<br>
-Set-up and Configuration - Guidelines for the set-up of your development environment and configuration of plugins<br>
+ * [Coding Coding - Guidelines for general coding with the UNICASE Framework]
+ * [Modeling Modeling - Guidelines for Modeling in UNICASE]
+ * [Diagram Diagram - Guidelines for the Diagram Framework in UNICASE]
+ * [Setup Set-up and Configuration - Guidelines for the set-up of your development environment and configuration of plugins]
 Process - The development process of the UNICASE project<br>
 How to release and deploy<br>
 FAQ<br>
