@@ -1,1 +1,5 @@
 *[Coding]
+*[Modeling]
+*[Diagram]
+*[Setup Set-up and Configuration]
+*[Process]
