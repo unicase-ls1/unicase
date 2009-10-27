@@ -1,13 +1,11 @@
-= Developer Wiki =
+ * Getting started as Developer
 
-Getting started as Developer
+ * Getting started as Framework User
 
-Getting started as Framework User
-
-= Details =
+== Details ==
 
 [Coding Coding - Guidelines for general coding with the UNICASE Framework] <br>
-Modeling - Guidelines for Modeling in UNICASE<br>
+[Modeling Modeling - Guidelines for Modeling in UNICASE]<br>
 Diagram - Guidelines for the Diagram Framework in UNICASE<br>
 Set-up and Configuration - Guidelines for the set-up of your development environment and configuration of plugins<br>
 Process - The development process of the UNICASE project<br>
