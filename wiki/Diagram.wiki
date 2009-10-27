@@ -1,2 +1,2 @@
-* [MEDiagram ID Settings]
-* UNICASE Diagram Editor Documentation (GMF)
+ * [MEDiagram ID Settings]
+ * UNICASE Diagram Editor Documentation (GMF)
