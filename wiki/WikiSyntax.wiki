@@ -7,3 +7,15 @@
 
 
 We use checkstyle to check code against our coding guidelines and for code formatting, we use default Eclipse formatter (Eclipse (built-in)).Please install the Eclipse checkstyle plugin from the update site given in Getting started section of this wiki. Please also checkout the developer folder from our repository (trunk/developer), since it contains the coding guidelines.
+
+
+Please configure checkstyle as follows (also see screenshot below):
+
+   #  Open preferences
+   # Select "Checkstyle"
+   # Select "New..."
+   # Choose "Configuration relative to Project" as type
+   # Enter "unicaseStyle" as name
+   # Select developer/coding.guidelines/unicaseStyle.xml as location (You need to checkout the developer folder from svn, see above)
+   # Click OK
+   # Set unicaseStyle as default checkstyle configuration
