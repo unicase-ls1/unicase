@@ -1,4 +1,4 @@
-#summary One-sentence summary of this page.
+#summary This page gives a clear idea of coding guidelines followed by Unicase developer.
 
 = Introduction =
 
