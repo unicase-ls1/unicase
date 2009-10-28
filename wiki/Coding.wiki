@@ -1,4 +1,4 @@
-Coding Guidelines<br>
+Coding Guidelines http://realtravelguru.com/wordpress/wp-content/uploads/2009/02/big-tick.jpg<br>
 Model API Usage Guidelines <br>
 Exception Handling Guidelines <br>
 Server request Guidelines <br>
