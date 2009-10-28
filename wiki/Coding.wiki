@@ -1,4 +1,4 @@
-Coding Guidelines <br>
+Coding Guidelines [WikiSyntax]<br>
 Model API Usage Guidelines <br>
 Exception Handling Guidelines <br>
 Server request Guidelines <br>
