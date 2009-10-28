@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.ModelPackage;
 
 /**

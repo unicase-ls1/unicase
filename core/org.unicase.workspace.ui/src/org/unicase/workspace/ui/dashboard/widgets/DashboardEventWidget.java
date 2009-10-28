@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.task.TaskPackage;

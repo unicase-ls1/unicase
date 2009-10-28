@@ -11,7 +11,7 @@ import java.util.Set;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.graphics.Color;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.EstimateHelper;
@@ -53,7 +53,7 @@ public class HierarchyTabEstimateLabelProvider extends ColumnLabelProvider imple
 		int estimate = 0;
 		int closedEstimate = 0;
 
-		if (!(element instanceof ModelElement)) {
+		if (!(element instanceof UnicaseModelElement)) {
 			return "";
 		}
 
@@ -61,16 +61,16 @@ public class HierarchyTabEstimateLabelProvider extends ColumnLabelProvider imple
 			return ((WorkItem) element).getEstimate() + "";
 		}
 
-		ModelElement currentOpenME = hierarchyTabContentProvider.getRoot();
+		UnicaseModelElement currentOpenME = hierarchyTabContentProvider.getRoot();
 		if (!(currentOpenME instanceof WorkPackage)) {
-			estimate = EstimateHelper.getAggregatedEstimate((ModelElement) element);
-			closedEstimate = EstimateHelper.getClosedAggregatedEstimate((ModelElement) element);
+			estimate = EstimateHelper.getAggregatedEstimate((UnicaseModelElement) element);
+			closedEstimate = EstimateHelper.getClosedAggregatedEstimate((UnicaseModelElement) element);
 
 			return closedEstimate + " / " + estimate;
 		}
 
 		Set<WorkItem> relativeWorkItems = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getRelativeWorkItems(
-			(WorkPackage) currentOpenME, (ModelElement) element);
+			(WorkPackage) currentOpenME, (UnicaseModelElement) element);
 
 		estimate = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getEstimate(relativeWorkItems);
 

@@ -1,5 +1,15 @@
 package org.unicase.test.tests.change;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Date;
+import java.util.List;
+import java.util.Random;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
@@ -21,9 +31,10 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.SerializationException;
 import org.unicase.workspace.Configuration;
@@ -31,23 +42,13 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Date;
-import java.util.List;
-import java.util.Random;
-
 public final class ChangeTestHelper {
 
 	private static TransactionalEditingDomain domain;
 	private static String TEMP_PATH = Configuration.getWorkspaceDirectory() + File.separator + "tmp";
 
 	private static Random random;
-	private static List<ModelElement> allMEsInProject;
+	private static EList<ModelElement> allMEsInProject;
 
 	public static ProjectSpace createEmptyProjectSpace(String name) {
 
@@ -348,9 +349,9 @@ public final class ChangeTestHelper {
 	 * @param unique if they must be unique
 	 * @return
 	 */
-	public static List<ModelElement> getRandomMEs(Project project, int num, boolean unique) {
+	public static List<UnicaseModelElement> getRandomMEs(Project project, int num, boolean unique) {
 
-		List<ModelElement> result = new ArrayList<ModelElement>();
+		List<UnicaseModelElement> result = new ArrayList<UnicaseModelElement>();
 		if (allMEsInProject == null) {
 			System.out.println("getting list of all model elements in project...");
 			allMEsInProject = project.getAllModelElements();
@@ -365,7 +366,8 @@ public final class ChangeTestHelper {
 
 		if (unique) {
 			do {
-				final ModelElement me = allMEsInProject.get(getRandom().nextInt(numOfMEs - 1));
+				final UnicaseModelElement me = (UnicaseModelElement) allMEsInProject.get(getRandom().nextInt(
+					numOfMEs - 1));
 				if (!result.contains(me)) {
 					result.add(me);
 				}
@@ -374,7 +376,8 @@ public final class ChangeTestHelper {
 
 		} else {
 			for (int i = 0; i < num; i++) {
-				final ModelElement me = allMEsInProject.get(getRandom().nextInt(numOfMEs - 1));
+				final UnicaseModelElement me = (UnicaseModelElement) allMEsInProject.get(getRandom().nextInt(
+					numOfMEs - 1));
 				result.add(me);
 			}
 
@@ -388,8 +391,8 @@ public final class ChangeTestHelper {
 	 * @param project project
 	 * @return randomly selected ME
 	 */
-	public static ModelElement getRandomME(Project project) {
-		List<ModelElement> modelElements = getRandomMEs(project, 1, false);
+	public static UnicaseModelElement getRandomME(Project project) {
+		List<UnicaseModelElement> modelElements = getRandomMEs(project, 1, false);
 		return modelElements.get(0);
 	}
 
@@ -401,9 +404,10 @@ public final class ChangeTestHelper {
 	 * @param type model element type
 	 * @return ME or null if there is no ME of this type in project
 	 */
-	public static ModelElement getRandomMEofType(Project project, EClass type) {
+	public static UnicaseModelElement getRandomMEofType(Project project, EClass type) {
 
-		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(type, new BasicEList<ModelElement>());
+		List<UnicaseModelElement> refTypeMEs = project.getAllModelElementsbyClass(type,
+			new BasicEList<UnicaseModelElement>());
 
 		int size = refTypeMEs.size();
 		if (size == 0) {
@@ -411,7 +415,7 @@ public final class ChangeTestHelper {
 			// throw new IllegalStateException("There is no ME of this type in Project: " + type.getName());
 		}
 
-		ModelElement me = refTypeMEs.get(getRandomPosition(size));
+		UnicaseModelElement me = refTypeMEs.get(getRandomPosition(size));
 		return me;
 	}
 
@@ -420,10 +424,10 @@ public final class ChangeTestHelper {
 	 * 
 	 * @return ME
 	 */
-	public static ModelElement createRandomME() {
+	public static UnicaseModelElement createRandomME() {
 		List<EClass> eClazz = ModelUtil.getSubclasses(ModelPackage.eINSTANCE.getModelElement());
 		EClass eClass = eClazz.get(getRandom().nextInt(eClazz.size() - 1));
-		ModelElement me = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		UnicaseModelElement me = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
 
 		return me;
 	}
@@ -460,7 +464,7 @@ public final class ChangeTestHelper {
 	 * @param attribute
 	 */
 	@SuppressWarnings("unchecked")
-	public static void changeAttribute(ModelElement me, EAttribute attribute) {
+	public static void changeAttribute(UnicaseModelElement me, EAttribute attribute) {
 
 		if (attribute.getEType().getInstanceClass().equals(String.class)) {
 			if (attribute.isMany()) {
@@ -567,7 +571,7 @@ public final class ChangeTestHelper {
 	 * @param me ME
 	 * @return a random selected attribute
 	 */
-	public static EAttribute getRandomAttribute(ModelElement me) {
+	public static EAttribute getRandomAttribute(UnicaseModelElement me) {
 		EAttribute attribute = null;
 		List<EAttribute> attributes = new ArrayList<EAttribute>();
 		for (EAttribute tmpAttr : me.eClass().getEAllAttributes()) {
@@ -593,7 +597,7 @@ public final class ChangeTestHelper {
 	 * @param me ME
 	 * @return randomly selected changeable non-transient non-containment reference of this ME
 	 */
-	public static EReference getRandomNonContainmentRef(ModelElement me) {
+	public static EReference getRandomNonContainmentRef(UnicaseModelElement me) {
 		EReference nonContainmentRef = null;
 		List<EReference> nonContainmentRefs = new ArrayList<EReference>();
 		for (EReference ref : me.eClass().getEAllReferences()) {
@@ -617,7 +621,7 @@ public final class ChangeTestHelper {
 	 * @param me ME
 	 * @return a randomly selected containment reference of this ME. It is changeable and not transient
 	 */
-	public static EReference getRandomContainmentRef(ModelElement me) {
+	public static EReference getRandomContainmentRef(UnicaseModelElement me) {
 		EReference containmentRef = null;
 		List<EReference> containments = new ArrayList<EReference>();
 		for (EReference ref : me.eClass().getEAllContainments()) {
@@ -644,16 +648,17 @@ public final class ChangeTestHelper {
 	 * @return model element which is added to this reference
 	 */
 	@SuppressWarnings("unchecked")
-	public static ModelElement changeNonContainementRef(ModelElement me, EReference ref, Project project) {
+	public static UnicaseModelElement changeNonContainementRef(UnicaseModelElement me, EReference ref, Project project) {
 
 		EClass refType = ref.getEReferenceType();
-		List<ModelElement> refTypeMEs = project.getAllModelElementsbyClass(refType, new BasicEList<ModelElement>());
+		List<UnicaseModelElement> refTypeMEs = project.getAllModelElementsbyClass(refType,
+			new BasicEList<UnicaseModelElement>());
 
 		if (refTypeMEs.contains(me)) {
 			refTypeMEs.remove(me);
 		}
 
-		ModelElement toBeReferencedME = refTypeMEs.get(getRandomPosition(refTypeMEs.size()));
+		UnicaseModelElement toBeReferencedME = refTypeMEs.get(getRandomPosition(refTypeMEs.size()));
 
 		Object object = me.eGet(ref);
 		if (ref.isMany()) {
@@ -681,7 +686,8 @@ public final class ChangeTestHelper {
 	 * @param toBeReferencedME model element to reference
 	 */
 	@SuppressWarnings("unchecked")
-	public static void changeNonContainmentRef(ModelElement me, EReference ref, ModelElement toBeReferencedME) {
+	public static void changeNonContainmentRef(UnicaseModelElement me, EReference ref,
+		UnicaseModelElement toBeReferencedME) {
 		Object object = me.eGet(ref);
 		if (ref.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
@@ -703,7 +709,7 @@ public final class ChangeTestHelper {
 	 * @param me ME model element to change
 	 * @param attribute an attribute with multiple values (isMany = true)
 	 */
-	public static void moveMultiAttributeValue(ModelElement me, EAttribute attribute) {
+	public static void moveMultiAttributeValue(UnicaseModelElement me, EAttribute attribute) {
 		if (!attribute.isMany()) {
 			throw new IllegalArgumentException("Given attribute must be multiple valued (isMany = true)");
 		}
@@ -723,7 +729,7 @@ public final class ChangeTestHelper {
 	 * @param ref EReference to change
 	 */
 	@SuppressWarnings("unchecked")
-	public static void moveMultiReferenceValue(ModelElement me, EReference ref) {
+	public static void moveMultiReferenceValue(UnicaseModelElement me, EReference ref) {
 		if (!ref.isMany()) {
 			throw new IllegalArgumentException("Given reference must be multiple valued (isMany = true)");
 		}

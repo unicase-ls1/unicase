@@ -41,7 +41,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.RationalePackage;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
@@ -60,7 +60,7 @@ import org.unicase.ui.meeditor.mecontrols.uccontrol.UseCaseStepsControl;
 public class MEEditorPage extends FormPage {
 
 	private EditingDomain editingDomain;
-	private ModelElement modelElement;
+	private UnicaseModelElement modelElement;
 	private FormToolkit toolkit;
 	private List<MEControl> meControls = new ArrayList<MEControl>();
 
@@ -82,7 +82,7 @@ public class MEEditorPage extends FormPage {
 	 * @param editingDomain the editingDomain
 	 * @param modelElement the modelElement
 	 */
-	public MEEditorPage(MEEditor editor, String id, String title, EditingDomain editingDomain, ModelElement modelElement) {
+	public MEEditorPage(MEEditor editor, String id, String title, EditingDomain editingDomain, UnicaseModelElement modelElement) {
 		super(editor, id, title);
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
@@ -98,7 +98,7 @@ public class MEEditorPage extends FormPage {
 	 * @param modelElement the modelElement
 	 */
 	public MEEditorPage(FormEditor editor, String id, String title, EditingDomain editingDomain,
-		ModelElement modelElement) {
+		UnicaseModelElement modelElement) {
 		super(editor, id, title);
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;
@@ -115,7 +115,7 @@ public class MEEditorPage extends FormPage {
 	 *@param problemFeature the problemFeature
 	 */
 	public MEEditorPage(MEEditor editor, String id, String title, TransactionalEditingDomain editingDomain,
-		ModelElement modelElement, EStructuralFeature problemFeature) {
+		UnicaseModelElement modelElement, EStructuralFeature problemFeature) {
 		this(editor, id, title, editingDomain, modelElement);
 		this.problemFeature = problemFeature;
 	}

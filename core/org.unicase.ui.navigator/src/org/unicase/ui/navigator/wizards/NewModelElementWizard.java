@@ -13,7 +13,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.Wizard;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.LeafSection;
@@ -33,7 +33,7 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 
-	private ModelElement selectedME;
+	private UnicaseModelElement selectedME;
 	/**
 	 * . Through this field, the ModelTreePage tells the wizard which model element type is selected
 	 */
@@ -68,11 +68,11 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 	 */
 	@Override
 	public boolean performFinish() {
-		final ModelElement newMEInstance;
+		final UnicaseModelElement newMEInstance;
 		if (selectedME != null && newMEType != null) {
 			// 1.create ME
 			EPackage ePackage = newMEType.getEPackage();
-			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newMEType);
+			newMEInstance = (UnicaseModelElement) ePackage.getEFactoryInstance().create(newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
 
 			if (newMEInstance instanceof MEDiagram) {
@@ -176,8 +176,8 @@ public class NewModelElementWizard extends Wizard implements IWorkbenchWizard {
 		Object o;
 		if (!selection.isEmpty()) {
 			o = selection.getFirstElement();
-			if (o instanceof ModelElement) {
-				selectedME = (ModelElement) o;
+			if (o instanceof UnicaseModelElement) {
+				selectedME = (UnicaseModelElement) o;
 			}
 		}
 

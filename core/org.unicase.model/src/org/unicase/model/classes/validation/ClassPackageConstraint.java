@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Package;
 import org.unicase.model.util.ValidationConstraintHelper;
 
@@ -36,7 +36,7 @@ public class ClassPackageConstraint extends AbstractModelConstraint {
 				Package package1 = ((org.unicase.model.classes.Class) eObj).getParentPackage();
 				if (package1 == null) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(ModelElement) eObj, "parentPackage");
+						(UnicaseModelElement) eObj, "parentPackage");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
 						+ ((org.unicase.model.classes.Class) eObj).getName() + "'" });

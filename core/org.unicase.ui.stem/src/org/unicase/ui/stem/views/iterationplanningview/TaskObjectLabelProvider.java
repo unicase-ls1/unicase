@@ -11,7 +11,7 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.graphics.Image;
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * . LabelProvider for annotated model element column in IterationPlaningView
@@ -38,7 +38,7 @@ public class TaskObjectLabelProvider extends IterationPlanningLabelProvider impl
 	public Image getImage(Object element) {
 		if (element instanceof Annotation) {
 			Annotation annotation = (Annotation) element;
-			ModelElement modelElement = null;
+			UnicaseModelElement modelElement = null;
 			if (annotation.getAnnotatedModelElements().size() > 0) {
 				modelElement = annotation.getAnnotatedModelElements().get(0);
 			}
@@ -59,7 +59,7 @@ public class TaskObjectLabelProvider extends IterationPlanningLabelProvider impl
 	public String getText(Object element) {
 		if (element instanceof Annotation) {
 			Annotation annotation = (Annotation) element;
-			ModelElement modelElement = null;
+			UnicaseModelElement modelElement = null;
 			if (annotation.getAnnotatedModelElements().size() > 0) {
 				modelElement = annotation.getAnnotatedModelElements().get(0);
 			}

@@ -15,7 +15,7 @@ import org.unicase.docExport.exceptions.DocumentExportException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
 import org.unicase.docExport.exportModel.renderers.elements.URootCompositeSection;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * This class wraps the document rendering (see package renderers) and document writing (see package docWriter) into an
@@ -25,7 +25,7 @@ import org.unicase.model.ModelElement;
  */
 public class DocumentExport implements IRunnableWithProgress {
 
-	private ModelElement modelElement;
+	private UnicaseModelElement modelElement;
 	private DocWriter docWriter;
 	private Template template;
 	private DocumentRenderer renderer;
@@ -34,7 +34,7 @@ public class DocumentExport implements IRunnableWithProgress {
 	private static int recursionDepth = 10;
 	private static boolean treatModelElementAsLeafSection;
 	private static HashSet<String> renderedModelElements;
-	private static HashSet<ModelElement> linkedModelElements;
+	private static HashSet<UnicaseModelElement> linkedModelElements;
 
 	/**
 	 * @param modelElement the ModelElement you want to export
@@ -42,7 +42,7 @@ public class DocumentExport implements IRunnableWithProgress {
 	 * @param documentTemplate the template which defines how the modelElement is rendered
 	 * @param renderer the DocumentRenderer which renders the modelElement using the template
 	 */
-	public DocumentExport(ModelElement modelElement, DocWriter docWriter, Template documentTemplate,
+	public DocumentExport(UnicaseModelElement modelElement, DocWriter docWriter, Template documentTemplate,
 		DocumentRenderer renderer) {
 		this.modelElement = modelElement;
 		this.docWriter = docWriter;
@@ -50,7 +50,7 @@ public class DocumentExport implements IRunnableWithProgress {
 		this.renderer = renderer;
 
 		renderedModelElements = new HashSet<String>();
-		linkedModelElements = new HashSet<ModelElement>();
+		linkedModelElements = new HashSet<UnicaseModelElement>();
 	}
 
 	/**
@@ -97,14 +97,14 @@ public class DocumentExport implements IRunnableWithProgress {
 	 * 
 	 * @param me The ModelElement to add
 	 */
-	public static void addLinkedModelElement(ModelElement me) {
+	public static void addLinkedModelElement(UnicaseModelElement me) {
 		linkedModelElements.add(me);
 	}
 
 	/**
 	 * @return a set of ModelElements which have been linked in the ongoing DocumentExport
 	 */
-	public static HashSet<ModelElement> getLinkedModelElements() {
+	public static HashSet<UnicaseModelElement> getLinkedModelElements() {
 		return linkedModelElements;
 	}
 
@@ -113,7 +113,7 @@ public class DocumentExport implements IRunnableWithProgress {
 	 * 
 	 * @param me the ModelElement which has been rendered to the Document
 	 */
-	public static void addRenderedModelElement(ModelElement me) {
+	public static void addRenderedModelElement(UnicaseModelElement me) {
 		renderedModelElements.add(me.getModelElementId().getId());
 	}
 
@@ -121,7 +121,7 @@ public class DocumentExport implements IRunnableWithProgress {
 	 * @param me the ModelElement which shall be tested, if it has already been rednered to the document
 	 * @return true, if the ModelElement has been rendered yet
 	 */
-	public static boolean hasAlreadyBeenRendered(ModelElement me) {
+	public static boolean hasAlreadyBeenRendered(UnicaseModelElement me) {
 		return renderedModelElements.contains(me.getModelElementId().getId());
 	}
 
@@ -139,7 +139,7 @@ public class DocumentExport implements IRunnableWithProgress {
 	 */
 	public static void initiateRenderedModelElements() {
 		renderedModelElements = new HashSet<String>();
-		linkedModelElements = new HashSet<ModelElement>();
+		linkedModelElements = new HashSet<UnicaseModelElement>();
 	}
 
 	/**

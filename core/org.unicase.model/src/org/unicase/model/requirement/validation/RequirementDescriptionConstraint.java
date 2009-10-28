@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.Scenario;
@@ -38,13 +38,13 @@ public class RequirementDescriptionConstraint extends AbstractModelConstraint {
 			if (eObj instanceof Step || eObj instanceof UseCase || eObj instanceof Scenario
 				|| eObj instanceof FunctionalRequirement || eObj instanceof NonFunctionalRequirement) {
 
-				ModelElement requirement = (ModelElement) eObj;
+				UnicaseModelElement requirement = (UnicaseModelElement) eObj;
 				if (requirement.getDescription() == null || requirement.getDescription().equals("")) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(ModelElement) eObj, "description");
+						(UnicaseModelElement) eObj, "description");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-						+ ((ModelElement) eObj).getName() + "'" });
+						+ ((UnicaseModelElement) eObj).getName() + "'" });
 				}
 			}
 		}

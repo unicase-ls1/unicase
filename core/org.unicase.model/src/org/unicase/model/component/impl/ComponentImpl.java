@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.ComponentService;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Component</b></em>'. <!-- end-user-doc -->
@@ -34,7 +34,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public class ComponentImpl extends ModelElementImpl implements Component {
+public class ComponentImpl extends UnicaseModelElementImpl implements Component {
 	/**
 	 * The cached value of the '{@link #getPackages() <em>Packages</em>}' reference list. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

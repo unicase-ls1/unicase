@@ -5,7 +5,7 @@
  */
 package org.unicase.model.classes;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Attribute</b></em>'. <!-- end-user-doc -->
@@ -27,7 +27,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Attribute extends ModelElement {
+public interface Attribute extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Defining Class</b></em>' container reference. It is bidirectional and its
 	 * opposite is '{@link org.unicase.model.classes.Class#getAttributes <em>Attributes</em>}'. <!-- begin-user-doc -->

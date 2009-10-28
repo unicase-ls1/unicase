@@ -12,7 +12,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * A conflict detection strategy that will operate on a per attribute and feature level.

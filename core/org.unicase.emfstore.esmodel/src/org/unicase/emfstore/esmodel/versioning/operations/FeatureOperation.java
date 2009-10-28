@@ -6,8 +6,8 @@
 package org.unicase.emfstore.esmodel.versioning.operations;
 
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Feature Operation</b></em>'. <!-- end-user-doc

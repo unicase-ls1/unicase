@@ -22,8 +22,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Tree;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -32,9 +33,9 @@ import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.AssignedToEditingSupport;
-import org.unicase.ui.stem.views.iterationplanningview.WorkPackageColumnLabelProvider;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectEditingSupport;
 import org.unicase.ui.stem.views.iterationplanningview.TaskObjectLabelProvider;
+import org.unicase.ui.stem.views.iterationplanningview.WorkPackageColumnLabelProvider;
 import org.unicase.ui.stem.views.statusview.dnd.HierarchyTabDropAdapter;
 import org.unicase.ui.stem.views.statusview.dnd.StatusViewTabsDragAdapter;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
@@ -202,7 +203,8 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 		treeViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
 				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
-				ActionHelper.openModelElement((ModelElement) sel.getFirstElement(), treeViewer.getClass().getName());
+				ActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer.getClass()
+					.getName());
 			}
 
 		});
@@ -213,7 +215,7 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 	 * 
 	 * @param me input model element
 	 */
-	public void setInput(ModelElement me) {
+	public void setInput(UnicaseModelElement me) {
 		hierachieTabDropAdapter.setCurrentOpenME(me);
 		treeViewer.setInput(me);
 
@@ -222,8 +224,8 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		treeViewer.refresh();
@@ -232,7 +234,7 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		treeViewer.refresh();
@@ -242,7 +244,7 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		// nothing to do
@@ -253,7 +255,7 @@ public class HierarchyTabComposite extends Composite implements ProjectChangeObs
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		treeViewer.update(modelElement, null);

@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import org.eclipse.emf.common.util.EList;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.FileTransferException;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.workspace.PendingFileTransfer;

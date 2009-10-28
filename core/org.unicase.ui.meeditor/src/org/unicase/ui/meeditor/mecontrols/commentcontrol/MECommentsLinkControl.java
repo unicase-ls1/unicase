@@ -26,9 +26,10 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.util.ProjectChangeObserver;
@@ -74,7 +75,7 @@ public class MECommentsLinkControl extends AbstractMEControl implements MEContro
 			public void modelElementAdded(Project project, ModelElement modelElement) {
 				if (modelElement instanceof Comment) {
 					Comment newComment = (Comment) modelElement;
-					ModelElement currentModelElement = (ModelElement) getModelElement();
+					UnicaseModelElement currentModelElement = (UnicaseModelElement) getModelElement();
 					if (currentModelElement.getAllContainedModelElements().contains(newComment)) {
 						update();
 					}
@@ -93,7 +94,7 @@ public class MECommentsLinkControl extends AbstractMEControl implements MEContro
 		};
 
 		if (ModelPackage.eINSTANCE.getModelElement().isInstance(modelElement)) {
-			ModelElement me = (ModelElement) modelElement;
+			UnicaseModelElement me = (UnicaseModelElement) modelElement;
 			project = WorkspaceManager.getProjectSpace(me).getProject();
 			project.addProjectChangeObserver(observerImpl);
 		}
@@ -126,7 +127,7 @@ public class MECommentsLinkControl extends AbstractMEControl implements MEContro
 		commentsLink.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseUp(MouseEvent e) {
-				ActionHelper.openDiscussion((ModelElement) getModelElement(), false);
+				ActionHelper.openDiscussion((UnicaseModelElement) getModelElement(), false);
 			}
 		});
 

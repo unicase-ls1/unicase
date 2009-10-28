@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.forms.widgets.FormToolkit;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.util.UnicaseCommand;
 
@@ -89,9 +89,9 @@ public class MESingleLinkControl extends AbstractMEControl {
 		linkArea.setLayout(new FillLayout());
 		updateLink();
 
-		final AddReferenceAction addAction = new AddReferenceAction((ModelElement) getModelElement(), eReference,
+		final AddReferenceAction addAction = new AddReferenceAction((UnicaseModelElement) getModelElement(), eReference,
 			itemPropertyDescriptor);
-		final NewReferenceAction newAction = new NewReferenceAction((ModelElement) getModelElement(), eReference,
+		final NewReferenceAction newAction = new NewReferenceAction((UnicaseModelElement) getModelElement(), eReference,
 			itemPropertyDescriptor);
 
 		Button selectButton = getToolkit().createButton(composite, "", SWT.PUSH);
@@ -127,7 +127,7 @@ public class MESingleLinkControl extends AbstractMEControl {
 			@Override
 			protected void doRun() {
 				EObject opposite = (EObject) getModelElement().eGet(eReference);
-				ModelElement me = (ModelElement) getModelElement();
+				UnicaseModelElement me = (UnicaseModelElement) getModelElement();
 				if (opposite != null) {
 					meControl = new MELinkControl(getEditingDomain(), opposite, getToolkit(), me, eReference);
 					meControl.createControl(linkArea, style);

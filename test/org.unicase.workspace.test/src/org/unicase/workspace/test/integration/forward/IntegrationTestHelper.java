@@ -37,9 +37,9 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.SerializationException;
 import org.unicase.workspace.Configuration;
@@ -719,7 +719,8 @@ public final class IntegrationTestHelper {
 		if (ref.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
 			if (eList == null) {
-				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on " + me.getName());
+				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on "
+					+ me.getIdentifier());
 			} else {
 				int position = getRandomPosition(eList.size());
 				eList.add(position, toBeReferencedME);
@@ -746,7 +747,8 @@ public final class IntegrationTestHelper {
 		if (ref.isMany()) {
 			EList<EObject> eList = (EList<EObject>) object;
 			if (eList == null) {
-				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on " + me.getName());
+				throw new IllegalStateException("Null list return for feature " + ref.getName() + " on "
+					+ me.getIdentifier());
 			} else {
 				int position = getRandomPosition(eList.size());
 				eList.add(position, toBeReferencedME);
@@ -793,7 +795,8 @@ public final class IntegrationTestHelper {
 		Object object = me.eGet(ref);
 		EList<EObject> eList = (EList<EObject>) object;
 		if (eList == null) {
-			throw new IllegalStateException("Null list return for feature " + ref.getName() + " on " + me.getName());
+			throw new IllegalStateException("Null list return for feature " + ref.getName() + " on "
+				+ me.getIdentifier());
 		} else {
 			int position1 = getRandomPosition(eList.size());
 			int position2 = getRandomPosition(eList.size());
@@ -859,7 +862,7 @@ public final class IntegrationTestHelper {
 
 			if (eList == null) {
 				throw new IllegalStateException("Null list return for feature " + refToChange.getName() + " on "
-					+ me.getName());
+					+ me.getIdentifier());
 
 			} else {
 				int position = getRandomPosition(eList.size());

@@ -72,7 +72,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.Project} instances. <!-- begin-user-doc
+	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.Project} instances. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -80,7 +80,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	protected ProjectItemProvider projectItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.Project}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link org.unicase.metamodel.Project}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -94,7 +94,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.IdentifiableElement} instances. <!--
+	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.IdentifiableElement} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -102,7 +102,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	protected IdentifiableElementItemProvider identifiableElementItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.IdentifiableElement}. <!-- begin-user-doc --> <!--
+	 * This creates an adapter for a {@link org.unicase.metamodel.IdentifiableElement}. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
@@ -117,7 +117,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.ModelElementId} instances. <!--
+	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.ModelElementId} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -125,7 +125,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	protected ModelElementIdItemProvider modelElementIdItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.ModelElementId}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * This creates an adapter for a {@link org.unicase.metamodel.ModelElementId}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated
@@ -140,7 +140,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.model.ModelVersion} instances. <!--
+	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.ModelVersion} instances. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -148,7 +148,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	protected ModelVersionItemProvider modelVersionItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.model.ModelVersion}. <!-- begin-user-doc --> <!-- end-user-doc
+	 * This creates an adapter for a {@link org.unicase.metamodel.ModelVersion}. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->
 	 * 
 	 * @generated

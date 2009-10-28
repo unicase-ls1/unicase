@@ -14,8 +14,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.unicase.docExport.exportModel.renderers.defaultRenderers.DefaultRenderersFactory;
-import org.unicase.model.ModelElement;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -40,11 +40,11 @@ public class ExportDocument extends AbstractHandler {
 		}
 
 		Object o = ssel.getFirstElement();
-		if (!(o instanceof ModelElement)) {
+		if (!(o instanceof UnicaseModelElement)) {
 			return null;
 		}
 
-		final ModelElementImpl modelElement = (ModelElementImpl) o;
+		final UnicaseModelElementImpl modelElement = (UnicaseModelElementImpl) o;
 
 		final Shell shell = PlatformUI.getWorkbench().getDisplay().getActiveShell();
 

@@ -6,7 +6,7 @@
 package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Method;
 
 /**
@@ -30,7 +30,7 @@ import org.unicase.model.classes.Method;
  * @model
  * @generated
  */
-public interface Scenario extends ModelElement {
+public interface Scenario extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Steps</b></em>' containment reference list. The list contents are of type
 	 * {@link org.unicase.model.requirement.Step}. <!-- begin-user-doc -->

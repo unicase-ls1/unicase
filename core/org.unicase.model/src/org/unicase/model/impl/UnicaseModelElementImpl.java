@@ -24,13 +24,14 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ModelElementImpl;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.ProfilePackage;
@@ -48,31 +49,32 @@ import org.unicase.model.util.ModelUtil;
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getDescription <em>Description</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getCreator <em>Creator</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getAnnotations <em>Annotations</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getAttachments <em>Attachments</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getIncomingDocumentReferences <em>Incoming Document References
- * </em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getState <em>State</em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype Instances
- * </em>}</li>
- * <li>{@link org.unicase.model.impl.ModelElementImpl#getComments <em>Comments</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getDescription <em>Description</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getCreator <em>Creator</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAnnotations <em>Annotations</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAttachments <em>Attachments</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getIncomingDocumentReferences <em>Incoming Document
+ * References </em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getLeafSection <em>Leaf Section</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getState <em>State</em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getAppliedStereotypeInstances <em>Applied Stereotype
+ * Instances </em>}</li>
+ * <li>{@link org.unicase.model.impl.UnicaseModelElementImpl#getComments <em>Comments</em>}</li>
  * </ul>
  * </p>
  * 
  * @generated
  */
-public abstract class ModelElementImpl extends IdentifiableElementImpl implements ModelElement {
+public abstract class UnicaseModelElementImpl extends ModelElementImpl implements UnicaseModelElement {
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.ModelElement#addModelElementChangeListener(org.unicase.model.util.ModelElementChangeListener)
+	 * @see org.unicase.model.UnicaseModelElement#addModelElementChangeListener(org.unicase.model.util.ModelElementChangeListener)
 	 */
+	@Override
 	public void addModelElementChangeListener(ModelElementChangeListener listener) {
 		if (this.changeListeners.size() == 0) {
 			internalChangeListener = new AdapterImpl() {
@@ -92,8 +94,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.ModelElement#removeModelElementChangeListener(org.unicase.model.util.ModelElementChangeListener)
+	 * @see org.unicase.model.UnicaseModelElement#removeModelElementChangeListener(org.unicase.model.util.ModelElementChangeListener)
 	 */
+	@Override
 	public void removeModelElementChangeListener(ModelElementChangeListener listener) {
 		this.changeListeners.remove(listener);
 		if (this.changeListeners.size() < 1 && internalChangeListener != null) {
@@ -129,8 +132,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	}
 
 	/**
-	 * @see org.unicase.model.ModelElement#delete()
+	 * @see org.unicase.model.UnicaseModelElement#delete()
 	 */
+	@Override
 	public void delete() {
 		Project project = this.getProject();
 		if (project == null) {
@@ -138,77 +142,6 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 		}
 		project.deleteModelElement(this);
 
-	}
-
-	/**
-	 * @see org.unicase.model.ModelElement#getAllContainedModelElements()
-	 */
-	public Set<ModelElement> getAllContainedModelElements() {
-		Set<ModelElement> result = new HashSet<ModelElement>();
-		for (EObject containee : this.eContents()) {
-			if (ModelPackage.eINSTANCE.getModelElement().isInstance(containee)) {
-				ModelElement containeeModelElement = (ModelElement) containee;
-				Set<ModelElement> elements = containeeModelElement.getAllContainedModelElements();
-				result.add(containeeModelElement);
-				result.addAll(elements);
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @see org.unicase.model.ModelElement#getReferencedModelElements()
-	 */
-	public Set<ModelElement> getCrossReferencedModelElements() {
-		Set<ModelElement> result = new HashSet<ModelElement>();
-		for (EObject crossReference : this.eCrossReferences()) {
-			if (ModelPackage.eINSTANCE.getModelElement().isInstance(crossReference)) {
-				result.add((ModelElement) crossReference);
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @see org.unicase.model.ModelElement#getContainedModelElements()
-	 */
-	public Set<ModelElement> getContainedElements() {
-		Set<ModelElement> result = new HashSet<ModelElement>();
-		for (EObject containee : this.eContents()) {
-			if (ModelPackage.eINSTANCE.getModelElement().isInstance(containee)) {
-				result.add((ModelElement) containee);
-			}
-		}
-		return result;
-	}
-
-	/**
-	 * @see org.unicase.model.ModelElement#getContainerModelElement()
-	 */
-	public ModelElement getContainerModelElement() {
-		EObject container = this.eContainer();
-		if (container == null) {
-			return null;
-		}
-		if (ModelPackage.eINSTANCE.getModelElement().isInstance(container)) {
-			return (ModelElement) container;
-		}
-		return null;
-	}
-
-	/**
-	 * @see org.unicase.model.ModelElement#getLinkedModelElements()
-	 */
-	public Set<ModelElement> getLinkedModelElements() {
-		Set<ModelElement> result = new HashSet<ModelElement>();
-		for (EObject referencedEObject : this.eCrossReferences()) {
-			if (ModelPackage.eINSTANCE.getModelElement().isInstance(referencedEObject)) {
-				result.add((ModelElement) referencedEObject);
-			}
-		}
-		return result;
 	}
 
 	/**
@@ -365,7 +298,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * 
 	 * @generated NOT
 	 */
-	protected ModelElementImpl() {
+	protected UnicaseModelElementImpl() {
 		super();
 		changeListeners = new ArrayList<ModelElementChangeListener>();
 		// TODO AS activate this when the models on the server are fixed.
@@ -432,6 +365,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * 
 	 * @generated
 	 */
+	@Override
 	public String getCreator() {
 		return creator;
 	}
@@ -441,6 +375,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void setCreator(String newCreator) {
 		String oldCreator = creator;
 		creator = newCreator;
@@ -454,6 +389,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * 
 	 * @generated
 	 */
+	@Override
 	public Date getCreationDate() {
 		return creationDate;
 	}
@@ -463,6 +399,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * 
 	 * @generated
 	 */
+	@Override
 	public void setCreationDate(Date newCreationDate) {
 		Date oldCreationDate = creationDate;
 		creationDate = newCreationDate;
@@ -616,9 +553,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * @generated NOT
 	 * @return the project in which the modelelement is contained or null if it not in any project.
 	 */
+	@Override
 	public Project getProject() {
 
-		Set<ModelElement> seenModelElements = new HashSet<ModelElement>();
+		Set<UnicaseModelElement> seenModelElements = new HashSet<UnicaseModelElement>();
 		seenModelElements.add(this);
 		return getProject(seenModelElements);
 	}
@@ -629,7 +567,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * @generated NOT
 	 * @return the project in which the modelelement is contained or null if it not in any project.
 	 */
-	private Project getProject(Set<ModelElement> seenModelElements) {
+	private Project getProject(Set<UnicaseModelElement> seenModelElements) {
 
 		EObject container = this.eContainer();
 
@@ -645,10 +583,10 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 			return (Project) container;
 		}
 		// check if my container is a model element
-		else if (container instanceof ModelElementImpl) {
+		else if (container instanceof UnicaseModelElementImpl) {
 			// seenModelElements.add(this);
-			seenModelElements.add((ModelElement) container);
-			return ((ModelElementImpl) container).getProject(seenModelElements);
+			seenModelElements.add((UnicaseModelElement) container);
+			return ((UnicaseModelElementImpl) container).getProject(seenModelElements);
 		} else {
 			throw new IllegalStateException("ModelElement is not contained by any project");
 		}
@@ -682,8 +620,9 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.ModelElement#getModelElementId()
+	 * @see org.unicase.model.UnicaseModelElement#getModelElementId()
 	 */
+	@Override
 	public ModelElementId getModelElementId() {
 		if (this.identifier == null) {
 			throw new IllegalStateException("Model element does not have an identifier");
@@ -697,7 +636,7 @@ public abstract class ModelElementImpl extends IdentifiableElementImpl implement
 	 * use WorkspaceUtil.cleanFormatedText() instead.
 	 * 
 	 * @see org.unciase.workspace.util.WorkspaceUtil#cleanFormatedText() {@inheritDoc}
-	 * @see org.unicase.model.ModelElement#getDescriptionPlainText()
+	 * @see org.unicase.model.UnicaseModelElement#getDescriptionPlainText()
 	 * @return the plain description text
 	 * @generated NOT
 	 * @Deprecated

@@ -18,7 +18,7 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.dnd.DropTargetListener;
 import org.eclipse.ui.forms.widgets.Section;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.workspace.ProjectSpace;
@@ -30,9 +30,9 @@ import org.unicase.workspace.WorkspaceManager;
  */
 public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 
-	private List<ModelElement> source;
-	private ModelElement dropee;
-	private ModelElement target;
+	private List<UnicaseModelElement> source;
+	private UnicaseModelElement dropee;
+	private UnicaseModelElement target;
 	private EReference reference;
 	private EditingDomain editingDomain;
 
@@ -45,8 +45,8 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 
 		this.reference = reference;
 		this.editingDomain = editingDomain;
-		if (me instanceof ModelElement) {
-			target = (ModelElement) me;
+		if (me instanceof UnicaseModelElement) {
+			target = (UnicaseModelElement) me;
 		}
 
 	}
@@ -90,7 +90,7 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 			// if it is a bidirectional reference, instead of adding source to target, set target to the opposite
 			// reference.
 			EReference oppositeRef = reference.getEOpposite();
-			for (ModelElement me : source) {
+			for (UnicaseModelElement me : source) {
 				Object object = me.eGet(oppositeRef);
 				if (oppositeRef.isMany()) {
 					EList<EObject> eList = (EList<EObject>) object;
@@ -214,9 +214,9 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 	 * @param source source
 	 * @return true or false
 	 */
-	protected boolean haveSameEContainer(List<ModelElement> source) {
-		ModelElement first = source.get(0);
-		for (ModelElement me : source) {
+	protected boolean haveSameEContainer(List<UnicaseModelElement> source) {
+		UnicaseModelElement first = source.get(0);
+		for (UnicaseModelElement me : source) {
 			if (!first.eContainer().equals(me.eContainer())) {
 				return false;
 			}
@@ -242,12 +242,12 @@ public class MEMultiLinkControlDropAdapter implements DropTargetListener {
 		}
 
 		for (Object obj : tmpSource) {
-			if (!(obj instanceof ModelElement)) {
+			if (!(obj instanceof UnicaseModelElement)) {
 				result = false;
 			}
 		}
 
-		source = (List<ModelElement>) DragSourcePlaceHolder.getDragSource();
+		source = (List<UnicaseModelElement>) DragSourcePlaceHolder.getDragSource();
 		if (source.size() == 0) {
 			return false;
 		}

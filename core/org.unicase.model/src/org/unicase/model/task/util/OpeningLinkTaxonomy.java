@@ -13,7 +13,7 @@ import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Class;
 import org.unicase.model.classes.Method;
 import org.unicase.model.organization.OrgUnit;
@@ -40,12 +40,12 @@ public class OpeningLinkTaxonomy {
 	 * @param me the Modelelement
 	 * @return a list of modelelements, the openers
 	 */
-	public Set<ModelElement> getOpeners(ModelElement me) {
-		Set<ModelElement> openers = new HashSet<ModelElement>();
+	public Set<UnicaseModelElement> getOpeners(UnicaseModelElement me) {
+		Set<UnicaseModelElement> openers = new HashSet<UnicaseModelElement>();
 		EList<EObject> contents = me.eContents();
 		for (EObject eObject : contents) {
-			if (eObject instanceof ModelElement) {
-				openers.add((ModelElement) eObject);
+			if (eObject instanceof UnicaseModelElement) {
+				openers.add((UnicaseModelElement) eObject);
 			}
 		}
 
@@ -62,7 +62,7 @@ public class OpeningLinkTaxonomy {
 			openers.addAll(participatingMethods);
 		}
 		if (me instanceof Milestone) {
-			EList<ModelElement> containedModelElements = ((Milestone) me).getContainedModelElements();
+			EList<UnicaseModelElement> containedModelElements = ((Milestone) me).getContainedModelElements();
 			openers.addAll(containedModelElements);
 		}
 		openers.remove(me);
@@ -76,11 +76,11 @@ public class OpeningLinkTaxonomy {
 	 * @param modelElement The source modelelement
 	 * @return all opened modelelements
 	 */
-	public ArrayList<ModelElement> getOpened(ModelElement modelElement) {
-		ArrayList<ModelElement> opened = new ArrayList<ModelElement>();
+	public ArrayList<UnicaseModelElement> getOpened(UnicaseModelElement modelElement) {
+		ArrayList<UnicaseModelElement> opened = new ArrayList<UnicaseModelElement>();
 		EObject container = modelElement.eContainer();
-		if (container instanceof ModelElement) {
-			opened.add((ModelElement) container);
+		if (container instanceof UnicaseModelElement) {
+			opened.add((UnicaseModelElement) container);
 		}
 		if (modelElement instanceof Annotation) {
 			Annotation annotation = (Annotation) modelElement;
@@ -112,15 +112,15 @@ public class OpeningLinkTaxonomy {
 	 * @param modelElement the source
 	 * @return a set of modelelement
 	 */
-	public Set<ModelElement> getLeafOpeners(ModelElement modelElement) {
-		return getRecursiveLeafOpeners(modelElement, new HashSet<ModelElement>());
+	public Set<UnicaseModelElement> getLeafOpeners(UnicaseModelElement modelElement) {
+		return getRecursiveLeafOpeners(modelElement, new HashSet<UnicaseModelElement>());
 	}
 
-	private Set<ModelElement> getRecursiveLeafOpeners(ModelElement modelElement, HashSet<ModelElement> visited) {
-		Set<ModelElement> leafOpeners = new HashSet<ModelElement>();
-		Set<ModelElement> openers = getOpeners(modelElement);
+	private Set<UnicaseModelElement> getRecursiveLeafOpeners(UnicaseModelElement modelElement, HashSet<UnicaseModelElement> visited) {
+		Set<UnicaseModelElement> leafOpeners = new HashSet<UnicaseModelElement>();
+		Set<UnicaseModelElement> openers = getOpeners(modelElement);
 		visited.add(modelElement);
-		for (ModelElement opener : openers) {
+		for (UnicaseModelElement opener : openers) {
 			if (visited.contains(opener)) {
 				continue;
 			}
@@ -155,12 +155,12 @@ public class OpeningLinkTaxonomy {
 	 * @param input The model element
 	 * @return the estimate
 	 */
-	public int getEstimate(ModelElement input) {
-		Set<ModelElement> leafOpeners = getLeafOpeners(input);
+	public int getEstimate(UnicaseModelElement input) {
+		Set<UnicaseModelElement> leafOpeners = getLeafOpeners(input);
 		Set<WorkItem> workItems = new HashSet<WorkItem>();
-		Iterator<ModelElement> iterator = leafOpeners.iterator();
+		Iterator<UnicaseModelElement> iterator = leafOpeners.iterator();
 		while (iterator.hasNext()) {
-			ModelElement me = iterator.next();
+			UnicaseModelElement me = iterator.next();
 			if (me instanceof WorkItem) {
 				workItems.add((WorkItem) me);
 
@@ -176,11 +176,11 @@ public class OpeningLinkTaxonomy {
 	 * @param modelElement ModelElement whose relative work items are returned
 	 * @return relative work items for this model element
 	 */
-	public Set<WorkItem> getRelativeWorkItems(WorkPackage workPackage, ModelElement modelElement) {
+	public Set<WorkItem> getRelativeWorkItems(WorkPackage workPackage, UnicaseModelElement modelElement) {
 
-		Set<ModelElement> leafOpeners = getLeafOpeners(modelElement);
+		Set<UnicaseModelElement> leafOpeners = getLeafOpeners(modelElement);
 		Set<WorkItem> relativeWorkItems = new HashSet<WorkItem>();
-		for (ModelElement me : leafOpeners) {
+		for (UnicaseModelElement me : leafOpeners) {
 			if (me instanceof WorkItem) {
 				if (workPackage.getAllContainedWorkItems().contains(me)) {
 					relativeWorkItems.add((WorkItem) me);
@@ -197,13 +197,13 @@ public class OpeningLinkTaxonomy {
 	 * @param me the modelelement
 	 * @return the opener
 	 */
-	public Set<Checkable> getUnassignedWorkItems(ModelElement me) {
+	public Set<Checkable> getUnassignedWorkItems(UnicaseModelElement me) {
 
 		Set<Checkable> checkable = new HashSet<Checkable>();
 
 		// then check its openers (hierarchical)
-		Set<ModelElement> openers = getLeafOpeners(me);
-		for (ModelElement opener : openers) {
+		Set<UnicaseModelElement> openers = getLeafOpeners(me);
+		for (UnicaseModelElement opener : openers) {
 			if (opener instanceof Checkable && opener instanceof WorkItem) {
 				OrgUnit assignee2 = ((WorkItem) opener).getAssignee();
 				if (assignee2 == null) {
@@ -221,13 +221,13 @@ public class OpeningLinkTaxonomy {
 	 * @param assignee OrgUnit assignee
 	 * @return The checkables
 	 */
-	public Set<Checkable> getWorkItems(ModelElement me, OrgUnit assignee) {
+	public Set<Checkable> getWorkItems(UnicaseModelElement me, OrgUnit assignee) {
 
 		Set<Checkable> checkable = new HashSet<Checkable>();
 
 		// then check its openers (hierarchical)
-		Set<ModelElement> openers = getLeafOpeners(me);
-		for (ModelElement opener : openers) {
+		Set<UnicaseModelElement> openers = getLeafOpeners(me);
+		for (UnicaseModelElement opener : openers) {
 			if (opener instanceof Checkable && opener instanceof WorkItem) {
 				OrgUnit assignee2 = ((WorkItem) opener).getAssignee();
 				if (assignee2 != null && assignee.equals(assignee2)) {

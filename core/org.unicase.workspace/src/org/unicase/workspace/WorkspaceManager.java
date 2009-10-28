@@ -19,11 +19,12 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelVersion;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ModelVersionImpl;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.ModelVersion;
-import org.unicase.model.Project;
 import org.unicase.model.util.FileUtil;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -282,10 +283,20 @@ public final class WorkspaceManager {
 		// check if we need to migrate
 		URI versionFileUri = URI.createFileURI(Configuration.getModelReleaseNumberFileName());
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(versionFileUri, true);
-		EList<EObject> directContents = resource.getContents();
-		ModelVersion modelVersion = (ModelVersion) directContents.get(0);
-		return modelVersion;
+		try {
+			Resource resource = resourceSet.getResource(versionFileUri, true);
+			EList<EObject> directContents = resource.getContents();
+			ModelVersion modelVersion = (ModelVersion) directContents.get(0);
+			return modelVersion;
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
+			// END SUPRESS CATCH EXCEPTION
+			// resource can not be loaded, assume version number before metamodel split
+			ModelVersion modelVersion = new ModelVersionImpl();
+			modelVersion.setReleaseNumber(3);
+			return modelVersion;
+		}
+
 	}
 
 	/**

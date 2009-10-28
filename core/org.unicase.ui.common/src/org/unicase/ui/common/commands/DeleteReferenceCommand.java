@@ -8,7 +8,7 @@ package org.unicase.ui.common.commands;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**

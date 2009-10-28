@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
@@ -36,7 +36,7 @@ import org.unicase.model.task.WorkItem;
  * 
  * @generated
  */
-public abstract class OrgUnitImpl extends ModelElementImpl implements OrgUnit {
+public abstract class OrgUnitImpl extends UnicaseModelElementImpl implements OrgUnit {
 	/**
 	 * The default value of the '{@link #getAcOrgId() <em>Ac Org Id</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

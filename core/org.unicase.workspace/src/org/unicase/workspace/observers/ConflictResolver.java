@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 /**
  * Represents a controller that can merge conflicting changes resulting in a list of changes that is not conflicting any

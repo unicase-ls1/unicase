@@ -10,7 +10,7 @@ import java.util.Map;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.ComponentService;
@@ -43,7 +43,7 @@ public class ModelDiagramUpdater {
 		MEDiagram modelElement = (MEDiagram) view.getElement();
 		List result = new LinkedList();
 		for (Iterator it = modelElement.getElements().iterator(); it.hasNext();) {
-			ModelElement childElement = (ModelElement) it.next();
+			UnicaseModelElement childElement = (UnicaseModelElement) it.next();
 			int visualID = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
 					.getNodeVisualID(view, childElement);
 			if (visualID == org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID) {

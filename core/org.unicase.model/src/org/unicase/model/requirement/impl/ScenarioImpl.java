@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.Method;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.NonFunctionalRequirement;
@@ -49,7 +49,7 @@ import org.unicase.model.requirement.UseCase;
  * 
  * @generated
  */
-public class ScenarioImpl extends ModelElementImpl implements Scenario {
+public class ScenarioImpl extends UnicaseModelElementImpl implements Scenario {
 	/**
 	 * The cached value of the '{@link #getSteps() <em>Steps</em>}' containment reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

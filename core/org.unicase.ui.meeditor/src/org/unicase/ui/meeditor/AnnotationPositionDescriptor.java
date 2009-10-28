@@ -8,7 +8,7 @@ package org.unicase.ui.meeditor;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * A {@link IAttributeDescriptor} using the annotation in the genmodel.
@@ -22,7 +22,7 @@ public class AnnotationPositionDescriptor implements IAttributeDescriptor<String
 	/**
 	 * {@inheritDoc}
 	 */
-	public String getValue(IItemPropertyDescriptor propertyDescriptor, ModelElement modelElement) {
+	public String getValue(IItemPropertyDescriptor propertyDescriptor, UnicaseModelElement modelElement) {
 		EAnnotation priority = ((EStructuralFeature) propertyDescriptor.getFeature(modelElement))
 			.getEAnnotation("org.unicase.ui.meeditor");
 		if (priority == null || priority.getDetails() == null) {

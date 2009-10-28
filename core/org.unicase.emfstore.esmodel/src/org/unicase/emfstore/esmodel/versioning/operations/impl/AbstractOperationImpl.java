@@ -18,9 +18,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
-import org.unicase.model.impl.IdentifiableElementImpl;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.IdentifiableElementImpl;
 import org.unicase.model.util.ModelUtil;
 
 /**
@@ -429,7 +429,7 @@ public abstract class AbstractOperationImpl extends IdentifiableElementImpl impl
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.ModelElement#getModelElementId()
+	 * @see org.unicase.metamodel.ModelElement#getModelElementId()
 	 */
 	public OperationId getOperationId() {
 		if (this.identifier == null) {

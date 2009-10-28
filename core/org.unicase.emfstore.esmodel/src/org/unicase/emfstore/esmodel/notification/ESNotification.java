@@ -10,8 +10,8 @@ import java.util.Date;
 import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
-import org.unicase.model.IdentifiableElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>ES Notification</b></em>'. <!-- end-user-doc -->
@@ -144,7 +144,7 @@ public interface ESNotification extends IdentifiableElement {
 
 	/**
 	 * Returns the value of the '<em><b>Related Model Elements</b></em>' containment reference list. The list contents
-	 * are of type {@link org.unicase.model.ModelElementId}. <!-- begin-user-doc -->
+	 * are of type {@link org.unicase.metamodel.ModelElementId}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Related Model Elements</em>' containment reference list isn't clear, there really
 	 * should be more of a description here...

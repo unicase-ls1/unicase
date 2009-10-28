@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 import org.unicase.model.requirement.SystemFunction;
@@ -31,7 +31,7 @@ import org.unicase.model.requirement.UseCase;
  * 
  * @generated
  */
-public class StepImpl extends ModelElementImpl implements Step {
+public class StepImpl extends UnicaseModelElementImpl implements Step {
 	/**
 	 * The default value of the '{@link #isUserStep() <em>User Step</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

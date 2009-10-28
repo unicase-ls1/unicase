@@ -6,8 +6,8 @@
 package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Proposal</b></em>'. <!-- end-user-doc -->
@@ -23,7 +23,7 @@ import org.unicase.model.NonDomainElement;
  * @model
  * @generated
  */
-public interface Proposal extends ModelElement, NonDomainElement {
+public interface Proposal extends UnicaseModelElement, NonDomainElement {
 	/**
 	 * Returns the value of the '<em><b>Assessments</b></em>' containment reference list. The list contents are of type
 	 * {@link org.unicase.model.rationale.Assessment}. It is bidirectional and its opposite is '

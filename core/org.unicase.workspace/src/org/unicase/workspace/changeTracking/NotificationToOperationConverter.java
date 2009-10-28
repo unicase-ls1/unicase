@@ -19,8 +19,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;

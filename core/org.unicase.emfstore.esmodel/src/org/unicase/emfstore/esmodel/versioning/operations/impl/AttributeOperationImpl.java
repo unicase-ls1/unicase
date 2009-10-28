@@ -14,8 +14,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Attribute Operation</b></em>'. <!--

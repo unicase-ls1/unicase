@@ -6,7 +6,7 @@
 package org.unicase.model.activity;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Object</b></em>'. <!-- end-user-doc -->
@@ -22,7 +22,7 @@ import org.unicase.model.ModelElement;
  * @model abstract="true"
  * @generated
  */
-public interface ActivityObject extends ModelElement {
+public interface ActivityObject extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Incoming Transitions</b></em>' reference list. The list contents are of type
 	 * {@link org.unicase.model.activity.Transition}. It is bidirectional and its opposite is '

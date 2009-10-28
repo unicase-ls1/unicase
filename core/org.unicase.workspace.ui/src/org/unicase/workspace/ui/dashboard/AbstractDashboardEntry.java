@@ -8,8 +8,8 @@ package org.unicase.workspace.ui.dashboard;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.ProjectSpace;
 
 /**

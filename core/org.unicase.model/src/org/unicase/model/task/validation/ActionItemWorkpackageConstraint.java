@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.util.ValidationConstraintHelper;
 
@@ -36,7 +36,7 @@ public class ActionItemWorkpackageConstraint extends AbstractModelConstraint {
 
 				if (((ActionItem) eObj).getContainingWorkpackage() == null) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(ModelElement) eObj, "containingWorkpackage");
+						(UnicaseModelElement) eObj, "containingWorkpackage");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
 						+ ((ActionItem) eObj).getName() + "'" });

@@ -31,7 +31,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
@@ -66,7 +66,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> elements;
+	protected EList<UnicaseModelElement> elements;
 
 	/**
 	 * The cached value of the '{@link #getGmfdiagram() <em>Gmfdiagram</em>}' containment reference. <!-- begin-user-doc
@@ -86,7 +86,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> newElements;
+	protected EList<UnicaseModelElement> newElements;
 
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
@@ -152,9 +152,9 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElement> getElements() {
+	public EList<UnicaseModelElement> getElements() {
 		if (elements == null) {
-			elements = new EObjectResolvingEList<ModelElement>(ModelElement.class, this,
+			elements = new EObjectResolvingEList<UnicaseModelElement>(UnicaseModelElement.class, this,
 				DiagramPackage.ME_DIAGRAM__ELEMENTS);
 		}
 		return elements;
@@ -243,7 +243,7 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	 * @return A DiagramNewEelementsList
 	 * @generated NOT
 	 */
-	public EList<ModelElement> getNewElements() {
+	public EList<UnicaseModelElement> getNewElements() {
 
 		// JH: remove this line
 		// this line is needed in order to avoid exception when
@@ -352,14 +352,14 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		switch (featureID) {
 		case DiagramPackage.ME_DIAGRAM__ELEMENTS:
 			getElements().clear();
-			getElements().addAll((Collection<? extends ModelElement>) newValue);
+			getElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
 			return;
 		case DiagramPackage.ME_DIAGRAM__GMFDIAGRAM:
 			setGmfdiagram((Diagram) newValue);
 			return;
 		case DiagramPackage.ME_DIAGRAM__NEW_ELEMENTS:
 			getNewElements().clear();
-			getNewElements().addAll((Collection<? extends ModelElement>) newValue);
+			getNewElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
 			return;
 		case DiagramPackage.ME_DIAGRAM__TYPE:
 			setType((DiagramType) newValue);
@@ -479,8 +479,8 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	public void loadDiagramLayout() throws DiagramLoadException {
 
 		// preserve original resource for all involved model elements
-		EList<ModelElement> elements = this.getElements();
-		Map<ModelElement, Resource> resourceMap = preserveOldResources(elements);
+		EList<UnicaseModelElement> elements = this.getElements();
+		Map<UnicaseModelElement, Resource> resourceMap = preserveOldResources(elements);
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();
@@ -561,18 +561,18 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		return string;
 	}
 
-	private void restoreOldResources(EList<ModelElement> elements, Map<ModelElement, Resource> resourceMap,
+	private void restoreOldResources(EList<UnicaseModelElement> elements, Map<UnicaseModelElement, Resource> resourceMap,
 		Resource diagramResource, Resource elementsResource) {
 		diagramResource.getContents().remove(gmfdiagram);
 		elementsResource.getContents().removeAll(elements);
-		for (ModelElement modelElement : resourceMap.keySet()) {
+		for (UnicaseModelElement modelElement : resourceMap.keySet()) {
 			resourceMap.get(modelElement).getContents().add(modelElement);
 		}
 	}
 
-	private Map<ModelElement, Resource> preserveOldResources(EList<ModelElement> elements) {
-		Map<ModelElement, Resource> resourceMap = new HashMap<ModelElement, Resource>();
-		for (ModelElement modelElement : elements) {
+	private Map<UnicaseModelElement, Resource> preserveOldResources(EList<UnicaseModelElement> elements) {
+		Map<UnicaseModelElement, Resource> resourceMap = new HashMap<UnicaseModelElement, Resource>();
+		for (UnicaseModelElement modelElement : elements) {
 			if (modelElement.eResource() != modelElement.eContainer().eResource()) {
 				resourceMap.put(modelElement, modelElement.eResource());
 			}
@@ -601,8 +601,8 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 	public void saveDiagramLayout() throws DiagramStoreException {
 		getGmfdiagram().setElement(null);
 		// preserve original resource for all involved model elements
-		EList<ModelElement> elements = this.getElements();
-		Map<ModelElement, Resource> resourceMap = preserveOldResources(elements);
+		EList<UnicaseModelElement> elements = this.getElements();
+		Map<UnicaseModelElement, Resource> resourceMap = preserveOldResources(elements);
 
 		// put all involved elements into a virtual resource set
 		ResourceSet resourceSet = new ResourceSetImpl();

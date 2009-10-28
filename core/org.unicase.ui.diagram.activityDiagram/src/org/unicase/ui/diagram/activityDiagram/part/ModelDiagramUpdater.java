@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.activity.Activity;
 import org.unicase.model.activity.ActivityEnd;
 import org.unicase.model.activity.ActivityInitial;
@@ -49,7 +49,7 @@ public class ModelDiagramUpdater {
 		MEDiagram modelElement = (MEDiagram) view.getElement();
 		List result = new LinkedList();
 		for (Iterator it = modelElement.getElements().iterator(); it.hasNext();) {
-			ModelElement childElement = (ModelElement) it.next();
+			UnicaseModelElement childElement = (UnicaseModelElement) it.next();
 			int visualID = org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
 					.getNodeVisualID(view, childElement);
 			if (visualID == org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart.VISUAL_ID) {

@@ -30,11 +30,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * Utility class for ModelElements.
@@ -66,8 +66,8 @@ public final class ModelUtil {
 	 * @param modelElement the model element
 	 * @return a copy of the given model element
 	 */
-	public static ModelElement copy(ModelElement modelElement) {
-		ModelElement copy = (ModelElement) EcoreUtil.copy(modelElement);
+	public static UnicaseModelElement copy(UnicaseModelElement modelElement) {
+		UnicaseModelElement copy = (UnicaseModelElement) EcoreUtil.copy(modelElement);
 		// reset id
 		ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
 		copy.setIdentifier(modelElementId.getId());
@@ -336,8 +336,8 @@ public final class ModelUtil {
 	 * @param modelElement fu!
 	 * @return fu!
 	 */
-	public static boolean listContains(Collection<? extends ModelElement> collection, ModelElement modelElement) {
-		for (ModelElement me : collection) {
+	public static boolean listContains(Collection<? extends UnicaseModelElement> collection, UnicaseModelElement modelElement) {
+		for (UnicaseModelElement me : collection) {
 			if (me.getIdentifier().equals(modelElement.getIdentifier()) || me == modelElement) {
 				return true;
 			}

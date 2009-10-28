@@ -16,7 +16,7 @@ import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.statusview.StatusView;
@@ -63,7 +63,7 @@ public class ShowInStatusViewHandler extends AbstractHandler implements IPartLis
 		}
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		page.addPartListener(this);
-		ModelElement newInput = ActionHelper.getModelElement(event);
+		UnicaseModelElement newInput = ActionHelper.getModelElement(event);
 
 		StatusView statusView = (StatusView) page.findView(STATUS_VIEW_ID);
 		if (statusView == null) {

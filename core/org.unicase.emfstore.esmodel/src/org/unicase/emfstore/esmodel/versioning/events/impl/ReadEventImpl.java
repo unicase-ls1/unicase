@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Read Event</b></em>'. <!-- end-user-doc -->

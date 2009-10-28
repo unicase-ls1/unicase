@@ -30,9 +30,9 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
@@ -456,8 +456,8 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	/**
 	 * Refresh the view if a work item has been added.
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 * @param project the project
 	 * @param modelElement the model element
 	 */
@@ -468,14 +468,14 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	}
 
 	/**
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 *      {@inheritDoc}
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 	}
 
 	/**
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
 	 *      {@inheritDoc}
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {

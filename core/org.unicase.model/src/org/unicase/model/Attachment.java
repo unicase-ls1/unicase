@@ -20,11 +20,11 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface Attachment extends ModelElement {
+public interface Attachment extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Referring Model Elements</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.ModelElement}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.ModelElement#getAttachments <em>Attachments</em>}'. <!-- begin-user-doc -->
+	 * {@link org.unicase.model.UnicaseModelElement}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.UnicaseModelElement#getAttachments <em>Attachments</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referring Model Elements</em>' reference list isn't clear, there really should be more
 	 * of a description here...
@@ -33,10 +33,10 @@ public interface Attachment extends ModelElement {
 	 * 
 	 * @return the value of the '<em>Referring Model Elements</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getAttachment_ReferringModelElements()
-	 * @see org.unicase.model.ModelElement#getAttachments
+	 * @see org.unicase.model.UnicaseModelElement#getAttachments
 	 * @model opposite="attachments" keys="identifier"
 	 * @generated
 	 */
-	EList<ModelElement> getReferringModelElements();
+	EList<UnicaseModelElement> getReferringModelElements();
 
 } // Attachment

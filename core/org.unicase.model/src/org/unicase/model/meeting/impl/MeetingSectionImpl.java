@@ -8,7 +8,7 @@ package org.unicase.model.meeting.impl;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.meeting.MeetingSection;
 
@@ -23,7 +23,7 @@ import org.unicase.model.meeting.MeetingSection;
  * 
  * @generated
  */
-public abstract class MeetingSectionImpl extends ModelElementImpl implements MeetingSection {
+public abstract class MeetingSectionImpl extends UnicaseModelElementImpl implements MeetingSection {
 	/**
 	 * The default value of the '{@link #getAllocatedTime() <em>Allocated Time</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

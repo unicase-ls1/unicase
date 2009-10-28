@@ -6,7 +6,7 @@
 package org.unicase.model.state;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Node</b></em>'. <!-- end-user-doc -->
@@ -22,7 +22,7 @@ import org.unicase.model.ModelElement;
  * @model abstract="true"
  * @generated
  */
-public interface StateNode extends ModelElement {
+public interface StateNode extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Outgoing Transitions</b></em>' reference list. The list contents are of type
 	 * {@link org.unicase.model.state.Transition}. It is bidirectional and its opposite is '

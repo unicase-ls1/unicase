@@ -8,7 +8,7 @@ package org.unicase.model.diagram;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.unicase.model.Attachment;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.impl.DiagramLoadException;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 
@@ -32,7 +32,7 @@ import org.unicase.model.diagram.impl.DiagramStoreException;
 public interface MEDiagram extends Attachment {
 	/**
 	 * Returns the value of the '<em><b>Elements</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.ModelElement}. <!-- begin-user-doc -->
+	 * {@link org.unicase.model.UnicaseModelElement}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Elements</em>' reference list isn't clear, there really should be more of a
 	 * description here...
@@ -44,7 +44,7 @@ public interface MEDiagram extends Attachment {
 	 * @model keys="identifier"
 	 * @generated
 	 */
-	EList<ModelElement> getElements();
+	EList<UnicaseModelElement> getElements();
 
 	/**
 	 * Returns the value of the '<em><b>Gmfdiagram</b></em>' containment reference. <!-- begin-user-doc -->
@@ -74,7 +74,7 @@ public interface MEDiagram extends Attachment {
 
 	/**
 	 * Returns the value of the '<em><b>New Elements</b></em>' containment reference list. The list contents are of type
-	 * {@link org.unicase.model.ModelElement}. <!-- begin-user-doc -->
+	 * {@link org.unicase.model.UnicaseModelElement}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>New Elements</em>' containment reference isn't clear, there really should be more of a
 	 * description here...
@@ -86,7 +86,7 @@ public interface MEDiagram extends Attachment {
 	 * @model containment="true" resolveProxies="true" keys="identifier" transient="true"
 	 * @generated
 	 */
-	EList<ModelElement> getNewElements();
+	EList<UnicaseModelElement> getNewElements();
 
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute. The literals are from the enumeration

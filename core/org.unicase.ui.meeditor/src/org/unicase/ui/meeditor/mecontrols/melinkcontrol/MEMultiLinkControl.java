@@ -36,7 +36,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.ToolBar;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Section;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -90,8 +90,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 				}
 
 				for (EObject object : eList) {
-					if (object instanceof ModelElement) {
-						ModelElement me = (ModelElement) object;
+					if (object instanceof UnicaseModelElement) {
+						UnicaseModelElement me = (UnicaseModelElement) object;
 						MELinkControl meControl = new MELinkControl(getEditingDomain(), me, getToolkit(),
 							getModelElement(), eReference);
 						meControl.createControl((eList.size() <= sizeLimit ? linkArea : scrollClient), style);
@@ -177,8 +177,8 @@ public class MEMultiLinkControl extends AbstractMEControl {
 			}
 		});
 
-		toolBarManager.add(new AddReferenceAction((ModelElement) getModelElement(), eReference, descriptor));
-		toolBarManager.add(new NewReferenceAction((ModelElement) getModelElement(), eReference, descriptor));
+		toolBarManager.add(new AddReferenceAction((UnicaseModelElement) getModelElement(), eReference, descriptor));
+		toolBarManager.add(new NewReferenceAction((UnicaseModelElement) getModelElement(), eReference, descriptor));
 		toolBarManager.update(true);
 		section.setTextClient(toolbar);
 	}

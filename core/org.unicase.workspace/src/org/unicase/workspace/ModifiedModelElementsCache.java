@@ -14,7 +14,7 @@ import java.util.Set;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.OperationListener;
 

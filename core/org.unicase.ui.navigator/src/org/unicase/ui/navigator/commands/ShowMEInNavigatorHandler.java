@@ -13,7 +13,7 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TreePath;
 import org.eclipse.jface.viewers.TreeSelection;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.navigator.TreeView;
 
@@ -31,7 +31,7 @@ public class ShowMEInNavigatorHandler extends AbstractHandler {
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ModelElement me = ActionHelper.getModelElement(event);
+		UnicaseModelElement me = ActionHelper.getModelElement(event);
 		if (me == null) {
 			return null;
 		}

@@ -6,7 +6,7 @@
 package org.unicase.model.component;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Service</b></em>'. <!-- end-user-doc -->
@@ -22,7 +22,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface ComponentService extends ModelElement {
+public interface ComponentService extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Offering Component</b></em>' container reference. It is bidirectional and its
 	 * opposite is '{@link org.unicase.model.component.Component#getOfferedServices <em>Offered Services</em>}'. <!--

@@ -17,7 +17,7 @@ import org.unicase.emfstore.core.MonitorProvider;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.taskmanager.Task;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 /**
  * This task is used to clean the memory by proxifying the projectstates.

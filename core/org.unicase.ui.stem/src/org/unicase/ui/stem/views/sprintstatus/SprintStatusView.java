@@ -19,7 +19,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
@@ -118,7 +118,7 @@ public class SprintStatusView extends ViewPart {
 	 */
 	public static final String ID = "org.unicase.ui.stem.views.sprintstatus.SprintStatusView";
 
-	private ModelElement input;
+	private UnicaseModelElement input;
 
 	private SprintStatusComposite statusComposite;
 
@@ -205,8 +205,8 @@ public class SprintStatusView extends ViewPart {
 	 * 
 	 * @param me input model element
 	 */
-	public void setInput(ModelElement me) {
-		ModelElement newInput = me;
+	public void setInput(UnicaseModelElement me) {
+		UnicaseModelElement newInput = me;
 		if (newInput == null) {
 			newInput = ActionHelper.getSelectedModelElement();
 		}

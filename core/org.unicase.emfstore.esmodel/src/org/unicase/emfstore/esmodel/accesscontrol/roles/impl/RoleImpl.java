@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Role</b></em>'. <!-- end-user-doc -->
@@ -101,7 +101,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canCreate(org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.ModelElement)
 	 * @generated NOT
 	 */
 	public boolean canCreate(ProjectId projectId, ModelElement modelElement) {
@@ -112,7 +112,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canDelete(org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.ModelElement)
 	 * @generated NOT
 	 */
 	public boolean canDelete(ProjectId projectId, ModelElement modelElement) {
@@ -123,7 +123,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canModify(org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.ModelElement)
 	 * @generated NOT
 	 */
 	public boolean canModify(ProjectId projectId, ModelElement modelElement) {
@@ -134,7 +134,7 @@ public abstract class RoleImpl extends EObjectImpl implements Role {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.emfstore.esmodel.accesscontrol.roles.Role#canRead(org.unicase.emfstore.esmodel.ProjectId,
-	 *      org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.ModelElement)
 	 * @generated NOT
 	 */
 	public boolean canRead(ProjectId projectId, ModelElement modelElement) {

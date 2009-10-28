@@ -9,9 +9,9 @@ package org.unicase.ui.common.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
+import org.unicase.metamodel.Project;
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.ui.common.util.ActionHelper;
@@ -40,7 +40,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 		// 1. extract the model element, to which the Annotation will be
 		// attached
 		// see ActionHelper.getModelElement()
-		ModelElement me = ActionHelper.getModelElement(event);
+		UnicaseModelElement me = ActionHelper.getModelElement(event);
 		// 2. extract command and create the appropriate annotation object
 		Annotation annotation = createAnnotation(me.getProject());
 
@@ -91,7 +91,7 @@ public class AddAnnotationHandler extends AbstractHandler {
 	 * @param me
 	 * @param annotation
 	 */
-	private void attachAnnotation(final ModelElement me, final Annotation annotation) {
+	private void attachAnnotation(final UnicaseModelElement me, final Annotation annotation) {
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {

@@ -14,7 +14,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.workspace.ProjectSpace;

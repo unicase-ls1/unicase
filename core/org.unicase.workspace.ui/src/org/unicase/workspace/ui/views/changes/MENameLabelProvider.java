@@ -13,8 +13,9 @@ import org.eclipse.jface.viewers.ViewerCell;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.LogMessage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.ui.common.util.UnicaseUiUtil;
 
 /**
  * Label provider for the model element column in the viewer.
@@ -30,10 +31,13 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param emfProvider the default label provider.
-	 * @param visualizationHelper the visualizationHelper
+	 * @param emfProvider
+	 *            the default label provider.
+	 * @param visualizationHelper
+	 *            the visualizationHelper
 	 */
-	public MENameLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper) {
+	public MENameLabelProvider(ILabelProvider emfProvider,
+			ChangePackageVisualizationHelper visualizationHelper) {
 		this.emfProvider = emfProvider;
 		this.visualizationHelper = visualizationHelper;
 	}
@@ -41,12 +45,16 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param emfProvider the default label provider.
-	 * @param visualizationHelper the visualizationHelper
-	 * @param opBackgroundLabelProvider the visualizationHelper
+	 * @param emfProvider
+	 *            the default label provider.
+	 * @param visualizationHelper
+	 *            the visualizationHelper
+	 * @param opBackgroundLabelProvider
+	 *            the visualizationHelper
 	 */
-	public MENameLabelProvider(ILabelProvider emfProvider, ChangePackageVisualizationHelper visualizationHelper,
-		OperationColorLabelProvider opBackgroundLabelProvider) {
+	public MENameLabelProvider(ILabelProvider emfProvider,
+			ChangePackageVisualizationHelper visualizationHelper,
+			OperationColorLabelProvider opBackgroundLabelProvider) {
 		this(emfProvider, visualizationHelper);
 		this.opBackgroundLabelProvider = opBackgroundLabelProvider;
 	}
@@ -64,16 +72,18 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 		}
 		if (element instanceof AbstractOperation) {
 			AbstractOperation operation = (AbstractOperation) element;
-			ModelElement me = visualizationHelper.getModelElement(operation.getModelElementId());
+			ModelElement me = visualizationHelper.getModelElement(operation
+					.getModelElementId());
 			// hack for missing model elements
 			if (me != null) {
-				cell.setText(me.getName());
+				cell.setText(UnicaseUiUtil.getNameForModelElement(me));
 				cell.setImage(emfProvider.getImage(me));
 			} else {
 				cell.setText(deleted);
 			}
 			if (opBackgroundLabelProvider != null) {
-				cell.setForeground(opBackgroundLabelProvider.getColor(operation));
+				cell.setForeground(opBackgroundLabelProvider
+						.getColor(operation));
 			}
 		} else if (element instanceof ChangePackage) {
 			ChangePackage cPackage = (ChangePackage) element;
@@ -85,7 +95,8 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 				log.append("[");
 				log.append(logMessage.getAuthor());
 				log.append("@");
-				SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+				SimpleDateFormat format = new SimpleDateFormat(
+						"yyyy-MM-dd HH:mm");
 				log.append(format.format(logMessage.getDate()));
 				log.append("]");
 				cell.setText(log.toString());
@@ -99,9 +110,11 @@ public class MENameLabelProvider extends ColumnLabelProvider {
 	}
 
 	/**
-	 * @param opBackgroundLabelProvider the opBackgroundLabelProvider to set
+	 * @param opBackgroundLabelProvider
+	 *            the opBackgroundLabelProvider to set
 	 */
-	public void setOpBackgroundLabelProvider(OperationColorLabelProvider opBackgroundLabelProvider) {
+	public void setOpBackgroundLabelProvider(
+			OperationColorLabelProvider opBackgroundLabelProvider) {
 		this.opBackgroundLabelProvider = opBackgroundLabelProvider;
 	}
 

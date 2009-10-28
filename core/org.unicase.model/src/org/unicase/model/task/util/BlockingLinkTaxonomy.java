@@ -10,7 +10,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -26,8 +26,8 @@ public class BlockingLinkTaxonomy {
 	 * @param modelElement The source modelelement
 	 * @return all blocke modelelements
 	 */
-	public ArrayList<ModelElement> getBlocked(ModelElement modelElement) {
-		ArrayList<ModelElement> blocked = new ArrayList<ModelElement>();
+	public ArrayList<UnicaseModelElement> getBlocked(UnicaseModelElement modelElement) {
+		ArrayList<UnicaseModelElement> blocked = new ArrayList<UnicaseModelElement>();
 		if (modelElement instanceof WorkItem) {
 			EList<WorkItem> successors = ((WorkItem) modelElement).getSuccessors();
 			if (successors != null) {
@@ -45,8 +45,8 @@ public class BlockingLinkTaxonomy {
 	 * @param modelElement The target modelelement
 	 * @return all blocking modelelements
 	 */
-	public Set<ModelElement> getBlockers(ModelElement modelElement) {
-		Set<ModelElement> blockers = new HashSet<ModelElement>();
+	public Set<UnicaseModelElement> getBlockers(UnicaseModelElement modelElement) {
+		Set<UnicaseModelElement> blockers = new HashSet<UnicaseModelElement>();
 		if (modelElement instanceof WorkItem) {
 			EList<WorkItem> predecessors = ((WorkItem) modelElement).getPredecessors();
 			if (predecessors != null) {

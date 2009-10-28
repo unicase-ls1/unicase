@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>History Query</b></em>'. <!-- end-user-doc -->

@@ -6,7 +6,7 @@
 package org.unicase.model.rationale;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Criterion</b></em>'. <!-- end-user-doc -->
@@ -21,7 +21,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Criterion extends ModelElement {
+public interface Criterion extends UnicaseModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Assessments</b></em>' reference list. The list contents are of type

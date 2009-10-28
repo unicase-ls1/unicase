@@ -5,33 +5,32 @@
  */
 package org.unicase.model;
 
-import java.util.Date;
-import java.util.Set;
-
 import org.eclipse.emf.common.util.EList;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.profile.StereotypeInstance;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
-import org.unicase.model.util.ModelElementChangeListener;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Element</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.ModelElement#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}</li>
- * <li>{@link org.unicase.model.ModelElement#getCreator <em>Creator</em>}</li>
- * <li>{@link org.unicase.model.ModelElement#getCreationDate <em>Creation Date</em>}</li>
- * <li>{@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}</li>
- * <li>{@link org.unicase.model.ModelElement#getAttachments <em>Attachments</em>}</li>
- * <li>{@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}</li>
- * <li>{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
- * <li>{@link org.unicase.model.ModelElement#getState <em>State</em>}</li>
- * <li>{@link org.unicase.model.ModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}</li>
- * <li>{@link org.unicase.model.ModelElement#getComments <em>Comments</em>}</li>
+ * <li>{@link org.unicase.metamodel.UnicaseModelElementment#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.metamodel.UnicaseModelElementlElement#getDescription <em>Description</em>}</li>
+ * <li>{@link org.unicase.UnicaseModelElement.ModelElement#getCreator <em>Creator</em>}</li>
+ * <li>{@link org.unicase.UnicaseModelElementdel.ModelElement#getCreationDate <em>Creation Date</em>}</li>
+ * <li>{@link org.unicase.UnicaseModelElementtamodel.ModelElement#getAnnotations <em>Annotations</em>}</li>
+ * <li>{@link org.UnicaseModelElemente.metamodel.ModelElement#getAttachments <em>Attachments</em>}</li>
+ * <li>{@link org.UnicaseModelElementicase.metamodel.ModelElement#getIncomingDocumentReferences <em>Incoming Document
+ * References</em>}</li>
+ * <li>{@link UnicaseModelElementg.unicase.metamodel.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
+ * <li>{@UnicaseModelElementk org.unicase.metamodel.ModelElement#getState <em>State</em>}</li>
+ * <UnicaseModelElement>{@link org.unicase.metamodel.ModelElement#getAppliedStereotypeInstances <em>Applied Stereotype
+ * Instances</em>}</UnicaseModelElement>
+ * <li>{@link org.unicase.metamodel.ModelElement#getComments <em>Comments</em>}</li>
  * </ul>
  * </p>
  * 
@@ -39,7 +38,7 @@ import org.unicase.model.util.ModelElementChangeListener;
  * @model abstract="true"
  * @generated
  */
-public interface ModelElement extends IdentifiableElement {
+public interface UnicaseModelElement extends ModelElement {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>
@@ -56,11 +55,6 @@ public interface ModelElement extends IdentifiableElement {
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getName <em>Name</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Name</em>' attribute.
-	 * @see #getName()
 	 * @generated
 	 */
 	void setName(String value);
@@ -83,7 +77,7 @@ public interface ModelElement extends IdentifiableElement {
 	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getDescription <em>Description</em>}' attribute.
+	 * Sets the value of the '{@link org.unicase.metamodel.ModelElement#getDescription <em>Description</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Description</em>' attribute.
@@ -91,58 +85,6 @@ public interface ModelElement extends IdentifiableElement {
 	 * @generated
 	 */
 	void setDescription(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Creator</em>' attribute isn't clear, there really should be more of a description
-	 * here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Creator</em>' attribute.
-	 * @see #setCreator(String)
-	 * @see org.unicase.model.ModelPackage#getModelElement_Creator()
-	 * @model
-	 * @generated
-	 */
-	String getCreator();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getCreator <em>Creator</em>}' attribute. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Creator</em>' attribute.
-	 * @see #getCreator()
-	 * @generated
-	 */
-	void setCreator(String value);
-
-	/**
-	 * Returns the value of the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc -->
-	 * <p>
-	 * If the meaning of the '<em>Creation Date</em>' attribute isn't clear, there really should be more of a
-	 * description here...
-	 * </p>
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Creation Date</em>' attribute.
-	 * @see #setCreationDate(Date)
-	 * @see org.unicase.model.ModelPackage#getModelElement_CreationDate()
-	 * @model
-	 * @generated
-	 */
-	Date getCreationDate();
-
-	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getCreationDate <em>Creation Date</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value the new value of the '<em>Creation Date</em>' attribute.
-	 * @see #getCreationDate()
-	 * @generated
-	 */
-	void setCreationDate(Date value);
 
 	/**
 	 * Returns the value of the '<em><b>Annotations</b></em>' reference list. The list contents are of type
@@ -224,7 +166,7 @@ public interface ModelElement extends IdentifiableElement {
 	LeafSection getLeafSection();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelElement#getLeafSection <em>Leaf Section</em>}' container
+	 * Sets the value of the '{@link org.unicase.metamodel.ModelElement#getLeafSection <em>Leaf Section</em>}' container
 	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Leaf Section</em>' container reference.
@@ -309,79 +251,11 @@ public interface ModelElement extends IdentifiableElement {
 	 */
 	String getDescriptionPlainText();
 
-	/**
-	 * Retrieve all elements this element links to. Only outgoing and bidrectional links are considered.
-	 * 
-	 * @return a set of model elements
-	 */
-	Set<ModelElement> getLinkedModelElements();
-
-	/**
-	 * Retrieve the contained model elements of this element. Only includes direct children.
-	 * 
-	 * @return a set of child model elements
-	 */
-	Set<ModelElement> getContainedElements();
-
-	/**
-	 * Get the container model element of this element. Returns null if there is no parent.
-	 * 
-	 * @return the parent element
-	 */
-	ModelElement getContainerModelElement();
-
-	/**
-	 * Get all contained element of this element recursivly.
-	 * 
-	 * @return a set of model elements
-	 */
-	Set<ModelElement> getAllContainedModelElements();
-
-	/**
-	 * Get all model elements that are cross referenced by this element.
-	 * 
-	 * @return a set of model elements
-	 */
-	Set<ModelElement> getCrossReferencedModelElements();
-
-	/**
-	 * Delete the model element from its project.
-	 */
-	void delete();
-
 	// end custom code
-
-	/**
-	 * Get the id of a model element.
-	 * 
-	 * @return the id
-	 */
-	ModelElementId getModelElementId();
-
-	/**
-	 * Return the project of a model element if any.
-	 * 
-	 * @return the project or null if the model element is not in a project
-	 */
-	Project getProject();
 
 	/**
 	 * @return the shortened name for this model element
 	 */
 	String getShortName();
-
-	/**
-	 * Add a model element change listener.
-	 * 
-	 * @param listener listener to add.
-	 */
-	void addModelElementChangeListener(ModelElementChangeListener listener);
-
-	/**
-	 * Remove a model element change listener.
-	 * 
-	 * @param listener the listener to remove
-	 */
-	void removeModelElementChangeListener(ModelElementChangeListener listener);
 
 } // ModelElement

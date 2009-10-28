@@ -5,7 +5,7 @@
  */
 package org.unicase.model.activity;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc -->
@@ -22,7 +22,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Transition extends ModelElement {
+public interface Transition extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference. It is bidirectional and its opposite is '
 	 * {@link org.unicase.model.activity.ActivityObject#getOutgoingTransitions <em>Outgoing Transitions</em>}'. <!--

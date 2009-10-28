@@ -9,7 +9,7 @@ import java.util.Map;
 import java.util.SortedMap;
 import java.util.TreeMap;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * This strategy returns just the first x results, according to their ranking in the map.
@@ -36,12 +36,12 @@ public class CutPointSelection implements LinkSelectionStrategy {
 	 * @param selectionMap the map indicating the probabilities of each element.
 	 * @return the resulting map
 	 */
-	public SortedMap<ModelElement, Double> selectCandidates(Map<ModelElement, Double> selectionMap) {
-		TreeMap<ModelElement, Double> result = new TreeMap<ModelElement, Double>(
+	public SortedMap<UnicaseModelElement, Double> selectCandidates(Map<UnicaseModelElement, Double> selectionMap) {
+		TreeMap<UnicaseModelElement, Double> result = new TreeMap<UnicaseModelElement, Double>(
 			new ProbabilityComparator(selectionMap));
 
 		// add just non-zeros
-		for (ModelElement me : selectionMap.keySet()) {
+		for (UnicaseModelElement me : selectionMap.keySet()) {
 			Double val = selectionMap.get(me);
 			if (val != null && val > 0) {
 				result.put(me, val);
@@ -51,7 +51,7 @@ public class CutPointSelection implements LinkSelectionStrategy {
 		Object[] sortedKeyArray = result.keySet().toArray();
 		// if cutpoint is zero, only zero elements are filtered.
 		if (sortedKeyArray.length > cutPoint && cutPoint != 0) {
-			ModelElement last = (ModelElement) sortedKeyArray[cutPoint];
+			UnicaseModelElement last = (UnicaseModelElement) sortedKeyArray[cutPoint];
 			return result.headMap(last);
 		} else { // less suggestions than cut point demands
 			return result;
@@ -63,23 +63,23 @@ public class CutPointSelection implements LinkSelectionStrategy {
 	 * 
 	 * @author Henning Femmer
 	 */
-	class ProbabilityComparator implements java.util.Comparator<ModelElement> {
+	class ProbabilityComparator implements java.util.Comparator<UnicaseModelElement> {
 
-		private Map<ModelElement, Double> probabilityMap;
+		private Map<UnicaseModelElement, Double> probabilityMap;
 
 		/**
 		 * The constructor.
 		 * 
 		 * @param selectionMap the map
 		 */
-		public ProbabilityComparator(Map<ModelElement, Double> selectionMap) {
+		public ProbabilityComparator(Map<UnicaseModelElement, Double> selectionMap) {
 			this.probabilityMap = selectionMap;
 		}
 
 		/**
 		 * {@inheritDoc}
 		 */
-		public int compare(ModelElement o1, ModelElement o2) {
+		public int compare(UnicaseModelElement o1, UnicaseModelElement o2) {
 			Double val1 = (probabilityMap.containsKey(o1)) ? probabilityMap.get(o1) : 0.0;
 			Double val2 = (probabilityMap.containsKey(o2)) ? probabilityMap.get(o2) : 0.0;
 

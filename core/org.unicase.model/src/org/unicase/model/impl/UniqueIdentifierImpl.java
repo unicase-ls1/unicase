@@ -10,8 +10,8 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.unicase.metamodel.UniqueIdentifier;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Unique Identifier</b></em>'. <!-- end-user-doc

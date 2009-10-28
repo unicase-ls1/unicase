@@ -25,7 +25,7 @@ import org.unicase.model.classes.Method;
 import org.unicase.model.classes.MethodArgument;
 import org.unicase.model.classes.ScopeType;
 import org.unicase.model.classes.VisibilityType;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Scenario;
 
@@ -51,7 +51,7 @@ import org.unicase.model.requirement.Scenario;
  * 
  * @generated
  */
-public class MethodImpl extends ModelElementImpl implements Method {
+public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	/**
 	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

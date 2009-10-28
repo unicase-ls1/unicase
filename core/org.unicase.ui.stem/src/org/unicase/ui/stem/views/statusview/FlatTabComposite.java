@@ -23,8 +23,9 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.CircularDependencyException;
@@ -71,16 +72,16 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 		public int compare(Viewer viewer, Object e1, Object e2) {
 			String status1 = MEState.CLOSED;
 			String status2 = MEState.CLOSED;
-			if (e1 instanceof ModelElement) {
+			if (e1 instanceof UnicaseModelElement) {
 				try {
-					status1 = ((ModelElement) e1).getMEState().getStatus();
+					status1 = ((UnicaseModelElement) e1).getMEState().getStatus();
 				} catch (CircularDependencyException e) {
 					// To nothing.
 				}
 			}
-			if (e2 instanceof ModelElement) {
+			if (e2 instanceof UnicaseModelElement) {
 				try {
-					status2 = ((ModelElement) e2).getMEState().getStatus();
+					status2 = ((UnicaseModelElement) e2).getMEState().getStatus();
 				} catch (CircularDependencyException e) {
 					// To nothing.
 				}
@@ -206,8 +207,8 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 		new TableViewerColumnSorter(tableViewer, tclmTodo, columnLabelProvider) {
 			@Override
 			public int category(Object element) {
-				if (element instanceof ModelElement) {
-					ModelElement me = (ModelElement) element;
+				if (element instanceof UnicaseModelElement) {
+					UnicaseModelElement me = (UnicaseModelElement) element;
 					if (me.getState().equals(MEState.CLOSED)) {
 						return 2;
 					} else {
@@ -301,7 +302,8 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 		tableViewer.addDoubleClickListener(new IDoubleClickListener() {
 			public void doubleClick(DoubleClickEvent event) {
 				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
-				ActionHelper.openModelElement((ModelElement) sel.getFirstElement(), tableViewer.getClass().getName());
+				ActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), tableViewer.getClass()
+					.getName());
 			}
 
 		});
@@ -313,7 +315,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	 * @param me input model element
 	 * @param statusView the active status view. This is needed for drag and drop.
 	 */
-	public void setInput(ModelElement me, StatusView statusView) {
+	public void setInput(UnicaseModelElement me, StatusView statusView) {
 		// this.input = me;
 		flatTabDropAdapter.setCurrentOpenME(me);
 		tableViewer.setInput(me);
@@ -323,8 +325,8 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		tableViewer.refresh();
@@ -333,7 +335,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		// nothing to do;
@@ -343,7 +345,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		// nothing to do
@@ -354,7 +356,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		tableViewer.refresh();

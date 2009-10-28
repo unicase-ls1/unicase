@@ -31,9 +31,10 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.URLEvent;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.util.ModelElementChangeObserver;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
@@ -77,16 +78,28 @@ public class MEURLControl extends AbstractMEControl {
 	private Hyperlink hyperlink;
 	private ModelElementChangeObserver observer;
 
+	/**
+	 * Constructor.
+	 * 
+	 * @param toolkit the toolkit
+	 * @param modelElement the model element
+	 * @param editingDomain the editing domain
+	 */
 	public MEURLControl(FormToolkit toolkit, EObject modelElement, EditingDomain editingDomain) {
 		super(editingDomain, modelElement, toolkit);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 * 
+	 * @see org.unicase.ui.meeditor.mecontrols.MEControl#createControl(org.eclipse.swt.widgets.Composite, int)
+	 */
 	public Control createControl(final Composite parent, int style) {
 		linkComposite = getToolkit().createComposite(parent, style);
 		linkComposite.setLayout(new GridLayout(2, false));
 
-		ArrayList<ModelElement> list = new ArrayList<ModelElement>();
-		list.add((ModelElement) getModelElement());
+		ArrayList<UnicaseModelElement> list = new ArrayList<UnicaseModelElement>();
+		list.add((UnicaseModelElement) getModelElement());
 		observer = new ModelElementChangeObserver() {
 
 			@Override
@@ -96,8 +109,9 @@ public class MEURLControl extends AbstractMEControl {
 					public void run() {
 						if (!hyperlink.isDisposed()) {
 							String url = ((UrlAttachment) getModelElement()).getUrl();
-							if (url == null)
+							if (url == null) {
 								url = "";
+							}
 							hyperlink.setText(url);
 							linkComposite.layout(true);
 							parent.getParent().layout(true);
@@ -111,21 +125,23 @@ public class MEURLControl extends AbstractMEControl {
 				// nothing to do
 			}
 		};
-		((ModelElement) getModelElement()).getProject().addProjectChangeObserver(observer);
-		observer.observeElement((ModelElement) getModelElement());
+		((UnicaseModelElement) getModelElement()).getProject().addProjectChangeObserver(observer);
+		observer.observeElement((UnicaseModelElement) getModelElement());
 
 		String url = ((UrlAttachment) getModelElement()).getUrl();
-		if (url == null)
+		if (url == null) {
 			url = "";
+		}
 		hyperlink = getToolkit().createHyperlink(linkComposite, url, style);
 		hyperlink.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
 			public void linkActivated(HyperlinkEvent event) {
 				String url = ((UrlAttachment) getModelElement()).getUrl();
-				if (url == null)
+				if (url == null) {
 					return;
+				}
 				Program.launch(url);
-				ModelElement modelElement = (ModelElement) getModelElement();
+				UnicaseModelElement modelElement = (UnicaseModelElement) getModelElement();
 				logEvent(modelElement.getModelElementId(), modelElement.getModelElementId(), WorkspaceManager
 					.getProjectSpace(modelElement), "org.unicase.ui.meeditor");
 				super.linkActivated(event);
@@ -194,7 +210,7 @@ public class MEURLControl extends AbstractMEControl {
 	@Override
 	public void dispose() {
 		if (getModelElement() != null) {
-			Project project = ((ModelElement) getModelElement()).getProject();
+			Project project = ((UnicaseModelElement) getModelElement()).getProject();
 			if (project != null) {
 				project.removeProjectChangeObserver(observer);
 			}

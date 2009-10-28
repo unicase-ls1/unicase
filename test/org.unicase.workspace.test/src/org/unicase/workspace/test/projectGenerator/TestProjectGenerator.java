@@ -24,11 +24,12 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.model.IdentifiableElement;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
@@ -627,7 +628,7 @@ public class TestProjectGenerator {
 			}
 		}
 
-		List<ModelElement> referencedInstances = new ArrayList<ModelElement>();
+		List<UnicaseModelElement> referencedInstances = new ArrayList<UnicaseModelElement>();
 		if (freeMEs.size() < numOfRefs) {
 			int lackingFreeInstances = numOfRefs - freeMEs.size();
 			for (int i = 0; i < lackingFreeInstances; i++) {
@@ -642,7 +643,7 @@ public class TestProjectGenerator {
 			// pick a random instance from free instances
 			int index = random.nextInt(freeMEs.size());
 			EObject referencedInstance = freeMEs.get(index);
-			referencedInstances.add((ModelElement) referencedInstance);
+			referencedInstances.add((UnicaseModelElement) referencedInstance);
 			freeMEs.remove(referencedInstance);
 		}
 		ls.getModelElements().addAll(referencedInstances);
@@ -721,7 +722,7 @@ public class TestProjectGenerator {
 			if (attribute.getEType().getInstanceClass().equals(String.class) && attribute.isChangeable()) {
 				if (instance instanceof ModelElement && attribute.getName().equalsIgnoreCase("name")) {
 					// special case for name attribute of model elements
-					ModelElement modelElement = (ModelElement) instance;
+					UnicaseModelElement modelElement = (UnicaseModelElement) instance;
 					modelElement.setName(instance.eClass().getName() + ":" + random.nextInt(20000));
 					continue;
 				} else if (instance instanceof IdentifiableElement
@@ -770,6 +771,8 @@ public class TestProjectGenerator {
 
 		}
 	}
+
+	// END COMPLEX CODE
 
 	/**
 	 * @return

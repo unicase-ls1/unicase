@@ -19,8 +19,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.document.DocumentFactory;
@@ -1399,7 +1399,7 @@ public class Topology1toNTest extends TopologyTest {
 		getProject().addModelElement(pack);
 		getProject().addModelElement(br);
 
-		ModelElement[] addedElements = { solution1, solution2, newSolution, sectionSolution1, sectionSolution2,
+		UnicaseModelElement[] addedElements = { solution1, solution2, newSolution, sectionSolution1, sectionSolution2,
 			sectionSolution3, br };
 		issue1.setSolution(solution1);
 		issue2.setSolution(solution2);
@@ -1574,7 +1574,7 @@ public class Topology1toNTest extends TopologyTest {
 		getProject().addModelElement(pack);
 		getProject().addModelElement(br);
 
-		ModelElement[] addedElements = { solution1, solution2, newSolution, sectionSolution1, sectionSolution2,
+		UnicaseModelElement[] addedElements = { solution1, solution2, newSolution, sectionSolution1, sectionSolution2,
 			sectionSolution3, br };
 		issue1.setSolution(solution1);
 		issue2.setSolution(solution2);

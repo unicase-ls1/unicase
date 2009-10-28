@@ -5,8 +5,8 @@
  */
 package org.unicase.model.requirement;
 
-import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Step</b></em>'. <!-- end-user-doc -->
@@ -24,7 +24,7 @@ import org.unicase.model.NonDomainElement;
  * @model
  * @generated
  */
-public interface Step extends ModelElement, NonDomainElement {
+public interface Step extends UnicaseModelElement, NonDomainElement {
 	/**
 	 * Returns the value of the '<em><b>User Step</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>

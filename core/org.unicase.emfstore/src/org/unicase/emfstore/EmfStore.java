@@ -26,7 +26,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FileInformation;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 /**
  * An EMF store is responsible for storing projects, change management on projects and for persisting projects.

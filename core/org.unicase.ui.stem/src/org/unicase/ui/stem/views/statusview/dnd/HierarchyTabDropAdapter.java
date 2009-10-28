@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.TaxonomyAccess;
@@ -72,10 +72,10 @@ public class HierarchyTabDropAdapter extends AbstractDropAdapter {
 
 		}
 
-		ModelElement dropTarget = (ModelElement) getDropTarget();
-		ModelElement dragSource = getDragSource();
+		UnicaseModelElement dropTarget = (UnicaseModelElement) getDropTarget();
+		UnicaseModelElement dragSource = getDragSource();
 
-		Set<ModelElement> openersForDropTarget = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
+		Set<UnicaseModelElement> openersForDropTarget = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
 			dropTarget);
 		if (!openersForDropTarget.contains(dragSource)) {
 			((WorkItem) dragSource).getAnnotatedModelElements().add(dropTarget);

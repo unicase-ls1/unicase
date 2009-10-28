@@ -10,7 +10,7 @@ import java.util.List;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.meeting.WorkItemMeetingSection;
 import org.unicase.model.task.WorkItem;
 
@@ -35,11 +35,11 @@ public class WorkItemMeetingSectionDropAdapter extends MEDropAdapter {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.ui.common.dnd.dropadapters.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
-	 *      org.unicase.model.ModelElement, java.util.List)
+	 *      org.unicase.metamodel.UnicaseModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
-		ModelElement dropee = source.get(0);
+	public void drop(DropTargetEvent event, UnicaseModelElement target, List<UnicaseModelElement> source) {
+		UnicaseModelElement dropee = source.get(0);
 		if (dropee instanceof WorkItem) {
 			dropWorkItemOnMeetingSection((WorkItemMeetingSection) target, source);
 
@@ -49,9 +49,9 @@ public class WorkItemMeetingSectionDropAdapter extends MEDropAdapter {
 
 	}
 
-	private void dropWorkItemOnMeetingSection(final WorkItemMeetingSection target, final List<ModelElement> source) {
+	private void dropWorkItemOnMeetingSection(final WorkItemMeetingSection target, final List<UnicaseModelElement> source) {
 
-		for (ModelElement me : source) {
+		for (UnicaseModelElement me : source) {
 			if (me instanceof WorkItem) {
 				target.getIncludedWorkItems().add((WorkItem) me);
 			}

@@ -5,7 +5,7 @@
  */
 package org.unicase.model.classes;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Association</b></em>'. <!-- end-user-doc -->
@@ -26,7 +26,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Association extends ModelElement {
+public interface Association extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Source</b></em>' reference. It is bidirectional and its opposite is '
 	 * {@link org.unicase.model.classes.Class#getOutgoingAssociations <em>Outgoing Associations</em>}'. <!--

@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
@@ -37,7 +37,7 @@ import org.unicase.model.requirement.UserTask;
  * 
  * @generated
  */
-public class UserTaskImpl extends ModelElementImpl implements UserTask {
+public class UserTaskImpl extends UnicaseModelElementImpl implements UserTask {
 	/**
 	 * The cached value of the '{@link #getInitiatingActor() <em>Initiating Actor</em>}' reference. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->

@@ -6,7 +6,7 @@
 package org.unicase.model.classes;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Package Element</b></em>'. <!-- end-user-doc
@@ -24,7 +24,7 @@ import org.unicase.model.ModelElement;
  * @model abstract="true"
  * @generated
  */
-public interface PackageElement extends ModelElement {
+public interface PackageElement extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Parent Package</b></em>' container reference. It is bidirectional and its
 	 * opposite is '{@link org.unicase.model.classes.Package#getContainedPackageElements

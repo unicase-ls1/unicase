@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.util.ValidationConstraintHelper;
 
@@ -35,13 +35,13 @@ public class RequirementNameConstraint extends AbstractModelConstraint {
 
 		if (eType == EMFEventType.NULL) {
 			if (isRequirement(eObj)) {
-				ModelElement me = (ModelElement) eObj;
+				UnicaseModelElement me = (UnicaseModelElement) eObj;
 				if (startsWithANumber(me.getName())) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(ModelElement) eObj, "name");
+						(UnicaseModelElement) eObj, "name");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-						+ ((ModelElement) eObj).getName() + "'" });
+						+ ((UnicaseModelElement) eObj).getName() + "'" });
 				}
 			}
 		}

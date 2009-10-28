@@ -26,7 +26,7 @@ import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.ui.menus.IMenuService;
 import org.eclipse.ui.services.IEvaluationService;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.common.widgets.MECommentReplyWidget;
@@ -45,7 +45,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class METhreadPage extends FormPage implements MECommentWidgetListener {
 
-	private ModelElement modelElement;
+	private UnicaseModelElement modelElement;
 	private FormToolkit toolkit;
 
 	private static String activeModelelement = "activeModelelement";
@@ -65,7 +65,7 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 	 * @param editingDomain the editingDomain
 	 * @param modelElement the modelElement
 	 */
-	public METhreadPage(MEEditor editor, String id, String title, EditingDomain editingDomain, ModelElement modelElement) {
+	public METhreadPage(MEEditor editor, String id, String title, EditingDomain editingDomain, UnicaseModelElement modelElement) {
 		super(editor, id, title);
 		this.modelElement = modelElement;
 		try {

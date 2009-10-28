@@ -116,7 +116,7 @@
               <iterate
                     ifEmpty="false">
                  <instanceof
-                       value="org.unicase.model.ModelElement">
+                       value="org.unicase.metamodel.ModelElement">
                  </instanceof>
               </iterate>
            </visibleWhen>
@@ -176,7 +176,7 @@
               <iterate
                     ifEmpty="false">
                  <instanceof
-                       value="org.unicase.model.ModelElement">
+                       value="org.unicase.metamodel.ModelElement">
                  </instanceof>
               </iterate>
            </visibleWhen>
@@ -192,7 +192,7 @@
                     ifEmpty="false"
                     operator="and">
                  <instanceof
-                       value="org.unicase.model.ModelElement">
+                       value="org.unicase.metamodel.ModelElement">
                  </instanceof>
                  <test
                     forcePluginActivation="true"
@@ -213,7 +213,7 @@
                     ifEmpty="false"
                     operator="and">
                  <instanceof
-                       value="org.unicase.model.ModelElement">
+                       value="org.unicase.metamodel.ModelElement">
                  </instanceof>
                  <test
                        forcePluginActivation="true"
@@ -312,7 +312,7 @@
            id="org.unicase.ui.common.commands.modelElementNotSection">
         <and>
            <instanceof
-                 value="org.unicase.model.ModelElement">
+                 value="org.unicase.metamodel.ModelElement">
            </instanceof>
            <not>
               <instanceof
@@ -324,7 +324,7 @@
      <definition
            id="org.unicase.ui.common.commands.modelElement">
         <instanceof
-              value="org.unicase.model.ModelElement">
+              value="org.unicase.metamodel.ModelElement">
         </instanceof>
      </definition>
      <definition
@@ -343,7 +343,7 @@
            id="org.unicase.ui.common.commands.directAnnotatable">
         <and>
            <instanceof
-                 value="org.unicase.model.ModelElement">
+                 value="org.unicase.metamodel.ModelElement">
            </instanceof>
            <not>
               <instanceof
@@ -364,7 +364,7 @@
            state="true">
         <enablement>
            <objectClass
-                 name="org.unicase.model.ModelElement">
+                 name="org.unicase.metamodel.ModelElement">
            </objectClass>
         </enablement>
         <description>
@@ -412,7 +412,7 @@
            state="true">
         <enablement>
            <objectClass
-                 name="org.unicase.model.ModelElement">
+                 name="org.unicase.metamodel.ModelElement">
            </objectClass>
         </enablement>
         <description>
@@ -428,7 +428,7 @@
            state="true">
         <enablement>
            <objectClass
-                 name="org.unicase.model.Project">
+                 name="org.unicase.metamodel.Project">
            </objectClass>
         </enablement>
         <description>
@@ -619,7 +619,7 @@
               id="org.unicase.ui.common.commands.subscriptionTester"
               namespace="org.unicase.ui.common.commands"
               properties="isSubscribed,isNotSubscribed"
-              type="org.unicase.model.ModelElement">
+              type="org.unicase.metamodel.ModelElement">
         </propertyTester>
  </extension>
 </plugin>

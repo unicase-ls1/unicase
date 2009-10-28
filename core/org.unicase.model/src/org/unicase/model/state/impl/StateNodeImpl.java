@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.state.StateNode;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
@@ -30,7 +30,7 @@ import org.unicase.model.state.Transition;
  * 
  * @generated
  */
-public abstract class StateNodeImpl extends ModelElementImpl implements StateNode {
+public abstract class StateNodeImpl extends UnicaseModelElementImpl implements StateNode {
 	/**
 	 * The cached value of the '{@link #getOutgoingTransitions() <em>Outgoing Transitions</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

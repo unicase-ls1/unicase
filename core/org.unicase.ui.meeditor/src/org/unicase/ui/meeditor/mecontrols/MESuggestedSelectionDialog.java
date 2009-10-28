@@ -21,7 +21,7 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.util.traceabilityrecommendation.RecommendationManager;
 import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.ConstantThresholdSelection;
 import org.unicase.ui.common.Activator;
@@ -38,10 +38,10 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	private static final String DIALOG_SETTINGS = "STANDARD_DIALOG_SETTING";
 
 	// the elements of the dialog
-	private Collection<ModelElement> candidates;
+	private Collection<UnicaseModelElement> candidates;
 
 	// maps modelElement.hashCode() to the similarity factor of the element
-	private Map<ModelElement, Double> relevanceMap;
+	private Map<UnicaseModelElement, Double> relevanceMap;
 
 	private RelevanceWrappedLabelProvider labelProvider;
 
@@ -57,22 +57,22 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	 * @param baseElement The element, to which the selection is made and to which other elements are compared.
 	 * @param reference the reference for which this is used
 	 */
-	public MESuggestedSelectionDialog(String title, String message, boolean blockOnOpen, ModelElement baseElement,
-		EReference reference, Collection<ModelElement> elements) {
+	public MESuggestedSelectionDialog(String title, String message, boolean blockOnOpen, UnicaseModelElement baseElement,
+		EReference reference, Collection<UnicaseModelElement> elements) {
 		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), reference.isMany());
 		setTitle(title);
 		setMessage(message);
 		setBlockOnOpen(blockOnOpen);
 		setInitialPattern("**", NONE);
 
-		relevanceMap = new HashMap<ModelElement, Double>(elements.size());
+		relevanceMap = new HashMap<UnicaseModelElement, Double>(elements.size());
 		candidates = elements;
 		recMan = RecommendationManager.getInstance();
 
 		if (recMan != null) {
 			relevanceMap = recMan.getMatchMap(baseElement, reference, elements, new ConstantThresholdSelection(0));
 		} else {
-			relevanceMap = new HashMap<ModelElement, Double>();
+			relevanceMap = new HashMap<UnicaseModelElement, Double>();
 		}
 
 		labelProvider = new RelevanceWrappedLabelProvider(relevanceMap);
@@ -118,7 +118,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		IProgressMonitor progressMonitor) throws CoreException {
 
 		progressMonitor.beginTask("Searching", candidates.size());
-		for (ModelElement me : candidates) {
+		for (UnicaseModelElement me : candidates) {
 			contentProvider.add(me, itemsFilter);
 			progressMonitor.worked(1);
 		}
@@ -148,7 +148,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	@Override
 	public String getElementName(Object item) {
 
-		if (item instanceof ModelElement) {
+		if (item instanceof UnicaseModelElement) {
 			return labelProvider.getText(item);
 		} else {
 			return item.toString();
@@ -162,7 +162,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	 * @see org.eclipse.ui.dialogs.FilteredItemsSelectionDialog#getItemsComparator()
 	 */
 	@Override
-	protected Comparator<ModelElement> getItemsComparator() {
+	protected Comparator<UnicaseModelElement> getItemsComparator() {
 		return new RelevanceMapComparator();
 	}
 
@@ -181,14 +181,14 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	 * 
 	 * @author henning femmer
 	 */
-	class RelevanceMapComparator implements Comparator<ModelElement> {
+	class RelevanceMapComparator implements Comparator<UnicaseModelElement> {
 		/**
 		 * If both elements got a suggestion their suggestion values are compared, the higher, the better. if just one
 		 * got a suggestion, it is preferred. if none, alphabetical comparison is used. {@inheritDoc}
 		 * 
 		 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
 		 */
-		public int compare(ModelElement o1, ModelElement o2) {
+		public int compare(UnicaseModelElement o1, UnicaseModelElement o2) {
 			Double val1, val2;
 
 			val1 = relevanceMap.get(o1);
@@ -267,7 +267,7 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		 */
 		@Override
 		public String getText(Object element) {
-			if (element instanceof ModelElement) {
+			if (element instanceof UnicaseModelElement) {
 				String text = super.getText(element);
 				Double sim = relevanceMap.get(element);
 				if (sim != null) {
@@ -296,11 +296,11 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		 */
 		@Override
 		public String getText(Object element) {
-			if (element instanceof ModelElement) {
-				if (((ModelElement) element).getCreationDate() == null) {
+			if (element instanceof UnicaseModelElement) {
+				if (((UnicaseModelElement) element).getCreationDate() == null) {
 					return "No creation data available.";
 				} else {
-					return "Created at " + ((ModelElement) element).getCreationDate().toString();
+					return "Created at " + ((UnicaseModelElement) element).getCreationDate().toString();
 				}
 			} else if (element == null) {
 				return "No item selected.";

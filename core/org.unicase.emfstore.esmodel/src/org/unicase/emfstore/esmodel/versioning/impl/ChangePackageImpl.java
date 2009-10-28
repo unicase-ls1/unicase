@@ -30,8 +30,8 @@ import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Change Package</b></em>'. <!-- end-user-doc
@@ -267,7 +267,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#apply(org.unicase.model.Project)
+	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#apply(org.unicase.metamodel.Project)
 	 * @generated NOT
 	 */
 	public void apply(Project project) {
@@ -277,7 +277,7 @@ public class ChangePackageImpl extends EObjectImpl implements ChangePackage {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#apply(org.unicase.model.Project, boolean)
+	 * @see org.unicase.emfstore.esmodel.versioning.ChangePackage#apply(org.unicase.metamodel.Project, boolean)
 	 */
 	public void apply(Project project, boolean force) {
 		for (AbstractOperation operation : getOperations()) {

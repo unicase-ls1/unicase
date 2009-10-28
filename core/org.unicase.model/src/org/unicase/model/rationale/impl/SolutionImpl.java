@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
 import org.unicase.model.rationale.RationalePackage;
@@ -33,7 +33,7 @@ import org.unicase.model.rationale.Solution;
  * 
  * @generated
  */
-public class SolutionImpl extends ModelElementImpl implements Solution {
+public class SolutionImpl extends UnicaseModelElementImpl implements Solution {
 	/**
 	 * The cached value of the '{@link #getUnderlyingProposals() <em>Underlying Proposals</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

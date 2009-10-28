@@ -7,7 +7,7 @@ package org.unicase.emfstore.esmodel.accesscontrol;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
-import org.unicase.model.IdentifiableElement;
+import org.unicase.metamodel.IdentifiableElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>AC Org Unit</b></em>'. <!-- end-user-doc -->

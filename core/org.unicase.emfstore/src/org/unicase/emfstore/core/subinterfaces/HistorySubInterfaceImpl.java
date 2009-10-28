@@ -34,7 +34,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.emfstore.exceptions.StorageException;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * This subinterfaces implements all history related functionality for the EmfStoreImpl interface.

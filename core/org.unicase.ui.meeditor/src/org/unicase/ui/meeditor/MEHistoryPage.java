@@ -11,7 +11,7 @@ import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * The history page for the {@link MEEditor}.
@@ -20,7 +20,7 @@ import org.unicase.model.ModelElement;
  */
 public class MEHistoryPage extends FormPage {
 
-	private ModelElement modelElement;
+	private UnicaseModelElement modelElement;
 
 	private ScrolledForm form;
 
@@ -34,7 +34,7 @@ public class MEHistoryPage extends FormPage {
 	 * @param title the title
 	 * @param modelElement the modelElement
 	 */
-	public MEHistoryPage(MEEditor editor, String id, String title, ModelElement modelElement) {
+	public MEHistoryPage(MEEditor editor, String id, String title, UnicaseModelElement modelElement) {
 		super(editor, id, title);
 		this.modelElement = modelElement;
 	}

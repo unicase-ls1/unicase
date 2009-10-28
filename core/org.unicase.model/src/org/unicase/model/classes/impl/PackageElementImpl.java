@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.Dependency;
 import org.unicase.model.classes.PackageElement;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Package Element</b></em>'. <!-- end-user-doc
@@ -35,7 +35,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public abstract class PackageElementImpl extends ModelElementImpl implements PackageElement {
+public abstract class PackageElementImpl extends UnicaseModelElementImpl implements PackageElement {
 	/**
 	 * The cached value of the '{@link #getOutgoingDependencies() <em>Outgoing Dependencies</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

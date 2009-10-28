@@ -29,7 +29,7 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;

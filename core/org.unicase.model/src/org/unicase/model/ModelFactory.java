@@ -6,6 +6,10 @@
 package org.unicase.model;
 
 import org.eclipse.emf.ecore.EFactory;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.ModelVersion;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of

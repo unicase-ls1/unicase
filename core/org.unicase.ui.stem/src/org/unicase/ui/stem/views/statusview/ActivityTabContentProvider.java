@@ -11,7 +11,7 @@ import java.util.Set;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.ActionItem;
@@ -25,7 +25,7 @@ import org.unicase.model.task.util.TaxonomyAccess;
  * @author helming
  */
 public class ActivityTabContentProvider extends AdapterFactoryContentProvider {
-	private ModelElement root;
+	private UnicaseModelElement root;
 
 	/**
 	 * Default constructor.
@@ -73,8 +73,8 @@ public class ActivityTabContentProvider extends AdapterFactoryContentProvider {
 
 	private Set<Checkable> getActivity(ActivityType activityType) {
 		Set<Checkable> ret = new HashSet<Checkable>();
-		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(root);
-		for (ModelElement opener : openers) {
+		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(root);
+		for (UnicaseModelElement opener : openers) {
 			if (opener instanceof Checkable) {
 				if (opener instanceof BugReport) {
 					if (activityType.equals(ActivityType.IMPLEMENTATION)) {
@@ -105,7 +105,7 @@ public class ActivityTabContentProvider extends AdapterFactoryContentProvider {
 		super.inputChanged(viewer, oldInput, newInput);
 
 		// keep track of input to status view
-		this.root = (ModelElement) newInput;
+		this.root = (UnicaseModelElement) newInput;
 	}
 
 }

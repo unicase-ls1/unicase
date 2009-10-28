@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.activity.ActivityObject;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.Transition;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Transition</b></em>'. <!-- end-user-doc -->
@@ -28,7 +28,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public class TransitionImpl extends ModelElementImpl implements Transition {
+public class TransitionImpl extends UnicaseModelElementImpl implements Transition {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

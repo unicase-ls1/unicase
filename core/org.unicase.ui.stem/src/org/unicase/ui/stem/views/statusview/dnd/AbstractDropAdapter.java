@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.ActionItem;
@@ -36,8 +36,8 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public abstract class AbstractDropAdapter extends DropTargetAdapter {
 
-	private ModelElement currentOpenME;
-	private ModelElement dragSource;
+	private UnicaseModelElement currentOpenME;
+	private UnicaseModelElement dragSource;
 	private Object dropTarget;
 
 	/**
@@ -73,7 +73,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	protected void dropWorkItemOnWorkPackage() {
 		// check if source (work item) is not hierarchical contained in
 		// currentOpenME (work package) and if not add it to work items of currentOpenME
-		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(currentOpenME);
+		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(currentOpenME);
 		if (!openers.contains(dragSource)) {
 			((WorkPackage) currentOpenME).getContainedWorkItems().add((WorkItem) dragSource);
 		}
@@ -97,10 +97,10 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 		// then add this work item to work package.
 		// otherwise create an AI annotating source and add it to work items of currentOpenME
 
-		Set<ModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
+		Set<UnicaseModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
 			dragSource);
 		int i = 0;
-		for (ModelElement me : openersForSource) {
+		for (UnicaseModelElement me : openersForSource) {
 			if (me instanceof WorkItem) {
 				try {
 					if (!me.getMEState().getStatus().equals(MEState.CLOSED) && isAssignedToTheSameTeam((WorkItem) me)) {
@@ -209,7 +209,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 			result = false;
 		}
 
-		if (!(tmpSource.get(0) instanceof ModelElement)) {
+		if (!(tmpSource.get(0) instanceof UnicaseModelElement)) {
 			result = false;
 		}
 
@@ -219,7 +219,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 
 		// check if source and target are in the same project
 		if (result) {
-			dragSource = (ModelElement) tmpSource.get(0);
+			dragSource = (UnicaseModelElement) tmpSource.get(0);
 			if (!currentOpenME.getProject().equals(dragSource.getProject())) {
 				result = false;
 			}
@@ -231,7 +231,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 
 		// TODO: The following lines are ugly code and just a result of extending this abstract
 		// adapter to be able handling DnDs on the ActivityTab and UserTab..! (deser)
-		else if (event.item.getData() instanceof ModelElement) {
+		else if (event.item.getData() instanceof UnicaseModelElement) {
 			dropTarget = event.item.getData();
 		} else if (event.item.getData() instanceof ActivityType) {
 			dropTarget = event.item.getData();
@@ -249,7 +249,7 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	 */
 	protected void addWorkItemToCurrentOpenME(WorkItem workItem) {
 
-		Set<ModelElement> openersForCurrentOpenME = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+		Set<UnicaseModelElement> openersForCurrentOpenME = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
 			.getLeafOpeners(getCurrentOpenME());
 
 		if (!openersForCurrentOpenME.contains(workItem)) {
@@ -267,28 +267,28 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	/**
 	 * @param currentOpenME the currentOpenME to set
 	 */
-	public void setCurrentOpenME(ModelElement currentOpenME) {
+	public void setCurrentOpenME(UnicaseModelElement currentOpenME) {
 		this.currentOpenME = currentOpenME;
 	}
 
 	/**
 	 * @return the currentOpenME
 	 */
-	public ModelElement getCurrentOpenME() {
+	public UnicaseModelElement getCurrentOpenME() {
 		return currentOpenME;
 	}
 
 	/**
 	 * @param dragSource the dragSource to set
 	 */
-	public void setDragSource(ModelElement dragSource) {
+	public void setDragSource(UnicaseModelElement dragSource) {
 		this.dragSource = dragSource;
 	}
 
 	/**
 	 * @return the dragSource
 	 */
-	public ModelElement getDragSource() {
+	public UnicaseModelElement getDragSource() {
 		return dragSource;
 	}
 

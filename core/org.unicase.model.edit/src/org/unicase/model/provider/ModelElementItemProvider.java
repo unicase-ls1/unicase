@@ -21,12 +21,12 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.profile.ProfileFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.ModelElement} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.model.UnicaseModelElement} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * 
  * @generated
@@ -178,7 +178,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((ModelElement) object).getName();
+		String label = ((UnicaseModelElement) object).getName();
 		return label == null || label.length() == 0 ? "unnamed" + getString("_UI_ModelElement_type") : label;
 	}
 
@@ -193,7 +193,7 @@ public class ModelElementItemProvider extends IdentifiableElementItemProvider im
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ModelElement.class)) {
+		switch (notification.getFeatureID(UnicaseModelElement.class)) {
 		case ModelPackage.MODEL_ELEMENT__NAME:
 		case ModelPackage.MODEL_ELEMENT__DESCRIPTION:
 		case ModelPackage.MODEL_ELEMENT__CREATOR:

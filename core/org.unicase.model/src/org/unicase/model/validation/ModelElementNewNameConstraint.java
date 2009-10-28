@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.util.ValidationConstraintHelper;
 
 /**
@@ -31,8 +31,8 @@ public class ModelElementNewNameConstraint extends AbstractModelConstraint {
 		EMFEventType eType = ctx.getEventType();
 
 		if (eType == EMFEventType.NULL) {
-			if (eObj instanceof ModelElement) {
-				ModelElement modelElement = (ModelElement) eObj;
+			if (eObj instanceof UnicaseModelElement) {
+				UnicaseModelElement modelElement = (UnicaseModelElement) eObj;
 				String defaultName = "new " + eObj.eClass().getName();
 				if (defaultName.equals(modelElement.getName())) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
@@ -40,7 +40,7 @@ public class ModelElementNewNameConstraint extends AbstractModelConstraint {
 					ctx.addResult(errorFeature);
 
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
-						+ ((ModelElement) eObj).getName() + "'" });
+						+ ((UnicaseModelElement) eObj).getName() + "'" });
 				}
 			}
 		}

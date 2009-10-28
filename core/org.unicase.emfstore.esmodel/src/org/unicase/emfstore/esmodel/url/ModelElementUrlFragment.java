@@ -6,7 +6,7 @@
 package org.unicase.emfstore.esmodel.url;
 
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Model Element Url Fragment</b></em>'. <!--

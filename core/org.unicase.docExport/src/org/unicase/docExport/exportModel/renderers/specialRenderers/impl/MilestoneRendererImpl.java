@@ -16,7 +16,7 @@ import org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl
 import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MilestoneRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.util.OpeningLinkTaxonomy;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -50,9 +50,9 @@ public class MilestoneRendererImpl extends ModelElementRendererImpl implements M
 
 	// begin custom code
 	@Override
-	public void doRender(ModelElement modelElement, UCompositeSection parent) {
+	public void doRender(UnicaseModelElement modelElement, UCompositeSection parent) {
 		OpeningLinkTaxonomy oLTaxonomy = new OpeningLinkTaxonomy();
-		Set<ModelElement> test = oLTaxonomy.getLeafOpeners(modelElement);
+		Set<UnicaseModelElement> test = oLTaxonomy.getLeafOpeners(modelElement);
 
 		USection section = new USection(modelElement.getName(), getTemplate().getLayoutOptions().getSectionTextOption());
 		section.getBoxModel().setMarginTop(15);
@@ -67,7 +67,7 @@ public class MilestoneRendererImpl extends ModelElementRendererImpl implements M
 			UList uList = new UList(OptionsFactory.eINSTANCE.createListOption());
 			uList.setIndentionLeft(1);
 
-			for (ModelElement me : test) {
+			for (UnicaseModelElement me : test) {
 				uList.add(me.getName());
 			}
 

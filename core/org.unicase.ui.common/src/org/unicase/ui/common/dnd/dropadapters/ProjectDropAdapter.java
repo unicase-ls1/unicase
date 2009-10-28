@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.DocumentPackage;
 
 /**
@@ -50,10 +50,10 @@ public class ProjectDropAdapter extends MEDropAdapter {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.ui.common.dnd.dropadapters.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
-	 *      org.unicase.model.ModelElement, java.util.List)
+	 *      org.unicase.metamodel.ModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
+	public void drop(DropTargetEvent event, UnicaseModelElement target, List<UnicaseModelElement> source) {
 		// do nothing
 	}
 
@@ -61,10 +61,10 @@ public class ProjectDropAdapter extends MEDropAdapter {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.ui.common.dnd.dropadapters.MEDropAdapter#dropMove(org.eclipse.emf.ecore.EObject,
-	 *      org.unicase.model.ModelElement, java.util.List, boolean)
+	 *      org.unicase.metamodel.ModelElement, java.util.List, boolean)
 	 */
 	@Override
-	public void dropMove(EObject targetContainer, ModelElement target, List<ModelElement> source, boolean after) {
+	public void dropMove(EObject targetContainer, UnicaseModelElement target, List<UnicaseModelElement> source, boolean after) {
 		super.dropMove(targetContainer, target, source, after);
 		getViewer().refresh();
 

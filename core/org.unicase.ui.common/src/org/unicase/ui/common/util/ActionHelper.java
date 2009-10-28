@@ -34,7 +34,8 @@ import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
 import org.eclipse.ui.handlers.IHandlerService;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.rationale.Comment;
@@ -71,9 +72,9 @@ public final class ActionHelper {
 	 * @param event the ExecutionEvent given by caller handler
 	 * @return active model element
 	 */
-	public static ModelElement getModelElement(ExecutionEvent event) {
+	public static UnicaseModelElement getModelElement(ExecutionEvent event) {
 
-		ModelElement me = null;
+		UnicaseModelElement me = null;
 
 		// ZH: determine the place from which
 		// the command is run (UC Navigator context menu or MEEeditor)
@@ -86,19 +87,19 @@ public final class ActionHelper {
 				.getActiveEditor().getEditorInput();
 			Object obj = editorInput.getAdapter(ModelElement.class);
 
-			if (obj instanceof ModelElement) {
-				me = (ModelElement) obj;
+			if (obj instanceof UnicaseModelElement) {
+				me = (UnicaseModelElement) obj;
 			}
 
 		} else {
 			// extract model element from current selection in navigator
 
 			EObject eObject = getSelection(event);
-			if (!(eObject instanceof ModelElement)) {
+			if (!(eObject instanceof UnicaseModelElement)) {
 				return null;
 			}
 
-			me = (ModelElement) eObject;
+			me = (UnicaseModelElement) eObject;
 		}
 
 		return me;
@@ -412,13 +413,13 @@ public final class ActionHelper {
 	 * 
 	 * @return the selected Object or null if selection is not an IStructuredSelection
 	 */
-	public static ModelElement getSelectedModelElement() {
+	public static UnicaseModelElement getSelectedModelElement() {
 		Object obj = getSelection();
-		if (obj instanceof ModelElement) {
-			return (ModelElement) obj;
+		if (obj instanceof UnicaseModelElement) {
+			return (UnicaseModelElement) obj;
 		} else if(obj instanceof DelegatingWrapperItemProvider) {
-			if( ((DelegatingWrapperItemProvider)obj).getValue() instanceof ModelElement){
-				return (ModelElement) ((DelegatingWrapperItemProvider)obj).getValue();
+			if( ((DelegatingWrapperItemProvider)obj).getValue() instanceof UnicaseModelElement){
+				return (UnicaseModelElement) ((DelegatingWrapperItemProvider)obj).getValue();
 			}else{
 				return null;
 			}

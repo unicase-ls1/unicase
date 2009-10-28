@@ -18,7 +18,7 @@ import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
 import org.unicase.emfstore.esmodel.url.ServerUrl;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.ProjectUrlResolutionException;
 import org.unicase.workspace.exceptions.ServerUrlResolutionException;

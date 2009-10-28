@@ -5,7 +5,7 @@
  */
 package org.unicase.model.change;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Model Change Package</b></em>'. <!--
@@ -22,7 +22,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface ModelChangePackage extends ModelElement {
+public interface ModelChangePackage extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Source Version</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>

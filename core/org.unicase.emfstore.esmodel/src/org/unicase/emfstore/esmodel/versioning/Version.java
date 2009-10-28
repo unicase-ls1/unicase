@@ -7,7 +7,7 @@ package org.unicase.emfstore.esmodel.versioning;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Version</b></em>'. <!-- end-user-doc -->

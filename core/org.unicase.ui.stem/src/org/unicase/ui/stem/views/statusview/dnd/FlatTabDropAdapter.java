@@ -8,7 +8,7 @@ package org.unicase.ui.stem.views.statusview.dnd;
 
 import java.util.Set;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.TaxonomyAccess;
 
@@ -31,10 +31,10 @@ public class FlatTabDropAdapter extends AbstractDropAdapter {
 		// dorp WorkItem B on ME (non work package) A:
 		// if B somewhere exists in annotations of A (hierachical),
 		// do nothing; otherwise Annotate A with B
-		ModelElement currentOpenME = getCurrentOpenME();
-		ModelElement source = getDragSource();
+		UnicaseModelElement currentOpenME = getCurrentOpenME();
+		UnicaseModelElement source = getDragSource();
 
-		Set<ModelElement> openersForCurrentOpenME = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+		Set<UnicaseModelElement> openersForCurrentOpenME = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
 			.getLeafOpeners(currentOpenME);
 		if (!openersForCurrentOpenME.contains(source)) {
 			((WorkItem) source).getAnnotatedModelElements().add(currentOpenME);

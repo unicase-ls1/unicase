@@ -9,8 +9,8 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.util.ActionHelper;
@@ -32,7 +32,7 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		ModelElement me = ActionHelper.getModelElement(event);
+		UnicaseModelElement me = ActionHelper.getModelElement(event);
 		if (!(me instanceof OrgUnit)) {
 			return null;
 		}
@@ -40,7 +40,7 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 		final OrgUnit user = (OrgUnit) me;
 		final StatusView statusView = (StatusView) PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 			.getActivePart();
-		final ModelElement currentOpenME = statusView.getCurrentInput();
+		final UnicaseModelElement currentOpenME = statusView.getCurrentInput();
 
 		final Project project = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace()
 			.getProject();
@@ -64,5 +64,5 @@ public abstract class AssignWorkItemHandler extends AbstractHandler {
 	 * @param currentOpenME model element currently open in status view
 	 * @return newly created work item
 	 */
-	protected abstract WorkItem assignWorkItem(ModelElement currentOpenME, OrgUnit user, Project project);
+	protected abstract WorkItem assignWorkItem(UnicaseModelElement currentOpenME, OrgUnit user, Project project);
 }

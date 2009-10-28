@@ -20,7 +20,7 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.ActionItem;
@@ -63,9 +63,9 @@ public class RefiningAfterRefinedConstraint extends AbstractModelConstraint {
 		if (!activity.equals(ActivityType.IMPLEMENTATION)) {
 			return ctx.createSuccessStatus();
 		}
-		EList<ModelElement> annotatedModelElements = annotation.getAnnotatedModelElements();
+		EList<UnicaseModelElement> annotatedModelElements = annotation.getAnnotatedModelElements();
 		List<Annotation> otherAnnotations = new ArrayList<Annotation>();
-		for (ModelElement me : annotatedModelElements) {
+		for (UnicaseModelElement me : annotatedModelElements) {
 			if (me instanceof FunctionalRequirement) {
 				otherAnnotations.addAll(getRefiningAnnoations((FunctionalRequirement) me));
 			}
@@ -80,7 +80,7 @@ public class RefiningAfterRefinedConstraint extends AbstractModelConstraint {
 				|| otherActivity.equals(ActivityType.IMPLEMENTATION)) {
 				if (TaskValidationHelper.getDueDate(otherAnnotation).after(dueDate)) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(ModelElement) eObj, "dueDate");
+						(UnicaseModelElement) eObj, "dueDate");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
 						+ ((ActionItem) eObj).getName() + "'" });

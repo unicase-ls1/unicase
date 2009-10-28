@@ -14,7 +14,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.classes.ArgumentDirectionType;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.MethodArgument;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Method Argument</b></em>'. <!-- end-user-doc
@@ -32,7 +32,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public class MethodArgumentImpl extends ModelElementImpl implements MethodArgument {
+public class MethodArgumentImpl extends UnicaseModelElementImpl implements MethodArgument {
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute. <!-- begin-user-doc --> <!-- end-user-doc
 	 * -->

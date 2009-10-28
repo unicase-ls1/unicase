@@ -5,7 +5,7 @@
  */
 package org.unicase.model.document;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Section</b></em>'. <!-- end-user-doc -->
@@ -20,7 +20,7 @@ import org.unicase.model.ModelElement;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface Section extends ModelElement {
+public interface Section extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Parent</b></em>' container reference. It is bidirectional and its opposite is '
 	 * {@link org.unicase.model.document.CompositeSection#getSubsections <em>Subsections</em>}'. <!-- begin-user-doc -->

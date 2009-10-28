@@ -12,7 +12,7 @@ import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.widgets.Display;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.wizards.WorkPackageReviewWizard;
@@ -38,12 +38,12 @@ public class MeetingDropAdapter extends MEDropAdapter {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.ui.common.dnd.dropadapters.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
-	 *      org.unicase.model.ModelElement, java.util.List)
+	 *      org.unicase.metamodel.UnicaseModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
+	public void drop(DropTargetEvent event, UnicaseModelElement target, List<UnicaseModelElement> source) {
 
-		ModelElement dropee = source.get(0);
+		UnicaseModelElement dropee = source.get(0);
 		if (dropee instanceof WorkPackage) {
 			dropWorkPackageOnMeeting((Meeting) target, (WorkPackage) dropee);
 		}

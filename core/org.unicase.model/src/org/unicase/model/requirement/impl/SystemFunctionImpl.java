@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.requirement.NonFunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.SystemFunction;
@@ -36,7 +36,7 @@ import org.unicase.model.requirement.Workspace;
  * 
  * @generated
  */
-public class SystemFunctionImpl extends ModelElementImpl implements SystemFunction {
+public class SystemFunctionImpl extends UnicaseModelElementImpl implements SystemFunction {
 	/**
 	 * The default value of the '{@link #getInput() <em>Input</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

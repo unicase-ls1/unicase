@@ -12,7 +12,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.IColorProvider;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
@@ -73,8 +73,8 @@ public class StatusLabelProvider extends ColumnLabelProvider implements IColorPr
 	 */
 	@Override
 	public Image getImage(Object element) {
-		if (element instanceof ModelElement) {
-			ModelElement me = (ModelElement) element;
+		if (element instanceof UnicaseModelElement) {
+			UnicaseModelElement me = (UnicaseModelElement) element;
 			String status = MEState.CLOSED;
 			try {
 				status = me.getMEState().getStatus();

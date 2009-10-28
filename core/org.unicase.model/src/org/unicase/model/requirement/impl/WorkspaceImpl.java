@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.SystemFunction;
 import org.unicase.model.requirement.Workspace;
@@ -29,7 +29,7 @@ import org.unicase.model.requirement.Workspace;
  * 
  * @generated
  */
-public class WorkspaceImpl extends ModelElementImpl implements Workspace {
+public class WorkspaceImpl extends UnicaseModelElementImpl implements Workspace {
 	/**
 	 * The cached value of the '{@link #getSystemFunctions() <em>System Functions</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

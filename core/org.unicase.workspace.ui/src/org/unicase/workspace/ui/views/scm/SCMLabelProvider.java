@@ -27,9 +27,10 @@ import org.unicase.emfstore.esmodel.versioning.TagVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
+import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
@@ -88,12 +89,13 @@ public class SCMLabelProvider extends ColumnLabelProvider {
 				ret = changePackageVisualizationHelper
 						.getDescription((AbstractOperation) value);
 			} else if (value instanceof ModelElement) {
-				ret = ((ModelElement) value).getName();
+				ret = UnicaseUiUtil
+						.getNameForModelElement(((ModelElement) value));
 			} else if (value instanceof ModelElementId) {
 				ModelElement modelElement = changePackageVisualizationHelper
 						.getModelElement((ModelElementId) value);
 				if (modelElement != null) {
-					ret = modelElement.getName();
+					ret = UnicaseUiUtil.getNameForModelElement(modelElement);
 				} else {
 					return ELEMENT_NOT_FOUND;
 				}

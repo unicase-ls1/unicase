@@ -14,7 +14,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
@@ -86,9 +86,9 @@ public class StateDecorator implements ILightweightLabelDecorator {
 		 */
 		URL url = null;
 
-		final ModelElement me;
-		if (element instanceof ModelElement) {
-			me = (ModelElement) element;
+		final UnicaseModelElement me;
+		if (element instanceof UnicaseModelElement) {
+			me = (UnicaseModelElement) element;
 		} else {
 			return;
 		}

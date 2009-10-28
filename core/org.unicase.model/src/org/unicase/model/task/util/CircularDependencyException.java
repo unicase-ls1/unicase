@@ -5,7 +5,7 @@
  */
 package org.unicase.model.task.util;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * Exception to show that there is a circular dependency in the workitem dependencies, e.g. two tasks block each other.
@@ -15,14 +15,14 @@ import org.unicase.model.ModelElement;
 @SuppressWarnings("serial")
 public class CircularDependencyException extends Exception {
 
-	private ModelElement modelElement;
+	private UnicaseModelElement modelElement;
 
 	/**
 	 * default constructor.
 	 * 
-	 * @param modelElement the {@link ModelElement} where the Exception was found.
+	 * @param modelElement the {@link UnicaseModelElement} where the Exception was found.
 	 */
-	public CircularDependencyException(ModelElement modelElement) {
+	public CircularDependencyException(UnicaseModelElement modelElement) {
 		super();
 		this.modelElement = modelElement;
 	}
@@ -32,7 +32,7 @@ public class CircularDependencyException extends Exception {
 	 * 
 	 * @return the modelelement
 	 */
-	public ModelElement getModelElement() {
+	public UnicaseModelElement getModelElement() {
 		return modelElement;
 	}
 

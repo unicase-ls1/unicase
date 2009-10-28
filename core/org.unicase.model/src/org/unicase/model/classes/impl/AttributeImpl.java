@@ -18,7 +18,7 @@ import org.unicase.model.classes.Attribute;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.ScopeType;
 import org.unicase.model.classes.VisibilityType;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Attribute</b></em>'. <!-- end-user-doc -->
@@ -38,7 +38,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public class AttributeImpl extends ModelElementImpl implements Attribute {
+public class AttributeImpl extends UnicaseModelElementImpl implements Attribute {
 
 	/**
 	 * The default value of the '{@link #getVisibility() <em>Visibility</em>}' attribute. <!-- begin-user-doc --> <!--

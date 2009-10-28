@@ -32,8 +32,8 @@ import org.eclipse.ui.forms.events.IHyperlinkListener;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.Hyperlink;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.attachment.UrlAttachment;
 import org.unicase.model.util.ModelElementChangeListener;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
@@ -92,8 +92,8 @@ public class MELinkControl extends AbstractMEControl {
 		};
 		labelProvider.addListener(labelProviderListener);
 
-		ArrayList<ModelElement> list = new ArrayList<ModelElement>();
-		list.add((ModelElement) getModelElement());
+		ArrayList<UnicaseModelElement> list = new ArrayList<UnicaseModelElement>();
+		list.add((UnicaseModelElement) getModelElement());
 		observer = new ModelElementChangeListener() {
 
 			public void onChange(Notification notification) {
@@ -101,8 +101,8 @@ public class MELinkControl extends AbstractMEControl {
 
 					public void run() {
 						if (hyperlink != null && !hyperlink.isDisposed()) {
-							hyperlink.setText(((ModelElement) getModelElement()).getShortName());
-							hyperlink.setToolTipText(((ModelElement) getModelElement()).getShortName());
+							hyperlink.setText(((UnicaseModelElement) getModelElement()).getShortName());
+							hyperlink.setToolTipText(((UnicaseModelElement) getModelElement()).getShortName());
 							updateAdditionalControlComponents();
 							linkComposite.layout(true);
 							parent.getParent().layout(true);
@@ -113,21 +113,21 @@ public class MELinkControl extends AbstractMEControl {
 			}
 
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
-				((ModelElement) getModelElement()).removeModelElementChangeListener(observer);
+				((UnicaseModelElement) getModelElement()).removeModelElementChangeListener(observer);
 			}
 		};
-		((ModelElement) getModelElement()).addModelElementChangeListener(observer);
+		((UnicaseModelElement) getModelElement()).addModelElementChangeListener(observer);
 
 		Image image = labelProvider.getImage(getModelElement());
 		imageHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
 		imageHyperlink.setImage(image);
 		imageHyperlink.setData(getModelElement().eClass());
 		ModelElementClassTooltip.enableFor(imageHyperlink);
-		hyperlink = getToolkit().createHyperlink(linkComposite, ((ModelElement) getModelElement()).getShortName(),
-			style);
-		hyperlink.setToolTipText(((ModelElement) getModelElement()).getShortName());
-		IHyperlinkListener listener = new MEHyperLinkAdapter((ModelElement) getModelElement(),
-			(ModelElement) contextModelElement, reference.getName());
+		hyperlink = getToolkit().createHyperlink(linkComposite,
+			((UnicaseModelElement) getModelElement()).getShortName(), style);
+		hyperlink.setToolTipText(((UnicaseModelElement) getModelElement()).getShortName());
+		IHyperlinkListener listener = new MEHyperLinkAdapter((UnicaseModelElement) getModelElement(),
+			(UnicaseModelElement) contextModelElement, reference.getName());
 		hyperlink.addHyperlinkListener(listener);
 		imageHyperlink.addHyperlinkListener(listener);
 
@@ -147,12 +147,12 @@ public class MELinkControl extends AbstractMEControl {
 	}
 
 	/**
-	 * Set up additional controls to the left of the default link
+	 * Set up additional controls to the left of the default link.
 	 * 
 	 * @param style Style
 	 */
 	private void setupAdditionalControlComponents(int style) {
-		if (((ModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class)) {
+		if (((UnicaseModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class)) {
 			urlHyperlink = getToolkit().createImageHyperlink(linkComposite, style);
 			Image launchImage = org.unicase.ui.meeditor.Activator.getImageDescriptor("icons/world_link.png")
 				.createImage();
@@ -167,12 +167,13 @@ public class MELinkControl extends AbstractMEControl {
 				@Override
 				public void linkActivated(HyperlinkEvent event) {
 					String url = ((UrlAttachment) getModelElement()).getUrl();
-					if (url == null)
+					if (url == null) {
 						return;
+					}
 					Program.launch(url);
-					ModelElement urlAttachement = (ModelElement) getModelElement();
-					MEURLControl.logEvent(((ModelElement) contextModelElement).getModelElementId(), urlAttachement
-						.getModelElementId(), WorkspaceManager.getProjectSpace(urlAttachement),
+					UnicaseModelElement urlAttachement = (UnicaseModelElement) getModelElement();
+					MEURLControl.logEvent(((UnicaseModelElement) contextModelElement).getModelElementId(),
+						urlAttachement.getModelElementId(), WorkspaceManager.getProjectSpace(urlAttachement),
 						"org.unicase.ui.meeditor");
 					super.linkActivated(event);
 
@@ -182,18 +183,19 @@ public class MELinkControl extends AbstractMEControl {
 	}
 
 	/**
-	 * Get the number of additional control elements to the left of the default link
+	 * Get the number of additional control elements to the left of the default link.
 	 * 
 	 * @return Number of controls
 	 */
 	private int getNumberOfAdditionalControlComponents() {
-		if (((ModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class))
+		if (((UnicaseModelElement) getModelElement()).eClass().getInstanceClass().equals(UrlAttachment.class)) {
 			return 1;
+		}
 		return 0;
 	}
 
 	/**
-	 * Pass change notification to additional control components
+	 * Pass change notification to additional control components.
 	 */
 	private void updateAdditionalControlComponents() {
 		if ((urlHyperlink != null) && (!urlHyperlink.isDisposed())) {
@@ -215,7 +217,7 @@ public class MELinkControl extends AbstractMEControl {
 	@Override
 	public void dispose() {
 		if (getModelElement() != null) {
-			((ModelElement) getModelElement()).removeModelElementChangeListener(observer);
+			((UnicaseModelElement) getModelElement()).removeModelElementChangeListener(observer);
 		}
 		labelProvider.removeListener(labelProviderListener);
 		labelProvider.dispose();

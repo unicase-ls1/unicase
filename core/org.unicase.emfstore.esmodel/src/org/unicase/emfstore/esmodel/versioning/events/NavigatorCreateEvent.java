@@ -5,7 +5,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning.events;
 
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Navigator Create Event</b></em>'. <!--

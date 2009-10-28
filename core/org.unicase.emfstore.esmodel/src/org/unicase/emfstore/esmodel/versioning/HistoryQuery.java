@@ -7,7 +7,7 @@ package org.unicase.emfstore.esmodel.versioning;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>History Query</b></em>'. <!-- end-user-doc -->
@@ -81,7 +81,7 @@ public interface HistoryQuery extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Model Elements</b></em>' containment reference list. The list contents are of
-	 * type {@link org.unicase.model.ModelElementId}. <!-- begin-user-doc -->
+	 * type {@link org.unicase.metamodel.ModelElementId}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Elements</em>' containment reference list isn't clear, there really should be
 	 * more of a description here...

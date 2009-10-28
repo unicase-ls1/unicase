@@ -45,7 +45,7 @@ import org.unicase.docExport.exportModel.renderers.options.OptionsFactory;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.ReferenceOption;
 import org.unicase.docExport.exportModel.renderers.options.SingleReferenceAttributeOption;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
@@ -85,7 +85,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 	 * renders an attribute (feature) of a modelElement and adds it to the USection parent of the modelELement. The
 	 * rendering strongly depends on the type of the attribute: EAttribute, single EReference and multi EReference.
 	 */
-	public void render(EStructuralFeature feature, ModelElement modelElement, UCompositeSection parent,
+	public void render(EStructuralFeature feature, UnicaseModelElement modelElement, UCompositeSection parent,
 		Template template) {
 		this.layoutOptions = template.getLayoutOptions();
 		this.template = template;
@@ -102,7 +102,8 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 
 	}
 
-	private void renderSingleFeature(EStructuralFeature feature, ModelElement modelElement, UCompositeSection parent) {
+	private void renderSingleFeature(EStructuralFeature feature, UnicaseModelElement modelElement,
+		UCompositeSection parent) {
 		Object content = modelElement.eGet(feature);
 		if (feature.eClass().getInstanceClass().equals(EAttribute.class)) {
 			if (content != null) {
@@ -111,11 +112,11 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		} else { // EReference
 			if (content != null) {
 				if (((SingleReferenceAttributeOption) getAttributeOption()).isContained()) {
-					renderContainedReference((ModelElement) content, parent, feature);
-					DocumentExport.addRenderedModelElement((ModelElement) content);
+					renderContainedReference((UnicaseModelElement) content, parent, feature);
+					DocumentExport.addRenderedModelElement((UnicaseModelElement) content);
 				} else {
 					TemplateRegistry.setMeCount(TemplateRegistry.getMeCount());
-					renderLinkedReference((ModelElement) content, parent, feature);
+					renderLinkedReference((UnicaseModelElement) content, parent, feature);
 				}
 			}
 		}
@@ -224,7 +225,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		}
 	}
 
-	private void renderLinkedReference(ModelElement content, UCompositeSection parent, EStructuralFeature feature) {
+	private void renderLinkedReference(UnicaseModelElement content, UCompositeSection parent, EStructuralFeature feature) {
 		String text = "" + feature.getName() + ": " + content.getName();
 
 		if (getAttributeOption() instanceof MultiReferenceAttributeOption) {
@@ -246,7 +247,7 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 
 	}
 
-	private void renderContainedReference(ModelElement content, UCompositeSection attributeSection,
+	private void renderContainedReference(UnicaseModelElement content, UCompositeSection attributeSection,
 		EStructuralFeature feature) {
 		ModelElementRenderer renderer = getModelElementRenderer(content.eClass());
 		try {
@@ -274,7 +275,8 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 	 * renders an attribute with can have more than one reference to a modelElement.
 	 */
 	@SuppressWarnings("unchecked")
-	private void renderMultiFeature(EStructuralFeature feature, ModelElement modelElement, UCompositeSection parent) {
+	private void renderMultiFeature(EStructuralFeature feature, UnicaseModelElement modelElement,
+		UCompositeSection parent) {
 
 		MultiReferenceAttributeOption option = (MultiReferenceAttributeOption) getAttributeOption();
 		ListOption listOption = option.getListOption();
@@ -284,10 +286,10 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		Object attributeValue = modelElement.eGet(feature);
 
 		if (attributeValue instanceof EList) {
-			EList<ModelElement> objectList = (EList<ModelElement>) attributeValue;
+			EList<UnicaseModelElement> objectList = (EList<UnicaseModelElement>) attributeValue;
 
 			if (((ReferenceAttributeOption) getAttributeOption()).isContained()) {
-				for (ModelElement me : objectList) {
+				for (UnicaseModelElement me : objectList) {
 					renderContainedReference(me, parent, feature);
 				}
 			} else {
@@ -296,13 +298,13 @@ public class DefaultAttributeRendererImpl extends AttributeRendererImpl implemen
 		}
 	}
 
-	private void renderList(UCompositeSection parent, EList<ModelElement> objectList, EStructuralFeature feature,
-		ListOption listOpion, ReferenceOption refOption) {
+	private void renderList(UCompositeSection parent, EList<UnicaseModelElement> objectList,
+		EStructuralFeature feature, ListOption listOpion, ReferenceOption refOption) {
 
 		UList list = new UList(listOpion, template.getLayoutOptions().getSectionTextOption());
 		list.setIndentionLeft(1);
 
-		for (ModelElement me : objectList) {
+		for (UnicaseModelElement me : objectList) {
 			list.add(me.getName());
 		}
 

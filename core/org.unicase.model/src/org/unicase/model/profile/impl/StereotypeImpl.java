@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.profile.Profile;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.Stereotype;
@@ -38,7 +38,7 @@ import org.unicase.model.profile.StereotypeInstance;
  * 
  * @generated
  */
-public class StereotypeImpl extends ModelElementImpl implements Stereotype {
+public class StereotypeImpl extends UnicaseModelElementImpl implements Stereotype {
 	/**
 	 * The default value of the '{@link #isRequired() <em>Required</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

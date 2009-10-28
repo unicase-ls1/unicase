@@ -6,7 +6,7 @@
 package org.unicase.model.profile;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Profile</b></em>'. <!-- end-user-doc -->
@@ -22,10 +22,10 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Profile extends ModelElement {
+public interface Profile extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Affected Containers</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.ModelElement}. <!-- begin-user-doc -->
+	 * {@link org.unicase.model.UnicaseModelElement}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Affected Containers</em>' reference list isn't clear, there really should be more of a
 	 * description here...
@@ -37,7 +37,7 @@ public interface Profile extends ModelElement {
 	 * @model keys="identifier"
 	 * @generated
 	 */
-	EList<ModelElement> getAffectedContainers();
+	EList<UnicaseModelElement> getAffectedContainers();
 
 	/**
 	 * Returns the value of the '<em><b>Stereotypes</b></em>' containment reference list. The list contents are of type

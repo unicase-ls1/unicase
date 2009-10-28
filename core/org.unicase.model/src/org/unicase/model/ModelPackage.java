@@ -61,10 +61,10 @@ public interface ModelPackage extends EPackage {
 	ModelPackage eINSTANCE = org.unicase.model.impl.ModelPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.impl.IdentifiableElementImpl <em>Identifiable Element</em>}'
+	 * The meta object id for the '{@link org.unicase.metamodel.impl.IdentifiableElementImpl <em>Identifiable Element</em>}'
 	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.unicase.model.impl.IdentifiableElementImpl
+	 * @see org.unicase.metamodel.impl.IdentifiableElementImpl
 	 * @see org.unicase.model.impl.ModelPackageImpl#getIdentifiableElement()
 	 * @generated
 	 */
@@ -88,10 +88,10 @@ public interface ModelPackage extends EPackage {
 	int IDENTIFIABLE_ELEMENT_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.impl.ModelElementImpl <em>Element</em>}' class. <!--
+	 * The meta object id for the '{@link org.unicase.model.impl.UnicaseModelElementImpl <em>Element</em>}' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.unicase.model.impl.ModelElementImpl
+	 * @see org.unicase.model.impl.UnicaseModelElementImpl
 	 * @see org.unicase.model.impl.ModelPackageImpl#getModelElement()
 	 * @generated
 	 */
@@ -208,10 +208,10 @@ public interface ModelPackage extends EPackage {
 	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class. <!--
+	 * The meta object id for the '{@link org.unicase.metamodel.impl.ProjectImpl <em>Project</em>}' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.unicase.model.impl.ProjectImpl
+	 * @see org.unicase.metamodel.impl.ProjectImpl
 	 * @see org.unicase.model.impl.ModelPackageImpl#getProject()
 	 * @generated
 	 */
@@ -522,10 +522,10 @@ public interface ModelPackage extends EPackage {
 	int ATTACHMENT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.impl.ModelElementIdImpl <em>Element Id</em>}' class. <!--
+	 * The meta object id for the '{@link org.unicase.metamodel.impl.ModelElementIdImpl <em>Element Id</em>}' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.unicase.model.impl.ModelElementIdImpl
+	 * @see org.unicase.metamodel.impl.ModelElementIdImpl
 	 * @see org.unicase.model.impl.ModelPackageImpl#getModelElementId()
 	 * @generated
 	 */
@@ -568,10 +568,10 @@ public interface ModelPackage extends EPackage {
 	int NON_DOMAIN_ELEMENT_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.model.impl.ModelVersionImpl <em>Version</em>}' class. <!--
+	 * The meta object id for the '{@link org.unicase.metamodel.impl.ModelVersionImpl <em>Version</em>}' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.unicase.model.impl.ModelVersionImpl
+	 * @see org.unicase.metamodel.impl.ModelVersionImpl
 	 * @see org.unicase.model.impl.ModelPackageImpl#getModelVersion()
 	 * @generated
 	 */
@@ -594,76 +594,76 @@ public interface ModelPackage extends EPackage {
 	int MODEL_VERSION_FEATURE_COUNT = 1;
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.ModelElement <em>Element</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for class '{@link org.unicase.model.UnicaseModelElement <em>Element</em>}'. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Element</em>'.
-	 * @see org.unicase.model.ModelElement
+	 * @see org.unicase.model.UnicaseModelElement
 	 * @generated
 	 */
 	EClass getModelElement();
 
 	/**
-	 * Returns the meta object for the attribute ' {@link org.unicase.model.ModelElement#getName <em>Name</em>}'. <!--
+	 * Returns the meta object for the attribute ' {@link org.unicase.model.UnicaseModelElement#getName <em>Name</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
-	 * @see org.unicase.model.ModelElement#getName()
+	 * @see org.unicase.model.UnicaseModelElement#getName()
 	 * @see #getModelElement()
 	 * @generated
 	 */
 	EAttribute getModelElement_Name();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.ModelElement#getDescription
+	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getDescription
 	 * <em>Description</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Description</em>'.
-	 * @see org.unicase.model.ModelElement#getDescription()
+	 * @see org.unicase.model.UnicaseModelElement#getDescription()
 	 * @see #getModelElement()
 	 * @generated
 	 */
 	EAttribute getModelElement_Description();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.ModelElement#getCreator <em>Creator</em>}'.
+	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getCreator <em>Creator</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Creator</em>'.
-	 * @see org.unicase.model.ModelElement#getCreator()
+	 * @see org.unicase.model.UnicaseModelElement#getCreator()
 	 * @see #getModelElement()
 	 * @generated
 	 */
 	EAttribute getModelElement_Creator();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.ModelElement#getCreationDate
+	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getCreationDate
 	 * <em>Creation Date</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Creation Date</em>'.
-	 * @see org.unicase.model.ModelElement#getCreationDate()
+	 * @see org.unicase.model.UnicaseModelElement#getCreationDate()
 	 * @see #getModelElement()
 	 * @generated
 	 */
 	EAttribute getModelElement_CreationDate();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.ModelElement#getAnnotations
+	 * Returns the meta object for the reference list '{@link org.unicase.model.UnicaseModelElement#getAnnotations
 	 * <em>Annotations</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Annotations</em>'.
-	 * @see org.unicase.model.ModelElement#getAnnotations()
+	 * @see org.unicase.model.UnicaseModelElement#getAnnotations()
 	 * @see #getModelElement()
 	 * @generated
 	 */
 	EReference getModelElement_Annotations();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.unicase.model.ModelElement#getAttachments
+	 * Returns the meta object for the reference list '{@link org.unicase.model.UnicaseModelElement#getAttachments
 	 * <em>Attachments</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Attachments</em>'.
-	 * @see org.unicase.model.ModelElement#getAttachments()
+	 * @see org.unicase.model.UnicaseModelElement#getAttachments()
 	 * @see #getModelElement()
 	 * @generated
 	 */
@@ -671,33 +671,33 @@ public interface ModelPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.model.ModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}'. <!--
+	 * {@link org.unicase.model.UnicaseModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Incoming Document References</em>'.
-	 * @see org.unicase.model.ModelElement#getIncomingDocumentReferences()
+	 * @see org.unicase.model.UnicaseModelElement#getIncomingDocumentReferences()
 	 * @see #getModelElement()
 	 * @generated
 	 */
 	EReference getModelElement_IncomingDocumentReferences();
 
 	/**
-	 * Returns the meta object for the container reference '{@link org.unicase.model.ModelElement#getLeafSection
+	 * Returns the meta object for the container reference '{@link org.unicase.model.UnicaseModelElement#getLeafSection
 	 * <em>Leaf Section</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the container reference '<em>Leaf Section</em>'.
-	 * @see org.unicase.model.ModelElement#getLeafSection()
+	 * @see org.unicase.model.UnicaseModelElement#getLeafSection()
 	 * @see #getModelElement()
 	 * @generated
 	 */
 	EReference getModelElement_LeafSection();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.ModelElement#getState <em>State</em>}'. <!--
+	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getState <em>State</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>State</em>'.
-	 * @see org.unicase.model.ModelElement#getState()
+	 * @see org.unicase.model.UnicaseModelElement#getState()
 	 * @see #getModelElement()
 	 * @generated
 	 */
@@ -705,64 +705,64 @@ public interface ModelPackage extends EPackage {
 
 	/**
 	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.model.ModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}'. <!--
+	 * {@link org.unicase.model.UnicaseModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference list '<em>Applied Stereotype Instances</em>'.
-	 * @see org.unicase.model.ModelElement#getAppliedStereotypeInstances()
+	 * @see org.unicase.model.UnicaseModelElement#getAppliedStereotypeInstances()
 	 * @see #getModelElement()
 	 * @generated
 	 */
 	EReference getModelElement_AppliedStereotypeInstances();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.ModelElement#getComments
+	 * Returns the meta object for the containment reference list '{@link org.unicase.model.UnicaseModelElement#getComments
 	 * <em>Comments</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference list '<em>Comments</em>'.
-	 * @see org.unicase.model.ModelElement#getComments()
+	 * @see org.unicase.model.UnicaseModelElement#getComments()
 	 * @see #getModelElement()
 	 * @generated
 	 */
 	EReference getModelElement_Comments();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.Project <em>Project</em>}'. <!-- begin-user-doc -->
+	 * Returns the meta object for class '{@link org.unicase.metamodel.Project <em>Project</em>}'. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Project</em>'.
-	 * @see org.unicase.model.Project
+	 * @see org.unicase.metamodel.Project
 	 * @generated
 	 */
 	EClass getProject();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.Project#getModelElements
+	 * Returns the meta object for the containment reference list '{@link org.unicase.metamodel.Project#getModelElements
 	 * <em>Model Elements</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference list '<em>Model Elements</em>'.
-	 * @see org.unicase.model.Project#getModelElements()
+	 * @see org.unicase.metamodel.Project#getModelElements()
 	 * @see #getProject()
 	 * @generated
 	 */
 	EReference getProject_ModelElements();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.UniqueIdentifier <em>Unique Identifier</em>}'. <!--
+	 * Returns the meta object for class '{@link org.unicase.metamodel.UniqueIdentifier <em>Unique Identifier</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Unique Identifier</em>'.
-	 * @see org.unicase.model.UniqueIdentifier
+	 * @see org.unicase.metamodel.UniqueIdentifier
 	 * @generated
 	 */
 	EClass getUniqueIdentifier();
 
 	/**
-	 * Returns the meta object for the attribute ' {@link org.unicase.model.UniqueIdentifier#getId <em>Id</em>}'. <!--
+	 * Returns the meta object for the attribute ' {@link org.unicase.metamodel.UniqueIdentifier#getId <em>Id</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see org.unicase.model.UniqueIdentifier#getId()
+	 * @see org.unicase.metamodel.UniqueIdentifier#getId()
 	 * @see #getUniqueIdentifier()
 	 * @generated
 	 */
@@ -811,32 +811,32 @@ public interface ModelPackage extends EPackage {
 	EReference getAttachment_ReferringModelElements();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.IdentifiableElement <em>Identifiable Element</em>}'.
+	 * Returns the meta object for class '{@link org.unicase.metamodel.IdentifiableElement <em>Identifiable Element</em>}'.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Identifiable Element</em>'.
-	 * @see org.unicase.model.IdentifiableElement
+	 * @see org.unicase.metamodel.IdentifiableElement
 	 * @generated
 	 */
 	EClass getIdentifiableElement();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.IdentifiableElement#getIdentifier
+	 * Returns the meta object for the attribute '{@link org.unicase.metamodel.IdentifiableElement#getIdentifier
 	 * <em>Identifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Identifier</em>'.
-	 * @see org.unicase.model.IdentifiableElement#getIdentifier()
+	 * @see org.unicase.metamodel.IdentifiableElement#getIdentifier()
 	 * @see #getIdentifiableElement()
 	 * @generated
 	 */
 	EAttribute getIdentifiableElement_Identifier();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.ModelElementId <em>Element Id</em>}'. <!--
+	 * Returns the meta object for class '{@link org.unicase.metamodel.ModelElementId <em>Element Id</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Element Id</em>'.
-	 * @see org.unicase.model.ModelElementId
+	 * @see org.unicase.metamodel.ModelElementId
 	 * @generated
 	 */
 	EClass getModelElementId();
@@ -852,21 +852,21 @@ public interface ModelPackage extends EPackage {
 	EClass getNonDomainElement();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.ModelVersion <em>Version</em>}'. <!-- begin-user-doc
+	 * Returns the meta object for class '{@link org.unicase.metamodel.ModelVersion <em>Version</em>}'. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for class '<em>Version</em>'.
-	 * @see org.unicase.model.ModelVersion
+	 * @see org.unicase.metamodel.ModelVersion
 	 * @generated
 	 */
 	EClass getModelVersion();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.ModelVersion#getReleaseNumber
+	 * Returns the meta object for the attribute '{@link org.unicase.metamodel.ModelVersion#getReleaseNumber
 	 * <em>Release Number</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Release Number</em>'.
-	 * @see org.unicase.model.ModelVersion#getReleaseNumber()
+	 * @see org.unicase.metamodel.ModelVersion#getReleaseNumber()
 	 * @see #getModelVersion()
 	 * @generated
 	 */
@@ -894,10 +894,10 @@ public interface ModelPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.impl.ModelElementImpl <em>Element</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.model.impl.UnicaseModelElementImpl <em>Element</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see org.unicase.model.impl.ModelElementImpl
+		 * @see org.unicase.model.impl.UnicaseModelElementImpl
 		 * @see org.unicase.model.impl.ModelPackageImpl#getModelElement()
 		 * @generated
 		 */
@@ -992,10 +992,10 @@ public interface ModelPackage extends EPackage {
 		EReference MODEL_ELEMENT__COMMENTS = eINSTANCE.getModelElement_Comments();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class. <!--
+		 * The meta object literal for the '{@link org.unicase.metamodel.impl.ProjectImpl <em>Project</em>}' class. <!--
 		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see org.unicase.model.impl.ProjectImpl
+		 * @see org.unicase.metamodel.impl.ProjectImpl
 		 * @see org.unicase.model.impl.ModelPackageImpl#getProject()
 		 * @generated
 		 */
@@ -1064,10 +1064,10 @@ public interface ModelPackage extends EPackage {
 		EReference ATTACHMENT__REFERRING_MODEL_ELEMENTS = eINSTANCE.getAttachment_ReferringModelElements();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.impl.IdentifiableElementImpl
+		 * The meta object literal for the '{@link org.unicase.metamodel.impl.IdentifiableElementImpl
 		 * <em>Identifiable Element</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see org.unicase.model.impl.IdentifiableElementImpl
+		 * @see org.unicase.metamodel.impl.IdentifiableElementImpl
 		 * @see org.unicase.model.impl.ModelPackageImpl#getIdentifiableElement()
 		 * @generated
 		 */
@@ -1082,10 +1082,10 @@ public interface ModelPackage extends EPackage {
 		EAttribute IDENTIFIABLE_ELEMENT__IDENTIFIER = eINSTANCE.getIdentifiableElement_Identifier();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.impl.ModelElementIdImpl <em>Element Id</em>}'
+		 * The meta object literal for the '{@link org.unicase.metamodel.impl.ModelElementIdImpl <em>Element Id</em>}'
 		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see org.unicase.model.impl.ModelElementIdImpl
+		 * @see org.unicase.metamodel.impl.ModelElementIdImpl
 		 * @see org.unicase.model.impl.ModelPackageImpl#getModelElementId()
 		 * @generated
 		 */
@@ -1102,10 +1102,10 @@ public interface ModelPackage extends EPackage {
 		EClass NON_DOMAIN_ELEMENT = eINSTANCE.getNonDomainElement();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.impl.ModelVersionImpl <em>Version</em>}' class.
+		 * The meta object literal for the '{@link org.unicase.metamodel.impl.ModelVersionImpl <em>Version</em>}' class.
 		 * <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see org.unicase.model.impl.ModelVersionImpl
+		 * @see org.unicase.metamodel.impl.ModelVersionImpl
 		 * @see org.unicase.model.impl.ModelPackageImpl#getModelVersion()
 		 * @generated
 		 */

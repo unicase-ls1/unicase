@@ -18,9 +18,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.workspace.CompositeOperationHandle;
@@ -64,8 +64,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
+	 *      org.unicase.metamodel.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		projectSpace.addToResource(modelElement);
@@ -83,8 +83,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.metamodel.Project,
+	 *      org.unicase.metamodel.ModelElement)
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		if (isRecording) {
@@ -127,8 +127,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.metamodel.Project,
+	 *      org.unicase.metamodel.ModelElement)
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		if (isRecording) {
@@ -166,7 +166,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (isRecording) {

@@ -32,8 +32,8 @@ import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.ui.common.TreeViewerColumnSorter;
 import org.unicase.ui.common.dnd.UCDragAdapter;
@@ -344,8 +344,8 @@ public class IterationPlanningView extends ViewPart {
 			public void doubleClick(DoubleClickEvent event) {
 				TreeSelection selection = (TreeSelection) viewer.getSelection();
 				Object object = selection.getFirstElement();
-				if (object instanceof ModelElement) {
-					ActionHelper.openModelElement((ModelElement) object, viewId);
+				if (object instanceof UnicaseModelElement) {
+					ActionHelper.openModelElement((UnicaseModelElement) object, viewId);
 				}
 			}
 

@@ -8,7 +8,7 @@ package org.unicase.model.meeting;
 import java.util.Date;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 
@@ -34,7 +34,7 @@ import org.unicase.model.organization.User;
  * @model
  * @generated
  */
-public interface Meeting extends ModelElement {
+public interface Meeting extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Location</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>

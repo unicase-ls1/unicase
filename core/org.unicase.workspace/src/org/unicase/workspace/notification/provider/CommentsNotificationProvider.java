@@ -18,7 +18,8 @@ import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
@@ -38,9 +39,9 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 	private HashMap<Comment, AbstractOperation> personalComment2OperationMap;
 	private HashMap<Comment, AbstractOperation> reply2OperationMap;
 	private HashMap<Comment, AbstractOperation> taskComment2OperationMap;
-	private HashMap<ModelElement, ArrayList<Comment>> me2replyMap;
-	private HashMap<ModelElement, ArrayList<Comment>> me2personalCommentMap;
-	private HashMap<ModelElement, ArrayList<Comment>> me2taskCommentMap;
+	private HashMap<UnicaseModelElement, ArrayList<Comment>> me2replyMap;
+	private HashMap<UnicaseModelElement, ArrayList<Comment>> me2personalCommentMap;
+	private HashMap<UnicaseModelElement, ArrayList<Comment>> me2taskCommentMap;
 
 	/**
 	 * The name.
@@ -54,13 +55,13 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 		personalComment2OperationMap = new HashMap<Comment, AbstractOperation>();
 		reply2OperationMap = new HashMap<Comment, AbstractOperation>();
 		taskComment2OperationMap = new HashMap<Comment, AbstractOperation>();
-		me2replyMap = new HashMap<ModelElement, ArrayList<Comment>>();
-		me2personalCommentMap = new HashMap<ModelElement, ArrayList<Comment>>();
-		me2taskCommentMap = new HashMap<ModelElement, ArrayList<Comment>>();
+		me2replyMap = new HashMap<UnicaseModelElement, ArrayList<Comment>>();
+		me2personalCommentMap = new HashMap<UnicaseModelElement, ArrayList<Comment>>();
+		me2taskCommentMap = new HashMap<UnicaseModelElement, ArrayList<Comment>>();
 	}
 
-	private void aggregateComments(HashMap<ModelElement, ArrayList<Comment>> map, ModelElement modelElement,
-		Comment comment) {
+	private void aggregateComments(HashMap<UnicaseModelElement, ArrayList<Comment>> map,
+		UnicaseModelElement modelElement, Comment comment) {
 		if (map.get(modelElement) == null) {
 			ArrayList<Comment> comments = new ArrayList<Comment>();
 			map.put(modelElement, comments);
@@ -89,16 +90,16 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 			OrgUnitProperty threadRepliesProperty = PreferenceManager.INSTANCE.getProperty(getProjectSpace(),
 				DashboardKey.SHOW_CONTAINMENT_REPLIES);
 			if (threadRepliesProperty.getBooleanProperty()) {
-				for (ModelElement modelElement : me2replyMap.keySet()) {
+				for (UnicaseModelElement modelElement : me2replyMap.keySet()) {
 					result.add(createCommentNotification(me2replyMap, reply2OperationMap, modelElement,
 						" also commented in the thread for "));
 				}
 			}
-			for (ModelElement modelElement : me2personalCommentMap.keySet()) {
+			for (UnicaseModelElement modelElement : me2personalCommentMap.keySet()) {
 				result.add(createCommentNotification(me2personalCommentMap, personalComment2OperationMap, modelElement,
 					" commented on "));
 			}
-			for (ModelElement modelElement : me2taskCommentMap.keySet()) {
+			for (UnicaseModelElement modelElement : me2taskCommentMap.keySet()) {
 				result.add(createCommentNotification(me2taskCommentMap, taskComment2OperationMap, modelElement,
 					" commented on your task "));
 			}
@@ -131,7 +132,7 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 			return;
 		}
 		Comment localComment = (Comment) getProjectSpace().getProject().getModelElement(comment.getModelElementId());
-		ModelElement firstParent = localComment.getFirstParent();
+		UnicaseModelElement firstParent = localComment.getFirstParent();
 		if (firstParent == null) {
 			return;
 		}
@@ -203,8 +204,8 @@ public class CommentsNotificationProvider extends AbstractNotificationProvider {
 		return notification;
 	}
 
-	private ESNotification createCommentNotification(HashMap<ModelElement, ArrayList<Comment>> me2commentMap,
-		HashMap<Comment, AbstractOperation> comment2opMap, ModelElement modelElement, String message) {
+	private ESNotification createCommentNotification(HashMap<UnicaseModelElement, ArrayList<Comment>> me2commentMap,
+		HashMap<Comment, AbstractOperation> comment2opMap, UnicaseModelElement modelElement, String message) {
 		List<Comment> comments = me2commentMap.get(modelElement);
 		ArrayList<AbstractOperation> ops = new ArrayList<AbstractOperation>();
 		StringBuilder stringBuilder = new StringBuilder();

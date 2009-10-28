@@ -16,7 +16,7 @@ import org.eclipse.ui.forms.IManagedForm;
 import org.eclipse.ui.forms.editor.FormPage;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ScrolledForm;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
 import org.unicase.ui.meeditor.mecontrols.RTEditor;
@@ -29,7 +29,7 @@ import org.unicase.workspace.Configuration;
  */
 public class MEDescriptionPage extends FormPage {
 
-	private ModelElement modelElement;
+	private UnicaseModelElement modelElement;
 	private FormToolkit toolkit;
 
 	private ScrolledForm form;
@@ -46,7 +46,7 @@ public class MEDescriptionPage extends FormPage {
 	 * @param modelElement the modelElement
 	 */
 	public MEDescriptionPage(MEEditor editor, String id, String title, EditingDomain editingDomain,
-		ModelElement modelElement) {
+		UnicaseModelElement modelElement) {
 		super(editor, id, title);
 		this.modelElement = modelElement;
 	}

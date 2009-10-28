@@ -11,17 +11,17 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.ModelVersion;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.UniqueIdentifier;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
-import org.unicase.model.IdentifiableElement;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.ModelVersion;
 import org.unicase.model.NonDomainElement;
-import org.unicase.model.Project;
-import org.unicase.model.UniqueIdentifier;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
 import org.unicase.model.attachment.AttachmentPackage;
@@ -649,47 +649,47 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(modelElementEClass, ModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE,
+		initEClass(modelElementEClass, UnicaseModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModelElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, ModelElement.class,
+		initEAttribute(getModelElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, UnicaseModelElement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelElement_Description(), ecorePackage.getEString(), "description", null, 0, 1,
-			ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_Creator(), ecorePackage.getEString(), "creator", null, 0, 1, ModelElement.class,
+		initEAttribute(getModelElement_Creator(), ecorePackage.getEString(), "creator", null, 0, 1, UnicaseModelElement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getModelElement_CreationDate(), ecorePackage.getEDate(), "creationDate", null, 0, 1,
-			ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		initEReference(getModelElement_Annotations(), this.getAnnotation(),
-			this.getAnnotation_AnnotatedModelElements(), "annotations", null, 0, -1, ModelElement.class, !IS_TRANSIENT,
+			this.getAnnotation_AnnotatedModelElements(), "annotations", null, 0, -1, UnicaseModelElement.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
 		getModelElement_Annotations().getEKeys().add(this.getIdentifiableElement_Identifier());
 		initEReference(getModelElement_Attachments(), this.getAttachment(),
-			this.getAttachment_ReferringModelElements(), "attachments", null, 0, -1, ModelElement.class, !IS_TRANSIENT,
+			this.getAttachment_ReferringModelElements(), "attachments", null, 0, -1, UnicaseModelElement.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
 		getModelElement_Attachments().getEKeys().add(this.getIdentifiableElement_Identifier());
 		initEReference(getModelElement_IncomingDocumentReferences(), theDocumentPackage.getLeafSection(),
 			theDocumentPackage.getLeafSection_ReferencedModelElements(), "incomingDocumentReferences", null, 0, -1,
-			ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getModelElement_IncomingDocumentReferences().getEKeys().add(this.getIdentifiableElement_Identifier());
 		initEReference(getModelElement_LeafSection(), theDocumentPackage.getLeafSection(), theDocumentPackage
-			.getLeafSection_ModelElements(), "leafSection", null, 0, 1, ModelElement.class, !IS_TRANSIENT,
+			.getLeafSection_ModelElements(), "leafSection", null, 0, 1, UnicaseModelElement.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
 		getModelElement_LeafSection().getEKeys().add(this.getIdentifiableElement_Identifier());
-		initEAttribute(getModelElement_State(), ecorePackage.getEString(), "state", "", 0, 1, ModelElement.class,
+		initEAttribute(getModelElement_State(), ecorePackage.getEString(), "state", "", 0, 1, UnicaseModelElement.class,
 			IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
 		initEReference(getModelElement_AppliedStereotypeInstances(), theProfilePackage.getStereotypeInstance(),
 			theProfilePackage.getStereotypeInstance_ModelElement(), "appliedStereotypeInstances", null, 0, -1,
-			ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getModelElement_AppliedStereotypeInstances().getEKeys().add(this.getIdentifiableElement_Identifier());
 		initEReference(getModelElement_Comments(), theRationalePackage.getComment(), theRationalePackage
-			.getComment_CommentedElement(), "comments", null, 0, -1, ModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
+			.getComment_CommentedElement(), "comments", null, 0, -1, UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getModelElement_Comments().getEKeys().add(this.getIdentifiableElement_Identifier());
 

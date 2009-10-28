@@ -10,7 +10,7 @@ import org.eclipse.emf.common.notify.NotificationChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.state.StateNode;
 import org.unicase.model.state.StatePackage;
 import org.unicase.model.state.Transition;
@@ -28,7 +28,7 @@ import org.unicase.model.state.Transition;
  * 
  * @generated
  */
-public class TransitionImpl extends ModelElementImpl implements Transition {
+public class TransitionImpl extends UnicaseModelElementImpl implements Transition {
 	/**
 	 * The default value of the '{@link #getCondition() <em>Condition</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

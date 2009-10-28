@@ -22,7 +22,7 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 import org.unicase.workspace.test.SetupHelper;
 
 /**

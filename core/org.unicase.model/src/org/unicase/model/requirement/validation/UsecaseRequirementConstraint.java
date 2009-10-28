@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.util.ValidationConstraintHelper;
@@ -38,7 +38,7 @@ public class UsecaseRequirementConstraint extends AbstractModelConstraint {
 				EList<FunctionalRequirement> functionalRequirements = ((UseCase) eObj).getFunctionalRequirements();
 				if (functionalRequirements.size() < 1) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(ModelElement) eObj, "functionalRequirements");
+						(UnicaseModelElement) eObj, "functionalRequirements");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
 						+ ((UseCase) eObj).getName() + "'" });

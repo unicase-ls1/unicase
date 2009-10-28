@@ -12,10 +12,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Association;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
+import org.unicase.model.state.Transition;
 
 /**
  * @author denglerm This class represents a command to add model elements to the diagram, which are not yet contained in the
@@ -67,7 +69,7 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 	@Override
 	protected EObject doDefaultElementCreation() {
 		MEDiagram childHolder = (MEDiagram) getElementToEdit();
-		childHolder.getElements().add((ModelElement) this.newElement);
+		childHolder.getElements().add((UnicaseModelElement) this.newElement);
 
 		if (!(getRequest() instanceof DiagramElementAddRequest)
 			|| ((DiagramElementAddRequest) getRequest()).getAddReferences()) {
@@ -77,19 +79,19 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 				if (object instanceof Association) {
 					if (childHolder.getElements().contains(((Association) object).getSource())
 						&& childHolder.getElements().contains(((Association) object).getTarget())) {
-						childHolder.getElements().add(object);
+						childHolder.getElements().add((Association)object);
 					}
 				}
 				else if (object instanceof org.unicase.model.state.Transition) {
 					if (childHolder.getElements().contains(((org.unicase.model.state.Transition) object).getSource())
 						&& childHolder.getElements().contains(((org.unicase.model.state.Transition) object).getTarget())) {
-						childHolder.getElements().add(object);
+						childHolder.getElements().add((Transition)object);
 					}
 				}
 				else if (object instanceof org.unicase.model.activity.Transition) {
 					if (childHolder.getElements().contains(((org.unicase.model.activity.Transition) object).getSource())
 						&& childHolder.getElements().contains(((org.unicase.model.activity.Transition) object).getTarget())) {
-						childHolder.getElements().add(object);
+						childHolder.getElements().add((org.unicase.model.activity.Transition)object);
 					}
 				}
 			}

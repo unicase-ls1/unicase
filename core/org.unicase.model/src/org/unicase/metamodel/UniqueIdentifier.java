@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.model;
+package org.unicase.metamodel;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.UniqueIdentifier#getId <em>Id</em>}</li>
+ * <li>{@link org.unicase.metamodel.UniqueIdentifier#getId <em>Id</em>}</li>
  * </ul>
  * </p>
  * 
@@ -40,7 +40,7 @@ public interface UniqueIdentifier extends EObject {
 	String getId();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.UniqueIdentifier#getId <em>Id</em>}' attribute. <!--
+	 * Sets the value of the '{@link org.unicase.metamodel.UniqueIdentifier#getId <em>Id</em>}' attribute. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Id</em>' attribute.

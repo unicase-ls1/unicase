@@ -17,12 +17,12 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Leaf Section</b></em>'. <!-- end-user-doc -->
@@ -38,7 +38,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
+public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSection {
 	/**
 	 * The cached value of the '{@link #getModelElements() <em>Model Elements</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -47,7 +47,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> modelElements;
+	protected EList<UnicaseModelElement> modelElements;
 	/**
 	 * The cached value of the '{@link #getReferencedModelElements() <em>Referenced Model Elements</em>}' reference
 	 * list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -56,7 +56,7 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> referencedModelElements;
+	protected EList<UnicaseModelElement> referencedModelElements;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -138,9 +138,9 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElement> getModelElements() {
+	public EList<UnicaseModelElement> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentWithInverseEList.Resolving<ModelElement>(ModelElement.class, this,
+			modelElements = new EObjectContainmentWithInverseEList.Resolving<UnicaseModelElement>(UnicaseModelElement.class, this,
 				DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__LEAF_SECTION);
 		}
 		return modelElements;
@@ -151,10 +151,10 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElement> getReferencedModelElements() {
+	public EList<UnicaseModelElement> getReferencedModelElements() {
 		if (referencedModelElements == null) {
-			referencedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(
-				ModelElement.class, this, DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS,
+			referencedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<UnicaseModelElement>(
+				UnicaseModelElement.class, this, DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS,
 				ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		}
 		return referencedModelElements;
@@ -249,11 +249,11 @@ public class LeafSectionImpl extends ModelElementImpl implements LeafSection {
 			return;
 		case DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS:
 			getModelElements().clear();
-			getModelElements().addAll((Collection<? extends ModelElement>) newValue);
+			getModelElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
 			return;
 		case DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS:
 			getReferencedModelElements().clear();
-			getReferencedModelElements().addAll((Collection<? extends ModelElement>) newValue);
+			getReferencedModelElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

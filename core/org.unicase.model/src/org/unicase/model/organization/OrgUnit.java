@@ -6,7 +6,7 @@
 package org.unicase.model.organization;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -25,7 +25,7 @@ import org.unicase.model.task.WorkItem;
  * @model abstract="true"
  * @generated
  */
-public interface OrgUnit extends ModelElement {
+public interface OrgUnit extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Ac Org Id</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>

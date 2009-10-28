@@ -20,7 +20,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 import org.unicase.model.organization.Group;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationFactory;

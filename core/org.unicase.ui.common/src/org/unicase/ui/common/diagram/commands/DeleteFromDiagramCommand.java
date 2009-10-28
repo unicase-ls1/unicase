@@ -14,7 +14,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.classes.Association;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.util.EditPartUtility;

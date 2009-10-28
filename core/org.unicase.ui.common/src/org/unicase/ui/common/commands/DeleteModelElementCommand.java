@@ -9,13 +9,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.ui.URIEditorInput;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorReference;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.ui.common.MEEditorInput;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -46,23 +48,17 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 	protected void doRun() {
 		// check if this model element is already opened in an editor
 		// and if yes, prompt to close editor.
-		String elementName ;
-		
-		if(me.getName() == null){
-		elementName =  me.eClass().getName() + " \"unnamed\"";
-		}else{
-			elementName = me.eClass().getName() + " \""+ me.getName() +"\"";
-		}
-		
 		if (closeEditor(me)) {
+			AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			String modelElementName = adapterFactoryLabelProvider.getText(me);
 			MessageDialog dialog = new MessageDialog(null, "Confirmation", null, "Do you really want to delete "
-				+ elementName, MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
+				+ modelElementName, MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
 			int result = dialog.open();
 			if (result == MessageDialog.OK) {
 				ProgressMonitorDialog progressDialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
 					.getActiveWorkbenchWindow().getShell());
 				progressDialog.open();
-				progressDialog.getProgressMonitor().beginTask("Deleting " + me.getName() + "...", 100);
+				progressDialog.getProgressMonitor().beginTask("Deleting " + modelElementName + "...", 100);
 				progressDialog.getProgressMonitor().worked(20);
 
 				try {

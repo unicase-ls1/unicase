@@ -10,7 +10,7 @@ import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.ui.common.TableViewerColumnSorter;
@@ -38,16 +38,16 @@ public class StatusSorter extends TableViewerColumnSorter {
 	public int compare(Viewer viewer, Object e1, Object e2) {
 		String status1 = MEState.CLOSED;
 		String status2 = MEState.CLOSED;
-		if (e1 instanceof ModelElement) {
+		if (e1 instanceof UnicaseModelElement) {
 			try {
-				status1 = ((ModelElement) e1).getMEState().getStatus();
+				status1 = ((UnicaseModelElement) e1).getMEState().getStatus();
 			} catch (CircularDependencyException e) {
 				// To nothing.
 			}
 		}
-		if (e2 instanceof ModelElement) {
+		if (e2 instanceof UnicaseModelElement) {
 			try {
-				status2 = ((ModelElement) e2).getMEState().getStatus();
+				status2 = ((UnicaseModelElement) e2).getMEState().getStatus();
 			} catch (CircularDependencyException e) {
 				// To nothing.
 			}

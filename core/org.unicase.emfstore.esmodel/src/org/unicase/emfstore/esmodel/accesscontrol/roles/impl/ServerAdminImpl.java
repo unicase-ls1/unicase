@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.RolesPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.ServerAdmin;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Server Admin</b></em>'. <!-- end-user-doc -->

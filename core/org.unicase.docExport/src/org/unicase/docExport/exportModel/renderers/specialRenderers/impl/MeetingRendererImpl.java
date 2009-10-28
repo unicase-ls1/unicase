@@ -25,7 +25,7 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.MeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
@@ -89,7 +89,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 	 * @param section the section where the content of the ModelElement will be added
 	 */
 	@Override
-	public void doRender(ModelElement modelElement, UCompositeSection section) {
+	public void doRender(UnicaseModelElement modelElement, UCompositeSection section) {
 
 		for (RendererOption option : getRendererOptions()) {
 			if (option.getName().equals("workItem")) {
@@ -394,7 +394,7 @@ public class MeetingRendererImpl extends ModelElementRendererImpl implements Mee
 		return title;
 	}
 
-	protected void renderDescription(UCompositeSection parent, ModelElement me) {
+	protected void renderDescription(UCompositeSection parent, UnicaseModelElement me) {
 		UParagraph descr = new UParagraph(WorkspaceUtil.cleanFormatedText(me.getDescription()) + "\n", getTemplate()
 			.getLayoutOptions().getDefaultTextOption());
 		descr.setIndentionLeft(1);

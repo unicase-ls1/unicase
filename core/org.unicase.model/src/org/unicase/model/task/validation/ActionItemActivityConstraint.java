@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
 import org.unicase.model.util.ValidationConstraintHelper;
@@ -37,7 +37,7 @@ public class ActionItemActivityConstraint extends AbstractModelConstraint {
 				ActivityType activity = ((ActionItem) eObj).getActivity();
 				if (activity.getValue() == ActivityType.NONE_VALUE) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(ModelElement) eObj, "activity");
+						(UnicaseModelElement) eObj, "activity");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
 						+ ((ActionItem) eObj).getName() + "'" });

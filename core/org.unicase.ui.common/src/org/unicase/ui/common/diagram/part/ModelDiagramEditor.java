@@ -40,7 +40,7 @@ import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramStoreException;
 import org.unicase.ui.common.diagram.DeleteFromDiagramAction;

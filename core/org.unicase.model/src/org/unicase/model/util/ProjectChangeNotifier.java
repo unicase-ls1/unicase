@@ -12,10 +12,10 @@ import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
-import org.unicase.model.impl.ProjectImpl;
 
 /**
  * Notifies about changes in a projectImpl. WARNING: Only for use in Project! Use addProjectObserver of Project to
@@ -172,7 +172,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
@@ -182,7 +182,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.Project,
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
@@ -192,7 +192,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.Project,
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
@@ -203,7 +203,7 @@ public final class ProjectChangeNotifier extends AdapterImpl implements ProjectC
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.Project, org.unicase.model.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		// nothing to do, do not implement anything here, this will cause loop otherwise

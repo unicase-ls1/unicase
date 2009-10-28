@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.RationalePackage;
@@ -29,7 +29,7 @@ import org.unicase.model.rationale.RationalePackage;
  * 
  * @generated
  */
-public class CriterionImpl extends ModelElementImpl implements Criterion {
+public class CriterionImpl extends UnicaseModelElementImpl implements Criterion {
 	/**
 	 * The cached value of the '{@link #getAssessments() <em>Assessments</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

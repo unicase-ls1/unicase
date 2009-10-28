@@ -6,7 +6,7 @@
 package org.unicase.model.component;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Component</b></em>'. <!-- end-user-doc -->
@@ -24,7 +24,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Component extends ModelElement {
+public interface Component extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Packages</b></em>' reference list. The list contents are of type
 	 * {@link org.unicase.model.classes.Package}. <!-- begin-user-doc -->

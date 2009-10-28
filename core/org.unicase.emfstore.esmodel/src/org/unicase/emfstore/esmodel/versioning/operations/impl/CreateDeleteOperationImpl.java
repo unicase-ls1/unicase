@@ -24,9 +24,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.model.util.ModelUtil;
 
 /**
@@ -394,7 +394,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 		}
 		stringBuilder.append(getModelElement().eClass().getName());
 		stringBuilder.append(" ");
-		stringBuilder.append(getModelElement().getName());
+		stringBuilder.append(getModelElement().getIdentifier());
 		// stringBuilder.append(".");
 		return stringBuilder.toString();
 	}
@@ -406,7 +406,7 @@ public class CreateDeleteOperationImpl extends AbstractOperationImpl implements 
 			stringBuilder.append("Deleted  ");
 			stringBuilder.append(getModelElement().eClass().getName());
 			stringBuilder.append(" \"");
-			stringBuilder.append(getModelElement().getName());
+			stringBuilder.append(getModelElement().getIdentifier());
 			stringBuilder.append("\"");
 		} else {
 			stringBuilder.append("Created ");

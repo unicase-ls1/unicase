@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
@@ -87,7 +87,7 @@ public class MECommentReplyWidget extends Composite {
 
 	private ArrayList<Resource> localResources;
 	private HashSet<MECommentWidgetListener> listeners;
-	private ModelElement modelElement;
+	private UnicaseModelElement modelElement;
 	private Composite inputComposite;
 	private AdapterFactoryLabelProvider labelProvider;
 	private User sender;
@@ -103,7 +103,7 @@ public class MECommentReplyWidget extends Composite {
 	 * @param composite the parent composite
 	 * @param sender the User which is entering this comment
 	 */
-	public MECommentReplyWidget(ModelElement comment, Composite composite, User sender) {
+	public MECommentReplyWidget(UnicaseModelElement comment, Composite composite, User sender) {
 		super(composite, SWT.NONE);
 		this.modelElement = comment;
 		this.sender = sender;

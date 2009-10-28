@@ -20,8 +20,8 @@ import org.unicase.docExport.exportModel.builders.modelElementRenderers.Mileston
 import org.unicase.docExport.exportModel.builders.modelElementRenderers.ModelElementRendererBuilder;
 import org.unicase.docExport.exportModel.builders.modelElementRenderers.PackageRenderersBuilder;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
-import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.task.TaskPackage;
@@ -101,7 +101,7 @@ public final class ModelElementRendererRegistry {
 				EObject me;
 				if (!(eClass.isAbstract() || eClass.isInterface())) {
 					me = eClass.getEPackage().getEFactoryInstance().create(eClass);
-					if (me instanceof ModelElement) {
+					if (me instanceof UnicaseModelElement) {
 						modelElementTypes.add((EClass) object);
 					}
 				}

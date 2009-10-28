@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Class;
 import org.unicase.model.classes.Method;
 import org.unicase.model.task.ActionItem;
@@ -42,14 +42,14 @@ public class ImplementationActionItemAnnotated extends AbstractModelConstraint {
 		if (((ActionItem) eObj).isDone() || !((ActionItem) eObj).getActivity().equals(ActivityType.IMPLEMENTATION)) {
 			return ctx.createSuccessStatus();
 		}
-		EList<ModelElement> annotatedModelElements = actionItem.getAnnotatedModelElements();
-		for (ModelElement me : annotatedModelElements) {
+		EList<UnicaseModelElement> annotatedModelElements = actionItem.getAnnotatedModelElements();
+		for (UnicaseModelElement me : annotatedModelElements) {
 			if (me instanceof Method || me instanceof Class) {
 				return ctx.createSuccessStatus();
 			}
 		}
 		EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-			(ModelElement) eObj, "annotatedModelElements");
+			(UnicaseModelElement) eObj, "annotatedModelElements");
 		ctx.addResult(errorFeature);
 		return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '" + ((ActionItem) eObj).getName()
 			+ "'" });

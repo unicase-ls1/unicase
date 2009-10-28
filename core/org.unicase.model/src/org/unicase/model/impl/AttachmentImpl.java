@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.Attachment;
-import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Attachment</b></em>'. <!-- end-user-doc -->
@@ -28,7 +28,7 @@ import org.unicase.model.ModelPackage;
  * 
  * @generated
  */
-public abstract class AttachmentImpl extends ModelElementImpl implements Attachment {
+public abstract class AttachmentImpl extends UnicaseModelElementImpl implements Attachment {
 	/**
 	 * The cached value of the '{@link #getReferringModelElements() <em>Referring Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -37,7 +37,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> referringModelElements;
+	protected EList<UnicaseModelElement> referringModelElements;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -63,9 +63,9 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElement> getReferringModelElements() {
+	public EList<UnicaseModelElement> getReferringModelElements() {
 		if (referringModelElements == null) {
-			referringModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(ModelElement.class,
+			referringModelElements = new EObjectWithInverseResolvingEList.ManyInverse<UnicaseModelElement>(UnicaseModelElement.class,
 				this, ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__ATTACHMENTS);
 		}
 		return referringModelElements;
@@ -126,7 +126,7 @@ public abstract class AttachmentImpl extends ModelElementImpl implements Attachm
 		switch (featureID) {
 		case ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS:
 			getReferringModelElements().clear();
-			getReferringModelElements().addAll((Collection<? extends ModelElement>) newValue);
+			getReferringModelElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

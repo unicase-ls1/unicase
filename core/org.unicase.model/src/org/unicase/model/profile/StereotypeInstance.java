@@ -6,7 +6,7 @@
 package org.unicase.model.profile;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Stereotype Instance</b></em>'. <!-- end-user-doc
@@ -25,7 +25,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface StereotypeInstance extends ModelElement {
+public interface StereotypeInstance extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Stereotype</b></em>' reference. It is bidirectional and its opposite is '
 	 * {@link org.unicase.model.profile.Stereotype#getStereotypeInstances <em>Stereotype Instances</em>}'. <!--
@@ -57,7 +57,7 @@ public interface StereotypeInstance extends ModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Model Element</b></em>' container reference. It is bidirectional and its
-	 * opposite is '{@link org.unicase.model.ModelElement#getAppliedStereotypeInstances
+	 * opposite is '{@link org.unicase.model.UnicaseModelElement#getAppliedStereotypeInstances
 	 * <em>Applied Stereotype Instances</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Element</em>' container reference isn't clear, there really should be more of a
@@ -66,13 +66,13 @@ public interface StereotypeInstance extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Model Element</em>' container reference.
-	 * @see #setModelElement(ModelElement)
+	 * @see #setModelElement(UnicaseModelElement)
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotypeInstance_ModelElement()
-	 * @see org.unicase.model.ModelElement#getAppliedStereotypeInstances
+	 * @see org.unicase.model.UnicaseModelElement#getAppliedStereotypeInstances
 	 * @model opposite="appliedStereotypeInstances" keys="identifier" transient="false"
 	 * @generated
 	 */
-	ModelElement getModelElement();
+	UnicaseModelElement getModelElement();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.profile.StereotypeInstance#getModelElement
@@ -82,7 +82,7 @@ public interface StereotypeInstance extends ModelElement {
 	 * @see #getModelElement()
 	 * @generated
 	 */
-	void setModelElement(ModelElement value);
+	void setModelElement(UnicaseModelElement value);
 
 	/**
 	 * Returns the value of the '<em><b>Stereotype Attribute Instances</b></em>' containment reference list. The list

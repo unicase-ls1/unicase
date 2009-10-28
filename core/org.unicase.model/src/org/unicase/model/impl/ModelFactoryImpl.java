@@ -10,12 +10,14 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
-import org.unicase.model.IdentifiableElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.ModelVersion;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.impl.ModelElementIdImpl;
+import org.unicase.metamodel.impl.ProjectImpl;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.ModelVersion;
-import org.unicase.model.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -60,8 +62,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 		switch (eClass.getClassifierID()) {
 		case ModelPackage.PROJECT:
 			return createProject();
-		case ModelPackage.IDENTIFIABLE_ELEMENT:
-			return createIdentifiableElement();
 		case ModelPackage.MODEL_ELEMENT_ID:
 			return createModelElementId();
 		case ModelPackage.MODEL_VERSION:
@@ -86,16 +86,6 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * 
 	 * @generated
 	 */
-	public IdentifiableElement createIdentifiableElement() {
-		IdentifiableElementImpl identifiableElement = new IdentifiableElementImpl();
-		return identifiableElement;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public ModelElementId createModelElementId() {
 		ModelElementIdImpl modelElementId = new ModelElementIdImpl();
 		return modelElementId;
@@ -107,8 +97,8 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	 * @generated
 	 */
 	public ModelVersion createModelVersion() {
-		ModelVersionImpl modelVersion = new ModelVersionImpl();
-		return modelVersion;
+		// ModelVersionImpl modelVersion = new ModelVersionImpl();
+		return null;
 	}
 
 	/**
@@ -129,6 +119,14 @@ public class ModelFactoryImpl extends EFactoryImpl implements ModelFactory {
 	@Deprecated
 	public static ModelPackage getPackage() {
 		return ModelPackage.eINSTANCE;
+	}
+
+	/**
+	 * @generated
+	 */
+	public IdentifiableElement createIdentifiableElement() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 } // ModelFactoryImpl

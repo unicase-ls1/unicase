@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingPackage;
@@ -47,7 +47,7 @@ import org.unicase.model.organization.User;
  * 
  * @generated
  */
-public class MeetingImpl extends ModelElementImpl implements Meeting {
+public class MeetingImpl extends UnicaseModelElementImpl implements Meeting {
 	/**
 	 * The default value of the '{@link #getLocation() <em>Location</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

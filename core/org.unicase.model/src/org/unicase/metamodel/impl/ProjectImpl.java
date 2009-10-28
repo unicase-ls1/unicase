@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.model.impl;
+package org.unicase.metamodel.impl;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.ProjectChangeNotifier;
 import org.unicase.model.util.ProjectChangeObserver;
@@ -57,7 +57,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * 
 	 * @generated NOT
 	 */
-	protected ProjectImpl() {
+	public ProjectImpl() {
 		super();
 		observers = new ArrayList<ProjectChangeObserver>();
 	}
@@ -91,7 +91,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.Project#addModelElement(org.unicase.model.ModelElement)
+	 * @see org.unicase.metamodel.Project#addModelElement(org.unicase.model.ModelElement)
 	 * @generated NOT
 	 */
 	public void addModelElement(ModelElement modelElement) {
@@ -101,7 +101,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.Project#getAllModelElements()
+	 * @see org.unicase.metamodel.Project#getAllModelElements()
 	 * @generated NOT
 	 */
 	public EList<ModelElement> getAllModelElements() {
@@ -112,7 +112,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
+	 * @see org.unicase.metamodel.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
 	public <T extends ModelElement> EList<T> getAllModelElementsbyClass(EClass modelElementClass, EList<T> list) {
@@ -122,7 +122,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
+	 * @see org.unicase.metamodel.Project#getAllModelElementsbyClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
 	// two casts below are guarded by initial sanity check and if statement
@@ -157,7 +157,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.Project#getModelElementsByClass(org.eclipse.emf.ecore.EClass)
+	 * @see org.unicase.metamodel.Project#getModelElementsByClass(org.eclipse.emf.ecore.EClass)
 	 * @generated NOT
 	 */
 	// cast below is guarded by sanity check
@@ -269,7 +269,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
-	 * @see org.unicase.model.Project#contains(org.unicase.model.ModelElement)
+	 * @see org.unicase.metamodel.Project#contains(org.unicase.model.ModelElement)
 	 */
 	public boolean contains(ModelElement modelElement) {
 		return contains(modelElement.getModelElementId());
@@ -319,7 +319,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void handleEMFModelElementAdded(Project project, ModelElement modelElement) {
@@ -365,7 +365,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.Project, org.unicase.model.ModelElement)
 	 */
 	public void handleEMFNotification(Notification notification, Project project, ModelElement modelElement) {
 
@@ -385,7 +385,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.Project#contains(org.unicase.model.ModelElementId)
+	 * @see org.unicase.metamodel.Project#contains(org.unicase.metamodel.ModelElementId)
 	 */
 	public boolean contains(ModelElementId modelElementId) {
 		return this.getModelElementsFromCache().containsKey(modelElementId);
@@ -394,7 +394,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.Project#getModelElement(org.unicase.model.ModelElementId)
+	 * @see org.unicase.metamodel.Project#getModelElement(org.unicase.metamodel.ModelElementId)
 	 */
 	public ModelElement getModelElement(ModelElementId modelElementId) {
 		return this.getModelElementsFromCache().get(modelElementId);
@@ -403,7 +403,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.Project#addProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
+	 * @see org.unicase.metamodel.Project#addProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
 	 */
 	public void addProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
 		initCacheAndNotifier();
@@ -413,7 +413,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.Project#removeProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
+	 * @see org.unicase.metamodel.Project#removeProjectChangeObserver(org.unicase.model.util.ProjectChangeObserver)
 	 */
 	public void removeProjectChangeObserver(ProjectChangeObserver projectChangeObserver) {
 		this.observers.remove(projectChangeObserver);
@@ -423,7 +423,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.Project#containsInstance(org.unicase.model.ModelElement)
+	 * @see org.unicase.metamodel.Project#containsInstance(org.unicase.model.ModelElement)
 	 */
 	public boolean containsInstance(ModelElement modelElement) {
 		ModelElementId modelElementId = modelElement.getModelElementId();
@@ -437,7 +437,7 @@ public class ProjectImpl extends EObjectImpl implements Project {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.Project#deleteModelElement(org.unicase.model.ModelElement)
+	 * @see org.unicase.metamodel.Project#deleteModelElement(org.unicase.model.ModelElement)
 	 */
 	public void deleteModelElement(ModelElement modelElement) {
 		if (!this.contains(modelElement)) {
