@@ -11,11 +11,28 @@ We use checkstyle to check code against our coding guidelines and for code forma
 
 Please configure checkstyle as follows (also see screenshot below):
 
-   #  Open preferences
-   # Select "Checkstyle"
+   #  Open preferences.
+   # Select "Checkstyle".
    # Select "New..."
-   # Choose "Configuration relative to Project" as type
-   # Enter "unicaseStyle" as name
-   # Select developer/coding.guidelines/unicaseStyle.xml as location (You need to checkout the developer folder from svn, see above)
-   # Click OK
-   # Set unicaseStyle as default checkstyle configuration
+   # Choose "Configuration relative to Project" as type.
+   # Enter "unicaseStyle" as name.
+   # Select developer/coding.guidelines/unicaseStyle.xml as location (You need to checkout the developer folder from svn, see above).
+   # Click OK.
+   # Set unicaseStyle as default checkstyle configuration.
+
+
+
+NOTE: Checkstyle should now be activated for all unicase projects since it is configured so in the .project file you received during checkout. If it is not active right click all projects and select Checkstyle -> Activate Checkstyle
+
+How to set up the Javadoc warnings in Eclipse: Video tutorial (This is now only necessary for newly created plugins, since it is now also configured in the .project file)
+
+The unicase project also uses specific Java formatting settings to avoid whitespace conflicts. All existing plugins are configured to use these settings by default, but you have to import the unicase formatter file into Eclipse as follows:
+
+
+
+   # Open preferences
+   # Select Java/Code Style/Formatter
+   # Select "Import..."
+   # Choose the unicase formatter file found in the org.unicase.developer plugin under formatting/unicaseFormatter.xml or here:
+      Download file "unicaseFormatter.xml"
+   # Confirm with ok
