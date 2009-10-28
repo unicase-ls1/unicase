@@ -1,4 +1,3 @@
-
 *NOTE: Generally coding guidelines apply only for the code that was not generated. *
 
 
@@ -6,3 +5,19 @@
     * Please add comments wherever you feel might be useful for you, and others.<br>
     * Always give valid description about any significant modification in the code while committing the project in the repository.<br>
     * We use Task-Tags with the initials of the developers to assign code related tasks, see this blog entry for details.<br>
+
+
+We use checkstyle to check code against our coding guidelines and for code formatting, we use default Eclipse formatter (Eclipse [built-in]).Please install the Eclipse checkstyle plugin from the update site given in Getting started. Please also checkout the developer folder from our repository (trunk/developer), since it contains the coding guidelines.
+
+Please configure checkstyle as follows (also see screenshot below):
+
+
+
+   1.  Open preferences
+   2. Select "Checkstyle"
+   3. Select "New..."
+   4. Choose "Configuration relative to Project" as type
+   5. Enter "unicaseStyle" as name
+   6. Select developer/coding.guidelines/unicaseStyle.xml as location (You need to checkout the developer folder from svn, see above)
+   7. Click OK
+   8. Set unicaseStyle as default checkstyle configuration
