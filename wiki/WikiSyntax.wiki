@@ -6,4 +6,4 @@
     * We use Task-Tags with the initials of the developers to assign code related tasks, see this blog entry for details.
 
 
-We use checkstyle to check code against our coding guidelines and for code formatting, we use default Eclipse formatter (Eclipse [built-in]).Please install the Eclipse checkstyle plugin from the update site given in Getting started. Please also checkout the developer folder from our repository (trunk/developer), since it contains the coding guidelines.
+We use checkstyle to check code against our coding guidelines and for code formatting, we use default Eclipse formatter (Eclipse (built-in)).Please install the Eclipse checkstyle plugin from the update site given in Getting started. Please also checkout the developer folder from our repository (trunk/developer), since it contains the coding guidelines.
