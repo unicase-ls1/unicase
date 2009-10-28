@@ -45,4 +45,7 @@ The coding guidelines may not be very sensible in some situations, please discus
 Please note that both the Eclipse java guidelines and the Checkstyle settings are workspace specific and not global for your Eclipse installation.
 
 
-http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/e0bf5/images/688c6.png#617x447
+<br>
+
+
+<center>http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/e0bf5/images/688c6.png#617x447 </center>
