@@ -10,9 +10,6 @@
 We use checkstyle to check code against our coding guidelines and for code formatting, we use default Eclipse formatter (Eclipse [built-in]).Please install the Eclipse checkstyle plugin from the update site given in Getting started. Please also checkout the developer folder from our repository (trunk/developer), since it contains the coding guidelines.
 
 Please configure checkstyle as follows (also see screenshot below):
-
-<br>
-<br>
 <br>
    1. Open preferences.<br>
    2. Select "Checkstyle".<br>
