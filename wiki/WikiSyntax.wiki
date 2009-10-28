@@ -9,7 +9,7 @@
 We use checkstyle to check code against our coding guidelines and for code formatting, we use default Eclipse formatter (Eclipse (built-in)).Please install the Eclipse checkstyle plugin from the update site given in Getting started section of this wiki. Please also checkout the developer folder from our repository (trunk/developer), since it contains the coding guidelines.
 
 
-Please configure checkstyle as follows (also see screenshot below):
+*Please configure checkstyle as follows (also see screenshot below):*
 
    #  Open preferences.
    # Select "Checkstyle".
@@ -22,7 +22,7 @@ Please configure checkstyle as follows (also see screenshot below):
 
 
 
-NOTE: Checkstyle should now be activated for all unicase projects since it is configured so in the .project file you received during checkout. If it is not active right click all projects and select Checkstyle -> Activate Checkstyle
+*_NOTE: Checkstyle should now be activated for all unicase projects since it is configured so in the .project file you received during checkout. If it is not active right click all projects and select Checkstyle -> Activate Checkstyle _*
 
 How to set up the Javadoc warnings in Eclipse: Video tutorial (This is now only necessary for newly created plugins, since it is now also configured in the .project file)
 
