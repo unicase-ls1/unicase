@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.model;
+package org.unicase.metamodel;
 
 import org.eclipse.emf.ecore.EObject;
 
@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EObject;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.model.ModelVersion#getReleaseNumber <em>Release Number</em>}</li>
+ * <li>{@link org.unicase.metamodel.ModelVersion#getReleaseNumber <em>Release Number</em>}</li>
  * </ul>
  * </p>
  * 
@@ -38,7 +38,7 @@ public interface ModelVersion extends EObject {
 	int getReleaseNumber();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.model.ModelVersion#getReleaseNumber <em>Release Number</em>}'
+	 * Sets the value of the '{@link org.unicase.metamodel.ModelVersion#getReleaseNumber <em>Release Number</em>}'
 	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Release Number</em>' attribute.

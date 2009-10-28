@@ -9,7 +9,7 @@ package org.unicase.ui.stem.views.statusview.dnd;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.ActionItem;
@@ -29,7 +29,7 @@ public class ActivityTabDropAdapter extends AbstractDropAdapter {
 	 */
 	@Override
 	protected void dropWorkItemOnWorkPackage() {
-		ModelElement source = getDragSource();
+		UnicaseModelElement source = getDragSource();
 		ActivityType target = (ActivityType) getDropTarget();
 
 		if (source instanceof WorkItem) {

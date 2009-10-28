@@ -10,8 +10,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
@@ -40,19 +40,19 @@ public final class OpeningLinkHelper {
 
 		Set<WorkItem> workItemsOfUser = TaskQuery.getWorkItemsOfUser(user);
 		for (WorkItem workItem : workItemsOfUser) {
-			ArrayList<ModelElement> list = new ArrayList<ModelElement>();
+			ArrayList<UnicaseModelElement> list = new ArrayList<UnicaseModelElement>();
 			handleObject(workItem, list, ret);
 		}
 		return ret;
 	}
 
-	private static void handleObject(ModelElement source, ArrayList<ModelElement> list,
+	private static void handleObject(UnicaseModelElement source, ArrayList<UnicaseModelElement> list,
 		Map<ModelElementId, ModelElementPath> ret) {
 
 		list.add(source);
 		OpeningLinkTaxonomy openingLinkTaxonomy = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy();
-		ArrayList<ModelElement> openeds = openingLinkTaxonomy.getOpened(source);
-		for (ModelElement opened : openeds) {
+		ArrayList<UnicaseModelElement> openeds = openingLinkTaxonomy.getOpened(source);
+		for (UnicaseModelElement opened : openeds) {
 			if (DocumentPackage.eINSTANCE.getSection().isInstance(opened)) {
 				continue;
 			}
@@ -68,7 +68,7 @@ public final class OpeningLinkHelper {
 			if (!ret.containsKey(opened.getModelElementId())) {
 				ret.put(opened.getModelElementId(), path);
 
-				ArrayList<ModelElement> newList = new ArrayList<ModelElement>();
+				ArrayList<UnicaseModelElement> newList = new ArrayList<UnicaseModelElement>();
 				newList.addAll(list);
 				handleObject(opened, newList, ret);
 			}

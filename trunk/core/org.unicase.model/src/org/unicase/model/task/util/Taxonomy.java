@@ -7,10 +7,10 @@ package org.unicase.model.task.util;
 
 import java.util.Set;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
- * Interface for a taxonomy. Taxonomies are used for runtime classification of {@link ModelElement}
+ * Interface for a taxonomy. Taxonomies are used for runtime classification of {@link UnicaseModelElement}
  * 
  * @author helming
  */
@@ -18,9 +18,9 @@ public interface Taxonomy {
 	/**
 	 * Returns the classes which belong to the taxonomy.
 	 * 
-	 * @return a set of {@link ModelElement} classes
+	 * @return a set of {@link UnicaseModelElement} classes
 	 */
-	Set<Class<? extends ModelElement>> getTaxonomyClasses();
+	Set<Class<? extends UnicaseModelElement>> getTaxonomyClasses();
 
 	/**
 	 * Returns if the class is in the taxonomy.
@@ -28,5 +28,5 @@ public interface Taxonomy {
 	 * @param clazz the specific class
 	 * @return true if the class is in the taxonomy
 	 */
-	boolean isInTaxonomy(Class<? extends ModelElement> clazz);
+	boolean isInTaxonomy(Class<? extends UnicaseModelElement> clazz);
 }

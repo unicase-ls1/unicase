@@ -6,7 +6,7 @@
 package org.unicase.model.task;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Milestone</b></em>'. <!-- end-user-doc -->
@@ -25,7 +25,7 @@ public interface Milestone extends WorkItem {
 
 	/**
 	 * Returns the value of the '<em><b>Contained Model Elements</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.ModelElement}. <!-- begin-user-doc -->
+	 * {@link org.unicase.model.UnicaseModelElement}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Contained Model Elements</em>' reference list isn't clear, there really should be more
 	 * of a description here...
@@ -37,5 +37,5 @@ public interface Milestone extends WorkItem {
 	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='1' position='right'"
 	 * @generated
 	 */
-	EList<ModelElement> getContainedModelElements();
+	EList<UnicaseModelElement> getContainedModelElements();
 } // Milestone

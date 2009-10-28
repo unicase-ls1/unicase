@@ -10,7 +10,7 @@ import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.ui.common.util.ActionHelper;
@@ -29,7 +29,7 @@ public class NewCompositeSectionHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		ModelElement me = ActionHelper.getModelElement(event);
+		UnicaseModelElement me = ActionHelper.getModelElement(event);
 		if (me == null) {
 			return null;
 		}

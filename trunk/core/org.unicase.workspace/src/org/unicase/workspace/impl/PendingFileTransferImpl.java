@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.WorkspacePackage;
 

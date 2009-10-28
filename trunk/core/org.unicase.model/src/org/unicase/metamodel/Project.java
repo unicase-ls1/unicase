@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.model;
+package org.unicase.metamodel;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.EList;
@@ -18,7 +18,7 @@ import org.unicase.model.util.ProjectChangeObserver;
  *             <p>
  *             The following features are supported:
  *             <ul>
- *             <li>{@link org.unicase.model.Project#getModelElements <em>Model Elements</em>}</li>
+ *             <li>{@link org.unicase.metamodel.Project#getModelElements <em>Model Elements</em>}</li>
  *             </ul>
  *             </p>
  * @see org.unicase.model.ModelPackage#getProject()
@@ -122,9 +122,9 @@ public interface Project extends EObject, IAdaptable {
 	/**
 	 * Delete an element from the Project including all its containments and cross references.
 	 * 
-	 * @param modelElement the model element to delete
+	 * @param modelElementImpl the model element to delete
 	 */
-	void deleteModelElement(ModelElement modelElement);
+	void deleteModelElement(ModelElement modelElementImpl);
 
 	/**
 	 * Add a model element to the project.

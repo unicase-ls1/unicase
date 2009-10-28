@@ -23,7 +23,7 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.emfstore.exceptions.UnknownSessionException;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
 import org.unicase.workspace.test.SetupHelper;
 

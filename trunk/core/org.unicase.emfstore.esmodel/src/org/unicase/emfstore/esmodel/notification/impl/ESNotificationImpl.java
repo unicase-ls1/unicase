@@ -20,8 +20,8 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.impl.IdentifiableElementImpl;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.impl.IdentifiableElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>ES Notification</b></em>'. <!-- end-user-doc

@@ -15,7 +15,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.RequirementPackage;
@@ -36,7 +36,7 @@ import org.unicase.model.requirement.Scenario;
  * 
  * @generated
  */
-public class ActorInstanceImpl extends ModelElementImpl implements ActorInstance {
+public class ActorInstanceImpl extends UnicaseModelElementImpl implements ActorInstance {
 	/**
 	 * The cached value of the '{@link #getInitiatedScenarios() <em>Initiated Scenarios</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

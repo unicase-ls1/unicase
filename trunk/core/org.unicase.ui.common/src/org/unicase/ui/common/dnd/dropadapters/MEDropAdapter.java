@@ -18,7 +18,7 @@ import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.Section;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.workspace.ProjectSpace;
@@ -54,7 +54,7 @@ public class MEDropAdapter {
 	 * @param target
 	 */
 
-	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
+	public void drop(DropTargetEvent event, UnicaseModelElement target, List<UnicaseModelElement> source) {
 
 		if (source.get(0) instanceof Annotation) {
 			annotateME(source, target);
@@ -64,7 +64,7 @@ public class MEDropAdapter {
 
 	}
 
-	private void annotateME(List<ModelElement> source, final ModelElement target) {
+	private void annotateME(List<UnicaseModelElement> source, final UnicaseModelElement target) {
 		Annotation[] arr = source.toArray(new Annotation[source.size()]);
 		List<Annotation> newAnnotations = Arrays.asList(arr);
 		target.getAnnotations().addAll(newAnnotations);
@@ -76,7 +76,7 @@ public class MEDropAdapter {
 	 * @param source source
 	 */
 	@SuppressWarnings("unchecked")
-	protected void dropAfter(EObject targetContainer, ModelElement target, List<ModelElement> source) {
+	protected void dropAfter(EObject targetContainer, UnicaseModelElement target, List<UnicaseModelElement> source) {
 
 		int targetIndex;
 		EReference theRef = getTargetRef(targetContainer, source.get(0));
@@ -121,7 +121,7 @@ public class MEDropAdapter {
 	 * @return the reference within container of target, which matches source. (Have in mind that we are moving elements
 	 *         within container of target.)
 	 */
-	protected EReference getTargetRef(EObject targetContainer, ModelElement dropee) {
+	protected EReference getTargetRef(EObject targetContainer, UnicaseModelElement dropee) {
 
 		List<EReference> refs = targetContainer.eClass().getEAllContainments();
 		for (EReference ref : refs) {
@@ -148,7 +148,7 @@ public class MEDropAdapter {
 	 * @param source source
 	 */
 	@SuppressWarnings("unchecked")
-	protected void dropBefore(EObject targetContainer, ModelElement target, List<ModelElement> source) {
+	protected void dropBefore(EObject targetContainer, UnicaseModelElement target, List<UnicaseModelElement> source) {
 
 		int targetIndex;
 
@@ -192,7 +192,7 @@ public class MEDropAdapter {
 	 * @param dropee dropee
 	 * @return boolean
 	 */
-	protected boolean haveSameEContainer(ModelElement target, ModelElement dropee) {
+	protected boolean haveSameEContainer(UnicaseModelElement target, UnicaseModelElement dropee) {
 
 		return target.eContainer().equals(dropee.eContainer());
 	}
@@ -205,7 +205,7 @@ public class MEDropAdapter {
 	 * @param source source
 	 */
 	@SuppressWarnings("unchecked")
-	protected void dropContainment(final ModelElement target, final List<ModelElement> source) {
+	protected void dropContainment(final UnicaseModelElement target, final List<UnicaseModelElement> source) {
 
 		EReference theRef = getTargetRef(target, source.get(0));
 		if (theRef == null) {
@@ -216,7 +216,7 @@ public class MEDropAdapter {
 			// if it is a bidirectional reference, instead of adding source to target, set target to the opposite
 			// reference.
 			EReference oppositeRef = theRef.getEOpposite();
-			for (ModelElement me : source) {
+			for (UnicaseModelElement me : source) {
 				Object object = me.eGet(oppositeRef);
 				if (oppositeRef.isMany()) {
 					EList<EObject> eList = (EList<EObject>) object;
@@ -253,8 +253,8 @@ public class MEDropAdapter {
 	 * @param eventFeedback @see UCDropAdapter.eventFeedback
 	 * @return if this source can be dropped on target
 	 */
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source, ModelElement target,
-		ModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source, UnicaseModelElement target,
+		UnicaseModelElement dropee) {
 
 		// a container is not allowed to contain the same element twice
 		if (target.eContents().contains(dropee)) {
@@ -310,9 +310,9 @@ public class MEDropAdapter {
 	 * @param source source
 	 * @return true or false
 	 */
-	protected boolean haveSameEContainer(List<ModelElement> source) {
-		ModelElement first = source.get(0);
-		for (ModelElement me : source) {
+	protected boolean haveSameEContainer(List<UnicaseModelElement> source) {
+		UnicaseModelElement first = source.get(0);
+		for (UnicaseModelElement me : source) {
 			if (!first.eContainer().equals(me.eContainer())) {
 				return false;
 			}
@@ -361,7 +361,7 @@ public class MEDropAdapter {
 	 * @param source source
 	 * @param after drop after or drop before
 	 */
-	public void dropMove(final EObject targetContainer, final ModelElement target, final List<ModelElement> source,
+	public void dropMove(final EObject targetContainer, final UnicaseModelElement target, final List<UnicaseModelElement> source,
 		final boolean after) {
 
 		// target is the model element after/before which we drop.

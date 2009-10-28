@@ -1,8 +1,10 @@
 package org.unicase.test;
 
+import java.io.IOException;
+
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 import org.unicase.test.tests.change.ChangeTestHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
@@ -10,28 +12,24 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.test.projectGenerator.TestProjectGenerator;
 import org.unicase.workspace.test.projectGenerator.TestProjectParmeters;
 
-import java.io.IOException;
-
 /**
  * This class controls all aspects of the application's execution
  */
 public class Application implements IApplication {
 
-	private final static int RANDOMTEST = 1;
-	private final static int MANUALTEST = 2;
-	private final static int SERVERTEST = 3;
-	private final static int ANALYSERTEST = 4;
-
-	private int DEFAULTITERATION = 1;
+	// private final static int RANDOMTEST = 1;
+	// private final static int MANUALTEST = 2;
+	// private final static int SERVERTEST = 3;
+	// private final static int ANALYSERTEST = 4;
+	//
+	// private int DEFAULTITERATION = 1;
 
 	/**
 	 * (non-Javadoc)
 	 * 
 	 * @seeorg.eclipse.equinox.app.IApplicationk#start(org.eclipse.equinox.app. IApplicationContext)
 	 */
-	 
 
-	@SuppressWarnings("null")
 	public Object start(IApplicationContext context) throws Exception {
 
 		// // ///////

@@ -11,7 +11,7 @@ import java.text.SimpleDateFormat;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * @author hamidmomeny
@@ -43,8 +43,8 @@ public class DateColumnLabelProvider extends ColumnLabelProvider {
 
 		String formatedDate = "";
 		Format formatter = new SimpleDateFormat("yyyy MM.dd. HH:mm:ss");
-		if (element instanceof ModelElement) {
-			ModelElement me = (ModelElement) element;
+		if (element instanceof UnicaseModelElement) {
+			UnicaseModelElement me = (UnicaseModelElement) element;
 			Object date = me.eGet(feature);
 			if (date != null) {
 				try {

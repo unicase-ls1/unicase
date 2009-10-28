@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.rationale.Proposal;
@@ -34,7 +34,7 @@ import org.unicase.model.rationale.RationalePackage;
  * 
  * @generated
  */
-public class ProposalImpl extends ModelElementImpl implements Proposal {
+public class ProposalImpl extends UnicaseModelElementImpl implements Proposal {
 	/**
 	 * The cached value of the '{@link #getAssessments() <em>Assessments</em>}' containment reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

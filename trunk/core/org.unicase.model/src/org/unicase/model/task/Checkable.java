@@ -5,7 +5,7 @@
  */
 package org.unicase.model.task;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Checkable</b></em>'. <!-- end-user-doc -->
@@ -20,7 +20,7 @@ import org.unicase.model.ModelElement;
  * @model interface="true" abstract="true"
  * @generated
  */
-public interface Checkable extends ModelElement {
+public interface Checkable extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Checked</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>

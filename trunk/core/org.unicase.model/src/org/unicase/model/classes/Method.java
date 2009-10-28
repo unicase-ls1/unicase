@@ -6,7 +6,7 @@
 package org.unicase.model.classes;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.Scenario;
 
 /**
@@ -33,7 +33,7 @@ import org.unicase.model.requirement.Scenario;
  * @model
  * @generated
  */
-public interface Method extends ModelElement {
+public interface Method extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Visibility</b></em>' attribute. The literals are from the enumeration
 	 * {@link org.unicase.model.classes.VisibilityType}. <!-- begin-user-doc -->

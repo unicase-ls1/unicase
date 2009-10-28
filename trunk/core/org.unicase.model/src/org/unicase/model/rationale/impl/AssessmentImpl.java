@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.rationale.Assessment;
 import org.unicase.model.rationale.Criterion;
 import org.unicase.model.rationale.Proposal;
@@ -30,7 +30,7 @@ import org.unicase.model.rationale.RationalePackage;
  * 
  * @generated
  */
-public class AssessmentImpl extends ModelElementImpl implements Assessment {
+public class AssessmentImpl extends UnicaseModelElementImpl implements Assessment {
 	/**
 	 * The cached value of the '{@link #getCriterion() <em>Criterion</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

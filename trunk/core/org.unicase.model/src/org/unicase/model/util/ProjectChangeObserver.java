@@ -7,8 +7,8 @@
 package org.unicase.model.util;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 
 /**
  * Observes changes to a Project. Can be registered with {@link Project}.

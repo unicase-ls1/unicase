@@ -22,7 +22,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramFactory;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
@@ -101,7 +101,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 	}
 
 	private ImageDescriptor getImage(EClass eClass) {
-		ModelElement instance = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		UnicaseModelElement instance = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		Image image = labelProvider.getImage(instance);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromImage(image);
 		return imageDescriptor;
@@ -117,7 +117,7 @@ public class DynamicMECreationCommands extends CompoundContributionItem {
 		// create a map of (EClass, EClassCount)
 		Map<Object, Countable> meCounts = new HashMap<Object, Countable>();
 
-		for (ModelElement me : leafSection.getModelElements()) {
+		for (UnicaseModelElement me : leafSection.getModelElements()) {
 			Object key = null;
 			// separated count for the different diagram types
 			if (me instanceof MEDiagram) {

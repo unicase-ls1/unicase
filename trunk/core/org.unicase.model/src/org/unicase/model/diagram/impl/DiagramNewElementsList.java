@@ -12,8 +12,8 @@ import java.util.ListIterator;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.util.BasicInternalEList;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * This list should only be used with diagrams. I changes the behavior to add new elements on a diagram to the project
@@ -23,9 +23,9 @@ import org.unicase.model.Project;
  * @author helming
  */
 @SuppressWarnings("serial")
-public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
+public class DiagramNewElementsList extends BasicInternalEList<UnicaseModelElement> {
 
-	private EList<ModelElement> elements;
+	private EList<UnicaseModelElement> elements;
 	private Project project;
 
 	/**
@@ -34,8 +34,8 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * @param elements The reference feature of the according diagram
 	 * @param project The project of the diagram
 	 */
-	public DiagramNewElementsList(EList<ModelElement> elements, Project project) {
-		super(ModelElement.class);
+	public DiagramNewElementsList(EList<UnicaseModelElement> elements, Project project) {
+		super(UnicaseModelElement.class);
 		this.elements = elements;
 		this.project = project;
 	}
@@ -44,7 +44,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void move(int newPosition, ModelElement object) {
+	public void move(int newPosition, UnicaseModelElement object) {
 		elements.move(newPosition, object);
 	}
 
@@ -52,7 +52,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ModelElement move(int newPosition, int oldPosition) {
+	public UnicaseModelElement move(int newPosition, int oldPosition) {
 		return elements.move(newPosition, oldPosition);
 	}
 
@@ -60,7 +60,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public boolean add(ModelElement arg0) {
+	public boolean add(UnicaseModelElement arg0) {
 		boolean add = project.getModelElements().add(arg0);
 		return add;
 	}
@@ -73,7 +73,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * @param arg1 The new modelelement
 	 */
 	@Override
-	public void add(int arg0, ModelElement arg1) {
+	public void add(int arg0, UnicaseModelElement arg1) {
 		project.getModelElements().add(arg0, arg1);
 	}
 
@@ -85,7 +85,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * @return true if the list changed as a result of the calls
 	 */
 	@Override
-	public boolean addAll(Collection<? extends ModelElement> arg0) {
+	public boolean addAll(Collection<? extends UnicaseModelElement> arg0) {
 		return project.getModelElements().addAll(arg0);
 	}
 
@@ -98,7 +98,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * @return true if the list changed as a result of the calls
 	 */
 	@Override
-	public boolean addAll(int arg0, Collection<? extends ModelElement> arg1) {
+	public boolean addAll(int arg0, Collection<? extends UnicaseModelElement> arg1) {
 		return project.getModelElements().addAll(arg0, arg1);
 	}
 
@@ -130,7 +130,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ModelElement get(int arg0) {
+	public UnicaseModelElement get(int arg0) {
 		return elements.get(arg0);
 	}
 
@@ -154,7 +154,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Iterator<ModelElement> iterator() {
+	public Iterator<UnicaseModelElement> iterator() {
 		return elements.iterator();
 	}
 
@@ -170,7 +170,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ListIterator<ModelElement> listIterator() {
+	public ListIterator<UnicaseModelElement> listIterator() {
 		return elements.listIterator();
 	}
 
@@ -178,7 +178,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ListIterator<ModelElement> listIterator(int arg0) {
+	public ListIterator<UnicaseModelElement> listIterator(int arg0) {
 		return elements.listIterator(arg0);
 	}
 
@@ -194,7 +194,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ModelElement remove(int arg0) {
+	public UnicaseModelElement remove(int arg0) {
 		return elements.remove(arg0);
 	}
 
@@ -218,7 +218,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public ModelElement set(int arg0, ModelElement arg1) {
+	public UnicaseModelElement set(int arg0, UnicaseModelElement arg1) {
 		return elements.set(arg0, arg1);
 	}
 
@@ -234,7 +234,7 @@ public class DiagramNewElementsList extends BasicInternalEList<ModelElement> {
 	 * {@inheritDoc}
 	 */
 	@Override
-	public List<ModelElement> subList(int arg0, int arg1) {
+	public List<UnicaseModelElement> subList(int arg0, int arg1) {
 		return elements.subList(arg0, arg1);
 	}
 

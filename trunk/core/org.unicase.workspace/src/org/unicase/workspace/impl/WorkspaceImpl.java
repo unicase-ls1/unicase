@@ -45,7 +45,7 @@ import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 import org.unicase.model.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -658,7 +658,7 @@ public class WorkspaceImpl extends EObjectImpl implements Workspace {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.workspace.Workspace#getProjectSpace(org.unicase.model.Project)
+	 * @see org.unicase.workspace.Workspace#getProjectSpace(org.unicase.metamodel.Project)
 	 */
 	public ProjectSpace getProjectSpace(Project project) throws UnkownProjectException {
 		ProjectSpace projectSpace = projectToProjectSpaceMap.get(project);

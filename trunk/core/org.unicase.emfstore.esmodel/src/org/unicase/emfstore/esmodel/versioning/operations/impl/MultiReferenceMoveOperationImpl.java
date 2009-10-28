@@ -20,9 +20,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceMoveOper
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.model.util.ModelUtil;
 
 /**
@@ -377,7 +377,7 @@ public class MultiReferenceMoveOperationImpl extends FeatureOperationImpl implem
 	}
 
 	/**
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl#canApply(org.unicase.model.Project)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.impl.FeatureOperationImpl#canApply(org.unicase.metamodel.Project)
 	 */
 	@Override
 	public boolean canApply(Project project) {

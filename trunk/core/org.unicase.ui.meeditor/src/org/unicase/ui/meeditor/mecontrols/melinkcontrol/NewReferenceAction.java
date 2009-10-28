@@ -24,8 +24,8 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
@@ -77,10 +77,10 @@ public class NewReferenceAction extends Action {
 					newClass = (EClass) result;
 				}
 			}
-			final ModelElement newMEInstance;
+			final UnicaseModelElement newMEInstance;
 
 			EPackage ePackage = newClass.getEPackage();
-			newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(newClass);
+			newMEInstance = (UnicaseModelElement) ePackage.getEFactoryInstance().create(newClass);
 			newMEInstance.setName("new " + newClass.getName());
 
 			if (!eReference.isContainer()) {
@@ -127,10 +127,10 @@ public class NewReferenceAction extends Action {
 		}
 
 		/**
-		 * @param newMEInstance {@link ModelElement} the new modelElement instance.
+		 * @param newMEInstance {@link UnicaseModelElement} the new modelElement instance.
 		 * @return EReference the Container
 		 */
-		private EReference getParentReference(final ModelElement newMEInstance) {
+		private EReference getParentReference(final UnicaseModelElement newMEInstance) {
 			// the value of the 'EAll Containments' reference list.
 			List<EReference> eallcontainments = modelElement.eContainer().eClass().getEAllContainments();
 			EReference reference = null;
@@ -151,7 +151,7 @@ public class NewReferenceAction extends Action {
 	}
 
 	private EReference eReference;
-	private ModelElement modelElement;
+	private UnicaseModelElement modelElement;
 
 	/**
 	 * Default constructor.
@@ -160,7 +160,7 @@ public class NewReferenceAction extends Action {
 	 * @param eReference the target reference
 	 * @param descriptor the descriptor used to generate display content
 	 */
-	public NewReferenceAction(ModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
+	public NewReferenceAction(UnicaseModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 

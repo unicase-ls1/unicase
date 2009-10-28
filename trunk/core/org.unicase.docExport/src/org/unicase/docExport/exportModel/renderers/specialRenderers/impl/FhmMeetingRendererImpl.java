@@ -20,7 +20,7 @@ import org.unicase.docExport.exportModel.renderers.options.TextOption;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.FhmMeetingRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.meeting.Meeting;
 import org.unicase.model.organization.OrgUnit;
 
@@ -68,7 +68,7 @@ public class FhmMeetingRendererImpl extends MeetingRendererImpl implements FhmMe
 	}
 
 	@Override
-	public void doRender(ModelElement modelElement, UCompositeSection section) {
+	public void doRender(UnicaseModelElement modelElement, UCompositeSection section) {
 		setMeeting((Meeting) modelElement);
 
 		textSmall = OptionsFactory.eINSTANCE.createTextOption();

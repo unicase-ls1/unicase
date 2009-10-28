@@ -9,8 +9,8 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.IdentifiableElement;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.meeting.CompositeMeetingSection;
 import org.unicase.model.meeting.IssueMeetingSection;
 import org.unicase.model.meeting.Meeting;
@@ -239,7 +239,7 @@ public class MeetingSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelElement(ModelElement object) {
+	public T caseModelElement(UnicaseModelElement object) {
 		return null;
 	}
 

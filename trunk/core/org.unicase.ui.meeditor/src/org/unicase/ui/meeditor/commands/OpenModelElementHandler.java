@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.MEEditorInput;
 
 /**
@@ -39,7 +39,7 @@ public class OpenModelElementHandler extends AbstractHandler {
 		// This variable is already set, in the method which calls to execute
 		// this command.
 		Object o = HandlerUtil.getVariableChecked(event, ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE);
-		ModelElement me = (ModelElement) o;
+		UnicaseModelElement me = (UnicaseModelElement) o;
 
 		EStructuralFeature problemFeature;
 

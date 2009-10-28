@@ -8,7 +8,7 @@ package org.unicase.model.util.traceabilityrecommendation;
 import java.util.Collection;
 import java.util.Map;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * @author Henning Femmer
@@ -23,7 +23,7 @@ public interface RecommendationStrategy {
 	 * @param elements The potential elements linked to the base, also referred as candidates.
 	 * @return a Map (ModelElement,Double)
 	 */
-	Map<ModelElement, Double> getMatchingMap(ModelElement base, Collection<ModelElement> elements);
+	Map<UnicaseModelElement, Double> getMatchingMap(UnicaseModelElement base, Collection<UnicaseModelElement> elements);
 
 	/**
 	 * Returns the name of this strategy for output reasons.

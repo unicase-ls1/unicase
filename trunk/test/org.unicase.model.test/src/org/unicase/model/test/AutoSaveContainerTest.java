@@ -16,10 +16,11 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.util.AutoSaveContainer;
@@ -102,7 +103,7 @@ public class AutoSaveContainerTest implements AutoSaveContainerExceptionHandler 
 			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
 			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
 			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk"
-			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", modelElement.getDescription());
+			+ "kkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkkk", ((UnicaseModelElement) modelElement).getDescription());
 		project2.getModelElement(functionalRequirement2.getModelElementId()).delete();
 		assertEquals(1, dirSize(path));
 		modelElement.delete();
@@ -179,7 +180,7 @@ public class AutoSaveContainerTest implements AutoSaveContainerExceptionHandler 
 		container = new AutoSaveContainer<Project>(ModelPackage.eINSTANCE.getProject(), path, EXTENSION, this);
 		Project project2 = container.init();
 		assertEquals(2, project2.getAllModelElements().size());
-		ModelElement modelElement = project2.getModelElement(functionalRequirement.getModelElementId());
+		UnicaseModelElement modelElement = (UnicaseModelElement) project2.getModelElement(functionalRequirement.getModelElementId());
 		assertEquals(true, modelElement != null);
 		assertEquals(1, modelElement.getAllContainedModelElements().size());
 		assertEquals(functionalRequirement2.getModelElementId(), modelElement.getAllContainedModelElements().iterator().next().getModelElementId());

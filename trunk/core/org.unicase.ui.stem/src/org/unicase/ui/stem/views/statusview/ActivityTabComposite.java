@@ -19,8 +19,9 @@ import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.TaskTableUtil;
@@ -94,9 +95,9 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 
 			public void doubleClick(DoubleClickEvent event) {
 				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
-				if (sel.getFirstElement() instanceof ModelElement) {
-					ActionHelper
-						.openModelElement((ModelElement) sel.getFirstElement(), treeViewer.getClass().getName());
+				if (sel.getFirstElement() instanceof UnicaseModelElement) {
+					ActionHelper.openModelElement((UnicaseModelElement) sel.getFirstElement(), treeViewer.getClass()
+						.getName());
 				}
 			}
 
@@ -122,7 +123,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	 * @param me input model element
 	 * @param statusView the active status view. This is needed for drag and drop.
 	 */
-	public void setInput(ModelElement me, StatusView statusView) {
+	public void setInput(UnicaseModelElement me, StatusView statusView) {
 		activityTabDropAdapter.setCurrentOpenME(me);
 		treeViewer.setInput(me);
 
@@ -137,8 +138,8 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		treeViewer.refresh();
@@ -147,7 +148,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		// nothing to do;
@@ -157,7 +158,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		// nothing to do
@@ -168,7 +169,7 @@ public class ActivityTabComposite extends Composite implements ProjectChangeObse
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		treeViewer.refresh();

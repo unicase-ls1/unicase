@@ -33,9 +33,9 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.ListSelectionDialog;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.tableview.labelproviders.AbstractCheckboxColumnLabelProvider;
@@ -508,7 +508,7 @@ public class METableViewer {
 	 * 
 	 * @param elements elemnts
 	 */
-	public void setInput(Collection<? extends ModelElement> elements) {
+	public void setInput(Collection<? extends UnicaseModelElement> elements) {
 		tableViewer.setInput(elements);
 	}
 

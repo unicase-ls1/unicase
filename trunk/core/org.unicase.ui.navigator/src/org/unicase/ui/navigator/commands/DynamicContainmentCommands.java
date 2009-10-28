@@ -21,7 +21,7 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.util.ModelUtil;
@@ -39,7 +39,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 		new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 	private static final String COMMAND_ID = "org.unicase.ui.navigator.createContaiment";
-	private ModelElement selectedME;
+	private UnicaseModelElement selectedME;
 
 	/**
 	 * . {@inheritDoc}
@@ -119,7 +119,7 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	}
 
 	private ImageDescriptor getImage(EClass eClass) {
-		ModelElement instance = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		UnicaseModelElement instance = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
 		Image image = labelProvider.getImage(instance);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromImage(image);
 		return imageDescriptor;

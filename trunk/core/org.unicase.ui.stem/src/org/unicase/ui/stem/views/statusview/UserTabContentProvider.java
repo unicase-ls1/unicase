@@ -13,7 +13,7 @@ import java.util.Set;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.WorkItem;
@@ -27,12 +27,12 @@ import org.unicase.model.task.util.TaxonomyAccess;
 public class UserTabContentProvider extends AdapterFactoryContentProvider {
 
 	// input model element to status view
-	private ModelElement root;
+	private UnicaseModelElement root;
 
 	/**
 	 * @return the root
 	 */
-	public ModelElement getRoot() {
+	public UnicaseModelElement getRoot() {
 		return root;
 	}
 
@@ -66,11 +66,11 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 	 */
 	private Object[] getAssignees(Object object) {
 		Set<OrgUnit> ret = new HashSet<OrgUnit>();
-		if (object instanceof ModelElement) {
-			ModelElement me = (ModelElement) object;
+		if (object instanceof UnicaseModelElement) {
+			UnicaseModelElement me = (UnicaseModelElement) object;
 			// then check its openers (the openers are considered hierarchical)
-			Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(me);
-			for (ModelElement opener : openers) {
+			Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(me);
+			for (UnicaseModelElement opener : openers) {
 				if (opener instanceof Checkable && opener instanceof WorkItem) {
 					OrgUnit assignee = ((WorkItem) opener).getAssignee();
 					if (assignee != null) {
@@ -130,7 +130,7 @@ public class UserTabContentProvider extends AdapterFactoryContentProvider {
 
 		// keep track of input to status view
 		// this will be used in getAssignables() method
-		this.root = (ModelElement) newInput;
+		this.root = (UnicaseModelElement) newInput;
 	}
 
 }

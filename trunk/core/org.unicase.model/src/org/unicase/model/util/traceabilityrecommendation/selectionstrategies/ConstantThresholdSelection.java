@@ -8,7 +8,7 @@ package org.unicase.model.util.traceabilityrecommendation.selectionstrategies;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * @author Henning Femmer
@@ -32,10 +32,10 @@ public class ConstantThresholdSelection implements LinkSelectionStrategy {
 	 * @param selectionMap the map indicating the probabilities of each element.
 	 * @return the resulting map
 	 */
-	public Map<ModelElement, Double> selectCandidates(Map<ModelElement, Double> selectionMap) {
-		Map<ModelElement, Double> result = new HashMap<ModelElement, Double>();
+	public Map<UnicaseModelElement, Double> selectCandidates(Map<UnicaseModelElement, Double> selectionMap) {
+		Map<UnicaseModelElement, Double> result = new HashMap<UnicaseModelElement, Double>();
 
-		for (ModelElement me : selectionMap.keySet()) {
+		for (UnicaseModelElement me : selectionMap.keySet()) {
 			Double val = selectionMap.get(me);
 			if (val != null && val > threshold) {
 				result.put(me, val);

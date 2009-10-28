@@ -33,7 +33,7 @@ import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.AttributeRenderer;
 import org.unicase.docExport.exportModel.renderers.ModelElementRenderer;
 import org.unicase.docExport.exportModel.renderers.options.RendererOption;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * A TemplateEditor TabItem where the ModelElementRenderer of a ModelElement type can be chosen, and its options can be
@@ -177,7 +177,8 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 			((Group) rendererOptionsContainer).setText(" Renderer options ");
 
 			final ArrayList<IItemPropertyDescriptor> attributes = getPropertyDescriptors(eClass);
-			final ModelElement modelElement = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+			final UnicaseModelElement modelElement = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance()
+				.create(eClass);
 
 			attributeOptionsSelector = new Combo(attributeOptionsContainer, SWT.READ_ONLY);
 			for (int i = 0; i < attributes.size(); i++) {
@@ -283,7 +284,8 @@ public class ModelElementRenderersTabItem extends TemplateEditorTabItem {
 	private ArrayList<IItemPropertyDescriptor> getPropertyDescriptors(EClass eClass) {
 		final ArrayList<IItemPropertyDescriptor> attributes = new ArrayList<IItemPropertyDescriptor>();
 
-		final ModelElement modelElement = (ModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		final UnicaseModelElement modelElement = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance()
+			.create(eClass);
 
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));

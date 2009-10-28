@@ -16,8 +16,9 @@ import org.unicase.emfstore.esmodel.notification.NotificationFactory;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.preferences.DashboardKey;
@@ -93,9 +94,10 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 
 	private void createOperation(ModelElementId mid, AbstractOperation op) {
 		ModelElement modelElement = getProjectSpace().getProject().getModelElement(mid);
-		if (modelElement == null) {
+		if (modelElement == null || !(modelElement instanceof UnicaseModelElement)) {
 			return;
 		}
+		UnicaseModelElement unicaseModelElement = (UnicaseModelElement) modelElement;
 		getExcludedOperations().add(op.getOperationId());
 		ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
 		notification.setName("Subscriptions");
@@ -105,7 +107,7 @@ public class SubscriptionNotificationProvider extends AbstractNotificationProvid
 		notification.setProvider(getName());
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append("An element on your watch list has changed: ");
-		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(modelElement, getProjectSpace()));
+		stringBuilder.append(NotificationHelper.getHTMLLinkForModelElement(unicaseModelElement, getProjectSpace()));
 		notification.setMessage(stringBuilder.toString());
 		notification.setCreationDate(op.getClientDate());
 		notification.getRelatedOperations().add(op.getOperationId());

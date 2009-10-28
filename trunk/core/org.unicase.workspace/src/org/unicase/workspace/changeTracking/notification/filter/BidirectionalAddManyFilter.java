@@ -9,7 +9,7 @@ package org.unicase.workspace.changeTracking.notification.filter;
 import java.util.Iterator;
 import java.util.List;
 
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 import org.unicase.workspace.changeTracking.notification.recording.NotificationRecording;
 

@@ -20,7 +20,7 @@ import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
 import org.unicase.emfstore.esmodel.url.ServerUrl;
 import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.url.UrlPackage;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.model.ModelFactory;
 
 /**

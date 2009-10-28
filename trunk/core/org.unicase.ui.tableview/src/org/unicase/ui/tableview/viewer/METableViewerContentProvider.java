@@ -13,8 +13,8 @@ import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.Viewer;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * This is the content provider for TaskView. Taskview shows checkables only.
@@ -25,7 +25,7 @@ public class METableViewerContentProvider implements IStructuredContentProvider 
 
 	private Project project;
 	private EClass meType;
-	private Collection<? extends ModelElement> directInput;
+	private Collection<? extends UnicaseModelElement> directInput;
 
 	/**
 	 * {@inheritDoc} Returns checables only.
@@ -40,8 +40,8 @@ public class METableViewerContentProvider implements IStructuredContentProvider 
 			return new Object[0];
 		}
 
-		List<? extends ModelElement> content = project.getAllModelElementsbyClass(meType,
-			new BasicEList<ModelElement>());
+		List<? extends UnicaseModelElement> content = project.getAllModelElementsbyClass(meType,
+			new BasicEList<UnicaseModelElement>());
 		return content.toArray();
 
 	}
@@ -67,7 +67,7 @@ public class METableViewerContentProvider implements IStructuredContentProvider 
 				this.project = (Project) newInput;
 				directInput = null;
 			} else if (newInput instanceof Collection) {
-				this.directInput = (Collection<? extends ModelElement>) newInput;
+				this.directInput = (Collection<? extends UnicaseModelElement>) newInput;
 				project = null;
 				// meType = null;
 			} else if (newInput == null) {

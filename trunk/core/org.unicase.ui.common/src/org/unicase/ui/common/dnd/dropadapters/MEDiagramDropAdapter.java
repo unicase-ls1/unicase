@@ -19,7 +19,7 @@ import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.ui.common.diagram.commands.CommandFactory;
@@ -47,12 +47,12 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.ui.common.dnd.dropadapters.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
-	 *      org.unicase.model.ModelElement, java.util.List)
+	 *      org.unicase.metamodel.ModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
+	public void drop(DropTargetEvent event, UnicaseModelElement target, List<UnicaseModelElement> source) {
 		ActionHelper.openModelElement(target, this.getClass().getName());
-		ModelElement dropee = source.get(0);
+		UnicaseModelElement dropee = source.get(0);
 		IEditorPart iep = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
 		if (iep instanceof DiagramDocumentEditor) {
 			DiagramDocumentEditor dde = (DiagramDocumentEditor) iep;
@@ -103,11 +103,11 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.ui.common.dnd.dropadapters.MEDropAdapter#canDrop(org.eclipse.swt.dnd.DropTargetEvent,
-	 *      java.util.List, org.unicase.model.ModelElement, org.unicase.model.ModelElement)
+	 *      java.util.List, org.unicase.metamodel.UnicaseModelElement, org.unicase.metamodel.UnicaseModelElement)
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source, ModelElement target,
-		ModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source, UnicaseModelElement target,
+		UnicaseModelElement dropee) {
 
 		boolean result = super.canDrop(eventFeedback, event, source, target, dropee);
 		if (!isElementOfDiagram((MEDiagram) target, dropee) || ((MEDiagram) target).getElements().contains(dropee)) {

@@ -36,7 +36,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.emfstore.exceptions.StorageException;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 /**
  * This subinterfaces implements all version related functionality for the

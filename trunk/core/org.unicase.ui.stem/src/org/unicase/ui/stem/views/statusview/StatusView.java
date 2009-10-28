@@ -45,8 +45,9 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.swt.widgets.Widget;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.EstimateHelper;
@@ -75,7 +76,7 @@ import org.unicase.workspace.util.EventUtil;
 public class StatusView extends ViewPart implements ProjectChangeObserver {
 
 	private Project activeProject;
-	private ModelElement input;
+	private UnicaseModelElement input;
 	// this must be disposed!
 	private DropTarget dropTarget;
 	private ProgressBar pbTasks;
@@ -361,7 +362,8 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 		lblEstimateProgressName.pack(true);
 		sectionComposite.layout(true);
 
-		Set<ModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(input);
+		Set<UnicaseModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
+			input);
 		if (input instanceof WorkPackage) {
 			removeNotContainedTasks(leafOpeners, (WorkPackage) input);
 		}
@@ -434,17 +436,17 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 
 	}
 
-	private void removeNotContainedTasks(Set<ModelElement> leafOpeners, WorkPackage input2) {
+	private void removeNotContainedTasks(Set<UnicaseModelElement> leafOpeners, WorkPackage input2) {
 		List<WorkItem> allContainedWorkItems = input2.getAllContainedWorkItems();
 		leafOpeners.retainAll(allContainedWorkItems);
 
 	}
 
-	private Date getLatestDueDate(Set<ModelElement> leafOpeners) {
+	private Date getLatestDueDate(Set<UnicaseModelElement> leafOpeners) {
 		Date date = null;
-		Iterator<ModelElement> iterator = leafOpeners.iterator();
+		Iterator<UnicaseModelElement> iterator = leafOpeners.iterator();
 		while (iterator.hasNext()) {
-			ModelElement next = iterator.next();
+			UnicaseModelElement next = iterator.next();
 			if (next instanceof WorkItem) {
 				Date dueDate = ((WorkItem) next).getDueDate();
 				if (dueDate == null) {
@@ -466,7 +468,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 * 
 	 * @param newInput input model element
 	 */
-	public void setInput(ModelElement newInput) {
+	public void setInput(UnicaseModelElement newInput) {
 		input = newInput;
 		topComposite.setFocus();
 		refreshView();
@@ -540,7 +542,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 			}
 
 			public void drop(DropTargetEvent event) {
-				ModelElement me = ActionHelper.getSelectedModelElement();
+				UnicaseModelElement me = ActionHelper.getSelectedModelElement();
 				if (me != null) {
 					setInput(me);
 				}
@@ -566,7 +568,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 * 
 	 * @return model element currently opened in status view.
 	 */
-	public ModelElement getCurrentInput() {
+	public UnicaseModelElement getCurrentInput() {
 		return this.input;
 	}
 
@@ -611,8 +613,8 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
 		if (input == null) {
@@ -628,7 +630,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		if (modelElement.equals(input)) {
@@ -647,7 +649,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		// nothing to do
@@ -658,7 +660,7 @@ public class StatusView extends ViewPart implements ProjectChangeObserver {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (input == null) {

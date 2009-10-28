@@ -29,8 +29,8 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.StorageException;
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelFactory;
-import org.unicase.model.Project;
 import org.unicase.model.util.FileUtil;
 
 /**

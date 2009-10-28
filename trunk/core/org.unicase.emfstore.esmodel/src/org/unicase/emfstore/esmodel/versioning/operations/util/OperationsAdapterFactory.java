@@ -22,8 +22,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.model.IdentifiableElement;
-import org.unicase.model.UniqueIdentifier;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> The <b>Adapter Factory</b> for the model. It provides an adapter <code>createXXX</code>
@@ -337,13 +337,13 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.IdentifiableElement
+	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.IdentifiableElement
 	 * <em>Identifiable Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
 	 * 
 	 * @return the new adapter.
-	 * @see org.unicase.model.IdentifiableElement
+	 * @see org.unicase.metamodel.IdentifiableElement
 	 * @generated
 	 */
 	public Adapter createIdentifiableElementAdapter() {
@@ -351,13 +351,13 @@ public class OperationsAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.model.UniqueIdentifier
+	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.UniqueIdentifier
 	 * <em>Unique Identifier</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
 	 * end-user-doc -->
 	 * 
 	 * @return the new adapter.
-	 * @see org.unicase.model.UniqueIdentifier
+	 * @see org.unicase.metamodel.UniqueIdentifier
 	 * @generated
 	 */
 	public Adapter createUniqueIdentifierAdapter() {

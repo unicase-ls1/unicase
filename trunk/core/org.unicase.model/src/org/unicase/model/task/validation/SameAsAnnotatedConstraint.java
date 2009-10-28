@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
@@ -48,12 +48,12 @@ public class SameAsAnnotatedConstraint extends AbstractModelConstraint {
 			return ctx.createSuccessStatus();
 		}
 
-		EList<ModelElement> annotatedModelElements = workItem.getAnnotatedModelElements();
-		for (ModelElement modelElement : annotatedModelElements) {
+		EList<UnicaseModelElement> annotatedModelElements = workItem.getAnnotatedModelElements();
+		for (UnicaseModelElement modelElement : annotatedModelElements) {
 			if (modelElement instanceof WorkItem) {
 				if (!workItem.getContainingWorkpackage().equals(((WorkItem) modelElement).getContainingWorkpackage())) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(ModelElement) eObj, "annotatedModelElements");
+						(UnicaseModelElement) eObj, "annotatedModelElements");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
 						+ ((WorkItem) eObj).getName() + "'" });

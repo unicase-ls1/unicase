@@ -39,7 +39,7 @@ import org.unicase.docExport.exportModel.renderers.options.ListOption;
 import org.unicase.docExport.exportModel.renderers.options.MultiReferenceAttributeOption;
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.diagram.impl.DiagramLoadException;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -80,7 +80,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	 * Renders a ModelElement into the UCompositeSection parent.
 	 */
 	@Override
-	public void doRender(ModelElement modelElement, UCompositeSection parent) {
+	public void doRender(UnicaseModelElement modelElement, UCompositeSection parent) {
 		FeatureOrdering ordering = orderFeatures(modelElement);
 
 		// Render title and description
@@ -128,7 +128,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	 * @param modelElement the ModelElement which contains a GMF diagram
 	 * @param parent the parent section where the diagram shall be rendered.
 	 */
-	private void renderDiagram(ModelElement modelElement, USection parent) {
+	private void renderDiagram(UnicaseModelElement modelElement, USection parent) {
 
 		final MEDiagram diagram = (MEDiagram) modelElement;
 
@@ -204,7 +204,7 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	 */
 	@SuppressWarnings("unchecked")
 	private void renderMutliProperties(Vector<IItemPropertyDescriptor> multiPropertiesOutsideOfTable,
-		ModelElement modelElement, USection modelElementSection) {
+		UnicaseModelElement modelElement, USection modelElementSection) {
 
 		for (IItemPropertyDescriptor propertyDescriptor : multiPropertiesOutsideOfTable) {
 			UParagraph propertiesHeader = new UParagraph(propertyDescriptor.getDisplayName(modelElement) + ": ",
@@ -222,14 +222,14 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 
 			modelElementSection.add(new UParagraph(attributeName));
 
-			EList<ModelElement> objectList = (EList<ModelElement>) modelElement.eGet(feature);
+			EList<UnicaseModelElement> objectList = (EList<UnicaseModelElement>) modelElement.eGet(feature);
 
 			MultiReferenceAttributeOption referenceOption = (MultiReferenceAttributeOption) getAttributeRendererNotNull(
 				feature).getAttributeOption();
 			ListOption listOption = referenceOption.getListOption();
 			UList list = new UList(listOption, template.getLayoutOptions().getDefaultTextOption());
 
-			for (ModelElement me : objectList) {
+			for (UnicaseModelElement me : objectList) {
 				list.add(me.getName());
 			}
 
@@ -239,12 +239,12 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 
 	@SuppressWarnings("unchecked")
 	private void removeAlreadyRenderedModelElements(ArrayList<EObject> remainingContainedModelElements,
-		Vector<IItemPropertyDescriptor> containedProperties, ModelElement modelElement) {
+		Vector<IItemPropertyDescriptor> containedProperties, UnicaseModelElement modelElement) {
 
 		for (IItemPropertyDescriptor propertyDescriptor : containedProperties) {
 			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(modelElement);
 			if (feature.isMany()) {
-				EList<ModelElement> objectList = (EList<ModelElement>) modelElement.eGet(feature);
+				EList<UnicaseModelElement> objectList = (EList<UnicaseModelElement>) modelElement.eGet(feature);
 
 				for (EObject eObject : objectList) {
 					remainingContainedModelElements.remove(eObject);
@@ -258,8 +258,8 @@ public class DefaultModelElementRendererImpl extends ModelElementRendererImpl im
 	/**
 	 * Contained properties (attributes) are just rendered in a their own renderer.
 	 */
-	private void renderContainedProperties(Vector<IItemPropertyDescriptor> properties, ModelElement modelElement,
-		UCompositeSection parent) {
+	private void renderContainedProperties(Vector<IItemPropertyDescriptor> properties,
+		UnicaseModelElement modelElement, UCompositeSection parent) {
 
 		for (IItemPropertyDescriptor propertyDescriptor : properties) {
 			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(modelElement);

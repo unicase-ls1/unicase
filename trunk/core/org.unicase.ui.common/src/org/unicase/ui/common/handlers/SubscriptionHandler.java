@@ -16,8 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -41,7 +41,7 @@ public class SubscriptionHandler extends AbstractHandler {
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
 		
-		ModelElement modelElement = ActionHelper.getModelElement(event);
+		UnicaseModelElement modelElement = ActionHelper.getModelElement(event);
 		
 		if(modelElement == null){
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), "Invalid model element", "Could not determine the active model element!");

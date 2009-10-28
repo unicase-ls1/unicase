@@ -17,7 +17,7 @@ import org.unicase.emfstore.esmodel.ProjectInfo;
 import org.unicase.emfstore.esmodel.ServerSpace;
 import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.esmodel.VersionInfo;
-import org.unicase.model.UniqueIdentifier;
+import org.unicase.metamodel.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call

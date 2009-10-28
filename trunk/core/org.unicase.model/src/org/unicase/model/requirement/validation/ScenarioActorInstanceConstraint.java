@@ -11,7 +11,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.ActorInstance;
 import org.unicase.model.requirement.Scenario;
 import org.unicase.model.util.ValidationConstraintHelper;
@@ -37,7 +37,7 @@ public class ScenarioActorInstanceConstraint extends AbstractModelConstraint {
 				ActorInstance actorInstance = ((Scenario) eObj).getInitiatingActorInstance();
 				if (actorInstance == null) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(ModelElement) eObj, "initiatingActorInstance");
+						(UnicaseModelElement) eObj, "initiatingActorInstance");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
 						+ ((Scenario) eObj).getName() + "'" });

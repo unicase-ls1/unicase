@@ -8,8 +8,8 @@ package org.unicase.model.rationale;
 import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 
 /**
@@ -27,7 +27,7 @@ import org.unicase.model.organization.OrgUnit;
  * @model
  * @generated
  */
-public interface Comment extends ModelElement, NonDomainElement {
+public interface Comment extends UnicaseModelElement, NonDomainElement {
 	/**
 	 * Returns the value of the '<em><b>Sender</b></em>' reference. <!-- begin-user-doc -->
 	 * <p>
@@ -72,7 +72,7 @@ public interface Comment extends ModelElement, NonDomainElement {
 
 	/**
 	 * Returns the value of the '<em><b>Commented Element</b></em>' container reference. It is bidirectional and its
-	 * opposite is '{@link org.unicase.model.ModelElement#getComments <em>Comments</em>}'. <!-- begin-user-doc -->
+	 * opposite is '{@link org.unicase.model.UnicaseModelElement#getComments <em>Comments</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Commented Element</em>' container reference isn't clear, there really should be more
 	 * of a description here...
@@ -80,13 +80,13 @@ public interface Comment extends ModelElement, NonDomainElement {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Commented Element</em>' container reference.
-	 * @see #setCommentedElement(ModelElement)
+	 * @see #setCommentedElement(UnicaseModelElement)
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_CommentedElement()
-	 * @see org.unicase.model.ModelElement#getComments
+	 * @see org.unicase.model.UnicaseModelElement#getComments
 	 * @model opposite="comments" keys="identifier" transient="false"
 	 * @generated
 	 */
-	ModelElement getCommentedElement();
+	UnicaseModelElement getCommentedElement();
 
 	/**
 	 * Sets the value of the '{@link org.unicase.model.rationale.Comment#getCommentedElement <em>Commented Element</em>}
@@ -96,19 +96,19 @@ public interface Comment extends ModelElement, NonDomainElement {
 	 * @see #getCommentedElement()
 	 * @generated
 	 */
-	void setCommentedElement(ModelElement value);
+	void setCommentedElement(UnicaseModelElement value);
 
 	/**
 	 * @return the parents of the comments thread.
 	 * @generated NOT
 	 */
-	List<ModelElement> getParents();
+	List<UnicaseModelElement> getParents();
 
 	/**
 	 * @return the top parent of the comments thread.
 	 * @generated NOT
 	 */
-	ModelElement getFirstParent();
+	UnicaseModelElement getFirstParent();
 
 	/**
 	 * @return the thread for this comment. Also includes the comment itself.

@@ -6,7 +6,7 @@
 package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 
 /**
@@ -32,7 +32,7 @@ import org.unicase.model.organization.OrgUnit;
  * @model
  * @generated
  */
-public interface FunctionalRequirement extends ModelElement {
+public interface FunctionalRequirement extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Reviewed</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>

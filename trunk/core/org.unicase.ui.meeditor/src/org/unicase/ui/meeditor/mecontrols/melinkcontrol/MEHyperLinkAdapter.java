@@ -8,7 +8,7 @@ package org.unicase.ui.meeditor.mecontrols.melinkcontrol;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
 import org.eclipse.ui.forms.events.IHyperlinkListener;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -22,8 +22,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkListener {
 
-	private ModelElement target;
-	private final ModelElement source;
+	private UnicaseModelElement target;
+	private final UnicaseModelElement source;
 	private final String featureName;
 
 	/**
@@ -33,7 +33,7 @@ public class MEHyperLinkAdapter extends HyperlinkAdapter implements IHyperlinkLi
 	 * @param target the target of the model link
 	 * @param featureName the feature of the model link
 	 */
-	public MEHyperLinkAdapter(ModelElement target, ModelElement source, String featureName) {
+	public MEHyperLinkAdapter(UnicaseModelElement target, UnicaseModelElement source, String featureName) {
 		super();
 		this.target = target;
 		this.source = source;

@@ -5,7 +5,7 @@
  */
 package org.unicase.model.task.util;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * Interface for MEState. An meestate element calculates the state for a modelelement.
@@ -30,7 +30,7 @@ public interface MEState {
 	String BLOCKED = "Blocked";
 
 	/**
-	 * Returns the current status of a {@link ModelElement}.
+	 * Returns the current status of a {@link UnicaseModelElement}.
 	 * 
 	 * @return the status
 	 */
@@ -48,7 +48,7 @@ public interface MEState {
 	 * 
 	 * @param me the modified subelement.
 	 */
-	void addModifiedChild(ModelElement me);
+	void addModifiedChild(UnicaseModelElement me);
 
 	/**
 	 * Removes a child which is no longer modified or recursive modified in the reference list for caching.
@@ -56,34 +56,34 @@ public interface MEState {
 	 * @param me subelement, which is no longer modified.
 	 * @return <code>true</code> if the remove modelelement was in the reference list of modified subelements.
 	 */
-	boolean removeModifiedChild(ModelElement me);
+	boolean removeModifiedChild(UnicaseModelElement me);
 
 	/**
 	 * Removes a modelelement from the opener list.
 	 * 
 	 * @param me the modelelement
 	 */
-	void removeOpener(ModelElement me);
+	void removeOpener(UnicaseModelElement me);
 
 	/**
 	 * Adds a modelelement to the opener list.
 	 * 
 	 * @param me the modelelement
 	 */
-	void addOpener(ModelElement me);
+	void addOpener(UnicaseModelElement me);
 
 	/**
 	 * Removes a modelelement from the blocker list.
 	 * 
 	 * @param me the modelelement
 	 */
-	void removeBlocker(ModelElement me);
+	void removeBlocker(UnicaseModelElement me);
 
 	/**
 	 * Adds a modelelement to the blocker list.
 	 * 
 	 * @param me the modelelement
 	 */
-	void addBlocker(ModelElement me);
+	void addBlocker(UnicaseModelElement me);
 
 } // MEState

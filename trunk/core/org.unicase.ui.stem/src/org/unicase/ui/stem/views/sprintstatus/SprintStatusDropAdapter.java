@@ -11,7 +11,7 @@ import java.util.List;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetAdapter;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
@@ -25,7 +25,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class SprintStatusDropAdapter extends DropTargetAdapter {
 
-	private ModelElement source;
+	private UnicaseModelElement source;
 	private WorkItem target;
 
 	/**

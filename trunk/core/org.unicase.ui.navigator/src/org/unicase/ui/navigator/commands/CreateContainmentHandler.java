@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.workspace.WorkspaceManager;
 
@@ -41,15 +41,15 @@ public class CreateContainmentHandler extends AbstractHandler {
 		Object o = event.getObjectParameterForExecution(COMMAND_ECLASS_PARAM);
 		if (o instanceof EClass) {
 			final EClass newMEType = (EClass) o;
-			final ModelElement newMEInstance;
+			final UnicaseModelElement newMEInstance;
 			// create a new model element from this EClass
-			newMEInstance = (ModelElement) newMEType.getEPackage().getEFactoryInstance().create(newMEType);
+			newMEInstance = (UnicaseModelElement) newMEType.getEPackage().getEFactoryInstance().create(newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
 
 			// add this newly created model element to corresponding containment
 			// feature of
 			// selected ME
-			final ModelElement selectedME = ActionHelper.getSelectedModelElement();
+			final UnicaseModelElement selectedME = ActionHelper.getSelectedModelElement();
 
 			final String sourceID = this.getClass().getName();
 			if (selectedME != null) {
@@ -80,7 +80,7 @@ public class CreateContainmentHandler extends AbstractHandler {
 		return null;
 	}
 
-	private EReference getStructuralFeature(ModelElement selectedME, EClass newMEType) {
+	private EReference getStructuralFeature(UnicaseModelElement selectedME, EClass newMEType) {
 		List<EReference> containments = selectedME.eClass().getEAllContainments();
 		EReference ref = null;
 		for (EReference containment : containments) {

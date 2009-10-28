@@ -20,11 +20,11 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
+import org.unicase.metamodel.ModelVersion;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.ModelVersion;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.ModelVersion} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.metamodel.ModelVersion} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * 
  * @generated

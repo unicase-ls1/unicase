@@ -13,7 +13,7 @@ import org.eclipse.swt.graphics.Image;
 import org.unicase.docExport.ModelElementRendererRegistry;
 import org.unicase.docExport.exportModel.renderers.AttributeRendererMapping;
 import org.unicase.docExport.exportModel.renderers.ModelElementRendererMapping;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * Adds The image of each ModelElement type to the ModelElementRendererMappings and prettifies the Label texts.
@@ -58,7 +58,7 @@ public class TemplateLabelProvider extends AdapterFactoryLabelProvider {
 				.getEClassName());
 			EPackage ePackage = eClass.getEPackage();
 			if (!eClass.isAbstract() && !eClass.isInterface()) {
-				ModelElement newMEInstance = (ModelElement) ePackage.getEFactoryInstance().create(eClass);
+				UnicaseModelElement newMEInstance = (UnicaseModelElement) ePackage.getEFactoryInstance().create(eClass);
 				return super.getImage(newMEInstance);
 			} else {
 				return super.getImage(object);

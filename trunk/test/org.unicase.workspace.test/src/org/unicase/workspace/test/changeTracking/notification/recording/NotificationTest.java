@@ -10,8 +10,8 @@ import java.util.Date;
 import org.junit.Before;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelFactory;
-import org.unicase.model.Project;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
@@ -21,7 +21,6 @@ import org.unicase.workspace.impl.ProjectSpaceImpl;
  * 
  * @author chodnick
  * @author koegel
- *
  */
 public abstract class NotificationTest {
 
@@ -41,16 +40,16 @@ public abstract class NotificationTest {
 		projectSpace.setProjectDescription("ps description");
 		projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
 		projectSpace.setProjectName("ps name");
-		
+
 		setProject(ModelFactory.eINSTANCE.createProject());
-		
+
 		projectSpace.setProject(getProject());
-		
+
 		projectSpace.makeTransient();
 		projectSpace.init();
-		
+
 		setProjectSpace(projectSpace);
-		
+
 	}
 
 	/**
@@ -78,7 +77,7 @@ public abstract class NotificationTest {
 	 * @return the projectSpace
 	 */
 	public ProjectSpaceImpl getProjectSpace() {
-		return (ProjectSpaceImpl)projectSpace;
+		return (ProjectSpaceImpl) projectSpace;
 	}
 
 	/**

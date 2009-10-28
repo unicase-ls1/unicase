@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Annotation</b></em>'. <!-- end-user-doc -->
@@ -28,7 +28,7 @@ import org.unicase.model.ModelPackage;
  * 
  * @generated
  */
-public abstract class AnnotationImpl extends ModelElementImpl implements Annotation {
+public abstract class AnnotationImpl extends UnicaseModelElementImpl implements Annotation {
 	/**
 	 * The cached value of the '{@link #getAnnotatedModelElements() <em>Annotated Model Elements</em>}' reference list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -37,7 +37,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> annotatedModelElements;
+	protected EList<UnicaseModelElement> annotatedModelElements;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -63,9 +63,9 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElement> getAnnotatedModelElements() {
+	public EList<UnicaseModelElement> getAnnotatedModelElements() {
 		if (annotatedModelElements == null) {
-			annotatedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<ModelElement>(ModelElement.class,
+			annotatedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<UnicaseModelElement>(UnicaseModelElement.class,
 				this, ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__ANNOTATIONS);
 		}
 		return annotatedModelElements;
@@ -126,7 +126,7 @@ public abstract class AnnotationImpl extends ModelElementImpl implements Annotat
 		switch (featureID) {
 		case ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS:
 			getAnnotatedModelElements().clear();
-			getAnnotatedModelElements().addAll((Collection<? extends ModelElement>) newValue);
+			getAnnotatedModelElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

@@ -9,9 +9,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Set;
 
-import org.unicase.model.IdentifiableElement;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Abstract Operation</b></em>'. <!-- end-user-doc

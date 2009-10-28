@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.Stereotype;
 import org.unicase.model.profile.StereotypeAttribute;
@@ -36,7 +36,7 @@ import org.unicase.model.profile.StereotypeAttributeInstance;
  * 
  * @generated
  */
-public abstract class StereotypeAttributeImpl extends ModelElementImpl implements StereotypeAttribute {
+public abstract class StereotypeAttributeImpl extends UnicaseModelElementImpl implements StereotypeAttribute {
 	/**
 	 * The cached value of the '{@link #getStereotypeAttributeInstances() <em>Stereotype Attribute Instances</em>}'
 	 * reference list. <!-- begin-user-doc --> <!-- end-user-doc -->

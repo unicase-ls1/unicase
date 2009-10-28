@@ -8,7 +8,7 @@ package org.unicase.model.task.util;
 import java.util.Iterator;
 import java.util.Set;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 
 /**
@@ -32,7 +32,7 @@ public final class EstimateHelper {
 	 * @param me the ModelElement which you want the remaining estimate for
 	 * @return the aggregated estimates of all open WorkItems
 	 */
-	public static int getRemainingEstimate(ModelElement me) {
+	public static int getRemainingEstimate(UnicaseModelElement me) {
 		return getAggregatedEstimate(me) - getClosedAggregatedEstimate(me);
 	}
 
@@ -40,7 +40,7 @@ public final class EstimateHelper {
 	 * @param me the ModelElement you want to aggregate the estimate for
 	 * @return the aggregated estimates of all closed WorkItems
 	 */
-	public static int getClosedAggregatedEstimate(ModelElement me) {
+	public static int getClosedAggregatedEstimate(UnicaseModelElement me) {
 		return genericCounter(me, AGGREGATE, CLOSED);
 	}
 
@@ -48,7 +48,7 @@ public final class EstimateHelper {
 	 * @param me the ModelElement you want to count closed tasks for
 	 * @return the number of all closed tasks in the set of LeafOpeners
 	 */
-	public static int getClosedTasks(ModelElement me) {
+	public static int getClosedTasks(UnicaseModelElement me) {
 		return genericCounter(me, COUNT, CLOSED);
 	}
 
@@ -56,7 +56,7 @@ public final class EstimateHelper {
 	 * @param me the ModelElement you want to aggregate the estimate for
 	 * @return the aggregated estimates of all WorkItems
 	 */
-	public static int getAggregatedEstimate(ModelElement me) {
+	public static int getAggregatedEstimate(UnicaseModelElement me) {
 		return genericCounter(me, AGGREGATE, ALL);
 		// return genericCounter(me, new AllAggregator());
 	}
@@ -65,7 +65,7 @@ public final class EstimateHelper {
 	 * @param me the ModelElement you want to count tasks for
 	 * @return the number of all tasks in the set of LeafOpeners
 	 */
-	public static int getAllTasks(ModelElement me) {
+	public static int getAllTasks(UnicaseModelElement me) {
 		return genericCounter(me, COUNT, ALL);
 	}
 
@@ -73,20 +73,20 @@ public final class EstimateHelper {
 	 * Iterate over all LeafOpeners of a ModelElement with matching state and return the aggregated estimate/number of
 	 * iterations.
 	 */
-	private static int genericCounter(ModelElement me, int operation, int state) {
+	private static int genericCounter(UnicaseModelElement me, int operation, int state) {
 		int result = 0;
 
-		Set<ModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(me);
+		Set<UnicaseModelElement> leafOpeners = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(me);
 
 		if (operation == COUNT && state == ALL) {
 			// In this case .size() is probably faster
 			return leafOpeners.size();
 		}
 
-		Iterator<ModelElement> iterator = leafOpeners.iterator();
+		Iterator<UnicaseModelElement> iterator = leafOpeners.iterator();
 
 		while (iterator.hasNext()) {
-			ModelElement nextMe = iterator.next();
+			UnicaseModelElement nextMe = iterator.next();
 
 			if (state == CLOSED && !(nextMe.getState().equals(MEState.CLOSED))) {
 				continue;

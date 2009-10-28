@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.change.ModelChangePackage;
 import org.unicase.model.impl.AnnotationImpl;
 import org.unicase.model.organization.OrgUnit;
@@ -206,7 +206,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> containedModelElements;
+	protected EList<UnicaseModelElement> containedModelElements;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -585,9 +585,9 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElement> getContainedModelElements() {
+	public EList<UnicaseModelElement> getContainedModelElements() {
 		if (containedModelElements == null) {
-			containedModelElements = new EObjectResolvingEList<ModelElement>(ModelElement.class, this,
+			containedModelElements = new EObjectResolvingEList<UnicaseModelElement>(UnicaseModelElement.class, this,
 				TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS);
 		}
 		return containedModelElements;
@@ -760,7 +760,7 @@ public class MilestoneImpl extends AnnotationImpl implements Milestone {
 			return;
 		case TaskPackage.MILESTONE__CONTAINED_MODEL_ELEMENTS:
 			getContainedModelElements().clear();
-			getContainedModelElements().addAll((Collection<? extends ModelElement>) newValue);
+			getContainedModelElements().addAll((Collection<? extends UnicaseModelElement>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);

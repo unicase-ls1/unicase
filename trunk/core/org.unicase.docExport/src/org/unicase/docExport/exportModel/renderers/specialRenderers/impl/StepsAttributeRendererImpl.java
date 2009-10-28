@@ -22,7 +22,7 @@ import org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.StepsAttributeRenderer;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -57,7 +57,7 @@ public class StepsAttributeRendererImpl extends AttributeRendererImpl implements
 
 	// begin custom code
 	@SuppressWarnings("unchecked")
-	public void render(EStructuralFeature feature, ModelElement modelElement, UCompositeSection section,
+	public void render(EStructuralFeature feature, UnicaseModelElement modelElement, UCompositeSection section,
 		Template template) {
 
 		Object object = modelElement.eGet(feature);

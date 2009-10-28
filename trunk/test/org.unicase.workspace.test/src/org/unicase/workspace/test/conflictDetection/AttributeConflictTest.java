@@ -15,7 +15,7 @@ import org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy;
 import org.unicase.emfstore.conflictDetection.FineGrainedConflictDetectionStrategy;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.requirement.RequirementFactory;
 

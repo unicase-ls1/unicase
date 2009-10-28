@@ -7,7 +7,7 @@ package org.unicase.ui.stem.views.sprintstatus;
 
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 
@@ -71,7 +71,7 @@ public class SprintStatusLabelProvider extends ColumnLabelProvider {
 		}
 		if (!wi.getAnnotatedModelElements().isEmpty()) {
 			buffer.append("Annotating: ");
-			for (ModelElement me : wi.getAnnotatedModelElements()) {
+			for (UnicaseModelElement me : wi.getAnnotatedModelElements()) {
 				buffer.append(me.getName());
 				buffer.append(" ");
 			}

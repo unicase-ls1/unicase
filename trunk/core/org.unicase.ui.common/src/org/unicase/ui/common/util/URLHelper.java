@@ -17,8 +17,8 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -95,9 +95,10 @@ public final class URLHelper {
 			ret.append(projectSpace.getProjectId().getId());
 		}
 		ret.append("/");
-		String name;
-		if (modelElement.getName()!=null){
-			name = modelElement.getName().replaceAll("\"", "\\'");
+		String name = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getText(modelElement);
+
+		if (name!=null){
+			name = name.replaceAll("\"", "\\'");
 		}else{
 			name = "Unnamed Element";
 		}

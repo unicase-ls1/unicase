@@ -5,8 +5,8 @@
  */
 package org.unicase.model.rationale;
 
-import org.unicase.model.ModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Assessment</b></em>'. <!-- end-user-doc -->
@@ -23,7 +23,7 @@ import org.unicase.model.NonDomainElement;
  * @model
  * @generated
  */
-public interface Assessment extends ModelElement, NonDomainElement {
+public interface Assessment extends UnicaseModelElement, NonDomainElement {
 	/**
 	 * Returns the value of the '<em><b>Proposal</b></em>' container reference. It is bidirectional and its opposite is
 	 * '{@link org.unicase.model.rationale.Proposal#getAssessments <em>Assessments</em>}'. <!-- begin-user-doc -->

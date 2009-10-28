@@ -5,7 +5,7 @@
  */
 package org.unicase.model.classes;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Method Argument</b></em>'. <!-- end-user-doc -->
@@ -24,7 +24,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface MethodArgument extends ModelElement {
+public interface MethodArgument extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>

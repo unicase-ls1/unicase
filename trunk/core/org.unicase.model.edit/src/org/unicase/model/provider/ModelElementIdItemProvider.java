@@ -16,10 +16,10 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.ModelElementId} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.metamodel.ModelElementId} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * 
  * @generated

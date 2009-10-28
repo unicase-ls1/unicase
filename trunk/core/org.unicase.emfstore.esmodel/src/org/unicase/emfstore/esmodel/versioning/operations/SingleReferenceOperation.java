@@ -5,7 +5,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Single Reference Operation</b></em>'. <!--

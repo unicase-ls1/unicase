@@ -53,7 +53,7 @@ import org.unicase.docExport.exportModel.renderers.options.RendererOption;
 import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle;
 import org.unicase.docExport.exportModel.renderers.options.TextAlign;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
@@ -302,7 +302,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	// begin custom code
-	public final void render(ModelElement modelElement, UCompositeSection parent) {
+	public final void render(UnicaseModelElement modelElement, UCompositeSection parent) {
 		TemplateRegistry.setMeCount(TemplateRegistry.getMeCount() + 1);
 
 		/*
@@ -331,7 +331,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	}
 
 	@SuppressWarnings("unchecked")
-	protected FeatureOrdering orderFeatures(final ModelElement modelElement) {
+	protected FeatureOrdering orderFeatures(final UnicaseModelElement modelElement) {
 		/*
 		 * order the features by the following types: singleProperties: EAttribute and single ERference linked
 		 * multiProperties: EReference, multi containedProperties: single EReference rendered as contained.
@@ -453,7 +453,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	 * @param modelElement the modelElement which shall be rendered
 	 * @param modelElementSection the section of the ModelElement
 	 */
-	protected void renderTitleAndDescription(ModelElement modelElement, USection modelElementSection,
+	protected void renderTitleAndDescription(UnicaseModelElement modelElement, USection modelElementSection,
 		boolean hideStructuralLines) {
 
 		modelElementSection.getBoxModel().setMarginTop(SECTION_MARGIN_TOP);
@@ -520,7 +520,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	/**
 	 * Returns a Vector of the propertyDecriptors of a modelElement. Only editable properties are in this Vector.
 	 */
-	private Vector<IItemPropertyDescriptor> getPropertyDescriptors(ModelElement modelElement) {
+	private Vector<IItemPropertyDescriptor> getPropertyDescriptors(UnicaseModelElement modelElement) {
 		Vector<IItemPropertyDescriptor> ret = new Vector<IItemPropertyDescriptor>();
 
 		AdapterFactoryItemDelegator adapterFactoryItemDelegator = new AdapterFactoryItemDelegator(
@@ -558,9 +558,9 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 		}
 
 		for (EObject content : object.eContainer().eContents()) {
-			if (content instanceof ModelElement && !(content instanceof LeafSection)
+			if (content instanceof UnicaseModelElement && !(content instanceof LeafSection)
 				&& !(content instanceof CompositeSection)) {
-				FeatureOrdering ordering = orderFeatures((ModelElement) content);
+				FeatureOrdering ordering = orderFeatures((UnicaseModelElement) content);
 
 				// check if the special attribute renderer has the hideStructuralLines() option activated
 				// if it is activated, the attribute wont be counted as a contained property
@@ -590,7 +590,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	 */
 	@SuppressWarnings("unchecked")
 	protected void renderPropertiesTable(Vector<IItemPropertyDescriptor> singleProperties,
-		Vector<IItemPropertyDescriptor> multiProperties, ModelElement modelElement, USection parent) {
+		Vector<IItemPropertyDescriptor> multiProperties, UnicaseModelElement modelElement, USection parent) {
 
 		if (singleProperties.size() + multiProperties.size() < 1) {
 			return;
@@ -627,8 +627,8 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 				tableCellRight.getBoxModel().setBorderStyle(UBorderStyle.DASHED);
 				table.add(tableCellRight);
 
-				if (modelElement.eGet(feature) instanceof ModelElement) {
-					ModelElement featureModelElement = (ModelElement) modelElement.eGet(feature);
+				if (modelElement.eGet(feature) instanceof UnicaseModelElement) {
+					UnicaseModelElement featureModelElement = (UnicaseModelElement) modelElement.eGet(feature);
 					ULink link = new ULink(featureModelElement.getName(), featureModelElement.getModelElementId()
 						.getId());
 					link.setOption(template.getLayoutOptions().getDefaultTextOption());
@@ -649,11 +649,11 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 			EStructuralFeature feature = (EStructuralFeature) propertyDescriptor.getFeature(modelElement);
 			Object attributeValue = modelElement.eGet(feature);
 			if (attributeValue instanceof EList) {
-				EList<ModelElement> objectList = (EList<ModelElement>) attributeValue;
+				EList<UnicaseModelElement> objectList = (EList<UnicaseModelElement>) attributeValue;
 
 				if (objectList.size() > 0) {
 					UParagraph par = new UParagraph("");
-					for (ModelElement me : objectList) {
+					for (UnicaseModelElement me : objectList) {
 						// count the modelElements beeing rendered
 						TemplateRegistry.setMeCount(TemplateRegistry.getMeCount() + 1);
 						UParagraph entryContainer = new UParagraph("");
@@ -722,12 +722,12 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	 * @param depth the depth to start with
 	 * @return the depth of the modelElement.
 	 */
-	public static int getModelElementDepth(ModelElement modelElement, int depth) {
+	public static int getModelElementDepth(UnicaseModelElement modelElement, int depth) {
 		EObject parent = modelElement.eContainer();
 		if (parent == null || parent instanceof LeafSection || parent instanceof CompositeSection) {
 			return depth;
-		} else if (parent instanceof ModelElement) {
-			return getModelElementDepth((ModelElement) parent, depth + 1);
+		} else if (parent instanceof UnicaseModelElement) {
+			return getModelElementDepth((UnicaseModelElement) parent, depth + 1);
 		} else {
 			return depth;
 		}
@@ -739,7 +739,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	 * @param modelElement the modelElement to render
 	 * @param parent the parent element where the modelElement shall be rendered into.
 	 */
-	protected abstract void doRender(ModelElement modelElement, UCompositeSection parent);
+	protected abstract void doRender(UnicaseModelElement modelElement, UCompositeSection parent);
 
 	/**
 	 * @see org.unicase.docExport.exportModel.renderers.ModelElementRenderer#getAttributeRenderer(org.eclipse.emf.ecore.EStructuralFeature)
@@ -818,7 +818,7 @@ public abstract class ModelElementRendererImpl extends EObjectImpl implements Mo
 	 * @param modelElement the modelElement where this feature is contained
 	 * @return the EStructuralFeature of the feature of the ModelElement.
 	 */
-	protected EStructuralFeature getFeature(String featureName, ModelElement modelElement) {
+	protected EStructuralFeature getFeature(String featureName, UnicaseModelElement modelElement) {
 		for (EStructuralFeature feature : modelElement.eClass().getEAllStructuralFeatures()) {
 			if (feature.getName().equals(featureName)) {
 				return feature;

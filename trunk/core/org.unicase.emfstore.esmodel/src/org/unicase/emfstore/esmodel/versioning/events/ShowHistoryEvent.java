@@ -7,7 +7,7 @@ package org.unicase.emfstore.esmodel.versioning.events;
 
 import org.eclipse.emf.common.util.EList;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Show History Event</b></em>'. <!-- end-user-doc
@@ -79,7 +79,7 @@ public interface ShowHistoryEvent extends Event {
 
 	/**
 	 * Returns the value of the '<em><b>Model Element</b></em>' containment reference list. The list contents are of
-	 * type {@link org.unicase.model.ModelElementId}. <!-- begin-user-doc -->
+	 * type {@link org.unicase.metamodel.ModelElementId}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Model Element</em>' containment reference isn't clear, there really should be more of
 	 * a description here...

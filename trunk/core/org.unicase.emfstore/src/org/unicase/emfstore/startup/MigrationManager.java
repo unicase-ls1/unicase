@@ -21,9 +21,10 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.metamodel.ModelVersion;
+import org.unicase.metamodel.impl.ModelVersionImpl;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.ModelVersion;
 
 import edu.tum.cs.cope.migration.execution.MigrationException;
 import edu.tum.cs.cope.migration.execution.Migrator;
@@ -51,11 +52,21 @@ public class MigrationManager {
 		}
 
 		// check if we need to migrate
+		ModelVersion modelVersion;
 		URI versionFileUri = URI.createFileURI(ServerConfiguration.getModelReleaseNumberFileName());
 		ResourceSet resourceSet = new ResourceSetImpl();
-		Resource resource = resourceSet.getResource(versionFileUri, true);
-		EList<EObject> directContents = resource.getContents();
-		ModelVersion modelVersion = (ModelVersion) directContents.get(0);
+		try {
+			Resource resource = resourceSet.getResource(versionFileUri, true);
+			EList<EObject> directContents = resource.getContents();
+			modelVersion = (ModelVersion) directContents.get(0);
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
+			// END SUPRESS CATCH EXCEPTION
+			// resource can not be loaded, assume version number before metamodel split
+			modelVersion = new ModelVersionImpl();
+			modelVersion.setReleaseNumber(3);
+		}
+
 		if (modelVersion.getReleaseNumber() == ModelPackage.RELEASE_NUMBER) {
 			return;
 		}

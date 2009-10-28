@@ -7,7 +7,7 @@ package org.unicase.model.util.traceabilityrecommendation.selectionstrategies;
 
 import java.util.Map;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * This is an interface for the operation known as link selection, where a couple of links are chosen from a bigger
@@ -24,7 +24,7 @@ public interface LinkSelectionStrategy {
 	 * @param selectionMap the map indicating the probabilities of each element.
 	 * @return the resulting map
 	 */
-	Map<ModelElement, Double> selectCandidates(final Map<ModelElement, Double> selectionMap);
+	Map<UnicaseModelElement, Double> selectCandidates(final Map<UnicaseModelElement, Double> selectionMap);
 
 	/**
 	 * Returns a short name for this selection.

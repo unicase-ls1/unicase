@@ -13,7 +13,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.LeafSection;
 
@@ -42,15 +42,15 @@ public class LeafSectionDropAdapter extends MEDropAdapter {
 	 * 
 	 * 
 	 * @see org.unicase.ui.common.dnd.dropadapters.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
-	 *      org.unicase.model.ModelElement, java.util.List)
+	 *      org.unicase.metamodel.ModelElement, java.util.List)
 	 */
 	@Override
-	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
-		ModelElement dropee = source.get(0);
+	public void drop(DropTargetEvent event, UnicaseModelElement target, List<UnicaseModelElement> source) {
+		UnicaseModelElement dropee = source.get(0);
 		if (!(dropee instanceof Annotation)) {
 			super.drop(event, target, source);
 		} else {
-			for(ModelElement me : source){
+			for(UnicaseModelElement me : source){
 				((Annotation)me).setLeafSection((LeafSection)target);
 			}
 		}

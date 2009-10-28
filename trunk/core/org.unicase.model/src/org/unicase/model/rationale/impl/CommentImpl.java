@@ -17,9 +17,9 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationalePackage;
@@ -37,7 +37,7 @@ import org.unicase.model.rationale.RationalePackage;
  * 
  * @generated
  */
-public class CommentImpl extends ModelElementImpl implements Comment {
+public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 	/**
 	 * The cached value of the '{@link #getSender() <em>Sender</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -133,10 +133,10 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	 * 
 	 * @generated
 	 */
-	public ModelElement getCommentedElement() {
+	public UnicaseModelElement getCommentedElement() {
 		if (eContainerFeatureID() != RationalePackage.COMMENT__COMMENTED_ELEMENT)
 			return null;
-		return (ModelElement) eContainer();
+		return (UnicaseModelElement) eContainer();
 	}
 
 	/**
@@ -144,10 +144,10 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	 * 
 	 * @generated
 	 */
-	public ModelElement basicGetCommentedElement() {
+	public UnicaseModelElement basicGetCommentedElement() {
 		if (eContainerFeatureID() != RationalePackage.COMMENT__COMMENTED_ELEMENT)
 			return null;
-		return (ModelElement) eInternalContainer();
+		return (UnicaseModelElement) eInternalContainer();
 	}
 
 	/**
@@ -155,7 +155,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetCommentedElement(ModelElement newCommentedElement, NotificationChain msgs) {
+	public NotificationChain basicSetCommentedElement(UnicaseModelElement newCommentedElement, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newCommentedElement, RationalePackage.COMMENT__COMMENTED_ELEMENT,
 			msgs);
 		return msgs;
@@ -166,7 +166,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	 * 
 	 * @generated
 	 */
-	public void setCommentedElement(ModelElement newCommentedElement) {
+	public void setCommentedElement(UnicaseModelElement newCommentedElement) {
 		if (newCommentedElement != eInternalContainer()
 			|| (eContainerFeatureID() != RationalePackage.COMMENT__COMMENTED_ELEMENT && newCommentedElement != null)) {
 			if (EcoreUtil.isAncestor(this, newCommentedElement))
@@ -176,7 +176,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newCommentedElement != null)
 				msgs = ((InternalEObject) newCommentedElement).eInverseAdd(this, ModelPackage.MODEL_ELEMENT__COMMENTS,
-					ModelElement.class, msgs);
+					UnicaseModelElement.class, msgs);
 			msgs = basicSetCommentedElement(newCommentedElement, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -196,7 +196,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetCommentedElement((ModelElement) otherEnd, msgs);
+			return basicSetCommentedElement((UnicaseModelElement) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -224,7 +224,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
-			return eInternalContainer().eInverseRemove(this, ModelPackage.MODEL_ELEMENT__COMMENTS, ModelElement.class,
+			return eInternalContainer().eInverseRemove(this, ModelPackage.MODEL_ELEMENT__COMMENTS, UnicaseModelElement.class,
 				msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
@@ -269,7 +269,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 			getRecipients().addAll((Collection<? extends OrgUnit>) newValue);
 			return;
 		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
-			setCommentedElement((ModelElement) newValue);
+			setCommentedElement((UnicaseModelElement) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -290,7 +290,7 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 			getRecipients().clear();
 			return;
 		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
-			setCommentedElement((ModelElement) null);
+			setCommentedElement((UnicaseModelElement) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -317,8 +317,8 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 	/**
 	 * {@inheritDoc}
 	 */
-	public ModelElement getFirstParent() {
-		ModelElement parent = this;
+	public UnicaseModelElement getFirstParent() {
+		UnicaseModelElement parent = this;
 		while (parent != null && parent instanceof Comment) {
 			parent = ((Comment) parent).getCommentedElement();
 		}
@@ -337,9 +337,9 @@ public class CommentImpl extends ModelElementImpl implements Comment {
 		return ret;
 	}
 
-	public List<ModelElement> getParents() {
-		ArrayList<ModelElement> parents = new ArrayList<ModelElement>();
-		ModelElement parent = getCommentedElement();
+	public List<UnicaseModelElement> getParents() {
+		ArrayList<UnicaseModelElement> parents = new ArrayList<UnicaseModelElement>();
+		UnicaseModelElement parent = getCommentedElement();
 		if (parent == null) {
 			return parents;
 		}

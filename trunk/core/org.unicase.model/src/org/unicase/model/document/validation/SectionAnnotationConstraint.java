@@ -13,7 +13,7 @@ import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.Section;
 import org.unicase.model.util.ValidationConstraintHelper;
 
@@ -38,7 +38,7 @@ public class SectionAnnotationConstraint extends AbstractModelConstraint {
 				EList<Annotation> annotations = ((Section) eObj).getAnnotations();
 				if (annotations.size() > 0) {
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(ModelElement) eObj, "annotations");
+						(UnicaseModelElement) eObj, "annotations");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
 						+ ((Section) eObj).getName() + "'" });

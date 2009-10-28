@@ -16,9 +16,9 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.Stereotype;
 import org.unicase.model.profile.StereotypeAttributeInstance;
@@ -39,7 +39,7 @@ import org.unicase.model.profile.StereotypeInstance;
  * 
  * @generated
  */
-public class StereotypeInstanceImpl extends ModelElementImpl implements StereotypeInstance {
+public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements StereotypeInstance {
 	/**
 	 * The cached value of the '{@link #getStereotype() <em>Stereotype</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
@@ -152,10 +152,10 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 	 * 
 	 * @generated
 	 */
-	public ModelElement getModelElement() {
+	public UnicaseModelElement getModelElement() {
 		if (eContainerFeatureID() != ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT)
 			return null;
-		return (ModelElement) eContainer();
+		return (UnicaseModelElement) eContainer();
 	}
 
 	/**
@@ -163,10 +163,10 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 	 * 
 	 * @generated
 	 */
-	public ModelElement basicGetModelElement() {
+	public UnicaseModelElement basicGetModelElement() {
 		if (eContainerFeatureID() != ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT)
 			return null;
-		return (ModelElement) eInternalContainer();
+		return (UnicaseModelElement) eInternalContainer();
 	}
 
 	/**
@@ -174,7 +174,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetModelElement(ModelElement newModelElement, NotificationChain msgs) {
+	public NotificationChain basicSetModelElement(UnicaseModelElement newModelElement, NotificationChain msgs) {
 		msgs = eBasicSetContainer((InternalEObject) newModelElement, ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT,
 			msgs);
 		return msgs;
@@ -185,7 +185,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 	 * 
 	 * @generated
 	 */
-	public void setModelElement(ModelElement newModelElement) {
+	public void setModelElement(UnicaseModelElement newModelElement) {
 		if (newModelElement != eInternalContainer()
 			|| (eContainerFeatureID() != ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT && newModelElement != null)) {
 			if (EcoreUtil.isAncestor(this, newModelElement))
@@ -195,7 +195,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newModelElement != null)
 				msgs = ((InternalEObject) newModelElement).eInverseAdd(this,
-					ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES, ModelElement.class, msgs);
+					ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES, UnicaseModelElement.class, msgs);
 			msgs = basicSetModelElement(newModelElement, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -236,7 +236,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 		case ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT:
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetModelElement((ModelElement) otherEnd, msgs);
+			return basicSetModelElement((UnicaseModelElement) otherEnd, msgs);
 		case ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES:
 			return ((InternalEList<InternalEObject>) (InternalEList<?>) getStereotypeAttributeInstances()).basicAdd(
 				otherEnd, msgs);
@@ -272,7 +272,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 		switch (eContainerFeatureID()) {
 		case ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT:
 			return eInternalContainer().eInverseRemove(this, ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
-				ModelElement.class, msgs);
+				UnicaseModelElement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -312,7 +312,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 			setStereotype((Stereotype) newValue);
 			return;
 		case ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT:
-			setModelElement((ModelElement) newValue);
+			setModelElement((UnicaseModelElement) newValue);
 			return;
 		case ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES:
 			getStereotypeAttributeInstances().clear();
@@ -334,7 +334,7 @@ public class StereotypeInstanceImpl extends ModelElementImpl implements Stereoty
 			setStereotype((Stereotype) null);
 			return;
 		case ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT:
-			setModelElement((ModelElement) null);
+			setModelElement((UnicaseModelElement) null);
 			return;
 		case ProfilePackage.STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES:
 			getStereotypeAttributeInstances().clear();

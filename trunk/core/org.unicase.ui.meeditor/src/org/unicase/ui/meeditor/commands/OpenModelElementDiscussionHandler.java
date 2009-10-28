@@ -12,7 +12,7 @@ import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.MEEditorInput;
 import org.unicase.ui.meeditor.MEEditor;
 import org.unicase.ui.meeditor.METhreadPage;
@@ -45,7 +45,7 @@ public class OpenModelElementDiscussionHandler extends AbstractHandler {
 		} catch (ExecutionException e) {
 			// if not set
 		}
-		ModelElement me = (ModelElement) o;
+		UnicaseModelElement me = (UnicaseModelElement) o;
 
 		if (o != null) {
 			MEEditorInput input;

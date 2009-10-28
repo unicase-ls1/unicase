@@ -9,8 +9,9 @@ import java.util.Date;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 
 /**
@@ -60,11 +61,12 @@ public final class NotificationHelper {
 	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace, boolean active) {
 
 		ModelElement modelElement = projectSpace.getProject().getModelElement(meId);
-		if (modelElement != null) {
+		if (modelElement != null && modelElement instanceof UnicaseModelElement) {
+			UnicaseModelElement unicaseModelElement = (UnicaseModelElement) modelElement;
 			if (active) {
-				return getHTMLLinkForModelElement(modelElement, projectSpace);
+				return getHTMLLinkForModelElement(unicaseModelElement, projectSpace);
 			}
-			return modelElement.getName();
+			return unicaseModelElement.getName();
 		}
 		return "(deleted element)";
 	}
@@ -77,12 +79,7 @@ public final class NotificationHelper {
 	 * @return a HTML link as string
 	 */
 	public static String getHTMLLinkForModelElement(ModelElementId meId, ProjectSpace projectSpace) {
-
-		ModelElement modelElement = projectSpace.getProject().getModelElement(meId);
-		if (modelElement != null) {
-			return getHTMLLinkForModelElement(modelElement, projectSpace);
-		}
-		return "(deleted element)";
+		return getHTMLLinkForModelElement(meId, projectSpace, true);
 	}
 
 	/**
@@ -92,7 +89,7 @@ public final class NotificationHelper {
 	 * @param projectSpace the project space
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(ModelElement modelElement, ProjectSpace projectSpace) {
+	public static String getHTMLLinkForModelElement(UnicaseModelElement modelElement, ProjectSpace projectSpace) {
 		String label = "null";
 		if (modelElement != null && modelElement.getName() != null) {
 			label = modelElement.getName().replaceAll("\"", "\\'");
@@ -108,7 +105,8 @@ public final class NotificationHelper {
 	 * @param label the link's label
 	 * @return a HTML link as string
 	 */
-	public static String getHTMLLinkForModelElement(ModelElement modelElement, ProjectSpace projectSpace, String label) {
+	public static String getHTMLLinkForModelElement(UnicaseModelElement modelElement, ProjectSpace projectSpace,
+		String label) {
 		if (modelElement == null) {
 			return "";
 		}

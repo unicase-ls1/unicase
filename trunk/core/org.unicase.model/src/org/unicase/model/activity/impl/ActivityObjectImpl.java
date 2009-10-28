@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.activity.ActivityObject;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.Transition;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Object</b></em>'. <!-- end-user-doc -->
@@ -30,7 +30,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public abstract class ActivityObjectImpl extends ModelElementImpl implements ActivityObject {
+public abstract class ActivityObjectImpl extends UnicaseModelElementImpl implements ActivityObject {
 	/**
 	 * The cached value of the '{@link #getIncomingTransitions() <em>Incoming Transitions</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

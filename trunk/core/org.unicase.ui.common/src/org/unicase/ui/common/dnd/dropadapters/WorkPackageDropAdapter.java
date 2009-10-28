@@ -13,8 +13,9 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.ui.PlatformUI;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkItem;
@@ -44,7 +45,7 @@ public class WorkPackageDropAdapter extends MEDropAdapter {
 	 * instead of just adding drop source to target (container). This is because of change recording.
 	 */
 	@Override
-	public void drop(DropTargetEvent event, ModelElement target, List<ModelElement> source) {
+	public void drop(DropTargetEvent event, UnicaseModelElement target, List<UnicaseModelElement> source) {
 
 		ModelElement dropee = source.get(0);
 		if (dropee instanceof WorkItem) {
@@ -67,15 +68,15 @@ public class WorkPackageDropAdapter extends MEDropAdapter {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.ui.common.dnd.dropadapters.MEDropAdapter#dropMove(org.eclipse.emf.ecore.EObject,
-	 *      org.unicase.model.ModelElement, java.util.List, boolean)
+	 *      org.unicase.metamodel.ModelElement, java.util.List, boolean)
 	 */
 	@Override
-	public void dropMove(EObject targetContainer, ModelElement target, List<ModelElement> source, boolean after) {
+	public void dropMove(EObject targetContainer, UnicaseModelElement target, List<UnicaseModelElement> source, boolean after) {
 		ModelElement dropee = source.get(0);
 		if (dropee instanceof Annotation) {
 			super.dropMove(targetContainer, target, source, after);
 		} else {
-			dropMEOnWorkpackage((ModelElement) targetContainer, source);
+			dropMEOnWorkpackage((UnicaseModelElement) targetContainer, source);
 		}
 
 	}
@@ -87,11 +88,11 @@ public class WorkPackageDropAdapter extends MEDropAdapter {
 	 * @param target
 	 * @param source
 	 */
-	private void dropMEOnWorkpackage(final ModelElement target, final List<ModelElement> source) {
+	private void dropMEOnWorkpackage(final UnicaseModelElement target, final List<UnicaseModelElement> source) {
 
 		String viewId = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActivePart().getSite()
 			.getId();
-		for (ModelElement me : source) {
+		for (UnicaseModelElement me : source) {
 			ActionItem ai = TaskFactory.eINSTANCE.createActionItem();
 			ai.setName("New Action Item relating " + me.getName());
 			ai.getAnnotatedModelElements().add(me);
@@ -106,11 +107,11 @@ public class WorkPackageDropAdapter extends MEDropAdapter {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.ui.common.dnd.dropadapters.MEDropAdapter#canDrop(int, org.eclipse.swt.dnd.DropTargetEvent,
-	 *      java.util.List, org.unicase.model.ModelElement, org.unicase.model.ModelElement)
+	 *      java.util.List, org.unicase.metamodel.ModelElement, org.unicase.metamodel.ModelElement)
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source, ModelElement target,
-		ModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source, UnicaseModelElement target,
+		UnicaseModelElement dropee) {
 
 		return super.canDrop(eventFeedback, event, source, target, dropee);
 	}

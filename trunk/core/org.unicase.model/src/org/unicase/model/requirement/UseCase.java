@@ -6,7 +6,7 @@
 package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Use Case</b></em>'. <!-- end-user-doc -->
@@ -35,7 +35,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface UseCase extends ModelElement {
+public interface UseCase extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Initiating Actor</b></em>' reference. It is bidirectional and its opposite is '
 	 * {@link org.unicase.model.requirement.Actor#getInitiatedUseCases <em>Initiated Use Cases</em>}'. <!--

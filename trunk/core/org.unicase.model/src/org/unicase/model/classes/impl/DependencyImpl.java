@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.classes.Dependency;
 import org.unicase.model.classes.PackageElement;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Dependency</b></em>'. <!-- end-user-doc -->
@@ -27,7 +27,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public class DependencyImpl extends ModelElementImpl implements Dependency {
+public class DependencyImpl extends UnicaseModelElementImpl implements Dependency {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

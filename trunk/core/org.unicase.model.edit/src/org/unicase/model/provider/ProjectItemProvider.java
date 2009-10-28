@@ -22,9 +22,9 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.Project;
 import org.unicase.model.activity.ActivityFactory;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.bug.BugFactory;
@@ -43,7 +43,7 @@ import org.unicase.model.state.StateFactory;
 import org.unicase.model.task.TaskFactory;
 
 /**
- * This is the item provider adapter for a {@link org.unicase.model.Project} object. <!-- begin-user-doc --> <!--
+ * This is the item provider adapter for a {@link org.unicase.metamodel.Project} object. <!-- begin-user-doc --> <!--
  * end-user-doc -->
  * 
  * @generated

@@ -19,7 +19,7 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.LinkSelectionStrategy;
 
@@ -95,7 +95,7 @@ public class RecommendationManager {
 	 * @param base the model element, for which suggestions will be made
 	 * @return a recommendationStrategy to the specified type
 	 */
-	public RecommendationStrategy getRecommendationStrategy(EReference ref, ModelElement base) {
+	public RecommendationStrategy getRecommendationStrategy(EReference ref, UnicaseModelElement base) {
 		if (base != null && ref != null) {
 			String baseClassKey = getFullQualifiedClassName(base.eClass());
 
@@ -157,17 +157,17 @@ public class RecommendationManager {
 	 * @param selStrategy a LinkSelectionStrategy like CutPointSelection etc, null for no selection filtering
 	 * @return a map modelElement -> double value reference. The higher the better. Value should be in (0..1]
 	 */
-	public Map<ModelElement, Double> getMatchMap(final ModelElement base, EReference ref,
-		final Collection<ModelElement> elements, LinkSelectionStrategy selStrategy) {
+	public Map<UnicaseModelElement, Double> getMatchMap(final UnicaseModelElement base, EReference ref,
+		final Collection<UnicaseModelElement> elements, LinkSelectionStrategy selStrategy) {
 
 		if (base == null || ref == null || elements == null || elements.size() == 0) {
-			return new HashMap<ModelElement, Double>();
+			return new HashMap<UnicaseModelElement, Double>();
 		}
 
 		RecommendationStrategy recStrategy = getRecommendationStrategy(ref, base);
 
 		if (recStrategy != null) {
-			Map<ModelElement, Double> rec = recStrategy.getMatchingMap(base, elements);
+			Map<UnicaseModelElement, Double> rec = recStrategy.getMatchingMap(base, elements);
 			if (selStrategy != null) {
 				rec = selStrategy.selectCandidates(rec);
 			}
@@ -175,7 +175,7 @@ public class RecommendationManager {
 			return rec;
 		}
 
-		return new HashMap<ModelElement, Double>();
+		return new HashMap<UnicaseModelElement, Double>();
 	}
 
 	/**

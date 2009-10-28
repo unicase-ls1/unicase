@@ -24,7 +24,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.part.ViewPart;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.MEClassLabelProvider;
 
 /**
@@ -196,10 +196,10 @@ public class Preview extends ViewPart implements ISelectionListener {
 
 			Object object = selected.getFirstElement();
 
-			if (object instanceof ModelElement) {
-				ModelElement me = (ModelElement) object;
+			if (object instanceof UnicaseModelElement) {
+				UnicaseModelElement me = (UnicaseModelElement) object;
 
-				setModelElement(me);
+				setUnicaseModelElement(me);
 
 			} else {
 				setselectedObject(object);
@@ -238,9 +238,9 @@ public class Preview extends ViewPart implements ISelectionListener {
 	}
 
 	/**
-	 * @param me the selected ModelElement.
+	 * @param me the selected UnicaseModelElement.
 	 */
-	private void setModelElement(ModelElement me) {
+	private void setUnicaseModelElement(UnicaseModelElement me) {
 		Image icon = labelprovider.getImage(me);
 		if (iconlabel != null) {
 			iconlabel.setImage(icon);

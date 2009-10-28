@@ -17,7 +17,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.util.OperationsCanonizer;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.requirement.Actor;
@@ -504,8 +505,8 @@ public class AttributeTest extends CanonizationTest {
 
 		CreateDeleteOperation op = (CreateDeleteOperation) operations.get(0);
 
-		assertEquals(op.getModelElement().getName(), "NameOfUseCase");
-		assertEquals(op.getModelElement().getDescription(), "DescriptionOfUseCase");
+		assertEquals(((UnicaseModelElement) op.getModelElement()).getName(), "NameOfUseCase");
+		assertEquals(((UnicaseModelElement) op.getModelElement()).getDescription(), "DescriptionOfUseCase");
 
 		// test if the create is reversible and re-reversible
 		Project expectedProject = ModelUtil.clone(getProject());
@@ -554,15 +555,15 @@ public class AttributeTest extends CanonizationTest {
 
 		CreateDeleteOperation op = (CreateDeleteOperation) operations.get(0);
 
-		assertEquals(op.getModelElement().getName(), "NameOfUseCase");
-		assertEquals(op.getModelElement().getDescription(), "DescriptionOfUseCase");
+		assertEquals(((UnicaseModelElement) op.getModelElement()).getName(), "NameOfUseCase");
+		assertEquals(((UnicaseModelElement) op.getModelElement()).getDescription(), "DescriptionOfUseCase");
 
 		assertTrue(operations.get(1) instanceof CreateDeleteOperation);
 
 		CreateDeleteOperation op2 = (CreateDeleteOperation) operations.get(1);
 
-		assertEquals(op2.getModelElement().getName(), "NameOfUseCase2");
-		assertEquals(op2.getModelElement().getDescription(), "DescriptionOfUseCase2");
+		assertEquals(((UnicaseModelElement) op2.getModelElement()).getName(), "NameOfUseCase2");
+		assertEquals(((UnicaseModelElement) op2.getModelElement()).getDescription(), "DescriptionOfUseCase2");
 
 		// test reversibility, too
 
@@ -667,8 +668,8 @@ public class AttributeTest extends CanonizationTest {
 		CreateDeleteOperation op = (CreateDeleteOperation) operations.get(0);
 
 		assertTrue(op.isDelete());
-		assertEquals(op.getModelElement().getName(), "originalName");
-		assertEquals(op.getModelElement().getDescription(), "originalDescription");
+		assertEquals(((UnicaseModelElement) op.getModelElement()).getName(), "originalName");
+		assertEquals(((UnicaseModelElement) op.getModelElement()).getDescription(), "originalDescription");
 
 		// test if the delete is reversible and re-reversible
 		Project expectedProject = ModelUtil.clone(getProject());
@@ -730,15 +731,15 @@ public class AttributeTest extends CanonizationTest {
 
 		CreateDeleteOperation op = (CreateDeleteOperation) operations.get(0);
 
-		assertEquals(op.getModelElement().getName(), "originalName1");
-		assertEquals(op.getModelElement().getDescription(), "originalDescription1");
+		assertEquals(((UnicaseModelElement) op.getModelElement()).getName(), "originalName1");
+		assertEquals(((UnicaseModelElement) op.getModelElement()).getDescription(), "originalDescription1");
 
 		assertTrue(operations.get(1) instanceof CreateDeleteOperation);
 
 		CreateDeleteOperation op2 = (CreateDeleteOperation) operations.get(1);
 
-		assertEquals(op2.getModelElement().getName(), "originalName2");
-		assertEquals(op2.getModelElement().getDescription(), "originalDescription2");
+		assertEquals(((UnicaseModelElement) op2.getModelElement()).getName(), "originalName2");
+		assertEquals(((UnicaseModelElement) op2.getModelElement()).getDescription(), "originalDescription2");
 
 		// test reversibility, too
 
@@ -862,9 +863,9 @@ public class AttributeTest extends CanonizationTest {
 		CreateDeleteOperation delOp = (CreateDeleteOperation) operations.get(2);
 		assertTrue(delOp.isDelete());
 		// not folded, interfering composite was inbeetween
-		assertEquals("some new Name", delOp.getModelElement().getName());
+		assertEquals("some new Name", ((UnicaseModelElement) delOp.getModelElement()).getName());
 		// folded, value is oldValue from "newDescription"-> "desc 2"
-		assertEquals("newDescription", delOp.getModelElement().getDescription());
+		assertEquals("newDescription", ((UnicaseModelElement) delOp.getModelElement()).getDescription());
 
 		Project expectedProject = ModelUtil.clone(getProject());
 
@@ -944,7 +945,7 @@ public class AttributeTest extends CanonizationTest {
 
 		// check the folding of the attribute
 		CreateDeleteOperation createOp = (CreateDeleteOperation) operations.get(0);
-		assertEquals("someName", createOp.getModelElement().getName());
+		assertEquals("someName", ((UnicaseModelElement) createOp.getModelElement()).getName());
 
 		// check reversibility
 		operations.get(2).reverse().apply(getProject());

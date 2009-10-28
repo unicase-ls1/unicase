@@ -11,7 +11,7 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ColumnLabelProvider;
 import org.eclipse.swt.graphics.Image;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.CircularDependencyException;
@@ -33,7 +33,7 @@ import java.util.Set;
  */
 public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 
-	private ModelElement currentOpenME;
+	private UnicaseModelElement currentOpenME;
 	private Map<String, Image> images;
 	private static final String OPEN = "open";
 	private static final String CLOSED = "closed";
@@ -90,8 +90,8 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 	 */
 	@Override
 	public Image getImage(Object element) {
-		if (element instanceof ModelElement) {
-			ModelElement me = (ModelElement) element;
+		if (element instanceof UnicaseModelElement) {
+			UnicaseModelElement me = (UnicaseModelElement) element;
 			String status = MEState.CLOSED;
 			try {
 
@@ -151,8 +151,8 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 
 		List<WorkItem> workItems = new ArrayList<WorkItem>();
 		// then check its openers (hierarchical)
-		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(currentOpenME);
-		for (ModelElement opener : openers) {
+		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(currentOpenME);
+		for (UnicaseModelElement opener : openers) {
 			if (opener instanceof WorkItem) {
 				OrgUnit assignee2 = ((WorkItem) opener).getAssignee();
 				if (assignee2 != null && assignee.equals(assignee2)) {
@@ -178,7 +178,7 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 	 * 
 	 * @param me Model element that is currently open in status view.
 	 */
-	public void setCurrentOpenME(ModelElement me) {
+	public void setCurrentOpenME(UnicaseModelElement me) {
 		this.currentOpenME = me;
 	}
 

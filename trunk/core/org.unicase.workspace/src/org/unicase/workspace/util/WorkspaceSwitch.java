@@ -9,7 +9,7 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
-import org.unicase.model.IdentifiableElement;
+import org.unicase.metamodel.IdentifiableElement;
 import org.unicase.workspace.EventComposite;
 import org.unicase.workspace.NotificationComposite;
 import org.unicase.workspace.OperationComposite;

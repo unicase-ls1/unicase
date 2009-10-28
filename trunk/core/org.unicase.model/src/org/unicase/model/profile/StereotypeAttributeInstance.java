@@ -5,7 +5,7 @@
  */
 package org.unicase.model.profile;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Stereotype Attribute Instance</b></em>'. <!--
@@ -23,7 +23,7 @@ import org.unicase.model.ModelElement;
  * @model abstract="true"
  * @generated
  */
-public interface StereotypeAttributeInstance extends ModelElement {
+public interface StereotypeAttributeInstance extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Stereotype Instance</b></em>' container reference. It is bidirectional and its
 	 * opposite is '{@link org.unicase.model.profile.StereotypeInstance#getStereotypeAttributeInstances

@@ -41,7 +41,7 @@ import org.unicase.docExport.docWriter.DocWriterRegistry;
 import org.unicase.docExport.exceptions.TemplatesFileNotFoundException;
 import org.unicase.docExport.exportModel.Template;
 import org.unicase.docExport.exportModel.renderers.DocumentRenderer;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.LeafSection;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -53,7 +53,7 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class ExportDialog extends TitleAreaDialog {
 
-	private ModelElement modelElement;
+	private UnicaseModelElement modelElement;
 
 	private ArrayList<DocWriter> docWriters;
 	private DocumentRenderer docRenderer;
@@ -77,7 +77,7 @@ public class ExportDialog extends TitleAreaDialog {
 	 *            which is used by the DocWriter
 	 * @param modelElement the modelElement which shall be exported to a document
 	 */
-	public ExportDialog(Shell parentShell, DocumentRenderer docRenderer, ModelElement modelElement) {
+	public ExportDialog(Shell parentShell, DocumentRenderer docRenderer, UnicaseModelElement modelElement) {
 		super(parentShell);
 
 		this.docRenderer = docRenderer;

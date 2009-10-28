@@ -6,7 +6,7 @@
 package org.unicase.model.profile;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Stereotype Attribute</b></em>'. <!--
@@ -24,7 +24,7 @@ import org.unicase.model.ModelElement;
  * @model abstract="true"
  * @generated
  */
-public interface StereotypeAttribute extends ModelElement {
+public interface StereotypeAttribute extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Stereotype</b></em>' container reference. It is bidirectional and its opposite
 	 * is '{@link org.unicase.model.profile.Stereotype#getStereotypeAttributes <em>Stereotype Attributes</em>}'. <!--

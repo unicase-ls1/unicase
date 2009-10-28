@@ -7,7 +7,7 @@ package org.unicase.model.task.validation;
 
 import java.util.Date;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Issue;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.ActivityType;
@@ -27,7 +27,7 @@ public abstract class TaskValidationHelper {
 	 * @param obj the modelelement
 	 * @return the due date
 	 */
-	public static Date getDueDate(ModelElement obj) {
+	public static Date getDueDate(UnicaseModelElement obj) {
 		if (obj instanceof Issue) {
 			return ((Issue) obj).getDueDate();
 		}
@@ -43,7 +43,7 @@ public abstract class TaskValidationHelper {
 	 * @param obj the modelelement
 	 * @return the activity
 	 */
-	public static ActivityType getActivity(ModelElement obj) {
+	public static ActivityType getActivity(UnicaseModelElement obj) {
 		if (obj instanceof Issue) {
 			return ((Issue) obj).getActivity();
 		}

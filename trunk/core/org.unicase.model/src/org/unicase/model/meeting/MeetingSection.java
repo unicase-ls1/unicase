@@ -5,7 +5,7 @@
  */
 package org.unicase.model.meeting;
 
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Section</b></em>'. <!-- end-user-doc -->
@@ -20,7 +20,7 @@ import org.unicase.model.ModelElement;
  * @model abstract="true"
  * @generated
  */
-public interface MeetingSection extends ModelElement {
+public interface MeetingSection extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Allocated Time</b></em>' attribute. The default value is <code>"0"</code>. <!--
 	 * begin-user-doc -->

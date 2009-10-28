@@ -6,7 +6,7 @@
 package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>System Function</b></em>'. <!-- end-user-doc -->
@@ -27,7 +27,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface SystemFunction extends ModelElement {
+public interface SystemFunction extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Input</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>

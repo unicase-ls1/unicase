@@ -6,6 +6,13 @@
 
 package org.unicase.ui.common.dnd;
 
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -16,8 +23,8 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.TreeItem;
-import org.unicase.model.ModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.meeting.MeetingPackage;
@@ -33,13 +40,6 @@ import org.unicase.ui.common.dnd.dropadapters.WorkItemMeetingSectionDropAdapter;
 import org.unicase.ui.common.dnd.dropadapters.WorkPackageDropAdapter;
 import org.unicase.workspace.util.UnicaseCommand;
 
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
 /**
  * This is the central drop adapter for unicase views. This class acts as a dispatcher. It has a map of (EClass,
  * MEDropAdapter) which contains a reference to a specific drop adapter for each model element type.
@@ -51,10 +51,10 @@ public class UCDropAdapter extends DropTargetAdapter {
 	private TransactionalEditingDomain domain;
 	private StructuredViewer viewer;
 
-	private List<ModelElement> source;
-	private ModelElement target;
+	private List<UnicaseModelElement> source;
+	private UnicaseModelElement target;
 	private EObject targetConatiner;
-	private ModelElement dropee;
+	private UnicaseModelElement dropee;
 
 	private Map<EClass, MEDropAdapter> dropAdapters;
 
@@ -156,26 +156,26 @@ public class UCDropAdapter extends DropTargetAdapter {
 		}
 
 		for (Object obj : tmpSource) {
-			if (!(obj instanceof ModelElement)) {
+			if (!(obj instanceof UnicaseModelElement)) {
 				result = false;
 			}
 		}
 
-		source = (List<ModelElement>) DragSourcePlaceHolder.getDragSource();
+		source = (List<UnicaseModelElement>) DragSourcePlaceHolder.getDragSource();
 		if (source.size() == 0) {
 			return false;
 		}
 
 		// take care that you cannot drop anything on project (project is not a
 		// ModelElement)
-		if (event.item == null || event.item.getData() == null || !(event.item.getData() instanceof ModelElement)) {
+		if (event.item == null || event.item.getData() == null || !(event.item.getData() instanceof UnicaseModelElement)) {
 			result = false;
 		}
 
 		// check if source and target are in the same project
 		if (result) {
 			dropee = source.get(0);
-			target = (ModelElement) event.item.getData();
+			target = (UnicaseModelElement) event.item.getData();
 			if (!target.getProject().equals(dropee.getProject())) {
 				result = false;
 			}

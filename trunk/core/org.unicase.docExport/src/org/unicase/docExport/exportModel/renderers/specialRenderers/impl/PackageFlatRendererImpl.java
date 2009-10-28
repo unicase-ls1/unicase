@@ -15,7 +15,7 @@ import org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl
 import org.unicase.docExport.exportModel.renderers.options.SectionNumberingStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.PackageFlatRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Package;
 import org.unicase.model.classes.PackageElement;
 import org.unicase.workspace.util.WorkspaceUtil;
@@ -50,7 +50,7 @@ public class PackageFlatRendererImpl extends ModelElementRendererImpl implements
 
 	// begin custom code
 	@Override
-	public void doRender(ModelElement modelElement, UCompositeSection parent) {
+	public void doRender(UnicaseModelElement modelElement, UCompositeSection parent) {
 		ArrayList<Package> allPackages = getAllPackagesRecursivly((Package) modelElement);
 
 		for (Package packageElement : allPackages) {

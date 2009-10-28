@@ -10,7 +10,7 @@ import java.util.List;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.StructuredViewer;
 import org.eclipse.swt.dnd.DropTargetEvent;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.Section;
 
 /**
@@ -35,11 +35,11 @@ public class CompositeSectionDropAdapter extends MEDropAdapter {
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.ui.common.dnd.dropadapters.MEDropAdapter#canDrop(org.eclipse.swt.dnd.DropTargetEvent,
-	 *      java.util.List, org.unicase.model.ModelElement, org.unicase.model.ModelElement)
+	 *      java.util.List, org.unicase.metamodel.ModelElement, org.unicase.metamodel.UnicaseModelElement)
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<ModelElement> source, ModelElement target,
-		ModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source, UnicaseModelElement target,
+		UnicaseModelElement dropee) {
 
 		boolean result = super.canDrop(eventFeedback, event, source, target, dropee);
 

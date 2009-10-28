@@ -15,7 +15,7 @@ import org.unicase.docExport.exportModel.renderers.impl.AttributeRendererImpl;
 import org.unicase.docExport.exportModel.renderers.options.UBorderStyle;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassAttributesRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Attribute;
 
 /**
@@ -47,7 +47,7 @@ public class ClassAttributesRendererImpl extends AttributeRendererImpl implement
 	}
 
 	@SuppressWarnings("unchecked")
-	public void render(EStructuralFeature feature, ModelElement modelElement, UCompositeSection parent,
+	public void render(EStructuralFeature feature, UnicaseModelElement modelElement, UCompositeSection parent,
 		Template template) {
 
 		EList<Attribute> attributes = (EList<Attribute>) modelElement.eGet(feature);

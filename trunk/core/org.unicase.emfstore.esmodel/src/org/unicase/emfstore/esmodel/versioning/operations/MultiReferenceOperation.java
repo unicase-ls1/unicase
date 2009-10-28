@@ -6,7 +6,7 @@
 package org.unicase.emfstore.esmodel.versioning.operations;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Multi Reference Operation</b></em>'. <!--
@@ -80,7 +80,7 @@ public interface MultiReferenceOperation extends ReferenceOperation {
 
 	/**
 	 * Returns the value of the '<em><b>Referenced Model Elements</b></em>' containment reference list. The list
-	 * contents are of type {@link org.unicase.model.ModelElementId}. <!-- begin-user-doc -->
+	 * contents are of type {@link org.unicase.metamodel.ModelElementId}. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Referenced Model Elements</em>' containment reference list isn't clear, there really
 	 * should be more of a description here...

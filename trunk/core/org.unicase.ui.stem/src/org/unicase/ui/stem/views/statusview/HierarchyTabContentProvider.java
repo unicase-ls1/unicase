@@ -10,7 +10,7 @@ import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.TaxonomyAccess;
@@ -28,7 +28,7 @@ import java.util.Set;
 
 public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 
-	private ModelElement root;
+	private UnicaseModelElement root;
 
 	/**
 	 * . Constructor
@@ -44,10 +44,10 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 	@Override
 	public Object[] getElements(Object object) {
 		if (object instanceof WorkPackage) {
-			Set<ModelElement> elementsForWorkPackage = getElementsForWorkPackage(object);
+			Set<UnicaseModelElement> elementsForWorkPackage = getElementsForWorkPackage(object);
 			return elementsForWorkPackage.toArray(new Object[elementsForWorkPackage.size()]);
 
-		} else if (object instanceof ModelElement) {
+		} else if (object instanceof UnicaseModelElement) {
 			return getElementsForModelElement(object);
 
 		} else {
@@ -62,9 +62,9 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 	 * @param object WorkPackage
 	 * @return
 	 */
-	private Set<ModelElement> getElementsForWorkPackage(Object object) {
+	private Set<UnicaseModelElement> getElementsForWorkPackage(Object object) {
 
-		Set<ModelElement> ret = new HashSet<ModelElement>();
+		Set<UnicaseModelElement> ret = new HashSet<UnicaseModelElement>();
 		WorkPackage workPackage = (WorkPackage) object;
 		List<WorkItem> containedWorkItems = workPackage.getAllContainedWorkItems();
 		for (WorkItem workItem : containedWorkItems) {
@@ -85,12 +85,12 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 	 * @return
 	 */
 	private Object[] getElementsForModelElement(Object object) {
-		ModelElement me = (ModelElement) object;
+		UnicaseModelElement me = (UnicaseModelElement) object;
 
-		Set<ModelElement> openers = new HashSet<ModelElement>();
+		Set<UnicaseModelElement> openers = new HashSet<UnicaseModelElement>();
 		openers.addAll(TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(me));
 
-		Set<ModelElement> ret = new HashSet<ModelElement>();
+		Set<UnicaseModelElement> ret = new HashSet<UnicaseModelElement>();
 		ret.addAll(openers);
 
 		ret.addAll(me.getAnnotations());
@@ -102,13 +102,13 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public boolean hasChildren(Object object) {
-		if (!(object instanceof ModelElement)) {
+		if (!(object instanceof UnicaseModelElement)) {
 			return super.hasChildren(object);
 		}
-		ModelElement modelElement = (ModelElement) object;
+		UnicaseModelElement modelElement = (UnicaseModelElement) object;
 		if (viewer.getInput() instanceof WorkPackage) {
 			WorkPackage workPackage = (WorkPackage) viewer.getInput();
-			Set<ModelElement> allContainedModelElements = workPackage.getAllContainedModelElements();
+			Set<UnicaseModelElement> allContainedModelElements = workPackage.getAllContainedModelElements();
 			EList<Annotation> annotations = modelElement.getAnnotations();
 			for (Annotation annotation : annotations) {
 				if (allContainedModelElements.contains(annotation)) {
@@ -117,8 +117,8 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 			}
 
 		}
-		List<Annotation> annotations = ((ModelElement) object).getAnnotations();
-		Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
+		List<Annotation> annotations = ((UnicaseModelElement) object).getAnnotations();
+		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
 		return (annotations.size() > 0 || openers.size() > 0);
 
 	}
@@ -128,11 +128,11 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public Object[] getChildren(Object object) {
-		if (!(object instanceof ModelElement)) {
+		if (!(object instanceof UnicaseModelElement)) {
 			return super.getChildren(object);
 		}
-		ModelElement modelElement = (ModelElement) object;
-		List<ModelElement> ret = new ArrayList<ModelElement>();
+		UnicaseModelElement modelElement = (UnicaseModelElement) object;
+		List<UnicaseModelElement> ret = new ArrayList<UnicaseModelElement>();
 		if (root instanceof WorkPackage) {
 			WorkPackage workPackage = (WorkPackage) root;
 			Set<WorkItem> relativeWorkItems = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
@@ -142,7 +142,7 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 
 		} else {
 
-			Set<ModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
+			Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
 			ret.addAll(openers);
 
 			return ret.toArray(new Object[ret.size()]);
@@ -160,7 +160,7 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 
 		// keep track of input to status view
 		// this will be used in getAssignables() method
-		this.root = (ModelElement) newInput;
+		this.root = (UnicaseModelElement) newInput;
 	}
 
 	/**
@@ -168,7 +168,7 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 	 * 
 	 * @return the model element currently open in status view.
 	 */
-	public ModelElement getRoot() {
+	public UnicaseModelElement getRoot() {
 		return root;
 	}
 

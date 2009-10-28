@@ -15,7 +15,7 @@ import org.unicase.emfstore.esmodel.SessionId;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidInputException;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * Super class of all EmfstoreInterfaces. Emfstore interfaces perform sanity checks, runs accesscontrol and then

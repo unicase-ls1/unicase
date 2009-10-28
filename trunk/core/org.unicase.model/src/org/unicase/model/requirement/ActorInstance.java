@@ -6,7 +6,7 @@
 package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Actor Instance</b></em>'. <!-- end-user-doc -->
@@ -23,7 +23,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface ActorInstance extends ModelElement {
+public interface ActorInstance extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Initiated Scenarios</b></em>' reference list. The list contents are of type
 	 * {@link org.unicase.model.requirement.Scenario}. It is bidirectional and its opposite is '

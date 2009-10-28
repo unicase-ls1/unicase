@@ -24,7 +24,7 @@ import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorSite;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.forms.editor.SharedHeaderFormEditor;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.provider.ModelItemProviderAdapterFactory;
 import org.unicase.model.util.ModelElementChangeListener;
 import org.unicase.ui.common.MEEditorInput;
@@ -80,7 +80,7 @@ public class MEEditor extends SharedHeaderFormEditor {
 	 */
 	public static final String ID = "org.unicase.ui.meeditor";
 
-	private ModelElement modelElement;
+	private UnicaseModelElement modelElement;
 	private ComposedAdapterFactory adapterFactory;
 	private TransactionalEditingDomain editingDomain;
 	private MEEditorPage mePage;

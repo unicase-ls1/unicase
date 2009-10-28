@@ -9,7 +9,7 @@ package org.unicase.workspace.changeTracking.notification;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * Validates an EMF notification. Optionally generates a status message, describing potential problems.

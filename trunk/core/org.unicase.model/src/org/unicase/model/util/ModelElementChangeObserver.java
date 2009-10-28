@@ -9,8 +9,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.unicase.model.ModelElement;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 
 /**
  * This abstract class reacts to the changes of individual model elements. It implements the ProjectChangeObserver
@@ -50,7 +50,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.model.Project,
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.ModelElement)
 	 */
 	public final void modelElementAdded(Project project, ModelElement modelElement) {
@@ -60,8 +60,8 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
 	public final void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		if (this.isObservedElement(modelElement)) {
@@ -82,8 +82,8 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.Project,
-	 *      org.unicase.model.ModelElement)
+	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.metamodel.Project,
+	 *      org.unicase.model.UnicaseModelElement)
 	 */
 	public final void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		// uninteresting, do nothing
@@ -93,7 +93,7 @@ public abstract class ModelElementChangeObserver implements ProjectChangeObserve
 	 * {@inheritDoc}
 	 * 
 	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
-	 *      org.unicase.model.Project, org.unicase.model.ModelElement)
+	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
 	public final void notify(Notification notification, Project project, ModelElement modelElement) {
 		if (this.isObservedElement(modelElement)) {

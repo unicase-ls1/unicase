@@ -34,7 +34,7 @@ import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.RMISerializationException;
 import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FileInformation;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 /**
  * Implementation of a RMIEmfStoreFacade.

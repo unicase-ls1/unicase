@@ -14,8 +14,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.ModelElement;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.profile.Profile;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.Stereotype;
@@ -32,7 +32,7 @@ import org.unicase.model.profile.Stereotype;
  * 
  * @generated
  */
-public class ProfileImpl extends ModelElementImpl implements Profile {
+public class ProfileImpl extends UnicaseModelElementImpl implements Profile {
 	/**
 	 * The cached value of the '{@link #getAffectedContainers() <em>Affected Containers</em>}' reference list. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
@@ -41,7 +41,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModelElement> affectedContainers;
+	protected EList<UnicaseModelElement> affectedContainers;
 
 	/**
 	 * The cached value of the '{@link #getStereotypes() <em>Stereotypes</em>}' containment reference list. <!--
@@ -77,9 +77,9 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 	 * 
 	 * @generated
 	 */
-	public EList<ModelElement> getAffectedContainers() {
+	public EList<UnicaseModelElement> getAffectedContainers() {
 		if (affectedContainers == null) {
-			affectedContainers = new EObjectResolvingEList<ModelElement>(ModelElement.class, this,
+			affectedContainers = new EObjectResolvingEList<UnicaseModelElement>(UnicaseModelElement.class, this,
 				ProfilePackage.PROFILE__AFFECTED_CONTAINERS);
 		}
 		return affectedContainers;
@@ -154,7 +154,7 @@ public class ProfileImpl extends ModelElementImpl implements Profile {
 		switch (featureID) {
 		case ProfilePackage.PROFILE__AFFECTED_CONTAINERS:
 			getAffectedContainers().clear();
-			getAffectedContainers().addAll((Collection<? extends ModelElement>) newValue);
+			getAffectedContainers().addAll((Collection<? extends UnicaseModelElement>) newValue);
 			return;
 		case ProfilePackage.PROFILE__STEREOTYPES:
 			getStereotypes().clear();

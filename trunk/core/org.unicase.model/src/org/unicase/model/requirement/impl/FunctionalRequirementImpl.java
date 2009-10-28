@@ -17,7 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.EObjectWithInverseResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.requirement.RequirementPackage;
@@ -46,7 +46,7 @@ import org.unicase.model.requirement.UseCase;
  * 
  * @generated
  */
-public class FunctionalRequirementImpl extends ModelElementImpl implements FunctionalRequirement {
+public class FunctionalRequirementImpl extends UnicaseModelElementImpl implements FunctionalRequirement {
 
 	/**
 	 * The default value of the '{@link #getStoryPoints() <em>Story Points</em>}' attribute. <!-- begin-user-doc -->

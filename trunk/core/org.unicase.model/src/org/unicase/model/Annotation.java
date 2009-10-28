@@ -20,12 +20,12 @@ import org.eclipse.emf.common.util.EList;
  * @model abstract="true"
  * @generated
  */
-public interface Annotation extends ModelElement {
+public interface Annotation extends UnicaseModelElement {
 
 	/**
 	 * Returns the value of the '<em><b>Annotated Model Elements</b></em>' reference list. The list contents are of type
-	 * {@link org.unicase.model.ModelElement}. It is bidirectional and its opposite is '
-	 * {@link org.unicase.model.ModelElement#getAnnotations <em>Annotations</em>}'. <!-- begin-user-doc -->
+	 * {@link org.unicase.model.UnicaseModelElement}. It is bidirectional and its opposite is '
+	 * {@link org.unicase.model.UnicaseModelElement#getAnnotations <em>Annotations</em>}'. <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Annotated Model Elements</em>' reference list isn't clear, there really should be more
 	 * of a description here...
@@ -34,10 +34,10 @@ public interface Annotation extends ModelElement {
 	 * 
 	 * @return the value of the '<em>Annotated Model Elements</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getAnnotation_AnnotatedModelElements()
-	 * @see org.unicase.model.ModelElement#getAnnotations
+	 * @see org.unicase.model.UnicaseModelElement#getAnnotations
 	 * @model opposite="annotations" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='90.0' position='right'"
 	 * @generated
 	 */
-	EList<ModelElement> getAnnotatedModelElements();
+	EList<UnicaseModelElement> getAnnotatedModelElements();
 } // Annotation

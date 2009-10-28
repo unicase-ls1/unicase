@@ -19,7 +19,8 @@ import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IPersistableElement;
 import org.eclipse.ui.PlatformUI;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -31,7 +32,7 @@ import org.unicase.workspace.util.UnicaseCommand;
  */
 public class MEEditorInput implements IEditorInput {
 
-	private ModelElement modelElement;
+	private UnicaseModelElement modelElement;
 	private EStructuralFeature problemFeature;
 	private DecoratingLabelProvider labelProvider;
 
@@ -40,7 +41,7 @@ public class MEEditorInput implements IEditorInput {
 	 * 
 	 * @param me the modelElement
 	 */
-	public MEEditorInput(ModelElement me) {
+	public MEEditorInput(UnicaseModelElement me) {
 		super();
 		this.modelElement = me;
 		if (modelElement.getName() == null) {
@@ -89,7 +90,7 @@ public class MEEditorInput implements IEditorInput {
 	 * @param me the modelElement
 	 * @param problemFeature the feature having a problem
 	 */
-	public MEEditorInput(ModelElement me, EStructuralFeature problemFeature) {
+	public MEEditorInput(UnicaseModelElement me, EStructuralFeature problemFeature) {
 		this(me);
 		this.problemFeature = problemFeature;
 	}
@@ -137,7 +138,7 @@ public class MEEditorInput implements IEditorInput {
 	 * 
 	 * @return the modelElement
 	 */
-	public ModelElement getModelElement() {
+	public UnicaseModelElement getModelElement() {
 		return modelElement;
 	}
 
@@ -146,7 +147,7 @@ public class MEEditorInput implements IEditorInput {
 	 * 
 	 * @param modelElement the modelElement
 	 */
-	public void setModelElement(ModelElement modelElement) {
+	public void setModelElement(UnicaseModelElement modelElement) {
 		this.modelElement = modelElement;
 	}
 

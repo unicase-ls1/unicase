@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.DeploymentNode;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Node</b></em>'. <!-- end-user-doc -->
@@ -26,7 +26,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public class DeploymentNodeImpl extends ModelElementImpl implements DeploymentNode {
+public class DeploymentNodeImpl extends UnicaseModelElementImpl implements DeploymentNode {
 	/**
 	 * The cached value of the '{@link #getComponents() <em>Components</em>}' reference list. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

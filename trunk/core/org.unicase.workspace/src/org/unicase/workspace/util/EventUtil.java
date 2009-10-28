@@ -12,8 +12,8 @@ import org.unicase.emfstore.esmodel.versioning.events.DNDEvent;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
 import org.unicase.emfstore.esmodel.versioning.events.PluginFocusEvent;
 import org.unicase.emfstore.esmodel.versioning.events.PresentationSwitchEvent;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
-import org.unicase.model.ModelElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
 

@@ -13,7 +13,7 @@ import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.classes.Association;
 import org.unicase.model.classes.AssociationType;
 import org.unicase.model.classes.ClassesPackage;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Association</b></em>'. <!-- end-user-doc -->
@@ -32,7 +32,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public class AssociationImpl extends ModelElementImpl implements Association {
+public class AssociationImpl extends UnicaseModelElementImpl implements Association {
 	/**
 	 * The cached value of the '{@link #getSource() <em>Source</em>}' reference. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->

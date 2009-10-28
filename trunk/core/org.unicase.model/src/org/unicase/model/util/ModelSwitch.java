@@ -9,16 +9,16 @@ import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.ModelVersion;
+import org.unicase.metamodel.Project;
+import org.unicase.metamodel.UniqueIdentifier;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
-import org.unicase.model.IdentifiableElement;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.ModelVersion;
 import org.unicase.model.NonDomainElement;
-import org.unicase.model.Project;
-import org.unicase.model.UniqueIdentifier;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call
@@ -85,7 +85,7 @@ public class ModelSwitch<T> {
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
 		case ModelPackage.MODEL_ELEMENT: {
-			ModelElement modelElement = (ModelElement) theEObject;
+			UnicaseModelElement modelElement = (UnicaseModelElement) theEObject;
 			T result = caseModelElement(modelElement);
 			if (result == null)
 				result = caseIdentifiableElement(modelElement);
@@ -173,7 +173,7 @@ public class ModelSwitch<T> {
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelElement(ModelElement object) {
+	public T caseModelElement(UnicaseModelElement object) {
 		return null;
 	}
 

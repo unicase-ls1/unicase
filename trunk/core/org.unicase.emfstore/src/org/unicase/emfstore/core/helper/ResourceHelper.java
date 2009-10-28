@@ -21,7 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.StorageException;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 /**
  * Helper for creating resources etc.

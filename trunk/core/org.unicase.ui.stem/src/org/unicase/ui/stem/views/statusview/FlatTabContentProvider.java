@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.util.TaxonomyAccess;
 
 /**
@@ -37,9 +37,9 @@ public class FlatTabContentProvider extends AdapterFactoryContentProvider {
 	 */
 	@Override
 	public Object[] getElements(Object object) {
-		if (object instanceof ModelElement) {
-			ModelElement me = (ModelElement) object;
-			Set<ModelElement> result = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(me);
+		if (object instanceof UnicaseModelElement) {
+			UnicaseModelElement me = (UnicaseModelElement) object;
+			Set<UnicaseModelElement> result = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(me);
 			return result.toArray(new Object[result.size()]);
 
 		} else {

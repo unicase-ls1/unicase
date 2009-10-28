@@ -5,7 +5,7 @@
  */
 package org.unicase.emfstore.esmodel.versioning.operations;
 
-import org.unicase.model.UniqueIdentifier;
+import org.unicase.metamodel.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Operation Id</b></em>'. <!-- end-user-doc -->

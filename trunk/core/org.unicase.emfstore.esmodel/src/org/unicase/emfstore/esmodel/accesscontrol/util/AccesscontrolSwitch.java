@@ -15,8 +15,8 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.model.IdentifiableElement;
-import org.unicase.model.UniqueIdentifier;
+import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.UniqueIdentifier;
 
 /**
  * <!-- begin-user-doc --> The <b>Switch</b> for the model's inheritance hierarchy. It supports the call

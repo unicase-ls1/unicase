@@ -27,10 +27,11 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 import org.unicase.model.util.ModelUtil;
+import org.unicase.ui.common.util.UnicaseUiUtil;
 
 /**
  * A helper class for the visualization of change packages.
@@ -362,11 +363,10 @@ public class ChangePackageVisualizationHelper {
 
 		StringBuilder stringBuilder = new StringBuilder();
 		stringBuilder.append(modelElement.eClass().getName());
-		if (modelElement.getName() != null) {
-			stringBuilder.append(" \"");
-			stringBuilder.append(modelElement.getName());
-			stringBuilder.append("\" ");
-		}
+		stringBuilder.append(" \"");
+		stringBuilder
+				.append(UnicaseUiUtil.getNameForModelElement(modelElement));
+		stringBuilder.append("\" ");
 		String elementClassAndName = stringBuilder.toString();
 		if (op.isDelete()) {
 			description = "Deleted " + elementClassAndName;
@@ -593,7 +593,9 @@ public class ChangePackageVisualizationHelper {
 		if (modelElement == null) {
 			return "(unkown element)";
 		}
-		return modelElement.eClass().getName() + " \""
-				+ trim(modelElement.getName(), true) + "\"";
+		return modelElement.eClass().getName()
+				+ " \""
+				+ trim(UnicaseUiUtil.getNameForModelElement(modelElement), true)
+				+ "\"";
 	}
 }

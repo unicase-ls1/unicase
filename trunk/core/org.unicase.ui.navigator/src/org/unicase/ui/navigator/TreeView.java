@@ -43,9 +43,10 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.ViewPart;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
@@ -243,14 +244,14 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 		}
 
 		MEEditor meEditor = (MEEditor) editor;
-		ModelElement me = (ModelElement) meEditor.getEditorInput().getAdapter(ModelElement.class);
+		UnicaseModelElement me = (UnicaseModelElement) meEditor.getEditorInput().getAdapter(UnicaseModelElement.class);
 		if (me != null) {
 			revealME(me);
 		}
 
 	}
 
-	private void revealME(ModelElement me) {
+	private void revealME(UnicaseModelElement me) {
 
 		if (me == null) {
 			return;
@@ -296,8 +297,9 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 						linkWithEditor(obj);
 					}
 
-					if (obj instanceof ModelElement) {
-						getViewSite().getActionBars().getStatusLineManager().setMessage(((ModelElement) obj).getName());
+					if (obj instanceof UnicaseModelElement) {
+						getViewSite().getActionBars().getStatusLineManager().setMessage(
+							((UnicaseModelElement) obj).getName());
 					}
 				}
 			}
@@ -315,11 +317,11 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 		if (selectedME == null) {
 			return;
 		}
-		if (!(selectedME instanceof ModelElement)) {
+		if (!(selectedME instanceof UnicaseModelElement)) {
 			return;
 		}
 
-		ModelElement me = (ModelElement) selectedME;
+		UnicaseModelElement me = (UnicaseModelElement) selectedME;
 		if (!isEditorOpen(me)) {
 			return;
 		} else {
@@ -332,12 +334,12 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	 * 
 	 * @param selectedME
 	 */
-	private void activateEditor(ModelElement selectedME) {
+	private void activateEditor(UnicaseModelElement selectedME) {
 		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
 			Object editorInput = null;
 			try {
 
-				editorInput = editorRef.getEditorInput().getAdapter(ModelElement.class);
+				editorInput = editorRef.getEditorInput().getAdapter(UnicaseModelElement.class);
 			} catch (PartInitException e) {
 				e.printStackTrace();
 			}
@@ -354,12 +356,12 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 	 * @param selectedME
 	 * @return
 	 */
-	private boolean isEditorOpen(ModelElement selectedME) {
+	private boolean isEditorOpen(UnicaseModelElement selectedME) {
 		for (IEditorReference editorRef : getSite().getPage().getEditorReferences()) {
 			Object editorInput = null;
 			try {
 
-				editorInput = editorRef.getEditorInput().getAdapter(ModelElement.class);
+				editorInput = editorRef.getEditorInput().getAdapter(UnicaseModelElement.class);
 			} catch (PartInitException e) {
 				e.printStackTrace();
 			}
@@ -377,8 +379,8 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 			return;
 		}
 		final ProjectSpace projectSpace;
-		if (obj instanceof ModelElement) {
-			ModelElement me = (ModelElement) obj;
+		if (obj instanceof UnicaseModelElement) {
+			UnicaseModelElement me = (UnicaseModelElement) obj;
 			projectSpace = WorkspaceManager.getProjectSpace(me);
 		} else if (obj instanceof ProjectSpace) {
 			projectSpace = (ProjectSpace) obj;
@@ -584,19 +586,19 @@ public class TreeView extends ViewPart implements ProjectChangeObserver, ISelect
 		if (element == null) {
 			return;
 		}
-		if (element instanceof ModelElement) {
-			ModelElementId modelElementId = ((ModelElement) element).getModelElementId();
-			revealME(project.getModelElement(modelElementId));
+		if (element instanceof UnicaseModelElement) {
+			ModelElementId modelElementId = ((UnicaseModelElement) element).getModelElementId();
+			revealME((UnicaseModelElement) project.getModelElement(modelElementId));
 		} else if (element instanceof CompositeOperation) {
 			CompositeOperation comop = (CompositeOperation) element;
 			AbstractOperation mainOperation = comop.getMainOperation();
 			if (mainOperation != null) {
 				ModelElementId modelElementId = mainOperation.getModelElementId();
-				revealME(project.getModelElement(modelElementId));
+				revealME((UnicaseModelElement) project.getModelElement(modelElementId));
 			}
 		} else if (element instanceof AbstractOperation) {
 			ModelElementId modelElementId = ((AbstractOperation) element).getModelElementId();
-			revealME(project.getModelElement(modelElementId));
+			revealME((UnicaseModelElement) project.getModelElement(modelElementId));
 		}
 
 	}

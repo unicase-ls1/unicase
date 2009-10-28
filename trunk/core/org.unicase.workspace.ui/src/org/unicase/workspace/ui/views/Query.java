@@ -10,7 +10,7 @@ import java.util.Date;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EClass;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.organization.User;
 
 /**

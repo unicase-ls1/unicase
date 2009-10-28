@@ -11,7 +11,7 @@ import java.util.Map;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * Wraps the relevance around an element if present.
@@ -20,14 +20,14 @@ import org.unicase.model.ModelElement;
  */
 public class RelevanceWrappedLabelProvider extends AdapterFactoryLabelProvider {
 
-	private Map<ModelElement, Double> relevanceValues;
+	private Map<UnicaseModelElement, Double> relevanceValues;
 
 	/**
 	 * The constructor.
 	 * 
 	 * @param relevanceVals the relevance map: element->double value
 	 */
-	public RelevanceWrappedLabelProvider(Map<ModelElement, Double> relevanceVals) {
+	public RelevanceWrappedLabelProvider(Map<UnicaseModelElement, Double> relevanceVals) {
 		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		this.relevanceValues = relevanceVals;
 	}
@@ -42,7 +42,7 @@ public class RelevanceWrappedLabelProvider extends AdapterFactoryLabelProvider {
 	@Override
 	public String getText(Object o) {
 		String text = super.getText(o);
-		if (o instanceof ModelElement) {
+		if (o instanceof UnicaseModelElement) {
 			Double sim = relevanceValues.get(o);
 			if (sim != null) {
 				return text + " (Relevance: " + formatDouble(sim) + ")";

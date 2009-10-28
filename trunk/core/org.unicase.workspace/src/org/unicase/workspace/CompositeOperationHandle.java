@@ -8,7 +8,7 @@ package org.unicase.workspace;
 import java.util.Date;
 
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElementId;
 import org.unicase.workspace.exceptions.InvalidHandleException;
 import org.unicase.workspace.impl.ProjectChangeTracker;
 

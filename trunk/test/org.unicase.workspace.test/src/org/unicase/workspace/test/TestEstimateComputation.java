@@ -11,9 +11,10 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import org.junit.Test;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.Project;
 import org.unicase.model.ModelFactory;
-import org.unicase.model.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
@@ -50,7 +51,7 @@ public class TestEstimateComputation extends TestCase {
 		if (parent instanceof WorkPackage) {
 			((WorkPackage) parent).getContainedWorkItems().add(workPackage);
 		}
-		workPackage.setName("New WorkPackage relating " + parent.getName());
+		workPackage.setName("New WorkPackage relating " + ((UnicaseModelElement) parent).getName());
 		return workPackage;
 
 	}
@@ -63,9 +64,9 @@ public class TestEstimateComputation extends TestCase {
 			((WorkPackage) parent).getContainedWorkItems().add(ai);
 		} else {
 			project.addModelElement(ai);
-			parent.getAnnotations().add(ai);
+			((UnicaseModelElement) parent).getAnnotations().add(ai);
 		}
-		ai.setName("New ActionItem relating " + parent.getName());
+		ai.setName("New ActionItem relating " + ((UnicaseModelElement) parent).getName());
 		// ai.setAssignee(user);
 		return ai;
 

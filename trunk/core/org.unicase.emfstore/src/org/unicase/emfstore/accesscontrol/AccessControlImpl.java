@@ -31,7 +31,7 @@ import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidPropertyException;
 import org.unicase.emfstore.exceptions.SessionTimedOutException;
-import org.unicase.model.ModelElement;
+import org.unicase.metamodel.ModelElement;
 
 /**
  * A simple implementation of Authentication and Authorization Control.

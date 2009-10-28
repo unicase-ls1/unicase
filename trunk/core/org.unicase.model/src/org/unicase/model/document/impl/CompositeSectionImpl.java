@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.document.Section;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Composite Section</b></em>'. <!-- end-user-doc
@@ -34,7 +34,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public class CompositeSectionImpl extends ModelElementImpl implements CompositeSection {
+public class CompositeSectionImpl extends UnicaseModelElementImpl implements CompositeSection {
 
 	/**
 	 * The cached value of the '{@link #getSubsections() <em>Subsections</em>}' containment reference list. <!--

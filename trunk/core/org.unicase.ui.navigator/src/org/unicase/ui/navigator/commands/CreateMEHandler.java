@@ -12,7 +12,7 @@ import org.eclipse.core.commands.IHandler;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.document.LeafSection;
@@ -53,9 +53,9 @@ public class CreateMEHandler extends AbstractHandler implements IHandler {
 		Object o = event.getObjectParameterForExecution(COMMAND_ECLASS_PARAM);
 		if (o instanceof EClass) {
 			EClass newMEType = (EClass) o;
-			final ModelElement newMEInstance;
+			final UnicaseModelElement newMEInstance;
 			// create a new model element from this EClass
-			newMEInstance = (ModelElement) newMEType.getEPackage().getEFactoryInstance().create(newMEType);
+			newMEInstance = (UnicaseModelElement) newMEType.getEPackage().getEFactoryInstance().create(newMEType);
 			newMEInstance.setName("new " + newMEType.getName());
 
 			// if model element if MEDiagram, set the diagram type

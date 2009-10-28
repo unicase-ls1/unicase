@@ -6,7 +6,7 @@
 package org.unicase.model.profile;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Stereotype</b></em>'. <!-- end-user-doc -->
@@ -24,7 +24,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Stereotype extends ModelElement {
+public interface Stereotype extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Required</b></em>' attribute. <!-- begin-user-doc -->
 	 * <p>

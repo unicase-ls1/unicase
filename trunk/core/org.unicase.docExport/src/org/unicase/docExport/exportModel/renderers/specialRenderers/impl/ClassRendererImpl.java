@@ -26,7 +26,7 @@ import org.unicase.docExport.exportModel.renderers.elements.UTable;
 import org.unicase.docExport.exportModel.renderers.impl.ModelElementRendererImpl;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.ClassRenderer;
 import org.unicase.docExport.exportModel.renderers.specialRenderers.SpecialRenderersPackage;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.classes.Association;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -60,7 +60,7 @@ public class ClassRendererImpl extends ModelElementRendererImpl implements Class
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected void doRender(ModelElement modelElement, UCompositeSection parent) {
+	protected void doRender(UnicaseModelElement modelElement, UCompositeSection parent) {
 		// Render title and description
 		USection modelElementSection = new USection();
 		parent.add(modelElementSection);

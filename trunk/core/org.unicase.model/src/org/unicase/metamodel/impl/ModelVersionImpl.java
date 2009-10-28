@@ -3,21 +3,21 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.model.impl;
+package org.unicase.metamodel.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+import org.unicase.metamodel.ModelVersion;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.ModelVersion;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Version</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.unicase.model.impl.ModelVersionImpl#getReleaseNumber <em>Release Number</em>}</li>
+ * <li>{@link org.unicase.metamodel.impl.ModelVersionImpl#getReleaseNumber <em>Release Number</em>}</li>
  * </ul>
  * </p>
  * 
@@ -49,7 +49,7 @@ public class ModelVersionImpl extends EObjectImpl implements ModelVersion {
 	 * 
 	 * @generated
 	 */
-	protected ModelVersionImpl() {
+	public ModelVersionImpl() {
 		super();
 	}
 

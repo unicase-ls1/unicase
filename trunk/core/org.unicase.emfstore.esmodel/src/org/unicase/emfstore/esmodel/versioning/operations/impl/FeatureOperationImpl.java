@@ -17,9 +17,9 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Feature Operation</b></em>'. <!-- end-user-doc
@@ -203,7 +203,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeature(org.unicase.model.Project)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeature(org.unicase.metamodel.Project)
 	 * @generated NOT
 	 */
 	public EStructuralFeature getFeature(Project project) throws UnkownFeatureException {
@@ -263,7 +263,7 @@ public abstract class FeatureOperationImpl extends AbstractOperationImpl impleme
 	 * {@inheritDoc}
 	 * 
 	 * @generated NOT
-	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeature(org.unicase.model.ModelElement)
+	 * @see org.unicase.emfstore.esmodel.versioning.operations.FeatureOperation#getFeature(org.unicase.metamodel.ModelElement)
 	 */
 	public EStructuralFeature getFeature(ModelElement modelElement) throws UnkownFeatureException {
 		if (!modelElement.getIdentifier().equals(this.getModelElementId().getId())) {

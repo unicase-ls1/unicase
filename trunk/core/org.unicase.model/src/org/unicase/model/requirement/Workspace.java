@@ -6,7 +6,7 @@
 package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Workspace</b></em>'. <!-- end-user-doc -->
@@ -21,7 +21,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Workspace extends ModelElement {
+public interface Workspace extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>System Functions</b></em>' reference list. The list contents are of type
 	 * {@link org.unicase.model.requirement.SystemFunction}. It is bidirectional and its opposite is '

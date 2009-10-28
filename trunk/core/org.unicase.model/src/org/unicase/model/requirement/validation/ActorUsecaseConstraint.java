@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.validation.AbstractModelConstraint;
 import org.eclipse.emf.validation.EMFEventType;
 import org.eclipse.emf.validation.IValidationContext;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.util.ValidationConstraintHelper;
@@ -40,7 +40,7 @@ public class ActorUsecaseConstraint extends AbstractModelConstraint {
 				if (useCases.size() < 1 && useCases2.size() < 1) {
 					// HN: extend to both
 					EStructuralFeature errorFeature = ValidationConstraintHelper.getErrorFeatureForModelElement(
-						(ModelElement) eObj, "initiatedUseCases");
+						(UnicaseModelElement) eObj, "initiatedUseCases");
 					ctx.addResult(errorFeature);
 					return ctx.createFailureStatus(new Object[] { eObj.eClass().getName() + ": '"
 						+ ((Actor) eObj).getName() + "'" });

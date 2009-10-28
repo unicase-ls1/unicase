@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.unicase.model.change.ChangePackage;
 import org.unicase.model.change.ModelChangePackage;
-import org.unicase.model.impl.ModelElementImpl;
+import org.unicase.model.impl.UnicaseModelElementImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Model Change Package</b></em>'. <!--
@@ -25,7 +25,7 @@ import org.unicase.model.impl.ModelElementImpl;
  * 
  * @generated
  */
-public class ModelChangePackageImpl extends ModelElementImpl implements ModelChangePackage {
+public class ModelChangePackageImpl extends UnicaseModelElementImpl implements ModelChangePackage {
 	/**
 	 * The default value of the '{@link #getSourceVersion() <em>Source Version</em>}' attribute. <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

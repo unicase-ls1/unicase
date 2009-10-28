@@ -6,7 +6,7 @@
 package org.unicase.model.requirement;
 
 import org.eclipse.emf.common.util.EList;
-import org.unicase.model.ModelElement;
+import org.unicase.model.UnicaseModelElement;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Actor</b></em>'. <!-- end-user-doc -->
@@ -25,7 +25,7 @@ import org.unicase.model.ModelElement;
  * @model
  * @generated
  */
-public interface Actor extends ModelElement {
+public interface Actor extends UnicaseModelElement {
 	/**
 	 * Returns the value of the '<em><b>Initiated User Task</b></em>' reference. It is bidirectional and its opposite is
 	 * '{@link org.unicase.model.requirement.UserTask#getInitiatingActor <em>Initiating Actor</em>}'. <!--
