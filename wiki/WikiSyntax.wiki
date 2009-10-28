@@ -34,5 +34,12 @@ The unicase project also uses specific Java formatting settings to avoid whitesp
    # Select Java/Code Style/Formatter
    # Select "Import..."
    # Choose the unicase formatter file found in the org.unicase.developer plugin under formatting/unicaseFormatter.xml or here:
-      Download file "unicaseFormatter.xml"
+      Download file [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/e0bf5/attachments/1fd77/unicaseFormatter.xml "unicaseFormatter.xml"]
    # Confirm with ok
+
+
+Now the unicase specific autoformatting rules should be applied everytime format is called.
+
+The coding guidelines may not be very sensible in some situations, please discuss them with us on the mailinglist if you feel the guidelines should be changed. However this is no excuse unless the guidelines are changed... ;)
+
+Please note that both the Eclipse java guidelines and the Checkstyle settings are workspace specific and not global for your Eclipse installation.
