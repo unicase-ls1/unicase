@@ -1,9 +1,6 @@
 #summary This page gives a clear idea of coding guidelines followed by Unicase developer.
 
-= Introduction =
-
-Add your content here.
-
+*NOTE: Generally coding guidelines apply only for the code that was not generated. *
 
 = Details =
     *  It is always a good practice to add "// begin of custom code" before (including the javadoc) and a "// end of custom code" after your custom code in generated emf classes. This helps checkstyle to exactly match generated and custom code and it also helps a reviewer to identify custom code.
