@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Link
+Bundle-SymbolicName: org.unicase.link; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.link.Activator
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
