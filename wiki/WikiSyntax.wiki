@@ -3,10 +3,10 @@
     *  It is always a good practice to add "// begin of custom code" before (including the javadoc) and a "// end of custom code" after your custom code in generated emf classes.<br> This helps checkstyle to exactly match generated and custom code and it also helps a reviewer to identify custom code.
     * Please add comments wherever you feel might be useful for you, and others.
     * Always give valid description about any significant modification in the code while committing the project in the repository.
-    * We use Task-Tags with the initials of the developers to assign code related tasks, see this blog entry for details.
+    * We use Task-Tags with the initials of the developers to assign code related tasks, see [https://teambruegge.informatik.tu-muenchen.de/groups/unicase/weblog/8da05/Action_Items_in_the_code__TaskTags.html this blog] entry for details.
 
 
-We use checkstyle to check code against our coding guidelines and for code formatting, we use default Eclipse formatter (Eclipse (built-in)).Please install the Eclipse checkstyle plugin from the update site given in Getting started section of this wiki. Please also checkout the developer folder from our repository (trunk/developer), since it contains the coding guidelines.
+We use checkstyle to check code against our coding guidelines and for code formatting, we use default Eclipse formatter (Eclipse (built-in)).Please install the Eclipse checkstyle plugin from the update site given in [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/55cea/Getting_started.html Getting started] section of this wiki. Please also checkout the developer folder from our repository (trunk/developer), since it contains the coding guidelines.
 
 
 *Please configure checkstyle as follows (also see screenshot below):*
@@ -40,6 +40,9 @@ The unicase project also uses specific Java formatting settings to avoid whitesp
 
 Now the unicase specific autoformatting rules should be applied everytime format is called.
 
-The coding guidelines may not be very sensible in some situations, please discuss them with us on the mailinglist if you feel the guidelines should be changed. However this is no excuse unless the guidelines are changed... ;)
+The coding guidelines may not be very sensible in some situations, please discuss them with us on the [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/9402d/Mailinglist.html mailinglist] if you feel the guidelines should be changed. However this is no excuse unless the guidelines are changed... ;)
 
 Please note that both the Eclipse java guidelines and the Checkstyle settings are workspace specific and not global for your Eclipse installation.
+
+
+http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/e0bf5/images/688c6.png#617x447
