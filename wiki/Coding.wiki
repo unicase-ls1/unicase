@@ -1,4 +1,4 @@
-Coding Guidelines<br> http://upload.wikimedia.org/wikipedia/commons/archive/5/52/20070908082516!☑.svg
+Coding Guidelines<br>
 Model API Usage Guidelines <br>
 Exception Handling Guidelines <br>
 Server request Guidelines <br>
