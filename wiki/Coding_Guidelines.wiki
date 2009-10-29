@@ -34,7 +34,7 @@ The unicase project also uses specific Java formatting settings to avoid whitesp
    # Select Java/Code Style/Formatter
    # Select "Import..."
    # Choose the unicase formatter file found in the org.unicase.developer plugin under formatting/unicaseFormatter.xml or here:
-      Download file [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/e0bf5/attachments/1fd77/unicaseFormatter.xml "unicaseFormatter.xml"]
+      Download file [http://unicase.googlecode.com/files/unicaseFormatter.xml "unicaseFormatter.xml"]
    # Confirm with ok
 
 
