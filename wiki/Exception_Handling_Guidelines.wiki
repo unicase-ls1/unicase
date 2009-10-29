@@ -2,7 +2,7 @@ _*This page is still prelimiary in the client exception handling section.*_
 
 ===General exception handling policy:===
 
-    *  <FONT COLOR="ff0000">*Do NOT* </FONT> catch Exception or RuntimeException or any subtype of RuntimeException (there is only very very few exceptions to that rule). By catching these you will mask other errors and make debugging much more difficult.
+    *  <font COLOR="ff0000">Do NOT </font> catch Exception or RuntimeException or any subtype of RuntimeException (there is only very very few exceptions to that rule). By catching these you will mask other errors and make debugging much more difficult.
 
 <p>*There is only two things you can do with an exception:* </p>
 
