@@ -47,4 +47,4 @@ Please note that both the Eclipse java guidelines and the Checkstyle settings ar
 
 <br>
 
-http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/e0bf5/images/688c6.png#617x447
+http://unicase.googlecode.com/files/688c6.png
