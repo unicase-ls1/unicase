@@ -1,0 +1,2 @@
+==MEDiagram ID's==
+We have one common model (MEDiagram) for all the diagrams in unicase. To differentiate the different diagrams, each one gets a Visual ID (see picture below). Before generating diagram code, one has to make sure that the "Visual ID" in the *.gmfgen file is set to an unused value.
