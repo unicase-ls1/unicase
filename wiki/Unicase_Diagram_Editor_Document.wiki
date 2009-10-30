@@ -134,9 +134,51 @@ return document;
 
 
  * We need to override the method dispose in ModelDocumentProvider, otherwise the editor disposes our editingDomain
- * If we use an Association Class, we have to modify the XXXCreatCommand Constructor like this (you have to modify all callers, too):
-We have to centralize entries to the following extensionpoint in org.unicase.common:
+ * If we use an Association Class, we have to modify the XXXCreatCommand Constructor like this (you have to modify all callers, too): 
+ * We have to centralize entries to the following extensionpoint in org.unicase.common:
 
     *_<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">_*
 
-That means we have to copy all entries under "<binding context>" to the corresponding extension point in org.unicase.common and then delete the extension point in the diagram
+That means we have to copy all entries under "<binding context>" to the corresponding extension point in org.unicase.common and then delete the extension point in the diagram.
+
+
+{{{
+
+
+public XXXCreateCommand(CreateRelationshipRequest request,EObject source, EObject target) {
+		super(request);
+		this.source = source;
+		this.target = target;
+		if (request.getContainmentFeature() == null) {
+			setContainmentFeature(DiagramPackage.eINSTANCE
+					.getMEDiagram_NewElements());
+		}
+
+		// Find container element for the new link.
+		// Climb up by containment hierarchy starting from the source
+		// and return the first element that is instance of the container class.
+		for (EObject element = source; element != null; element = element
+				.eContainer()) {
+			if (element instanceof MEDiagram) {
+				container = (MEDiagram) element;
+				super.setElementToEdit(container);
+				break;
+			}
+		}
+	}
+
+}}}
+
+ * Forbid save as in Editor:
+
+{{{
+/**
+* @generated NOT
+*/
+public boolean isSaveAsAllowed() {
+return false;
+}
+
+}}}
+
+ * Dont forget to mark all modified methods as Generated NOT
