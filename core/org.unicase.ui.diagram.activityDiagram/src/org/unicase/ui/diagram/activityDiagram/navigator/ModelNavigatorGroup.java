@@ -6,8 +6,7 @@ import java.util.LinkedList;
 /**
  * @generated
  */
-public class ModelNavigatorGroup extends
-		org.unicase.ui.diagram.activityDiagram.navigator.ModelAbstractNavigatorItem {
+public class ModelNavigatorGroup extends org.unicase.ui.diagram.activityDiagram.navigator.ModelAbstractNavigatorItem {
 
 	/**
 	 * @generated

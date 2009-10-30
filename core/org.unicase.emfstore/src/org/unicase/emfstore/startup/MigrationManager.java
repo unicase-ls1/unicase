@@ -21,10 +21,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.unicase.emfstore.ServerConfiguration;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelVersion;
-import org.unicase.metamodel.impl.ModelVersionImpl;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.ModelPackage;
 
 import edu.tum.cs.cope.migration.execution.MigrationException;
 import edu.tum.cs.cope.migration.execution.Migrator;
@@ -48,7 +47,7 @@ public class MigrationManager {
 		// check for legacy server space
 		File versionFile = new File(ServerConfiguration.getModelReleaseNumberFileName());
 		if (!versionFile.exists()) {
-			stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
+			stampCurrentVersionNumber(MetamodelPackage.RELEASE_NUMBER);
 		}
 
 		// check if we need to migrate
@@ -63,11 +62,11 @@ public class MigrationManager {
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
 			// resource can not be loaded, assume version number before metamodel split
-			modelVersion = new ModelVersionImpl();
+			modelVersion = MetamodelFactory.eINSTANCE.createModelVersion();
 			modelVersion.setReleaseNumber(3);
 		}
 
-		if (modelVersion.getReleaseNumber() == ModelPackage.RELEASE_NUMBER) {
+		if (modelVersion.getReleaseNumber() == MetamodelPackage.RELEASE_NUMBER) {
 			return;
 		}
 
@@ -106,7 +105,7 @@ public class MigrationManager {
 				// convertAllBackupStates(modelVersion, projectDirectory, listFiles);
 			}
 		}
-		stampCurrentVersionNumber(ModelPackage.RELEASE_NUMBER);
+		stampCurrentVersionNumber(MetamodelPackage.RELEASE_NUMBER);
 	}
 
 	private void convertInitialProjectState(ModelVersion modelVersion, File projectDirectory)
@@ -226,7 +225,7 @@ public class MigrationManager {
 	private void stampCurrentVersionNumber(int modelReleaseNumber) {
 		URI versionFileUri = URI.createFileURI(ServerConfiguration.getModelReleaseNumberFileName());
 		Resource versionResource = new ResourceSetImpl().createResource(versionFileUri);
-		ModelVersion modelVersion = ModelFactory.eINSTANCE.createModelVersion();
+		ModelVersion modelVersion = MetamodelFactory.eINSTANCE.createModelVersion();
 		modelVersion.setReleaseNumber(modelReleaseNumber);
 		versionResource.getContents().add(modelVersion);
 		try {

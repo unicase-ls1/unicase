@@ -153,8 +153,8 @@ public class FileAttachmentItemProvider extends AttachmentItemProvider implement
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_SIZE:
 		case AttachmentPackage.FILE_ATTACHMENT__REQUIRED_OFFLINE:
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
-		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
 		case AttachmentPackage.FILE_ATTACHMENT__UPLOADING:
+		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

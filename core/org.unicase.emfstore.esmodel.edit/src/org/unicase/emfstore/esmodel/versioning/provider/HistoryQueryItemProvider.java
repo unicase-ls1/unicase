@@ -25,7 +25,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.HistoryQuery;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-import org.unicase.model.ModelFactory;
+import org.unicase.metamodel.MetamodelFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.HistoryQuery} object. <!--
@@ -183,7 +183,7 @@ public class HistoryQueryItemProvider extends ItemProviderAdapter implements IEd
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.HISTORY_QUERY__MODEL_ELEMENTS,
-			ModelFactory.eINSTANCE.createModelElementId()));
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**

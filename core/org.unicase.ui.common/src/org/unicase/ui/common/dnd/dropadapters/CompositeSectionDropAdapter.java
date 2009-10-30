@@ -38,8 +38,8 @@ public class CompositeSectionDropAdapter extends MEDropAdapter {
 	 *      java.util.List, org.unicase.metamodel.ModelElement, org.unicase.metamodel.UnicaseModelElement)
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source, UnicaseModelElement target,
-		UnicaseModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source,
+		UnicaseModelElement target, UnicaseModelElement dropee) {
 
 		boolean result = super.canDrop(eventFeedback, event, source, target, dropee);
 

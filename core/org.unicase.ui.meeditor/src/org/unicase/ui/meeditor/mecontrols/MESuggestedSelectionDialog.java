@@ -57,8 +57,8 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	 * @param baseElement The element, to which the selection is made and to which other elements are compared.
 	 * @param reference the reference for which this is used
 	 */
-	public MESuggestedSelectionDialog(String title, String message, boolean blockOnOpen, UnicaseModelElement baseElement,
-		EReference reference, Collection<UnicaseModelElement> elements) {
+	public MESuggestedSelectionDialog(String title, String message, boolean blockOnOpen,
+		UnicaseModelElement baseElement, EReference reference, Collection<UnicaseModelElement> elements) {
 		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), reference.isMany());
 		setTitle(title);
 		setMessage(message);

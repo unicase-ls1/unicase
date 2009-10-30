@@ -21,7 +21,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.impl.IdentifiableElementImpl;
-import org.unicase.model.util.ModelUtil;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Abstract Operation</b></em>'. <!-- end-user-doc

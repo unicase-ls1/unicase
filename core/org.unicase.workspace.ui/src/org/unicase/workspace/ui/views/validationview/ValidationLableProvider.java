@@ -27,8 +27,9 @@ public class ValidationLableProvider extends ColumnLabelProvider {
 	 */
 	public ValidationLableProvider() {
 		super();
-		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		this.adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**

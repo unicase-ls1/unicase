@@ -15,7 +15,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.workspace.util.EventUtil;
+import org.unicase.ui.common.util.EventUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**

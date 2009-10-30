@@ -28,7 +28,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.model.util.ModelUtil;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Multi Reference Operation</b></em>'. <!--

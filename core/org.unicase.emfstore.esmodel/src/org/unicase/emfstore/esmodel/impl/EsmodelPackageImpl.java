@@ -33,7 +33,7 @@ import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -138,7 +138,7 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		ModelPackage.eINSTANCE.eClass();
+		MetamodelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		VersioningPackageImpl theVersioningPackage = (VersioningPackageImpl) (EPackage.Registry.INSTANCE
@@ -478,7 +478,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		NotificationPackage theNotificationPackage = (NotificationPackage) EPackage.Registry.INSTANCE
 			.getEPackage(NotificationPackage.eNS_URI);
 		UrlPackage theUrlPackage = (UrlPackage) EPackage.Registry.INSTANCE.getEPackage(UrlPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theVersioningPackage);
@@ -491,8 +492,8 @@ public class EsmodelPackageImpl extends EPackageImpl implements EsmodelPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		sessionIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
-		projectIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
+		sessionIdEClass.getESuperTypes().add(theMetamodelPackage.getUniqueIdentifier());
+		projectIdEClass.getESuperTypes().add(theMetamodelPackage.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectHistoryEClass, ProjectHistory.class, "ProjectHistory", !IS_ABSTRACT, !IS_INTERFACE,

@@ -21,9 +21,9 @@ import org.eclipse.swt.widgets.TabFolder;
 import org.eclipse.swt.widgets.TabItem;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.metamodel.Project;
+import org.unicase.ui.common.util.EventUtil;
 import org.unicase.workspace.ui.views.scm.SCMContentProvider;
 import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
-import org.unicase.workspace.util.EventUtil;
 
 /**
  * A composite that contains multiple tabs displaying the operation from a

@@ -28,13 +28,10 @@ public abstract class ModelAbstractExpression {
 	 */
 	protected void setStatus(int severity, String message, Throwable throwable) {
 		String pluginID = org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.ID;
-		this.status = new Status(severity, pluginID, -1,
-				(message != null) ? message : "", throwable); //$NON-NLS-1$
+		this.status = new Status(severity, pluginID, -1, (message != null) ? message : "", throwable); //$NON-NLS-1$
 		if (!this.status.isOK()) {
-			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
+			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"Expression problem:" + message + "body:" + body(), throwable); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 	}
 
@@ -97,28 +94,27 @@ public abstract class ModelAbstractExpression {
 			try {
 				return doEvaluate(context, env);
 			} catch (Exception e) {
-				org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().logError(
-								"Expression evaluation failure: " + body(), e);//$NON-NLS-1$
+				org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+					"Expression evaluation failure: " + body(), e);//$NON-NLS-1$
 			}
 		}
 		return null;
 	}
 
 	/**
-	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer is expected), or EEnumLiteral meta-object when literal instance is expected
+	 * Expression may return number value which is not directly compatible with feature type (e.g. Double when Integer
+	 * is expected), or EEnumLiteral meta-object when literal instance is expected
+	 * 
 	 * @generated
 	 */
 	public static Object performCast(Object value, EDataType targetType) {
 		if (targetType instanceof EEnum) {
 			if (value instanceof EEnumLiteral) {
 				EEnumLiteral literal = (EEnumLiteral) value;
-				return (literal.getInstance() != null) ? literal.getInstance()
-						: literal;
+				return (literal.getInstance() != null) ? literal.getInstance() : literal;
 			}
 		}
-		if (false == value instanceof Number || targetType == null
-				|| targetType.getInstanceClass() == null) {
+		if (false == value instanceof Number || targetType == null || targetType.getInstanceClass() == null) {
 			return value;
 		}
 		Class targetClass = targetType.getInstanceClass();

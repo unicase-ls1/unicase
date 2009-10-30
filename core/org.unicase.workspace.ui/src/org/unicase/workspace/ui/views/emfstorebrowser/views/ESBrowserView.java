@@ -47,6 +47,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.common.util.EventUtil;
 import org.unicase.workspace.AdminBroker;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
@@ -58,7 +59,6 @@ import org.unicase.workspace.ui.Activator;
 import org.unicase.workspace.ui.views.emfstorebrowser.dialogs.admin.ManageOrgUnitsDialog;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserContentProvider;
 import org.unicase.workspace.ui.views.emfstorebrowser.provider.ESBrowserLabelProvider;
-import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 import org.unicase.workspace.util.WorkspaceUtil;
 

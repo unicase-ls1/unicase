@@ -101,7 +101,7 @@ public class GenericColumnLabelProvider extends ColumnLabelProvider {
 	@Override
 	public Image getImage(Object element) {
 		Image image = null;
-		if (this.getFeature().equals(ModelPackage.Literals.MODEL_ELEMENT__NAME)) {
+		if (this.getFeature().equals(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__NAME)) {
 			image = decoratingLabelProvider.getImage(element);
 			decoratingLabelProvider.getLabelDecorator().decorateImage(image, element);
 		}

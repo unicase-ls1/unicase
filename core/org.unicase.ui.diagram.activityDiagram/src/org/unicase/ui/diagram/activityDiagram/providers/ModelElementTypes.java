@@ -98,26 +98,22 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(
-			ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass
-					&& !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().getItemImageDescriptor(
-								eClass.getEPackage().getEFactoryInstance()
-										.create(eClass));
+				return org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance()
+					.getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -191,21 +187,17 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(MEDiagram_22, DiagramPackage.eINSTANCE.getMEDiagram());
 
-			elements
-					.put(Activity_2002, ActivityPackage.eINSTANCE.getActivity());
+			elements.put(Activity_2002, ActivityPackage.eINSTANCE.getActivity());
 
 			elements.put(Fork_2003, ActivityPackage.eINSTANCE.getFork());
 
-			elements.put(ActivityInitial_2004, ActivityPackage.eINSTANCE
-					.getActivityInitial());
+			elements.put(ActivityInitial_2004, ActivityPackage.eINSTANCE.getActivityInitial());
 
-			elements.put(ActivityEnd_2005, ActivityPackage.eINSTANCE
-					.getActivityEnd());
+			elements.put(ActivityEnd_2005, ActivityPackage.eINSTANCE.getActivityEnd());
 
 			elements.put(Branch_2006, ActivityPackage.eINSTANCE.getBranch());
 
-			elements.put(Transition_4001, ActivityPackage.eINSTANCE
-					.getTransition());
+			elements.put(Transition_4001, ActivityPackage.eINSTANCE.getTransition());
 		}
 		return (ENamedElement) elements.get(type);
 	}

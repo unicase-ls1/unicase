@@ -14,7 +14,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
-import org.unicase.workspace.util.OrgUnitHelper;
+import org.unicase.ui.common.util.OrgUnitHelper;
 
 /**
  * A filter to filter workitems lists to a certain user.

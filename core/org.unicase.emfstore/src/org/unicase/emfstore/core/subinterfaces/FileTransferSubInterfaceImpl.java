@@ -20,7 +20,7 @@ import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.emfstore.filetransfer.FilePartitionerUtil;
-import org.unicase.model.util.FileUtil;
+import org.unicase.metamodel.util.FileUtil;
 
 /**
  * The file transfer subinterface.

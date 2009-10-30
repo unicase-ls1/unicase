@@ -38,7 +38,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -178,7 +178,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		isInited = true;
 
 		// Initialize simple dependencies
-		ModelPackage.eINSTANCE.eClass();
+		MetamodelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE
@@ -696,14 +696,15 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		abstractOperationEClass.getESuperTypes().add(theModelPackage.getIdentifiableElement());
+		abstractOperationEClass.getESuperTypes().add(theMetamodelPackage.getIdentifiableElement());
 		compositeOperationEClass.getESuperTypes().add(this.getAbstractOperation());
 		featureOperationEClass.getESuperTypes().add(this.getAbstractOperation());
 		createDeleteOperationEClass.getESuperTypes().add(this.getAbstractOperation());
@@ -713,7 +714,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		multiReferenceMoveOperationEClass.getESuperTypes().add(this.getFeatureOperation());
 		referenceOperationEClass.getESuperTypes().add(this.getFeatureOperation());
 		diagramLayoutOperationEClass.getESuperTypes().add(this.getAttributeOperation());
-		operationIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
+		operationIdEClass.getESuperTypes().add(theMetamodelPackage.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(abstractOperationEClass, AbstractOperation.class, "AbstractOperation", IS_ABSTRACT, !IS_INTERFACE,
@@ -724,7 +725,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEAttribute(getAbstractOperation_Description(), ecorePackage.getEString(), "description", "", 0, 1,
 			AbstractOperation.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			IS_DERIVED, IS_ORDERED);
-		initEReference(getAbstractOperation_ModelElementId(), theModelPackage.getModelElementId(), null,
+		initEReference(getAbstractOperation_ModelElementId(), theMetamodelPackage.getModelElementId(), null,
 			"modelElementId", null, 0, 1, AbstractOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAbstractOperation_Accepted(), ecorePackage.getEBoolean(), "accepted", null, 0, 1,
@@ -763,7 +764,7 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEAttribute(getCreateDeleteOperation_Delete(), ecorePackage.getEBoolean(), "delete", null, 0, 1,
 			CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getCreateDeleteOperation_ModelElement(), theModelPackage.getModelElement(), null,
+		initEReference(getCreateDeleteOperation_ModelElement(), theMetamodelPackage.getModelElement(), null,
 			"modelElement", null, 0, 1, CreateDeleteOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getCreateDeleteOperation_SubOperations(), this.getReferenceOperation(), null, "subOperations",
@@ -781,12 +782,12 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 
 		initEClass(singleReferenceOperationEClass, SingleReferenceOperation.class, "SingleReferenceOperation",
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getSingleReferenceOperation_OldValue(), theModelPackage.getModelElementId(), null, "oldValue",
-			null, 0, 1, SingleReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getSingleReferenceOperation_NewValue(), theModelPackage.getModelElementId(), null, "newValue",
-			null, 0, 1, SingleReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSingleReferenceOperation_OldValue(), theMetamodelPackage.getModelElementId(), null,
+			"oldValue", null, 0, 1, SingleReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSingleReferenceOperation_NewValue(), theMetamodelPackage.getModelElementId(), null,
+			"newValue", null, 0, 1, SingleReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiReferenceOperationEClass, MultiReferenceOperation.class, "MultiReferenceOperation",
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -796,8 +797,8 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEAttribute(getMultiReferenceOperation_Index(), ecorePackage.getEInt(), "index", null, 0, 1,
 			MultiReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMultiReferenceOperation_ReferencedModelElements(), theModelPackage.getModelElementId(), null,
-			"referencedModelElements", null, 0, -1, MultiReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
+		initEReference(getMultiReferenceOperation_ReferencedModelElements(), theMetamodelPackage.getModelElementId(),
+			null, "referencedModelElements", null, 0, -1, MultiReferenceOperation.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(multiReferenceMoveOperationEClass, MultiReferenceMoveOperation.class, "MultiReferenceMoveOperation",
@@ -808,10 +809,10 @@ public class OperationsPackageImpl extends EPackageImpl implements OperationsPac
 		initEAttribute(getMultiReferenceMoveOperation_NewIndex(), ecorePackage.getEInt(), "newIndex", null, 0, 1,
 			MultiReferenceMoveOperation.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMultiReferenceMoveOperation_ReferencedModelElementId(), theModelPackage.getModelElementId(),
-			null, "referencedModelElementId", null, 0, 1, MultiReferenceMoveOperation.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
+		initEReference(getMultiReferenceMoveOperation_ReferencedModelElementId(), theMetamodelPackage
+			.getModelElementId(), null, "referencedModelElementId", null, 0, 1, MultiReferenceMoveOperation.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		initEClass(referenceOperationEClass, ReferenceOperation.class, "ReferenceOperation", IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

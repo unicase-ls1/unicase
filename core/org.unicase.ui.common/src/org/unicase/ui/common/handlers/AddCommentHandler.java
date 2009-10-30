@@ -26,7 +26,7 @@ public class AddCommentHandler extends AbstractHandler {
 
 		ModelElement me = ActionHelper.getModelElement(event);
 		ActionHelper.openDiscussion(me, true);
-		
+
 		return null;
 	}
 }

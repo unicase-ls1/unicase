@@ -11,7 +11,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.util.SerializationException;
+import org.unicase.metamodel.util.SerializationException;
 import org.unicase.workspace.test.integration.forward.IntegrationTestHelper;
 
 /**
@@ -44,12 +44,11 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 
 		});
 
-		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceAddNewReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"ContainmentReferenceAddNewReversibilityTest"));
 
 	}
-	
-	
+
 	/**
 	 * This takes a random model element (meA). Takes one of its containments (meToMove). Takes containing reference of
 	 * meToMove. Finds another ME of type meA (meB). Moves meToMove to meB. Finds yet another ME of type meA (meC) .
@@ -74,12 +73,11 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 
 		});
 
-		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentRefTransitiveChangeReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"ContainmentRefTransitiveChangeReversibilityTest"));
 
 	}
-	
-	
+
 	/**
 	 * This move an element in a many reference list to another position.
 	 * 
@@ -99,11 +97,11 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 			}
 		});
 
-
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiReferenceMoveReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"MultiReferenceMoveReversibilityTest"));
 
 	}
-	
+
 	/**
 	 * Select a random ME (meA). Select one of its non-containment references. Find an ME matching reference type (meB).
 	 * Add meB to meA.
@@ -126,8 +124,8 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 
 		});
 
-		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceAddReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"NonContainmentReferenceAddReversibilityTest"));
 	}
 
 	/**
@@ -151,11 +149,11 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 			}
 		});
 
-		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceRemoveReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"NonContainmentReferenceRemoveReversibilityTest"));
 
 	}
-	
+
 	/**
 	 * Takes a random ME (meA). Takes randomly one of its containment references. Finds an existing ME in project
 	 * matching the reference type (meB). Adds meB to this reference of meA (moves meB from its old parent to meA).
@@ -177,10 +175,9 @@ public class ReferenceOperationsReversibilityTest extends OperationsReversibilit
 			}
 		});
 
-	
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceMoveReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"ContainmentReferenceMoveReversibilityTest"));
 
 	}
-
 
 }

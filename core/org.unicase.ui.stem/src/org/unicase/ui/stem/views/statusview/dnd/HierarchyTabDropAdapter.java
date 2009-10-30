@@ -75,8 +75,8 @@ public class HierarchyTabDropAdapter extends AbstractDropAdapter {
 		UnicaseModelElement dropTarget = (UnicaseModelElement) getDropTarget();
 		UnicaseModelElement dragSource = getDragSource();
 
-		Set<UnicaseModelElement> openersForDropTarget = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
-			dropTarget);
+		Set<UnicaseModelElement> openersForDropTarget = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+			.getLeafOpeners(dropTarget);
 		if (!openersForDropTarget.contains(dragSource)) {
 			((WorkItem) dragSource).getAnnotatedModelElements().add(dropTarget);
 		}

@@ -14,11 +14,10 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.swt.graphics.Image;
 
 /**
- * @author denglerm
- * This is class extends the eclipse ImageFigure to allow resize.
+ * @author denglerm This is class extends the eclipse ImageFigure to allow resize.
  */
-public class ScaleableImageFigure extends ImageFigure {	
-	
+public class ScaleableImageFigure extends ImageFigure {
+
 	/**
 	 * Constructor.
 	 * 
@@ -26,22 +25,22 @@ public class ScaleableImageFigure extends ImageFigure {
 	 * @param path the path of the figure file within the package
 	 */
 	public ScaleableImageFigure(String bundle, String path) {
- 	  Image img=ImageDescriptor.createFromURL(FileLocator.find(Platform
-			.getBundle(bundle), new Path(path), null)).createImage();
- 	  this.setImage(img);
- 	  this.setAlignment(PositionConstants.NORTH_WEST);
-    }
+		Image img = ImageDescriptor.createFromURL(FileLocator.find(Platform.getBundle(bundle), new Path(path), null))
+			.createImage();
+		this.setImage(img);
+		this.setAlignment(PositionConstants.NORTH_WEST);
+	}
+
 	/**
 	 * {@inheritDoc}.
 	 * 
 	 * @see org.eclipse.draw2d.ImageFigure#getImage()
 	 */
 	@Override
-	public Image getImage()
-	{
+	public Image getImage() {
 		Image img = super.getImage();
-		Image scaled = new Image(img.getDevice(),
-		        img.getImageData().scaledTo(this.getBounds().width,this.getBounds().height));
+		Image scaled = new Image(img.getDevice(), img.getImageData().scaledTo(this.getBounds().width,
+			this.getBounds().height));
 		return scaled;
-	} 
+	}
 }

@@ -5,20 +5,21 @@
  */
 package org.unicase.ui.stem.views.statusview;
 
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.Viewer;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.model.task.util.TaxonomyAccess;
-
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
 
 /**
  * This is the ContentProvider for TreeViewer on Hierarchy tab.
@@ -108,7 +109,7 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 		UnicaseModelElement modelElement = (UnicaseModelElement) object;
 		if (viewer.getInput() instanceof WorkPackage) {
 			WorkPackage workPackage = (WorkPackage) viewer.getInput();
-			Set<UnicaseModelElement> allContainedModelElements = workPackage.getAllContainedModelElements();
+			Set<ModelElement> allContainedModelElements = workPackage.getAllContainedModelElements();
 			EList<Annotation> annotations = modelElement.getAnnotations();
 			for (Annotation annotation : annotations) {
 				if (allContainedModelElements.contains(annotation)) {
@@ -118,7 +119,8 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 
 		}
 		List<Annotation> annotations = ((UnicaseModelElement) object).getAnnotations();
-		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
+		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(
+			modelElement);
 		return (annotations.size() > 0 || openers.size() > 0);
 
 	}
@@ -142,7 +144,8 @@ public class HierarchyTabContentProvider extends AdapterFactoryContentProvider {
 
 		} else {
 
-			Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
+			Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(
+				modelElement);
 			ret.addAll(openers);
 
 			return ret.toArray(new Object[ret.size()]);

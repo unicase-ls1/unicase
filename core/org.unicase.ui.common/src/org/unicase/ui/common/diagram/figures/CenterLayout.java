@@ -19,7 +19,8 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
-//dengler: check copyright
+
+// dengler: check copyright
 /**
  * @author denglerm This class is used as a layout by several diagrams. CenterLayout centers the children inside a
  *         parent figure.

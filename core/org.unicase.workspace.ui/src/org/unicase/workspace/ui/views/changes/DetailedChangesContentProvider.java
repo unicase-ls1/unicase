@@ -19,13 +19,15 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
  * @author Hodaie
  * @author Shterev
  */
-public class DetailedChangesContentProvider extends AdapterFactoryContentProvider implements IContentProvider {
+public class DetailedChangesContentProvider extends
+		AdapterFactoryContentProvider implements IContentProvider {
 
 	/**
 	 * Constructor.
 	 */
 	public DetailedChangesContentProvider() {
-		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
@@ -59,7 +61,8 @@ public class DetailedChangesContentProvider extends AdapterFactoryContentProvide
 	 */
 	@Override
 	public boolean hasChildren(Object object) {
-		if (object instanceof CompositeOperation || object instanceof ChangePackage) {
+		if (object instanceof CompositeOperation
+				|| object instanceof ChangePackage) {
 			return true;
 		}
 		return false;

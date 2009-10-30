@@ -154,7 +154,6 @@ public class OperationCompositeItemProvider extends ItemProviderAdapter implemen
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.OPERATION_COMPOSITE__OPERATIONS,
 			OperationsFactory.eINSTANCE.createDiagramLayoutOperation()));
-
 	}
 
 	/**

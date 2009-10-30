@@ -68,12 +68,10 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	public Command getCommand(Request request) {
 		if (request instanceof ReconnectRequest) {
-			Object view = ((ReconnectRequest) request).getConnectionEditPart()
-					.getModel();
+			Object view = ((ReconnectRequest) request).getConnectionEditPart().getModel();
 			if (view instanceof View) {
-				Integer id = new Integer(
-						org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
-								.getVisualID((View) view));
+				Integer id = new Integer(org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
+					.getVisualID((View) view));
 				request.getExtendedData().put(VISUAL_ID_KEY, id);
 			}
 		}
@@ -97,39 +95,31 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Object editHelperContext = completedRequest.getEditHelperContext();
 		if (editHelperContext instanceof View
-				|| (editHelperContext instanceof IEditHelperContext && ((IEditHelperContext) editHelperContext)
-						.getEObject() instanceof View)) {
+			|| (editHelperContext instanceof IEditHelperContext && ((IEditHelperContext) editHelperContext)
+				.getEObject() instanceof View)) {
 			// no semantic commands are provided for pure design elements
 			return null;
 		}
 		if (editHelperContext == null) {
-			editHelperContext = ViewUtil
-					.resolveSemanticElement((View) getHost().getModel());
+			editHelperContext = ViewUtil.resolveSemanticElement((View) getHost().getModel());
 		}
-		IElementType elementType = ElementTypeRegistry.getInstance()
-				.getElementType(editHelperContext);
-		if (elementType == ElementTypeRegistry.getInstance().getType(
-				"org.eclipse.gmf.runtime.emf.type.core.default")) { //$NON-NLS-1$ 
+		IElementType elementType = ElementTypeRegistry.getInstance().getElementType(editHelperContext);
+		if (elementType == ElementTypeRegistry.getInstance().getType("org.eclipse.gmf.runtime.emf.type.core.default")) { //$NON-NLS-1$ 
 			elementType = null;
 		}
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
 		if (semanticCommand != null) {
 			ICommand command = semanticCommand instanceof ICommandProxy ? ((ICommandProxy) semanticCommand)
-					.getICommand()
-					: new CommandProxy(semanticCommand);
-			completedRequest
-					.setParameter(
-							org.unicase.ui.diagram.classDiagram.edit.helpers.ModelBaseEditHelper.EDIT_POLICY_COMMAND,
-							command);
+				.getICommand() : new CommandProxy(semanticCommand);
+			completedRequest.setParameter(
+				org.unicase.ui.diagram.classDiagram.edit.helpers.ModelBaseEditHelper.EDIT_POLICY_COMMAND, command);
 		}
 		if (elementType != null) {
 			ICommand command = elementType.getEditCommand(completedRequest);
 			if (command != null) {
 				if (!(command instanceof CompositeTransactionalCommand)) {
-					TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-							.getEditingDomain();
-					command = new CompositeTransactionalCommand(editingDomain,
-							command.getLabel()).compose(command);
+					TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+					command = new CompositeTransactionalCommand(editingDomain, command.getLabel()).compose(command);
 				}
 				semanticCommand = new ICommandProxy(command);
 			}
@@ -140,13 +130,11 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		}
 		if (shouldProceed) {
 			if (completedRequest instanceof DestroyRequest) {
-				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-						.getEditingDomain();
-				Command deleteViewCommand = new ICommandProxy(
-						new DeleteCommand(editingDomain, (View) getHost()
-								.getModel()));
-				semanticCommand = semanticCommand == null ? deleteViewCommand
-						: semanticCommand.chain(deleteViewCommand);
+				TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
+				Command deleteViewCommand = new ICommandProxy(new DeleteCommand(editingDomain, (View) getHost()
+					.getModel()));
+				semanticCommand = semanticCommand == null ? deleteViewCommand : semanticCommand
+					.chain(deleteViewCommand);
 			}
 			return semanticCommand;
 		}
@@ -249,16 +237,14 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
@@ -300,12 +286,9 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected Command getDestroyElementCommand(View view) {
-		EditPart editPart = (EditPart) getHost().getViewer()
-				.getEditPartRegistry().get(view);
-		DestroyElementRequest request = new DestroyElementRequest(
-				getEditingDomain(), false);
-		return editPart.getCommand(new EditCommandRequestWrapper(request,
-				Collections.EMPTY_MAP));
+		EditPart editPart = (EditPart) getHost().getViewer().getEditPartRegistry().get(view);
+		DestroyElementRequest request = new DestroyElementRequest(getEditingDomain(), false);
+		return editPart.getCommand(new EditCommandRequestWrapper(request, Collections.EMPTY_MAP));
 	}
 
 	/**
@@ -333,8 +316,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		if (view.getEAnnotation("Shortcut") != null) { //$NON-NLS-1$
 			return;
 		}
-		for (Iterator it = view.getDiagram().getChildren().iterator(); it
-				.hasNext();) {
+		for (Iterator it = view.getDiagram().getChildren().iterator(); it.hasNext();) {
 			View nextView = (View) it.next();
 			if (nextView.getEAnnotation("Shortcut") == null || !nextView.isSetElement() || nextView.getElement() != view.getElement()) { //$NON-NLS-1$
 				continue;
@@ -356,40 +338,35 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateAssociation_4001(MEDiagram container,
-				Class source, Class target) {
+		public static boolean canCreateAssociation_4001(MEDiagram container, Class source, Class target) {
 			return canExistAssociation_4001(container, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateAssociation_4002(MEDiagram container,
-				Class source, Class target) {
+		public static boolean canCreateAssociation_4002(MEDiagram container, Class source, Class target) {
 			return canExistAssociation_4002(container, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateAssociation_4003(MEDiagram container,
-				Class source, Class target) {
+		public static boolean canCreateAssociation_4003(MEDiagram container, Class source, Class target) {
 			return canExistAssociation_4003(container, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateAssociation_4004(MEDiagram container,
-				Class source, Class target) {
+		public static boolean canCreateAssociation_4004(MEDiagram container, Class source, Class target) {
 			return canExistAssociation_4004(container, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateClassSuperClasses_4007(Class source,
-				Class target) {
+		public static boolean canCreateClassSuperClasses_4007(Class source, Class target) {
 			if (source != null) {
 				if (source.getSuperClasses().contains(target)) {
 					return false;
@@ -401,16 +378,14 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canCreateDependency_4006(MEDiagram container,
-				PackageElement source, PackageElement target) {
+		public static boolean canCreateDependency_4006(MEDiagram container, PackageElement source, PackageElement target) {
 			return canExistDependency_4006(container, source, target);
 		}
 
 		/**
 		 * @generated
 		 */
-		public static boolean canExistAssociation_4001(MEDiagram container,
-				Class source, Class target) {
+		public static boolean canExistAssociation_4001(MEDiagram container, Class source, Class target) {
 
 			return true;
 		}
@@ -418,8 +393,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistAssociation_4002(MEDiagram container,
-				Class source, Class target) {
+		public static boolean canExistAssociation_4002(MEDiagram container, Class source, Class target) {
 
 			return true;
 		}
@@ -427,8 +401,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistAssociation_4003(MEDiagram container,
-				Class source, Class target) {
+		public static boolean canExistAssociation_4003(MEDiagram container, Class source, Class target) {
 
 			return true;
 		}
@@ -436,8 +409,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistAssociation_4004(MEDiagram container,
-				Class source, Class target) {
+		public static boolean canExistAssociation_4004(MEDiagram container, Class source, Class target) {
 
 			return true;
 		}
@@ -445,8 +417,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistClassSuperClasses_4007(Class source,
-				Class target) {
+		public static boolean canExistClassSuperClasses_4007(Class source, Class target) {
 
 			return true;
 		}
@@ -454,8 +425,7 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		/**
 		 * @generated
 		 */
-		public static boolean canExistDependency_4006(MEDiagram container,
-				PackageElement source, PackageElement target) {
+		public static boolean canExistDependency_4006(MEDiagram container, PackageElement source, PackageElement target) {
 
 			return true;
 		}

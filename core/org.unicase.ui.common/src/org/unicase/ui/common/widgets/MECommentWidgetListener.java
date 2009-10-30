@@ -26,6 +26,7 @@ public interface MECommentWidgetListener {
 
 	/**
 	 * Will be called when a new comment is added.
+	 * 
 	 * @param newComment the new comment
 	 */
 	void commentAdded(Comment newComment);

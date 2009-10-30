@@ -11,7 +11,8 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
-//dengler: delete unused methods
+
+// dengler: delete unused methods
 /**
  * @author denglerm This class is used to locate diagram labels centered and below a diagram node
  */
@@ -26,14 +27,13 @@ public class BorderItemLocatorEx extends BorderItemLocator {
 
 	/**
 	 * @param parentFigure the parent figure
-	 * @param preferredSide
-	 *            the preferred side of the parent figure on which to place this
-	 *            border item as defined in {@link PositionConstants}
+	 * @param preferredSide the preferred side of the parent figure on which to place this border item as defined in
+	 *            {@link PositionConstants}
 	 */
 	public BorderItemLocatorEx(IFigure parentFigure, int preferredSide) {
 		super(parentFigure, preferredSide);
 	}
-	
+
 	/**
 	 * @param borderItem the border item to be placed at the parent figure
 	 * @param parentFigure the parent figure
@@ -45,6 +45,7 @@ public class BorderItemLocatorEx extends BorderItemLocator {
 
 	/**
 	 * Determines the position (South-Centered) of the borderItem.
+	 * 
 	 * @param borderItem The figure to relocate
 	 */
 	@Override

@@ -37,7 +37,7 @@ import org.unicase.workspace.WorkspaceManager;
 public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 
 	private Project project;
-	
+
 	private static final String DIALOG_MESSAGE = "Enter model element name prefix or pattern (e.g. *Trun?)";
 
 	/**
@@ -61,15 +61,14 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 			project = projectSpace.getProject();
 			List<ModelElement> modelElements = new ArrayList<ModelElement>();
 			modelElements.addAll(project.getAllModelElements());
-			//Remove Non Domain Elements
+			// Remove Non Domain Elements
 			List<ModelElement> filteredModelElements = new ArrayList<ModelElement>();
-			for(ModelElement me :modelElements){
-				if(!(me instanceof NonDomainElement)){
+			for (ModelElement me : modelElements) {
+				if (!(me instanceof NonDomainElement)) {
 					filteredModelElements.add(me);
 				}
 			}
-			showShortcutDialog(shell, filteredModelElements, "Open Model Element",
-				DIALOG_MESSAGE);
+			showShortcutDialog(shell, filteredModelElements, "Open Model Element", DIALOG_MESSAGE);
 		}
 
 		return null;
@@ -103,9 +102,9 @@ public class OpenMEShortcutHandler extends AbstractHandler implements IHandler {
 		if (dialog.open() == Window.OK) {
 			result = dialog.getResult();
 		}
-		
+
 		ModelElement mod = (ModelElement) dialog.getFirstResult();
-		if(mod!=null){
+		if (mod != null) {
 			ActionHelper.openModelElement(mod, "org.unicase.ui.OpenMEShortcut");
 		}
 		return result;

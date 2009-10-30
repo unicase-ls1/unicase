@@ -46,7 +46,7 @@ import org.unicase.emfstore.esmodel.versioning.events.PluginStartEvent;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.metamodel.Project;
-import org.unicase.model.util.FileUtil;
+import org.unicase.metamodel.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;

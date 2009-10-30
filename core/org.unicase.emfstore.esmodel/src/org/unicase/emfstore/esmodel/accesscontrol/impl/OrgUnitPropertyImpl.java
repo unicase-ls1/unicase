@@ -15,8 +15,8 @@ import org.eclipse.emf.ecore.impl.EObjectImpl;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
-import org.unicase.model.util.ModelUtil;
-import org.unicase.model.util.SerializationException;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.util.SerializationException;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Org Unit Properties</b></em>'. <!--

@@ -26,8 +26,8 @@ import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.notification.NotificationPackage;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.provider.IdentifiableElementItemProvider;
+import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.notification.ESNotification} object. <!--
@@ -271,7 +271,7 @@ public class ESNotificationItemProvider extends IdentifiableElementItemProvider 
 			EsmodelFactory.eINSTANCE.createProjectId()));
 
 		newChildDescriptors.add(createChildParameter(
-			NotificationPackage.Literals.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS, ModelFactory.eINSTANCE
+			NotificationPackage.Literals.ES_NOTIFICATION__RELATED_MODEL_ELEMENTS, MetamodelFactory.eINSTANCE
 				.createModelElementId()));
 
 		newChildDescriptors.add(createChildParameter(NotificationPackage.Literals.ES_NOTIFICATION__RELATED_OPERATIONS,

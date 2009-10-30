@@ -15,7 +15,7 @@ import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.ui.common.util.ActionHelper;
-import org.unicase.workspace.util.EventUtil;
+import org.unicase.ui.common.util.EventUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**

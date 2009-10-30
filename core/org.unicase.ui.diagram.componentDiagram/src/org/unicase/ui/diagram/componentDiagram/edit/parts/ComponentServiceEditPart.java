@@ -17,7 +17,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPar
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.BorderItemSelectionEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
@@ -56,11 +55,11 @@ public class ComponentServiceEditPart extends AbstractBorderedShapeEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.diagram.componentDiagram.edit.policies.ComponentServiceItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.diagram.componentDiagram.edit.policies.ComponentServiceItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -74,8 +73,7 @@ public class ComponentServiceEditPart extends AbstractBorderedShapeEditPart {
 				if (child instanceof IBorderItemEditPart) {
 					return new BorderItemSelectionEditPolicy();
 				}
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -114,11 +112,9 @@ public class ComponentServiceEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated NOT
 	 */
 	@Override
-	protected void addBorderItem(IFigure borderItemContainer,
-			IBorderItemEditPart borderItemEditPart) {
+	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
 		if (borderItemEditPart instanceof org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceNameEditPart) {
-			BorderItemLocatorEx locator = new BorderItemLocatorEx(
-					getMainFigure(), PositionConstants.SOUTH);
+			BorderItemLocatorEx locator = new BorderItemLocatorEx(getMainFigure(), PositionConstants.SOUTH);
 			locator.setBorderItemOffset(new Dimension(0, 10));
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -130,8 +126,7 @@ public class ComponentServiceEditPart extends AbstractBorderedShapeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-				.DPtoLP(15), getMapMode().DPtoLP(15));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15));
 		return result;
 	}
 
@@ -179,7 +174,7 @@ public class ComponentServiceEditPart extends AbstractBorderedShapeEditPart {
 	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-				.getType(org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID));
+			.getType(org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -192,12 +187,9 @@ public class ComponentServiceEditPart extends AbstractBorderedShapeEditPart {
 		 */
 		public ProvidedInterfaceCircleFigure() {
 			this.setForegroundColor(ColorConstants.black);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
-			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
+			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
 		}
 
 		/**

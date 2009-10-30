@@ -75,8 +75,8 @@ public class ModelShortcutsDecoratorProvider extends AbstractProvider implements
 		public void refresh() {
 			removeDecoration();
 			EditPart editPart = (EditPart) getDecoratorTarget().getAdapter(EditPart.class);
-			Image image = org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin.getInstance().getBundledImage(
-				"icons/shortcut.gif"); //$NON-NLS-1$
+			Image image = org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin.getInstance()
+				.getBundledImage("icons/shortcut.gif"); //$NON-NLS-1$
 			if (editPart instanceof ShapeEditPart) {
 				setDecoration(getDecoratorTarget().addShapeDecoration(image, IDecoratorTarget.Direction.SOUTH_WEST, 0,
 					false));

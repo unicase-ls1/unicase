@@ -813,7 +813,7 @@
                  name="General">
               <enabledWhen>
                  <instanceof
-                       value="org.unicase.model.Project">
+                       value="org.unicase.metamodel.Project">
                  </instanceof>
               </enabledWhen>
            </page>
@@ -823,7 +823,7 @@
                  name="Dashboard">
               <enabledWhen>
                  <instanceof
-                       value="org.unicase.model.Project">
+                       value="org.unicase.metamodel.Project">
                  </instanceof>
               </enabledWhen>
            </page>
@@ -834,7 +834,7 @@
                  name="Widgets">
               <enabledWhen>
                  <instanceof
-                       value="org.unicase.model.Project">
+                       value="org.unicase.metamodel.Project">
                  </instanceof>
               </enabledWhen>
            </page>

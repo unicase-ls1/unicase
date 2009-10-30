@@ -1,4 +1,4 @@
-/** 
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -16,7 +16,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.state.State;
 import org.unicase.model.state.StateFactory;
 import org.unicase.model.state.StateNode;
 import org.unicase.model.state.Transition;
@@ -47,8 +46,7 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	 * @param source The source element of the connection to be created
 	 * @param target The target element of the connection to be created
 	 */
-	public TransitionCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target) {
+	public TransitionCreateCommand(CreateRelationshipRequest request, EObject source, EObject target) {
 		super(request);
 		throw new UnsupportedOperationException();
 	}
@@ -60,21 +58,18 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	 * @param eContainer The container element which will contain the connection
 	 * @generated NOT
 	 */
-	public TransitionCreateCommand(CreateRelationshipRequest request,
-			EObject source, EObject target, EObject eContainer) {
+	public TransitionCreateCommand(CreateRelationshipRequest request, EObject source, EObject target, EObject eContainer) {
 		super(request);
 		this.source = source;
 		this.target = target;
 		if (request.getContainmentFeature() == null) {
-			setContainmentFeature(DiagramPackage.eINSTANCE
-					.getMEDiagram_NewElements());
+			setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
 		}
 
 		// Find container element for the new link.
 		// Climb up by containment hierarchy starting from the source
 		// and return the first element that is instance of the container class.
-		for (EObject element = eContainer; element != null; element = element
-				.eContainer()) {
+		for (EObject element = eContainer; element != null; element = element.eContainer()) {
 			if (element instanceof MEDiagram) {
 				container = (MEDiagram) element;
 				super.setElementToEdit(container);
@@ -104,8 +99,7 @@ public class TransitionCreateCommand extends CreateElementCommand {
 			return false;
 		}
 		return org.unicase.ui.diagram.stateDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canCreateTransition_4001(getContainer(), getSource(),
-						getTarget());
+			.canCreateTransition_4001(getContainer(), getSource(), getTarget());
 	}
 
 	/**
@@ -131,11 +125,9 @@ public class TransitionCreateCommand extends CreateElementCommand {
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in create link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		return super.doExecuteWithResult(monitor, info);
 	}

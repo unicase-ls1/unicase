@@ -14,16 +14,15 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.IDecoratorManager;
 import org.eclipse.ui.PlatformUI;
 
-
 /**
  * . LabelProvider for annotated model element column
  * 
  * @author Helming
  */
 public class EMFColumnLabelProvider extends ColumnLabelProvider implements IColorProvider {
-	
+
 	private DecoratingLabelProvider decoratingLabelProvider;
-	
+
 	/**
 	 * . Constructor
 	 */
@@ -34,13 +33,13 @@ public class EMFColumnLabelProvider extends ColumnLabelProvider implements IColo
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE)), decoratorManager
 			.getLabelDecorator());
 	}
-	
+
 	/**
 	 * . {@inheritDoc}
 	 */
 	@Override
 	public Image getImage(Object element) {
-		
+
 		Image image = decoratingLabelProvider.getImage(element);
 		decoratingLabelProvider.getLabelDecorator().decorateImage(image, element);
 		return image;

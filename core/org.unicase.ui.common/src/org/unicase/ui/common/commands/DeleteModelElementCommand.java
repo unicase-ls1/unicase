@@ -49,7 +49,8 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 		// check if this model element is already opened in an editor
 		// and if yes, prompt to close editor.
 		if (closeEditor(me)) {
-			AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 			String modelElementName = adapterFactoryLabelProvider.getText(me);
 			MessageDialog dialog = new MessageDialog(null, "Confirmation", null, "Do you really want to delete "
 				+ modelElementName, MessageDialog.QUESTION, new String[] { "Yes", "No" }, 0);
@@ -85,21 +86,22 @@ public final class DeleteModelElementCommand extends UnicaseCommand {
 		List<IEditorReference> toCloseEditors = new ArrayList<IEditorReference>();
 		for (int i = 0; i < openEditors.length; i++) {
 			try {
-				
+
 				IEditorInput editorInput = openEditors[i].getEditorInput();
-				
-				if(editorInput instanceof MEEditorInput) {
+
+				if (editorInput instanceof MEEditorInput) {
 					Object adapter = editorInput.getAdapter(ModelElement.class);
-					if(adapter != null && adapter.equals(me)) {
+					if (adapter != null && adapter.equals(me)) {
 						toCloseEditors.add(openEditors[i]);
 					}
-				} else if(editorInput instanceof URIEditorInput) {
-					ModelElement modelElement = WorkspaceUtil.getModelElementByUri(((URIEditorInput) editorInput).getURI());
-					if(modelElement != null && modelElement.equals(me)) {
+				} else if (editorInput instanceof URIEditorInput) {
+					ModelElement modelElement = WorkspaceUtil.getModelElementByUri(((URIEditorInput) editorInput)
+						.getURI());
+					if (modelElement != null && modelElement.equals(me)) {
 						toCloseEditors.add(openEditors[i]);
 					}
 				}
-				
+
 			} catch (PartInitException e) {
 				DialogHandler.showExceptionDialog(e);
 				result = false;

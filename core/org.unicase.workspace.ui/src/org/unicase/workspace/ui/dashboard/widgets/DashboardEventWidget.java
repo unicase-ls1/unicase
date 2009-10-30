@@ -57,7 +57,8 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 		EList<ModelElement> items = initItems();
 
 		Composite panel = getContentPanel();
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(3, 2).applyTo(panel);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false)
+				.spacing(3, 2).applyTo(panel);
 		final int count = items.size();
 
 		SimpleDateFormat day = new SimpleDateFormat("EEE, d MMM");
@@ -69,7 +70,8 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 				image.setImage(getLabelProvider().getImage(modelElement));
 				image.setData(modelElement.eClass());
 				ModelElementClassTooltip.enableFor(image);
-				GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(image);
+				GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING)
+						.applyTo(image);
 				Link link = new Link(panel, SWT.WRAP | SWT.MULTI);
 				link.setData(modelElement);
 				ModelElementTooltip.enableFor(link);
@@ -81,17 +83,18 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 				}
 				Date date = getDate(modelElement);
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(URLHelper.getHTMLLinkForModelElement(modelElement, getDashboard()
-					.getProjectSpace(), 20));
+				stringBuilder.append(URLHelper.getHTMLLinkForModelElement(
+						modelElement, getDashboard().getProjectSpace(), 20));
 				stringBuilder.append(msg);
 				stringBuilder.append(day.format(date));
 				stringBuilder.append(" at ");
 				stringBuilder.append(time.format(date));
 				link.setText(stringBuilder.toString());
-				link.addSelectionListener(URLSelectionListener.getInstance(getDashboard().getProjectSpace()));
-				GridDataFactory.fillDefaults()
-					.hint(getComposite().computeSize(SWT.DEFAULT, SWT.DEFAULT).x, SWT.DEFAULT).grab(true, false)
-					.applyTo(link);
+				link.addSelectionListener(URLSelectionListener
+						.getInstance(getDashboard().getProjectSpace()));
+				GridDataFactory.fillDefaults().hint(
+						getComposite().computeSize(SWT.DEFAULT, SWT.DEFAULT).x,
+						SWT.DEFAULT).grab(true, false).applyTo(link);
 			}
 		} else {
 			Label label = new Label(panel, SWT.WRAP);
@@ -119,8 +122,10 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 		EList<WorkItem> workItems = new BasicEList<WorkItem>();
 		EList<Meeting> meetings = new BasicEList<Meeting>();
 
-		projectSpace.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(), workItems, true);
-		projectSpace.getProject().getAllModelElementsbyClass(MeetingPackage.eINSTANCE.getMeeting(), meetings);
+		projectSpace.getProject().getAllModelElementsbyClass(
+				TaskPackage.eINSTANCE.getWorkItem(), workItems, true);
+		projectSpace.getProject().getAllModelElementsbyClass(
+				MeetingPackage.eINSTANCE.getMeeting(), meetings);
 
 		final Date now = new Date();
 		addUpcomingEvents(total, workItems, now);
@@ -144,7 +149,8 @@ public class DashboardEventWidget extends AbstractDashboardWidget {
 		return total;
 	}
 
-	private void addUpcomingEvents(EList<ModelElement> target, EList<? extends ModelElement> source, Date now) {
+	private void addUpcomingEvents(EList<ModelElement> target,
+			EList<? extends ModelElement> source, Date now) {
 		for (ModelElement modelElement : source) {
 			Date date = getDate(modelElement);
 			if (date != null && date.after(now)) {

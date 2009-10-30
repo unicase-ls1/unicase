@@ -361,9 +361,16 @@ public class ModelElementChooserDialog extends Dialog {
 					}
 					if (selectedElement instanceof EObject) {
 						EObject selectedModelElement = (EObject) selectedElement;
-						setOkButtonEnabled(ViewService.getInstance().provides(Node.class,
-							new EObjectAdapter(selectedModelElement), myView, null, ViewUtil.APPEND, true,
-							org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
+						setOkButtonEnabled(ViewService
+							.getInstance()
+							.provides(
+								Node.class,
+								new EObjectAdapter(selectedModelElement),
+								myView,
+								null,
+								ViewUtil.APPEND,
+								true,
+								org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT));
 						mySelectedModelElementURI = EcoreUtil.getURI(selectedModelElement);
 						return;
 					}

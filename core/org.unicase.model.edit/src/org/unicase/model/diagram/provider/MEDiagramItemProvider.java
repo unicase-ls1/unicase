@@ -393,8 +393,9 @@ public class MEDiagramItemProvider extends AttachmentItemProvider implements IEd
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == ModelPackage.Literals.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES
-			|| childFeature == DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS;
+		boolean qualify = childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES
+			|| childFeature == DiagramPackage.Literals.ME_DIAGRAM__ELEMENTS
+			|| childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),

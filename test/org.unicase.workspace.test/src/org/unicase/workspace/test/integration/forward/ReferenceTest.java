@@ -11,7 +11,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.util.SerializationException;
+import org.unicase.metamodel.util.SerializationException;
 
 /**
  * @author Hodaie
@@ -38,17 +38,17 @@ public class ReferenceTest extends IntegrationTest {
 			@Override
 			protected void doExecute() {
 				testHelper.doContainemntReferenceAddNew();
-			
+
 			}
 
 		});
 
 		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceAddNewTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"ContainmentReferenceAddNewTest"));
 
 	}
-	
-	
+
 	/**
 	 * This takes a random model element (meA). Takes one of its containments (meToMove). Takes containing reference of
 	 * meToMove. Finds another ME of type meA (meB). Moves meToMove to meB. Finds yet another ME of type meA (meC) .
@@ -73,11 +73,11 @@ public class ReferenceTest extends IntegrationTest {
 		});
 
 		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentRefTransitiveChangeTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"ContainmentRefTransitiveChangeTest"));
 
 	}
-	
-	
+
 	/**
 	 * This move an element in a many reference list to another position.
 	 * 
@@ -100,7 +100,7 @@ public class ReferenceTest extends IntegrationTest {
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiReferenceMoveTest"));
 
 	}
-	
+
 	/**
 	 * Select a random ME (meA). Select one of its non-containment references. Find an ME matching reference type (meB).
 	 * Add meB to meA.
@@ -123,7 +123,8 @@ public class ReferenceTest extends IntegrationTest {
 		});
 
 		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceAddTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"NonContainmentReferenceAddTest"));
 	}
 
 	/**
@@ -147,10 +148,11 @@ public class ReferenceTest extends IntegrationTest {
 		});
 
 		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "NonContainmentReferenceRemoveTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"NonContainmentReferenceRemoveTest"));
 
 	}
-	
+
 	/**
 	 * Takes a random ME (meA). Takes randomly one of its containment references. Finds an existing ME in project
 	 * matching the reference type (meB). Adds meB to this reference of meA (moves meB from its old parent to meA).
@@ -172,9 +174,9 @@ public class ReferenceTest extends IntegrationTest {
 		});
 
 		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceMoveTest"));
+		assertTrue(IntegrationTestHelper
+			.areEqual(getTestProject(), getCompareProject(), "ContainmentReferenceMoveTest"));
 
 	}
-
 
 }

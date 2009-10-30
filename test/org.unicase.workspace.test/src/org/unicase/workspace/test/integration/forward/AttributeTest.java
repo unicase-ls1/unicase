@@ -11,7 +11,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.util.SerializationException;
+import org.unicase.metamodel.util.SerializationException;
 
 /**
  * @author Hodaie
@@ -43,7 +43,7 @@ public class AttributeTest extends IntegrationTest {
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiAttributeMoveTest"));
 
 	}
-	
+
 	/**
 	 * 1. Get a random model element form test project; 2. get randomly one of its attributes. 3. change the attribute
 	 * 
@@ -70,8 +70,7 @@ public class AttributeTest extends IntegrationTest {
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "AttributeChangeTest"));
 
 	}
-	
-	
+
 	/**
 	 * Change the same attribute on a randomly selected ME twice.
 	 * 
@@ -94,9 +93,9 @@ public class AttributeTest extends IntegrationTest {
 		});
 
 		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "AttributeTransitiveChangeTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"AttributeTransitiveChangeTest"));
 
 	}
-
 
 }

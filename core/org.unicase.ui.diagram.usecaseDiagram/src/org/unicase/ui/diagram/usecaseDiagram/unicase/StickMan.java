@@ -25,9 +25,12 @@ public class StickMan extends ShadowShape {
 	/**
 	 * . The constructor
 	 * 
-	 * @param is3D true for 3D appearance
-	 * @param backgroundColor the background color
-	 * @param foregroundColor the foreground color
+	 * @param is3D
+	 *            true for 3D appearance
+	 * @param backgroundColor
+	 *            the background color
+	 * @param foregroundColor
+	 *            the foreground color
 	 */
 	public StickMan(boolean is3D, Color backgroundColor, Color foregroundColor) {
 		super(is3D, backgroundColor, foregroundColor);
@@ -36,31 +39,38 @@ public class StickMan extends ShadowShape {
 	}
 
 	/**
-	 * @param graphics The Graphics object
-	 * @param bounds The bounding rectangle
+	 * @param graphics
+	 *            The Graphics object
+	 * @param bounds
+	 *            The bounding rectangle
 	 */
 	@Override
 	protected void outlineShape(Graphics graphics, Rectangle bounds) {
 		PointList pl = setupPoints(bounds);
 		graphics.drawPolygon(pl);
 		int add = graphics.getLineWidth() / 2;
-		graphics.drawOval(new Rectangle(ovalX, ovalY, ovalD + add, ovalD + add));
+		graphics
+				.drawOval(new Rectangle(ovalX, ovalY, ovalD + add, ovalD + add));
 	}
 
 	/**
-	 * @param graphics The Graphics object
-	 * @param bounds The bounding rectangle
+	 * @param graphics
+	 *            The Graphics object
+	 * @param bounds
+	 *            The bounding rectangle
 	 */
 	@Override
 	protected void fillShape(Graphics graphics, Rectangle bounds) {
 		PointList pl = setupPoints(bounds);
 		graphics.fillPolygon(pl);
 		int add = graphics.getLineWidth() / 2;
-		graphics.fillOval(new Rectangle(ovalX, ovalY, ovalD + add, ovalD + add));
+		graphics
+				.fillOval(new Rectangle(ovalX, ovalY, ovalD + add, ovalD + add));
 	}
 
 	/**
-	 * @param rect The Rectangle
+	 * @param rect
+	 *            The Rectangle
 	 * @return the PointList for the Stickman
 	 */
 	protected PointList setupPoints(Rectangle rect) {

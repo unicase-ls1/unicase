@@ -10,21 +10,20 @@ import static org.junit.Assert.assertEquals;
 import org.eclipse.emf.common.notify.Notification;
 import org.junit.Before;
 import org.junit.Test;
+import org.unicase.metamodel.util.ModelElementChangeListenerImpl;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
-import org.unicase.model.util.ModelElementChangeListenerImpl;
 
 /**
  * Test the change listeners of model element.
+ * 
  * @author koegel
- *
  */
 public class ModelChangeListenerTest {
 
-	
 	private Actor actor;
 	private LeafSection leafsection;
 	private UseCase useCase;
@@ -40,22 +39,22 @@ public class ModelChangeListenerTest {
 		useCase = RequirementFactory.eINSTANCE.createUseCase();
 		notifyCount = 0;
 	}
-	
+
 	/**
 	 * Test the notification.
 	 */
 	@Test
 	public void testNotification() {
 		ModelElementChangeListenerImpl listener = new ModelElementChangeListenerImpl() {
-			
+
 			@Override
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
-				//do nothing
+				// do nothing
 			}
-			
+
 			@Override
 			public void onChange(Notification notification) {
-				notifyCount++;				
+				notifyCount++;
 			}
 		};
 		actor.addModelElementChangeListener(listener);
@@ -67,7 +66,7 @@ public class ModelChangeListenerTest {
 		actor.setLeafSection(null);
 		assertEquals(5, notifyCount);
 	}
-	
+
 	/**
 	 * Test adding and removing listener.
 	 */
@@ -75,15 +74,15 @@ public class ModelChangeListenerTest {
 	public void testAddAndRemoveListener() {
 		assertEquals(0, actor.eAdapters().size());
 		ModelElementChangeListenerImpl listener = new ModelElementChangeListenerImpl() {
-			
+
 			@Override
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
-				//do nothing
+				// do nothing
 			}
-			
+
 			@Override
 			public void onChange(Notification notification) {
-				notifyCount++;				
+				notifyCount++;
 			}
 		};
 		actor.addModelElementChangeListener(listener);
@@ -94,40 +93,40 @@ public class ModelChangeListenerTest {
 		actor.removeModelElementChangeListener(listener);
 		assertEquals(0, actor.eAdapters().size());
 	}
-	
+
 	/**
-	 * Test adding and removing  2 listeners.
+	 * Test adding and removing 2 listeners.
 	 */
 	@Test
 	public void testAddAndRemoveListeners() {
 		assertEquals(0, actor.eAdapters().size());
 		ModelElementChangeListenerImpl listener = new ModelElementChangeListenerImpl() {
-			
+
 			@Override
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
-				//do nothing
+				// do nothing
 			}
-			
+
 			@Override
 			public void onChange(Notification notification) {
-				notifyCount++;				
+				notifyCount++;
 			}
 		};
 		ModelElementChangeListenerImpl listener2 = new ModelElementChangeListenerImpl() {
-			
+
 			@Override
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
-				//do nothing
+				// do nothing
 			}
-			
+
 			@Override
 			public void onChange(Notification notification) {
-				notifyCount++;				
+				notifyCount++;
 			}
 		};
 		actor.addModelElementChangeListener(listener);
 		actor.addModelElementChangeListener(listener2);
-		
+
 		assertEquals(1, actor.eAdapters().size());
 		actor.setName("newName");
 		assertEquals(2, notifyCount);
@@ -137,7 +136,7 @@ public class ModelChangeListenerTest {
 		actor.removeModelElementChangeListener(listener2);
 		assertEquals(0, actor.eAdapters().size());
 	}
-	
+
 	/**
 	 * Test NPE in notification.
 	 */
@@ -145,24 +144,26 @@ public class ModelChangeListenerTest {
 	public void testAddListenerWithNPE() {
 		ModelElementChangeListenerImpl listener = new ModelElementChangeListenerImpl() {
 
-			/** 
+			/**
 			 * {@inheritDoc}
-			 * @see org.unicase.model.util.ModelElementChangeListenerImpl#onChange(org.eclipse.emf.common.notify.Notification)
+			 * 
+			 * @see org.unicase.metamodel.util.ModelElementChangeListenerImpl#onChange(org.eclipse.emf.common.notify.Notification)
 			 */
 			@Override
 			public void onChange(Notification notification) {
-				throw new NullPointerException();				
+				throw new NullPointerException();
 			}
 
-			/** 
+			/**
 			 * {@inheritDoc}
-			 * @see org.unicase.model.util.ModelElementChangeListenerImpl#onRuntimeExceptionInListener(java.lang.RuntimeException)
+			 * 
+			 * @see org.unicase.metamodel.util.ModelElementChangeListenerImpl#onRuntimeExceptionInListener(java.lang.RuntimeException)
 			 */
 			@Override
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
-				notifyCount++;				
+				notifyCount++;
 			}
-			
+
 		};
 		assertEquals(0, actor.eAdapters().size());
 		actor.addModelElementChangeListener(listener);
@@ -170,7 +171,7 @@ public class ModelChangeListenerTest {
 		assertEquals(1, notifyCount);
 		assertEquals(1, actor.eAdapters().size());
 	}
-	
+
 	/**
 	 * Test NPE in exceptionHandling.
 	 */
@@ -178,25 +179,27 @@ public class ModelChangeListenerTest {
 	public void testAddListenerWithNPEinNPEHandling() {
 		ModelElementChangeListenerImpl listener = new ModelElementChangeListenerImpl() {
 
-			/** 
+			/**
 			 * {@inheritDoc}
-			 * @see org.unicase.model.util.ModelElementChangeListenerImpl#onChange(org.eclipse.emf.common.notify.Notification)
+			 * 
+			 * @see org.unicase.metamodel.util.ModelElementChangeListenerImpl#onChange(org.eclipse.emf.common.notify.Notification)
 			 */
 			@Override
 			public void onChange(Notification notification) {
-				throw new NullPointerException();				
+				throw new NullPointerException();
 			}
 
-			/** 
+			/**
 			 * {@inheritDoc}
-			 * @see org.unicase.model.util.ModelElementChangeListenerImpl#onRuntimeExceptionInListener(java.lang.RuntimeException)
+			 * 
+			 * @see org.unicase.metamodel.util.ModelElementChangeListenerImpl#onRuntimeExceptionInListener(java.lang.RuntimeException)
 			 */
 			@Override
 			public void onRuntimeExceptionInListener(RuntimeException exception) {
 				notifyCount++;
-				throw new NullPointerException();			
+				throw new NullPointerException();
 			}
-			
+
 		};
 		assertEquals(0, actor.eAdapters().size());
 		actor.addModelElementChangeListener(listener);

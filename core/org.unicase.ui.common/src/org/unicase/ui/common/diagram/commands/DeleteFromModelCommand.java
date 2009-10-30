@@ -19,7 +19,7 @@ import org.unicase.ui.common.commands.DeleteModelElementCommand;
  * 
  * @author denglerm
  */
-public class DeleteFromModelCommand extends DestroyElementCommand{
+public class DeleteFromModelCommand extends DestroyElementCommand {
 
 	/**
 	 * Constructs a new command to delete the model behind a diagram element.
@@ -29,7 +29,7 @@ public class DeleteFromModelCommand extends DestroyElementCommand{
 	public DeleteFromModelCommand(DestroyElementRequest request) {
 		super(request);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */

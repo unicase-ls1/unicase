@@ -25,12 +25,12 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Table;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
-import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
@@ -325,7 +325,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
@@ -335,7 +335,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 		// nothing to do;
@@ -345,7 +345,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
 		// nothing to do
@@ -355,7 +355,7 @@ public class FlatTabComposite extends Composite implements ProjectChangeObserver
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.model.UnicaseModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {

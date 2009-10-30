@@ -61,11 +61,11 @@ public class ModelBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	public static final String VISUAL_ID_KEY = "visual_id"; //$NON-NLS-1$
 
 	/**
-	 * Extended request data key to hold editpart visual id.
-	 * Add visual id of edited editpart to extended data of the request
-	 * so command switch can decide what kind of diagram element is being edited.
-	 * It is done in those cases when it's not possible to deduce diagram
-	 * element kind from domain element.
+	 * Extended request data key to hold editpart visual id. Add visual id of
+	 * edited editpart to extended data of the request so command switch can
+	 * decide what kind of diagram element is being edited. It is done in those
+	 * cases when it's not possible to deduce diagram element kind from domain
+	 * element.
 	 * 
 	 * @generated
 	 */

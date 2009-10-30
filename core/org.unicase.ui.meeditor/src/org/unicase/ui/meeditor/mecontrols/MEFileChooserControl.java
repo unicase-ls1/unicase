@@ -43,9 +43,9 @@ import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.FileTransferUtil;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.util.FileTransferUtil;
 
 /**
  * @author pfeifferc

@@ -19,7 +19,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
-import org.unicase.model.provider.UniqueIdentifierItemProvider;
+import org.unicase.metamodel.provider.UniqueIdentifierItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.operations.OperationId}

@@ -9,25 +9,27 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.swt.graphics.Image;
-//dengler: document
-/** * 
- * This class extends the Eclipse WrappingLabel to position text in the center.
+
+// dengler: document
+/**
+ * * This class extends the Eclipse WrappingLabel to position text in the center.
+ * 
  * @author denglerm
  */
-public class Label extends WrappingLabel{
+public class Label extends WrappingLabel {
 
-	private void init()
-	{
+	private void init() {
 		setAlignment(PositionConstants.CENTER);
 		setTextWrap(true);
 		setTextJustification(PositionConstants.CENTER);
 	}
+
 	/**
 	 * Default constructor.
 	 */
 	public Label() {
 		super();
-		init();		
+		init();
 	}
 
 	/**

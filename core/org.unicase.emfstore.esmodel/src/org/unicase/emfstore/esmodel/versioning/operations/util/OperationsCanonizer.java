@@ -16,7 +16,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.model.util.ModelUtil;
+import org.unicase.metamodel.util.ModelUtil;
 
 /**
  * Canonizes a list of operations. Removes all operations that are not necessary to achieve the same result when the

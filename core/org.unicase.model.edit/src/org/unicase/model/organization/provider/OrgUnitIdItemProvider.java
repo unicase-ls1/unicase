@@ -17,9 +17,9 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
+import org.unicase.metamodel.provider.UniqueIdentifierItemProvider;
 import org.unicase.model.organization.OrgUnitId;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.UniqueIdentifierItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.organization.OrgUnitId} object. <!-- begin-user-doc

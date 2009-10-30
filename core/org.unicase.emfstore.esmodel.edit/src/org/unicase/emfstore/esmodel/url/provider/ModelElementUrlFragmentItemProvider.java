@@ -25,7 +25,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.url.ModelElementUrlFragment;
 import org.unicase.emfstore.esmodel.url.UrlPackage;
-import org.unicase.model.ModelFactory;
+import org.unicase.metamodel.MetamodelFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.url.ModelElementUrlFragment} object. <!--
@@ -157,7 +157,7 @@ public class ModelElementUrlFragmentItemProvider extends ItemProviderAdapter imp
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(UrlPackage.Literals.MODEL_ELEMENT_URL_FRAGMENT__MODEL_ELEMENT_ID,
-			ModelFactory.eINSTANCE.createModelElementId()));
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**

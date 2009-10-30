@@ -5,13 +5,13 @@
     nsURI="http://unicase.org/workspace" nsPrefix="org.unicase.workspace">
   <eClassifiers xsi:type="ecore:EClass" name="Workspace">
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectSpaces" upperBound="-1"
-        eType="#//ProjectSpace" containment="true" eKeys="../../org.unicase.model/model/model.ecore#//IdentifiableElement/identifier"/>
+        eType="#//ProjectSpace" containment="true" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="serverInfos" upperBound="-1"
         eType="#//ServerInfo" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="usersessions" upperBound="-1"
         eType="#//Usersession" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="activeProjectSpace" eType="#//ProjectSpace"
-        transient="true" eKeys="../../org.unicase.model/model/model.ecore#//IdentifiableElement/identifier"/>
+        transient="true" eKeys="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement/identifier"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ServerInfo">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
@@ -39,8 +39,8 @@
         eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//accesscontrol/OrgUnitProperty"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="ProjectSpace" eSuperTypes="../../org.unicase.model/model/model.ecore#//IdentifiableElement">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//Project"
+  <eClassifiers xsi:type="ecore:EClass" name="ProjectSpace" eSuperTypes="../../org.unicase.metamodel/model/metamodel.ecore#//IdentifiableElement">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="project" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//Project"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="projectId" lowerBound="1"
         eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//ProjectId"
@@ -78,11 +78,8 @@
         eType="ecore:EClass ../../org.unicase.emfstore.esmodel/model/esmodel.ecore#//versioning/operations/AbstractOperation"
         containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="WorkspaceModelVersion">
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="modelReleaseNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
-  </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PendingFileTransfer">
-    <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentId" eType="ecore:EClass ../../org.unicase.model/model/model.ecore#//ModelElementId"
+    <eStructuralFeatures xsi:type="ecore:EReference" name="attachmentId" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="fileVersion" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="chunkNumber" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt"/>

@@ -20,8 +20,7 @@ import org.unicase.model.classes.Association;
 /**
  * @generated
  */
-public class Association3EditPart extends ConnectionNodeEditPart implements
-		ITreeBranchEditPart {
+public class Association3EditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -41,9 +40,8 @@ public class Association3EditPart extends ConnectionNodeEditPart implements
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.diagram.classDiagram.edit.policies.Association3ItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.diagram.classDiagram.edit.policies.Association3ItemSemanticEditPolicy());
 	}
 
 	/**
@@ -52,20 +50,17 @@ public class Association3EditPart extends ConnectionNodeEditPart implements
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.AssociationName3EditPart) {
 			((org.unicase.ui.diagram.classDiagram.edit.parts.AssociationName3EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureAssociationFigure_name());
+				.setLabel(getPrimaryShape().getFigureAssociationFigure_name());
 			return true;
 		}
 		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart) {
 			((org.unicase.ui.diagram.classDiagram.edit.parts.AssociationSourceMultiplicity3EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureAssociationFigure_sourceMultiplicity());
+				.setLabel(getPrimaryShape().getFigureAssociationFigure_sourceMultiplicity());
 			return true;
 		}
 		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart) {
 			((org.unicase.ui.diagram.classDiagram.edit.parts.AssociationTargetMultiplicity3EditPart) childEditPart)
-					.setLabel(getPrimaryShape()
-							.getFigureAssociationFigure_targetMultiplicity());
+				.setLabel(getPrimaryShape().getFigureAssociationFigure_targetMultiplicity());
 			return true;
 		}
 		return false;
@@ -165,8 +160,7 @@ public class Association3EditPart extends ConnectionNodeEditPart implements
 			}
 			if (object instanceof Association) {
 				Association association = (Association) object;
-				df = new org.unicase.ui.diagram.classDiagram.unicase.AssociationDecoration(
-						association, true);
+				df = new org.unicase.ui.diagram.classDiagram.unicase.AssociationDecoration(association, true);
 			} else {
 				throw new IllegalArgumentException();
 			}
@@ -187,8 +181,7 @@ public class Association3EditPart extends ConnectionNodeEditPart implements
 			}
 			if (object instanceof Association) {
 				Association association = (Association) object;
-				df = new org.unicase.ui.diagram.classDiagram.unicase.AssociationDecoration(
-						association, false);
+				df = new org.unicase.ui.diagram.classDiagram.unicase.AssociationDecoration(association, false);
 			} else {
 				throw new IllegalArgumentException();
 			}

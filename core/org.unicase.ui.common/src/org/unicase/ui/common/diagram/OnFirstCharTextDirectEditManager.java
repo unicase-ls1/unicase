@@ -28,22 +28,10 @@ public class OnFirstCharTextDirectEditManager extends TextDirectEditManager {
 	}
 
 	/**
-	 * @see org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager#show(char)
-	 * 
-	 * Overrides the superclass behaviour:
-	 * 
-	 * if (SWT.getPlatform() != "carbon") {
-     *      setEditText(initialString.toString());
-     * }
-	 * 
-	 * which translates to:
-	 * 
-	 * if (SWT.getPlatform() != "Mac OS X") { 
-     *      behaveLikeShit();
-     * }
-	 * 
-	 * so that typing in text field does not require ttyping eevery ffirst lletter ttwice.
-	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.tools.TextDirectEditManager#show(char) Overrides the superclass
+	 *      behaviour: if (SWT.getPlatform() != "carbon") { setEditText(initialString.toString()); } which translates
+	 *      to: if (SWT.getPlatform() != "Mac OS X") { behaveLikeShit(); } so that typing in text field does not require
+	 *      ttyping eevery ffirst lletter ttwice.
 	 * @param initialChar The very first char being entered.
 	 */
 	@Override

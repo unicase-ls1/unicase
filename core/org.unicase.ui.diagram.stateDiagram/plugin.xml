@@ -458,7 +458,7 @@
       	 <enablement>
            <and>
               <instanceof
-                    value="org.unicase.model.ModelElement">
+                    value="org.unicase.metamodel.ModelElement">
               </instanceof>
               <test
                     property=" org.unicase.ui.diagram.stateDiagram.isDiagramType"
@@ -483,7 +483,7 @@
             id=" org.unicase.ui.diagram.stateDiagram.part.DiagramTypeTester"
             namespace=" org.unicase.ui.diagram.stateDiagram"
             properties="isDiagramType"
-            type="org.unicase.model.ModelElement">
+            type="org.unicase.metamodel.ModelElement">
       </propertyTester>
    </extension>   
 <extension point="org.eclipse.core.expressions.propertyTesters">

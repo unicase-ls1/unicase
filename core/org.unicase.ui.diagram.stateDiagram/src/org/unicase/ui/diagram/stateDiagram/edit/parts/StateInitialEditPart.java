@@ -50,11 +50,11 @@ public class StateInitialEditPart extends ShapeNodeEditPart {
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.diagram.stateDiagram.edit.policies.StateInitialItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.diagram.stateDiagram.edit.policies.StateInitialItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -65,8 +65,7 @@ public class StateInitialEditPart extends ShapeNodeEditPart {
 		LayoutEditPolicy lep = new LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				EditPolicy result = child
-						.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
+				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
@@ -103,16 +102,13 @@ public class StateInitialEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-				.DPtoLP(15), getMapMode().DPtoLP(15));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15));
 		return result;
 	}
 
 	/**
-	 * Creates figure for this edit part.
-	 * 
-	 * Body of this method does not depend on settings in generation model
-	 * so you may safely remove <i>generated</i> tag and modify it.
+	 * Creates figure for this edit part. Body of this method does not depend on settings in generation model so you may
+	 * safely remove <i>generated</i> tag and modify it.
 	 * 
 	 * @generated
 	 */
@@ -126,8 +122,9 @@ public class StateInitialEditPart extends ShapeNodeEditPart {
 	}
 
 	/**
-	 * Default implementation treats passed figure as content pane.
-	 * Respects layout one may have set for generated figure.
+	 * Default implementation treats passed figure as content pane. Respects layout one may have set for generated
+	 * figure.
+	 * 
 	 * @param nodeShape instance of generated figure class
 	 * @generated
 	 */
@@ -155,12 +152,9 @@ public class StateInitialEditPart extends ShapeNodeEditPart {
 		 */
 		public StateInitialFigure() {
 			this.setBackgroundColor(ColorConstants.black);
-			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
-			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
-			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(15),
-					getMapMode().DPtoLP(15)));
+			this.setPreferredSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
+			this.setMaximumSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
+			this.setMinimumSize(new Dimension(getMapMode().DPtoLP(15), getMapMode().DPtoLP(15)));
 		}
 
 		/**

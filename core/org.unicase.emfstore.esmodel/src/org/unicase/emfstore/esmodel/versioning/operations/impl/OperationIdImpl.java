@@ -8,7 +8,7 @@ package org.unicase.emfstore.esmodel.versioning.operations.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationId;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.model.impl.UniqueIdentifierImpl;
+import org.unicase.metamodel.impl.UniqueIdentifierImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Operation Id</b></em>'. <!-- end-user-doc -->

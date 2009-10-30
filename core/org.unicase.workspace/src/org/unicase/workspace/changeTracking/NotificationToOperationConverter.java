@@ -21,8 +21,6 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.model.diagram.DiagramFactory;
-import org.unicase.model.diagram.DiagramPackage;
 import org.unicase.workspace.changeTracking.notification.NotificationInfo;
 
 /**
@@ -204,10 +202,9 @@ public final class NotificationToOperationConverter {
 	}
 
 	private static boolean isDiagramLayoutAttribute(EAttribute attribute, ModelElement modelElement) {
-		DiagramPackage diagramPackage = DiagramFactory.eINSTANCE.getDiagramPackage();
-		boolean isLayoutAttribute = attribute.getName().equals(diagramPackage.getMEDiagram_DiagramLayout().getName());
-		boolean isDiagramInstance = diagramPackage.getMEDiagram().isInstance(modelElement);
-		return isLayoutAttribute && isDiagramInstance;
+		// FIXME: HACK to check if attribute is the layout of a diagram
+		boolean isLayoutAttribute = attribute.getName().equals("diagramLayout");
+		return isLayoutAttribute;
 	}
 
 }

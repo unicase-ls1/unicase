@@ -30,7 +30,7 @@ import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -114,7 +114,7 @@ public class UrlPackageImpl extends EPackageImpl implements UrlPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		ModelPackage.eINSTANCE.eClass();
+		MetamodelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE
@@ -356,7 +356,8 @@ public class UrlPackageImpl extends EPackageImpl implements UrlPackage {
 		// Obtain other dependent packages
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(EsmodelPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -380,14 +381,14 @@ public class UrlPackageImpl extends EPackageImpl implements UrlPackage {
 		initEReference(getProjectUrlFragment_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 0,
 			1, ProjectUrlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getProjectUrlFragment_ProjectId().getEKeys().add(theModelPackage.getUniqueIdentifier_Id());
+		getProjectUrlFragment_ProjectId().getEKeys().add(theMetamodelPackage.getUniqueIdentifier_Id());
 
 		initEClass(modelElementUrlFragmentEClass, ModelElementUrlFragment.class, "ModelElementUrlFragment",
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getModelElementUrlFragment_Name(), ecorePackage.getEString(), "name", null, 0, 1,
 			ModelElementUrlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElementUrlFragment_ModelElementId(), theModelPackage.getModelElementId(), null,
+		initEReference(getModelElementUrlFragment_ModelElementId(), theMetamodelPackage.getModelElementId(), null,
 			"modelElementId", null, 0, 1, ModelElementUrlFragment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

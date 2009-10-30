@@ -40,14 +40,11 @@ public class MEDiagramEditPart extends org.unicase.ui.common.diagram.edit.parts.
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SHOW_ELEMENTS_ROLE,
-				new MEDiagramShowElementsEditPolicy());
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.diagram.classDiagram.edit.policies.MEDiagramItemSemanticEditPolicy());
-		installEditPolicy(
-				EditPolicyRoles.CANONICAL_ROLE,
-				new org.unicase.ui.diagram.classDiagram.edit.policies.MEDiagramCanonicalEditPolicy());
+		installEditPolicy(EditPolicyRoles.SHOW_ELEMENTS_ROLE, new MEDiagramShowElementsEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.diagram.classDiagram.edit.policies.MEDiagramItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+			new org.unicase.ui.diagram.classDiagram.edit.policies.MEDiagramCanonicalEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

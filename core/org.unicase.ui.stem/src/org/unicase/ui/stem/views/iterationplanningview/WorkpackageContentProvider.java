@@ -18,10 +18,10 @@ import org.eclipse.emf.transaction.ui.provider.TransactionalAdapterFactoryConten
 import org.eclipse.jface.viewers.TreeViewer;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
@@ -174,7 +174,7 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 	}
 
 	/**
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 *      {@inheritDoc}
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
@@ -188,7 +188,7 @@ public class WorkpackageContentProvider extends TransactionalAdapterFactoryConte
 	}
 
 	/**
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
 	 *      {@inheritDoc}
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {

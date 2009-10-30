@@ -11,9 +11,9 @@ import java.util.List;
 import junit.framework.TestCase;
 
 import org.junit.Test;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
-import org.unicase.model.ModelFactory;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.task.ActionItem;
 import org.unicase.model.task.TaskFactory;
@@ -79,7 +79,7 @@ public class TestEstimateComputation extends TestCase {
 	 */
 	@Override
 	public void setUp() {
-		project = ModelFactory.eINSTANCE.createProject();
+		project = MetamodelFactory.eINSTANCE.createProject();
 
 		// WorkPackage Hierachy
 		wpRoot = createWorkPackage(null);

@@ -24,30 +24,42 @@ public class DetailedChangesComposite extends AbstractChangesComposite {
 	private TreeViewerColumn opColumn;
 
 	/**
-	 * Default constructor.
+	 * Default constructor. {@inheritDoc}
 	 * 
-	 * @param parent @see {@link AbstractChangesComposite}
-	 * @param style @see {@link AbstractChangesComposite}
-	 * @param relatedElementsStyle @see {@link AbstractChangesComposite}
-	 * @param changePackages @see {@link AbstractChangesComposite}
-	 * @param checkable @see {@link AbstractChangesComposite}
+	 * @param parent
+	 * @see {@link AbstractChangesComposite}
+	 * @param style
+	 * @see {@link AbstractChangesComposite}
+	 * @param relatedElementsStyle
+	 * @see {@link AbstractChangesComposite}
+	 * @param changePackages
+	 * @see {@link AbstractChangesComposite}
+	 * @param checkable
+	 * @see {@link AbstractChangesComposite}
 	 */
-	public DetailedChangesComposite(Composite parent, int style, int relatedElementsStyle,
-		List<ChangePackage> changePackages, boolean checkable) {
-		super(parent, style, relatedElementsStyle, changePackages, new DetailedChangesContentProvider(), checkable);
+	public DetailedChangesComposite(Composite parent, int style,
+			int relatedElementsStyle, List<ChangePackage> changePackages,
+			boolean checkable) {
+		super(parent, style, relatedElementsStyle, changePackages,
+				new DetailedChangesContentProvider(), checkable);
 	}
 
 	/**
-	 * Default constructor.
+	 * Default constructor. {@inheritDoc}
 	 * 
-	 * @param parent @see {@link AbstractChangesComposite}
-	 * @param style @see {@link AbstractChangesComposite}
-	 * @param relatedElementsStyle @see {@link AbstractChangesComposite}
-	 * @param changePackages @see {@link AbstractChangesComposite}
+	 * @param parent
+	 * @see {@link AbstractChangesComposite}
+	 * @param style
+	 * @see {@link AbstractChangesComposite}
+	 * @param relatedElementsStyle
+	 * @see {@link AbstractChangesComposite}
+	 * @param changePackages
+	 * @see {@link AbstractChangesComposite}
 	 */
-	public DetailedChangesComposite(Composite parent, int style, int relatedElementsStyle,
-		List<ChangePackage> changePackages) {
-		super(parent, style, relatedElementsStyle, changePackages, new DetailedChangesContentProvider(), false);
+	public DetailedChangesComposite(Composite parent, int style,
+			int relatedElementsStyle, List<ChangePackage> changePackages) {
+		super(parent, style, relatedElementsStyle, changePackages,
+				new DetailedChangesContentProvider(), false);
 	}
 
 	/**
@@ -61,12 +73,14 @@ public class DetailedChangesComposite extends AbstractChangesComposite {
 		meColumn = new TreeViewerColumn(getTreeViewer(), SWT.NONE);
 		meColumn.getColumn().setWidth(300);
 		meColumn.getColumn().setText("ModelElement");
-		meColumn.setLabelProvider(new MENameLabelProvider(getEmfLabelProvider(), getVisualizationHelper()));
+		meColumn.setLabelProvider(new MENameLabelProvider(
+				getEmfLabelProvider(), getVisualizationHelper()));
 
 		opColumn = new TreeViewerColumn(getTreeViewer(), SWT.NONE);
 		opColumn.getColumn().setWidth(300);
 		opColumn.getColumn().setText("Operation");
-		opColumn.setLabelProvider(new OperationsDescLabelProvider(getEmfLabelProvider(), getVisualizationHelper()));
+		opColumn.setLabelProvider(new OperationsDescLabelProvider(
+				getEmfLabelProvider(), getVisualizationHelper()));
 
 	}
 

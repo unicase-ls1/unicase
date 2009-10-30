@@ -1,4 +1,4 @@
-/** 
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -21,8 +21,8 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	 * @generated
 	 */
 	private AdapterFactoryLabelProvider myAdapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
-			org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorPlugin
-					.getInstance().getItemProvidersAdapterFactory());
+		org.unicase.ui.diagram.stateDiagram.part.ModelDiagramEditorPlugin.getInstance()
+			.getItemProvidersAdapterFactory());
 
 	/**
 	 * @generated
@@ -36,8 +36,8 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	public Image getImage(Object element) {
 		if (element instanceof org.unicase.ui.diagram.stateDiagram.navigator.ModelDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider
-					.getImage(((org.unicase.ui.diagram.stateDiagram.navigator.ModelDomainNavigatorItem) element)
-							.getEObject());
+				.getImage(((org.unicase.ui.diagram.stateDiagram.navigator.ModelDomainNavigatorItem) element)
+					.getEObject());
 		}
 		return null;
 	}
@@ -48,8 +48,8 @@ public class ModelDomainNavigatorLabelProvider implements ICommonLabelProvider {
 	public String getText(Object element) {
 		if (element instanceof org.unicase.ui.diagram.stateDiagram.navigator.ModelDomainNavigatorItem) {
 			return myAdapterFactoryLabelProvider
-					.getText(((org.unicase.ui.diagram.stateDiagram.navigator.ModelDomainNavigatorItem) element)
-							.getEObject());
+				.getText(((org.unicase.ui.diagram.stateDiagram.navigator.ModelDomainNavigatorItem) element)
+					.getEObject());
 		}
 		return null;
 	}

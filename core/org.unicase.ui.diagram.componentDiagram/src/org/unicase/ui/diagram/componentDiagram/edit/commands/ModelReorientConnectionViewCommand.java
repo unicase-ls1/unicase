@@ -13,8 +13,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ModelReorientConnectionViewCommand extends
-		AbstractTransactionalCommand {
+public class ModelReorientConnectionViewCommand extends AbstractTransactionalCommand {
 
 	/**
 	 * @generated
@@ -24,8 +23,7 @@ public class ModelReorientConnectionViewCommand extends
 	/**
 	 * @generated
 	 */
-	public ModelReorientConnectionViewCommand(
-			TransactionalEditingDomain editingDomain, String label) {
+	public ModelReorientConnectionViewCommand(TransactionalEditingDomain editingDomain, String label) {
 		super(editingDomain, label, null);
 	}
 
@@ -59,8 +57,7 @@ public class ModelReorientConnectionViewCommand extends
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(
-			IProgressMonitor progressMonitor, IAdaptable info) {
+	protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) {
 		assert null != edgeAdaptor : "Null child in ModelReorientConnectionViewCommand"; //$NON-NLS-1$
 		Edge edge = (Edge) getEdgeAdaptor().getAdapter(Edge.class);
 		assert null != edge : "Null edge in ModelReorientConnectionViewCommand"; //$NON-NLS-1$

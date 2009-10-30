@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
@@ -70,7 +70,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__IDENTIFIER = ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
+	int ABSTRACT_OPERATION__IDENTIFIER = MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -78,7 +78,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__NAME = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
+	int ABSTRACT_OPERATION__NAME = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -86,7 +86,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__DESCRIPTION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
+	int ABSTRACT_OPERATION__DESCRIPTION = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Model Element Id</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -95,7 +95,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__MODEL_ELEMENT_ID = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
+	int ABSTRACT_OPERATION__MODEL_ELEMENT_ID = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Accepted</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -103,7 +103,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__ACCEPTED = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
+	int ABSTRACT_OPERATION__ACCEPTED = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Client Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -111,7 +111,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION__CLIENT_DATE = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
+	int ABSTRACT_OPERATION__CLIENT_DATE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Abstract Operation</em>' class. <!-- begin-user-doc --> <!--
@@ -120,7 +120,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ABSTRACT_OPERATION_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
+	int ABSTRACT_OPERATION_FEATURE_COUNT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '
@@ -1033,7 +1033,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_ID__ID = ModelPackage.UNIQUE_IDENTIFIER__ID;
+	int OPERATION_ID__ID = MetamodelPackage.UNIQUE_IDENTIFIER__ID;
 
 	/**
 	 * The number of structural features of the '<em>Operation Id</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1042,7 +1042,7 @@ public interface OperationsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int OPERATION_ID_FEATURE_COUNT = ModelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
+	int OPERATION_ID_FEATURE_COUNT = MetamodelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.versioning.operations.impl.OperationGroupImpl

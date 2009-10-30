@@ -29,8 +29,7 @@ public final class DeleteReferenceCommand extends UnicaseCommand {
 	 * @param reference the reference
 	 * @param opposite the element on the other side - the element to be removed.
 	 */
-	public DeleteReferenceCommand(ModelElement modelElement, EReference reference,
-		ModelElement opposite) {
+	public DeleteReferenceCommand(ModelElement modelElement, EReference reference, ModelElement opposite) {
 		this.modelElement = modelElement;
 		this.reference = reference;
 		this.opposite = opposite;

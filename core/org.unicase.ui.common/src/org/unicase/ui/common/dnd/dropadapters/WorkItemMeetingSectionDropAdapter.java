@@ -49,7 +49,8 @@ public class WorkItemMeetingSectionDropAdapter extends MEDropAdapter {
 
 	}
 
-	private void dropWorkItemOnMeetingSection(final WorkItemMeetingSection target, final List<UnicaseModelElement> source) {
+	private void dropWorkItemOnMeetingSection(final WorkItemMeetingSection target,
+		final List<UnicaseModelElement> source) {
 
 		for (UnicaseModelElement me : source) {
 			if (me instanceof WorkItem) {

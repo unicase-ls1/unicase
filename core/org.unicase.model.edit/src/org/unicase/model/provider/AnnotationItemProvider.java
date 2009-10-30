@@ -25,7 +25,7 @@ import org.unicase.model.ModelPackage;
  * 
  * @generated
  */
-public class AnnotationItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+public class AnnotationItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->

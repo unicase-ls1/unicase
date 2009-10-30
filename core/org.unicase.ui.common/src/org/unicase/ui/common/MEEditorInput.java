@@ -72,12 +72,12 @@ public class MEEditorInput implements IEditorInput {
 		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(
 			new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		IDecoratorManager decoratorManager = PlatformUI.getWorkbench().getDecoratorManager();
-		labelProvider = new DecoratingLabelProvider(adapterFactoryLabelProvider,
-			decoratorManager.getLabelDecorator());
+		labelProvider = new DecoratingLabelProvider(adapterFactoryLabelProvider, decoratorManager.getLabelDecorator());
 	}
-	
+
 	/**
 	 * Getter for the label provider.
+	 * 
 	 * @return the label provider
 	 */
 	public DecoratingLabelProvider getLabelProvider() {

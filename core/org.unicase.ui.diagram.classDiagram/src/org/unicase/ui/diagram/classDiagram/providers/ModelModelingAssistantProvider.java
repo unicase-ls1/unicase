@@ -280,7 +280,8 @@ public class ModelModelingAssistantProvider extends org.unicase.ui.common.diagra
 	protected EObject selectElement(EObject[] elements) {
 		Shell shell = Display.getCurrent().getActiveShell();
 		ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-			org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+			org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorPlugin.getInstance()
+				.getItemProvidersAdapterFactory());
 		ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
 		dialog.setMessage(org.unicase.ui.diagram.classDiagram.part.Messages.ModelModelingAssistantProviderMessage);
 		dialog.setTitle(org.unicase.ui.diagram.classDiagram.part.Messages.ModelModelingAssistantProviderTitle);

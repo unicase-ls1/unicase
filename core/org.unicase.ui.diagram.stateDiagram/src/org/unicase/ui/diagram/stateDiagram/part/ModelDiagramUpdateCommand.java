@@ -1,4 +1,4 @@
-/** 
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -41,24 +41,20 @@ public class ModelDiagramUpdateCommand implements IHandler {
 	 * @generated
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		ISelection selection = PlatformUI.getWorkbench()
-				.getActiveWorkbenchWindow().getSelectionService()
-				.getSelection();
+		ISelection selection = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService()
+			.getSelection();
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
 			if (structuredSelection.size() != 1) {
 				return null;
 			}
 			if (structuredSelection.getFirstElement() instanceof EditPart
-					&& ((EditPart) structuredSelection.getFirstElement())
-							.getModel() instanceof View) {
-				EObject modelElement = ((View) ((EditPart) structuredSelection
-						.getFirstElement()).getModel()).getElement();
-				List editPolicies = CanonicalEditPolicy
-						.getRegisteredEditPolicies(modelElement);
+				&& ((EditPart) structuredSelection.getFirstElement()).getModel() instanceof View) {
+				EObject modelElement = ((View) ((EditPart) structuredSelection.getFirstElement()).getModel())
+					.getElement();
+				List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(modelElement);
 				for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-					CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it
-							.next();
+					CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
 					nextEditPolicy.refresh();
 				}
 

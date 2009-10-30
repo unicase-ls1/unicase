@@ -42,11 +42,12 @@ import org.eclipse.swt.widgets.TabItem;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.ui.dialogs.PropertyPage;
 import org.unicase.emfstore.esmodel.accesscontrol.OrgUnitProperty;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.ModelPackage;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -67,7 +68,8 @@ public class DashboardPropertyPage extends PropertyPage {
 	 * 
 	 * @author Shterev
 	 */
-	private final class SavePropertiesCommand extends UnicaseCommandWithResult<Object> {
+	private final class SavePropertiesCommand extends
+			UnicaseCommandWithResult<Object> {
 
 		@Override
 		protected Object doRun() {
@@ -75,40 +77,54 @@ public class DashboardPropertyPage extends PropertyPage {
 			for (ModelElement me : subscriptions) {
 				subscriptionsIds.add(me.getModelElementId());
 			}
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SUBSCRIPTIONS, subscriptionsIds
-				.toArray(new ModelElementId[0]));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.DASHBOARD_SIZE, notificationSize
-				.getSelection());
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_PROVIDER, providersTable
-				.getChecked(DashboardKey.TASK_PROVIDER));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_CHANGE_PROVIDER, providersTable
-				.getChecked(DashboardKey.TASK_CHANGE_PROVIDER));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_REVIEW_PROVIDER, providersTable
-				.getChecked(DashboardKey.TASK_REVIEW_PROVIDER));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASK_TRACE_PROVIDER, providersTable
-				.getChecked(DashboardKey.TASK_TRACE_PROVIDER));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SUBSCRIPTION_PROVIDER, providersTable
-				.getChecked(DashboardKey.SUBSCRIPTION_PROVIDER));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.COMMENTS_PROVIDER, providersTable
-				.getChecked(DashboardKey.COMMENTS_PROVIDER));
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.HIGHLIGHT_PUSHED_COMMENTS,
-				highlightPersonalComments.getSelection());
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SHOW_CONTAINMENT_REPLIES,
-				showContainmentReplies.getSelection());
-			PreferenceManager.INSTANCE
-				.setProperty(projectSpace, DashboardKey.SHOW_AI_TASKS, showAITasks.getSelection());
-			PreferenceManager.INSTANCE
-				.setProperty(projectSpace, DashboardKey.SHOW_BR_TASKS, showBRTasks.getSelection());
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SHOW_ISSUE_TASKS, showIssueTasks
-				.getSelection());
-			PreferenceManager.INSTANCE
-				.setProperty(projectSpace, DashboardKey.SHOW_WP_TASKS, showWPTasks.getSelection());
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.SHOW_ONLY_READYFORREVIEW,
-				showOnlyReadyForReview.getSelection());
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASKTRACE_LENGTH, taskTraceLength
-				.getSelection());
-			PreferenceManager.INSTANCE.setProperty(projectSpace, DashboardKey.TASKTRACE_CLASSES, taskTraceClasses
-				.toArray(new EObject[0]));
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.SUBSCRIPTIONS, subscriptionsIds
+							.toArray(new ModelElementId[0]));
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.DASHBOARD_SIZE, notificationSize
+							.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.TASK_PROVIDER, providersTable
+							.getChecked(DashboardKey.TASK_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.TASK_CHANGE_PROVIDER, providersTable
+							.getChecked(DashboardKey.TASK_CHANGE_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.TASK_REVIEW_PROVIDER, providersTable
+							.getChecked(DashboardKey.TASK_REVIEW_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.TASK_TRACE_PROVIDER, providersTable
+							.getChecked(DashboardKey.TASK_TRACE_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.SUBSCRIPTION_PROVIDER, providersTable
+							.getChecked(DashboardKey.SUBSCRIPTION_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.COMMENTS_PROVIDER, providersTable
+							.getChecked(DashboardKey.COMMENTS_PROVIDER));
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.HIGHLIGHT_PUSHED_COMMENTS,
+					highlightPersonalComments.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.SHOW_CONTAINMENT_REPLIES,
+					showContainmentReplies.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.SHOW_AI_TASKS, showAITasks.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.SHOW_BR_TASKS, showBRTasks.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.SHOW_ISSUE_TASKS, showIssueTasks
+							.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.SHOW_WP_TASKS, showWPTasks.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.SHOW_ONLY_READYFORREVIEW,
+					showOnlyReadyForReview.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.TASKTRACE_LENGTH, taskTraceLength
+							.getSelection());
+			PreferenceManager.INSTANCE.setProperty(projectSpace,
+					DashboardKey.TASKTRACE_CLASSES, taskTraceClasses
+							.toArray(new EObject[0]));
 			return null;
 		}
 	}
@@ -144,8 +160,9 @@ public class DashboardPropertyPage extends PropertyPage {
 			return label;
 		}
 
-		labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		labelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 
 		TabFolder folder = new TabFolder(parent, SWT.TOP);
 
@@ -179,29 +196,35 @@ public class DashboardPropertyPage extends PropertyPage {
 		GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(root);
 
 		Label subscriptionLabel = new Label(root, SWT.WRAP);
-		subscriptionLabel.setText("You are subscribed to the following elements:");
+		subscriptionLabel
+				.setText("You are subscribed to the following elements:");
 
 		final TableViewer elementsTable = new TableViewer(root);
 		elementsTable.setContentProvider(new ArrayContentProvider());
 		elementsTable.setLabelProvider(labelProvider);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(elementsTable.getControl());
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(
+				elementsTable.getControl());
 		elementsTable.setInput(subscriptions.toArray());
 
 		Composite buttonsComposite = new Composite(root, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(buttonsComposite);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(buttonsComposite);
+		GridLayoutFactory.fillDefaults().numColumns(2)
+				.applyTo(buttonsComposite);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(
+				buttonsComposite);
 		Button addME = new Button(buttonsComposite, SWT.PUSH);
 		addME.setText("Add");
 		addME.addSelectionListener(new SelectionAdapter() {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), labelProvider);
+				ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+						getShell(), labelProvider);
 				dialog.setBlockOnOpen(true);
 				dialog.setMultipleSelection(true);
 				dialog.setElements(project.getAllModelElements().toArray());
 				if (dialog.open() == Window.OK) {
-					subscriptions.addAll((List<? extends ModelElement>) Arrays.asList(dialog.getResult()));
+					subscriptions.addAll((List<? extends ModelElement>) Arrays
+							.asList(dialog.getResult()));
 					elementsTable.setInput(subscriptions.toArray());
 				}
 			}
@@ -213,7 +236,8 @@ public class DashboardPropertyPage extends PropertyPage {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				StructuredSelection selection = (StructuredSelection) elementsTable.getSelection();
+				StructuredSelection selection = (StructuredSelection) elementsTable
+						.getSelection();
 				Iterator<Object> iterator = selection.iterator();
 				while (iterator.hasNext()) {
 					Object o = iterator.next();
@@ -240,30 +264,38 @@ public class DashboardPropertyPage extends PropertyPage {
 		taskTraceLength.setMaximum(200);
 
 		Label elementTypesLabel = new Label(root, SWT.WRAP);
-		elementTypesLabel.setText("You are subscribed to the following element types:");
+		elementTypesLabel
+				.setText("You are subscribed to the following element types:");
 		final TableViewer elementTypes = new TableViewer(root);
 		elementTypes.setContentProvider(new ArrayContentProvider());
 		final MEClassLabelProvider meClassLabelProvider = new MEClassLabelProvider();
 		elementTypes.setLabelProvider(meClassLabelProvider);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(elementTypes.getControl());
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(
+				elementTypes.getControl());
 
 		Composite buttonsComposite = new Composite(root, SWT.NONE);
-		GridLayoutFactory.fillDefaults().numColumns(2).applyTo(buttonsComposite);
-		GridDataFactory.fillDefaults().grab(true, false).applyTo(buttonsComposite);
+		GridLayoutFactory.fillDefaults().numColumns(2)
+				.applyTo(buttonsComposite);
+		GridDataFactory.fillDefaults().grab(true, false).applyTo(
+				buttonsComposite);
 		Button addType = new Button(buttonsComposite, SWT.PUSH);
 		addType.setText("Add");
 		addType.addSelectionListener(new SelectionAdapter() {
 			@SuppressWarnings("unchecked")
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), meClassLabelProvider);
+				ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+						getShell(), meClassLabelProvider);
 				dialog.setBlockOnOpen(true);
 				dialog.setMultipleSelection(true);
-				ArrayList<EClass> subclasses = ModelUtil.getSubclasses(ModelPackage.eINSTANCE.getModelElement());
+				ArrayList<EClass> subclasses = ModelUtil.getSubclasses(
+						MetamodelPackage.eINSTANCE.getModelElement(),
+						ModelPackage.eINSTANCE);
 				subclasses.removeAll(taskTraceClasses);
 				dialog.setElements(subclasses.toArray());
 				if (dialog.open() == Window.OK) {
-					taskTraceClasses.addAll((List<? extends EClass>) Arrays.asList(dialog.getResult()));
+					taskTraceClasses.addAll((List<? extends EClass>) Arrays
+							.asList(dialog.getResult()));
 					elementTypes.setInput(taskTraceClasses.toArray());
 				}
 			}
@@ -274,12 +306,14 @@ public class DashboardPropertyPage extends PropertyPage {
 		removeType.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				ElementListSelectionDialog dialog = new ElementListSelectionDialog(getShell(), meClassLabelProvider);
+				ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+						getShell(), meClassLabelProvider);
 				dialog.setBlockOnOpen(true);
 				dialog.setMultipleSelection(true);
 				dialog.setElements(taskTraceClasses.toArray());
 				if (dialog.open() == Window.OK) {
-					taskTraceClasses.removeAll(Arrays.asList(dialog.getResult()));
+					taskTraceClasses.removeAll(Arrays
+							.asList(dialog.getResult()));
 					elementTypes.setInput(taskTraceClasses.toArray());
 				}
 			}
@@ -293,24 +327,30 @@ public class DashboardPropertyPage extends PropertyPage {
 		GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(root);
 
 		showBRTasks = new Button(root, SWT.CHECK | SWT.WRAP);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(showBRTasks);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(
+				showBRTasks);
 		showBRTasks.setText("Show notifications for new BugReports");
 
 		showAITasks = new Button(root, SWT.CHECK | SWT.WRAP);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(showAITasks);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(
+				showAITasks);
 		showAITasks.setText("Show notifications for new ActionItems");
 
 		showIssueTasks = new Button(root, SWT.CHECK | SWT.WRAP);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(showIssueTasks);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(
+				showIssueTasks);
 		showIssueTasks.setText("Show notifications for new Issues");
 
 		showWPTasks = new Button(root, SWT.CHECK | SWT.WRAP);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(showWPTasks);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(
+				showWPTasks);
 		showWPTasks.setText("Show notifications for new WorkPackages");
 
 		showOnlyReadyForReview = new Button(root, SWT.CHECK | SWT.WRAP);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(showOnlyReadyForReview);
-		showOnlyReadyForReview.setText("Do not show reviewer tasks until they are ready for review");
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(
+				showOnlyReadyForReview);
+		showOnlyReadyForReview
+				.setText("Do not show reviewer tasks until they are ready for review");
 
 		return root;
 	}
@@ -320,11 +360,14 @@ public class DashboardPropertyPage extends PropertyPage {
 		GridLayoutFactory.fillDefaults().margins(5, 5).applyTo(root);
 
 		showContainmentReplies = new Button(root, SWT.CHECK | SWT.WRAP);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(showContainmentReplies);
-		showContainmentReplies.setText("Show notifications for every reply in the thread tree");
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(
+				showContainmentReplies);
+		showContainmentReplies
+				.setText("Show notifications for every reply in the thread tree");
 
 		highlightPersonalComments = new Button(root, SWT.CHECK | SWT.WRAP);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(highlightPersonalComments);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.BEGINNING).applyTo(
+				highlightPersonalComments);
 		highlightPersonalComments.setText("Hightlight personal comments");
 
 		return root;
@@ -346,9 +389,10 @@ public class DashboardPropertyPage extends PropertyPage {
 		title.setText("Active notification types:");
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(title);
 
-		providersTable = CheckboxTableViewer.newCheckList(root, SWT.SINGLE | SWT.RESIZE | SWT.V_SCROLL | SWT.H_SCROLL
-			| SWT.BORDER);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(providersTable.getControl());
+		providersTable = CheckboxTableViewer.newCheckList(root, SWT.SINGLE
+				| SWT.RESIZE | SWT.V_SCROLL | SWT.H_SCROLL | SWT.BORDER);
+		GridDataFactory.fillDefaults().grab(true, true).applyTo(
+				providersTable.getControl());
 		providersTable.setContentProvider(new ArrayContentProvider());
 		ArrayList<PropertyKey> providers = new ArrayList<PropertyKey>();
 		providers.addAll(providerHints.keySet());
@@ -363,16 +407,18 @@ public class DashboardPropertyPage extends PropertyPage {
 		GridDataFactory.fillDefaults().grab(true, false).applyTo(hint);
 		hint.setText("Hint: Select an item to view its description");
 
-		providersTable.addSelectionChangedListener(new ISelectionChangedListener() {
+		providersTable
+				.addSelectionChangedListener(new ISelectionChangedListener() {
 
-			public void selectionChanged(SelectionChangedEvent event) {
-				Object object = ((IStructuredSelection) event.getSelection()).getFirstElement();
-				if (object instanceof DashboardKey) {
-					hint.setText(providerHints.get(object)[1] + "");
-					root.layout();
-				}
-			}
-		});
+					public void selectionChanged(SelectionChangedEvent event) {
+						Object object = ((IStructuredSelection) event
+								.getSelection()).getFirstElement();
+						if (object instanceof DashboardKey) {
+							hint.setText(providerHints.get(object)[1] + "");
+							root.layout();
+						}
+					}
+				});
 
 		providersTable.setLabelProvider(new ColumnLabelProvider() {
 			@Override
@@ -397,28 +443,48 @@ public class DashboardPropertyPage extends PropertyPage {
 		projectSpace = WorkspaceManager.getProjectSpace(project);
 		providerHints = new HashMap<PropertyKey, String[]>();
 
-		providerHints.put(DashboardKey.TASK_PROVIDER, new String[] { "Task notifications",
-			"Show notifications for tasks that have been assigned to you." });
-		providerHints.put(DashboardKey.TASK_CHANGE_PROVIDER, new String[] { "Task changes notifications",
-			"Show notifications for changes on tasks you have been assigned to." });
-		providerHints.put(DashboardKey.TASK_TRACE_PROVIDER, new String[] { "Task trace notifications",
-			"Shows notifications for elements that are related to your tasks." });
-		providerHints.put(DashboardKey.TASK_REVIEW_PROVIDER, new String[] { "Reviewer task notifications",
-			"Shows notifications for tasks that you have to review." });
-		providerHints.put(DashboardKey.SUBSCRIPTION_PROVIDER, new String[] { "Subscriptions",
-			"Allows you to subscribe to arbitrary model elements and receive notifications upon their changes." });
-		providerHints.put(DashboardKey.COMMENTS_PROVIDER, new String[] { "Comment notifications",
-			"Shows notifications for new comments regarding your tasks or a discussion you participate in." });
+		providerHints
+				.put(
+						DashboardKey.TASK_PROVIDER,
+						new String[] { "Task notifications",
+								"Show notifications for tasks that have been assigned to you." });
+		providerHints
+				.put(
+						DashboardKey.TASK_CHANGE_PROVIDER,
+						new String[] { "Task changes notifications",
+								"Show notifications for changes on tasks you have been assigned to." });
+		providerHints
+				.put(
+						DashboardKey.TASK_TRACE_PROVIDER,
+						new String[] { "Task trace notifications",
+								"Shows notifications for elements that are related to your tasks." });
+		providerHints.put(DashboardKey.TASK_REVIEW_PROVIDER, new String[] {
+				"Reviewer task notifications",
+				"Shows notifications for tasks that you have to review." });
+		providerHints
+				.put(
+						DashboardKey.SUBSCRIPTION_PROVIDER,
+						new String[] {
+								"Subscriptions",
+								"Allows you to subscribe to arbitrary model elements and receive notifications upon their changes." });
+		providerHints
+				.put(
+						DashboardKey.COMMENTS_PROVIDER,
+						new String[] {
+								"Comment notifications",
+								"Shows notifications for new comments regarding your tasks or a discussion you participate in." });
 
 		// init the model based UI
 		subscriptions = new HashSet<ModelElement>();
 		if (projectSpace.hasProperty(DashboardKey.SUBSCRIPTIONS)) {
-			OrgUnitProperty subscriptionsProperty = PreferenceManager.INSTANCE.getProperty(projectSpace,
-				DashboardKey.SUBSCRIPTIONS);
-			EObject[] subscriptionsIds = subscriptionsProperty.getEObjectArrayProperty();
+			OrgUnitProperty subscriptionsProperty = PreferenceManager.INSTANCE
+					.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
+			EObject[] subscriptionsIds = subscriptionsProperty
+					.getEObjectArrayProperty();
 			for (EObject id : subscriptionsIds) {
 				if (id instanceof ModelElementId) {
-					ModelElement modelElement = project.getModelElement((ModelElementId) id);
+					ModelElement modelElement = project
+							.getModelElement((ModelElementId) id);
 					if (modelElement != null) {
 						subscriptions.add(modelElement);
 					}
@@ -428,9 +494,10 @@ public class DashboardPropertyPage extends PropertyPage {
 
 		taskTraceClasses = new HashSet<EClass>();
 		if (projectSpace.hasProperty(DashboardKey.TASKTRACE_CLASSES)) {
-			OrgUnitProperty taskTraceClassesProperty = PreferenceManager.INSTANCE.getProperty(projectSpace,
-				DashboardKey.TASKTRACE_CLASSES);
-			EObject[] eclasses = taskTraceClassesProperty.getEObjectArrayProperty();
+			OrgUnitProperty taskTraceClassesProperty = PreferenceManager.INSTANCE
+					.getProperty(projectSpace, DashboardKey.TASKTRACE_CLASSES);
+			EObject[] eclasses = taskTraceClassesProperty
+					.getEObjectArrayProperty();
 			for (EObject eclass : eclasses) {
 				if (eclass instanceof EClass) {
 					taskTraceClasses.add((EClass) eclass);
@@ -447,65 +514,82 @@ public class DashboardPropertyPage extends PropertyPage {
 
 		loadTaskProperties();
 
-		OrgUnitProperty dashboardSize = PreferenceManager.INSTANCE.getProperty(projectSpace,
-			DashboardKey.DASHBOARD_SIZE);
+		OrgUnitProperty dashboardSize = PreferenceManager.INSTANCE.getProperty(
+				projectSpace, DashboardKey.DASHBOARD_SIZE);
 		notificationSize.setSelection(dashboardSize.getIntegerProperty());
 
-		OrgUnitProperty highlightPushed = PreferenceManager.INSTANCE.getProperty(projectSpace,
-			DashboardKey.HIGHLIGHT_PUSHED_COMMENTS);
-		highlightPersonalComments.setSelection(highlightPushed.getBooleanProperty());
+		OrgUnitProperty highlightPushed = PreferenceManager.INSTANCE
+				.getProperty(projectSpace,
+						DashboardKey.HIGHLIGHT_PUSHED_COMMENTS);
+		highlightPersonalComments.setSelection(highlightPushed
+				.getBooleanProperty());
 
-		OrgUnitProperty showContainmentComments = PreferenceManager.INSTANCE.getProperty(projectSpace,
-			DashboardKey.SHOW_CONTAINMENT_REPLIES);
-		showContainmentReplies.setSelection(showContainmentComments.getBooleanProperty());
+		OrgUnitProperty showContainmentComments = PreferenceManager.INSTANCE
+				.getProperty(projectSpace,
+						DashboardKey.SHOW_CONTAINMENT_REPLIES);
+		showContainmentReplies.setSelection(showContainmentComments
+				.getBooleanProperty());
 
-		OrgUnitProperty taskTraceLength = PreferenceManager.INSTANCE.getProperty(projectSpace,
-			DashboardKey.TASKTRACE_LENGTH);
+		OrgUnitProperty taskTraceLength = PreferenceManager.INSTANCE
+				.getProperty(projectSpace, DashboardKey.TASKTRACE_LENGTH);
 		this.taskTraceLength.setSelection(taskTraceLength.getIntegerProperty());
 
 	}
 
 	private void loadTaskProperties() {
-		OrgUnitProperty showAI = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_AI_TASKS);
+		OrgUnitProperty showAI = PreferenceManager.INSTANCE.getProperty(
+				projectSpace, DashboardKey.SHOW_AI_TASKS);
 		showAITasks.setSelection(showAI.getBooleanProperty());
 
-		OrgUnitProperty showBR = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_BR_TASKS);
+		OrgUnitProperty showBR = PreferenceManager.INSTANCE.getProperty(
+				projectSpace, DashboardKey.SHOW_BR_TASKS);
 		showBRTasks.setSelection(showBR.getBooleanProperty());
 
-		OrgUnitProperty showI = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_ISSUE_TASKS);
+		OrgUnitProperty showI = PreferenceManager.INSTANCE.getProperty(
+				projectSpace, DashboardKey.SHOW_ISSUE_TASKS);
 		showIssueTasks.setSelection(showI.getBooleanProperty());
 
-		OrgUnitProperty showWP = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SHOW_WP_TASKS);
+		OrgUnitProperty showWP = PreferenceManager.INSTANCE.getProperty(
+				projectSpace, DashboardKey.SHOW_WP_TASKS);
 		showWPTasks.setSelection(showWP.getBooleanProperty());
 
-		OrgUnitProperty showOnlyReadyForReview = PreferenceManager.INSTANCE.getProperty(projectSpace,
-			DashboardKey.SHOW_ONLY_READYFORREVIEW);
-		this.showOnlyReadyForReview.setSelection(showOnlyReadyForReview.getBooleanProperty());
+		OrgUnitProperty showOnlyReadyForReview = PreferenceManager.INSTANCE
+				.getProperty(projectSpace,
+						DashboardKey.SHOW_ONLY_READYFORREVIEW);
+		this.showOnlyReadyForReview.setSelection(showOnlyReadyForReview
+				.getBooleanProperty());
 	}
 
 	private void loadProviderProperties() {
-		OrgUnitProperty taskProvider = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.TASK_PROVIDER);
-		providersTable.setChecked(DashboardKey.TASK_PROVIDER, taskProvider.getBooleanProperty());
+		OrgUnitProperty taskProvider = PreferenceManager.INSTANCE.getProperty(
+				projectSpace, DashboardKey.TASK_PROVIDER);
+		providersTable.setChecked(DashboardKey.TASK_PROVIDER, taskProvider
+				.getBooleanProperty());
 
-		OrgUnitProperty taskChangeProvider = PreferenceManager.INSTANCE.getProperty(projectSpace,
-			DashboardKey.TASK_CHANGE_PROVIDER);
-		providersTable.setChecked(DashboardKey.TASK_CHANGE_PROVIDER, taskChangeProvider.getBooleanProperty());
+		OrgUnitProperty taskChangeProvider = PreferenceManager.INSTANCE
+				.getProperty(projectSpace, DashboardKey.TASK_CHANGE_PROVIDER);
+		providersTable.setChecked(DashboardKey.TASK_CHANGE_PROVIDER,
+				taskChangeProvider.getBooleanProperty());
 
-		OrgUnitProperty taskReviewProvider = PreferenceManager.INSTANCE.getProperty(projectSpace,
-			DashboardKey.TASK_REVIEW_PROVIDER);
-		providersTable.setChecked(DashboardKey.TASK_REVIEW_PROVIDER, taskReviewProvider.getBooleanProperty());
+		OrgUnitProperty taskReviewProvider = PreferenceManager.INSTANCE
+				.getProperty(projectSpace, DashboardKey.TASK_REVIEW_PROVIDER);
+		providersTable.setChecked(DashboardKey.TASK_REVIEW_PROVIDER,
+				taskReviewProvider.getBooleanProperty());
 
-		OrgUnitProperty taskTraceProvider = PreferenceManager.INSTANCE.getProperty(projectSpace,
-			DashboardKey.TASK_TRACE_PROVIDER);
-		providersTable.setChecked(DashboardKey.TASK_TRACE_PROVIDER, taskTraceProvider.getBooleanProperty());
+		OrgUnitProperty taskTraceProvider = PreferenceManager.INSTANCE
+				.getProperty(projectSpace, DashboardKey.TASK_TRACE_PROVIDER);
+		providersTable.setChecked(DashboardKey.TASK_TRACE_PROVIDER,
+				taskTraceProvider.getBooleanProperty());
 
-		OrgUnitProperty subscriptionProvider = PreferenceManager.INSTANCE.getProperty(projectSpace,
-			DashboardKey.SUBSCRIPTION_PROVIDER);
-		providersTable.setChecked(DashboardKey.SUBSCRIPTION_PROVIDER, subscriptionProvider.getBooleanProperty());
+		OrgUnitProperty subscriptionProvider = PreferenceManager.INSTANCE
+				.getProperty(projectSpace, DashboardKey.SUBSCRIPTION_PROVIDER);
+		providersTable.setChecked(DashboardKey.SUBSCRIPTION_PROVIDER,
+				subscriptionProvider.getBooleanProperty());
 
-		OrgUnitProperty commentsProvider = PreferenceManager.INSTANCE.getProperty(projectSpace,
-			DashboardKey.COMMENTS_PROVIDER);
-		providersTable.setChecked(DashboardKey.COMMENTS_PROVIDER, commentsProvider.getBooleanProperty());
+		OrgUnitProperty commentsProvider = PreferenceManager.INSTANCE
+				.getProperty(projectSpace, DashboardKey.COMMENTS_PROVIDER);
+		providersTable.setChecked(DashboardKey.COMMENTS_PROVIDER,
+				commentsProvider.getBooleanProperty());
 	}
 
 	/**

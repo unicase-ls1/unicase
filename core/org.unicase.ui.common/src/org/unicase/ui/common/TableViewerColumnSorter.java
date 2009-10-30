@@ -20,9 +20,7 @@ import org.eclipse.swt.events.SelectionEvent;
  */
 public class TableViewerColumnSorter extends UnicaseColumnViewerSorter {
 
-
 	private TableViewerColumn column;
-
 
 	/**
 	 * . Constructor
@@ -56,15 +54,16 @@ public class TableViewerColumnSorter extends UnicaseColumnViewerSorter {
 	}
 
 	/**
-	 *  This is used to set the right direction arrow at column header and refresh the viewer.
+	 * This is used to set the right direction arrow at column header and refresh the viewer.
+	 * 
 	 * @param sorter sorter
 	 * @param direction direction
 	 */
 	@Override
 	protected void setSorter(UnicaseColumnViewerSorter sorter, int direction) {
-	
+
 		super.setSorter(sorter, direction);
-	
+
 		column.getColumn().getParent().setSortColumn(column.getColumn());
 		if (direction == ASC) {
 			column.getColumn().getParent().setSortDirection(SWT.DOWN);
@@ -73,10 +72,9 @@ public class TableViewerColumnSorter extends UnicaseColumnViewerSorter {
 		}
 	}
 
-	
-
 	/**
 	 * {@inheritDoc}
+	 * 
 	 * @see org.unicase.ui.common.UnicaseColumnViewerSorter#getViewerColumn()
 	 */
 	@Override

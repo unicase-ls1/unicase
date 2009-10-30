@@ -1,4 +1,4 @@
-/** 
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -30,48 +30,37 @@ public class ModelEditPartFactory implements EditPartFactory {
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
-			switch (org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
-					.getVisualID(view)) {
+			switch (org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 
 			case org.unicase.ui.diagram.stateDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.stateDiagram.edit.parts.MEDiagramEditPart(
-						view);
+				return new org.unicase.ui.diagram.stateDiagram.edit.parts.MEDiagramEditPart(view);
 
 			case org.unicase.ui.diagram.stateDiagram.edit.parts.StateEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateEditPart(
-						view);
+				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateEditPart(view);
 
 			case org.unicase.ui.diagram.stateDiagram.edit.parts.StateNameEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateNameEditPart(
-						view);
+				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateNameEditPart(view);
 
 			case org.unicase.ui.diagram.stateDiagram.edit.parts.StateEntryConditionsEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateEntryConditionsEditPart(
-						view);
+				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateEntryConditionsEditPart(view);
 
 			case org.unicase.ui.diagram.stateDiagram.edit.parts.StateActivitiesEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateActivitiesEditPart(
-						view);
+				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateActivitiesEditPart(view);
 
 			case org.unicase.ui.diagram.stateDiagram.edit.parts.StateExitConditionsEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateExitConditionsEditPart(
-						view);
+				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateExitConditionsEditPart(view);
 
 			case org.unicase.ui.diagram.stateDiagram.edit.parts.StateInitialEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateInitialEditPart(
-						view);
+				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateInitialEditPart(view);
 
 			case org.unicase.ui.diagram.stateDiagram.edit.parts.StateEndEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateEndEditPart(
-						view);
+				return new org.unicase.ui.diagram.stateDiagram.edit.parts.StateEndEditPart(view);
 
 			case org.unicase.ui.diagram.stateDiagram.edit.parts.TransitionEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.stateDiagram.edit.parts.TransitionEditPart(
-						view);
+				return new org.unicase.ui.diagram.stateDiagram.edit.parts.TransitionEditPart(view);
 
 			case org.unicase.ui.diagram.stateDiagram.edit.parts.TransitionNameEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.stateDiagram.edit.parts.TransitionNameEditPart(
-						view);
+				return new org.unicase.ui.diagram.stateDiagram.edit.parts.TransitionNameEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);
@@ -88,8 +77,7 @@ public class ModelEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
 		else {
@@ -128,15 +116,11 @@ public class ModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (getWrapLabel().isTextWrapOn()
-					&& getWrapLabel().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width,
-						SWT.DEFAULT)));
+			if (getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			} else {
-				int avr = FigureUtilities.getFontMetrics(text.getFont())
-						.getAverageCharWidth();
-				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-						SWT.DEFAULT)).expand(avr * 2, 0));
+				int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
@@ -175,10 +159,8 @@ public class ModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
-			int avr = FigureUtilities.getFontMetrics(text.getFont())
-					.getAverageCharWidth();
-			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-					SWT.DEFAULT)).expand(avr * 2, 0));
+			int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}

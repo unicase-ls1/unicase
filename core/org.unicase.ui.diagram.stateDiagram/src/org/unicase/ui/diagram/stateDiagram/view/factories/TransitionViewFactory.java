@@ -1,4 +1,4 @@
-/** 
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -34,27 +34,24 @@ public class TransitionViewFactory extends ConnectionViewFactory {
 	/**
 	 * @generated
 	 */
-	protected void decorateView(View containerView, View view,
-			IAdaptable semanticAdapter, String semanticHint, int index,
-			boolean persisted) {
+	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint,
+		int index, boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
-					.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.TransitionEditPart.VISUAL_ID);
+				.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.TransitionEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint,
-				index, persisted);
+		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
 		IAdaptable eObjectAdapter = null;
 		EObject eObject = (EObject) semanticAdapter.getAdapter(EObject.class);
 		if (eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
-		getViewService()
-				.createNode(
-						eObjectAdapter,
-						view,
-						org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.TransitionNameEditPart.VISUAL_ID),
-						ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(
+			eObjectAdapter,
+			view,
+			org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
+				.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.TransitionNameEditPart.VISUAL_ID),
+			ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

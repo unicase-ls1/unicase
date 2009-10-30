@@ -8,7 +8,8 @@ package org.unicase.ui.common.diagram.figures;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.geometry.Rectangle;
-//dengler: reuse from other diagram, clarify copyright.
+
+// dengler: reuse from other diagram, clarify copyright.
 /**
  * A Rectangle Figure whose borders are drawn depending on the borders attribute.
  * 

@@ -20,8 +20,8 @@ import org.unicase.model.diagram.MEDiagram;
 import org.unicase.model.state.Transition;
 
 /**
- * @author denglerm This class represents a command to add model elements to the diagram, which are not yet contained in the
- *         elements list of the diagram.
+ * @author denglerm This class represents a command to add model elements to the diagram, which are not yet contained in
+ *         the elements list of the diagram.
  */
 public class DiagramElementAddCommand extends CreateElementCommand {
 
@@ -65,7 +65,7 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 	 * 
 	 * @return the new model element that has been added
 	 */
-	//dengler reuse get all cross references
+	// dengler reuse get all cross references
 	@Override
 	protected EObject doDefaultElementCreation() {
 		MEDiagram childHolder = (MEDiagram) getElementToEdit();
@@ -74,29 +74,31 @@ public class DiagramElementAddCommand extends CreateElementCommand {
 		if (!(getRequest() instanceof DiagramElementAddRequest)
 			|| ((DiagramElementAddRequest) getRequest()).getAddReferences()) {
 
-			Set<ModelElement> diagramNodeReferences = ((ModelElement) this.newElement).getCrossReferencedModelElements();
+			Set<ModelElement> diagramNodeReferences = ((ModelElement) this.newElement)
+				.getCrossReferencedModelElements();
 			for (ModelElement object : diagramNodeReferences) {
 				if (object instanceof Association) {
 					if (childHolder.getElements().contains(((Association) object).getSource())
 						&& childHolder.getElements().contains(((Association) object).getTarget())) {
-						childHolder.getElements().add((Association)object);
+						childHolder.getElements().add((Association) object);
 					}
-				}
-				else if (object instanceof org.unicase.model.state.Transition) {
+				} else if (object instanceof org.unicase.model.state.Transition) {
 					if (childHolder.getElements().contains(((org.unicase.model.state.Transition) object).getSource())
-						&& childHolder.getElements().contains(((org.unicase.model.state.Transition) object).getTarget())) {
-						childHolder.getElements().add((Transition)object);
+						&& childHolder.getElements()
+							.contains(((org.unicase.model.state.Transition) object).getTarget())) {
+						childHolder.getElements().add((Transition) object);
 					}
-				}
-				else if (object instanceof org.unicase.model.activity.Transition) {
-					if (childHolder.getElements().contains(((org.unicase.model.activity.Transition) object).getSource())
-						&& childHolder.getElements().contains(((org.unicase.model.activity.Transition) object).getTarget())) {
-						childHolder.getElements().add((org.unicase.model.activity.Transition)object);
+				} else if (object instanceof org.unicase.model.activity.Transition) {
+					if (childHolder.getElements()
+						.contains(((org.unicase.model.activity.Transition) object).getSource())
+						&& childHolder.getElements().contains(
+							((org.unicase.model.activity.Transition) object).getTarget())) {
+						childHolder.getElements().add((org.unicase.model.activity.Transition) object);
 					}
 				}
 			}
 		}
 
 		return this.newElement;
-	}	
+	}
 }

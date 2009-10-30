@@ -24,7 +24,8 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author Shterev
  */
-public abstract class AbstractChangesComposite extends Composite implements ChangesComposite {
+public abstract class AbstractChangesComposite extends Composite implements
+		ChangesComposite {
 
 	/**
 	 * do not show the affected elements composite.
@@ -47,36 +48,48 @@ public abstract class AbstractChangesComposite extends Composite implements Chan
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent the parent composite
-	 * @param style the style
-	 * @param relatedElementsStyle the style for the related elements table - {@link #HORIZONTAL}, {@link #VERTICAL},
-	 *            {@link #NONE}.
-	 * @param changePackages the input ChangePackages
-	 * @param contentProvider the content provider for this composite.
-	 * @param checkable should the treeviewer be checkboxtreeviewer.
+	 * @param parent
+	 *            the parent composite
+	 * @param style
+	 *            the style
+	 * @param relatedElementsStyle
+	 *            the style for the related elements table - {@link #HORIZONTAL}
+	 *            , {@link #VERTICAL}, {@link #NONE}.
+	 * @param changePackages
+	 *            the input ChangePackages
+	 * @param contentProvider
+	 *            the content provider for this composite.
+	 * @param checkable
+	 *            should the treeviewer be checkboxtreeviewer.
 	 */
-	public AbstractChangesComposite(Composite parent, int style, int relatedElementsStyle,
-		List<ChangePackage> changePackages, IContentProvider contentProvider, boolean checkable) {
+	public AbstractChangesComposite(Composite parent, int style,
+			int relatedElementsStyle, List<ChangePackage> changePackages,
+			IContentProvider contentProvider, boolean checkable) {
 		super(parent, style);
-		emfLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-		visualizationHelper = new ChangePackageVisualizationHelper(changePackages, WorkspaceManager.getInstance()
-			.getCurrentWorkspace().getActiveProjectSpace().getProject());
+		emfLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		visualizationHelper = new ChangePackageVisualizationHelper(
+				changePackages, WorkspaceManager.getInstance()
+						.getCurrentWorkspace().getActiveProjectSpace()
+						.getProject());
 
 		boolean showAffected = (relatedElementsStyle > 0);
 		int numColums = (showAffected ? relatedElementsStyle : 1);
-		GridLayoutFactory.fillDefaults().numColumns(numColums).equalWidth(false).applyTo(this);
+		GridLayoutFactory.fillDefaults().numColumns(numColums)
+				.equalWidth(false).applyTo(this);
 		TreeComposite treeComposite = null;
 		if (checkable) {
 			treeComposite = new CheckboxTreeComposite(this, style);
 		} else {
 			treeComposite = new TreeComposite(this, style);
 		}
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(treeComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
+				true).applyTo(treeComposite);
 		treeViewer = treeComposite.getTreeViewer();
 		if (showAffected) {
-			treeViewer.addSelectionChangedListener(new RelatedElementsListener(this, emfLabelProvider,
-				visualizationHelper));
+			treeViewer.addSelectionChangedListener(new RelatedElementsListener(
+					this, emfLabelProvider, visualizationHelper));
 		}
 		buildColumns(contentProvider);
 		treeViewer.setInput(changePackages);
@@ -87,8 +100,10 @@ public abstract class AbstractChangesComposite extends Composite implements Chan
 	 */
 	public void setInput(List<ChangePackage> changePackages) {
 		this.changePackages = changePackages;
-		visualizationHelper = new ChangePackageVisualizationHelper(changePackages, WorkspaceManager.getInstance()
-			.getCurrentWorkspace().getActiveProjectSpace().getProject());
+		visualizationHelper = new ChangePackageVisualizationHelper(
+				changePackages, WorkspaceManager.getInstance()
+						.getCurrentWorkspace().getActiveProjectSpace()
+						.getProject());
 		if (changePackages != null) {
 			treeViewer.setInput(changePackages);
 			treeViewer.expandAll();
@@ -98,7 +113,8 @@ public abstract class AbstractChangesComposite extends Composite implements Chan
 	/**
 	 * Load the data and the columns to the tree viewer.
 	 * 
-	 * @param contentProvider the content provider for this tree.
+	 * @param contentProvider
+	 *            the content provider for this tree.
 	 */
 	protected void buildColumns(IContentProvider contentProvider) {
 		getTreeViewer().setContentProvider(contentProvider);

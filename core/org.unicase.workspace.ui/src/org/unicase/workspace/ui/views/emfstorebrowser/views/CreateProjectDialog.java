@@ -18,7 +18,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.ModelFactory;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Usersession;
@@ -121,7 +121,7 @@ public class CreateProjectDialog extends TitleAreaDialog {
 
 		ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE
 				.createProjectSpace();
-		projectSpace.setProject(ModelFactory.eINSTANCE.createProject());
+		projectSpace.setProject(MetamodelFactory.eINSTANCE.createProject());
 		projectSpace.setProjectName(txtProjectName.getText());
 		projectSpace.setProjectDescription(txtProjectDesc.getText());
 		projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE

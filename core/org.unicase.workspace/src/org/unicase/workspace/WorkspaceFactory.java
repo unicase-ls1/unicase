@@ -63,14 +63,6 @@ public interface WorkspaceFactory extends EFactory {
 	OperationComposite createOperationComposite();
 
 	/**
-	 * Returns a new object of class '<em>Model Version</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Model Version</em>'.
-	 * @generated
-	 */
-	WorkspaceModelVersion createWorkspaceModelVersion();
-
-	/**
 	 * Returns a new object of class '<em>Pending File Transfer</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return a new object of class '<em>Pending File Transfer</em>'.

@@ -25,44 +25,34 @@ public class ModelEditPartFactory implements EditPartFactory {
 	public EditPart createEditPart(EditPart context, Object model) {
 		if (model instanceof View) {
 			View view = (View) model;
-			switch (org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
-					.getVisualID(view)) {
+			switch (org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 
 			case org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart(
-						view);
+				return new org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart(view);
 
 			case org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart(
-						view);
+				return new org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart(view);
 
 			case org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart(
-						view);
+				return new org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart(view);
 
 			case org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart(
-						view);
+				return new org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart(view);
 
 			case org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart(
-						view);
+				return new org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart(view);
 
 			case org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart(
-						view);
+				return new org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart(view);
 
 			case org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart(
-						view);
+				return new org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart(view);
 
 			case org.unicase.ui.diagram.activityDiagram.edit.parts.TransitionEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.activityDiagram.edit.parts.TransitionEditPart(
-						view);
+				return new org.unicase.ui.diagram.activityDiagram.edit.parts.TransitionEditPart(view);
 
 			case org.unicase.ui.diagram.activityDiagram.edit.parts.TransitionConditionEditPart.VISUAL_ID:
-				return new org.unicase.ui.diagram.activityDiagram.edit.parts.TransitionConditionEditPart(
-						view);
+				return new org.unicase.ui.diagram.activityDiagram.edit.parts.TransitionConditionEditPart(view);
 			}
 		}
 		return createUnrecognizedEditPart(context, model);
@@ -79,8 +69,7 @@ public class ModelEditPartFactory implements EditPartFactory {
 	/**
 	 * @generated
 	 */
-	public static CellEditorLocator getTextCellEditorLocator(
-			ITextAwareEditPart source) {
+	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
 		if (source.getFigure() instanceof WrappingLabel)
 			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
 		else {
@@ -119,15 +108,11 @@ public class ModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getWrapLabel().getTextBounds().getCopy();
 			getWrapLabel().translateToAbsolute(rect);
-			if (getWrapLabel().isTextWrapOn()
-					&& getWrapLabel().getText().length() > 0) {
-				rect.setSize(new Dimension(text.computeSize(rect.width,
-						SWT.DEFAULT)));
+			if (getWrapLabel().isTextWrapOn() && getWrapLabel().getText().length() > 0) {
+				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			} else {
-				int avr = FigureUtilities.getFontMetrics(text.getFont())
-						.getAverageCharWidth();
-				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-						SWT.DEFAULT)).expand(avr * 2, 0));
+				int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+				rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			}
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
@@ -166,10 +151,8 @@ public class ModelEditPartFactory implements EditPartFactory {
 			Text text = (Text) celleditor.getControl();
 			Rectangle rect = getLabel().getTextBounds().getCopy();
 			getLabel().translateToAbsolute(rect);
-			int avr = FigureUtilities.getFontMetrics(text.getFont())
-					.getAverageCharWidth();
-			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT,
-					SWT.DEFAULT)).expand(avr * 2, 0));
+			int avr = FigureUtilities.getFontMetrics(text.getFont()).getAverageCharWidth();
+			rect.setSize(new Dimension(text.computeSize(SWT.DEFAULT, SWT.DEFAULT)).expand(avr * 2, 0));
 			if (!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}

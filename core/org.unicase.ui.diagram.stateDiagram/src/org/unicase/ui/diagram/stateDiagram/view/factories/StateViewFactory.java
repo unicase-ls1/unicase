@@ -1,4 +1,4 @@
-/** 
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -35,26 +35,20 @@ public class StateViewFactory extends AbstractShapeViewFactory {
 	/**
 	 * @generated
 	 */
-	protected void decorateView(View containerView, View view,
-			IAdaptable semanticAdapter, String semanticHint, int index,
-			boolean persisted) {
+	protected void decorateView(View containerView, View view, IAdaptable semanticAdapter, String semanticHint,
+		int index, boolean persisted) {
 		if (semanticHint == null) {
 			semanticHint = org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
-					.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.StateEditPart.VISUAL_ID);
+				.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.StateEditPart.VISUAL_ID);
 			view.setType(semanticHint);
 		}
-		super.decorateView(containerView, view, semanticAdapter, semanticHint,
-				index, persisted);
+		super.decorateView(containerView, view, semanticAdapter, semanticHint, index, persisted);
 		if (!org.unicase.ui.diagram.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
-				.equals(org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
-						.getModelID(containerView))) {
-			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE
-					.createEAnnotation();
+			.equals(org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry.getModelID(containerView))) {
+			EAnnotation shortcutAnnotation = EcoreFactory.eINSTANCE.createEAnnotation();
 			shortcutAnnotation.setSource("Shortcut"); //$NON-NLS-1$
-			shortcutAnnotation
-					.getDetails()
-					.put(
-							"modelID", org.unicase.ui.diagram.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID); //$NON-NLS-1$
+			shortcutAnnotation.getDetails().put(
+				"modelID", org.unicase.ui.diagram.stateDiagram.edit.parts.MEDiagramEditPart.MODEL_ID); //$NON-NLS-1$
 			view.getEAnnotations().add(shortcutAnnotation);
 		}
 		IAdaptable eObjectAdapter = null;
@@ -62,33 +56,29 @@ public class StateViewFactory extends AbstractShapeViewFactory {
 		if (eObject != null) {
 			eObjectAdapter = new EObjectAdapter(eObject);
 		}
-		getViewService()
-				.createNode(
-						eObjectAdapter,
-						view,
-						org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.StateNameEditPart.VISUAL_ID),
-						ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService()
-				.createNode(
-						eObjectAdapter,
-						view,
-						org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.StateEntryConditionsEditPart.VISUAL_ID),
-						ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService()
-				.createNode(
-						eObjectAdapter,
-						view,
-						org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.StateActivitiesEditPart.VISUAL_ID),
-						ViewUtil.APPEND, true, getPreferencesHint());
-		getViewService()
-				.createNode(
-						eObjectAdapter,
-						view,
-						org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
-								.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.StateExitConditionsEditPart.VISUAL_ID),
-						ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(
+			eObjectAdapter,
+			view,
+			org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
+				.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.StateNameEditPart.VISUAL_ID), ViewUtil.APPEND,
+			true, getPreferencesHint());
+		getViewService().createNode(
+			eObjectAdapter,
+			view,
+			org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
+				.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.StateEntryConditionsEditPart.VISUAL_ID),
+			ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(
+			eObjectAdapter,
+			view,
+			org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
+				.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.StateActivitiesEditPart.VISUAL_ID),
+			ViewUtil.APPEND, true, getPreferencesHint());
+		getViewService().createNode(
+			eObjectAdapter,
+			view,
+			org.unicase.ui.diagram.stateDiagram.part.ModelVisualIDRegistry
+				.getType(org.unicase.ui.diagram.stateDiagram.edit.parts.StateExitConditionsEditPart.VISUAL_ID),
+			ViewUtil.APPEND, true, getPreferencesHint());
 	}
 }

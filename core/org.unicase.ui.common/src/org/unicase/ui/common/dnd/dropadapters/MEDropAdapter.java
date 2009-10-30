@@ -253,8 +253,8 @@ public class MEDropAdapter {
 	 * @param eventFeedback @see UCDropAdapter.eventFeedback
 	 * @return if this source can be dropped on target
 	 */
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source, UnicaseModelElement target,
-		UnicaseModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source,
+		UnicaseModelElement target, UnicaseModelElement dropee) {
 
 		// a container is not allowed to contain the same element twice
 		if (target.eContents().contains(dropee)) {
@@ -361,8 +361,8 @@ public class MEDropAdapter {
 	 * @param source source
 	 * @param after drop after or drop before
 	 */
-	public void dropMove(final EObject targetContainer, final UnicaseModelElement target, final List<UnicaseModelElement> source,
-		final boolean after) {
+	public void dropMove(final EObject targetContainer, final UnicaseModelElement target,
+		final List<UnicaseModelElement> source, final boolean after) {
 
 		// target is the model element after/before which we drop.
 		if (!getTargetRef(targetContainer, target).equals(getTargetRef(targetContainer, source.get(0)))) {

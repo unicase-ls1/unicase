@@ -25,8 +25,8 @@ import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.dnd.DragSourcePlaceHolder;
-import org.unicase.workspace.util.EventUtil;
-import org.unicase.workspace.util.OrgUnitHelper;
+import org.unicase.ui.common.util.EventUtil;
+import org.unicase.ui.common.util.OrgUnitHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -73,7 +73,8 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 	protected void dropWorkItemOnWorkPackage() {
 		// check if source (work item) is not hierarchical contained in
 		// currentOpenME (work package) and if not add it to work items of currentOpenME
-		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(currentOpenME);
+		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
+			currentOpenME);
 		if (!openers.contains(dragSource)) {
 			((WorkPackage) currentOpenME).getContainedWorkItems().add((WorkItem) dragSource);
 		}
@@ -97,8 +98,8 @@ public abstract class AbstractDropAdapter extends DropTargetAdapter {
 		// then add this work item to work package.
 		// otherwise create an AI annotating source and add it to work items of currentOpenME
 
-		Set<UnicaseModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
-			dragSource);
+		Set<UnicaseModelElement> openersForSource = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy()
+			.getLeafOpeners(dragSource);
 		int i = 0;
 		for (UnicaseModelElement me : openersForSource) {
 			if (me instanceof WorkItem) {

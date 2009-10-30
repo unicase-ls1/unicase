@@ -12,11 +12,11 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
-//dengler: document setActivePart
+
+// dengler: document setActivePart
 /**
- * @author denglerm This class is a wrapper class to make the DeleteFromDiagram action available in a
- * diagram's context menu.
- * of a diagram.
+ * @author denglerm This class is a wrapper class to make the DeleteFromDiagram action available in a diagram's context
+ *         menu. of a diagram.
  */
 public class DeleteFromDiagramContextMenuAction implements IObjectActionDelegate {
 
@@ -67,20 +67,13 @@ public class DeleteFromDiagramContextMenuAction implements IObjectActionDelegate
 	}
 
 	/**
-	 * This method is to set the active part for the delegate. The active part is commonly used
-	 * to get a working context for the action, such as the shell for any dialog
-	 * which is needed.
-	 *
-	 * This method will be called every time the action appears in a popup menu.
-	 * The targetPart may change with each invocation.
+	 * This method is to set the active part for the delegate. The active part is commonly used to get a working context
+	 * for the action, such as the shell for any dialog which is needed. This method will be called every time the
+	 * action appears in a popup menu. The targetPart may change with each invocation. We don't need the active part, so
+	 * do nothing.
 	 * 
-	 * We don't need the active part, so do nothing.
-	 * 
-	 * @param action
-	 *            the action proxy that handles presentation portion of the
-	 *            action; must not be <code>null</code>.
-	 * @param targetPart
-	 *            the new part target; must not be <code>null</code>.
+	 * @param action the action proxy that handles presentation portion of the action; must not be <code>null</code>.
+	 * @param targetPart the new part target; must not be <code>null</code>.
 	 */
 	public void setActivePart(IAction action, IWorkbenchPart targetPart) {
 	}

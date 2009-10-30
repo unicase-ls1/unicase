@@ -7,8 +7,8 @@ package org.unicase.emfstore.connection.rmi;
 
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.exceptions.RMISerializationException;
-import org.unicase.model.util.ModelUtil;
-import org.unicase.model.util.SerializationException;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.util.SerializationException;
 
 /**
  * Helper class for serializing and deserializing EObjects for RMI transport.

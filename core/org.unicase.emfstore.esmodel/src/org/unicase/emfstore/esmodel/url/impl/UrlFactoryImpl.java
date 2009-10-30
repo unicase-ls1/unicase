@@ -20,8 +20,8 @@ import org.unicase.emfstore.esmodel.url.ProjectUrlFragment;
 import org.unicase.emfstore.esmodel.url.ServerUrl;
 import org.unicase.emfstore.esmodel.url.UrlFactory;
 import org.unicase.emfstore.esmodel.url.UrlPackage;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElementId;
-import org.unicase.model.ModelFactory;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Factory</b>. <!-- end-user-doc -->
@@ -175,7 +175,7 @@ public class UrlFactoryImpl extends EFactoryImpl implements UrlFactory {
 					throw new MalformedURLException(EXCEPTION_MESSAGE);
 				}
 				modelFragment.setName(string.substring(0, p));
-				ModelElementId modelElementId = ModelFactory.eINSTANCE.createModelElementId();
+				ModelElementId modelElementId = MetamodelFactory.eINSTANCE.createModelElementId();
 				modelElementId.setId(string.substring(p + 1));
 				modelFragment.setModelElementId(modelElementId);
 			}

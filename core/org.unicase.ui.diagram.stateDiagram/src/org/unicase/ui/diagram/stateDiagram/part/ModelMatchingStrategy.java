@@ -1,4 +1,4 @@
-/** 
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -30,10 +30,8 @@ public class ModelMatchingStrategy implements IEditorMatchingStrategy {
 		if (editorInput.equals(input)) {
 			return true;
 		}
-		if (editorInput instanceof URIEditorInput
-				&& input instanceof URIEditorInput) {
-			return ((URIEditorInput) editorInput).getURI().equals(
-					((URIEditorInput) input).getURI());
+		if (editorInput instanceof URIEditorInput && input instanceof URIEditorInput) {
+			return ((URIEditorInput) editorInput).getURI().equals(((URIEditorInput) input).getURI());
 		}
 		return false;
 	}

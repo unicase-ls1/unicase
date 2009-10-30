@@ -39,11 +39,11 @@ public class DynamicEObjectAdapter implements IAdaptable {
 		if (object == null) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		if (host == null) {
 			throw new IllegalArgumentException();
 		}
-		
+
 		this.object = object;
 		this.host = host;
 	}
@@ -94,7 +94,7 @@ public class DynamicEObjectAdapter implements IAdaptable {
 	 */
 	public View getView() {
 		if (view == null) {
-		
+
 			if (getEditPart() != null) {
 				view = EditPartUtility.getView(getEditPart());
 			}
@@ -110,7 +110,7 @@ public class DynamicEObjectAdapter implements IAdaptable {
 			if (getObject() != null) {
 				Set<EditPart> editParts = EditPartUtility.findEditParts(getHost(), Collections.singleton(getObject()));
 				List<ShapeNodeEditPart> shapeNodeEditParts = CollectionFilter
-				.filter(editParts, ShapeNodeEditPart.class);
+					.filter(editParts, ShapeNodeEditPart.class);
 
 				List<ConnectionEditPart> connectionEditParts = CollectionFilter.filter(editParts,
 					ConnectionEditPart.class);
@@ -119,8 +119,8 @@ public class DynamicEObjectAdapter implements IAdaptable {
 					editPart = shapeNodeEditParts.get(0);
 				} else if (connectionEditParts.size() > 0) {
 					editPart = connectionEditParts.get(0);
-				}	
-			}	
+				}
+			}
 		}
 		return editPart;
 	}

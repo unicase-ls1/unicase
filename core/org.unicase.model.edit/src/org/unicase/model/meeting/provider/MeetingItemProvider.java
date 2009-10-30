@@ -25,7 +25,7 @@ import org.unicase.model.meeting.Meeting;
 import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.meeting.MeetingPackage;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.meeting.Meeting} object. <!-- begin-user-doc -->
@@ -33,7 +33,7 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * 
  * @generated
  */
-public class MeetingItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+public class MeetingItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->

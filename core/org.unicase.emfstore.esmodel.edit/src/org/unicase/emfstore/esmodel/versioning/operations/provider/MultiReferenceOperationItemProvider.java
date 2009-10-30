@@ -22,7 +22,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.model.ModelFactory;
+import org.unicase.metamodel.MetamodelFactory;
 
 /**
  * This is the item provider adapter for a
@@ -174,7 +174,7 @@ public class MultiReferenceOperationItemProvider extends ReferenceOperationItemP
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(
-			OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS, ModelFactory.eINSTANCE
+			OperationsPackage.Literals.MULTI_REFERENCE_OPERATION__REFERENCED_MODEL_ELEMENTS, MetamodelFactory.eINSTANCE
 				.createModelElementId()));
 	}
 

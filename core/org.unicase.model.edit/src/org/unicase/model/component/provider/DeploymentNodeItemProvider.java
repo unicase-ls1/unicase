@@ -21,7 +21,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.component.ComponentPackage;
 import org.unicase.model.component.DeploymentNode;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.component.DeploymentNode} object. <!--
@@ -29,7 +29,7 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * 
  * @generated
  */
-public class DeploymentNodeItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+public class DeploymentNodeItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->

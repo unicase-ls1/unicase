@@ -23,10 +23,8 @@ import org.unicase.model.task.WorkPackage;
  * @author hodaie
  */
 public class TreeViewerColumnSorter extends UnicaseColumnViewerSorter {
-	
 
 	private TreeViewerColumn column;
-
 
 	/**
 	 * Constructor.
@@ -38,8 +36,8 @@ public class TreeViewerColumnSorter extends UnicaseColumnViewerSorter {
 	public TreeViewerColumnSorter(TreeViewer viewer, TreeViewerColumn column, ColumnLabelProvider columnLabelProvider) {
 		super(viewer, columnLabelProvider);
 		this.column = column;
-		
-	    column.getColumn().addSelectionListener(new SelectionAdapter() {
+
+		column.getColumn().addSelectionListener(new SelectionAdapter() {
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -62,24 +60,24 @@ public class TreeViewerColumnSorter extends UnicaseColumnViewerSorter {
 
 	/**
 	 * This is used to set the right direction arrow at column header and refresh the viewer.
+	 * 
 	 * @param sorter sorter
 	 * @param direction direction
 	 */
 	@Override
 	protected void setSorter(UnicaseColumnViewerSorter sorter, int direction) {
-		
+
 		super.setSorter(sorter, direction);
-		
+
 		column.getColumn().getParent().setSortColumn(column.getColumn());
 		if (direction == ASC) {
 			column.getColumn().getParent().setSortDirection(SWT.DOWN);
 		} else {
 			column.getColumn().getParent().setSortDirection(SWT.UP);
 		}
-	
+
 	}
 
-	
 	/**
 	 * . {@inheritDoc} This method is adapted to sort StatusView tree.
 	 */

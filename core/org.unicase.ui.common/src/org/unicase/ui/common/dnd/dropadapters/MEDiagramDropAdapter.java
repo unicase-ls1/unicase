@@ -59,7 +59,7 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 			DiagramEditPart editPart = dde.getDiagramEditPart();
 			editPart.getViewer().getEditDomain().getCommandStack().execute(
 				CommandFactory.createDiagramElementAddCommand(dropee, editPart, true));
-		}		
+		}
 	}
 
 	/**
@@ -85,7 +85,7 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 			clientContextID = "ActivityClientContext";
 		} else if (type == DiagramType.WORKITEM_DIAGRAM) {
 			clientContextID = "WorkItemClientContext";
-		}	
+		}
 		IClientContext cc = ClientContextManager.getInstance().getClientContext(clientContextID);
 		if (cc == null) {
 			return false;
@@ -96,7 +96,7 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 		for (int i = 0; i < containedTypes.length; i++) {
 			contains |= containedTypes[i].equals(dropeeType);
 		}
-		return contains;		
+		return contains;
 	}
 
 	/**
@@ -106,8 +106,8 @@ public class MEDiagramDropAdapter extends MEDropAdapter {
 	 *      java.util.List, org.unicase.metamodel.UnicaseModelElement, org.unicase.metamodel.UnicaseModelElement)
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source, UnicaseModelElement target,
-		UnicaseModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source,
+		UnicaseModelElement target, UnicaseModelElement dropee) {
 
 		boolean result = super.canDrop(eventFeedback, event, source, target, dropee);
 		if (!isElementOfDiagram((MEDiagram) target, dropee) || ((MEDiagram) target).getElements().contains(dropee)) {

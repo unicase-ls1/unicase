@@ -12,22 +12,18 @@ import org.unicase.model.classes.ClassesPackage;
 /**
  * @generated
  */
-public class ClassClassNode_attributesItemSemanticEditPolicy
-		extends
-		org.unicase.ui.diagram.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class ClassClassNode_attributesItemSemanticEditPolicy extends
+	org.unicase.ui.diagram.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Attribute_3001 == req
-				.getElementType()) {
+		if (org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Attribute_3001 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(ClassesPackage.eINSTANCE
-						.getClass_Attributes());
+				req.setContainmentFeature(ClassesPackage.eINSTANCE.getClass_Attributes());
 			}
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.AttributeCreateCommand(
-					req));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.AttributeCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}

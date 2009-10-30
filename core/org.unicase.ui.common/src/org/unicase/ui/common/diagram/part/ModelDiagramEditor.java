@@ -57,8 +57,8 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	/**
 	 * The {@link FocusListener} for layout save commands.
 	 */
-	private FocusListener focusListener; 
-	
+	private FocusListener focusListener;
+
 	/**
 	 * The constructor.
 	 */
@@ -74,32 +74,32 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 	public ModelDiagramEditor(boolean hasFlyoutPalette) {
 		super(hasFlyoutPalette);
 
-		focusListener = new FocusListener(){
+		focusListener = new FocusListener() {
 			public void focusGained(FocusEvent event) {
 				try {
-					doSave(new NullProgressMonitor());	
+					doSave(new NullProgressMonitor());
 				} catch (IllegalStateException e) {
-					//do nothing
-					//We catch this exception in case we have been in an read only transaction context 
-					//and tried to save the layout which is performed with a read/write transaction
+					// do nothing
+					// We catch this exception in case we have been in an read only transaction context
+					// and tried to save the layout which is performed with a read/write transaction
 				}
 			}
-			
+
 			public void focusLost(FocusEvent event) {
 				try {
-					doSave(new NullProgressMonitor());	
+					doSave(new NullProgressMonitor());
 				} catch (IllegalStateException e) {
-					//do nothing
-					//@see focusGained
+					// do nothing
+					// @see focusGained
 				}
 			}
 		};
-		
+
 	}
-//dengler: document
+
+	// dengler: document
 	/**
-	 * This method calls the MEDiagram's saveDiagramLayout method to save diagram elements and layout
-	 * information.
+	 * This method calls the MEDiagram's saveDiagramLayout method to save diagram elements and layout information.
 	 * {@inheritDoc}
 	 */
 	@Override
@@ -116,11 +116,11 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 			}
 		}.run();
 	}
-//dengler: document
+
+	// dengler: document
 	/**
-	 * This method registers a Drag & drop listener and listeners for layout and focus change.
-	 * Additionally the standard action for pressing the DEL key is changed to DeleteFromDiagram
-	 * instead of GMF's DeleteFromModel.
+	 * This method registers a Drag & drop listener and listeners for layout and focus change. Additionally the standard
+	 * action for pressing the DEL key is changed to DeleteFromDiagram instead of GMF's DeleteFromModel.
 	 */
 	@Override
 	protected void initializeGraphicalViewer() {
@@ -134,16 +134,16 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 				}
 
 			});
-		getGraphicalViewer().getKeyHandler().put(KeyStroke.getPressed(SWT.DEL, 127, 0), new DeleteFromDiagramAction());	
-		
+		getGraphicalViewer().getKeyHandler().put(KeyStroke.getPressed(SWT.DEL, 127, 0), new DeleteFromDiagramAction());
+
 		registerFocusListener();
 	}
 
 	/**
-	 * @author denglerm This class implements the abstract DiagramDropTargetListener
-	 * The superclass uses a DropObjectsRequest to obtain a dnd command from the Drag&Drop policy in
-	 * @link org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart. To set the dropped objects field
-	 * within the request the superclass calls the getObjectsBeingDropped() method of this class.
+	 * @author denglerm This class implements the abstract DiagramDropTargetListener The superclass uses a
+	 *         DropObjectsRequest to obtain a dnd command from the Drag&Drop policy in
+	 * @link org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart. To set the dropped objects field within the
+	 *       request the superclass calls the getObjectsBeingDropped() method of this class.
 	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramDropTargetListener
 	 */
 	private abstract class DropTargetListener extends DiagramDropTargetListener {
@@ -192,7 +192,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 				ComposedAdapterFactory.Descriptor.Registry.INSTANCE)).getImage(this.getDiagram().getElement()));
 
 		} catch (CoreException x) {
-			//dengler: show in error log
+			// dengler: show in error log
 			WorkspaceUtil.logException("Set diagram content failed", x);
 		}
 	}
@@ -218,7 +218,7 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		deregisterFocusListener();
 	}
 
-	private void deregisterFocusListener(){
+	private void deregisterFocusListener() {
 		IDiagramGraphicalViewer diagramGraphicalViewer = getDiagramGraphicalViewer();
 		if (diagramGraphicalViewer == null) {
 			return;
@@ -228,11 +228,10 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		if (control == null) {
 			return;
 		}
-		control.removeFocusListener(focusListener);	
+		control.removeFocusListener(focusListener);
 	}
-	
-	
-	private void registerFocusListener(){
+
+	private void registerFocusListener() {
 		IDiagramGraphicalViewer diagramGraphicalViewer = getDiagramGraphicalViewer();
 		if (diagramGraphicalViewer == null) {
 			return;
@@ -242,19 +241,18 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 		if (control == null) {
 			return;
 		}
-		control.addFocusListener(focusListener);	
+		control.addFocusListener(focusListener);
 	}
 
 	/**
 	 * @author schroech
-	 *
 	 */
 	private class OnEnterDirectEditKeyHandler extends DirectEditKeyHandler {
 
 		public OnEnterDirectEditKeyHandler(GraphicalViewer viewer) {
 			super(viewer);
 		}
-		
+
 		@Override
 		public boolean keyPressed(KeyEvent event) {
 			if (isEnterKey(event)) {
@@ -268,30 +266,28 @@ public class ModelDiagramEditor extends DiagramDocumentEditor {
 
 		private boolean isEnterKey(KeyEvent event) {
 			if (event.keyCode == 13) {
-				return true;	
-			} 
+				return true;
+			}
 			return false;
 		}
-		
+
 	}
-	
-    /**
-     * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor#configureGraphicalViewer()
-     */
-    @Override
-	protected void configureGraphicalViewer() {
-        super.configureGraphicalViewer();
 
-        IDiagramGraphicalViewer viewer = getDiagramGraphicalViewer();
-
-        KeyHandler viewerKeyHandler = new DiagramGraphicalViewerKeyHandler(viewer)
-            .setParent(getKeyHandler());
-        viewer.setKeyHandler(new OnEnterDirectEditKeyHandler(viewer)
-            .setParent(viewerKeyHandler));
-    }
-	
 	/**
-	 *	We implement our own save method, so return always false. {@inheritDoc}
+	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor#configureGraphicalViewer()
+	 */
+	@Override
+	protected void configureGraphicalViewer() {
+		super.configureGraphicalViewer();
+
+		IDiagramGraphicalViewer viewer = getDiagramGraphicalViewer();
+
+		KeyHandler viewerKeyHandler = new DiagramGraphicalViewerKeyHandler(viewer).setParent(getKeyHandler());
+		viewer.setKeyHandler(new OnEnterDirectEditKeyHandler(viewer).setParent(viewerKeyHandler));
+	}
+
+	/**
+	 * We implement our own save method, so return always false. {@inheritDoc}
 	 */
 	@Override
 	public boolean isDirty() {

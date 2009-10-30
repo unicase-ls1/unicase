@@ -25,23 +25,16 @@ import org.unicase.model.diagram.MEDiagram;
 /**
  * @generated
  */
-public class ModelNavigatorLabelProvider extends LabelProvider implements
-		ICommonLabelProvider, ITreePathLabelProvider {
+public class ModelNavigatorLabelProvider extends LabelProvider implements ICommonLabelProvider, ITreePathLabelProvider {
 
 	/**
 	 * @generated
 	 */
 	static {
-		org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-				.getInstance()
-				.getImageRegistry()
-				.put(
-						"Navigator?UnknownElement", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
-		org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-				.getInstance()
-				.getImageRegistry()
-				.put(
-						"Navigator?ImageNotFound", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
+		org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().getImageRegistry().put(
+			"Navigator?UnknownElement", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
+		org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().getImageRegistry().put(
+			"Navigator?ImageNotFound", ImageDescriptor.getMissingImageDescriptor()); //$NON-NLS-1$
 	}
 
 	/**
@@ -50,8 +43,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	public void updateLabel(ViewerLabel label, TreePath elementPath) {
 		Object element = elementPath.getLastSegment();
 		if (element instanceof org.unicase.ui.diagram.activityDiagram.navigator.ModelNavigatorItem
-				&& !isOwnView(((org.unicase.ui.diagram.activityDiagram.navigator.ModelNavigatorItem) element)
-						.getView())) {
+			&& !isOwnView(((org.unicase.ui.diagram.activityDiagram.navigator.ModelNavigatorItem) element).getView())) {
 			return;
 		}
 		label.setText(getText(element));
@@ -64,8 +56,8 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	public Image getImage(Object element) {
 		if (element instanceof org.unicase.ui.diagram.activityDiagram.navigator.ModelNavigatorGroup) {
 			org.unicase.ui.diagram.activityDiagram.navigator.ModelNavigatorGroup group = (org.unicase.ui.diagram.activityDiagram.navigator.ModelNavigatorGroup) element;
-			return org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance().getBundledImage(group.getIcon());
+			return org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().getBundledImage(
+				group.getIcon());
 		}
 
 		if (element instanceof org.unicase.ui.diagram.activityDiagram.navigator.ModelNavigatorItem) {
@@ -83,29 +75,28 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	public Image getImage(View view) {
-		switch (org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
-				.getVisualID(view)) {
+		switch (org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Diagram?http://unicase.org/model/diagram?MEDiagram", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.MEDiagram_22); //$NON-NLS-1$
+				"Navigator?Diagram?http://unicase.org/model/diagram?MEDiagram", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.MEDiagram_22); //$NON-NLS-1$
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/activity?Activity", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Activity_2002); //$NON-NLS-1$
+				"Navigator?TopLevelNode?http://unicase.org/model/activity?Activity", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Activity_2002); //$NON-NLS-1$
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.ForkEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/activity?Fork", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Fork_2003); //$NON-NLS-1$
+				"Navigator?TopLevelNode?http://unicase.org/model/activity?Fork", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Fork_2003); //$NON-NLS-1$
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityInitialEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/activity?ActivityInitial", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityInitial_2004); //$NON-NLS-1$
+				"Navigator?TopLevelNode?http://unicase.org/model/activity?ActivityInitial", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityInitial_2004); //$NON-NLS-1$
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEndEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/activity?ActivityEnd", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityEnd_2005); //$NON-NLS-1$
+				"Navigator?TopLevelNode?http://unicase.org/model/activity?ActivityEnd", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityEnd_2005); //$NON-NLS-1$
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.BranchEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?TopLevelNode?http://unicase.org/model/activity?Branch", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Branch_2006); //$NON-NLS-1$
+				"Navigator?TopLevelNode?http://unicase.org/model/activity?Branch", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Branch_2006); //$NON-NLS-1$
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.TransitionEditPart.VISUAL_ID:
 			return getImage(
-					"Navigator?Link?http://unicase.org/model/activity?Transition", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Transition_4001); //$NON-NLS-1$
+				"Navigator?Link?http://unicase.org/model/activity?Transition", org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Transition_4001); //$NON-NLS-1$
 		}
 		return getImage("Navigator?UnknownElement", null); //$NON-NLS-1$
 	}
@@ -115,14 +106,11 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private Image getImage(String key, IElementType elementType) {
 		ImageRegistry imageRegistry = org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-				.getInstance().getImageRegistry();
+			.getInstance().getImageRegistry();
 		Image image = imageRegistry.get(key);
-		if (image == null
-				&& elementType != null
-				&& org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes
-						.isKnownElementType(elementType)) {
-			image = org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes
-					.getImage(elementType);
+		if (image == null && elementType != null
+			&& org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.isKnownElementType(elementType)) {
+			image = org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.getImage(elementType);
 			imageRegistry.put(key, image);
 		}
 
@@ -160,8 +148,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		if (view.getElement() != null && view.getElement().eIsProxy()) {
 			return getUnresolvedDomainElementProxyText(view);
 		}
-		switch (org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
-				.getVisualID(view)) {
+		switch (org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID:
 			return getMEDiagram_22Text(view);
 		case org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityEditPart.VISUAL_ID:
@@ -188,9 +175,8 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
-			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance().logError(
-							"No domain element for view with visualID = " + 22); //$NON-NLS-1$
+			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"No domain element for view with visualID = " + 22); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -200,19 +186,17 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private String getActivity_2002Text(View view) {
 		IAdaptable hintAdapter = new org.unicase.ui.diagram.activityDiagram.providers.ModelParserProvider.HintAdapter(
-				org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Activity_2002,
-				(view.getElement() != null ? view.getElement() : view),
-				org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
-						.getType(org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart.VISUAL_ID));
+			org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Activity_2002,
+			(view.getElement() != null ? view.getElement() : view),
+			org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
+				.getType(org.unicase.ui.diagram.activityDiagram.edit.parts.ActivityNameEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
-			return parser.getPrintString(hintAdapter, ParserOptions.NONE
-					.intValue());
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance().logError(
-							"Parser was not found for label " + 5001); //$NON-NLS-1$
+			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"Parser was not found for label " + 5001); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -226,10 +210,8 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
-			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 2003); //$NON-NLS-1$
+			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"No domain element for view with visualID = " + 2003); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -238,15 +220,12 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 * @generated
 	 */
 	private String getActivityInitial_2004Text(View view) {
-		ActivityInitial domainModelElement = (ActivityInitial) view
-				.getElement();
+		ActivityInitial domainModelElement = (ActivityInitial) view.getElement();
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
-			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 2004); //$NON-NLS-1$
+			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"No domain element for view with visualID = " + 2004); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -259,10 +238,8 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
-			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 2005); //$NON-NLS-1$
+			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"No domain element for view with visualID = " + 2005); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -275,10 +252,8 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 		if (domainModelElement != null) {
 			return domainModelElement.getName();
 		} else {
-			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"No domain element for view with visualID = " + 2006); //$NON-NLS-1$
+			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"No domain element for view with visualID = " + 2006); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 	}
@@ -288,19 +263,17 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private String getTransition_4001Text(View view) {
 		IAdaptable hintAdapter = new org.unicase.ui.diagram.activityDiagram.providers.ModelParserProvider.HintAdapter(
-				org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Transition_4001,
-				(view.getElement() != null ? view.getElement() : view),
-				org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
-						.getType(org.unicase.ui.diagram.activityDiagram.edit.parts.TransitionConditionEditPart.VISUAL_ID));
+			org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Transition_4001,
+			(view.getElement() != null ? view.getElement() : view),
+			org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
+				.getType(org.unicase.ui.diagram.activityDiagram.edit.parts.TransitionConditionEditPart.VISUAL_ID));
 		IParser parser = ParserService.getInstance().getParser(hintAdapter);
 
 		if (parser != null) {
-			return parser.getPrintString(hintAdapter, ParserOptions.NONE
-					.intValue());
+			return parser.getPrintString(hintAdapter, ParserOptions.NONE.intValue());
 		} else {
-			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance().logError(
-							"Parser was not found for label " + 6001); //$NON-NLS-1$
+			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"Parser was not found for label " + 6001); //$NON-NLS-1$
 			return ""; //$NON-NLS-1$
 		}
 
@@ -350,8 +323,7 @@ public class ModelNavigatorLabelProvider extends LabelProvider implements
 	 */
 	private boolean isOwnView(View view) {
 		return org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
-				.equals(org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry
-						.getModelID(view));
+			.equals(org.unicase.ui.diagram.activityDiagram.part.ModelVisualIDRegistry.getModelID(view));
 	}
 
 }

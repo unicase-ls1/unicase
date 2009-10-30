@@ -15,36 +15,34 @@ import org.eclipse.jface.viewers.IDecoration;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.ILightweightLabelDecorator;
 
-
 /**
- * This decorator shows a link icon on item which are shown as children of a parent in Navigator, 
- * but are not actually contained in that parent. (i.e. model elements shown under a WorkItemMeetingSection) 
+ * This decorator shows a link icon on item which are shown as children of a parent in Navigator, but are not actually
+ * contained in that parent. (i.e. model elements shown under a WorkItemMeetingSection)
  * 
  * @author Hodaie
- *
  */
 public class ChildrenDecorator implements ILightweightLabelDecorator {
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.jface.viewers.ILightweightLabelDecorator#decorate(java.lang.Object, org.eclipse.jface.viewers.IDecoration)
+	 * @see org.eclipse.jface.viewers.ILightweightLabelDecorator#decorate(java.lang.Object,
+	 *      org.eclipse.jface.viewers.IDecoration)
 	 */
 	public void decorate(Object element, IDecoration decoration) {
 		URL url = FileLocator.find(Platform.getBundle("org.unicase.ui.common"), new Path("icons/shortcut.png"), null);
 		ImageDescriptor imageDescriptor = ImageDescriptor.createFromURL(url);
 		decoration.addOverlay(imageDescriptor, IDecoration.BOTTOM_RIGHT);
-		
+
 	}
 
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * 
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#addListener(org.eclipse.jface.viewers.ILabelProviderListener)
 	 */
 	public void addListener(ILabelProviderListener listener) {
-		
+
 	}
 
 	/**
@@ -53,7 +51,7 @@ public class ChildrenDecorator implements ILightweightLabelDecorator {
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#dispose()
 	 */
 	public void dispose() {
-		
+
 	}
 
 	/**
@@ -68,14 +66,10 @@ public class ChildrenDecorator implements ILightweightLabelDecorator {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * 
 	 * @see org.eclipse.jface.viewers.IBaseLabelProvider#removeListener(org.eclipse.jface.viewers.ILabelProviderListener)
 	 */
 	public void removeListener(ILabelProviderListener listener) {
-		
+
 	}
-
-	
-
 
 }

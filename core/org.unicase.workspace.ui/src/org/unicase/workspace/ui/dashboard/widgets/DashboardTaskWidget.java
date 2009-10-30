@@ -37,13 +37,13 @@ import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
 import org.unicase.model.task.WorkPackage;
 import org.unicase.ui.common.exceptions.DialogHandler;
+import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.common.util.OrgUnitHelper;
 import org.unicase.ui.common.util.URLHelper;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.ui.dashboard.DashboardPage;
 import org.unicase.workspace.ui.dashboard.DashboardToolbarAction;
 import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * A dashboard widget displaying an overview of all tasks.
@@ -92,13 +92,15 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 
 			now = new Date();
 
-			List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
-				new BasicEList<WorkItem>());
+			List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(
+					TaskPackage.eINSTANCE.getWorkItem(),
+					new BasicEList<WorkItem>());
 
 			for (WorkItem wi : allWI) {
 				if (applies(wi)) {
 					addWorkItem(wi);
-					WorkPackage containingWorkpackage = wi.getContainingWorkpackage();
+					WorkPackage containingWorkpackage = wi
+							.getContainingWorkpackage();
 					addWorkPackage(containingWorkpackage);
 				}
 			}
@@ -116,7 +118,8 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	protected void createToolbar() {
 		super.createToolbar();
 		Composite toolbar = getToolbar();
-		DashboardToolbarAction taskView = new DashboardToolbarAction(toolbar, "table.png", 150);
+		DashboardToolbarAction taskView = new DashboardToolbarAction(toolbar,
+				"table.png", 150);
 		taskView.setToolTipText("Open the Task View");
 		taskView.addHyperlinkListener(new HyperlinkAdapter() {
 			@Override
@@ -127,7 +130,8 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	}
 
 	private void openTaskView() {
-		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+		IWorkbenchPage page = PlatformUI.getWorkbench()
+				.getActiveWorkbenchWindow().getActivePage();
 		String viewId = "org.unicase.ui.taskview";
 		try {
 			page.showView(viewId);
@@ -172,7 +176,8 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 			currentSprint.setText("You are participating in:");
 
 			for (WorkPackage sprint : sprints) {
-				URLHelper.getModelElementLink(panel, sprint, getDashboard().getProjectSpace(), 15);
+				URLHelper.getModelElementLink(panel, sprint, getDashboard()
+						.getProjectSpace(), 15);
 			}
 		}
 	}
@@ -190,8 +195,10 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 
 	private void addWorkPackage(WorkPackage containingWorkpackage) {
 		if (containingWorkpackage != null
-			&& (containingWorkpackage.getStartDate() == null || containingWorkpackage.getStartDate().before(now))
-			&& (containingWorkpackage.getDueDate() != null && containingWorkpackage.getDueDate().after(now))) {
+				&& (containingWorkpackage.getStartDate() == null || containingWorkpackage
+						.getStartDate().before(now))
+				&& (containingWorkpackage.getDueDate() != null && containingWorkpackage
+						.getDueDate().after(now))) {
 			sprints.add(containingWorkpackage);
 		}
 	}
@@ -212,7 +219,9 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	}
 
 	private boolean isGroupAssignee(WorkItem wi) {
-		if (wi.getAssignee() != null && OrganizationPackage.eINSTANCE.getGroup().isInstance(wi.getAssignee())) {
+		if (wi.getAssignee() != null
+				&& OrganizationPackage.eINSTANCE.getGroup().isInstance(
+						wi.getAssignee())) {
 			Set<Group> groups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
 			return groups.contains(wi.getAssignee());
 		}
@@ -232,7 +241,8 @@ public class DashboardTaskWidget extends AbstractDashboardWidget {
 	}
 
 	private boolean isChecked(WorkItem wi) {
-		return TaskPackage.eINSTANCE.getCheckable().isInstance(wi) && ((Checkable) wi).isChecked();
+		return TaskPackage.eINSTANCE.getCheckable().isInstance(wi)
+				&& ((Checkable) wi).isChecked();
 	}
 
 	/**

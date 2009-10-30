@@ -21,7 +21,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.provider.UnicaseModelElementItemProvider;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.requirement.Step;
 
@@ -31,7 +31,7 @@ import org.unicase.model.requirement.Step;
  * 
  * @generated
  */
-public class StepItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+public class StepItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->

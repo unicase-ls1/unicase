@@ -16,7 +16,7 @@ import org.unicase.emfstore.esmodel.notification.NotificationPackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.workspace.EventComposite;
 import org.unicase.workspace.NotificationComposite;
 import org.unicase.workspace.OperationComposite;
@@ -26,7 +26,6 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.WorkspaceModelVersion;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
@@ -69,13 +68,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * @generated
 	 */
 	private EClass operationCompositeEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass workspaceModelVersionEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -527,24 +519,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 	 * 
 	 * @generated
 	 */
-	public EClass getWorkspaceModelVersion() {
-		return workspaceModelVersionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getWorkspaceModelVersion_ModelReleaseNumber() {
-		return (EAttribute) workspaceModelVersionEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EClass getPendingFileTransfer() {
 		return pendingFileTransferEClass;
 	}
@@ -712,9 +686,6 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		operationCompositeEClass = createEClass(OPERATION_COMPOSITE);
 		createEReference(operationCompositeEClass, OPERATION_COMPOSITE__OPERATIONS);
 
-		workspaceModelVersionEClass = createEClass(WORKSPACE_MODEL_VERSION);
-		createEAttribute(workspaceModelVersionEClass, WORKSPACE_MODEL_VERSION__MODEL_RELEASE_NUMBER);
-
 		pendingFileTransferEClass = createEClass(PENDING_FILE_TRANSFER);
 		createEReference(pendingFileTransferEClass, PENDING_FILE_TRANSFER__ATTACHMENT_ID);
 		createEAttribute(pendingFileTransferEClass, PENDING_FILE_TRANSFER__FILE_VERSION);
@@ -754,7 +725,8 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(EsmodelPackage.eNS_URI);
 		AccesscontrolPackage theAccesscontrolPackage = (AccesscontrolPackage) EPackage.Registry.INSTANCE
@@ -772,7 +744,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		projectSpaceEClass.getESuperTypes().add(theModelPackage.getIdentifiableElement());
+		projectSpaceEClass.getESuperTypes().add(theMetamodelPackage.getIdentifiableElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(workspaceEClass, Workspace.class, "Workspace", !IS_ABSTRACT, !IS_INTERFACE,
@@ -780,7 +752,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEReference(getWorkspace_ProjectSpaces(), this.getProjectSpace(), null, "projectSpaces", null, 0, -1,
 			Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkspace_ProjectSpaces().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		getWorkspace_ProjectSpaces().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkspace_ServerInfos(), this.getServerInfo(), null, "serverInfos", null, 0, -1,
 			Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -790,7 +762,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 		initEReference(getWorkspace_ActiveProjectSpace(), this.getProjectSpace(), null, "activeProjectSpace", null, 0,
 			1, Workspace.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkspace_ActiveProjectSpace().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		getWorkspace_ActiveProjectSpace().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(serverInfoEClass, ServerInfo.class, "ServerInfo", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -837,7 +809,7 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 
 		initEClass(projectSpaceEClass, ProjectSpace.class, "ProjectSpace", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProjectSpace_Project(), theModelPackage.getProject(), null, "project", null, 0, 1,
+		initEReference(getProjectSpace_Project(), theMetamodelPackage.getProject(), null, "project", null, 0, 1,
 			ProjectSpace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectSpace_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 1, 1,
@@ -891,15 +863,9 @@ public class WorkspacePackageImpl extends EPackageImpl implements WorkspacePacka
 			"operations", null, 0, -1, OperationComposite.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(workspaceModelVersionEClass, WorkspaceModelVersion.class, "WorkspaceModelVersion", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getWorkspaceModelVersion_ModelReleaseNumber(), ecorePackage.getEInt(), "modelReleaseNumber",
-			null, 0, 1, WorkspaceModelVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
-			!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
 		initEClass(pendingFileTransferEClass, PendingFileTransfer.class, "PendingFileTransfer", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getPendingFileTransfer_AttachmentId(), theModelPackage.getModelElementId(), null,
+		initEReference(getPendingFileTransfer_AttachmentId(), theMetamodelPackage.getModelElementId(), null,
 			"attachmentId", null, 0, 1, PendingFileTransfer.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPendingFileTransfer_FileVersion(), ecorePackage.getEInt(), "fileVersion", null, 0, 1,

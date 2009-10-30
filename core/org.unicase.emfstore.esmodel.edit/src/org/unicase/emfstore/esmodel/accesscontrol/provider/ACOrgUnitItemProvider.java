@@ -25,7 +25,7 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolFactory;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.model.provider.IdentifiableElementItemProvider;
+import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnit} object. <!--

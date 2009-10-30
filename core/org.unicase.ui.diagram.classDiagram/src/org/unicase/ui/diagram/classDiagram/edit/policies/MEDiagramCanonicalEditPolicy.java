@@ -54,8 +54,8 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 	protected List getSemanticChildrenList() {
 		View viewObject = (View) getHost().getModel();
 		List result = new LinkedList();
-		for (Iterator it = org.unicase.ui.diagram.classDiagram.part.ModelDiagramUpdater.getMEDiagram_88SemanticChildren(
-			viewObject).iterator(); it.hasNext();) {
+		for (Iterator it = org.unicase.ui.diagram.classDiagram.part.ModelDiagramUpdater
+			.getMEDiagram_88SemanticChildren(viewObject).iterator(); it.hasNext();) {
 			result.add(((org.unicase.ui.diagram.classDiagram.part.ModelNodeDescriptor) it.next()).getModelElement());
 		}
 
@@ -65,7 +65,7 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 			ShowRelatedElementsController instance = ShowRelatedElementsController.getInstance(getHost().getViewer());
 			Collection<? extends EObject> relatedModelElements = instance.getRelatedNodeElements();
 			result.addAll(relatedModelElements);
-			
+
 			relatedModelElements = instance.getRelatedEdges();
 			result.addAll(relatedModelElements);
 		}
@@ -247,8 +247,8 @@ public class MEDiagramCanonicalEditPolicy extends CanonicalConnectionEditPolicy 
 		}
 		case org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result
-					.addAll(org.unicase.ui.diagram.classDiagram.part.ModelDiagramUpdater.getClass_2001ContainedLinks(view));
+				result.addAll(org.unicase.ui.diagram.classDiagram.part.ModelDiagramUpdater
+					.getClass_2001ContainedLinks(view));
 			}
 			if (!domain2NotationMap.containsKey(view.getElement()) || view.getEAnnotation("Shortcut") == null) { //$NON-NLS-1$
 				domain2NotationMap.put(view.getElement(), view);

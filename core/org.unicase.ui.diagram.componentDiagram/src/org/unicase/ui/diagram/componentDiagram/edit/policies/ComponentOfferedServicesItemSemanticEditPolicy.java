@@ -13,9 +13,8 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
 /**
  * @generated
  */
-public class ComponentOfferedServicesItemSemanticEditPolicy
-		extends
-		org.unicase.ui.diagram.componentDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class ComponentOfferedServicesItemSemanticEditPolicy extends
+	org.unicase.ui.diagram.componentDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -24,13 +23,11 @@ public class ComponentOfferedServicesItemSemanticEditPolicy
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return getGEFWrapper(new DestroyReferenceCommand(req) {
 
-			protected CommandResult doExecuteWithResult(
-					IProgressMonitor progressMonitor, IAdaptable info)
-					throws ExecutionException {
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info)
+				throws ExecutionException {
 				EObject referencedObject = getReferencedObject();
 				Resource resource = referencedObject.eResource();
-				CommandResult result = super.doExecuteWithResult(
-						progressMonitor, info);
+				CommandResult result = super.doExecuteWithResult(progressMonitor, info);
 				resource.getContents().add(referencedObject);
 				return result;
 			}

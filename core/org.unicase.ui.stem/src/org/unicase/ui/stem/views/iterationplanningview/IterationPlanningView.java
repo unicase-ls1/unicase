@@ -40,6 +40,9 @@ import org.unicase.ui.common.dnd.UCDragAdapter;
 import org.unicase.ui.common.dnd.UCDropAdapter;
 import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.common.util.EventUtil;
+import org.unicase.ui.common.util.OrgUnitHelper;
 import org.unicase.ui.stem.Activator;
 import org.unicase.ui.stem.views.AssignedToLabelProvider;
 import org.unicase.ui.tableview.labelproviders.StatusLabelProvider;
@@ -47,10 +50,7 @@ import org.unicase.workspace.Configuration;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
-import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * This view helps managing WorkPackages (sprints) contained in a project. It shows the WorkPackages of active project

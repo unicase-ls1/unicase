@@ -28,7 +28,7 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
 
 import org.apache.commons.codec.binary.Base64;
-import org.unicase.model.util.FileUtil;
+import org.unicase.metamodel.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.util.WorkspaceUtil;

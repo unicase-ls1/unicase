@@ -34,18 +34,16 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
  * This is installed on a container editpart. It is responsible for creating connections from a source shape to an
  * unspecified target and a target shape to an unspecified source. A popup will appear asking the user to select or
  * create a new source or target element. This will handle both single create connection requests and multi connection
- * requests (i.e. where the popup also prompts the user for the type of relationship to created).
- *
- * This original implementation of the {@link #getConnectionCreateCommand(CreateConnectionRequest)} was changed to
- * return a modified command
+ * requests (i.e. where the popup also prompts the user for the type of relationship to created). This original
+ * implementation of the {@link #getConnectionCreateCommand(CreateConnectionRequest)} was changed to return a modified
+ * command
+ * 
  * @author denglerm
  */
 public class ContainerNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 	/**
-	 * {@inheritDoc}
-	 * 
-	 * Only handles connection end requests. Cannot start a connection on a container.
+	 * {@inheritDoc} Only handles connection end requests. Cannot start a connection on a container.
 	 */
 	@Override
 	public Command getCommand(Request request) {
@@ -108,17 +106,16 @@ public class ContainerNodeEditPolicy extends GraphicalNodeEditPolicy {
 	}
 
 	/**
-	 * Called by {@link #getConnectionAndEndCommands}.
-	 * 
-	 * The method was modified to return an own CreateViewAndOptionallyElementCommandExt
+	 * Called by {@link #getConnectionAndEndCommands}. The method was modified to return an own
+	 * CreateViewAndOptionallyElementCommandExt
 	 * 
 	 * @param endAdapter the end adapter
 	 * @param location the location
 	 * @return command
 	 */
 	protected CreateViewAndOptionallyElementCommand getCreateOtherEndCommand(IAdaptable endAdapter, Point location) {
-		return new org.unicase.ui.common.diagram.commands.CreateViewAndOptionallyElementCommandExt(endAdapter, (IGraphicalEditPart) getHost(), location,
-			((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
+		return new org.unicase.ui.common.diagram.commands.CreateViewAndOptionallyElementCommandExt(endAdapter,
+			(IGraphicalEditPart) getHost(), location, ((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
 	}
 
 	/**

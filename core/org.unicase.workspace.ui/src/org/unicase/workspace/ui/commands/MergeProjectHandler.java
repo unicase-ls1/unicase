@@ -29,10 +29,12 @@ public class MergeProjectHandler implements ConflictResolver {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param conflictException the ChangeConflictException
+	 * @param conflictException
+	 *            the ChangeConflictException
 	 */
 	public MergeProjectHandler(ChangeConflictException conflictException) {
-		this.mergeDialog = new MergeDialog(Display.getCurrent().getActiveShell());
+		this.mergeDialog = new MergeDialog(Display.getCurrent()
+				.getActiveShell());
 	}
 
 	/**
@@ -61,8 +63,9 @@ public class MergeProjectHandler implements ConflictResolver {
 	 * 
 	 * @see org.unicase.workspace.observers.ConflictResolver#getAcceptedMine()
 	 */
-	public boolean resolveConflicts(Project project, List<ChangePackage> theirChangePackages,
-		ChangePackage myChangePackage) {
+	public boolean resolveConflicts(Project project,
+			List<ChangePackage> theirChangePackages,
+			ChangePackage myChangePackage) {
 		mergeDialog.setChanges(myChangePackage, theirChangePackages);
 		return (mergeDialog.open() == Window.OK);
 	}

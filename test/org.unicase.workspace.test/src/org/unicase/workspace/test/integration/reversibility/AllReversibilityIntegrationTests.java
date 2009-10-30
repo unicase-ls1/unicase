@@ -16,15 +16,10 @@ import org.junit.runners.Suite;
 
 /**
  * @author Hodaie
- *
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({
-	AttributeOperationsReversibilityTest.class,
-	ReferenceOperationsReversibilityTest.class,
-	CreateDeleteOperationsReversibilityTest.class, 
-	CompositeOperationReversibilityTest.class
-	})
+@Suite.SuiteClasses( { AttributeOperationsReversibilityTest.class, ReferenceOperationsReversibilityTest.class,
+	CreateDeleteOperationsReversibilityTest.class, CompositeOperationReversibilityTest.class })
 public class AllReversibilityIntegrationTests {
 
 }

@@ -20,10 +20,10 @@ import org.unicase.workspace.changeTracking.notification.recording.NotificationR
 
 /**
  * Tests the notification recording for attribute features.
+ * 
  * @author chodnick
- *
  */
-public class MoveNotificationTest extends NotificationTest{
+public class MoveNotificationTest extends NotificationTest {
 
 	/**
 	 * Change order within a list and check the generated notification.
@@ -34,25 +34,25 @@ public class MoveNotificationTest extends NotificationTest{
 		Actor actor1 = RequirementFactory.eINSTANCE.createActor();
 		Actor actor2 = RequirementFactory.eINSTANCE.createActor();
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
-		
+
 		getProject().addModelElement(useCase);
 		getProject().addModelElement(actor1);
 		getProject().addModelElement(actor2);
-		
+
 		actor1.setName("testActor1");
 		actor2.setName("testActor2");
 		useCase.setName("testUseCase");
-		
+
 		// notifications from this operations are tested
 		useCase.getParticipatingActors().add(actor1);
 		useCase.getParticipatingActors().add(actor2);
-		
+
 		// now move actor 2 to top of the list
 		useCase.getParticipatingActors().move(0, actor2);
 
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
-		
+
 		// exactly one MOVE notification is expected
 		assertEquals(1, rec.size());
 
@@ -61,11 +61,10 @@ public class MoveNotificationTest extends NotificationTest{
 		assertTrue(n.isMoveEvent());
 		assertEquals(n.getNewValue(), actor2);
 		assertEquals(n.getReference().getName(), "participatingActors");
-		
+
 		assertEquals(n.getPosition(), 0);
 		assertEquals(n.getOldValue(), 1);
-		
+
 	}
-	
 
 }

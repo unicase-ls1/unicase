@@ -11,7 +11,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.util.SerializationException;
+import org.unicase.metamodel.util.SerializationException;
 import org.unicase.workspace.test.integration.forward.IntegrationTestHelper;
 
 /**
@@ -45,8 +45,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 
 		});
 
-		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeAttributeReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"CreateAndChangeAttributeReversibilityTest"));
 
 	}
 
@@ -74,8 +74,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 
 		});
 
-		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndMultipleChangeReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"CreateAndMultipleChangeReversibilityTest"));
 
 	}
 
@@ -102,8 +102,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 
 		});
 
-		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeRefReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"CreateAndChangeRefReversibilityTest"));
 
 	}
 
@@ -128,8 +128,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 
 		});
 
-	
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateChangeRefDeleteReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"CreateChangeRefDeleteReversibilityTest"));
 
 	}
 
@@ -154,8 +154,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 
 		});
 
-		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateDeleteReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"CreateDeleteReversibilityTest"));
 
 	}
 
@@ -179,8 +179,8 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 			}
 		});
 
-		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteAndRevertDeleteReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"DeleteAndRevertDeleteReversibilityTest"));
 	}
 
 	/**
@@ -205,7 +205,6 @@ public class CreateDeleteOperationsReversibilityTest extends OperationsReversibi
 
 		});
 
-		
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "DeleteReversibilityTest"));
 
 	}

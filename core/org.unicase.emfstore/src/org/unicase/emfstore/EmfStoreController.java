@@ -47,7 +47,7 @@ import org.unicase.emfstore.startup.StartupExtensionManager;
 import org.unicase.emfstore.storage.ResourceStorage;
 import org.unicase.emfstore.taskmanager.TaskManager;
 import org.unicase.emfstore.taskmanager.tasks.CleanMemoryTask;
-import org.unicase.model.util.FileUtil;
+import org.unicase.metamodel.util.FileUtil;
 
 /**
  * The {@link EmfStoreController} is controlling startup and shutdown of the EmfStore.

@@ -8,7 +8,7 @@ package org.unicase.emfstore.esmodel.accesscontrol.impl;
 import org.eclipse.emf.ecore.EClass;
 import org.unicase.emfstore.esmodel.accesscontrol.ACOrgUnitId;
 import org.unicase.emfstore.esmodel.accesscontrol.AccesscontrolPackage;
-import org.unicase.model.impl.UniqueIdentifierImpl;
+import org.unicase.metamodel.impl.UniqueIdentifierImpl;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>AC Org Unit Id</b></em>'. <!-- end-user-doc

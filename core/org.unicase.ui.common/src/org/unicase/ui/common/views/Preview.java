@@ -262,11 +262,10 @@ public class Preview extends ViewPart implements ISelectionListener {
 		}
 		if (textwidget != null) {
 			String name = me.getDescriptionPlainText();
-			if (name==null) {
+			if (name == null) {
 				textwidget.setText(nocomment);
-			}
-			else{
-			textwidget.setText(name);
+			} else {
+				textwidget.setText(name);
 			}
 		}
 	}

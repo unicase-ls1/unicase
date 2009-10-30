@@ -13,8 +13,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 /**
  * @generated
  */
-public class ModelLinkDescriptor extends
-		org.unicase.ui.diagram.classDiagram.part.ModelNodeDescriptor {
+public class ModelLinkDescriptor extends org.unicase.ui.diagram.classDiagram.part.ModelNodeDescriptor {
 
 	/**
 	 * @generated
@@ -34,8 +33,7 @@ public class ModelLinkDescriptor extends
 	/**
 	 * @generated
 	 */
-	private ModelLinkDescriptor(EObject source, EObject destination,
-			EObject linkElement, int linkVID) {
+	private ModelLinkDescriptor(EObject source, EObject destination, EObject linkElement, int linkVID) {
 		super(linkElement, linkVID);
 		mySource = source;
 		myDestination = destination;
@@ -44,8 +42,7 @@ public class ModelLinkDescriptor extends
 	/**
 	 * @generated
 	 */
-	public ModelLinkDescriptor(EObject source, EObject destination,
-			IElementType elementType, int linkVID) {
+	public ModelLinkDescriptor(EObject source, EObject destination, IElementType elementType, int linkVID) {
 		this(source, destination, (EObject) null, linkVID);
 		final IElementType elementTypeCopy = elementType;
 		mySemanticAdapter = new IAdaptable() {
@@ -61,8 +58,8 @@ public class ModelLinkDescriptor extends
 	/**
 	 * @generated
 	 */
-	public ModelLinkDescriptor(EObject source, EObject destination,
-			EObject linkElement, IElementType elementType, int linkVID) {
+	public ModelLinkDescriptor(EObject source, EObject destination, EObject linkElement, IElementType elementType,
+		int linkVID) {
 		this(source, destination, linkElement, linkVID);
 		final IElementType elementTypeCopy = elementType;
 		mySemanticAdapter = new EObjectAdapter(linkElement) {

@@ -29,19 +29,22 @@ public class ESBrowserLabelProvider extends StyledCellLabelProvider {
 			ServerInfo serverInfo = (ServerInfo) element;
 			StyledString styledString = new StyledString(serverInfo.getName());
 			String url = serverInfo.getUrl();
-			styledString.append(" [" + url + "]", StyledString.DECORATIONS_STYLER);
+			styledString.append(" [" + url + "]",
+					StyledString.DECORATIONS_STYLER);
 
 			cell.setText(styledString.toString());
 			cell.setStyleRanges(styledString.getStyleRanges());
 
-			cell.setImage(Activator.getImageDescriptor("icons/ServerInfo.gif").createImage());
+			cell.setImage(Activator.getImageDescriptor("icons/ServerInfo.gif")
+					.createImage());
 		} else if (element instanceof ProjectInfo) {
 			ProjectInfo projectInfo = (ProjectInfo) element;
 			StyledString styledString = new StyledString(projectInfo.getName());
 			cell.setText(styledString.toString());
 			cell.setStyleRanges(styledString.getStyleRanges());
 
-			cell.setImage(Activator.getImageDescriptor("icons/prj_obj.gif").createImage());
+			cell.setImage(Activator.getImageDescriptor("icons/prj_obj.gif")
+					.createImage());
 		}
 		super.update(cell);
 	}

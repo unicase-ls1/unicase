@@ -2,7 +2,6 @@ package org.unicase.ui.diagram.componentDiagram.edit.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
-import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -12,9 +11,8 @@ import org.unicase.ui.common.diagram.commands.DeleteFromModelCommand;
 /**
  * @generated
  */
-public class ComponentServiceItemSemanticEditPolicy
-		extends
-		org.unicase.ui.diagram.componentDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class ComponentServiceItemSemanticEditPolicy extends
+	org.unicase.ui.diagram.componentDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -35,22 +33,20 @@ public class ComponentServiceItemSemanticEditPolicy
 	 */
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+			: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
 	 * @generated
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_4001 == req
-				.getElementType()) {
+			.getElementType()) {
 			return null;
 		}
 		if (org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_4002 == req
-				.getElementType()) {
+			.getElementType()) {
 			return null;
 		}
 		return null;
@@ -59,36 +55,34 @@ public class ComponentServiceItemSemanticEditPolicy
 	/**
 	 * @generated
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		if (org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_4001 == req
-				.getElementType()) {
+			.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.diagram.componentDiagram.edit.commands.ComponentOfferedServicesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+				req, req.getSource(), req.getTarget()));
 		}
 		if (org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_4002 == req
-				.getElementType()) {
+			.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.diagram.componentDiagram.edit.commands.ComponentConsumedServicesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+				req, req.getSource(), req.getTarget()));
 		}
 		return null;
 	}
 
 	/**
-	 * Returns command to reorient EReference based link. New link target or source
-	 * should be the domain model element associated with this node.
+	 * Returns command to reorient EReference based link. New link target or source should be the domain model element
+	 * associated with this node.
 	 * 
 	 * @generated
 	 */
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.diagram.componentDiagram.edit.commands.ComponentOfferedServicesReorientCommand(
-					req));
+				req));
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentConsumedServicesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.diagram.componentDiagram.edit.commands.ComponentConsumedServicesReorientCommand(
-					req));
+				req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

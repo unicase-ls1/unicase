@@ -32,8 +32,6 @@ public class ProjectDropAdapter extends MEDropAdapter {
 		super(domain, viewer);
 	}
 
-	
-
 	/**
 	 * {@inheritDoc}
 	 */
@@ -64,7 +62,8 @@ public class ProjectDropAdapter extends MEDropAdapter {
 	 *      org.unicase.metamodel.ModelElement, java.util.List, boolean)
 	 */
 	@Override
-	public void dropMove(EObject targetContainer, UnicaseModelElement target, List<UnicaseModelElement> source, boolean after) {
+	public void dropMove(EObject targetContainer, UnicaseModelElement target, List<UnicaseModelElement> source,
+		boolean after) {
 		super.dropMove(targetContainer, target, source, after);
 		getViewer().refresh();
 

@@ -21,8 +21,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.model.util.ModelUtil;
-import org.unicase.model.util.ProjectChangeObserver;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.workspace.CompositeOperationHandle;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.Usersession;
@@ -64,7 +64,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.metamodel.ModelElement)
 	 */
 	public void modelElementAdded(Project project, ModelElement modelElement) {
@@ -83,7 +83,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.metamodel.Project,
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.metamodel.Project,
 	 *      org.unicase.metamodel.ModelElement)
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
@@ -127,7 +127,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.metamodel.Project,
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.metamodel.Project,
 	 *      org.unicase.metamodel.ModelElement)
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
@@ -165,7 +165,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#notify(org.eclipse.emf.common.notify.Notification,
 	 *      org.unicase.metamodel.Project, org.unicase.metamodel.ModelElement)
 	 */
 	public void notify(Notification notification, Project project, ModelElement modelElement) {

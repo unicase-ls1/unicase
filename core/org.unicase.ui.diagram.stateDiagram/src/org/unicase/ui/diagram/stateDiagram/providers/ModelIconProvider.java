@@ -1,4 +1,4 @@
-/** 
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -15,15 +15,13 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class ModelIconProvider extends AbstractProvider implements
-		IIconProvider {
+public class ModelIconProvider extends AbstractProvider implements IIconProvider {
 
 	/**
 	 * @generated
 	 */
 	public Image getIcon(IAdaptable hint, int flags) {
-		return org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes
-				.getImage(hint);
+		return org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.getImage(hint);
 	}
 
 	/**

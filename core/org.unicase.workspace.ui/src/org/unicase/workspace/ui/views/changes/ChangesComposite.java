@@ -26,7 +26,8 @@ public interface ChangesComposite {
 	/**
 	 * Sets the input for this composite.
 	 * 
-	 * @param changes the new ChangePackages
+	 * @param changes
+	 *            the new ChangePackages
 	 */
 	void setInput(List<ChangePackage> changes);
 

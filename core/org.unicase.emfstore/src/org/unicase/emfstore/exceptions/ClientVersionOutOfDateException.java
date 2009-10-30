@@ -5,7 +5,6 @@
  */
 package org.unicase.emfstore.exceptions;
 
-
 /**
  * Is thrown if the client's version is not compatible to the server.
  * 

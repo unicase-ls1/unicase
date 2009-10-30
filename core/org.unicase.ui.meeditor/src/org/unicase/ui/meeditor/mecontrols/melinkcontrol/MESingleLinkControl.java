@@ -89,10 +89,10 @@ public class MESingleLinkControl extends AbstractMEControl {
 		linkArea.setLayout(new FillLayout());
 		updateLink();
 
-		final AddReferenceAction addAction = new AddReferenceAction((UnicaseModelElement) getModelElement(), eReference,
-			itemPropertyDescriptor);
-		final NewReferenceAction newAction = new NewReferenceAction((UnicaseModelElement) getModelElement(), eReference,
-			itemPropertyDescriptor);
+		final AddReferenceAction addAction = new AddReferenceAction((UnicaseModelElement) getModelElement(),
+			eReference, itemPropertyDescriptor);
+		final NewReferenceAction newAction = new NewReferenceAction((UnicaseModelElement) getModelElement(),
+			eReference, itemPropertyDescriptor);
 
 		Button selectButton = getToolkit().createButton(composite, "", SWT.PUSH);
 		selectButton.setImage(addAction.getImageDescriptor().createImage());

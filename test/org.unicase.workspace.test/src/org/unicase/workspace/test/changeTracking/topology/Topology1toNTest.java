@@ -20,6 +20,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugReport;
@@ -33,7 +34,6 @@ import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
 import org.unicase.model.task.TaskFactory;
 import org.unicase.model.task.WorkPackage;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
 /**

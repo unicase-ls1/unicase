@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
@@ -70,7 +70,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__IDENTIFIER = ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
+	int ES_NOTIFICATION__IDENTIFIER = MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -78,7 +78,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__NAME = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
+	int ES_NOTIFICATION__NAME = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Message</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -86,7 +86,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__MESSAGE = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
+	int ES_NOTIFICATION__MESSAGE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Details</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -94,7 +94,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__DETAILS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
+	int ES_NOTIFICATION__DETAILS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Seen</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -102,7 +102,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__SEEN = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
+	int ES_NOTIFICATION__SEEN = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -110,7 +110,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__CREATION_DATE = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
+	int ES_NOTIFICATION__CREATION_DATE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Provider</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -118,7 +118,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__PROVIDER = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
+	int ES_NOTIFICATION__PROVIDER = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Sender</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -126,7 +126,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__SENDER = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
+	int ES_NOTIFICATION__SENDER = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Recipient</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -134,7 +134,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__RECIPIENT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
+	int ES_NOTIFICATION__RECIPIENT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -143,7 +143,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__PROJECT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+	int ES_NOTIFICATION__PROJECT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Related Model Elements</b></em>' containment reference list. <!-- begin-user-doc
@@ -152,7 +152,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__RELATED_MODEL_ELEMENTS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+	int ES_NOTIFICATION__RELATED_MODEL_ELEMENTS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Related Operations</b></em>' containment reference list. <!-- begin-user-doc -->
@@ -161,7 +161,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION__RELATED_OPERATIONS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
+	int ES_NOTIFICATION__RELATED_OPERATIONS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The number of structural features of the '<em>ES Notification</em>' class. <!-- begin-user-doc --> <!--
@@ -170,7 +170,7 @@ public interface NotificationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ES_NOTIFICATION_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
+	int ES_NOTIFICATION_FEATURE_COUNT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.emfstore.esmodel.notification.ESNotification

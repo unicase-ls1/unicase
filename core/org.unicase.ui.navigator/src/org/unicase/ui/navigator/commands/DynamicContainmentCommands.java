@@ -21,10 +21,11 @@ import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.actions.CompoundContributionItem;
 import org.eclipse.ui.menus.CommandContributionItem;
 import org.eclipse.ui.menus.CommandContributionItemParameter;
-import org.unicase.model.UnicaseModelElement;
+import org.unicase.metamodel.MetamodelPackage;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.util.ActionHelper;
 
 /**
@@ -134,11 +135,11 @@ public class DynamicContainmentCommands extends CompoundContributionItem {
 	private void addCommandsForSubTypes(EClass refClass, List<IContributionItem> commands) {
 
 		// do not create commands for subclasses of ModelElement
-		if (refClass.equals(ModelPackage.eINSTANCE.getModelElement())) {
+		if (refClass.equals(MetamodelPackage.eINSTANCE.getModelElement())) {
 			return;
 		}
 
-		List<EClass> eClazz = ModelUtil.getSubclasses(refClass);
+		List<EClass> eClazz = ModelUtil.getSubclasses(refClass, ModelPackage.eINSTANCE);
 		for (EClass eClass : eClazz) {
 			CommandContributionItemParameter commandParam = new CommandContributionItemParameter(PlatformUI
 				.getWorkbench(), null, COMMAND_ID, CommandContributionItem.STYLE_PUSH);

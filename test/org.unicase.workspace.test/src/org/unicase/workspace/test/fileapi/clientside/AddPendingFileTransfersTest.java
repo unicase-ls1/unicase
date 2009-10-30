@@ -17,9 +17,9 @@ import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.attachment.AttachmentPackage;
 import org.unicase.model.attachment.FileAttachment;
+import org.unicase.ui.common.util.FileTransferUtil;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.test.fileapi.AbstractFileAPIClientSideTest;
-import org.unicase.workspace.util.FileTransferUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**

@@ -3,7 +3,6 @@ package org.unicase.ui.diagram.componentDiagram.edit.parts;
 import java.util.Iterator;
 import java.util.List;
 
-import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionNodeEditPart;
@@ -16,8 +15,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart
-		implements ITreeBranchEditPart {
+public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated
@@ -37,9 +35,8 @@ public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.diagram.componentDiagram.edit.policies.ComponentOfferedServicesItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.diagram.componentDiagram.edit.policies.ComponentOfferedServicesItemSemanticEditPolicy());
 	}
 
 	/**
@@ -63,11 +60,9 @@ public class ComponentOfferedServicesEditPart extends ConnectionNodeEditPart
 	@Override
 	protected void handleNotificationEvent(Notification event) {
 
-		List editPolicies = CanonicalEditPolicy
-				.getRegisteredEditPolicies(((View) getModel()).getElement());
+		List editPolicies = CanonicalEditPolicy.getRegisteredEditPolicies(((View) getModel()).getElement());
 		for (Iterator it = editPolicies.iterator(); it.hasNext();) {
-			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it
-					.next();
+			CanonicalEditPolicy nextEditPolicy = (CanonicalEditPolicy) it.next();
 			nextEditPolicy.refresh();
 		}
 

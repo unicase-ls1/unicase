@@ -10,8 +10,8 @@ import java.util.Date;
 import org.junit.Before;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
-import org.unicase.model.ModelFactory;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 
@@ -19,7 +19,6 @@ import org.unicase.workspace.WorkspaceFactory;
  * Abstract super class for operation tests, contains setup.
  * 
  * @author koegel
- *
  */
 public abstract class OperationTest {
 
@@ -39,16 +38,16 @@ public abstract class OperationTest {
 		projectSpace.setProjectDescription("ps description");
 		projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
 		projectSpace.setProjectName("ps name");
-		
-		setProject(ModelFactory.eINSTANCE.createProject());
-		
+
+		setProject(MetamodelFactory.eINSTANCE.createProject());
+
 		projectSpace.setProject(getProject());
-		
+
 		projectSpace.makeTransient();
 		projectSpace.init();
-		
+
 		setProjectSpace(projectSpace);
-		
+
 	}
 
 	/**

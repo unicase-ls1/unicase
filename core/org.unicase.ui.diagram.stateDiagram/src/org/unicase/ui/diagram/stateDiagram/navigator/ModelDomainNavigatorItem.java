@@ -1,4 +1,4 @@
-/** 
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -22,8 +22,7 @@ public class ModelDomainNavigatorItem extends PlatformObject {
 	 * @generated
 	 */
 	static {
-		final Class[] supportedTypes = new Class[] { EObject.class,
-				IPropertySource.class };
+		final Class[] supportedTypes = new Class[] { EObject.class, IPropertySource.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
@@ -34,8 +33,7 @@ public class ModelDomainNavigatorItem extends PlatformObject {
 						return eObject;
 					}
 					if (adapterType == IPropertySource.class) {
-						return domainNavigatorItem.getPropertySourceProvider()
-								.getPropertySource(eObject);
+						return domainNavigatorItem.getPropertySourceProvider().getPropertySource(eObject);
 					}
 				}
 
@@ -66,8 +64,7 @@ public class ModelDomainNavigatorItem extends PlatformObject {
 	/**
 	 * @generated
 	 */
-	public ModelDomainNavigatorItem(EObject eObject, Object parent,
-			IPropertySourceProvider propertySourceProvider) {
+	public ModelDomainNavigatorItem(EObject eObject, Object parent, IPropertySourceProvider propertySourceProvider) {
 		myParent = parent;
 		myEObject = eObject;
 		myPropertySourceProvider = propertySourceProvider;
@@ -99,12 +96,9 @@ public class ModelDomainNavigatorItem extends PlatformObject {
 	 */
 	public boolean equals(Object obj) {
 		if (obj instanceof org.unicase.ui.diagram.stateDiagram.navigator.ModelDomainNavigatorItem) {
-			return EcoreUtil
-					.getURI(getEObject())
-					.equals(
-							EcoreUtil
-									.getURI(((org.unicase.ui.diagram.stateDiagram.navigator.ModelDomainNavigatorItem) obj)
-											.getEObject()));
+			return EcoreUtil.getURI(getEObject()).equals(
+				EcoreUtil.getURI(((org.unicase.ui.diagram.stateDiagram.navigator.ModelDomainNavigatorItem) obj)
+					.getEObject()));
 		}
 		return super.equals(obj);
 	}

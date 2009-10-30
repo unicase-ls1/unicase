@@ -11,7 +11,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.util.SerializationException;
+import org.unicase.metamodel.util.SerializationException;
 
 /**
  * @author Hodaie
@@ -45,7 +45,8 @@ public class CreateDeleteTest extends IntegrationTest {
 		});
 
 		commitChanges();
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeAttributeTest"));
+		assertTrue(IntegrationTestHelper
+			.areEqual(getTestProject(), getCompareProject(), "CreateAndChangeAttributeTest"));
 
 	}
 

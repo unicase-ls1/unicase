@@ -27,8 +27,8 @@ import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
+import org.unicase.ui.dashboard.notificationProviders.CommentsNotificationProvider;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.notification.provider.CommentsNotificationProvider;
 
 /**
  * Tests the TaskNotificationProvider.

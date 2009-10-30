@@ -18,23 +18,17 @@ public class DiagramPreferenceInitializer extends AbstractPreferenceInitializer 
 	 */
 	public void initializeDefaultPreferences() {
 		IPreferenceStore store = getPreferenceStore();
-		org.unicase.ui.diagram.classDiagram.preferences.DiagramPrintingPreferencePage
-				.initDefaults(store);
-		org.unicase.ui.diagram.classDiagram.preferences.DiagramGeneralPreferencePage
-				.initDefaults(store);
-		org.unicase.ui.diagram.classDiagram.preferences.DiagramAppearancePreferencePage
-				.initDefaults(store);
-		org.unicase.ui.diagram.classDiagram.preferences.DiagramConnectionsPreferencePage
-				.initDefaults(store);
-		org.unicase.ui.diagram.classDiagram.preferences.DiagramRulersAndGridPreferencePage
-				.initDefaults(store);
+		org.unicase.ui.diagram.classDiagram.preferences.DiagramPrintingPreferencePage.initDefaults(store);
+		org.unicase.ui.diagram.classDiagram.preferences.DiagramGeneralPreferencePage.initDefaults(store);
+		org.unicase.ui.diagram.classDiagram.preferences.DiagramAppearancePreferencePage.initDefaults(store);
+		org.unicase.ui.diagram.classDiagram.preferences.DiagramConnectionsPreferencePage.initDefaults(store);
+		org.unicase.ui.diagram.classDiagram.preferences.DiagramRulersAndGridPreferencePage.initDefaults(store);
 	}
 
 	/**
 	 * @generated
 	 */
 	protected IPreferenceStore getPreferenceStore() {
-		return org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorPlugin
-				.getInstance().getPreferenceStore();
+		return org.unicase.ui.diagram.classDiagram.part.ModelDiagramEditorPlugin.getInstance().getPreferenceStore();
 	}
 }

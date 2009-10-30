@@ -14,9 +14,10 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.organization.User;
 
 /**
- * . This is just a test class to test the Query tab of AbstractSCMView. SCMViews (history browser and change browser)
- * know a Query class which based on it show corresponding contents. The properties of Query class are set using Query
- * tab of a SCMView.
+ * . This is just a test class to test the Query tab of AbstractSCMView.
+ * SCMViews (history browser and change browser) know a Query class which based
+ * on it show corresponding contents. The properties of Query class are set
+ * using Query tab of a SCMView.
  * 
  * @author Hodaie
  */
@@ -71,7 +72,8 @@ public class Query {
 	}
 
 	/**
-	 * @param queryRangeType the queryRangeType to set
+	 * @param queryRangeType
+	 *            the queryRangeType to set
 	 */
 	public void setQueryRangeType(QueryRangeType queryRangeType) {
 		this.queryRangeType = queryRangeType;
@@ -85,7 +87,8 @@ public class Query {
 	}
 
 	/**
-	 * @param startVersion the startVersion to set
+	 * @param startVersion
+	 *            the startVersion to set
 	 */
 	public void setStartVersion(int startVersion) {
 		this.startVersion = startVersion;
@@ -99,7 +102,8 @@ public class Query {
 	}
 
 	/**
-	 * @param endVersion the endVersion to set
+	 * @param endVersion
+	 *            the endVersion to set
 	 */
 	public void setEndVersion(int endVersion) {
 		this.endVersion = endVersion;
@@ -113,7 +117,8 @@ public class Query {
 	}
 
 	/**
-	 * @param numOfDays the numOfDays to set
+	 * @param numOfDays
+	 *            the numOfDays to set
 	 */
 	public void setNumOfDays(int numOfDays) {
 		this.numOfDays = numOfDays;
@@ -127,7 +132,8 @@ public class Query {
 	}
 
 	/**
-	 * @param startDate the startDate to set
+	 * @param startDate
+	 *            the startDate to set
 	 */
 	public void setStartDate(Date startDate) {
 		this.startDate = startDate;
@@ -141,7 +147,8 @@ public class Query {
 	}
 
 	/**
-	 * @param endDate the endDate to set
+	 * @param endDate
+	 *            the endDate to set
 	 */
 	public void setEndDate(Date endDate) {
 		this.endDate = endDate;
@@ -155,7 +162,8 @@ public class Query {
 	}
 
 	/**
-	 * @param modelElements the modelElements to set
+	 * @param modelElements
+	 *            the modelElements to set
 	 */
 	public void setModelElements(List<ModelElement> modelElements) {
 		this.modelElements = modelElements;
@@ -169,7 +177,8 @@ public class Query {
 	}
 
 	/**
-	 * @param users the users to set
+	 * @param users
+	 *            the users to set
 	 */
 	public void setUsers(List<User> users) {
 		this.users = users;
@@ -183,7 +192,8 @@ public class Query {
 	}
 
 	/**
-	 * @param modelElementTypes the modelElementTypes to set
+	 * @param modelElementTypes
+	 *            the modelElementTypes to set
 	 */
 	public void setModelElementTypes(List<EClass> modelElementTypes) {
 		this.modelElementTypes = modelElementTypes;

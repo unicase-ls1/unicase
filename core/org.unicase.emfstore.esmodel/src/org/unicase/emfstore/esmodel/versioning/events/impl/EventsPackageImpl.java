@@ -50,7 +50,7 @@ import org.unicase.emfstore.esmodel.versioning.events.Validate;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -274,7 +274,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
-		ModelPackage.eINSTANCE.eClass();
+		MetamodelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE
@@ -1144,7 +1144,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage) EPackage.Registry.INSTANCE
 			.getEPackage(VersioningPackage.eNS_URI);
 		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
@@ -1188,8 +1189,8 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 		initEClass(readEventEClass, ReadEvent.class, "ReadEvent", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getReadEvent_ModelElement(), theModelPackage.getModelElementId(), null, "modelElement", null, 0,
-			1, ReadEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getReadEvent_ModelElement(), theMetamodelPackage.getModelElementId(), null, "modelElement",
+			null, 0, 1, ReadEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getReadEvent_SourceView(), ecorePackage.getEString(), "sourceView", null, 0, 1, ReadEvent.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1251,12 +1252,12 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 		initEClass(annotationEventEClass, AnnotationEvent.class, "AnnotationEvent", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAnnotationEvent_AnnotatedElement(), theModelPackage.getModelElementId(), null,
+		initEReference(getAnnotationEvent_AnnotatedElement(), theMetamodelPackage.getModelElementId(), null,
 			"annotatedElement", null, 0, 1, AnnotationEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getAnnotationEvent_Annotation(), theModelPackage.getModelElementId(), null, "annotation", null,
-			0, 1, AnnotationEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getAnnotationEvent_Annotation(), theMetamodelPackage.getModelElementId(), null, "annotation",
+			null, 0, 1, AnnotationEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(revertEventEClass, RevertEvent.class, "RevertEvent", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -1272,9 +1273,9 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 		initEReference(getShowHistoryEvent_TargetVersion(), theVersioningPackage.getPrimaryVersionSpec(), null,
 			"targetVersion", null, 0, 1, ShowHistoryEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getShowHistoryEvent_ModelElement(), theModelPackage.getModelElementId(), null, "modelElement",
-			null, 0, -1, ShowHistoryEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getShowHistoryEvent_ModelElement(), theMetamodelPackage.getModelElementId(), null,
+			"modelElement", null, 0, -1, ShowHistoryEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(perspectiveEventEClass, PerspectiveEvent.class, "PerspectiveEvent", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -1284,22 +1285,22 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getDNDEvent_TargetView(), ecorePackage.getEString(), "targetView", null, 0, 1, DNDEvent.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDNDEvent_DragSourceElement(), theModelPackage.getModelElementId(), null, "dragSourceElement",
-			null, 0, 1, DNDEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getDNDEvent_DropTargetElement(), theModelPackage.getModelElementId(), null, "dropTargetElement",
-			null, 0, 1, DNDEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDNDEvent_DragSourceElement(), theMetamodelPackage.getModelElementId(), null,
+			"dragSourceElement", null, 0, 1, DNDEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDNDEvent_DropTargetElement(), theMetamodelPackage.getModelElementId(), null,
+			"dropTargetElement", null, 0, 1, DNDEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(linkEventEClass, LinkEvent.class, "LinkEvent", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getLinkEvent_SourceView(), ecorePackage.getEString(), "sourceView", null, 0, 1, LinkEvent.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLinkEvent_SourceElement(), theModelPackage.getModelElementId(), null, "sourceElement", null,
-			0, 1, LinkEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getLinkEvent_SourceElement(), theMetamodelPackage.getModelElementId(), null, "sourceElement",
+			null, 0, 1, LinkEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getLinkEvent_TargetElement(), theModelPackage.getModelElementId(), null, "targetElement", null,
-			0, 1, LinkEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getLinkEvent_TargetElement(), theMetamodelPackage.getModelElementId(), null, "targetElement",
+			null, 0, 1, LinkEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getLinkEvent_CreatedNew(), ecorePackage.getEBoolean(), "createdNew", null, 0, 1,
 			LinkEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
@@ -1307,11 +1308,11 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 		initEClass(traceEventEClass, TraceEvent.class, "TraceEvent", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getTraceEvent_SourceElement(), theModelPackage.getModelElementId(), null, "sourceElement", null,
-			0, 1, TraceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getTraceEvent_SourceElement(), theMetamodelPackage.getModelElementId(), null, "sourceElement",
+			null, 0, 1, TraceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getTraceEvent_TargetElement(), theModelPackage.getModelElementId(), null, "targetElement", null,
-			0, 1, TraceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getTraceEvent_TargetElement(), theMetamodelPackage.getModelElementId(), null, "targetElement",
+			null, 0, 1, TraceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getTraceEvent_FeatureName(), ecorePackage.getEString(), "featureName", null, 0, 1,
 			TraceEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
@@ -1319,10 +1320,10 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 
 		initEClass(navigatorCreateEventEClass, NavigatorCreateEvent.class, "NavigatorCreateEvent", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getNavigatorCreateEvent_CreatedElement(), theModelPackage.getModelElementId(), null,
+		initEReference(getNavigatorCreateEvent_CreatedElement(), theMetamodelPackage.getModelElementId(), null,
 			"createdElement", null, 0, 1, NavigatorCreateEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getNavigatorCreateEvent_SourceSection(), theModelPackage.getModelElementId(), null,
+		initEReference(getNavigatorCreateEvent_SourceSection(), theMetamodelPackage.getModelElementId(), null,
 			"sourceSection", null, 0, 1, NavigatorCreateEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getNavigatorCreateEvent_Dynamic(), ecorePackage.getEBoolean(), "dynamic", null, 0, 1,
@@ -1376,7 +1377,7 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 			null, "notifications", null, 0, -1, NotificationGenerationEvent.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		getNotificationGenerationEvent_Notifications().getEKeys().add(
-			theModelPackage.getIdentifiableElement_Identifier());
+			theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(notificationIgnoreEventEClass, NotificationIgnoreEvent.class, "NotificationIgnoreEvent",
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1385,12 +1386,12 @@ public class EventsPackageImpl extends EPackageImpl implements EventsPackage {
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(urlEventEClass, URLEvent.class, "URLEvent", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getURLEvent_SourceModelElement(), theModelPackage.getModelElementId(), null,
+		initEReference(getURLEvent_SourceModelElement(), theMetamodelPackage.getModelElementId(), null,
 			"sourceModelElement", null, 0, 1, URLEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getURLEvent_SourceView(), ecorePackage.getEString(), "sourceView", null, 0, 1, URLEvent.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getURLEvent_SourceURL(), theModelPackage.getModelElementId(), null, "sourceURL", null, 0, 1,
+		initEReference(getURLEvent_SourceURL(), theMetamodelPackage.getModelElementId(), null, "sourceURL", null, 0, 1,
 			URLEvent.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}

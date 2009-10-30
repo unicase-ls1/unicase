@@ -24,7 +24,7 @@ import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.DocumentPackage;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.document.CompositeSection} object. <!--
@@ -32,8 +32,9 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * 
  * @generated
  */
-public class CompositeSectionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
-	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
+public class CompositeSectionItemProvider extends UnicaseModelElementItemProvider implements
+	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
+	IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 

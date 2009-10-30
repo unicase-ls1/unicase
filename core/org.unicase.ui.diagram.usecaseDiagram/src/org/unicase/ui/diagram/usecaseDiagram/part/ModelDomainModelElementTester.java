@@ -8,6 +8,7 @@ package org.unicase.ui.diagram.usecaseDiagram.part;
 import org.eclipse.core.expressions.PropertyTester;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 
 /**
@@ -25,13 +26,13 @@ public class ModelDomainModelElementTester extends PropertyTester {
 		}
 		EObject eObject = (EObject) receiver;
 		EClass eClass = eObject.eClass();
-		if (eClass == ModelPackage.eINSTANCE.getModelElement()) {
+		if (eClass == MetamodelPackage.eINSTANCE.getModelElement()) {
 			return true;
 		}
-		if (eClass == ModelPackage.eINSTANCE.getProject()) {
+		if (eClass == MetamodelPackage.eINSTANCE.getProject()) {
 			return true;
 		}
-		if (eClass == ModelPackage.eINSTANCE.getUniqueIdentifier()) {
+		if (eClass == MetamodelPackage.eINSTANCE.getUniqueIdentifier()) {
 			return true;
 		}
 		if (eClass == ModelPackage.eINSTANCE.getAnnotation()) {
@@ -40,16 +41,16 @@ public class ModelDomainModelElementTester extends PropertyTester {
 		if (eClass == ModelPackage.eINSTANCE.getAttachment()) {
 			return true;
 		}
-		if (eClass == ModelPackage.eINSTANCE.getIdentifiableElement()) {
+		if (eClass == MetamodelPackage.eINSTANCE.getIdentifiableElement()) {
 			return true;
 		}
-		if (eClass == ModelPackage.eINSTANCE.getModelElementId()) {
+		if (eClass == MetamodelPackage.eINSTANCE.getModelElementId()) {
 			return true;
 		}
 		if (eClass == ModelPackage.eINSTANCE.getNonDomainElement()) {
 			return true;
 		}
-		if (eClass == ModelPackage.eINSTANCE.getModelVersion()) {
+		if (eClass == MetamodelPackage.eINSTANCE.getModelVersion()) {
 			return true;
 		}
 		return false;

@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
@@ -281,7 +281,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__IDENTIFIER = ModelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
+	int PROJECT_SPACE__IDENTIFIER = MetamodelPackage.IDENTIFIABLE_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Project</b></em>' containment reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -290,7 +290,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__PROJECT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
+	int PROJECT_SPACE__PROJECT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Project Id</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -299,7 +299,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__PROJECT_ID = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
+	int PROJECT_SPACE__PROJECT_ID = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Project Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -307,7 +307,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__PROJECT_NAME = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
+	int PROJECT_SPACE__PROJECT_NAME = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Project Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc
@@ -316,7 +316,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__PROJECT_DESCRIPTION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
+	int PROJECT_SPACE__PROJECT_DESCRIPTION = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Events</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -325,7 +325,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__EVENTS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
+	int PROJECT_SPACE__EVENTS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Usersession</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -333,7 +333,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__USERSESSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
+	int PROJECT_SPACE__USERSESSION = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Last Updated</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -341,7 +341,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__LAST_UPDATED = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
+	int PROJECT_SPACE__LAST_UPDATED = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Base Version</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -350,7 +350,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__BASE_VERSION = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
+	int PROJECT_SPACE__BASE_VERSION = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Resource Count</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -358,7 +358,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__RESOURCE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+	int PROJECT_SPACE__RESOURCE_COUNT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Dirty</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -366,7 +366,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__DIRTY = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+	int PROJECT_SPACE__DIRTY = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Old Log Messages</b></em>' attribute list. <!-- begin-user-doc --> <!--
@@ -375,7 +375,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__OLD_LOG_MESSAGES = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
+	int PROJECT_SPACE__OLD_LOG_MESSAGES = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Local Operations</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -384,7 +384,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__LOCAL_OPERATIONS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
+	int PROJECT_SPACE__LOCAL_OPERATIONS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -393,7 +393,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__NOTIFICATIONS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 12;
+	int PROJECT_SPACE__NOTIFICATIONS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Pending File Transfers</b></em>' containment reference list. <!-- begin-user-doc
@@ -402,7 +402,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__PENDING_FILE_TRANSFERS = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 13;
+	int PROJECT_SPACE__PENDING_FILE_TRANSFERS = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>Event Composite</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -411,7 +411,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__EVENT_COMPOSITE = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 14;
+	int PROJECT_SPACE__EVENT_COMPOSITE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
 	 * The feature id for the '<em><b>Notification Composite</b></em>' containment reference. <!-- begin-user-doc -->
@@ -420,7 +420,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE__NOTIFICATION_COMPOSITE = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 15;
+	int PROJECT_SPACE__NOTIFICATION_COMPOSITE = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
 	 * The number of structural features of the '<em>Project Space</em>' class. <!-- begin-user-doc --> <!--
@@ -429,7 +429,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_SPACE_FEATURE_COUNT = ModelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 16;
+	int PROJECT_SPACE_FEATURE_COUNT = MetamodelPackage.IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 16;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.OperationCompositeImpl
@@ -460,34 +460,6 @@ public interface WorkspacePackage extends EPackage {
 	int OPERATION_COMPOSITE_FEATURE_COUNT = 1;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.workspace.impl.WorkspaceModelVersionImpl <em>Model Version</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.workspace.impl.WorkspaceModelVersionImpl
-	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getWorkspaceModelVersion()
-	 * @generated
-	 */
-	int WORKSPACE_MODEL_VERSION = 5;
-
-	/**
-	 * The feature id for the '<em><b>Model Release Number</b></em>' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORKSPACE_MODEL_VERSION__MODEL_RELEASE_NUMBER = 0;
-
-	/**
-	 * The number of structural features of the '<em>Model Version</em>' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORKSPACE_MODEL_VERSION_FEATURE_COUNT = 1;
-
-	/**
 	 * The meta object id for the '{@link org.unicase.workspace.impl.PendingFileTransferImpl
 	 * <em>Pending File Transfer</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -495,7 +467,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getPendingFileTransfer()
 	 * @generated
 	 */
-	int PENDING_FILE_TRANSFER = 6;
+	int PENDING_FILE_TRANSFER = 5;
 
 	/**
 	 * The feature id for the '<em><b>Attachment Id</b></em>' containment reference. <!-- begin-user-doc --> <!--
@@ -564,7 +536,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getEventComposite()
 	 * @generated
 	 */
-	int EVENT_COMPOSITE = 7;
+	int EVENT_COMPOSITE = 6;
 
 	/**
 	 * The feature id for the '<em><b>Events</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -592,7 +564,7 @@ public interface WorkspacePackage extends EPackage {
 	 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getNotificationComposite()
 	 * @generated
 	 */
-	int NOTIFICATION_COMPOSITE = 8;
+	int NOTIFICATION_COMPOSITE = 7;
 
 	/**
 	 * The feature id for the '<em><b>Notifications</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -1056,28 +1028,6 @@ public interface WorkspacePackage extends EPackage {
 	 * @generated
 	 */
 	EReference getOperationComposite_Operations();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.workspace.WorkspaceModelVersion <em>Model Version</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Model Version</em>'.
-	 * @see org.unicase.workspace.WorkspaceModelVersion
-	 * @generated
-	 */
-	EClass getWorkspaceModelVersion();
-
-	/**
-	 * Returns the meta object for the attribute '
-	 * {@link org.unicase.workspace.WorkspaceModelVersion#getModelReleaseNumber <em>Model Release Number</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Model Release Number</em>'.
-	 * @see org.unicase.workspace.WorkspaceModelVersion#getModelReleaseNumber()
-	 * @see #getWorkspaceModelVersion()
-	 * @generated
-	 */
-	EAttribute getWorkspaceModelVersion_ModelReleaseNumber();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.workspace.PendingFileTransfer
@@ -1551,25 +1501,6 @@ public interface WorkspacePackage extends EPackage {
 		 * @generated
 		 */
 		EReference OPERATION_COMPOSITE__OPERATIONS = eINSTANCE.getOperationComposite_Operations();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.workspace.impl.WorkspaceModelVersionImpl
-		 * <em>Model Version</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @see org.unicase.workspace.impl.WorkspaceModelVersionImpl
-		 * @see org.unicase.workspace.impl.WorkspacePackageImpl#getWorkspaceModelVersion()
-		 * @generated
-		 */
-		EClass WORKSPACE_MODEL_VERSION = eINSTANCE.getWorkspaceModelVersion();
-
-		/**
-		 * The meta object literal for the '<em><b>Model Release Number</b></em>' attribute feature. <!-- begin-user-doc
-		 * --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EAttribute WORKSPACE_MODEL_VERSION__MODEL_RELEASE_NUMBER = eINSTANCE
-			.getWorkspaceModelVersion_ModelReleaseNumber();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.workspace.impl.PendingFileTransferImpl

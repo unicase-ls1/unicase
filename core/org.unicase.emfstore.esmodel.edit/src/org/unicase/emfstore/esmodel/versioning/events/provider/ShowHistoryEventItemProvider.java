@@ -22,7 +22,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent;
-import org.unicase.model.ModelFactory;
+import org.unicase.metamodel.MetamodelFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.ShowHistoryEvent}
@@ -148,7 +148,7 @@ public class ShowHistoryEventItemProvider extends EventItemProvider implements I
 			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
 		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.SHOW_HISTORY_EVENT__MODEL_ELEMENT,
-			ModelFactory.eINSTANCE.createModelElementId()));
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**

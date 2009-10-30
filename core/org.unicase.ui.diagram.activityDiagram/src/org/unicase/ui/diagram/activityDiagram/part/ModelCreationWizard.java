@@ -80,8 +80,7 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
-	public void setOpenNewlyCreatedDiagramEditor(
-			boolean openNewlyCreatedDiagramEditor) {
+	public void setOpenNewlyCreatedDiagramEditor(boolean openNewlyCreatedDiagramEditor) {
 		this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
 	}
 
@@ -93,7 +92,7 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 		this.selection = selection;
 		setWindowTitle(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizardTitle);
 		setDefaultPageImageDescriptor(org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-				.getBundledImageDescriptor("icons/wizban/NewDiagramWizard.gif")); //$NON-NLS-1$
+			.getBundledImageDescriptor("icons/wizban/NewDiagramWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
 
@@ -102,32 +101,30 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	 */
 	public void addPages() {
 		diagramModelFilePage = new org.unicase.ui.diagram.activityDiagram.part.ModelCreationWizardPage(
-				"DiagramModelFile", getSelection(), "activity_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+			"DiagramModelFile", getSelection(), "activity_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage
-				.setTitle(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageTitle);
+			.setTitle(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage
-				.setDescription(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageDescription);
+			.setDescription(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 
 		domainModelFilePage = new org.unicase.ui.diagram.activityDiagram.part.ModelCreationWizardPage(
-				"DomainModelFile", getSelection(), "model") { //$NON-NLS-1$ //$NON-NLS-2$
+			"DomainModelFile", getSelection(), "model") { //$NON-NLS-1$ //$NON-NLS-2$
 
 			public void setVisible(boolean visible) {
 				if (visible) {
 					String fileName = diagramModelFilePage.getFileName();
-					fileName = fileName.substring(0, fileName.length()
-							- ".activity_diagram".length()); //$NON-NLS-1$
-					setFileName(org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorUtil
-							.getUniqueFileName(getContainerFullPath(),
-									fileName, "model")); //$NON-NLS-1$
+					fileName = fileName.substring(0, fileName.length() - ".activity_diagram".length()); //$NON-NLS-1$
+					setFileName(org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorUtil.getUniqueFileName(
+						getContainerFullPath(), fileName, "model")); //$NON-NLS-1$
 				}
 				super.setVisible(visible);
 			}
 		};
 		domainModelFilePage
-				.setTitle(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizard_DomainModelFilePageTitle);
+			.setTitle(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizard_DomainModelFilePageTitle);
 		domainModelFilePage
-				.setDescription(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizard_DomainModelFilePageDescription);
+			.setDescription(org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizard_DomainModelFilePageDescription);
 		addPage(domainModelFilePage);
 	}
 
@@ -137,21 +134,16 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
-			protected void execute(IProgressMonitor monitor)
-					throws CoreException, InterruptedException {
-				diagram = org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorUtil
-						.createDiagram(diagramModelFilePage.getURI(),
-								domainModelFilePage.getURI(), monitor);
+			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
+				diagram = org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorUtil.createDiagram(
+					diagramModelFilePage.getURI(), domainModelFilePage.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
-						org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorUtil
-								.openDiagram(diagram);
+						org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorUtil.openDiagram(diagram);
 					} catch (PartInitException e) {
-						ErrorDialog
-								.openError(
-										getContainer().getShell(),
-										org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizardOpenEditorError,
-										null, e.getStatus());
+						ErrorDialog.openError(getContainer().getShell(),
+							org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizardOpenEditorError,
+							null, e.getStatus());
 					}
 				}
 			}
@@ -162,17 +154,12 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 			return false;
 		} catch (InvocationTargetException e) {
 			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog
-						.openError(
-								getContainer().getShell(),
-								org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizardCreationError,
-								null, ((CoreException) e.getTargetException())
-										.getStatus());
+				ErrorDialog.openError(getContainer().getShell(),
+					org.unicase.ui.diagram.activityDiagram.part.Messages.ModelCreationWizardCreationError, null,
+					((CoreException) e.getTargetException()).getStatus());
 			} else {
-				org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-						.getInstance()
-						.logError(
-								"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
+				org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+					"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}
 			return false;
 		}

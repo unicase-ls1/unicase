@@ -16,15 +16,15 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.diagram.MEDiagram;
 
-
 /**
- * @author denglerm
- * serves as a superclass for the specific class of each diagram
+ * @author denglerm serves as a superclass for the specific class of each diagram
  */
-public abstract class ModelingAssistantProvider extends org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssistantProvider {
-	
+public abstract class ModelingAssistantProvider extends
+	org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.ModelingAssistantProvider {
+
 	/**
 	 * lets the user chose an element to link with.
+	 * 
 	 * @param host the host
 	 * @param types the types
 	 * @return the chosen modelElement
@@ -40,7 +40,8 @@ public abstract class ModelingAssistantProvider extends org.eclipse.gmf.runtime.
 		}
 		Diagram diagram = (Diagram) editPart.getRoot().getContents().getModel();
 		Collection elements = new HashSet();
-		for (Iterator it = ((MEDiagram) diagram.getElement()).getProject().getAllModelElements().iterator(); it.hasNext();) {
+		for (Iterator it = ((MEDiagram) diagram.getElement()).getProject().getAllModelElements().iterator(); it
+			.hasNext();) {
 			EObject element = (EObject) it.next();
 			if (isApplicableElement(element, types)) {
 				elements.add(element);
@@ -50,12 +51,13 @@ public abstract class ModelingAssistantProvider extends org.eclipse.gmf.runtime.
 			return null;
 		}
 		ModelElement me = (ModelElement) selectElement((EObject[]) elements.toArray(new EObject[elements.size()]));
-		
+
 		return me;
 	}
 
 	/**
 	 * this method has to be implemented.
+	 * 
 	 * @param element the element
 	 * @param types the types
 	 * @return true or false
@@ -65,6 +67,7 @@ public abstract class ModelingAssistantProvider extends org.eclipse.gmf.runtime.
 
 	/**
 	 * this method has to be implemented to display a selection dialog.
+	 * 
 	 * @param array the elements to chose from
 	 * @return the chosen modelElement
 	 */

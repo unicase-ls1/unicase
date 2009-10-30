@@ -29,13 +29,13 @@ import org.eclipse.ui.services.IEvaluationService;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
+import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.common.util.OrgUnitHelper;
 import org.unicase.ui.common.widgets.MECommentReplyWidget;
 import org.unicase.ui.common.widgets.MECommentWidget;
 import org.unicase.ui.common.widgets.MECommentWidgetListener;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.OrgUnitHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -65,7 +65,8 @@ public class METhreadPage extends FormPage implements MECommentWidgetListener {
 	 * @param editingDomain the editingDomain
 	 * @param modelElement the modelElement
 	 */
-	public METhreadPage(MEEditor editor, String id, String title, EditingDomain editingDomain, UnicaseModelElement modelElement) {
+	public METhreadPage(MEEditor editor, String id, String title, EditingDomain editingDomain,
+		UnicaseModelElement modelElement) {
 		super(editor, id, title);
 		this.modelElement = modelElement;
 		try {

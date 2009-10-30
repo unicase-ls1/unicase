@@ -25,7 +25,7 @@ import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-import org.unicase.model.ModelFactory;
+import org.unicase.metamodel.MetamodelFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.Version} object. <!--
@@ -172,7 +172,7 @@ public class VersionItemProvider extends ItemProviderAdapter implements IEditing
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__PROJECT_STATE,
-			ModelFactory.eINSTANCE.createProject()));
+			MetamodelFactory.eINSTANCE.createProject()));
 
 		newChildDescriptors.add(createChildParameter(VersioningPackage.Literals.VERSION__PRIMARY_SPEC,
 			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));

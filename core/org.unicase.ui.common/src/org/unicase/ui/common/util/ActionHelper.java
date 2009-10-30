@@ -58,7 +58,7 @@ public final class ActionHelper {
 	private static final String ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE = "meToOpen";
 	private static final String FEATURE_TO_MARK_EVALUATIONCONTEXT_VARIABLE = "featureToMark";
 	private static final String TOGGLE_ADD_COMMENT_VARIABLE = "toggleAddComment";
-	
+
 	private static final String DASHBOARD_CONTEXT_VARIABLE = "org.unicase.workspace.ui.dashboardInput";
 	private static final String DASHBOARD_COMMAND = "org.unicase.workspace.ui.showDashboard";
 
@@ -81,7 +81,7 @@ public final class ActionHelper {
 		// This decision is should be made to extract the model element
 		// for attaching action item accordingly.
 		String partId = HandlerUtil.getActivePartId(event);
-		if (partId!=null && partId.equals(MEEDITOR_ID)) {
+		if (partId != null && partId.equals(MEEDITOR_ID)) {
 			// extract model element from editor input
 			IEditorInput editorInput = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()
 				.getActiveEditor().getEditorInput();
@@ -140,16 +140,17 @@ public final class ActionHelper {
 	 */
 	public static void openModelElement(final ModelElement me, final String sourceView) {
 		if (me == null) {
-			MessageDialog.openError(Display.getCurrent().getActiveShell(), "The element was deleted", "The model element you are trying to open was deleted!");
+			MessageDialog.openError(Display.getCurrent().getActiveShell(), "The element was deleted",
+				"The model element you are trying to open was deleted!");
 			return;
 		}
 
-		if(me instanceof Comment){
-			ModelElement modelElement = ((Comment)me).getFirstParent();
+		if (me instanceof Comment) {
+			ModelElement modelElement = ((Comment) me).getFirstParent();
 			openDiscussion(modelElement, false);
 			return;
 		}
-		
+
 		boolean openWithMeDiagram = false;
 		if (me instanceof MEDiagram) {
 			openWithMeDiagram = true;
@@ -177,21 +178,21 @@ public final class ActionHelper {
 		}
 
 	}
-	
-	
+
 	/**
 	 * Opens the dashboard for the currently selected projectspace.
 	 */
-	public static void openDashboard(){
+	public static void openDashboard() {
 		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
 		openDashboard(projectSpace);
 	}
-	
+
 	/**
 	 * Opens the dashboard for the given project.
+	 * 
 	 * @param projectSpace the project space.
 	 */
-	public static void openDashboard(ProjectSpace projectSpace){
+	public static void openDashboard(ProjectSpace projectSpace) {
 		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
 
 		IEvaluationContext context = handlerService.getCurrentState();
@@ -208,11 +209,11 @@ public final class ActionHelper {
 			DialogHandler.showExceptionDialog(e);
 		} catch (NotHandledException e) {
 			DialogHandler.showExceptionDialog(e);
-		// BEGIN SUPRESS CATCH EXCEPTION
-		} catch (RuntimeException e){
+			// BEGIN SUPRESS CATCH EXCEPTION
+		} catch (RuntimeException e) {
 			DialogHandler.showExceptionDialog(e);
 		}
-		//END SUPRESS CATCH EXCEPTION
+		// END SUPRESS CATCH EXCEPTION
 	}
 
 	private static void openMEwithMEEditor(ModelElement me) {
@@ -261,7 +262,7 @@ public final class ActionHelper {
 
 		// TODO: at some point add validation markings in diagrams
 		new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				ProjectSpace activeProjectSpace = WorkspaceManager.getInstance().getCurrentWorkspace()
@@ -322,7 +323,7 @@ public final class ActionHelper {
 			id = "org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorID";
 		} else if (diagram.getType().equals(DiagramType.WORKITEM_DIAGRAM)) {
 			id = "org.unicase.ui.diagram.workItemDiagram.part.ModelDiagramEditorID";
-		}		
+		}
 
 		if (id == null) {
 			throw new RuntimeException("Unsupported diagram type");
@@ -330,14 +331,15 @@ public final class ActionHelper {
 		URI uri = EcoreUtil.getURI(diagram);
 		uri.appendFragment(diagram.eResource().getURIFragment(diagram));
 		URIEditorInput input = new URIEditorInput(uri, diagram.getName());
-	
+
 		try {
 			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, id, true);
-			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView("org.eclipse.ui.views.PropertySheet");
+			PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().showView(
+				"org.eclipse.ui.views.PropertySheet");
 		} catch (PartInitException e) {
 			ErrorDialog.openError(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Error", e
 				.getMessage(), e.getStatus());
-		}		
+		}
 	}
 
 	/**
@@ -417,18 +419,18 @@ public final class ActionHelper {
 		Object obj = getSelection();
 		if (obj instanceof UnicaseModelElement) {
 			return (UnicaseModelElement) obj;
-		} else if(obj instanceof DelegatingWrapperItemProvider) {
-			if( ((DelegatingWrapperItemProvider)obj).getValue() instanceof UnicaseModelElement){
-				return (UnicaseModelElement) ((DelegatingWrapperItemProvider)obj).getValue();
-			}else{
+		} else if (obj instanceof DelegatingWrapperItemProvider) {
+			if (((DelegatingWrapperItemProvider) obj).getValue() instanceof UnicaseModelElement) {
+				return (UnicaseModelElement) ((DelegatingWrapperItemProvider) obj).getValue();
+			} else {
 				return null;
 			}
-			
-		}else{
+
+		} else {
 			return null;
 		}
 	}
-	
+
 	/**
 	 * @param viewer ColumnViewer .
 	 * @param classname String sorceView .
@@ -437,7 +439,7 @@ public final class ActionHelper {
 	public static AltKeyDoubleClickAction createKeyHookDCAction(ColumnViewer viewer, String classname) {
 		return new AltKeyDoubleClickAction(viewer, classname);
 	}
-	
+
 	/**
 	 * Get the project space from the event.
 	 * 
@@ -447,7 +449,7 @@ public final class ActionHelper {
 	public static ProjectSpace getProjectSpace(ExecutionEvent event) {
 
 		ISelection sel = HandlerUtil.getCurrentSelection(event);
-		if(sel == null){
+		if (sel == null) {
 			sel = HandlerUtil.getActiveMenuSelection(event);
 		}
 		if (!(sel instanceof IStructuredSelection)) {
@@ -465,18 +467,19 @@ public final class ActionHelper {
 		}
 		return (ProjectSpace) selectedElement;
 	}
-	
+
 	/**
 	 * Opens the discussion page for the meeditor.
+	 * 
 	 * @param me the modelElement
 	 * @param toggleReply if a reply widget should be automatically shown.
 	 */
-	public static void openDiscussion(ModelElement me, boolean toggleReply){
+	public static void openDiscussion(ModelElement me, boolean toggleReply) {
 		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
 
 		IEvaluationContext context = handlerService.getCurrentState();
 		context.addVariable(ME_TO_OPEN_EVALUATIONCONTEXT_VARIABLE, me);
-		if(toggleReply){
+		if (toggleReply) {
 			context.addVariable(TOGGLE_ADD_COMMENT_VARIABLE, "toggle");
 		}
 

@@ -19,7 +19,6 @@ import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
-import org.unicase.workspace.WorkspaceModelVersion;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
@@ -73,8 +72,6 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 			return createProjectSpace();
 		case WorkspacePackage.OPERATION_COMPOSITE:
 			return createOperationComposite();
-		case WorkspacePackage.WORKSPACE_MODEL_VERSION:
-			return createWorkspaceModelVersion();
 		case WorkspacePackage.PENDING_FILE_TRANSFER:
 			return createPendingFileTransfer();
 		case WorkspacePackage.EVENT_COMPOSITE:
@@ -134,16 +131,6 @@ public class WorkspaceFactoryImpl extends EFactoryImpl implements WorkspaceFacto
 	public OperationComposite createOperationComposite() {
 		OperationCompositeImpl operationComposite = new OperationCompositeImpl();
 		return operationComposite;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public WorkspaceModelVersion createWorkspaceModelVersion() {
-		WorkspaceModelVersionImpl workspaceModelVersion = new WorkspaceModelVersionImpl();
-		return workspaceModelVersion;
 	}
 
 	/**
