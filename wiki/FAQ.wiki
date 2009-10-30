@@ -73,7 +73,7 @@ A:
 
 *Q: What does the checkstyle warning about header mean?*<br>
 A: Every file is expected to have the following header for licensing reasons:
-
+{{{
 /`**`
 
 `*` {{{<copyright>}}} Copyright (c) 2008 Jonas Helming, Maximilian Kögel.<br>
@@ -82,7 +82,7 @@ made available under the terms of the Eclipse Public License v1.0 which
 accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
  `*` {{{</copyright>}}}
 
-
+}}}
 
 *Q: How can I format source code in the wiki in a way that whitespace is preserved and a mono spaced font is used?*<br>
 A: Open the page in question for editing, select "Edit HTML" and add the following to the code to html:
