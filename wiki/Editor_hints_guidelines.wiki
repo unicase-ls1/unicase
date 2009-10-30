@@ -47,3 +47,21 @@ _(For the sake of time and simplicity, only the left column features are shown)_
 
 The current order of these features would be: <br>
 _*Name, Description, Containing Workpackage, Assignee, Due Date, Status, Resolution, Resolution Type.*_
+<br>
+<br>
+
+However, we do want to put the "severity" feature right after "description". Since it is an exception to the rule, it should be placed in the interval where "description" lies in - (0.0;10.0). We can give it a priority 2.0, but since we are not aware of future changes on the model (in which further features may be added to the super type - in this case ModelElement), we give it a priority in the interval (9.0;10.0) - i.e. "the exceptions interval":
+
+                   http://unicase.googlecode.com/files/4.png
+
+
+
+You probably noticed that Name and Description have the same priority - by doing so, you can explicitly specify that these two should not be taken apart and should always be displayed next to each other. As in the case of the rest - you can alway define an exception with a value X.5 and put it between X.0 and (X+1).0.<br>
+<br>
+
+And once again, for those who fell asleep in all this:<br>
+Going through the type hierarchy of the model (from the top down), every type is given a specific interval - starting at (0.0;10.0). If you want to put two elements together and keep it that way - you can specify an equal priority. If you want to define an exception in the hierarchy order of the features - you can put the feature in question in the "exception subinterval" of a former interval (e.g. for (10.1;20.0) this should be (19.1;20.0)); If you are modeling a super type and you are sure that you definitely don't want some features to be on the top - you can put them in the end by setting a priority in the interval after 100.0 (100.0;XXX.X): 
+
+
+
+                  http://unicase.googlecode.com/files/5.png
