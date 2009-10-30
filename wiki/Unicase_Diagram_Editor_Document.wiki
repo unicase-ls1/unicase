@@ -1,6 +1,28 @@
 ==GMF==
 *Links:*
 
-    * Basics - http://www-128.ibm.com/developerworks/opensource/library/os-ecl-gmf/
-    * Creating two (or more) diagrams of the same domain model - http://wiki.eclipse.org/index.php/GMF_Tips#Sharing_single_EditingDomain_instance_across_several_diagrams
-    * GMF Tips - http://wiki.eclipse.org/index.php/GMF_GenModel_Hints
+    * *_Basics_* - http://www-128.ibm.com/developerworks/opensource/library/os-ecl-gmf/
+    * *_Creating two (or more) diagrams of the same domain model_* - http://wiki.eclipse.org/index.php/GMF_Tips#Sharing_single_EditingDomain_instance_across_several_diagrams
+    * *_GMF Tips_* - http://wiki.eclipse.org/index.php/GMF_GenModel_Hints
+
+
+
+===The 1001 steps to a integrated gmf editor: ===
+
+
+
+We want to implement our own resource as in our case diagrams and corresponding model elements are not directly saved in files.We are currently trying to do this and these are the steps we have already done:
+
+
+*We need to open the diagram editor on double click:
+
+{{{
+if (object instanceof MEDiagram) {
+ModelElement modelElement = (ModelElement)object; 
+URIEditorInput input = new URIEditorInput(URI.createURI(modelElement.getName()));
+try { PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openEditor(input, "org.unicase.model.diagram.part.ModelDiagramEditorID", true); 
+}catch (PartInitException e) 
+{ // TODO Auto-generated catch block e.printStackTrace(); }
+} 
+
+}}}
