@@ -2,10 +2,10 @@ Build Process
 
 How to build plugins manually:
 
-   1. Make sure that you don't have any special characters in your Eclipse installation path (this includes whitespaces)
-      >confirmed on MacOS running Ganymede RC2
+   1. Make sure that you don't have any special characters in your Eclipse installation    path (this includes whitespaces)>confirmed on MacOS running Ganymede RC2
    2. Select "Export" from the context menu of your plugin
    3. Select "Plugin Development">"Deployable plugins and fragments"
-   4. Follow the steps on the wizard.
+   4. Follow the steps on the wizard.\
+<br>
 Automated exporting:
 http://www.eclipse.org/articles/Article-PDE-Automation/automation.html
