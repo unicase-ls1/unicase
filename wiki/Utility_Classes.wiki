@@ -1,6 +1,6 @@
 ===There is a number of utility calsses in unicase to do diffrent tasks. Here you will find a list of them along with a brief description.===
 
-http://unicase.googlecode.com/files/Untitledb.jpg *SetupHelper*<br><br>
+http://unicase.googlecode.com/files/tick.jpg *SetupHelper*<br><br>
 org.unicase.workspace.test.SetupHelper<br>
 _Helper class for setup/cleanup test fixtures._<br>
 
