@@ -2,6 +2,7 @@ package org.unicase.mergetest;
 
 import org.eclipse.equinox.app.IApplication;
 import org.eclipse.equinox.app.IApplicationContext;
+import org.unicase.mergetest.analysis.AnalyseConflictsController;
 
 /**
  * This class controls all aspects of the application's execution
@@ -19,7 +20,10 @@ public class Application implements IApplication {
 		
 //		new MergeSandboxController().run();
 		
-		new AnalyzeConflictsController().run();
+		new AnalyseConflictsController().run();
+
+//		new ShowConflictsController().run();
+		
 		
 		return IApplication.EXIT_OK;
 	}

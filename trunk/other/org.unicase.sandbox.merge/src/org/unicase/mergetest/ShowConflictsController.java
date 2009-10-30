@@ -39,7 +39,7 @@ import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
 
-public class AnalyzeConflictsController {
+public class ShowConflictsController {
 
 	public static final int step = 1;
 	public ConnectionManager connectionManager;
