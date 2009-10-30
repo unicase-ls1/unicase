@@ -16,7 +16,7 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.impl.ProjectSpaceImpl;
 
