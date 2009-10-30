@@ -38,7 +38,7 @@ import org.unicase.workspace.util.UnicaseCommand;
 public class ShowConflictsDialog extends TitleAreaDialog {
 
 	private ListViewer listViewer;
-	private final AnalyzeConflictsController analyzeConflict;
+	private final ShowConflictsController analyzeConflict;
 
 	/**
 	 * {@inheritDoc}
@@ -146,7 +146,7 @@ public class ShowConflictsDialog extends TitleAreaDialog {
 		super.okPressed();
 	}
 
-	public ShowConflictsDialog(AnalyzeConflictsController con) {
+	public ShowConflictsDialog(ShowConflictsController con) {
 		super(Display.getCurrent().getActiveShell());
 		this.analyzeConflict = con;
 		this.setShellStyle(this.getShellStyle() | SWT.RESIZE);
