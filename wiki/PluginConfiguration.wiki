@@ -20,7 +20,7 @@ http://unicase.googlecode.com/files/f8298.png
 
 <br>
 <br>
-Please also configure the project specific warnings as detailed in the Coding Guidelines:
+ * Please also configure the project specific warnings as detailed in the [http://code.google.com/p/unicase/wiki/Coding_Guidelines Coding Guidelines]:
 <br> 
 http://unicase.googlecode.com/files/1u.png
 <br>
@@ -28,8 +28,6 @@ http://unicase.googlecode.com/files/1u.png
 http://unicase.googlecode.com/files/2u.png
 <br>
 <br>
-Finally go to Java Editor -> Save Actions (1), check Enable project specific settings (2) and then configure it as follows:
+ * Finally go to Java Editor -> Save Actions (1), check Enable project specific settings (2) and then configure it as follows:
 <br>
 http://unicase.googlecode.com/files/3u.png
-
-
