@@ -29,4 +29,8 @@ http://unicase.googlecode.com/files/06685.png
 
 *_A quick look at the model so far:_*
 
-*ModelElement:*
+*ModelElement:*  http://unicase.googlecode.com/files/1.png
+
+*WorkItem:* http://unicase.googlecode.com/files/2.png
+
+*BugReport* http://unicase.googlecode.com/files/3.png 
