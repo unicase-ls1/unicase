@@ -32,4 +32,5 @@ To be able to use the EMF Validation Framework, as the first step the `org.eclip
 The binding here is to the model plug-in itself, the client is bound to the class ValidationClientSelector, which controls the review of model elements. Setting this extension points is performed only once and after that can be used by all the validation rules.
 
 *Defining rules*
+
 After setting up this extension in the second step, rules can be defined. The addition of new rules for this uses the `org.eclipse.emf.validation.constraintProviders` extension point of the Validation Framework. The category means pertaining to the category of the above-defined binding contexts. To include a new validation rule, a constraintProvider must be created for each model package. Here we are taking package should be used for the model package, the rules and style is as described above, shall determine whether the validation should be static or dynamic. The rule itself will be created under constraints as a new one.
