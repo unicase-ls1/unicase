@@ -6,24 +6,24 @@ We have a workflow and a set of rules in place to work with the ecore models in 
 *_Modeling Workflow:_*
 
 
-   1.  Make sure you updated to the latest revision
-   2. Acquire a lock for the ecore and genmodel (ContextMenu: Team -> Lock)
-   3. Validate the model before generating code (ContextMenu: Validate)
-   4. Reload the genmodel (ContextMenu: Reload...)
-   5. Generate model and edit (see ModelDrivenDevelopment Tutorial)
-   6. For newly created model packages update the org.unicase.model plugin.xml to export the package, package.impl and package.util packages. Also update the org.unicase.model.edit plugin.xml to export the package.provider package and make sure to register the appropriate itemProviderAdapter factories under extensions.
-   7. Check for compile problems
-   8. Reload and check depending models for compile or validation problems
-         1. esmodel depends on model
-         2. workspace depends on esmodel and model
-   9. Organize imports on model and edit (ContextMenu: Source -> Organize Imports)
-  10. Format model and edit (ContextMenu: Source -> Format)
-  11. Update all plugins to detect potential problems
-  12. Minimum testing:
-         1. Delete the existing model database and workspaces and run server and client
-         2. Run server and client
-         3. Open navigator and meeditor and perform one workspace commit,
-  13. Commit all changed plugins at once with a descriptive commit message
-         1. List all changes you made to the model
-         2. List all changes you performed on other plugins because of the new model
-         3. List all plugins you regenerated from the changed ecore
+   # Make sure you updated to the latest revision
+   # Acquire a lock for the ecore and genmodel (ContextMenu: Team -> Lock)
+   # Validate the model before generating code (ContextMenu: Validate)
+   # Reload the genmodel (ContextMenu: Reload...)
+   # Generate model and edit (see ModelDrivenDevelopment Tutorial)
+   # For newly created model packages update the org.unicase.model plugin.xml to export the package, package.impl and package.util packages. Also update the org.unicase.model.edit plugin.xml to export the package.provider package and make sure to register the appropriate itemProviderAdapter factories under extensions.
+   # Check for compile problems
+   # Reload and check depending models for compile or validation problems
+         * esmodel depends on model
+         * workspace depends on esmodel and model
+   # Organize imports on model and edit (ContextMenu: Source -> Organize Imports)
+   # Format model and edit (ContextMenu: Source -> Format)
+   # Update all plugins to detect potential problems
+   # Minimum testing:
+         * Delete the existing model database and workspaces and run server and client
+         * Run server and client
+         * Open navigator and meeditor and perform one workspace commit,
+   # Commit all changed plugins at once with a descriptive commit message
+         * List all changes you made to the model
+         * List all changes you performed on other plugins because of the new model
+         * List all plugins you regenerated from the changed ecore
