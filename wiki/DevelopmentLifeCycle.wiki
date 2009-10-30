@@ -1,5 +1,2 @@
- 
 
 
-
- </ol><br class="" />Automated exporting:<br class="" /><a href="http://www.eclipse.org/articles/Article-PDE-Automation/automation.html">http://www.eclipse.org/articles/Article-PDE-Automation/automation.html</a><br class="" /><br class="" /><a href="http://mojo.codehaus.org/pde-maven-plugin/examples/simple_plugin.html"></a></div>
