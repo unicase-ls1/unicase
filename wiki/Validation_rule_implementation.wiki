@@ -17,16 +17,16 @@ To be able to use the EMF Validation Framework, as the first step the `org.eclip
 
 `      </selector>`
 
-   </clientContext>
+`   </clientContext>`
 
-   <bindingcontext="org.unicase.model.validation">
+`   <bindingcontext="org.unicase.model.validation">`
 
-      <category ref="org.unicase.model">
+`      <category ref="org.unicase.model">`
 
-      </category>
+`      </category>`
 
-   </binding>
+`   </binding>`
 
-</extension>`
+`</extension>`
 
 The binding here is to the model plug-in itself, the client is bound to the class ValidationClientSelector, which controls the review of model elements. Setting this extension points is performed only once and after that can be used by all the validation rules.
