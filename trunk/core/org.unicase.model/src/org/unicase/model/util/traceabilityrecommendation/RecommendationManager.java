@@ -19,8 +19,8 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EReference;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.LinkSelectionStrategy;
 
 /**

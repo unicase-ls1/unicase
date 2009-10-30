@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Criterion;
@@ -95,6 +96,8 @@ public class RequirementSwitch<T> {
 			if (result == null)
 				result = caseCriterion(nonFunctionalRequirement);
 			if (result == null)
+				result = caseUnicaseModelElement(nonFunctionalRequirement);
+			if (result == null)
 				result = caseModelElement(nonFunctionalRequirement);
 			if (result == null)
 				result = caseIdentifiableElement(nonFunctionalRequirement);
@@ -105,6 +108,8 @@ public class RequirementSwitch<T> {
 		case RequirementPackage.FUNCTIONAL_REQUIREMENT: {
 			FunctionalRequirement functionalRequirement = (FunctionalRequirement) theEObject;
 			T result = caseFunctionalRequirement(functionalRequirement);
+			if (result == null)
+				result = caseUnicaseModelElement(functionalRequirement);
 			if (result == null)
 				result = caseModelElement(functionalRequirement);
 			if (result == null)
@@ -117,6 +122,8 @@ public class RequirementSwitch<T> {
 			UseCase useCase = (UseCase) theEObject;
 			T result = caseUseCase(useCase);
 			if (result == null)
+				result = caseUnicaseModelElement(useCase);
+			if (result == null)
 				result = caseModelElement(useCase);
 			if (result == null)
 				result = caseIdentifiableElement(useCase);
@@ -127,6 +134,8 @@ public class RequirementSwitch<T> {
 		case RequirementPackage.SCENARIO: {
 			Scenario scenario = (Scenario) theEObject;
 			T result = caseScenario(scenario);
+			if (result == null)
+				result = caseUnicaseModelElement(scenario);
 			if (result == null)
 				result = caseModelElement(scenario);
 			if (result == null)
@@ -139,6 +148,8 @@ public class RequirementSwitch<T> {
 			Actor actor = (Actor) theEObject;
 			T result = caseActor(actor);
 			if (result == null)
+				result = caseUnicaseModelElement(actor);
+			if (result == null)
 				result = caseModelElement(actor);
 			if (result == null)
 				result = caseIdentifiableElement(actor);
@@ -149,6 +160,8 @@ public class RequirementSwitch<T> {
 		case RequirementPackage.ACTOR_INSTANCE: {
 			ActorInstance actorInstance = (ActorInstance) theEObject;
 			T result = caseActorInstance(actorInstance);
+			if (result == null)
+				result = caseUnicaseModelElement(actorInstance);
 			if (result == null)
 				result = caseModelElement(actorInstance);
 			if (result == null)
@@ -161,9 +174,11 @@ public class RequirementSwitch<T> {
 			Step step = (Step) theEObject;
 			T result = caseStep(step);
 			if (result == null)
-				result = caseModelElement(step);
+				result = caseUnicaseModelElement(step);
 			if (result == null)
 				result = caseNonDomainElement(step);
+			if (result == null)
+				result = caseModelElement(step);
 			if (result == null)
 				result = caseIdentifiableElement(step);
 			if (result == null)
@@ -173,6 +188,8 @@ public class RequirementSwitch<T> {
 		case RequirementPackage.SYSTEM_FUNCTION: {
 			SystemFunction systemFunction = (SystemFunction) theEObject;
 			T result = caseSystemFunction(systemFunction);
+			if (result == null)
+				result = caseUnicaseModelElement(systemFunction);
 			if (result == null)
 				result = caseModelElement(systemFunction);
 			if (result == null)
@@ -185,6 +202,8 @@ public class RequirementSwitch<T> {
 			UserTask userTask = (UserTask) theEObject;
 			T result = caseUserTask(userTask);
 			if (result == null)
+				result = caseUnicaseModelElement(userTask);
+			if (result == null)
 				result = caseModelElement(userTask);
 			if (result == null)
 				result = caseIdentifiableElement(userTask);
@@ -195,6 +214,8 @@ public class RequirementSwitch<T> {
 		case RequirementPackage.WORKSPACE: {
 			Workspace workspace = (Workspace) theEObject;
 			T result = caseWorkspace(workspace);
+			if (result == null)
+				result = caseUnicaseModelElement(workspace);
 			if (result == null)
 				result = caseModelElement(workspace);
 			if (result == null)
@@ -357,15 +378,29 @@ public class RequirementSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'. <!-- begin-user-doc --> This
-	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelElement(UnicaseModelElement object) {
+	public T caseModelElement(ModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnicaseModelElement(UnicaseModelElement object) {
 		return null;
 	}
 

@@ -6,10 +6,6 @@
 package org.unicase.model;
 
 import org.eclipse.emf.ecore.EFactory;
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.ModelVersion;
-import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a create method for each non-abstract class of
@@ -33,30 +29,6 @@ public interface ModelFactory extends EFactory {
 	 * @generated
 	 */
 	Project createProject();
-
-	/**
-	 * Returns a new object of class '<em>Identifiable Element</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Identifiable Element</em>'.
-	 * @generated
-	 */
-	IdentifiableElement createIdentifiableElement();
-
-	/**
-	 * Returns a new object of class '<em>Element Id</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Element Id</em>'.
-	 * @generated
-	 */
-	ModelElementId createModelElementId();
-
-	/**
-	 * Returns a new object of class '<em>Version</em>'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return a new object of class '<em>Version</em>'.
-	 * @generated
-	 */
-	ModelVersion createModelVersion();
 
 	/**
 	 * Returns the package supported by this factory. <!-- begin-user-doc --> <!-- end-user-doc -->

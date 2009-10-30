@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentPackage;
@@ -86,6 +87,8 @@ public class DocumentSwitch<T> {
 			if (result == null)
 				result = caseSection(leafSection);
 			if (result == null)
+				result = caseUnicaseModelElement(leafSection);
+			if (result == null)
 				result = caseModelElement(leafSection);
 			if (result == null)
 				result = caseIdentifiableElement(leafSection);
@@ -99,6 +102,8 @@ public class DocumentSwitch<T> {
 			if (result == null)
 				result = caseSection(compositeSection);
 			if (result == null)
+				result = caseUnicaseModelElement(compositeSection);
+			if (result == null)
 				result = caseModelElement(compositeSection);
 			if (result == null)
 				result = caseIdentifiableElement(compositeSection);
@@ -109,6 +114,8 @@ public class DocumentSwitch<T> {
 		case DocumentPackage.SECTION: {
 			Section section = (Section) theEObject;
 			T result = caseSection(section);
+			if (result == null)
+				result = caseUnicaseModelElement(section);
 			if (result == null)
 				result = caseModelElement(section);
 			if (result == null)
@@ -177,15 +184,29 @@ public class DocumentSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'. <!-- begin-user-doc --> This
-	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelElement(UnicaseModelElement object) {
+	public T caseModelElement(ModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnicaseModelElement(UnicaseModelElement object) {
 		return null;
 	}
 

@@ -561,8 +561,8 @@ public class MEDiagramImpl extends AttachmentImpl implements MEDiagram {
 		return string;
 	}
 
-	private void restoreOldResources(EList<UnicaseModelElement> elements, Map<UnicaseModelElement, Resource> resourceMap,
-		Resource diagramResource, Resource elementsResource) {
+	private void restoreOldResources(EList<UnicaseModelElement> elements,
+		Map<UnicaseModelElement, Resource> resourceMap, Resource diagramResource, Resource elementsResource) {
 		diagramResource.getContents().remove(gmfdiagram);
 		elementsResource.getContents().removeAll(elements);
 		for (UnicaseModelElement modelElement : resourceMap.keySet()) {

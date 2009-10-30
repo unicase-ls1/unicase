@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -195,6 +196,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -957,12 +959,12 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		// Add supertypes to classes
 		classEClass.getESuperTypes().add(this.getPackageElement());
 		packageEClass.getESuperTypes().add(this.getPackageElement());
-		packageElementEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		associationEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		attributeEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		methodEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		methodArgumentEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		dependencyEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		packageElementEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		associationEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		attributeEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		methodEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		methodArgumentEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		dependencyEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(classEClass, org.unicase.model.classes.Class.class, "Class", !IS_ABSTRACT, !IS_INTERFACE,
@@ -971,23 +973,18 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			.getUseCase_IdentifiedClasses(), "participatedUseCases", null, 0, -1,
 			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getClass_ParticipatedUseCases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_SuperClasses(), this.getClass_(), this.getClass_SubClasses(), "superClasses", null, 0,
 			-1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getClass_SuperClasses().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_SubClasses(), this.getClass_(), this.getClass_SuperClasses(), "subClasses", null, 0,
 			-1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getClass_SubClasses().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_IncomingAssociations(), this.getAssociation(), this.getAssociation_Target(),
 			"incomingAssociations", null, 0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getClass_IncomingAssociations().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_OutgoingAssociations(), this.getAssociation(), this.getAssociation_Source(),
 			"outgoingAssociations", null, 0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getClass_OutgoingAssociations().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_Attributes(), this.getAttribute(), this.getAttribute_DefiningClass(), "attributes",
 			null, 0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -998,7 +995,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			.getScenario_ParticipatingClasses(), "demoParticipations", null, 0, -1,
 			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getClass_DemoParticipations().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(packageEClass, org.unicase.model.classes.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -1006,7 +1002,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			.getPackageElement_ParentPackage(), "containedPackageElements", null, 0, -1,
 			org.unicase.model.classes.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getPackage_ContainedPackageElements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getPackage_FacadeClass(), this.getClass_(), null, "facadeClass", null, 0, 1,
 			org.unicase.model.classes.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -1017,26 +1012,21 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			this.getPackage_ContainedPackageElements(), "parentPackage", null, 0, 1, PackageElement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getPackageElement_ParentPackage().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getPackageElement_OutgoingDependencies(), this.getDependency(), this.getDependency_Source(),
 			"outgoingDependencies", null, 0, -1, PackageElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getPackageElement_OutgoingDependencies().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getPackageElement_IncomingDependencies(), this.getDependency(), this.getDependency_Target(),
 			"incomingDependencies", null, 0, -1, PackageElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getPackageElement_IncomingDependencies().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssociation_Source(), this.getClass_(), this.getClass_OutgoingAssociations(), "source", null,
 			0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getAssociation_Source().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getAssociation_Target(), this.getClass_(), this.getClass_IncomingAssociations(), "target", null,
 			0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getAssociation_Target().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getAssociation_Type(), this.getAssociationType(), "type", "", 0, 1, Association.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssociation_SourceMultiplicity(), ecorePackage.getEString(), "sourceMultiplicity", "1", 0, 1,
@@ -1097,16 +1087,13 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getMethod_CalledMethods(), this.getMethod(), this.getMethod_CallingMethods(), "calledMethods",
 			null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMethod_CalledMethods().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getMethod_CallingMethods(), this.getMethod(), this.getMethod_CalledMethods(), "callingMethods",
 			null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMethod_CallingMethods().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getMethod_DemoParticipations(), theRequirementPackage.getScenario(), theRequirementPackage
 			.getScenario_ParticipatingMethods(), "demoParticipations", null, 0, -1, Method.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getMethod_DemoParticipations().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(methodArgumentEClass, MethodArgument.class, "MethodArgument", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

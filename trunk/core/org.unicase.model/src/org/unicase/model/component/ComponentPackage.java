@@ -69,23 +69,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int COMPONENT__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -93,7 +77,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int COMPONENT__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -101,7 +85,23 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int COMPONENT__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -110,7 +110,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int COMPONENT__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -119,7 +119,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int COMPONENT__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -128,7 +128,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int COMPONENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -137,7 +137,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int COMPONENT__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -145,7 +145,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int COMPONENT__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -154,7 +154,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int COMPONENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -163,7 +163,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int COMPONENT__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Packages</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -171,7 +171,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__PACKAGES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int COMPONENT__PACKAGES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Offered Services</b></em>' containment reference list. <!-- begin-user-doc -->
@@ -180,7 +180,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__OFFERED_SERVICES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int COMPONENT__OFFERED_SERVICES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Consumed Services</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -189,7 +189,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__CONSUMED_SERVICES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int COMPONENT__CONSUMED_SERVICES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Subsystems</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -197,7 +197,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT__SUBSYSTEMS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int COMPONENT__SUBSYSTEMS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Component</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -206,7 +206,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int COMPONENT_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.component.impl.ComponentServiceImpl <em>Service</em>}'
@@ -224,23 +224,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_SERVICE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int COMPONENT_SERVICE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int COMPONENT_SERVICE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -248,7 +232,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int COMPONENT_SERVICE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -256,7 +240,23 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int COMPONENT_SERVICE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SERVICE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPONENT_SERVICE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -265,7 +265,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int COMPONENT_SERVICE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -274,7 +274,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int COMPONENT_SERVICE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -283,7 +283,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int COMPONENT_SERVICE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -292,7 +292,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int COMPONENT_SERVICE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -300,7 +300,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int COMPONENT_SERVICE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -309,7 +309,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int COMPONENT_SERVICE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -318,7 +318,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int COMPONENT_SERVICE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Offering Component</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -327,7 +327,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__OFFERING_COMPONENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int COMPONENT_SERVICE__OFFERING_COMPONENT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Consuming Components</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -336,7 +336,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE__CONSUMING_COMPONENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int COMPONENT_SERVICE__CONSUMING_COMPONENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Service</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -344,7 +344,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int COMPONENT_SERVICE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int COMPONENT_SERVICE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.component.impl.DeploymentNodeImpl <em>Deployment Node</em>}'
@@ -362,23 +362,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int DEPLOYMENT_NODE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int DEPLOYMENT_NODE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int DEPLOYMENT_NODE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -386,7 +370,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int DEPLOYMENT_NODE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -394,7 +378,23 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int DEPLOYMENT_NODE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT_NODE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int DEPLOYMENT_NODE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -403,7 +403,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int DEPLOYMENT_NODE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -412,7 +412,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int DEPLOYMENT_NODE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -421,7 +421,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int DEPLOYMENT_NODE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -430,7 +430,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int DEPLOYMENT_NODE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -438,7 +438,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int DEPLOYMENT_NODE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -447,7 +447,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int DEPLOYMENT_NODE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -456,7 +456,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int DEPLOYMENT_NODE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Components</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -464,7 +464,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE__COMPONENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int DEPLOYMENT_NODE__COMPONENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Deployment Node</em>' class. <!-- begin-user-doc --> <!--
@@ -473,7 +473,7 @@ public interface ComponentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DEPLOYMENT_NODE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int DEPLOYMENT_NODE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class ' {@link org.unicase.model.component.Component <em>Component</em>}'. <!--

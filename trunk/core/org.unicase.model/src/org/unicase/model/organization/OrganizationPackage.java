@@ -80,23 +80,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ORG_UNIT__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ORG_UNIT__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int ORG_UNIT__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -104,7 +88,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int ORG_UNIT__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -112,7 +96,23 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int ORG_UNIT__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ORG_UNIT__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -121,7 +121,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int ORG_UNIT__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -130,7 +130,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int ORG_UNIT__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -139,7 +139,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int ORG_UNIT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -148,7 +148,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int ORG_UNIT__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -156,7 +156,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int ORG_UNIT__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -165,7 +165,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int ORG_UNIT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -174,7 +174,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int ORG_UNIT__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Ac Org Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -182,7 +182,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__AC_ORG_ID = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int ORG_UNIT__AC_ORG_ID = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Group Memberships</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -191,7 +191,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__GROUP_MEMBERSHIPS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ORG_UNIT__GROUP_MEMBERSHIPS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Assignments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -200,7 +200,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__ASSIGNMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ORG_UNIT__ASSIGNMENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Participations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -209,7 +209,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT__PARTICIPATIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ORG_UNIT__PARTICIPATIONS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Org Unit</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -217,7 +217,7 @@ public interface OrganizationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ORG_UNIT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int ORG_UNIT_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -226,22 +226,6 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER__IDENTIFIER = ORG_UNIT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USER__NAME = ORG_UNIT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USER__DESCRIPTION = ORG_UNIT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -258,6 +242,22 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int USER__CREATION_DATE = ORG_UNIT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USER__NAME = ORG_UNIT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USER__DESCRIPTION = ORG_UNIT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -416,22 +416,6 @@ public interface OrganizationPackage extends EPackage {
 	int GROUP__IDENTIFIER = ORG_UNIT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int GROUP__NAME = ORG_UNIT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int GROUP__DESCRIPTION = ORG_UNIT__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -446,6 +430,22 @@ public interface OrganizationPackage extends EPackage {
 	 * @ordered
 	 */
 	int GROUP__CREATION_DATE = ORG_UNIT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__NAME = ORG_UNIT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int GROUP__DESCRIPTION = ORG_UNIT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc

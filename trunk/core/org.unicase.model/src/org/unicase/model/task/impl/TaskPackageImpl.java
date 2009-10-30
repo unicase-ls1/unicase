@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -148,6 +149,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -571,7 +573,7 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 		workPackageEClass.getESuperTypes().add(this.getWorkItem());
 		workItemEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 		milestoneEClass.getESuperTypes().add(this.getWorkItem());
-		checkableEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		checkableEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(actionItemEClass, ActionItem.class, "ActionItem", !IS_ABSTRACT, !IS_INTERFACE,
@@ -587,7 +589,6 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 			.getWorkItem_ContainingWorkpackage(), "containedWorkItems", null, 0, -1, WorkPackage.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getWorkPackage_ContainedWorkItems().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getWorkPackage_StartDate(), ecorePackage.getEDate(), "startDate", null, 0, 1, WorkPackage.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkPackage_EndDate(), ecorePackage.getEDate(), "endDate", null, 0, 1, WorkPackage.class,
@@ -598,31 +599,24 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 			.getWorkPackage_ContainedWorkItems(), "containingWorkpackage", null, 0, 1, WorkItem.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getWorkItem_ContainingWorkpackage().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_AssociatedChangePackages(), theChangePackage.getModelChangePackage(), null,
 			"associatedChangePackages", null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_AssociatedChangePackages().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Predecessors(), this.getWorkItem(), this.getWorkItem_Successors(), "predecessors",
 			null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_Predecessors().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Successors(), this.getWorkItem(), this.getWorkItem_Predecessors(), "successors",
 			null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_Successors().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Assignee(), theOrganizationPackage.getOrgUnit(), theOrganizationPackage
 			.getOrgUnit_Assignments(), "assignee", null, 0, 1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_Assignee().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Reviewer(), theOrganizationPackage.getUser(), theOrganizationPackage
 			.getUser_WorkItemsToReview(), "reviewer", null, 0, 1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_Reviewer().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getWorkItem_Participants(), theOrganizationPackage.getOrgUnit(), theOrganizationPackage
 			.getOrgUnit_Participations(), "participants", null, 0, -1, WorkItem.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkItem_Participants().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getWorkItem_DueDate(), ecorePackage.getEDate(), "dueDate", null, 0, 1, WorkItem.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getWorkItem_Estimate(), ecorePackage.getEInt(), "estimate", null, 0, 1, WorkItem.class,
@@ -636,10 +630,9 @@ public class TaskPackageImpl extends EPackageImpl implements TaskPackage {
 
 		initEClass(milestoneEClass, Milestone.class, "Milestone", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMilestone_ContainedModelElements(), theModelPackage.getModelElement(), null,
+		initEReference(getMilestone_ContainedModelElements(), theModelPackage.getUnicaseModelElement(), null,
 			"containedModelElements", null, 0, -1, Milestone.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMilestone_ContainedModelElements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(checkableEClass, Checkable.class, "Checkable", IS_ABSTRACT, IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

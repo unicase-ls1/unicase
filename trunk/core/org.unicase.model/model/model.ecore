@@ -3,7 +3,8 @@
     xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="model"
     nsURI="http://unicase.org/model" nsPrefix="org.unicase.model">
-  <eClassifiers xsi:type="ecore:EClass" name="UnicaseModelElement" abstract="true">
+  <eClassifiers xsi:type="ecore:EClass" name="UnicaseModelElement" abstract="true"
+      eSuperTypes="../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
       <eAnnotations source="org.unicase.ui.meeditor">
         <details key="priority" value="1.0"/>
@@ -11,16 +12,11 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="description" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
-      <eAnnotations source="teneo.jpa">
-        <details key="value" value="@Type(type=&quot;text&quot;)"/>
-      </eAnnotations>
       <eAnnotations source="org.unicase.ui.meeditor">
         <details key="priority" value="1.0"/>
         <details key="position" value="left"/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="creationDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="annotations" upperBound="-1"
         eType="#//Annotation" eOpposite="#//Annotation/annotatedModelElements">
       <eAnnotations source="org.unicase.ui.meeditor">
@@ -71,6 +67,7 @@
         upperBound="-1" eType="#//UnicaseModelElement" eOpposite="#//UnicaseModelElement/attachments"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="NonDomainElement" abstract="true" interface="true"/>
+  <eClassifiers xsi:type="ecore:EClass" name="Project" eSuperTypes="../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
   <eSubpackages name="organization" nsURI="http://unicase.org/model/organization"
       nsPrefix="org.unicase.model.organization">
     <eClassifiers xsi:type="ecore:EClass" name="User" eSuperTypes="#//organization/OrgUnit">
@@ -269,7 +266,7 @@
     <eClassifiers xsi:type="ecore:EClass" name="MEDiagram" eSuperTypes="#//Attachment">
       <eStructuralFeatures xsi:type="ecore:EReference" name="elements" upperBound="-1"
           eType="#//UnicaseModelElement"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass platform:/plugin/org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
+      <eStructuralFeatures xsi:type="ecore:EReference" name="gmfdiagram" eType="ecore:EClass ../../org.eclipse.gmf.runtime.notation/model/notation.ecore#//Diagram"
           transient="true" containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="newElements" upperBound="-1"
           eType="#//UnicaseModelElement" transient="true" containment="true"/>
@@ -1360,9 +1357,12 @@
   </eSubpackages>
   <eSubpackages name="util" nsURI="http://unicase.org/model/util" nsPrefix="org.unicase.model.util">
     <eClassifiers xsi:type="ecore:EClass" name="ModelElementPath">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="source" containment="true"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="target" containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="source" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          containment="true"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="target" eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
+          containment="true"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="path" upperBound="-1"
+          eType="ecore:EClass ../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"
           containment="true"/>
     </eClassifiers>
   </eSubpackages>

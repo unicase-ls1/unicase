@@ -35,7 +35,7 @@ public interface MergingProposal extends Proposal {
 	 * 
 	 * @return the value of the '<em>Conflicting Proposals</em>' reference list.
 	 * @see org.unicase.model.change.ChangePackage#getMergingProposal_ConflictingProposals()
-	 * @model keys="identifier"
+	 * @model
 	 * @generated
 	 */
 	EList<MergingProposal> getConflictingProposals();
@@ -51,7 +51,7 @@ public interface MergingProposal extends Proposal {
 	 * @return the value of the '<em>Pending Changes</em>' reference.
 	 * @see #setPendingChanges(ModelChangePackage)
 	 * @see org.unicase.model.change.ChangePackage#getMergingProposal_PendingChanges()
-	 * @model keys="identifier"
+	 * @model
 	 * @generated
 	 */
 	ModelChangePackage getPendingChanges();

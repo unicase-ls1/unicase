@@ -74,22 +74,6 @@ public interface TaskPackage extends EPackage {
 	int WORK_ITEM__IDENTIFIER = ModelPackage.ANNOTATION__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM__NAME = ModelPackage.ANNOTATION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM__DESCRIPTION = ModelPackage.ANNOTATION__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -104,6 +88,22 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_ITEM__CREATION_DATE = ModelPackage.ANNOTATION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__NAME = ModelPackage.ANNOTATION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM__DESCRIPTION = ModelPackage.ANNOTATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -304,22 +304,6 @@ public interface TaskPackage extends EPackage {
 	int ACTION_ITEM__IDENTIFIER = WORK_ITEM__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__NAME = WORK_ITEM__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTION_ITEM__DESCRIPTION = WORK_ITEM__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -334,6 +318,22 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int ACTION_ITEM__CREATION_DATE = WORK_ITEM__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__NAME = WORK_ITEM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTION_ITEM__DESCRIPTION = WORK_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -558,22 +558,6 @@ public interface TaskPackage extends EPackage {
 	int WORK_PACKAGE__IDENTIFIER = WORK_ITEM__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_PACKAGE__NAME = WORK_ITEM__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_PACKAGE__DESCRIPTION = WORK_ITEM__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -588,6 +572,22 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_PACKAGE__CREATION_DATE = WORK_ITEM__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__NAME = WORK_ITEM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_PACKAGE__DESCRIPTION = WORK_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -813,22 +813,6 @@ public interface TaskPackage extends EPackage {
 	int MILESTONE__IDENTIFIER = WORK_ITEM__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MILESTONE__NAME = WORK_ITEM__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MILESTONE__DESCRIPTION = WORK_ITEM__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -843,6 +827,22 @@ public interface TaskPackage extends EPackage {
 	 * @ordered
 	 */
 	int MILESTONE__CREATION_DATE = WORK_ITEM__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__NAME = WORK_ITEM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MILESTONE__DESCRIPTION = WORK_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1049,23 +1049,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int CHECKABLE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int CHECKABLE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int CHECKABLE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1073,7 +1057,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int CHECKABLE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1081,7 +1065,23 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int CHECKABLE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKABLE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int CHECKABLE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1090,7 +1090,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int CHECKABLE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1099,7 +1099,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int CHECKABLE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -1108,7 +1108,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int CHECKABLE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -1117,7 +1117,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int CHECKABLE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1125,7 +1125,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int CHECKABLE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -1134,7 +1134,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int CHECKABLE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -1143,7 +1143,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int CHECKABLE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Checked</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1151,7 +1151,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE__CHECKED = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int CHECKABLE__CHECKED = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Checkable</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1160,7 +1160,7 @@ public interface TaskPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CHECKABLE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int CHECKABLE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.task.ActivityType <em>Activity Type</em>}' enum. <!--

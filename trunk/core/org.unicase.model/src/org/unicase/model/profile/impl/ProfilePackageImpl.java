@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -156,6 +157,7 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -541,24 +543,22 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		profileEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		stereotypeEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		stereotypeInstanceEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		stereotypeAttributeEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		profileEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		stereotypeEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		stereotypeInstanceEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		stereotypeAttributeEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		stereotypeAttributeSimpleEClass.getESuperTypes().add(this.getStereotypeAttribute());
-		stereotypeAttributeInstanceEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		stereotypeAttributeInstanceEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		stereotypeAttributeInstanceStringEClass.getESuperTypes().add(this.getStereotypeAttributeInstance());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(profileEClass, Profile.class, "Profile", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProfile_AffectedContainers(), theModelPackage.getModelElement(), null, "affectedContainers",
-			null, 0, -1, Profile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getProfile_AffectedContainers().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getProfile_AffectedContainers(), theModelPackage.getUnicaseModelElement(), null,
+			"affectedContainers", null, 0, -1, Profile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProfile_Stereotypes(), this.getStereotype(), this.getStereotype_Profile(), "stereotypes",
 			null, 0, -1, Profile.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getProfile_Stereotypes().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stereotypeEClass, Stereotype.class, "Stereotype", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -567,17 +567,14 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 		initEReference(getStereotype_Profile(), this.getProfile(), this.getProfile_Stereotypes(), "profile", null, 0,
 			1, Stereotype.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStereotype_Profile().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStereotype_StereotypeInstances(), this.getStereotypeInstance(), this
 			.getStereotypeInstance_Stereotype(), "stereotypeInstances", null, 0, -1, Stereotype.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getStereotype_StereotypeInstances().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStereotype_StereotypeAttributes(), this.getStereotypeAttribute(), this
 			.getStereotypeAttribute_Stereotype(), "stereotypeAttributes", null, 0, -1, Stereotype.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getStereotype_StereotypeAttributes().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stereotypeInstanceEClass, StereotypeInstance.class, "StereotypeInstance", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -585,18 +582,14 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 			.getStereotype_StereotypeInstances(), "stereotype", null, 0, 1, StereotypeInstance.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getStereotypeInstance_Stereotype().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getStereotypeInstance_ModelElement(), theModelPackage.getModelElement(), theModelPackage
-			.getModelElement_AppliedStereotypeInstances(), "modelElement", null, 0, 1, StereotypeInstance.class,
+		initEReference(getStereotypeInstance_ModelElement(), theModelPackage.getUnicaseModelElement(), theModelPackage
+			.getUnicaseModelElement_AppliedStereotypeInstances(), "modelElement", null, 0, 1, StereotypeInstance.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getStereotypeInstance_ModelElement().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStereotypeInstance_StereotypeAttributeInstances(), this.getStereotypeAttributeInstance(),
 			this.getStereotypeAttributeInstance_StereotypeInstance(), "stereotypeAttributeInstances", null, 0, -1,
 			StereotypeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStereotypeInstance_StereotypeAttributeInstances().getEKeys().add(
-			theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stereotypeAttributeEClass, StereotypeAttribute.class, "StereotypeAttribute", IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -604,13 +597,10 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 			.getStereotype_StereotypeAttributes(), "stereotype", null, 0, 1, StereotypeAttribute.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getStereotypeAttribute_Stereotype().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStereotypeAttribute_StereotypeAttributeInstances(), this.getStereotypeAttributeInstance(),
 			this.getStereotypeAttributeInstance_StereotypeAttribute(), "stereotypeAttributeInstances", null, 0, -1,
 			StereotypeAttribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStereotypeAttribute_StereotypeAttributeInstances().getEKeys().add(
-			theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stereotypeAttributeSimpleEClass, StereotypeAttributeSimple.class, "StereotypeAttributeSimple",
 			!IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -624,14 +614,10 @@ public class ProfilePackageImpl extends EPackageImpl implements ProfilePackage {
 			.getStereotypeInstance_StereotypeAttributeInstances(), "stereotypeInstance", null, 0, 1,
 			StereotypeAttributeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStereotypeAttributeInstance_StereotypeInstance().getEKeys().add(
-			theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStereotypeAttributeInstance_StereotypeAttribute(), this.getStereotypeAttribute(), this
 			.getStereotypeAttribute_StereotypeAttributeInstances(), "stereotypeAttribute", null, 0, 1,
 			StereotypeAttributeInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStereotypeAttributeInstance_StereotypeAttribute().getEKeys().add(
-			theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stereotypeAttributeInstanceStringEClass, StereotypeAttributeInstanceString.class,
 			"StereotypeAttributeInstanceString", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

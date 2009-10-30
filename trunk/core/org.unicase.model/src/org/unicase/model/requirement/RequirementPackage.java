@@ -74,22 +74,6 @@ public interface RequirementPackage extends EPackage {
 	int NON_FUNCTIONAL_REQUIREMENT__IDENTIFIER = RationalePackage.CRITERION__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int NON_FUNCTIONAL_REQUIREMENT__NAME = RationalePackage.CRITERION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int NON_FUNCTIONAL_REQUIREMENT__DESCRIPTION = RationalePackage.CRITERION__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -104,6 +88,22 @@ public interface RequirementPackage extends EPackage {
 	 * @ordered
 	 */
 	int NON_FUNCTIONAL_REQUIREMENT__CREATION_DATE = RationalePackage.CRITERION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__NAME = RationalePackage.CRITERION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int NON_FUNCTIONAL_REQUIREMENT__DESCRIPTION = RationalePackage.CRITERION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -236,23 +236,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FUNCTIONAL_REQUIREMENT__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int FUNCTIONAL_REQUIREMENT__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -260,7 +244,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int FUNCTIONAL_REQUIREMENT__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -268,7 +252,23 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int FUNCTIONAL_REQUIREMENT__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FUNCTIONAL_REQUIREMENT__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -277,7 +277,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int FUNCTIONAL_REQUIREMENT__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -286,7 +286,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int FUNCTIONAL_REQUIREMENT__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -295,7 +295,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int FUNCTIONAL_REQUIREMENT__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -304,7 +304,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int FUNCTIONAL_REQUIREMENT__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -312,7 +312,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int FUNCTIONAL_REQUIREMENT__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -321,7 +321,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int FUNCTIONAL_REQUIREMENT__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -330,7 +330,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int FUNCTIONAL_REQUIREMENT__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Refined Requirement</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -339,7 +339,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int FUNCTIONAL_REQUIREMENT__REFINED_REQUIREMENT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Story Points</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -347,7 +347,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__STORY_POINTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int FUNCTIONAL_REQUIREMENT__STORY_POINTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Priority</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -355,7 +355,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__PRIORITY = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int FUNCTIONAL_REQUIREMENT__PRIORITY = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Refining Requirements</b></em>' containment reference list. <!-- begin-user-doc
@@ -364,7 +364,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int FUNCTIONAL_REQUIREMENT__REFINING_REQUIREMENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Use Cases</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -372,7 +372,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int FUNCTIONAL_REQUIREMENT__USE_CASES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Scenarios</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -380,7 +380,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__SCENARIOS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int FUNCTIONAL_REQUIREMENT__SCENARIOS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Reviewed</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -388,7 +388,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__REVIEWED = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int FUNCTIONAL_REQUIREMENT__REVIEWED = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Stakeholder</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -396,7 +396,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__STAKEHOLDER = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int FUNCTIONAL_REQUIREMENT__STAKEHOLDER = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Cost</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -404,7 +404,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT__COST = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+	int FUNCTIONAL_REQUIREMENT__COST = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The number of structural features of the '<em>Functional Requirement</em>' class. <!-- begin-user-doc --> <!--
@@ -413,7 +413,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 9;
+	int FUNCTIONAL_REQUIREMENT_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.UseCaseImpl <em>Use Case</em>}' class. <!--
@@ -431,23 +431,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USE_CASE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USE_CASE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int USE_CASE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -455,7 +439,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int USE_CASE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -463,7 +447,23 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int USE_CASE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USE_CASE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -472,7 +472,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int USE_CASE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -481,7 +481,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int USE_CASE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -490,7 +490,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int USE_CASE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -499,7 +499,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int USE_CASE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -507,7 +507,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int USE_CASE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -516,7 +516,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int USE_CASE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -525,7 +525,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int USE_CASE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Initiating Actor</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -534,7 +534,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__INITIATING_ACTOR = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int USE_CASE__INITIATING_ACTOR = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Participating Actors</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -543,7 +543,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__PARTICIPATING_ACTORS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int USE_CASE__PARTICIPATING_ACTORS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Realized User Task</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -552,7 +552,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__REALIZED_USER_TASK = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int USE_CASE__REALIZED_USER_TASK = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Precondition</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -560,7 +560,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__PRECONDITION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int USE_CASE__PRECONDITION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Use Case Steps</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -569,7 +569,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__USE_CASE_STEPS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int USE_CASE__USE_CASE_STEPS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Postcondition</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -577,7 +577,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__POSTCONDITION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int USE_CASE__POSTCONDITION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Rules</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -585,7 +585,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__RULES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int USE_CASE__RULES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Exception</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -593,7 +593,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__EXCEPTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int USE_CASE__EXCEPTION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Scenarios</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -601,7 +601,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__SCENARIOS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+	int USE_CASE__SCENARIOS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Functional Requirements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -610,7 +610,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__FUNCTIONAL_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 9;
+	int USE_CASE__FUNCTIONAL_REQUIREMENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The feature id for the '<em><b>Non Functional Requirements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -619,7 +619,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__NON_FUNCTIONAL_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 10;
+	int USE_CASE__NON_FUNCTIONAL_REQUIREMENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The feature id for the '<em><b>Identified Classes</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -628,7 +628,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__IDENTIFIED_CLASSES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 11;
+	int USE_CASE__IDENTIFIED_CLASSES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 11;
 
 	/**
 	 * The feature id for the '<em><b>Included Use Cases</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -637,7 +637,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__INCLUDED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 12;
+	int USE_CASE__INCLUDED_USE_CASES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 12;
 
 	/**
 	 * The feature id for the '<em><b>Extended Use Cases</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -646,7 +646,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__EXTENDED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 13;
+	int USE_CASE__EXTENDED_USE_CASES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 13;
 
 	/**
 	 * The feature id for the '<em><b>System Functions</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -655,7 +655,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE__SYSTEM_FUNCTIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 14;
+	int USE_CASE__SYSTEM_FUNCTIONS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 14;
 
 	/**
 	 * The number of structural features of the '<em>Use Case</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -663,7 +663,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USE_CASE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 15;
+	int USE_CASE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 15;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ScenarioImpl <em>Scenario</em>}' class.
@@ -681,23 +681,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SCENARIO__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SCENARIO__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int SCENARIO__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -705,7 +689,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int SCENARIO__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -713,7 +697,23 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int SCENARIO__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SCENARIO__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -722,7 +722,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int SCENARIO__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -731,7 +731,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int SCENARIO__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -740,7 +740,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int SCENARIO__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -749,7 +749,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int SCENARIO__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -757,7 +757,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int SCENARIO__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -766,7 +766,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int SCENARIO__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -775,7 +775,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int SCENARIO__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Steps</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -784,7 +784,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__STEPS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int SCENARIO__STEPS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Initiating Actor Instance</b></em>' reference. <!-- begin-user-doc --> <!--
@@ -793,7 +793,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__INITIATING_ACTOR_INSTANCE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int SCENARIO__INITIATING_ACTOR_INSTANCE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Participating Actor Instances</b></em>' reference list. <!-- begin-user-doc -->
@@ -802,7 +802,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__PARTICIPATING_ACTOR_INSTANCES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int SCENARIO__PARTICIPATING_ACTOR_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Instantiated Use Cases</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -811,7 +811,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__INSTANTIATED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int SCENARIO__INSTANTIATED_USE_CASES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Functional Requirements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -820,7 +820,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__FUNCTIONAL_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int SCENARIO__FUNCTIONAL_REQUIREMENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Non Functional Requirements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -829,7 +829,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__NON_FUNCTIONAL_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int SCENARIO__NON_FUNCTIONAL_REQUIREMENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Participating Methods</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -838,7 +838,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__PARTICIPATING_METHODS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int SCENARIO__PARTICIPATING_METHODS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Participating Classes</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -847,7 +847,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO__PARTICIPATING_CLASSES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int SCENARIO__PARTICIPATING_CLASSES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>Scenario</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -855,7 +855,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SCENARIO_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+	int SCENARIO_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ActorImpl <em>Actor</em>}' class. <!--
@@ -873,23 +873,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int ACTOR__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -897,7 +881,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int ACTOR__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -905,7 +889,23 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int ACTOR__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -914,7 +914,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int ACTOR__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -923,7 +923,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int ACTOR__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -932,7 +932,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int ACTOR__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -941,7 +941,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int ACTOR__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -949,7 +949,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int ACTOR__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -958,7 +958,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int ACTOR__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -967,7 +967,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int ACTOR__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Initiated User Task</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -976,7 +976,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__INITIATED_USER_TASK = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int ACTOR__INITIATED_USER_TASK = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Participated User Tasks</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -985,7 +985,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__PARTICIPATED_USER_TASKS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ACTOR__PARTICIPATED_USER_TASKS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Initiated Use Cases</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -994,7 +994,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__INITIATED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ACTOR__INITIATED_USE_CASES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Participated Use Cases</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -1003,7 +1003,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__PARTICIPATED_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ACTOR__PARTICIPATED_USE_CASES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Instances</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1011,7 +1011,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR__INSTANCES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int ACTOR__INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The number of structural features of the '<em>Actor</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1019,7 +1019,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int ACTOR_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.ActorInstanceImpl <em>Actor Instance</em>}'
@@ -1037,23 +1037,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR_INSTANCE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ACTOR_INSTANCE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int ACTOR_INSTANCE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1061,7 +1045,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int ACTOR_INSTANCE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1069,7 +1053,23 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int ACTOR_INSTANCE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR_INSTANCE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ACTOR_INSTANCE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1078,7 +1078,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int ACTOR_INSTANCE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1087,7 +1087,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int ACTOR_INSTANCE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -1096,7 +1096,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int ACTOR_INSTANCE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -1105,7 +1105,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int ACTOR_INSTANCE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1113,7 +1113,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int ACTOR_INSTANCE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -1122,7 +1122,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int ACTOR_INSTANCE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -1131,7 +1131,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int ACTOR_INSTANCE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Initiated Scenarios</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -1140,7 +1140,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__INITIATED_SCENARIOS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int ACTOR_INSTANCE__INITIATED_SCENARIOS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Participated Scenarios</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -1149,7 +1149,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__PARTICIPATED_SCENARIOS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ACTOR_INSTANCE__PARTICIPATED_SCENARIOS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Instantiated Actor</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1158,7 +1158,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE__INSTANTIATED_ACTOR = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int ACTOR_INSTANCE__INSTANTIATED_ACTOR = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Actor Instance</em>' class. <!-- begin-user-doc --> <!--
@@ -1167,7 +1167,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ACTOR_INSTANCE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int ACTOR_INSTANCE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.StepImpl <em>Step</em>}' class. <!--
@@ -1185,23 +1185,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEP__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEP__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int STEP__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1209,7 +1193,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int STEP__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1217,7 +1201,23 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int STEP__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEP__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1226,7 +1226,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int STEP__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1235,7 +1235,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int STEP__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -1244,7 +1244,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int STEP__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -1253,7 +1253,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int STEP__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1261,7 +1261,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int STEP__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -1270,7 +1270,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int STEP__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -1279,7 +1279,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int STEP__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>User Step</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1287,7 +1287,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__USER_STEP = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int STEP__USER_STEP = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Included Use Case</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1296,7 +1296,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__INCLUDED_USE_CASE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int STEP__INCLUDED_USE_CASE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Included System Function</b></em>' reference. <!-- begin-user-doc --> <!--
@@ -1305,7 +1305,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__INCLUDED_SYSTEM_FUNCTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int STEP__INCLUDED_SYSTEM_FUNCTION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Use Case</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1314,7 +1314,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP__USE_CASE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int STEP__USE_CASE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Step</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1322,7 +1322,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEP_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int STEP_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.SystemFunctionImpl
@@ -1340,23 +1340,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SYSTEM_FUNCTION__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SYSTEM_FUNCTION__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int SYSTEM_FUNCTION__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1364,7 +1348,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int SYSTEM_FUNCTION__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1372,7 +1356,23 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int SYSTEM_FUNCTION__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1381,7 +1381,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int SYSTEM_FUNCTION__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1390,7 +1390,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int SYSTEM_FUNCTION__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -1399,7 +1399,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int SYSTEM_FUNCTION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -1408,7 +1408,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int SYSTEM_FUNCTION__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1416,7 +1416,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int SYSTEM_FUNCTION__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -1425,7 +1425,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int SYSTEM_FUNCTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -1434,7 +1434,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int SYSTEM_FUNCTION__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Input</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1442,7 +1442,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__INPUT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int SYSTEM_FUNCTION__INPUT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Output</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1450,7 +1450,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__OUTPUT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int SYSTEM_FUNCTION__OUTPUT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Exception</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1458,23 +1458,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__EXCEPTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
-	 * The feature id for the '<em><b>Workspace</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SYSTEM_FUNCTION__WORKSPACE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
-
-	/**
-	 * The feature id for the '<em><b>Usecases</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SYSTEM_FUNCTION__USECASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int SYSTEM_FUNCTION__EXCEPTION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Non Functional Requirement</b></em>' reference. <!-- begin-user-doc --> <!--
@@ -1483,7 +1467,23 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
+
+	/**
+	 * The feature id for the '<em><b>Usecases</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__USECASES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
+
+	/**
+	 * The feature id for the '<em><b>Workspace</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SYSTEM_FUNCTION__WORKSPACE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of structural features of the '<em>System Function</em>' class. <!-- begin-user-doc --> <!--
@@ -1492,7 +1492,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SYSTEM_FUNCTION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int SYSTEM_FUNCTION_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.UserTaskImpl <em>User Task</em>}' class.
@@ -1510,23 +1510,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USER_TASK__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int USER_TASK__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int USER_TASK__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1534,7 +1518,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int USER_TASK__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1542,7 +1526,23 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int USER_TASK__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int USER_TASK__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1551,7 +1551,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int USER_TASK__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1560,7 +1560,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int USER_TASK__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -1569,7 +1569,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int USER_TASK__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -1578,7 +1578,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int USER_TASK__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1586,7 +1586,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int USER_TASK__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -1595,7 +1595,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int USER_TASK__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -1604,7 +1604,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int USER_TASK__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Initiating Actor</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1613,7 +1613,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__INITIATING_ACTOR = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int USER_TASK__INITIATING_ACTOR = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Participating Actors</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -1622,7 +1622,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__PARTICIPATING_ACTORS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int USER_TASK__PARTICIPATING_ACTORS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Realizing Use Cases</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -1631,7 +1631,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__REALIZING_USE_CASES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int USER_TASK__REALIZING_USE_CASES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Non Functional Requirements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -1640,7 +1640,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK__NON_FUNCTIONAL_REQUIREMENTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int USER_TASK__NON_FUNCTIONAL_REQUIREMENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>User Task</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1649,7 +1649,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int USER_TASK_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int USER_TASK_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.requirement.impl.WorkspaceImpl <em>Workspace</em>}' class.
@@ -1667,23 +1667,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORKSPACE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORKSPACE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int WORKSPACE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1691,7 +1675,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int WORKSPACE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1699,7 +1683,23 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int WORKSPACE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORKSPACE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1708,7 +1708,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int WORKSPACE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1717,7 +1717,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int WORKSPACE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -1726,7 +1726,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int WORKSPACE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -1735,7 +1735,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int WORKSPACE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1743,7 +1743,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int WORKSPACE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -1752,7 +1752,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int WORKSPACE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -1761,7 +1761,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int WORKSPACE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>System Functions</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -1770,7 +1770,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE__SYSTEM_FUNCTIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int WORKSPACE__SYSTEM_FUNCTIONS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Workspace</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -1779,7 +1779,7 @@ public interface RequirementPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int WORKSPACE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int WORKSPACE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.requirement.NonFunctionalRequirement

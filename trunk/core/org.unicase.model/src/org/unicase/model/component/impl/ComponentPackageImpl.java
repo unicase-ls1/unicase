@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -123,6 +124,7 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -386,9 +388,9 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		componentEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		componentServiceEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		deploymentNodeEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		componentEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		componentServiceEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		deploymentNodeEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(componentEClass, Component.class, "Component", !IS_ABSTRACT, !IS_INTERFACE,
@@ -396,21 +398,17 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		initEReference(getComponent_Packages(), theClassesPackage.getPackage(), null, "packages", null, 0, -1,
 			Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getComponent_Packages().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponent_OfferedServices(), this.getComponentService(), this
 			.getComponentService_OfferingComponent(), "offeredServices", null, 0, -1, Component.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getComponent_OfferedServices().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponent_ConsumedServices(), this.getComponentService(), this
 			.getComponentService_ConsumingComponents(), "consumedServices", null, 0, -1, Component.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getComponent_ConsumedServices().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponent_Subsystems(), theClassesPackage.getPackage(), null, "subsystems", null, 0, -1,
 			Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getComponent_Subsystems().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(componentServiceEClass, ComponentService.class, "ComponentService", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -418,19 +416,16 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 			.getComponent_OfferedServices(), "offeringComponent", null, 0, 1, ComponentService.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getComponentService_OfferingComponent().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponentService_ConsumingComponents(), this.getComponent(), this
 			.getComponent_ConsumedServices(), "consumingComponents", null, 0, -1, ComponentService.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getComponentService_ConsumingComponents().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(deploymentNodeEClass, DeploymentNode.class, "DeploymentNode", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeploymentNode_Components(), this.getComponent(), null, "components", null, 0, -1,
 			DeploymentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getDeploymentNode_Components().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor

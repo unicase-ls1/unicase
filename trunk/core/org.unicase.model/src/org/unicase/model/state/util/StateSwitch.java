@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.state.State;
 import org.unicase.model.state.StateEnd;
@@ -88,6 +89,8 @@ public class StateSwitch<T> {
 			if (result == null)
 				result = caseStateNode(state);
 			if (result == null)
+				result = caseUnicaseModelElement(state);
+			if (result == null)
 				result = caseModelElement(state);
 			if (result == null)
 				result = caseIdentifiableElement(state);
@@ -99,6 +102,8 @@ public class StateSwitch<T> {
 			Transition transition = (Transition) theEObject;
 			T result = caseTransition(transition);
 			if (result == null)
+				result = caseUnicaseModelElement(transition);
+			if (result == null)
 				result = caseModelElement(transition);
 			if (result == null)
 				result = caseIdentifiableElement(transition);
@@ -109,6 +114,8 @@ public class StateSwitch<T> {
 		case StatePackage.STATE_NODE: {
 			StateNode stateNode = (StateNode) theEObject;
 			T result = caseStateNode(stateNode);
+			if (result == null)
+				result = caseUnicaseModelElement(stateNode);
 			if (result == null)
 				result = caseModelElement(stateNode);
 			if (result == null)
@@ -123,6 +130,8 @@ public class StateSwitch<T> {
 			if (result == null)
 				result = caseStateNode(stateInitial);
 			if (result == null)
+				result = caseUnicaseModelElement(stateInitial);
+			if (result == null)
 				result = caseModelElement(stateInitial);
 			if (result == null)
 				result = caseIdentifiableElement(stateInitial);
@@ -135,6 +144,8 @@ public class StateSwitch<T> {
 			T result = caseStateEnd(stateEnd);
 			if (result == null)
 				result = caseStateNode(stateEnd);
+			if (result == null)
+				result = caseUnicaseModelElement(stateEnd);
 			if (result == null)
 				result = caseModelElement(stateEnd);
 			if (result == null)
@@ -228,15 +239,29 @@ public class StateSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'. <!-- begin-user-doc --> This
-	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelElement(UnicaseModelElement object) {
+	public T caseModelElement(ModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnicaseModelElement(UnicaseModelElement object) {
 		return null;
 	}
 

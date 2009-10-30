@@ -74,22 +74,6 @@ public interface DiagramPackage extends EPackage {
 	int ME_DIAGRAM__IDENTIFIER = ModelPackage.ATTACHMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ME_DIAGRAM__NAME = ModelPackage.ATTACHMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ME_DIAGRAM__DESCRIPTION = ModelPackage.ATTACHMENT__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -104,6 +88,22 @@ public interface DiagramPackage extends EPackage {
 	 * @ordered
 	 */
 	int ME_DIAGRAM__CREATION_DATE = ModelPackage.ATTACHMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ME_DIAGRAM__NAME = ModelPackage.ATTACHMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ME_DIAGRAM__DESCRIPTION = ModelPackage.ATTACHMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc

@@ -64,7 +64,7 @@ public interface Stereotype extends UnicaseModelElement {
 	 * @see #setProfile(Profile)
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotype_Profile()
 	 * @see org.unicase.model.profile.Profile#getStereotypes
-	 * @model opposite="stereotypes" keys="identifier" transient="false"
+	 * @model opposite="stereotypes" transient="false"
 	 * @generated
 	 */
 	Profile getProfile();
@@ -92,7 +92,7 @@ public interface Stereotype extends UnicaseModelElement {
 	 * @return the value of the '<em>Stereotype Instances</em>' reference list.
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotype_StereotypeInstances()
 	 * @see org.unicase.model.profile.StereotypeInstance#getStereotype
-	 * @model opposite="stereotype" keys="identifier"
+	 * @model opposite="stereotype"
 	 * @generated
 	 */
 	EList<StereotypeInstance> getStereotypeInstances();
@@ -110,7 +110,7 @@ public interface Stereotype extends UnicaseModelElement {
 	 * @return the value of the '<em>Stereotype Attributes</em>' containment reference list.
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotype_StereotypeAttributes()
 	 * @see org.unicase.model.profile.StereotypeAttribute#getStereotype
-	 * @model opposite="stereotype" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="stereotype" containment="true" resolveProxies="true"
 	 * @generated
 	 */
 	EList<StereotypeAttribute> getStereotypeAttributes();

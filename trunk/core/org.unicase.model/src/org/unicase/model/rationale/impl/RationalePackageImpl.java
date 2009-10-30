@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -156,6 +157,7 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -559,14 +561,14 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		issueEClass.getESuperTypes().add(theModelPackage.getAnnotation());
 		issueEClass.getESuperTypes().add(theTaskPackage.getCheckable());
 		issueEClass.getESuperTypes().add(theTaskPackage.getWorkItem());
-		proposalEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		proposalEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		proposalEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
-		solutionEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		solutionEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		solutionEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
-		criterionEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		assessmentEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		criterionEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		assessmentEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		assessmentEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
-		commentEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		commentEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		commentEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
 
 		// Initialize classes and features; add operations and parameters
@@ -574,15 +576,12 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		initEReference(getIssue_Proposals(), this.getProposal(), this.getProposal_Issue(), "proposals", null, 0, -1,
 			Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getIssue_Proposals().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getIssue_Solution(), this.getSolution(), this.getSolution_Issue(), "solution", null, 0, 1,
 			Issue.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getIssue_Solution().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getIssue_Criteria(), this.getCriterion(), null, "criteria", null, 0, -1, Issue.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getIssue_Criteria().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getIssue_Activity(), theTaskPackage.getActivityType(), "activity", null, 0, 1, Issue.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -590,39 +589,32 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		initEReference(getProposal_Assessments(), this.getAssessment(), this.getAssessment_Proposal(), "assessments",
 			null, 0, -1, Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getProposal_Assessments().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getProposal_Issue(), this.getIssue(), this.getIssue_Proposals(), "issue", null, 0, 1,
 			Proposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getProposal_Issue().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(solutionEClass, Solution.class, "Solution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSolution_UnderlyingProposals(), this.getProposal(), null, "underlyingProposals", null, 0, -1,
 			Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getSolution_UnderlyingProposals().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getSolution_Issue(), this.getIssue(), this.getIssue_Solution(), "issue", null, 0, 1,
 			Solution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getSolution_Issue().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(criterionEClass, Criterion.class, "Criterion", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCriterion_Assessments(), this.getAssessment(), this.getAssessment_Criterion(), "assessments",
 			null, 0, -1, Criterion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getCriterion_Assessments().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(assessmentEClass, Assessment.class, "Assessment", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssessment_Proposal(), this.getProposal(), this.getProposal_Assessments(), "proposal", null,
 			0, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getAssessment_Proposal().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getAssessment_Criterion(), this.getCriterion(), this.getCriterion_Assessments(), "criterion",
 			null, 0, 1, Assessment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getAssessment_Criterion().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getAssessment_Value(), ecorePackage.getEInt(), "value", null, 0, 1, Assessment.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -630,15 +622,13 @@ public class RationalePackageImpl extends EPackageImpl implements RationalePacka
 		initEReference(getComment_Sender(), theOrganizationPackage.getOrgUnit(), null, "sender", null, 0, 1,
 			Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getComment_Sender().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComment_Recipients(), theOrganizationPackage.getOrgUnit(), null, "recipients", null, 0, -1,
 			Comment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getComment_Recipients().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getComment_CommentedElement(), theModelPackage.getModelElement(), theModelPackage
-			.getModelElement_Comments(), "commentedElement", null, 0, 1, Comment.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getComment_CommentedElement().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getComment_CommentedElement(), theModelPackage.getUnicaseModelElement(), theModelPackage
+			.getUnicaseModelElement_Comments(), "commentedElement", null, 0, 1, Comment.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
 
 		initEClass(audioCommentEClass, AudioComment.class, "AudioComment", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

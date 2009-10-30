@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
@@ -98,6 +99,8 @@ public class RationaleSwitch<T> {
 			if (result == null)
 				result = caseAnnotation(issue);
 			if (result == null)
+				result = caseUnicaseModelElement(issue);
+			if (result == null)
 				result = caseModelElement(issue);
 			if (result == null)
 				result = caseIdentifiableElement(issue);
@@ -109,9 +112,11 @@ public class RationaleSwitch<T> {
 			Proposal proposal = (Proposal) theEObject;
 			T result = caseProposal(proposal);
 			if (result == null)
-				result = caseModelElement(proposal);
+				result = caseUnicaseModelElement(proposal);
 			if (result == null)
 				result = caseNonDomainElement(proposal);
+			if (result == null)
+				result = caseModelElement(proposal);
 			if (result == null)
 				result = caseIdentifiableElement(proposal);
 			if (result == null)
@@ -122,9 +127,11 @@ public class RationaleSwitch<T> {
 			Solution solution = (Solution) theEObject;
 			T result = caseSolution(solution);
 			if (result == null)
-				result = caseModelElement(solution);
+				result = caseUnicaseModelElement(solution);
 			if (result == null)
 				result = caseNonDomainElement(solution);
+			if (result == null)
+				result = caseModelElement(solution);
 			if (result == null)
 				result = caseIdentifiableElement(solution);
 			if (result == null)
@@ -134,6 +141,8 @@ public class RationaleSwitch<T> {
 		case RationalePackage.CRITERION: {
 			Criterion criterion = (Criterion) theEObject;
 			T result = caseCriterion(criterion);
+			if (result == null)
+				result = caseUnicaseModelElement(criterion);
 			if (result == null)
 				result = caseModelElement(criterion);
 			if (result == null)
@@ -146,9 +155,11 @@ public class RationaleSwitch<T> {
 			Assessment assessment = (Assessment) theEObject;
 			T result = caseAssessment(assessment);
 			if (result == null)
-				result = caseModelElement(assessment);
+				result = caseUnicaseModelElement(assessment);
 			if (result == null)
 				result = caseNonDomainElement(assessment);
+			if (result == null)
+				result = caseModelElement(assessment);
 			if (result == null)
 				result = caseIdentifiableElement(assessment);
 			if (result == null)
@@ -159,9 +170,11 @@ public class RationaleSwitch<T> {
 			Comment comment = (Comment) theEObject;
 			T result = caseComment(comment);
 			if (result == null)
-				result = caseModelElement(comment);
+				result = caseUnicaseModelElement(comment);
 			if (result == null)
 				result = caseNonDomainElement(comment);
+			if (result == null)
+				result = caseModelElement(comment);
 			if (result == null)
 				result = caseIdentifiableElement(comment);
 			if (result == null)
@@ -286,6 +299,33 @@ public class RationaleSwitch<T> {
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElement(ModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnicaseModelElement(UnicaseModelElement object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>Annotation</em>'. <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
@@ -335,19 +375,6 @@ public class RationaleSwitch<T> {
 	 * @generated
 	 */
 	public T caseNonDomainElement(NonDomainElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'. <!-- begin-user-doc --> This
-	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseModelElement(UnicaseModelElement object) {
 		return null;
 	}
 

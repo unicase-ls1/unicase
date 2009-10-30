@@ -65,8 +65,9 @@ public abstract class AnnotationImpl extends UnicaseModelElementImpl implements 
 	 */
 	public EList<UnicaseModelElement> getAnnotatedModelElements() {
 		if (annotatedModelElements == null) {
-			annotatedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<UnicaseModelElement>(UnicaseModelElement.class,
-				this, ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__ANNOTATIONS);
+			annotatedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<UnicaseModelElement>(
+				UnicaseModelElement.class, this, ModelPackage.ANNOTATION__ANNOTATED_MODEL_ELEMENTS,
+				ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS);
 		}
 		return annotatedModelElements;
 	}

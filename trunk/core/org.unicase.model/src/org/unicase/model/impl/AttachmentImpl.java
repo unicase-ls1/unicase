@@ -65,8 +65,9 @@ public abstract class AttachmentImpl extends UnicaseModelElementImpl implements 
 	 */
 	public EList<UnicaseModelElement> getReferringModelElements() {
 		if (referringModelElements == null) {
-			referringModelElements = new EObjectWithInverseResolvingEList.ManyInverse<UnicaseModelElement>(UnicaseModelElement.class,
-				this, ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__ATTACHMENTS);
+			referringModelElements = new EObjectWithInverseResolvingEList.ManyInverse<UnicaseModelElement>(
+				UnicaseModelElement.class, this, ModelPackage.ATTACHMENT__REFERRING_MODEL_ELEMENTS,
+				ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS);
 		}
 		return referringModelElements;
 	}

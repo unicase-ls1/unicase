@@ -9,6 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
@@ -61,41 +62,14 @@ public interface ModelPackage extends EPackage {
 	ModelPackage eINSTANCE = org.unicase.model.impl.ModelPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.unicase.metamodel.impl.IdentifiableElementImpl <em>Identifiable Element</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.metamodel.impl.IdentifiableElementImpl
-	 * @see org.unicase.model.impl.ModelPackageImpl#getIdentifiableElement()
-	 * @generated
-	 */
-	int IDENTIFIABLE_ELEMENT = 5;
-
-	/**
-	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int IDENTIFIABLE_ELEMENT__IDENTIFIER = 0;
-
-	/**
-	 * The number of structural features of the '<em>Identifiable Element</em>' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int IDENTIFIABLE_ELEMENT_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.model.impl.UnicaseModelElementImpl <em>Element</em>}' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The meta object id for the '{@link org.unicase.model.impl.UnicaseModelElementImpl <em>Unicase Model Element</em>}
+	 * ' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @see org.unicase.model.impl.UnicaseModelElementImpl
-	 * @see org.unicase.model.impl.ModelPackageImpl#getModelElement()
+	 * @see org.unicase.model.impl.ModelPackageImpl#getUnicaseModelElement()
 	 * @generated
 	 */
-	int MODEL_ELEMENT = 0;
+	int UNICASE_MODEL_ELEMENT = 0;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -103,23 +77,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__IDENTIFIER = IDENTIFIABLE_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__NAME = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 0;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT__DESCRIPTION = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 1;
+	int UNICASE_MODEL_ELEMENT__IDENTIFIER = MetamodelPackage.MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -127,7 +85,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__CREATOR = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 2;
+	int UNICASE_MODEL_ELEMENT__CREATOR = MetamodelPackage.MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -135,7 +93,23 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__CREATION_DATE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 3;
+	int UNICASE_MODEL_ELEMENT__CREATION_DATE = MetamodelPackage.MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_MODEL_ELEMENT__NAME = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int UNICASE_MODEL_ELEMENT__DESCRIPTION = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -144,7 +118,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__ANNOTATIONS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 4;
+	int UNICASE_MODEL_ELEMENT__ANNOTATIONS = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -153,7 +127,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__ATTACHMENTS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 5;
+	int UNICASE_MODEL_ELEMENT__ATTACHMENTS = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -162,7 +136,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 6;
+	int UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -171,7 +145,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__LEAF_SECTION = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 7;
+	int UNICASE_MODEL_ELEMENT__LEAF_SECTION = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -179,7 +153,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__STATE = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 8;
+	int UNICASE_MODEL_ELEMENT__STATE = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -188,7 +162,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 9;
+	int UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -197,69 +171,16 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT__COMMENTS = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 10;
+	int UNICASE_MODEL_ELEMENT__COMMENTS = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
-	 * The number of structural features of the '<em>Element</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_FEATURE_COUNT = IDENTIFIABLE_ELEMENT_FEATURE_COUNT + 11;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.metamodel.impl.ProjectImpl <em>Project</em>}' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.metamodel.impl.ProjectImpl
-	 * @see org.unicase.model.impl.ModelPackageImpl#getProject()
-	 * @generated
-	 */
-	int PROJECT = 1;
-
-	/**
-	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * The number of structural features of the '<em>Unicase Model Element</em>' class. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT__MODEL_ELEMENTS = 0;
-
-	/**
-	 * The number of structural features of the '<em>Project</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int PROJECT_FEATURE_COUNT = 1;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.model.impl.UniqueIdentifierImpl <em>Unique Identifier</em>}'
-	 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.model.impl.UniqueIdentifierImpl
-	 * @see org.unicase.model.impl.ModelPackageImpl#getUniqueIdentifier()
-	 * @generated
-	 */
-	int UNIQUE_IDENTIFIER = 2;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int UNIQUE_IDENTIFIER__ID = 0;
-
-	/**
-	 * The number of structural features of the '<em>Unique Identifier</em>' class. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int UNIQUE_IDENTIFIER_FEATURE_COUNT = 1;
+	int UNICASE_MODEL_ELEMENT_FEATURE_COUNT = MetamodelPackage.MODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.AnnotationImpl <em>Annotation</em>}' class. <!--
@@ -269,7 +190,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getAnnotation()
 	 * @generated
 	 */
-	int ANNOTATION = 3;
+	int ANNOTATION = 1;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -277,23 +198,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__IDENTIFIER = MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__NAME = MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ANNOTATION__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+	int ANNOTATION__IDENTIFIER = UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -301,7 +206,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__CREATOR = MODEL_ELEMENT__CREATOR;
+	int ANNOTATION__CREATOR = UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -309,7 +214,23 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__CREATION_DATE = MODEL_ELEMENT__CREATION_DATE;
+	int ANNOTATION__CREATION_DATE = UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__NAME = UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ANNOTATION__DESCRIPTION = UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -318,7 +239,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__ANNOTATIONS = MODEL_ELEMENT__ANNOTATIONS;
+	int ANNOTATION__ANNOTATIONS = UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -327,7 +248,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__ATTACHMENTS = MODEL_ELEMENT__ATTACHMENTS;
+	int ANNOTATION__ATTACHMENTS = UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -336,7 +257,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__INCOMING_DOCUMENT_REFERENCES = MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int ANNOTATION__INCOMING_DOCUMENT_REFERENCES = UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -345,7 +266,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__LEAF_SECTION = MODEL_ELEMENT__LEAF_SECTION;
+	int ANNOTATION__LEAF_SECTION = UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -353,7 +274,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__STATE = MODEL_ELEMENT__STATE;
+	int ANNOTATION__STATE = UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -362,7 +283,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__APPLIED_STEREOTYPE_INSTANCES = MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int ANNOTATION__APPLIED_STEREOTYPE_INSTANCES = UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -371,7 +292,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__COMMENTS = MODEL_ELEMENT__COMMENTS;
+	int ANNOTATION__COMMENTS = UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Annotated Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -380,7 +301,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION__ANNOTATED_MODEL_ELEMENTS = MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int ANNOTATION__ANNOTATED_MODEL_ELEMENTS = UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Annotation</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -389,7 +310,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ANNOTATION_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int ANNOTATION_FEATURE_COUNT = UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.impl.AttachmentImpl <em>Attachment</em>}' class. <!--
@@ -399,7 +320,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getAttachment()
 	 * @generated
 	 */
-	int ATTACHMENT = 4;
+	int ATTACHMENT = 2;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -407,23 +328,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT__IDENTIFIER = MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT__NAME = MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ATTACHMENT__DESCRIPTION = MODEL_ELEMENT__DESCRIPTION;
+	int ATTACHMENT__IDENTIFIER = UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -431,7 +336,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT__CREATOR = MODEL_ELEMENT__CREATOR;
+	int ATTACHMENT__CREATOR = UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -439,7 +344,23 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT__CREATION_DATE = MODEL_ELEMENT__CREATION_DATE;
+	int ATTACHMENT__CREATION_DATE = UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__NAME = UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ATTACHMENT__DESCRIPTION = UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -448,7 +369,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT__ANNOTATIONS = MODEL_ELEMENT__ANNOTATIONS;
+	int ATTACHMENT__ANNOTATIONS = UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -457,7 +378,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT__ATTACHMENTS = MODEL_ELEMENT__ATTACHMENTS;
+	int ATTACHMENT__ATTACHMENTS = UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -466,7 +387,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT__INCOMING_DOCUMENT_REFERENCES = MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int ATTACHMENT__INCOMING_DOCUMENT_REFERENCES = UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -475,7 +396,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT__LEAF_SECTION = MODEL_ELEMENT__LEAF_SECTION;
+	int ATTACHMENT__LEAF_SECTION = UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -483,7 +404,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT__STATE = MODEL_ELEMENT__STATE;
+	int ATTACHMENT__STATE = UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -492,7 +413,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT__APPLIED_STEREOTYPE_INSTANCES = MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int ATTACHMENT__APPLIED_STEREOTYPE_INSTANCES = UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -501,7 +422,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT__COMMENTS = MODEL_ELEMENT__COMMENTS;
+	int ATTACHMENT__COMMENTS = UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Referring Model Elements</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -510,7 +431,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT__REFERRING_MODEL_ELEMENTS = MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int ATTACHMENT__REFERRING_MODEL_ELEMENTS = UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Attachment</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -519,34 +440,7 @@ public interface ModelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int ATTACHMENT_FEATURE_COUNT = MODEL_ELEMENT_FEATURE_COUNT + 1;
-
-	/**
-	 * The meta object id for the '{@link org.unicase.metamodel.impl.ModelElementIdImpl <em>Element Id</em>}' class. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @see org.unicase.metamodel.impl.ModelElementIdImpl
-	 * @see org.unicase.model.impl.ModelPackageImpl#getModelElementId()
-	 * @generated
-	 */
-	int MODEL_ELEMENT_ID = 6;
-
-	/**
-	 * The feature id for the '<em><b>Id</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ID__ID = UNIQUE_IDENTIFIER__ID;
-
-	/**
-	 * The number of structural features of the '<em>Element Id</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_ELEMENT_ID_FEATURE_COUNT = UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
+	int ATTACHMENT_FEATURE_COUNT = UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.NonDomainElement <em>Non Domain Element</em>}' class. <!--
@@ -556,7 +450,7 @@ public interface ModelPackage extends EPackage {
 	 * @see org.unicase.model.impl.ModelPackageImpl#getNonDomainElement()
 	 * @generated
 	 */
-	int NON_DOMAIN_ELEMENT = 7;
+	int NON_DOMAIN_ELEMENT = 3;
 
 	/**
 	 * The number of structural features of the '<em>Non Domain Element</em>' class. <!-- begin-user-doc --> <!--
@@ -568,51 +462,52 @@ public interface ModelPackage extends EPackage {
 	int NON_DOMAIN_ELEMENT_FEATURE_COUNT = 0;
 
 	/**
-	 * The meta object id for the '{@link org.unicase.metamodel.impl.ModelVersionImpl <em>Version</em>}' class. <!--
+	 * The meta object id for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see org.unicase.metamodel.impl.ModelVersionImpl
-	 * @see org.unicase.model.impl.ModelPackageImpl#getModelVersion()
+	 * @see org.unicase.model.impl.ProjectImpl
+	 * @see org.unicase.model.impl.ModelPackageImpl#getProject()
 	 * @generated
 	 */
-	int MODEL_VERSION = 8;
+	int PROJECT = 4;
 
 	/**
-	 * The feature id for the '<em><b>Release Number</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The feature id for the '<em><b>Model Elements</b></em>' containment reference list. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_VERSION__RELEASE_NUMBER = 0;
+	int PROJECT__MODEL_ELEMENTS = MetamodelPackage.PROJECT__MODEL_ELEMENTS;
 
 	/**
-	 * The number of structural features of the '<em>Version</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The number of structural features of the '<em>Project</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_VERSION_FEATURE_COUNT = 1;
+	int PROJECT_FEATURE_COUNT = MetamodelPackage.PROJECT_FEATURE_COUNT + 0;
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.model.UnicaseModelElement <em>Element</em>}'. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.unicase.model.UnicaseModelElement <em>Unicase Model Element</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for class '<em>Element</em>'.
+	 * @return the meta object for class '<em>Unicase Model Element</em>'.
 	 * @see org.unicase.model.UnicaseModelElement
 	 * @generated
 	 */
-	EClass getModelElement();
+	EClass getUnicaseModelElement();
 
 	/**
-	 * Returns the meta object for the attribute ' {@link org.unicase.model.UnicaseModelElement#getName <em>Name</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getName <em>Name</em>}'.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>Name</em>'.
 	 * @see org.unicase.model.UnicaseModelElement#getName()
-	 * @see #getModelElement()
+	 * @see #getUnicaseModelElement()
 	 * @generated
 	 */
-	EAttribute getModelElement_Name();
+	EAttribute getUnicaseModelElement_Name();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getDescription
@@ -620,32 +515,10 @@ public interface ModelPackage extends EPackage {
 	 * 
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.unicase.model.UnicaseModelElement#getDescription()
-	 * @see #getModelElement()
+	 * @see #getUnicaseModelElement()
 	 * @generated
 	 */
-	EAttribute getModelElement_Description();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getCreator <em>Creator</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Creator</em>'.
-	 * @see org.unicase.model.UnicaseModelElement#getCreator()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EAttribute getModelElement_Creator();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getCreationDate
-	 * <em>Creation Date</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Creation Date</em>'.
-	 * @see org.unicase.model.UnicaseModelElement#getCreationDate()
-	 * @see #getModelElement()
-	 * @generated
-	 */
-	EAttribute getModelElement_CreationDate();
+	EAttribute getUnicaseModelElement_Description();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.model.UnicaseModelElement#getAnnotations
@@ -653,10 +526,10 @@ public interface ModelPackage extends EPackage {
 	 * 
 	 * @return the meta object for the reference list '<em>Annotations</em>'.
 	 * @see org.unicase.model.UnicaseModelElement#getAnnotations()
-	 * @see #getModelElement()
+	 * @see #getUnicaseModelElement()
 	 * @generated
 	 */
-	EReference getModelElement_Annotations();
+	EReference getUnicaseModelElement_Annotations();
 
 	/**
 	 * Returns the meta object for the reference list '{@link org.unicase.model.UnicaseModelElement#getAttachments
@@ -664,22 +537,22 @@ public interface ModelPackage extends EPackage {
 	 * 
 	 * @return the meta object for the reference list '<em>Attachments</em>'.
 	 * @see org.unicase.model.UnicaseModelElement#getAttachments()
-	 * @see #getModelElement()
+	 * @see #getUnicaseModelElement()
 	 * @generated
 	 */
-	EReference getModelElement_Attachments();
+	EReference getUnicaseModelElement_Attachments();
 
 	/**
 	 * Returns the meta object for the reference list '
-	 * {@link org.unicase.model.UnicaseModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.unicase.model.UnicaseModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the reference list '<em>Incoming Document References</em>'.
 	 * @see org.unicase.model.UnicaseModelElement#getIncomingDocumentReferences()
-	 * @see #getModelElement()
+	 * @see #getUnicaseModelElement()
 	 * @generated
 	 */
-	EReference getModelElement_IncomingDocumentReferences();
+	EReference getUnicaseModelElement_IncomingDocumentReferences();
 
 	/**
 	 * Returns the meta object for the container reference '{@link org.unicase.model.UnicaseModelElement#getLeafSection
@@ -687,86 +560,45 @@ public interface ModelPackage extends EPackage {
 	 * 
 	 * @return the meta object for the container reference '<em>Leaf Section</em>'.
 	 * @see org.unicase.model.UnicaseModelElement#getLeafSection()
-	 * @see #getModelElement()
+	 * @see #getUnicaseModelElement()
 	 * @generated
 	 */
-	EReference getModelElement_LeafSection();
+	EReference getUnicaseModelElement_LeafSection();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getState <em>State</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the attribute '{@link org.unicase.model.UnicaseModelElement#getState <em>State</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the attribute '<em>State</em>'.
 	 * @see org.unicase.model.UnicaseModelElement#getState()
-	 * @see #getModelElement()
+	 * @see #getUnicaseModelElement()
 	 * @generated
 	 */
-	EAttribute getModelElement_State();
+	EAttribute getUnicaseModelElement_State();
 
 	/**
 	 * Returns the meta object for the containment reference list '
-	 * {@link org.unicase.model.UnicaseModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * {@link org.unicase.model.UnicaseModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}
+	 * '. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference list '<em>Applied Stereotype Instances</em>'.
 	 * @see org.unicase.model.UnicaseModelElement#getAppliedStereotypeInstances()
-	 * @see #getModelElement()
+	 * @see #getUnicaseModelElement()
 	 * @generated
 	 */
-	EReference getModelElement_AppliedStereotypeInstances();
+	EReference getUnicaseModelElement_AppliedStereotypeInstances();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.model.UnicaseModelElement#getComments
-	 * <em>Comments</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.unicase.model.UnicaseModelElement#getComments <em>Comments</em>}'. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
 	 * @return the meta object for the containment reference list '<em>Comments</em>'.
 	 * @see org.unicase.model.UnicaseModelElement#getComments()
-	 * @see #getModelElement()
+	 * @see #getUnicaseModelElement()
 	 * @generated
 	 */
-	EReference getModelElement_Comments();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.metamodel.Project <em>Project</em>}'. <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Project</em>'.
-	 * @see org.unicase.metamodel.Project
-	 * @generated
-	 */
-	EClass getProject();
-
-	/**
-	 * Returns the meta object for the containment reference list '{@link org.unicase.metamodel.Project#getModelElements
-	 * <em>Model Elements</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the containment reference list '<em>Model Elements</em>'.
-	 * @see org.unicase.metamodel.Project#getModelElements()
-	 * @see #getProject()
-	 * @generated
-	 */
-	EReference getProject_ModelElements();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.metamodel.UniqueIdentifier <em>Unique Identifier</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Unique Identifier</em>'.
-	 * @see org.unicase.metamodel.UniqueIdentifier
-	 * @generated
-	 */
-	EClass getUniqueIdentifier();
-
-	/**
-	 * Returns the meta object for the attribute ' {@link org.unicase.metamodel.UniqueIdentifier#getId <em>Id</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Id</em>'.
-	 * @see org.unicase.metamodel.UniqueIdentifier#getId()
-	 * @see #getUniqueIdentifier()
-	 * @generated
-	 */
-	EAttribute getUniqueIdentifier_Id();
+	EReference getUnicaseModelElement_Comments();
 
 	/**
 	 * Returns the meta object for class '{@link org.unicase.model.Annotation <em>Annotation</em>}'. <!-- begin-user-doc
@@ -811,37 +643,6 @@ public interface ModelPackage extends EPackage {
 	EReference getAttachment_ReferringModelElements();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.metamodel.IdentifiableElement <em>Identifiable Element</em>}'.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Identifiable Element</em>'.
-	 * @see org.unicase.metamodel.IdentifiableElement
-	 * @generated
-	 */
-	EClass getIdentifiableElement();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.metamodel.IdentifiableElement#getIdentifier
-	 * <em>Identifier</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Identifier</em>'.
-	 * @see org.unicase.metamodel.IdentifiableElement#getIdentifier()
-	 * @see #getIdentifiableElement()
-	 * @generated
-	 */
-	EAttribute getIdentifiableElement_Identifier();
-
-	/**
-	 * Returns the meta object for class '{@link org.unicase.metamodel.ModelElementId <em>Element Id</em>}'. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for class '<em>Element Id</em>'.
-	 * @see org.unicase.metamodel.ModelElementId
-	 * @generated
-	 */
-	EClass getModelElementId();
-
-	/**
 	 * Returns the meta object for class '{@link org.unicase.model.NonDomainElement <em>Non Domain Element</em>}'. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->
 	 * 
@@ -852,25 +653,14 @@ public interface ModelPackage extends EPackage {
 	EClass getNonDomainElement();
 
 	/**
-	 * Returns the meta object for class '{@link org.unicase.metamodel.ModelVersion <em>Version</em>}'. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * Returns the meta object for class '{@link org.unicase.model.Project <em>Project</em>}'. <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * 
-	 * @return the meta object for class '<em>Version</em>'.
-	 * @see org.unicase.metamodel.ModelVersion
+	 * @return the meta object for class '<em>Project</em>'.
+	 * @see org.unicase.model.Project
 	 * @generated
 	 */
-	EClass getModelVersion();
-
-	/**
-	 * Returns the meta object for the attribute '{@link org.unicase.metamodel.ModelVersion#getReleaseNumber
-	 * <em>Release Number</em>}'. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @return the meta object for the attribute '<em>Release Number</em>'.
-	 * @see org.unicase.metamodel.ModelVersion#getReleaseNumber()
-	 * @see #getModelVersion()
-	 * @generated
-	 */
-	EAttribute getModelVersion_ReleaseNumber();
+	EClass getProject();
 
 	/**
 	 * Returns the factory that creates the instances of the model. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -894,14 +684,14 @@ public interface ModelPackage extends EPackage {
 	 */
 	interface Literals {
 		/**
-		 * The meta object literal for the '{@link org.unicase.model.impl.UnicaseModelElementImpl <em>Element</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.unicase.model.impl.UnicaseModelElementImpl
+		 * <em>Unicase Model Element</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
 		 * @see org.unicase.model.impl.UnicaseModelElementImpl
-		 * @see org.unicase.model.impl.ModelPackageImpl#getModelElement()
+		 * @see org.unicase.model.impl.ModelPackageImpl#getUnicaseModelElement()
 		 * @generated
 		 */
-		EClass MODEL_ELEMENT = eINSTANCE.getModelElement();
+		EClass UNICASE_MODEL_ELEMENT = eINSTANCE.getUnicaseModelElement();
 
 		/**
 		 * The meta object literal for the '<em><b>Name</b></em>' attribute feature. <!-- begin-user-doc --> <!--
@@ -909,7 +699,7 @@ public interface ModelPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EAttribute MODEL_ELEMENT__NAME = eINSTANCE.getModelElement_Name();
+		EAttribute UNICASE_MODEL_ELEMENT__NAME = eINSTANCE.getUnicaseModelElement_Name();
 
 		/**
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature. <!-- begin-user-doc --> <!--
@@ -917,23 +707,7 @@ public interface ModelPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EAttribute MODEL_ELEMENT__DESCRIPTION = eINSTANCE.getModelElement_Description();
-
-		/**
-		 * The meta object literal for the '<em><b>Creator</b></em>' attribute feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT__CREATOR = eINSTANCE.getModelElement_Creator();
-
-		/**
-		 * The meta object literal for the '<em><b>Creation Date</b></em>' attribute feature. <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EAttribute MODEL_ELEMENT__CREATION_DATE = eINSTANCE.getModelElement_CreationDate();
+		EAttribute UNICASE_MODEL_ELEMENT__DESCRIPTION = eINSTANCE.getUnicaseModelElement_Description();
 
 		/**
 		 * The meta object literal for the '<em><b>Annotations</b></em>' reference list feature. <!-- begin-user-doc -->
@@ -941,7 +715,7 @@ public interface ModelPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__ANNOTATIONS = eINSTANCE.getModelElement_Annotations();
+		EReference UNICASE_MODEL_ELEMENT__ANNOTATIONS = eINSTANCE.getUnicaseModelElement_Annotations();
 
 		/**
 		 * The meta object literal for the '<em><b>Attachments</b></em>' reference list feature. <!-- begin-user-doc -->
@@ -949,7 +723,7 @@ public interface ModelPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__ATTACHMENTS = eINSTANCE.getModelElement_Attachments();
+		EReference UNICASE_MODEL_ELEMENT__ATTACHMENTS = eINSTANCE.getUnicaseModelElement_Attachments();
 
 		/**
 		 * The meta object literal for the '<em><b>Incoming Document References</b></em>' reference list feature. <!--
@@ -957,7 +731,8 @@ public interface ModelPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = eINSTANCE.getModelElement_IncomingDocumentReferences();
+		EReference UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES = eINSTANCE
+			.getUnicaseModelElement_IncomingDocumentReferences();
 
 		/**
 		 * The meta object literal for the '<em><b>Leaf Section</b></em>' container reference feature. <!--
@@ -965,7 +740,7 @@ public interface ModelPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__LEAF_SECTION = eINSTANCE.getModelElement_LeafSection();
+		EReference UNICASE_MODEL_ELEMENT__LEAF_SECTION = eINSTANCE.getUnicaseModelElement_LeafSection();
 
 		/**
 		 * The meta object literal for the '<em><b>State</b></em>' attribute feature. <!-- begin-user-doc --> <!--
@@ -973,7 +748,7 @@ public interface ModelPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EAttribute MODEL_ELEMENT__STATE = eINSTANCE.getModelElement_State();
+		EAttribute UNICASE_MODEL_ELEMENT__STATE = eINSTANCE.getUnicaseModelElement_State();
 
 		/**
 		 * The meta object literal for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list
@@ -981,7 +756,8 @@ public interface ModelPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = eINSTANCE.getModelElement_AppliedStereotypeInstances();
+		EReference UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES = eINSTANCE
+			.getUnicaseModelElement_AppliedStereotypeInstances();
 
 		/**
 		 * The meta object literal for the '<em><b>Comments</b></em>' containment reference list feature. <!--
@@ -989,43 +765,7 @@ public interface ModelPackage extends EPackage {
 		 * 
 		 * @generated
 		 */
-		EReference MODEL_ELEMENT__COMMENTS = eINSTANCE.getModelElement_Comments();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.metamodel.impl.ProjectImpl <em>Project</em>}' class. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @see org.unicase.metamodel.impl.ProjectImpl
-		 * @see org.unicase.model.impl.ModelPackageImpl#getProject()
-		 * @generated
-		 */
-		EClass PROJECT = eINSTANCE.getProject();
-
-		/**
-		 * The meta object literal for the '<em><b>Model Elements</b></em>' containment reference list feature. <!--
-		 * begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EReference PROJECT__MODEL_ELEMENTS = eINSTANCE.getProject_ModelElements();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.model.impl.UniqueIdentifierImpl
-		 * <em>Unique Identifier</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @see org.unicase.model.impl.UniqueIdentifierImpl
-		 * @see org.unicase.model.impl.ModelPackageImpl#getUniqueIdentifier()
-		 * @generated
-		 */
-		EClass UNIQUE_IDENTIFIER = eINSTANCE.getUniqueIdentifier();
-
-		/**
-		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EAttribute UNIQUE_IDENTIFIER__ID = eINSTANCE.getUniqueIdentifier_Id();
+		EReference UNICASE_MODEL_ELEMENT__COMMENTS = eINSTANCE.getUnicaseModelElement_Comments();
 
 		/**
 		 * The meta object literal for the '{@link org.unicase.model.impl.AnnotationImpl <em>Annotation</em>}' class.
@@ -1064,34 +804,6 @@ public interface ModelPackage extends EPackage {
 		EReference ATTACHMENT__REFERRING_MODEL_ELEMENTS = eINSTANCE.getAttachment_ReferringModelElements();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.metamodel.impl.IdentifiableElementImpl
-		 * <em>Identifiable Element</em>}' class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @see org.unicase.metamodel.impl.IdentifiableElementImpl
-		 * @see org.unicase.model.impl.ModelPackageImpl#getIdentifiableElement()
-		 * @generated
-		 */
-		EClass IDENTIFIABLE_ELEMENT = eINSTANCE.getIdentifiableElement();
-
-		/**
-		 * The meta object literal for the '<em><b>Identifier</b></em>' attribute feature. <!-- begin-user-doc --> <!--
-		 * end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EAttribute IDENTIFIABLE_ELEMENT__IDENTIFIER = eINSTANCE.getIdentifiableElement_Identifier();
-
-		/**
-		 * The meta object literal for the '{@link org.unicase.metamodel.impl.ModelElementIdImpl <em>Element Id</em>}'
-		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
-		 * 
-		 * @see org.unicase.metamodel.impl.ModelElementIdImpl
-		 * @see org.unicase.model.impl.ModelPackageImpl#getModelElementId()
-		 * @generated
-		 */
-		EClass MODEL_ELEMENT_ID = eINSTANCE.getModelElementId();
-
-		/**
 		 * The meta object literal for the '{@link org.unicase.model.NonDomainElement <em>Non Domain Element</em>}'
 		 * class. <!-- begin-user-doc --> <!-- end-user-doc -->
 		 * 
@@ -1102,22 +814,14 @@ public interface ModelPackage extends EPackage {
 		EClass NON_DOMAIN_ELEMENT = eINSTANCE.getNonDomainElement();
 
 		/**
-		 * The meta object literal for the '{@link org.unicase.metamodel.impl.ModelVersionImpl <em>Version</em>}' class.
-		 * <!-- begin-user-doc --> <!-- end-user-doc -->
+		 * The meta object literal for the '{@link org.unicase.model.impl.ProjectImpl <em>Project</em>}' class. <!--
+		 * begin-user-doc --> <!-- end-user-doc -->
 		 * 
-		 * @see org.unicase.metamodel.impl.ModelVersionImpl
-		 * @see org.unicase.model.impl.ModelPackageImpl#getModelVersion()
+		 * @see org.unicase.model.impl.ProjectImpl
+		 * @see org.unicase.model.impl.ModelPackageImpl#getProject()
 		 * @generated
 		 */
-		EClass MODEL_VERSION = eINSTANCE.getModelVersion();
-
-		/**
-		 * The meta object literal for the '<em><b>Release Number</b></em>' attribute feature. <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * 
-		 * @generated
-		 */
-		EAttribute MODEL_VERSION__RELEASE_NUMBER = eINSTANCE.getModelVersion_ReleaseNumber();
+		EClass PROJECT = eINSTANCE.getProject();
 
 	}
 

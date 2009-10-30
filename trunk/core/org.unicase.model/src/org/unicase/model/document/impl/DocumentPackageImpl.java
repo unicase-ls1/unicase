@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -121,6 +122,7 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -354,34 +356,30 @@ public class DocumentPackageImpl extends EPackageImpl implements DocumentPackage
 		// Add supertypes to classes
 		leafSectionEClass.getESuperTypes().add(this.getSection());
 		compositeSectionEClass.getESuperTypes().add(this.getSection());
-		sectionEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		sectionEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(leafSectionEClass, LeafSection.class, "LeafSection", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getLeafSection_ModelElements(), theModelPackage.getModelElement(), theModelPackage
-			.getModelElement_LeafSection(), "modelElements", null, 0, -1, LeafSection.class, !IS_TRANSIENT,
+		initEReference(getLeafSection_ModelElements(), theModelPackage.getUnicaseModelElement(), theModelPackage
+			.getUnicaseModelElement_LeafSection(), "modelElements", null, 0, -1, LeafSection.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getLeafSection_ModelElements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getLeafSection_ReferencedModelElements(), theModelPackage.getModelElement(), theModelPackage
-			.getModelElement_IncomingDocumentReferences(), "referencedModelElements", null, 0, -1, LeafSection.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
-		getLeafSection_ReferencedModelElements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getLeafSection_ReferencedModelElements(), theModelPackage.getUnicaseModelElement(),
+			theModelPackage.getUnicaseModelElement_IncomingDocumentReferences(), "referencedModelElements", null, 0,
+			-1, LeafSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(compositeSectionEClass, CompositeSection.class, "CompositeSection", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeSection_Subsections(), this.getSection(), this.getSection_Parent(), "subsections",
 			null, 0, -1, CompositeSection.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getCompositeSection_Subsections().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(sectionEClass, Section.class, "Section", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getSection_Parent(), this.getCompositeSection(), this.getCompositeSection_Subsections(),
 			"parent", null, 0, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getSection_Parent().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor

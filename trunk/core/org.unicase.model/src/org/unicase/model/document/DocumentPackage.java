@@ -69,23 +69,7 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int SECTION__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int SECTION__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -93,7 +77,7 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int SECTION__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -101,7 +85,23 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int SECTION__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -110,7 +110,7 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int SECTION__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -119,7 +119,7 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int SECTION__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -128,7 +128,7 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int SECTION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -137,7 +137,7 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int SECTION__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -145,7 +145,7 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int SECTION__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -154,7 +154,7 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int SECTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -163,7 +163,7 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int SECTION__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Parent</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -172,7 +172,7 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION__PARENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int SECTION__PARENT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Section</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -180,7 +180,7 @@ public interface DocumentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int SECTION_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.document.impl.LeafSectionImpl <em>Leaf Section</em>}' class.
@@ -201,22 +201,6 @@ public interface DocumentPackage extends EPackage {
 	int LEAF_SECTION__IDENTIFIER = SECTION__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION__NAME = SECTION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int LEAF_SECTION__DESCRIPTION = SECTION__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -231,6 +215,22 @@ public interface DocumentPackage extends EPackage {
 	 * @ordered
 	 */
 	int LEAF_SECTION__CREATION_DATE = SECTION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_SECTION__NAME = SECTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int LEAF_SECTION__DESCRIPTION = SECTION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -349,22 +349,6 @@ public interface DocumentPackage extends EPackage {
 	int COMPOSITE_SECTION__IDENTIFIER = SECTION__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_SECTION__NAME = SECTION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_SECTION__DESCRIPTION = SECTION__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -379,6 +363,22 @@ public interface DocumentPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_SECTION__CREATION_DATE = SECTION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_SECTION__NAME = SECTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_SECTION__DESCRIPTION = SECTION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc

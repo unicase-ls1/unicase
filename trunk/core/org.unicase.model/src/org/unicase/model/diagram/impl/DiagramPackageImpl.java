@@ -12,6 +12,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -117,6 +118,7 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -355,17 +357,15 @@ public class DiagramPackageImpl extends EPackageImpl implements DiagramPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(meDiagramEClass, MEDiagram.class, "MEDiagram", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getMEDiagram_Elements(), theModelPackage.getModelElement(), null, "elements", null, 0, -1,
-			MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getMEDiagram_Elements(), theModelPackage.getUnicaseModelElement(), null, "elements", null, 0,
+			-1, MEDiagram.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMEDiagram_Elements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getMEDiagram_Gmfdiagram(), theNotationPackage.getDiagram(), null, "gmfdiagram", null, 0, 1,
 			MEDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMEDiagram_NewElements(), theModelPackage.getModelElement(), null, "newElements", null, 0, -1,
-			MEDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getMEDiagram_NewElements(), theModelPackage.getUnicaseModelElement(), null, "newElements", null,
+			0, -1, MEDiagram.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getMEDiagram_NewElements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getMEDiagram_Type(), this.getDiagramType(), "type", null, 0, 1, MEDiagram.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMEDiagram_DiagramLayout(), ecorePackage.getEString(), "diagramLayout", null, 0, 1,
