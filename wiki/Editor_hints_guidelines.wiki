@@ -27,7 +27,7 @@ http://unicase.googlecode.com/files/06685.png
 <br>
  *  The ModelElement lies in the interval from (0.0;10.0), WorkItem - (10.1;20.0), BugReport - (20.1;30.0);
 
-
+----
 ==*_A quick look at the model so far:_*==
 
 *ModelElement:* 
