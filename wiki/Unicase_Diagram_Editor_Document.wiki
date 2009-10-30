@@ -1,0 +1,6 @@
+==GMF==
+*Links:*
+
+    * Basics - http://www-128.ibm.com/developerworks/opensource/library/os-ecl-gmf/
+    * Creating two (or more) diagrams of the same domain model - http://wiki.eclipse.org/index.php/GMF_Tips#Sharing_single_EditingDomain_instance_across_several_diagrams
+    * GMF Tips - http://wiki.eclipse.org/index.php/GMF_GenModel_Hints
