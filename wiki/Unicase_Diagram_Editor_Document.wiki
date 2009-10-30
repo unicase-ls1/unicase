@@ -107,3 +107,36 @@ return;
 }
 
 }}}
+
+ * We need to override the method createEmptyDocument like this:
+
+{{{
+
+/**
+
+* @generated NOT
+
+*/
+
+protected IDocument createEmptyDocument() {
+
+DiagramDocument document = new DiagramDocument();
+
+document.setEditingDomain(TransactionalEditingDomain.Registry.INSTANCE
+
+.getEditingDomain("org.unicase.EditingDomain"));
+
+return document;
+
+}
+
+}}}
+
+
+ * We need to override the method dispose in ModelDocumentProvider, otherwise the editor disposes our editingDomain
+ * If we use an Association Class, we have to modify the XXXCreatCommand Constructor like this (you have to modify all callers, too):
+We have to centralize entries to the following extensionpoint in org.unicase.common:
+
+    *_<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">_*
+
+That means we have to copy all entries under "<binding context>" to the corresponding extension point in org.unicase.common and then delete the extension point in the diagram
