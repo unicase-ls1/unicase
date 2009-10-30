@@ -40,3 +40,10 @@ http://unicase.googlecode.com/files/06685.png
 *BugReport* 
 
                     http://unicase.googlecode.com/files/3.png 
+
+
+
+_(For the sake of time and simplicity, only the left column features are shown)_
+
+The current order of these features would be: <br>
+_*Name, Description, Containing Workpackage, Assignee, Due Date, Status, Resolution, Resolution Type.*_
