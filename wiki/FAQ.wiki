@@ -45,7 +45,7 @@ modelElement.eAdapters().add(new AdapterImpl() {
 
 *Q: How do I use standard icons/images from eclipse?*<br>
 A: PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.XXX)
-    _* Hint: Many other free icons can be found on FamFamFam._*
+    _* Hint: Many other free icons can be found on [http://www.famfamfam.com/ FamFamFam]._*
 
 *Q: I add sth. in a Composite, but it wont show up. What am I doing wrong?*<br>
 A. You probably forgot to set a LayoutManager for the Composite.
@@ -75,6 +75,7 @@ A:
 A: Every file is expected to have the following header for licensing reasons:
 
 /`**`
+
 `*` {{{<copyright>}}} Copyright (c) 2008 Jonas Helming, Maximilian Kögel.<br>
 All rights reserved. This program and the accompanying materials are
 made available under the terms of the Eclipse Public License v1.0 which
@@ -92,14 +93,14 @@ Remove all tabs from the code and replace them by spaces (use TextEdit, Search&R
 Update: An easier way to add code is to write "begin end" into a line, format the line as monospace (click on the paragraph symbol) and then paste your code in between "begin" and "end". You can then safely remove begin and end. Still it is sometimes better to replace the tabs with whitespace beforehand since the Wiki wastes quite some space for a single tab.
 
 *Q: Can I use third party libraries, what about licensing?* <br>
-A: Libraries distributed under the EPL can be used without a problem. However any other license is subject to closer inspection. Please discuss with project lead and consult the Eclipse foundation at license@eclipse.org. A good FAQ on licensing and the EPL is available on Eclipse.org
+A: Libraries distributed under the EPL can be used without a problem. However any other license is subject to closer inspection. Please discuss with project lead and consult the Eclipse foundation at license@eclipse.org. A good FAQ on licensing and the EPL is available on [http://www.eclipse.org/legal/eplfaq.php Eclipse.org]
 
 *Q: I am getting a ClassNotFoundException when trying to run the MEEditor?* <br>
-A: The editor is using an external library in the form of an Eclipse plugin. Please install it manually in your Eclipse environment - see Getting started as developer
+A: The editor is using an external library in the form of an Eclipse plugin. Please install it manually in your Eclipse environment - see [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/55cea/Getting_started_as_developer.html Getting started as developer]
 When the Update Site for unicase is set up, all needed dependencies will be deployed there.
 
 *Q: I am trying to manually deploy a plugin, but I am getting a strange java.lang.IllegalArgumentException?* <br>
-A: Please read this blog entry: Build Process
+A: Please read this blog entry: [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/8fdfb/Build_Process.html Build Process]
 
 *Q: How to increase the default memory heap size used by the VM?* <br>
 A: Changing the heap size for Eclipse:
@@ -107,10 +108,10 @@ Locate the eclipse.ini in your Eclipse installation (the location depends on the
 Changing the heap size for your Runtime Eclipse: Edit the same parameters under "VM args" in your Run/Debug configuration.
 
 *Q: What can I do if I experience troubles running unicase, if I get an Exception when running unicase or if unicase won´t start?* <br>
-A: Follow this howto to return to a well-defined state with your unicase development environment.
+A: Follow this [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/f1c7e/Reacting_to_unicase_model_changes.html howto] to return to a well-defined state with your unicase development environment.
 
 *Q: How can I report bugs via the unicase server?* <br>
-A: First of all, you need an account at our chair. Without that you won't be able to login. For a short howto see: Report bugs screenshot tour
+A: First of all, you need an account at our chair. Without that you won't be able to login. For a short howto see: [https://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/dce68/Report_bugs_screenshot_tour.html Report bugs screenshot tour]
 
 *Q: How do I use a ProgressBar?* <br>
 
@@ -218,5 +219,5 @@ PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + 
 }}}
 
 *Also see:*
-http://stackoverflow.com/questions/1012929/eclipse-contextual-help/1021718
+http://stackoverflow.com/questions/1012929/eclipse-contextual-help/1021718 <br>
 http://dev.eclipse.org/newslists/news.eclipse.platform.ua/msg00359.html
