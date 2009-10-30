@@ -36,7 +36,7 @@ For all attributes in any of the models, what you should *NOT do*:
 
     * *Do NOT* use the "/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//" URIs but the "http://www.eclipse.org/emf/2002/Ecore#//" !
     * *Do NOT* use generics in the ecore!
-    * Do NOT* just override a getter or setter! If you want to override a setter or getter follow the recommended best practice in emf:
+    * *Do NOT* just override a getter or setter! If you want to override a setter or getter follow the recommended best practice in emf:
           * Rename generated setter or getter to get/setXGen
           * Write your own getter/setter marked with @generated NOT and call the get/setXGen
           * Your added code must be null safe for any input parameter!
