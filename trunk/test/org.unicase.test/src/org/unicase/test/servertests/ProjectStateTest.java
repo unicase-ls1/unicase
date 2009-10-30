@@ -51,7 +51,6 @@ public class ProjectStateTest extends TestCase {
 						target);
 
 					int i = 0;
-					boolean found = false;
 					for (ChangePackage changePackage : changes) {
 						Iterator<AbstractOperation> iter = changePackage.getOperations().iterator();
 						while (iter.hasNext()) {
@@ -59,11 +58,6 @@ public class ProjectStateTest extends TestCase {
 							if (abstractOperation instanceof CreateDeleteOperation) {
 								if (abstractOperation.getModelElementId().getId().equals("__q0UYJUkEd2FG-kzr70dNg")) {
 									System.out.println("Version: " + i + " delete found");
-									if (false && found) {
-										iter.remove();
-									} else {
-										found = true;
-									}
 								}
 							}
 						}
