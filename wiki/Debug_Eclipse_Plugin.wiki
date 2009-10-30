@@ -1,4 +1,4 @@
-#Here are some hints when developing (and debugging) Eclipse plugins. 
+#summary Here are some hints when developing (and debugging) Eclipse plugins.
 
 
 
