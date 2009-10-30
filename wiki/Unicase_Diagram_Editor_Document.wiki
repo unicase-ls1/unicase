@@ -14,7 +14,7 @@
 We want to implement our own resource as in our case diagrams and corresponding model elements are not directly saved in files.We are currently trying to do this and these are the steps we have already done:
 
 
-*We need to open the diagram editor on double click:
+*  We need to open the diagram editor on double click:
 
 {{{
 if (object instanceof MEDiagram) {
