@@ -1,8 +1,8 @@
 *To configure a newly created plugin right-click it and select properties (bottommost item).*
 
-# From the properties dialog first select Java Code Style -> Cleanup (1), check Enable project specific settings (2) and then Import (3) the following cleanup [http://unicase.googlecode.com/files/unicaseCleanUp.xml file..]
+  #   From the properties dialog first select Java Code Style -> Cleanup (1), check Enable project specific settings (2) and then Import (3) the following cleanup [http://unicase.googlecode.com/files/unicaseCleanUp.xml file here..]
 
 <br>
 http://unicase.googlecode.com/files/15ad2.png
 
-# Next select Java Code Style -> Code Templates (1), check Enable project specific settings (2) and then Import (3) the code-template xml file
+  #   Next select Java Code Style -> Code Templates (1), check Enable project specific settings (2) and then Import (3) the code-template xml file
