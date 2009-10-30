@@ -1,5 +1,5 @@
  * [ModelingGuidelines Modeling Guidelines]
- * Editor Hints Guidelines
+ * [Editor_hints_guidelines Editor Hints Guidelines]
  * UNICASE Model Documentation
  * Design Model Elements
  * [Validation_rule_implementation Validation Rule Implementation]
