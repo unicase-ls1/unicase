@@ -33,7 +33,7 @@ The binding here is to the model plug-in itself, the client is bound to the clas
 
 *Defining rules*
 
-After setting up this extension in the second step, rules can be defined. The addition of new rules for this uses the `org.eclipse.emf.validation.constraintProviders` extension point of the Validation Framework. The category means pertaining to the category of the above-defined binding contexts. To include a new validation rule, a constraintProvider must be created for each model package. Here we are taking package should be used for the model package, the rules and style is as described above, shall determine whether the validation should be static or dynamic. The rule itself will be created under constraints as a new one.
+After setting up this extension in the second step, rules can be defined. The addition of new rules for this uses the `org.eclipse.emf.validation.constraintProviders` extension point of the Validation Framework. The category means pertaining to the category of the above-defined binding contexts. To include a new validation rule, a constraintProvider must be created for each model package. Here we are taking package should be used for the model package, the rules and style is as described above, shall determine whether the validation should be static or dynamic. The rule itself will be created under constraints as a new constraint.
 
 `<extensionpoint="org.eclipse.emf.validation.constraintProviders">`
 
@@ -68,3 +68,42 @@ After setting up this extension in the second step, rules can be defined. The ad
 `   </constraintProvider>`
 
 `</extension>`
+
+A constraint places other than name and id, the language (language - OCL or Java), the degree (severity), the validation mode (mode - batch or live), and (for Java constraints), the class which implements the constraint set. As the sub entry message, the message template is shown what the user is given.
+
+
+`<constraintclass="org.unicase.model.task.validation.ActionItemActivityConstraint"`
+
+
+`   id="org.unicase.model.task.ActionItemActivity"`
+
+
+`   lang="Java"`
+
+
+`   mode="Batch"`
+
+
+`   name="ActionItem Activity Constraint"`
+
+
+`   severity="WARNING"`
+
+
+`   statusCode="1">`
+
+
+`   <message>`
+
+
+`      {0} does not have an activity assigned.`
+
+
+`   </message>`
+
+		
+	
+	
+
+
+`</constraint>`
