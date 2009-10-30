@@ -114,7 +114,7 @@ As shown in Figure 1: Java Constraint classes seen to derive from all the Java c
 
 A simple validation class for example, is as follows:
 
-{/**
+{{{/**
 
  *CheckswhetheraactivityissetforthisActionItem.
 
@@ -162,4 +162,5 @@ publicclass ActionItemActivityConstraint extends AbstractModelConstraint {
 
  }
 
-}}
+}
+}}}
