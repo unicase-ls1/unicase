@@ -2,7 +2,8 @@
  <p>How to build plugins manually:</p> 
  <ol>
    
-  <li><span class="custom_forecolor_emphasis">Make sure that you don't have any special characters in your Eclipse installation path (this includes whitespaces)<br class="" />&gt;confirmed on MacOS running Ganymede RC2<br class="" /></span></li>
+  <li>Make sure that you don't have any special characters in your Eclipse installation path (this includes whitespaces)
+>confirmed on MacOS running Ganymede RC2</li>
    
   <li>Select &quot;Export&quot; from the context menu of your plugin </li>
    
