@@ -1,5 +1,5 @@
  * [PluginConfiguration Plugin Configuration Guidelines]
- * SVN Repository
+ * [SVN_Repository SVN Repository]
  * UNICASE Repository (beta server)
  * Mailinglist
  * Development Environment Troubleshooting
