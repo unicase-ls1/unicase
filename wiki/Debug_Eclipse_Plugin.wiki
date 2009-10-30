@@ -12,6 +12,9 @@ Almost every UI actions and events are wrapped in the so called loops, which eve
 
 *Additional here is an experience report of Alex, when debugging a memory overflow in MEEditor:*<br>
 
+
+
+
 * Testing against memory allocation:
 As it turns out, proper memory testing cannot be done due to the unpredictability of the Garbage Collector. In other words - it is impossible to keep track of the memory used by each MEPage, because the GC runs every now and then and resets the amount of used space.
 
