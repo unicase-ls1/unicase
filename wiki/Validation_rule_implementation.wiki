@@ -107,3 +107,59 @@ A constraint places other than name and id, the language (language - OCL or Java
 
 
 `</constraint>`
+
+*Java Validierung*
+
+As shown in Figure 1: Java Constraint classes seen to derive from all the Java classes of constraint AbstractModelConstraint. To-implement the validate () method uses the passed IValidationContext to review the rule. The rule is violated, we pass the feature itself affected the error status as an additional argument, as described above in order to enable the identification of the error in the editor. Furthermore, the error status by default contains the affected model element itself and inserts into the constraint set for this message template.
+
+A simple validation class for example, is as follows:
+
+{/**
+
+ *CheckswhetheraactivityissetforthisActionItem.
+
+ */
+
+publicclass ActionItemActivityConstraint extends AbstractModelConstraint {
+
+ 
+
+@Override
+
+ public IStatus validate(IValidationContext ctx) {
+
+   EObject eObj = ctx.getTarget();
+
+   EMFEventType eType = ctx.getEventType();
+
+ 
+
+   if (eType == EMFEventType.NULL) {
+
+     if (eObj instanceof ActionItem) {
+
+         ActivityType activity = ((ActionItem) eObj).getActivity();
+
+        if (activity.getValue() == ActivityType.NONE_VALUE) {
+
+            EStructuralFeature errorFeature = ValidationConstraintHelper
+
+               .getErrorFeatureForModelElement((ModelElement) eObj, "activity");
+
+            ctx.addResult(errorFeature);
+
+           return ctx.createFailureStatus(new Object[] { eObj.eClass()
+
+               .getName() + ": '" + ((ActionItem) eObj).getName() + "'" });
+
+         }
+
+      }
+
+   }
+
+   return ctx.createSuccessStatus();
+
+ }
+
+}}
