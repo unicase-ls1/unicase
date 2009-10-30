@@ -7,4 +7,4 @@ A validation rule always refers to a particular type of model element as well as
 
 *Integration of the Validation Framework*
 
-To be able to use the EMF Validation Framework, as the first step the 'org.eclipse.emf.validation.constraintBindings' extension point will be used to create a client context and define a binding.
+To be able to use the EMF Validation Framework, as the first step the `org.eclipse.emf.validation.constraintBindings` extension point will be used to create a client context and define a binding.
