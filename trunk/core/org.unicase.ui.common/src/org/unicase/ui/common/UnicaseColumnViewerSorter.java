@@ -13,8 +13,8 @@ import org.eclipse.jface.viewers.ViewerComparator;
 
 /**
  * Super-class for sorting column viewer, with ability to turn sorting on and off.
+ * 
  * @author zardosht
- *
  */
 public abstract class UnicaseColumnViewerSorter extends ViewerComparator {
 
@@ -23,7 +23,7 @@ public abstract class UnicaseColumnViewerSorter extends ViewerComparator {
 	 */
 	public static final int ASC = 1;
 	/**
-	 *  Direction constant used to show right direction arrow on column header.
+	 * Direction constant used to show right direction arrow on column header.
 	 */
 	public static final int DESC = -1;
 	private int direction = 1;
@@ -31,9 +31,9 @@ public abstract class UnicaseColumnViewerSorter extends ViewerComparator {
 	private final ColumnViewer viewer;
 	private boolean sortingEnabled;
 
-	
 	/**
 	 * Constructor.
+	 * 
 	 * @param viewer ColumnViewer
 	 * @param columnLabelProvider ColumnLabelProvider
 	 */
@@ -44,22 +44,23 @@ public abstract class UnicaseColumnViewerSorter extends ViewerComparator {
 
 	/**
 	 * . This is used to set the right direction arrow at column header and refresh the viewer.
+	 * 
 	 * @param sorter sorter
 	 * @param direction direction
 	 */
 	protected void setSorter(UnicaseColumnViewerSorter sorter, int direction) {
-		if(!sortingEnabled){
+		if (!sortingEnabled) {
 			sortingEnabled = true;
 		}
-	
+
 		this.direction = direction;
-	
+
 		if (viewer.getComparator() == sorter) {
 			viewer.refresh();
 		} else {
 			viewer.setComparator(sorter);
 		}
-	
+
 	}
 
 	/**
@@ -68,65 +69,63 @@ public abstract class UnicaseColumnViewerSorter extends ViewerComparator {
 	@SuppressWarnings("unchecked")
 	@Override
 	public int compare(Viewer viewer, Object e1, Object e2) {
-		
-		if(!sortingEnabled){
+
+		if (!sortingEnabled) {
 			return 0;
 		}
-		
+
 		int cat1 = category(e1);
 		int cat2 = category(e2);
-	
+
 		if (cat1 != cat2) {
 			return cat1 - cat2;
 		}
-	
+
 		String str1 = columnLabelProvider.getText(e1);
 		String str2 = columnLabelProvider.getText(e2);
 
-		
-		
 		if (str1 == null) {
 			str1 = "";
 		}
 		if (str2 == null) {
 			str2 = "";
 		}
-		
-		//Handle integers
-		if(str1.matches("[0-9]*") || str1.equals("")){
-			if(str2.matches("[0-9]*") || str2.equals("")){
+
+		// Handle integers
+		if (str1.matches("[0-9]*") || str1.equals("")) {
+			if (str2.matches("[0-9]*") || str2.equals("")) {
 				return compareIntegers(str1, str2);
 			}
 		}
-	
+
 		// use the comparator to compare the strings
 		if (direction == ASC) {
 			return getComparator().compare(str1, str2);
 		} else {
 			return getComparator().compare(str2, str1);
 		}
-	
+
 	}
 
 	private int compareIntegers(String str1, String str2) {
-		if(str1.equals("")){
+		if (str1.equals("")) {
 			str1 = "0";
 		}
-		if(str2.equals("")){
+		if (str2.equals("")) {
 			str2 = "0";
 		}
 		int int1;
-		int  int2;
-		try{
-			int1	 = Integer.parseInt(str1);
-			 int2 = Integer.parseInt(str2);
-		}catch(NumberFormatException e){
+		int int2;
+		try {
+			int1 = Integer.parseInt(str1);
+			int2 = Integer.parseInt(str2);
+		} catch (NumberFormatException e) {
 			return 0;
 		}
-		
-		if(direction == ASC){
+
+		if (direction == ASC) {
 			return int1 - int2;
-		}else{
+		} else {
 			return int2 - int1;
 		}
 	}
@@ -160,7 +159,6 @@ public abstract class UnicaseColumnViewerSorter extends ViewerComparator {
 	}
 
 	/**
-	 * 
 	 * @return viewer column
 	 */
 	public abstract ViewerColumn getViewerColumn();
@@ -179,7 +177,6 @@ public abstract class UnicaseColumnViewerSorter extends ViewerComparator {
 		return columnLabelProvider;
 	}
 
-	
 	/**
 	 * @return the viewer
 	 */

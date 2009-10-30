@@ -31,7 +31,7 @@ import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -122,7 +122,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		isInited = true;
 
 		// Initialize simple dependencies
-		ModelPackage.eINSTANCE.eClass();
+		MetamodelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE
@@ -384,7 +384,8 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 
 		// Obtain other dependent packages
 		RolesPackage theRolesPackage = (RolesPackage) EPackage.Registry.INSTANCE.getEPackage(RolesPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(EsmodelPackage.eNS_URI);
 
@@ -397,9 +398,9 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 
 		// Add supertypes to classes
 		acUserEClass.getESuperTypes().add(this.getACOrgUnit());
-		acOrgUnitEClass.getESuperTypes().add(theModelPackage.getIdentifiableElement());
+		acOrgUnitEClass.getESuperTypes().add(theMetamodelPackage.getIdentifiableElement());
 		acGroupEClass.getESuperTypes().add(this.getACOrgUnit());
-		acOrgUnitIdEClass.getESuperTypes().add(theModelPackage.getUniqueIdentifier());
+		acOrgUnitIdEClass.getESuperTypes().add(theMetamodelPackage.getUniqueIdentifier());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(acUserEClass, ACUser.class, "ACUser", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -428,7 +429,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		initEReference(getACGroup_Members(), this.getACOrgUnit(), null, "members", null, 0, -1, ACGroup.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getACGroup_Members().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
+		getACGroup_Members().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(acOrgUnitIdEClass, ACOrgUnitId.class, "ACOrgUnitId", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -443,7 +444,7 @@ public class AccesscontrolPackageImpl extends EPackageImpl implements Accesscont
 		initEReference(getOrgUnitProperty_Project(), theEsmodelPackage.getProjectId(), null, "project", null, 0, 1,
 			OrgUnitProperty.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getOrgUnitProperty_Project().getEKeys().add(theModelPackage.getUniqueIdentifier_Id());
+		getOrgUnitProperty_Project().getEKeys().add(theMetamodelPackage.getUniqueIdentifier_Id());
 	}
 
 } // AccesscontrolPackageImpl

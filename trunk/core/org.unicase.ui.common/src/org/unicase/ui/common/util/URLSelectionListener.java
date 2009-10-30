@@ -25,13 +25,13 @@ import org.unicase.workspace.util.WorkspaceUtil;
 
 /**
  * A singleton selection listener that resolves unicase URLs and opens the element in a MEEditor.
+ * 
  * @author Shterev
- *
  */
-public final class URLSelectionListener implements SelectionListener{
+public final class URLSelectionListener implements SelectionListener {
 
 	private ProjectSpace projectSpace;
-	private static HashMap<ProjectSpace,URLSelectionListener> map = new HashMap<ProjectSpace, URLSelectionListener>();
+	private static HashMap<ProjectSpace, URLSelectionListener> map = new HashMap<ProjectSpace, URLSelectionListener>();
 
 	/**
 	 * Default constructor.
@@ -79,22 +79,23 @@ public final class URLSelectionListener implements SelectionListener{
 		readEvent.setSourceView(source);
 		readEvent.setTimestamp(new Date());
 		new UnicaseCommand() {
-			
+
 			@Override
 			protected void doRun() {
 				projectSpace.addEvent(readEvent);
 			}
 		}.run();
 	}
-	
+
 	/**
 	 * Gets the singleton instance for this project space.
+	 * 
 	 * @param projectSpace the project space.
 	 * @return the singleton instance.
 	 */
-	public static URLSelectionListener getInstance(ProjectSpace projectSpace){
+	public static URLSelectionListener getInstance(ProjectSpace projectSpace) {
 		URLSelectionListener instance = map.get(projectSpace);
-		if(instance == null){
+		if (instance == null) {
 			instance = new URLSelectionListener(projectSpace);
 			map.put(projectSpace, instance);
 		}

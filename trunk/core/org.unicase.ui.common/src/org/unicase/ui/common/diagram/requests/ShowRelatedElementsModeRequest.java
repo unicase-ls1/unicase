@@ -12,25 +12,22 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.ShowRelatedElementsRequest;
 
 /**
  * @author schroech
- *
  */
 public class ShowRelatedElementsModeRequest extends ShowRelatedElementsRequest {
 
 	private final boolean enable;
-	
+
 	/**
-	 * Constructor for ShowRelatedElementsModeRequest.
-	 * Filter is set to the default of true and the default list of models
-	 * will be used.
+	 * Constructor for ShowRelatedElementsModeRequest. Filter is set to the default of true and the default list of
+	 * models will be used.
 	 * 
 	 * @param shapes List of IShapeView objects that were selected
-	 * @param relationshipTypesToShow  List of relationship type hints
-	 * to show.  Use CoreUMLTypeInfo.
+	 * @param relationshipTypesToShow List of relationship type hints to show. Use CoreUMLTypeInfo.
 	 * @param isExpandIndefinite true to expand indefinitely, false not to.
-	 * @param expandLevel specify an int level here for the number of
-	 * levels to expand if you set isExpandIndefinite to false.
-	 * @param expansionType should include incoming or outgoing  relationships when searching
-	 * for related elements if this is true
+	 * @param expandLevel specify an int level here for the number of levels to expand if you set isExpandIndefinite to
+	 *            false.
+	 * @param expansionType should include incoming or outgoing relationships when searching for related elements if
+	 *            this is true
 	 * @param enable enable or disable the mode
 	 */
 	@SuppressWarnings("unchecked")
@@ -47,6 +44,4 @@ public class ShowRelatedElementsModeRequest extends ShowRelatedElementsRequest {
 		return enable;
 	}
 
-	
-	
 }

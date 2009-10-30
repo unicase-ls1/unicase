@@ -26,13 +26,13 @@ import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.forms.widgets.ImageHyperlink;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.rationale.Comment;
 import org.unicase.model.rationale.RationaleFactory;
-import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.ui.meeditor.mecontrols.AbstractMEControl;
 import org.unicase.ui.meeditor.mecontrols.MEControl;
@@ -93,7 +93,7 @@ public class MECommentsLinkControl extends AbstractMEControl implements MEContro
 
 		};
 
-		if (ModelPackage.eINSTANCE.getModelElement().isInstance(modelElement)) {
+		if (MetamodelPackage.eINSTANCE.getModelElement().isInstance(modelElement)) {
 			UnicaseModelElement me = (UnicaseModelElement) modelElement;
 			project = WorkspaceManager.getProjectSpace(me).getProject();
 			project.addProjectChangeObserver(observerImpl);

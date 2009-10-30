@@ -15,7 +15,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.util.SerializationException;
+import org.unicase.metamodel.util.SerializationException;
 
 /**
  * Runs a random set of operations.
@@ -25,7 +25,6 @@ import org.unicase.model.util.SerializationException;
 public class CompositeTest extends IntegrationTest {
 
 	private long randomSeed = 1;
-
 
 	private boolean testAll = true;
 	private int maxTimesToRunATestCase = 3;
@@ -60,7 +59,6 @@ public class CompositeTest extends IntegrationTest {
 		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "CompositeTest"));
 
 	}
-	
 
 	private void doTest() {
 		testHelper = new IntegrationTestHelper(randomSeed, getTestProject());
@@ -107,7 +105,7 @@ public class CompositeTest extends IntegrationTest {
 		for (int j = 0; j < IntegrationTestHelper.NUM_OF_TESTS; j++) {
 			int index = testHelper.getRandomPosition(testsToRun.size());
 			Integer testToRun = testsToRun.get(index);
-			
+
 			int timesToRun = testHelper.getRandomPosition(maxTimesToRunATestCase);
 			// make sure the test runs at least once
 			if (timesToRun == 0) {
@@ -125,13 +123,13 @@ public class CompositeTest extends IntegrationTest {
 		for (int i = 0; i < timesToRun; i++) {
 			switch (testToRun.intValue()) {
 			case 0:
-				// Delete 
+				// Delete
 				System.out.println("Delete");
 				testHelper.doDelete();
 				break;
 
 			case 1:
-				// CreateAndDelete 
+				// CreateAndDelete
 				System.out.println("CreateAndDelete");
 				testHelper.doCreateDelete();
 				break;
@@ -201,25 +199,25 @@ public class CompositeTest extends IntegrationTest {
 				System.out.println("ContainmentReferenceAddNew");
 				testHelper.doContainemntReferenceAddNew();
 				break;
-				
+
 			case 13:
 				// ContainmentRefTransitiveChange
 				System.out.println("ContainmentRefTransitiveChange");
 				testHelper.doContainmentRefTransitiveChange();
 				break;
-				
+
 			case 14:
 				// CreateAndMultipleChangeTest
 				System.out.println("CreateAndMultipleChangeTest");
 				testHelper.doCreateAndMultipleChange();
 				break;
-				
+
 			case 15:
 				// CreateChangeRefDelete
 				System.out.println("CreateChangeRefDelete");
 				testHelper.doCreateChangeRefDelete();
 				break;
-				
+
 			default:
 				break;
 
@@ -227,8 +225,9 @@ public class CompositeTest extends IntegrationTest {
 		}
 
 	}
-	//begin of custom code
-	
+
+	// begin of custom code
+
 	/**
 	 * @param testAll the testAll to set
 	 */

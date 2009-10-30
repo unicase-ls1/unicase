@@ -65,9 +65,10 @@ import org.unicase.emfstore.exceptions.InvalidVersionSpecException;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
-import org.unicase.model.util.ModelUtil;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.ui.common.exceptions.DialogHandler;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.common.util.EventUtil;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
@@ -77,7 +78,6 @@ import org.unicase.workspace.ui.commands.ServerRequestCommandHandler;
 import org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper;
 import org.unicase.workspace.ui.views.scm.SCMContentProvider;
 import org.unicase.workspace.ui.views.scm.SCMLabelProvider;
-import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.ProjectSpaceContainer;
 
 /**

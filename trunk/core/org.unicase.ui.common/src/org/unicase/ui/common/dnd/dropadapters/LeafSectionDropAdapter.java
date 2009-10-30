@@ -36,10 +36,8 @@ public class LeafSectionDropAdapter extends MEDropAdapter {
 	}
 
 	/**
-	 * {@inheritDoc}
-	 * Note: if we drop a model element with a bidirectional reference, we set the parent for drop
-	 * source, instead of just adding drop source to target (container). This is because of change recording.
-	 * 
+	 * {@inheritDoc} Note: if we drop a model element with a bidirectional reference, we set the parent for drop source,
+	 * instead of just adding drop source to target (container). This is because of change recording.
 	 * 
 	 * @see org.unicase.ui.common.dnd.dropadapters.MEDropAdapter#drop(org.eclipse.swt.dnd.DropTargetEvent,
 	 *      org.unicase.metamodel.ModelElement, java.util.List)
@@ -50,8 +48,8 @@ public class LeafSectionDropAdapter extends MEDropAdapter {
 		if (!(dropee instanceof Annotation)) {
 			super.drop(event, target, source);
 		} else {
-			for(UnicaseModelElement me : source){
-				((Annotation)me).setLeafSection((LeafSection)target);
+			for (UnicaseModelElement me : source) {
+				((Annotation) me).setLeafSection((LeafSection) target);
 			}
 		}
 

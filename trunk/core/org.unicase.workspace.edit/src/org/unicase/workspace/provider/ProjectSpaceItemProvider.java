@@ -13,6 +13,7 @@ import java.util.List;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -28,11 +29,11 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.events.EventsFactory;
+import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.document.DocumentPackage;
-import org.unicase.model.provider.IdentifiableElementItemProvider;
+import org.unicase.metamodel.provider.IdentifiableElementItemProvider;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspacePackage;
@@ -315,7 +316,7 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT,
-			ModelFactory.eINSTANCE.createProject()));
+			MetamodelFactory.eINSTANCE.createProject()));
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__PROJECT_ID,
 			EsmodelFactory.eINSTANCE.createProjectId()));
@@ -389,6 +390,9 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
 			EventsFactory.eINSTANCE.createNotificationIgnoreEvent()));
 
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__EVENTS,
+			EventsFactory.eINSTANCE.createURLEvent()));
+
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PROJECT_SPACE__BASE_VERSION,
 			VersioningFactory.eINSTANCE.createPrimaryVersionSpec()));
 
@@ -423,10 +427,16 @@ public class ProjectSpaceItemProvider extends IdentifiableElementItemProvider im
 				return Collections.EMPTY_LIST;
 			}
 
-			final Collection<ModelElement> compositesections = project.getModelElementsByClass(
-				DocumentPackage.eINSTANCE.getCompositeSection(), new BasicEList<ModelElement>());
 			Collection<EObject> ret = new ArrayList<EObject>();
-			ret.addAll(compositesections);
+			EList<ModelElement> modelElements = project.getModelElementsByClass(MetamodelPackage.eINSTANCE
+				.getModelElement(), new BasicEList<ModelElement>());
+			// FIXME: ugly hack to avoid dependency to model
+			for (ModelElement modelElement : modelElements) {
+				EObject econtainer = modelElement.eContainer();
+				if ((econtainer instanceof Project) && modelElement.eClass().getName().equals("CompositeSection")) {
+					ret.add(modelElement);
+				}
+			}
 			ret.add(project);
 			return ret;
 		}

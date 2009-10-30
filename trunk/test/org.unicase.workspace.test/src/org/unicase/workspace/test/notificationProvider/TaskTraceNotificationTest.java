@@ -27,8 +27,8 @@ import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugReport;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
+import org.unicase.ui.dashboard.notificationProviders.TaskObjectNotificationProvider;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.notification.provider.TaskObjectNotificationProvider;
 
 /**
  * Tests the TaskNotificationProvider.

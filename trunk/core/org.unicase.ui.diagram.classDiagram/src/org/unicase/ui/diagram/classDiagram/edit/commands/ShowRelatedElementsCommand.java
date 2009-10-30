@@ -89,9 +89,9 @@ public class ShowRelatedElementsCommand extends Command {
 		// END SANITY CHECKS
 
 		if (request instanceof ShowRelatedElementsModeRequest) {
-			enableMode = ((ShowRelatedElementsModeRequest)request).isEnable();
+			enableMode = ((ShowRelatedElementsModeRequest) request).isEnable();
 		}
-		
+
 		setDiagramEditPart(diagramEditPart);
 
 		Collection<Class> invisibleRelatedClasses = getInvisibleRelatedClasses(primaryClassEditPart);

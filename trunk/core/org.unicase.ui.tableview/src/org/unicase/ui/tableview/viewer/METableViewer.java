@@ -33,9 +33,10 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.dialogs.ListSelectionDialog;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.Project;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.ModelPackage;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.ui.common.TableViewerColumnSorter;
 import org.unicase.ui.tableview.labelproviders.AbstractCheckboxColumnLabelProvider;
@@ -106,12 +107,12 @@ public class METableViewer {
 			|| feature.getEType().equals(OrganizationPackage.Literals.USER)) {
 			style = SWT.CENTER;
 			width = 100;
-		} else if (feature.equals(ModelPackage.Literals.MODEL_ELEMENT__CREATOR)) {
+		} else if (feature.equals(MetamodelPackage.Literals.MODEL_ELEMENT__CREATOR)) {
 			style = SWT.CENTER;
 			width = 100;
 		}
 
-		else if (feature.equals(ModelPackage.Literals.MODEL_ELEMENT__NAME)) {
+		else if (feature.equals(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__NAME)) {
 			width = 300;
 			style = SWT.NONE;
 		}
@@ -214,7 +215,7 @@ public class METableViewer {
 
 		if (initialColumns == null) {
 			initialColumns = new ArrayList<String>();
-			initialColumns.add(ModelPackage.Literals.MODEL_ELEMENT__NAME.getName());
+			initialColumns.add(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__NAME.getName());
 		}
 		tableViewer.getTable().setRedraw(false);
 		removeAllColumns();
@@ -420,7 +421,7 @@ public class METableViewer {
 				columns.add(createDateColumn(feature));
 			} else if (feature.getEType().equals(EcorePackage.Literals.EBOOLEAN)) {
 				columns.add(createBooleanColumn(feature));
-			} else if (feature.equals(ModelPackage.Literals.MODEL_ELEMENT__STATE)) {
+			} else if (feature.equals(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__STATE)) {
 				columns.add(createStateColumn(feature));
 			} else {
 				columns.add(createGenericColumn(feature));
@@ -449,7 +450,7 @@ public class METableViewer {
 				TableViewerColumn column = createBooleanColumn(feature);
 				column.setEditingSupport(editingSupport);
 				columns.add(column);
-			} else if (feature.equals(ModelPackage.Literals.MODEL_ELEMENT__STATE)) {
+			} else if (feature.equals(ModelPackage.Literals.UNICASE_MODEL_ELEMENT__STATE)) {
 				TableViewerColumn column = createStateColumn(feature);
 				column.setEditingSupport(editingSupport);
 				columns.add(column);

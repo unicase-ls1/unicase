@@ -62,25 +62,20 @@ public class ModelDiagramEditorUtil {
 	public static Map getSaveOptions() {
 		Map saveOptions = new HashMap();
 		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8"); //$NON-NLS-1$
-		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED,
-				Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
+		saveOptions.put(Resource.OPTION_SAVE_ONLY_IF_CHANGED, Resource.OPTION_SAVE_ONLY_IF_CHANGED_MEMORY_BUFFER);
 		return saveOptions;
 	}
 
 	/**
 	 * @generated
 	 */
-	public static boolean openDiagram(Resource diagram)
-			throws PartInitException {
+	public static boolean openDiagram(Resource diagram) throws PartInitException {
 		String path = diagram.getURI().toPlatformString(true);
-		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot()
-				.findMember(new Path(path));
+		IResource workspaceResource = ResourcesPlugin.getWorkspace().getRoot().findMember(new Path(path));
 		if (workspaceResource instanceof IFile) {
-			IWorkbenchPage page = PlatformUI.getWorkbench()
-					.getActiveWorkbenchWindow().getActivePage();
-			return null != page.openEditor(new FileEditorInput(
-					(IFile) workspaceResource),
-					org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditor.ID);
+			IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
+			return null != page.openEditor(new FileEditorInput((IFile) workspaceResource),
+				org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditor.ID);
 		}
 		return false;
 	}
@@ -95,18 +90,15 @@ public class ModelDiagramEditorUtil {
 		try {
 			file.setCharset("UTF-8", new NullProgressMonitor()); //$NON-NLS-1$
 		} catch (CoreException e) {
-			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance()
-					.logError(
-							"Unable to set charset for file " + file.getFullPath(), e); //$NON-NLS-1$
+			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"Unable to set charset for file " + file.getFullPath(), e); //$NON-NLS-1$
 		}
 	}
 
 	/**
 	 * @generated
 	 */
-	public static String getUniqueFileName(IPath containerFullPath,
-			String fileName, String extension) {
+	public static String getUniqueFileName(IPath containerFullPath, String fileName, String extension) {
 		if (containerFullPath == null) {
 			containerFullPath = new Path(""); //$NON-NLS-1$
 		}
@@ -137,53 +129,41 @@ public class ModelDiagramEditorUtil {
 	 */
 	public static void runWizard(Shell shell, Wizard wizard, String settingsKey) {
 		IDialogSettings pluginDialogSettings = org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-				.getInstance().getDialogSettings();
-		IDialogSettings wizardDialogSettings = pluginDialogSettings
-				.getSection(settingsKey);
+			.getInstance().getDialogSettings();
+		IDialogSettings wizardDialogSettings = pluginDialogSettings.getSection(settingsKey);
 		if (wizardDialogSettings == null) {
-			wizardDialogSettings = pluginDialogSettings
-					.addNewSection(settingsKey);
+			wizardDialogSettings = pluginDialogSettings.addNewSection(settingsKey);
 		}
 		wizard.setDialogSettings(wizardDialogSettings);
 		WizardDialog dialog = new WizardDialog(shell, wizard);
 		dialog.create();
-		dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x),
-				500);
+		dialog.getShell().setSize(Math.max(500, dialog.getShell().getSize().x), 500);
 		dialog.open();
 	}
 
 	/**
 	 * This method should be called within a workspace modify operation since it creates resources.
+	 * 
 	 * @generated
 	 */
-	public static Resource createDiagram(URI diagramURI, URI modelURI,
-			IProgressMonitor progressMonitor) {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
-				.createEditingDomain();
-		progressMonitor
-				.beginTask(
-						org.unicase.ui.diagram.activityDiagram.part.Messages.ModelDiagramEditorUtil_CreateDiagramProgressTask,
-						3);
-		final Resource diagramResource = editingDomain.getResourceSet()
-				.createResource(diagramURI);
-		final Resource modelResource = editingDomain.getResourceSet()
-				.createResource(modelURI);
+	public static Resource createDiagram(URI diagramURI, URI modelURI, IProgressMonitor progressMonitor) {
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
+		progressMonitor.beginTask(
+			org.unicase.ui.diagram.activityDiagram.part.Messages.ModelDiagramEditorUtil_CreateDiagramProgressTask, 3);
+		final Resource diagramResource = editingDomain.getResourceSet().createResource(diagramURI);
+		final Resource modelResource = editingDomain.getResourceSet().createResource(modelURI);
 		final String diagramName = diagramURI.lastSegment();
-		AbstractTransactionalCommand command = new AbstractTransactionalCommand(
-				editingDomain,
-				org.unicase.ui.diagram.activityDiagram.part.Messages.ModelDiagramEditorUtil_CreateDiagramCommandLabel,
-				Collections.EMPTY_LIST) {
-			protected CommandResult doExecuteWithResult(
-					IProgressMonitor monitor, IAdaptable info)
-					throws ExecutionException {
+		AbstractTransactionalCommand command = new AbstractTransactionalCommand(editingDomain,
+			org.unicase.ui.diagram.activityDiagram.part.Messages.ModelDiagramEditorUtil_CreateDiagramCommandLabel,
+			Collections.EMPTY_LIST) {
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info)
+				throws ExecutionException {
 				MEDiagram model = createInitialModel();
 				attachModelToResource(model, modelResource);
 
-				Diagram diagram = ViewService
-						.createDiagram(
-								model,
-								org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart.MODEL_ID,
-								org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
+				Diagram diagram = ViewService.createDiagram(model,
+					org.unicase.ui.diagram.activityDiagram.edit.parts.MEDiagramEditPart.MODEL_ID,
+					org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.DIAGRAM_PREFERENCES_HINT);
 				if (diagram != null) {
 					diagramResource.getContents().add(diagram);
 					diagram.setName(diagramName);
@@ -191,29 +171,24 @@ public class ModelDiagramEditorUtil {
 				}
 
 				try {
-					modelResource
-							.save(org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorUtil
-									.getSaveOptions());
-					diagramResource
-							.save(org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorUtil
-									.getSaveOptions());
+					modelResource.save(org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorUtil
+						.getSaveOptions());
+					diagramResource.save(org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorUtil
+						.getSaveOptions());
 				} catch (IOException e) {
 
-					org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-							.getInstance()
-							.logError(
-									"Unable to store model and diagram resources", e); //$NON-NLS-1$
+					org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+						"Unable to store model and diagram resources", e); //$NON-NLS-1$
 				}
 				return CommandResult.newOKCommandResult();
 			}
 		};
 		try {
-			OperationHistoryFactory.getOperationHistory().execute(command,
-					new SubProgressMonitor(progressMonitor, 1), null);
+			OperationHistoryFactory.getOperationHistory().execute(command, new SubProgressMonitor(progressMonitor, 1),
+				null);
 		} catch (ExecutionException e) {
-			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin
-					.getInstance().logError(
-							"Unable to create model and diagram", e); //$NON-NLS-1$
+			org.unicase.ui.diagram.activityDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+				"Unable to create model and diagram", e); //$NON-NLS-1$
 		}
 		setCharset(WorkspaceSynchronizer.getFile(modelResource));
 		setCharset(WorkspaceSynchronizer.getFile(diagramResource));
@@ -221,9 +196,8 @@ public class ModelDiagramEditorUtil {
 	}
 
 	/**
-	 * Create a new instance of domain element associated with canvas.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Create a new instance of domain element associated with canvas. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static MEDiagram createInitialModel() {
@@ -231,9 +205,8 @@ public class ModelDiagramEditorUtil {
 	}
 
 	/**
-	 * Store model element in the resource.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * Store model element in the resource. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	private static void attachModelToResource(MEDiagram model, Resource resource) {
@@ -243,8 +216,7 @@ public class ModelDiagramEditorUtil {
 	/**
 	 * @generated
 	 */
-	public static void selectElementsInDiagram(
-			IDiagramWorkbenchPart diagramPart, List/*EditPart*/editParts) {
+	public static void selectElementsInDiagram(IDiagramWorkbenchPart diagramPart, List/* EditPart */editParts) {
 		diagramPart.getDiagramGraphicalViewer().deselectAll();
 
 		EditPart firstPrimary = null;
@@ -258,23 +230,19 @@ public class ModelDiagramEditorUtil {
 
 		if (!editParts.isEmpty()) {
 			diagramPart.getDiagramGraphicalViewer().reveal(
-					firstPrimary != null ? firstPrimary : (EditPart) editParts
-							.get(0));
+				firstPrimary != null ? firstPrimary : (EditPart) editParts.get(0));
 		}
 	}
 
 	/**
 	 * @generated
 	 */
-	private static int findElementsInDiagramByID(DiagramEditPart diagramPart,
-			EObject element, List editPartCollector) {
-		IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer) diagramPart
-				.getViewer();
+	private static int findElementsInDiagramByID(DiagramEditPart diagramPart, EObject element, List editPartCollector) {
+		IDiagramGraphicalViewer viewer = (IDiagramGraphicalViewer) diagramPart.getViewer();
 		final int intialNumOfEditParts = editPartCollector.size();
 
 		if (element instanceof View) { // support notation element lookup
-			EditPart editPart = (EditPart) viewer.getEditPartRegistry().get(
-					element);
+			EditPart editPart = (EditPart) viewer.getEditPartRegistry().get(element);
 			if (editPart != null) {
 				editPartCollector.add(editPart);
 				return 1;
@@ -282,11 +250,9 @@ public class ModelDiagramEditorUtil {
 		}
 
 		String elementID = EMFCoreUtil.getProxyID(element);
-		List associatedParts = viewer.findEditPartsForElement(elementID,
-				IGraphicalEditPart.class);
+		List associatedParts = viewer.findEditPartsForElement(elementID, IGraphicalEditPart.class);
 		// perform the possible hierarchy disjoint -> take the top-most parts only
-		for (Iterator editPartIt = associatedParts.iterator(); editPartIt
-				.hasNext();) {
+		for (Iterator editPartIt = associatedParts.iterator(); editPartIt.hasNext();) {
 			EditPart nextPart = (EditPart) editPartIt.next();
 			EditPart parentPart = nextPart.getParent();
 			while (parentPart != null && !associatedParts.contains(parentPart)) {
@@ -302,8 +268,7 @@ public class ModelDiagramEditorUtil {
 				editPartCollector.add(associatedParts.iterator().next());
 			} else {
 				if (element.eContainer() != null) {
-					return findElementsInDiagramByID(diagramPart, element
-							.eContainer(), editPartCollector);
+					return findElementsInDiagramByID(diagramPart, element.eContainer(), editPartCollector);
 				}
 			}
 		}
@@ -313,26 +278,20 @@ public class ModelDiagramEditorUtil {
 	/**
 	 * @generated
 	 */
-	public static View findView(DiagramEditPart diagramEditPart,
-			EObject targetElement, LazyElement2ViewMap lazyElement2ViewMap) {
+	public static View findView(DiagramEditPart diagramEditPart, EObject targetElement,
+		LazyElement2ViewMap lazyElement2ViewMap) {
 		boolean hasStructuralURI = false;
 		if (targetElement.eResource() instanceof XMLResource) {
-			hasStructuralURI = ((XMLResource) targetElement.eResource())
-					.getID(targetElement) == null;
+			hasStructuralURI = ((XMLResource) targetElement.eResource()).getID(targetElement) == null;
 		}
 
 		View view = null;
-		if (hasStructuralURI
-				&& !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
-			view = (View) lazyElement2ViewMap.getElement2ViewMap().get(
-					targetElement);
-		} else if (findElementsInDiagramByID(diagramEditPart, targetElement,
-				lazyElement2ViewMap.editPartTmpHolder) > 0) {
-			EditPart editPart = (EditPart) lazyElement2ViewMap.editPartTmpHolder
-					.get(0);
+		if (hasStructuralURI && !lazyElement2ViewMap.getElement2ViewMap().isEmpty()) {
+			view = (View) lazyElement2ViewMap.getElement2ViewMap().get(targetElement);
+		} else if (findElementsInDiagramByID(diagramEditPart, targetElement, lazyElement2ViewMap.editPartTmpHolder) > 0) {
+			EditPart editPart = (EditPart) lazyElement2ViewMap.editPartTmpHolder.get(0);
 			lazyElement2ViewMap.editPartTmpHolder.clear();
-			view = editPart.getModel() instanceof View ? (View) editPart
-					.getModel() : null;
+			view = editPart.getModel() instanceof View ? (View) editPart.getModel() : null;
 		}
 
 		return (view == null) ? diagramEditPart.getDiagramView() : view;
@@ -395,42 +354,34 @@ public class ModelDiagramEditorUtil {
 		/**
 		 * @generated
 		 */
-		static Map buildElement2ViewMap(View parentView, Map element2ViewMap,
-				Set elements) {
+		static Map buildElement2ViewMap(View parentView, Map element2ViewMap, Set elements) {
 			if (elements.size() == element2ViewMap.size())
 				return element2ViewMap;
 
-			if (parentView.isSetElement()
-					&& !element2ViewMap.containsKey(parentView.getElement())
-					&& elements.contains(parentView.getElement())) {
+			if (parentView.isSetElement() && !element2ViewMap.containsKey(parentView.getElement())
+				&& elements.contains(parentView.getElement())) {
 				element2ViewMap.put(parentView.getElement(), parentView);
 				if (elements.size() == element2ViewMap.size())
 					return element2ViewMap;
 			}
 
-			for (Iterator it = parentView.getChildren().iterator(); it
-					.hasNext();) {
-				buildElement2ViewMap((View) it.next(), element2ViewMap,
-						elements);
+			for (Iterator it = parentView.getChildren().iterator(); it.hasNext();) {
+				buildElement2ViewMap((View) it.next(), element2ViewMap, elements);
 				if (elements.size() == element2ViewMap.size())
 					return element2ViewMap;
 			}
-			for (Iterator it = parentView.getSourceEdges().iterator(); it
-					.hasNext();) {
-				buildElement2ViewMap((View) it.next(), element2ViewMap,
-						elements);
+			for (Iterator it = parentView.getSourceEdges().iterator(); it.hasNext();) {
+				buildElement2ViewMap((View) it.next(), element2ViewMap, elements);
 				if (elements.size() == element2ViewMap.size())
 					return element2ViewMap;
 			}
-			for (Iterator it = parentView.getSourceEdges().iterator(); it
-					.hasNext();) {
-				buildElement2ViewMap((View) it.next(), element2ViewMap,
-						elements);
+			for (Iterator it = parentView.getSourceEdges().iterator(); it.hasNext();) {
+				buildElement2ViewMap((View) it.next(), element2ViewMap, elements);
 				if (elements.size() == element2ViewMap.size())
 					return element2ViewMap;
 			}
 			return element2ViewMap;
 		}
-	} //LazyElement2ViewMap	
+	} // LazyElement2ViewMap
 
 }

@@ -18,13 +18,9 @@ import org.unicase.workspace.test.integration.reversibility.AllReversibilityInte
 
 /**
  * @author Hodaie
- *
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({
-	AllForwardIntegrationTests.class,
-	AllReversibilityIntegrationTests.class
-	})
+@Suite.SuiteClasses( { AllForwardIntegrationTests.class, AllReversibilityIntegrationTests.class })
 public class AllIntegrationTests {
 
 }

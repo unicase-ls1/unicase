@@ -17,24 +17,33 @@ import org.unicase.ui.common.diagram.util.EditPartUtility;
 /**
  * @author schroech, denglerm
  */
-public class DiagramTypeTester extends org.unicase.ui.common.diagram.part.DiagramTypeTester {
+public class DiagramTypeTester extends
+		org.unicase.ui.common.diagram.part.DiagramTypeTester {
 
 	/**
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],
-	 *      java.lang.Object)
-	 * @param receiver The EObject to test
-	 * @param property The "type" property
-	 * @param args Additional arguments ignored by this tester
-	 * @param expectedValue the expected value of the property. Can be any literal value defined in {@link DiagramType}
-	 * @return Returns <code>true</code> if receiver can appear on a component diagram.
+	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object,
+	 *      java.lang.String, java.lang.Object[], java.lang.Object)
+	 * @param receiver
+	 *            The EObject to test
+	 * @param property
+	 *            The "type" property
+	 * @param args
+	 *            Additional arguments ignored by this tester
+	 * @param expectedValue
+	 *            the expected value of the property. Can be any literal value
+	 *            defined in {@link DiagramType}
+	 * @return Returns <code>true</code> if receiver can appear on a component
+	 *         diagram.
 	 */
 	@Override
-	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
+	public boolean test(Object receiver, String property, Object[] args,
+			Object expectedValue) {
 		if (receiver instanceof MEDiagram) {
 			return super.test(receiver, property, args, expectedValue);
 		}
 		View view = null;
-		IEditorPart iep = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor();
+		IEditorPart iep = PlatformUI.getWorkbench().getActiveWorkbenchWindow()
+				.getActivePage().getActiveEditor();
 		if (iep instanceof DiagramDocumentEditor) {
 			DiagramDocumentEditor dde = (DiagramDocumentEditor) iep;
 			DiagramEditPart editPart = dde.getDiagramEditPart();

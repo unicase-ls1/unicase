@@ -3,6 +3,5 @@ package org.unicase.ui.diagram.activityDiagram.edit.helpers;
 /**
  * @generated
  */
-public class TransitionEditHelper extends
-		org.unicase.ui.diagram.activityDiagram.edit.helpers.ModelBaseEditHelper {
+public class TransitionEditHelper extends org.unicase.ui.diagram.activityDiagram.edit.helpers.ModelBaseEditHelper {
 }

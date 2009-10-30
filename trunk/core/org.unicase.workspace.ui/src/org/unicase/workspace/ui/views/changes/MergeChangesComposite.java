@@ -37,8 +37,8 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author Shterev
  */
-public class MergeChangesComposite extends Composite implements ChangesComposite, ICheckStateListener,
-	ISelectionChangedListener {
+public class MergeChangesComposite extends Composite implements
+		ChangesComposite, ICheckStateListener, ISelectionChangedListener {
 
 	private TabFolder folder;
 
@@ -63,13 +63,18 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent the composite's parent
-	 * @param style the style
-	 * @param myChangePackages the input of change packages as a list
-	 * @param theirChangePackages the input of change packages as a list
+	 * @param parent
+	 *            the composite's parent
+	 * @param style
+	 *            the style
+	 * @param myChangePackages
+	 *            the input of change packages as a list
+	 * @param theirChangePackages
+	 *            the input of change packages as a list
 	 */
-	public MergeChangesComposite(Composite parent, int style, List<ChangePackage> myChangePackages,
-		List<ChangePackage> theirChangePackages) {
+	public MergeChangesComposite(Composite parent, int style,
+			List<ChangePackage> myChangePackages,
+			List<ChangePackage> theirChangePackages) {
 		super(parent, style);
 		conflictDetector = new ConflictDetector();
 		operationStates = new HashMap<AbstractOperation, OperationState>();
@@ -83,17 +88,21 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 		// initialize the operation-state mapping
 		initOperationStateMap(myChangePackages);
 		initOperationStateMap(theirChangePackages);
-		emfLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		emfLabelProvider = new AdapterFactoryLabelProvider(
+				new ComposedAdapterFactory(
+						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		ArrayList<ChangePackage> allChangePackages = new ArrayList<ChangePackage>();
 		allChangePackages.addAll(myChangePackages);
 		allChangePackages.addAll(theirChangePackages);
-		visualizationHelper = new ChangePackageVisualizationHelper(allChangePackages, WorkspaceManager.getInstance()
-			.getCurrentWorkspace().getActiveProjectSpace().getProject());
+		visualizationHelper = new ChangePackageVisualizationHelper(
+				allChangePackages, WorkspaceManager.getInstance()
+						.getCurrentWorkspace().getActiveProjectSpace()
+						.getProject());
 
 		setLayout(new GridLayout());
 		folder = new TabFolder(this, style);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(folder);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
+				true).applyTo(folder);
 
 		// createCompactTab();
 		createDetailedTab();
@@ -107,37 +116,46 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 
 	private void createDetailedTab() {
 		SashForm detailedTab = new SashForm(folder, SWT.HORIZONTAL);
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(true).applyTo(detailedTab);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(true)
+				.applyTo(detailedTab);
 		TabItem detailedTabItem = new TabItem(folder, SWT.NONE);
 		detailedTabItem.setText("Detailed");
 		detailedTabItem.setControl(detailedTab);
-		DetailedChangesComposite myDetailedComposite = new DetailedChangesComposite(detailedTab, SWT.BORDER,
-			AbstractChangesComposite.VERTICAL, this.myChangePackages, true);
-		DetailedChangesComposite theirDetailedComposite = new DetailedChangesComposite(detailedTab, SWT.BORDER,
-			AbstractChangesComposite.VERTICAL, this.theirChangePackages, true);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(myDetailedComposite);
-		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true, true).applyTo(theirDetailedComposite);
+		DetailedChangesComposite myDetailedComposite = new DetailedChangesComposite(
+				detailedTab, SWT.BORDER, AbstractChangesComposite.VERTICAL,
+				this.myChangePackages, true);
+		DetailedChangesComposite theirDetailedComposite = new DetailedChangesComposite(
+				detailedTab, SWT.BORDER, AbstractChangesComposite.VERTICAL,
+				this.theirChangePackages, true);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
+				true).applyTo(myDetailedComposite);
+		GridDataFactory.fillDefaults().align(SWT.FILL, SWT.FILL).grab(true,
+				true).applyTo(theirDetailedComposite);
 		detailedTab.setWeights(new int[] { 50, 50 });
 
 		// override the labelprovider
-		MENameLabelProvider labelProvider1 = new MENameLabelProvider(emfLabelProvider, visualizationHelper,
-			new OperationColorLabelProvider(operationStates));
+		MENameLabelProvider labelProvider1 = new MENameLabelProvider(
+				emfLabelProvider, visualizationHelper,
+				new OperationColorLabelProvider(operationStates));
 		myDetailedComposite.getMeColumn().setLabelProvider(labelProvider1);
 		theirDetailedComposite.getMeColumn().setLabelProvider(labelProvider1);
 
-		OperationsNameLabelProvider labelProvider2 = new OperationsNameLabelProvider(emfLabelProvider,
-			visualizationHelper, new OperationColorLabelProvider(operationStates));
+		OperationsNameLabelProvider labelProvider2 = new OperationsNameLabelProvider(
+				emfLabelProvider, visualizationHelper,
+				new OperationColorLabelProvider(operationStates));
 		myDetailedComposite.getOpColumn().setLabelProvider(labelProvider2);
 		theirDetailedComposite.getOpColumn().setLabelProvider(labelProvider2);
 
 		// expand the trees and add listeners
 		myDetailedComposite.getTreeViewer().expandAll();
-		myDetailedTreeViewer = (CheckboxTreeViewer) myDetailedComposite.getTreeViewer();
+		myDetailedTreeViewer = (CheckboxTreeViewer) myDetailedComposite
+				.getTreeViewer();
 		myDetailedTreeViewer.addCheckStateListener(this);
 		myDetailedTreeViewer.addSelectionChangedListener(this);
 
 		theirDetailedComposite.getTreeViewer().expandAll();
-		theirDetailedTreeViewer = (CheckboxTreeViewer) theirDetailedComposite.getTreeViewer();
+		theirDetailedTreeViewer = (CheckboxTreeViewer) theirDetailedComposite
+				.getTreeViewer();
 		theirDetailedTreeViewer.addCheckStateListener(this);
 		theirDetailedTreeViewer.addSelectionChangedListener(this);
 
@@ -156,20 +174,21 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 	 */
 	public void checkStateChanged(CheckStateChangedEvent event) {
 		Object element = event.getElement();
-		CheckboxTreeViewer checkBoxViewer = (CheckboxTreeViewer) event.getSource();
+		CheckboxTreeViewer checkBoxViewer = (CheckboxTreeViewer) event
+				.getSource();
 
 		// check/uncheck the parent acc. to its children's state
 		if (element instanceof ChangePackage) {
-			Object[] elements = ((DetailedChangesContentProvider) checkBoxViewer.getContentProvider())
-				.getChildren(element);
+			Object[] elements = ((DetailedChangesContentProvider) checkBoxViewer
+					.getContentProvider()).getChildren(element);
 			for (Object op : elements) {
 				checkBoxViewer.setChecked(op, event.getChecked());
 			}
 		}
 		if (element instanceof AbstractOperation) {
 			EObject container = ((AbstractOperation) element).eContainer();
-			Object[] elements = ((DetailedChangesContentProvider) checkBoxViewer.getContentProvider())
-				.getChildren(container);
+			Object[] elements = ((DetailedChangesContentProvider) checkBoxViewer
+					.getContentProvider()).getChildren(container);
 			int checked = 0;
 			for (Object o : elements) {
 				if (checkBoxViewer.getChecked(o)) {
@@ -202,27 +221,33 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 		}
 	}
 
-	private void checkOperation(CheckboxTreeViewer viewer, AbstractOperation selected) {
+	private void checkOperation(CheckboxTreeViewer viewer,
+			AbstractOperation selected) {
 		List<AbstractOperation> from = null;
 		List<AbstractOperation> to = null;
-		if (viewer.equals(myCompactTreeViewer) || viewer.equals(myDetailedTreeViewer)) {
+		if (viewer.equals(myCompactTreeViewer)
+				|| viewer.equals(myDetailedTreeViewer)) {
 			from = myOperations;
 			to = theirOperations;
-		} else if (viewer.equals(theirCompactTreeViewer) || viewer.equals(theirDetailedTreeViewer)) {
+		} else if (viewer.equals(theirCompactTreeViewer)
+				|| viewer.equals(theirDetailedTreeViewer)) {
 			from = theirOperations;
 			to = myOperations;
 		}
-		List<AbstractOperation> required = conflictDetector.getRequired(from, selected);
+		List<AbstractOperation> required = conflictDetector.getRequired(from,
+				selected);
 		for (AbstractOperation op : required) {
 			viewer.setChecked(op, true);
 			checkStateChanged(new CheckStateChangedEvent(viewer, op, true));
 		}
 		required.add(selected);
-		Set<AbstractOperation> conflicting = conflictDetector.getConflicting(required, to);
+		Set<AbstractOperation> conflicting = conflictDetector.getConflicting(
+				required, to);
 		for (AbstractOperation op : conflicting) {
 			final CheckboxTreeViewer checkboxTreeViewer = treeMap.get(viewer);
 			checkboxTreeViewer.setChecked(op, false);
-			checkStateChanged(new CheckStateChangedEvent(checkboxTreeViewer, op, false));
+			checkStateChanged(new CheckStateChangedEvent(checkboxTreeViewer,
+					op, false));
 		}
 	}
 
@@ -230,7 +255,8 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 	 * {@inheritDoc}
 	 */
 	public void selectionChanged(SelectionChangedEvent event) {
-		Object element = ((IStructuredSelection) event.getSelection()).getFirstElement();
+		Object element = ((IStructuredSelection) event.getSelection())
+				.getFirstElement();
 		CheckboxTreeViewer viewer = (CheckboxTreeViewer) event.getSource();
 
 		// clear all operations
@@ -255,28 +281,35 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 		treeMap.get(viewer).refresh(true);
 	}
 
-	private void markOperation(CheckboxTreeViewer viewer, AbstractOperation selected) {
+	private void markOperation(CheckboxTreeViewer viewer,
+			AbstractOperation selected) {
 		treeMap.get(viewer).setSelection(null);
 		List<AbstractOperation> from = null;
 		List<AbstractOperation> to = null;
-		if (viewer.equals(myCompactTreeViewer) || viewer.equals(myDetailedTreeViewer)) {
+		if (viewer.equals(myCompactTreeViewer)
+				|| viewer.equals(myDetailedTreeViewer)) {
 			from = myOperations;
 			to = theirOperations;
-		} else if (viewer.equals(theirCompactTreeViewer) || viewer.equals(theirDetailedTreeViewer)) {
+		} else if (viewer.equals(theirCompactTreeViewer)
+				|| viewer.equals(theirDetailedTreeViewer)) {
 			from = theirOperations;
 			to = myOperations;
 		}
-		List<AbstractOperation> required = conflictDetector.getRequired(from, selected);
+		List<AbstractOperation> required = conflictDetector.getRequired(from,
+				selected);
 		for (AbstractOperation op : required) {
 			if (!viewer.getChecked(op)) {
-				operationStates.get(op).setPreviewState(OperationState.ACCEPTED);
+				operationStates.get(op)
+						.setPreviewState(OperationState.ACCEPTED);
 			}
 		}
 		required.add(selected);
-		Set<AbstractOperation> conflicting = conflictDetector.getConflicting(required, to);
+		Set<AbstractOperation> conflicting = conflictDetector.getConflicting(
+				required, to);
 		for (AbstractOperation op : conflicting) {
 			if (treeMap.get(viewer).getChecked(op)) {
-				operationStates.get(op).setPreviewState(OperationState.REJECTED);
+				operationStates.get(op)
+						.setPreviewState(OperationState.REJECTED);
 			}
 		}
 	}
@@ -296,7 +329,8 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 		// do nothing.
 	}
 
-	private List<AbstractOperation> getAllOperations(List<ChangePackage> packages) {
+	private List<AbstractOperation> getAllOperations(
+			List<ChangePackage> packages) {
 		ArrayList<AbstractOperation> ret = new ArrayList<AbstractOperation>();
 		for (ChangePackage cp : packages) {
 			ret.addAll(cp.getOperations());
@@ -305,9 +339,13 @@ public class MergeChangesComposite extends Composite implements ChangesComposite
 	}
 
 	/**
-	 * @return the result of the merging in the form of a HashMap. Three lists are returned mapped by the keys "theirs",
-	 *         "mineChecked", theirsNotChecked " ->> "theirs" being all new changes from the server, " mineChecked
-	 *         " - all local changes that were selected, "theirsNotChecked" - all remote changes that were declined.
+	 * @return the result of the merging in the form of a HashMap. Three lists
+	 *         are returned mapped by the keys "theirs", "mineChecked",
+	 *         theirsNotChecked
+	 *         " ->> "theirs" being all new changes from the server, "
+	 *         mineChecked
+	 *         " - all local changes that were selected, "theirsNotChecked" -
+	 *         all remote changes that were declined.
 	 */
 	public HashMap<String, List<AbstractOperation>> getResultSet() {
 		HashMap<String, List<AbstractOperation>> ret = new HashMap<String, List<AbstractOperation>>();

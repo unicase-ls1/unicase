@@ -23,6 +23,7 @@ import org.eclipse.swt.dnd.DropTargetEvent;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
 import org.eclipse.swt.widgets.TreeItem;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
@@ -85,7 +86,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 		dropAdapters = new HashMap<EClass, MEDropAdapter>();
 
 		// MEDropAdapter
-		dropAdapters.put(ModelPackage.eINSTANCE.getModelElement(), new MEDropAdapter(domain, viewer));
+		dropAdapters.put(MetamodelPackage.eINSTANCE.getModelElement(), new MEDropAdapter(domain, viewer));
 
 		// LeafSectionDropAdapter
 		dropAdapters.put(DocumentPackage.eINSTANCE.getLeafSection(), new LeafSectionDropAdapter(domain, viewer));
@@ -111,7 +112,7 @@ public class UCDropAdapter extends DropTargetAdapter {
 		dropAdapters.put(ModelPackage.eINSTANCE.getAnnotation(), new AnnotationDropAdapter(domain, viewer));
 
 		// ProjectDropAdapter
-		dropAdapters.put(ModelPackage.eINSTANCE.getProject(), new ProjectDropAdapter(domain, viewer));
+		dropAdapters.put(MetamodelPackage.eINSTANCE.getProject(), new ProjectDropAdapter(domain, viewer));
 
 	}
 
@@ -168,7 +169,8 @@ public class UCDropAdapter extends DropTargetAdapter {
 
 		// take care that you cannot drop anything on project (project is not a
 		// ModelElement)
-		if (event.item == null || event.item.getData() == null || !(event.item.getData() instanceof UnicaseModelElement)) {
+		if (event.item == null || event.item.getData() == null
+			|| !(event.item.getData() instanceof UnicaseModelElement)) {
 			result = false;
 		}
 

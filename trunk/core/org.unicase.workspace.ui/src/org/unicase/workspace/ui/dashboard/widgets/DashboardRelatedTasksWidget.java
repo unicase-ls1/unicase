@@ -26,15 +26,15 @@ import org.unicase.model.organization.User;
 import org.unicase.model.requirement.FunctionalRequirement;
 import org.unicase.model.task.TaskPackage;
 import org.unicase.model.task.WorkItem;
+import org.unicase.ui.common.util.CannotMatchUserInProjectException;
 import org.unicase.ui.common.util.ModelElementClassTooltip;
 import org.unicase.ui.common.util.ModelElementTooltip;
+import org.unicase.ui.common.util.OrgUnitHelper;
 import org.unicase.ui.common.util.URLHelper;
 import org.unicase.ui.common.util.URLSelectionListener;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.ui.dashboard.DashboardPage;
 import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * A dashboard widget displaying an overview of related tasks.
@@ -71,8 +71,9 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 			groups = OrgUnitHelper.getAllGroupsOfOrgUnit(user);
 			workItems = new ArrayList<WorkItem>();
 
-			List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(TaskPackage.eINSTANCE.getWorkItem(),
-				new BasicEList<WorkItem>());
+			List<WorkItem> allWI = ps.getProject().getAllModelElementsbyClass(
+					TaskPackage.eINSTANCE.getWorkItem(),
+					new BasicEList<WorkItem>());
 
 			for (WorkItem wi : allWI) {
 				if (applies(wi)) {
@@ -106,8 +107,8 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 
 	private boolean applies(WorkItem wi) {
 		return applies(TaskPackage.eINSTANCE.getWorkItem_Assignee(), wi)
-			|| applies(TaskPackage.eINSTANCE.getWorkItem_Participants(), wi)
-			|| applies(TaskPackage.eINSTANCE.getWorkItem_Reviewer(), wi);
+				|| applies(TaskPackage.eINSTANCE.getWorkItem_Participants(), wi)
+				|| applies(TaskPackage.eINSTANCE.getWorkItem_Reviewer(), wi);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -148,7 +149,8 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 		super.createContentPanel();
 
 		Composite panel = getContentPanel();
-		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false).spacing(3, 2).applyTo(panel);
+		GridLayoutFactory.fillDefaults().numColumns(2).equalWidth(false)
+				.spacing(3, 2).applyTo(panel);
 
 		if (relatedTasks.size() > 0) {
 			WorkItem[] items = relatedTasks.toArray(new WorkItem[0]);
@@ -158,17 +160,20 @@ public class DashboardRelatedTasksWidget extends AbstractDashboardWidget {
 				image.setImage(getLabelProvider().getImage(wi));
 				image.setData(wi.eClass());
 				ModelElementClassTooltip.enableFor(image);
-				GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(image);
+				GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING)
+						.applyTo(image);
 				Link link = new Link(panel, SWT.WRAP | SWT.MULTI);
 				link.setData(wi);
 				ModelElementTooltip.enableFor(link);
 				StringBuilder stringBuilder = new StringBuilder();
-				stringBuilder.append(URLHelper.getHTMLLinkForModelElement(wi, getDashboard().getProjectSpace(), 20));
+				stringBuilder.append(URLHelper.getHTMLLinkForModelElement(wi,
+						getDashboard().getProjectSpace(), 20));
 				link.setText(stringBuilder.toString());
-				link.addSelectionListener(URLSelectionListener.getInstance(getDashboard().getProjectSpace()));
-				GridDataFactory.fillDefaults()
-					.hint(getComposite().computeSize(SWT.DEFAULT, SWT.DEFAULT).x, SWT.DEFAULT).grab(true, false)
-					.applyTo(link);
+				link.addSelectionListener(URLSelectionListener
+						.getInstance(getDashboard().getProjectSpace()));
+				GridDataFactory.fillDefaults().hint(
+						getComposite().computeSize(SWT.DEFAULT, SWT.DEFAULT).x,
+						SWT.DEFAULT).grab(true, false).applyTo(link);
 			}
 		} else {
 			Label label = new Label(panel, SWT.WRAP);

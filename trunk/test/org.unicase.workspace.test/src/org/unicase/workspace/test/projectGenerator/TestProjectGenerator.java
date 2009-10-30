@@ -25,9 +25,10 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.ETypedElementImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
-import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.diagram.DiagramPackage;
@@ -67,7 +68,7 @@ public class TestProjectGenerator {
 
 	private Random random;
 	// these two are just shortcuts in order to save typing
-	private static final EClass MODELELEMENT_ECLASS = ModelPackage.eINSTANCE.getModelElement();
+	private static final EClass MODELELEMENT_ECLASS = MetamodelPackage.eINSTANCE.getModelElement();
 	private static final EClass SECTION_ECLASS = DocumentPackage.eINSTANCE.getSection();
 
 	// maintain a list of instances of every class. This is to avoid
@@ -142,7 +143,7 @@ public class TestProjectGenerator {
 			if (eObject instanceof EClass) {
 				EClass eClass = (EClass) eObject;
 				if (MODELELEMENT_ECLASS.isSuperTypeOf(eClass)) {
-					if (!(eClass.isAbstract() || eClass.isInterface() || eClass.equals(ModelPackage.eINSTANCE
+					if (!(eClass.isAbstract() || eClass.isInterface() || eClass.equals(MetamodelPackage.eINSTANCE
 						.getProject()))) {
 						// this can be instantiated
 						meNonAbstractClasses.add(eClass);
@@ -195,7 +196,7 @@ public class TestProjectGenerator {
 	 */
 	public Project generateProject() {
 		// create a project
-		this.project = ModelFactory.eINSTANCE.createProject();
+		this.project = MetamodelFactory.eINSTANCE.createProject();
 		// create document structure in project
 		int depth = projectDepth - 2;
 		for (int i = 0; i < projectWidth; i++) {
@@ -266,7 +267,7 @@ public class TestProjectGenerator {
 		// the model element IDs are set explicitly (in
 		// initializeSimpleAttributes() method)
 		// therefore we don't need to create instances of this class
-		if (eClass.equals(ModelPackage.eINSTANCE.getModelElementId())) {
+		if (eClass.equals(MetamodelPackage.eINSTANCE.getModelElementId())) {
 			return;
 		}
 		// the classes of Document package should not be instantiated
@@ -501,7 +502,7 @@ public class TestProjectGenerator {
 	 */
 	private boolean checkSpecialCase(ModelElement me, EReference ref) {
 		boolean result = false;
-		if (ref.getEReferenceType().equals(ModelPackage.eINSTANCE.getModelElementId())) {
+		if (ref.getEReferenceType().equals(MetamodelPackage.eINSTANCE.getModelElementId())) {
 			// for all instances the model element id is set
 			// during creation in createInstances method
 			result = true;
@@ -634,7 +635,7 @@ public class TestProjectGenerator {
 			for (int i = 0; i < lackingFreeInstances; i++) {
 				// if required, create new instances, but take care not to
 				// create Sections
-				freeMEs.add(createInstance(ModelPackage.eINSTANCE.getModelElement(), true));
+				freeMEs.add(createInstance(MetamodelPackage.eINSTANCE.getModelElement(), true));
 
 			}
 		}

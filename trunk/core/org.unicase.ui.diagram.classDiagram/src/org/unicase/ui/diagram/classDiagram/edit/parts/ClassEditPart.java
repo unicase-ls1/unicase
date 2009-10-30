@@ -67,42 +67,35 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE,
-				new CreationEditPolicy() {
-					public Command getCommand(Request request) {
-						if (understandsRequest(request)) {
-							if (request instanceof CreateViewAndElementRequest) {
-								CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request)
-										.getViewAndElementDescriptor()
-										.getCreateElementRequestAdapter();
-								IElementType type = (IElementType) adapter
-										.getAdapter(IElementType.class);
-								if (type == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Attribute_3001) {
-									EditPart compartmentEditPart = getChildBySemanticHint(org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
-											.getType(org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID));
-									return compartmentEditPart == null ? null
-											: compartmentEditPart
-													.getCommand(request);
-								}
-								if (type == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Method_3002) {
-									EditPart compartmentEditPart = getChildBySemanticHint(org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
-											.getType(org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID));
-									return compartmentEditPart == null ? null
-											: compartmentEditPart
-													.getCommand(request);
-								}
-							}
-							return super.getCommand(request);
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy() {
+			public Command getCommand(Request request) {
+				if (understandsRequest(request)) {
+					if (request instanceof CreateViewAndElementRequest) {
+						CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request)
+							.getViewAndElementDescriptor().getCreateElementRequestAdapter();
+						IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
+						if (type == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Attribute_3001) {
+							EditPart compartmentEditPart = getChildBySemanticHint(org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
+								.getType(org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID));
+							return compartmentEditPart == null ? null : compartmentEditPart.getCommand(request);
 						}
-						return null;
+						if (type == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Method_3002) {
+							EditPart compartmentEditPart = getChildBySemanticHint(org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
+								.getType(org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID));
+							return compartmentEditPart == null ? null : compartmentEditPart.getCommand(request);
+						}
 					}
-				});
+					return super.getCommand(request);
+				}
+				return null;
+			}
+		});
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.diagram.classDiagram.edit.policies.ClassItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.diagram.classDiagram.edit.policies.ClassItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
+		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable
+		// editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
 
@@ -146,23 +139,21 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	protected boolean addFixedChild(EditPart childEditPart) {
 		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassNameEditPart) {
 			((org.unicase.ui.diagram.classDiagram.edit.parts.ClassNameEditPart) childEditPart)
-					.setLabel(getPrimaryShape().getFigureClassFigure_name());
+				.setLabel(getPrimaryShape().getFigureClassFigure_name());
 			return true;
 		}
 		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart) {
 			IFigure pane = getPrimaryShape().getFigureClassFigure_attributes();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane
-					.add(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart) childEditPart)
-							.getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.add(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart) childEditPart)
+				.getFigure());
 			return true;
 		}
 		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart) {
 			IFigure pane = getPrimaryShape().getFigureClassFigure_methods();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane
-					.add(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart) childEditPart)
-							.getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.add(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart) childEditPart)
+				.getFigure());
 			return true;
 		}
 		return false;
@@ -175,18 +166,17 @@ public class ClassEditPart extends ShapeNodeEditPart {
 
 		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart) {
 			IFigure pane = getPrimaryShape().getFigureClassFigure_attributes();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
 			pane
-					.remove(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart) childEditPart)
-							.getFigure());
+				.remove(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart) childEditPart)
+					.getFigure());
 			return true;
 		}
 		if (childEditPart instanceof org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart) {
 			IFigure pane = getPrimaryShape().getFigureClassFigure_methods();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane
-					.remove(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart) childEditPart)
-							.getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.remove(((org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart) childEditPart)
+				.getFigure());
 			return true;
 		}
 		return false;
@@ -233,8 +223,7 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	 * @generated
 	 */
 	protected NodeFigure createNodePlate() {
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode()
-				.DPtoLP(40), getMapMode().DPtoLP(40));
+		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(getMapMode().DPtoLP(40), getMapMode().DPtoLP(40));
 		return result;
 	}
 
@@ -287,7 +276,7 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
-				.getType(org.unicase.ui.diagram.classDiagram.edit.parts.ClassNameEditPart.VISUAL_ID));
+			.getType(org.unicase.ui.diagram.classDiagram.edit.parts.ClassNameEditPart.VISUAL_ID));
 	}
 
 	/**
@@ -323,9 +312,8 @@ public class ClassEditPart extends ShapeNodeEditPart {
 
 			this.setLayoutManager(layoutThis);
 
-			this.setBorder(new MarginBorder(getMapMode().DPtoLP(0),
-					getMapMode().DPtoLP(0), getMapMode().DPtoLP(1),
-					getMapMode().DPtoLP(0)));
+			this.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(0), getMapMode().DPtoLP(1),
+				getMapMode().DPtoLP(0)));
 			createContents();
 		}
 
@@ -349,9 +337,8 @@ public class ClassEditPart extends ShapeNodeEditPart {
 
 			fFigureClassFigure_name.setFont(FFIGURECLASSFIGURE_NAME_FONT);
 
-			fFigureClassFigure_name.setBorder(new MarginBorder(getMapMode()
-					.DPtoLP(0), getMapMode().DPtoLP(5), getMapMode().DPtoLP(5),
-					getMapMode().DPtoLP(5)));
+			fFigureClassFigure_name.setBorder(new MarginBorder(getMapMode().DPtoLP(0), getMapMode().DPtoLP(5),
+				getMapMode().DPtoLP(5), getMapMode().DPtoLP(5)));
 
 			classFigure_Header0.add(fFigureClassFigure_name);
 
@@ -417,9 +404,7 @@ public class ClassEditPart extends ShapeNodeEditPart {
 	/**
 	 * @generated
 	 */
-	static final Font FFIGURECLASSFIGURE_NAME_FONT = new Font(Display
-			.getCurrent(),
-			Display.getDefault().getSystemFont().getFontData()[0].getName(), 9,
-			SWT.NORMAL);
+	static final Font FFIGURECLASSFIGURE_NAME_FONT = new Font(Display.getCurrent(), Display.getDefault()
+		.getSystemFont().getFontData()[0].getName(), 9, SWT.NORMAL);
 
 }

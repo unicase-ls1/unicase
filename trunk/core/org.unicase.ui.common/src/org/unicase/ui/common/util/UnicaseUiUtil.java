@@ -24,9 +24,9 @@ import org.unicase.emfstore.esmodel.accesscontrol.ACUser;
 import org.unicase.emfstore.esmodel.accesscontrol.roles.Role;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.NonDomainElement;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.dialogs.ErrorReportDialog;
 import org.unicase.workspace.ProjectSpace;
@@ -156,14 +156,16 @@ public final class UnicaseUiUtil {
 		dialog.open();
 
 	}
-	
+
 	/**
 	 * Get the name of a model element.
+	 * 
 	 * @param modelElement the model element
 	 * @return the name for the model element
 	 */
 	public static String getNameForModelElement(ModelElement modelElement) {
-		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+			ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return labelProvider.getText(modelElement);
 	}
 

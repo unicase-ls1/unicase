@@ -5,6 +5,13 @@
  */
 package org.unicase.ui.stem.views.statusview;
 
+import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+
 import org.eclipse.core.runtime.FileLocator;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
@@ -18,13 +25,6 @@ import org.unicase.model.task.util.CircularDependencyException;
 import org.unicase.model.task.util.MEState;
 import org.unicase.model.task.util.TaxonomyAccess;
 import org.unicase.ui.common.exceptions.DialogHandler;
-
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * This is the label provider for status column on user tab of status view.
@@ -151,7 +151,8 @@ public class UserTabStatusColumnLabelProvider extends ColumnLabelProvider {
 
 		List<WorkItem> workItems = new ArrayList<WorkItem>();
 		// then check its openers (hierarchical)
-		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(currentOpenME);
+		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(
+			currentOpenME);
 		for (UnicaseModelElement opener : openers) {
 			if (opener instanceof WorkItem) {
 				OrgUnit assignee2 = ((WorkItem) opener).getAssignee();

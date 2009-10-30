@@ -7,21 +7,16 @@ package org.unicase.workspace.test.changeTracking.operations;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
- 
+
 /**
  * Test Suite for running all tests of workspace.
+ * 
  * @author koegel
- *
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({
-  AttributeOperationTest.class,
-  SingleReferenceOperationTest.class,
-  MultiReferenceOperationTest.class,
-  CreateDeleteOperationTest.class,
-  MultiReferenceMoveOperationTest.class,
-  CompositeOperationTest.class
-})
+@Suite.SuiteClasses( { AttributeOperationTest.class, SingleReferenceOperationTest.class,
+	MultiReferenceOperationTest.class, CreateDeleteOperationTest.class, MultiReferenceMoveOperationTest.class,
+	CompositeOperationTest.class })
 public class AllOperationTests {
 
 }

@@ -75,8 +75,7 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	/**
 	 * @generated
 	 */
-	public void setOpenNewlyCreatedDiagramEditor(
-			boolean openNewlyCreatedDiagramEditor) {
+	public void setOpenNewlyCreatedDiagramEditor(boolean openNewlyCreatedDiagramEditor) {
 		this.openNewlyCreatedDiagramEditor = openNewlyCreatedDiagramEditor;
 	}
 
@@ -88,7 +87,7 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 		this.selection = selection;
 		setWindowTitle(org.unicase.ui.diagram.componentDiagram.part.Messages.ModelCreationWizardTitle);
 		setDefaultPageImageDescriptor(org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin
-				.getBundledImageDescriptor("icons/wizban/NewDiagramWizard.gif")); //$NON-NLS-1$
+			.getBundledImageDescriptor("icons/wizban/NewDiagramWizard.gif")); //$NON-NLS-1$
 		setNeedsProgressMonitor(true);
 	}
 
@@ -98,11 +97,11 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	@Override
 	public void addPages() {
 		diagramModelFilePage = new org.unicase.ui.diagram.componentDiagram.part.ModelCreationWizardPage(
-				"DiagramModelFile", getSelection(), "component_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
+			"DiagramModelFile", getSelection(), "component_diagram"); //$NON-NLS-1$ //$NON-NLS-2$
 		diagramModelFilePage
-				.setTitle(org.unicase.ui.diagram.componentDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageTitle);
+			.setTitle(org.unicase.ui.diagram.componentDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageTitle);
 		diagramModelFilePage
-				.setDescription(org.unicase.ui.diagram.componentDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageDescription);
+			.setDescription(org.unicase.ui.diagram.componentDiagram.part.Messages.ModelCreationWizard_DiagramModelFilePageDescription);
 		addPage(diagramModelFilePage);
 	}
 
@@ -113,20 +112,16 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
-			protected void execute(IProgressMonitor monitor)
-					throws CoreException, InterruptedException {
-				diagram = org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorUtil
-						.createDiagram(diagramModelFilePage.getURI(), monitor);
+			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
+				diagram = org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorUtil.createDiagram(
+					diagramModelFilePage.getURI(), monitor);
 				if (isOpenNewlyCreatedDiagramEditor() && diagram != null) {
 					try {
-						org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorUtil
-								.openDiagram(diagram);
+						org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorUtil.openDiagram(diagram);
 					} catch (PartInitException e) {
-						ErrorDialog
-								.openError(
-										getContainer().getShell(),
-										org.unicase.ui.diagram.componentDiagram.part.Messages.ModelCreationWizardOpenEditorError,
-										null, e.getStatus());
+						ErrorDialog.openError(getContainer().getShell(),
+							org.unicase.ui.diagram.componentDiagram.part.Messages.ModelCreationWizardOpenEditorError,
+							null, e.getStatus());
 					}
 				}
 			}
@@ -137,17 +132,12 @@ public class ModelCreationWizard extends Wizard implements INewWizard {
 			return false;
 		} catch (InvocationTargetException e) {
 			if (e.getTargetException() instanceof CoreException) {
-				ErrorDialog
-						.openError(
-								getContainer().getShell(),
-								org.unicase.ui.diagram.componentDiagram.part.Messages.ModelCreationWizardCreationError,
-								null, ((CoreException) e.getTargetException())
-										.getStatus());
+				ErrorDialog.openError(getContainer().getShell(),
+					org.unicase.ui.diagram.componentDiagram.part.Messages.ModelCreationWizardCreationError, null,
+					((CoreException) e.getTargetException()).getStatus());
 			} else {
-				org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin
-						.getInstance()
-						.logError(
-								"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
+				org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+					"Error creating diagram", e.getTargetException()); //$NON-NLS-1$
 			}
 			return false;
 		}

@@ -10,15 +10,13 @@ import org.eclipse.swt.graphics.Image;
 /**
  * @generated
  */
-public class ModelIconProvider extends AbstractProvider implements
-		IIconProvider {
+public class ModelIconProvider extends AbstractProvider implements IIconProvider {
 
 	/**
 	 * @generated
 	 */
 	public Image getIcon(IAdaptable hint, int flags) {
-		return org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes
-				.getImage(hint);
+		return org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.getImage(hint);
 	}
 
 	/**

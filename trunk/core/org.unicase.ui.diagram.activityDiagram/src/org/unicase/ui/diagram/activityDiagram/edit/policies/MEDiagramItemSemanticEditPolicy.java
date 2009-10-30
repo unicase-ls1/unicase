@@ -11,58 +11,44 @@ import org.unicase.model.diagram.DiagramPackage;
 /**
  * @generated
  */
-public class MEDiagramItemSemanticEditPolicy
-		extends
-		org.unicase.ui.diagram.activityDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class MEDiagramItemSemanticEditPolicy extends
+	org.unicase.ui.diagram.activityDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
-		if (org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Activity_2002 == req
-				.getElementType()) {
+		if (org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Activity_2002 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(DiagramPackage.eINSTANCE
-						.getMEDiagram_NewElements());
+				req.setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.ui.diagram.activityDiagram.edit.commands.ActivityCreateCommand(
-					req));
+			return getGEFWrapper(new org.unicase.ui.diagram.activityDiagram.edit.commands.ActivityCreateCommand(req));
 		}
-		if (org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Fork_2003 == req
-				.getElementType()) {
+		if (org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Fork_2003 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(DiagramPackage.eINSTANCE
-						.getMEDiagram_NewElements());
+				req.setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.ui.diagram.activityDiagram.edit.commands.ForkCreateCommand(
-					req));
+			return getGEFWrapper(new org.unicase.ui.diagram.activityDiagram.edit.commands.ForkCreateCommand(req));
 		}
 		if (org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityInitial_2004 == req
-				.getElementType()) {
+			.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(DiagramPackage.eINSTANCE
-						.getMEDiagram_NewElements());
+				req.setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
 			}
 			return getGEFWrapper(new org.unicase.ui.diagram.activityDiagram.edit.commands.ActivityInitialCreateCommand(
-					req));
+				req));
 		}
-		if (org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityEnd_2005 == req
-				.getElementType()) {
+		if (org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.ActivityEnd_2005 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(DiagramPackage.eINSTANCE
-						.getMEDiagram_NewElements());
+				req.setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.ui.diagram.activityDiagram.edit.commands.ActivityEndCreateCommand(
-					req));
+			return getGEFWrapper(new org.unicase.ui.diagram.activityDiagram.edit.commands.ActivityEndCreateCommand(req));
 		}
-		if (org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Branch_2006 == req
-				.getElementType()) {
+		if (org.unicase.ui.diagram.activityDiagram.providers.ModelElementTypes.Branch_2006 == req.getElementType()) {
 			if (req.getContainmentFeature() == null) {
-				req.setContainmentFeature(DiagramPackage.eINSTANCE
-						.getMEDiagram_NewElements());
+				req.setContainmentFeature(DiagramPackage.eINSTANCE.getMEDiagram_NewElements());
 			}
-			return getGEFWrapper(new org.unicase.ui.diagram.activityDiagram.edit.commands.BranchCreateCommand(
-					req));
+			return getGEFWrapper(new org.unicase.ui.diagram.activityDiagram.edit.commands.BranchCreateCommand(req));
 		}
 		return super.getCreateCommand(req);
 	}
@@ -71,26 +57,20 @@ public class MEDiagramItemSemanticEditPolicy
 	 * @generated
 	 */
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
-		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost())
-				.getEditingDomain();
+		TransactionalEditingDomain editingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		return getGEFWrapper(new DuplicateAnythingCommand(editingDomain, req));
 	}
 
 	/**
 	 * @generated
 	 */
-	private static class DuplicateAnythingCommand extends
-			DuplicateEObjectsCommand {
+	private static class DuplicateAnythingCommand extends DuplicateEObjectsCommand {
 
 		/**
 		 * @generated
 		 */
-		public DuplicateAnythingCommand(
-				TransactionalEditingDomain editingDomain,
-				DuplicateElementsRequest req) {
-			super(editingDomain, req.getLabel(), req
-					.getElementsToBeDuplicated(), req
-					.getAllDuplicatedElementsMap());
+		public DuplicateAnythingCommand(TransactionalEditingDomain editingDomain, DuplicateElementsRequest req) {
+			super(editingDomain, req.getLabel(), req.getElementsToBeDuplicated(), req.getAllDuplicatedElementsMap());
 		}
 
 	}

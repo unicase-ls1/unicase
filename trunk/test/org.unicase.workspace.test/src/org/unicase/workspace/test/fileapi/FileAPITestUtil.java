@@ -6,7 +6,6 @@
 
 package org.unicase.workspace.test.fileapi;
 
-
 /**
  * @author pfeifferc
  */

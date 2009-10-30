@@ -21,15 +21,14 @@ import org.unicase.ui.diagram.classDiagram.edit.parts.ClassEditPart;
 
 /**
  * @author schroech
- *
  */
 public class ShowRelatedElementsAction implements IObjectActionDelegate {
 
 	private ClassEditPart selectedClassEditPart;
 
 	/**
-	 * @see org.eclipse.ui.IObjectActionDelegate#setActivePart(org.eclipse.jface.action.IAction, org.eclipse.ui.IWorkbenchPart)
-	 * 
+	 * @see org.eclipse.ui.IObjectActionDelegate#setActivePart(org.eclipse.jface.action.IAction,
+	 *      org.eclipse.ui.IWorkbenchPart)
 	 * @param action Ignored
 	 * @param targetPart Ignored
 	 */
@@ -55,10 +54,10 @@ public class ShowRelatedElementsAction implements IObjectActionDelegate {
 	}
 
 	/**
-	 * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction, org.eclipse.jface.viewers.ISelection)
+	 * @see org.eclipse.ui.IActionDelegate#selectionChanged(org.eclipse.jface.action.IAction,
+	 *      org.eclipse.jface.viewers.ISelection)
 	 * @param action Ignored
-	 * @param selection The current selection, or <code>null</code> if there
-     * 		is no selection.
+	 * @param selection The current selection, or <code>null</code> if there is no selection.
 	 */
 	public void selectionChanged(IAction action, ISelection selection) {
 		setSelectedClassEditPart(null);

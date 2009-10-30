@@ -94,7 +94,7 @@ public class OperationsNameLabelProvider extends ColumnLabelProvider {
 				cell.setText(log.toString());
 			} else {
 				cell.setText(""); // No log message in case of commit change
-									// tree
+				// tree
 			}
 		}
 

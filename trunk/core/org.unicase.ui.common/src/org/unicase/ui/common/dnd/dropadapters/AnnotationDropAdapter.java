@@ -37,8 +37,8 @@ public class AnnotationDropAdapter extends MEDropAdapter {
 	 *      java.util.List, org.unicase.metamodel.UnicaseModelElement, org.unicase.metamodel.UnicaseModelElement)
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source, UnicaseModelElement target,
-		UnicaseModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source,
+		UnicaseModelElement target, UnicaseModelElement dropee) {
 		boolean result = super.canDrop(eventFeedback, event, source, target, dropee);
 		if (dropee instanceof Annotation) {
 			result = false;

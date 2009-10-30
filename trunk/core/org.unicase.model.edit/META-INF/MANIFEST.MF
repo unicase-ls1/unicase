@@ -27,6 +27,7 @@ Export-Package: org.unicase.model.activity.provider,
  org.unicase.model.util.provider
 Require-Bundle: org.eclipse.emf.ecore.edit;visibility:=reexport,
  org.unicase.model;bundle-version="0.3.34.internal";visibility:=reexport,
- org.eclipse.gmf.runtime.notation.edit;visibility:=reexport
+ org.eclipse.gmf.runtime.notation.edit;visibility:=reexport,
+ org.unicase.metamodel.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Import-Package: org.unicase.model.rationale

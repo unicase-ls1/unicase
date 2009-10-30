@@ -72,7 +72,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.Project} instances. <!-- begin-user-doc
+	 * This keeps track of the one adapter used for all {@link org.unicase.model.Project} instances. <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -80,7 +80,7 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	protected ProjectItemProvider projectItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.unicase.metamodel.Project}. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This creates an adapter for a {@link org.unicase.model.Project}. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -91,75 +91,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 		}
 
 		return projectItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.IdentifiableElement} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected IdentifiableElementItemProvider identifiableElementItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.metamodel.IdentifiableElement}. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createIdentifiableElementAdapter() {
-		if (identifiableElementItemProvider == null) {
-			identifiableElementItemProvider = new IdentifiableElementItemProvider(this);
-		}
-
-		return identifiableElementItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.ModelElementId} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected ModelElementIdItemProvider modelElementIdItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.metamodel.ModelElementId}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createModelElementIdAdapter() {
-		if (modelElementIdItemProvider == null) {
-			modelElementIdItemProvider = new ModelElementIdItemProvider(this);
-		}
-
-		return modelElementIdItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.unicase.metamodel.ModelVersion} instances. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected ModelVersionItemProvider modelVersionItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.unicase.metamodel.ModelVersion}. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createModelVersionAdapter() {
-		if (modelVersionItemProvider == null) {
-			modelVersionItemProvider = new ModelVersionItemProvider(this);
-		}
-
-		return modelVersionItemProvider;
 	}
 
 	/**
@@ -258,12 +189,6 @@ public class ModelItemProviderAdapterFactory extends ModelAdapterFactory impleme
 	public void dispose() {
 		if (projectItemProvider != null)
 			projectItemProvider.dispose();
-		if (identifiableElementItemProvider != null)
-			identifiableElementItemProvider.dispose();
-		if (modelElementIdItemProvider != null)
-			modelElementIdItemProvider.dispose();
-		if (modelVersionItemProvider != null)
-			modelVersionItemProvider.dispose();
 	}
 
 }

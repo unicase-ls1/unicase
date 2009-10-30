@@ -87,9 +87,11 @@ public class DeleteElementAction extends AbstractDeleteFromAction {
 		while (editParts.hasNext()) {
 			EditPart editPart = (EditPart) editParts.next();
 			EObject element = EditPartUtility.getElement(editPart);
-			DestroyElementRequest destroyElementRequest = new DestroyElementRequest(element, false);
-			
-			DeleteFromModelCommand curCommand = new DeleteFromModelCommand(destroyElementRequest); 
+			DestroyElementRequest destroyElementRequest = new DestroyElementRequest(
+					element, false);
+
+			DeleteFromModelCommand curCommand = new DeleteFromModelCommand(
+					destroyElementRequest);
 			if (curCommand != null) {
 				command.compose(curCommand);
 			}

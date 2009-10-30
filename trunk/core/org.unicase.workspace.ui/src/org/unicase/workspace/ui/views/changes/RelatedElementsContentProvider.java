@@ -13,22 +13,26 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
 import org.eclipse.jface.viewers.IContentProvider;
 
 /**
- * Content provider for the affected elements treeviewer. The class uses an already computed list with children - see
- * the ChangesTreeComposite for more info.
+ * Content provider for the affected elements treeviewer. The class uses an
+ * already computed list with children - see the ChangesTreeComposite for more
+ * info.
  * 
  * @author Shterev
  */
-public class RelatedElementsContentProvider extends AdapterFactoryContentProvider implements IContentProvider {
+public class RelatedElementsContentProvider extends
+		AdapterFactoryContentProvider implements IContentProvider {
 
 	private Set<EObject> affected;
 
 	/**
 	 * Default constructor.
 	 * 
-	 * @param affected the affected elements
+	 * @param affected
+	 *            the affected elements
 	 */
 	public RelatedElementsContentProvider(Set<EObject> affected) {
-		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		this.affected = affected;
 	}
 

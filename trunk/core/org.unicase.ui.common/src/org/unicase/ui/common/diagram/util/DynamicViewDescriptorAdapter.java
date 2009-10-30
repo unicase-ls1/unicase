@@ -21,9 +21,8 @@ import org.unicase.ui.common.util.CollectionFilter;
 
 /**
  * Dynamic runtime adapter for {@link ViewDescriptor}s.
- *   
+ * 
  * @author schroech
- *
  */
 public class DynamicViewDescriptorAdapter implements IAdaptable {
 
@@ -35,6 +34,7 @@ public class DynamicViewDescriptorAdapter implements IAdaptable {
 
 	/**
 	 * Constructor.
+	 * 
 	 * @param viewDescriptor The {@link ViewDescriptor} being adapted
 	 * @param host The {@link DiagramEditPart} which will be queried for the {@link ViewDescriptor}
 	 */
@@ -91,7 +91,7 @@ public class DynamicViewDescriptorAdapter implements IAdaptable {
 	public EObject getObject() {
 		if (object == null) {
 			if (getView() != null) {
-				object = (EObject) viewDescriptor.getElementAdapter().getAdapter(EObject.class);	
+				object = (EObject) viewDescriptor.getElementAdapter().getAdapter(EObject.class);
 			}
 		}
 
@@ -116,7 +116,7 @@ public class DynamicViewDescriptorAdapter implements IAdaptable {
 			if (getObject() != null) {
 				Set<EditPart> editParts = EditPartUtility.findEditParts(getHost(), Collections.singleton(getObject()));
 				List<ShapeNodeEditPart> shapeNodeEditParts = CollectionFilter
-				.filter(editParts, ShapeNodeEditPart.class);
+					.filter(editParts, ShapeNodeEditPart.class);
 
 				List<ConnectionEditPart> connectionEditParts = CollectionFilter.filter(editParts,
 					ConnectionEditPart.class);
@@ -125,11 +125,10 @@ public class DynamicViewDescriptorAdapter implements IAdaptable {
 					editPart = shapeNodeEditParts.get(0);
 				} else if (connectionEditParts.size() > 0) {
 					editPart = connectionEditParts.get(0);
-				}	
-			}	
+				}
+			}
 		}
 		return editPart;
 	}
-
 
 }

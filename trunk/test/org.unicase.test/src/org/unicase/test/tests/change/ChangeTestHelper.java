@@ -31,12 +31,13 @@ import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.util.SerializationException;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.util.ModelUtil;
-import org.unicase.model.util.SerializationException;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
@@ -425,7 +426,8 @@ public final class ChangeTestHelper {
 	 * @return ME
 	 */
 	public static UnicaseModelElement createRandomME() {
-		List<EClass> eClazz = ModelUtil.getSubclasses(ModelPackage.eINSTANCE.getModelElement());
+		List<EClass> eClazz = ModelUtil.getSubclasses(MetamodelPackage.eINSTANCE.getModelElement(),
+			ModelPackage.eINSTANCE);
 		EClass eClass = eClazz.get(getRandom().nextInt(eClazz.size() - 1));
 		UnicaseModelElement me = (UnicaseModelElement) eClass.getEPackage().getEFactoryInstance().create(eClass);
 
@@ -575,7 +577,7 @@ public final class ChangeTestHelper {
 		EAttribute attribute = null;
 		List<EAttribute> attributes = new ArrayList<EAttribute>();
 		for (EAttribute tmpAttr : me.eClass().getEAllAttributes()) {
-			if (tmpAttr.isChangeable() && tmpAttr.getFeatureID() != ModelPackage.MODEL_ELEMENT__IDENTIFIER
+			if (tmpAttr.isChangeable() && tmpAttr.getFeatureID() != MetamodelPackage.MODEL_ELEMENT__IDENTIFIER
 				&& !tmpAttr.isTransient()) {
 				attributes.add(tmpAttr);
 			}

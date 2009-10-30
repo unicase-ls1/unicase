@@ -22,7 +22,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.ModelFactory;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.workspace.PendingFileTransfer;
 import org.unicase.workspace.WorkspacePackage;
 
@@ -219,7 +219,7 @@ public class PendingFileTransferItemProvider extends ItemProviderAdapter impleme
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.PENDING_FILE_TRANSFER__ATTACHMENT_ID,
-			ModelFactory.eINSTANCE.createModelElementId()));
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**

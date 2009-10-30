@@ -21,7 +21,6 @@ import org.unicase.ui.common.util.ActionHelper;
  */
 public class OpenMEEditorAction implements IObjectActionDelegate {
 
-
 	/**
 	 * The selected diagram element to open with MEEditor.
 	 */

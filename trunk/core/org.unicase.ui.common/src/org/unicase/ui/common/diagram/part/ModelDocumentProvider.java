@@ -34,8 +34,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
- * @author denglerm
- * This class serves as a superclass for the generated ModelDocumentProvider in each diagram plugin.
+ * @author denglerm This class serves as a superclass for the generated ModelDocumentProvider in each diagram plugin.
  */
 @SuppressWarnings("restriction")
 public class ModelDocumentProvider extends AbstractDocumentProvider implements IDiagramDocumentProvider {
@@ -101,21 +100,19 @@ public class ModelDocumentProvider extends AbstractDocumentProvider implements I
 					}
 				}
 				// }
-				throw new RuntimeException(
-					"Diagram is not present in resource");
+				throw new RuntimeException("Diagram is not present in resource");
 			} catch (IOException e) {
 				String msg = e.getLocalizedMessage();
 				CoreException thrownExcp = new CoreException(new Status(IStatus.ERROR, "org.unicase.ui.common", 0,
-					msg != null ? msg
-						: "Error loading diagram", e));
+					msg != null ? msg : "Error loading diagram", e));
 				throw thrownExcp;
 
 			}
 
 		} else {
 			throw new CoreException(new Status(IStatus.ERROR, "org.unicase.ui.common", 0, NLS.bind(
-				"Incorrect editor input", new Object[] {
-					element, "org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
+				"Incorrect editor input", new Object[] { element,
+					"org.eclipse.ui.part.FileEditorInput", "org.eclipse.emf.common.ui.URIEditorInput" }), //$NON-NLS-1$ //$NON-NLS-2$ 
 				null));
 		}
 	}

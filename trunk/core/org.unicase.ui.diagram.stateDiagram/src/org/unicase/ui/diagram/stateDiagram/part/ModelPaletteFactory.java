@@ -1,4 +1,4 @@
-/** 
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -35,9 +35,8 @@ public class ModelPaletteFactory {
 	 */
 	private PaletteContainer createDefault1Group() {
 		PaletteGroup paletteContainer = new PaletteGroup(
-				org.unicase.ui.diagram.stateDiagram.part.Messages.Default1Group_title);
-		paletteContainer
-				.setDescription(org.unicase.ui.diagram.stateDiagram.part.Messages.Default1Group_desc);
+			org.unicase.ui.diagram.stateDiagram.part.Messages.Default1Group_title);
+		paletteContainer.setDescription(org.unicase.ui.diagram.stateDiagram.part.Messages.Default1Group_desc);
 		paletteContainer.add(createState1CreationTool());
 		paletteContainer.add(createTransition2CreationTool());
 		paletteContainer.add(createStateInitialNode3CreationTool());
@@ -49,15 +48,12 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createState1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.State_2001);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+		types.add(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.State_2001);
 		NodeToolEntry entry = new NodeToolEntry(
-				org.unicase.ui.diagram.stateDiagram.part.Messages.State1CreationTool_title,
-				null, types);
-		entry
-				.setSmallIcon(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.State_2001));
+			org.unicase.ui.diagram.stateDiagram.part.Messages.State1CreationTool_title, null, types);
+		entry.setSmallIcon(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes
+			.getImageDescriptor(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.State_2001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -66,15 +62,12 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createTransition2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.Transition_4001);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+		types.add(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.Transition_4001);
 		LinkToolEntry entry = new LinkToolEntry(
-				org.unicase.ui.diagram.stateDiagram.part.Messages.Transition2CreationTool_title,
-				null, types);
-		entry
-				.setSmallIcon(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.Transition_4001));
+			org.unicase.ui.diagram.stateDiagram.part.Messages.Transition2CreationTool_title, null, types);
+		entry.setSmallIcon(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes
+			.getImageDescriptor(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.Transition_4001));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -83,15 +76,12 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createStateInitialNode3CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.StateInitial_2002);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+		types.add(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.StateInitial_2002);
 		NodeToolEntry entry = new NodeToolEntry(
-				org.unicase.ui.diagram.stateDiagram.part.Messages.StateInitialNode3CreationTool_title,
-				null, types);
-		entry
-				.setSmallIcon(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.StateInitial_2002));
+			org.unicase.ui.diagram.stateDiagram.part.Messages.StateInitialNode3CreationTool_title, null, types);
+		entry.setSmallIcon(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes
+			.getImageDescriptor(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.StateInitial_2002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -100,15 +90,12 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createStateFinalNode4CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.StateEnd_2003);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+		types.add(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.StateEnd_2003);
 		NodeToolEntry entry = new NodeToolEntry(
-				org.unicase.ui.diagram.stateDiagram.part.Messages.StateFinalNode4CreationTool_title,
-				null, types);
-		entry
-				.setSmallIcon(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.StateEnd_2003));
+			org.unicase.ui.diagram.stateDiagram.part.Messages.StateFinalNode4CreationTool_title, null, types);
+		entry.setSmallIcon(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes
+			.getImageDescriptor(org.unicase.ui.diagram.stateDiagram.providers.ModelElementTypes.StateEnd_2003));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -126,8 +113,7 @@ public class ModelPaletteFactory {
 		/**
 		 * @generated
 		 */
-		private NodeToolEntry(String title, String description,
-				List elementTypes) {
+		private NodeToolEntry(String title, String description, List elementTypes) {
 			super(title, description, null, null);
 			this.elementTypes = elementTypes;
 		}
@@ -155,8 +141,7 @@ public class ModelPaletteFactory {
 		/**
 		 * @generated
 		 */
-		private LinkToolEntry(String title, String description,
-				List relationshipTypes) {
+		private LinkToolEntry(String title, String description, List relationshipTypes) {
 			super(title, description, null, null);
 			this.relationshipTypes = relationshipTypes;
 		}

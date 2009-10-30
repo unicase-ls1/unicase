@@ -30,18 +30,22 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IActionBars;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.part.ViewPart;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ProjectChangeObserver;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.organization.OrganizationPackage;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.Checkable;
 import org.unicase.model.task.TaskPackage;
-import org.unicase.model.util.ProjectChangeObserver;
 import org.unicase.ui.common.filter.TeamFilter;
 import org.unicase.ui.common.filter.UserFilter;
 import org.unicase.ui.common.util.ActionHelper;
+import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.common.util.EventUtil;
+import org.unicase.ui.common.util.OrgUnitHelper;
 import org.unicase.ui.common.util.UnicaseUiUtil;
 import org.unicase.ui.tableview.Activator;
 import org.unicase.ui.tableview.labelproviders.IntegerEditingSupport;
@@ -53,10 +57,7 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.WorkspacePackage;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
-import org.unicase.workspace.util.EventUtil;
 import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * TaskView shows checkables (work items which can be set to done).
@@ -374,15 +375,15 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 		List<METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>> features = new ArrayList<METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>>();
 		// features.add(TaskPackage.Literals.CHECKABLE__CHECKED);
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
-			ModelPackage.Literals.MODEL_ELEMENT__STATE, null));
+			ModelPackage.Literals.UNICASE_MODEL_ELEMENT__STATE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
-			ModelPackage.Literals.MODEL_ELEMENT__NAME, null));
+			ModelPackage.Literals.UNICASE_MODEL_ELEMENT__NAME, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
 			TaskPackage.Literals.WORK_ITEM__ASSIGNEE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
-			ModelPackage.Literals.MODEL_ELEMENT__CREATION_DATE, null));
+			MetamodelPackage.Literals.MODEL_ELEMENT__CREATION_DATE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
-			ModelPackage.Literals.MODEL_ELEMENT__CREATOR, null));
+			MetamodelPackage.Literals.MODEL_ELEMENT__CREATOR, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
 			TaskPackage.Literals.WORK_ITEM__CONTAINING_WORKPACKAGE, null));
 		features.add(new METableViewer.FeatureEditignSupportPair<EStructuralFeature, EditingSupport>(
@@ -456,7 +457,7 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	/**
 	 * Refresh the view if a work item has been added.
 	 * 
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementAdded(org.unicase.metamodel.Project,
 	 *      org.unicase.model.UnicaseModelElement)
 	 * @param project the project
 	 * @param modelElement the model element
@@ -468,14 +469,14 @@ public class TaskView extends ViewPart implements ProjectChangeObserver {
 	}
 
 	/**
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteCompleted(org.unicase.model.UnicaseModelElement)
 	 *      {@inheritDoc}
 	 */
 	public void modelElementDeleteCompleted(Project project, ModelElement modelElement) {
 	}
 
 	/**
-	 * @see org.unicase.model.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
+	 * @see org.unicase.metamodel.util.ProjectChangeObserver#modelElementDeleteStarted(org.unicase.model.UnicaseModelElement)
 	 *      {@inheritDoc}
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {

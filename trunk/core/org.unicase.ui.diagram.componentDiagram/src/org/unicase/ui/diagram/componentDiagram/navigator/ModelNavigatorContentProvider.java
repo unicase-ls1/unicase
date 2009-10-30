@@ -11,7 +11,6 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.emf.core.GMFEditingDomainFactory;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -56,8 +55,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	public ModelNavigatorContentProvider() {
-		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE
-				.createEditingDomain();
+		TransactionalEditingDomain editingDomain = GMFEditingDomainFactory.INSTANCE.createEditingDomain();
 		myEditingDomain = (AdapterFactoryEditingDomain) editingDomain;
 		myEditingDomain.setResourceToReadOnlyMap(new HashMap() {
 			public Object get(Object key) {
@@ -74,51 +72,43 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 				}
 			}
 		};
-		myWorkspaceSynchronizer = new WorkspaceSynchronizer(editingDomain,
-				new WorkspaceSynchronizer.Delegate() {
-					public void dispose() {
-					}
+		myWorkspaceSynchronizer = new WorkspaceSynchronizer(editingDomain, new WorkspaceSynchronizer.Delegate() {
+			public void dispose() {
+			}
 
-					public boolean handleResourceChanged(final Resource resource) {
-						for (Iterator it = myEditingDomain.getResourceSet()
-								.getResources().iterator(); it.hasNext();) {
-							Resource nextResource = (Resource) it.next();
-							nextResource.unload();
-						}
-						if (myViewer != null) {
-							myViewer.getControl().getDisplay().asyncExec(
-									myViewerRefreshRunnable);
-						}
-						return true;
-					}
+			public boolean handleResourceChanged(final Resource resource) {
+				for (Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+					Resource nextResource = (Resource) it.next();
+					nextResource.unload();
+				}
+				if (myViewer != null) {
+					myViewer.getControl().getDisplay().asyncExec(myViewerRefreshRunnable);
+				}
+				return true;
+			}
 
-					public boolean handleResourceDeleted(Resource resource) {
-						for (Iterator it = myEditingDomain.getResourceSet()
-								.getResources().iterator(); it.hasNext();) {
-							Resource nextResource = (Resource) it.next();
-							nextResource.unload();
-						}
-						if (myViewer != null) {
-							myViewer.getControl().getDisplay().asyncExec(
-									myViewerRefreshRunnable);
-						}
-						return true;
-					}
+			public boolean handleResourceDeleted(Resource resource) {
+				for (Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+					Resource nextResource = (Resource) it.next();
+					nextResource.unload();
+				}
+				if (myViewer != null) {
+					myViewer.getControl().getDisplay().asyncExec(myViewerRefreshRunnable);
+				}
+				return true;
+			}
 
-					public boolean handleResourceMoved(Resource resource,
-							final URI newURI) {
-						for (Iterator it = myEditingDomain.getResourceSet()
-								.getResources().iterator(); it.hasNext();) {
-							Resource nextResource = (Resource) it.next();
-							nextResource.unload();
-						}
-						if (myViewer != null) {
-							myViewer.getControl().getDisplay().asyncExec(
-									myViewerRefreshRunnable);
-						}
-						return true;
-					}
-				});
+			public boolean handleResourceMoved(Resource resource, final URI newURI) {
+				for (Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
+					Resource nextResource = (Resource) it.next();
+					nextResource.unload();
+				}
+				if (myViewer != null) {
+					myViewer.getControl().getDisplay().asyncExec(myViewerRefreshRunnable);
+				}
+				return true;
+			}
+		});
 	}
 
 	/**
@@ -128,8 +118,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 		myWorkspaceSynchronizer.dispose();
 		myWorkspaceSynchronizer = null;
 		myViewerRefreshRunnable = null;
-		for (Iterator it = myEditingDomain.getResourceSet().getResources()
-				.iterator(); it.hasNext();) {
+		for (Iterator it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
 			Resource resource = (Resource) it.next();
 			resource.unload();
 		}
@@ -175,17 +164,11 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof IFile) {
 			IFile file = (IFile) parentElement;
-			URI fileURI = URI.createPlatformResourceURI(file.getFullPath()
-					.toString(), true);
-			Resource resource = myEditingDomain.getResourceSet().getResource(
-					fileURI, true);
+			URI fileURI = URI.createPlatformResourceURI(file.getFullPath().toString(), true);
+			Resource resource = myEditingDomain.getResourceSet().getResource(fileURI, true);
 			Collection result = new ArrayList();
-			result
-					.addAll(createNavigatorItems(
-							selectViewsByType(
-									resource.getContents(),
-									org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart.MODEL_ID),
-							file, false));
+			result.addAll(createNavigatorItems(selectViewsByType(resource.getContents(),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart.MODEL_ID), file, false));
 			return result.toArray();
 		}
 
@@ -209,36 +192,25 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	 * @generated
 	 */
 	private Object[] getViewChildren(View view, Object parentElement) {
-		switch (org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-				.getVisualID(view)) {
+		switch (org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry.getVisualID(view)) {
 
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
 			org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup links = new org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup(
-					org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_MEDiagram_99_links,
-					"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection connectedViews = getChildrenByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID);
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getChildrenByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID);
-			result.addAll(createNavigatorItems(connectedViews, parentElement,
-					false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID);
-			links
-					.addChildren(createNavigatorItems(connectedViews, links,
-							false));
-			connectedViews = getDiagramLinksByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentConsumedServicesEditPart.VISUAL_ID);
-			links
-					.addChildren(createNavigatorItems(connectedViews, links,
-							false));
+				org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_MEDiagram_99_links,
+				"icons/linksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getChildrenByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID);
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			connectedViews = getChildrenByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID);
+			result.addAll(createNavigatorItems(connectedViews, parentElement, false));
+			connectedViews = getDiagramLinksByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID);
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
+			connectedViews = getDiagramLinksByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentConsumedServicesEditPart.VISUAL_ID);
+			links.addChildren(createNavigatorItems(connectedViews, links, false));
 			if (!links.isEmpty()) {
 				result.add(links);
 			}
@@ -248,18 +220,14 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
 			org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup incominglinks = new org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup(
-					org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_ComponentService_2001_incominglinks,
-					"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection connectedViews = getIncomingLinksByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID);
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
-			connectedViews = getIncomingLinksByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentConsumedServicesEditPart.VISUAL_ID);
-			incominglinks.addChildren(createNavigatorItems(connectedViews,
-					incominglinks, true));
+				org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_ComponentService_2001_incominglinks,
+				"icons/incomingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID);
+			incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
+			connectedViews = getIncomingLinksByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentConsumedServicesEditPart.VISUAL_ID);
+			incominglinks.addChildren(createNavigatorItems(connectedViews, incominglinks, true));
 			if (!incominglinks.isEmpty()) {
 				result.add(incominglinks);
 			}
@@ -269,18 +237,14 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
 			org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup outgoinglinks = new org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup(
-					org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_Component_2002_outgoinglinks,
-					"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection connectedViews = getOutgoingLinksByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID);
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
-			connectedViews = getOutgoingLinksByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentConsumedServicesEditPart.VISUAL_ID);
-			outgoinglinks.addChildren(createNavigatorItems(connectedViews,
-					outgoinglinks, true));
+				org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_Component_2002_outgoinglinks,
+				"icons/outgoingLinksNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getOutgoingLinksByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID);
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
+			connectedViews = getOutgoingLinksByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentConsumedServicesEditPart.VISUAL_ID);
+			outgoinglinks.addChildren(createNavigatorItems(connectedViews, outgoinglinks, true));
 			if (!outgoinglinks.isEmpty()) {
 				result.add(outgoinglinks);
 			}
@@ -290,21 +254,17 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentOfferedServicesEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
 			org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup target = new org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup(
-					org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_ComponentOfferedServices_4001_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+				org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_ComponentOfferedServices_4001_target,
+				"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup source = new org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup(
-					org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_ComponentOfferedServices_4001_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection connectedViews = getLinksTargetByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID);
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID);
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
+				org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_ComponentOfferedServices_4001_source,
+				"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getLinksTargetByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID);
+			target.addChildren(createNavigatorItems(connectedViews, target, true));
+			connectedViews = getLinksSourceByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID);
+			source.addChildren(createNavigatorItems(connectedViews, source, true));
 			if (!target.isEmpty()) {
 				result.add(target);
 			}
@@ -317,21 +277,17 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 		case org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentConsumedServicesEditPart.VISUAL_ID: {
 			Collection result = new ArrayList();
 			org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup target = new org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup(
-					org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_ComponentConsumedServices_4002_target,
-					"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+				org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_ComponentConsumedServices_4002_target,
+				"icons/linkTargetNavigatorGroup.gif", parentElement); //$NON-NLS-1$
 			org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup source = new org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorGroup(
-					org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_ComponentConsumedServices_4002_source,
-					"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
-			Collection connectedViews = getLinksTargetByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID);
-			target.addChildren(createNavigatorItems(connectedViews, target,
-					true));
-			connectedViews = getLinksSourceByType(
-					Collections.singleton(view),
-					org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID);
-			source.addChildren(createNavigatorItems(connectedViews, source,
-					true));
+				org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorGroupName_ComponentConsumedServices_4002_source,
+				"icons/linkSourceNavigatorGroup.gif", parentElement); //$NON-NLS-1$
+			Collection connectedViews = getLinksTargetByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentServiceEditPart.VISUAL_ID);
+			target.addChildren(createNavigatorItems(connectedViews, target, true));
+			connectedViews = getLinksSourceByType(Collections.singleton(view),
+				org.unicase.ui.diagram.componentDiagram.edit.parts.ComponentEditPart.VISUAL_ID);
+			source.addChildren(createNavigatorItems(connectedViews, source, true));
 			if (!target.isEmpty()) {
 				result.add(target);
 			}
@@ -349,13 +305,11 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getLinksSourceByType(Collection edges, int visualID) {
 		Collection result = new ArrayList();
-		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-				.getType(visualID);
+		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry.getType(visualID);
 		for (Iterator it = edges.iterator(); it.hasNext();) {
 			Edge nextEdge = (Edge) it.next();
 			View nextEdgeSource = nextEdge.getSource();
-			if (type.equals(nextEdgeSource.getType())
-					&& isOwnView(nextEdgeSource)) {
+			if (type.equals(nextEdgeSource.getType()) && isOwnView(nextEdgeSource)) {
 				result.add(nextEdgeSource);
 			}
 		}
@@ -367,13 +321,11 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getLinksTargetByType(Collection edges, int visualID) {
 		Collection result = new ArrayList();
-		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-				.getType(visualID);
+		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry.getType(visualID);
 		for (Iterator it = edges.iterator(); it.hasNext();) {
 			Edge nextEdge = (Edge) it.next();
 			View nextEdgeTarget = nextEdge.getTarget();
-			if (type.equals(nextEdgeTarget.getType())
-					&& isOwnView(nextEdgeTarget)) {
+			if (type.equals(nextEdgeTarget.getType()) && isOwnView(nextEdgeTarget)) {
 				result.add(nextEdgeTarget);
 			}
 		}
@@ -385,8 +337,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getOutgoingLinksByType(Collection nodes, int visualID) {
 		Collection result = new ArrayList();
-		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-				.getType(visualID);
+		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry.getType(visualID);
 		for (Iterator it = nodes.iterator(); it.hasNext();) {
 			View nextNode = (View) it.next();
 			result.addAll(selectViewsByType(nextNode.getSourceEdges(), type));
@@ -399,8 +350,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getIncomingLinksByType(Collection nodes, int visualID) {
 		Collection result = new ArrayList();
-		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-				.getType(visualID);
+		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry.getType(visualID);
 		for (Iterator it = nodes.iterator(); it.hasNext();) {
 			View nextNode = (View) it.next();
 			result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
@@ -413,8 +363,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getChildrenByType(Collection nodes, int visualID) {
 		Collection result = new ArrayList();
-		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-				.getType(visualID);
+		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry.getType(visualID);
 		for (Iterator it = nodes.iterator(); it.hasNext();) {
 			View nextNode = (View) it.next();
 			result.addAll(selectViewsByType(nextNode.getChildren(), type));
@@ -427,8 +376,7 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private Collection getDiagramLinksByType(Collection diagrams, int visualID) {
 		Collection result = new ArrayList();
-		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-				.getType(visualID);
+		String type = org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry.getType(visualID);
 		for (Iterator it = diagrams.iterator(); it.hasNext();) {
 			Diagram nextDiagram = (Diagram) it.next();
 			result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
@@ -455,20 +403,17 @@ public class ModelNavigatorContentProvider implements ICommonContentProvider {
 	 */
 	private boolean isOwnView(View view) {
 		return org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
-				.equals(org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-						.getModelID(view));
+			.equals(org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry.getModelID(view));
 	}
 
 	/**
 	 * @generated
 	 */
-	private Collection createNavigatorItems(Collection views, Object parent,
-			boolean isLeafs) {
+	private Collection createNavigatorItems(Collection views, Object parent, boolean isLeafs) {
 		Collection result = new ArrayList();
 		for (Iterator it = views.iterator(); it.hasNext();) {
-			result
-					.add(new org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorItem(
-							(View) it.next(), parent, isLeafs));
+			result.add(new org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorItem((View) it.next(),
+				parent, isLeafs));
 		}
 		return result;
 	}

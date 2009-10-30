@@ -22,6 +22,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperati
 import org.unicase.emfstore.esmodel.versioning.operations.impl.MultiReferenceOperationImpl;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.document.DocumentFactory;
 import org.unicase.model.document.LeafSection;
 import org.unicase.model.rationale.Issue;
@@ -31,7 +32,6 @@ import org.unicase.model.rationale.RationalePackage;
 import org.unicase.model.requirement.Actor;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.requirement.UseCase;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
 /**

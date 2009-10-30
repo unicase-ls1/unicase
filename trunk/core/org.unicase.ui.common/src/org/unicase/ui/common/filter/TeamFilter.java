@@ -14,7 +14,7 @@ import org.unicase.metamodel.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.task.WorkItem;
-import org.unicase.workspace.util.OrgUnitHelper;
+import org.unicase.ui.common.util.OrgUnitHelper;
 
 /**
  * This filter filters to the elements of a users team.
@@ -42,8 +42,8 @@ public class TeamFilter extends ViewerFilter {
 	@Override
 	public boolean select(Viewer viewer, Object parentElement, Object element) {
 		if (element instanceof WorkItem) {
-			//if team contains any participants of this work item, then show the work item
-			WorkItem workItem = (WorkItem)element;
+			// if team contains any participants of this work item, then show the work item
+			WorkItem workItem = (WorkItem) element;
 			EList<OrgUnit> participants = workItem.getParticipants();
 			for (OrgUnit orgUnit : participants) {
 				if (team.contains(orgUnit)) {
@@ -51,18 +51,18 @@ public class TeamFilter extends ViewerFilter {
 				}
 			}
 
-			//if team contains assignee of this work item then show the work item
+			// if team contains assignee of this work item then show the work item
 			OrgUnit assignee = workItem.getAssignee();
 			if (assignee != null) {
 				return (team.contains(assignee));
 			}
-			
-			//if work item is resolved and its reviewer is member of this team then show it
-			if(workItem.isResolved() && team.contains(workItem.getReviewer())){
+
+			// if work item is resolved and its reviewer is member of this team then show it
+			if (workItem.isResolved() && team.contains(workItem.getReviewer())) {
 				return true;
 			}
-			
-			if(workItem.getAssignee() == null){
+
+			if (workItem.getAssignee() == null) {
 				for (OrgUnit orgUnit : team) {
 					if (orgUnit.getName().equals(workItem.getCreator())) {
 						return true;
@@ -70,8 +70,7 @@ public class TeamFilter extends ViewerFilter {
 				}
 			}
 
-			
-		}else if (element instanceof ModelElement) {
+		} else if (element instanceof ModelElement) {
 			String creator = ((ModelElement) element).getCreator();
 			for (OrgUnit orgUnit : team) {
 				if (orgUnit.getName().equals(creator)) {

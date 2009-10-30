@@ -20,17 +20,17 @@ import org.unicase.ui.common.diagram.commands.CommandFactory;
 import org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart;
 import org.unicase.ui.common.diagram.util.EditPartUtility;
 import org.unicase.ui.common.util.ActionHelper;
-//dengler: clarify if deleted reference if case is necessary.
+
+// dengler: clarify if deleted reference if case is necessary.
 /**
  * @author denglerm This class implements the DeleteFromDiagram Action.
  */
 public class DeleteFromDiagramAction extends Action {
 
 	/**
-	 * In case of a diagram node to be deleted: This method deletes the model element behind the node
-	 * from the diagram's elements (done by DeleteFromDiagramCommand) list, but not from the project.
-	 * 
-	 * In case of a diagram link to be deleted: The reference is deleted from the view _and_ from the model.
+	 * In case of a diagram node to be deleted: This method deletes the model element behind the node from the diagram's
+	 * elements (done by DeleteFromDiagramCommand) list, but not from the project. In case of a diagram link to be
+	 * deleted: The reference is deleted from the view _and_ from the model.
 	 * 
 	 * @see org.eclipse.jface.action#run()
 	 */
@@ -45,7 +45,7 @@ public class DeleteFromDiagramAction extends Action {
 			ccommand.add(CommandFactory.createDeleteFromViewCommand(selectedElement));
 
 		} else if (view instanceof Edge) {
-			
+
 			DestroyReferenceRequest req = new DestroyReferenceRequest(((Edge) view).getSource().getElement(), null,
 				((Edge) view).getTarget().getElement(), false);
 			ccommand.add(new ICommandProxy(new DestroyReferenceCommand(req)));

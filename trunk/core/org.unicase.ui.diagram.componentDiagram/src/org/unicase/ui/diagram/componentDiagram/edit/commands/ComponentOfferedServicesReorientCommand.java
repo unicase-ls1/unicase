@@ -8,7 +8,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.unicase.model.component.Component;
 import org.unicase.model.component.ComponentService;
 
@@ -40,8 +39,7 @@ public class ComponentOfferedServicesReorientCommand extends EditElementCommand 
 	/**
 	 * @generated
 	 */
-	public ComponentOfferedServicesReorientCommand(
-			ReorientReferenceRelationshipRequest request) {
+	public ComponentOfferedServicesReorientCommand(ReorientReferenceRelationshipRequest request) {
 		super(request.getLabel(), null, request);
 		reorientDirection = request.getDirection();
 		referenceOwner = request.getReferenceOwner();
@@ -74,8 +72,7 @@ public class ComponentOfferedServicesReorientCommand extends EditElementCommand 
 			return false;
 		}
 		return org.unicase.ui.diagram.componentDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistComponentOfferedServices_4001(getNewSource(),
-						getOldTarget());
+			.canExistComponentOfferedServices_4001(getNewSource(), getOldTarget());
 	}
 
 	/**
@@ -86,19 +83,16 @@ public class ComponentOfferedServicesReorientCommand extends EditElementCommand 
 			return false;
 		}
 		return org.unicase.ui.diagram.componentDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistComponentOfferedServices_4001(getOldSource(),
-						getNewTarget());
+			.canExistComponentOfferedServices_4001(getOldSource(), getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

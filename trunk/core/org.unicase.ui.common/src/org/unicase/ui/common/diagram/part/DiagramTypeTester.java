@@ -8,10 +8,10 @@ package org.unicase.ui.common.diagram.part;
 import org.eclipse.core.expressions.PropertyTester;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.diagram.MEDiagram;
-//dengler clarify with schroech
+
+// dengler clarify with schroech
 /**
  * @author schroech
- *
  */
 public class DiagramTypeTester extends PropertyTester {
 
@@ -23,20 +23,17 @@ public class DiagramTypeTester extends PropertyTester {
 	}
 
 	/**
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[], java.lang.Object)
-	 * 
+	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],
+	 *      java.lang.Object)
 	 * @param receiver The MEDiagram to test
 	 * @param property The "type" property
 	 * @param args Additional arguments ignored by this tester
-	 * 
-	 * @param expectedValue the expected value of the property.
-	 * Can be any literal value defined in {@link DiagramType}
-	 * 
-	 * @return Returns <code>true</code> if the type of the diagram type matches the expected value; 
-	 *  otherwise <code>false</code> is returned
+	 * @param expectedValue the expected value of the property. Can be any literal value defined in {@link DiagramType}
+	 * @return Returns <code>true</code> if the type of the diagram type matches the expected value; otherwise
+	 *         <code>false</code> is returned
 	 */
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
-		//START Sanity checks
+		// START Sanity checks
 		if (!(receiver instanceof MEDiagram)) {
 			throw new IllegalArgumentException();
 		}
@@ -45,16 +42,14 @@ public class DiagramTypeTester extends PropertyTester {
 			throw new IllegalArgumentException();
 		}
 
-		if (args != null
-			&& args.length > 0) {
+		if (args != null && args.length > 0) {
 			throw new IllegalArgumentException();
 		}
 
 		if (!(expectedValue instanceof String)) {
 			throw new IllegalArgumentException();
 		}
-		//END Sanity checks
-
+		// END Sanity checks
 
 		DiagramType expectedType = getExpectedType((String) expectedValue);
 
@@ -71,29 +66,26 @@ public class DiagramTypeTester extends PropertyTester {
 
 	/**
 	 * Gets the expected {@link DiagramType} identified by the expectedValue string.
-	 *    
+	 * 
 	 * @param expectedValue The literal or name of the expected {@link DiagramType}
-	 * @return
-	 * The {@link DiagramType} or null 
+	 * @return The {@link DiagramType} or null
 	 */
 	protected DiagramType getExpectedType(String expectedValue) {
 		DiagramType expectedTypeByLiteral = DiagramType.get(expectedValue);
 		DiagramType expectedTypeByName = DiagramType.getByName(expectedValue);
 
-		if (expectedTypeByLiteral == null
-			&& expectedTypeByName == null) {
+		if (expectedTypeByLiteral == null && expectedTypeByName == null) {
 			throw new IllegalArgumentException();
 		}
 
-		DiagramType expectedType;		
+		DiagramType expectedType;
 		if (expectedTypeByLiteral != null) {
-			expectedType = expectedTypeByLiteral;	
-		}else{
+			expectedType = expectedTypeByLiteral;
+		} else {
 			expectedType = expectedTypeByName;
 		}
 
 		return expectedType;
 	}
-
 
 }

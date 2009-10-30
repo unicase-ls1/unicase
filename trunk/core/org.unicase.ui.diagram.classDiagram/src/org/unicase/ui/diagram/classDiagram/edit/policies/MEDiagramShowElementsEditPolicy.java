@@ -14,8 +14,8 @@ import org.unicase.ui.diagram.classDiagram.edit.commands.ShowRelatedElementsComm
 
 /**
  * An Edit Policy providing a {@link ShowRelatedElementsCommand} in response to a {@link ShowRelatedElementsRequest}.
- * The command shows representations or previews of classes and associations on the canvas which are semantically connected to the
- * request's class. In the future, this should be extended to generic diagram nodes and connections.
+ * The command shows representations or previews of classes and associations on the canvas which are semantically
+ * connected to the request's class. In the future, this should be extended to generic diagram nodes and connections.
  * 
  * @author schroech
  */
@@ -36,7 +36,7 @@ public class MEDiagramShowElementsEditPolicy extends AbstractEditPolicy {
 	public Command getCommand(Request request) {
 		if (RequestConstants.REQ_SHOW_RELATED_ELEMENTS.equals(request.getType())) {
 			if (request instanceof ShowRelatedElementsRequest) {
-				return new ShowRelatedElementsCommand((ShowRelatedElementsRequest) request); 
+				return new ShowRelatedElementsCommand((ShowRelatedElementsRequest) request);
 			}
 		}
 

@@ -9,8 +9,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
-import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.ui.common.commands.DeleteModelElementCommand;
 import org.unicase.ui.common.commands.DeleteReferenceCommand;
 
@@ -47,7 +47,8 @@ public class MEHyperLinkDeleteAdapter extends MouseAdapter {
 		if (reference.isContainment() && opposite instanceof NonDomainElement) {
 			new DeleteModelElementCommand((UnicaseModelElement) opposite).run();
 		} else {
-			new DeleteReferenceCommand((UnicaseModelElement) modelElement, reference, (UnicaseModelElement) opposite).run();
+			new DeleteReferenceCommand((UnicaseModelElement) modelElement, reference, (UnicaseModelElement) opposite)
+				.run();
 		}
 	}
 }

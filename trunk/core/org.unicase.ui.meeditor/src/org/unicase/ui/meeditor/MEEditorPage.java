@@ -82,7 +82,8 @@ public class MEEditorPage extends FormPage {
 	 * @param editingDomain the editingDomain
 	 * @param modelElement the modelElement
 	 */
-	public MEEditorPage(MEEditor editor, String id, String title, EditingDomain editingDomain, UnicaseModelElement modelElement) {
+	public MEEditorPage(MEEditor editor, String id, String title, EditingDomain editingDomain,
+		UnicaseModelElement modelElement) {
 		super(editor, id, title);
 		this.editingDomain = editingDomain;
 		this.modelElement = modelElement;

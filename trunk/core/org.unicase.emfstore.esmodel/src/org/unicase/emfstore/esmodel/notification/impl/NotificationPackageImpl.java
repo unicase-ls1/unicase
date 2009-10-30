@@ -27,7 +27,7 @@ import org.unicase.emfstore.esmodel.versioning.events.impl.EventsPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.impl.VersioningPackageImpl;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.emfstore.esmodel.versioning.operations.impl.OperationsPackageImpl;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -90,7 +90,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		isInited = true;
 
 		// Initialize simple dependencies
-		ModelPackage.eINSTANCE.eClass();
+		MetamodelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
 		EsmodelPackageImpl theEsmodelPackage = (EsmodelPackageImpl) (EPackage.Registry.INSTANCE
@@ -317,7 +317,8 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage) EPackage.Registry.INSTANCE
 			.getEPackage(EsmodelPackage.eNS_URI);
 		OperationsPackage theOperationsPackage = (OperationsPackage) EPackage.Registry.INSTANCE
@@ -328,7 +329,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		esNotificationEClass.getESuperTypes().add(theModelPackage.getIdentifiableElement());
+		esNotificationEClass.getESuperTypes().add(theMetamodelPackage.getIdentifiableElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(esNotificationEClass, ESNotification.class, "ESNotification", !IS_ABSTRACT, !IS_INTERFACE,
@@ -358,7 +359,7 @@ public class NotificationPackageImpl extends EPackageImpl implements Notificatio
 		initEReference(getESNotification_Project(), theEsmodelPackage.getProjectId(), null, "project", null, 0, 1,
 			ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getESNotification_RelatedModelElements(), theModelPackage.getModelElementId(), null,
+		initEReference(getESNotification_RelatedModelElements(), theMetamodelPackage.getModelElementId(), null,
 			"relatedModelElements", null, 0, -1, ESNotification.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getESNotification_RelatedOperations(), theOperationsPackage.getOperationId(), null,

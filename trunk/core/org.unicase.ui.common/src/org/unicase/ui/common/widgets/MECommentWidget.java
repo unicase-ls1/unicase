@@ -25,10 +25,10 @@ import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
 import org.unicase.model.rationale.Comment;
 import org.unicase.ui.common.Activator;
+import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.common.util.OrgUnitHelper;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.OrgUnitHelper;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**
@@ -79,7 +79,7 @@ public class MECommentWidget extends Composite {
 		localResources = new ArrayList<Resource>();
 		listeners = new HashSet<MECommentWidgetListener>();
 
-		if(comment.eContainer()!=null){
+		if (comment.eContainer() != null) {
 			try {
 				currentUser = OrgUnitHelper.getUser(WorkspaceManager.getProjectSpace(comment));
 			} catch (NoCurrentUserException e1) {
@@ -182,7 +182,7 @@ public class MECommentWidget extends Composite {
 				}
 			});
 
-			if (comment.getSender()!=null && comment.getSender().equals(currentUser)) {
+			if (comment.getSender() != null && comment.getSender().equals(currentUser)) {
 				deleteButton = new ImageHyperlink(toolbar, SWT.TOP);
 				deleteImage = Activator.getImageDescriptor("icons/delete_edit.gif").createImage();
 				localResources.add(deleteImage);
@@ -195,10 +195,10 @@ public class MECommentWidget extends Composite {
 								MECommentWidget.this.comment.delete();
 								MECommentWidget.this.dispose();
 								MECommentWidget parent = MECommentWidget.this.getParentWidget();
-								if (parent != null && parent.getParentWidget()!=null) {
+								if (parent != null && parent.getParentWidget() != null) {
 									parent.updateTitleBar();
 									parent.getParentWidget().reloadReplies();
-								}else if (parent != null){
+								} else if (parent != null) {
 									parent.updateTitleBar();
 									parent.reloadReplies();
 								}

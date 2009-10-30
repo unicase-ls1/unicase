@@ -7,20 +7,15 @@ package org.unicase.workspace.test.changeTracking.notification.recording;
 
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
- 
+
 /**
  * Test Suite for running all tests of workspace.
+ * 
  * @author chodnick
- *
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({
-	AttributeNotificationTest.class,
-	ReferenceNotificationTest.class,
-	MoveNotificationTest.class,
-	MultiReferenceNotificationTest.class,
-	ContainmentNotificationTest.class
-})
+@Suite.SuiteClasses( { AttributeNotificationTest.class, ReferenceNotificationTest.class, MoveNotificationTest.class,
+	MultiReferenceNotificationTest.class, ContainmentNotificationTest.class })
 public class AllNotificationTests {
 
 }

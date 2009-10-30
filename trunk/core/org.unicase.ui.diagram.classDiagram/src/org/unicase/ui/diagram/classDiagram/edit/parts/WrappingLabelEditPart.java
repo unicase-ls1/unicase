@@ -297,7 +297,8 @@ public class WrappingLabelEditPart extends CompartmentEditPart implements ITextA
 		if (parser == null) {
 			String parserHint = ((View) getModel()).getType();
 			IAdaptable hintAdapter = new org.unicase.ui.diagram.classDiagram.providers.ModelParserProvider.HintAdapter(
-				org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Class_2001, getParserElement(), parserHint);
+				org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Class_2001, getParserElement(),
+				parserHint);
 			parser = ParserService.getInstance().getParser(hintAdapter);
 		}
 		return parser;

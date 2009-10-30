@@ -13,7 +13,7 @@ import org.eclipse.jface.viewers.ViewerFilter;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.organization.User;
-import org.unicase.workspace.util.OrgUnitHelper;
+import org.unicase.ui.common.util.OrgUnitHelper;
 
 /**
  * Filter Validations to Team.
@@ -27,7 +27,8 @@ public class ValidationTeamFilter extends ViewerFilter {
 	/**
 	 * default constructor.
 	 * 
-	 * @param user The user to whos team it should be filtered.
+	 * @param user
+	 *            The user to whos team it should be filtered.
 	 */
 	public ValidationTeamFilter(User user) {
 		team = OrgUnitHelper.getTeam(user);

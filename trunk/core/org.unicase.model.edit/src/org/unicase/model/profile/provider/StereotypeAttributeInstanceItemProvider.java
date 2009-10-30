@@ -21,7 +21,7 @@ import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.profile.StereotypeAttributeInstance;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.profile.StereotypeAttributeInstance} object. <!--
@@ -29,7 +29,7 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * 
  * @generated
  */
-public class StereotypeAttributeInstanceItemProvider extends ModelElementItemProvider implements
+public class StereotypeAttributeInstanceItemProvider extends UnicaseModelElementItemProvider implements
 	IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider,
 	IItemPropertySource {
 	/**

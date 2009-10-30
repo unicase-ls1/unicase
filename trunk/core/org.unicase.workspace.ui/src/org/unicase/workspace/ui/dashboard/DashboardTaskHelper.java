@@ -7,8 +7,9 @@ package org.unicase.workspace.ui.dashboard;
 
 /**
  * Dashboard task helper.
+ * 
  * @author Alex
- *
+ * 
  */
 public class DashboardTaskHelper {
 

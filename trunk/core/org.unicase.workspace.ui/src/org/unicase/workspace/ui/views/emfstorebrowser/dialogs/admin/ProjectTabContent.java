@@ -29,18 +29,56 @@ import org.unicase.workspace.AdminBroker;
 public class ProjectTabContent extends TabContent {
 
 	/**
-	 * @param string the name of tab.
-	 * @param adminBroker AdminBroker is needed to communicate with server.
-	 * @param frm used to set input to properties form and update its table viewer upon deletion of OrgUnits.
+	 * Project Table Provider.
+	 * 
+	 * @author koegel
+	 * 
 	 */
-	public ProjectTabContent(String string, AdminBroker adminBroker, PropertiesForm frm) {
+	private final class ITableLabelProviderImplementation implements
+			ITableLabelProvider {
+		public void addListener(ILabelProviderListener listener) {
+		}
+
+		public boolean isLabelProperty(Object element, String property) {
+			return false;
+		}
+
+		public void removeListener(ILabelProviderListener listener) {
+		}
+
+		public void dispose() {
+		}
+
+		public Image getColumnImage(Object element, int columnIndex) {
+			return null;
+		}
+
+		public String getColumnText(Object element, int columnIndex) {
+			return ((ProjectInfo) element).getName() + " ["
+					+ ((ProjectInfo) element).getVersion().getIdentifier()
+					+ "]";
+		}
+	}
+
+	/**
+	 * @param string
+	 *            the name of tab.
+	 * @param adminBroker
+	 *            AdminBroker is needed to communicate with server.
+	 * @param frm
+	 *            used to set input to properties form and update its table
+	 *            viewer upon deletion of OrgUnits.
+	 */
+	public ProjectTabContent(String string, AdminBroker adminBroker,
+			PropertiesForm frm) {
 		super(string, adminBroker, frm);
 		this.setTab(this);
 	}
 
 	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createContents(org.eclipse.swt.widgets.TabFolder)
-	 * @param tabFolder TabFolder.
+	 * @param tabFolder
+	 *            TabFolder.
 	 * @return Composite.
 	 */
 	@Override
@@ -59,31 +97,7 @@ public class ProjectTabContent extends TabContent {
 	 */
 	@Override
 	public ITableLabelProvider getLabelProvider() {
-		return new ITableLabelProvider() {
-
-			public void addListener(ILabelProviderListener listener) {
-			}
-
-			public boolean isLabelProperty(Object element, String property) {
-				return false;
-			}
-
-			public void removeListener(ILabelProviderListener listener) {
-			}
-
-			public void dispose() {
-			}
-
-			public Image getColumnImage(Object element, int columnIndex) {
-				return null;
-			}
-
-			public String getColumnText(Object element, int columnIndex) {
-				return ((ProjectInfo) element).getName() + " [" + ((ProjectInfo) element).getVersion().getIdentifier()
-					+ "]";
-			}
-
-		};
+		return new ITableLabelProviderImplementation();
 	}
 
 	/**
@@ -101,13 +115,15 @@ public class ProjectTabContent extends TabContent {
 				} catch (EmfStoreException e) {
 					DialogHandler.showExceptionDialog(e);
 				}
-				return projectInfos.toArray(new ProjectInfo[projectInfos.size()]);
+				return projectInfos
+						.toArray(new ProjectInfo[projectInfos.size()]);
 			}
 
 			public void dispose() {
 			}
 
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			public void inputChanged(Viewer viewer, Object oldInput,
+					Object newInput) {
 			}
 		};
 	}

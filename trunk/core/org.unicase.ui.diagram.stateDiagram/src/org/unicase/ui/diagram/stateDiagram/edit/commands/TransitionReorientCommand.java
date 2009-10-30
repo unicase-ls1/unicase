@@ -1,4 +1,4 @@
-/** 
+/**
  * <copyright> Copyright (c) 2008-2009 Jonas Helming, Maximilian Koegel. All rights reserved. This program and the
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
@@ -13,7 +13,6 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.unicase.model.diagram.MEDiagram;
-import org.unicase.model.state.State;
 import org.unicase.model.state.StateNode;
 import org.unicase.model.state.Transition;
 
@@ -76,7 +75,7 @@ public class TransitionReorientCommand extends EditElementCommand {
 		}
 		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.ui.diagram.stateDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistTransition_4001(container, getNewSource(), target);
+			.canExistTransition_4001(container, getNewSource(), target);
 	}
 
 	/**
@@ -92,17 +91,15 @@ public class TransitionReorientCommand extends EditElementCommand {
 		}
 		MEDiagram container = (MEDiagram) getLink().eContainer();
 		return org.unicase.ui.diagram.stateDiagram.edit.policies.ModelBaseItemSemanticEditPolicy.LinkConstraints
-				.canExistTransition_4001(container, source, getNewTarget());
+			.canExistTransition_4001(container, source, getNewTarget());
 	}
 
 	/**
 	 * @generated
 	 */
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor,
-			IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException(
-					"Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();

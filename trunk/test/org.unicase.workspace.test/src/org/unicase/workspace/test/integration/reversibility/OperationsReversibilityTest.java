@@ -94,8 +94,6 @@ public abstract class OperationsReversibilityTest {
 		return setupHelper.getTestProjectSpace();
 	}
 
-	
-	
 	// /**
 	// * Commits changes.
 	// */

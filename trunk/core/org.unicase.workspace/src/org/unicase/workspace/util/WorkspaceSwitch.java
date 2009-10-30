@@ -18,7 +18,6 @@ import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.Usersession;
 import org.unicase.workspace.Workspace;
-import org.unicase.workspace.WorkspaceModelVersion;
 import org.unicase.workspace.WorkspacePackage;
 
 /**
@@ -122,13 +121,6 @@ public class WorkspaceSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case WorkspacePackage.WORKSPACE_MODEL_VERSION: {
-			WorkspaceModelVersion workspaceModelVersion = (WorkspaceModelVersion) theEObject;
-			T result = caseWorkspaceModelVersion(workspaceModelVersion);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
 		case WorkspacePackage.PENDING_FILE_TRANSFER: {
 			PendingFileTransfer pendingFileTransfer = (PendingFileTransfer) theEObject;
 			T result = casePendingFileTransfer(pendingFileTransfer);
@@ -218,19 +210,6 @@ public class WorkspaceSwitch<T> {
 	 * @generated
 	 */
 	public T caseOperationComposite(OperationComposite object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Model Version</em>'. <!-- begin-user-doc -->
-	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Model Version</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseWorkspaceModelVersion(WorkspaceModelVersion object) {
 		return null;
 	}
 

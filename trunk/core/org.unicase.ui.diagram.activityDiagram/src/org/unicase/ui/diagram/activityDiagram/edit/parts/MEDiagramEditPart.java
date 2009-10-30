@@ -6,8 +6,7 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class MEDiagramEditPart extends
-		org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart {
+public class MEDiagramEditPart extends org.unicase.ui.common.diagram.edit.parts.MEDiagramEditPart {
 
 	/**
 	 * @generated
@@ -31,12 +30,10 @@ public class MEDiagramEditPart extends
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(
-				EditPolicyRoles.SEMANTIC_ROLE,
-				new org.unicase.ui.diagram.activityDiagram.edit.policies.MEDiagramItemSemanticEditPolicy());
-		installEditPolicy(
-				EditPolicyRoles.CANONICAL_ROLE,
-				new org.unicase.ui.diagram.activityDiagram.edit.policies.MEDiagramCanonicalEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE,
+			new org.unicase.ui.diagram.activityDiagram.edit.policies.MEDiagramItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE,
+			new org.unicase.ui.diagram.activityDiagram.edit.policies.MEDiagramCanonicalEditPolicy());
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.POPUPBAR_ROLE);
 	}
 

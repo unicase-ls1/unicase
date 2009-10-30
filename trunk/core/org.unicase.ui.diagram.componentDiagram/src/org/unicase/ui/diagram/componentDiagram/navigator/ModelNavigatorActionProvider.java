@@ -67,12 +67,10 @@ public class ModelNavigatorActionProvider extends CommonActionProvider {
 		if (!myContribute) {
 			return;
 		}
-		IStructuredSelection selection = (IStructuredSelection) getContext()
-				.getSelection();
+		IStructuredSelection selection = (IStructuredSelection) getContext().getSelection();
 		myOpenDiagramAction.selectionChanged(selection);
 		if (myOpenDiagramAction.isEnabled()) {
-			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN,
-					myOpenDiagramAction);
+			actionBars.setGlobalActionHandler(ICommonActionConstants.OPEN, myOpenDiagramAction);
 		}
 	}
 
@@ -102,8 +100,7 @@ public class ModelNavigatorActionProvider extends CommonActionProvider {
 		 * @generated
 		 */
 		public OpenDiagramAction(ICommonViewerWorkbenchSite viewerSite) {
-			super(
-					org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorActionProvider_OpenDiagramActionName);
+			super(org.unicase.ui.diagram.componentDiagram.part.Messages.NavigatorActionProvider_OpenDiagramActionName);
 			myViewerSite = viewerSite;
 		}
 
@@ -116,16 +113,14 @@ public class ModelNavigatorActionProvider extends CommonActionProvider {
 				Object selectedElement = selection.getFirstElement();
 				if (selectedElement instanceof org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorItem) {
 					selectedElement = ((org.unicase.ui.diagram.componentDiagram.navigator.ModelNavigatorItem) selectedElement)
-							.getView();
+						.getView();
 				} else if (selectedElement instanceof IAdaptable) {
-					selectedElement = ((IAdaptable) selectedElement)
-							.getAdapter(View.class);
+					selectedElement = ((IAdaptable) selectedElement).getAdapter(View.class);
 				}
 				if (selectedElement instanceof Diagram) {
 					Diagram diagram = (Diagram) selectedElement;
 					if (org.unicase.ui.diagram.componentDiagram.edit.parts.MEDiagramEditPart.MODEL_ID
-							.equals(org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-									.getModelID(diagram))) {
+						.equals(org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry.getModelID(diagram))) {
 						myDiagram = diagram;
 					}
 				}
@@ -145,14 +140,10 @@ public class ModelNavigatorActionProvider extends CommonActionProvider {
 			IEditorInput editorInput = getEditorInput();
 			IWorkbenchPage page = myViewerSite.getPage();
 			try {
-				page
-						.openEditor(
-								editorInput,
-								org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditor.ID);
+				page.openEditor(editorInput, org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditor.ID);
 			} catch (PartInitException e) {
-				org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().logError(
-								"Exception while openning diagram", e); //$NON-NLS-1$
+				org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin.getInstance().logError(
+					"Exception while openning diagram", e); //$NON-NLS-1$
 			}
 		}
 
@@ -160,20 +151,17 @@ public class ModelNavigatorActionProvider extends CommonActionProvider {
 		 * @generated
 		 */
 		private IEditorInput getEditorInput() {
-			for (Iterator it = myDiagram.eResource().getContents().iterator(); it
-					.hasNext();) {
+			for (Iterator it = myDiagram.eResource().getContents().iterator(); it.hasNext();) {
 				EObject nextEObject = (EObject) it.next();
 				if (nextEObject == myDiagram) {
-					return new FileEditorInput(WorkspaceSynchronizer
-							.getFile(myDiagram.eResource()));
+					return new FileEditorInput(WorkspaceSynchronizer.getFile(myDiagram.eResource()));
 				}
 				if (nextEObject instanceof Diagram) {
 					break;
 				}
 			}
 			URI uri = EcoreUtil.getURI(myDiagram);
-			String editorName = uri.lastSegment()
-					+ "#" + myDiagram.eResource().getContents().indexOf(myDiagram); //$NON-NLS-1$
+			String editorName = uri.lastSegment() + "#" + myDiagram.eResource().getContents().indexOf(myDiagram); //$NON-NLS-1$
 			IEditorInput editorInput = new URIEditorInput(uri, editorName);
 			return editorInput;
 		}

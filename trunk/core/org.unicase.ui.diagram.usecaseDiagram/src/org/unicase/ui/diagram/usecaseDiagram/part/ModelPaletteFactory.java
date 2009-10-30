@@ -30,6 +30,7 @@ public class ModelPaletteFactory {
 
 	/**
 	 * Creates "Default" palette tool group
+	 * 
 	 * @generated
 	 */
 	private PaletteContainer createDefault1Group() {
@@ -50,7 +51,7 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createUseCase1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types
 				.add(org.unicase.ui.diagram.usecaseDiagram.providers.ModelElementTypes.UseCase_2002);
 		NodeToolEntry entry = new NodeToolEntry(
@@ -67,7 +68,7 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createActor2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types
 				.add(org.unicase.ui.diagram.usecaseDiagram.providers.ModelElementTypes.Actor_2001);
 		NodeToolEntry entry = new NodeToolEntry(
@@ -84,7 +85,7 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createInitiate3CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types
 				.add(org.unicase.ui.diagram.usecaseDiagram.providers.ModelElementTypes.ActorInitiatedUseCases_4002);
 		LinkToolEntry entry = new LinkToolEntry(
@@ -102,7 +103,7 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createParticipate4CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types
 				.add(org.unicase.ui.diagram.usecaseDiagram.providers.ModelElementTypes.ActorParticipatedUseCases_4001);
 		LinkToolEntry entry = new LinkToolEntry(
@@ -119,7 +120,7 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createInclude5CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types
 				.add(org.unicase.ui.diagram.usecaseDiagram.providers.ModelElementTypes.UseCaseIncludedUseCases_4003);
 		LinkToolEntry entry = new LinkToolEntry(
@@ -136,7 +137,7 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createExtend6CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
 		types
 				.add(org.unicase.ui.diagram.usecaseDiagram.providers.ModelElementTypes.UseCaseExtendedUseCases_4004);
 		LinkToolEntry entry = new LinkToolEntry(

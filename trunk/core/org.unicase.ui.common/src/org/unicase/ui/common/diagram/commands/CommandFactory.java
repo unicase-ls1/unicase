@@ -155,33 +155,34 @@ public class CommandFactory {
 		DeleteCommand deleteCommand = new DeleteCommand(viewToDestroy);
 		return new ICommandProxy(deleteCommand);
 	}
-	
+
 	/**
 	 * @param editPart The {@link EditPart} whose {@link View} should be deleted
 	 * @return A {@link DeleteCommand} wrapped in an {@link ICommandProxy}
 	 */
 	public static Command createDeleteFromDiagramCommand(EditPart editPart) {
-		DestroyElementRequest request = new DestroyElementRequest(WorkspaceManager.getInstance()
-			.getCurrentWorkspace().getEditingDomain(), EditPartUtility.getElement(editPart), false);
+		DestroyElementRequest request = new DestroyElementRequest(WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getEditingDomain(), EditPartUtility.getElement(editPart), false);
 		IElementType type = ElementTypeRegistry.getInstance().getElementType(request.getEditHelperContext());
-		if(type!=null){
+		if (type != null) {
 			return new ICommandProxy(new DeleteFromDiagramCommand(request, editPart));
 		}
-		//return null: a null command within a CompoundCommand is not executed.
+		// return null: a null command within a CompoundCommand is not executed.
 		return null;
 	}
+
 	/**
 	 * @param editPart The {@link EditPart} of the model element which should be deleted
 	 * @return A {@link DeleteCommand} wrapped in an {@link ICommandProxy}
 	 */
 	public static Command createDeleteFromModelCommand(EditPart editPart) {
-		DestroyElementRequest request = new DestroyElementRequest(WorkspaceManager.getInstance()
-			.getCurrentWorkspace().getEditingDomain(), EditPartUtility.getElement(editPart), false);
+		DestroyElementRequest request = new DestroyElementRequest(WorkspaceManager.getInstance().getCurrentWorkspace()
+			.getEditingDomain(), EditPartUtility.getElement(editPart), false);
 		IElementType type = ElementTypeRegistry.getInstance().getElementType(request.getEditHelperContext());
-		if(type!=null){
+		if (type != null) {
 			return new ICommandProxy(new DeleteFromModelCommand(request));
 		}
-		//return null: a null command within a CompoundCommand is not executed.
+		// return null: a null command within a CompoundCommand is not executed.
 		return null;
 	}
 
@@ -228,7 +229,8 @@ public class CommandFactory {
 	 * @param editPart The {@link EditPart} which will be asked for the command
 	 * @param addReferences true if references to other diagram elemenets should be added
 	 */
-	public static void addDiagramElementAddCommands(CompoundCommand cc, List<EObject> objects, DiagramEditPart editPart, boolean addReferences) {
+	public static void addDiagramElementAddCommands(CompoundCommand cc, List<EObject> objects,
+		DiagramEditPart editPart, boolean addReferences) {
 		for (EObject object : objects) {
 			Command createDiagramElementAddCommand = createDiagramElementAddCommand(object, editPart, addReferences);
 			if (createDiagramElementAddCommand == null) {
@@ -240,21 +242,22 @@ public class CommandFactory {
 
 	/**
 	 * @param object The object
-	 * @param editPart The {@link EditPart}	
+	 * @param editPart The {@link EditPart}
 	 * @param addReferences true if connecting references between nodes should also be added
 	 * @return The {@link Command}
 	 */
 	public static Command createDiagramElementAddCommand(EObject object, EditPart editPart, boolean addReferences) {
 
 		EObject model = EditPartUtility.getElement(editPart);
-		if(model instanceof MEDiagram){
+		if (model instanceof MEDiagram) {
 			return createDiagramElementAddCommand(object, (MEDiagram) model, addReferences);
 		}
 		return null;
 	}
+
 	/**
 	 * @param object The object
-	 * @param meDiagram The {@link MEDiagram}	
+	 * @param meDiagram The {@link MEDiagram}
 	 * @param addReferences true if connecting references between nodes should also be added
 	 * @return The {@link Command}
 	 */

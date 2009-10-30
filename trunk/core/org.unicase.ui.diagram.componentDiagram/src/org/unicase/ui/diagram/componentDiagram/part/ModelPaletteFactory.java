@@ -30,9 +30,8 @@ public class ModelPaletteFactory {
 	 */
 	private PaletteContainer createDefault1Group() {
 		PaletteGroup paletteContainer = new PaletteGroup(
-				org.unicase.ui.diagram.componentDiagram.part.Messages.Default1Group_title);
-		paletteContainer
-				.setDescription(org.unicase.ui.diagram.componentDiagram.part.Messages.Default1Group_desc);
+			org.unicase.ui.diagram.componentDiagram.part.Messages.Default1Group_title);
+		paletteContainer.setDescription(org.unicase.ui.diagram.componentDiagram.part.Messages.Default1Group_desc);
 		paletteContainer.add(createComponent1CreationTool());
 		paletteContainer.add(createNeed2CreationTool());
 		paletteContainer.add(createAbility3CreationTool());
@@ -43,15 +42,12 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createComponent1CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.Component_2002);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+		types.add(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.Component_2002);
 		NodeToolEntry entry = new NodeToolEntry(
-				org.unicase.ui.diagram.componentDiagram.part.Messages.Component1CreationTool_title,
-				null, types);
-		entry
-				.setSmallIcon(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes
-						.getImageDescriptor(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.Component_2002));
+			org.unicase.ui.diagram.componentDiagram.part.Messages.Component1CreationTool_title, null, types);
+		entry.setSmallIcon(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes
+			.getImageDescriptor(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.Component_2002));
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -60,16 +56,13 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createNeed2CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_4002);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+		types.add(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentConsumedServices_4002);
 		LinkToolEntry entry = new LinkToolEntry(
-				org.unicase.ui.diagram.componentDiagram.part.Messages.Need2CreationTool_title,
-				org.unicase.ui.diagram.componentDiagram.part.Messages.Need2CreationTool_desc,
-				types);
-		entry
-				.setSmallIcon(org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin
-						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Usage.gif")); //$NON-NLS-1$
+			org.unicase.ui.diagram.componentDiagram.part.Messages.Need2CreationTool_title,
+			org.unicase.ui.diagram.componentDiagram.part.Messages.Need2CreationTool_desc, types);
+		entry.setSmallIcon(org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin
+			.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/Usage.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -78,16 +71,13 @@ public class ModelPaletteFactory {
 	 * @generated
 	 */
 	private ToolEntry createAbility3CreationTool() {
-		List/*<IElementType>*/types = new ArrayList/*<IElementType>*/(1);
-		types
-				.add(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_4001);
+		List/* <IElementType> */types = new ArrayList/* <IElementType> */(1);
+		types.add(org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.ComponentOfferedServices_4001);
 		LinkToolEntry entry = new LinkToolEntry(
-				org.unicase.ui.diagram.componentDiagram.part.Messages.Ability3CreationTool_title,
-				org.unicase.ui.diagram.componentDiagram.part.Messages.Ability3CreationTool_desc,
-				types);
-		entry
-				.setSmallIcon(org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin
-						.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/InterfaceRealization.gif")); //$NON-NLS-1$
+			org.unicase.ui.diagram.componentDiagram.part.Messages.Ability3CreationTool_title,
+			org.unicase.ui.diagram.componentDiagram.part.Messages.Ability3CreationTool_desc, types);
+		entry.setSmallIcon(org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin
+			.findImageDescriptor("/org.unicase.model.edit/icons/full/obj16/InterfaceRealization.gif")); //$NON-NLS-1$
 		entry.setLargeIcon(entry.getSmallIcon());
 		return entry;
 	}
@@ -105,8 +95,7 @@ public class ModelPaletteFactory {
 		/**
 		 * @generated
 		 */
-		private NodeToolEntry(String title, String description,
-				List elementTypes) {
+		private NodeToolEntry(String title, String description, List elementTypes) {
 			super(title, description, null, null);
 			this.elementTypes = elementTypes;
 		}
@@ -135,8 +124,7 @@ public class ModelPaletteFactory {
 		/**
 		 * @generated
 		 */
-		private LinkToolEntry(String title, String description,
-				List relationshipTypes) {
+		private LinkToolEntry(String title, String description, List relationshipTypes) {
 			super(title, description, null, null);
 			this.relationshipTypes = relationshipTypes;
 		}

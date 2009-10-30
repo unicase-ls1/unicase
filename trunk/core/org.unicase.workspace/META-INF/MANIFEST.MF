@@ -18,10 +18,10 @@ Export-Package: org.unicase.workspace,
  org.unicase.workspace.filetransfer,
  org.unicase.workspace.impl,
  org.unicase.workspace.notification,
- org.unicase.workspace.notification.provider,
  org.unicase.workspace.observers,
  org.unicase.workspace.preferences,
  org.unicase.workspace.util
-Require-Bundle: org.unicase.emfstore;bundle-version="1.0.0.qualifier";visibility:=reexport
+Require-Bundle: org.unicase.emfstore;visibility:=reexport,
+ org.eclipse.emf.transaction;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Bundle-Activator: org.unicase.workspace.Activator

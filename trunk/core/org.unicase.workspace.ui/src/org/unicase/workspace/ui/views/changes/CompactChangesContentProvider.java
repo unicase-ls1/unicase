@@ -20,13 +20,15 @@ import org.unicase.workspace.WorkspaceManager;
  * 
  * @author Shterev
  */
-public class CompactChangesContentProvider extends AdapterFactoryContentProvider implements IContentProvider {
+public class CompactChangesContentProvider extends
+		AdapterFactoryContentProvider implements IContentProvider {
 
 	/**
 	 * Constructor.
 	 */
 	public CompactChangesContentProvider() {
-		super(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		super(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 	}
 
 	/**
@@ -46,8 +48,10 @@ public class CompactChangesContentProvider extends AdapterFactoryContentProvider
 	public Object[] getChildren(Object object) {
 		if (object instanceof ChangePackage) {
 			ChangePackage cPackage = (ChangePackage) object;
-			ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(Arrays.asList(cPackage),
-				WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject());
+			ChangePackageVisualizationHelper helper = new ChangePackageVisualizationHelper(
+					Arrays.asList(cPackage), WorkspaceManager.getInstance()
+							.getCurrentWorkspace().getActiveProjectSpace()
+							.getProject());
 
 			return helper.getAllModelElements(cPackage).toArray();
 		}
@@ -60,7 +64,8 @@ public class CompactChangesContentProvider extends AdapterFactoryContentProvider
 	 */
 	@Override
 	public boolean hasChildren(Object object) {
-		if (object instanceof CompositeOperation || object instanceof ChangePackage) {
+		if (object instanceof CompositeOperation
+				|| object instanceof ChangePackage) {
 			return true;
 		}
 		return false;

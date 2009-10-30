@@ -12,7 +12,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryContentProvider;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.impl.ModelPackageImpl;
 
 /**
@@ -88,7 +88,7 @@ public class ModelTreeContentProvider extends AdapterFactoryContentProvider {
 		// it inherits ModelElement and it is not abstract
 		// return true
 		return object instanceof EClass
-			&& ((EClass) object).getEAllSuperTypes().contains(ModelPackage.eINSTANCE.getModelElement())
+			&& ((EClass) object).getEAllSuperTypes().contains(MetamodelPackage.eINSTANCE.getModelElement())
 			&& !((EClass) object).isAbstract();
 	}
 

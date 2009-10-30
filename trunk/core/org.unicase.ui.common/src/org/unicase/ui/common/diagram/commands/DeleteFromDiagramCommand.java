@@ -60,7 +60,7 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 		diag.getElements().remove(destructee);
 		// tear down references
 		tearDownReferences(destructee, diag);
-		
+
 		return CommandResult.newOKCommandResult();
 	}
 
@@ -73,9 +73,10 @@ public class DeleteFromDiagramCommand extends DestroyElementCommand {
 	protected void tearDownReferences(ModelElement destructee, MEDiagram diag) {
 		Set<ModelElement> diagramNodeReferences = destructee.getCrossReferencedModelElements();
 		for (ModelElement object : diagramNodeReferences) {
-			if(object instanceof Association || object instanceof org.unicase.model.state.Transition ||
-				object instanceof org.unicase.model.activity.Transition ){
-			diag.getElements().remove(object);}
+			if (object instanceof Association || object instanceof org.unicase.model.state.Transition
+				|| object instanceof org.unicase.model.activity.Transition) {
+				diag.getElements().remove(object);
+			}
 		}
 	}
 }

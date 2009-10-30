@@ -52,12 +52,17 @@ public class PushedNotificationCellEditor extends DialogCellEditor {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param parent the parent composite.
-	 * @param projectSpace the project space - is resolved in the editing support to reduce redundant calls.
-	 * @param currentUser the user sending the notifications - is resolved in the editing support to reduce redundant
-	 *            calls.
+	 * @param parent
+	 *            the parent composite.
+	 * @param projectSpace
+	 *            the project space - is resolved in the editing support to
+	 *            reduce redundant calls.
+	 * @param currentUser
+	 *            the user sending the notifications - is resolved in the
+	 *            editing support to reduce redundant calls.
 	 */
-	public PushedNotificationCellEditor(final Composite parent, ProjectSpace projectSpace, String currentUser) {
+	public PushedNotificationCellEditor(final Composite parent,
+			ProjectSpace projectSpace, String currentUser) {
 		super(parent, SWT.NONE);
 		this.tree = (Tree) parent;
 		this.projectSpace = projectSpace;
@@ -73,16 +78,18 @@ public class PushedNotificationCellEditor extends DialogCellEditor {
 		Object value = getValue();
 		if (value instanceof ArrayList) {
 			final ArrayList<ESNotification> operations = ((ArrayList<ESNotification>) value);
-			AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
-				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
-			ElementListSelectionDialog dialog = new ElementListSelectionDialog(cellEditorWindow.getShell(),
-				labelProvider);
+			AdapterFactoryLabelProvider labelProvider = new AdapterFactoryLabelProvider(
+					new ComposedAdapterFactory(
+							ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+			ElementListSelectionDialog dialog = new ElementListSelectionDialog(
+					cellEditorWindow.getShell(), labelProvider);
 			EList<OrgUnit> users = new BasicEList<OrgUnit>();
-			projectSpace.getProject().getAllModelElementsbyClass(OrganizationPackage.eINSTANCE.getOrgUnit(), users,
-				true);
+			projectSpace.getProject().getAllModelElementsbyClass(
+					OrganizationPackage.eINSTANCE.getOrgUnit(), users, true);
 			dialog.setElements(users.toArray());
 			dialog.setTitle("User selection");
-			dialog.setMessage("Please select the users that should be notified:");
+			dialog
+					.setMessage("Please select the users that should be notified:");
 			dialog.setMultipleSelection(true);
 			if (dialog.open() == IDialogConstants.OK_ID) {
 				Object[] results = dialog.getResult();
@@ -94,13 +101,16 @@ public class PushedNotificationCellEditor extends DialogCellEditor {
 		return null;
 	}
 
-	private void handleResults(final ArrayList<ESNotification> operations, final Object[] results) {
+	private void handleResults(final ArrayList<ESNotification> operations,
+			final Object[] results) {
 		String comment = null;
 		if (results.length > 0) {
-			if (MessageDialog.openQuestion(Display.getCurrent().getActiveShell(), "Notification comment",
-				"Do you want to send a comment with this notification?")) {
-				InputDialog inputDialog = new InputDialog(Display.getCurrent().getActiveShell(),
-					"Notification comment", "Your comment on this notification:", null, null);
+			if (MessageDialog.openQuestion(Display.getCurrent()
+					.getActiveShell(), "Notification comment",
+					"Do you want to send a comment with this notification?")) {
+				InputDialog inputDialog = new InputDialog(Display.getCurrent()
+						.getActiveShell(), "Notification comment",
+						"Your comment on this notification:", null, null);
 				if (inputDialog.open() == IDialogConstants.OK_ID) {
 					comment = inputDialog.getValue();
 				}
@@ -108,10 +118,12 @@ public class PushedNotificationCellEditor extends DialogCellEditor {
 		}
 		for (Object o : results) {
 			OrgUnit orgUnit = (OrgUnit) o;
-			ESNotification notification = NotificationFactory.eINSTANCE.createESNotification();
+			ESNotification notification = NotificationFactory.eINSTANCE
+					.createESNotification();
 			notification.setCreationDate(new Date());
 			notification.setName("Pushed name");
-			ProjectId projectIdCopy = (ProjectId) EcoreUtil.copy(projectSpace.getProjectId());
+			ProjectId projectIdCopy = (ProjectId) EcoreUtil.copy(projectSpace
+					.getProjectId());
 			notification.setProject(projectIdCopy);
 			notification.setRecipient(orgUnit.getName());
 			StringBuilder msgBuilder = new StringBuilder();
@@ -120,17 +132,21 @@ public class PushedNotificationCellEditor extends DialogCellEditor {
 			Object data = tree.getSelection()[0].getData();
 			if (data instanceof AbstractOperation) {
 				AbstractOperation op = (AbstractOperation) data;
-				ModelElementId modelElementIdCopy = (ModelElementId) EcoreUtil.copy(op.getModelElementId());
+				ModelElementId modelElementIdCopy = (ModelElementId) EcoreUtil
+						.copy(op.getModelElementId());
 				msgBuilder.append(shortenDescription(op.getDescription()));
 				msgBuilder.append(" in ");
-				msgBuilder.append(URLHelper.getHTMLLinkForModelElement(modelElementIdCopy, projectSpace,
-					URLHelper.UNLTD));
+				msgBuilder.append(URLHelper.getHTMLLinkForModelElement(
+						modelElementIdCopy, projectSpace, URLHelper.UNLTD));
 				notification.getRelatedModelElements().add(modelElementIdCopy);
-				if (OperationsPackage.eINSTANCE.getReferenceOperation().isInstance(op)) {
+				if (OperationsPackage.eINSTANCE.getReferenceOperation()
+						.isInstance(op)) {
 					ReferenceOperation referenceOp = (ReferenceOperation) op;
-					Set<ModelElementId> otherInvolvedModelElements = referenceOp.getOtherInvolvedModelElements();
+					Set<ModelElementId> otherInvolvedModelElements = referenceOp
+							.getOtherInvolvedModelElements();
 					for (ModelElementId id : otherInvolvedModelElements) {
-						ModelElementId idCopy = (ModelElementId) EcoreUtil.copy(id);
+						ModelElementId idCopy = (ModelElementId) EcoreUtil
+								.copy(id);
 						notification.getRelatedModelElements().add(idCopy);
 					}
 				}

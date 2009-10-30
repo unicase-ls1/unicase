@@ -89,26 +89,22 @@ public class ModelElementTypes extends ElementInitializers {
 	/**
 	 * @generated
 	 */
-	private static ImageDescriptor getProvidedImageDescriptor(
-			ENamedElement element) {
+	private static ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
 		if (element instanceof EStructuralFeature) {
 			EStructuralFeature feature = ((EStructuralFeature) element);
 			EClass eContainingClass = feature.getEContainingClass();
 			EClassifier eType = feature.getEType();
 			if (eContainingClass != null && !eContainingClass.isAbstract()) {
 				element = eContainingClass;
-			} else if (eType instanceof EClass
-					&& !((EClass) eType).isAbstract()) {
+			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
 				element = eType;
 			}
 		}
 		if (element instanceof EClass) {
 			EClass eClass = (EClass) element;
 			if (!eClass.isAbstract()) {
-				return org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin
-						.getInstance().getItemImageDescriptor(
-								eClass.getEPackage().getEFactoryInstance()
-										.create(eClass));
+				return org.unicase.ui.diagram.componentDiagram.part.ModelDiagramEditorPlugin.getInstance()
+					.getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
 			}
 		}
 		// TODO : support structural features
@@ -182,17 +178,13 @@ public class ModelElementTypes extends ElementInitializers {
 
 			elements.put(MEDiagram_99, DiagramPackage.eINSTANCE.getMEDiagram());
 
-			elements.put(ComponentService_2001, ComponentPackage.eINSTANCE
-					.getComponentService());
+			elements.put(ComponentService_2001, ComponentPackage.eINSTANCE.getComponentService());
 
-			elements.put(Component_2002, ComponentPackage.eINSTANCE
-					.getComponent());
+			elements.put(Component_2002, ComponentPackage.eINSTANCE.getComponent());
 
-			elements.put(ComponentOfferedServices_4001,
-					ComponentPackage.eINSTANCE.getComponent_OfferedServices());
+			elements.put(ComponentOfferedServices_4001, ComponentPackage.eINSTANCE.getComponent_OfferedServices());
 
-			elements.put(ComponentConsumedServices_4002,
-					ComponentPackage.eINSTANCE.getComponent_ConsumedServices());
+			elements.put(ComponentConsumedServices_4002, ComponentPackage.eINSTANCE.getComponent_ConsumedServices());
 		}
 		return (ENamedElement) elements.get(type);
 	}

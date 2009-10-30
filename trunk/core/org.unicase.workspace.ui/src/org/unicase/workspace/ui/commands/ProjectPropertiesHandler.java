@@ -15,10 +15,10 @@ import org.unicase.workspace.WorkspaceManager;
 
 /**
  * Opens the user settings for this project.
- * @author Shterev 
+ * 
+ * @author Shterev
  */
 public class ProjectPropertiesHandler extends AbstractHandler {
-
 
 	/**
 	 * Default constructor.
@@ -27,12 +27,15 @@ public class ProjectPropertiesHandler extends AbstractHandler {
 		super();
 	}
 
-
 	/**
 	 * {@inheritDoc}
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
-		PreferenceDialog propertyDialog = PreferencesUtil.createPropertyDialogOn(Display.getCurrent().getActiveShell(), WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace().getProject(), null, null, null);
+		PreferenceDialog propertyDialog = PreferencesUtil
+				.createPropertyDialogOn(Display.getCurrent().getActiveShell(),
+						WorkspaceManager.getInstance().getCurrentWorkspace()
+								.getActiveProjectSpace().getProject(), null,
+						null, null);
 		propertyDialog.open();
 		return null;
 	}

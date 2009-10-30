@@ -18,11 +18,7 @@ import org.unicase.workspace.test.integration.AllIntegrationTests;
  * @author koegel
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses( { 
-	AllChangeTrackingTests.class,
-	AllConflictDetectionTests.class,
-	AllIntegrationTests.class
-})
+@Suite.SuiteClasses( { AllChangeTrackingTests.class, AllConflictDetectionTests.class, AllIntegrationTests.class })
 public class AllTests {
 
 }

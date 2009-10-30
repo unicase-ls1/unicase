@@ -16,12 +16,12 @@ import org.unicase.emfstore.esmodel.notification.ESNotification;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsPackage;
 import org.unicase.model.organization.User;
+import org.unicase.ui.common.util.CannotMatchUserInProjectException;
+import org.unicase.ui.common.util.OrgUnitHelper;
 import org.unicase.ui.common.util.URLHelper;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.exceptions.CannotMatchUserInProjectException;
 import org.unicase.workspace.util.NoCurrentUserException;
-import org.unicase.workspace.util.OrgUnitHelper;
 
 /**
  * Editing support for pushed notifications.
@@ -36,25 +36,31 @@ public class PushedNotificationEditingSupport extends EditingSupport {
 	/**
 	 * Default constructor.
 	 * 
-	 * @param viewer a viewer
-	 * @param notificationMap the map containing the lists of notifications per operation
+	 * @param viewer
+	 *            a viewer
+	 * @param notificationMap
+	 *            the map containing the lists of notifications per operation
 	 */
-	public PushedNotificationEditingSupport(ColumnViewer viewer,
-		HashMap<AbstractOperation, ArrayList<ESNotification>> notificationMap) {
+	public PushedNotificationEditingSupport(
+			ColumnViewer viewer,
+			HashMap<AbstractOperation, ArrayList<ESNotification>> notificationMap) {
 		super(viewer);
 		this.notificationMap = notificationMap;
-		ProjectSpace projectSpace = WorkspaceManager.getInstance().getCurrentWorkspace().getActiveProjectSpace();
+		ProjectSpace projectSpace = WorkspaceManager.getInstance()
+				.getCurrentWorkspace().getActiveProjectSpace();
 		String currentUser;
 		try {
 			User currentOrgUnit = OrgUnitHelper.getUser(projectSpace);
-			currentUser = URLHelper.getHTMLLinkForModelElement(currentOrgUnit, projectSpace, URLHelper.UNLTD);
+			currentUser = URLHelper.getHTMLLinkForModelElement(currentOrgUnit,
+					projectSpace, URLHelper.UNLTD);
 		} catch (NoCurrentUserException e) {
 			currentUser = projectSpace.getUsersession().getUsername();
 		} catch (CannotMatchUserInProjectException e) {
 			currentUser = projectSpace.getUsersession().getUsername();
 		}
 
-		cellEditor = new PushedNotificationCellEditor(((TreeViewer) viewer).getTree(), projectSpace, currentUser);
+		cellEditor = new PushedNotificationCellEditor(((TreeViewer) viewer)
+				.getTree(), projectSpace, currentUser);
 	}
 
 	/**
@@ -78,7 +84,8 @@ public class PushedNotificationEditingSupport extends EditingSupport {
 	 */
 	@Override
 	protected Object getValue(Object element) {
-		if (!OperationsPackage.eINSTANCE.getAbstractOperation().isInstance(element)) {
+		if (!OperationsPackage.eINSTANCE.getAbstractOperation().isInstance(
+				element)) {
 			// return the element itself if the element does not apply
 			return element;
 		}

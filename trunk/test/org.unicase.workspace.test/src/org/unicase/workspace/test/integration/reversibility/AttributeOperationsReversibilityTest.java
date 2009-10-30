@@ -11,7 +11,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.junit.Test;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.util.SerializationException;
+import org.unicase.metamodel.util.SerializationException;
 import org.unicase.workspace.test.integration.forward.IntegrationTestHelper;
 
 /**
@@ -41,11 +41,11 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 			}
 		});
 
-		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "MultiAttributeMoveReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"MultiAttributeMoveReversibilityTest"));
 
 	}
-	
+
 	/**
 	 * 1. Get a random model element form test project; 2. get randomly one of its attributes. 3. change the attribute
 	 * 
@@ -68,12 +68,11 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 
 		});
 
-	
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "AttributeChangeReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"AttributeChangeReversibilityTest"));
 
 	}
-	
-	
+
 	/**
 	 * Change the same attribute on a randomly selected ME twice.
 	 * 
@@ -95,10 +94,9 @@ public class AttributeOperationsReversibilityTest extends OperationsReversibilit
 
 		});
 
-		
-		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(), "AttributeTransitiveChangeReversibilityTest"));
+		assertTrue(IntegrationTestHelper.areEqual(getTestProject(), getCompareProject(),
+			"AttributeTransitiveChangeReversibilityTest"));
 
 	}
-
 
 }

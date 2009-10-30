@@ -25,9 +25,10 @@ import org.eclipse.swt.graphics.Image;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.model.ModelPackage;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.LeafSection;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.ui.common.MEClassLabelProvider;
 import org.unicase.ui.common.decorators.OverlayImageDescriptor;
 import org.unicase.ui.common.exceptions.DialogHandler;
@@ -58,7 +59,7 @@ public class NewReferenceAction extends Action {
 		protected void doExecute() {
 			EClass clazz = eReference.getEReferenceType();
 			EClass newClass = null;
-			ArrayList<EClass> subclasses = ModelUtil.getSubclasses(clazz);
+			ArrayList<EClass> subclasses = ModelUtil.getSubclasses(clazz, ModelPackage.eINSTANCE);
 			if (subclasses.size() == 1) {
 				newClass = subclasses.get(0);
 			} else {
@@ -160,7 +161,8 @@ public class NewReferenceAction extends Action {
 	 * @param eReference the target reference
 	 * @param descriptor the descriptor used to generate display content
 	 */
-	public NewReferenceAction(UnicaseModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
+	public NewReferenceAction(UnicaseModelElement modelElement, EReference eReference,
+		IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 

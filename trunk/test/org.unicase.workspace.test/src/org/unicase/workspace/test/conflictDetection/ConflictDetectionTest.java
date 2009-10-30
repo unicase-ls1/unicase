@@ -12,9 +12,9 @@ import org.unicase.emfstore.conflictDetection.ConflictDetectionStrategy;
 import org.unicase.emfstore.conflictDetection.IndexSensitiveConflictDetectionStrategy;
 import org.unicase.emfstore.esmodel.EsmodelFactory;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.util.ModelUtil;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 
@@ -72,7 +72,7 @@ public abstract class ConflictDetectionTest {
 		projectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
 		projectSpace.setProjectName("ps name");
 
-		project = ModelFactory.eINSTANCE.createProject();
+		project = MetamodelFactory.eINSTANCE.createProject();
 
 		projectSpace.setProject(project);
 

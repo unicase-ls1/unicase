@@ -28,9 +28,11 @@ public class CompareProjectsHandler extends AbstractHandler {
 
 		// show compare dialog
 		ISelection sel = HandlerUtil.getCurrentSelection(event);
-		ProjectSpace projSpace = (ProjectSpace) ((StructuredSelection) sel).getFirstElement();
+		ProjectSpace projSpace = (ProjectSpace) ((StructuredSelection) sel)
+				.getFirstElement();
 
-		CompareProjectsDialog compareDialog = new CompareProjectsDialog(HandlerUtil.getActiveShell(event), projSpace);
+		CompareProjectsDialog compareDialog = new CompareProjectsDialog(
+				HandlerUtil.getActiveShell(event), projSpace);
 		compareDialog.create();
 		compareDialog.open();
 		return null;

@@ -21,10 +21,10 @@ import org.unicase.workspace.exceptions.UnsupportedNotificationException;
 
 /**
  * Tests the notification recording for attribute features.
+ * 
  * @author chodnick
- *
  */
-public class AttributeNotificationTest extends NotificationTest{
+public class AttributeNotificationTest extends NotificationTest {
 
 	/**
 	 * Change an attribute and check the generated notification.
@@ -40,10 +40,10 @@ public class AttributeNotificationTest extends NotificationTest{
 
 		useCase.setName("newName");
 		assertEquals("newName", useCase.getName());
-		
+
 		NotificationRecording recording = getProjectSpace().getNotificationRecorder().getRecording();
 		List<NotificationInfo> rec = recording.asMutableList();
-		
+
 		// exactly one SET notification is expected with attribute feature "name" on our useCase and newValue newName
 		assertEquals(1, rec.size());
 
@@ -54,8 +54,7 @@ public class AttributeNotificationTest extends NotificationTest{
 		assertEquals(n.getNewValue(), "newName");
 		assertEquals(n.getAttribute().getName(), "name");
 		assertNull(n.getOldValue());
-		
+
 	}
-	
 
 }

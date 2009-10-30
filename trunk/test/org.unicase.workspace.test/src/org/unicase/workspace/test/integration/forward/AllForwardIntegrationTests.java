@@ -16,15 +16,9 @@ import org.junit.runners.Suite;
 
 /**
  * @author Hodaie
- *
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({
-	AttributeTest.class,
-	ReferenceTest.class,
-	CreateDeleteTest.class, 
-	CompositeTest.class
-	})
+@Suite.SuiteClasses( { AttributeTest.class, ReferenceTest.class, CreateDeleteTest.class, CompositeTest.class })
 public class AllForwardIntegrationTests {
 
 }

@@ -9,7 +9,7 @@ import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> The <b>Package</b> for the model. It contains accessors for the meta objects to represent
@@ -177,7 +177,7 @@ public interface EsmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SESSION_ID__ID = ModelPackage.UNIQUE_IDENTIFIER__ID;
+	int SESSION_ID__ID = MetamodelPackage.UNIQUE_IDENTIFIER__ID;
 
 	/**
 	 * The number of structural features of the '<em>Session Id</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -186,7 +186,7 @@ public interface EsmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SESSION_ID_FEATURE_COUNT = ModelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
+	int SESSION_ID_FEATURE_COUNT = MetamodelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.impl.ServerSpaceImpl <em>Server Space</em>}'
@@ -258,7 +258,7 @@ public interface EsmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_ID__ID = ModelPackage.UNIQUE_IDENTIFIER__ID;
+	int PROJECT_ID__ID = MetamodelPackage.UNIQUE_IDENTIFIER__ID;
 
 	/**
 	 * The number of structural features of the '<em>Project Id</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -267,7 +267,7 @@ public interface EsmodelPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROJECT_ID_FEATURE_COUNT = ModelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
+	int PROJECT_ID_FEATURE_COUNT = MetamodelPackage.UNIQUE_IDENTIFIER_FEATURE_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.emfstore.esmodel.impl.VersionInfoImpl <em>Version Info</em>}'

@@ -202,6 +202,9 @@ public class EventCompositeItemProvider extends ItemProviderAdapter implements I
 
 		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
 			EventsFactory.eINSTANCE.createNotificationIgnoreEvent()));
+
+		newChildDescriptors.add(createChildParameter(WorkspacePackage.Literals.EVENT_COMPOSITE__EVENTS,
+			EventsFactory.eINSTANCE.createURLEvent()));
 	}
 
 	/**

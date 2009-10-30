@@ -29,7 +29,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.workspace.ui.views.changes.MergeChangesComposite;
 
 /**
- * This is the merge dialog. It shows three ChangesTreeComposites (my changes, merged changes, and their changes).
+ * This is the merge dialog. It shows three ChangesTreeComposites (my changes,
+ * merged changes, and their changes).
  * 
  * @author Hodaie
  * @author Shterev
@@ -46,7 +47,8 @@ public class MergeDialog extends TitleAreaDialog {
 	/**
 	 * Constructor.
 	 * 
-	 * @param parentShell shell
+	 * @param parentShell
+	 *            shell
 	 */
 	public MergeDialog(Shell parentShell) {
 		super(parentShell);
@@ -58,10 +60,13 @@ public class MergeDialog extends TitleAreaDialog {
 	/**
 	 * Initializes this dialog.
 	 * 
-	 * @param myChanges my changes
-	 * @param theirChanges their changes
+	 * @param myChanges
+	 *            my changes
+	 * @param theirChanges
+	 *            their changes
 	 */
-	public void setChanges(ChangePackage myChanges, List<ChangePackage> theirChanges) {
+	public void setChanges(ChangePackage myChanges,
+			List<ChangePackage> theirChanges) {
 		this.myChangePackage = myChanges;
 		this.theirChangePackages = theirChanges;
 	}
@@ -76,7 +81,8 @@ public class MergeDialog extends TitleAreaDialog {
 		Rectangle area = Display.getCurrent().getClientArea();
 		int width = area.width * 8 / 9;
 		int height = area.height * 8 / 9;
-		newShell.setBounds((area.width - width) / 2, (area.height - height) / 2, width, height);
+		newShell.setBounds((area.width - width) / 2,
+				(area.height - height) / 2, width, height);
 	}
 
 	/**
@@ -85,7 +91,7 @@ public class MergeDialog extends TitleAreaDialog {
 	@Override
 	protected Control createDialogArea(Composite parent) {
 		setMessage("Please select the changes you want to accept using the checkboxes. \n"
-			+ "To show a quick conflict preview just mark the given operation.");
+				+ "To show a quick conflict preview just mark the given operation.");
 
 		Composite contents = new Composite(parent, SWT.NONE);
 		contents.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
@@ -93,18 +99,21 @@ public class MergeDialog extends TitleAreaDialog {
 
 		// lblMyChanges
 		Label lblMyChanges = new Label(contents, SWT.NONE);
-		lblMyChanges.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER, false, false, 1, 1));
+		lblMyChanges.setLayoutData(new GridData(SWT.BEGINNING, SWT.CENTER,
+				false, false, 1, 1));
 		lblMyChanges.setText("My changes");
 
 		// lblTheirChanges
 		Label lblTheirChanges = new Label(contents, SWT.NONE);
-		lblTheirChanges.setLayoutData(new GridData(SWT.END, SWT.CENTER, false, false, 1, 1));
+		lblTheirChanges.setLayoutData(new GridData(SWT.END, SWT.CENTER, false,
+				false, 1, 1));
 		lblTheirChanges.setText("Their changes");
 
 		// Sash
-		mergeComposite = new MergeChangesComposite(contents, SWT.NONE, Arrays.asList(myChangePackage),
-			theirChangePackages);
-		mergeComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
+		mergeComposite = new MergeChangesComposite(contents, SWT.NONE, Arrays
+				.asList(myChangePackage), theirChangePackages);
+		mergeComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true,
+				true, 2, 1));
 
 		Button acceptMine = new Button(contents, SWT.PUSH);
 		acceptMine.setText("Accept all");
@@ -114,7 +123,8 @@ public class MergeDialog extends TitleAreaDialog {
 				mergeComposite.selectAllMine();
 			}
 		});
-		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING).applyTo(acceptMine);
+		GridDataFactory.fillDefaults().align(SWT.BEGINNING, SWT.BEGINNING)
+				.applyTo(acceptMine);
 
 		Button acceptTheirs = new Button(contents, SWT.PUSH);
 		acceptTheirs.setText("Accept all");
@@ -124,7 +134,8 @@ public class MergeDialog extends TitleAreaDialog {
 				mergeComposite.selectAllTheirs();
 			}
 		});
-		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(acceptTheirs);
+		GridDataFactory.fillDefaults().align(SWT.END, SWT.BEGINNING).applyTo(
+				acceptTheirs);
 
 		return contents;
 
@@ -136,7 +147,8 @@ public class MergeDialog extends TitleAreaDialog {
 	@Override
 	protected void okPressed() {
 
-		HashMap<String, List<AbstractOperation>> resultSet = mergeComposite.getResultSet();
+		HashMap<String, List<AbstractOperation>> resultSet = mergeComposite
+				.getResultSet();
 		acceptedMine = resultSet.get("mineChecked");
 		rejectedTheirs = resultSet.get("theirsNotChecked");
 

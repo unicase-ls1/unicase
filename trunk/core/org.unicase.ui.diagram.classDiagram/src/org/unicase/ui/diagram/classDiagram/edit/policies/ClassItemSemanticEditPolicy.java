@@ -23,9 +23,8 @@ import org.eclipse.gmf.runtime.notation.View;
 /**
  * @generated
  */
-public class ClassItemSemanticEditPolicy
-		extends
-		org.unicase.ui.diagram.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
+public class ClassItemSemanticEditPolicy extends
+	org.unicase.ui.diagram.classDiagram.edit.policies.ModelBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
@@ -54,14 +53,11 @@ public class ClassItemSemanticEditPolicy
 		}
 		for (Iterator it = view.getChildren().iterator(); it.hasNext();) {
 			Node node = (Node) it.next();
-			switch (org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
-					.getVisualID(node)) {
+			switch (org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry.getVisualID(node)) {
 			case org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_attributesEditPart.VISUAL_ID:
-				for (Iterator cit = node.getChildren().iterator(); cit
-						.hasNext();) {
+				for (Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node) cit.next();
-					switch (org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
-							.getVisualID(cnode)) {
+					switch (org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry.getVisualID(cnode)) {
 					case org.unicase.ui.diagram.classDiagram.edit.parts.AttributeEditPart.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
@@ -69,11 +65,9 @@ public class ClassItemSemanticEditPolicy
 				}
 				break;
 			case org.unicase.ui.diagram.classDiagram.edit.parts.ClassClassNode_methodsEditPart.VISUAL_ID:
-				for (Iterator cit = node.getChildren().iterator(); cit
-						.hasNext();) {
+				for (Iterator cit = node.getChildren().iterator(); cit.hasNext();) {
 					Node cnode = (Node) cit.next();
-					switch (org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry
-							.getVisualID(cnode)) {
+					switch (org.unicase.ui.diagram.classDiagram.part.ModelVisualIDRegistry.getVisualID(cnode)) {
 					case org.unicase.ui.diagram.classDiagram.edit.parts.MethodEditPart.VISUAL_ID:
 						cmd.add(getDestroyElementCommand(cnode));
 						break;
@@ -90,9 +84,8 @@ public class ClassItemSemanticEditPolicy
 	@Override
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		Command command = req.getTarget() == null ? getStartCreateRelationshipCommand(req)
-				: getCompleteCreateRelationshipCommand(req);
-		return command != null ? command : super
-				.getCreateRelationshipCommand(req);
+			: getCompleteCreateRelationshipCommand(req);
+		return command != null ? command : super.getCreateRelationshipCommand(req);
 	}
 
 	/**
@@ -100,39 +93,33 @@ public class ClassItemSemanticEditPolicy
 	 * @param req The request which triggers the creation of the command
 	 * @return The new RelationshipCreateCommand
 	 */
-	protected Command getStartCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
+	protected Command getStartCreateRelationshipCommand(CreateRelationshipRequest req) {
 		IElementType elementType = req.getElementType();
 
 		if (elementType == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Association_4001) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association1CreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association1CreateCommand(req,
+				req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		if (elementType == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Association_4002) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association2CreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association2CreateCommand(req,
+				req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		if (elementType == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Association_4003) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association3CreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association3CreateCommand(req,
+				req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		if (elementType == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Association_4004) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association4CreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association4CreateCommand(req,
+				req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		if (org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007 == req
-				.getElementType()) {
+			.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.ClassSuperClassesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+				req, req.getSource(), req.getTarget()));
 		}
 		if (elementType == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Dependency_4006) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.DependencyCreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.DependencyCreateCommand(req, req
+				.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		return null;
 	}
@@ -144,41 +131,35 @@ public class ClassItemSemanticEditPolicy
 	 * @param req The request that triggers the command creation
 	 * @return The new {@link CreateElementCommand}
 	 */
-	protected Command getCompleteCreateRelationshipCommand(
-			CreateRelationshipRequest req) {
+	protected Command getCompleteCreateRelationshipCommand(CreateRelationshipRequest req) {
 		IElementType elementType = req.getElementType();
 
 		if (elementType == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Association_4001) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association1CreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association1CreateCommand(req,
+				req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		if (elementType == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Association_4002) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association2CreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association2CreateCommand(req,
+				req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		if (elementType == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Association_4003) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association3CreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association3CreateCommand(req,
+				req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		if (elementType == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Association_4004) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association4CreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association4CreateCommand(req,
+				req.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 
 		if (org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.ClassSuperClasses_4007 == req
-				.getElementType()) {
+			.getElementType()) {
 			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.ClassSuperClassesCreateCommand(
-					req, req.getSource(), req.getTarget()));
+				req, req.getSource(), req.getTarget()));
 		}
 
 		if (elementType == org.unicase.ui.diagram.classDiagram.providers.ModelElementTypes.Dependency_4006) {
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.DependencyCreateCommand(
-					req, req.getSource(), req.getTarget(), (EObject) getHost()
-							.getModel()));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.DependencyCreateCommand(req, req
+				.getSource(), req.getTarget(), (EObject) getHost().getModel()));
 		}
 		return null;
 	}
@@ -190,24 +171,18 @@ public class ClassItemSemanticEditPolicy
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientRelationshipCommand(
-			ReorientRelationshipRequest req) {
+	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case org.unicase.ui.diagram.classDiagram.edit.parts.Association1EditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association1ReorientCommand(
-					req));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association1ReorientCommand(req));
 		case org.unicase.ui.diagram.classDiagram.edit.parts.Association2EditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association2ReorientCommand(
-					req));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association2ReorientCommand(req));
 		case org.unicase.ui.diagram.classDiagram.edit.parts.Association3EditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association3ReorientCommand(
-					req));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association3ReorientCommand(req));
 		case org.unicase.ui.diagram.classDiagram.edit.parts.Association4EditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association4ReorientCommand(
-					req));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.Association4ReorientCommand(req));
 		case org.unicase.ui.diagram.classDiagram.edit.parts.DependencyEditPart.VISUAL_ID:
-			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.DependencyReorientCommand(
-					req));
+			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.DependencyReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}
@@ -219,12 +194,11 @@ public class ClassItemSemanticEditPolicy
 	 * @generated
 	 */
 	@Override
-	protected Command getReorientReferenceRelationshipCommand(
-			ReorientReferenceRelationshipRequest req) {
+	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case org.unicase.ui.diagram.classDiagram.edit.parts.ClassSuperClassesEditPart.VISUAL_ID:
 			return getGEFWrapper(new org.unicase.ui.diagram.classDiagram.edit.commands.ClassSuperClassesReorientCommand(
-					req));
+				req));
 		}
 		return super.getReorientReferenceRelationshipCommand(req);
 	}

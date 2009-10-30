@@ -5,6 +5,10 @@
  */
 package org.unicase.workspace.test.projectGenerator;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -15,10 +19,6 @@ import org.unicase.model.classes.ClassesPackage;
 import org.unicase.model.diagram.DiagramType;
 import org.unicase.model.requirement.RequirementPackage;
 import org.unicase.model.state.StatePackage;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 
 /**
  * @author Hodaie

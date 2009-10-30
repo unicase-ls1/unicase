@@ -100,14 +100,14 @@ public class AltKeyDoubleClickAction extends Action implements IDoubleClickListe
 	 */
 	private void openSelectedModelelement() {
 		// the selected Object or null if selection is not an IStructuredSelection
-		
+
 		Object obj = ActionHelper.getSelection();
 		if (obj instanceof ProjectSpace) {
-			ProjectSpace projectSpace = (ProjectSpace)obj;
+			ProjectSpace projectSpace = (ProjectSpace) obj;
 			ActionHelper.openDashboard(projectSpace);
 			return;
 		}
-		
+
 		ModelElement me = ActionHelper.getSelectedModelElement();
 		if (me == null) {
 			return;

@@ -26,8 +26,8 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.model.bug.BugFactory;
 import org.unicase.model.bug.BugReport;
+import org.unicase.ui.dashboard.notificationProviders.TaskChangeNotificationProvider;
 import org.unicase.workspace.ProjectSpace;
-import org.unicase.workspace.notification.provider.TaskChangeNotificationProvider;
 
 /**
  * Tests the TaskNotificationProvider.

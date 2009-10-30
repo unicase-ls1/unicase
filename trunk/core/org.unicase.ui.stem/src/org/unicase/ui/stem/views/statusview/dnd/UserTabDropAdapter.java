@@ -11,7 +11,7 @@ import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTargetEvent;
 import org.unicase.model.organization.OrgUnit;
 import org.unicase.model.task.WorkItem;
-import org.unicase.workspace.util.EventUtil;
+import org.unicase.ui.common.util.EventUtil;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**

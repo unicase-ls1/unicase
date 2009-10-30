@@ -35,7 +35,7 @@ import org.unicase.model.meeting.MeetingFactory;
 import org.unicase.model.organization.OrganizationFactory;
 import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.provider.UnicaseModelElementItemProvider;
 import org.unicase.model.rationale.RationaleFactory;
 import org.unicase.model.requirement.RequirementFactory;
 import org.unicase.model.state.StateFactory;
@@ -47,7 +47,7 @@ import org.unicase.model.task.TaskFactory;
  * 
  * @generated
  */
-public class LeafSectionItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+public class LeafSectionItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -373,8 +373,9 @@ public class LeafSectionItemProvider extends ModelElementItemProvider implements
 		Object childFeature = feature;
 		Object childObject = child;
 
-		boolean qualify = childFeature == ModelPackage.Literals.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES
-			|| childFeature == DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS;
+		boolean qualify = childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES
+			|| childFeature == DocumentPackage.Literals.LEAF_SECTION__MODEL_ELEMENTS
+			|| childFeature == ModelPackage.Literals.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 		if (qualify) {
 			return getString("_UI_CreateChild_text2", new Object[] { getTypeText(childObject),

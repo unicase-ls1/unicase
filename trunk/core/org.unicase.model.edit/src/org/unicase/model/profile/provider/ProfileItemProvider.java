@@ -24,7 +24,7 @@ import org.unicase.model.profile.Profile;
 import org.unicase.model.profile.ProfileFactory;
 import org.unicase.model.profile.ProfilePackage;
 import org.unicase.model.provider.ModelEditPlugin;
-import org.unicase.model.provider.ModelElementItemProvider;
+import org.unicase.model.provider.UnicaseModelElementItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.model.profile.Profile} object. <!-- begin-user-doc -->
@@ -32,7 +32,7 @@ import org.unicase.model.provider.ModelElementItemProvider;
  * 
  * @generated
  */
-public class ProfileItemProvider extends ModelElementItemProvider implements IEditingDomainItemProvider,
+public class ProfileItemProvider extends UnicaseModelElementItemProvider implements IEditingDomainItemProvider,
 	IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource {
 	/**
 	 * This constructs an instance from a factory and a notifier. <!-- begin-user-doc --> <!-- end-user-doc -->

@@ -29,9 +29,9 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidProjectIdException;
 import org.unicase.emfstore.exceptions.StorageException;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.util.FileUtil;
+import org.unicase.metamodel.util.FileUtil;
 
 /**
  * This subinterfaces implements all project related functionality for the
@@ -272,7 +272,7 @@ public class ProjectSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 		firstVersion.setPrimarySpec(primary);
 
 		// create initial project
-		Project project = ModelFactory.eINSTANCE.createProject();
+		Project project = MetamodelFactory.eINSTANCE.createProject();
 		firstVersion.setProjectState(project);
 		getResourceHelper().createResourceForProject(project, firstVersion.getPrimarySpec(),
 			projectHistory.getProjectId());

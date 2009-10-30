@@ -23,7 +23,7 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.emfstore.esmodel.versioning.events.EventsPackage;
 import org.unicase.emfstore.esmodel.versioning.events.URLEvent;
-import org.unicase.model.ModelFactory;
+import org.unicase.metamodel.MetamodelFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.emfstore.esmodel.versioning.events.URLEvent} object. <!--
@@ -158,10 +158,10 @@ public class URLEventItemProvider extends EventItemProvider implements IEditingD
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.URL_EVENT__SOURCE_MODEL_ELEMENT,
-			ModelFactory.eINSTANCE.createModelElementId()));
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 
 		newChildDescriptors.add(createChildParameter(EventsPackage.Literals.URL_EVENT__SOURCE_URL,
-			ModelFactory.eINSTANCE.createModelElementId()));
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**

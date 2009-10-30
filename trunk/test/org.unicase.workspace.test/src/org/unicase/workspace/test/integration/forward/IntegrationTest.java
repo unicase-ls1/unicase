@@ -22,7 +22,7 @@ public abstract class IntegrationTest {
 
 	private static boolean serverRunning;
 	private SetupHelper setupHelper;
-	
+
 	/**
 	 * set up test project.
 	 * 
@@ -33,12 +33,9 @@ public abstract class IntegrationTest {
 		if (serverRunning) {
 			return;
 		}
-		
-		
+
 		SetupHelper.startSever();
 		serverRunning = true;
-
-		
 
 	}
 
@@ -47,13 +44,13 @@ public abstract class IntegrationTest {
 	 */
 	@Before
 	public void setup() {
-		
+
 		setupHelper = new SetupHelper(TestProjectEnum.RANDOM_3K);
 
 		setupHelper.setupWorkSpace();
-		
+
 		setupHelper.setupTestProjectSpace();
-		
+
 		setupHelper.shareProject();
 
 	}
@@ -64,14 +61,9 @@ public abstract class IntegrationTest {
 	@After
 	public void cleanUp() {
 		setupHelper.cleanupWorkspace();
-		
+
 		SetupHelper.cleanupServer();
 	}
-
-	
-	
-
-	
 
 	/**
 	 * @return the testProject
@@ -89,13 +81,13 @@ public abstract class IntegrationTest {
 	 */
 	public Project getCompareProject() throws EmfStoreException {
 		return setupHelper.getCompareProject();
-		
+
 	}
-	
+
 	/**
 	 * Commits changes.
 	 */
-	protected void commitChanges(){
+	protected void commitChanges() {
 		setupHelper.commitChanges();
 	}
 

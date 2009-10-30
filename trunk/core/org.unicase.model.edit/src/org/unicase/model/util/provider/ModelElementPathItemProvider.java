@@ -19,7 +19,7 @@ import org.eclipse.emf.edit.provider.IItemPropertySource;
 import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-import org.unicase.model.ModelFactory;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.model.provider.ModelEditPlugin;
 import org.unicase.model.provider.RootElementItemProvider;
 import org.unicase.model.util.ModelElementPath;
@@ -140,13 +140,13 @@ public class ModelElementPathItemProvider extends RootElementItemProvider implem
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add(createChildParameter(UtilPackage.Literals.MODEL_ELEMENT_PATH__SOURCE,
-			ModelFactory.eINSTANCE.createModelElementId()));
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 
 		newChildDescriptors.add(createChildParameter(UtilPackage.Literals.MODEL_ELEMENT_PATH__TARGET,
-			ModelFactory.eINSTANCE.createModelElementId()));
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 
 		newChildDescriptors.add(createChildParameter(UtilPackage.Literals.MODEL_ELEMENT_PATH__PATH,
-			ModelFactory.eINSTANCE.createModelElementId()));
+			MetamodelFactory.eINSTANCE.createModelElementId()));
 	}
 
 	/**

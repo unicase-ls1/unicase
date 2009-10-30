@@ -33,16 +33,16 @@ public class ModelOCLFactory {
 	/**
 	 * @generated
 	 */
-	public static org.unicase.ui.diagram.componentDiagram.expressions.ModelAbstractExpression getExpression(String body,
-		EClassifier context, Map environment) {
+	public static org.unicase.ui.diagram.componentDiagram.expressions.ModelAbstractExpression getExpression(
+		String body, EClassifier context, Map environment) {
 		return new Expression(body, context, environment);
 	}
 
 	/**
 	 * @generated
 	 */
-	public static org.unicase.ui.diagram.componentDiagram.expressions.ModelAbstractExpression getExpression(String body,
-		EClassifier context) {
+	public static org.unicase.ui.diagram.componentDiagram.expressions.ModelAbstractExpression getExpression(
+		String body, EClassifier context) {
 		return getExpression(body, context, Collections.EMPTY_MAP);
 	}
 

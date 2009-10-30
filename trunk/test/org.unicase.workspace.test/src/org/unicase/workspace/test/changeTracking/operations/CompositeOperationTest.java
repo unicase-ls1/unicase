@@ -20,13 +20,14 @@ import org.unicase.workspace.exceptions.InvalidHandleException;
 
 /**
  * Tests the comnposite operation recording.
+ * 
  * @author koegel
- *
  */
 public class CompositeOperationTest extends OperationTest {
 
 	/**
 	 * Test the creation and completion of a composite operation.
+	 * 
 	 * @throws InvalidHandleException if the test fails
 	 */
 	@Test
@@ -35,46 +36,45 @@ public class CompositeOperationTest extends OperationTest {
 		getProject().addModelElement(section);
 		section.setName("Name");
 		section.setDescription("Description");
-		
+
 		assertEquals(true, getProject().contains(section));
 		assertEquals("Name", section.getName());
 		assertEquals("Description", section.getDescription());
 		assertEquals(0, section.getModelElements().size());
-		
-		
+
 		clearOperations();
-		
+
 		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
 		section.setName("newName");
 		section.setDescription("newDescription");
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		section.getModelElements().add(useCase);
-		
+
 		assertEquals(true, getProject().contains(useCase));
 		assertEquals(getProject(), useCase.getProject());
 		assertEquals(useCase, section.getModelElements().iterator().next());
 		assertEquals("newName", section.getName());
 		assertEquals("newDescription", section.getDescription());
-		
-		handle.end("sectionCreation", "description", section.getModelElementId());		
-		
+
+		handle.end("sectionCreation", "description", section.getModelElementId());
+
 		assertEquals(true, getProject().contains(useCase));
 		assertEquals(getProject(), useCase.getProject());
 		assertEquals(useCase, section.getModelElements().iterator().next());
 		assertEquals("newName", section.getName());
 		assertEquals("newDescription", section.getDescription());
-		
+
 		assertEquals(1, getProjectSpace().getOperations().size());
 		AbstractOperation operation = getProjectSpace().getOperations().iterator().next();
 		assertEquals(true, operation instanceof CompositeOperation);
 		CompositeOperation compositeOperation = (CompositeOperation) operation;
 		assertEquals(4, compositeOperation.getSubOperations().size());
-				
-		
+
 	}
-	
+
 	/**
 	 * Test the creation and abort of a composite operation.
+	 * 
 	 * @throws InvalidHandleException if the test fails
 	 */
 	@Test
@@ -83,37 +83,35 @@ public class CompositeOperationTest extends OperationTest {
 		getProject().addModelElement(section);
 		section.setName("Name");
 		section.setDescription("Description");
-		
+
 		assertEquals(true, getProject().contains(section));
 		assertEquals("Name", section.getName());
 		assertEquals("Description", section.getDescription());
 		assertEquals(0, section.getModelElements().size());
-		
-		
+
 		clearOperations();
-		
+
 		CompositeOperationHandle handle = getProjectSpace().beginCompositeOperation();
 		section.setName("newName");
 		section.setDescription("newDescription");
 		UseCase useCase = RequirementFactory.eINSTANCE.createUseCase();
 		section.getModelElements().add(useCase);
-		
+
 		assertEquals(true, getProject().contains(useCase));
 		assertEquals(getProject(), useCase.getProject());
 		assertEquals(useCase, section.getModelElements().iterator().next());
 		assertEquals("newName", section.getName());
 		assertEquals("newDescription", section.getDescription());
-		
+
 		handle.abort();
-		
+
 		assertEquals(true, getProject().contains(section));
 		assertEquals("Name", section.getName());
 		assertEquals("Description", section.getDescription());
 		assertEquals(0, section.getModelElements().size());
 		assertEquals(false, getProject().contains(useCase));
-		
+
 		assertEquals(0, getProjectSpace().getOperations().size());
-		
-		
+
 	}
 }

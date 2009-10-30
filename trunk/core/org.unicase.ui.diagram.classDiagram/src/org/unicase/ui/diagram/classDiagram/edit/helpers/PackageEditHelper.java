@@ -8,6 +8,5 @@ package org.unicase.ui.diagram.classDiagram.edit.helpers;
 /**
  * @generated
  */
-public class PackageEditHelper extends
-		org.unicase.ui.diagram.classDiagram.edit.helpers.ModelBaseEditHelper {
+public class PackageEditHelper extends org.unicase.ui.diagram.classDiagram.edit.helpers.ModelBaseEditHelper {
 }

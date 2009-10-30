@@ -16,8 +16,7 @@ import org.unicase.model.ModelPackage;
 /**
  * @generated
  */
-public class ModelParserProvider extends AbstractProvider implements
-		IParserProvider {
+public class ModelParserProvider extends AbstractProvider implements IParserProvider {
 
 	/**
 	 * @generated
@@ -38,10 +37,9 @@ public class ModelParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	protected IParser createComponentServiceName_5001Parser() {
-		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
-				.getModelElement_Name(), };
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name(), };
 		org.unicase.ui.diagram.componentDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.diagram.componentDiagram.parsers.MessageFormatParser(
-				features);
+			features);
 		return parser;
 	}
 
@@ -64,10 +62,9 @@ public class ModelParserProvider extends AbstractProvider implements
 	 * @generated
 	 */
 	protected IParser createComponentName_5002Parser() {
-		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
-				.getModelElement_Name(), };
+		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE.getUnicaseModelElement_Name(), };
 		org.unicase.ui.diagram.componentDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.diagram.componentDiagram.parsers.MessageFormatParser(
-				features);
+			features);
 		return parser;
 	}
 
@@ -90,13 +87,11 @@ public class ModelParserProvider extends AbstractProvider implements
 	public IParser getParser(IAdaptable hint) {
 		String vid = (String) hint.getAdapter(String.class);
 		if (vid != null) {
-			return getParser(org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-					.getVisualID(vid));
+			return getParser(org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry.getVisualID(vid));
 		}
 		View view = (View) hint.getAdapter(View.class);
 		if (view != null) {
-			return getParser(org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry
-					.getVisualID(view));
+			return getParser(org.unicase.ui.diagram.componentDiagram.part.ModelVisualIDRegistry.getVisualID(view));
 		}
 		return null;
 	}
@@ -107,8 +102,7 @@ public class ModelParserProvider extends AbstractProvider implements
 	public boolean provides(IOperation operation) {
 		if (operation instanceof GetParserOperation) {
 			IAdaptable hint = ((GetParserOperation) operation).getHint();
-			if (org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes
-					.getElement(hint) == null) {
+			if (org.unicase.ui.diagram.componentDiagram.providers.ModelElementTypes.getElement(hint) == null) {
 				return false;
 			}
 			return getParser(hint) != null;

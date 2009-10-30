@@ -71,7 +71,8 @@ public class WorkPackageDropAdapter extends MEDropAdapter {
 	 *      org.unicase.metamodel.ModelElement, java.util.List, boolean)
 	 */
 	@Override
-	public void dropMove(EObject targetContainer, UnicaseModelElement target, List<UnicaseModelElement> source, boolean after) {
+	public void dropMove(EObject targetContainer, UnicaseModelElement target, List<UnicaseModelElement> source,
+		boolean after) {
 		ModelElement dropee = source.get(0);
 		if (dropee instanceof Annotation) {
 			super.dropMove(targetContainer, target, source, after);
@@ -110,8 +111,8 @@ public class WorkPackageDropAdapter extends MEDropAdapter {
 	 *      java.util.List, org.unicase.metamodel.ModelElement, org.unicase.metamodel.ModelElement)
 	 */
 	@Override
-	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source, UnicaseModelElement target,
-		UnicaseModelElement dropee) {
+	public boolean canDrop(int eventFeedback, DropTargetEvent event, List<UnicaseModelElement> source,
+		UnicaseModelElement target, UnicaseModelElement dropee) {
 
 		return super.canDrop(eventFeedback, event, source, target, dropee);
 	}

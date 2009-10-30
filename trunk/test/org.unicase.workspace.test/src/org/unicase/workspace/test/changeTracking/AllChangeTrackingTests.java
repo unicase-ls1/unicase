@@ -11,19 +11,15 @@ import org.unicase.workspace.test.changeTracking.canonization.AllCanonizationTes
 import org.unicase.workspace.test.changeTracking.notification.recording.AllNotificationTests;
 import org.unicase.workspace.test.changeTracking.operations.AllOperationTests;
 import org.unicase.workspace.test.changeTracking.topology.AllTopologyTests;
- 
+
 /**
  * Test Suite for running all tests of workspace.
+ * 
  * @author chodnick
- *
  */
 @RunWith(Suite.class)
-@Suite.SuiteClasses({
-	AllNotificationTests.class,
-	AllOperationTests.class,
-	AllTopologyTests.class,
-	AllCanonizationTests.class
-})
+@Suite.SuiteClasses( { AllNotificationTests.class, AllOperationTests.class, AllTopologyTests.class,
+	AllCanonizationTests.class })
 public class AllChangeTrackingTests {
 
 }

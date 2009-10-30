@@ -35,14 +35,58 @@ import org.unicase.workspace.ui.Activator;
 /**
  * @author gurcankarakoc, deser
  */
-public class UserTabContent extends TabContent implements IPropertyChangeListener {
+public class UserTabContent extends TabContent implements
+		IPropertyChangeListener {
 
 	/**
-	 * @param string the name of tab.
-	 * @param adminBroker AdminBroker is needed to communicate with server.
-	 * @param frm used to set input to properties form and update its table viewer upon. deletion of OrgUnits.
+	 * Action to delete a user.
+	 * 
+	 * @author koegel
+	 * 
 	 */
-	public UserTabContent(String string, AdminBroker adminBroker, PropertiesForm frm) {
+	private final class DeleteUserAction extends Action {
+		private DeleteUserAction(String text) {
+			super(text);
+		}
+
+		@Override
+		public void run() {
+			IStructuredSelection selection = (IStructuredSelection) getTableViewer()
+					.getSelection();
+			Iterator<?> iterator = selection.iterator();
+
+			while (iterator.hasNext()) {
+				ACUser ou = (ACUser) iterator.next();
+				if (ou == null) {
+					return;
+				}
+
+				try {
+					getAdminBroker().deleteUser(ou.getId());
+				} catch (EmfStoreException e) {
+					DialogHandler.showExceptionDialog(e);
+				}
+
+				if (getForm().getCurrentInput() instanceof ACOrgUnit
+						&& getForm().getCurrentInput().equals(ou)) {
+					getForm().setInput(null);
+				}
+			}
+			getTableViewer().refresh();
+		}
+	}
+
+	/**
+	 * @param string
+	 *            the name of tab.
+	 * @param adminBroker
+	 *            AdminBroker is needed to communicate with server.
+	 * @param frm
+	 *            used to set input to properties form and update its table
+	 *            viewer upon. deletion of OrgUnits.
+	 */
+	public UserTabContent(String string, AdminBroker adminBroker,
+			PropertiesForm frm) {
 		super(string, adminBroker, frm);
 		this.setTab(this);
 	}
@@ -50,7 +94,8 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 	/**
 	 * @see org.unicase.ui.esbrowser.dialogs.admin.TabContent#createContents(org.eclipse.swt.widgets.TabFolder)
 	 * @return Composite.
-	 * @param tabFolder TabFolder.
+	 * @param tabFolder
+	 *            TabFolder.
 	 */
 	@Override
 	protected Composite createContents(TabFolder tabFolder) {
@@ -80,36 +125,14 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 
 		};
 
-		createNewUser.setImageDescriptor(Activator.getImageDescriptor("icons/user.png"));
+		createNewUser.setImageDescriptor(Activator
+				.getImageDescriptor("icons/user.png"));
 		createNewUser.setToolTipText("Create new user");
 
-		Action deleteUser = new Action("Delete user") {
-			@Override
-			public void run() {
-				IStructuredSelection selection = (IStructuredSelection) getTableViewer().getSelection();
-				Iterator<?> iterator = selection.iterator();
+		Action deleteUser = new DeleteUserAction("Delete user");
 
-				while (iterator.hasNext()) {
-					ACUser ou = (ACUser) iterator.next();
-					if (ou == null) {
-						return;
-					}
-
-					try {
-						getAdminBroker().deleteUser(ou.getId());
-					} catch (EmfStoreException e) {
-						DialogHandler.showExceptionDialog(e);
-					}
-
-					if (getForm().getCurrentInput() instanceof ACOrgUnit && getForm().getCurrentInput().equals(ou)) {
-						getForm().setInput(null);
-					}
-				}
-				getTableViewer().refresh();
-			}
-		};
-
-		deleteUser.setImageDescriptor(Activator.getImageDescriptor("icons/delete.gif"));
+		deleteUser.setImageDescriptor(Activator
+				.getImageDescriptor("icons/delete.gif"));
 		deleteUser.setToolTipText("Delete user");
 
 		Action importOrgUnit = new AcUserImportAction(getAdminBroker());
@@ -146,7 +169,8 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 			}
 
 			public Image getColumnImage(Object element, int columnIndex) {
-				return Activator.getImageDescriptor("icons/user.png").createImage();
+				return Activator.getImageDescriptor("icons/user.png")
+						.createImage();
 			}
 
 			public String getColumnText(Object element, int columnIndex) {
@@ -177,15 +201,18 @@ public class UserTabContent extends TabContent implements IPropertyChangeListene
 			public void dispose() {
 			}
 
-			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			public void inputChanged(Viewer viewer, Object oldInput,
+					Object newInput) {
 			}
 		};
 	}
 
 	/**
-	 * Refresh the tableViewer after a property change. (Used e.g. after importing users via e.g. CSV.)
+	 * Refresh the tableViewer after a property change. (Used e.g. after
+	 * importing users via e.g. CSV.)
 	 * 
-	 * @param event The event to deal with.
+	 * @param event
+	 *            The event to deal with.
 	 */
 	public void propertyChange(PropertyChangeEvent event) {
 		getTableViewer().refresh();

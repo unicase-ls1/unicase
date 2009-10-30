@@ -132,7 +132,8 @@ public class AddReferenceAction extends Action {
 	 * @param eReference the target reference
 	 * @param descriptor the descriptor used to generate display content
 	 */
-	public AddReferenceAction(UnicaseModelElement modelElement, EReference eReference, IItemPropertyDescriptor descriptor) {
+	public AddReferenceAction(UnicaseModelElement modelElement, EReference eReference,
+		IItemPropertyDescriptor descriptor) {
 		this.modelElement = modelElement;
 		this.eReference = eReference;
 

@@ -27,33 +27,33 @@ public class SubscriptionTester extends PropertyTester {
 
 	private static final String DOES_CONTAIN = "isSubscribed";
 	private static final String DOES_NOT_CONTAIN = "isNotSubscribed";
-	
+
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object,
-	 *      java.lang.String, java.lang.Object[], java.lang.Object)
+	 * @see org.eclipse.core.expressions.IPropertyTester#test(java.lang.Object, java.lang.String, java.lang.Object[],
+	 *      java.lang.Object)
 	 */
-	public boolean test(Object receiver, String property, Object[] args,
-			final Object expectedValue) {
+	public boolean test(Object receiver, String property, Object[] args, final Object expectedValue) {
 		if (receiver instanceof ModelElement) {
-				ModelElement modelElement = (ModelElement) receiver;
-				if (modelElement.getProject()==null) {
-					return false;
-				}
-				ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
-				OrgUnitProperty orgUnitProperty = PreferenceManager.INSTANCE.getProperty(projectSpace, DashboardKey.SUBSCRIPTIONS);
-				EObject[] propertyArray = orgUnitProperty.getEObjectArrayProperty();
-				ArrayList<EObject> propertyList = new ArrayList<EObject>(Arrays.asList(propertyArray));
-				boolean contains = propertyList.contains(modelElement.getModelElementId());
-				if(property.equals(DOES_CONTAIN)){
-					return contains;
-				}else if(property.equals(DOES_NOT_CONTAIN)){
-						return !contains;
-				}
+			ModelElement modelElement = (ModelElement) receiver;
+			if (modelElement.getProject() == null) {
+				return false;
+			}
+			ProjectSpace projectSpace = WorkspaceManager.getProjectSpace(modelElement);
+			OrgUnitProperty orgUnitProperty = PreferenceManager.INSTANCE.getProperty(projectSpace,
+				DashboardKey.SUBSCRIPTIONS);
+			EObject[] propertyArray = orgUnitProperty.getEObjectArrayProperty();
+			ArrayList<EObject> propertyList = new ArrayList<EObject>(Arrays.asList(propertyArray));
+			boolean contains = propertyList.contains(modelElement.getModelElementId());
+			if (property.equals(DOES_CONTAIN)) {
+				return contains;
+			} else if (property.equals(DOES_NOT_CONTAIN)) {
+				return !contains;
+			}
 		}
 		return false;
-		
+
 	}
 
 }

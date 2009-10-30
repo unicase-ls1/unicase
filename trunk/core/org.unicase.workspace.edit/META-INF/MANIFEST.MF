@@ -10,7 +10,7 @@ Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Export-Package: 
  org.unicase.workspace.provider
-Require-Bundle: org.unicase.workspace;bundle-version="1.0.0.qualifier";visibility:=reexport,
- org.unicase.emfstore.esmodel.edit;bundle-version="1.0.0.qualifier";visibility:=reexport
+Require-Bundle: org.unicase.workspace;visibility:=reexport,
+ org.unicase.emfstore.esmodel.edit;visibility:=reexport
 Bundle-ActivationPolicy: lazy
 Import-Package: org.eclipse.emf.edit.ui.provider

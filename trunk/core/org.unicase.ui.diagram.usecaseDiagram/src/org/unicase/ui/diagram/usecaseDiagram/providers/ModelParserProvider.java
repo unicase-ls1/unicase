@@ -44,7 +44,7 @@ public class ModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser createActorName_5001Parser() {
 		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
-				.getModelElement_Name(), };
+				.getUnicaseModelElement_Name(), };
 		org.unicase.ui.diagram.usecaseDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.diagram.usecaseDiagram.parsers.MessageFormatParser(
 				features);
 		return parser;
@@ -70,7 +70,7 @@ public class ModelParserProvider extends AbstractProvider implements
 	 */
 	protected IParser createUseCaseName_5002Parser() {
 		EAttribute[] features = new EAttribute[] { ModelPackage.eINSTANCE
-				.getModelElement_Name(), };
+				.getUnicaseModelElement_Name(), };
 		org.unicase.ui.diagram.usecaseDiagram.parsers.MessageFormatParser parser = new org.unicase.ui.diagram.usecaseDiagram.parsers.MessageFormatParser(
 				features);
 		return parser;
