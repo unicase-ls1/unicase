@@ -18,6 +18,15 @@ We have a workflow and a set of rules in place to work with the ecore models in 
          * workspace depends on esmodel and model
    # Organize imports on model and edit (ContextMenu: Source -> Organize Imports)
    # Format model and edit (ContextMenu: Source -> Format)
+   # Update all plugins to detect potential problems
+   # Minimum testing:
+         * Delete the existing model database and workspaces and run server and client
+         * Run server and client
+         * Open navigator and meeditor and perform one workspace commit,
+   # Commit all changed plugins at once with a descriptive commit message
+         * List all changes you made to the model
+         * List all changes you performed on other plugins because of the new model
+         * List all plugins you regenerated from the changed ecore
 
 <br>
 *_Modeling Rules:_*
@@ -28,10 +37,10 @@ For all attributes in any of the models, what you should *NOT do*:
     * *Do NOT* use the "/plugin/org.eclipse.emf.ecore/model/Ecore.ecore#//" URIs but the "http://www.eclipse.org/emf/2002/Ecore#//" !
     * *Do NOT use generics in the ecore!
     * Do NOT* just override a getter or setter! If you want to override a setter or getter follow the recommended best practice in emf:
-          o Rename generated setter or getter to get/setXGen
-          o Write your own getter/setter marked with @generated NOT and call the get/setXGen
-          o Your added code must be null safe for any input parameter!
-          o Emf will now always update the generated part but leave your code untouched
+          * Rename generated setter or getter to get/setXGen
+          * Write your own getter/setter marked with @generated NOT and call the get/setXGen
+          * Your added code must be null safe for any input parameter!
+          * Emf will now always update the generated part but leave your code untouched
 
 *_For the individual models:_*
 
@@ -48,17 +57,9 @@ For all attributes in any of the models, what you should *NOT do*:
     * org.unicase.emfstore.esmodel:
           o All classes must be contained in the "ServerSpace" containment tree (if they should be persisted or are referenced by other persistent classes)
           o Access control classes must not refer to classes other than subclasses of "UniqueIdentifier" or classes in access control.
-          o ProjectInfo is a DTO and must not be referenced by other classes
+           ProjectInfo is a DTO and must not be referenced by other classes
 
     * org.unicase.workspace:
-          o All classes must be contained in the "Workspace" containment tree (if they should be persisted or are referenced by other persistent classes)
+           All classes must be contained in the "Workspace" containment tree (if they should be persisted or are referenced by other persistent classes)
 
-   # Update all plugins to detect potential problems
-   # Minimum testing:
-         * Delete the existing model database and workspaces and run server and client
-         * Run server and client
-         * Open navigator and meeditor and perform one workspace commit,
-   # Commit all changed plugins at once with a descriptive commit message
-         * List all changes you made to the model
-         * List all changes you performed on other plugins because of the new model
-         * List all plugins you regenerated from the changed ecore
+   
