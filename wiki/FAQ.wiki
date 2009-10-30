@@ -1,17 +1,17 @@
 *Q: How should I configure a new plugin?*
-
+<br>
 A: Create a new folder at the repository root (e.g. unicase/trunk). You can do this using the repo browser for example. Name the folder like the package the plugin is going to provide (e.g. org.unicase. workspace). Package names are always prefixed with org.unicase. Checkout the new folder with svn in eclipse as a new Project. Select PluginProject in Plugin Development. Set the plugin id to the package name. Set version to 0.0.1. The plugin name must be prefixed with unicase. The plugin provider is unicase.org. The remaining settings can be left to default, so just click on finish.
 
-*Q: How do I add an interface or superclass to a generated EMF class?*
+*Q: How do I add an interface or superclass to a generated EMF class?*<br>
 A: add @implements {{{<interfacename>}}} or @extends {{{<superclassname>}}} to the user doc block in the javadoc of the class declaration. Do not add @generated NOT to the class declaration since this will stop emf from ever regenerating the class.
 
-*Q: How should I configure my plugin's dependencies?*
+*Q: How should I configure my plugin's dependencies?*<br>
 A: Double click on your Manifest.MF and switch to the dependency tab. Here you can add dependecies you need, e.g. org.unicase.model. Unless you know why do not add a minimum or maximum version number. If it is added by default if you add a dependency remove it please.
 
-*Q: How can I get access to the unicase Workspace from a plugin?*
+*Q: How can I get access to the unicase Workspace from a plugin?*<br>
 A: Import org.unicase.workspace as a dependency. Call WorkspaceManager.getInstance().getCurrentWorkspace().
 
-*Q: Which Content or LabelProvider should I use?*
+*Q: Which Content or LabelProvider should I use?*<br>
 A: e.g. for a LabelProvider only for Model: 
 
 {{{
@@ -25,7 +25,7 @@ for a LabelProvider for all Models:
 new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 }}}
 
-*Q: How do I listen for change events of a modelelement or a certain feature?*
+*Q: How do I listen for change events of a modelelement or a certain feature?*<br>
 
 A: Add an adapter to the model element overriding the notifyChanged() method:
 
@@ -43,27 +43,27 @@ modelElement.eAdapters().add(new AdapterImpl() {
 
 }}}
 
-*Q: How do I use standard icons/images from eclipse?*
+*Q: How do I use standard icons/images from eclipse?*<br>
 A: PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.XXX)
     _* Hint: Many other free icons can be found on FamFamFam._*
 
-*Q: I add sth. in a Composite, but it wont show up. What am I doing wrong?*
+*Q: I add sth. in a Composite, but it wont show up. What am I doing wrong?*<br>
 A. You probably forgot to set a LayoutManager for the Composite.
 
-*Q: What is the difference between a command and an action?*
+*Q: What is the difference between a command and an action?*<br>
 A: http://wiki.eclipse.org/FAQ_What_is_the_difference_between_a_command_and_an_action%3F
 
-*Q: How do I change the dummy project?*
+*Q: How do I change the dummy project?*<br>
 A: It's created in createDummyProject() in EmfStoreStub and it is returned if you check out a project with the esbrowser.
 
-*Q: How can I rename a plugin?*
+*Q: How can I rename a plugin?*<br>
 A: Rename the plugin with Refactor -> Rename (this will also change the plugin.xml and co. Rename the packages with Refactor -> Rename. Use hierachical view to rename the base package and check "Rename subpackages". Possibly also change the name in menu entries or view extension points (use global text search). Commit your changes. Delete the plugin from your local workspace (include contents). Open SVN repo browser (Show View ->SVN -> Repository Browser). Goto the plugin folder and select "Rename..." from context menu and rename to the new plugin name. Checkout plugin again.
 
-*Q: I have compiled my GUI plugin and there are no compile errors but I can't find it later in my runtime Eclipse instance. What should I do?*
+*Q: I have compiled my GUI plugin and there are no compile errors but I can't find it later in my runtime Eclipse instance. What should I do?*<br>
 
 A: Check if your plugin is depending on another one that has compile errors. In case you have just set up a new workspace the cause might be a missing(s) dependency(ies) or just an old version of the same.
 
-*Q: I have and EClass for my model element type. How can I create an instance of this model element type?*
+*Q: I have and EClass for my model element type. How can I create an instance of this model element type?*<br>
 A:
 {{{
     EPackage ePackage = modelElementType.getEPackage();
@@ -71,50 +71,53 @@ A:
 
 }}}
 
-*Q: What does the checkstyle warning about header mean?*
+*Q: What does the checkstyle warning about header mean?*<br>
 A: Every file is expected to have the following header for licensing reasons:
 
 /`**`
- `*` <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kögel.
+`*` {{{<copyright>}}} Copyright (c) 2008 Jonas Helming, Maximilian Kögel.<br>
 All rights reserved. This program and the accompanying materials are
 made available under the terms of the Eclipse Public License v1.0 which
 accompanies this distribution, and is available at http://www.eclipse.org/legal/epl-v10.html
- `*` </copyright>
+ `*` {{{</copyright>}}}
 
 
 
-*Q: How can I format source code in the wiki in a way that whitespace is preserved and a mono spaced font is used?*
+*Q: How can I format source code in the wiki in a way that whitespace is preserved and a mono spaced font is used?*<br>
 A: Open the page in question for editing, select "Edit HTML" and add the following to the code to html:
 
 {{{<pre>}}} your source code here {{{</pre>}}}
 
 Remove all tabs from the code and replace them by spaces (use TextEdit, Search&Replace). Note: After adding the above mentioned tags to html, you can also edit the code in the normal wiki edit mode.
-Update: An easier way to add code is to write "begin end" into a line, format the line as monospace (click on the paragraph symbol) and then paste your code inbetween "begin" and "end". You can then safely remove begin and end. Still it is sometimes better to replace the tabs with whitespace beforehand since the Wiki wastes quite some space for a single tab.
+Update: An easier way to add code is to write "begin end" into a line, format the line as monospace (click on the paragraph symbol) and then paste your code in between "begin" and "end". You can then safely remove begin and end. Still it is sometimes better to replace the tabs with whitespace beforehand since the Wiki wastes quite some space for a single tab.
 
-Q: Can I use third party libraries, what about licensing?
+*Q: Can I use third party libraries, what about licensing?* <br>
 A: Libraries distributed under the EPL can be used without a problem. However any other license is subject to closer inspection. Please discuss with project lead and consult the Eclipse foundation at license@eclipse.org. A good FAQ on licensing and the EPL is available on Eclipse.org
 
-Q: I am getting a ClassNotFoundException when trying to run the MEEditor?
+*Q: I am getting a ClassNotFoundException when trying to run the MEEditor?* <br>
 A: The editor is using an external library in the form of an Eclipse plugin. Please install it manually in your Eclipse environment - see Getting started as developer
 When the Update Site for unicase is set up, all needed dependencies will be deployed there.
 
-Q: I am trying to manually deploy a plugin, but I am getting a strange java.lang.IllegalArgumentException?
+*Q: I am trying to manually deploy a plugin, but I am getting a strange java.lang.IllegalArgumentException?* <br>
 A: Please read this blog entry: Build Process
 
-Q: How to increase the default memory heap size used by the VM?
+*Q: How to increase the default memory heap size used by the VM?* <br>
 A: Changing the heap size for Eclipse:
 Locate the eclipse.ini in your Eclipse installation (the location depends on the package/OS) and edit the following parameters --Xms40m and --Xmx512m. The first one specifies the starting heap size and the other - the largest allowed heap size.
 Changing the heap size for your Runtime Eclipse: Edit the same parameters under "VM args" in your Run/Debug configuration.
 
-Q: What can I do if I experience troubles running unicase, if I get an Exception when running unicase or if unicase won´t start?
+*Q: What can I do if I experience troubles running unicase, if I get an Exception when running unicase or if unicase won´t start?* <br>
 A: Follow this howto to return to a well-defined state with your unicase development environment.
 
-Q: How can I report bugs via the unicase server?
+*Q: How can I report bugs via the unicase server?* <br>
 A: First of all, you need an account at our chair. Without that you won't be able to login. For a short howto see: Report bugs screenshot tour
 
-Q: How do I use a ProgressBar?
+*Q: How do I use a ProgressBar?* <br>
 
-A: ProgressMonitorDialog dialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
+A: 
+{{{
+
+ProgressMonitorDialog dialog = new ProgressMonitorDialog(PlatformUI.getWorkbench()
        .getActiveWorkbenchWindow().getShell());
 
 dialog.open();
@@ -132,14 +135,16 @@ dialog.getProgressMonitor().worked(10);
 dialog.getProgressMonitor().done();
 
 dialog.close();
+}}}
 
-more infos: ProgressMonitorDialog
+* more infos: [http://www.java2s.com/Code/Java/SWT-JFace-Eclipse/JFacesProgressMonitorDialog.htm ProgressMonitorDialog]
 
 
-Q: How do I copy a file contained in a bundle?
+*Q: How do I copy a file contained in a bundle?*<br>
 
 A: Do the following:
 
+{{{
 InputStream inputStream = getClass().getResourceAsStream(filename-in-package);
 
 File clientKeyTarget = new File(/target/file/path/and/name);
@@ -147,10 +152,14 @@ File clientKeyTarget = new File(/target/file/path/and/name);
 // copy to destination
 org.unicase.model.util.FileUtil.copyFile(inputStream, clientKeyTarget);
 
+}}}
 
-Q: How do i get a file contained in my own bundle?
+*Q: How do i get a file contained in my own bundle?*<br>
 
 A: do this:
+
+{{{
+
 URL url = FileLocator.find(
     Activator.getDefault().getBundle(), 
     new Path("myFolder/"), 
@@ -159,24 +168,24 @@ URL url = FileLocator.find(
 			
 File f = new File(FileLocator.resolve(url).getPath() + myFileName);
 
+}}}
+*Q: Where is all the unicase data (workspace, projectspace, usersessions server infos) stored?*<br>
+A: For the released versions of the unicase client it is stored in the {{{<userhome>}}}/.unicase folder. Every subfolder is one project space. For the development version it is stored in {{{<userhome>}}}/.unicase.dev. Whether or not the current client is considered to be a released version depends on the version of the org.unicase.workspace plugin. (Also see Configuration.isReleaseVersion())
 
-Q: Where is all the unicase data (workspace, projectspace, usersessions server infos) stored?
-A: For the released versions of the unicase client it is stored in the <userhome>/.unicase folder. Every subfolder is one project space. For the development version it is stored in <userhome>/.unicase.dev. Whether or not the current client is considered to be a released version depends on the version of the org.unicase.workspace plugin. (Also see Configuration.isReleaseVersion())
-
-Q: How can I display non-containment references as children (helpful in the navigator)?
+*Q: How can I display non-containment references as children (helpful in the navigator)?*<br>
 A: Open model.genmodel and select the reference. In the properties view set the "Children" attribute to "true". EObjects referenced here are now displayed as children.
 
-Q: Subclipse tells me "JavaHL not found" in linux
-A: Usually there is a JavaHL package you can install on your linux. But you have to tell eclipse the path to the JavaHL Library, also. Add the following line to the eclipse.ini:
-
+*Q: Subclipse tells me "JavaHL not found" in linux?*<br>
+A: Usually there is a JavaHL package you can install on your linux. But you have to tell eclipse the path to the JavaHL Library, also. Add the following line to the eclipse.ini:<br>
+{{{
     -Djava.library.path=/usr/lib/jni
-
+}}}
 This very path is used by Ubuntu Linux, of course you have to use the correct path for your system.
 
-Q: How should I refresh GUI on events triggered from non-GUI threads?
+*Q: How should I refresh GUI on events triggered from non-GUI threads?*<br>
 A: Trying to refresh UI components from non-UI threads (e.g. on EMF notifications) can lead to InvalidThreadAccess exception.
 To avoid this situation you must use following code to access UI using a new UI thread:
-
+{{{
 
 Display.getDefault().asyncExec(new Runnable() {
 
@@ -187,27 +196,27 @@ public void run() {
 }
 });
 
-
-Q: How can i contribute help contents?
+}}}
+*Q: How can i contribute help contents?*<br>
 A: The easiest way to do this is to proceed as follows:
-1. Add the following in an existing contexts.xml: or create an appropriate file if necessary.
+   * Add the following in an existing contexts.xml: or create an appropriate file if necessary.
 
-<context id="my_help_id" >
-  <description>This is the description for the help i'm giving.</description>
-</context>
+{{{<context id="my_help_id" >}}}
+  {{{<description>This is the description for the help i'm giving.{{{</description>}}}
+{{{</context>}}}
 
-2. Reference this file in the plugin.xml (if not already done)
+   * Reference this file in the plugin.xml (if not already done)
 
-<extension point="org.eclipse.help.contexts">
-  <contexts file="contexts.xml"></contexts>
-</extension>
+{{{<extension point="org.eclipse.help.contexts">}}}
+  {{{<contexts file="contexts.xml">}}}{{{</contexts>}}}
+{{{</extension>}}}
 
-3. Change build.properties if necessary, to include contexts.xml in the build.
-4. Set the specific help control, e.g. in createPartControl in a dialog:
-
+   * Change build.properties if necessary, to include contexts.xml in the build.
+   * Set the specific help control, e.g. in createPartControl in a dialog:
+{{{
 PlatformUI.getWorkbench().getHelpSystem().setHelp(parent, Activator.PLUGIN_ID + ".my_help_id");
+}}}
 
-
-Also see:
+*Also see:*
 http://stackoverflow.com/questions/1012929/eclipse-contextual-help/1021718
 http://dev.eclipse.org/newslists/news.eclipse.platform.ua/msg00359.html
