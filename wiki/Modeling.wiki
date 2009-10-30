@@ -1,5 +1,4 @@
  * [ModelingGuidelines Modeling Guidelines]
- * [Model_Transformation_Guideline Model Transformation Guidelines]
  * Editor Hints Guidelines
  * UNICASE Model Documentation
  * Design Model Elements
