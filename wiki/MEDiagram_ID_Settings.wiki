@@ -1,12 +1,5 @@
 #sidebar TableOfContents
-* [Articles HOWTO articles]
-    * [ArticlesXSS Web security]
-    * [ArticlesDom DOM manipulation]
-    * [ArticlesStyle CSS and style]
-    * [ArticlesTips Tips and tricks]
-  * [DOMReference DOM reference]
-  * [HTMLElements HTML reference]
-  * [CSSReference CSS reference]
+
 
 ==MEDiagram ID's==
 We have one common model (MEDiagram) for all the diagrams in unicase. To differentiate the different diagrams, each one gets a Visual ID (see picture below). Before generating diagram code, one has to make sure that the "Visual ID" in the .gmfgen file is set to an unused value.
