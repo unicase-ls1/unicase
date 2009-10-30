@@ -45,21 +45,21 @@ For all attributes in any of the models, what you should *NOT do*:
 *_For the individual models:_*
 
     * org.unicase.model:
-          o All model elements must have "ModelElement" set as superclass
-          o All reference features of model elements must have the key property set to "identifier"
-          o All model elements must either be contained by another model element or by project
-          o The reference feature "lower bound" must *NOT* be greater than zero for any model element feature reference
-          o The id property must *NOT* be set for any model element feature
-          o *Do NOT* use simple attributes with a multiplicity greater than 1.
-          o *Do NOT* set unsetable to true for any feature
-          o *Do NOT* create non-transient reference to anything other than model element subtypes
+          # All model elements must have "ModelElement" set as superclass
+          # All reference features of model elements must have the key property set to "identifier"
+          # All model elements must either be contained by another model element or by project
+          # The reference feature "lower bound" must *NOT* be greater than zero for any model element feature reference
+          # The id property must *NOT* be set for any model element feature
+          # *Do NOT* use simple attributes with a multiplicity greater than 1.
+          # *Do NOT* set unsetable to true for any feature
+          # *Do NOT* create non-transient reference to anything other than model element subtypes
 
     * org.unicase.emfstore.esmodel:
-          o All classes must be contained in the "ServerSpace" containment tree (if they should be persisted or are referenced by other persistent classes)
-          o Access control classes must not refer to classes other than subclasses of "UniqueIdentifier" or classes in access control.
+          #  All classes must be contained in the "ServerSpace" containment tree (if they should be persisted or are referenced by other persistent classes)
+          #  Access control classes must not refer to classes other than subclasses of "UniqueIdentifier" or classes in access control.
            ProjectInfo is a DTO and must not be referenced by other classes
 
     * org.unicase.workspace:
-           All classes must be contained in the "Workspace" containment tree (if they should be persisted or are referenced by other persistent classes)
+          #  All classes must be contained in the "Workspace" containment tree (if they should be persisted or are referenced by other persistent classes)
 
    
