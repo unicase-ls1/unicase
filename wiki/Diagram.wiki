@@ -1,6 +1,5 @@
-[Unicase_Diagram_Editor_Document_(GMF) Unicase diagram editor documentation(GMF)]<br>
-[MEDiagram_ID_Settings MEDiagram ID Settings]
- * [MEDiagram ID Settings]
-
- * UNICASE Diagram Editor Documentation (GMF)
+*[Unicase_Diagram_Editor_Document_(GMF) Unicase diagram editor documentation(GMF)]<br>
+*[MEDiagram_ID_Settings MEDiagram ID Settings]
+* [MEDiagram ID Settings]
+* UNICASE Diagram Editor Documentation (GMF)
  
