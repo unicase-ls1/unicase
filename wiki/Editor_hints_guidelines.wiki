@@ -62,6 +62,6 @@ You probably noticed that Name and Description have the same priority - by doing
 And once again, for those who fell asleep in all this:<br>
 Going through the type hierarchy of the model (from the top down), every type is given a specific interval - starting at (0.0;10.0). If you want to put two elements together and keep it that way - you can specify an equal priority. If you want to define an exception in the hierarchy order of the features - you can put the feature in question in the "exception subinterval" of a former interval (e.g. for (10.1;20.0) this should be (19.1;20.0)); If you are modeling a super type and you are sure that you definitely don't want some features to be on the top - you can put them in the end by setting a priority in the interval after 100.0 (100.0;XXX.X): 
 
-
+<br>
 
                   http://unicase.googlecode.com/files/5.png
