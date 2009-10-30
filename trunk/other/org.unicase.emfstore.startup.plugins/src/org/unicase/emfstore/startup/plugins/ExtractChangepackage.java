@@ -1,7 +1,6 @@
 package org.unicase.emfstore.startup.plugins;
 
 import java.io.File;
-import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
@@ -12,7 +11,7 @@ import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.startup.StartupListener;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 public class ExtractChangepackage implements StartupListener {
 

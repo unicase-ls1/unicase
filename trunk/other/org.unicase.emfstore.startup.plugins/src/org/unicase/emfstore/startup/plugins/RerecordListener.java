@@ -15,7 +15,7 @@ import org.unicase.emfstore.esmodel.ProjectHistory;
 import org.unicase.emfstore.esmodel.versioning.Version;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.startup.StartupListener;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 /**
  * A emfstore startup listener which rerecord all operations of all projects on the server.
