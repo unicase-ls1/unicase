@@ -1,7 +1,7 @@
  * [PluginConfiguration Plugin Configuration Guidelines]
  * [SVN_Repository SVN Repository]
- * UNICASE Repository (beta server)
- * Mailinglist
+ * [Unicase_repository_beta_server UNICASE Repository (beta server)]
+ * [Mailinglist Mailinglist]
  * Development Environment Troubleshooting
  * Use External Library
  * Remove API Baseline Warning
