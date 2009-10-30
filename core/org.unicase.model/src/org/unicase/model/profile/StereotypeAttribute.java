@@ -68,7 +68,7 @@ public interface StereotypeAttribute extends UnicaseModelElement {
 	 * @return the value of the '<em>Stereotype Attribute Instances</em>' reference list.
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotypeAttribute_StereotypeAttributeInstances()
 	 * @see org.unicase.model.profile.StereotypeAttributeInstance#getStereotypeAttribute
-	 * @model opposite="stereotypeAttribute" keys="identifier"
+	 * @model opposite="stereotypeAttribute"
 	 * @generated
 	 */
 	EList<StereotypeAttributeInstance> getStereotypeAttributeInstances();

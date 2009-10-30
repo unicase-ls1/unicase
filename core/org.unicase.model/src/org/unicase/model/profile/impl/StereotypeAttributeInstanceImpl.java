@@ -32,7 +32,8 @@ import org.unicase.model.profile.StereotypeInstance;
  * 
  * @generated
  */
-public abstract class StereotypeAttributeInstanceImpl extends UnicaseModelElementImpl implements StereotypeAttributeInstance {
+public abstract class StereotypeAttributeInstanceImpl extends UnicaseModelElementImpl implements
+	StereotypeAttributeInstance {
 	/**
 	 * The cached value of the '{@link #getStereotypeAttribute() <em>Stereotype Attribute</em>}' reference. <!--
 	 * begin-user-doc --> <!-- end-user-doc -->

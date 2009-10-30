@@ -39,7 +39,7 @@ public interface Comment extends UnicaseModelElement, NonDomainElement {
 	 * @return the value of the '<em>Sender</em>' reference.
 	 * @see #setSender(OrgUnit)
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_Sender()
-	 * @model keys="identifier"
+	 * @model
 	 * @generated
 	 */
 	OrgUnit getSender();
@@ -65,14 +65,15 @@ public interface Comment extends UnicaseModelElement, NonDomainElement {
 	 * 
 	 * @return the value of the '<em>Recipients</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_Recipients()
-	 * @model keys="identifier"
+	 * @model
 	 * @generated
 	 */
 	EList<OrgUnit> getRecipients();
 
 	/**
 	 * Returns the value of the '<em><b>Commented Element</b></em>' container reference. It is bidirectional and its
-	 * opposite is '{@link org.unicase.model.UnicaseModelElement#getComments <em>Comments</em>}'. <!-- begin-user-doc -->
+	 * opposite is '{@link org.unicase.model.UnicaseModelElement#getComments <em>Comments</em>}'. <!-- begin-user-doc
+	 * -->
 	 * <p>
 	 * If the meaning of the '<em>Commented Element</em>' container reference isn't clear, there really should be more
 	 * of a description here...
@@ -83,7 +84,7 @@ public interface Comment extends UnicaseModelElement, NonDomainElement {
 	 * @see #setCommentedElement(UnicaseModelElement)
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_CommentedElement()
 	 * @see org.unicase.model.UnicaseModelElement#getComments
-	 * @model opposite="comments" keys="identifier" transient="false"
+	 * @model opposite="comments" transient="false"
 	 * @generated
 	 */
 	UnicaseModelElement getCommentedElement();

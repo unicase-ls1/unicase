@@ -70,23 +70,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int MEETING__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -94,7 +78,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int MEETING__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -102,7 +86,23 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int MEETING__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -111,7 +111,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int MEETING__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -120,7 +120,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int MEETING__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -129,7 +129,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int MEETING__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -138,7 +138,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int MEETING__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -146,7 +146,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int MEETING__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -155,7 +155,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int MEETING__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -164,7 +164,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int MEETING__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Location</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -172,7 +172,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__LOCATION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int MEETING__LOCATION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Starttime</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -180,7 +180,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__STARTTIME = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int MEETING__STARTTIME = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Endtime</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -188,7 +188,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__ENDTIME = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int MEETING__ENDTIME = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Facilitator</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -196,7 +196,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__FACILITATOR = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int MEETING__FACILITATOR = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Minutetaker</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -204,7 +204,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__MINUTETAKER = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int MEETING__MINUTETAKER = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Timekeeper</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -212,7 +212,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__TIMEKEEPER = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int MEETING__TIMEKEEPER = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
 	 * The feature id for the '<em><b>Participants</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -221,7 +221,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__PARTICIPANTS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int MEETING__PARTICIPANTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Sections</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -230,7 +230,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__SECTIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 7;
+	int MEETING__SECTIONS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The feature id for the '<em><b>Identified Issues Section</b></em>' reference. <!-- begin-user-doc --> <!--
@@ -239,7 +239,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__IDENTIFIED_ISSUES_SECTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 8;
+	int MEETING__IDENTIFIED_ISSUES_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The feature id for the '<em><b>Identified Work Items Section</b></em>' reference. <!-- begin-user-doc --> <!--
@@ -248,7 +248,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING__IDENTIFIED_WORK_ITEMS_SECTION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 9;
+	int MEETING__IDENTIFIED_WORK_ITEMS_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 9;
 
 	/**
 	 * The number of structural features of the '<em>Meeting</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -256,7 +256,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 10;
+	int MEETING_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 10;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.meeting.impl.MeetingSectionImpl <em>Section</em>}' class.
@@ -274,23 +274,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING_SECTION__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MEETING_SECTION__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int MEETING_SECTION__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -298,7 +282,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int MEETING_SECTION__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -306,7 +290,23 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int MEETING_SECTION__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING_SECTION__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MEETING_SECTION__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -315,7 +315,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int MEETING_SECTION__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -324,7 +324,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int MEETING_SECTION__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -333,7 +333,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int MEETING_SECTION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -342,7 +342,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int MEETING_SECTION__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -350,7 +350,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int MEETING_SECTION__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -359,7 +359,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int MEETING_SECTION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -368,7 +368,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int MEETING_SECTION__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Allocated Time</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -376,7 +376,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION__ALLOCATED_TIME = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int MEETING_SECTION__ALLOCATED_TIME = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Section</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -384,7 +384,7 @@ public interface MeetingPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MEETING_SECTION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int MEETING_SECTION_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.meeting.impl.CompositeMeetingSectionImpl
@@ -405,22 +405,6 @@ public interface MeetingPackage extends EPackage {
 	int COMPOSITE_MEETING_SECTION__IDENTIFIER = MEETING_SECTION__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_MEETING_SECTION__NAME = MEETING_SECTION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int COMPOSITE_MEETING_SECTION__DESCRIPTION = MEETING_SECTION__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -435,6 +419,22 @@ public interface MeetingPackage extends EPackage {
 	 * @ordered
 	 */
 	int COMPOSITE_MEETING_SECTION__CREATION_DATE = MEETING_SECTION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_MEETING_SECTION__NAME = MEETING_SECTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int COMPOSITE_MEETING_SECTION__DESCRIPTION = MEETING_SECTION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -543,22 +543,6 @@ public interface MeetingPackage extends EPackage {
 	int ISSUE_MEETING_SECTION__IDENTIFIER = MEETING_SECTION__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE_MEETING_SECTION__NAME = MEETING_SECTION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int ISSUE_MEETING_SECTION__DESCRIPTION = MEETING_SECTION__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -573,6 +557,22 @@ public interface MeetingPackage extends EPackage {
 	 * @ordered
 	 */
 	int ISSUE_MEETING_SECTION__CREATION_DATE = MEETING_SECTION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE_MEETING_SECTION__NAME = MEETING_SECTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int ISSUE_MEETING_SECTION__DESCRIPTION = MEETING_SECTION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -681,22 +681,6 @@ public interface MeetingPackage extends EPackage {
 	int WORK_ITEM_MEETING_SECTION__IDENTIFIER = MEETING_SECTION__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_MEETING_SECTION__NAME = MEETING_SECTION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int WORK_ITEM_MEETING_SECTION__DESCRIPTION = MEETING_SECTION__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -711,6 +695,22 @@ public interface MeetingPackage extends EPackage {
 	 * @ordered
 	 */
 	int WORK_ITEM_MEETING_SECTION__CREATION_DATE = MEETING_SECTION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM_MEETING_SECTION__NAME = MEETING_SECTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int WORK_ITEM_MEETING_SECTION__DESCRIPTION = MEETING_SECTION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc

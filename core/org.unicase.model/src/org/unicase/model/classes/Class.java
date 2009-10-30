@@ -64,8 +64,7 @@ public interface Class extends PackageElement {
 	 * @return the value of the '<em>Super Classes</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_SuperClasses()
 	 * @see org.unicase.model.classes.Class#getSubClasses
-	 * @model opposite="subClasses" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='21.0' position='left'"
+	 * @model opposite="subClasses" annotation="org.unicase.ui.meeditor priority='21.0' position='left'"
 	 * @generated
 	 */
 	EList<Class> getSuperClasses();
@@ -83,8 +82,7 @@ public interface Class extends PackageElement {
 	 * @return the value of the '<em>Sub Classes</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_SubClasses()
 	 * @see org.unicase.model.classes.Class#getSuperClasses
-	 * @model opposite="superClasses" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='22.0' position='left'"
+	 * @model opposite="superClasses" annotation="org.unicase.ui.meeditor priority='22.0' position='left'"
 	 * @generated
 	 */
 	EList<Class> getSubClasses();
@@ -102,7 +100,7 @@ public interface Class extends PackageElement {
 	 * @return the value of the '<em>Incoming Associations</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_IncomingAssociations()
 	 * @see org.unicase.model.classes.Association#getTarget
-	 * @model opposite="target" keys="identifier" annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
+	 * @model opposite="target" annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
 	 * @generated
 	 */
 	EList<Association> getIncomingAssociations();
@@ -120,7 +118,7 @@ public interface Class extends PackageElement {
 	 * @return the value of the '<em>Outgoing Associations</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getClass_OutgoingAssociations()
 	 * @see org.unicase.model.classes.Association#getSource
-	 * @model opposite="source" keys="identifier" annotation="org.unicase.ui.meeditor priority='21.0' position='right'"
+	 * @model opposite="source" annotation="org.unicase.ui.meeditor priority='21.0' position='right'"
 	 * @generated
 	 */
 	EList<Association> getOutgoingAssociations();

@@ -86,16 +86,15 @@
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement/description"
-          element="model.ecore#//UnicaseModelElement/description/%teneo.jpa%" referenceName="eAnnotations">
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/description/%teneo.jpa%"
+          element="#//@releases.4/@changes.19/@element" referenceName="eAnnotations">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.19/@element"
             featureName="source" dataValue="teneo.jpa"/>
       </changes>
-      <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement/description/%teneo.jpa%"
-          element="model.ecore#//UnicaseModelElement/description/%teneo.jpa%/@details.0"
-          referenceName="details">
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/description/%teneo.jpa%/@details.0"
+      <changes xsi:type="history:Create" target="#//@releases.4/@changes.19/@element"
+          element="#//@releases.4/@changes.19/@element/@details.0" referenceName="details">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.19/@element/@details.0"
             featureName="key" dataValue="value"/>
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/description/%teneo.jpa%/@details.0"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.19/@element/@details.0"
             featureName="value" dataValue="@Type(type=&quot;text&quot;)"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement/description"
@@ -121,17 +120,17 @@
             featureName="value" dataValue="left"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
-          element="model.ecore#//UnicaseModelElement/creator" referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/creator"
+          element="#//@releases.4/@changes.14/@element" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.14/@element"
             featureName="name" dataValue="creator"/>
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/creator"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.14/@element"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
-          element="model.ecore#//UnicaseModelElement/creationDate" referenceName="eStructuralFeatures">
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/creationDate"
+          element="#//@releases.4/@changes.15/@element" referenceName="eStructuralFeatures">
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.15/@element"
             featureName="name" dataValue="creationDate"/>
-        <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement/creationDate"
+        <changes xsi:type="history:Set" element="#//@releases.4/@changes.15/@element"
             featureName="eType" referenceValue="http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
       </changes>
       <changes xsi:type="history:Create" target="model.ecore#//UnicaseModelElement"
@@ -7148,5 +7147,38 @@
     </changes>
     <changes xsi:type="history:Set" element="model.ecore#//UnicaseModelElement" featureName="name"
         dataValue="UnicaseModelElement"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/source"
+        featureName="eType" referenceValue="#//@releases.4/@changes.3/@element"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
+        featureName="eType" referenceValue="#//@releases.4/@changes.3/@element"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
+        featureName="eType" referenceValue="#//@releases.4/@changes.3/@element"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/source"
+        featureName="eType" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
+        featureName="eType" referenceValue="model.ecore#//task/ActionItem"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/target"
+        featureName="eType" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"/>
+    <changes xsi:type="history:Set" element="model.ecore#//util/ModelElementPath/path"
+        featureName="eType" referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//ModelElementId"/>
+    <changes xsi:type="history:Add" element="model.ecore#//UnicaseModelElement" featureName="eSuperTypes"
+        referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//ModelElement"/>
+    <changes xsi:type="history:Delete">
+      <element xsi:type="ecore:EAttribute" name="creator" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    </changes>
+    <changes xsi:type="history:Delete">
+      <element xsi:type="ecore:EAttribute" name="creationDate" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDate"/>
+    </changes>
+    <changes xsi:type="history:Create" target="model.ecore#/" element="model.ecore#//Project"
+        referenceName="eClassifiers"/>
+    <changes xsi:type="history:Set" element="model.ecore#//Project" featureName="name"
+        dataValue="Project"/>
+    <changes xsi:type="history:Add" element="model.ecore#//Project" featureName="eSuperTypes"
+        referenceValue="../../org.unicase.metamodel/model/metamodel.ecore#//Project"/>
+    <changes xsi:type="history:Delete">
+      <element xsi:type="ecore:EAnnotation" source="teneo.jpa">
+        <details key="value" value="@Type(type=&quot;text&quot;)"/>
+      </element>
+    </changes>
   </releases>
 </history:History>

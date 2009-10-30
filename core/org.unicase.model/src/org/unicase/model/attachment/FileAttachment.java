@@ -18,8 +18,8 @@ import org.unicase.model.Attachment;
  * <li>{@link org.unicase.model.attachment.FileAttachment#getFileSize <em>File Size</em>}</li>
  * <li>{@link org.unicase.model.attachment.FileAttachment#isRequiredOffline <em>Required Offline</em>}</li>
  * <li>{@link org.unicase.model.attachment.FileAttachment#getFileType <em>File Type</em>}</li>
- * <li>{@link org.unicase.model.attachment.FileAttachment#isDownloading <em>Downloading</em>}</li>
  * <li>{@link org.unicase.model.attachment.FileAttachment#isUploading <em>Uploading</em>}</li>
+ * <li>{@link org.unicase.model.attachment.FileAttachment#isDownloading <em>Downloading</em>}</li>
  * </ul>
  * </p>
  * 

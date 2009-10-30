@@ -195,7 +195,7 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newModelElement != null)
 				msgs = ((InternalEObject) newModelElement).eInverseAdd(this,
-					ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES, UnicaseModelElement.class, msgs);
+					ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES, UnicaseModelElement.class, msgs);
 			msgs = basicSetModelElement(newModelElement, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -271,8 +271,8 @@ public class StereotypeInstanceImpl extends UnicaseModelElementImpl implements S
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case ProfilePackage.STEREOTYPE_INSTANCE__MODEL_ELEMENT:
-			return eInternalContainer().eInverseRemove(this, ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES,
-				UnicaseModelElement.class, msgs);
+			return eInternalContainer().eInverseRemove(this,
+				ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES, UnicaseModelElement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}

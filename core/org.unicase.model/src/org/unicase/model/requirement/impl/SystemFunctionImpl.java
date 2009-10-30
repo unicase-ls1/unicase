@@ -98,14 +98,14 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 	protected String exception = EXCEPTION_EDEFAULT;
 
 	/**
-	 * The cached value of the '{@link #getWorkspace() <em>Workspace</em>}' reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * The cached value of the '{@link #getNonFunctionalRequirement() <em>Non Functional Requirement</em>}' reference.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
-	 * @see #getWorkspace()
+	 * @see #getNonFunctionalRequirement()
 	 * @generated
 	 * @ordered
 	 */
-	protected Workspace workspace;
+	protected NonFunctionalRequirement nonFunctionalRequirement;
 
 	/**
 	 * The cached value of the '{@link #getUsecases() <em>Usecases</em>}' reference list. <!-- begin-user-doc --> <!--
@@ -118,14 +118,14 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 	protected EList<UseCase> usecases;
 
 	/**
-	 * The cached value of the '{@link #getNonFunctionalRequirement() <em>Non Functional Requirement</em>}' reference.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * The cached value of the '{@link #getWorkspace() <em>Workspace</em>}' reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
 	 * 
-	 * @see #getNonFunctionalRequirement()
+	 * @see #getWorkspace()
 	 * @generated
 	 * @ordered
 	 */
-	protected NonFunctionalRequirement nonFunctionalRequirement;
+	protected Workspace workspace;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -376,19 +376,19 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
-			if (workspace != null)
-				msgs = ((InternalEObject) workspace).eInverseRemove(this,
-					RequirementPackage.WORKSPACE__SYSTEM_FUNCTIONS, Workspace.class, msgs);
-			return basicSetWorkspace((Workspace) otherEnd, msgs);
-		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUsecases()).basicAdd(otherEnd, msgs);
 		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
 			if (nonFunctionalRequirement != null)
 				msgs = ((InternalEObject) nonFunctionalRequirement).eInverseRemove(this,
 					RequirementPackage.NON_FUNCTIONAL_REQUIREMENT__SYSTEM_FUNCTIONS, NonFunctionalRequirement.class,
 					msgs);
 			return basicSetNonFunctionalRequirement((NonFunctionalRequirement) otherEnd, msgs);
+		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getUsecases()).basicAdd(otherEnd, msgs);
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			if (workspace != null)
+				msgs = ((InternalEObject) workspace).eInverseRemove(this,
+					RequirementPackage.WORKSPACE__SYSTEM_FUNCTIONS, Workspace.class, msgs);
+			return basicSetWorkspace((Workspace) otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -401,12 +401,12 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
-			return basicSetWorkspace(null, msgs);
-		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
-			return ((InternalEList<?>) getUsecases()).basicRemove(otherEnd, msgs);
 		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
 			return basicSetNonFunctionalRequirement(null, msgs);
+		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
+			return ((InternalEList<?>) getUsecases()).basicRemove(otherEnd, msgs);
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			return basicSetWorkspace(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -425,16 +425,16 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 			return getOutput();
 		case RequirementPackage.SYSTEM_FUNCTION__EXCEPTION:
 			return getException();
-		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
-			if (resolve)
-				return getWorkspace();
-			return basicGetWorkspace();
-		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
-			return getUsecases();
 		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
 			if (resolve)
 				return getNonFunctionalRequirement();
 			return basicGetNonFunctionalRequirement();
+		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
+			return getUsecases();
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			if (resolve)
+				return getWorkspace();
+			return basicGetWorkspace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -457,15 +457,15 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 		case RequirementPackage.SYSTEM_FUNCTION__EXCEPTION:
 			setException((String) newValue);
 			return;
-		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
-			setWorkspace((Workspace) newValue);
+		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
+			setNonFunctionalRequirement((NonFunctionalRequirement) newValue);
 			return;
 		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
 			getUsecases().clear();
 			getUsecases().addAll((Collection<? extends UseCase>) newValue);
 			return;
-		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
-			setNonFunctionalRequirement((NonFunctionalRequirement) newValue);
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			setWorkspace((Workspace) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -488,14 +488,14 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 		case RequirementPackage.SYSTEM_FUNCTION__EXCEPTION:
 			setException(EXCEPTION_EDEFAULT);
 			return;
-		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
-			setWorkspace((Workspace) null);
+		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
+			setNonFunctionalRequirement((NonFunctionalRequirement) null);
 			return;
 		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
 			getUsecases().clear();
 			return;
-		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
-			setNonFunctionalRequirement((NonFunctionalRequirement) null);
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			setWorkspace((Workspace) null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -515,12 +515,12 @@ public class SystemFunctionImpl extends UnicaseModelElementImpl implements Syste
 			return OUTPUT_EDEFAULT == null ? output != null : !OUTPUT_EDEFAULT.equals(output);
 		case RequirementPackage.SYSTEM_FUNCTION__EXCEPTION:
 			return EXCEPTION_EDEFAULT == null ? exception != null : !EXCEPTION_EDEFAULT.equals(exception);
-		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
-			return workspace != null;
-		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
-			return usecases != null && !usecases.isEmpty();
 		case RequirementPackage.SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT:
 			return nonFunctionalRequirement != null;
+		case RequirementPackage.SYSTEM_FUNCTION__USECASES:
+			return usecases != null && !usecases.isEmpty();
+		case RequirementPackage.SYSTEM_FUNCTION__WORKSPACE:
+			return workspace != null;
 		}
 		return super.eIsSet(featureID);
 	}

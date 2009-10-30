@@ -70,23 +70,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_NODE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_NODE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int STATE_NODE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -94,7 +78,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int STATE_NODE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -102,7 +86,23 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int STATE_NODE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_NODE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_NODE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -111,7 +111,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int STATE_NODE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -120,7 +120,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int STATE_NODE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -129,7 +129,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int STATE_NODE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -138,7 +138,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int STATE_NODE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -146,7 +146,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int STATE_NODE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -155,7 +155,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int STATE_NODE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -164,7 +164,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int STATE_NODE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Outgoing Transitions</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -173,7 +173,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__OUTGOING_TRANSITIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int STATE_NODE__OUTGOING_TRANSITIONS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Transitions</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -182,7 +182,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE__INCOMING_TRANSITIONS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int STATE_NODE__INCOMING_TRANSITIONS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Node</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -190,7 +190,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STATE_NODE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int STATE_NODE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.state.impl.StateImpl <em>State</em>}' class. <!--
@@ -211,22 +211,6 @@ public interface StatePackage extends EPackage {
 	int STATE__IDENTIFIER = STATE_NODE__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__NAME = STATE_NODE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STATE__DESCRIPTION = STATE_NODE__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -241,6 +225,22 @@ public interface StatePackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE__CREATION_DATE = STATE_NODE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__NAME = STATE_NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STATE__DESCRIPTION = STATE_NODE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -371,23 +371,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int TRANSITION__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int TRANSITION__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -395,7 +379,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int TRANSITION__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -403,7 +387,23 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int TRANSITION__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int TRANSITION__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -412,7 +412,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int TRANSITION__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -421,7 +421,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int TRANSITION__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -430,7 +430,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int TRANSITION__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -439,7 +439,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int TRANSITION__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -447,7 +447,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int TRANSITION__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -456,7 +456,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int TRANSITION__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -465,7 +465,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int TRANSITION__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Condition</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -473,7 +473,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__CONDITION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int TRANSITION__CONDITION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Source</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -481,7 +481,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__SOURCE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int TRANSITION__SOURCE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Target</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -489,7 +489,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION__TARGET = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int TRANSITION__TARGET = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Transition</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -498,7 +498,7 @@ public interface StatePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TRANSITION_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int TRANSITION_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.state.impl.StateInitialImpl <em>Initial</em>}' class. <!--
@@ -519,22 +519,6 @@ public interface StatePackage extends EPackage {
 	int STATE_INITIAL__IDENTIFIER = STATE_NODE__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_INITIAL__NAME = STATE_NODE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_INITIAL__DESCRIPTION = STATE_NODE__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -549,6 +533,22 @@ public interface StatePackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_INITIAL__CREATION_DATE = STATE_NODE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INITIAL__NAME = STATE_NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_INITIAL__DESCRIPTION = STATE_NODE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -657,22 +657,6 @@ public interface StatePackage extends EPackage {
 	int STATE_END__IDENTIFIER = STATE_NODE__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_END__NAME = STATE_NODE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STATE_END__DESCRIPTION = STATE_NODE__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -687,6 +671,22 @@ public interface StatePackage extends EPackage {
 	 * @ordered
 	 */
 	int STATE_END__CREATION_DATE = STATE_NODE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_END__NAME = STATE_NODE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STATE_END__DESCRIPTION = STATE_NODE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc

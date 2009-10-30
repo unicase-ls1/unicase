@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -180,6 +181,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -815,7 +817,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 * @generated
 	 */
 	public EReference getSystemFunction_Workspace() {
-		return (EReference) systemFunctionEClass.getEStructuralFeatures().get(3);
+		return (EReference) systemFunctionEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -833,7 +835,7 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 	 * @generated
 	 */
 	public EReference getSystemFunction_NonFunctionalRequirement() {
-		return (EReference) systemFunctionEClass.getEStructuralFeatures().get(5);
+		return (EReference) systemFunctionEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -993,9 +995,9 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		createEAttribute(systemFunctionEClass, SYSTEM_FUNCTION__INPUT);
 		createEAttribute(systemFunctionEClass, SYSTEM_FUNCTION__OUTPUT);
 		createEAttribute(systemFunctionEClass, SYSTEM_FUNCTION__EXCEPTION);
-		createEReference(systemFunctionEClass, SYSTEM_FUNCTION__WORKSPACE);
-		createEReference(systemFunctionEClass, SYSTEM_FUNCTION__USECASES);
 		createEReference(systemFunctionEClass, SYSTEM_FUNCTION__NON_FUNCTIONAL_REQUIREMENT);
+		createEReference(systemFunctionEClass, SYSTEM_FUNCTION__USECASES);
+		createEReference(systemFunctionEClass, SYSTEM_FUNCTION__WORKSPACE);
 
 		userTaskEClass = createEClass(USER_TASK);
 		createEReference(userTaskEClass, USER_TASK__INITIATING_ACTOR);
@@ -1045,16 +1047,16 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 
 		// Add supertypes to classes
 		nonFunctionalRequirementEClass.getESuperTypes().add(theRationalePackage.getCriterion());
-		functionalRequirementEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		useCaseEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		scenarioEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		actorEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		actorInstanceEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		stepEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		functionalRequirementEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		useCaseEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		scenarioEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		actorEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		actorInstanceEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		stepEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		stepEClass.getESuperTypes().add(theModelPackage.getNonDomainElement());
-		systemFunctionEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		userTaskEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		workspaceEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		systemFunctionEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		userTaskEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		workspaceEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(nonFunctionalRequirementEClass, NonFunctionalRequirement.class, "NonFunctionalRequirement",
@@ -1063,25 +1065,18 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			.getScenario_NonFunctionalRequirements(), "restrictedScenarios", null, 0, -1,
 			NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getNonFunctionalRequirement_RestrictedScenarios().getEKeys().add(
-			theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getNonFunctionalRequirement_RestrictedUseCases(), this.getUseCase(), this
 			.getUseCase_NonFunctionalRequirements(), "restrictedUseCases", null, 0, -1, NonFunctionalRequirement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getNonFunctionalRequirement_RestrictedUseCases().getEKeys().add(
-			theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getNonFunctionalRequirement_SystemFunctions(), this.getSystemFunction(), this
 			.getSystemFunction_NonFunctionalRequirement(), "systemFunctions", null, 0, -1,
 			NonFunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getNonFunctionalRequirement_SystemFunctions().getEKeys().add(
-			theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getNonFunctionalRequirement_UserTasks(), this.getUserTask(), this
 			.getUserTask_NonFunctionalRequirements(), "userTasks", null, 0, -1, NonFunctionalRequirement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getNonFunctionalRequirement_UserTasks().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(functionalRequirementEClass, FunctionalRequirement.class, "FunctionalRequirement", !IS_ABSTRACT,
 			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -1089,8 +1084,6 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			.getFunctionalRequirement_RefiningRequirements(), "refinedRequirement", null, 0, 1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFunctionalRequirement_RefinedRequirement().getEKeys().add(
-			theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getFunctionalRequirement_StoryPoints(), ecorePackage.getEInt(), "storyPoints", null, 0, 1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
@@ -1101,25 +1094,20 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			.getFunctionalRequirement_RefinedRequirement(), "refiningRequirements", null, 0, -1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFunctionalRequirement_RefiningRequirements().getEKeys().add(
-			theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getFunctionalRequirement_UseCases(), this.getUseCase(),
 			this.getUseCase_FunctionalRequirements(), "useCases", null, 0, -1, FunctionalRequirement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getFunctionalRequirement_UseCases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getFunctionalRequirement_Scenarios(), this.getScenario(), this
 			.getScenario_FunctionalRequirements(), "scenarios", null, 0, -1, FunctionalRequirement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getFunctionalRequirement_Scenarios().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getFunctionalRequirement_Reviewed(), ecorePackage.getEBoolean(), "reviewed", null, 0, 1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 		initEReference(getFunctionalRequirement_Stakeholder(), theOrganizationPackage.getOrgUnit(), null,
 			"stakeholder", null, 0, 1, FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getFunctionalRequirement_Stakeholder().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getFunctionalRequirement_Cost(), ecorePackage.getEInt(), "cost", null, 0, 1,
 			FunctionalRequirement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
@@ -1128,21 +1116,17 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEReference(getUseCase_InitiatingActor(), this.getActor(), this.getActor_InitiatedUseCases(),
 			"initiatingActor", null, 0, 1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUseCase_InitiatingActor().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUseCase_ParticipatingActors(), this.getActor(), this.getActor_ParticipatedUseCases(),
 			"participatingActors", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUseCase_ParticipatingActors().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUseCase_RealizedUserTask(), this.getUserTask(), this.getUserTask_RealizingUseCases(),
 			"realizedUserTask", null, 0, 1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUseCase_RealizedUserTask().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getUseCase_Precondition(), ecorePackage.getEString(), "precondition", null, 0, 1, UseCase.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getUseCase_UseCaseSteps(), this.getStep(), this.getStep_UseCase(), "useCaseSteps", null, 0, -1,
 			UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUseCase_UseCaseSteps().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getUseCase_Postcondition(), ecorePackage.getEString(), "postcondition", null, 0, 1,
 			UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
@@ -1153,96 +1137,76 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEReference(getUseCase_Scenarios(), this.getScenario(), this.getScenario_InstantiatedUseCases(),
 			"scenarios", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUseCase_Scenarios().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUseCase_FunctionalRequirements(), this.getFunctionalRequirement(), this
 			.getFunctionalRequirement_UseCases(), "functionalRequirements", null, 0, -1, UseCase.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getUseCase_FunctionalRequirements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUseCase_NonFunctionalRequirements(), this.getNonFunctionalRequirement(), this
 			.getNonFunctionalRequirement_RestrictedUseCases(), "nonFunctionalRequirements", null, 0, -1, UseCase.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getUseCase_NonFunctionalRequirements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUseCase_IdentifiedClasses(), theClassesPackage.getClass_(), theClassesPackage
 			.getClass_ParticipatedUseCases(), "identifiedClasses", null, 0, -1, UseCase.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getUseCase_IdentifiedClasses().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUseCase_IncludedUseCases(), this.getUseCase(), null, "includedUseCases", null, 0, -1,
 			UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUseCase_IncludedUseCases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUseCase_ExtendedUseCases(), this.getUseCase(), null, "extendedUseCases", null, 0, -1,
 			UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUseCase_ExtendedUseCases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUseCase_SystemFunctions(), this.getSystemFunction(), this.getSystemFunction_Usecases(),
 			"systemFunctions", null, 0, -1, UseCase.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUseCase_SystemFunctions().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(scenarioEClass, Scenario.class, "Scenario", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getScenario_Steps(), this.getStep(), null, "steps", null, 0, -1, Scenario.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getScenario_Steps().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getScenario_InitiatingActorInstance(), this.getActorInstance(), this
 			.getActorInstance_InitiatedScenarios(), "initiatingActorInstance", null, 0, 1, Scenario.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getScenario_InitiatingActorInstance().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getScenario_ParticipatingActorInstances(), this.getActorInstance(), this
 			.getActorInstance_ParticipatedScenarios(), "participatingActorInstances", null, 0, -1, Scenario.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getScenario_ParticipatingActorInstances().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getScenario_InstantiatedUseCases(), this.getUseCase(), this.getUseCase_Scenarios(),
 			"instantiatedUseCases", null, 0, -1, Scenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getScenario_InstantiatedUseCases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getScenario_FunctionalRequirements(), this.getFunctionalRequirement(), this
 			.getFunctionalRequirement_Scenarios(), "functionalRequirements", null, 0, -1, Scenario.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getScenario_FunctionalRequirements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getScenario_NonFunctionalRequirements(), this.getNonFunctionalRequirement(), this
 			.getNonFunctionalRequirement_RestrictedScenarios(), "nonFunctionalRequirements", null, 0, -1,
 			Scenario.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getScenario_NonFunctionalRequirements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getScenario_ParticipatingMethods(), theClassesPackage.getMethod(), theClassesPackage
 			.getMethod_DemoParticipations(), "participatingMethods", null, 0, -1, Scenario.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getScenario_ParticipatingMethods().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getScenario_ParticipatingClasses(), theClassesPackage.getClass_(), theClassesPackage
 			.getClass_DemoParticipations(), "participatingClasses", null, 0, -1, Scenario.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getScenario_ParticipatingClasses().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(actorEClass, Actor.class, "Actor", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getActor_InitiatedUserTask(), this.getUserTask(), this.getUserTask_InitiatingActor(),
 			"initiatedUserTask", null, 0, 1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getActor_InitiatedUserTask().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getActor_ParticipatedUserTasks(), this.getUserTask(), this.getUserTask_ParticipatingActors(),
 			"participatedUserTasks", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getActor_ParticipatedUserTasks().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getActor_InitiatedUseCases(), this.getUseCase(), this.getUseCase_InitiatingActor(),
 			"initiatedUseCases", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getActor_InitiatedUseCases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getActor_ParticipatedUseCases(), this.getUseCase(), this.getUseCase_ParticipatingActors(),
 			"participatedUseCases", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getActor_ParticipatedUseCases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getActor_Instances(), this.getActorInstance(), this.getActorInstance_InstantiatedActor(),
 			"instances", null, 0, -1, Actor.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getActor_Instances().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(actorInstanceEClass, ActorInstance.class, "ActorInstance", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -1250,16 +1214,13 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 			.getScenario_InitiatingActorInstance(), "initiatedScenarios", null, 0, -1, ActorInstance.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getActorInstance_InitiatedScenarios().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getActorInstance_ParticipatedScenarios(), this.getScenario(), this
 			.getScenario_ParticipatingActorInstances(), "participatedScenarios", null, 0, -1, ActorInstance.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getActorInstance_ParticipatedScenarios().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getActorInstance_InstantiatedActor(), this.getActor(), this.getActor_Instances(),
 			"instantiatedActor", null, 0, 1, ActorInstance.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getActorInstance_InstantiatedActor().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stepEClass, Step.class, "Step", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getStep_UserStep(), ecorePackage.getEBoolean(), "userStep", null, 0, 1, Step.class,
@@ -1267,15 +1228,12 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEReference(getStep_IncludedUseCase(), this.getUseCase(), null, "includedUseCase", null, 0, 1, Step.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getStep_IncludedUseCase().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStep_IncludedSystemFunction(), this.getSystemFunction(), null, "includedSystemFunction",
 			null, 0, 1, Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStep_IncludedSystemFunction().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStep_UseCase(), this.getUseCase(), this.getUseCase_UseCaseSteps(), "useCase", null, 0, 1,
 			Step.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
 			IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStep_UseCase().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(systemFunctionEClass, SystemFunction.class, "SystemFunction", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -1287,46 +1245,37 @@ public class RequirementPackageImpl extends EPackageImpl implements RequirementP
 		initEAttribute(getSystemFunction_Exception(), ecorePackage.getEString(), "exception", null, 0, 1,
 			SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getSystemFunction_Workspace(), this.getWorkspace(), this.getWorkspace_SystemFunctions(),
-			"workspace", null, 0, 1, SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getSystemFunction_Workspace().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
-		initEReference(getSystemFunction_Usecases(), this.getUseCase(), this.getUseCase_SystemFunctions(), "usecases",
-			null, 0, -1, SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
-			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getSystemFunction_Usecases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getSystemFunction_NonFunctionalRequirement(), this.getNonFunctionalRequirement(), this
 			.getNonFunctionalRequirement_SystemFunctions(), "nonFunctionalRequirement", null, 0, 1,
 			SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getSystemFunction_NonFunctionalRequirement().getEKeys()
-			.add(theModelPackage.getIdentifiableElement_Identifier());
+		initEReference(getSystemFunction_Usecases(), this.getUseCase(), this.getUseCase_SystemFunctions(), "usecases",
+			null, 0, -1, SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getSystemFunction_Workspace(), this.getWorkspace(), this.getWorkspace_SystemFunctions(),
+			"workspace", null, 0, 1, SystemFunction.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(userTaskEClass, UserTask.class, "UserTask", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getUserTask_InitiatingActor(), this.getActor(), this.getActor_InitiatedUserTask(),
 			"initiatingActor", null, 0, 1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUserTask_InitiatingActor().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUserTask_ParticipatingActors(), this.getActor(), this.getActor_ParticipatedUserTasks(),
 			"participatingActors", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUserTask_ParticipatingActors().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUserTask_RealizingUseCases(), this.getUseCase(), this.getUseCase_RealizedUserTask(),
 			"realizingUseCases", null, 0, -1, UserTask.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getUserTask_RealizingUseCases().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getUserTask_NonFunctionalRequirements(), this.getNonFunctionalRequirement(), this
 			.getNonFunctionalRequirement_UserTasks(), "nonFunctionalRequirements", null, 0, -1, UserTask.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		getUserTask_NonFunctionalRequirements().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(workspaceEClass, Workspace.class, "Workspace", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getWorkspace_SystemFunctions(), this.getSystemFunction(), this.getSystemFunction_Workspace(),
 			"systemFunctions", null, 0, -1, Workspace.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getWorkspace_SystemFunctions().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor

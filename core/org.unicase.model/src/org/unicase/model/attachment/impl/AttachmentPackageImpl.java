@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -124,6 +125,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -309,7 +311,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_Downloading() {
-		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(6);
+		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -318,7 +320,7 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 	 * @generated
 	 */
 	public EAttribute getFileAttachment_Uploading() {
-		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(7);
+		return (EAttribute) fileAttachmentEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -368,8 +370,8 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_SIZE);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__REQUIRED_OFFLINE);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__FILE_TYPE);
-		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__DOWNLOADING);
 		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__UPLOADING);
+		createEAttribute(fileAttachmentEClass, FILE_ATTACHMENT__DOWNLOADING);
 
 		// Create enums
 		fileAttachmentTypeEEnum = createEEnum(FILE_ATTACHMENT_TYPE);
@@ -435,10 +437,10 @@ public class AttachmentPackageImpl extends EPackageImpl implements AttachmentPac
 		initEAttribute(getFileAttachment_FileType(), this.getFileAttachmentType(), "fileType", null, 0, 1,
 			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFileAttachment_Downloading(), ecorePackage.getEBoolean(), "downloading", null, 0, 1,
+		initEAttribute(getFileAttachment_Uploading(), ecorePackage.getEBoolean(), "uploading", null, 0, 1,
 			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getFileAttachment_Uploading(), ecorePackage.getEBoolean(), "uploading", null, 0, 1,
+		initEAttribute(getFileAttachment_Downloading(), ecorePackage.getEBoolean(), "downloading", null, 0, 1,
 			FileAttachment.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
 

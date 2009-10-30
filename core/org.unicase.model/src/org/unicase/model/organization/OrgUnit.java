@@ -65,8 +65,7 @@ public interface OrgUnit extends UnicaseModelElement {
 	 * @return the value of the '<em>Group Memberships</em>' reference list.
 	 * @see org.unicase.model.organization.OrganizationPackage#getOrgUnit_GroupMemberships()
 	 * @see org.unicase.model.organization.Group#getOrgUnits
-	 * @model opposite="orgUnits" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model opposite="orgUnits" annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Group> getGroupMemberships();
@@ -84,8 +83,7 @@ public interface OrgUnit extends UnicaseModelElement {
 	 * @return the value of the '<em>Assignments</em>' reference list.
 	 * @see org.unicase.model.organization.OrganizationPackage#getOrgUnit_Assignments()
 	 * @see org.unicase.model.task.WorkItem#getAssignee
-	 * @model opposite="assignee" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
+	 * @model opposite="assignee" annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<WorkItem> getAssignments();
@@ -103,7 +101,7 @@ public interface OrgUnit extends UnicaseModelElement {
 	 * @return the value of the '<em>Participations</em>' reference list.
 	 * @see org.unicase.model.organization.OrganizationPackage#getOrgUnit_Participations()
 	 * @see org.unicase.model.task.WorkItem#getParticipants
-	 * @model opposite="participants" keys="identifier"
+	 * @model opposite="participants"
 	 * @generated
 	 */
 	EList<WorkItem> getParticipations();

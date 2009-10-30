@@ -18,23 +18,21 @@ import org.unicase.model.task.util.MEState;
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.unicase.metamodel.UnicaseModelElementment#getName <em>Name</em>}</li>
- * <li>{@link org.unicase.metamodel.UnicaseModelElementlElement#getDescription <em>Description</em>}</li>
- * <li>{@link org.unicase.UnicaseModelElement.ModelElement#getCreator <em>Creator</em>}</li>
- * <li>{@link org.unicase.UnicaseModelElementdel.ModelElement#getCreationDate <em>Creation Date</em>}</li>
- * <li>{@link org.unicase.UnicaseModelElementtamodel.ModelElement#getAnnotations <em>Annotations</em>}</li>
- * <li>{@link org.UnicaseModelElemente.metamodel.ModelElement#getAttachments <em>Attachments</em>}</li>
- * <li>{@link org.UnicaseModelElementicase.metamodel.ModelElement#getIncomingDocumentReferences <em>Incoming Document
- * References</em>}</li>
- * <li>{@link UnicaseModelElementg.unicase.metamodel.ModelElement#getLeafSection <em>Leaf Section</em>}</li>
- * <li>{@UnicaseModelElementk org.unicase.metamodel.ModelElement#getState <em>State</em>}</li>
- * <UnicaseModelElement>{@link org.unicase.metamodel.ModelElement#getAppliedStereotypeInstances <em>Applied Stereotype
- * Instances</em>}</UnicaseModelElement>
- * <li>{@link org.unicase.metamodel.ModelElement#getComments <em>Comments</em>}</li>
+ * <li>{@link org.unicase.model.UnicaseModelElement#getName <em>Name</em>}</li>
+ * <li>{@link org.unicase.model.UnicaseModelElement#getDescription <em>Description</em>}</li>
+ * <li>{@link org.unicase.model.UnicaseModelElement#getAnnotations <em>Annotations</em>}</li>
+ * <li>{@link org.unicase.model.UnicaseModelElement#getAttachments <em>Attachments</em>}</li>
+ * <li>{@link org.unicase.model.UnicaseModelElement#getIncomingDocumentReferences <em>Incoming Document References</em>}
+ * </li>
+ * <li>{@link org.unicase.model.UnicaseModelElement#getLeafSection <em>Leaf Section</em>}</li>
+ * <li>{@link org.unicase.model.UnicaseModelElement#getState <em>State</em>}</li>
+ * <li>{@link org.unicase.model.UnicaseModelElement#getAppliedStereotypeInstances <em>Applied Stereotype Instances</em>}
+ * </li>
+ * <li>{@link org.unicase.model.UnicaseModelElement#getComments <em>Comments</em>}</li>
  * </ul>
  * </p>
  * 
- * @see org.unicase.model.ModelPackage#getModelElement()
+ * @see org.unicase.model.ModelPackage#getUnicaseModelElement()
  * @model abstract="true"
  * @generated
  */
@@ -48,7 +46,7 @@ public interface UnicaseModelElement extends ModelElement {
 	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.unicase.model.ModelPackage#getModelElement_Name()
+	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Name()
 	 * @model annotation="org.unicase.ui.meeditor priority='1.0' position='left'"
 	 * @generated
 	 */
@@ -69,7 +67,7 @@ public interface UnicaseModelElement extends ModelElement {
 	 * 
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
-	 * @see org.unicase.model.ModelPackage#getModelElement_Description()
+	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Description()
 	 * @model annotation="teneo.jpa value='@Type(type=\"text\")'"
 	 *        annotation="org.unicase.ui.meeditor priority='1.0' position='left'"
 	 * @generated
@@ -77,8 +75,8 @@ public interface UnicaseModelElement extends ModelElement {
 	String getDescription();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.metamodel.ModelElement#getDescription <em>Description</em>}' attribute.
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.UnicaseModelElement#getDescription <em>Description</em>}'
+	 * attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Description</em>' attribute.
 	 * @see #getDescription()
@@ -138,10 +136,9 @@ public interface UnicaseModelElement extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Incoming Document References</em>' reference list.
-	 * @see org.unicase.model.ModelPackage#getModelElement_IncomingDocumentReferences()
+	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_IncomingDocumentReferences()
 	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements
-	 * @model opposite="referencedModelElements" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
+	 * @model opposite="referencedModelElements" annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
 	 * @generated
 	 */
 	EList<LeafSection> getIncomingDocumentReferences();
@@ -158,16 +155,16 @@ public interface UnicaseModelElement extends ModelElement {
 	 * 
 	 * @return the value of the '<em>Leaf Section</em>' container reference.
 	 * @see #setLeafSection(LeafSection)
-	 * @see org.unicase.model.ModelPackage#getModelElement_LeafSection()
+	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_LeafSection()
 	 * @see org.unicase.model.document.LeafSection#getModelElements
-	 * @model opposite="modelElements" keys="identifier" transient="false"
+	 * @model opposite="modelElements" transient="false"
 	 * @generated
 	 */
 	LeafSection getLeafSection();
 
 	/**
-	 * Sets the value of the '{@link org.unicase.metamodel.ModelElement#getLeafSection <em>Leaf Section</em>}' container
-	 * reference. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Sets the value of the '{@link org.unicase.model.UnicaseModelElement#getLeafSection <em>Leaf Section</em>}'
+	 * container reference. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @param value the new value of the '<em>Leaf Section</em>' container reference.
 	 * @see #getLeafSection()
@@ -222,9 +219,9 @@ public interface UnicaseModelElement extends ModelElement {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @return the value of the '<em>Comments</em>' containment reference list.
-	 * @see org.unicase.model.ModelPackage#getModelElement_Comments()
+	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Comments()
 	 * @see org.unicase.model.rationale.Comment#getCommentedElement
-	 * @model opposite="commentedElement" containment="true" resolveProxies="true" keys="identifier"
+	 * @model opposite="commentedElement" containment="true" resolveProxies="true"
 	 *        annotation="org.unicase.ui.meeditor priority='2.0' position='left'"
 	 * @generated
 	 */

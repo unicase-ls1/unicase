@@ -11,16 +11,13 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.ModelVersion;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.UniqueIdentifier;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
 import org.unicase.model.ModelFactory;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.Project;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -66,21 +63,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	private EClass modelElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass projectEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass uniqueIdentifierEClass = null;
+	private EClass unicaseModelElementEClass = null;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -101,20 +84,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	private EClass identifiableElementEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	private EClass modelElementIdEClass = null;
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	private EClass nonDomainElementEClass = null;
 
 	/**
@@ -122,7 +91,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	private EClass modelVersionEClass = null;
+	private EClass projectEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry
@@ -172,6 +141,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -275,8 +245,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getModelElement() {
-		return modelElementEClass;
+	public EClass getUnicaseModelElement() {
+		return unicaseModelElementEClass;
 	}
 
 	/**
@@ -284,8 +254,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getModelElement_Name() {
-		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(0);
+	public EAttribute getUnicaseModelElement_Name() {
+		return (EAttribute) unicaseModelElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -293,8 +263,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getModelElement_Description() {
-		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(1);
+	public EAttribute getUnicaseModelElement_Description() {
+		return (EAttribute) unicaseModelElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -302,8 +272,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getModelElement_Creator() {
-		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(2);
+	public EReference getUnicaseModelElement_Annotations() {
+		return (EReference) unicaseModelElementEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -311,8 +281,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getModelElement_CreationDate() {
-		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(3);
+	public EReference getUnicaseModelElement_Attachments() {
+		return (EReference) unicaseModelElementEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -320,8 +290,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getModelElement_Annotations() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(4);
+	public EReference getUnicaseModelElement_IncomingDocumentReferences() {
+		return (EReference) unicaseModelElementEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -329,8 +299,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getModelElement_Attachments() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(5);
+	public EReference getUnicaseModelElement_LeafSection() {
+		return (EReference) unicaseModelElementEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -338,8 +308,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getModelElement_IncomingDocumentReferences() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(6);
+	public EAttribute getUnicaseModelElement_State() {
+		return (EAttribute) unicaseModelElementEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -347,8 +317,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EReference getModelElement_LeafSection() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(7);
+	public EReference getUnicaseModelElement_AppliedStereotypeInstances() {
+		return (EReference) unicaseModelElementEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -356,62 +326,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EAttribute getModelElement_State() {
-		return (EAttribute) modelElementEClass.getEStructuralFeatures().get(8);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getModelElement_AppliedStereotypeInstances() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(9);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getModelElement_Comments() {
-		return (EReference) modelElementEClass.getEStructuralFeatures().get(10);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EClass getProject() {
-		return projectEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EReference getProject_ModelElements() {
-		return (EReference) projectEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EClass getUniqueIdentifier() {
-		return uniqueIdentifierEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getUniqueIdentifier_Id() {
-		return (EAttribute) uniqueIdentifierEClass.getEStructuralFeatures().get(0);
+	public EReference getUnicaseModelElement_Comments() {
+		return (EReference) unicaseModelElementEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -455,33 +371,6 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getIdentifiableElement() {
-		return identifiableElementEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getIdentifiableElement_Identifier() {
-		return (EAttribute) identifiableElementEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EClass getModelElementId() {
-		return modelElementIdEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
 	public EClass getNonDomainElement() {
 		return nonDomainElementEClass;
 	}
@@ -491,17 +380,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 * 
 	 * @generated
 	 */
-	public EClass getModelVersion() {
-		return modelVersionEClass;
-	}
-
-	/**
-	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EAttribute getModelVersion_ReleaseNumber() {
-		return (EAttribute) modelVersionEClass.getEStructuralFeatures().get(0);
+	public EClass getProject() {
+		return projectEClass;
 	}
 
 	/**
@@ -532,24 +412,16 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		isCreated = true;
 
 		// Create classes and their features
-		modelElementEClass = createEClass(MODEL_ELEMENT);
-		createEAttribute(modelElementEClass, MODEL_ELEMENT__NAME);
-		createEAttribute(modelElementEClass, MODEL_ELEMENT__DESCRIPTION);
-		createEAttribute(modelElementEClass, MODEL_ELEMENT__CREATOR);
-		createEAttribute(modelElementEClass, MODEL_ELEMENT__CREATION_DATE);
-		createEReference(modelElementEClass, MODEL_ELEMENT__ANNOTATIONS);
-		createEReference(modelElementEClass, MODEL_ELEMENT__ATTACHMENTS);
-		createEReference(modelElementEClass, MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
-		createEReference(modelElementEClass, MODEL_ELEMENT__LEAF_SECTION);
-		createEAttribute(modelElementEClass, MODEL_ELEMENT__STATE);
-		createEReference(modelElementEClass, MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES);
-		createEReference(modelElementEClass, MODEL_ELEMENT__COMMENTS);
-
-		projectEClass = createEClass(PROJECT);
-		createEReference(projectEClass, PROJECT__MODEL_ELEMENTS);
-
-		uniqueIdentifierEClass = createEClass(UNIQUE_IDENTIFIER);
-		createEAttribute(uniqueIdentifierEClass, UNIQUE_IDENTIFIER__ID);
+		unicaseModelElementEClass = createEClass(UNICASE_MODEL_ELEMENT);
+		createEAttribute(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__NAME);
+		createEAttribute(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__DESCRIPTION);
+		createEReference(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__ANNOTATIONS);
+		createEReference(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__ATTACHMENTS);
+		createEReference(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
+		createEReference(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__LEAF_SECTION);
+		createEAttribute(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__STATE);
+		createEReference(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES);
+		createEReference(unicaseModelElementEClass, UNICASE_MODEL_ELEMENT__COMMENTS);
 
 		annotationEClass = createEClass(ANNOTATION);
 		createEReference(annotationEClass, ANNOTATION__ANNOTATED_MODEL_ELEMENTS);
@@ -557,15 +429,9 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		attachmentEClass = createEClass(ATTACHMENT);
 		createEReference(attachmentEClass, ATTACHMENT__REFERRING_MODEL_ELEMENTS);
 
-		identifiableElementEClass = createEClass(IDENTIFIABLE_ELEMENT);
-		createEAttribute(identifiableElementEClass, IDENTIFIABLE_ELEMENT__IDENTIFIER);
-
-		modelElementIdEClass = createEClass(MODEL_ELEMENT_ID);
-
 		nonDomainElementEClass = createEClass(NON_DOMAIN_ELEMENT);
 
-		modelVersionEClass = createEClass(MODEL_VERSION);
-		createEAttribute(modelVersionEClass, MODEL_VERSION__RELEASE_NUMBER);
+		projectEClass = createEClass(PROJECT);
 	}
 
 	/**
@@ -619,6 +485,8 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		UtilPackage theUtilPackage = (UtilPackage) EPackage.Registry.INSTANCE.getEPackage(UtilPackage.eNS_URI);
 		ActivityPackage theActivityPackage = (ActivityPackage) EPackage.Registry.INSTANCE
 			.getEPackage(ActivityPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Add subpackages
 		getESubpackages().add(theOrganizationPackage);
@@ -643,101 +511,66 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		modelElementEClass.getESuperTypes().add(this.getIdentifiableElement());
-		annotationEClass.getESuperTypes().add(this.getModelElement());
-		attachmentEClass.getESuperTypes().add(this.getModelElement());
-		modelElementIdEClass.getESuperTypes().add(this.getUniqueIdentifier());
+		unicaseModelElementEClass.getESuperTypes().add(theMetamodelPackage.getModelElement());
+		annotationEClass.getESuperTypes().add(this.getUnicaseModelElement());
+		attachmentEClass.getESuperTypes().add(this.getUnicaseModelElement());
+		projectEClass.getESuperTypes().add(theMetamodelPackage.getProject());
 
 		// Initialize classes and features; add operations and parameters
-		initEClass(modelElementEClass, UnicaseModelElement.class, "ModelElement", IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModelElement_Name(), ecorePackage.getEString(), "name", null, 0, 1, UnicaseModelElement.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_Description(), ecorePackage.getEString(), "description", null, 0, 1,
+		initEClass(unicaseModelElementEClass, UnicaseModelElement.class, "UnicaseModelElement", IS_ABSTRACT,
+			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEAttribute(getUnicaseModelElement_Name(), ecorePackage.getEString(), "name", null, 0, 1,
 			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_Creator(), ecorePackage.getEString(), "creator", null, 0, 1, UnicaseModelElement.class,
-			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getModelElement_CreationDate(), ecorePackage.getEDate(), "creationDate", null, 0, 1,
+		initEAttribute(getUnicaseModelElement_Description(), ecorePackage.getEString(), "description", null, 0, 1,
 			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_Annotations(), this.getAnnotation(),
-			this.getAnnotation_AnnotatedModelElements(), "annotations", null, 0, -1, UnicaseModelElement.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		getModelElement_Annotations().getEKeys().add(this.getIdentifiableElement_Identifier());
-		initEReference(getModelElement_Attachments(), this.getAttachment(),
-			this.getAttachment_ReferringModelElements(), "attachments", null, 0, -1, UnicaseModelElement.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		getModelElement_Attachments().getEKeys().add(this.getIdentifiableElement_Identifier());
-		initEReference(getModelElement_IncomingDocumentReferences(), theDocumentPackage.getLeafSection(),
+		initEReference(getUnicaseModelElement_Annotations(), this.getAnnotation(), this
+			.getAnnotation_AnnotatedModelElements(), "annotations", null, 0, -1, UnicaseModelElement.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEReference(getUnicaseModelElement_Attachments(), this.getAttachment(), this
+			.getAttachment_ReferringModelElements(), "attachments", null, 0, -1, UnicaseModelElement.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
+		initEReference(getUnicaseModelElement_IncomingDocumentReferences(), theDocumentPackage.getLeafSection(),
 			theDocumentPackage.getLeafSection_ReferencedModelElements(), "incomingDocumentReferences", null, 0, -1,
 			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getModelElement_IncomingDocumentReferences().getEKeys().add(this.getIdentifiableElement_Identifier());
-		initEReference(getModelElement_LeafSection(), theDocumentPackage.getLeafSection(), theDocumentPackage
+		initEReference(getUnicaseModelElement_LeafSection(), theDocumentPackage.getLeafSection(), theDocumentPackage
 			.getLeafSection_ModelElements(), "leafSection", null, 0, 1, UnicaseModelElement.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
-		getModelElement_LeafSection().getEKeys().add(this.getIdentifiableElement_Identifier());
-		initEAttribute(getModelElement_State(), ecorePackage.getEString(), "state", "", 0, 1, UnicaseModelElement.class,
-			IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElement_AppliedStereotypeInstances(), theProfilePackage.getStereotypeInstance(),
+		initEAttribute(getUnicaseModelElement_State(), ecorePackage.getEString(), "state", "", 0, 1,
+			UnicaseModelElement.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+			IS_DERIVED, IS_ORDERED);
+		initEReference(getUnicaseModelElement_AppliedStereotypeInstances(), theProfilePackage.getStereotypeInstance(),
 			theProfilePackage.getStereotypeInstance_ModelElement(), "appliedStereotypeInstances", null, 0, -1,
 			UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getModelElement_AppliedStereotypeInstances().getEKeys().add(this.getIdentifiableElement_Identifier());
-		initEReference(getModelElement_Comments(), theRationalePackage.getComment(), theRationalePackage
-			.getComment_CommentedElement(), "comments", null, 0, -1, UnicaseModelElement.class, !IS_TRANSIENT, !IS_VOLATILE,
-			IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getModelElement_Comments().getEKeys().add(this.getIdentifiableElement_Identifier());
-
-		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProject_ModelElements(), this.getModelElement(), null, "modelElements", null, 0, -1,
-			Project.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
-		getProject_ModelElements().getEKeys().add(this.getIdentifiableElement_Identifier());
-
-		initEClass(uniqueIdentifierEClass, UniqueIdentifier.class, "UniqueIdentifier", IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getUniqueIdentifier_Id(), ecorePackage.getEString(), "id", "Default Value Literal\t", 1, 1,
-			UniqueIdentifier.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEReference(getUnicaseModelElement_Comments(), theRationalePackage.getComment(), theRationalePackage
+			.getComment_CommentedElement(), "comments", null, 0, -1, UnicaseModelElement.class, !IS_TRANSIENT,
+			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+			IS_ORDERED);
 
 		initEClass(annotationEClass, Annotation.class, "Annotation", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAnnotation_AnnotatedModelElements(), this.getModelElement(), this
-			.getModelElement_Annotations(), "annotatedModelElements", null, 0, -1, Annotation.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		getAnnotation_AnnotatedModelElements().getEKeys().add(this.getIdentifiableElement_Identifier());
+		initEReference(getAnnotation_AnnotatedModelElements(), this.getUnicaseModelElement(), this
+			.getUnicaseModelElement_Annotations(), "annotatedModelElements", null, 0, -1, Annotation.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+			!IS_DERIVED, IS_ORDERED);
 
 		initEClass(attachmentEClass, Attachment.class, "Attachment", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getAttachment_ReferringModelElements(), this.getModelElement(), this
-			.getModelElement_Attachments(), "referringModelElements", null, 0, -1, Attachment.class, !IS_TRANSIENT,
-			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
-			IS_ORDERED);
-		getAttachment_ReferringModelElements().getEKeys().add(this.getIdentifiableElement_Identifier());
-
-		initEClass(identifiableElementEClass, IdentifiableElement.class, "IdentifiableElement", !IS_ABSTRACT,
-			!IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getIdentifiableElement_Identifier(), ecorePackage.getEString(), "identifier", null, 1, 1,
-			IdentifiableElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, IS_ID, IS_UNIQUE,
+		initEReference(getAttachment_ReferringModelElements(), this.getUnicaseModelElement(), this
+			.getUnicaseModelElement_Attachments(), "referringModelElements", null, 0, -1, Attachment.class,
+			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
-
-		initEClass(modelElementIdEClass, ModelElementId.class, "ModelElementId", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
 
 		initEClass(nonDomainElementEClass, NonDomainElement.class, "NonDomainElement", IS_ABSTRACT, IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 
-		initEClass(modelVersionEClass, ModelVersion.class, "ModelVersion", !IS_ABSTRACT, !IS_INTERFACE,
-			IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getModelVersion_ReleaseNumber(), ecorePackage.getEInt(), "releaseNumber", null, 0, 1,
-			ModelVersion.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
-			!IS_DERIVED, IS_ORDERED);
+		initEClass(projectEClass, Project.class, "Project", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);
@@ -756,13 +589,16 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	protected void createOrgAnnotations() {
 		String source = "org.unicase.ui.meeditor";
-		addAnnotation(getModelElement_Name(), source, new String[] { "priority", "1.0", "position", "left" });
-		addAnnotation(getModelElement_Description(), source, new String[] { "priority", "1.0", "position", "left" });
-		addAnnotation(getModelElement_Annotations(), source, new String[] { "priority", "100.0", "position", "right" });
-		addAnnotation(getModelElement_Attachments(), source, new String[] { "priority", "101.0", "position", "right" });
-		addAnnotation(getModelElement_IncomingDocumentReferences(), source, new String[] { "priority", "102.0",
+		addAnnotation(getUnicaseModelElement_Name(), source, new String[] { "priority", "1.0", "position", "left" });
+		addAnnotation(getUnicaseModelElement_Description(), source, new String[] { "priority", "1.0", "position",
+			"left" });
+		addAnnotation(getUnicaseModelElement_Annotations(), source, new String[] { "priority", "100.0", "position",
+			"right" });
+		addAnnotation(getUnicaseModelElement_Attachments(), source, new String[] { "priority", "101.0", "position",
+			"right" });
+		addAnnotation(getUnicaseModelElement_IncomingDocumentReferences(), source, new String[] { "priority", "102.0",
 			"position", "right" });
-		addAnnotation(getModelElement_Comments(), source, new String[] { "priority", "2.0", "position", "left" });
+		addAnnotation(getUnicaseModelElement_Comments(), source, new String[] { "priority", "2.0", "position", "left" });
 		addAnnotation(getAnnotation_AnnotatedModelElements(), source, new String[] { "priority", "90.0", "position",
 			"right" });
 	}
@@ -774,7 +610,7 @@ public class ModelPackageImpl extends EPackageImpl implements ModelPackage {
 	 */
 	protected void createTeneoAnnotations() {
 		String source = "teneo.jpa";
-		addAnnotation(getModelElement_Description(), source, new String[] { "value", "@Type(type=\"text\")" });
+		addAnnotation(getUnicaseModelElement_Description(), source, new String[] { "value", "@Type(type=\"text\")" });
 	}
 
 } // ModelPackageImpl

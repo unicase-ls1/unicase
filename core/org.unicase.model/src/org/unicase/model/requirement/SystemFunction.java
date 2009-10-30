@@ -16,10 +16,10 @@ import org.unicase.model.UnicaseModelElement;
  * <li>{@link org.unicase.model.requirement.SystemFunction#getInput <em>Input</em>}</li>
  * <li>{@link org.unicase.model.requirement.SystemFunction#getOutput <em>Output</em>}</li>
  * <li>{@link org.unicase.model.requirement.SystemFunction#getException <em>Exception</em>}</li>
- * <li>{@link org.unicase.model.requirement.SystemFunction#getWorkspace <em>Workspace</em>}</li>
- * <li>{@link org.unicase.model.requirement.SystemFunction#getUsecases <em>Usecases</em>}</li>
  * <li>{@link org.unicase.model.requirement.SystemFunction#getNonFunctionalRequirement <em>Non Functional Requirement
  * </em>}</li>
+ * <li>{@link org.unicase.model.requirement.SystemFunction#getUsecases <em>Usecases</em>}</li>
+ * <li>{@link org.unicase.model.requirement.SystemFunction#getWorkspace <em>Workspace</em>}</li>
  * </ul>
  * </p>
  * 
@@ -149,8 +149,7 @@ public interface SystemFunction extends UnicaseModelElement {
 	 * @return the value of the '<em>Usecases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getSystemFunction_Usecases()
 	 * @see org.unicase.model.requirement.UseCase#getSystemFunctions
-	 * @model opposite="systemFunctions" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 * @model opposite="systemFunctions" annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getUsecases();
@@ -169,7 +168,7 @@ public interface SystemFunction extends UnicaseModelElement {
 	 * @see #setNonFunctionalRequirement(NonFunctionalRequirement)
 	 * @see org.unicase.model.requirement.RequirementPackage#getSystemFunction_NonFunctionalRequirement()
 	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getSystemFunctions
-	 * @model opposite="systemFunctions" keys="identifier"
+	 * @model opposite="systemFunctions"
 	 * @generated
 	 */
 	NonFunctionalRequirement getNonFunctionalRequirement();

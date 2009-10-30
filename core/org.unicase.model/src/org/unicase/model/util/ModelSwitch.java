@@ -10,14 +10,12 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.ModelVersion;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.UniqueIdentifier;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.Project;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -84,25 +82,13 @@ public class ModelSwitch<T> {
 	 */
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-		case ModelPackage.MODEL_ELEMENT: {
-			UnicaseModelElement modelElement = (UnicaseModelElement) theEObject;
-			T result = caseModelElement(modelElement);
+		case ModelPackage.UNICASE_MODEL_ELEMENT: {
+			UnicaseModelElement unicaseModelElement = (UnicaseModelElement) theEObject;
+			T result = caseUnicaseModelElement(unicaseModelElement);
 			if (result == null)
-				result = caseIdentifiableElement(modelElement);
+				result = caseModelElement(unicaseModelElement);
 			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ModelPackage.PROJECT: {
-			Project project = (Project) theEObject;
-			T result = caseProject(project);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ModelPackage.UNIQUE_IDENTIFIER: {
-			UniqueIdentifier uniqueIdentifier = (UniqueIdentifier) theEObject;
-			T result = caseUniqueIdentifier(uniqueIdentifier);
+				result = caseIdentifiableElement(unicaseModelElement);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -110,6 +96,8 @@ public class ModelSwitch<T> {
 		case ModelPackage.ANNOTATION: {
 			Annotation annotation = (Annotation) theEObject;
 			T result = caseAnnotation(annotation);
+			if (result == null)
+				result = caseUnicaseModelElement(annotation);
 			if (result == null)
 				result = caseModelElement(annotation);
 			if (result == null)
@@ -122,25 +110,11 @@ public class ModelSwitch<T> {
 			Attachment attachment = (Attachment) theEObject;
 			T result = caseAttachment(attachment);
 			if (result == null)
+				result = caseUnicaseModelElement(attachment);
+			if (result == null)
 				result = caseModelElement(attachment);
 			if (result == null)
 				result = caseIdentifiableElement(attachment);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ModelPackage.IDENTIFIABLE_ELEMENT: {
-			IdentifiableElement identifiableElement = (IdentifiableElement) theEObject;
-			T result = caseIdentifiableElement(identifiableElement);
-			if (result == null)
-				result = defaultCase(theEObject);
-			return result;
-		}
-		case ModelPackage.MODEL_ELEMENT_ID: {
-			ModelElementId modelElementId = (ModelElementId) theEObject;
-			T result = caseModelElementId(modelElementId);
-			if (result == null)
-				result = caseUniqueIdentifier(modelElementId);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -152,9 +126,11 @@ public class ModelSwitch<T> {
 				result = defaultCase(theEObject);
 			return result;
 		}
-		case ModelPackage.MODEL_VERSION: {
-			ModelVersion modelVersion = (ModelVersion) theEObject;
-			T result = caseModelVersion(modelVersion);
+		case ModelPackage.PROJECT: {
+			Project project = (Project) theEObject;
+			T result = caseProject(project);
+			if (result == null)
+				result = caseMetamodel_Project(project);
 			if (result == null)
 				result = defaultCase(theEObject);
 			return result;
@@ -165,42 +141,16 @@ public class ModelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'. <!-- begin-user-doc --> This
-	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelElement(UnicaseModelElement object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Project</em>'. <!-- begin-user-doc --> This
-	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Project</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseProject(Project object) {
-		return null;
-	}
-
-	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Unique Identifier</em>'. <!-- begin-user-doc
-	 * --> This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc
-	 * -->
-	 * 
-	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Unique Identifier</em>'.
-	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
-	 * @generated
-	 */
-	public T caseUniqueIdentifier(UniqueIdentifier object) {
+	public T caseUnicaseModelElement(UnicaseModelElement object) {
 		return null;
 	}
 
@@ -245,15 +195,28 @@ public class ModelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element Id</em>'. <!-- begin-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
 	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element Id</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelElementId(ModelElementId object) {
+	public T caseModelElement(ModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Project</em>'. <!-- begin-user-doc --> This
+	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Project</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseMetamodel_Project(org.unicase.metamodel.Project object) {
 		return null;
 	}
 
@@ -272,15 +235,15 @@ public class ModelSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Version</em>'. <!-- begin-user-doc --> This
+	 * Returns the result of interpreting the object as an instance of '<em>Project</em>'. <!-- begin-user-doc --> This
 	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Version</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Project</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelVersion(ModelVersion object) {
+	public T caseProject(Project object) {
 		return null;
 	}
 

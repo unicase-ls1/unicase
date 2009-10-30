@@ -73,22 +73,6 @@ public interface AttachmentPackage extends EPackage {
 	int URL_ATTACHMENT__IDENTIFIER = ModelPackage.ATTACHMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int URL_ATTACHMENT__NAME = ModelPackage.ATTACHMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int URL_ATTACHMENT__DESCRIPTION = ModelPackage.ATTACHMENT__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -103,6 +87,22 @@ public interface AttachmentPackage extends EPackage {
 	 * @ordered
 	 */
 	int URL_ATTACHMENT__CREATION_DATE = ModelPackage.ATTACHMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__NAME = ModelPackage.ATTACHMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int URL_ATTACHMENT__DESCRIPTION = ModelPackage.ATTACHMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -211,22 +211,6 @@ public interface AttachmentPackage extends EPackage {
 	int FILE_ATTACHMENT__IDENTIFIER = ModelPackage.ATTACHMENT__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_ATTACHMENT__NAME = ModelPackage.ATTACHMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_ATTACHMENT__DESCRIPTION = ModelPackage.ATTACHMENT__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -241,6 +225,22 @@ public interface AttachmentPackage extends EPackage {
 	 * @ordered
 	 */
 	int FILE_ATTACHMENT__CREATION_DATE = ModelPackage.ATTACHMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTACHMENT__NAME = ModelPackage.ATTACHMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTACHMENT__DESCRIPTION = ModelPackage.ATTACHMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -363,20 +363,20 @@ public interface AttachmentPackage extends EPackage {
 	int FILE_ATTACHMENT__FILE_TYPE = ModelPackage.ATTACHMENT_FEATURE_COUNT + 5;
 
 	/**
-	 * The feature id for the '<em><b>Downloading</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int FILE_ATTACHMENT__DOWNLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 6;
-
-	/**
 	 * The feature id for the '<em><b>Uploading</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int FILE_ATTACHMENT__UPLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 7;
+	int FILE_ATTACHMENT__UPLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Downloading</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int FILE_ATTACHMENT__DOWNLOADING = ModelPackage.ATTACHMENT_FEATURE_COUNT + 7;
 
 	/**
 	 * The number of structural features of the '<em>File Attachment</em>' class. <!-- begin-user-doc --> <!--

@@ -116,7 +116,8 @@ public class OpeningLinkTaxonomy {
 		return getRecursiveLeafOpeners(modelElement, new HashSet<UnicaseModelElement>());
 	}
 
-	private Set<UnicaseModelElement> getRecursiveLeafOpeners(UnicaseModelElement modelElement, HashSet<UnicaseModelElement> visited) {
+	private Set<UnicaseModelElement> getRecursiveLeafOpeners(UnicaseModelElement modelElement,
+		HashSet<UnicaseModelElement> visited) {
 		Set<UnicaseModelElement> leafOpeners = new HashSet<UnicaseModelElement>();
 		Set<UnicaseModelElement> openers = getOpeners(modelElement);
 		visited.add(modelElement);

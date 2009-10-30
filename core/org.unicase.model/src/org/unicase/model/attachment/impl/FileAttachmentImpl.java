@@ -150,26 +150,6 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	protected FileAttachmentType fileType = FILE_TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isDownloading() <em>Downloading</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #isDownloading()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean DOWNLOADING_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isDownloading() <em>Downloading</em>}' attribute. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @see #isDownloading()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean downloading = DOWNLOADING_EDEFAULT;
-
-	/**
 	 * The default value of the '{@link #isUploading() <em>Uploading</em>}' attribute. <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
 	 * 
@@ -188,6 +168,26 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 	 * @ordered
 	 */
 	protected boolean uploading = UPLOADING_EDEFAULT;
+
+	/**
+	 * The default value of the '{@link #isDownloading() <em>Downloading</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #isDownloading()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean DOWNLOADING_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isDownloading() <em>Downloading</em>}' attribute. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @see #isDownloading()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean downloading = DOWNLOADING_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -404,10 +404,10 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			return isRequiredOffline();
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
 			return getFileType();
-		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
-			return isDownloading();
 		case AttachmentPackage.FILE_ATTACHMENT__UPLOADING:
 			return isUploading();
+		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
+			return isDownloading();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -438,11 +438,11 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
 			setFileType((FileAttachmentType) newValue);
 			return;
-		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
-			setDownloading((Boolean) newValue);
-			return;
 		case AttachmentPackage.FILE_ATTACHMENT__UPLOADING:
 			setUploading((Boolean) newValue);
+			return;
+		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
+			setDownloading((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -474,11 +474,11 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
 			setFileType(FILE_TYPE_EDEFAULT);
 			return;
-		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
-			setDownloading(DOWNLOADING_EDEFAULT);
-			return;
 		case AttachmentPackage.FILE_ATTACHMENT__UPLOADING:
 			setUploading(UPLOADING_EDEFAULT);
+			return;
+		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
+			setDownloading(DOWNLOADING_EDEFAULT);
 			return;
 		}
 		super.eUnset(featureID);
@@ -504,10 +504,10 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 			return requiredOffline != REQUIRED_OFFLINE_EDEFAULT;
 		case AttachmentPackage.FILE_ATTACHMENT__FILE_TYPE:
 			return fileType != FILE_TYPE_EDEFAULT;
-		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
-			return downloading != DOWNLOADING_EDEFAULT;
 		case AttachmentPackage.FILE_ATTACHMENT__UPLOADING:
 			return uploading != UPLOADING_EDEFAULT;
+		case AttachmentPackage.FILE_ATTACHMENT__DOWNLOADING:
+			return downloading != DOWNLOADING_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -535,10 +535,10 @@ public class FileAttachmentImpl extends AttachmentImpl implements FileAttachment
 		result.append(requiredOffline);
 		result.append(", fileType: ");
 		result.append(fileType);
-		result.append(", downloading: ");
-		result.append(downloading);
 		result.append(", uploading: ");
 		result.append(uploading);
+		result.append(", downloading: ");
+		result.append(downloading);
 		result.append(')');
 		return result.toString();
 	}

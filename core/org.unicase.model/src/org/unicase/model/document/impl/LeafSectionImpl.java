@@ -140,8 +140,9 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 	 */
 	public EList<UnicaseModelElement> getModelElements() {
 		if (modelElements == null) {
-			modelElements = new EObjectContainmentWithInverseEList.Resolving<UnicaseModelElement>(UnicaseModelElement.class, this,
-				DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS, ModelPackage.MODEL_ELEMENT__LEAF_SECTION);
+			modelElements = new EObjectContainmentWithInverseEList.Resolving<UnicaseModelElement>(
+				UnicaseModelElement.class, this, DocumentPackage.LEAF_SECTION__MODEL_ELEMENTS,
+				ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION);
 		}
 		return modelElements;
 	}
@@ -155,7 +156,7 @@ public class LeafSectionImpl extends UnicaseModelElementImpl implements LeafSect
 		if (referencedModelElements == null) {
 			referencedModelElements = new EObjectWithInverseResolvingEList.ManyInverse<UnicaseModelElement>(
 				UnicaseModelElement.class, this, DocumentPackage.LEAF_SECTION__REFERENCED_MODEL_ELEMENTS,
-				ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
+				ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES);
 		}
 		return referencedModelElements;
 	}

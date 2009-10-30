@@ -10,6 +10,7 @@ import java.util.List;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.NonDomainElement;
 import org.unicase.model.UnicaseModelElement;
@@ -92,6 +93,8 @@ public class ChangeSwitch<T> {
 			ModelChangePackage modelChangePackage = (ModelChangePackage) theEObject;
 			T result = caseModelChangePackage(modelChangePackage);
 			if (result == null)
+				result = caseUnicaseModelElement(modelChangePackage);
+			if (result == null)
 				result = caseModelElement(modelChangePackage);
 			if (result == null)
 				result = caseIdentifiableElement(modelChangePackage);
@@ -111,6 +114,8 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseAnnotation(mergingIssue);
 			if (result == null)
+				result = caseUnicaseModelElement(mergingIssue);
+			if (result == null)
 				result = caseModelElement(mergingIssue);
 			if (result == null)
 				result = caseIdentifiableElement(mergingIssue);
@@ -124,9 +129,11 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseProposal(mergingProposal);
 			if (result == null)
-				result = caseModelElement(mergingProposal);
+				result = caseUnicaseModelElement(mergingProposal);
 			if (result == null)
 				result = caseNonDomainElement(mergingProposal);
+			if (result == null)
+				result = caseModelElement(mergingProposal);
 			if (result == null)
 				result = caseIdentifiableElement(mergingProposal);
 			if (result == null)
@@ -139,9 +146,11 @@ public class ChangeSwitch<T> {
 			if (result == null)
 				result = caseSolution(mergingSolution);
 			if (result == null)
-				result = caseModelElement(mergingSolution);
+				result = caseUnicaseModelElement(mergingSolution);
 			if (result == null)
 				result = caseNonDomainElement(mergingSolution);
+			if (result == null)
+				result = caseModelElement(mergingSolution);
 			if (result == null)
 				result = caseIdentifiableElement(mergingSolution);
 			if (result == null)
@@ -223,15 +232,29 @@ public class ChangeSwitch<T> {
 	}
 
 	/**
-	 * Returns the result of interpreting the object as an instance of '<em>Element</em>'. <!-- begin-user-doc --> This
-	 * implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element</em>'. <!-- begin-user-doc -->
+	 * This implementation returns null; returning a non-null result will terminate the switch. <!-- end-user-doc -->
 	 * 
 	 * @param object the target of the switch.
-	 * @return the result of interpreting the object as an instance of '<em>Element</em>'.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseModelElement(UnicaseModelElement object) {
+	public T caseModelElement(ModelElement object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'. <!--
+	 * begin-user-doc --> This implementation returns null; returning a non-null result will terminate the switch. <!--
+	 * end-user-doc -->
+	 * 
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Unicase Model Element</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseUnicaseModelElement(UnicaseModelElement object) {
 		return null;
 	}
 

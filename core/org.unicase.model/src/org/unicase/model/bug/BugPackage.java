@@ -73,22 +73,6 @@ public interface BugPackage extends EPackage {
 	int BUG_REPORT__IDENTIFIER = TaskPackage.WORK_ITEM__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int BUG_REPORT__NAME = TaskPackage.WORK_ITEM__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int BUG_REPORT__DESCRIPTION = TaskPackage.WORK_ITEM__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -103,6 +87,22 @@ public interface BugPackage extends EPackage {
 	 * @ordered
 	 */
 	int BUG_REPORT__CREATION_DATE = TaskPackage.WORK_ITEM__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__NAME = TaskPackage.WORK_ITEM__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int BUG_REPORT__DESCRIPTION = TaskPackage.WORK_ITEM__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc

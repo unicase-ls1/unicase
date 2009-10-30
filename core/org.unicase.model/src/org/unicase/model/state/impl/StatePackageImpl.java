@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -140,6 +141,7 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -434,8 +436,8 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 
 		// Add supertypes to classes
 		stateEClass.getESuperTypes().add(this.getStateNode());
-		transitionEClass.getESuperTypes().add(theModelPackage.getModelElement());
-		stateNodeEClass.getESuperTypes().add(theModelPackage.getModelElement());
+		transitionEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
+		stateNodeEClass.getESuperTypes().add(theModelPackage.getUnicaseModelElement());
 		stateInitialEClass.getESuperTypes().add(this.getStateNode());
 		stateEndEClass.getESuperTypes().add(this.getStateNode());
 
@@ -456,22 +458,18 @@ public class StatePackageImpl extends EPackageImpl implements StatePackage {
 		initEReference(getTransition_Source(), this.getStateNode(), this.getStateNode_OutgoingTransitions(), "source",
 			null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getTransition_Source().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getTransition_Target(), this.getStateNode(), this.getStateNode_IncomingTransitions(), "target",
 			null, 0, 1, Transition.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getTransition_Target().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stateNodeEClass, StateNode.class, "StateNode", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getStateNode_OutgoingTransitions(), this.getTransition(), this.getTransition_Source(),
 			"outgoingTransitions", null, 0, -1, StateNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStateNode_OutgoingTransitions().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 		initEReference(getStateNode_IncomingTransitions(), this.getTransition(), this.getTransition_Target(),
 			"incomingTransitions", null, 0, -1, StateNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		getStateNode_IncomingTransitions().getEKeys().add(theModelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(stateInitialEClass, StateInitial.class, "StateInitial", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);

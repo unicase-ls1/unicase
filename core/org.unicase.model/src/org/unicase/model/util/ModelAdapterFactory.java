@@ -10,14 +10,12 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EObject;
 import org.unicase.metamodel.IdentifiableElement;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.ModelVersion;
-import org.unicase.metamodel.Project;
-import org.unicase.metamodel.UniqueIdentifier;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.model.Annotation;
 import org.unicase.model.Attachment;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.NonDomainElement;
+import org.unicase.model.Project;
 import org.unicase.model.UnicaseModelElement;
 
 /**
@@ -72,18 +70,8 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 */
 	protected ModelSwitch<Adapter> modelSwitch = new ModelSwitch<Adapter>() {
 		@Override
-		public Adapter caseModelElement(UnicaseModelElement object) {
-			return createModelElementAdapter();
-		}
-
-		@Override
-		public Adapter caseProject(Project object) {
-			return createProjectAdapter();
-		}
-
-		@Override
-		public Adapter caseUniqueIdentifier(UniqueIdentifier object) {
-			return createUniqueIdentifierAdapter();
+		public Adapter caseUnicaseModelElement(UnicaseModelElement object) {
+			return createUnicaseModelElementAdapter();
 		}
 
 		@Override
@@ -97,23 +85,28 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 		}
 
 		@Override
-		public Adapter caseIdentifiableElement(IdentifiableElement object) {
-			return createIdentifiableElementAdapter();
-		}
-
-		@Override
-		public Adapter caseModelElementId(ModelElementId object) {
-			return createModelElementIdAdapter();
-		}
-
-		@Override
 		public Adapter caseNonDomainElement(NonDomainElement object) {
 			return createNonDomainElementAdapter();
 		}
 
 		@Override
-		public Adapter caseModelVersion(ModelVersion object) {
-			return createModelVersionAdapter();
+		public Adapter caseProject(Project object) {
+			return createProjectAdapter();
+		}
+
+		@Override
+		public Adapter caseIdentifiableElement(IdentifiableElement object) {
+			return createIdentifiableElementAdapter();
+		}
+
+		@Override
+		public Adapter caseModelElement(ModelElement object) {
+			return createModelElementAdapter();
+		}
+
+		@Override
+		public Adapter caseMetamodel_Project(org.unicase.metamodel.Project object) {
+			return createMetamodel_ProjectAdapter();
 		}
 
 		@Override
@@ -135,12 +128,26 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class ' {@link org.unicase.model.UnicaseModelElement <em>Element</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
-	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.UnicaseModelElement
+	 * <em>Unicase Model Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
+	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
+	 * end-user-doc -->
 	 * 
 	 * @return the new adapter.
 	 * @see org.unicase.model.UnicaseModelElement
+	 * @generated
+	 */
+	public Adapter createUnicaseModelElementAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.ModelElement <em>Model Element</em>}'.
+	 * <!-- begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful
+	 * to ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
+	 * 
+	 * @return the new adapter.
+	 * @see org.unicase.metamodel.ModelElement
 	 * @generated
 	 */
 	public Adapter createModelElementAdapter() {
@@ -156,21 +163,7 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	 * @see org.unicase.metamodel.Project
 	 * @generated
 	 */
-	public Adapter createProjectAdapter() {
-		return null;
-	}
-
-	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.UniqueIdentifier
-	 * <em>Unique Identifier</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
-	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
-	 * end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.metamodel.UniqueIdentifier
-	 * @generated
-	 */
-	public Adapter createUniqueIdentifierAdapter() {
+	public Adapter createMetamodel_ProjectAdapter() {
 		return null;
 	}
 
@@ -215,19 +208,6 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.ModelElementId <em>Element Id</em>}'. <!--
-	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
-	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
-	 * 
-	 * @return the new adapter.
-	 * @see org.unicase.metamodel.ModelElementId
-	 * @generated
-	 */
-	public Adapter createModelElementIdAdapter() {
-		return null;
-	}
-
-	/**
 	 * Creates a new adapter for an object of class '{@link org.unicase.model.NonDomainElement
 	 * <em>Non Domain Element</em>}'. <!-- begin-user-doc --> This default implementation returns null so that we can
 	 * easily ignore cases; it's useful to ignore a case when inheritance will catch all the cases anyway. <!--
@@ -242,15 +222,15 @@ public class ModelAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.unicase.metamodel.ModelVersion <em>Version</em>}'. <!--
+	 * Creates a new adapter for an object of class '{@link org.unicase.model.Project <em>Project</em>}'. <!--
 	 * begin-user-doc --> This default implementation returns null so that we can easily ignore cases; it's useful to
 	 * ignore a case when inheritance will catch all the cases anyway. <!-- end-user-doc -->
 	 * 
 	 * @return the new adapter.
-	 * @see org.unicase.metamodel.ModelVersion
+	 * @see org.unicase.model.Project
 	 * @generated
 	 */
-	public Adapter createModelVersionAdapter() {
+	public Adapter createProjectAdapter() {
 		return null;
 	}
 

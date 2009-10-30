@@ -10,6 +10,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.unicase.metamodel.MetamodelPackage;
 import org.unicase.model.ModelPackage;
 import org.unicase.model.activity.ActivityPackage;
 import org.unicase.model.activity.impl.ActivityPackageImpl;
@@ -107,6 +108,7 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 		isInited = true;
 
 		// Initialize simple dependencies
+		MetamodelPackage.eINSTANCE.eClass();
 		NotationPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -299,7 +301,8 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -310,13 +313,13 @@ public class UtilPackageImpl extends EPackageImpl implements UtilPackage {
 		// Initialize classes and features; add operations and parameters
 		initEClass(modelElementPathEClass, ModelElementPath.class, "ModelElementPath", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getModelElementPath_Source(), theModelPackage.getModelElementId(), null, "source", null, 0, 1,
-			ModelElementPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getModelElementPath_Source(), theMetamodelPackage.getModelElementId(), null, "source", null, 0,
+			1, ModelElementPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElementPath_Target(), theModelPackage.getModelElementId(), null, "target", null, 0, 1,
-			ModelElementPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
+		initEReference(getModelElementPath_Target(), theMetamodelPackage.getModelElementId(), null, "target", null, 0,
+			1, ModelElementPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getModelElementPath_Path(), theModelPackage.getModelElementId(), null, "path", null, 0, -1,
+		initEReference(getModelElementPath_Path(), theMetamodelPackage.getModelElementId(), null, "path", null, 0, -1,
 			ModelElementPath.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 	}

@@ -70,23 +70,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int PROFILE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int PROFILE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -94,7 +78,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int PROFILE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -102,7 +86,23 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int PROFILE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROFILE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int PROFILE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -111,7 +111,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int PROFILE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -120,7 +120,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int PROFILE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -129,7 +129,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int PROFILE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -138,7 +138,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int PROFILE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -146,7 +146,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int PROFILE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -155,7 +155,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int PROFILE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -164,7 +164,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int PROFILE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Affected Containers</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -173,7 +173,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__AFFECTED_CONTAINERS = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int PROFILE__AFFECTED_CONTAINERS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Stereotypes</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -182,7 +182,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE__STEREOTYPES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int PROFILE__STEREOTYPES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Profile</em>' class. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -190,7 +190,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROFILE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int PROFILE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeImpl <em>Stereotype</em>}' class.
@@ -208,23 +208,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int STEREOTYPE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -232,7 +216,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int STEREOTYPE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -240,7 +224,23 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int STEREOTYPE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -249,7 +249,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int STEREOTYPE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -258,7 +258,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int STEREOTYPE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -267,7 +267,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int STEREOTYPE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -276,7 +276,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int STEREOTYPE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -284,7 +284,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int STEREOTYPE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -293,7 +293,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int STEREOTYPE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -302,7 +302,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int STEREOTYPE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Required</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -310,7 +310,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__REQUIRED = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int STEREOTYPE__REQUIRED = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Profile</b></em>' container reference. <!-- begin-user-doc --> <!-- end-user-doc
@@ -319,7 +319,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__PROFILE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int STEREOTYPE__PROFILE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype Instances</b></em>' reference list. <!-- begin-user-doc --> <!--
@@ -328,7 +328,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int STEREOTYPE__STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype Attributes</b></em>' containment reference list. <!-- begin-user-doc
@@ -337,7 +337,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE__STEREOTYPE_ATTRIBUTES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int STEREOTYPE__STEREOTYPE_ATTRIBUTES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of structural features of the '<em>Stereotype</em>' class. <!-- begin-user-doc --> <!-- end-user-doc
@@ -346,7 +346,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int STEREOTYPE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeInstanceImpl
@@ -364,23 +364,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_INSTANCE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_INSTANCE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int STEREOTYPE_INSTANCE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -388,7 +372,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int STEREOTYPE_INSTANCE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -396,7 +380,23 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int STEREOTYPE_INSTANCE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_INSTANCE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_INSTANCE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -405,7 +405,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int STEREOTYPE_INSTANCE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -414,7 +414,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int STEREOTYPE_INSTANCE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -423,7 +423,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int STEREOTYPE_INSTANCE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -432,7 +432,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int STEREOTYPE_INSTANCE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -440,7 +440,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int STEREOTYPE_INSTANCE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -449,7 +449,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int STEREOTYPE_INSTANCE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -458,7 +458,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int STEREOTYPE_INSTANCE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' reference. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -466,7 +466,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__STEREOTYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int STEREOTYPE_INSTANCE__STEREOTYPE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Model Element</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -475,7 +475,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__MODEL_ELEMENT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int STEREOTYPE_INSTANCE__MODEL_ELEMENT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype Attribute Instances</b></em>' containment reference list. <!--
@@ -484,7 +484,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int STEREOTYPE_INSTANCE__STEREOTYPE_ATTRIBUTE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The number of structural features of the '<em>Stereotype Instance</em>' class. <!-- begin-user-doc --> <!--
@@ -493,7 +493,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_INSTANCE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int STEREOTYPE_INSTANCE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeAttributeImpl
@@ -511,23 +511,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int STEREOTYPE_ATTRIBUTE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -535,7 +519,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int STEREOTYPE_ATTRIBUTE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -543,7 +527,23 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int STEREOTYPE_ATTRIBUTE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -552,7 +552,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int STEREOTYPE_ATTRIBUTE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -561,7 +561,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int STEREOTYPE_ATTRIBUTE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -570,7 +570,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int STEREOTYPE_ATTRIBUTE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -579,7 +579,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int STEREOTYPE_ATTRIBUTE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -587,7 +587,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int STEREOTYPE_ATTRIBUTE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -596,7 +596,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int STEREOTYPE_ATTRIBUTE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -605,7 +605,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int STEREOTYPE_ATTRIBUTE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -614,7 +614,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__STEREOTYPE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int STEREOTYPE_ATTRIBUTE__STEREOTYPE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype Attribute Instances</b></em>' reference list. <!-- begin-user-doc -->
@@ -623,7 +623,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE__STEREOTYPE_ATTRIBUTE_INSTANCES = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int STEREOTYPE_ATTRIBUTE__STEREOTYPE_ATTRIBUTE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Stereotype Attribute</em>' class. <!-- begin-user-doc --> <!--
@@ -632,7 +632,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int STEREOTYPE_ATTRIBUTE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeAttributeSimpleImpl
@@ -653,22 +653,6 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__IDENTIFIER = STEREOTYPE_ATTRIBUTE__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_SIMPLE__NAME = STEREOTYPE_ATTRIBUTE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_SIMPLE__DESCRIPTION = STEREOTYPE_ATTRIBUTE__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -683,6 +667,22 @@ public interface ProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_SIMPLE__CREATION_DATE = STEREOTYPE_ATTRIBUTE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_SIMPLE__NAME = STEREOTYPE_ATTRIBUTE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_SIMPLE__DESCRIPTION = STEREOTYPE_ATTRIBUTE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -797,23 +797,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -821,7 +805,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -829,7 +813,23 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -838,7 +838,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -847,7 +847,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -856,7 +856,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -865,7 +865,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -873,7 +873,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -882,7 +882,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -891,7 +891,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype Instance</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -900,7 +900,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_INSTANCE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Stereotype Attribute</b></em>' reference. <!-- begin-user-doc --> <!--
@@ -909,7 +909,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_ATTRIBUTE = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE__STEREOTYPE_ATTRIBUTE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Stereotype Attribute Instance</em>' class. <!-- begin-user-doc -->
@@ -918,7 +918,7 @@ public interface ProfilePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int STEREOTYPE_ATTRIBUTE_INSTANCE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.profile.impl.StereotypeAttributeInstanceStringImpl
@@ -939,22 +939,6 @@ public interface ProfilePackage extends EPackage {
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__IDENTIFIER = STEREOTYPE_ATTRIBUTE_INSTANCE__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__NAME = STEREOTYPE_ATTRIBUTE_INSTANCE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__DESCRIPTION = STEREOTYPE_ATTRIBUTE_INSTANCE__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -969,6 +953,22 @@ public interface ProfilePackage extends EPackage {
 	 * @ordered
 	 */
 	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__CREATION_DATE = STEREOTYPE_ATTRIBUTE_INSTANCE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__NAME = STEREOTYPE_ATTRIBUTE_INSTANCE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int STEREOTYPE_ATTRIBUTE_INSTANCE_STRING__DESCRIPTION = STEREOTYPE_ATTRIBUTE_INSTANCE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc

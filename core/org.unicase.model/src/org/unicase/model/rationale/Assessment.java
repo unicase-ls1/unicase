@@ -37,7 +37,7 @@ public interface Assessment extends UnicaseModelElement, NonDomainElement {
 	 * @see #setProposal(Proposal)
 	 * @see org.unicase.model.rationale.RationalePackage#getAssessment_Proposal()
 	 * @see org.unicase.model.rationale.Proposal#getAssessments
-	 * @model opposite="assessments" keys="identifier" transient="false"
+	 * @model opposite="assessments" transient="false"
 	 * @generated
 	 */
 	Proposal getProposal();
@@ -65,7 +65,7 @@ public interface Assessment extends UnicaseModelElement, NonDomainElement {
 	 * @see #setCriterion(Criterion)
 	 * @see org.unicase.model.rationale.RationalePackage#getAssessment_Criterion()
 	 * @see org.unicase.model.rationale.Criterion#getAssessments
-	 * @model opposite="assessments" keys="identifier"
+	 * @model opposite="assessments"
 	 * @generated
 	 */
 	Criterion getCriterion();

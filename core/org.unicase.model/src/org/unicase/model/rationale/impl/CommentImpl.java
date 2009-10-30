@@ -175,8 +175,8 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
 			if (newCommentedElement != null)
-				msgs = ((InternalEObject) newCommentedElement).eInverseAdd(this, ModelPackage.MODEL_ELEMENT__COMMENTS,
-					UnicaseModelElement.class, msgs);
+				msgs = ((InternalEObject) newCommentedElement).eInverseAdd(this,
+					ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS, UnicaseModelElement.class, msgs);
 			msgs = basicSetCommentedElement(newCommentedElement, msgs);
 			if (msgs != null)
 				msgs.dispatch();
@@ -224,8 +224,8 @@ public class CommentImpl extends UnicaseModelElementImpl implements Comment {
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
 		switch (eContainerFeatureID()) {
 		case RationalePackage.COMMENT__COMMENTED_ELEMENT:
-			return eInternalContainer().eInverseRemove(this, ModelPackage.MODEL_ELEMENT__COMMENTS, UnicaseModelElement.class,
-				msgs);
+			return eInternalContainer().eInverseRemove(this, ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS,
+				UnicaseModelElement.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}

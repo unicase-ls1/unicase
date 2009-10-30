@@ -7,9 +7,7 @@ Bundle-ClassPath: .
 Bundle-Vendor: unicase.org
 Bundle-Localization: plugin
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-Export-Package: org.unicase.metamodel,
- org.unicase.metamodel.impl,
- org.unicase.model,
+Export-Package: org.unicase.model,
  org.unicase.model.activity,
  org.unicase.model.activity.impl,
  org.unicase.model.activity.util,
@@ -69,5 +67,6 @@ Export-Package: org.unicase.metamodel,
  org.unicase.model.util.util,
  org.unicase.model.validation
 Require-Bundle: org.eclipse.gmf.runtime.notation;visibility:=reexport,
- org.eclipse.emf.transaction;visibility:=reexport
+ org.eclipse.emf.transaction;visibility:=reexport,
+ org.unicase.metamodel;visibility:=reexport
 Bundle-ActivationPolicy: lazy

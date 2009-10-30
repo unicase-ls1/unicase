@@ -270,8 +270,7 @@ public interface Method extends UnicaseModelElement {
 	 * @return the value of the '<em>Called Methods</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_CalledMethods()
 	 * @see org.unicase.model.classes.Method#getCallingMethods
-	 * @model opposite="callingMethods" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='10.1' position='right'"
+	 * @model opposite="callingMethods" annotation="org.unicase.ui.meeditor priority='10.1' position='right'"
 	 * @generated
 	 */
 	EList<Method> getCalledMethods();
@@ -289,8 +288,7 @@ public interface Method extends UnicaseModelElement {
 	 * @return the value of the '<em>Calling Methods</em>' reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getMethod_CallingMethods()
 	 * @see org.unicase.model.classes.Method#getCalledMethods
-	 * @model opposite="calledMethods" keys="identifier"
-	 *        annotation="org.unicase.ui.meeditor priority='10.2' position='right'"
+	 * @model opposite="calledMethods" annotation="org.unicase.ui.meeditor priority='10.2' position='right'"
 	 * @generated
 	 */
 	EList<Method> getCallingMethods();

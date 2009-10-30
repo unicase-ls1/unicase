@@ -51,7 +51,8 @@ public class MEStateImpl implements MEState {
 
 			@Override
 			public void notifyChanged(Notification msg) {
-				if (!msg.isTouch() && !(msg.getFeatureID(UnicaseModelElement.class) == ModelPackage.MODEL_ELEMENT__STATE)) {
+				if (!msg.isTouch()
+					&& !(msg.getFeatureID(UnicaseModelElement.class) == ModelPackage.UNICASE_MODEL_ELEMENT__STATE)) {
 					if (msg.getEventType() == Notification.REMOVE) {
 						Object oldValue = msg.getOldValue();
 						if (effectiveBlocker.contains(oldValue)) {
@@ -71,7 +72,8 @@ public class MEStateImpl implements MEState {
 
 	private void updateEffectiveBlockers() {
 		effectiveBlocker.clear();
-		Set<UnicaseModelElement> blockers = TaxonomyAccess.getInstance().getBlockingLinkTaxonomy().getBlockers(modelElement);
+		Set<UnicaseModelElement> blockers = TaxonomyAccess.getInstance().getBlockingLinkTaxonomy().getBlockers(
+			modelElement);
 
 		for (UnicaseModelElement blocker : blockers) {
 			try {
@@ -87,7 +89,8 @@ public class MEStateImpl implements MEState {
 
 	private void updateEffectiveOpeners() {
 		effectiveOpeners.clear();
-		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(modelElement);
+		Set<UnicaseModelElement> openers = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpeners(
+			modelElement);
 
 		for (UnicaseModelElement opener : openers) {
 			try {
@@ -243,11 +246,12 @@ public class MEStateImpl implements MEState {
 		}
 		updating = true;
 		ENotificationImpl notificationImpl = new ENotificationImpl((InternalEObject) modelElement,
-			Notification.RESOLVE, ModelPackage.MODEL_ELEMENT__STATE, OPEN, OPEN);
+			Notification.RESOLVE, ModelPackage.UNICASE_MODEL_ELEMENT__STATE, OPEN, OPEN);
 
 		modelElement.eNotify(notificationImpl);
 
-		ArrayList<UnicaseModelElement> opened = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpened(modelElement);
+		ArrayList<UnicaseModelElement> opened = TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getOpened(
+			modelElement);
 		ArrayList<UnicaseModelElement> blocked = TaxonomyAccess.getInstance().getBlockingLinkTaxonomy().getBlocked(
 			modelElement);
 		try {

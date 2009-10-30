@@ -71,23 +71,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__IDENTIFIER = ModelPackage.MODEL_ELEMENT__IDENTIFIER;
-
-	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHANGE_PACKAGE__NAME = ModelPackage.MODEL_ELEMENT__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MODEL_CHANGE_PACKAGE__DESCRIPTION = ModelPackage.MODEL_ELEMENT__DESCRIPTION;
+	int MODEL_CHANGE_PACKAGE__IDENTIFIER = ModelPackage.UNICASE_MODEL_ELEMENT__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -95,7 +79,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__CREATOR = ModelPackage.MODEL_ELEMENT__CREATOR;
+	int MODEL_CHANGE_PACKAGE__CREATOR = ModelPackage.UNICASE_MODEL_ELEMENT__CREATOR;
 
 	/**
 	 * The feature id for the '<em><b>Creation Date</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -103,7 +87,23 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__CREATION_DATE = ModelPackage.MODEL_ELEMENT__CREATION_DATE;
+	int MODEL_CHANGE_PACKAGE__CREATION_DATE = ModelPackage.UNICASE_MODEL_ELEMENT__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CHANGE_PACKAGE__NAME = ModelPackage.UNICASE_MODEL_ELEMENT__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_CHANGE_PACKAGE__DESCRIPTION = ModelPackage.UNICASE_MODEL_ELEMENT__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -112,7 +112,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__ANNOTATIONS = ModelPackage.MODEL_ELEMENT__ANNOTATIONS;
+	int MODEL_CHANGE_PACKAGE__ANNOTATIONS = ModelPackage.UNICASE_MODEL_ELEMENT__ANNOTATIONS;
 
 	/**
 	 * The feature id for the '<em><b>Attachments</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -121,7 +121,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__ATTACHMENTS = ModelPackage.MODEL_ELEMENT__ATTACHMENTS;
+	int MODEL_CHANGE_PACKAGE__ATTACHMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__ATTACHMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Incoming Document References</b></em>' reference list. <!-- begin-user-doc -->
@@ -130,7 +130,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
+	int MODEL_CHANGE_PACKAGE__INCOMING_DOCUMENT_REFERENCES = ModelPackage.UNICASE_MODEL_ELEMENT__INCOMING_DOCUMENT_REFERENCES;
 
 	/**
 	 * The feature id for the '<em><b>Leaf Section</b></em>' container reference. <!-- begin-user-doc --> <!--
@@ -139,7 +139,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__LEAF_SECTION = ModelPackage.MODEL_ELEMENT__LEAF_SECTION;
+	int MODEL_CHANGE_PACKAGE__LEAF_SECTION = ModelPackage.UNICASE_MODEL_ELEMENT__LEAF_SECTION;
 
 	/**
 	 * The feature id for the '<em><b>State</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -147,7 +147,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__STATE = ModelPackage.MODEL_ELEMENT__STATE;
+	int MODEL_CHANGE_PACKAGE__STATE = ModelPackage.UNICASE_MODEL_ELEMENT__STATE;
 
 	/**
 	 * The feature id for the '<em><b>Applied Stereotype Instances</b></em>' containment reference list. <!--
@@ -156,7 +156,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
+	int MODEL_CHANGE_PACKAGE__APPLIED_STEREOTYPE_INSTANCES = ModelPackage.UNICASE_MODEL_ELEMENT__APPLIED_STEREOTYPE_INSTANCES;
 
 	/**
 	 * The feature id for the '<em><b>Comments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -165,7 +165,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__COMMENTS = ModelPackage.MODEL_ELEMENT__COMMENTS;
+	int MODEL_CHANGE_PACKAGE__COMMENTS = ModelPackage.UNICASE_MODEL_ELEMENT__COMMENTS;
 
 	/**
 	 * The feature id for the '<em><b>Source Version</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -173,7 +173,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__SOURCE_VERSION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 0;
+	int MODEL_CHANGE_PACKAGE__SOURCE_VERSION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target Version</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -181,7 +181,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE__TARGET_VERSION = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 1;
+	int MODEL_CHANGE_PACKAGE__TARGET_VERSION = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Model Change Package</em>' class. <!-- begin-user-doc --> <!--
@@ -190,7 +190,7 @@ public interface ChangePackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_CHANGE_PACKAGE_FEATURE_COUNT = ModelPackage.MODEL_ELEMENT_FEATURE_COUNT + 2;
+	int MODEL_CHANGE_PACKAGE_FEATURE_COUNT = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.unicase.model.change.impl.MergingIssueImpl <em>Merging Issue</em>}' class.
@@ -211,22 +211,6 @@ public interface ChangePackage extends EPackage {
 	int MERGING_ISSUE__IDENTIFIER = RationalePackage.ISSUE__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__NAME = RationalePackage.ISSUE__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_ISSUE__DESCRIPTION = RationalePackage.ISSUE__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -241,6 +225,22 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_ISSUE__CREATION_DATE = RationalePackage.ISSUE__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__NAME = RationalePackage.ISSUE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_ISSUE__DESCRIPTION = RationalePackage.ISSUE__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -492,22 +492,6 @@ public interface ChangePackage extends EPackage {
 	int MERGING_PROPOSAL__IDENTIFIER = RationalePackage.PROPOSAL__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_PROPOSAL__NAME = RationalePackage.PROPOSAL__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_PROPOSAL__DESCRIPTION = RationalePackage.PROPOSAL__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -522,6 +506,22 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_PROPOSAL__CREATION_DATE = RationalePackage.PROPOSAL__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__NAME = RationalePackage.PROPOSAL__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_PROPOSAL__DESCRIPTION = RationalePackage.PROPOSAL__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
@@ -647,22 +647,6 @@ public interface ChangePackage extends EPackage {
 	int MERGING_SOLUTION__IDENTIFIER = RationalePackage.SOLUTION__IDENTIFIER;
 
 	/**
-	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_SOLUTION__NAME = RationalePackage.SOLUTION__NAME;
-
-	/**
-	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int MERGING_SOLUTION__DESCRIPTION = RationalePackage.SOLUTION__DESCRIPTION;
-
-	/**
 	 * The feature id for the '<em><b>Creator</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
@@ -677,6 +661,22 @@ public interface ChangePackage extends EPackage {
 	 * @ordered
 	 */
 	int MERGING_SOLUTION__CREATION_DATE = RationalePackage.SOLUTION__CREATION_DATE;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__NAME = RationalePackage.SOLUTION__NAME;
+
+	/**
+	 * The feature id for the '<em><b>Description</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int MERGING_SOLUTION__DESCRIPTION = RationalePackage.SOLUTION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Annotations</b></em>' reference list. <!-- begin-user-doc --> <!-- end-user-doc
