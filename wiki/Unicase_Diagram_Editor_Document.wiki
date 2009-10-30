@@ -36,9 +36,9 @@ try { PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openE
 http://unicase.googlecode.com/files/1973e.png
 <br>
 <br>
- * We need to implement our own resource. In our case it is: MEDiagramResource in org.unicase.diagram.part
- * We need a Resource Factory to create the Resource. It´s also MEDiagramResource itself
- * We need to register this ResourceFactory with an ID:
+ * We need to implement our own resource. In our case it is: MEDiagramResource in org.unicase.diagram.part <br>
+ * We need a Resource Factory to create the Resource. It´s also MEDiagramResource itself<br>
+ * We need to register this ResourceFactory with an ID:<br>
 
 {{{
 <extension
@@ -133,13 +133,13 @@ return document;
 }}}
 
 
- * We need to override the method dispose in ModelDocumentProvider, otherwise the editor disposes our editingDomain
- * If we use an Association Class, we have to modify the XXXCreatCommand Constructor like this (you have to modify all callers, too): 
- * We have to centralize entries to the following extensionpoint in org.unicase.common:
+ * We need to override the method dispose in ModelDocumentProvider, otherwise the editor disposes our editingDomain<br>
+ * If we use an Association Class, we have to modify the XXXCreatCommand Constructor like this (you have to modify all callers, too): <br>
+ * We have to centralize entries to the following extensionpoint in org.unicase.common:<br>
 
-    *_<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">_*
+    _<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">_
 
-That means we have to copy all entries under "<binding context>" to the corresponding extension point in org.unicase.common and then delete the extension point in the diagram.
+That means we have to copy all entries under "<binding context>" to the corresponding extension point<br> in org.unicase.common and then delete the extension point in the diagram.
 
 
 {{{
