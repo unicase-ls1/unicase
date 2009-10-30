@@ -8,28 +8,24 @@ package analyzer.provider;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.model.provider.ModelEditPlugin;
+import org.unicase.metamodel.provider.MetamodelEditPlugin;
 
 /**
- * This is the central singleton for the Analyzer edit plugin. <!--
- * begin-user-doc --> <!-- end-user-doc -->
+ * This is the central singleton for the Analyzer edit plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
  * 
  * @generated
  */
 public final class AnalyzerEditPlugin extends EMFPlugin {
 	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
 	public static final AnalyzerEditPlugin INSTANCE = new AnalyzerEditPlugin();
 
 	/**
-	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * Keep track of the singleton. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */
@@ -41,14 +37,12 @@ public final class AnalyzerEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public AnalyzerEditPlugin() {
-		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE,
-				EsmodelEditPlugin.INSTANCE, ModelEditPlugin.INSTANCE,
-				NotationEditPlugin.INSTANCE, });
+		super(new ResourceLocator[] { EcoreEditPlugin.INSTANCE, EsmodelEditPlugin.INSTANCE,
+			MetamodelEditPlugin.INSTANCE });
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the singleton instance.
 	 * @generated
@@ -59,8 +53,7 @@ public final class AnalyzerEditPlugin extends EMFPlugin {
 	}
 
 	/**
-	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc
-	 * --> <!-- end-user-doc -->
+	 * Returns the singleton instance of the Eclipse plugin. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @return the singleton instance.
 	 * @generated
@@ -70,8 +63,7 @@ public final class AnalyzerEditPlugin extends EMFPlugin {
 	}
 
 	/**
-	 * The actual implementation of the Eclipse <b>Plugin</b>. <!--
-	 * begin-user-doc --> <!-- end-user-doc -->
+	 * The actual implementation of the Eclipse <b>Plugin</b>. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 */

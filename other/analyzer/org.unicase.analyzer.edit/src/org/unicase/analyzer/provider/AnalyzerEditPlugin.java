@@ -8,9 +8,8 @@ package org.unicase.analyzer.provider;
 import org.eclipse.emf.common.EMFPlugin;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
-import org.eclipse.gmf.runtime.notation.NotationEditPlugin;
 import org.unicase.emfstore.esmodel.provider.EsmodelEditPlugin;
-import org.unicase.model.provider.ModelEditPlugin;
+import org.unicase.metamodel.provider.MetamodelEditPlugin;
 
 /**
  * This is the central singleton for the Analyzer edit plugin. <!--
@@ -45,8 +44,7 @@ public final class AnalyzerEditPlugin extends EMFPlugin {
 		  (new ResourceLocator [] {
 		     EcoreEditPlugin.INSTANCE,
 		     EsmodelEditPlugin.INSTANCE,
-		     ModelEditPlugin.INSTANCE,
-		     NotationEditPlugin.INSTANCE,
+		     MetamodelEditPlugin.INSTANCE,
 		   });
 	}
 

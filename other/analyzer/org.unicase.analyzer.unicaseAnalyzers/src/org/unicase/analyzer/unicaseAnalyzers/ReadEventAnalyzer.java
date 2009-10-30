@@ -16,8 +16,8 @@ import org.unicase.analyzer.exporters.Exporter;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.events.Event;
 import org.unicase.emfstore.esmodel.versioning.events.ReadEvent;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
 
 
 /**

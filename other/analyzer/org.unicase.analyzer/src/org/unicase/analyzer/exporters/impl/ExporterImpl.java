@@ -130,7 +130,7 @@ public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 			case ExportersPackage.EXPORTER__FILE_NAME:
 				return getFileName();
 			case ExportersPackage.EXPORTER__OVERWRITE:
-				return isOverwrite() ? Boolean.TRUE : Boolean.FALSE;
+				return isOverwrite();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -146,7 +146,7 @@ public abstract class ExporterImpl extends EObjectImpl implements Exporter {
 				setFileName((String)newValue);
 				return;
 			case ExportersPackage.EXPORTER__OVERWRITE:
-				setOverwrite(((Boolean)newValue).booleanValue());
+				setOverwrite((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

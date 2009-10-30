@@ -10,7 +10,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object '<em><b>Project Analysis Data</b></em>'. <!--

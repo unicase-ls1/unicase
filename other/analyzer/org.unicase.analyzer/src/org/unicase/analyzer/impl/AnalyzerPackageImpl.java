@@ -21,7 +21,7 @@ import org.unicase.analyzer.iterator.IteratorPackage;
 import org.unicase.analyzer.iterator.impl.IteratorPackageImpl;
 import org.unicase.emfstore.esmodel.EsmodelPackage;
 import org.unicase.emfstore.esmodel.versioning.VersioningPackage;
-import org.unicase.model.ModelPackage;
+import org.unicase.metamodel.MetamodelPackage;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model <b>Package</b>. <!-- end-user-doc -->
@@ -64,20 +64,10 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	private static boolean isInited = false;
 
 	/**
-	 * Creates, registers, and initializes the <b>Package</b> for this
-	 * model, and for any others upon which it depends.  Simple
-	 * dependencies are satisfied by calling this method on all
-	 * dependent packages before doing anything else.  This method drives
-	 * initialization for interdependent packages directly, in parallel
-	 * with this package, itself.
-	 * <p>Of this package and its interdependencies, all packages which
-	 * have not yet been registered by their URI values are first created
-	 * and registered.  The packages are then initialized in two steps:
-	 * meta-model objects for all of the packages are created before any
-	 * are initialized, since one package's meta-model objects may refer to
-	 * those of another.
-	 * <p>Invocation of this method will not affect any packages that have
-	 * already been initialized.
+	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
+	 * 
+	 * <p>This method is used to initialize {@link AnalyzerPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
 	 * @see #eNS_URI
@@ -89,11 +79,12 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		if (isInited) return (AnalyzerPackage)EPackage.Registry.INSTANCE.getEPackage(AnalyzerPackage.eNS_URI);
 
 		// Obtain or create and register package
-		AnalyzerPackageImpl theAnalyzerPackage = (AnalyzerPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(eNS_URI) instanceof AnalyzerPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(eNS_URI) : new AnalyzerPackageImpl());
+		AnalyzerPackageImpl theAnalyzerPackage = (AnalyzerPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof AnalyzerPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new AnalyzerPackageImpl());
 
 		isInited = true;
 
 		// Initialize simple dependencies
+		EcorePackage.eINSTANCE.eClass();
 		EsmodelPackage.eINSTANCE.eClass();
 
 		// Obtain or create and register interdependencies
@@ -113,6 +104,9 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		// Mark meta-data to indicate it can't be changed
 		theAnalyzerPackage.freeze();
 
+  
+		// Update the registry and return the package
+		EPackage.Registry.INSTANCE.put(AnalyzerPackage.eNS_URI, theAnalyzerPackage);
 		return theAnalyzerPackage;
 	}
 
@@ -181,8 +175,7 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 	}
 
 	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @generated
 	 */
 	public EReference getAnalyzerConfiguration_Exporter() {
@@ -250,7 +243,7 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 		// Obtain other dependent packages
 		IteratorPackage theIteratorPackage = (IteratorPackage)EPackage.Registry.INSTANCE.getEPackage(IteratorPackage.eNS_URI);
 		ExportersPackage theExportersPackage = (ExportersPackage)EPackage.Registry.INSTANCE.getEPackage(ExportersPackage.eNS_URI);
-		ModelPackage theModelPackage = (ModelPackage)EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage)EPackage.Registry.INSTANCE.getEPackage(MetamodelPackage.eNS_URI);
 		VersioningPackage theVersioningPackage = (VersioningPackage)EPackage.Registry.INSTANCE.getEPackage(VersioningPackage.eNS_URI);
 		EsmodelPackage theEsmodelPackage = (EsmodelPackage)EPackage.Registry.INSTANCE.getEPackage(EsmodelPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
@@ -267,7 +260,7 @@ public class AnalyzerPackageImpl extends EPackageImpl implements AnalyzerPackage
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(projectAnalysisDataEClass, ProjectAnalysisData.class, "ProjectAnalysisData", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getProjectAnalysisData_ProjectState(), theModelPackage.getProject(), null, "projectState", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getProjectAnalysisData_ProjectState(), theMetamodelPackage.getProject(), null, "projectState", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectAnalysisData_ChangePackages(), theVersioningPackage.getChangePackage(), null, "changePackages", null, 0, -1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectAnalysisData_PrimaryVersionSpec(), theVersioningPackage.getPrimaryVersionSpec(), null, "primaryVersionSpec", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getProjectAnalysisData_ProjectId(), theEsmodelPackage.getProjectId(), null, "projectId", null, 0, 1, ProjectAnalysisData.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

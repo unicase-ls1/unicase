@@ -23,8 +23,8 @@ import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.ReferenceOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.UnkownFeatureException;
-import org.unicase.model.ModelElement;
-import org.unicase.model.ModelElementId;
+import org.unicase.metamodel.ModelElement;
+import org.unicase.metamodel.ModelElementId;
 
 /**
  * @author liya

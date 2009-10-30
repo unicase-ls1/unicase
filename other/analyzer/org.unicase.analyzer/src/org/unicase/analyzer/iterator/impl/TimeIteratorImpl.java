@@ -192,7 +192,7 @@ public class TimeIteratorImpl extends VersionIteratorImpl implements TimeIterato
 			case IteratorPackage.TIME_ITERATOR__END_DATE:
 				return getEndDate();
 			case IteratorPackage.TIME_ITERATOR__STEP_LENGTH_UNIT:
-				return new Integer(getStepLengthUnit());
+				return getStepLengthUnit();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -211,7 +211,7 @@ public class TimeIteratorImpl extends VersionIteratorImpl implements TimeIterato
 				setEndDate((Date)newValue);
 				return;
 			case IteratorPackage.TIME_ITERATOR__STEP_LENGTH_UNIT:
-				setStepLengthUnit(((Integer)newValue).intValue());
+				setStepLengthUnit((Integer)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

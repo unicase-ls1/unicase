@@ -24,7 +24,7 @@ import org.eclipse.emf.edit.provider.ViewerNotification;
 import org.unicase.analyzer.AnalyzerPackage;
 import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
-import org.unicase.model.ModelFactory;
+import org.unicase.metamodel.MetamodelFactory;
 
 /**
  * This is the item provider adapter for a {@link org.unicase.analyzer.ProjectAnalysisData} object.
@@ -172,7 +172,7 @@ public class ProjectAnalysisDataItemProvider extends ItemProviderAdapter
 		newChildDescriptors.add
 			(createChildParameter
 				(AnalyzerPackage.Literals.PROJECT_ANALYSIS_DATA__PROJECT_STATE,
-				 ModelFactory.eINSTANCE.createProject()));
+				 MetamodelFactory.eINSTANCE.createProject()));
 
 		newChildDescriptors.add
 			(createChildParameter
