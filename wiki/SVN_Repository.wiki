@@ -19,7 +19,7 @@ Repository layout:
 
 
 
-Repository rules:
+===Repository rules:===
 
     * *Always update before commit.*
     * *Only commit code without compilation problems.*
