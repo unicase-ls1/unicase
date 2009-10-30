@@ -21,7 +21,7 @@ import org.unicase.analyzer.ProjectAnalysisData;
 import org.unicase.emfstore.esmodel.ProjectId;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 /**
  * <!-- begin-user-doc --> An implementation of the model object '<em><b>Project Analysis Data</b></em>'. <!--
