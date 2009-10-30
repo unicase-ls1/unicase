@@ -1,12 +1,13 @@
-Build Process
-
-How to build plugins manually:
-
-   1. Make sure that you don't have any special characters in your Eclipse installation path (this includes whitespaces)
-      >confirmed on MacOS running Ganymede RC2
-   2. Select "Export" from the context menu of your plugin
-   3. Select "Plugin Development">"Deployable plugins and fragments"
-   4. Follow the steps on the wizard.
-
-
-Automated exporting:
+<div class="wiki_entry"> 
+ <p>How to build plugins manually:</p> 
+ <ol>
+   
+  <li><span class="custom_forecolor_emphasis">Make sure that you don't have any special characters in your Eclipse installation path (this includes whitespaces)<br class="" />&gt;confirmed on MacOS running Ganymede RC2<br class="" /></span></li>
+   
+  <li>Select &quot;Export&quot; from the context menu of your plugin </li>
+   
+  <li>Select &quot;Plugin Development&quot;&gt;&quot;Deployable plugins and fragments&quot;</li>
+   
+  <li>Follow the steps on the wizard. </li>
+   
+ </ol><br class="" />Automated exporting:<br class="" /><a href="http://www.eclipse.org/articles/Article-PDE-Automation/automation.html">http://www.eclipse.org/articles/Article-PDE-Automation/automation.html</a><br class="" /><br class="" /><a href="http://mojo.codehaus.org/pde-maven-plugin/examples/simple_plugin.html"></a></div>
