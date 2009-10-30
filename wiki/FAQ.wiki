@@ -3,9 +3,9 @@
 A: Create a new folder at the repository root (e.g. unicase/trunk). You can do this using the repo browser for example. Name the folder like the package the plugin is going to provide (e.g. org.unicase. workspace). Package names are always prefixed with org.unicase. Checkout the new folder with svn in eclipse as a new Project. Select PluginProject in Plugin Development. Set the plugin id to the package name. Set version to 0.0.1. The plugin name must be prefixed with unicase. The plugin provider is unicase.org. The remaining settings can be left to default, so just click on finish.
 
 *Q: How do I add an interface or superclass to a generated EMF class?*
-A: add @implements <interfacename> or @extends <superclassname> to the user doc block in the javadoc of the class declaration. Do not add @generated NOT to the class declaration since this will stop emf from ever regenerating the class.
+A: add @implements {{{<interfacename>}}} or @extends {{{<superclassname>}}} to the user doc block in the javadoc of the class declaration. Do not add @generated NOT to the class declaration since this will stop emf from ever regenerating the class.
 
-*Q: How should I configure my plugin´s dependencies?*
+*Q: How should I configure my plugin's dependencies?*
 A: Double click on your Manifest.MF and switch to the dependency tab. Here you can add dependecies you need, e.g. org.unicase.model. Unless you know why do not add a minimum or maximum version number. If it is added by default if you add a dependency remove it please.
 
 *Q: How can I get access to the unicase Workspace from a plugin?*
@@ -13,12 +13,14 @@ A: Import org.unicase.workspace as a dependency. Call WorkspaceManager.getInstan
 
 *Q: Which Content or LabelProvider should I use?*
 A: e.g. for a LabelProvider only for Model: 
+
 {{{
 new AdapterFactoryLabelProvider(new ModelItemProviderAdapterFactory());
 for a ContentProvider only for Workspace: new AdapterFactoryContentProvider(new WorkspaceItemProviderAdapterFactory());
 }}}
 
-for a LabelProvider for all Models: {{{
+for a LabelProvider for all Models:
+{{{
 
 new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 }}}
@@ -26,7 +28,9 @@ new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactor
 *Q: How do I listen for change events of a modelelement or a certain feature?*
 
 A: Add an adapter to the model element overriding the notifyChanged() method:
+
 {{{
+
 modelElement.eAdapters().add(new AdapterImpl() {
    @Override
    public void notifyChanged(Notification msg) {
@@ -36,6 +40,7 @@ modelElement.eAdapters().add(new AdapterImpl() {
       super.notifyChanged(msg);
    }
 });
+
 }}}
 
 *Q: How do I use standard icons/images from eclipse?*
@@ -49,7 +54,7 @@ A. You probably forgot to set a LayoutManager for the Composite.
 A: http://wiki.eclipse.org/FAQ_What_is_the_difference_between_a_command_and_an_action%3F
 
 *Q: How do I change the dummy project?*
-A: It´s created in createDummyProject() in EmfStoreStub and it is returned if you check out a project with the esbrowser.
+A: It's created in createDummyProject() in EmfStoreStub and it is returned if you check out a project with the esbrowser.
 
 *Q: How can I rename a plugin?*
 A: Rename the plugin with Refactor -> Rename (this will also change the plugin.xml and co. Rename the packages with Refactor -> Rename. Use hierachical view to rename the base package and check "Rename subpackages". Possibly also change the name in menu entries or view extension points (use global text search). Commit your changes. Delete the plugin from your local workspace (include contents). Open SVN repo browser (Show View ->SVN -> Repository Browser). Goto the plugin folder and select "Rename..." from context menu and rename to the new plugin name. Checkout plugin again.
@@ -63,12 +68,13 @@ A:
 {{{
     EPackage ePackage = modelElementType.getEPackage();
     modelElementInstance = (ModelElement) ePackage.getEFactoryInstance().create(modelElementType);
+
 }}}
 
 *Q: What does the checkstyle warning about header mean?*
 A: Every file is expected to have the following header for licensing reasons:
 
-/`*``*`
+/`**`
  `*` <copyright> Copyright (c) 2008 Jonas Helming, Maximilian Kögel.
 All rights reserved. This program and the accompanying materials are
 made available under the terms of the Eclipse Public License v1.0 which
@@ -80,7 +86,7 @@ accompanies this distribution, and is available at http://www.eclipse.org/legal/
 *Q: How can I format source code in the wiki in a way that whitespace is preserved and a mono spaced font is used?*
 A: Open the page in question for editing, select "Edit HTML" and add the following to the code to html:
 
-`<`pre`>` your source code here `<`/pre`>`
+{{{<pre>}}} your source code here {{{</pre>}}}
 
 Remove all tabs from the code and replace them by spaces (use TextEdit, Search&Replace). Note: After adding the above mentioned tags to html, you can also edit the code in the normal wiki edit mode.
 Update: An easier way to add code is to write "begin end" into a line, format the line as monospace (click on the paragraph symbol) and then paste your code inbetween "begin" and "end". You can then safely remove begin and end. Still it is sometimes better to replace the tabs with whitespace beforehand since the Wiki wastes quite some space for a single tab.
