@@ -8,3 +8,27 @@ A validation rule always refers to a particular type of model element as well as
 *Integration of the Validation Framework*
 
 To be able to use the EMF Validation Framework, as the first step the `org.eclipse.emf.validation.constraintBindings` extension point will be used to create a client context and define a binding.
+
+`
+<extensionpoint="org.eclipse.emf.validation.constraintBindings">
+
+   <clientContextdefault="false"id="org.unicase.model.validation">
+
+      <selector class="org.unicase.model.validation.ValidationClientSelector">
+
+      </selector>
+
+   </clientContext>
+
+   <bindingcontext="org.unicase.model.validation">
+
+      <category ref="org.unicase.model">
+
+      </category>
+
+   </binding>
+
+</extension>
+`
+
+The binding here is to the model plug-in itself, the client is bound to the class ValidationClientSelector, which controls the review of model elements. Setting this extension points is performed only once and after that can be used by all the validation rules.
