@@ -12,7 +12,7 @@ import org.eclipse.swt.widgets.Display;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.mergetest.merge.MergeWizard;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 import org.unicase.workspace.observers.ConflictResolver;
 
 /**

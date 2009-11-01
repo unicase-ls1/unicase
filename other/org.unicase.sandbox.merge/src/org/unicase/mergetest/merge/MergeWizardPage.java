@@ -8,17 +8,14 @@ package org.unicase.mergetest.merge;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.wizard.WizardPage;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 
 /**
  * .

@@ -3,14 +3,16 @@ package org.unicase.mergetest.merge;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CreateDeleteOperation;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.Project;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.Project;
 
 public class DecisionManager {
 
@@ -72,6 +74,8 @@ public class DecisionManager {
 	}
 	
 	public String getModelElementName(ModelElementId modelElementId) {
-		return project.getModelElement(modelElementId).getName();
+		AdapterFactoryLabelProvider adapterFactoryLabelProvider = new AdapterFactoryLabelProvider(new ComposedAdapterFactory(
+				ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		return adapterFactoryLabelProvider.getText(project.getModelElement(modelElementId));
 	}
 }
