@@ -24,7 +24,7 @@ import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.InvalidInputException;
 import org.unicase.emfstore.exceptions.UnknownSessionException;
 import org.unicase.metamodel.Project;
-import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
+import org.unicase.workspace.connectionmanager.rmi.RMIConnectionManagerImpl;
 import org.unicase.workspace.test.SetupHelper;
 
 /**
@@ -76,7 +76,7 @@ public class InvalidArgumentsTest extends ServerTests {
 	@Test(expected = InvalidInputException.class)
 	public void createProjectTest() throws EmfStoreException {
 		try {
-			testAllInvalidCombinations(getConnectionManager().getClass().getMethod("createProject",
+			testAllInvalidCombinations(getConnectionManager().getClass().getMethod("createEmptyProject",
 				new Class[] { SessionId.class, String.class, String.class, LogMessage.class }));
 		} catch (SecurityException e) {
 			throw new EmfStoreException(e);
