@@ -103,7 +103,7 @@ public class EmfStoreImpl extends AbstractEmfstoreInterface implements EmfStore 
 	/**
 	 * {@inheritDoc}
 	 */
-	public ProjectInfo createProject(SessionId sessionId, String name, String description, LogMessage logMessage)
+	public ProjectInfo createEmptyProject(SessionId sessionId, String name, String description, LogMessage logMessage)
 		throws EmfStoreException {
 		sanityCheckObjects(new Object[] { sessionId, name, description, logMessage });
 		checkServerAdminAccess(sessionId);

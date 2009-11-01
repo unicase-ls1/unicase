@@ -26,8 +26,8 @@ import org.eclipse.swt.widgets.Spinner;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.IWorkbench;
 import org.unicase.workspace.ServerInfo;
-import org.unicase.workspace.connectionmanager.CertificateStoreException;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
+import org.unicase.workspace.exceptions.CertificateStoreException;
 import org.unicase.workspace.util.UnicaseCommand;
 
 /**

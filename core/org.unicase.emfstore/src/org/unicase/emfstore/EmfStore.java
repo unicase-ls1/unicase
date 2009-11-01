@@ -163,7 +163,7 @@ public interface EmfStore extends EmfStoreInterface {
 	 * @throws EmfStoreException if any error in the EmfStore occurs
 	 * @generated NOT
 	 */
-	ProjectInfo createProject(SessionId sessionId, String name, String description, LogMessage logMessage)
+	ProjectInfo createEmptyProject(SessionId sessionId, String name, String description, LogMessage logMessage)
 		throws EmfStoreException;
 
 	/**

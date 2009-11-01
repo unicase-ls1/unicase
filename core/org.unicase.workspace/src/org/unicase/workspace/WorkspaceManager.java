@@ -28,8 +28,8 @@ import org.unicase.metamodel.util.FileUtil;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
-import org.unicase.workspace.connectionmanager.RMIAdminConnectionManagerImpl;
-import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
+import org.unicase.workspace.connectionmanager.rmi.RMIAdminConnectionManagerImpl;
+import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcConnectionManager;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 import edu.tum.cs.cope.migration.execution.MigrationException;
@@ -87,8 +87,8 @@ public final class WorkspaceManager {
 	 */
 	private ConnectionManager initConnectionManager() {
 		KeyStoreManager.getInstance().setupKeys();
-		// return new StubConnectionManagerImpl();
-		return new RMIConnectionManagerImpl();
+		// return new RMIConnectionManagerImpl();
+		return new XmlRpcConnectionManager();
 	}
 
 	/**

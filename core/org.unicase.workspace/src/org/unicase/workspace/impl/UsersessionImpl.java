@@ -819,7 +819,7 @@ public class UsersessionImpl extends EObjectImpl implements Usersession {
 		log.setMessage("Creating project '" + name + "'");
 		log.setAuthor(this.getUsername());
 		log.setClientDate(new Date());
-		return connectionManager.createProject(this.getSessionId(), name, description, log);
+		return connectionManager.createEmptyProject(this.getSessionId(), name, description, log);
 
 	}
 

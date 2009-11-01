@@ -4,7 +4,7 @@
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
 
-package org.unicase.workspace.connectionmanager;
+package org.unicase.workspace.exceptions;
 
 /**
  * Exception that is thrown when the specified certificate can not be found, or when the specified path does not point

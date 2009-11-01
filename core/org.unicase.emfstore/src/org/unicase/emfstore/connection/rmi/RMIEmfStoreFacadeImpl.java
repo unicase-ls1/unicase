@@ -226,7 +226,7 @@ public class RMIEmfStoreFacadeImpl extends AbstractUnicaseRMIFacade implements R
 		throws RemoteException, EmfStoreException {
 		LOGGER.debug("Client call on createProject RECEIVED.");
 		return SerializationUtil
-			.eObjectToString(emfStore.createProject((SessionId) SerializationUtil.stringToEObject(sessionId), name,
+			.eObjectToString(emfStore.createEmptyProject((SessionId) SerializationUtil.stringToEObject(sessionId), name,
 				description, (LogMessage) SerializationUtil.stringToEObject(logMessage)));
 	}
 

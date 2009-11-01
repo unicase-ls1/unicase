@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.connectionmanager;
+package org.unicase.workspace.connectionmanager.rmi;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -42,6 +42,7 @@ import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
  * The RMIConnectionManager implements the {@link ConnectionManager} using the RMI technology. Please notice that the
@@ -51,10 +52,6 @@ import org.unicase.workspace.ServerInfo;
  * @author Wesendonk
  */
 public class RMIConnectionManagerImpl implements ConnectionManager {
-
-	private static final String UNSUPPORTED_ENCODING = "Problem with en/decoding.";
-
-	private static final String REMOTE = "Server could not be reached.";
 
 	private Map<SessionId, RMIEmfStoreFacade> facadeMap;
 
@@ -198,7 +195,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	/**
 	 * {@inheritDoc}
 	 */
-	public ProjectInfo createProject(SessionId sessionid, String name, String description, LogMessage logMessage)
+	public ProjectInfo createEmptyProject(SessionId sessionid, String name, String description, LogMessage logMessage)
 		throws EmfStoreException {
 		try {
 			return (ProjectInfo) SerializationUtil.stringToEObject(getFacade(sessionid).createProject(
@@ -295,9 +292,9 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		} catch (RMISerializationException e) {
 			throw new ConnectionException(UNSUPPORTED_ENCODING, e);
 		} catch (ClientVersionOutOfDateException e) {
-			throw new ConnectionException("Client version not compatible with server. Please update your client.", e);
+			throw new ConnectionException(INCOMPATIBLE_VERSION, e);
 		} catch (AccessControlException e) {
-			throw new ConnectionException("Login refused.", e);
+			throw new ConnectionException(LOGIN_REFUSED, e);
 		}
 	}
 
@@ -324,7 +321,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	protected RMIEmfStoreFacade getFacade(SessionId sessionId) throws UnknownSessionException {
 		RMIEmfStoreFacade facade = getFacadeMap().get(sessionId);
 		if (facade == null) {
-			throw new UnknownSessionException("Session unkown to Connection manager, log in first!");
+			throw new UnknownSessionException(LOGIN_FIRST);
 		}
 		return facade;
 	}

@@ -8,19 +8,43 @@ package org.unicase.workspace.connectionmanager;
 import org.unicase.emfstore.EmfStore;
 import org.unicase.emfstore.esmodel.ClientVersionInfo;
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ServerInfo;
 
 /**
- * The connection manager manages the connection to eh emf store. It will initiate, reinitiate and terminate the
+ * The connection manager manages the connection to the EmfStore. It will initiate, reinitiate and terminate the
  * connection as needed.
  * 
  * @author Maximilian Koegel
+ * @author wesendon
  * @generated NOT
  */
 public interface ConnectionManager extends EmfStore {
+
+	/**
+	 * Connection related failure message.
+	 */
+	String REMOTE = "Server could not be reached.";
+
+	/**
+	 * Connection related failure message.
+	 */
+	String LOGIN_FIRST = "Session unkown to Connection manager, log in first!";
+
+	/**
+	 * Connection related failure message.
+	 */
+	String UNSUPPORTED_ENCODING = "Problem with en/decoding.";
+
+	/**
+	 * Connection related failure message.
+	 */
+	String LOGIN_REFUSED = "Login refused.";
+
+	/**
+	 * Connection related failure message.
+	 */
+	String INCOMPATIBLE_VERSION = "Client version not compatible with server. Please update your client.";
 
 	/**
 	 * Log into the server given by server info. The connection manager will also remember the serverInfo associated
@@ -31,12 +55,11 @@ public interface ConnectionManager extends EmfStore {
 	 * @param severInfo the server info for the server to log into
 	 * @param clientVersionInfo the client's version
 	 * @return a session id that can be used for later authentication
-	 * @throws ConnectionException if the connection can not be established
-	 * @throws AccessControlException if access is denied
+	 * @throws EmfStoreException in case of failure
 	 * @generated NOT
 	 */
 	SessionId logIn(String username, String password, ServerInfo severInfo, ClientVersionInfo clientVersionInfo)
-		throws ConnectionException, AccessControlException;
+		throws EmfStoreException;
 
 	/**
 	 * Deletes a session on the server.

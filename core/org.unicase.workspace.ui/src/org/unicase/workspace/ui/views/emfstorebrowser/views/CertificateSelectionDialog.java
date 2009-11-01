@@ -29,9 +29,9 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableItem;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
-import org.unicase.workspace.connectionmanager.CertificateStoreException;
-import org.unicase.workspace.connectionmanager.InvalidCertificateException;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
+import org.unicase.workspace.exceptions.CertificateStoreException;
+import org.unicase.workspace.exceptions.InvalidCertificateException;
 
 /**
  * The modified ElementListSelectionDialog. Includes further functionality to
