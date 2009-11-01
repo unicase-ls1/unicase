@@ -11,7 +11,7 @@ import java.util.List;
 import org.eclipse.jface.wizard.Wizard;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.model.Project;
+import org.unicase.metamodel.Project;
 import org.unicase.workspace.observers.ConflictResolver;
 
 /**

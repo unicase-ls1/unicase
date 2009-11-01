@@ -15,16 +15,18 @@ import org.unicase.emfstore.esmodel.versioning.PrimaryVersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
-import org.unicase.model.ModelElementId;
-import org.unicase.model.ModelFactory;
-import org.unicase.model.Project;
+import org.unicase.metamodel.MetamodelFactory;
+import org.unicase.metamodel.ModelElementId;
+import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.Project;
+import org.unicase.model.UnicaseModelElement;
 import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
-import org.unicase.model.util.ModelUtil;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.connectionmanager.RMIConnectionManagerImpl;
+import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.connectionmanager.rmi.RMIConnectionManagerImpl;
 import org.unicase.workspace.exceptions.ChangeConflictException;
 import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.util.UnicaseCommand;
@@ -50,8 +52,8 @@ public class MergeSandboxController {
 		
 		// ///
 
-		server.getProject().getModelElement(meIds.get(0)).setName("value 2");
-		client.getProject().getModelElement(meIds.get(0)).setName("value 3");
+		((UnicaseModelElement) server.getProject().getModelElement(meIds.get(0))).setName("value 2");
+		((UnicaseModelElement) client.getProject().getModelElement(meIds.get(0))).setName("value 3");
 
 		// ///
 
@@ -72,7 +74,7 @@ public class MergeSandboxController {
 	
 
 	private void initConnectionManager() {
-		RMIConnectionManagerImpl connectionManagerImpl = new RMIConnectionManagerImpl() {
+		ConnectionManager connectionManagerImpl = new RMIConnectionManagerImpl() {
 			@Override
 			public List<ChangePackage> getChanges(SessionId sessionId,
 					ProjectId projectId, VersionSpec source, VersionSpec target)
@@ -95,7 +97,7 @@ public class MergeSandboxController {
 	}
 
 	private Project createProject() {
-		Project project = ModelFactory.eINSTANCE.createProject();
+		Project project = MetamodelFactory.eINSTANCE.createProject();
 		CompositeSection section = DocumentFactory.eINSTANCE
 				.createCompositeSection();
 		meIds.add(ModelUtil.clone(section.getModelElementId()));
