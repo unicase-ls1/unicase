@@ -150,7 +150,7 @@ public interface RMIEmfStoreFacade extends Remote {
 	/**
 	 * String typed implementation of method in {@link EmfStore}.
 	 * 
-	 * @see org.unicase.emfstore.EmfStore#createProject(org.unicase.emfstore.esmodel.SessionId, String, String,
+	 * @see org.unicase.emfstore.EmfStore#createEmptyProject(org.unicase.emfstore.esmodel.SessionId, String, String,
 	 *      org.unicase.emfstore.esmodel.changemanagment.LogMessage)
 	 * @param sessionId the session id
 	 * @param name the name

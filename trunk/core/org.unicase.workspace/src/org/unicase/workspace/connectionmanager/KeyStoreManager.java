@@ -31,6 +31,8 @@ import org.apache.commons.codec.binary.Base64;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.workspace.Configuration;
 import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.exceptions.CertificateStoreException;
+import org.unicase.workspace.exceptions.InvalidCertificateException;
 import org.unicase.workspace.util.WorkspaceUtil;
 
 /**

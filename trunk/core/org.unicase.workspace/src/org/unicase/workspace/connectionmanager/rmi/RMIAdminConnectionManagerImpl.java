@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.connectionmanager;
+package org.unicase.workspace.connectionmanager.rmi;
 
 import java.rmi.NotBoundException;
 import java.rmi.RemoteException;
@@ -29,6 +29,7 @@ import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.UnknownSessionException;
 import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 
 /**
  * @author Wesendonk
