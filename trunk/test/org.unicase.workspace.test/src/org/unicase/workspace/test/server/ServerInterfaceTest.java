@@ -80,7 +80,7 @@ public class ServerInterfaceTest extends ServerTests {
 	public void createEmptyProjectTest() throws EmfStoreException {
 		assertTrue(getConnectionManager().getProjectList(getSessionId()).size() == getProjectsOnServerBeforeTest());
 
-		getConnectionManager().createProject(getSessionId(), "createEmptyProjectAndDelete", "TestProject",
+		getConnectionManager().createEmptyProject(getSessionId(), "createEmptyProjectAndDelete", "TestProject",
 			SetupHelper.createLogMessage("super", "a logmessage"));
 
 		assertTrue(getConnectionManager().getProjectList(getSessionId()).size() == getProjectsOnServerBeforeTest() + 1);
