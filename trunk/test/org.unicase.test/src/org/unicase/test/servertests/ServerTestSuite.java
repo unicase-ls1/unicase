@@ -1,8 +1,7 @@
 package org.unicase.test.servertests;
 
 import org.unicase.emfstore.esmodel.SessionId;
-import org.unicase.emfstore.exceptions.AccessControlException;
-import org.unicase.emfstore.exceptions.ConnectionException;
+import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.test.TestSuite;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
@@ -37,7 +36,7 @@ public class ServerTestSuite extends TestSuite {
 
 	}
 
-	private void initConnection() throws ConnectionException, AccessControlException {
+	private void initConnection() throws EmfStoreException {
 		logIn = connectionManager.logIn(USERNAME, PASSWORD, ServerTestUtil.createServerInfo(), ServerTestUtil
 			.createClientVersionInfo());
 	}
