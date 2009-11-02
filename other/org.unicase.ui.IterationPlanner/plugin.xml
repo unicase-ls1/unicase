@@ -22,16 +22,22 @@
       </menuContribution>
    </extension>
    <extension
-         id="id1"
-         point="org.eclipse.core.runtime.applications">
-      <application
-            cardinality="singleton-global"
-            thread="main"
-            visible="true">
-         <run
-               class="org.unicase.ui.iterationplanner.Application">
-         </run>
-      </application>
+         point="org.unicase.model.recommendationstrategy">
+      <strategy
+            baseElementClass="org.unicase.model.task.WorkItem"
+            eReferenceName="assignee"
+            name="org.unicase.ui.IterationPlanner.WorkItem_Assignee"
+            strategyClass="org.unicase.ui.iterationplanner.assigneerecommender.AssigneeRecommendationStrategy">
+      </strategy>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.unicase.ui.common.unicase"
+            class="org.unicase.ui.iterationplanner.preferences.AssigneeRecommenderPreferencesPage"
+            id="org.unicase.ui.IterationPlanner.AssigneeRecommender"
+            name="Assignee Recommender">
+      </page>
    </extension>
 
 </plugin>
