@@ -10,25 +10,25 @@ A validation rule always refers to a particular type of model element as well as
 To be able to use the EMF Validation Framework, as the first step the `org.eclipse.emf.validation.constraintBindings` extension point will be used to create a client context and define a binding.
 
 {{{
-`<extensionpoint="org.eclipse.emf.validation.constraintBindings">`
+<extensionpoint="org.eclipse.emf.validation.constraintBindings">
 
-`   <clientContextdefault="false"id="org.unicase.model.validation">`
+   <clientContextdefault="false"id="org.unicase.model.validation">
 
-`      <selector class="org.unicase.model.validation.ValidationClientSelector">`
+      <selector class="org.unicase.model.validation.ValidationClientSelector">
 
-`      </selector>`
+      </selector>
 
-`   </clientContext>`
+   </clientContext>
 
-`   <bindingcontext="org.unicase.model.validation">`
+   <bindingcontext="org.unicase.model.validation">
 
-`      <category ref="org.unicase.model">`
+      <category ref="org.unicase.model">
 
-`      </category>`
+      </category>
 
-`   </binding>`
+   </binding>
 
-`</extension>`
+</extension>
 }}}
 
 The binding here is to the model plug-in itself, the client is bound to the class ValidationClientSelector, which controls the review of model elements. Setting this extension points is performed only once and after that can be used by all the validation rules.
@@ -37,78 +37,81 @@ The binding here is to the model plug-in itself, the client is bound to the clas
 
 After setting up this extension in the second step, rules can be defined. The addition of new rules for this uses the `org.eclipse.emf.validation.constraintProviders` extension point of the Validation Framework. The category means pertaining to the category of the above-defined binding contexts. To include a new validation rule, a constraintProvider must be created for each model package. Here we are taking package should be used for the model package, the rules and style is as described above, shall determine whether the validation should be static or dynamic. The rule itself will be created under constraints as a new constraint.
 
-`<extensionpoint="org.eclipse.emf.validation.constraintProviders">`
+{{{
+<extensionpoint="org.eclipse.emf.validation.constraintProviders">
 
-`   <category`
+   <category
 
-`      id="org.unicase.model"`
+      id="org.unicase.model"
 
-`      name="Unicase">`
+      name="Unicase">
 
-`   </category>`
+   </category>
 
-`   <constraintProvider`
+   <constraintProvider
 
-`      cache="true"`
+      cache="true"
 
-`      mode="Batch">`
+      mode="Batch">
 
-`      <package namespaceUri="http://unicase.org/model/task">`
+      <package namespaceUri="http://unicase.org/model/task">
 
-`      </package>`
+      </package>
 
-`      <constraintscategories="org.unicase.model">`
+      <constraintscategories="org.unicase.model">
 
-`         <constraint`
+         <constraint
 
-`            ...`
+            ...
 
-`         </constraint>`
+         </constraint>
 
-`      </constraints>`
+      </constraints>
 
-`   </constraintProvider>`
+   </constraintProvider>
 
-`</extension>`
+</extension>
+}}}
 
 A constraint places other than name and id, the language (language - OCL or Java), the degree (severity), the validation mode (mode - batch or live), and (for Java constraints), the class which implements the constraint set. As the sub entry message, the message template is shown what the user is given.
 
-
-`<constraintclass="org.unicase.model.task.validation.ActionItemActivityConstraint"`
-
-
-`   id="org.unicase.model.task.ActionItemActivity"`
+{{{
+<constraintclass="org.unicase.model.task.validation.ActionItemActivityConstraint"
 
 
-`   lang="Java"`
+   id="org.unicase.model.task.ActionItemActivity"
 
 
-`   mode="Batch"`
+   lang="Java"
 
 
-`   name="ActionItem Activity Constraint"`
+   mode="Batch"
 
 
-`   severity="WARNING"`
+   name="ActionItem Activity Constraint"
 
 
-`   statusCode="1">`
+   severity="WARNING"
 
 
-`   <message>`
+   statusCode="1">
 
 
-`      {0} does not have an activity assigned.`
+   <message>
 
 
-`   </message>`
+      {0} does not have an activity assigned.
+
+
+   </message>
 
 		
 	
 	
 
 
-`</constraint>`
+</constraint>
+}}}
 
 *Java Validierung*
 
