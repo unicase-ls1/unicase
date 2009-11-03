@@ -113,7 +113,7 @@ A constraint places other than name and id, the language (language - OCL or Java
 </constraint>
 }}}
 
-*Java Validierung*
+*Java Validation*
 
 As shown in Figure 1: Java Constraint classes seen to derive from all the Java classes of constraint AbstractModelConstraint. To-implement the validate () method uses the passed IValidationContext to review the rule. The rule is violated, we pass the feature itself affected the error status as an additional argument, as described above in order to enable the identification of the error in the editor. Furthermore, the error status by default contains the affected model element itself and inserts into the constraint set for this message template.
 
