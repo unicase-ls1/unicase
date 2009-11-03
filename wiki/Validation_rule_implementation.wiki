@@ -171,3 +171,5 @@ public class ActionItemActivityConstraint extends AbstractModelConstraint {
 
 }
 }}}
+
+The corresponding message template has the form "(0) does not have an activity assigned." So that the user with a message such as "ActionItem: 'Do Task A' does not have an assigned activity." appears in the Validationview . By double-clicking the entry, the model element will be chosen and opened from the Status. It bestowed upon the status feature is passed to the editor, it provides an hint of a ControlDecoration.
