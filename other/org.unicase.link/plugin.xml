@@ -32,7 +32,7 @@
    </extension>
    <extension
          point="org.eclipse.ui.menus">
-      <menuContribution
+      <!--<menuContribution
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
                label="Sample Menu"
@@ -44,16 +44,20 @@
                   id="org.unicase.link.menus.sampleCommand">
             </command>
          </menu>
-      </menuContribution>
+      </menuContribution>-->
       <menuContribution
       		locationURI="toolbar:org.unicase.ui.meeditor.MEEditorPage?after=additions">
             <command
                   commandId="org.unicase.link.commands.sampleCommand"
-                  icon="icons/sample.gif"
-                  tooltip="Say hello world"
+                  icon="icons/unicase_link.png"
+                  tooltip="Generate unicase specific protocol link"
                   id="org.unicase.link.toolbars.sampleCommand">
             </command>
       </menuContribution>
+   </extension>
+   <extension
+         point="org.eclipse.ui.startup">
+      <startup></startup>
    </extension>
 
 </plugin>
