@@ -5,6 +5,8 @@ Bundle-SymbolicName: org.unicase.link; singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.link.Activator
 Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime
+ org.eclipse.core.runtime,
+ org.unicase.model;bundle-version="1.0.0",
+ org.unicase.ui.common;bundle-version="1.0.0"
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
