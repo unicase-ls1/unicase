@@ -31,7 +31,7 @@ To be able to use the EMF Validation Framework, as the first step the `org.eclip
 </extension>
 }}}
 
-The binding here is to the model plug-in itself, the client is bound to the class ValidationClientSelector, which controls the review of model elements. Setting this extension points is performed only once and after that can be used by all the validation rules.
+The binding here is to the model plug-in itself, the client is bound to the class !ValidationClientSelector, which controls the review of model elements. Setting this extension points is performed only once and after that can be used by all the validation rules.
 
 *Defining rules*
 
@@ -115,7 +115,7 @@ A constraint places other than name and id, the language (language - OCL or Java
 
 *Java Validation*
 
-As shown in Figure 1: Java Constraint classes seen to derive from all the Java classes of constraint AbstractModelConstraint. To-implement the validate () method uses the passed IValidationContext to review the rule. The rule is violated, we pass the feature itself affected the error status as an additional argument, as described above in order to enable the identification of the error in the editor. Furthermore, the error status by default contains the affected model element itself and inserts into the constraint set for this message template.
+As shown in Figure 1: Java Constraint classes seen to derive from all the Java classes of constraint !AbstractModelConstraint. To-implement the validate () method uses the passed !IValidationContext to review the rule. The rule is violated, we pass the feature itself affected the error status as an additional argument, as described above in order to enable the identification of the error in the editor. Furthermore, the error status by default contains the affected model element itself and inserts into the constraint set for this message template.
 
 A simple validation class for example, is as follows:
 
@@ -172,7 +172,7 @@ public class ActionItemActivityConstraint extends AbstractModelConstraint {
 }
 }}}
 
-The corresponding message template has the form "(0) does not have an activity assigned." So that the user with a message such as "ActionItem: 'Do Task A' does not have an assigned activity." appears in the Validationview . By double-clicking the entry, the model element will be chosen and opened from the Status. It bestowed upon the status feature is passed to the editor, it provides an hint of a ControlDecoration.
+The corresponding message template has the form "(0) does not have an activity assigned." So that the user with a message such as "!ActionItem: 'Do Task A' does not have an assigned activity." appears in the Validationview . By double-clicking the entry, the model element will be chosen and opened from the Status. It bestowed upon the status feature is passed to the editor, it provides an hint of a !ControlDecoration.
 
 *OCL Validation*
 
