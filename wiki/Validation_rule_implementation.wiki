@@ -35,7 +35,7 @@ The binding here is to the model plug-in itself, the client is bound to the clas
 
 *Defining rules*
 
-After setting up this extension, in the second step, rules can be defined. Adding new rules for this uses the `org.eclipse.emf.validation.constraintProviders` extension point of the Validation Framework. The category means pertaining to the category of the above-defined binding contexts. To include a new validation rule, a constraintProvider must be created for each model package. Here we are taking package should be used for the model package, the rules and style is as described above, shall determine whether the validation should be static or dynamic. The rule itself will be created under constraints as a new constraint.
+After setting up this extension, in the second step, rules can be defined. Adding new rules for this uses the `org.eclipse.emf.validation.constraintProviders` extension point of the Validation Framework. The category means pertaining to the category of the above-defined binding contexts. To include a new validation rule, a constraintProvider must be created for each model package. Here we are taking the package which the rules should be used for the model package, and the style is as described above, shall determine whether the validation should be static or dynamic. The rule itself will be created under constraints as a new constraint.
 
 {{{
 <extensionpoint="org.eclipse.emf.validation.constraintProviders">
@@ -115,7 +115,7 @@ A constraint places other than name and id, the language (language - OCL or Java
 
 *Java Validation*
 
-As shown in Figure 1: Java Constraint classes seen to derive from all the Java classes of constraint !AbstractModelConstraint. To-implement the validate () method uses the passed !IValidationContext to review the rule. The rule is violated, we pass the feature itself affected the error status as an additional argument, as described above in order to enable the identification of the error in the editor. Furthermore, the error status by default contains the affected model element itself and inserts into the constraint set for this message template.
+As shown in Figure 1: Java Constraint classes seen to derive from all the Java classes of constraint !AbstractModelConstraint. To-implement the validate () method uses the passed IValidationContext to review the rule. The rule is violated, we pass the feature itself affected the error status as an additional argument, as described above in order to enable the identification of the error in the editor. Furthermore, the error status by default contains the affected model element itself and inserts into the constraint set for this message template.
 
 A simple validation class for example, is as follows:
 
