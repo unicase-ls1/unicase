@@ -173,3 +173,55 @@ public class ActionItemActivityConstraint extends AbstractModelConstraint {
 }}}
 
 The corresponding message template has the form "(0) does not have an activity assigned." So that the user with a message such as "ActionItem: 'Do Task A' does not have an assigned activity." appears in the Validationview . By double-clicking the entry, the model element will be chosen and opened from the Status. It bestowed upon the status feature is passed to the editor, it provides an hint of a ControlDecoration.
+
+*OCL Validation*
+
+For OCL rules, the rule is specified directly in the constraint. The following rule ensures, for example, that every UML actor must be assigned to a use case, either as initiator or as a participant:
+
+{{{
+<constraint lang="OCL"
+
+   severity="WARNING"
+
+   mode="Batch"
+
+   name="Actor Usecase Constraint"
+
+   id="org.unicase.model.requirement.ActorUsecase"
+
+   statusCode="1">
+
+   <message>{0} has no usecases</message>
+
+   <targetclass="Actor"/>
+
+   <![CDATA[
+
+      self.initiatedUseCases->size() + self.participatedUseCases->size() > 0
+
+   ]]>
+
+</constraint>
+}}}
+
+Through these OCL rules, however, can only put relatively simple constraints, since for example no global variables can be defined. You can also pass in this way is not the affected feature to the editor.
+
+*Execution of the Validation*
+
+The so-defined rules can now be run in a third step of the client validation selector. In the following example, it will run as a batch job.
+
+{{{
+ValidationClientSelector.setRunning(true);
+
+IBatchValidator validator = (IBatchValidator)
+
+   ModelValidationService.getInstance().newValidator(EvaluationMode.BATCH);
+
+validator.setIncludeLiveConstraints(true);
+
+IStatus status = validator.validate(projectSpace);
+
+ValidationClientSelector.setRunning(false);
+}}}
+
+The IStatus represents the result of the validation and to generate the IMarker which is used to be displayed in the Validation view. It contains, for each rule violation of the message and the degree, a link to model element or feature which led to the violation. These will be presented to the user in tabular form. Double-clicking a table entry will open the affected model element and mark the corresponding feature.
