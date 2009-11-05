@@ -26,3 +26,4 @@ This is the final version of UNICASE after development, which is deployed on our
 
 *  Server: If you want to connect to EMFStore server with UNICASE external version, note that the connection settings to Emfstore are pre-configured to connect to unicase.in.tum.de.
 
+[http://unicase.googlecode.com/files/45820.jpg]
