@@ -5,11 +5,6 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
-
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -17,14 +12,26 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.FilteredItemsSelectionDialog;
 import org.unicase.model.UnicaseModelElement;
+import org.unicase.model.task.TaskPackage;
+import org.unicase.model.task.WorkItem;
 import org.unicase.model.util.traceabilityrecommendation.RecommendationManager;
 import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.ConstantThresholdSelection;
 import org.unicase.ui.common.Activator;
+import org.unicase.ui.common.preferences.UnicasePreferenceConstants;
+
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * This Dialog represents the possibility to select an element from a list where the list is sorted and additional
@@ -47,6 +54,9 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 
 	private RecommendationManager recMan;
 
+	private Label label;
+	private boolean warning;
+
 	/**
 	 * The constructor.
 	 * 
@@ -62,6 +72,14 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 		super(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), reference.isMany());
 		setTitle(title);
 		setMessage(message);
+		boolean enableAssigneeRecommendation = org.unicase.ui.common.Activator.getDefault().getPreferenceStore()
+			.getBoolean(UnicasePreferenceConstants.ENABLE_ASSIGNEE_RECOMMENDATION);
+		if (enableAssigneeRecommendation) {
+			if (baseElement instanceof WorkItem && reference.equals(TaskPackage.eINSTANCE.getWorkItem_Assignee())
+				&& ((WorkItem) baseElement).getAnnotatedModelElements().size() == 0) {
+				warning = true;
+			}
+		}
 		setBlockOnOpen(blockOnOpen);
 		setInitialPattern("**", NONE);
 
@@ -89,6 +107,14 @@ public class MESuggestedSelectionDialog extends FilteredItemsSelectionDialog {
 	 */
 	@Override
 	protected Control createExtendedContentArea(Composite parent) {
+		if (warning) {
+			label = new Label(parent, SWT.WRAP);
+			label.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, true));
+			label.setForeground(Display.getDefault().getSystemColor(SWT.COLOR_RED));
+			label
+				.setText("This work item does not annotate any model elements. For assignee recommendation to work fine, you should first link this work item with a model element (preferably a functional requirement).");
+			return label;
+		}
 		return null;
 	}
 
