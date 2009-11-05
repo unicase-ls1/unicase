@@ -5,3 +5,4 @@
  *  [Process]
  *  [ReleaseAndDeploy How to release and deploy]
  *  [FAQ FAQ]
+ *  [GettingStarted Getting Started]
