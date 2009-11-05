@@ -145,7 +145,7 @@ public class ModelElementMatrix extends AbstractDenseStringMatrix2D {
 			+ fileName;
 		File file = new File(path);
 		try {
-			this.exportToFile(FileFormat.CSV, file, null);
+			this.exportToFile(FileFormat.CSV, file, (Object[]) null);
 		} catch (MatrixException e) {
 			e.printStackTrace();
 		} catch (IOException e) {
