@@ -5,7 +5,8 @@ Bundle-SymbolicName: org.unicase.ui.navigator;singleton:=true
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.unicase.ui.navigator.Activator
 Bundle-Vendor: unicase.org
-Require-Bundle: org.unicase.ui.meeditor;visibility:=reexport
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-ActivationPolicy: lazy
+Require-Bundle: org.unicase.ui.meeditor;bundle-version="1.0.0"
+Export-Package: org.unicase.ui.navigator
 
