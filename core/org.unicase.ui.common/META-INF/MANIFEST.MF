@@ -40,6 +40,7 @@ Export-Package: org.eclipse.swt.nebula.widgets.cdatetime,
  org.unicase.ui.common.exceptions,
  org.unicase.ui.common.filter,
  org.unicase.ui.common.perspectives,
+ org.unicase.ui.common.preferences,
  org.unicase.ui.common.util,
  org.unicase.ui.common.widgets
 Bundle-ClassPath: .,
