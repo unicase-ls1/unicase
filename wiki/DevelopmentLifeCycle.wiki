@@ -27,3 +27,9 @@ This is the final version of UNICASE after development, which is deployed on our
 *  Server: If you want to connect to EMFStore server with UNICASE external version, note that the connection settings to Emfstore are pre-configured to connect to unicase.in.tum.de.
 
 [http://unicase.googlecode.com/files/45820.jpg]
+
+Important Notes:
+
+    * The internal release and external release of the UNICASE project cannot be installed into the same eclipse instance therefore, its necessity to have those installed into two different instances of eclipse.
+
+    * There are two read-only tags: latest and latest internal, which basically points to the latest external and internal release respectively. The reason behind creating these read only tags is to make it easier for the developer to read the latest modifications of both the internal and external release, which means that they are not used for bug fixing.
