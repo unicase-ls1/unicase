@@ -40,6 +40,6 @@ http://unicase.googlecode.com/files/d07c8.png
 http://unicase.googlecode.com/files/9eb12.png
 <br>
 <br>
-            8. Now the Eclipse products can be exported as described [here].
+            8. Now the Eclipse products can be exported as described [http://code.google.com/p/unicase/wiki/Server_standalone_deployment here].
 <br>
 <br>
