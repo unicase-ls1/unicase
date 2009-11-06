@@ -1,5 +1,5 @@
 *_Easy general RMI tutorial:_* <br>
-http://www.galileocomputing.de/openbook/javainsel7/javainsel_18_003.htm
+              http://www.galileocomputing.de/openbook/javainsel7/javainsel_18_003.htm
 <br>
 
 
@@ -11,4 +11,4 @@ URL url = FileLocator.find(Activator.getDefault().getBundle(),new Path("/bin/"),
 System.setProperty("java.rmi.server.codebase", url.toExternalForm());
 }}}
 
-http://www.martinlippert.com/publications/JS-Classloading-in-Eclipse-final-web.pdf
+             http://www.martinlippert.com/publications/JS-Classloading-in-Eclipse-final-web.pdf
