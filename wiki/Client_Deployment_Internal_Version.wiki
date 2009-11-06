@@ -15,3 +15,6 @@ Change the version number of all the plug-ins to the release number that you are
 [http://unicase.googlecode.com/files/cd1b.png]
 
 [http://unicase.googlecode.com/files/cd2.png]
+
+Step 3:
+Increase the version number in the feature.xml file to match the version number of the new release:
