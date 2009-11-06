@@ -1,6 +1,6 @@
 The Model API allows you to view, create, delete and modify model elements in a project. This page will list best practices and dos and donts in using this API:
 <p>
-       * *Do not* use EcoreUtil.delete() to delete model elements. Use project.delete() or modelElement.delete() to delete model elements.
+       * *Do not* use !EcoreUtil.delete() to delete model elements. Use project.delete() or modelElement.delete() to delete model elements.
 
     * *Do not* remove elements from the projects containment hierarchy. If you really want to remove the model elements, use delete operations in model element or project, otherwise move the element directly into its new containment: e.g. if a solution is contained in an issue, never call setIssue(null) in the solution. This would in effect remove the solution from the containment tree of the project. Instead add the solution directly in a new containment, e.g. project.addModelElement(solution) to add the solution to the project itself. Otherwise use project.delete() or modelElement.delete() as stated above.
 
@@ -8,5 +8,5 @@ The Model API allows you to view, create, delete and modify model elements in a 
 
     * *Intention Preservation:* Apply the changes on the model in the same way the user intended them in the user interface. E.g. the user opens a model element and clicks on "add comment": Add the comment to the model element by calling getComments().add(comment) on the model element. Do not call comment.setModelElement() on the comment. The way you modify the model reflects in the recorded operations.
 
-    * *Composite Preservation:* If you perform several changes to the model that are triggered by only one intention (e.g. click) of the user, use the composite operation support in ProjectSpace. You can call beginCompositeOperation() on the project space to announce a composite operation, you will receive a handle for the composite as a result (CompositeOperationHandle). With the handle you can control the composite. Calling abort() on the handle will rollback the operation, this is usefull in dialogs where the user may cancel the changes at any time. Calling end() on the handle will complete the composite and preserve the changes.
+    * *Composite Preservation:* If you perform several changes to the model that are triggered by only one intention (e.g. click) of the user, use the composite operation support in !ProjectSpace. You can call beginCompositeOperation() on the project space to announce a composite operation, you will receive a handle for the composite as a result (!CompositeOperationHandle). With the handle you can control the composite. Calling abort() on the handle will rollback the operation, this is usefull in dialogs where the user may cancel the changes at any time. Calling end() on the handle will complete the composite and preserve the changes.
 </p>
