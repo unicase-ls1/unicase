@@ -9,7 +9,7 @@ org.unicase.workspace.accesscontrol.!AccessControlHelper<br>
 _Helper class for access control checks._<br>
 
 *!ActionHelper*<br><br>
-org.unicase.ui.common.util.ActionHelper<br>
+org.unicase.ui.common.util.!ActionHelper<br>
 _This class contains some utility method for commands and handlers._<br>
 
 *!ChangePackageVisualizationHelper*<br><br>
@@ -34,7 +34,7 @@ _This class offer helper methods for notifications._<br>
 
 *!OpeningLinkHelper*<br><br>
 org.unicase.model.task.util.!OpeningLinkHelper<br>
-_This class provides methods related to opening links and depends on the current OpeningLinkTaxonomy._<br>
+_This class provides methods related to opening links and depends on the current !OpeningLinkTaxonomy._<br>
 
 *!OrgUnitHelper*<br><br>
 org.unicase.workspace.util.!OrgUnitHelper<br>
