@@ -42,10 +42,12 @@ public class OperationColorLabelProvider {
 	public Color getColor(AbstractOperation op) {
 		OperationState state = map.get(op);
 		Display display = Display.getCurrent();
-		if (state.getPreviewState() == OperationState.ACCEPTED) {
-			return display.getSystemColor(SWT.COLOR_GREEN);
-		} else if (state.getPreviewState() == OperationState.REJECTED) {
-			return display.getSystemColor(SWT.COLOR_RED);
+		if (state != null) {
+			if (state.getPreviewState() == OperationState.ACCEPTED) {
+				return display.getSystemColor(SWT.COLOR_GREEN);
+			} else if (state.getPreviewState() == OperationState.REJECTED) {
+				return display.getSystemColor(SWT.COLOR_RED);
+			}
 		}
 		return display.getSystemColor(SWT.COLOR_BLACK);
 	}
