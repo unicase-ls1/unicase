@@ -7,17 +7,17 @@ We have a workflow and a set of rules in place to work with the ecore models in 
 
 
    # Make sure you updated to the latest revision
-   # Acquire a lock for the ecore and genmodel (ContextMenu: Team -> Lock)
-   # Validate the model before generating code (ContextMenu: Validate)
-   # Reload the genmodel (ContextMenu: Reload...)
+   # Acquire a lock for the ecore and genmodel (!ContextMenu: Team -> Lock)
+   # Validate the model before generating code (!ContextMenu: Validate)
+   # Reload the genmodel (!ContextMenu: Reload...)
    # Generate model and edit ([http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/a3773/Demos_and_Video_Tutorials.html see ModelDrivenDevelopment Tutorial])
    # For newly created model packages update the org.unicase.model plugin.xml to export the package, package.impl and package.util packages. Also update the org.unicase.model.edit plugin.xml to export the package.provider package and make sure to register the appropriate itemProviderAdapter factories under extensions.
    # Check for compile problems
    # Reload and check depending models for compile or validation problems
          * esmodel depends on model
          * workspace depends on esmodel and model
-   # Organize imports on model and edit (ContextMenu: Source -> Organize Imports)
-   # Format model and edit (ContextMenu: Source -> Format)
+   # Organize imports on model and edit (!ContextMenu: Source -> Organize Imports)
+   # Format model and edit (!ContextMenu: Source -> Format)
    # Update all plugins to detect potential problems
    # Minimum testing:
          * Delete the existing model database and workspaces and run server and client
@@ -45,7 +45,7 @@ For all attributes in any of the models, what you should *NOT do*:
 *_For the individual models:_*
 
     * org.unicase.model:
-          # All model elements must have "ModelElement" set as superclass
+          # All model elements must have "!ModelElement" set as superclass
           # All reference features of model elements must have the key property set to "identifier"
           # All model elements must either be contained by another model element or by project
           # The reference feature "lower bound" must *NOT* be greater than zero for any model element feature reference
@@ -56,8 +56,8 @@ For all attributes in any of the models, what you should *NOT do*:
 
     * org.unicase.emfstore.esmodel:
           #  All classes must be contained in the "ServerSpace" containment tree (if they should be persisted or are referenced by other persistent classes)
-          #  Access control classes must not refer to classes other than subclasses of "UniqueIdentifier" or classes in access control.
-          #  ProjectInfo is a DTO and must not be referenced by other classes
+          #  Access control classes must not refer to classes other than subclasses of "!UniqueIdentifier" or classes in access control.
+          #  !ProjectInfo is a DTO and must not be referenced by other classes
 
     * org.unicase.workspace:
           #  All classes must be contained in the "Workspace" containment tree (if they should be persisted or are referenced by other persistent classes)
