@@ -11,3 +11,21 @@ Change this old version number to the new one (e.g. 0.1.0) *without* a ".qualifi
 [http://unicase.googlecode.com/files/a531d.png]
 
 Note: if you want to release all plugins, you can use search and replace. 
+
+Step 2:
+
+Commit the version change:
+
+[http://unicase.googlecode.com/files/60c2b.png]
+
+Step 3:
+
+Create a tag for the release:
+
+[http://unicase.googlecode.com/files/1b723.png]
+
+Configure the tag according to the release version number, e.g. in this case set the "To URL" to:https://wwwbruegge.in.tum.de/repos/unicase/tags/org.unicase.ui.navigator/0.1.0/org.unicase.ui.navigator(replace org.unicase.ui.navigator with the plugin you are working with and 0.1.0 with your version).
+
+If you release all plugins, use unicase/tags/X.X.X
+
+[http://unicase.googlecode.com/files/2afc4.png]
