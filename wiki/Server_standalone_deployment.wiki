@@ -4,7 +4,7 @@ To export for multiple platforms, you have to have the delta pack installed as d
 1. Open emfstore.product in the org.unicase.emfstore plug-in.
 <br>
 <br>
-<img height="800 width=600 src="http://unicase.googlecode.com/files/0cc44.png"/>
+<img src="http://unicase.googlecode.com/files/0cc44.png"/>
 <br>
 2. Select "Export an Eclipse product" from the icons in the upper right hand corner.
 <br>
