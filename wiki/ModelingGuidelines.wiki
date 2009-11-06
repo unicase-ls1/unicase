@@ -55,7 +55,7 @@ For all attributes in any of the models, what you should *NOT do*:
           # *Do NOT* create non-transient reference to anything other than model element subtypes
 
     * org.unicase.emfstore.esmodel:
-          #  All classes must be contained in the "ServerSpace" containment tree (if they should be persisted or are referenced by other persistent classes)
+          #  All classes must be contained in the "!ServerSpace" containment tree (if they should be persisted or are referenced by other persistent classes)
           #  Access control classes must not refer to classes other than subclasses of "!UniqueIdentifier" or classes in access control.
           #  !ProjectInfo is a DTO and must not be referenced by other classes
 
