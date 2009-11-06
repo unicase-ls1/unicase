@@ -1,24 +1,24 @@
 ===There is a number of utility classes in UNICASE for different tasks. Here you will find a list of them along with a brief description.===
 
 *!SetupHelper* <br><br>
-org.!unicase.workspace.test.!SetupHelper<br>
+org.unicase.workspace.test.SetupHelper<br>
 _Helper class for setup/cleanup test fixtures._<br>
 
 *!AccessControlHelper*<br><br>
-org.!unicase.workspace.!accesscontrol.!AccessControlHelper<br>
+org.unicase.workspace.accesscontrol.AccessControlHelper<br>
 _Helper class for access control checks._<br>
 
 *!ActionHelper*<br><br>
-org.!unicase.!ui.common.!util.!ActionHelper<br>
+org.unicase.ui.common.util.ActionHelper<br>
 _This class contains some utility method for commands and handlers._<br>
 
 *!ChangePackageVisualizationHelper*<br><br>
-org.!unicase.workspace.ui.views.changes.!ChangePackageVisualizationHelper<br>
+org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper<br>
 _A helper class for the visualization of change packages._<br>
 
 *!EstimateHelper*<br><br>
-org.unicase.model.task.!util.!EstimateHelper<br>
-_!EstimateHelper for computing numbers/estimates of a !ModelElements !LeafOpeners._<br> _!LeafOpeners are a subset of all tasks in the !OpeningLinkTaxonomy that a !ModelElements needs to be closed in order to be closed itself._ <br> *See also:*<br> !TaxonomyAccess.!getInstance().!getOpeningLinkTaxonomy().!getLeafOpeners(!ModelElement)<br>
+org.unicase.model.task.util.EstimateHelper<br>
+_!EstimateHelper for computing numbers/estimates of a !ModelElements and !LeafOpeners._<br> _!LeafOpeners are a subset of all tasks in the !OpeningLinkTaxonomy that a !ModelElements needs to be closed in order to be closed itself._ <br> *See also:*<br> TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(ModelElement)<br>
 
 *InegrationTestHelper*<br><br>
 org.unicase.workspace.test.integration.forward.IntegrationTestHelper<br>
