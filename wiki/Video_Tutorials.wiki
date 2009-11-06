@@ -1,2 +1,2 @@
-[http://unicase.googlecode.com/files/StartEmfStore.mov Run EMFStore as developer]
-[http://unicase.googlecode.com/files/StartUnicaseClient.mov  Run unicase client as developer]
+ * [http://unicase.googlecode.com/files/StartEmfStore.mov Run EMFStore as developer]
+ * [http://unicase.googlecode.com/files/StartUnicaseClient.mov  Run unicase client as developer]
