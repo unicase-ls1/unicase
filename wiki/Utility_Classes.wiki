@@ -50,7 +50,7 @@ _Helper for task validation._<br>
 
 *URLHelper*<br><br>
 org.unicase.ui.common.util.URLHelper<br>
-_This class offer helper methods for the unicase URLs._<br>
+_This class offer helper methods for the UNICASE URLs._<br>
 
 *!ValidationConstraintHelper*<br><br>
 org.unicase.model.util.!ValidationConstraintHelper<br>
