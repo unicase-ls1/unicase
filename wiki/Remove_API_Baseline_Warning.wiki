@@ -16,3 +16,6 @@ To se an API base line, click on Add Baseline... and in New API Baseline dialog 
 <br>
 <br>
 http://unicase.googlecode.com/files/aa942.png
+<br>
+<br>
+Rebuild the project afterwards.
