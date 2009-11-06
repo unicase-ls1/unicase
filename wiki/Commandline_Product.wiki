@@ -1,7 +1,7 @@
             1. If developing for multiple platforms, please download the delta-pack from the Eclipse downloads page.
 <br>
 <br>
-http://unicase.googlecode.com/files/4e2ec.png
+<img src="http://unicase.googlecode.com/files/4e2ec.png" height="600" width="800"/>
 <br>
 <br>
             2. Configure the target platform (Preferences: Plug-in Development/Target Platform) to point to an appropriate Eclipse installation containing the delta pack.
