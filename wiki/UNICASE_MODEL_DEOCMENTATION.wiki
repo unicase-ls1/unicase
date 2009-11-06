@@ -3,7 +3,7 @@
 We use EMF and its code generation facilities for generating code for the following models and plugins:
 
     * *UNICASE model:*
-          * *_Purpose:_* Represents the different model elements that are part of the project model of UNICASE. Model elements range from Requirements to Classes, ActionItems, Issues and OrganizationalUnits. Also the superclass "ModelElement" for all model elements and some helper classes are defined.
+          * *_Purpose:_* Represents the different model elements that are part of the project model of UNICASE. Model elements range from Requirements to Classes, !ActionItems, Issues and !OrganizationalUnits. Also the superclass "!ModelElement" for all model elements and some helper classes are defined.
           * *_Ecore location:_* org.unicase.model/model/model.ecore
           * *_Dependencies:_* None
           * *_plugins:_*
