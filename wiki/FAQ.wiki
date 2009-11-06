@@ -1,6 +1,6 @@
 *Q: How should I configure a new plugin?*
 <br>
-A: Create a new folder at the repository root (e.g. unicase/trunk). You can do this using the repo browser for example. Name the folder like the package the plugin is going to provide (e.g. org.unicase. workspace). Package names are always prefixed with org.unicase. Checkout the new folder with svn in eclipse as a new Project. Select PluginProject in Plugin Development. Set the plugin id to the package name. Set version to 0.0.1. The plugin name must be prefixed with unicase. The plugin provider is unicase.org. The remaining settings can be left to default, so just click on finish.
+A: Create a new folder at the repository root (e.g. unicase/trunk). You can do this using the repo browser for example. Name the folder like the package the plugin is going to provide (e.g. org.unicase. workspace). Package names are always prefixed with org.unicase. Checkout the new folder with svn in eclipse as a new Project. Select !PluginProject in Plugin Development. Set the plugin id to the package name. Set version to 0.0.1. The plugin name must be prefixed with unicase. The plugin provider is unicase.org. The remaining settings can be left to default, so just click on finish.
 
 *Q: How do I add an interface or superclass to a generated EMF class?*<br>
 A: add @implements {{{<interfacename>}}} or @extends {{{<superclassname>}}} to the user doc block in the javadoc of the class declaration. Do not add @generated NOT to the class declaration since this will stop emf from ever regenerating the class.
@@ -9,23 +9,24 @@ A: add @implements {{{<interfacename>}}} or @extends {{{<superclassname>}}} to t
 A: Double click on your Manifest.MF and switch to the dependency tab. Here you can add dependecies you need, e.g. org.unicase.model. Unless you know why do not add a minimum or maximum version number. If it is added by default if you add a dependency remove it please.
 
 *Q: How can I get access to the unicase Workspace from a plugin?*<br>
-A: Import org.unicase.workspace as a dependency. Call WorkspaceManager.getInstance().getCurrentWorkspace().
+A: Import org.unicase.workspace as a dependency. Call {{{
+WorkspaceManager.getInstance().getCurrentWorkspace()}}}.
 
-*Q: Which Content or LabelProvider should I use?*<br>
-A: e.g. for a LabelProvider only for Model: 
+*Q: Which Content or !LabelProvider should I use?*<br>
+A: e.g. for a !LabelProvider only for Model: 
 
 {{{
 new AdapterFactoryLabelProvider(new ModelItemProviderAdapterFactory());
 for a ContentProvider only for Workspace: new AdapterFactoryContentProvider(new WorkspaceItemProviderAdapterFactory());
 }}}
 
-for a LabelProvider for all Models:
+for a !LabelProvider for all Models:
 {{{
 
 new AdapterFactoryLabelProvider(new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 }}}
 
-*Q: How do I listen for change events of a modelelement or a certain feature?*<br>
+*Q: How do I listen for change events of a model element or a certain feature?*<br>
 
 A: Add an adapter to the model element overriding the notifyChanged() method:
 
@@ -44,20 +45,22 @@ modelElement.eAdapters().add(new AdapterImpl() {
 }}}
 
 *Q: How do I use standard icons/images from eclipse?*<br>
-A: PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.XXX)
+A: {{{
+PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.XXX)
+}}}
     _* Hint: Many other free icons can be found on [http://www.famfamfam.com/ FamFamFam]._*
 
 *Q: I add sth. in a Composite, but it wont show up. What am I doing wrong?*<br>
-A. You probably forgot to set a LayoutManager for the Composite.
+A. You probably forgot to set a !LayoutManager for the Composite.
 
 *Q: What is the difference between a command and an action?*<br>
 A: http://wiki.eclipse.org/FAQ_What_is_the_difference_between_a_command_and_an_action%3F
 
 *Q: How do I change the dummy project?*<br>
-A: It's created in createDummyProject() in EmfStoreStub and it is returned if you check out a project with the esbrowser.
+A: It's created in createDummyProject() in !EmfStoreStub and it is returned if you check out a project with the esbrowser.
 
 *Q: How can I rename a plugin?*<br>
-A: Rename the plugin with Refactor -> Rename (this will also change the plugin.xml and co. Rename the packages with Refactor -> Rename. Use hierachical view to rename the base package and check "Rename subpackages". Possibly also change the name in menu entries or view extension points (use global text search). Commit your changes. Delete the plugin from your local workspace (include contents). Open SVN repo browser (Show View ->SVN -> Repository Browser). Goto the plugin folder and select "Rename..." from context menu and rename to the new plugin name. Checkout plugin again.
+A: Rename the plugin with Refactor -> Rename (this will also change the plugin.xml and co. Rename the packages with Refactor -> Rename. Use hierarchical view to rename the base package and check "Rename subpackages". Possibly also change the name in menu entries or view extension points (use global text search). Commit your changes. Delete the plugin from your local workspace (include contents). Open SVN repo browser (Show View ->SVN -> Repository Browser). Goto the plugin folder and select "Rename..." from context menu and rename to the new plugin name. Checkout plugin again.
 
 *Q: I have compiled my GUI plugin and there are no compile errors but I can't find it later in my runtime Eclipse instance. What should I do?*<br>
 
@@ -88,17 +91,17 @@ A: Open the page in question for editing, select "Edit HTML" and add the followi
 
 {{{<pre>}}} your source code here {{{</pre>}}}
 
-Remove all tabs from the code and replace them by spaces (use TextEdit, Search&Replace). Note: After adding the above mentioned tags to html, you can also edit the code in the normal wiki edit mode.
+Remove all tabs from the code and replace them by spaces (use !TextEdit, Search&Replace). Note: After adding the above mentioned tags to html, you can also edit the code in the normal wiki edit mode.
 Update: An easier way to add code is to write "begin end" into a line, format the line as monospace (click on the paragraph symbol) and then paste your code in between "begin" and "end". You can then safely remove begin and end. Still it is sometimes better to replace the tabs with whitespace beforehand since the Wiki wastes quite some space for a single tab.
 
 *Q: Can I use third party libraries, what about licensing?* <br>
 A: Libraries distributed under the EPL can be used without a problem. However any other license is subject to closer inspection. Please discuss with project lead and consult the Eclipse foundation at license@eclipse.org. A good FAQ on licensing and the EPL is available on [http://www.eclipse.org/legal/eplfaq.php Eclipse.org]
 
-*Q: I am getting a ClassNotFoundException when trying to run the MEEditor?* <br>
+*Q: I am getting a !ClassNotFoundException when trying to run the MEEditor?* <br>
 A: The editor is using an external library in the form of an Eclipse plugin. Please install it manually in your Eclipse environment - see [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/55cea/Getting_started_as_developer.html Getting started as developer]
-When the Update Site for unicase is set up, all needed dependencies will be deployed there.
+When the Update Site for UNICASE is set up, all needed dependencies will be deployed there.
 
-*Q: I am trying to manually deploy a plugin, but I am getting a strange java.lang.IllegalArgumentException?* <br>
+*Q: I am trying to manually deploy a plugin, but I am getting a strange `java.lang.IllegalArgumentException`?* <br>
 A: Please read this blog entry: [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/8fdfb/Build_Process.html Build Process]
 
 *Q: How to increase the default memory heap size used by the VM?* <br>
@@ -106,13 +109,13 @@ A: Changing the heap size for Eclipse:
 Locate the eclipse.ini in your Eclipse installation (the location depends on the package/OS) and edit the following parameters --Xms40m and --Xmx512m. The first one specifies the starting heap size and the other - the largest allowed heap size.
 Changing the heap size for your Runtime Eclipse: Edit the same parameters under "VM args" in your Run/Debug configuration.
 
-*Q: What can I do if I experience troubles running unicase, if I get an Exception when running unicase or if unicase won´t start?* <br>
-A: Follow this [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/f1c7e/Reacting_to_unicase_model_changes.html howto] to return to a well-defined state with your unicase development environment.
+*Q: What can I do if I experience troubles running UNICASE, if I get an Exception when running UNICASE or if UNICASE won´t start?* <br>
+A: Follow this [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/f1c7e/Reacting_to_unicase_model_changes.html howto] to return to a well-defined state with your UNICASE development environment.
 
-*Q: How can I report bugs via the unicase server?* <br>
+*Q: How can I report bugs via the UNICASE server?* <br>
 A: First of all, you need an account at our chair. Without that you won't be able to login. For a short howto see: [https://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/dce68/Report_bugs_screenshot_tour.html Report bugs screenshot tour]
 
-*Q: How do I use a ProgressBar?* <br>
+*Q: How do I use a !ProgressBar?* <br>
 
 A: 
 {{{
@@ -169,8 +172,8 @@ URL url = FileLocator.find(
 File f = new File(FileLocator.resolve(url).getPath() + myFileName);
 
 }}}
-*Q: Where is all the unicase data (workspace, projectspace, usersessions server infos) stored?*<br>
-A: For the released versions of the unicase client it is stored in the {{{<userhome>}}}/.unicase folder. Every subfolder is one project space. For the development version it is stored in {{{<userhome>}}}/.unicase.dev. Whether or not the current client is considered to be a released version depends on the version of the org.unicase.workspace plugin. (Also see Configuration.isReleaseVersion())
+*Q: Where is all the UNICASE data (workspace, projectspace, usersessions server infos) stored?*<br>
+A: For the released versions of the UNICASE client it is stored in the {{{<userhome>}}}/.unicase folder. Every subfolder is one project space. For the development version it is stored in {{{<userhome>}}}/.unicase.dev. Whether or not the current client is considered to be a released version depends on the version of the org.unicase.workspace plugin. (Also see Configuration.isReleaseVersion())
 
 *Q: How can I display non-containment references as children (helpful in the navigator)?*<br>
 A: Open model.genmodel and select the reference. In the properties view set the "Children" attribute to "true". EObjects referenced here are now displayed as children.
@@ -183,7 +186,7 @@ A: Usually there is a JavaHL package you can install on your linux. But you have
 This very path is used by Ubuntu Linux, of course you have to use the correct path for your system.
 
 *Q: How should I refresh GUI on events triggered from non-GUI threads?*<br>
-A: Trying to refresh UI components from non-UI threads (e.g. on EMF notifications) can lead to InvalidThreadAccess exception.
+A: Trying to refresh UI components from non-UI threads (e.g. on EMF notifications) can lead to !InvalidThreadAccess exception.
 To avoid this situation you must use following code to access UI using a new UI thread:
 {{{
 
