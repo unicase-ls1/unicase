@@ -19,7 +19,7 @@ TransactionalEditingDomain domain = TransactionalEditingDomain.Registry.INSTANCE
 }}}
 
 
-You only need to replace it with this:
+                 You only need to replace it with this:
 
 
 {{{
