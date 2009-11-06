@@ -2,7 +2,7 @@ _*This page is still prelimiary in the client exception handling section.*_
 
 ===General exception handling policy:===
 
-    *  *Do NOT* catch Exception or RuntimeException or any subtype of RuntimeException (there is only very very few exceptions to that rule). By catching these you will mask other errors and make debugging much more difficult.
+    *  *Do NOT* catch Exception or !RuntimeException or any subtype of !RuntimeException (there is only very very few exceptions to that rule). By catching these you will mask other errors and make debugging much more difficult.
 
 <p>*There is only two things you can do with an exception:* </p>
 
@@ -12,18 +12,18 @@ _*This page is still prelimiary in the client exception handling section.*_
 
 ==== There are two levels of severity of exceptions:====
 
-       #  *Non-fatal exceptions:* The application can continue to run without a great loss in functionality and data. Non-fatal exception should be recovered by the code catching the exception and might result in a warning about possible remaing problems.
+       #  *Non-fatal exceptions:* The application can continue to run without a great loss in functionality and data. Non-fatal exception should be recovered by the code catching the exception and might result in a warning about possible remaining problems.
 
-       #  *Fatal exceptions:* The application is in an undefined state where data might be lossed or a great loss in functionality occured and the exception is not recoverable. The handling code should log the exact cause and context of the exception, abort any other operations of the application and trigger a clean but immediate shutdown.
+       #  *Fatal exceptions:* The application is in an undefined state where data might be lossed or a great loss in functionality occurred and the exception is not recoverable. The handling code should log the exact cause and context of the exception, abort any other operations of the application and trigger a clean but immediate shutdown.
 
 ===Client exception handling:===
 
-    *    *Non-fatal exceptions:* Handle the exception and log it if necessary. Please use WorkspaceUtil.logException(). This will log the message to the eclipse .log file and the error log in th UI.
+    *    *Non-fatal exceptions:* Handle the exception and log it if necessary. Please use !WorkspaceUtil.logException(). This will log the message to the eclipse .log file and the error log in th UI.
 
     *    *Fatal exceptions:* Currently we have not mechanism to shut down a plugin or all plugins in case a fatal exception occurs, so the only way to deal with it is to shut down the Eclipse instance.
 
 ===Server exception handling:===
 
-    *     *Non-fatal exceptions:* Handle the exception and log it. You can get a Logger with LogFactory.getLog(EmfStoreController.class). It is best practice to assign it to a static private variable and log the messages with it.
+    *     *Non-fatal exceptions:* Handle the exception and log it. You can get a Logger with !LogFactory.getLog(EmfStoreController.class). It is best practice to assign it to a static private variable and log the messages with it.
 
-    *     *Fatal exceptions:* Log the exception and its context as exactly as possible, and call shutdown() of EmfStoreControler; this will shut down the server in a clean but immediate way. There is a special Exception subclass to singal fatal exceptions: FatalEmfStoreException. Use this exception to tell callers that an unrecoverable condition occured and that the server must be shut down.
+    *     *Fatal exceptions:* Log the exception and its context as exactly as possible, and call shutdown() of !EmfStoreControler; this will shut down the server in a clean but immediate way. There is a special Exception subclass to single fatal exceptions: !FatalEmfStoreException. Use this exception to tell callers that an unrecoverable condition occured and that the server must be shut down.
