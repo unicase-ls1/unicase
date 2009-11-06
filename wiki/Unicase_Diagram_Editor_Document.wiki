@@ -38,7 +38,7 @@ http://unicase.googlecode.com/files/1973e.png
 <br>
  * We need to implement our own resource. In our case it is: MEDiagramResource in org.unicase.diagram.part <br>
  * We need a Resource Factory to create the Resource. It´s also MEDiagramResource itself<br>
- * We need to register this ResourceFactory with an ID:<br>
+ * We need to register this !ResourceFactory with an ID:<br>
 
 {{{
 <extension
@@ -50,7 +50,7 @@ contentTypeIdentifier="MEDiagram">
 </extension>
 }}}
 
- * Now we have to modify the ModelDocumentProvider in setDocumentContent() to load our resource:
+ * Now we have to modify the !ModelDocumentProvider in setDocumentContent() to load our resource:
 
 {{{
 
@@ -133,7 +133,7 @@ return document;
 }}}
 
 
- * We need to override the method dispose in ModelDocumentProvider, otherwise the editor disposes our editingDomain<br>
+ * We need to override the method dispose in !ModelDocumentProvider, otherwise the editor disposes our editingDomain<br>
  * If we use an Association Class, we have to modify the XXXCreatCommand Constructor like this (you have to modify all callers, too): <br>
  * We have to centralize entries to the following extensionpoint in org.unicase.common:<br>
 
