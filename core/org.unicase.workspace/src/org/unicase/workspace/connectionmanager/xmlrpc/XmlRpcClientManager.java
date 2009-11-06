@@ -43,9 +43,9 @@ public class XmlRpcClientManager {
 	 * Initializes the connection.
 	 * 
 	 * @param serverInfo server info
-	 * @throws EmfStoreException in case of failure
+	 * @throws ConnectionException in case of failure
 	 */
-	public void initConnection(ServerInfo serverInfo) throws EmfStoreException {
+	public void initConnection(ServerInfo serverInfo) throws ConnectionException {
 		try {
 			XmlRpcClientConfigImpl config = new XmlRpcClientConfigImpl();
 			config.setServerURL(createURL(serverInfo));

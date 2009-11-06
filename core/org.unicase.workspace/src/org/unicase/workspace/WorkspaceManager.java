@@ -28,7 +28,7 @@ import org.unicase.metamodel.util.FileUtil;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.connectionmanager.KeyStoreManager;
-import org.unicase.workspace.connectionmanager.rmi.RMIAdminConnectionManagerImpl;
+import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcAdminConnectionManager;
 import org.unicase.workspace.connectionmanager.xmlrpc.XmlRpcConnectionManager;
 import org.unicase.workspace.util.WorkspaceUtil;
 
@@ -99,8 +99,8 @@ public final class WorkspaceManager {
 	 * @generated NOT
 	 */
 	private AdminConnectionManager initAdminConnectionManager() {
-
-		return new RMIAdminConnectionManagerImpl();
+		// return new RMIAdminConnectionManagerImpl();
+		return new XmlRpcAdminConnectionManager();
 	}
 
 	/**
