@@ -1,5 +1,5 @@
 This page provides information on how to deploy a feature.
 
- *[Client_Deployment_Internal_Version Client Deployment (Internal Version)]
- *[Client_Deployment_External_Version Client Deployment (External Version)]
- *[Server_Deployment Server Deployment]
+ *[Client_Deployment_Internal_Version  Client Deployment (Internal Version)]
+ *[Client_Deployment_External_Version  Client Deployment (External Version)]
+ *[Server_Deployment  Server Deployment]
