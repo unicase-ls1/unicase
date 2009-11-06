@@ -3,7 +3,11 @@ This tutorial describes how to release plugins.
 
 Step 1:
 Open the plugin's plugin.xml file. It should have a version number ending with ".qualifier":
+
 [http://unicase.googlecode.com/files/dfb0a.png]
+
 Change this old version number to the new one (e.g. 0.1.0) *without* a ".qualifier" ending:
+
 [http://unicase.googlecode.com/files/a531d.png]
+
 Note: if you want to release all plugins, you can use search and replace. 
