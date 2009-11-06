@@ -1,7 +1,7 @@
 *Please make sure you have COPE installed when doing model changes and that you know how to use it. Otherwise migrations will not work!*
 <br>
 
-We have a workflow and a set of rules in place to work with the ecore models in unicase. This page describes the workflow for modeling and the modeling rules. Further information about the different models is available [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/a84b5/unicase_model_documentation.html here]. Possible model transformations during project runtime can be found [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/bf776/Meta-Model_Transformations.html here].
+We have a workflow and a set of rules in place to work with the ecore models in UNICASE. This page describes the workflow for modeling and the modeling rules. Further information about the different models is available [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/a84b5/unicase_model_documentation.html here]. Possible model transformations during project runtime can be found [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/bf776/Meta-Model_Transformations.html here].
 
 *_Modeling Workflow:_*
 
