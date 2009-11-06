@@ -1,3 +1,1 @@
- * [Run_EMFStore_as_developer  Run EMFStore as developer]
-
-[http://unicase.googlecode.com/files/StartEmfStore.mov kjhkjh]
+[http://unicase.googlecode.com/files/StartEmfStore.mov Run EMFStore as developer]
