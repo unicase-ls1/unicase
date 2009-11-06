@@ -3,7 +3,7 @@
 
 This document describes how the automatic validation is implemented in UNICASE and how new validation rules in Java as well as in OCL can be defined. Validation is the automatic verification of model constraints. For the implementation of validation in UNICASE, the Eclipse Modeling Framework (EMF) Validation Framework (http://www.eclipse.org/modeling/emf/?project=validation) was used. The framework supports the definition of validation rules initially from Java and OCL. In addition, other validation language can be integrated. Validation can take place both on static and dynamic way, i.e. as a batch job or live. This means that the validation is triggered either by the user, or continuously executed.
 
-A validation rule always refers to a particular type of model element as well as a specific attribute. The rule is violated when an instance of this type, the editor uses this information to the corresponding attribute in the interface visible to the user to mark. In addition, the framework can be about one level of injury (e.g. "Warning" or "Error"), which is connected to the model element itself, the creator of the model element and a description of the violation appears in the validation view set.
+A validation rule always refers to a particular type of model element as well as a specific attribute. The rule is violated by an instance of this type, the editor uses this information to the corresponding attribute in the interface visible to the user to mark. In addition, the framework can be about one level of injury (e.g. "Warning" or "Error"), which is connected to the model element itself, the creator of the model element and a description of the violation appear in the validation view set.
 
 *Integration of the Validation Framework*
 
@@ -31,7 +31,7 @@ To be able to use the EMF Validation Framework, as the first step the `org.eclip
 </extension>
 }}}
 
-The binding here is to the model plug-in itself, the client is bound to the class !ValidationClientSelector, which controls the review of model elements. Setting this extension points is performed only once and after that can be used by all the validation rules.
+The binding here is to the model plug-in itself, the client is bound to the class !ValidationClientSelector, which controls the checking of model elements. Setting this extension points is performed only once and after that can be used by all the validation rules.
 
 *Defining rules*
 
