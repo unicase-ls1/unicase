@@ -9,8 +9,8 @@ A: add @implements {{{<interfacename>}}} or @extends {{{<superclassname>}}} to t
 A: Double click on your Manifest.MF and switch to the dependency tab. Here you can add dependecies you need, e.g. org.unicase.model. Unless you know why do not add a minimum or maximum version number. If it is added by default if you add a dependency remove it please.
 
 *Q: How can I get access to the unicase Workspace from a plugin?*<br>
-A: Import org.unicase.workspace as a dependency. Call {{{
-WorkspaceManager.getInstance().getCurrentWorkspace()}}}.
+A: Import org.unicase.workspace as a dependency. Call 
+!WorkspaceManager.getInstance().getCurrentWorkspace().
 
 *Q: Which Content or !LabelProvider should I use?*<br>
 A: e.g. for a !LabelProvider only for Model: 
