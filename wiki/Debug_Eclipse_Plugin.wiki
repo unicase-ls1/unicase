@@ -6,7 +6,7 @@
 Almost every UI actions and events are wrapped in the so called loops, which eventually catch all internal exceptions, so that the application doesn't hang. Since these exceptions are always caught, it is often very hard to debug them using the conventional procedures with the Eclipse Debugger.
 
     # One option is to add an explicit Java Exception Breakpoint and to set it for both "caught and uncaught" exceptions. Such exceptions should be (most frequently) the usual !NullPointerExceptions as well as the SWTException (the standard UI Exception for SWT).
-    # The other option is to look up the exception in the logs. Surprisingly, they are not shown (afaik) in the Eclipse Workbench, but in the .log file located in the .metadata directory of your runtime application (e.g. /!runtime-!EclipseApplication/.metadata).
+    # The other option is to look up the exception in the logs. Surprisingly, they are not shown (afaik) in the Eclipse Workbench, but in the .log file located in the .metadata directory of your runtime application (e.g. /runtime-!EclipseApplication/.metadata).
 
 
 ====Additional here is an experience report of Alex, when debugging a memory overflow in MEEditor:====
