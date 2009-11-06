@@ -58,7 +58,6 @@ public class AddPendingFileTransfersTest extends AbstractFileAPIClientSideTest {
 		filesInCache = new ArrayList<File>();
 	}
 
-	@Test
 	private void checkConsistencyBefore() {
 		// There should not be any pending file transfers before the test has been run. This is a simple consistency
 		// check to verify that the setup is clean.
@@ -102,7 +101,6 @@ public class AddPendingFileTransfersTest extends AbstractFileAPIClientSideTest {
 		}
 	}
 
-	@Test
 	private void addPendingFileTransfersToWorkspace() {
 		// adding three non-random files to the PendingFileTransfer EList. The server will be initialized after these
 		// have been added.
