@@ -21,7 +21,7 @@ We use EMF and its code generation facilities for generating code for the follow
     * *EMF store model:*
           * *_Purpose:_* Defines the model of the client workspace. The client workspace stores project models and administrative information about them, such as the user, server urls and synchronization related information.
           * *_Ecore location:_* org.unicase.emfstore.workspace/model/workspace.ecore
-          * *_Dependencies:_* EMF store model and therefore also unicase model
+          * *_Dependencies:_* EMF store model and therefore also UNICASE model
           * *_plugins:_*
                 * org.unicase.workspace
                 * org.unicase.workspace.edit
