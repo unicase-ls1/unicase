@@ -1,4 +1,4 @@
- * [EMF_Basics EMF Basics]<br>
+ * [http://publib.boulder.ibm.com/infocenter/wasinfo/v6r0/index.jsp?topic=/org.eclipse.emf.doc/references/overview/EMF.html Basics]<br>
  * [Menu_Extension_Point Menu Extension Point]<br>
  * [Creating_Update_Site Creating an Update Site]<br>
  * [Internationalization Internationalization]<br>
