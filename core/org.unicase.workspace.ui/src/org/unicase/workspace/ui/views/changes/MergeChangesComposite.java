@@ -30,6 +30,7 @@ import org.eclipse.swt.widgets.TabItem;
 import org.unicase.emfstore.conflictDetection.ConflictDetector;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.workspace.WorkspaceManager;
 
 /**
@@ -295,6 +296,19 @@ public class MergeChangesComposite extends Composite implements
 			from = theirOperations;
 			to = myOperations;
 		}
+
+		// Fix: in case a suboperation is selected the requiring of the mother
+		// operation will be checked
+		for (AbstractOperation op : from) {
+			if (op instanceof CompositeOperation) {
+				if (((CompositeOperation) op).getSubOperations().contains(
+						selected)) {
+					selected = op;
+					break;
+				}
+			}
+		}
+
 		List<AbstractOperation> required = conflictDetector.getRequired(from,
 				selected);
 		for (AbstractOperation op : required) {
