@@ -1,9 +1,10 @@
-
 The Image objects (used for icons, etc.) are heavy weighted object
 which consume OS resources like handles. These object are managed
 directly by OS and not by JVM and hence are not garbage collected.
 Because of that, there are some limitations in creating and using
 them.<br>
+
+
 Most important is how we create them using createImage() method
 and use them in LabelProviders.
 For exmaple I tested unicase with a profiler and as soon as TaskView
@@ -12,4 +13,5 @@ not be the case and probably leads to "no more hadles" exception.
 I recommend that we read the following article and everyone reviews
 his code to match guidelines provided in it:
 <br>
+
 http://www.eclipse.org/articles/Article-Using%20Images%20In%20Eclipse/Using%20Images%20In%20Eclipse.html
