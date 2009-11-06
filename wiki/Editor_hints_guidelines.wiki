@@ -1,6 +1,6 @@
 The formal definition: In general document hints are EAnnotations to the features of a !ModelElement that specify the preferred position, priority etc. at which the feature should be displayed in the MEEditor. <br>
 
-_A bit clearer:_ Let's say you want to display the "severity" of the !BugReports right after the "description". To do this, you add an EAnnotation in the unicase model:
+_A bit clearer:_ Let's say you want to display the "severity" of the !BugReports right after the "description". To do this, you add an EAnnotation in the UNICASE model:
 <br>
 <br>
 
