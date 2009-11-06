@@ -6,3 +6,5 @@ To deploy a new version please proceed as following:
 Step 1: 
 
 Before starting the release send an email to the developer mailing list to announce that you are creating a release from a specific branch so no one can commit on the branch until further notice. Check out all the plug-ins in the branch you would like to construct the release from. Make sure that all the plug-ins are checked out directly for example: in org.unicase.developer you should check out *!UnicaseFeature* and *!UnicaseUpdateSite* directly.
+
+[http://unicase.googlecode.com/files/cd1.png]
