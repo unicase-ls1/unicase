@@ -1,11 +1,11 @@
 ===There is a number of utility classes in UNICASE for different tasks. Here you will find a list of them along with a brief description.===
 
 *!SetupHelper* <br><br>
-org.unicase.workspace.test.SetupHelper<br>
+org.unicase.workspace.test.!SetupHelper<br>
 _Helper class for setup/cleanup test fixtures._<br>
 
 *!AccessControlHelper*<br><br>
-org.unicase.workspace.accesscontrol.AccessControlHelper<br>
+org.unicase.workspace.accesscontrol.!AccessControlHelper<br>
 _Helper class for access control checks._<br>
 
 *!ActionHelper*<br><br>
@@ -13,95 +13,95 @@ org.unicase.ui.common.util.ActionHelper<br>
 _This class contains some utility method for commands and handlers._<br>
 
 *!ChangePackageVisualizationHelper*<br><br>
-org.unicase.workspace.ui.views.changes.ChangePackageVisualizationHelper<br>
+org.unicase.workspace.ui.views.changes.!ChangePackageVisualizationHelper<br>
 _A helper class for the visualization of change packages._<br>
 
 *!EstimateHelper*<br><br>
-org.unicase.model.task.util.EstimateHelper<br>
-_!EstimateHelper for computing numbers/estimates of a !ModelElements and !LeafOpeners._<br> _!LeafOpeners are a subset of all tasks in the !OpeningLinkTaxonomy that a !ModelElements needs to be closed in order to be closed itself._ <br> *See also:*<br> TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(ModelElement)<br>
+org.unicase.model.task.util.!EstimateHelper<br>
+_!EstimateHelper for computing numbers/estimates of a !ModelElements and !LeafOpeners._<br> _!LeafOpeners are a subset of all tasks in the !OpeningLinkTaxonomy that a !ModelElements needs to be closed in order to be closed itself._ <br> *See also:*<br> TaxonomyAccess.getInstance().getOpeningLinkTaxonomy().getLeafOpeners(!ModelElement)<br>
 
-*InegrationTestHelper*<br><br>
-org.unicase.workspace.test.integration.forward.IntegrationTestHelper<br>
+*!InegrationTestHelper*<br><br>
+org.unicase.workspace.test.integration.forward.!IntegrationTestHelper<br>
 _Helper class for testing._<br>
 
-*ModelValidationHelper*<br><br>
-org.unicase.model.util.ModelValidationHelper<br>
+*!ModelValidationHelper*<br><br>
+org.unicase.model.util.!ModelValidationHelper<br>
 _Helps with the validation of EMF models._<br>
 
-*NotificationHelper*<br><br>
-org.unicase.workspace.notification.provider.NotificationHelper<br>
+*!NotificationHelper*<br><br>
+org.unicase.workspace.notification.provider.!NotificationHelper<br>
 _This class offer helper methods for notifications._<br>
 
-*OpeningLinkHelper*<br><br>
-org.unicase.model.task.util.OpeningLinkHelper<br>
+*!OpeningLinkHelper*<br><br>
+org.unicase.model.task.util.!OpeningLinkHelper<br>
 _This class provides methods related to opening links and depends on the current OpeningLinkTaxonomy._<br>
 
-*OrgUnitHelper*<br><br>
-org.unicase.workspace.util.OrgUnitHelper<br>
+*!OrgUnitHelper*<br><br>
+org.unicase.workspace.util.!OrgUnitHelper<br>
 _Helper for OrgUnit operations._<br>
 
-*ResourceHelper*<br><br>
-org.unicase.emfstore.core.helper.ResourceHelper<br>
+*!ResourceHelper*<br><br>
+org.unicase.emfstore.core.helper.!ResourceHelper<br>
 _Helper for creating resources etc._<br>
 
-*TaskValidationHelper*<br><br>
-org.unicase.model.task.validation.TaskValidationHelper<br>
+*!TaskValidationHelper*<br><br>
+org.unicase.model.task.validation.!TaskValidationHelper<br>
 _Helper for task validation._<br>
 
-*URLHelper*<br><br>
-org.unicase.ui.common.util.URLHelper<br>
+*!URLHelper*<br><br>
+org.unicase.ui.common.util.!URLHelper<br>
 _This class offer helper methods for the unicase URLs._<br>
 
-*ValidationConstraintHelper*<br><br>
-org.unicase.model.util.ValidationConstraintHelper<br>
+*!ValidationConstraintHelper*<br><br>
+org.unicase.model.util.!ValidationConstraintHelper<br>
 _Helps with validation of modelelements._<br>
 
-*CommandUtility*<br><br>
-org.unicase.ui.common.diagram.util.CommandUtility<br>
+*!CommandUtility*<br><br>
+org.unicase.ui.common.diagram.util.!CommandUtility<br>
 _Utility class for common operations on GEF commands._<br>
 
-*DashboardImageUtil*<br><br>
-org.unicase.workspace.ui.dashboard.DashboardImageUtil<br>
+*!DashboardImageUtil*<br><br>
+org.unicase.workspace.ui.dashboard.!DashboardImageUtil<br>
 _A utility class to handle images in the dashboard._<br>
 
-*EditPartUtility*<br><br>
-org.unicase.ui.common.diagram.util.EditPartUtility<br>
+*!EditPartUtility*<br><br>
+org.unicase.ui.common.diagram.util.!EditPartUtility<br>
 
-*EsModelUtil*<br><br>
-org.unicase.emfstore.esmodel.util.EsModelUtil<br>
+*!EsModelUtil*<br><br>
+org.unicase.emfstore.esmodel.util.!EsModelUtil<br>
 _Helper class for emf store model related tasks._<br>
 
-*EventUtil*<br><br>
-org.unicase.workspace.util.EventUtil<br>
+*!EventUtil*<br><br>
+org.unicase.workspace.util.!EventUtil<br>
 _Helper class to log events._<br>
 
-*FilePartionerUtil*<br><br>
-org.unicase.emfstore.filetransfer.FilePartitionerUtil<br>
+*!FilePartionerUtil*<br><br>
+org.unicase.emfstore.filetransfer.!FilePartitionerUtil<br>
 _File transfer utility class._<br>
 
-*FileTransferUtil*<br><br>
-org.unicase.workspace.util.FileTransferUtil<br>
+*!FileTransferUtil*<br><br>
+org.unicase.workspace.util.!FileTransferUtil<br>
 _Utility methods for the file transfer interface. Important notice regarding the terminology used: construct means that the file or folder location is put together from different strings, i.e. the file or folder does not have to exists. find means that the method tries to localize the file. Failing in retrieving the file will throw an exception._
 
-*FileUtil*<br><br>
-org.unicase.model.util.FileUtil<br>
+*!FileUtil*<br><br>
+org.unicase.model.util.!FileUtil<br>
 _Helper class for file system operations._<br>
 
-*ModelUtil*<br><br>
-org.unicase.model.util.ModelUtil<br>
-_Utility class for ModelElements._<br>
+*!ModelUtil*<br><br>
+org.unicase.model.util.!ModelUtil<br>
+_Utility class for !ModelElements._<br>
 
-*SerializationUtil*<br><br>
-org.unicase.emfstore.connection.rmi.SerializationUtil<br>
-_Helper class for serializing and deserializing EObjects for RMI transport._<br>
+*!SerializationUtil*<br><br>
+org.unicase.emfstore.connection.rmi.!SerializationUtil<br>
+_Helper class for serializing and !deserializing EObjects for RMI transport._<br>
 
-*ServerTestUtil*<br><br>
-org.unicase.test.servertests.ServerTestUtil<br>
+*!ServerTestUtil*<br><br>
+org.unicase.test.servertests.!ServerTestUtil<br>
 
-*UnicaseUiUtil*<br><br>
-org.unicase.ui.common.util.UnicaseUiUtil<br>
+*!UnicaseUiUtil*<br><br>
+org.unicase.ui.common.util.!UnicaseUiUtil<br>
 _Utility class for user interface tasks, such as showing selection dialog or report error dialog._<br>
 
-*WorkspaceUtil*<br><br>
-org.unicase.workspace.util.WorkspaceUtil<br>
+*!WorkspaceUtil*<br><br>
+org.unicase.workspace.util.!WorkspaceUtil<br>
 _Workspace utility class._ <br>
