@@ -38,7 +38,7 @@ _This class provides methods related to opening links and depends on the current
 
 *!OrgUnitHelper*<br><br>
 org.unicase.workspace.util.!OrgUnitHelper<br>
-_Helper for OrgUnit operations._<br>
+_Helper for !OrgUnit operations._<br>
 
 *!ResourceHelper*<br><br>
 org.unicase.emfstore.core.helper.!ResourceHelper<br>
