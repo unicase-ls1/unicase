@@ -52,7 +52,8 @@ public abstract class AbstractFileAPIClientSideTest {
 
 		setupHelper.setupWorkSpace();
 
-		setupHelper.setupTestProjectSpace();
+		// setupHelper.setupTestProjectSpace();
+		setupHelper.createEmptyTestProjectSpace();
 
 		setupHelper.shareProject();
 

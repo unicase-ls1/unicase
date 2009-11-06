@@ -32,6 +32,7 @@ import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.AccessControlException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.Project;
 import org.unicase.metamodel.util.FileUtil;
 import org.unicase.model.organization.User;
@@ -44,7 +45,9 @@ import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
+import org.unicase.workspace.impl.WorkspaceImpl;
 import org.unicase.workspace.test.integration.forward.IntegrationTestHelper;
+import org.unicase.workspace.util.UnicaseCommand;
 
 /**
  * Helper class for setup/cleanup test fixtures.
@@ -264,6 +267,30 @@ public class SetupHelper {
 	}
 
 	/**
+	 * Creates an empty project space.
+	 */
+	public void createEmptyTestProjectSpace() {
+		new UnicaseCommand() {
+
+			@Override
+			protected void doRun() {
+				ProjectSpace projectSpace = WorkspaceFactory.eINSTANCE.createProjectSpace();
+				projectSpace.setProject(MetamodelFactory.eINSTANCE.createProject());
+				projectSpace.setProjectName("Testproject");
+				projectSpace.setProjectDescription("Test description");
+				projectSpace.setLocalOperations(WorkspaceFactory.eINSTANCE.createOperationComposite());
+
+				projectSpace.initResources(workSpace.eResource().getResourceSet());
+
+				((WorkspaceImpl) workSpace).addProjectSpace(projectSpace);
+				workSpace.save();
+				testProjectSpace = projectSpace;
+
+			}
+		}.run();
+	}
+
+	/**
 	 * Setups a new test project space by importing one of template test projects.
 	 */
 	public void setupTestProjectSpace() {
@@ -292,7 +319,6 @@ public class SetupHelper {
 		});
 
 		testProject = testProjectSpace.getProject();
-
 	}
 
 	/**
