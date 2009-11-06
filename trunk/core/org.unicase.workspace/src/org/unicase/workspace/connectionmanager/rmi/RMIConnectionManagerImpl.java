@@ -10,9 +10,7 @@ import java.rmi.RemoteException;
 import java.rmi.registry.LocateRegistry;
 import java.rmi.registry.Registry;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.unicase.emfstore.connection.rmi.RMIConnectionHandler;
 import org.unicase.emfstore.connection.rmi.RMIEmfStoreFacade;
@@ -37,11 +35,11 @@ import org.unicase.emfstore.exceptions.ClientVersionOutOfDateException;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.RMISerializationException;
-import org.unicase.emfstore.exceptions.UnknownSessionException;
 import org.unicase.emfstore.filetransfer.FileChunk;
 import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ServerInfo;
+import org.unicase.workspace.connectionmanager.AbstractConnectionManager;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
 
 /**
@@ -51,16 +49,7 @@ import org.unicase.workspace.connectionmanager.ConnectionManager;
  * 
  * @author Wesendonk
  */
-public class RMIConnectionManagerImpl implements ConnectionManager {
-
-	private Map<SessionId, RMIEmfStoreFacade> facadeMap;
-
-	/**
-	 * Default constructor.
-	 */
-	public RMIConnectionManagerImpl() {
-		setFacadeMap(new HashMap<SessionId, RMIEmfStoreFacade>());
-	}
+public class RMIConnectionManagerImpl extends AbstractConnectionManager<RMIEmfStoreFacade> implements ConnectionManager {
 
 	/**
 	 * {@inheritDoc}
@@ -71,7 +60,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 
 		try {
 
-			return (PrimaryVersionSpec) SerializationUtil.stringToEObject(getFacade(sessionId).createVersion(
+			return (PrimaryVersionSpec) SerializationUtil.stringToEObject(getConnectionProxy(sessionId).createVersion(
 				SerializationUtil.eObjectToString(sessionId), SerializationUtil.eObjectToString(projectId),
 				SerializationUtil.eObjectToString(baseVersionSpec), SerializationUtil.eObjectToString(changePackage),
 				SerializationUtil.eObjectToString(logMessage)));
@@ -87,9 +76,9 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		VersionSpec target) throws EmfStoreException {
 		List<ChangePackage> result = new ArrayList<ChangePackage>();
 		try {
-			for (String changePackage : getFacade(sessionId).getChanges(SerializationUtil.eObjectToString(sessionId),
-				SerializationUtil.eObjectToString(projectId), SerializationUtil.eObjectToString(source),
-				SerializationUtil.eObjectToString(target))) {
+			for (String changePackage : getConnectionProxy(sessionId).getChanges(
+				SerializationUtil.eObjectToString(sessionId), SerializationUtil.eObjectToString(projectId),
+				SerializationUtil.eObjectToString(source), SerializationUtil.eObjectToString(target))) {
 
 				ChangePackage changePackageObject = (ChangePackage) SerializationUtil.stringToEObject(changePackage);
 				result.add(changePackageObject);
@@ -106,7 +95,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 */
 	public List<HistoryInfo> getHistoryInfo(SessionId sessionId, ProjectId projectId, HistoryQuery historyQuery)
 		throws EmfStoreException {
-		RMIEmfStoreFacade facade = getFacade(sessionId);
+		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {
 			List<HistoryInfo> result = new ArrayList<HistoryInfo>();
 			for (String str : facade.getHistoryInfo(SerializationUtil.eObjectToString(sessionId), SerializationUtil
@@ -124,7 +113,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 */
 	public void addTag(SessionId sessionId, ProjectId projectId, PrimaryVersionSpec versionSpec, TagVersionSpec tag)
 		throws EmfStoreException {
-		RMIEmfStoreFacade facade = getFacade(sessionId);
+		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {
 			facade.addTag(SerializationUtil.eObjectToString(sessionId), SerializationUtil.eObjectToString(projectId),
 				SerializationUtil.eObjectToString(versionSpec), SerializationUtil.eObjectToString(tag));
@@ -139,7 +128,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 */
 	public void removeTag(SessionId sessionId, ProjectId projectId, PrimaryVersionSpec versionSpec, TagVersionSpec tag)
 		throws EmfStoreException {
-		RMIEmfStoreFacade facade = getFacade(sessionId);
+		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {
 			facade.removeTag(SerializationUtil.eObjectToString(sessionId),
 				SerializationUtil.eObjectToString(projectId), SerializationUtil.eObjectToString(versionSpec),
@@ -155,7 +144,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	public Project getProject(SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
 		throws EmfStoreException {
 		try {
-			return (Project) SerializationUtil.stringToEObject(getFacade(sessionId).getProject(
+			return (Project) SerializationUtil.stringToEObject(getConnectionProxy(sessionId).getProject(
 				SerializationUtil.eObjectToString(sessionId), SerializationUtil.eObjectToString(projectId),
 				SerializationUtil.eObjectToString(versionSpec)));
 		} catch (RemoteException e) {
@@ -169,7 +158,8 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	public List<ProjectInfo> getProjectList(SessionId sessionId) throws EmfStoreException {
 		try {
 			List<ProjectInfo> result = new ArrayList<ProjectInfo>();
-			for (String str : getFacade(sessionId).getProjectList(SerializationUtil.eObjectToString(sessionId))) {
+			for (String str : getConnectionProxy(sessionId)
+				.getProjectList(SerializationUtil.eObjectToString(sessionId))) {
 				result.add((ProjectInfo) SerializationUtil.stringToEObject(str));
 			}
 			return result;
@@ -184,9 +174,9 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	public PrimaryVersionSpec resolveVersionSpec(SessionId sessionId, ProjectId projectId, VersionSpec versionSpec)
 		throws EmfStoreException {
 		try {
-			return (PrimaryVersionSpec) SerializationUtil.stringToEObject(getFacade(sessionId).resolveVersionSpec(
-				SerializationUtil.eObjectToString(sessionId), SerializationUtil.eObjectToString(projectId),
-				SerializationUtil.eObjectToString(versionSpec)));
+			return (PrimaryVersionSpec) SerializationUtil.stringToEObject(getConnectionProxy(sessionId)
+				.resolveVersionSpec(SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(projectId), SerializationUtil.eObjectToString(versionSpec)));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -198,7 +188,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	public ProjectInfo createEmptyProject(SessionId sessionid, String name, String description, LogMessage logMessage)
 		throws EmfStoreException {
 		try {
-			return (ProjectInfo) SerializationUtil.stringToEObject(getFacade(sessionid).createProject(
+			return (ProjectInfo) SerializationUtil.stringToEObject(getConnectionProxy(sessionid).createProject(
 				SerializationUtil.eObjectToString(sessionid), name, description,
 				SerializationUtil.eObjectToString(logMessage)));
 		} catch (RemoteException e) {
@@ -212,7 +202,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	public ProjectInfo createProject(SessionId sessionid, String name, String description, LogMessage logMessage,
 		Project project) throws EmfStoreException {
 		try {
-			return (ProjectInfo) SerializationUtil.stringToEObject(getFacade(sessionid).createProject(
+			return (ProjectInfo) SerializationUtil.stringToEObject(getConnectionProxy(sessionid).createProject(
 				SerializationUtil.eObjectToString(sessionid), name, description,
 				SerializationUtil.eObjectToString(logMessage), SerializationUtil.eObjectToString(project)));
 		} catch (RemoteException e) {
@@ -225,7 +215,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 */
 	public void deleteProject(SessionId sessionId, ProjectId projectId, boolean deleteFiles) throws EmfStoreException {
 		try {
-			getFacade(sessionId).deleteProject(SerializationUtil.eObjectToString(sessionId),
+			getConnectionProxy(sessionId).deleteProject(SerializationUtil.eObjectToString(sessionId),
 				SerializationUtil.eObjectToString(projectId), deleteFiles);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
@@ -237,7 +227,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 */
 	public ACUser resolveUser(SessionId sessionId, ACOrgUnitId id) throws EmfStoreException {
 		try {
-			return (ACUser) SerializationUtil.stringToEObject(getFacade(sessionId).resolveUser(
+			return (ACUser) SerializationUtil.stringToEObject(getConnectionProxy(sessionId).resolveUser(
 				SerializationUtil.eObjectToString(sessionId), SerializationUtil.eObjectToString(id)));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
@@ -250,7 +240,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	public ProjectHistory exportProjectHistoryFromServer(SessionId sessionId, ProjectId projectId)
 		throws EmfStoreException {
 		try {
-			return (ProjectHistory) SerializationUtil.stringToEObject(getFacade(sessionId)
+			return (ProjectHistory) SerializationUtil.stringToEObject(getConnectionProxy(sessionId)
 				.exportProjectHistoryFromServer(SerializationUtil.eObjectToString(sessionId),
 					SerializationUtil.eObjectToString(projectId)));
 		} catch (RemoteException e) {
@@ -264,8 +254,9 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	public ProjectId importProjectHistoryToServer(SessionId sessionId, ProjectHistory projectHistory)
 		throws EmfStoreException {
 		try {
-			return (ProjectId) SerializationUtil.stringToEObject(getFacade(sessionId).importProjectHistoryToServer(
-				SerializationUtil.eObjectToString(sessionId), SerializationUtil.eObjectToString(projectHistory)));
+			return (ProjectId) SerializationUtil.stringToEObject(getConnectionProxy(sessionId)
+				.importProjectHistoryToServer(SerializationUtil.eObjectToString(sessionId),
+					SerializationUtil.eObjectToString(projectHistory)));
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
@@ -283,7 +274,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 			RMIEmfStoreFacade facade = (RMIEmfStoreFacade) registry.lookup(RMIConnectionHandler.RMI_NAME);
 			SessionId sessionId = (SessionId) SerializationUtil.stringToEObject(facade.login(username, password,
 				SerializationUtil.eObjectToString(serverInfo), SerializationUtil.eObjectToString(clientVersionInfo)));
-			getFacadeMap().put(sessionId, facade);
+			addConnectionProxy(sessionId, facade);
 			return sessionId;
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
@@ -303,27 +294,12 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 */
 	public void logout(SessionId sessionId) throws EmfStoreException {
 		try {
-			RMIEmfStoreFacade facade = getFacade(sessionId);
+			RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 			facade.logout(SerializationUtil.eObjectToString(sessionId));
-			facadeMap.remove(facade);
+			removeConnectionProxy(sessionId);
 		} catch (RemoteException e) {
 			throw new ConnectionException(REMOTE, e);
 		}
-	}
-
-	/**
-	 * Returns the RMI facade for a given server, identified by the session id.
-	 * 
-	 * @param sessionId sessionid
-	 * @return rmi facase
-	 * @throws UnknownSessionException in case of failure
-	 */
-	protected RMIEmfStoreFacade getFacade(SessionId sessionId) throws UnknownSessionException {
-		RMIEmfStoreFacade facade = getFacadeMap().get(sessionId);
-		if (facade == null) {
-			throw new UnknownSessionException(LOGIN_FIRST);
-		}
-		return facade;
 	}
 
 	/**
@@ -331,7 +307,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 */
 	public FileInformation uploadFileChunk(SessionId sessionId, ProjectId projectId, FileChunk fileChunk)
 		throws EmfStoreException {
-		RMIEmfStoreFacade facade = getFacade(sessionId);
+		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {
 			return facade.uploadFileChunk(SerializationUtil.eObjectToString(sessionId), SerializationUtil
 				.eObjectToString(projectId), fileChunk);
@@ -345,7 +321,7 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 	 */
 	public FileChunk downloadFileChunk(SessionId sessionId, ProjectId projectId, FileInformation fileInformation)
 		throws EmfStoreException, ConnectionException {
-		RMIEmfStoreFacade facade = getFacade(sessionId);
+		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {
 			return facade.downloadFileChunk(SerializationUtil.eObjectToString(sessionId), SerializationUtil
 				.eObjectToString(projectId), fileInformation);
@@ -354,25 +330,12 @@ public class RMIConnectionManagerImpl implements ConnectionManager {
 		}
 	}
 
-	private void setFacadeMap(Map<SessionId, RMIEmfStoreFacade> facadeMap) {
-		this.facadeMap = facadeMap;
-	}
-
-	/**
-	 * Returns a map containing all active rmi facades.
-	 * 
-	 * @return map of facades.
-	 */
-	protected Map<SessionId, RMIEmfStoreFacade> getFacadeMap() {
-		return facadeMap;
-	}
-
 	/**
 	 * {@inheritDoc}
 	 */
 	public void transmitProperty(SessionId sessionId, OrgUnitProperty changedProperty, ACUser user, ProjectId projectId)
 		throws EmfStoreException, ConnectionException {
-		RMIEmfStoreFacade facade = getFacade(sessionId);
+		RMIEmfStoreFacade facade = getConnectionProxy(sessionId);
 		try {
 			facade.transmitProperty(SerializationUtil.eObjectToString(sessionId), SerializationUtil
 				.eObjectToString(changedProperty), SerializationUtil.eObjectToString(user), SerializationUtil

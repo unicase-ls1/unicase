@@ -44,11 +44,11 @@ public class InvalidArgumentsTest extends ServerTests {
 		ServerTests.setUpBeforeClass();
 		setConnectionManager(new RMIConnectionManagerImpl() {
 			@Override
-			protected RMIEmfStoreFacade getFacade(SessionId sessionId) throws UnknownSessionException {
-				if (sessionId == null && getFacadeMap().size() > 0) {
-					return getFacadeMap().values().iterator().next();
+			protected RMIEmfStoreFacade getConnectionProxy(SessionId sessionId) throws UnknownSessionException {
+				if (sessionId == null && getConnectionProxyMap().size() > 0) {
+					return getConnectionProxyMap().values().iterator().next();
 				}
-				return super.getFacade(sessionId);
+				return super.getConnectionProxy(sessionId);
 
 			}
 		});
