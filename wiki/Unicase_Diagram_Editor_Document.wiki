@@ -29,7 +29,7 @@ try { PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().openE
 }}}
 
 
-  *  We need to tell the diagram editor to use our EditingDomian by manipulating the genmodel:
+  *  We need to tell the diagram editor to use our !EditingDomian by manipulating the genmodel:
 
 <br>
 <br>
