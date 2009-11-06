@@ -12,7 +12,7 @@ To export for multiple platforms, you have to have the delta pack installed as d
 http://unicase.googlecode.com/files/46a54.png
 <br>
 <br>
-3. Set the Root and Destination directories and make sure to "Export for multiple platforms" if required.
+3. Set the Root and Destination directories and make sure to "Export for multiple platforms" if required.<br>
 4. Press next if exporting for multiple platforms to select the platforms.
 <br>
 <br>
