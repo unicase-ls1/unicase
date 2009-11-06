@@ -1,4 +1,4 @@
-*_Easy general RMI tutorial:_*
+*_Easy general RMI tutorial:_* <br>
 http://www.galileocomputing.de/openbook/javainsel7/javainsel_18_003.htm
 <br>
 _*RMI in PDE:_*
