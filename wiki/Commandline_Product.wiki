@@ -1,0 +1,45 @@
+            1. If developing for multiple platforms, please download the delta-pack from the Eclipse downloads page.
+<br>
+<br>
+http://unicase.googlecode.com/files/4e2ec.png
+<br>
+<br>
+            2. Configure the target platform (Preferences: Plug-in Development/Target Platform) to point to an appropriate Eclipse installation containing the delta pack.
+<br>
+<br>
+http://unicase.googlecode.com/files/a2de1.png
+<br>
+<br>
+            3. Create a new product configuration.
+<br>
+<br>
+http://unicase.googlecode.com/files/236ca.png
+<br>
+<br>
+            4. Choose a filename and select to start with basic settings.
+<br>
+<br>
+http://unicase.googlecode.com/files/387b1.png
+<br>
+<br>
+            5. Open the .product and configure the basic settings.
+<br>
+<br>
+http://unicase.googlecode.com/files/88629.png
+<br>
+<br>
+            6. Choose the appropriate Application and create a new "product identifier".
+<br>
+<br>
+http://unicase.googlecode.com/files/d07c8.png
+<br>
+<br>
+            7. Switch to the "Configuration" tab and and the required plug-ins. Make sure to click "Add Required Plug-Ins" to ensure all dependencies are met.
+<br>
+<br>
+http://unicase.googlecode.com/files/9eb12.png
+<br>
+<br>
+            8. Now the Eclipse products can be exported as described [here].
+<br>
+<br>
