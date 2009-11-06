@@ -45,7 +45,8 @@ modelElement.eAdapters().add(new AdapterImpl() {
 }}}
 
 *Q: How do I use standard icons/images from eclipse?*<br>
-A: {{{
+A: 
+{{{
 PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.XXX)
 }}}
     _* Hint: Many other free icons can be found on [http://www.famfamfam.com/ FamFamFam]._*
