@@ -24,6 +24,6 @@ _*This page is still prelimiary in the client exception handling section.*_
 
 ===Server exception handling:===
 
-    *     *Non-fatal exceptions:* Handle the exception and log it. You can get a Logger with !LogFactory.getLog(EmfStoreController.class). It is best practice to assign it to a static private variable and log the messages with it.
+    *     *Non-fatal exceptions:* Handle the exception and log it. You can get a Logger with !LogFactory.getLog(!EmfStoreController.class). It is best practice to assign it to a static private variable and log the messages with it.
 
     *     *Fatal exceptions:* Log the exception and its context as exactly as possible, and call shutdown() of !EmfStoreControler; this will shut down the server in a clean but immediate way. There is a special Exception subclass to single fatal exceptions: !FatalEmfStoreException. Use this exception to tell callers that an unrecoverable condition occured and that the server must be shut down.
