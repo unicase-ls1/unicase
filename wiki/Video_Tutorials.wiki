@@ -1,4 +1,3 @@
  * [Run_EMFStore_as_developer  Run EMFStore as developer]
 
-<wiki:video url="http://unicase.googlecode.com/files/StartEmfStore.mov"/>
 [http://unicase.googlecode.com/files/StartEmfStore.mov kjhkjh]
