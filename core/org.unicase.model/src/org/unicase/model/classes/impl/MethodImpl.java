@@ -36,11 +36,11 @@ import org.unicase.model.requirement.Scenario;
  * <ul>
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#getVisibility <em>Visibility</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#getScope <em>Scope</em>}</li>
- * <li>{@link org.unicase.model.classes.impl.MethodImpl#getDefiningClass <em>Defining Class</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#getReturnType <em>Return Type</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#getSignature <em>Signature</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#getArguments <em>Arguments</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#getProperties <em>Properties</em>}</li>
+ * <li>{@link org.unicase.model.classes.impl.MethodImpl#getDefiningClass <em>Defining Class</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#getLabel <em>Label</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#isStubbed <em>Stubbed</em>}</li>
  * <li>{@link org.unicase.model.classes.impl.MethodImpl#getCalledMethods <em>Called Methods</em>}</li>
@@ -462,10 +462,10 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			return basicSetDefiningClass(null, msgs);
 		case ClassesPackage.METHOD__ARGUMENTS:
 			return ((InternalEList<?>) getArguments()).basicRemove(otherEnd, msgs);
+		case ClassesPackage.METHOD__DEFINING_CLASS:
+			return basicSetDefiningClass(null, msgs);
 		case ClassesPackage.METHOD__CALLED_METHODS:
 			return ((InternalEList<?>) getCalledMethods()).basicRemove(otherEnd, msgs);
 		case ClassesPackage.METHOD__CALLING_METHODS:
@@ -503,10 +503,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 			return getVisibility();
 		case ClassesPackage.METHOD__SCOPE:
 			return getScope();
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			if (resolve)
-				return getDefiningClass();
-			return basicGetDefiningClass();
 		case ClassesPackage.METHOD__RETURN_TYPE:
 			return getReturnType();
 		case ClassesPackage.METHOD__SIGNATURE:
@@ -515,6 +511,10 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 			return getArguments();
 		case ClassesPackage.METHOD__PROPERTIES:
 			return getProperties();
+		case ClassesPackage.METHOD__DEFINING_CLASS:
+			if (resolve)
+				return getDefiningClass();
+			return basicGetDefiningClass();
 		case ClassesPackage.METHOD__LABEL:
 			return getLabel();
 		case ClassesPackage.METHOD__STUBBED:
@@ -544,9 +544,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 		case ClassesPackage.METHOD__SCOPE:
 			setScope((ScopeType) newValue);
 			return;
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			setDefiningClass((org.unicase.model.classes.Class) newValue);
-			return;
 		case ClassesPackage.METHOD__RETURN_TYPE:
 			setReturnType((String) newValue);
 			return;
@@ -556,6 +553,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 			return;
 		case ClassesPackage.METHOD__PROPERTIES:
 			setProperties((String) newValue);
+			return;
+		case ClassesPackage.METHOD__DEFINING_CLASS:
+			setDefiningClass((org.unicase.model.classes.Class) newValue);
 			return;
 		case ClassesPackage.METHOD__LABEL:
 			setLabel((String) newValue);
@@ -593,9 +593,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 		case ClassesPackage.METHOD__SCOPE:
 			setScope(SCOPE_EDEFAULT);
 			return;
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			setDefiningClass((org.unicase.model.classes.Class) null);
-			return;
 		case ClassesPackage.METHOD__RETURN_TYPE:
 			setReturnType(RETURN_TYPE_EDEFAULT);
 			return;
@@ -604,6 +601,9 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 			return;
 		case ClassesPackage.METHOD__PROPERTIES:
 			setProperties(PROPERTIES_EDEFAULT);
+			return;
+		case ClassesPackage.METHOD__DEFINING_CLASS:
+			setDefiningClass((org.unicase.model.classes.Class) null);
 			return;
 		case ClassesPackage.METHOD__LABEL:
 			setLabel(LABEL_EDEFAULT);
@@ -636,8 +636,6 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 			return visibility != VISIBILITY_EDEFAULT;
 		case ClassesPackage.METHOD__SCOPE:
 			return scope != SCOPE_EDEFAULT;
-		case ClassesPackage.METHOD__DEFINING_CLASS:
-			return basicGetDefiningClass() != null;
 		case ClassesPackage.METHOD__RETURN_TYPE:
 			return RETURN_TYPE_EDEFAULT == null ? returnType != null : !RETURN_TYPE_EDEFAULT.equals(returnType);
 		case ClassesPackage.METHOD__SIGNATURE:
@@ -646,6 +644,8 @@ public class MethodImpl extends UnicaseModelElementImpl implements Method {
 			return arguments != null && !arguments.isEmpty();
 		case ClassesPackage.METHOD__PROPERTIES:
 			return PROPERTIES_EDEFAULT == null ? properties != null : !PROPERTIES_EDEFAULT.equals(properties);
+		case ClassesPackage.METHOD__DEFINING_CLASS:
+			return basicGetDefiningClass() != null;
 		case ClassesPackage.METHOD__LABEL:
 			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 		case ClassesPackage.METHOD__STUBBED:

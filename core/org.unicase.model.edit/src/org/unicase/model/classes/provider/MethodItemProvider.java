@@ -56,10 +56,10 @@ public class MethodItemProvider extends UnicaseModelElementItemProvider implemen
 
 			addVisibilityPropertyDescriptor(object);
 			addScopePropertyDescriptor(object);
-			addDefiningClassPropertyDescriptor(object);
 			addReturnTypePropertyDescriptor(object);
 			addArgumentsPropertyDescriptor(object);
 			addPropertiesPropertyDescriptor(object);
+			addDefiningClassPropertyDescriptor(object);
 			addLabelPropertyDescriptor(object);
 			addStubbedPropertyDescriptor(object);
 			addCalledMethodsPropertyDescriptor(object);

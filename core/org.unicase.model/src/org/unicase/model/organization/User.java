@@ -117,7 +117,7 @@ public interface User extends OrgUnit {
 	 * @return the value of the '<em>Work Items To Review</em>' reference list.
 	 * @see org.unicase.model.organization.OrganizationPackage#getUser_WorkItemsToReview()
 	 * @see org.unicase.model.task.WorkItem#getReviewer
-	 * @model opposite="reviewer"
+	 * @model opposite="reviewer" keys="identifier"
 	 * @generated
 	 */
 	EList<WorkItem> getWorkItemsToReview();

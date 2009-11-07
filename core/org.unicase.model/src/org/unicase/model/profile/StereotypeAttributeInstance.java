@@ -38,7 +38,7 @@ public interface StereotypeAttributeInstance extends UnicaseModelElement {
 	 * @see #setStereotypeInstance(StereotypeInstance)
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotypeAttributeInstance_StereotypeInstance()
 	 * @see org.unicase.model.profile.StereotypeInstance#getStereotypeAttributeInstances
-	 * @model opposite="stereotypeAttributeInstances" transient="false"
+	 * @model opposite="stereotypeAttributeInstances" keys="identifier" transient="false"
 	 * @generated
 	 */
 	StereotypeInstance getStereotypeInstance();
@@ -67,7 +67,7 @@ public interface StereotypeAttributeInstance extends UnicaseModelElement {
 	 * @see #setStereotypeAttribute(StereotypeAttribute)
 	 * @see org.unicase.model.profile.ProfilePackage#getStereotypeAttributeInstance_StereotypeAttribute()
 	 * @see org.unicase.model.profile.StereotypeAttribute#getStereotypeAttributeInstances
-	 * @model opposite="stereotypeAttributeInstances"
+	 * @model opposite="stereotypeAttributeInstances" keys="identifier"
 	 * @generated
 	 */
 	StereotypeAttribute getStereotypeAttribute();

@@ -35,7 +35,7 @@ public interface CompositeSection extends Section {
 	 * @return the value of the '<em>Subsections</em>' containment reference list.
 	 * @see org.unicase.model.document.DocumentPackage#getCompositeSection_Subsections()
 	 * @see org.unicase.model.document.Section#getParent
-	 * @model opposite="parent" containment="true" resolveProxies="true"
+	 * @model opposite="parent" containment="true" resolveProxies="true" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='20.0' position='right'"
 	 * @generated
 	 */

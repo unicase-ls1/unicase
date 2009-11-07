@@ -35,7 +35,8 @@ public interface Annotation extends UnicaseModelElement {
 	 * @return the value of the '<em>Annotated Model Elements</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getAnnotation_AnnotatedModelElements()
 	 * @see org.unicase.model.UnicaseModelElement#getAnnotations
-	 * @model opposite="annotations" annotation="org.unicase.ui.meeditor priority='90.0' position='right'"
+	 * @model opposite="annotations" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='90.0' position='right'"
 	 * @generated
 	 */
 	EList<UnicaseModelElement> getAnnotatedModelElements();

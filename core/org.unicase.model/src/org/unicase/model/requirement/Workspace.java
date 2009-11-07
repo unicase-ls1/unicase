@@ -35,7 +35,8 @@ public interface Workspace extends UnicaseModelElement {
 	 * @return the value of the '<em>System Functions</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getWorkspace_SystemFunctions()
 	 * @see org.unicase.model.requirement.SystemFunction#getWorkspace
-	 * @model opposite="workspace" annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 * @model opposite="workspace" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<SystemFunction> getSystemFunctions();

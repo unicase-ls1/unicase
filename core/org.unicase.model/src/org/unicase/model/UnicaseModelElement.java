@@ -68,8 +68,7 @@ public interface UnicaseModelElement extends ModelElement {
 	 * @return the value of the '<em>Description</em>' attribute.
 	 * @see #setDescription(String)
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Description()
-	 * @model annotation="teneo.jpa value='@Type(type=\"text\")'"
-	 *        annotation="org.unicase.ui.meeditor priority='1.0' position='left'"
+	 * @model annotation="org.unicase.ui.meeditor priority='1.0' position='left'"
 	 * @generated
 	 */
 	String getDescription();
@@ -138,7 +137,8 @@ public interface UnicaseModelElement extends ModelElement {
 	 * @return the value of the '<em>Incoming Document References</em>' reference list.
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_IncomingDocumentReferences()
 	 * @see org.unicase.model.document.LeafSection#getReferencedModelElements
-	 * @model opposite="referencedModelElements" annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
+	 * @model opposite="referencedModelElements" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='102.0' position='right'"
 	 * @generated
 	 */
 	EList<LeafSection> getIncomingDocumentReferences();
@@ -157,7 +157,7 @@ public interface UnicaseModelElement extends ModelElement {
 	 * @see #setLeafSection(LeafSection)
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_LeafSection()
 	 * @see org.unicase.model.document.LeafSection#getModelElements
-	 * @model opposite="modelElements" transient="false"
+	 * @model opposite="modelElements" keys="identifier" transient="false"
 	 * @generated
 	 */
 	LeafSection getLeafSection();
@@ -221,7 +221,7 @@ public interface UnicaseModelElement extends ModelElement {
 	 * @return the value of the '<em>Comments</em>' containment reference list.
 	 * @see org.unicase.model.ModelPackage#getUnicaseModelElement_Comments()
 	 * @see org.unicase.model.rationale.Comment#getCommentedElement
-	 * @model opposite="commentedElement" containment="true" resolveProxies="true"
+	 * @model opposite="commentedElement" containment="true" resolveProxies="true" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='2.0' position='left'"
 	 * @generated
 	 */

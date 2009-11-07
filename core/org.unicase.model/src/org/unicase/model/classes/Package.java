@@ -36,7 +36,7 @@ public interface Package extends PackageElement {
 	 * @return the value of the '<em>Contained Package Elements</em>' containment reference list.
 	 * @see org.unicase.model.classes.ClassesPackage#getPackage_ContainedPackageElements()
 	 * @see org.unicase.model.classes.PackageElement#getParentPackage
-	 * @model opposite="parentPackage" containment="true" resolveProxies="true"
+	 * @model opposite="parentPackage" containment="true" resolveProxies="true" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='9.5' position='right'"
 	 * @generated
 	 */
@@ -53,7 +53,7 @@ public interface Package extends PackageElement {
 	 * @return the value of the '<em>Facade Class</em>' reference.
 	 * @see #setFacadeClass(org.unicase.model.classes.Class)
 	 * @see org.unicase.model.classes.ClassesPackage#getPackage_FacadeClass()
-	 * @model annotation="org.unicase.ui.meeditor priority='20.0' position='left'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='20.0' position='left'"
 	 * @generated
 	 */
 	org.unicase.model.classes.Class getFacadeClass();

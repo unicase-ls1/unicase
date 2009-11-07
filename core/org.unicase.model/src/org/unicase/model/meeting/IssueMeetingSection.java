@@ -34,7 +34,7 @@ public interface IssueMeetingSection extends MeetingSection {
 	 * 
 	 * @return the value of the '<em>Included Issues</em>' reference list.
 	 * @see org.unicase.model.meeting.MeetingPackage#getIssueMeetingSection_IncludedIssues()
-	 * @model annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<Issue> getIncludedIssues();

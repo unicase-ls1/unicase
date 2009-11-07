@@ -391,6 +391,8 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		RationalePackage theRationalePackage = (RationalePackage) EPackage.Registry.INSTANCE
 			.getEPackage(RationalePackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -423,15 +425,19 @@ public class ChangePackageImpl extends EPackageImpl implements ChangePackage {
 		initEReference(getMergingProposal_ConflictingProposals(), this.getMergingProposal(), null,
 			"conflictingProposals", null, 0, -1, MergingProposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMergingProposal_ConflictingProposals().getEKeys().add(
+			theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getMergingProposal_PendingChanges(), this.getModelChangePackage(), null, "pendingChanges", null,
 			0, 1, MergingProposal.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMergingProposal_PendingChanges().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(mergingSolutionEClass, MergingSolution.class, "MergingSolution", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getMergingSolution_AppliedChanges(), this.getModelChangePackage(), null, "appliedChanges", null,
 			0, -1, MergingSolution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMergingSolution_AppliedChanges().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 	}
 
 } // ChangePackageImpl

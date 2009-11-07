@@ -36,7 +36,7 @@ public interface ActivityObject extends UnicaseModelElement {
 	 * @return the value of the '<em>Incoming Transitions</em>' reference list.
 	 * @see org.unicase.model.activity.ActivityPackage#getActivityObject_IncomingTransitions()
 	 * @see org.unicase.model.activity.Transition#getTarget
-	 * @model opposite="target"
+	 * @model opposite="target" keys="identifier"
 	 * @generated
 	 */
 	EList<Transition> getIncomingTransitions();
@@ -54,7 +54,7 @@ public interface ActivityObject extends UnicaseModelElement {
 	 * @return the value of the '<em>Outgoing Transitions</em>' reference list.
 	 * @see org.unicase.model.activity.ActivityPackage#getActivityObject_OutgoingTransitions()
 	 * @see org.unicase.model.activity.Transition#getSource
-	 * @model opposite="source"
+	 * @model opposite="source" keys="identifier"
 	 * @generated
 	 */
 	EList<Transition> getOutgoingTransitions();
