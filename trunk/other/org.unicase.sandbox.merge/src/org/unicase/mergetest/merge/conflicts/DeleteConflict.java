@@ -1,9 +1,10 @@
-package org.unicase.mergetest.merge;
+package org.unicase.mergetest.merge.conflicts;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.mergetest.merge.DecisionManager;
 
 public class DeleteConflict extends Conflict {
 
@@ -26,7 +27,7 @@ public class DeleteConflict extends Conflict {
 	}
 	
 	@Override
-	List<String> getOptions() {
+	public List<String> getOptions() {
 		ArrayList<String> result = new ArrayList<String>();
 		
 		if(myDelete) {

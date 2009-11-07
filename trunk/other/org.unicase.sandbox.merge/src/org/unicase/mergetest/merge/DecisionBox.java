@@ -17,6 +17,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.events.IExpansionListener;
 import org.eclipse.ui.forms.widgets.Section;
+import org.unicase.mergetest.merge.conflicts.Conflict;
 
 public class DecisionBox extends Composite {
 
@@ -26,12 +27,15 @@ public class DecisionBox extends Composite {
 	public DecisionBox(Composite parent, Conflict conflict) {
 		super(parent, SWT.BORDER);
 		this.conflict = conflict;
-		GridLayout gridLayout2 = new GridLayout(4, false);
-		this.setLayout(gridLayout2);
-		this.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		
+		GridLayout decisionLayout = new GridLayout(4, false);
+		this.setLayout(decisionLayout);
+		this.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		
 		Link link = new Link(this, SWT.LEFT);
 		link.setText("ModelElement '"+conflict.getName()+"'\n"+conflict.getConflictDescription());
 		link.setEnabled(true);
+		
 		Text optionDescription = new Text(this, SWT.NONE);
 		optionDescription.setEditable(false);
 		optionDescription.setText(conflict.getOptionDescription()
@@ -41,6 +45,15 @@ public class DecisionBox extends Composite {
 		
 		
 		// Add Option Buttons
+		createOptions(conflict);
+		
+		//Additional Fields
+		if(conflict.hasAdditionalInformation()) {
+			addAdditionalInformationField();
+		}
+	}
+
+	private void createOptions(Conflict conflict) {
 		optionButtons = new ArrayList<Button>();
 		int index = 0;
 		for (String option : conflict.getOptions()) {
@@ -61,11 +74,15 @@ public class DecisionBox extends Composite {
 			optionButtons.add(optionButton);
 			index++;
 		}
-		
-		//Additional Fields
+	}
+
+	private void addAdditionalInformationField() {
 		Section section = new Section(this, Section.TWISTIE);
 		section.setText("Additional Information");
 		section.setLayout(new GridLayout(1,false));
+		GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, false);
+		layoutData.horizontalSpan=4;
+		section.setLayoutData(layoutData);
 		section.addExpansionListener(new IExpansionListener() {
 			public void expansionStateChanged(ExpansionEvent e) {
 				DecisionBox.this.getParent().layout();
@@ -97,6 +114,4 @@ public class DecisionBox extends Composite {
 			}
 		}
 	}
-	
-
 }

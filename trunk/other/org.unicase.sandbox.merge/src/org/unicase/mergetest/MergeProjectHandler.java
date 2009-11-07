@@ -64,6 +64,7 @@ public class MergeProjectHandler implements ConflictResolver {
 //		 mergeDialog.open();
 		MergeWizard wizard = new MergeWizard(project,theirChangePackages,myChangePackage);
 		dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
+		dialog.setPageSize(800, 500);
 		dialog.create();
 		dialog.open();
 		return true;

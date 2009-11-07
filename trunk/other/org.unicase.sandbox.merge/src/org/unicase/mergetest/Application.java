@@ -18,9 +18,9 @@ public class Application implements IApplication {
 	public Object start(IApplicationContext context) throws Exception {
 		
 		
-//		new MergeSandboxController().run();
+		new MergeSandboxController().run();
 		
-		new AnalyseConflictsController().run();
+//		new AnalyseConflictsController().run();
 
 //		new ShowConflictsController().run();
 		

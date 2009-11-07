@@ -1,8 +1,8 @@
 package org.unicase.mergetest;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 
 import org.eclipse.swt.widgets.Display;
@@ -16,12 +16,16 @@ import org.unicase.emfstore.esmodel.versioning.VersionSpec;
 import org.unicase.emfstore.esmodel.versioning.VersioningFactory;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.metamodel.MetamodelFactory;
-import org.unicase.metamodel.ModelElementId;
-import org.unicase.metamodel.util.ModelUtil;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.Project;
+import org.unicase.metamodel.util.ModelUtil;
 import org.unicase.model.UnicaseModelElement;
-import org.unicase.model.document.CompositeSection;
 import org.unicase.model.document.DocumentFactory;
+import org.unicase.model.document.LeafSection;
+import org.unicase.model.organization.OrganizationFactory;
+import org.unicase.model.organization.User;
+import org.unicase.model.task.ActionItem;
+import org.unicase.model.task.TaskFactory;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
@@ -32,36 +36,80 @@ import org.unicase.workspace.observers.ConflictResolver;
 import org.unicase.workspace.util.UnicaseCommand;
 
 public class MergeSandboxController {
-	
+
 	public static ProjectSpace server;
 	public static ProjectSpace client;
-	private ArrayList<ModelElementId> meIds;
 
-	
+	private Project createProject() {
+		Project project = MetamodelFactory.eINSTANCE.createProject();
+		LeafSection section = DocumentFactory.eINSTANCE
+				.createLeafSection();
+		LeafSection section2 = DocumentFactory.eINSTANCE
+		.createLeafSection();
+		project.addModelElement(section);
+		project.addModelElement(section2);
+
+		User user1 = OrganizationFactory.eINSTANCE.createUser();
+		User user2 = OrganizationFactory.eINSTANCE.createUser();
+
+		project.addModelElement(user1);
+		project.addModelElement(user2);
+
+		ActionItem actionItem = TaskFactory.eINSTANCE.createActionItem();
+		project.addModelElement(actionItem);
+		actionItem.setAssignee(user1);
+
+		nameMEs(project);
+		return project;
+	}
+
+	private void doChanges() {
+			cg("User1", User.class).setFirstName("bla");
+			sg("User1", User.class).setFirstName("blub");
+			
+			cg("User1", User.class).setLeafSection(cg("LeafSection1",LeafSection.class));
+			sg("User1", User.class).setLeafSection(sg("LeafSection2",LeafSection.class));
+			
+			cg("User1", User.class).getAssignments().remove(cg("ActionItem1",ActionItem.class));
+			sg("User1", User.class).getAssignments().remove(sg("ActionItem1",ActionItem.class));
+			sg("User1", User.class).getAssignments().add(sg("ActionItem1",ActionItem.class));
+			
+//			cg("User2",User.class).setLeafSection(cg("LeafSection2",LeafSection.class));
+//			sg("User2",User.class).delete();
+
+			
+//			sg("LeafSection1",LeafSection.class).delete();
+	}
+
+	//
+	//
+	// ---------------------------------------------------------------------------------------
+	//
+	//
+
 	public void run() throws Exception {
-		meIds = new ArrayList<ModelElementId>();
 		Project project = createProject();
 		initProjectSpaces(project);
 		initConnectionManager();
 		new UnicaseCommand() {
 			@Override
 			protected void doRun() {
-				WorkspaceManager.getInstance().getCurrentWorkspace().setActiveProjectSpace(client);				
+				WorkspaceManager.getInstance().getCurrentWorkspace()
+						.setActiveProjectSpace(client);
 			}
 		}.run();
-		
+
 		// ///
 
-		((UnicaseModelElement) server.getProject().getModelElement(meIds.get(0))).setName("value 2");
-		((UnicaseModelElement) client.getProject().getModelElement(meIds.get(0))).setName("value 3");
+		doChanges();
 
 		// ///
 
 		Display display = new Display();
 		Shell shell = new Shell(display);
-//		MergeWizard conflictResolver = new MergeWizard();
-//		WizardDialog dialog = new WizardDialog(shell,conflictResolver);
-				ConflictResolver conflictResolver = new MergeProjectHandler();
+		// MergeWizard conflictResolver = new MergeWizard();
+		// WizardDialog dialog = new WizardDialog(shell,conflictResolver);
+		ConflictResolver conflictResolver = new MergeProjectHandler();
 		try {
 			client.update(VersionSpec.HEAD_VERSION, null);
 		} catch (ChangeConflictException e) {
@@ -69,9 +117,52 @@ public class MergeSandboxController {
 					.createPrimaryVersionSpec();
 			client.merge(versionSpec, conflictResolver);
 		}
-//		dialog.open();
+		// dialog.open();
 	}
-	
+
+	/**
+	 *	Client Get 
+	 */
+	private <T> T cg(String name, Class<T> clazz) {
+		return serverClientGet(client, name, clazz);
+	}
+
+	/**
+	 * Server Get 
+	 */
+	private <T> T sg(String name, Class<T> clazz) {
+		return serverClientGet(server, name, clazz);
+	}
+
+	@SuppressWarnings("unchecked")
+	private <T> T serverClientGet(ProjectSpace space, String name,
+			Class<T> clazz) {
+		for (ModelElement me : space.getProject().getAllModelElements()) {
+			if (me instanceof UnicaseModelElement) {
+				if (((UnicaseModelElement) me).getName().equals(name)) {
+					return (T) me;
+				}
+			}
+		}
+		return null;
+	}
+
+	private void nameMEs(Project project) {
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		for (ModelElement tmp : project.getAllModelElements()) {
+			UnicaseModelElement element = (UnicaseModelElement) tmp;
+			String elementName = element.eClass().getName();
+			if (map.get(elementName) != null) {
+				Integer value = map.get(elementName);
+				element.setName(elementName + value);
+				map.put(elementName, value + 1);
+			} else {
+				map.put(elementName, 2);
+				element.setName(elementName + "1");
+			}
+			System.out.println(element.getName());
+		}
+	}
 
 	private void initConnectionManager() {
 		ConnectionManager connectionManagerImpl = new RMIConnectionManagerImpl() {
@@ -94,16 +185,6 @@ public class MergeSandboxController {
 		};
 		WorkspaceManager.getInstance().setConnectionManager(
 				connectionManagerImpl);
-	}
-
-	private Project createProject() {
-		Project project = MetamodelFactory.eINSTANCE.createProject();
-		CompositeSection section = DocumentFactory.eINSTANCE
-				.createCompositeSection();
-		meIds.add(ModelUtil.clone(section.getModelElementId()));
-		section.setName("Name");
-		project.addModelElement(section);
-		return project;
 	}
 
 	private void initProjectSpaces(Project project) {
@@ -139,5 +220,4 @@ public class MergeSandboxController {
 		client.init();
 	}
 
-	
 }

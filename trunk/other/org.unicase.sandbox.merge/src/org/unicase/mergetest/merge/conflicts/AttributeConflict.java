@@ -1,10 +1,11 @@
-package org.unicase.mergetest.merge;
+package org.unicase.mergetest.merge.conflicts;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
+import org.unicase.mergetest.merge.DecisionManager;
 
 public class AttributeConflict extends Conflict {
 
@@ -14,7 +15,7 @@ public class AttributeConflict extends Conflict {
 	}
 
 	@Override
-	List<String> getOptions() {
+	public List<String> getOptions() {
 		ArrayList<String> options = new ArrayList<String>();
 		
 		options.add(((AttributeOperation)getMyOperation()).getNewValue().toString());
@@ -31,5 +32,10 @@ public class AttributeConflict extends Conflict {
 	@Override
 	public String getOptionDescription() {
 		return "Attribute '"+((AttributeOperation) getMyOperation()).getFeatureName()+"'";
+	}
+	
+	@Override
+	public boolean hasAdditionalInformation() {
+		return true;
 	}
 }

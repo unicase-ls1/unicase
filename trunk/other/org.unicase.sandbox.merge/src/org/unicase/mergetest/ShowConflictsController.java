@@ -54,7 +54,7 @@ public class ShowConflictsController {
 	public void run() throws Exception {
 		loginServer("super", "super", "127.0.0.1", null, null);
 
-		projectInfo = getProjectInfo("kings", true);
+		projectInfo = getProjectInfo("unicase", true);
 
 		analysis = new SpreadSheet();
 		analysis.addRow(0, "Project name").add(projectInfo.getName());
