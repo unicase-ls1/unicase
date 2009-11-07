@@ -70,7 +70,7 @@ public interface FunctionalRequirement extends UnicaseModelElement {
 	 * @return the value of the '<em>Stakeholder</em>' reference.
 	 * @see #setStakeholder(OrgUnit)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_Stakeholder()
-	 * @model annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	OrgUnit getStakeholder();
@@ -176,7 +176,7 @@ public interface FunctionalRequirement extends UnicaseModelElement {
 	 * @return the value of the '<em>Refining Requirements</em>' containment reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefiningRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefinedRequirement
-	 * @model opposite="refinedRequirement" containment="true" resolveProxies="true"
+	 * @model opposite="refinedRequirement" containment="true" resolveProxies="true" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
@@ -196,7 +196,7 @@ public interface FunctionalRequirement extends UnicaseModelElement {
 	 * @see #setRefinedRequirement(FunctionalRequirement)
 	 * @see org.unicase.model.requirement.RequirementPackage#getFunctionalRequirement_RefinedRequirement()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getRefiningRequirements
-	 * @model opposite="refiningRequirements" transient="false"
+	 * @model opposite="refiningRequirements" keys="identifier" transient="false"
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */

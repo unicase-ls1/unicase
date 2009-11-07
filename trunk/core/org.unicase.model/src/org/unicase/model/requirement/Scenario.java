@@ -42,7 +42,7 @@ public interface Scenario extends UnicaseModelElement {
 	 * 
 	 * @return the value of the '<em>Steps</em>' containment reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_Steps()
-	 * @model containment="true" resolveProxies="true"
+	 * @model containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<Step> getSteps();
@@ -61,7 +61,8 @@ public interface Scenario extends UnicaseModelElement {
 	 * @see #setInitiatingActorInstance(ActorInstance)
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_InitiatingActorInstance()
 	 * @see org.unicase.model.requirement.ActorInstance#getInitiatedScenarios
-	 * @model opposite="initiatedScenarios" annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
+	 * @model opposite="initiatedScenarios" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */
 	ActorInstance getInitiatingActorInstance();
@@ -90,7 +91,8 @@ public interface Scenario extends UnicaseModelElement {
 	 * @return the value of the '<em>Participating Actor Instances</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_ParticipatingActorInstances()
 	 * @see org.unicase.model.requirement.ActorInstance#getParticipatedScenarios
-	 * @model opposite="participatedScenarios" annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
+	 * @model opposite="participatedScenarios" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='left'"
 	 * @generated
 	 */
 	EList<ActorInstance> getParticipatingActorInstances();
@@ -108,7 +110,8 @@ public interface Scenario extends UnicaseModelElement {
 	 * @return the value of the '<em>Instantiated Use Cases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_InstantiatedUseCases()
 	 * @see org.unicase.model.requirement.UseCase#getScenarios
-	 * @model opposite="scenarios" annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model opposite="scenarios" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getInstantiatedUseCases();
@@ -127,7 +130,8 @@ public interface Scenario extends UnicaseModelElement {
 	 * @return the value of the '<em>Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_FunctionalRequirements()
 	 * @see org.unicase.model.requirement.FunctionalRequirement#getScenarios
-	 * @model opposite="scenarios" annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
+	 * @model opposite="scenarios" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
 	EList<FunctionalRequirement> getFunctionalRequirements();
@@ -146,7 +150,8 @@ public interface Scenario extends UnicaseModelElement {
 	 * @return the value of the '<em>Non Functional Requirements</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_NonFunctionalRequirements()
 	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getRestrictedScenarios
-	 * @model opposite="restrictedScenarios" annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 * @model opposite="restrictedScenarios" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<NonFunctionalRequirement> getNonFunctionalRequirements();
@@ -165,7 +170,7 @@ public interface Scenario extends UnicaseModelElement {
 	 * @return the value of the '<em>Participating Methods</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_ParticipatingMethods()
 	 * @see org.unicase.model.classes.Method#getDemoParticipations
-	 * @model opposite="demoParticipations"
+	 * @model opposite="demoParticipations" keys="identifier"
 	 * @generated
 	 */
 	EList<Method> getParticipatingMethods();
@@ -184,7 +189,7 @@ public interface Scenario extends UnicaseModelElement {
 	 * @return the value of the '<em>Participating Classes</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getScenario_ParticipatingClasses()
 	 * @see org.unicase.model.classes.Class#getDemoParticipations
-	 * @model opposite="demoParticipations"
+	 * @model opposite="demoParticipations" keys="identifier"
 	 * @generated
 	 */
 	EList<org.unicase.model.classes.Class> getParticipatingClasses();

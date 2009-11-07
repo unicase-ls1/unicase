@@ -124,7 +124,7 @@ public interface Meeting extends UnicaseModelElement {
 	 * @return the value of the '<em>Facilitator</em>' reference.
 	 * @see #setFacilitator(User)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Facilitator()
-	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	User getFacilitator();
@@ -150,7 +150,7 @@ public interface Meeting extends UnicaseModelElement {
 	 * @return the value of the '<em>Minutetaker</em>' reference.
 	 * @see #setMinutetaker(User)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Minutetaker()
-	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	User getMinutetaker();
@@ -176,7 +176,7 @@ public interface Meeting extends UnicaseModelElement {
 	 * @return the value of the '<em>Timekeeper</em>' reference.
 	 * @see #setTimekeeper(User)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Timekeeper()
-	 * @model annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='12.0' position='left'"
 	 * @generated
 	 */
 	User getTimekeeper();
@@ -202,7 +202,7 @@ public interface Meeting extends UnicaseModelElement {
 	 * 
 	 * @return the value of the '<em>Participants</em>' reference list.
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Participants()
-	 * @model annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
 	EList<OrgUnit> getParticipants();
@@ -218,7 +218,7 @@ public interface Meeting extends UnicaseModelElement {
 	 * 
 	 * @return the value of the '<em>Sections</em>' containment reference list.
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_Sections()
-	 * @model containment="true" resolveProxies="true"
+	 * @model containment="true" resolveProxies="true" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='11.0' position='right'"
 	 * @generated
 	 */
@@ -235,7 +235,7 @@ public interface Meeting extends UnicaseModelElement {
 	 * @return the value of the '<em>Identified Issues Section</em>' reference.
 	 * @see #setIdentifiedIssuesSection(IssueMeetingSection)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_IdentifiedIssuesSection()
-	 * @model annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='13.0' position='left'"
 	 * @generated
 	 */
 	IssueMeetingSection getIdentifiedIssuesSection();
@@ -261,7 +261,7 @@ public interface Meeting extends UnicaseModelElement {
 	 * @return the value of the '<em>Identified Work Items Section</em>' reference.
 	 * @see #setIdentifiedWorkItemsSection(WorkItemMeetingSection)
 	 * @see org.unicase.model.meeting.MeetingPackage#getMeeting_IdentifiedWorkItemsSection()
-	 * @model annotation="org.unicase.ui.meeditor priority='14.0' position='left'"
+	 * @model keys="identifier" annotation="org.unicase.ui.meeditor priority='14.0' position='left'"
 	 * @generated
 	 */
 	WorkItemMeetingSection getIdentifiedWorkItemsSection();

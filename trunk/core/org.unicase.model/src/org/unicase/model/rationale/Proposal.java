@@ -37,7 +37,7 @@ public interface Proposal extends UnicaseModelElement, NonDomainElement {
 	 * @return the value of the '<em>Assessments</em>' containment reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getProposal_Assessments()
 	 * @see org.unicase.model.rationale.Assessment#getProposal
-	 * @model opposite="proposal" containment="true" resolveProxies="true"
+	 * @model opposite="proposal" containment="true" resolveProxies="true" keys="identifier"
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='right'"
 	 * @generated
 	 */
@@ -56,7 +56,7 @@ public interface Proposal extends UnicaseModelElement, NonDomainElement {
 	 * @see #setIssue(Issue)
 	 * @see org.unicase.model.rationale.RationalePackage#getProposal_Issue()
 	 * @see org.unicase.model.rationale.Issue#getProposals
-	 * @model opposite="proposals" transient="false"
+	 * @model opposite="proposals" keys="identifier" transient="false"
 	 *        annotation="org.unicase.ui.meeditor priority='10.0' position='left'"
 	 * @generated
 	 */

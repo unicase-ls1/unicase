@@ -39,7 +39,7 @@ public interface Comment extends UnicaseModelElement, NonDomainElement {
 	 * @return the value of the '<em>Sender</em>' reference.
 	 * @see #setSender(OrgUnit)
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_Sender()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	OrgUnit getSender();
@@ -65,7 +65,7 @@ public interface Comment extends UnicaseModelElement, NonDomainElement {
 	 * 
 	 * @return the value of the '<em>Recipients</em>' reference list.
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_Recipients()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<OrgUnit> getRecipients();
@@ -84,7 +84,7 @@ public interface Comment extends UnicaseModelElement, NonDomainElement {
 	 * @see #setCommentedElement(UnicaseModelElement)
 	 * @see org.unicase.model.rationale.RationalePackage#getComment_CommentedElement()
 	 * @see org.unicase.model.UnicaseModelElement#getComments
-	 * @model opposite="comments" transient="false"
+	 * @model opposite="comments" keys="identifier" transient="false"
 	 * @generated
 	 */
 	UnicaseModelElement getCommentedElement();

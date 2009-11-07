@@ -1080,21 +1080,12 @@ public interface ClassesPackage extends EPackage {
 	int METHOD__SCOPE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 1;
 
 	/**
-	 * The feature id for the '<em><b>Defining Class</b></em>' container reference. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
-	 * 
-	 * @generated
-	 * @ordered
-	 */
-	int METHOD__DEFINING_CLASS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
-
-	/**
 	 * The feature id for the '<em><b>Return Type</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * 
 	 * @generated
 	 * @ordered
 	 */
-	int METHOD__RETURN_TYPE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
+	int METHOD__RETURN_TYPE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 2;
 
 	/**
 	 * The feature id for the '<em><b>Signature</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1102,7 +1093,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METHOD__SIGNATURE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
+	int METHOD__SIGNATURE = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 3;
 
 	/**
 	 * The feature id for the '<em><b>Arguments</b></em>' containment reference list. <!-- begin-user-doc --> <!--
@@ -1111,7 +1102,7 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METHOD__ARGUMENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 5;
+	int METHOD__ARGUMENTS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 4;
 
 	/**
 	 * The feature id for the '<em><b>Properties</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->
@@ -1119,7 +1110,16 @@ public interface ClassesPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int METHOD__PROPERTIES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 6;
+	int METHOD__PROPERTIES = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 5;
+
+	/**
+	 * The feature id for the '<em><b>Defining Class</b></em>' container reference. <!-- begin-user-doc --> <!--
+	 * end-user-doc -->
+	 * 
+	 * @generated
+	 * @ordered
+	 */
+	int METHOD__DEFINING_CLASS = ModelPackage.UNICASE_MODEL_ELEMENT_FEATURE_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Label</b></em>' attribute. <!-- begin-user-doc --> <!-- end-user-doc -->

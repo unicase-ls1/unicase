@@ -33,7 +33,7 @@ public interface CompositeMeetingSection extends MeetingSection {
 	 * 
 	 * @return the value of the '<em>Subsections</em>' containment reference list.
 	 * @see org.unicase.model.meeting.MeetingPackage#getCompositeMeetingSection_Subsections()
-	 * @model containment="true" resolveProxies="true"
+	 * @model containment="true" resolveProxies="true" keys="identifier"
 	 * @generated
 	 */
 	EList<MeetingSection> getSubsections();

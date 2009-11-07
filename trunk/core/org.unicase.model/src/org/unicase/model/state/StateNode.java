@@ -36,7 +36,7 @@ public interface StateNode extends UnicaseModelElement {
 	 * @return the value of the '<em>Outgoing Transitions</em>' reference list.
 	 * @see org.unicase.model.state.StatePackage#getStateNode_OutgoingTransitions()
 	 * @see org.unicase.model.state.Transition#getSource
-	 * @model opposite="source"
+	 * @model opposite="source" keys="identifier"
 	 * @generated
 	 */
 	EList<Transition> getOutgoingTransitions();
@@ -54,7 +54,7 @@ public interface StateNode extends UnicaseModelElement {
 	 * @return the value of the '<em>Incoming Transitions</em>' reference list.
 	 * @see org.unicase.model.state.StatePackage#getStateNode_IncomingTransitions()
 	 * @see org.unicase.model.state.Transition#getTarget
-	 * @model opposite="target"
+	 * @model opposite="target" keys="identifier"
 	 * @generated
 	 */
 	EList<Transition> getIncomingTransitions();

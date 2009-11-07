@@ -34,7 +34,7 @@ public interface MergingSolution extends Solution {
 	 * 
 	 * @return the value of the '<em>Applied Changes</em>' reference list.
 	 * @see org.unicase.model.change.ChangePackage#getMergingSolution_AppliedChanges()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<ModelChangePackage> getAppliedChanges();

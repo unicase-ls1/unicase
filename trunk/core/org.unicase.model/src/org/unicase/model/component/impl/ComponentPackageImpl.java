@@ -382,6 +382,8 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 		ClassesPackage theClassesPackage = (ClassesPackage) EPackage.Registry.INSTANCE
 			.getEPackage(ClassesPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 
 		// Create type parameters
 
@@ -398,17 +400,21 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 		initEReference(getComponent_Packages(), theClassesPackage.getPackage(), null, "packages", null, 0, -1,
 			Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComponent_Packages().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponent_OfferedServices(), this.getComponentService(), this
 			.getComponentService_OfferingComponent(), "offeredServices", null, 0, -1, Component.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
+		getComponent_OfferedServices().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponent_ConsumedServices(), this.getComponentService(), this
 			.getComponentService_ConsumingComponents(), "consumedServices", null, 0, -1, Component.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+		getComponent_ConsumedServices().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponent_Subsystems(), theClassesPackage.getPackage(), null, "subsystems", null, 0, -1,
 			Component.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getComponent_Subsystems().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(componentServiceEClass, ComponentService.class, "ComponentService", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -416,16 +422,20 @@ public class ComponentPackageImpl extends EPackageImpl implements ComponentPacka
 			.getComponent_OfferedServices(), "offeringComponent", null, 0, 1, ComponentService.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
+		getComponentService_OfferingComponent().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getComponentService_ConsumingComponents(), this.getComponent(), this
 			.getComponent_ConsumedServices(), "consumingComponents", null, 0, -1, ComponentService.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+		getComponentService_ConsumingComponents().getEKeys().add(
+			theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(deploymentNodeEClass, DeploymentNode.class, "DeploymentNode", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getDeploymentNode_Components(), this.getComponent(), null, "components", null, 0, -1,
 			DeploymentNode.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getDeploymentNode_Components().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		// Create annotations
 		// org.unicase.ui.meeditor

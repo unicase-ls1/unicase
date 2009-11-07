@@ -149,7 +149,8 @@ public interface SystemFunction extends UnicaseModelElement {
 	 * @return the value of the '<em>Usecases</em>' reference list.
 	 * @see org.unicase.model.requirement.RequirementPackage#getSystemFunction_Usecases()
 	 * @see org.unicase.model.requirement.UseCase#getSystemFunctions
-	 * @model opposite="systemFunctions" annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
+	 * @model opposite="systemFunctions" keys="identifier"
+	 *        annotation="org.unicase.ui.meeditor priority='12.0' position='right'"
 	 * @generated
 	 */
 	EList<UseCase> getUsecases();
@@ -168,7 +169,7 @@ public interface SystemFunction extends UnicaseModelElement {
 	 * @see #setNonFunctionalRequirement(NonFunctionalRequirement)
 	 * @see org.unicase.model.requirement.RequirementPackage#getSystemFunction_NonFunctionalRequirement()
 	 * @see org.unicase.model.requirement.NonFunctionalRequirement#getSystemFunctions
-	 * @model opposite="systemFunctions"
+	 * @model opposite="systemFunctions" keys="identifier"
 	 * @generated
 	 */
 	NonFunctionalRequirement getNonFunctionalRequirement();

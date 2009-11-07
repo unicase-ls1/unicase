@@ -625,7 +625,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * @generated
 	 */
 	public EReference getMethod_DefiningClass() {
-		return (EReference) methodEClass.getEStructuralFeatures().get(2);
+		return (EReference) methodEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -634,7 +634,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * @generated
 	 */
 	public EAttribute getMethod_ReturnType() {
-		return (EAttribute) methodEClass.getEStructuralFeatures().get(3);
+		return (EAttribute) methodEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -643,7 +643,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * @generated
 	 */
 	public EAttribute getMethod_Signature() {
-		return (EAttribute) methodEClass.getEStructuralFeatures().get(4);
+		return (EAttribute) methodEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -652,7 +652,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * @generated
 	 */
 	public EReference getMethod_Arguments() {
-		return (EReference) methodEClass.getEStructuralFeatures().get(5);
+		return (EReference) methodEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -661,7 +661,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 	 * @generated
 	 */
 	public EAttribute getMethod_Properties() {
-		return (EAttribute) methodEClass.getEStructuralFeatures().get(6);
+		return (EAttribute) methodEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -895,11 +895,11 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		methodEClass = createEClass(METHOD);
 		createEAttribute(methodEClass, METHOD__VISIBILITY);
 		createEAttribute(methodEClass, METHOD__SCOPE);
-		createEReference(methodEClass, METHOD__DEFINING_CLASS);
 		createEAttribute(methodEClass, METHOD__RETURN_TYPE);
 		createEAttribute(methodEClass, METHOD__SIGNATURE);
 		createEReference(methodEClass, METHOD__ARGUMENTS);
 		createEAttribute(methodEClass, METHOD__PROPERTIES);
+		createEReference(methodEClass, METHOD__DEFINING_CLASS);
 		createEAttribute(methodEClass, METHOD__LABEL);
 		createEAttribute(methodEClass, METHOD__STUBBED);
 		createEReference(methodEClass, METHOD__CALLED_METHODS);
@@ -950,6 +950,8 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		// Obtain other dependent packages
 		RequirementPackage theRequirementPackage = (RequirementPackage) EPackage.Registry.INSTANCE
 			.getEPackage(RequirementPackage.eNS_URI);
+		MetamodelPackage theMetamodelPackage = (MetamodelPackage) EPackage.Registry.INSTANCE
+			.getEPackage(MetamodelPackage.eNS_URI);
 		ModelPackage theModelPackage = (ModelPackage) EPackage.Registry.INSTANCE.getEPackage(ModelPackage.eNS_URI);
 
 		// Create type parameters
@@ -973,28 +975,36 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			.getUseCase_IdentifiedClasses(), "participatedUseCases", null, 0, -1,
 			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_ParticipatedUseCases().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_SuperClasses(), this.getClass_(), this.getClass_SubClasses(), "superClasses", null, 0,
 			-1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_SuperClasses().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_SubClasses(), this.getClass_(), this.getClass_SuperClasses(), "subClasses", null, 0,
 			-1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_SubClasses().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_IncomingAssociations(), this.getAssociation(), this.getAssociation_Target(),
 			"incomingAssociations", null, 0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_IncomingAssociations().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_OutgoingAssociations(), this.getAssociation(), this.getAssociation_Source(),
 			"outgoingAssociations", null, 0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE,
 			IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_OutgoingAssociations().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_Attributes(), this.getAttribute(), this.getAttribute_DefiningClass(), "attributes",
 			null, 0, -1, org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_Attributes().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_Methods(), this.getMethod(), this.getMethod_DefiningClass(), "methods", null, 0, -1,
 			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_Methods().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getClass_DemoParticipations(), theRequirementPackage.getScenario(), theRequirementPackage
 			.getScenario_ParticipatingClasses(), "demoParticipations", null, 0, -1,
 			org.unicase.model.classes.Class.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getClass_DemoParticipations().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(packageEClass, org.unicase.model.classes.Package.class, "Package", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -1002,9 +1012,11 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			.getPackageElement_ParentPackage(), "containedPackageElements", null, 0, -1,
 			org.unicase.model.classes.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getPackage_ContainedPackageElements().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getPackage_FacadeClass(), this.getClass_(), null, "facadeClass", null, 0, 1,
 			org.unicase.model.classes.Package.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getPackage_FacadeClass().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(packageElementEClass, PackageElement.class, "PackageElement", IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -1012,21 +1024,28 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			this.getPackage_ContainedPackageElements(), "parentPackage", null, 0, 1, PackageElement.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+		getPackageElement_ParentPackage().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getPackageElement_OutgoingDependencies(), this.getDependency(), this.getDependency_Source(),
 			"outgoingDependencies", null, 0, -1, PackageElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getPackageElement_OutgoingDependencies().getEKeys()
+			.add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getPackageElement_IncomingDependencies(), this.getDependency(), this.getDependency_Target(),
 			"incomingDependencies", null, 0, -1, PackageElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
 			!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getPackageElement_IncomingDependencies().getEKeys()
+			.add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(associationEClass, Association.class, "Association", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getAssociation_Source(), this.getClass_(), this.getClass_OutgoingAssociations(), "source", null,
 			0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getAssociation_Source().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getAssociation_Target(), this.getClass_(), this.getClass_IncomingAssociations(), "target", null,
 			0, 1, Association.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getAssociation_Target().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getAssociation_Type(), this.getAssociationType(), "type", "", 0, 1, Association.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAssociation_SourceMultiplicity(), ecorePackage.getEString(), "sourceMultiplicity", "1", 0, 1,
@@ -1047,6 +1066,7 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getAttribute_DefiningClass(), this.getClass_(), this.getClass_Attributes(), "definingClass",
 			null, 0, 1, Attribute.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getAttribute_DefiningClass().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getAttribute_Visibility(), this.getVisibilityType(), "visibility", null, 0, 1, Attribute.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getAttribute_Scope(), this.getScopeType(), "scope", null, 0, 1, Attribute.class, !IS_TRANSIENT,
@@ -1068,9 +1088,6 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethod_Scope(), this.getScopeType(), "scope", null, 0, 1, Method.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEReference(getMethod_DefiningClass(), this.getClass_(), this.getClass_Methods(), "definingClass", null, 0,
-			1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
-			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethod_ReturnType(), ecorePackage.getEString(), "returnType", null, 0, 1, Method.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethod_Signature(), ecorePackage.getEString(), "signature", "", 0, 1, Method.class,
@@ -1078,8 +1095,13 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getMethod_Arguments(), this.getMethodArgument(), null, "arguments", null, 0, -1, Method.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
 			!IS_DERIVED, IS_ORDERED);
+		getMethod_Arguments().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getMethod_Properties(), ecorePackage.getEString(), "properties", null, 0, 1, Method.class,
 			!IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getMethod_DefiningClass(), this.getClass_(), this.getClass_Methods(), "definingClass", null, 0,
+			1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
+			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMethod_DefiningClass().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEAttribute(getMethod_Label(), ecorePackage.getEString(), "label", null, 0, 1, Method.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getMethod_Stubbed(), ecorePackage.getEBoolean(), "stubbed", null, 0, 1, Method.class,
@@ -1087,13 +1109,16 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getMethod_CalledMethods(), this.getMethod(), this.getMethod_CallingMethods(), "calledMethods",
 			null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMethod_CalledMethods().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getMethod_CallingMethods(), this.getMethod(), this.getMethod_CalledMethods(), "callingMethods",
 			null, 0, -1, Method.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES,
 			!IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getMethod_CallingMethods().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getMethod_DemoParticipations(), theRequirementPackage.getScenario(), theRequirementPackage
 			.getScenario_ParticipatingMethods(), "demoParticipations", null, 0, -1, Method.class, !IS_TRANSIENT,
 			!IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
 			IS_ORDERED);
+		getMethod_DemoParticipations().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		initEClass(methodArgumentEClass, MethodArgument.class, "MethodArgument", !IS_ABSTRACT, !IS_INTERFACE,
 			IS_GENERATED_INSTANCE_CLASS);
@@ -1116,9 +1141,11 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		initEReference(getDependency_Source(), this.getPackageElement(), this.getPackageElement_OutgoingDependencies(),
 			"source", null, 0, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getDependency_Source().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 		initEReference(getDependency_Target(), this.getPackageElement(), this.getPackageElement_IncomingDependencies(),
 			"target", null, 0, 1, Dependency.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 			IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		getDependency_Target().getEKeys().add(theMetamodelPackage.getIdentifiableElement_Identifier());
 
 		// Initialize enums and add enum literals
 		initEEnum(associationTypeEEnum, AssociationType.class, "AssociationType");
@@ -1189,10 +1216,10 @@ public class ClassesPackageImpl extends EPackageImpl implements ClassesPackage {
 		addAnnotation(getAttribute_Label(), source, new String[] { "priority", "16.0", "position", "left" });
 		addAnnotation(getMethod_Visibility(), source, new String[] { "priority", "11.0", "position", "left" });
 		addAnnotation(getMethod_Scope(), source, new String[] { "priority", "12.0", "position", "left" });
-		addAnnotation(getMethod_DefiningClass(), source, new String[] { "priority", "10.0", "position", "left" });
 		addAnnotation(getMethod_ReturnType(), source, new String[] { "priority", "13.0", "position", "left" });
 		addAnnotation(getMethod_Arguments(), source, new String[] { "priority", "10.0", "position", "right" });
 		addAnnotation(getMethod_Properties(), source, new String[] { "priority", "14.0", "position", "left" });
+		addAnnotation(getMethod_DefiningClass(), source, new String[] { "priority", "10.0", "position", "left" });
 		addAnnotation(getMethod_Label(), source, new String[] { "priority", "15.0", "position", "left" });
 		addAnnotation(getMethod_CalledMethods(), source, new String[] { "priority", "10.1", "position", "right" });
 		addAnnotation(getMethod_CallingMethods(), source, new String[] { "priority", "10.2", "position", "right" });

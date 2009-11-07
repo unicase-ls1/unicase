@@ -36,7 +36,7 @@ public interface Component extends UnicaseModelElement {
 	 * 
 	 * @return the value of the '<em>Packages</em>' reference list.
 	 * @see org.unicase.model.component.ComponentPackage#getComponent_Packages()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<org.unicase.model.classes.Package> getPackages();
@@ -90,7 +90,7 @@ public interface Component extends UnicaseModelElement {
 	 * 
 	 * @return the value of the '<em>Subsystems</em>' reference list.
 	 * @see org.unicase.model.component.ComponentPackage#getComponent_Subsystems()
-	 * @model
+	 * @model keys="identifier"
 	 * @generated
 	 */
 	EList<org.unicase.model.classes.Package> getSubsystems();
