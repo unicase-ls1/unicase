@@ -1,8 +1,9 @@
-package org.unicase.mergetest.merge;
+package org.unicase.mergetest.merge.conflicts;
 
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.mergetest.merge.DecisionManager;
 
 public abstract class Conflict {
 
@@ -46,7 +47,7 @@ public abstract class Conflict {
 		return "";
 	}
 
-	abstract List<String> getOptions();
+	public abstract List<String> getOptions();
 
 
 	public String getOptionDescription() {
@@ -66,6 +67,11 @@ public abstract class Conflict {
 
 	public void setResolved(boolean isResolved) {
 		this.isResolved = isResolved;
+	}
+
+
+	public boolean hasAdditionalInformation() {
+		return false;
 	}
 	
 }

@@ -115,12 +115,17 @@ public class ShowConflictsDialog extends TitleAreaDialog {
 										.getProject(v[0]),analyzeConflict
 										.getChanges(v[1], v[2]),analyzeConflict
 										.getChanges(v[0] - 1, v[0]).get(0));
+								
+//								MergeWizard wizard = new MergeWizard(analyzeConflict.getProject(v[0]), theirChanges, myChanges);
+								
 								WizardDialog dialog = new WizardDialog(Display.getCurrent().getActiveShell(), wizard);
 								dialog.create();
 								dialog.open();
 								
-//								mergeDialog.setChanges(myChanges, theirChanges);
-//								mergeDialog.open();
+								mergeDialog.setChanges(analyzeConflict
+								.getChanges(v[0] - 1, v[0]).get(0), analyzeConflict
+												.getChanges(v[1], v[2]));
+								mergeDialog.open();
 								
 							} catch (Exception e) {
 								e.printStackTrace();

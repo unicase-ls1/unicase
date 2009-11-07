@@ -39,6 +39,8 @@ public class MergeWizard extends Wizard implements ConflictResolver {
 		setWindowTitle("Merge Wizard");
 	}
 
+	
+	
 	/**
 	 * {@inheritDoc}
 	 */
