@@ -25,7 +25,7 @@ nonFunctionalRequirementReference = systemFunctionClass.newEReference()
 nonFunctionalRequirementReference.name = "nonFunctionalRequirement"
 nonFunctionalRequirementClass = model.requirement.NonFunctionalRequirement
 nonFunctionalRequirementReference.eType = nonFunctionalRequirementClass
-identifierAttribute = model.IdentifiableElement.identifier
+identifierAttribute = metamodel.IdentifiableElement.identifier
 nonFunctionalRequirementReference.eKeys.add(identifierAttribute)
 systemFunctionsReference = nonFunctionalRequirementClass.newEReference()
 systemFunctionsReference.name = "systemFunctions"
@@ -74,8 +74,8 @@ useCaseClass = model.requirement.UseCase
 systemFunctionsReference2 = useCaseClass.newEReference()
 systemFunctionsReference2.name = "systemFunctions"
 systemFunctionsReference2.upperBound = -1
-systemFunctionsReference2.eKeys.add(identifierAttribute)
 systemFunctionsReference2.eType = systemFunctionClass
+systemFunctionsReference2.eKeys.add(identifierAttribute)
 eAnnotation6 = systemFunctionsReference2.newEAnnotation()
 eAnnotation6.source = "org.unicase.ui.meeditor"
 eStringToStringMapEntry11 = eAnnotation6.newEStringToStringMapEntry()
@@ -89,8 +89,8 @@ usecasesReference.name = "usecases"
 usecasesReference.upperBound = -1
 usecasesReference.eOpposite = systemFunctionsReference2
 systemFunctionsReference2.eOpposite = usecasesReference
-usecasesReference.eKeys.add(identifierAttribute)
 usecasesReference.eType = useCaseClass
+usecasesReference.eKeys.add(identifierAttribute)
 eAnnotation7 = usecasesReference.newEAnnotation()
 eAnnotation7.source = "org.unicase.ui.meeditor"
 eStringToStringMapEntry13 = eAnnotation7.newEStringToStringMapEntry()
@@ -102,8 +102,8 @@ eStringToStringMapEntry14.value = "right"
 requirementPackage = model.requirement
 workspaceClass = requirementPackage.newEClass()
 workspaceClass.name = "Workspace"
-modelElementClass = model.ModelElement
-workspaceClass.eSuperTypes.add(modelElementClass)
+unicaseModelElementClass = model.UnicaseModelElement
+workspaceClass.eSuperTypes.add(unicaseModelElementClass)
 workspaceReference = systemFunctionClass.newEReference()
 workspaceReference.name = "workspace"
 workspaceReference.eType = workspaceClass
@@ -113,8 +113,8 @@ systemFunctionsReference3.name = "systemFunctions"
 systemFunctionsReference3.upperBound = -1
 systemFunctionsReference3.eOpposite = workspaceReference
 workspaceReference.eOpposite = systemFunctionsReference3
-systemFunctionsReference3.eKeys.add(identifierAttribute)
 systemFunctionsReference3.eType = systemFunctionClass
+systemFunctionsReference3.eKeys.add(identifierAttribute)
 eAnnotation8 = systemFunctionsReference3.newEAnnotation()
 eAnnotation8.source = "org.unicase.ui.meeditor"
 eStringToStringMapEntry15 = eAnnotation8.newEStringToStringMapEntry()

@@ -27,6 +27,8 @@ audioFileReference = audioCommentClass.newEReference()
 audioFileReference.containment = true
 audioFileReference.eType = fileAttachmentClass
 audioFileReference.name = "audioFile"
+identifierAttribute = metamodel.IdentifiableElement.identifier
+audioFileReference.eKeys.add(identifierAttribute)
 uploadingAttribute = fileAttachmentClass.newEAttribute()
 uploadingAttribute.name = "uploading"
 eBooleanDataType = emf.EBoolean
