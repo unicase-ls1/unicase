@@ -9,6 +9,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.mergetest.merge.DecisionManager;
+import org.unicase.mergetest.merge.conflicts.ConflictOption.OptionType;
 
 public class LinkConflict extends Conflict {
 
@@ -16,16 +17,14 @@ public class LinkConflict extends Conflict {
 	private String optionDescription;
 	private AbstractOperation myOperation;
 	private AbstractOperation theirOperation;
-	private ArrayList<String> options;
 
 	public LinkConflict(CompositeOperation myOperation,
 			CompositeOperation theirOperation, DecisionManager decisionManager) {
 		super(myOperation, theirOperation, decisionManager);
-		options = new ArrayList<String>();
-		init();
 	}
 
-	private void init() {
+	@Override
+	protected void initOptions(List<ConflictOption> options) {
 		for (AbstractOperation myOp : ((CompositeOperation) getMyOperation())
 				.getSubOperations()) {
 			for (AbstractOperation theirOp : ((CompositeOperation) getTheirOperation())
@@ -43,30 +42,48 @@ public class LinkConflict extends Conflict {
 			optionDescription = "Reference '"
 					+ ((SingleReferenceOperation) myOperation).getFeatureName()
 					+ "'";
-			options.add(getDecisionManager().getModelElementName(
-					((SingleReferenceOperation) myOperation).getNewValue()));
-			options.add(getDecisionManager().getModelElementName(
-					((SingleReferenceOperation) theirOperation).getNewValue()));
+			options.add(new ConflictOption(getDecisionManager()
+					.getModelElementName(
+							((SingleReferenceOperation) myOperation)
+									.getNewValue()), OptionType.MyOperation));
+
+			options.add(new ConflictOption(getDecisionManager()
+					.getModelElementName(
+							((SingleReferenceOperation) theirOperation)
+									.getNewValue()), OptionType.TheirOperation));
+
 		} else if (myOperation instanceof MultiReferenceOperation) {
 			optionDescription = "Reference '"
 					+ ((MultiReferenceOperation) myOperation).getFeatureName()
 					+ "'";
 			if (((MultiReferenceOperation) myOperation).isAdd()) {
 				conflictDescription = "An Element you've added, was removed in the repository";
-				options.add("Add "+getDecisionManager().getModelElementName(
-						((MultiReferenceOperation) myOperation)
-								.getReferencedModelElements().get(0)));
-				options.add("Remove "+getDecisionManager().getModelElementName(
-						((MultiReferenceOperation) theirOperation)
-								.getReferencedModelElements().get(0)));
+
+				options.add(new ConflictOption("Add "
+						+ getDecisionManager().getModelElementName(
+								((MultiReferenceOperation) myOperation)
+										.getReferencedModelElements().get(0)),
+						OptionType.MyOperation));
+
+				options.add(new ConflictOption("Remove "
+						+ getDecisionManager().getModelElementName(
+								((MultiReferenceOperation) theirOperation)
+										.getReferencedModelElements().get(0)),
+						OptionType.TheirOperation));
 			} else {
 				conflictDescription = "An Element you've removed, was added in the repository";
-				options.add("Remove "+getDecisionManager().getModelElementName(
-						((MultiReferenceOperation) myOperation)
-								.getReferencedModelElements().get(0)));
-				options.add("Add "+getDecisionManager().getModelElementName(
-						((MultiReferenceOperation) theirOperation)
-								.getReferencedModelElements().get(0)));
+
+				options.add(new ConflictOption("Remove "
+						+ getDecisionManager().getModelElementName(
+								((MultiReferenceOperation) myOperation)
+										.getReferencedModelElements().get(0)),
+						OptionType.MyOperation));
+
+				options.add(new ConflictOption("Add "
+						+ getDecisionManager().getModelElementName(
+								((MultiReferenceOperation) theirOperation)
+										.getReferencedModelElements().get(0)),
+						OptionType.TheirOperation));
 			}
 		} else {
 			throw new IllegalStateException();
@@ -81,10 +98,5 @@ public class LinkConflict extends Conflict {
 	@Override
 	public String getOptionDescription() {
 		return optionDescription;
-	}
-
-	@Override
-	public List<String> getOptions() {
-		return options;
 	}
 }

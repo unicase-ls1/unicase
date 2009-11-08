@@ -15,27 +15,29 @@ public class AttributeConflict extends Conflict {
 	}
 
 	@Override
-	public List<String> getOptions() {
-		ArrayList<String> options = new ArrayList<String>();
-		
-		options.add(((AttributeOperation)getMyOperation()).getNewValue().toString());
-		options.add(((AttributeOperation)getTheirOperation()).getNewValue().toString());
-		
-		return options;
-	}
-
-	@Override
 	public String getConflictDescription() {
 		return "An attribute of this ModelElement conflcits";
 	}
-	
+
 	@Override
 	public String getOptionDescription() {
-		return "Attribute '"+((AttributeOperation) getMyOperation()).getFeatureName()+"'";
+		return "Attribute '"
+				+ ((AttributeOperation) getMyOperation()).getFeatureName()
+				+ "'";
 	}
-	
+
 	@Override
 	public boolean hasAdditionalInformation() {
 		return true;
+	}
+
+	@Override
+	protected void initOptions(List<ConflictOption> options) {
+		options.add(new ConflictOption(((AttributeOperation) getMyOperation())
+				.getNewValue().toString(),
+				ConflictOption.OptionType.MyOperation));
+		options.add(new ConflictOption(
+				((AttributeOperation) getTheirOperation()).getNewValue()
+						.toString(), ConflictOption.OptionType.TheirOperation));
 	}
 }

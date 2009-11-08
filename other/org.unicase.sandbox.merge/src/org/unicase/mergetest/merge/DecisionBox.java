@@ -18,6 +18,7 @@ import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.events.IExpansionListener;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.mergetest.merge.conflicts.Conflict;
+import org.unicase.mergetest.merge.conflicts.ConflictOption;
 
 public class DecisionBox extends Composite {
 
@@ -56,9 +57,9 @@ public class DecisionBox extends Composite {
 	private void createOptions(Conflict conflict) {
 		optionButtons = new ArrayList<Button>();
 		int index = 0;
-		for (String option : conflict.getOptions()) {
+		for (ConflictOption option : conflict.getOptions()) {
 			Button optionButton = new Button(this, SWT.NONE);
-			optionButton.setText(option);
+			optionButton.setText(option.getOptionLabel());
 			final int optionIndex = index; 
 			optionButton.addSelectionListener(new SelectionListener() {
 				@Override
@@ -85,26 +86,25 @@ public class DecisionBox extends Composite {
 		section.setLayoutData(layoutData);
 		section.addExpansionListener(new IExpansionListener() {
 			public void expansionStateChanged(ExpansionEvent e) {
-				DecisionBox.this.getParent().layout();
+				layoutPage();
 			}
 			public void expansionStateChanging(ExpansionEvent e) {
-				DecisionBox.this.getParent().getParent().layout();
+				layoutPage();
 			}
 		});
 //		section.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
-		Composite client = new Composite(section, SWT.BORDER);
-		client.setLayout(new GridLayout(1,false));
+		Composite client = new Composite(section, SWT.NONE);
+		client.setLayout(new GridLayout(1,true));
 		client.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		
-		Label label = new Label(client,SWT.NONE);
-		label.setText("adasdasd");
+		new MultilineCompareWidget(client,conflict);
 		
 		section.setClient(client);
 	}
 
 	protected void setSolution(int optionIndex) {
-		conflict.setSolution(optionIndex);
+		conflict.setSolution(conflict.getOptions().get(optionIndex));
 		for(int i = 0; i < optionButtons.size(); i++) {
 			Button button = optionButtons.get(i);
 			if(i==optionIndex){
@@ -113,5 +113,9 @@ public class DecisionBox extends Composite {
 				button.setBackground(null);
 			}
 		}
+	}
+	
+	private void layoutPage() {
+		getParent().getParent().getParent().layout();
 	}
 }

@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.mergetest.merge.DecisionManager;
+import org.unicase.mergetest.merge.conflicts.ConflictOption.OptionType;
 
 public class DeleteConflict extends Conflict {
 
@@ -25,20 +26,21 @@ public class DeleteConflict extends Conflict {
 			return "A deletion from the repository conflicts with one of your operations.";
 		}
 	}
-	
+
 	@Override
-	public List<String> getOptions() {
-		ArrayList<String> result = new ArrayList<String>();
-		
+	protected void initOptions(List<ConflictOption> options) {
 		if(myDelete) {
-			result.add("Revert Deletion");
-			result.add("Deny Other Change");
+			options.add(new ConflictOption("Revert Deletion",OptionType.MyOperation));
+			options.add(new ConflictOption("Deny Other Change",OptionType.TheirOperation));
 		} else {
-			result.add("Deny My Change");
-			result.add("Revert Deletion");
+			options.add(new ConflictOption("Deny My Change",OptionType.MyOperation));
+			options.add(new ConflictOption("Revert Deletion",OptionType.TheirOperation));
 		}
-		
-		return result;
+	}
+
+	@Override
+	public String getOptionDescription() {
+		return "select";
 	}
 
 }
