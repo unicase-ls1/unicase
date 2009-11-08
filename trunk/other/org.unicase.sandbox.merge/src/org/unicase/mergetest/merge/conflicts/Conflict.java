@@ -1,5 +1,6 @@
 package org.unicase.mergetest.merge.conflicts;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -11,6 +12,7 @@ public abstract class Conflict {
 	private final AbstractOperation myOperation;
 	private final DecisionManager decisionManager;
 	private boolean isResolved;
+	private ArrayList<ConflictOption> options;
 
 	public Conflict(AbstractOperation myOperation,
 			AbstractOperation theirOperation, DecisionManager decisionManager) {
@@ -18,8 +20,15 @@ public abstract class Conflict {
 				this.theirOperation = theirOperation;
 				this.decisionManager = decisionManager;
 				isResolved=false;
+				initOptions();
 	}
 
+	private void initOptions() {
+		options = new ArrayList<ConflictOption>();
+		initOptions(options);
+	}
+	
+	abstract protected void initOptions(List<ConflictOption> options);
 	
 	public DecisionManager getDecisionManager() {
 		return decisionManager;
@@ -34,32 +43,19 @@ public abstract class Conflict {
 		return myOperation;
 	}
 
-	@Override
-	public String toString() {
-		return super.toString();
-	}
-	
 	public String getName() {
 		return getDecisionManager().getModelElementName(getMyOperation().getModelElementId());
 	}
 	
-	public String getConflictDescription() {
-		return "";
-	}
+	public abstract String getConflictDescription();
 
-	public abstract List<String> getOptions();
-
-
-	public String getOptionDescription() {
-		return "";
+	public List<ConflictOption> getOptions() {
+		return options;
 	}
 
 
-	public void setSolution(int optionIndex) {
-		setResolved(true);
-	}
-	
-	
+	public abstract String getOptionDescription();
+
 	public boolean isResolved() {
 		return isResolved;
 	}
@@ -72,6 +68,10 @@ public abstract class Conflict {
 
 	public boolean hasAdditionalInformation() {
 		return false;
+	}
+
+	public void setSolution(ConflictOption conflictOption) {
+		setResolved(true);
 	}
 	
 }

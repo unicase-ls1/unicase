@@ -42,43 +42,53 @@ public class MergeSandboxController {
 
 	private Project createProject() {
 		Project project = MetamodelFactory.eINSTANCE.createProject();
-		LeafSection section = DocumentFactory.eINSTANCE
-				.createLeafSection();
-		LeafSection section2 = DocumentFactory.eINSTANCE
-		.createLeafSection();
+		LeafSection section = DocumentFactory.eINSTANCE.createLeafSection();
+		LeafSection section2 = DocumentFactory.eINSTANCE.createLeafSection();
 		project.addModelElement(section);
 		project.addModelElement(section2);
 
 		User user1 = OrganizationFactory.eINSTANCE.createUser();
 		User user2 = OrganizationFactory.eINSTANCE.createUser();
+		User user3 = OrganizationFactory.eINSTANCE.createUser();
 
 		project.addModelElement(user1);
 		project.addModelElement(user2);
+		project.addModelElement(user3);
 
 		ActionItem actionItem = TaskFactory.eINSTANCE.createActionItem();
 		project.addModelElement(actionItem);
-		actionItem.setAssignee(user1);
+		actionItem.setAssignee(user3);
 
 		nameMEs(project);
 		return project;
 	}
 
 	private void doChanges() {
-			cg("User1", User.class).setFirstName("bla");
-			sg("User1", User.class).setFirstName("blub");
-			
-			cg("User1", User.class).setLeafSection(cg("LeafSection1",LeafSection.class));
-			sg("User1", User.class).setLeafSection(sg("LeafSection2",LeafSection.class));
-			
-			cg("User1", User.class).getAssignments().remove(cg("ActionItem1",ActionItem.class));
-			sg("User1", User.class).getAssignments().remove(sg("ActionItem1",ActionItem.class));
-			sg("User1", User.class).getAssignments().add(sg("ActionItem1",ActionItem.class));
-			
-//			cg("User2",User.class).setLeafSection(cg("LeafSection2",LeafSection.class));
-//			sg("User2",User.class).delete();
+		cg("User1", User.class).setFirstName("bla");
+		sg("User1", User.class).setFirstName("blub");
 
-			
-//			sg("LeafSection1",LeafSection.class).delete();
+		cg("User1", User.class).setLeafSection(
+				cg("LeafSection1", LeafSection.class));
+		sg("User1", User.class).setLeafSection(
+				sg("LeafSection2", LeafSection.class));
+
+		cg("User3", User.class).getAssignments().remove(
+				cg("ActionItem1", ActionItem.class));
+		sg("User3", User.class).getAssignments().remove(
+				sg("ActionItem1", ActionItem.class));
+		sg("User3", User.class).getAssignments().add(
+				sg("ActionItem1", ActionItem.class));
+
+		cg("User3", User.class).setDescription("Schiller - Die goldene Zeit der Geistlichkeit fiel immer in die Gefangenschaft des menschlichen Geistes.");
+		sg("User3", User.class)
+				.setDescription(
+						"Goethe - Was Ihr den Geist der Zeiten heiﬂt, das ist im Grund der Herren eigener Geist, in dem die Zeiten sich nur spiegeln.");
+
+		cg("User2", User.class).setLeafSection(
+				cg("LeafSection2", LeafSection.class));
+		sg("User2", User.class).delete();
+
+		// sg("LeafSection1",LeafSection.class).delete();
 	}
 
 	//
@@ -121,14 +131,14 @@ public class MergeSandboxController {
 	}
 
 	/**
-	 *	Client Get 
+	 * Client Get
 	 */
 	private <T> T cg(String name, Class<T> clazz) {
 		return serverClientGet(client, name, clazz);
 	}
 
 	/**
-	 * Server Get 
+	 * Server Get
 	 */
 	private <T> T sg(String name, Class<T> clazz) {
 		return serverClientGet(server, name, clazz);
