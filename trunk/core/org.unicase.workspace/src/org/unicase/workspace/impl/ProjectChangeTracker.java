@@ -51,6 +51,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 * Name of unknown creator.
 	 */
 	public static final String UNKOWN_CREATOR = "unknown";
+	private boolean isDeleting;
 
 	/**
 	 * Constructor.
@@ -59,6 +60,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 */
 	public ProjectChangeTracker(ProjectSpaceImpl projectSpace) {
 		this.projectSpace = projectSpace;
+		this.isDeleting = false;
+		this.isRecording = false;
 	}
 
 	/**
@@ -122,6 +125,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			}
 
 		}
+		isDeleting = false;
 	}
 
 	/**
@@ -138,6 +142,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			notificationRecorder.newRecording(NotificationRecordingHint.DELETE);
 
 		}
+		isDeleting = true;
 	}
 
 	/**
@@ -261,10 +266,8 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			return;
 		}
 
-		// MK, OW: this fix was added to 0.3.31 tag and works, in the current trunk version it doesn't due to unknown
-		// side effects
 		// if this model element is the one to be deleted and if it is not in a separate resource
-		if (resource == null && modelElement.getProject() == null && this.deleteOperation != null) {
+		if (resource == null && modelElement.getProject() == null && isDeleting) {
 			return;
 		}
 		if (resource == null) {
