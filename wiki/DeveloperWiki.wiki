@@ -11,5 +11,5 @@
  * [Process Process - The development process of the UNICASE project]
  * [ReleaseAndDeploy How to release and deploy]
  * [Video_Tutorials Video Tutorials]
- * FAQ
+ * [FAQ FAQ]
  * [Links_and_References  Links and References]
