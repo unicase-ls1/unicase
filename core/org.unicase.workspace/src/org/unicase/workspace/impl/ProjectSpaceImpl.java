@@ -2330,8 +2330,9 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 		String oldFileName = oldUri.toFileString();
 		if (new File(oldFileName).length() > Configuration.getMaxResourceFileSizeOnExpand()) {
-			String newfileName = Configuration.getWorkspaceDirectory() + "ps-" + getIdentifier() + File.separatorChar
-				+ getResourceCount() + ".ucf";
+			String newfileName = Configuration.getWorkspaceDirectory() + Configuration.getProjectSpaceDirectoryPrefix()
+				+ getIdentifier() + File.separatorChar + Configuration.getProjectFolderName() + File.separatorChar
+				+ getResourceCount() + Configuration.getProjectFragmentFileExtension();
 			setResourceCount(getResourceCount() + 1);
 			checkIfFileExists(newfileName);
 			URI fileURI = URI.createFileURI(newfileName);
