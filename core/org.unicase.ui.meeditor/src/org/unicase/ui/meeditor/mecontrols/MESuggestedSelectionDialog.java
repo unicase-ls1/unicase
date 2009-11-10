@@ -5,6 +5,11 @@
  */
 package org.unicase.ui.meeditor.mecontrols;
 
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -27,11 +32,6 @@ import org.unicase.model.util.traceabilityrecommendation.RecommendationManager;
 import org.unicase.model.util.traceabilityrecommendation.selectionstrategies.ConstantThresholdSelection;
 import org.unicase.ui.common.Activator;
 import org.unicase.ui.common.preferences.UnicasePreferenceConstants;
-
-import java.util.Collection;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * This Dialog represents the possibility to select an element from a list where the list is sorted and additional

@@ -23,7 +23,7 @@ public class FileInformation implements Serializable {
 
 	private int fileSize;
 
-	private String fileAttachmentId;
+	private String fileIdentifier;
 
 	private String fileName;
 
@@ -77,17 +77,17 @@ public class FileInformation implements Serializable {
 	}
 
 	/**
-	 * @return the file attachment id
+	 * @return the file identifier
 	 */
-	public String getFileAttachmentId() {
-		return fileAttachmentId;
+	public String getFileIdentifier() {
+		return fileIdentifier;
 	}
 
 	/**
-	 * @param fileAttachmentId file attachment id
+	 * @param fileIdentifier file identifier
 	 */
-	public void setFileAttachmentId(String fileAttachmentId) {
-		this.fileAttachmentId = fileAttachmentId;
+	public void setFileAttachmentId(String fileIdentifier) {
+		this.fileIdentifier = fileIdentifier;
 	}
 
 	/**
@@ -110,8 +110,8 @@ public class FileInformation implements Serializable {
 	@Override
 	public String toString() {
 		StringBuilder string = new StringBuilder();
-		string.append("FileAttachment Id: ");
-		string.append(fileAttachmentId);
+		string.append("File Identifier: ");
+		string.append(fileIdentifier);
 		string.append("\nFile Version: ");
 		string.append(fileVersion);
 		string.append("\nFile Name: ");

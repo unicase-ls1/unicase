@@ -68,10 +68,10 @@ public class FileChunk implements Serializable {
 	}
 
 	/**
-	 * @return file attachment id
+	 * @return file identifier
 	 */
-	public String getAttachmentId() {
-		return fileInformation.getFileAttachmentId();
+	public String getFileIdentifier() {
+		return fileInformation.getFileIdentifier();
 	}
 
 	/**

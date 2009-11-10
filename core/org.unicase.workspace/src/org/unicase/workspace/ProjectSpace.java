@@ -656,15 +656,6 @@ public interface ProjectSpace extends IdentifiableElement {
 		throws FileTransferException;
 
 	/**
-	 * @param tmpTransfer pending file transfer
-	 * @param selectedFile file to upload
-	 * @param run true if transfer is to be started instantaneously
-	 * @throws FileTransferException if any error occurs adding the file transfer
-	 */
-	void addFileTransfer(final PendingFileTransfer tmpTransfer, File selectedFile, boolean run)
-		throws FileTransferException;
-
-	/**
 	 * Add a commit observer to the project space.
 	 * 
 	 * @param observer a project commit observer
