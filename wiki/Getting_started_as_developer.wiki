@@ -30,7 +30,7 @@ Getting started as developer in 7 easy steps:
 
 6. Start the UNICASE client from Eclipse, see this [http://unicase.googlecode.com/files/StartUnicaseClient.mov video tutorial].
 
-7. Register for our mailinglists.
+7. Register for our [http://code.google.com/p/unicase/wiki/Mailinglist mailinglists].
 
 
 If you have any questions please consider the FAQ and Developer FAQ and do not hesitate to use our mailinglist.
