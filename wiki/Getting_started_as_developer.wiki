@@ -24,7 +24,7 @@ Getting started as developer in 7 easy steps:
 
 3. Checkout the UNICASE source code from the [http://code.google.com/p/unicase/wiki/SVN_Repository svn repository] (see this link: http://code.google.com/p/unicase/source/checkout).
 
-4. Configure Java and Checkstyle warnings as described in Coding Guidelines.
+4. Configure Java and Checkstyle warnings as described in [http://code.google.com/p/unicase/wiki/Coding_Guidelines Coding Guidelines].
 
 5. Start the UNICASE server from Eclipse, see this video tutorial.
 
