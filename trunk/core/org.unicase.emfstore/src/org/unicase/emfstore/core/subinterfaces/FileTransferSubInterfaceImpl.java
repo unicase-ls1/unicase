@@ -99,7 +99,7 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 			FileInformation fileInfo = fileChunk.getFileInformation();
 			if (fileChunk.getData() == null) {
 				fileInfo.setFileVersion(getVersion(attachmentFolder, attachmentTempFolder, fileInfo
-					.getFileAttachmentId()));
+					.getFileIdentifier()));
 				try {
 					// create emtpy file in tmp folder so that the version is reserved
 					new File(constructTempFileLocation(fileInfo, projectId)).createNewFile();
@@ -177,23 +177,23 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	private File findFileInTemp(FileInformation fileInfo, ProjectId projectId) throws FileNotFoundException {
 		for (File f : new File(getProjectAttachmentTempFolder(projectId)).listFiles()) {
 			if (f.getName().startsWith(
-				fileInfo.getFileAttachmentId() + FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER)) {
+				fileInfo.getFileIdentifier() + FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER)) {
 				return f;
 			}
 		}
-		throw new FileNotFoundException("Could not locate the specified file (" + fileInfo.getFileAttachmentId()
+		throw new FileNotFoundException("Could not locate the specified file (" + fileInfo.getFileIdentifier()
 			+ FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER + ") in the temp folder.");
 	}
 
 	private File findFile(FileInformation fileInfo, ProjectId projectId) throws FileNotFoundException {
 		for (File f : new File(getProjectAttachmentFolder(projectId)).listFiles()) {
 			if (f.getName().startsWith(
-				fileInfo.getFileAttachmentId() + FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER)) {
+				fileInfo.getFileIdentifier() + FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER)) {
 				return f;
 			}
 		}
 		throw new FileNotFoundException("File " + fileInfo.getFileName() + " for FileAttachment "
-			+ fileInfo.getFileAttachmentId() + " in version " + fileInfo.getFileVersion()
+			+ fileInfo.getFileIdentifier() + " in version " + fileInfo.getFileVersion()
 			+ " could not be located in the cache folder.");
 	}
 
@@ -206,7 +206,7 @@ public class FileTransferSubInterfaceImpl extends AbstractSubEmfstoreInterface {
 	}
 
 	private String constructFileName(FileInformation fileInfo) {
-		return fileInfo.getFileAttachmentId() + FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER
+		return fileInfo.getFileIdentifier() + FILE_NAME_DELIMITER + fileInfo.getFileVersion() + FILE_NAME_DELIMITER
 			+ fileInfo.getFileName();
 	}
 

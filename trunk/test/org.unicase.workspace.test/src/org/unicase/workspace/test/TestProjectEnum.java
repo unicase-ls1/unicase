@@ -50,6 +50,10 @@ public enum TestProjectEnum {
 	SUPERMARKET("TestProjects/SupermarketExampleProject.ucp"),
 
 	/**
+	 * file api.
+	 */
+	FILEAPI("TestProjects/FileAPI.ucp"),
+	/**
 	 * no test project.
 	 */
 	NONE("");

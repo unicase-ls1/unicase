@@ -6,6 +6,7 @@
 
 package org.unicase.workspace.filetransfer;
 
+
 /**
  * Observer for file transfers.
  * 
@@ -22,9 +23,8 @@ public interface FileTransferObserver {
 	//
 	// /**
 	// * @param exception that might have been thrown
-	// * @param fileAttachment for which the download was finished
+	// * @param modelElement for which the download was finished
 	// * @param fileInformation file information
 	// */
-	// void uploadFinished(final Exception exception, final FileAttachment fileAttachment,
-	// final FileInformation fileInformation);
+	// void uploadFinished(Exception exception, ModelElement modelElement, FileInformation fileInformation);
 }

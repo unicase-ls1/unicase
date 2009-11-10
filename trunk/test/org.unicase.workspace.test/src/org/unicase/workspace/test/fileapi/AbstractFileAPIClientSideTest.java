@@ -11,7 +11,6 @@ import java.net.URISyntaxException;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.BeforeClass;
-import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.test.SetupHelper;
@@ -47,26 +46,27 @@ public abstract class AbstractFileAPIClientSideTest {
 	@Before
 	public void setup() {
 
-		// TODO: specific file api test project
-		setupHelper = new SetupHelper(TestProjectEnum.RANDOM_3K);
+		setupHelper = new SetupHelper(TestProjectEnum.FILEAPI);
 
 		setupHelper.setupWorkSpace();
 
-		// setupHelper.setupTestProjectSpace();
 		setupHelper.createEmptyTestProjectSpace();
+
+		setupHelper.importProject(TestProjectEnum.FILEAPI);
+
+		setupHelper.createNewProjectId();
+
+		setupHelper.loginServer();
 
 		setupHelper.shareProject();
 
 	}
 
 	/**
-	 * cleans server and workspace after tests are run.
+	 * Generate file attachments for the empty project.
 	 */
-	@After
-	public void cleanUp() {
-		setupHelper.cleanupWorkspace();
+	public void populateProject() {
 
-		SetupHelper.cleanupServer();
 	}
 
 	/**
@@ -84,22 +84,12 @@ public abstract class AbstractFileAPIClientSideTest {
 	}
 
 	/**
-	 * Returns project to be compared with test project. This is project that lies on server after committing the
-	 * changes.
-	 * 
-	 * @return project lying on the server
-	 * @throws EmfStoreException EmfStoreException
+	 * cleans server and workspace after tests are run.
 	 */
-	public Project getCompareProject() throws EmfStoreException {
-		return setupHelper.getCompareProject();
+	@After
+	public void cleanUp() {
+		setupHelper.cleanupWorkspace();
 
+		SetupHelper.cleanupServer();
 	}
-
-	/**
-	 * Commit changes to the server.
-	 */
-	protected void commitChanges() {
-		setupHelper.commitChanges();
-	}
-
 }

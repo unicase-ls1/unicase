@@ -44,6 +44,7 @@ import org.unicase.workspace.Workspace;
 import org.unicase.workspace.WorkspaceFactory;
 import org.unicase.workspace.WorkspaceManager;
 import org.unicase.workspace.connectionmanager.AdminConnectionManager;
+import org.unicase.workspace.connectionmanager.ConnectionManager;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.impl.WorkspaceImpl;
 import org.unicase.workspace.test.integration.forward.IntegrationTestHelper;
@@ -353,6 +354,35 @@ public class SetupHelper {
 	}
 
 	/**
+	 * @throws EmfStoreException if any error occurs
+	 */
+	public void setupTestProjectOnServer() throws EmfStoreException {
+		System.out.println("**********************************************************");
+		System.out.println("*                                                        *");
+		System.out.println("*     Creating a random project with given parameters    *");
+		System.out.println("*                                                        *");
+		System.out.println("**********************************************************");
+
+		// running the server
+		startSever();
+		// logging in on server
+		loginServer();
+		// create a new project id
+		projectId = EsmodelFactory.eINSTANCE.createProjectId();
+		// visual check if null
+		System.out.println("-> Session id is: " + usersession.getSessionId().getId());
+		System.out.println("-> Project id is: " + projectId.getId());
+		// create a log message
+
+		ConnectionManager connectionManager = WorkspaceManager.getInstance().getConnectionManager();
+		ProjectInfo projectInfo = connectionManager.createEmptyProject(usersession.getSessionId(),
+			projectId.toString(), "test_project", createLogMessage("test", "log this!"));
+
+		WorkspaceManager.getInstance().getCurrentWorkspace().checkout(usersession, projectInfo);
+
+	}
+
+	/**
 	 * Cleans server up.
 	 */
 	public static void cleanupServer() {
@@ -393,10 +423,10 @@ public class SetupHelper {
 			}
 
 		};
-		File[] filesToDelete2 = workspaceDirectory.listFiles(workspaceFileFilter);
-		for (int i = 0; i < filesToDelete2.length; i++) {
+		File[] filesToDelete = workspaceDirectory.listFiles(workspaceFileFilter);
+		for (int i = 0; i < filesToDelete.length; i++) {
 			try {
-				FileUtil.deleteFolder(filesToDelete2[i]);
+				FileUtil.deleteFolder(filesToDelete[i]);
 			} catch (IOException e) {
 
 				e.printStackTrace();
@@ -415,6 +445,38 @@ public class SetupHelper {
 	 */
 	public ProjectSpace importProject(String uri) throws IOException {
 		return workSpace.importProject(uri);
+	}
+
+	/**
+	 * Imports a project space from an exported project file.
+	 * 
+	 * @param projectTemplate project template
+	 */
+	public void importProject(TestProjectEnum projectTemplate) {
+		final String path;
+		path = projectTemplate.getPath();
+
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				String uriString = Activator.getDefault().getBundle().getLocation() + path;
+				if (File.separator.equals("/")) {
+					uriString = uriString.replace("reference:file:", "");
+
+				} else {
+					uriString = uriString.replace("reference:file:/", "");
+				}
+				try {
+					testProjectSpace = workSpace.importProject(uriString);
+					testProject = testProjectSpace.getProject();
+					projectId = testProjectSpace.getProjectId();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+			}
+
+		});
 
 	}
 
@@ -437,18 +499,18 @@ public class SetupHelper {
 			if (!usersession.isLoggedIn()) {
 				usersession.logIn();
 			}
+			new UnicaseCommand() {
 
-			domain.getCommandStack().execute(new RecordingCommand(domain) {
 				@Override
-				protected void doExecute() {
+				protected void doRun() {
 					try {
 						getTestProjectSpace().shareProject(usersession);
-
 					} catch (EmfStoreException e) {
 						e.printStackTrace();
 					}
+
 				}
-			});
+			}.run();
 
 		} catch (AccessControlException e) {
 			e.printStackTrace();
@@ -590,5 +652,19 @@ public class SetupHelper {
 		session.setUsername(user.getName());
 		session.setPassword("foo");
 		return session;
+	}
+
+	/**
+	 * Creates a new project id.
+	 */
+	public void createNewProjectId() {
+		domain.getCommandStack().execute(new RecordingCommand(domain) {
+
+			@Override
+			protected void doExecute() {
+				testProjectSpace.setProjectId(EsmodelFactory.eINSTANCE.createProjectId());
+				projectId = testProjectSpace.getProjectId();
+			}
+		});
 	}
 }

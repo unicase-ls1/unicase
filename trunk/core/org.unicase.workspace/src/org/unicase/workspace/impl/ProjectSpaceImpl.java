@@ -6,6 +6,7 @@
 package org.unicase.workspace.impl;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -54,6 +55,7 @@ import org.unicase.emfstore.exceptions.BaseVersionOutdatedException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.emfstore.exceptions.FileTransferException;
 import org.unicase.emfstore.filetransfer.FileInformation;
+import org.unicase.metamodel.MetamodelFactory;
 import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
@@ -81,7 +83,12 @@ import org.unicase.workspace.exceptions.MEUrlResolutionException;
 import org.unicase.workspace.exceptions.NoChangesOnServerException;
 import org.unicase.workspace.exceptions.NoLocalChangesException;
 import org.unicase.workspace.exceptions.PropertyNotFoundException;
+import org.unicase.workspace.filetransfer.FileDownloadJob;
+import org.unicase.workspace.filetransfer.FileRequestHandler;
 import org.unicase.workspace.filetransfer.FileTransferJob;
+import org.unicase.workspace.filetransfer.FileTransferObserver;
+import org.unicase.workspace.filetransfer.FileTransferUtil;
+import org.unicase.workspace.filetransfer.FileUploadJob;
 import org.unicase.workspace.notification.NotificationGenerator;
 import org.unicase.workspace.observers.CommitObserver;
 import org.unicase.workspace.observers.ConflictResolver;
@@ -122,7 +129,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  *             </p>
  * @generated
  */
-public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, LoginObserver {
+public class ProjectSpaceImpl extends IdentifiableElementImpl implements ProjectSpace, LoginObserver,
+	FileTransferObserver {
 
 	/**
 	 * The cached value of the '{@link #getProject() <em>Project</em>}' containment reference. <!-- begin-user-doc -->
@@ -2073,7 +2081,7 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			if (stopTransfers()) {
 				resumeTransfers();
 			}
-			// transmitProperties();
+			transmitProperties();
 			// BEGIN SUPRESS CATCH EXCEPTION
 		} catch (RuntimeException e) {
 			// END SUPRESS CATCH EXCEPTION
@@ -2081,46 +2089,38 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		}
 	}
 
-	/**
-	 * {@inheritDoc}
-	 * 
-	 * @throws FileTransferException
-	 * @throws FileTransferException
-	 * @see org.unicase.workspace.ProjectSpace#addFileTransfer(org.unicase.model.attachment.FileAttachment,
-	 *      org.unicase.emfstore.filetransfer.FileInformation, boolean)
-	 */
-	public void addFileTransfer(final PendingFileTransfer tmpTransfer, File selectedFile, boolean run)
+	private void addFileTransfer(final PendingFileTransfer tmpTransfer, File selectedFile, boolean run)
 		throws FileTransferException {
-		// // in case of an upload, isUpload has to evaluate to true and a selectedFile (file to be uploaded) must be
-		// // not-null
-		// if (tmpTransfer.isUpload() && selectedFile != null) {
-		// String uUID = EcoreUtil.generateUUID();
-		// tmpTransfer.setPreliminaryFileName(uUID);
-		// try {
-		// FileTransferUtil.copyUnversionedFileToCache(selectedFile, uUID, projectId);
-		// } catch (IOException e) {
-		// throw new FileTransferException("Could not copy the file " + selectedFile.getName()
-		// + " to the cache. Please ensure that you have the rights to do this and try again!", e);
-		// }
-		// } else {
-		// tmpTransfer.setPreliminaryFileName(null);
-		// }
-		// for (PendingFileTransfer transfer : getPendingFileTransfers()) {
-		// if ((!transfer.isUpload() && transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId()) && transfer
-		// .getFileVersion() == tmpTransfer.getFileVersion())
-		// || (transfer.isUpload() && transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId()))) {
-		// throw new FileTransferException("File transfer already pending!");
-		// }
-		// }
-		// new UnicaseCommand() {
-		// @Override
-		// protected void doRun() {
-		// getPendingFileTransfers().add(tmpTransfer);
-		// }
-		// }.run();
-		// if (run) {
-		// startFileTransfer(tmpTransfer);
-		// }
+		// in case of an upload, isUpload has to evaluate to true and a selectedFile (file to be uploaded) must be
+		// not-null
+		if (tmpTransfer.isUpload() && selectedFile != null) {
+			String uUID = EcoreUtil.generateUUID();
+			tmpTransfer.setPreliminaryFileName(uUID);
+			try {
+				FileTransferUtil.copyUnversionedFileToCache(selectedFile, uUID, projectId);
+			} catch (IOException e) {
+				throw new FileTransferException("Could not copy the file " + selectedFile.getName()
+					+ " to the cache. Please ensure that you have the rights to do this and try again!", e);
+			}
+		} else {
+			tmpTransfer.setPreliminaryFileName(null);
+		}
+		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
+			if ((transfer.isUpload() == tmpTransfer.isUpload()
+				&& transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId()) && transfer.getFileVersion() == tmpTransfer
+				.getFileVersion())) {
+				throw new FileTransferException("File transfer already pending!");
+			}
+		}
+		new UnicaseCommand() {
+			@Override
+			protected void doRun() {
+				getPendingFileTransfers().add(tmpTransfer);
+			}
+		}.run();
+		if (run) {
+			startFileTransfer(tmpTransfer);
+		}
 	}
 
 	/**
@@ -2132,55 +2132,41 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 */
 	public void addFileTransfer(FileInformation fileInformation, File selectedFile, boolean isUpload, boolean run)
 		throws FileTransferException {
-		// addFileTransfer(FileTransferUtil.createPendingFileTransferFromFileInformation(fileInformation, isUpload),
-		// selectedFile, run);
+		addFileTransfer(FileTransferUtil.createPendingFileTransferFromFileInformation(fileInformation, isUpload),
+			selectedFile, run);
 	}
 
-	// /**
-	// * Starts a file transfer job. Checks if the FileAttachment linked to it still exists, if not, the transfer is
-	// * removed.
-	// *
-	// * @param transfer the transfer
-	// */
-	// private void startFileTransfer(final PendingFileTransfer transfer) {
-	// // FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
-	// // if (fileAttachment == null) {
-	// // new UnicaseCommand() {
-	// // @Override
-	// // protected void doRun() {
-	// // getPendingFileTransfers().remove(transfer);
-	// // }
-	// // }.run();
-	// // }
-	// // if (transfer.isUpload()) {
-	// // new FileUploadJob(transfer, fileAttachment).schedule();
-	// // } else {
-	// // new FileDownloadJob(transfer, fileAttachment).schedule();
-	// // }
-	// }
+	/**
+	 * Starts a file transfer job. Checks if the FileAttachment linked to it still exists, if not, the transfer is
+	 * removed.
+	 * 
+	 * @param transfer the transfer
+	 */
+	private void startFileTransfer(PendingFileTransfer transfer) {
+		if (transfer.isUpload()) {
+			new FileUploadJob(transfer, this, true).schedule();
+		} else {
+			new FileDownloadJob(transfer, this, true).schedule();
+		}
+	}
 
 	/**
 	 * Resumes the pending file transfers.
 	 */
 	private void resumeTransfers() {
-		// ArrayList<Job> jobs = new ArrayList<Job>();
-		// Iterator<PendingFileTransfer> iterator = getPendingFileTransfers().listIterator();
-		// while (iterator.hasNext()) {
-		// PendingFileTransfer transfer = iterator.next();
-		// FileAttachment fileAttachment = (FileAttachment) getProject().getModelElement(transfer.getAttachmentId());
-		// if (fileAttachment == null) {
-		// iterator.remove();
-		// continue;
-		// }
-		// if (transfer.isUpload()) {
-		// jobs.add(new FileUploadJob(transfer, fileAttachment));
-		// } else {
-		// jobs.add(new FileDownloadJob(transfer, fileAttachment));
-		// }
-		// for (Job job : jobs) {
-		// job.schedule();
-		// }
-		// }
+		ArrayList<Job> jobs = new ArrayList<Job>();
+		Iterator<PendingFileTransfer> iterator = getPendingFileTransfers().listIterator();
+		while (iterator.hasNext()) {
+			PendingFileTransfer transfer = iterator.next();
+			if (transfer.isUpload()) {
+				jobs.add(new FileUploadJob(transfer, this, true));
+			} else {
+				jobs.add(new FileDownloadJob(transfer, this, true));
+			}
+			for (Job job : jobs) {
+				job.schedule();
+			}
+		}
 
 	}
 
@@ -2465,7 +2451,6 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 		return propertyMap.containsKey(key.toString());
 	}
 
-	@SuppressWarnings("unused")
 	private void transmitProperties() {
 		ListIterator<OrgUnitProperty> iterator = getUsersession().getChangedProperties().listIterator();
 		while (iterator.hasNext()) {
@@ -2511,12 +2496,8 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 	 * {@inheritDoc}
 	 */
 	public boolean hasFileTransfer(FileInformation fileInformation, boolean upload) {
-		final PendingFileTransfer tmpTransfer = WorkspaceFactoryImpl.eINSTANCE.createPendingFileTransfer();
-		tmpTransfer.setAttachmentId(ModelUtil.createModelElementId(fileInformation.getFileAttachmentId()));
-		tmpTransfer.setChunkNumber(fileInformation.getChunkNumber());
-		tmpTransfer.setFileVersion(fileInformation.getFileVersion());
-		tmpTransfer.setFileName(fileInformation.getFileName());
-		tmpTransfer.setUpload(upload);
+		PendingFileTransfer tmpTransfer = FileTransferUtil.createPendingFileTransferFromFileInformation(
+			fileInformation, upload);
 		for (PendingFileTransfer transfer : getPendingFileTransfers()) {
 			if (transfer.isUpload() == upload && transfer.getAttachmentId().equals(tmpTransfer.getAttachmentId())
 				&& transfer.getFileVersion() == tmpTransfer.getFileVersion()) {
@@ -2524,5 +2505,50 @@ public class ProjectSpaceImpl extends IdentifiableElementImpl implements Project
 			}
 		}
 		return false;
+	}
+
+	/**
+	 * @param file to be added to the projectspace
+	 * @return file identifier to retrieve file with
+	 * @throws FileTransferException if any error occurs
+	 */
+	public String addFile(File file) throws FileTransferException {
+		if (file.isDirectory()) {
+			throw new FileTransferException("Can only upload files!");
+		}
+		// String fileIdentifier = EcoreUtil.generateUUID();
+		ModelElementId identifier = MetamodelFactory.eINSTANCE.createModelElementId();
+		// create pending file transfer
+		PendingFileTransfer tmpTransfer = WorkspaceFactory.eINSTANCE.createPendingFileTransfer();
+		tmpTransfer.setAttachmentId(identifier);
+		tmpTransfer.setFileName(file.getName());
+		tmpTransfer.setUpload(true);
+		tmpTransfer.setFileVersion(-1);
+		addFileTransfer(tmpTransfer, file, true);
+		return identifier.getId();
+	}
+
+	/**
+	 * @param fileIdentifier file identifier string
+	 * @return handler
+	 * @throws FileTransferException if any error occurs retrieving the files
+	 */
+	public FileRequestHandler getFile(String fileIdentifier) throws FileTransferException {
+		// create model element id to identify file
+		ModelElementId identifier = MetamodelFactory.eINSTANCE.createModelElementId();
+		identifier.setId(fileIdentifier);
+		// create pending file transfer
+		PendingFileTransfer tmpTransfer = WorkspaceFactory.eINSTANCE.createPendingFileTransfer();
+		tmpTransfer.setAttachmentId(identifier);
+		tmpTransfer.setUpload(false);
+		tmpTransfer.setFileVersion(0);
+		try {
+			FileTransferUtil.findCachedFile(tmpTransfer, projectId);
+		} catch (FileNotFoundException e) {
+			addFileTransfer(tmpTransfer, null, true);
+		}
+		FileRequestHandler fHandler = new FileRequestHandler(FileTransferUtil
+			.createFileInformationFromPendingFileTransfer(tmpTransfer), this);
+		return fHandler;
 	}
 } // ProjectContainerImpl

@@ -43,9 +43,9 @@ import org.unicase.emfstore.filetransfer.FileInformation;
 import org.unicase.model.attachment.AttachmentFactory;
 import org.unicase.model.attachment.FileAttachment;
 import org.unicase.ui.common.exceptions.DialogHandler;
-import org.unicase.ui.common.util.FileTransferUtil;
 import org.unicase.ui.meeditor.Activator;
 import org.unicase.workspace.WorkspaceManager;
+import org.unicase.workspace.filetransfer.FileTransferUtil;
 
 /**
  * @author pfeifferc
@@ -127,6 +127,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 		upload.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER, false, false));
 
 		// Column x: invisible label to fix databinding direction problem
+
 		Label fix = new Label(composite, SWT.NONE);
 		fix.setVisible(false);
 		GridDataFactory.fillDefaults().hint(0, 0).grab(false, false).applyTo(fix);
@@ -193,7 +194,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 		public Object convert(Object fromObject) {
 			try {
 				if (WorkspaceManager.getProjectSpace(fileAttachment).hasFileTransfer(
-					FileTransferUtil.createFileInformationFromFileAttachment(fileAttachment), true)) {
+					createFileInformationFromFileAttachment(fileAttachment), true)) {
 					setUploadButtonAccordingToTransferStatus(true);
 				} else {
 					setUploadButtonAccordingToTransferStatus(false);
@@ -240,8 +241,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 	private final class SaveAsSelectionListener implements SelectionListener {
 		public void widgetSelected(SelectionEvent e) {
 			try {
-				FileTransferUtil.findCachedFile(fileAttachment, WorkspaceManager.getProjectSpace(fileAttachment)
-					.getProjectId());
+				findCachedFile(fileAttachment, WorkspaceManager.getProjectSpace(fileAttachment).getProjectId());
 			} catch (FileNotFoundException e2) {
 				if ((fileAttachment).getFileName() == null) {
 					MessageDialog.openInformation(Display.getCurrent().getActiveShell(), "Please observe:",
@@ -275,9 +275,8 @@ public class MEFileChooserControl extends AbstractMEControl {
 								+ (fileAttachment).getFileName());
 						}
 						try {
-							FileTransferUtil.copyFileFromCacheToNewLocation(FileTransferUtil.findCachedFile(
-								fileAttachment, WorkspaceManager.getProjectSpace(fileAttachment).getProjectId()),
-								destination, monitor);
+							FileTransferUtil.copyFileFromCacheToNewLocation(findCachedFile(fileAttachment,
+								WorkspaceManager.getProjectSpace(fileAttachment).getProjectId()), destination, monitor);
 						} catch (FileNotFoundException e) {
 							openInformation("File could not be found:", e.getMessage());
 						} catch (IOException e) {
@@ -323,7 +322,7 @@ public class MEFileChooserControl extends AbstractMEControl {
 			public void run() {
 				FileInformation fileInfo;
 				try {
-					fileInfo = FileTransferUtil.createFileInformationFromFileAttachment(fileAttachment);
+					fileInfo = createFileInformationFromFileAttachment(fileAttachment);
 				} catch (FileTransferException e2) {
 					openInformation("Please observe:", e2.getMessage());
 					return;
@@ -407,5 +406,43 @@ public class MEFileChooserControl extends AbstractMEControl {
 			dbc.dispose();
 		}
 		super.dispose();
+	}
+
+	/**
+	 * @param fileAttachment file attachment
+	 * @return file information containing the information related to the specified file attachment
+	 * @throws FileTransferException if there is no file attached to the file attachment
+	 */
+	private FileInformation createFileInformationFromFileAttachment(FileAttachment fileAttachment)
+		throws FileTransferException {
+		// check if the file attachment attributes are set, otherwise return error dialog
+		if (fileAttachment.getFileName() == null || fileAttachment.getFileID() == null) {
+			throw new FileTransferException("There is no file attached to this file attachment!");
+		}
+		// set information needed for transfer
+		FileInformation fileInfo = new FileInformation();
+		fileInfo.setFileAttachmentId(fileAttachment.getIdentifier());
+		fileInfo.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
+		fileInfo.setFileName(fileAttachment.getFileName());
+		return fileInfo;
+	}
+
+	/**
+	 * @param fileAttachment the file Attachment
+	 * @param projectId project id
+	 * @return the cached file
+	 * @throws FileNotFoundException if the file could not be found
+	 */
+	private File findCachedFile(FileAttachment fileAttachment, ProjectId projectId) throws FileNotFoundException {
+		FileInformation fileInformation = new FileInformation();
+		fileInformation.setFileAttachmentId(fileAttachment.getIdentifier());
+		if (fileAttachment.getFileID() == null || fileAttachment.getFileID().equals("")) {
+			throw new FileNotFoundException("File does not exist!");
+		}
+		fileInformation.setFileVersion(Integer.parseInt(fileAttachment.getFileID()));
+		fileInformation.setFileName(fileAttachment.getFileName());
+		return FileTransferUtil.findCachedFile(FileTransferUtil
+			.constructFileNameBasedOnAttachmentIdAndVersion(fileInformation), new File(FileTransferUtil
+			.constructCacheFolder(projectId)));
 	}
 }
