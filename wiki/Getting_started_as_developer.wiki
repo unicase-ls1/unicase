@@ -18,7 +18,7 @@ We currently use the following development tools:
 
 Getting started as developer in 7 easy steps:
 
-1. Download and install Java.
+1. Download and install [http://java.sun.com/javase/downloads/index_jdk5.jsp Java].
 
 2. Download Eclipse and install the required plugins (see above).
 
