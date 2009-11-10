@@ -4,4 +4,4 @@
  *  [Setup Set-up and Configuration]
  *  [Process]
  *  [ReleaseAndDeploy How to release and deploy]
- *  [FAQ FAQ]
+ *  [http://code.google.com/p/unicase/wiki/FAQ FAQ]
