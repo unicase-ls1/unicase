@@ -26,7 +26,7 @@ Getting started as developer in 7 easy steps:
 
 4. Configure Java and Checkstyle warnings as described in [http://code.google.com/p/unicase/wiki/Coding_Guidelines Coding Guidelines].
 
-5. Start the UNICASE server from Eclipse, see this video tutorial.
+5. Start the UNICASE server from Eclipse, see this [http://unicase.googlecode.com/files/StartEmfStore.mov video tutorial].
 
 6. Start the UNICASE client from Eclipse, see this video tutorial.
 
