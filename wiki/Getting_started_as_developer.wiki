@@ -11,9 +11,9 @@ We currently use the following development tools:
     * Eclipse Plugins
           o UNICASE: install via Update Manager - http://wwwbruegge.in.tum.de/static/unicase. <br>
           o COPE: install via Update Manager - http://cope.in.tum.de/update-site/site.xml.<br>
-          o Subclipse: install via Update Manager - http://subclipse.tigris.org/update_1.4.x
-          o Checkstyle: install via Update Manager (use version 4.x) - http://eclipse-cs.sourceforge.net/update
-          o Findbugs: install via Update Manager - http://findbugs.cs.umd.edu/eclipse
+          o Subclipse: install via Update Manager - http://subclipse.tigris.org/update_1.4.x.<br>
+          o Checkstyle: install via Update Manager (use version 4.x) - http://eclipse-cs.sourceforge.net/update.<br>
+          o Findbugs: install via Update Manager - http://findbugs.cs.umd.edu/eclipse.<br>
 
 
 Getting started as developer in 7 easy steps:
