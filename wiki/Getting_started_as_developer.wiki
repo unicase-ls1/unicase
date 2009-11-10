@@ -2,7 +2,7 @@ We develop UNICASE for the Eclipse platform with the Eclipse Java IDE.
 
 We currently use the following development tools:
 
-    * Java 5 SE
+    * [http://java.sun.com/javase/downloads/index_jdk5.jsp Java 5 SE]
     * Eclipse 3.4: Modeling Tools Edition (Ganymede)
           o EMF <br>
           o GEF, GMF <br>
