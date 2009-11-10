@@ -1,0 +1,38 @@
+We develop UNICASE for the Eclipse platform with the Eclipse Java IDE.
+
+We currently use the following development tools:
+
+    * Java 5 SE
+    * Eclipse 3.4: Modeling Tools Edition (Ganymede)
+          o EMF
+          o GEF, GMF
+          o Ecore Tools
+
+    * Eclipse Plugins
+          o UNICASE: install via Update Manager - http://wwwbruegge.in.tum.de/static/unicase
+          o COPE: install via Update Manager - http://cope.in.tum.de/update-site/site.xml
+          o Subclipse: install via Update Manager - http://subclipse.tigris.org/update_1.4.x
+          o Checkstyle: install via Update Manager (use version 4.x) - http://eclipse-cs.sourceforge.net/update
+          o Findbugs: install via Update Manager - http://findbugs.cs.umd.edu/eclipse
+
+
+Getting started as developer in 7 easy steps:
+
+1. Download and install Java.
+
+2. Download Eclipse and install the required plugins (see above).
+
+3. Checkout the UNICASE source code from the svn repository (see this link: http://code.google.com/p/unicase/source/checkout).
+
+4. Configure Java and Checkstyle warnings as described in Coding Guidelines.
+
+5. Start the UNICASE server from Eclipse, see this video tutorial.
+
+6. Start the UNICASE client from Eclipse, see this video tutorial.
+
+7. Register for our mailinglists.
+
+
+If you have any questions please consider the FAQ and Developer FAQ and do not hesitate to use our mailinglist.
+
+Note: We use UNICASE to model unicase, also called boot strapping or eat-your-own-dogfood.See here: http://code.google.com/p/unicase/wiki/Unicase_repository_beta_server   for details.
