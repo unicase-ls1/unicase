@@ -20,7 +20,7 @@ Getting started as developer in 7 easy steps:
 
 1. Download and install [http://java.sun.com/javase/downloads/index_jdk5.jsp Java].
 
-2. Download Eclipse and install the required plugins (see above).
+2. Download [http://phoenix.eclipse.org/packages/ Eclipse] and install the required plugins (see above).
 
 3. Checkout the UNICASE source code from the svn repository (see this link: http://code.google.com/p/unicase/source/checkout).
 
