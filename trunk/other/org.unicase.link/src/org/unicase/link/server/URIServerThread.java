@@ -30,6 +30,8 @@ import org.unicase.workspace.util.WorkspaceUtil;
  */
 public class URIServerThread extends Thread {
 	
+	private static final String EXTERNAL_URL = "EXTERNAL_URL"; 
+	
 	private Socket clientSocket;
 	
 	/**
@@ -97,11 +99,11 @@ public class URIServerThread extends Thread {
 							// when the according element is found, open it 
 							Display.getDefault().asyncExec(new Runnable() {
 								public void run() {
-									ActionHelper.openModelElement(e, "");
+									ActionHelper.openModelElement(e, EXTERNAL_URL);
 								}});; 
 						}
 					}
-				} else {
+				} else {					
 					// inform client, that the project is not available
 					Display.getDefault().asyncExec(new Runnable() {
 						public void run() {
