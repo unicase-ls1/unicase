@@ -17,7 +17,7 @@ Change the version number of all the plug-ins to the release number that you are
 [http://unicase.googlecode.com/files/cd2.png]
 
 
- * *Important note: while using the search/replace option in eclipse you should double check the information that is being replaced by using the preview functionality in order to grantee that the correct files are being modified.
+ * *Important note:* while using the search/replace option in eclipse you should double check the information that is being replaced by using the preview functionality in order to grantee that the correct files are being modified.
 
 Step 3:
 Increase the version number in the feature.xml file to match the version number of the new release:
