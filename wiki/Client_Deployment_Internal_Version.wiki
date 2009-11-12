@@ -21,3 +21,4 @@ Change the version number of all the plug-ins to the release number that you are
 
 Step 3:
 Increase the version number in the feature.xml file to match the version number of the new release:
+[http://unicase.googlecode.com/files/cd3.png]
