@@ -25,7 +25,7 @@ public class MultilineCompareWidget extends Composite {
 	}
 
 	private void createColumn(String text, boolean editable) {
-		Text myAttribute = new Text(this, SWT.MULTI | SWT.WRAP);
+		Text myAttribute = new Text(this, SWT.MULTI | SWT.WRAP | SWT.FLAT);
 		myAttribute.setLayoutData(new GridData(GridData.FILL_BOTH));
 		myAttribute.setText(text);
 		myAttribute.setEditable(editable);
