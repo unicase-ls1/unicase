@@ -40,7 +40,7 @@ The UNICASE project also uses specific Java formatting settings to avoid whitesp
 
 Now the UNICASE specific autoformatting rules should be applied everytime format is called.
 
-The coding guidelines may not be very sensible in some situations, please discuss them with us on the [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/9402d/Mailinglist.html mailing list] if you feel the guidelines should be changed. However this is no excuse unless the guidelines are changed... ;)
+The coding guidelines may not be very sensible in some situations, please discuss them with us on the [http://code.google.com/p/unicase/wiki/Mailinglist mailing list] if you feel the guidelines should be changed. However this is no excuse unless the guidelines are changed... ;)
 
 Please note that both the Eclipse java guidelines and the Checkstyle settings are workspace specific and not global for your Eclipse installation.
 
