@@ -24,4 +24,5 @@ Increase the version number in the feature.xml file to match the version number 
 [http://unicase.googlecode.com/files/cd3.png]
 
 Step 4:
-Configure the plug-ins to be included in the feature. This can be done through first deleting all the plug-ins that were previously added and then add them all again one by one. After adding the plug-ins you need to synchronize them with the release version you’re trying to deploy. Make sure that you choose the option copy versions from plug-in and fragment manifests. 
+Configure the plug-ins to be included in the feature. This can be done through first deleting all the plug-ins that were previously added and then add them all again one by one. After adding the plug-ins you need to synchronize them with the release version you’re trying to deploy. Make sure that you choose the option copy versions from plug-in and fragment manifests.
+[http://unicase.googlecode.com/files/cd4.png] 
