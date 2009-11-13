@@ -28,5 +28,7 @@ Configure the plug-ins to be included in the feature. This can be done through f
 [http://unicase.googlecode.com/files/cd4.png]
 [http://unicase.googlecode.com/files/cd4b.png]
 
- * *Note that*: you should delete all dependencies and compute them again to make sure that the dependencies list is updated to match with the newly added plug-ins.   
+ * *Note that*: you should delete all dependencies and compute them again to make sure that the dependencies list is updated to match with the newly added plug-ins as shown in the next figure.
+[http://unicase.googlecode.com/files/cd5.png]
+   
  
