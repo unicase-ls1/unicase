@@ -24,7 +24,7 @@ We use checkstyle to check code against our coding guidelines and for code forma
 
 *_NOTE: Checkstyle should now be activated for all UNICASE projects since it is configured so in the .project file you received during checkout. If it is not active right click all projects and select Checkstyle -> Activate Checkstyle _*
 
-How to set up the Javadoc warnings in Eclipse: [http://www1.in.tum.de/static/shared/unicase/VideoTutorials/developer/UnicaseEclipseWarnings.mov Video tutorial] (This is now only necessary for newly created plugins, since it is now also configured in the .project file)
+How to set up the Javadoc warnings in Eclipse: [http://unicase.googlecode.com/files/UnicaseEclipseWarnings.mov.qt Video tutorial] (This is now only necessary for newly created plugins, since it is now also configured in the .project file)
 
 The UNICASE project also uses specific Java formatting settings to avoid whitespace conflicts. All existing plugins are configured to use these settings by default, but you have to import the UNICASE formatter file into Eclipse as follows:
 
