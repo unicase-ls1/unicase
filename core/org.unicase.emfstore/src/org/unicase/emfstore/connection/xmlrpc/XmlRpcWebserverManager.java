@@ -6,15 +6,24 @@
 package org.unicase.emfstore.connection.xmlrpc;
 
 import java.io.IOException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLServerSocketFactory;
 
 import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.server.PropertyHandlerMapping;
 import org.apache.xmlrpc.server.XmlRpcServer;
 import org.apache.xmlrpc.server.XmlRpcServerConfigImpl;
 import org.apache.xmlrpc.webserver.WebServer;
+import org.unicase.emfstore.connection.ServerKeyStoreManager;
 import org.unicase.emfstore.connection.xmlrpc.util.EObjectTypeConverterFactory;
 import org.unicase.emfstore.connection.xmlrpc.util.EObjectTypeFactory;
 import org.unicase.emfstore.exceptions.FatalEmfStoreException;
+import org.unicase.emfstore.exceptions.ServerKeyStoreException;
 
 /**
  * Manages the webserver for XML RPC connections.
@@ -53,7 +62,28 @@ public final class XmlRpcWebserverManager {
 			return;
 		}
 		try {
-			webServer = new WebServer(port);
+			webServer = new WebServer(port) {
+				@Override
+				protected ServerSocket createServerSocket(int pPort, int backlog, InetAddress addr) throws IOException {
+					SSLServerSocketFactory serverSocketFactory = null;
+					try {
+						SSLContext context = SSLContext.getInstance("TLS");
+						context.init(ServerKeyStoreManager.getInstance().getKeyManagerFactory().getKeyManagers(), null,
+							null);
+						serverSocketFactory = context.getServerSocketFactory();
+					} catch (NoSuchAlgorithmException e) {
+						// OW: TODO
+						e.printStackTrace();
+					} catch (KeyManagementException e) {
+						// OW: TODO
+						e.printStackTrace();
+					} catch (ServerKeyStoreException e) {
+						// OW: TODO
+						e.printStackTrace();
+					}
+					return serverSocketFactory.createServerSocket(pPort, backlog, addr);
+				}
+			};
 
 			XmlRpcServer xmlRpcServer = webServer.getXmlRpcServer();
 			xmlRpcServer.setTypeFactory(new EObjectTypeFactory(xmlRpcServer));

@@ -13,12 +13,14 @@ import java.util.List;
 import org.apache.xmlrpc.XmlRpcException;
 import org.apache.xmlrpc.client.XmlRpcClient;
 import org.apache.xmlrpc.client.XmlRpcClientConfigImpl;
-import org.apache.xmlrpc.client.XmlRpcSunHttpTransportFactory;
+import org.apache.xmlrpc.client.XmlRpcSun15HttpTransportFactory;
 import org.unicase.emfstore.connection.xmlrpc.util.EObjectTypeFactory;
 import org.unicase.emfstore.exceptions.ConnectionException;
 import org.unicase.emfstore.exceptions.EmfStoreException;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.connectionmanager.ConnectionManager;
+import org.unicase.workspace.connectionmanager.KeyStoreManager;
+import org.unicase.workspace.exceptions.CertificateStoreException;
 
 /**
  * Manager for XML RPC server calls.
@@ -56,7 +58,16 @@ public class XmlRpcClientManager {
 
 			client = new XmlRpcClient();
 			client.setTypeFactory(new EObjectTypeFactory(client));
-			client.setTransportFactory(new XmlRpcSunHttpTransportFactory(client));
+
+			XmlRpcSun15HttpTransportFactory factory = new XmlRpcSun15HttpTransportFactory(client);
+
+			try {
+				factory.setSSLSocketFactory(KeyStoreManager.getInstance().getSSLContext().getSocketFactory());
+			} catch (CertificateStoreException e) {
+				throw new ConnectionException("Couldn't load certificate", e);
+			}
+			client.setTransportFactory(factory);
+
 			client.setConfig(config);
 
 			// } catch (XmlRpcException e) {
@@ -67,8 +78,7 @@ public class XmlRpcClientManager {
 	}
 
 	private URL createURL(ServerInfo serverInfo) throws MalformedURLException {
-		// TODO Port-Switch
-		return new URL("http", serverInfo.getUrl(), 8080, "xmlrpc");
+		return new URL("https", serverInfo.getUrl(), 8080, "xmlrpc");
 	}
 
 	/**

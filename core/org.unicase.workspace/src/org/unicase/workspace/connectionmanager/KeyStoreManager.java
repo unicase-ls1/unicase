@@ -12,10 +12,12 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.security.InvalidKeyException;
+import java.security.KeyManagementException;
 import java.security.KeyStore;
 import java.security.KeyStoreException;
 import java.security.NoSuchAlgorithmException;
 import java.security.PublicKey;
+import java.security.UnrecoverableKeyException;
 import java.security.cert.Certificate;
 import java.security.cert.CertificateException;
 import java.security.cert.CertificateFactory;
@@ -26,6 +28,12 @@ import javax.crypto.BadPaddingException;
 import javax.crypto.Cipher;
 import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.NoSuchPaddingException;
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.HttpsURLConnection;
+import javax.net.ssl.KeyManagerFactory;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.SSLSession;
+import javax.net.ssl.TrustManagerFactory;
 
 import org.apache.commons.codec.binary.Base64;
 import org.unicase.metamodel.util.FileUtil;
@@ -250,6 +258,40 @@ public final class KeyStoreManager {
 				WorkspaceUtil.logWarning(message, e);
 				throw new CertificateStoreException(message, e);
 			}
+		}
+	}
+
+	/**
+	 * Returns a SSL Context. This is need for encryption, used by the SSLSocketFactory.
+	 * 
+	 * @return SSL Context
+	 * @throws CertificateStoreException in case of failure retrieving the context
+	 */
+	public SSLContext getSSLContext() throws CertificateStoreException {
+		try {
+			loadKeyStore();
+			KeyManagerFactory managerFactory = KeyManagerFactory.getInstance("SunX509");
+			managerFactory.init(keyStore, KEYSTOREPASSWORD.toCharArray());
+			TrustManagerFactory trustManagerFactory = TrustManagerFactory.getInstance("SunX509");
+			trustManagerFactory.init(keyStore);
+			SSLContext sslContext = SSLContext.getInstance("TLS");
+			sslContext.init(managerFactory.getKeyManagers(), trustManagerFactory.getTrustManagers(), null);
+
+			HttpsURLConnection.setDefaultHostnameVerifier(new HostnameVerifier() {
+				public boolean verify(String hostname, SSLSession session) {
+					return true;
+				}
+			});
+
+			return sslContext;
+		} catch (NoSuchAlgorithmException e) {
+			throw new CertificateStoreException("Loading certificate failed!", e);
+		} catch (UnrecoverableKeyException e) {
+			throw new CertificateStoreException("Loading certificate failed!", e);
+		} catch (KeyStoreException e) {
+			throw new CertificateStoreException("Loading certificate failed!", e);
+		} catch (KeyManagementException e) {
+			throw new CertificateStoreException("Loading certificate failed!", e);
 		}
 	}
 
