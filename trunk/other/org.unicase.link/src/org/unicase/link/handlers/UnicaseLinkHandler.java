@@ -3,18 +3,23 @@ package org.unicase.link.handlers;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.handlers.HandlerUtil;
+
 import org.eclipse.jface.dialogs.MessageDialog;
+
+
 import org.unicase.ui.common.util.ActionHelper;
 import org.unicase.model.UnicaseModelElement;
 import org.unicase.workspace.ProjectSpace;
 import org.unicase.workspace.ServerInfo;
 import org.unicase.workspace.WorkspaceManager;
 
+
 /**
- * Our sample handler extends AbstractHandler, an IHandler base class.
+ * This handler handles "create unicase link" button click events. 
+ * It generates an UNICASE url link to the model element
+ * currently shown in the MEEditor
  *  
  * @author svetlana
  */
@@ -31,30 +36,28 @@ public class UnicaseLinkHandler extends AbstractHandler {
 	 */
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
-		int port = 1099; // default port
 		IWorkbenchWindow window = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+
 		UnicaseModelElement me = ActionHelper.getModelElement(event);
-		String meName = me.getName();
+		//remove spaces from the model element name
+		String meName = me.getName().replaceAll(" ", "");;				
 		String meId = me.getModelElementId().getId();
+		
 		ProjectSpace ps = WorkspaceManager.getInstance().getCurrentWorkspace()
 			.getActiveProjectSpace();
-		String projectId = ps.getProjectId().getId();
-		String projectName = ps.getProjectName();
-		
-		EList<ServerInfo> servers = WorkspaceManager.getInstance()
-			.getCurrentWorkspace().getServerInfos();
-		
-		if (servers.size() > 0) {
-			for (ServerInfo server : servers) {
-				if (server.getUrl().equalsIgnoreCase("localhost")) {
-					port = server.getPort();
-				}
-			}
-		}
-		
-		String link = "unicase://" + "localhost:" + port + "/" + projectName + "%" 
-			+ projectId + "/" + meName + "%" + meId;
 				
+		//remove spaces from the project name
+		String projectName = ps.getProjectName().replaceAll(" ", "");;
+		String projectId = ps.getProjectId().getId();
+				
+		String serverUrl  = ps.getUsersession().getServerInfo().getUrl();
+		int serverPort = ps.getUsersession().getServerInfo().getPort();
+		
+		String link = "unicase://" + serverUrl + ":" + serverPort + "/" + projectName + "%" 
+			+ projectId + "/" + meName + "%" + meId;
+								
+				
+//TODO: put the link to the clipboard
 		MessageDialog.openInformation(
 				window.getShell(),
 				"Link",
