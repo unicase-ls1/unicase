@@ -27,5 +27,6 @@ Step 4:
 Configure the plug-ins to be included in the feature. This can be done through first deleting all the plug-ins that were previously added and then add them all again one by one. After adding the plug-ins you need to synchronize them with the release version you’re trying to deploy. Make sure that you choose the option copy versions from plug-in and fragment manifests.
 [http://unicase.googlecode.com/files/cd4.png]
 [http://unicase.googlecode.com/files/cd4b.png]
+
 *Note that*: you should delete all dependencies and compute them again to make sure that the dependencies list is updated to match with the newly added plug-ins.   
  
