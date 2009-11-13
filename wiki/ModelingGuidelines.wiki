@@ -10,7 +10,7 @@ We have a workflow and a set of rules in place to work with the ecore models in 
    # Acquire a lock for the ecore and genmodel (!ContextMenu: Team -> Lock)
    # Validate the model before generating code (!ContextMenu: Validate)
    # Reload the genmodel (!ContextMenu: Reload...)
-   # Generate model and edit ([http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/a3773/Demos_and_Video_Tutorials.html see ModelDrivenDevelopment Tutorial])
+   # Generate model and edit ([http://unicase.googlecode.com/files/unicaseMDD.mov.qt see ModelDrivenDevelopment Tutorial])
    # For newly created model packages update the org.unicase.model plugin.xml to export the package, package.impl and package.util packages. Also update the org.unicase.model.edit plugin.xml to export the package.provider package and make sure to register the appropriate itemProviderAdapter factories under extensions.
    # Check for compile problems
    # Reload and check depending models for compile or validation problems
