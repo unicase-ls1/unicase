@@ -102,7 +102,7 @@ A: The editor is using an external library in the form of an Eclipse plugin. Ple
 When the Update Site for UNICASE is set up, all needed dependencies will be deployed there.
 
 *Q: I am trying to manually deploy a plugin, but I am getting a strange `java.lang.IllegalArgumentException`?* <br>
-A: Please read this blog entry: [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/8fdfb/Build_Process.html Build Process]
+A: Please read this blog entry: [http://code.google.com/p/unicase/wiki/Build_Deployable_Product Build Process]
 
 *Q: How to increase the default memory heap size used by the VM?* <br>
 A: Changing the heap size for Eclipse:
