@@ -6,7 +6,7 @@
     * We use Task-Tags with the initials of the developers to assign code related tasks, see [https://teambruegge.informatik.tu-muenchen.de/groups/unicase/weblog/8da05/Action_Items_in_the_code__TaskTags.html this blog] entry for details.
 
 
-We use checkstyle to check code against our coding guidelines and for code formatting, we use default Eclipse formatter (Eclipse (built-in)).Please install the Eclipse checkstyle plugin from the update site given in [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/55cea/Getting_started.html Getting started] section of this wiki. Please also checkout the developer folder from our repository (trunk/developer), since it contains the coding guidelines.
+We use checkstyle to check code against our coding guidelines and for code formatting, we use default Eclipse formatter (Eclipse (built-in)).Please install the Eclipse checkstyle plugin from the update site given in [http://code.google.com/p/unicase/wiki/Getting_started_as_developer Getting started] section of this wiki. Please also checkout the developer folder from our repository (trunk/developer), since it contains the coding guidelines.
 
 
 *Please configure checkstyle as follows (also see screenshot below):*
