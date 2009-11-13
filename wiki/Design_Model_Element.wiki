@@ -3,8 +3,6 @@
 
 ==Model Elements !HowTo==
 *-----------------------------------------------------*
-
-
 <br>
 ===Modify appearance of Model Elements===
 
