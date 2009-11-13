@@ -1,5 +1,9 @@
 package org.unicase.link.handlers;
 
+import java.awt.Toolkit;
+import java.awt.datatransfer.Clipboard;
+import java.awt.datatransfer.StringSelection;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -55,9 +59,13 @@ public class UnicaseLinkHandler extends AbstractHandler {
 		
 		String link = "unicase://" + serverUrl + ":" + serverPort + "/" + projectName + "%" 
 			+ projectId + "/" + meName + "%" + meId;
-								
-				
-//TODO: put the link to the clipboard
+
+		//place the link on the system clipboard
+		StringSelection stringSelection = new StringSelection(link);
+		Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+		clipboard.setContents( stringSelection, stringSelection);
+
+		
 		MessageDialog.openInformation(
 				window.getShell(),
 				"Link",
