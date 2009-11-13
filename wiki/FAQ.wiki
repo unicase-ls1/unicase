@@ -113,7 +113,7 @@ Changing the heap size for your Runtime Eclipse: Edit the same parameters under 
 A: Follow this [http://code.google.com/p/unicase/wiki/Deployement_Environment_Troubleshooting howto] to return to a well-defined state with your UNICASE development environment.
 
 *Q: How can I report bugs via the UNICASE server?* <br>
-A: First of all, you need an account at our chair. Without that you won't be able to login. For a short howto see: [https://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/dce68/Report_bugs_screenshot_tour.html Report bugs screenshot tour]
+A: First of all, you need an account at our chair. Without that you won't be able to login. For a short howto see: {Report bugs screenshot tour]
 
 *Q: How do I use a !ProgressBar?* <br>
 
