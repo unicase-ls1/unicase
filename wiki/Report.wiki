@@ -1,0 +1,17 @@
+Step 1: Open the EMFStore Browser View
+
+
+Step 2: Add the unicase server
+
+
+Step 3: Login as "guest" passwort "guest"
+
+
+Step 4: Check out the unicase project
+
+
+Step 5: Add bugs in the "new bug reports" section
+
+
+Step 6: Commit you project
+
