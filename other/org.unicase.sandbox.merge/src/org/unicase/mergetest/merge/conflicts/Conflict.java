@@ -6,16 +6,16 @@ import java.util.List;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.mergetest.merge.DecisionManager;
 
-public abstract class Conflict {
+public abstract class Conflict<MyOp extends AbstractOperation, TheirOp extends AbstractOperation> {
 
-	private final AbstractOperation theirOperation;
-	private final AbstractOperation myOperation;
+	private final TheirOp theirOperation;
+	private final MyOp myOperation;
 	private final DecisionManager decisionManager;
 	private ArrayList<ConflictOption> options;
 	private ConflictOption solution;
 
-	public Conflict(AbstractOperation myOperation,
-			AbstractOperation theirOperation, DecisionManager decisionManager) {
+	public Conflict(MyOp myOperation, TheirOp theirOperation,
+			DecisionManager decisionManager) {
 		this.myOperation = myOperation;
 		this.theirOperation = theirOperation;
 		this.decisionManager = decisionManager;
@@ -33,11 +33,11 @@ public abstract class Conflict {
 		return decisionManager;
 	}
 
-	public AbstractOperation getTheirOperation() {
+	public TheirOp getTheirOperation() {
 		return theirOperation;
 	}
 
-	public AbstractOperation getMyOperation() {
+	public MyOp getMyOperation() {
 		return myOperation;
 	}
 
@@ -64,5 +64,10 @@ public abstract class Conflict {
 
 	public void setSolution(ConflictOption conflictOption) {
 		solution = conflictOption;
+	}
+
+	public ConflictContext getContext() {
+		return new ConflictContext(getDecisionManager().getModelElement(
+				getMyOperation().getModelElementId()), "Description", "Jürgen");
 	}
 }

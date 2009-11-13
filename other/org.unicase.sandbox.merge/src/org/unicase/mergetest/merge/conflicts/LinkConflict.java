@@ -11,7 +11,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperati
 import org.unicase.mergetest.merge.DecisionManager;
 import org.unicase.mergetest.merge.conflicts.ConflictOption.OptionType;
 
-public class LinkConflict extends Conflict {
+public class LinkConflict extends Conflict<AbstractOperation,AbstractOperation> {
 
 	private String conflictDescription;
 	private String optionDescription;

@@ -5,11 +5,12 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.mergetest.merge.conflicts.Conflict;
 
 public class MultilineCompareWidget extends Composite {
 
-	public MultilineCompareWidget(Composite parent, Conflict conflict) {
+	public MultilineCompareWidget(Composite parent, Conflict<AbstractOperation,AbstractOperation> conflict) {
 		super(parent, SWT.NONE);
 		setLayout(new GridLayout(3, true));
 		GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
