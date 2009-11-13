@@ -35,6 +35,8 @@ import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.mergetest.ShowConflictsController;
 import org.unicase.mergetest.merge.conflicts.Conflict;
+import org.unicase.mergetest.merge.ui.DecisionBox;
+import org.unicase.mergetest.merge.ui.DecisionBox2;
 import org.unicase.metamodel.Project;
 
 /**
@@ -87,7 +89,8 @@ public class MergeWizardPage extends WizardPage {
 
 		decisionBoxes = new ArrayList<DecisionBox>();
 		for (Conflict conflict : decisionManager.getConflicts()) {
-			decisionBoxes.add(new DecisionBox(composite, conflict));
+//			decisionBoxes.add(new DecisionBox(composite, conflict));
+			new DecisionBox2(composite,conflict);
 		}
 
 		debugButton(composite);
@@ -99,6 +102,10 @@ public class MergeWizardPage extends WizardPage {
 		setControl(parent);
 	}
 
+	//
+	// DEBUG
+	//
+	
 	private void debugButton(final Composite composite) {
 		Composite debugBox = new Composite(composite, SWT.BORDER_SOLID);
 		debugBox.setLayout(new GridLayout());

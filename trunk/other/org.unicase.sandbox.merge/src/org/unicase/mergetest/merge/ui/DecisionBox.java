@@ -1,4 +1,4 @@
-package org.unicase.mergetest.merge;
+package org.unicase.mergetest.merge.ui;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -17,12 +17,14 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.events.IExpansionListener;
 import org.eclipse.ui.forms.widgets.Section;
+import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.mergetest.merge.MultilineCompareWidget;
 import org.unicase.mergetest.merge.conflicts.Conflict;
 import org.unicase.mergetest.merge.conflicts.ConflictOption;
 
 public class DecisionBox extends Composite {
 
-	private final Conflict conflict;
+	private final Conflict<AbstractOperation,AbstractOperation> conflict;
 	private List<Button> optionButtons;
 
 	public DecisionBox(Composite parent, Conflict conflict) {
@@ -54,7 +56,7 @@ public class DecisionBox extends Composite {
 		}
 	}
 
-	private void createOptions(Conflict conflict) {
+	private void createOptions(Conflict<AbstractOperation,AbstractOperation> conflict) {
 		optionButtons = new ArrayList<Button>();
 		int index = 0;
 		for (ConflictOption option : conflict.getOptions()) {
@@ -62,12 +64,10 @@ public class DecisionBox extends Composite {
 			optionButton.setText(option.getOptionLabel());
 			final int optionIndex = index; 
 			optionButton.addSelectionListener(new SelectionListener() {
-				@Override
 				public void widgetSelected(SelectionEvent e) {
 					DecisionBox.this.setSolution(optionIndex);
 				}
 				
-				@Override
 				public void widgetDefaultSelected(SelectionEvent e) {
 					DecisionBox.this.setSolution(optionIndex);
 				}
@@ -79,7 +79,7 @@ public class DecisionBox extends Composite {
 
 	private void addAdditionalInformationField() {
 		Section section = new Section(this, Section.TWISTIE);
-		section.setText("Additional Information");
+		section.setText("Details");
 		section.setLayout(new GridLayout(1,false));
 		GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, false);
 		layoutData.horizontalSpan=4;

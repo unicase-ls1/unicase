@@ -15,6 +15,7 @@ import org.unicase.mergetest.merge.conflicts.AttributeConflict;
 import org.unicase.mergetest.merge.conflicts.Conflict;
 import org.unicase.mergetest.merge.conflicts.DeleteConflict;
 import org.unicase.mergetest.merge.conflicts.LinkConflict;
+import org.unicase.metamodel.ModelElement;
 import org.unicase.metamodel.ModelElementId;
 import org.unicase.metamodel.Project;
 
@@ -24,7 +25,7 @@ public class DecisionManager {
 	private final ChangePackage myChangePackage;
 	private final List<ChangePackage> theirChangePackages;
 	private ConflictDetector conflictDetector;
-	private List<Conflict> conflicts;
+	private ArrayList<Conflict<? extends AbstractOperation,? extends AbstractOperation>> conflicts;
 
 	public DecisionManager(Project project, ChangePackage myChangePackage,
 			List<ChangePackage> theirChangePackages) {
@@ -43,43 +44,43 @@ public class DecisionManager {
 			theirOperations.addAll(cp.getOperations());
 		}
 
-		conflicts = new ArrayList<Conflict>();
+		conflicts = new ArrayList<Conflict<? extends AbstractOperation, ? extends AbstractOperation>>();
 
 		for (AbstractOperation myOperation : myOperations) {
 			for (AbstractOperation theirOperation : theirOperations) {
 				if (conflictDetector.doConflict(myOperation, theirOperation)) {
 
 					if (isAttribute(myOperation) && isAttribute(theirOperation)) {
-						conflicts.add(new AttributeConflict(myOperation,
-								theirOperation, this));
-					} else if (isComposite(myOperation)
-							&& isComposite(theirOperation)) {
-						conflicts.add(new LinkConflict(
-								(CompositeOperation) myOperation,
-								(CompositeOperation) theirOperation, this));
-					} else if (isDelete(myOperation)
-							|| isDelete(theirOperation)) {
-						if (isDelete(myOperation)) {
-							conflicts.add(new DeleteConflict(myOperation,
-									theirOperation, this, true));
-						} else {
-							conflicts.add(new DeleteConflict(myOperation,
-									theirOperation, this, false));
-						}
-					}
+						conflicts.add(new AttributeConflict((AttributeOperation)myOperation,
+								(AttributeOperation)theirOperation, this));
+					}// else if (isComposite(myOperation)
+//							&& isComposite(theirOperation)) {
+//						conflicts.add(new LinkConflict(
+//								(CompositeOperation) myOperation,
+//								(CompositeOperation) theirOperation, this));
+//					} else if (isDelete(myOperation)
+//							|| isDelete(theirOperation)) {
+//						if (isDelete(myOperation)) {
+//							conflicts.add(new DeleteConflict(myOperation,
+//									theirOperation, this, true));
+//						} else {
+//							conflicts.add(new DeleteConflict(myOperation,
+//									theirOperation, this, false));
+//						}
+//					}
 
 				}
 			}
 		}
 	}
 
-	public List<Conflict> getConflicts() {
+	public ArrayList<Conflict<? extends AbstractOperation, ? extends AbstractOperation>> getConflicts() {
 		return conflicts;
 	}
 
 	public boolean isResolved() {
 		boolean isResolved = true;
-		for (Conflict conflict : conflicts) {
+		for (Conflict<? extends AbstractOperation, ? extends AbstractOperation> conflict : conflicts) {
 			isResolved = isResolved && conflict.isResolved();
 		}
 		return isResolved;
@@ -117,5 +118,9 @@ public class DecisionManager {
 						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
 		return adapterFactoryLabelProvider.getText(project
 				.getModelElement(modelElementId));
+	}
+	
+	public ModelElement getModelElement(ModelElementId modelElementId) {
+		return project.getModelElement(modelElementId);
 	}
 }

@@ -7,10 +7,11 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.mergetest.merge.DecisionManager;
 
-public class AttributeConflict extends Conflict {
+public class AttributeConflict extends
+		Conflict<AttributeOperation, AttributeOperation> {
 
-	public AttributeConflict(AbstractOperation myOperation,
-			AbstractOperation theirOperation, DecisionManager decisionManager) {
+	public AttributeConflict(AttributeOperation myOperation,
+			AttributeOperation theirOperation, DecisionManager decisionManager) {
 		super(myOperation, theirOperation, decisionManager);
 	}
 
@@ -21,9 +22,7 @@ public class AttributeConflict extends Conflict {
 
 	@Override
 	public String getOptionDescription() {
-		return "Attribute '"
-				+ ((AttributeOperation) getMyOperation()).getFeatureName()
-				+ "'";
+		return "Attribute '" + getMyOperation().getFeatureName() + "'";
 	}
 
 	@Override
@@ -33,11 +32,11 @@ public class AttributeConflict extends Conflict {
 
 	@Override
 	protected void initOptions(List<ConflictOption> options) {
-		options.add(new ConflictOption(((AttributeOperation) getMyOperation())
+		options.add(new ConflictOption(getMyOperation()
 				.getNewValue().toString(),
 				ConflictOption.OptionType.MyOperation));
 		options.add(new ConflictOption(
-				((AttributeOperation) getTheirOperation()).getNewValue()
+				getTheirOperation().getNewValue()
 						.toString(), ConflictOption.OptionType.TheirOperation));
 	}
 }

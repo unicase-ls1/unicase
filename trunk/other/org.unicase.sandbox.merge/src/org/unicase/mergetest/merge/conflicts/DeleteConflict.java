@@ -1,6 +1,5 @@
 package org.unicase.mergetest.merge.conflicts;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
@@ -8,7 +7,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.mergetest.merge.DecisionManager;
 import org.unicase.mergetest.merge.conflicts.ConflictOption.OptionType;
 
-public class DeleteConflict extends Conflict {
+public class DeleteConflict extends Conflict<AbstractOperation,AbstractOperation> {
 
 	private final boolean myDelete;
 
