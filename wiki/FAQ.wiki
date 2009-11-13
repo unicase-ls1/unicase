@@ -98,7 +98,7 @@ Update: An easier way to add code is to write "begin end" into a line, format th
 A: Libraries distributed under the EPL can be used without a problem. However any other license is subject to closer inspection. Please discuss with project lead and consult the Eclipse foundation at license@eclipse.org. A good FAQ on licensing and the EPL is available on [http://www.eclipse.org/legal/eplfaq.php Eclipse.org]
 
 *Q: I am getting a !ClassNotFoundException when trying to run the MEEditor?* <br>
-A: The editor is using an external library in the form of an Eclipse plugin. Please install it manually in your Eclipse environment - see [http://teambruegge.informatik.tu-muenchen.de/groups/unicase/wiki/55cea/Getting_started_as_developer.html Getting started as developer]
+A: The editor is using an external library in the form of an Eclipse plugin. Please install it manually in your Eclipse environment - see [http://code.google.com/p/unicase/wiki/Getting_started_as_developer Getting started as developer]
 When the Update Site for UNICASE is set up, all needed dependencies will be deployed there.
 
 *Q: I am trying to manually deploy a plugin, but I am getting a strange `java.lang.IllegalArgumentException`?* <br>
