@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Handler
+Bundle-SymbolicName: org.unicase.link.handler; singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.unicase.link.handler.Activator
+Bundle-Vendor: Fatih Ulusoy
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: lib/junique-1.0.2.jar,
+ .
