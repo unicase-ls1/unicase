@@ -1,4 +1,4 @@
-package org.unicase.mergetest.merge.ui;
+package org.unicase.mergetest.merge.ui.components;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
@@ -9,12 +9,13 @@ import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.mergetest.merge.conflicts.Conflict;
-import org.unicase.mergetest.merge.conflicts.ConflictOption;
-import org.unicase.mergetest.merge.conflicts.ConflictOption.OptionType;
+import org.unicase.mergetest.merge.conflict.Conflict;
+import org.unicase.mergetest.merge.conflict.ConflictOption;
+import org.unicase.mergetest.merge.conflict.ConflictOption.OptionType;
 
 public class OptionComponent {
 
@@ -28,7 +29,7 @@ public class OptionComponent {
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gridData.verticalSpan = 2;
 		group.setLayoutData(gridData);
-		group.setText("Choose your Option:");
+		group.setText("Choose your Option: ");
 
 		for (ConflictOption option : conflict.getOptions()) {
 			createOption(option);
@@ -49,11 +50,12 @@ public class OptionComponent {
 		if(option.getType()==OptionType.MyOperation) {
 			result = "Keep my value: ";
 		} else {
-			result = "Keey other value: ";
+			result = "Keep other value: ";
 		}
 		
-		result += (option.getOptionLabel().length() > 30) ? option
-				.getOptionLabel().substring(0, 30) : option.getOptionLabel();
+		int length = 40;
+		result += (option.getOptionLabel().length() > length) ? option
+				.getOptionLabel().substring(0, length)+"..." : option.getOptionLabel();
 		option1.setText(result);
 	}
 
@@ -70,11 +72,18 @@ public class OptionComponent {
 
 		public void mouseExit(MouseEvent e) {
 			composite.setBackground(null);
+			for(Control control : composite.getChildren()) {
+				control.setBackground(null);
+			}
 		}
 
 		public void mouseEnter(MouseEvent e) {
 			composite.setBackground(composite.getDisplay().getSystemColor(
 					SWT.COLOR_INFO_BACKGROUND));
+			for(Control control : composite.getChildren()) {
+				control.setBackground(composite.getDisplay().getSystemColor(
+					SWT.COLOR_INFO_BACKGROUND));
+			}
 		}
 	}
 }

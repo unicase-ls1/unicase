@@ -18,101 +18,30 @@ import org.eclipse.ui.forms.events.ExpansionEvent;
 import org.eclipse.ui.forms.events.IExpansionListener;
 import org.eclipse.ui.forms.widgets.Section;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.mergetest.merge.MultilineCompareWidget;
-import org.unicase.mergetest.merge.conflicts.Conflict;
-import org.unicase.mergetest.merge.conflicts.ConflictOption;
+import org.unicase.mergetest.merge.conflict.Conflict;
+import org.unicase.mergetest.merge.conflict.ConflictOption;
+import org.unicase.mergetest.merge.ui.components.ContextComponent;
+import org.unicase.mergetest.merge.ui.components.DescriptionComponent;
+import org.unicase.mergetest.merge.ui.components.OptionComponent;
+import org.unicase.mergetest.merge.ui.widgets.MultilineCompareWidget;
 
 public class DecisionBox extends Composite {
 
-	private final Conflict<AbstractOperation,AbstractOperation> conflict;
-	private List<Button> optionButtons;
+	private final Conflict<? extends AbstractOperation,? extends AbstractOperation> conflict;
 
-	public DecisionBox(Composite parent, Conflict conflict) {
+	public DecisionBox(Composite parent, Conflict<? extends AbstractOperation, ? extends AbstractOperation> conflict) {
 		super(parent, SWT.BORDER);
 		this.conflict = conflict;
 		
-		GridLayout decisionLayout = new GridLayout(4, false);
+		GridLayout decisionLayout = new GridLayout(2, true);
 		this.setLayout(decisionLayout);
 		this.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+	
+//		setBackground(getDisplay().getSystemColor(SWT.COLOR_BLACK));
 		
-		Link link = new Link(this, SWT.LEFT);
-		link.setText("ModelElement '"+conflict.getName()+"'\n"+conflict.getConflictDescription());
-		link.setEnabled(true);
-		
-		Text optionDescription = new Text(this, SWT.NONE);
-		optionDescription.setEditable(false);
-		optionDescription.setText(conflict.getOptionDescription()
-				+ " :");
-		optionDescription.setLayoutData(new GridData(SWT.RIGHT, SWT.CENTER,
-				true, true));
-		
-		
-		// Add Option Buttons
-		createOptions(conflict);
-		
-		//Additional Fields
-		if(conflict.hasAdditionalInformation()) {
-			addAdditionalInformationField();
-		}
-	}
-
-	private void createOptions(Conflict<AbstractOperation,AbstractOperation> conflict) {
-		optionButtons = new ArrayList<Button>();
-		int index = 0;
-		for (ConflictOption option : conflict.getOptions()) {
-			Button optionButton = new Button(this, SWT.NONE);
-			optionButton.setText(option.getOptionLabel());
-			final int optionIndex = index; 
-			optionButton.addSelectionListener(new SelectionListener() {
-				public void widgetSelected(SelectionEvent e) {
-					DecisionBox.this.setSolution(optionIndex);
-				}
-				
-				public void widgetDefaultSelected(SelectionEvent e) {
-					DecisionBox.this.setSolution(optionIndex);
-				}
-			});
-			optionButtons.add(optionButton);
-			index++;
-		}
-	}
-
-	private void addAdditionalInformationField() {
-		Section section = new Section(this, Section.TWISTIE);
-		section.setText("Details");
-		section.setLayout(new GridLayout(1,false));
-		GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, false);
-		layoutData.horizontalSpan=4;
-		section.setLayoutData(layoutData);
-		section.addExpansionListener(new IExpansionListener() {
-			public void expansionStateChanged(ExpansionEvent e) {
-				layoutPage();
-			}
-			public void expansionStateChanging(ExpansionEvent e) {
-				layoutPage();
-			}
-		});
-//		section.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		
-		Composite client = new Composite(section, SWT.NONE);
-		client.setLayout(new GridLayout(1,true));
-		client.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		
-		new MultilineCompareWidget(client,conflict);
-		
-		section.setClient(client);
-	}
-
-	protected void setSolution(int optionIndex) {
-		conflict.setSolution(conflict.getOptions().get(optionIndex));
-		for(int i = 0; i < optionButtons.size(); i++) {
-			Button button = optionButtons.get(i);
-			if(i==optionIndex){
-				button.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_GREEN));
-			} else {
-				button.setBackground(null);
-			}
-		}
+		new ContextComponent(this,conflict);
+		new OptionComponent(this,conflict);
+		new DescriptionComponent(this, conflict);
 	}
 	
 	private void layoutPage() {

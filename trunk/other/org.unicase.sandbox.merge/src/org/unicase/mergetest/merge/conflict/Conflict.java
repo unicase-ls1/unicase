@@ -1,4 +1,4 @@
-package org.unicase.mergetest.merge.conflicts;
+package org.unicase.mergetest.merge.conflict;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +46,8 @@ public abstract class Conflict<MyOp extends AbstractOperation, TheirOp extends A
 				getMyOperation().getModelElementId());
 	}
 
-	public abstract String getConflictDescription();
-
+	public abstract ConflictDescription getConflictDescription();
+	
 	public List<ConflictOption> getOptions() {
 		return options;
 	}

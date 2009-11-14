@@ -1,4 +1,4 @@
-package org.unicase.mergetest.merge;
+package org.unicase.mergetest.merge.ui.widgets;
 
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
@@ -6,7 +6,7 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Text;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.mergetest.merge.conflicts.Conflict;
+import org.unicase.mergetest.merge.conflict.Conflict;
 
 public class MultilineCompareWidget extends Composite {
 

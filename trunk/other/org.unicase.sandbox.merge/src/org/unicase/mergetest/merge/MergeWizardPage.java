@@ -34,9 +34,10 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.mergetest.ShowConflictsController;
-import org.unicase.mergetest.merge.conflicts.Conflict;
+import org.unicase.mergetest.merge.conflict.Conflict;
+import org.unicase.mergetest.merge.conflict.conflicts.AttributeConflict;
+import org.unicase.mergetest.merge.ui.TMPDecisionBox;
 import org.unicase.mergetest.merge.ui.DecisionBox;
-import org.unicase.mergetest.merge.ui.DecisionBox2;
 import org.unicase.metamodel.Project;
 
 /**
@@ -75,8 +76,7 @@ public class MergeWizardPage extends WizardPage {
 		parent.setLayout(new GridLayout());
 		ScrolledComposite scrolledComposite = new ScrolledComposite(parent,
 				SWT.H_SCROLL | SWT.V_SCROLL);
-		GridDataFactory.fillDefaults().grab(true, true).applyTo(
-				scrolledComposite);
+		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
 		// scrolledComposite.setLayout(new GridLayout());
@@ -85,12 +85,16 @@ public class MergeWizardPage extends WizardPage {
 
 		Composite composite = new Composite(scrolledComposite, SWT.NONE);
 		composite.setLayout(new GridLayout());
-		composite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		gridData.widthHint =500;
+		composite.setLayoutData(gridData);
 
 		decisionBoxes = new ArrayList<DecisionBox>();
 		for (Conflict conflict : decisionManager.getConflicts()) {
 //			decisionBoxes.add(new DecisionBox(composite, conflict));
-			new DecisionBox2(composite,conflict);
+			if(conflict instanceof AttributeConflict) {
+				new DecisionBox(composite,conflict);
+			}
 		}
 
 		debugButton(composite);

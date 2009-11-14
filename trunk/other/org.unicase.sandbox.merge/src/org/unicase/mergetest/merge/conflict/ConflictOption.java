@@ -1,4 +1,4 @@
-package org.unicase.mergetest.merge.conflicts;
+package org.unicase.mergetest.merge.conflict;
 
 public class ConflictOption {
 
