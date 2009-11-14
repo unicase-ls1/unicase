@@ -19,7 +19,7 @@ public class AttributeConflict extends
 
 	public ConflictDescription getConflictDescription() {
 		ConflictDescription conflictDescription = new ConflictDescription(
-				"You changed the [attribute] attribute of [modelelement] to [myvalue].\n"
+				"You changed the [attribute] attribute of [modelelement] to [myvalue]."
 						+ " This attribute was changed to [theirvalue] on the repository.");
 
 		conflictDescription.add("attribute", getMyOperation().getFeatureName());
@@ -50,10 +50,5 @@ public class AttributeConflict extends
 		return new ConflictContext(getDecisionManager().getModelElement(
 				getMyOperation().getModelElementId()), getMyOperation()
 				.getFeatureName(), "Jürgen");
-	}
-
-	@Override
-	public String getOptionDescription() {
-		return null;
 	}
 }

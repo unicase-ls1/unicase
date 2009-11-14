@@ -10,6 +10,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.mergetest.merge.DecisionManager;
 import org.unicase.mergetest.merge.conflict.Conflict;
+import org.unicase.mergetest.merge.conflict.ConflictContext;
 import org.unicase.mergetest.merge.conflict.ConflictDescription;
 import org.unicase.mergetest.merge.conflict.ConflictOption;
 import org.unicase.mergetest.merge.conflict.ConflictOption.OptionType;
@@ -99,8 +100,12 @@ public class LinkConflict extends Conflict<AbstractOperation,AbstractOperation> 
 		return null;
 	}
 
-	@Override
 	public String getOptionDescription() {
 		return optionDescription;
+	}
+
+	public ConflictContext getContext() {
+		return new ConflictContext(getDecisionManager().getModelElement(
+				getMyOperation().getModelElementId()), "Description", "Jürgen");
 	}
 }

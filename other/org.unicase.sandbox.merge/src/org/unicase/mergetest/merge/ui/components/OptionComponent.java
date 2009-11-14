@@ -16,6 +16,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.mergetest.merge.conflict.Conflict;
 import org.unicase.mergetest.merge.conflict.ConflictOption;
 import org.unicase.mergetest.merge.conflict.ConflictOption.OptionType;
+import org.unicase.mergetest.merge.ui.DecisionUtil;
 
 public class OptionComponent {
 
@@ -52,10 +53,8 @@ public class OptionComponent {
 		} else {
 			result = "Keep other value: ";
 		}
+		result += DecisionUtil.cutString(option.getOptionLabel(), 40, true);
 		
-		int length = 40;
-		result += (option.getOptionLabel().length() > length) ? option
-				.getOptionLabel().substring(0, length)+"..." : option.getOptionLabel();
 		option1.setText(result);
 	}
 

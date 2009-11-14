@@ -45,8 +45,8 @@ public class DescriptionComponent extends Composite {
 		}
 		
 		
-		StyledText styledDescription = new StyledText(this, SWT.WRAP);
-//		styledDescription.setLayoutData(new GridData(GridData.FILL_BOTH));
+		StyledText styledDescription = new StyledText(this, SWT.WRAP | SWT.MULTI | SWT.READ_ONLY);
+		styledDescription.setLayoutData(new GridData(GridData.FILL_BOTH));
 		styledDescription.setEditable(false);
 		styledDescription.setJustify(true);
 		styledDescription.setText(description);

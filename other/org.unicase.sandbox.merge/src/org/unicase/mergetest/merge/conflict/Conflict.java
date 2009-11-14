@@ -52,7 +52,6 @@ public abstract class Conflict<MyOp extends AbstractOperation, TheirOp extends A
 		return options;
 	}
 
-	public abstract String getOptionDescription();
 
 	public boolean isResolved() {
 		return (solution != null);
@@ -66,8 +65,5 @@ public abstract class Conflict<MyOp extends AbstractOperation, TheirOp extends A
 		solution = conflictOption;
 	}
 
-	public ConflictContext getContext() {
-		return new ConflictContext(getDecisionManager().getModelElement(
-				getMyOperation().getModelElementId()), "Description", "Jürgen");
-	}
+	public abstract ConflictContext getContext();
 }

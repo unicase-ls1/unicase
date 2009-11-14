@@ -1,18 +1,15 @@
 package org.unicase.mergetest.merge.ui.components;
 
-import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.jface.resource.FontRegistry;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
-import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
-import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
 import org.unicase.mergetest.merge.conflict.Conflict;
 import org.unicase.mergetest.merge.conflict.ConflictContext;
 import org.unicase.mergetest.merge.ui.DecisionBox;
@@ -25,15 +22,17 @@ public class ContextComponent extends Composite {
 		
 		ConflictContext context = conflict.getContext();
 
-		this.setLayout(new GridLayout(3, false));
-		GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, false);
-		this.setLayoutData(layoutData);
+		GridLayout layout = new GridLayout(3, false);
+		layout.verticalSpacing=1;
+		layout.horizontalSpacing=20;
+		this.setLayout(layout);
+		this.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 
 //		setBackground(parent.getDisplay().getSystemColor(SWT.COLOR_BLACK));
 		
 		FontRegistry fontRegistry = new FontRegistry(this.getDisplay());
 		fontRegistry.put("titleLabel", new FontData[] { new FontData("Arial",
-				8, SWT.ITALIC) });
+				8, SWT.ITALIC ) });
 		fontRegistry.put("content", new FontData[] { new FontData("Arial",
 				9, SWT.NONE) });
 		
