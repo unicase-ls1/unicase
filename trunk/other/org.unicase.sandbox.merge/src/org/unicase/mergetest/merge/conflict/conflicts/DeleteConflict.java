@@ -6,6 +6,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.mergetest.merge.DecisionManager;
 import org.unicase.mergetest.merge.conflict.Conflict;
+import org.unicase.mergetest.merge.conflict.ConflictContext;
 import org.unicase.mergetest.merge.conflict.ConflictDescription;
 import org.unicase.mergetest.merge.conflict.ConflictOption;
 import org.unicase.mergetest.merge.conflict.ConflictOption.OptionType;
@@ -21,7 +22,6 @@ public class DeleteConflict extends Conflict<AbstractOperation,AbstractOperation
 		this.myDelete = myDelete;
 	}
 
-	@Override
 	public ConflictDescription getConflictDescription() {
 //		String result = "";
 //		if (myDelete) {
@@ -53,10 +53,11 @@ public class DeleteConflict extends Conflict<AbstractOperation,AbstractOperation
 					OptionType.TheirOperation));
 		}
 	}
-
+	
 	@Override
-	public String getOptionDescription() {
-		return "select";
+	public ConflictContext getContext() {
+		return new ConflictContext(getDecisionManager().getModelElement(
+				getMyOperation().getModelElementId()), "Description", "Jürgen");
 	}
 
 }
