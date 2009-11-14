@@ -1,4 +1,4 @@
-package org.unicase.mergetest.merge.conflicts;
+package org.unicase.mergetest.merge.conflict;
 
 import org.unicase.metamodel.ModelElement;
 

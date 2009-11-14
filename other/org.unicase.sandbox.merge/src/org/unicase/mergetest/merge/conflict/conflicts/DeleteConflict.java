@@ -1,11 +1,14 @@
-package org.unicase.mergetest.merge.conflicts;
+package org.unicase.mergetest.merge.conflict.conflicts;
 
 import java.util.List;
 
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.CompositeOperation;
 import org.unicase.mergetest.merge.DecisionManager;
-import org.unicase.mergetest.merge.conflicts.ConflictOption.OptionType;
+import org.unicase.mergetest.merge.conflict.Conflict;
+import org.unicase.mergetest.merge.conflict.ConflictDescription;
+import org.unicase.mergetest.merge.conflict.ConflictOption;
+import org.unicase.mergetest.merge.conflict.ConflictOption.OptionType;
 
 public class DeleteConflict extends Conflict<AbstractOperation,AbstractOperation> {
 
@@ -19,20 +22,21 @@ public class DeleteConflict extends Conflict<AbstractOperation,AbstractOperation
 	}
 
 	@Override
-	public String getConflictDescription() {
-		String result = "";
-		if (myDelete) {
-			result = "You have deleted an element which conflicts with ";
-		} else {
-			result = "A deletion from the repository conflicts with your ";
-		}
-
-		AbstractOperation op = (myDelete)?getTheirOperation():getMyOperation();
-		
-		if (op instanceof CompositeOperation) {
-			return result + "ReferenceOperation";
-		}
-		return result + (op.getClass().getSimpleName());
+	public ConflictDescription getConflictDescription() {
+//		String result = "";
+//		if (myDelete) {
+//			result = "You have deleted an element which conflicts with ";
+//		} else {
+//			result = "A deletion from the repository conflicts with your ";
+//		}
+//
+//		AbstractOperation op = (myDelete)?getTheirOperation():getMyOperation();
+//		
+//		if (op instanceof CompositeOperation) {
+//			return result + "ReferenceOperation";
+//		}
+//		return result + (op.getClass().getSimpleName());
+		return null;
 	}
 
 	@Override

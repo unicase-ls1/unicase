@@ -1,4 +1,4 @@
-package org.unicase.mergetest.merge.ui;
+package org.unicase.mergetest.merge.ui.components;
 
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
@@ -13,12 +13,14 @@ import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.emfstore.esmodel.versioning.operations.AttributeOperation;
-import org.unicase.mergetest.merge.conflicts.Conflict;
-import org.unicase.mergetest.merge.conflicts.ConflictContext;
+import org.unicase.mergetest.merge.conflict.Conflict;
+import org.unicase.mergetest.merge.conflict.ConflictContext;
+import org.unicase.mergetest.merge.ui.DecisionBox;
+import org.unicase.mergetest.merge.ui.DecisionUtil;
 
 public class ContextComponent extends Composite {
 
-	public ContextComponent(DecisionBox2 parent, Conflict<? extends AbstractOperation, ? extends AbstractOperation> conflict) {
+	public ContextComponent(DecisionBox parent, Conflict<? extends AbstractOperation, ? extends AbstractOperation> conflict) {
 		super(parent, SWT.NONE);
 		
 		ConflictContext context = conflict.getContext();
@@ -47,13 +49,12 @@ public class ContextComponent extends Composite {
 		oppTitle.setText(context.getOpponentTitleLabel());
 		oppTitle.setFont(fontRegistry.get("titleLabel"));
 
-		AdapterFactoryLabelProvider provider = new AdapterFactoryLabelProvider(
-				new ComposedAdapterFactory(
-						ComposedAdapterFactory.Descriptor.Registry.INSTANCE));
+		AdapterFactoryLabelProvider provider = DecisionUtil.getLabelProvider();
 
 		CLabel meLabel = new CLabel(this, SWT.NONE);
 		meLabel.setImage(provider.getImage(context.getModelElement()));
-		meLabel.setText(provider.getText(context.getModelElement()));
+		meLabel.setText(DecisionUtil.cutString(provider.getText(context.getModelElement()),40,true));
+		meLabel.setToolTipText(context.getModelElementTitleLabel()+": "+provider.getText(context.getModelElement()));
 		meLabel.setFont(fontRegistry.get("content"));
 
 		Label attLabel = new Label(this, SWT.NONE);

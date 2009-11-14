@@ -64,8 +64,8 @@ public class MergeSandboxController {
 	}
 
 	private void doChanges() {
-		cg("User1", User.class).setFirstName("bla");
-		sg("User1", User.class).setFirstName("blub");
+		cg("User1", User.class).setFirstName("Günther");
+		sg("User1", User.class).setFirstName("Horst");
 
 		cg("User1", User.class).setLeafSection(
 				cg("LeafSection1", LeafSection.class));

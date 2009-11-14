@@ -1,4 +1,4 @@
-package org.unicase.mergetest.merge.conflicts;
+package org.unicase.mergetest.merge.conflict.conflicts;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,7 +9,10 @@ import org.unicase.emfstore.esmodel.versioning.operations.MultiReferenceOperatio
 import org.unicase.emfstore.esmodel.versioning.operations.OperationsFactory;
 import org.unicase.emfstore.esmodel.versioning.operations.SingleReferenceOperation;
 import org.unicase.mergetest.merge.DecisionManager;
-import org.unicase.mergetest.merge.conflicts.ConflictOption.OptionType;
+import org.unicase.mergetest.merge.conflict.Conflict;
+import org.unicase.mergetest.merge.conflict.ConflictDescription;
+import org.unicase.mergetest.merge.conflict.ConflictOption;
+import org.unicase.mergetest.merge.conflict.ConflictOption.OptionType;
 
 public class LinkConflict extends Conflict<AbstractOperation,AbstractOperation> {
 
@@ -91,8 +94,9 @@ public class LinkConflict extends Conflict<AbstractOperation,AbstractOperation> 
 	}
 
 	@Override
-	public String getConflictDescription() {
-		return conflictDescription;
+	public ConflictDescription getConflictDescription() {
+//		return conflictDescription;
+		return null;
 	}
 
 	@Override
