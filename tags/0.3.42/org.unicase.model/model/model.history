@@ -6661,7 +6661,7 @@
       </element>
     </changes>
   </releases>
-  <releases date="2009-09-22T19:44:49.578+0200" label="3 (0.3.40)">
+  <releases date="2009-09-22T19:44:49.578+0200" label="3 (0.3.42)">
     <changes xsi:type="history:Create" target="model.ecore#//rationale" element="model.ecore#//rationale/AudioComment"
         referenceName="eClassifiers">
       <changes xsi:type="history:Set" element="model.ecore#//rationale/AudioComment"
@@ -7115,7 +7115,7 @@
           featureName="name" dataValue="participatingActors"/>
     </changes>
   </releases>
-  <releases date="2009-10-03T12:12:02.656+0200" label="4 (0.3.40)">
+  <releases date="2009-10-03T12:12:02.656+0200" label="4 (0.3.42)">
     <changes xsi:type="history:MigrationChange" migration="import org.eclipse.emf.ecore.*&#xA;&#xA;attachmentsReference = model.ModelElement.attachments&#xA;&#xA;// model migration&#xA;for(me in model.ModelElement.allInstances) {&#xA;&#x9;deleteFeatureValue(me, attachmentsReference)&#xA;}&#xA;&#xA;// change migration&#xA;getElementById = { id ->&#xA;&#x9;def element = model.IdentifiableElement.allInstances.find{e -> id.equals(e.identifier)} &#xA;&#x9;if(element == null) {&#xA;&#x9;&#x9;println &quot;id &quot; + id + &quot; not found&quot;&#xA;&#x9;}&#xA;&#x9;return element&#xA;}&#xA;&#xA;isFeatureChange = { operation, EStructuralFeature feature ->&#xA;&#x9;if(feature.name.equals(operation.featureName)) {&#xA;&#x9;&#x9;def id = operation.modelElementId.id&#xA;&#x9;&#x9;def element = getElementById(id)&#xA;&#x9;&#x9;if(element == null || element.instanceOf(feature.eContainingClass)) {&#xA;&#x9;&#x9;&#x9;return true&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;return false&#xA;}&#xA;&#xA;deleteFeature_Changes = { EStructuralFeature feature ->&#xA;&#xA;&#x9;for(operation in esmodel.versioning.operations.FeatureOperation.allInstances) {&#xA;&#x9;&#x9;if(isFeatureChange(operation, feature)) {&#xA;&#x9;&#x9;&#x9;operation.delete()&#xA;&#x9;&#x9;}&#xA;&#x9;}&#xA;&#x9;if(feature instanceof EReference) {&#xA;&#x9;&#x9;def opposite = feature.eOpposite&#xA;&#x9;&#x9;if(opposite != null) {&#xA;&#x9;&#x9;&#x9;for(operation in esmodel.versioning.operations.ReferenceOperation.allInstances) {&#xA;&#x9;&#x9;&#x9;&#x9;if(isFeatureChange(operation, opposite)) {&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;operation.delete()&#xA;&#x9;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;&#x9;}&#xA;&#x9;&#x9;}&#x9;&#x9;&#xA;&#x9;}&#xA;}&#xA;&#xA;&#xA;deleteFeature_Changes(attachmentsReference)&#xA;&#xA;// metamodel adaptation&#xA;attachmentsReference = model.ModelElement.attachments&#xA;attachmentsReference.containment = true&#xA;referringModelElementsReference = model.Attachment.referringModelElements&#xA;referringModelElementsReference.name = &quot;attachedElement&quot;&#xA;referringModelElementsReference.upperBound = 1&#xA;">
       <changes xsi:type="history:Set" element="model.ecore#//ModelElement/attachments"
           featureName="containment" dataValue="true"/>
