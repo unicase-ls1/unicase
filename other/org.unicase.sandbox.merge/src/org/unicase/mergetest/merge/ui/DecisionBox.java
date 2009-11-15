@@ -47,7 +47,7 @@ public class DecisionBox extends Composite {
 		new OptionComponent(this, conflict);
 		new DescriptionComponent(this, conflict);
 		
-		if(conflict.hasDetails()) {
+		if(DetailsComponent.detailsNeeded(conflict)) {
 			new DetailsComponent(this, conflict);
 		}
 

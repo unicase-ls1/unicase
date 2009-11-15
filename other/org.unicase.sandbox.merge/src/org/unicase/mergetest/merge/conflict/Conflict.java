@@ -66,4 +66,8 @@ public abstract class Conflict {
 	public DecisionManager getDecisionManager() {
 		return decisionManager;
 	}
+
+	public ConflictOption getSolution() {
+		return solution;
+	}
 }

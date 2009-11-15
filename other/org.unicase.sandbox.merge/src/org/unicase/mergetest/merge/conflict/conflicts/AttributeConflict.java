@@ -8,6 +8,8 @@ import org.unicase.mergetest.merge.conflict.Conflict;
 import org.unicase.mergetest.merge.conflict.ConflictContext;
 import org.unicase.mergetest.merge.conflict.ConflictDescription;
 import org.unicase.mergetest.merge.conflict.ConflictOption;
+import org.unicase.mergetest.merge.conflict.options.MergeTextOption;
+import org.unicase.mergetest.merge.util.DecisionConfig;
 
 public class AttributeConflict extends Conflict {
 
@@ -51,12 +53,18 @@ public class AttributeConflict extends Conflict {
 	protected void initConflictOptions(List<ConflictOption> options) {
 		ConflictOption myOption = new ConflictOption(getMyOperation().getNewValue()
 				.toString(), ConflictOption.OptionType.MyOperation);
-		myOption.setDetailsProvider("");
+		myOption.setDetailProvider(DecisionConfig.WIDGET_MULTILINE);
 		options.add(myOption);
-		options.add(new ConflictOption(getTheirOperation().getNewValue()
-				.toString(), ConflictOption.OptionType.TheirOperation));
-		options.add(new ConflictOption("Select merged/edtied Option",
-				ConflictOption.OptionType.Custom));
+		
+		ConflictOption theirOption = new ConflictOption(getTheirOperation().getNewValue()
+				.toString(), ConflictOption.OptionType.TheirOperation);
+		theirOption.setDetailProvider(DecisionConfig.WIDGET_MULTILINE);
+		options.add(theirOption);
+		
+		MergeTextOption mergeOption = new MergeTextOption();
+		mergeOption.add(myOption);
+		mergeOption.add(theirOption);
+		options.add(mergeOption);
 	}
 
 	@Override
