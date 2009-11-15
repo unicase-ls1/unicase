@@ -6,60 +6,50 @@ import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
-import org.eclipse.ui.forms.widgets.TableWrapData;
 import org.eclipse.ui.forms.widgets.TableWrapLayout;
-import org.unicase.mergetest.merge.conflict.Conflict;
+import org.unicase.mergetest.merge.conflict.ConflictOption;
+import org.unicase.mergetest.merge.util.DecisionConfig;
 import org.unicase.mergetest.merge.util.DecisionUtil;
 
-public class MultilineCompareWidget extends Composite {
+public class MultilineWidget extends Composite {
 
-	public MultilineCompareWidget(Composite parent, Conflict conflict) {
+	public MultilineWidget(Composite parent, ConflictOption option) {
 		super(parent, SWT.NONE);
-		
-		TableWrapData wrapData = new TableWrapData();
-		wrapData.grabHorizontal=true;
-		wrapData.grabVertical=true;
-		setLayoutData(wrapData);
-		
-		TableWrapLayout layout = new TableWrapLayout();
-		layout.numColumns = 3;
-		layout.makeColumnsEqualWidth=true;
-		layout.topMargin=0;
-		layout.bottomMargin=0;
-		layout.rightMargin=0;
-		layout.leftMargin=0;
-		setLayout(layout);
+		setLayout(new TableWrapLayout());
 		setBackground(parent.getBackground());
-		
-		
-		String firstOption = conflict.getOptions().get(0).getOptionLabel();
-		String secondOption = conflict.getOptions().get(1).getOptionLabel();
-		
-		createColumn(firstOption,"My Option",false);
-		createColumn(secondOption,"Their Option",false);
-		createColumn(firstOption+" "+secondOption,"Merge/Edit Option",true);
-	}
 
-	private void createColumn(String text, String title, boolean editable) {
 		Composite column = new Composite(this, SWT.NONE);
 		column.setLayout(new TableWrapLayout());
 		column.setBackground(getBackground());
-		
+
 		FontRegistry fontRegistry = DecisionUtil.getFontRegistry();
-		
+
 		Composite titleComposite = new Composite(column, SWT.NONE);
 		titleComposite.setBackground(getBackground());
 		titleComposite.setLayout(new GridLayout());
-		
+
+		String title = "";
+		switch (option.getType()) {
+		case MyOperation:
+			title = "My Change";
+			break;
+		case TheirOperation:
+			title = "Change on Repository";
+			break;
+		case Custom:
+			title = option.getOptionLabel();
+			break;
+		}
+
 		Link titl = new Link(titleComposite, SWT.NONE);
 		titl.setText(title);
 		titl.setBackground(getBackground());
 		titl.setFont(fontRegistry.get("titleLabel"));
-		
+
 		Text myAttribute = new Text(column, SWT.MULTI | SWT.WRAP);
-		myAttribute.setText(text);
+		myAttribute.setText(option.getFullOptionLabel());
 		myAttribute.setBackground(getBackground());
-		myAttribute.setEditable(editable);
+		myAttribute.setEditable(option.getDetailProvider().endsWith(DecisionConfig.EDITABLE));
 	}
 
 }

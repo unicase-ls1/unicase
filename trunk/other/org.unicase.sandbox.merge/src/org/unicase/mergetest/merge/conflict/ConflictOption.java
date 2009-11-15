@@ -19,16 +19,23 @@ public class ConflictOption {
 		return option;
 	}
 	
+	public String getFullOptionLabel() {
+		return option;
+	}
+	
 	public OptionType getType() {
 		return type;
 	}
 
 	public boolean isDetailsProvider() {
-		return detailProvider!=null;
+		return getDetailProvider()!=null;
 	}
-	
-	public void setDetailsProvider(String id) {
-		this.detailProvider = id;
-		
+
+	public void setDetailProvider(String detailProvider) {
+		this.detailProvider = detailProvider;
+	}
+
+	public String getDetailProvider() {
+		return detailProvider;
 	}
 }

@@ -65,10 +65,7 @@ public class DecisionUtil {
 	public static FontRegistry getFontRegistry() {
 		if (fontRegistry == null) {
 			fontRegistry = new FontRegistry(Display.getCurrent());
-			fontRegistry.put("titleLabel", new FontData[] { new FontData(
-					"Arial", 8, SWT.ITALIC) });
-			fontRegistry.put("content", new FontData[] { new FontData("Arial",
-					9, SWT.NONE) });
+			DecisionConfig.initFonts(fontRegistry);
 		}
 		return fontRegistry;
 	}
