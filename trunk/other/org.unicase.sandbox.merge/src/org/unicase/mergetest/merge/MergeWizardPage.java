@@ -18,6 +18,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ScrolledComposite;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
@@ -31,6 +32,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.mergetest.merge.conflict.Conflict;
 import org.unicase.mergetest.merge.conflict.conflicts.AttributeConflict;
+import org.unicase.mergetest.merge.conflict.conflicts.SingleReferenceConflict;
 import org.unicase.mergetest.merge.ui.DecisionBox;
 import org.unicase.metamodel.Project;
 
@@ -68,14 +70,12 @@ public class MergeWizardPage extends WizardPage {
 	 */
 	public void createControl(Composite parent) {
 		parent.setLayout(new FillLayout());
-//		GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
-//		parent.setLayoutData(layoutData);
+		// GridData layoutData = new GridData(SWT.FILL, SWT.FILL, true, true);
+		// parent.setLayoutData(layoutData);
 		ScrolledComposite scrolledComposite = new ScrolledComposite(parent,
 				SWT.H_SCROLL | SWT.V_SCROLL);
-//		scrolledComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		scrolledComposite.setExpandHorizontal(true);
 		scrolledComposite.setExpandVertical(true);
-		// scrolledComposite.setLayout(new GridLayout());
 		scrolledComposite.setBackground(Display.getCurrent().getSystemColor(
 				SWT.COLOR_BLUE));
 
@@ -84,20 +84,22 @@ public class MergeWizardPage extends WizardPage {
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		composite.setLayoutData(gridData);
 
+		ColorSwitcher colorSwitcher = new ColorSwitcher();
+
 		decisionBoxes = new ArrayList<DecisionBox>();
 		for (Conflict conflict : decisionManager.getConflicts()) {
-//			decisionBoxes.add(new DecisionBox(composite, conflict));
-			if(conflict instanceof AttributeConflict) {
-				new DecisionBox(composite,conflict);
+			// decisionBoxes.add(new DecisionBox(composite, conflict));
+			if (conflict instanceof AttributeConflict
+					|| conflict instanceof SingleReferenceConflict) {
+				new DecisionBox(composite, colorSwitcher.getColor(), conflict);
 			}
 		}
 
 		debugButton(composite);
 
 		scrolledComposite.setContent(composite);
-		Point computeSize = parent.computeSize(SWT.DEFAULT,
-				SWT.DEFAULT);
-		computeSize.x=parent.getBounds().width;
+		Point computeSize = parent.computeSize(SWT.DEFAULT, SWT.DEFAULT);
+		computeSize.x = parent.getBounds().width;
 		scrolledComposite.setMinSize(computeSize);
 
 		setControl(parent);
@@ -106,7 +108,7 @@ public class MergeWizardPage extends WizardPage {
 	//
 	// DEBUG
 	//
-	
+
 	private void debugButton(final Composite composite) {
 		Composite debugBox = new Composite(composite, SWT.BORDER_SOLID);
 		debugBox.setLayout(new GridLayout());
@@ -124,41 +126,54 @@ public class MergeWizardPage extends WizardPage {
 			}
 		});
 	}
-	
+
+	private final class ColorSwitcher {
+		private boolean color = false;
+
+		public Color getColor() {
+			color = !color;
+			return (color) ? Display.getCurrent().getSystemColor(
+					SWT.COLOR_WHITE) : new Color(Display.getCurrent(), 240,
+					250, 254);
+		}
+	}
+
 	private final class DebugView extends TitleAreaDialog {
 
 		public DebugView(Shell shell) {
 			super(shell);
 			setShellStyle(this.getShellStyle() | SWT.RESIZE);
-			
+
 		}
 
 		@Override
 		protected Control createDialogArea(Composite parent) {
 			super.setTitle("adsgfpaidfhg adogh aüodhf gahfd g");
 			Composite composite = new Composite(parent, SWT.NONE);
-			composite.setLayout(new GridLayout(2,true));
-			composite.setLayoutData(
-					new GridData(SWT.FILL, SWT.FILL, true, true));
-			
-			ListViewer listViewer = new ListViewer(composite, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL);
+			composite.setLayout(new GridLayout(2, true));
+			composite
+					.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+
+			ListViewer listViewer = new ListViewer(composite, SWT.SINGLE
+					| SWT.V_SCROLL | SWT.H_SCROLL);
 			listViewer.getList().setLayoutData(
 					new GridData(SWT.FILL, SWT.FILL, true, true));
 			listViewer.setContentProvider(new DebugContentProvider());
 			listViewer.setLabelProvider(new DebugLabelProvider(true));
 			listViewer.setInput(new Object());
-			
-			ListViewer listViewer2 = new ListViewer(composite, SWT.SINGLE | SWT.V_SCROLL | SWT.H_SCROLL);
+
+			ListViewer listViewer2 = new ListViewer(composite, SWT.SINGLE
+					| SWT.V_SCROLL | SWT.H_SCROLL);
 			listViewer2.getList().setLayoutData(
 					new GridData(SWT.FILL, SWT.FILL, true, true));
 			listViewer2.setContentProvider(new DebugContentProvider());
 
 			listViewer2.setLabelProvider(new DebugLabelProvider(false));
 			listViewer2.setInput(new Object());
-			
+
 			return parent;
 		}
-		
+
 		private final class DebugLabelProvider extends LabelProvider {
 			private final boolean myOp;
 
@@ -171,10 +186,12 @@ public class MergeWizardPage extends WizardPage {
 			public String getText(Object element) {
 				String res = "";
 				if (element instanceof Conflict) {
-					if(myOp) {
-						res = ((Conflict) element).getTheirOperation().toString();
+					if (myOp) {
+						// res = ((Conflict)
+						// element).getTheirOperation().toString();
 					} else {
-						res = ((Conflict) element).getMyOperation().toString();
+						// res = ((Conflict)
+						// element).getMyOperation().toString();
 					}
 				}
 				return res;

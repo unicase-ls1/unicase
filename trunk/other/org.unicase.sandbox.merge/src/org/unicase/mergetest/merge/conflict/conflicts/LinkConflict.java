@@ -15,7 +15,7 @@ import org.unicase.mergetest.merge.conflict.ConflictDescription;
 import org.unicase.mergetest.merge.conflict.ConflictOption;
 import org.unicase.mergetest.merge.conflict.ConflictOption.OptionType;
 
-public class LinkConflict extends Conflict<AbstractOperation,AbstractOperation> {
+public class LinkConflict extends Conflict {
 
 	private String conflictDescription;
 	private String optionDescription;
@@ -24,23 +24,22 @@ public class LinkConflict extends Conflict<AbstractOperation,AbstractOperation> 
 
 	public LinkConflict(CompositeOperation myOperation,
 			CompositeOperation theirOperation, DecisionManager decisionManager) {
-		super(myOperation, theirOperation, decisionManager);
 	}
 
 	@Override
-	protected void initOptions(List<ConflictOption> options) {
-		for (AbstractOperation myOp : ((CompositeOperation) getMyOperation())
-				.getSubOperations()) {
-			for (AbstractOperation theirOp : ((CompositeOperation) getTheirOperation())
-					.getSubOperations()) {
-				if (getDecisionManager().getConflictDetector().doConflict(myOp,
-						theirOp)) {
-					this.myOperation = myOp;
-					this.theirOperation = theirOp;
-					break;
-				}
-			}
-		}
+	protected void initConflictOptions(List<ConflictOption> options) {
+//		for (AbstractOperation myOp : ((CompositeOperation) getMyOperation())
+//				.getSubOperations()) {
+//			for (AbstractOperation theirOp : ((CompositeOperation) getTheirOperation())
+//					.getSubOperations()) {
+//				if (getDecisionManager().getConflictDetector().doConflict(myOp,
+//						theirOp)) {
+//					this.myOperation = myOp;
+//					this.theirOperation = theirOp;
+//					break;
+//				}
+//			}
+//		}
 		if (myOperation instanceof SingleReferenceOperation) {
 			conflictDescription = "Another ModelElement was referenced to your Element.";
 			optionDescription = "Reference '"
@@ -95,17 +94,14 @@ public class LinkConflict extends Conflict<AbstractOperation,AbstractOperation> 
 	}
 
 	@Override
-	public ConflictDescription getConflictDescription() {
+	public ConflictDescription initConflictDescription() {
 //		return conflictDescription;
 		return null;
 	}
 
-	public String getOptionDescription() {
-		return optionDescription;
-	}
-
-	public ConflictContext getContext() {
-		return new ConflictContext(getDecisionManager().getModelElement(
-				getMyOperation().getModelElementId()), "Description", "Jürgen");
+	public ConflictContext initConflictContext() {
+//		return new ConflictContext(getDecisionManager().getModelElement(
+//				getMyOperation().getModelElementId()), "Description", "Jürgen");
+		return null;
 	}
 }

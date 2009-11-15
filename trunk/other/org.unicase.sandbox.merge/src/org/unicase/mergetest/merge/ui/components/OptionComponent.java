@@ -1,5 +1,6 @@
 package org.unicase.mergetest.merge.ui.components;
 
+import org.eclipse.emf.transaction.NotificationFilter.Custom;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -16,7 +17,7 @@ import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.mergetest.merge.conflict.Conflict;
 import org.unicase.mergetest.merge.conflict.ConflictOption;
 import org.unicase.mergetest.merge.conflict.ConflictOption.OptionType;
-import org.unicase.mergetest.merge.ui.DecisionUtil;
+import org.unicase.mergetest.merge.util.DecisionUtil;
 
 public class OptionComponent {
 
@@ -24,9 +25,12 @@ public class OptionComponent {
 
 	public OptionComponent(
 			Composite parent,
-			Conflict<? extends AbstractOperation, ? extends AbstractOperation> conflict) {
+			Conflict conflict) {
 		group = new Group(parent, SWT.NONE);
-		group.setLayout(new GridLayout());
+		GridLayout layout = new GridLayout();
+		layout.horizontalSpacing=1;
+		layout.verticalSpacing=1;
+		group.setLayout(layout);
 		GridData gridData = new GridData(SWT.FILL, SWT.FILL, true, true);
 		gridData.verticalSpan = 2;
 		group.setLayoutData(gridData);
@@ -40,22 +44,37 @@ public class OptionComponent {
 	private void createOption(ConflictOption option) {
 		final Composite composite = new Composite(group, SWT.BORDER
 				| SWT.INHERIT_FORCE);
-		composite.setLayout(new GridLayout());
+		GridLayout layout = new GridLayout();
+		layout.verticalSpacing=1;
+		composite.setLayout(layout);
 		composite.setLayoutData(new GridData(GridData.FILL_HORIZONTAL));
 
 		composite.addMouseTrackListener(new MouseTrackListenerImplementation(
 				composite));
 		Label option1 = new Label(composite, SWT.NONE);
 
-		String result = "";
-		if(option.getType()==OptionType.MyOperation) {
-			result = "Keep my value: ";
-		} else {
-			result = "Keep other value: ";
-		}
-		result += DecisionUtil.cutString(option.getOptionLabel(), 40, true);
+		String result = generateOptionDescription(option);
 		
 		option1.setText(result);
+	}
+
+	private String generateOptionDescription(ConflictOption option) {
+		String result = "";
+		switch(option.getType()) {
+		case MyOperation:
+			result = "Keep my value: ";
+			break;
+		case TheirOperation:
+			result = "Keep their value: ";
+			break;
+		case Issue:
+				result = "Create Issue: ";
+			break;
+		case Custom:
+			break;
+		}
+		result += DecisionUtil.cutString(option.getOptionLabel(), 40, true);
+		return result;
 	}
 
 	private final class MouseTrackListenerImplementation implements
