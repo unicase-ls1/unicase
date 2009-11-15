@@ -51,6 +51,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 * Name of unknown creator.
 	 */
 	public static final String UNKOWN_CREATOR = "unknown";
+	private boolean isDeleting;
 
 	/**
 	 * Constructor.
@@ -122,6 +123,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			}
 
 		}
+		this.isDeleting = false;
 	}
 
 	/**
@@ -131,6 +133,7 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 	 *      org.unicase.model.ModelElement)
 	 */
 	public void modelElementDeleteStarted(Project project, ModelElement modelElement) {
+		isDeleting = true;
 		if (isRecording) {
 			this.deleteOperation = OperationsFactory.eINSTANCE.createCreateDeleteOperation();
 			deleteOperation.setClientDate(new Date());
@@ -261,15 +264,13 @@ public class ProjectChangeTracker implements ProjectChangeObserver {
 			return;
 		}
 
-		// MK, OW: this fix was added to 0.3.31 tag and works, in the current trunk version it doesn't due to unknown
-		// side effects
 		// if this model element is the one to be deleted and if it is not in a separate resource
-		if (resource == null && modelElement.getProject() == null && this.deleteOperation != null) {
+		if (resource == null && modelElement.getProject() == null && this.isDeleting) {
 			return;
 		}
 		if (resource == null) {
 			String message = "Save failed: ModelElement \"" + modelElement.getIdentifier() + "\" has no resource!";
-			WorkspaceUtil.logException(message, new IllegalStateException(message));
+			WorkspaceUtil.logWarning(message, new IllegalStateException(message));
 			return;
 		}
 		try {
