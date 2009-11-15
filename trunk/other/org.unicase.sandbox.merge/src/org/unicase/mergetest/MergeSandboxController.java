@@ -79,10 +79,13 @@ public class MergeSandboxController {
 		sg("User3", User.class).getAssignments().add(
 				sg("ActionItem1", ActionItem.class));
 
-		cg("User3", User.class).setDescription("Schiller - Die goldene Zeit der Geistlichkeit fiel immer in die Gefangenschaft des menschlichen Geistes.");
+		cg("User3", User.class)
+				.setDescription(
+						"Schiller - Die goldene Zeit der Geistlichkeit fiel immer in die Gefangenschaft des menschlichen Geistes.");
 		sg("User3", User.class)
 				.setDescription(
 						"Goethe - Was Ihr den Geist der Zeiten heiﬂt, das ist im Grund der Herren eigener Geist, in dem die Zeiten sich nur spiegeln.");
+
 
 		cg("User2", User.class).setLeafSection(
 				cg("LeafSection2", LeafSection.class));

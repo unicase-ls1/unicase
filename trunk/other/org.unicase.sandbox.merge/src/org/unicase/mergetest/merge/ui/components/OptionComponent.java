@@ -47,6 +47,8 @@ public class OptionComponent {
 		for (ConflictOption option : conflict.getOptions()) {
 			new CompositeExtension(conflict, option);
 		}
+
+		refreshButtonColor();
 	}
 
 	private String generateOptionDescription(ConflictOption option) {
@@ -85,11 +87,16 @@ public class OptionComponent {
 	private void refreshButtonColor() {
 		for (Control composite : group.getChildren()) {
 			if (composite instanceof CompositeExtension) {
-				if(conflict.isResolved() && conflict.getSolution()==((CompositeExtension)composite).getOption()) {
-					setColor((Composite) composite, DecisionConfig.getOptionSelectedBack(), DecisionConfig.getOptionSelectedFor());
+				if (conflict.isResolved()
+						&& conflict.getSolution() == ((CompositeExtension) composite)
+								.getOption()) {
+					setColor((Composite) composite, DecisionConfig
+							.getOptionSelectedBack(), DecisionConfig
+							.getOptionSelectedFor());
 				} else {
 					setColor((Composite) composite, DecisionConfig
-							.getDefaultColor(), DecisionConfig.getDefaultColor());
+							.getDefaultColor(), DecisionConfig
+							.getDefaultColor());
 				}
 			}
 		}
@@ -106,7 +113,7 @@ public class OptionComponent {
 	}
 
 	private final class CompositeExtension extends Composite {
-		
+
 		private final ConflictOption option;
 
 		private CompositeExtension(Conflict conflict, ConflictOption option) {
@@ -147,12 +154,20 @@ public class OptionComponent {
 				break;
 
 			case SWT.MouseEnter:
-				setColor(composite, DecisionConfig.getOptionEnteredColor(), DecisionConfig
-						.getDefaultColor());
+				if (conflict.isResolved()
+						&& conflict.getSolution() == composite.getOption()) {
+					setColor(composite, DecisionConfig
+							.getOptionSelectedBackEnter(), DecisionConfig
+							.getDefaultColor());
+				} else {
+					setColor(composite, DecisionConfig.getOptionEnteredColor(),
+							DecisionConfig.getDefaultColor());
+				}
 				break;
 
 			case SWT.MouseUp:
-				if(conflict.isResolved() && conflict.getSolution()==composite.getOption()) {
+				if (conflict.isResolved()
+						&& conflict.getSolution() == composite.getOption()) {
 					conflict.setSolution(null);
 				} else {
 					conflict.setSolution(composite.getOption());
