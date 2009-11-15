@@ -7,6 +7,7 @@ public class ConflictDescription {
 
 	private Map<String,Object> values;
 	private final String description;
+	private String imageName;
 
 	public ConflictDescription(String description) {
 		this.description = description;
@@ -23,5 +24,14 @@ public class ConflictDescription {
 	
 	public Map<String, Object> getValues() {
 		return values;
+	}
+
+	public String getImage() {
+		return imageName;
+	}
+	
+	public void setImage(String name) {
+		this.imageName = name;
+		
 	}
 }

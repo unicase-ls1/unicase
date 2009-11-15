@@ -8,29 +8,34 @@ import org.eclipse.emf.edit.ui.provider.AdapterFactoryLabelProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyleRange;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.mergetest.merge.conflict.Conflict;
 import org.unicase.mergetest.merge.conflict.ConflictDescription;
 import org.unicase.mergetest.merge.ui.DecisionBox;
-import org.unicase.mergetest.merge.ui.DecisionUtil;
+import org.unicase.mergetest.merge.util.DecisionUtil;
 import org.unicase.metamodel.ModelElement;
 
 public class DescriptionComponent extends Composite {
 
 	public DescriptionComponent(
 			DecisionBox parent,
-			Conflict<? extends AbstractOperation, ? extends AbstractOperation> conflict) {
+			Conflict conflict) {
 		super(parent,SWT.NONE);
-		setLayout(new GridLayout(2,false));
+		GridLayout layout = new GridLayout(2,false);
+		layout.horizontalSpacing=20;
+		setLayout(layout);
 		setLayoutData(new GridData(GridData.FILL_BOTH));
 		
 		Label image = new Label(this,SWT.NONE);
-		image.setImage(DecisionUtil.getImage("attribute.gif"));
-//		image.setText("XX");
+		image.setImage(DecisionUtil.getImage(conflict.getConflictDescription().getImage()));
+		image.setLayoutData(new GridData(GridData.VERTICAL_ALIGN_BEGINNING));
+		image.setBackground(parent.getBackground());
+		
 		
 		
 		ArrayList<StyleRange> styleRanges = new ArrayList<StyleRange>();
@@ -44,13 +49,21 @@ public class DescriptionComponent extends Composite {
 			}
 		}
 		
+		Group group = new Group(this, SWT.NONE);
+		group.setLayoutData(new GridData(GridData.FILL_BOTH));
+		FillLayout groupLayout = new FillLayout();
+		groupLayout.marginHeight=5;
+		groupLayout.marginWidth=6;
+		group.setLayout(groupLayout);
+		group.setBackground(parent.getBackground());
+		group.setText("Conflict Description:");
 		
-		StyledText styledDescription = new StyledText(this, SWT.WRAP | SWT.MULTI | SWT.READ_ONLY);
-		styledDescription.setLayoutData(new GridData(GridData.FILL_BOTH));
+		StyledText styledDescription = new StyledText(group, SWT.WRAP | SWT.MULTI | SWT.READ_ONLY);
 		styledDescription.setEditable(false);
-		styledDescription.setJustify(true);
 		styledDescription.setText(description);
+		styledDescription.setWordWrap(true);
 		styledDescription.setStyleRanges(styleRanges.toArray(new StyleRange[styleRanges.size()]));
+		styledDescription.setBackground(parent.getBackground());
 	}
 
 	
@@ -59,7 +72,6 @@ public class DescriptionComponent extends Composite {
 	    styleRange.start = start;
 	    styleRange.length = length;
 	    styleRange.fontStyle = SWT.BOLD;
-//	    styleRange.background = this.getDisplay().getSystemColor(SWT.COLOR_BLUE);
 	    return styleRange;
 	}
 	
@@ -72,8 +84,8 @@ public class DescriptionComponent extends Composite {
 			String[] split = string.split("\\]");
 			if(split.length>1) {
 				Object  obj = conflict.getValues().get(split[0]);				
-				String tmp = (obj instanceof ModelElement)?labelProvider.getText(obj):obj.toString();
-				tmp = DecisionUtil.cutString(tmp, 30, true);
+				String tmp = (String) ((obj instanceof ModelElement)?labelProvider.getText(obj):obj);
+				tmp = DecisionUtil.cutString(tmp, 50, true);
 				split[0] = "::"+tmp; 
 			}
 			result.addAll(Arrays.asList(split));

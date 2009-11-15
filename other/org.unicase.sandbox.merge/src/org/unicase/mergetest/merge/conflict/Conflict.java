@@ -3,61 +3,59 @@ package org.unicase.mergetest.merge.conflict;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
 import org.unicase.mergetest.merge.DecisionManager;
 
-public abstract class Conflict<MyOp extends AbstractOperation, TheirOp extends AbstractOperation> {
+public abstract class Conflict {
 
-	private final TheirOp theirOperation;
-	private final MyOp myOperation;
-	private final DecisionManager decisionManager;
+	private DecisionManager decisionManager;
 	private ArrayList<ConflictOption> options;
 	private ConflictOption solution;
+	private ConflictContext conflictContext;
+	private ConflictDescription conflictDescription;
 
-	public Conflict(MyOp myOperation, TheirOp theirOperation,
-			DecisionManager decisionManager) {
-		this.myOperation = myOperation;
-		this.theirOperation = theirOperation;
+	protected void init(DecisionManager decisionManager) {
 		this.decisionManager = decisionManager;
-		initOptions();
-	}
-
-	private void initOptions() {
 		options = new ArrayList<ConflictOption>();
-		initOptions(options);
+		initConflictOptions(options);
+		initDefaultConflictOptions(options);
+		conflictContext = initConflictContext();
+		conflictDescription = initConflictDescription();
 	}
 
-	abstract protected void initOptions(List<ConflictOption> options);
-
-	public DecisionManager getDecisionManager() {
-		return decisionManager;
+	private void initDefaultConflictOptions(ArrayList<ConflictOption> options2) {
+		options.add(new ConflictOption("Create Issue",
+				ConflictOption.OptionType.Issue));
+		initConflictContext();
 	}
 
-	public TheirOp getTheirOperation() {
-		return theirOperation;
+	abstract protected void initConflictOptions(List<ConflictOption> options);
+
+	protected abstract ConflictDescription initConflictDescription();
+
+	protected abstract ConflictContext initConflictContext();
+
+	public ConflictContext getConflictContext() {
+		return conflictContext;
 	}
 
-	public MyOp getMyOperation() {
-		return myOperation;
+	public ConflictDescription getConflictDescription() {
+		return conflictDescription;
 	}
 
-	public String getName() {
-		return getDecisionManager().getModelElementName(
-				getMyOperation().getModelElementId());
-	}
-
-	public abstract ConflictDescription getConflictDescription();
-	
 	public List<ConflictOption> getOptions() {
 		return options;
 	}
-
 
 	public boolean isResolved() {
 		return (solution != null);
 	}
 
-	public boolean hasAdditionalInformation() {
+	public boolean hasDetails() {
+		for (ConflictOption option : getOptions()) {
+			if (option.isDetailsProvider() == true) {
+				return true;
+			}
+		}
 		return false;
 	}
 
@@ -65,5 +63,7 @@ public abstract class Conflict<MyOp extends AbstractOperation, TheirOp extends A
 		solution = conflictOption;
 	}
 
-	public abstract ConflictContext getContext();
+	public DecisionManager getDecisionManager() {
+		return decisionManager;
+	}
 }

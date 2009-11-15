@@ -11,6 +11,7 @@ import java.util.List;
 import org.eclipse.jface.wizard.Wizard;
 import org.unicase.emfstore.esmodel.versioning.ChangePackage;
 import org.unicase.emfstore.esmodel.versioning.operations.AbstractOperation;
+import org.unicase.mergetest.merge.util.DecisionUtil;
 import org.unicase.metamodel.Project;
 import org.unicase.workspace.observers.ConflictResolver;
 
@@ -37,6 +38,7 @@ public class MergeWizard extends Wizard implements ConflictResolver {
 		this.theirChangePackages = theirChangePackages;
 		this.myChangePackage = myChangePackage;
 		setWindowTitle("Merge Wizard");
+		setDefaultPageImageDescriptor(DecisionUtil.getImageDescriptor("merge_wizard.gif"));
 	}
 
 	

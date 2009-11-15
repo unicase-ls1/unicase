@@ -4,9 +4,10 @@ public class ConflictOption {
 
 	private final String option;
 	private final OptionType type;
+	private String detailProvider;
 
 	public enum OptionType {
-		MyOperation, TheirOperation
+		MyOperation, TheirOperation, Issue, Custom
 	};
 
 	public ConflictOption(String option, OptionType type) {
@@ -22,7 +23,12 @@ public class ConflictOption {
 		return type;
 	}
 
-	public String getFullOptionLabel() {
-		return option;
+	public boolean isDetailsProvider() {
+		return detailProvider!=null;
+	}
+	
+	public void setDetailsProvider(String id) {
+		this.detailProvider = id;
+		
 	}
 }
