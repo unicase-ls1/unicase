@@ -30,6 +30,10 @@ public class DecisionConfig {
 	public static Color getOptionSelectedBack() {
 		return new Color(Display.getCurrent(), 0, 127, 14);
 	}
+
+	public static Color getOptionSelectedBackEnter() {
+		return new Color(Display.getCurrent(), 165, 255, 142);
+	}
 	
 	public static Color getOptionSelectedFor() {
 		return Display.getCurrent().getSystemColor(SWT.COLOR_WHITE);
