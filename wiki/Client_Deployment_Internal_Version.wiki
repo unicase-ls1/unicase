@@ -3,13 +3,13 @@ To deploy a new version please proceed as following:
 
 *Important Note: Do release with Ganymede, do NOT release with Galileo. Otherwise, installation/update in Ganymede will not work.
 
-Step 1: 
+*Step 1:* 
 
 Before starting the release send an email to the developer mailing list to announce that you are creating a release from a specific branch so no one can commit on the branch until further notice. Check out all the plug-ins in the branch you would like to construct the release from. Make sure that all the plug-ins are checked out directly for example: in org.unicase.developer you should check out *!UnicaseFeature* and *!UnicaseUpdateSite* directly.
 
 [http://unicase.googlecode.com/files/cd1.png]
 
-Step 2:
+*Step 2:*
 Change the version number of all the plug-ins to the release number that you are about to upload.  This can be done by the search and replace feature available in eclipse. 
 
 [http://unicase.googlecode.com/files/cd1b.png]
@@ -19,16 +19,22 @@ Change the version number of all the plug-ins to the release number that you are
 
  * *Important note:* while using the search/replace option in eclipse you should double check the information that is being replaced by using the preview functionality in order to grantee that the correct files are being modified.
 
-Step 3:
+*Step 3:*
 Increase the version number in the feature.xml file to match the version number of the new release:
 [http://unicase.googlecode.com/files/cd3.png]
 
-Step 4:
+*Step 4:*
 Configure the plug-ins to be included in the feature. This can be done through first deleting all the plug-ins that were previously added and then add them all again one by one. After adding the plug-ins you need to synchronize them with the release version you’re trying to deploy. Make sure that you choose the option copy versions from plug-in and fragment manifests.
 [http://unicase.googlecode.com/files/cd4.png]
 [http://unicase.googlecode.com/files/cd4b.png]
 
  * *Note that*: you should delete all dependencies and compute them again to make sure that the dependencies list is updated to match with the newly added plug-ins as shown in the next figure.
 [http://unicase.googlecode.com/files/cd5.png]
+
+*Step 5:*
+In this step you need to build your update site. First you need to delete the content of the update site folder and rebuild it again. Therefore, you need to delete the artifacts.xml , content.xml amd index.html. 
+
+
+To build your update site you simply open the site.xml and add the new feature you want to publish, i.e. the UNICASE feature and then press the build all button 
    
  
