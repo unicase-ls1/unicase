@@ -1,5 +1,6 @@
 This section describes the various types of unicase deployment:
 
+ * [Create_update_site Create an update site]
  * [Client_Deployment_Internal_Version  Client Deployment (Internal Version)]
  * [Client_Deployment_External_Version  Client Deployment (External Version)]
  * Server Deployment
