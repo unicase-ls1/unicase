@@ -11,7 +11,7 @@ Change this old version number to the new one (e.g. 0.1.0) *without* a ".qualifi
 
 [http://unicase.googlecode.com/files/a531d.png]
 
-Note:
+*Note:*
  * If you want to release all plugins, you can use search and replace.
  * Please note that you have to change the bundle version of the dependencies too, through the search and replace feature of Eclips. 
 
