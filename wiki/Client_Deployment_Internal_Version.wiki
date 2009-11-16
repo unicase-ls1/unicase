@@ -48,9 +48,9 @@ After building your update site, you need to update the name of the repository t
 
 [http://unicase.googlecode.com/files/cd5d.png]
 
-Now the feature is ready to be deployed, but before the deployment we need to commit all the changes to repository and create a tag for the new release.  
+Now the feature is ready to be deployed, but before the deployment we need to commit all the changes to repository and then create a tag for the new release.  
 
- * Create a tag for the release:
+ * Notes on how to create a tag for the release:
 
 [http://unicase.googlecode.com/files/1b723.png]
 
