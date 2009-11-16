@@ -54,6 +54,6 @@ Now the feature is ready to be deployed, but before the deployment we need to co
 
 [http://unicase.googlecode.com/files/1b723.png]
 
-Configure the tag according to the release version number, e.g. in this case set the "To URL" to:  {{{https://wwwbruegge.in.tum.de/repos/unicase/tags/XXX.internal}}} (replace XXX with the your version number).
+Configure the tag according to the release version number, e.g. in this case set the "To URL" to:  {{{https://unicase.googlecode.com/svn/tags/XXX.internal}}} (replace XXX with the your version number).
 
 [http://unicase.googlecode.com/files/2afc4.png]
