@@ -40,6 +40,7 @@ In this step you need to build your update site. First you need to delete the co
 [http://unicase.googlecode.com/files/cd5b.png]
 
 To build your update site you simply open the site.xml and add the new feature you want to publish, i.e. the UNICASE feature and then press the build all button.
+
 [http://unicase.googlecode.com/files/cd5c.png] 
    
  
