@@ -160,6 +160,7 @@ public class CommitNotificationsTray extends DialogTray {
 				});
 
 		notificationsTable.setFilters(new ViewerFilter[] { searchFilter });
+		notificationsTable.setInput(notifications);
 
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(
 				notificationsTable.getControl());
