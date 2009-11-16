@@ -10,6 +10,7 @@ Before starting the release send an email to the developer mailing list to annou
 [http://unicase.googlecode.com/files/cd1.png]
 
 *Step 2:*
+
 Change the version number of all the plug-ins to the release number that you are about to upload.  This can be done by the search and replace feature available in eclipse. 
 
 [http://unicase.googlecode.com/files/cd1b.png]
@@ -20,10 +21,12 @@ Change the version number of all the plug-ins to the release number that you are
  * *Important note:* while using the search/replace option in eclipse you should double check the information that is being replaced by using the preview functionality in order to grantee that the correct files are being modified.
 
 *Step 3:*
+
 Increase the version number in the feature.xml file to match the version number of the new release:
 [http://unicase.googlecode.com/files/cd3.png]
 
 *Step 4:*
+
 Configure the plug-ins to be included in the feature. This can be done through first deleting all the plug-ins that were previously added and then add them all again one by one. After adding the plug-ins you need to synchronize them with the release version you’re trying to deploy. Make sure that you choose the option copy versions from plug-in and fragment manifests.
 [http://unicase.googlecode.com/files/cd4.png]
 [http://unicase.googlecode.com/files/cd4b.png]
@@ -32,6 +35,7 @@ Configure the plug-ins to be included in the feature. This can be done through f
 [http://unicase.googlecode.com/files/cd5.png]
 
 *Step 5:*
+
 In this step you need to build your update site. First you need to delete the content of the update site folder and rebuild it again. Therefore, you need to delete the artifacts.xml , content.xml amd index.html. 
 
 
