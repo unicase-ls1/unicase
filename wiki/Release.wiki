@@ -30,7 +30,7 @@ Configure the tag according to the release version number, e.g. in this case set
 
 If you release all plugins, use: {{{https://unicase.googlecode.com/svn/tags/X.X.X}}}
 
-[http://unicase.googlecode.com/files/2afc4.png]
+[http://unicase.googlecode.com/files/Picture%201.png]
 
 Step 4:
 
