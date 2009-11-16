@@ -10,11 +10,11 @@ When you've finished, you can open the feature.xml in your feature project to ad
  * Choose Information *(A)* to add a description, copyright notice or license agreement
  * Choose Plug-ins *(B)* to look at the plug-ins integrated into this feature and the set options concerning the version number of the plug-ins. E.g. you can force all plug-ins to adopt the features version.
  * To allow auto-update you have to specify a default update site *(C)* for this feature (e.g. {{{http://unicase.org/update/}}})
-
-*Notice:* These informations aren't necessary to create the feature or the update site for test reasons.
  * Now the feature is complete and we'll continue creating an update site for it: Therefore select the update site wizard *(D)*, enter a name and select finish.
 Open site.xml in the update site project and add a category (e.g. "unicase plugin", "unicase RCP", "Emfstore standalone"), then add the feature you just created to this category and choose build or build all.
 
-If you want to test whether the deployment was successful open your update manager in eclipse and add the site file://<path-to-your-workspace>/<name-of-your-update-site-project> or use add site -> local and navigate to your update site directory. Your categories and features should now appear in your update manager and you can install them.
+*Notice:* These informations aren't necessary to create the feature or the update site for test reasons.
+
+If you want to test whether the deployment was successful open your update manager in eclipse and add the site {{{file://<path-to-your-workspace>/<name-of-your-update-site-project>}}} or use add site -> local and navigate to your update site directory. Your categories and features should now appear in your update manager and you can install them.
 
 The last step of deployment is to copy the files from your update site project to your webserver.
