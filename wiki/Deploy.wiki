@@ -1,6 +1,6 @@
 This section describes the various types of unicase deployment:
 
- * [Create_update_site Create an Update Site]
+ * [Create_update_site How to Create an Eclipse Feature and an Update Site]
  * [Client_Deployment_Internal_Version  Client Deployment (Internal Version)]
  * [Client_Deployment_External_Version  Client Deployment (External Version)]
  * Server Deployment
