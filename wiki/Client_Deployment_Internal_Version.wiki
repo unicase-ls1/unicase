@@ -77,6 +77,8 @@ The update site should be tested locally on four different instances of eclipse:
  * New eclipse instances of Ganymede, that doesn’t have UNICASE installed in.
  * Eclipse instances of Galileo, which has UNICASE installed in.
  * Eclipse instances of Ganymede, which has UNICASE installed in.
+In each instance of eclipse do the following:
+Open your update manager in eclipse and add the site file://<path-to-your-workspace>/<name-of-your-update-site-project> or use add site -> local and navigate to your update site directory. Your categories and features should now appear in your update manager and you can install them.
 
 [http://unicase.googlecode.com/files/Picture%206.png]
 
