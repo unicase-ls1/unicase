@@ -1,7 +1,8 @@
 =Release Tutorial=
 This tutorial describes how to release plugins.
 
-Step 1:
+*Step 1:*
+
 Open the plugin's plugin.xml file. It should have a version number ending with ".qualifier":
 
 [http://unicase.googlecode.com/files/dfb0a.png]
@@ -14,13 +15,13 @@ Note:
  * If you want to release all plugins, you can use search and replace.
  * Please note that you have to change the bundle version of the dependencies too, through the search and replace feature of Eclips. 
 
-Step 2:
+*Step 2:*
 
 Commit the version change:
 
 [http://unicase.googlecode.com/files/60c2b.png]
 
-Step 3:
+*Step 3:*
 
 Create a tag for the release:
 
@@ -32,11 +33,11 @@ If you release all plugins, use: {{{https://unicase.googlecode.com/svn/tags/X.X.
 
 [http://unicase.googlecode.com/files/Picture%201.png]
 
-Step 4:
+*Step 4:*
 
 Deploy features if you want to See the [http://code.google.com/p/unicase/wiki/Deploy Deployment page.]
 
-Step 5:
+*Step 5:*
 
 Update the version in the plugin.xml to a new ".qualifier" version again. This version must be higher then the released version to avoid version conflicts in the development environment:
 
