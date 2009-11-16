@@ -34,7 +34,7 @@ If you release all plugins, use unicase/tags/X.X.X
 
 Step 4:
 
-Deploy features if you want to See the Deployment page.
+Deploy features if you want to See the [http://code.google.com/p/unicase/wiki/Deploy Deployment page.]
 
 Step 5:
 
