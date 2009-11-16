@@ -43,4 +43,6 @@ To build your update site you simply open the site.xml and add the new feature y
 
 [http://unicase.googlecode.com/files/cd5c.png] 
    
- 
+After building your update site, you need to update the name of the repository to UNICASE in the files: artifacts.xml and Content.xml. 
+
+[http://unicase.googlecode.com/files/cd5d.png]
