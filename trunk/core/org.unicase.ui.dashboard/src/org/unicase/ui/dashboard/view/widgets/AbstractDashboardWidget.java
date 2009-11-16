@@ -3,7 +3,7 @@
  * accompanying materials are made available under the terms of the Eclipse Public License v1.0 which accompanies this
  * distribution, and is available at http://www.eclipse.org/legal/epl-v10.html </copyright>
  */
-package org.unicase.workspace.ui.dashboard.widgets;
+package org.unicase.ui.dashboard.view.widgets;
 
 import java.util.Collections;
 import java.util.List;
@@ -30,9 +30,9 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 import org.eclipse.ui.forms.events.HyperlinkAdapter;
 import org.eclipse.ui.forms.events.HyperlinkEvent;
+import org.unicase.ui.dashboard.view.DashboardPage;
+import org.unicase.ui.dashboard.view.DashboardToolbarAction;
 import org.unicase.workspace.WorkspaceManager;
-import org.unicase.workspace.ui.dashboard.DashboardPage;
-import org.unicase.workspace.ui.dashboard.DashboardToolbarAction;
 
 /**
  * The common functions for a dashboard widget.

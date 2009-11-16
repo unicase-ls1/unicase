@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!-- Schema file written by PDE -->
-<schema targetNamespace="org.unicase.workspace.ui" xmlns="http://www.w3.org/2001/XMLSchema">
+<schema targetNamespace="org.unicase.ui.dashboard" xmlns="http://www.w3.org/2001/XMLSchema">
 <annotation>
       <appinfo>
-         <meta.schema plugin="org.unicase.workspace.ui" id="org.unicase.workspace.ui.dashboard.widgets" name="Dashboard Widgets"/>
+         <meta.schema plugin="org.unicase.ui.dashboard" id="org.unicase.ui.dashboard.widgets" name="Dashboard Widgets"/>
       </appinfo>
       <documentation>
          [Enter description of this extension point.]
@@ -62,7 +62,7 @@
                   This is the class for the widget.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn="org.unicase.workspace.ui.dashboard.widgets.AbstractDashboardWidget:"/>
+                  <meta.attribute kind="java" basedOn="org.unicase.ui.dashboard.view.widgets.AbstractDashboardWidget:"/>
                </appinfo>
             </annotation>
          </attribute>
