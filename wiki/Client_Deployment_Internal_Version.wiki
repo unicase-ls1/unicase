@@ -42,6 +42,7 @@ In this step you need to build your update site. First you need to delete the co
 To build your update site you simply open the site.xml and add the new feature you want to publish, i.e. the UNICASE feature and then press the build all button.
 
 [http://unicase.googlecode.com/files/cd5c.png] 
+
    
 After building your update site, you need to update the name of the repository to UNICASE in the files: artifacts.xml and Content.xml. 
 
