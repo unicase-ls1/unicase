@@ -63,3 +63,6 @@ Configure the tag according to the release version number, e.g. in this case set
 Configure the UnicaseFeature as described in Steps 1-5 above. Then, export your feature using the "Export a deployable feature":
 
 [http://unicase.googlecode.com/files/cd5e.png]
+
+In the export dialog, for destination enter a suitable directory:
+[http://unicase.googlecode.com/files/cd5f.png]
