@@ -65,4 +65,5 @@ Configure the UnicaseFeature as described in Steps 1-5 above. Then, export your 
 [http://unicase.googlecode.com/files/cd5e.png]
 
 In the export dialog, for destination enter a suitable directory:
+
 [http://unicase.googlecode.com/files/cd5f.png]
